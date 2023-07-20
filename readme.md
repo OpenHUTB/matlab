@@ -1,5 +1,28 @@
 
 
+
+# 部署
+
+使用部署脚本`deploy.m`将`matlab_2022b_win_run.zip`解压到仓库，同名文件跳过。
+
+
+# 平台
+
+## 关闭p文件解码后的警告
+```
+warning('query','last')
+```
+显示p文件所在目录包含m文件所对应的警告信息
+```
+identifier: 'MATLAB:pfileOlderThanMfile'
+state: 'on'
+```
+关闭警告
+```
+warning('off', 'MATLAB:pfileOlderThanMfile')
+```
+
+## 设置支持包的根路径
 Matlab 运行时的外部路径包括：
 ```commandline
 % C:\BaiduSyncdisk\workspace\demo
@@ -11,6 +34,7 @@ userpath
 
 % matlab 启动时的用户自定义配置的路径
 ```
+
 
 # 更新
 [新版本所加的特性](https://ww2.mathworks.cn/help/driving/release-notes.html)

@@ -1,0 +1,13 @@
+function hC=getBitConcat(s)
+
+
+
+
+
+
+
+    hC=pirelab.getBitConcatComp(...
+    s.Network,...
+    s.Inputs,...
+    s.Outputs,...
+    s.Name);

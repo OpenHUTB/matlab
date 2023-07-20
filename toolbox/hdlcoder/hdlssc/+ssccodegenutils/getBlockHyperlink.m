@@ -1,0 +1,13 @@
+function hyperlink=getBlockHyperlink(blkFullName)
+
+
+
+
+    blkFullName=strrep(blkFullName,newline,' ');
+
+    hyperlink=strcat('<a href="matlab:hilite_system(''',...
+    blkFullName,...
+    ''', ''find'')">',...
+    blkFullName,...
+    '</a>');
+end

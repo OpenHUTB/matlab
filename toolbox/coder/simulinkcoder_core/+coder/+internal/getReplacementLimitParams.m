@@ -1,0 +1,16 @@
+function limitParameters=getReplacementLimitParams
+
+
+
+
+
+    limitParameters={'MaxIdInt8','MinIdInt8','MaxIdUint8',...
+    'MaxIdInt16','MinIdInt16','MaxIdUint16',...
+    'MaxIdInt32','MinIdInt32','MaxIdUint32',...
+    'MaxIdInt64','MinIdInt64','MaxIdUint64',...
+    'BooleanTrueId','BooleanFalseId',...
+    };
+
+
+
+

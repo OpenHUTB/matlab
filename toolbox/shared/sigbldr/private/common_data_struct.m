@@ -1,0 +1,16 @@
+function commonStruct=common_data_struct(trange)
+
+
+
+
+
+
+    if nargin<1
+        trange=[0,10];
+    end
+    commonStruct=struct('dispTime',trange,...
+    'dispMode',1,...
+    'minTime',trange(1),...
+    'maxTime',trange(2),...
+    'reqUIOpen',false,...
+    'dirtyFlag',0);

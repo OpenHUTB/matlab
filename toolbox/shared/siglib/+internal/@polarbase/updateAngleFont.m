@@ -1,0 +1,6 @@
+function updateAngleFont(p)
+
+
+    set(p.hAngleText,...
+    'FontName',p.FontName,...
+    'FontSize',getAngleFontSize(p));

@@ -1,0 +1,15 @@
+function[V,Idc]=FunctionHalfBridge(g,Vdc,I)
+%#codegen
+    coder.allowpcode('plain');
+    dataType='double';
+    V=zeros(2,1,dataType);
+    V(1)=(-1.0*g(2)+1.0)*Vdc;
+    V(2)=-g(1)*Vdc;
+    if((I(2)-I(1))>0)
+        Idc=g(1)*(I(2)-I(1));
+    else
+        Idc=(1-g(2))*(I(2)-I(1));
+    end
+    if((g(1)+g(2))==2)
+        Idc=I(1);
+    end

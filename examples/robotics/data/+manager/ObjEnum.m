@@ -1,0 +1,12 @@
+classdef ObjEnum
+
+
+
+    enumeration
+LOADINGSTATION
+UNLOADINGSTATION
+CHARGINGSTATION
+OBSTACLE
+    end
+end
+

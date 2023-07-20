@@ -1,0 +1,13 @@
+function hNewC=lowerAbs(hN,hC)
+
+
+
+    hOutSignals=hC.PirOutputSignals;
+    hType=pirelab.getTypeInfoAsFi(hOutSignals.Type,hC.getRoundingMode,hC.getOverflowMode);
+
+    hNewC=pireml.getAbsComp(hN,...
+    hC.PirInputSignals,...
+    hOutSignals,...
+    hType,...
+    hC.Name);
+end

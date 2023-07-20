@@ -1,0 +1,7 @@
+
+
+classdef SelectionTypeEnum
+    enumeration
+        NONE,SLSIGNAL,SLBLOCK,VARIABLE,SFSTATE,SFTRANSITION,SFDATA,SFEVENT,SFMESSAGE,SFSLFUNCTION
+    end
+end

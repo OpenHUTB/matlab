@@ -1,0 +1,26 @@
+function hNewC=lowerIntegerDelay(hN,hC)
+
+
+
+
+    hNewC=pireml.getIntDelayComp(...
+    hN,...
+    hC.PirInputSignals,...
+    hC.PirOutputSignals,...
+    hC.getNumDelays,...
+    hC.Name,...
+    hC.getInitialValue,...
+    hC.getResetNone,...
+    hC.getRAMBased);
+
+
+
+
+
+
+
+
+
+
+
+end

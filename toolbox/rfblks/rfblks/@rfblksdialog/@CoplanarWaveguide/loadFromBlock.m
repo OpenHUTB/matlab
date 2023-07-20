@@ -1,0 +1,29 @@
+function loadFromBlock(this)
+
+
+
+
+
+
+
+
+    this.ConductorWidth=this.Block.ConductorWidth;
+    this.SlotWidth=this.Block.SlotWidth;
+    this.Height=this.Block.Height;
+    this.Thickness=this.Block.Thickness;
+    this.EpsilonR=this.Block.EpsilonR;
+    this.LossTangent=this.Block.LossTangent;
+    this.SigmaCond=this.Block.SigmaCond;
+    this.LineLength=this.Block.LineLength;
+    this.StubMode=this.Block.StubMode;
+    this.Termination=this.Block.Termination;
+
+
+    this.SourceFreq=this.Block.SourceFreq;
+    this.Freq=this.Block.Freq;
+    this.AllPlotType=this.Block.AllPlotType;
+    this.YOption=this.Block.YOption;
+    this.XOption=this.Block.XOption;
+    this.PlotZ0=this.Block.PlotZ0;
+
+

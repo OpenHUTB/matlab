@@ -1,0 +1,79 @@
+function Velocities=automlMotoVelocities(lf,lm,lr,pdf,pmu,pmur,rdf,rmu,rmur,rx,rz,pCGxm,pCGzm,pCGxlf,pCGxra,pCGzlf,pCGzra,pCGxuf,pCGzuf)
+
+%#codegen
+    coder.allowpcode('plain')
+
+
+
+
+
+    t2=cos(pmu);
+    t3=cos(pmur);
+    t4=sin(pmu);
+    t5=sin(pmur);
+    t6=lf+lm;
+    t7=lm+pCGxlf;
+    t8=lm+pCGxuf;
+    t9=pCGzlf+pdf;
+    t10=pCGxm.*t2;
+    t11=pCGzm.*t2;
+    t12=pCGzuf.*t2;
+    t13=pdf.*t2;
+    t14=rdf.*t2;
+    t15=pCGxm.*t4;
+    t16=pCGzm.*t4;
+    t17=pCGzuf.*t4;
+    t18=pdf.*t4;
+    t19=rdf.*t4;
+    t28=t2.*t6;
+    t29=t2.*t7;
+    t30=t2.*t8;
+    t31=t2.*t9;
+    t32=t4.*t6;
+    t33=t4.*t7;
+    t34=t4.*t8;
+    t35=t4.*t9;
+    t20=rmu.*t10;
+    t21=rmu.*t11;
+    t22=rmu.*t12;
+    t23=rmu.*t13;
+    t24=rmu.*t15;
+    t25=rmu.*t16;
+    t26=rmu.*t17;
+    t27=rmu.*t18;
+    t36=-t12;
+    t37=-t13;
+    t38=-t14;
+    t39=-t15;
+    t41=rmu.*t28;
+    t42=rmu.*t29;
+    t43=rmu.*t30;
+    t44=rmu.*t31;
+    t45=rmu.*t32;
+    t46=rmu.*t33;
+    t47=rmu.*t34;
+    t48=rmu.*t35;
+    t49=-t33;
+    t53=lr+t10+t16;
+    t56=lr+t18+t28;
+    t57=lr+t17+t30;
+    t62=lr+t29+t35;
+    t40=-t24;
+    t50=-t45;
+    t51=-t46;
+    t52=-t47;
+    t54=t20+t25;
+    t55=t11+t39;
+    t58=t26+t43;
+    t59=t32+t37;
+    t60=t34+t36;
+    t63=t31+t49;
+    t65=t27+t38+t41;
+    t67=t38+t42+t48;
+    t61=t21+t40;
+    t64=t22+t52;
+    t66=t19+t23+t50;
+    t68=t19+t44+t51;
+    mt1=[rx,rx+t3.*t66-t5.*t65-rmur.*t5.*t56+rmur.*t3.*(t13-t32),rx-pCGxra.*rmur.*t5+pCGzra.*rmur.*t3,rx-t5.*t54+t3.*t61+rmur.*t3.*t55-rmur.*t5.*t53,rx-t5.*t58+t3.*t64-rmur.*t5.*t57+rmur.*t3.*(t12-t34),rx+t3.*t68-t5.*t67+rmur.*t3.*t63-rmur.*t5.*t62,rz,rz-t3.*t65-t5.*t66-rmur.*t3.*t56-rmur.*t5.*(t13-t32),rz-pCGxra.*rmur.*t3-pCGzra.*rmur.*t5,rz-t3.*t54-t5.*t61-rmur.*t3.*t53-rmur.*t5.*t55,rz-t3.*t58-t5.*t64-rmur.*t3.*t57-rmur.*t5.*(t12-t34)];
+    mt2=[rz-t3.*t67-t5.*t68-rmur.*t3.*t62-rmur.*t5.*t63];
+    Velocities=reshape([mt1,mt2],1,12);

@@ -1,0 +1,146 @@
+
+
+function WrtDataGenerator(~,hN,WrtDataGenInSigs,WrtDataGenOutSigs,hBoolT,hInputDataT,...
+    slRate,blockInfo)
+
+
+    hWrtDataGenN=pirelab.createNewNetwork(...
+    'Name','WrtDataGenerator',...
+    'InportNames',{'validIn','ready','lowerTriangEnb','fwdSubEnb',...
+    'matMultEnb','wrtDataStore','wrtDataLT','wrtDataFwdSub',...
+    'wrtDataMatMult'},...
+    'InportTypes',[hBoolT,hBoolT,hBoolT,hBoolT,hBoolT,...
+    WrtDataGenInSigs(6).Type,...
+    WrtDataGenInSigs(7).Type,...
+    WrtDataGenInSigs(8).Type,...
+    WrtDataGenInSigs(9).Type],...
+    'InportRates',slRate*ones(1,9),...
+    'OutportNames',{'wrtData'},...
+    'OutportTypes',pirelab.createPirArrayType(hInputDataT,[blockInfo.RowSize+1,0]));
+
+    hWrtDataGenN.setTargetCompReplacementCandidate(true);
+
+
+    for ii=1:numel(hWrtDataGenN.PirOutputSignals)
+        hWrtDataGenN.PirOutputSignals(ii).SimulinkRate=slRate;
+    end
+
+    hWrtDataGenNinSigs=hWrtDataGenN.PirInputSignals;
+    hWrtDataGenNoutSigs=hWrtDataGenN.PirOutputSignals;
+
+    LogicalOperator_out1_s26=l_addSignal(hWrtDataGenN,sprintf('Logical\nOperator_out1'),...
+    hBoolT,slRate);
+    Constant19_out1_s8=l_addSignal(hWrtDataGenN,'Constant19_out1',hInputDataT,slRate);
+    SwitchReciprocalS=l_addSignal(hWrtDataGenN,'SwitchReciprocal',hInputDataT,slRate);
+
+    wrtDataLTSplitS=hWrtDataGenNinSigs(7).split;
+    wrtDataLTSplitSigS=wrtDataLTSplitS.PirOutputSignals;
+
+    if(blockInfo.RowSize>1)
+        wrtDataStoreSplitS=hWrtDataGenNinSigs(6).split;
+        wrtDataStoreSplitSigS=wrtDataStoreSplitS.PirOutputSignals;
+
+        wrtDataFwdSubSplitS=hWrtDataGenNinSigs(8).split;
+        wrtDataFwdSubSplitSigS=wrtDataFwdSubSplitS.PirOutputSignals;
+
+
+        wrtDataMatMultSplitS=hWrtDataGenNinSigs(9).split;
+        wrtDataMatMultSplitSigS=wrtDataMatMultSplitS.PirOutputSignals;
+
+    else
+        wrtDataStoreSplitS=hWrtDataGenNinSigs(6);
+        wrtDataStoreSplitSigS=wrtDataStoreSplitS;
+
+        wrtDataFwdSubSplitS=hWrtDataGenNinSigs(8);
+        wrtDataFwdSubSplitSigS=wrtDataFwdSubSplitS;
+
+        wrtDataMatMultSplitS=hWrtDataGenNinSigs(9);
+        wrtDataMatMultSplitSigS=wrtDataMatMultSplitS;
+
+    end
+
+
+    pirelab.getLogicComp(hWrtDataGenN,...
+    [hWrtDataGenNinSigs(1),hWrtDataGenNinSigs(2)],...
+    LogicalOperator_out1_s26,...
+    'and',sprintf('Logical\nOperator'));
+
+    pirelab.getConstComp(hWrtDataGenN,...
+    Constant19_out1_s8,...
+    0,...
+    'Constant19','on',1,'','','');
+    WrtDataArray=hdlhandles(blockInfo.RowSize,1);
+
+    SwitchStoreS=hdlhandles(blockInfo.RowSize,1);
+    SwitchLTS=hdlhandles(blockInfo.RowSize,1);
+    SwitchFwdSubS=hdlhandles(blockInfo.RowSize,1);
+    SwitchMatMultS=hdlhandles(blockInfo.RowSize,1);
+
+    for itr=1:blockInfo.RowSize
+
+        suffix=['_',int2str(itr)];
+
+        SwitchStoreS(itr)=l_addSignal(hWrtDataGenN,['SwitchStore',suffix],hInputDataT,slRate);
+        SwitchLTS(itr)=l_addSignal(hWrtDataGenN,['SwitchLT',suffix],hInputDataT,slRate);
+        SwitchFwdSubS(itr)=l_addSignal(hWrtDataGenN,['SwitchFwdSub',suffix],hInputDataT,slRate);
+        SwitchMatMultS(itr)=l_addSignal(hWrtDataGenN,['SwitchMatMult',suffix],hInputDataT,slRate);
+
+
+
+        pirelab.getSwitchComp(hWrtDataGenN,...
+        [wrtDataStoreSplitSigS(itr),SwitchLTS(itr)],...
+        SwitchStoreS(itr),...
+        LogicalOperator_out1_s26,['SwitchStore',suffix],...
+        '~=',0,'Floor','Wrap');
+
+
+        pirelab.getSwitchComp(hWrtDataGenN,...
+        [wrtDataLTSplitSigS(itr),SwitchFwdSubS(itr)],...
+        SwitchLTS(itr),...
+        hWrtDataGenNinSigs(3),['SwitchLT',suffix],...
+        '~=',0,'Floor','Wrap');
+
+
+        pirelab.getSwitchComp(hWrtDataGenN,...
+        [wrtDataFwdSubSplitSigS(itr),SwitchMatMultS(itr)],...
+        SwitchFwdSubS(itr),...
+        hWrtDataGenNinSigs(4),['SwitchFwdSub',suffix],...
+        '~=',0,'Floor','Wrap');
+
+
+        pirelab.getSwitchComp(hWrtDataGenN,...
+        [wrtDataMatMultSplitSigS(itr),Constant19_out1_s8],...
+        SwitchMatMultS(itr),...
+        hWrtDataGenNinSigs(5),['SwitchMatMult',suffix],...
+        '~=',0,'Floor','Wrap');
+
+        WrtDataArray(itr)=SwitchStoreS(itr);
+    end
+
+    pirelab.getSwitchComp(hWrtDataGenN,...
+    [wrtDataLTSplitSigS(blockInfo.RowSize+1),Constant19_out1_s8],...
+    SwitchReciprocalS,...
+    hWrtDataGenNinSigs(3),'SwitchReciprocal',...
+    '~=',0,'Floor','Wrap');
+
+    pirelab.getMuxComp(hWrtDataGenN,...
+    [(WrtDataArray(1:end))',SwitchReciprocalS],...
+    hWrtDataGenNoutSigs(1),...
+    'concatenate');
+
+
+
+
+    pirelab.instantiateNetwork(hN,hWrtDataGenN,WrtDataGenInSigs,WrtDataGenOutSigs,...
+    [hWrtDataGenN.Name,'_inst']);
+
+end
+
+
+function hS=l_addSignal(hN,sigName,pirTyp,simulinkRate)
+    hS=hN.addSignal;
+    hS.Name=sigName;
+    hS.Type=pirTyp;
+    hS.SimulinkHandle=-1;
+    hS.SimulinkRate=simulinkRate;
+end

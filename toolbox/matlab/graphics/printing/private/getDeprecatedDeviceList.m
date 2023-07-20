@@ -1,0 +1,79 @@
+function[removeIndex,origDevices,origDestinations,origClasses,depDevices,depDestinations,depClasses]=getDeprecatedDeviceList(device_table)
+
+
+
+
+
+    if nargin<1
+        device_table=getDefaultDeviceList();
+    end
+
+    origDevices=device_table(:,1);
+    origClasses=device_table(:,3);
+    origDestinations=device_table(:,5);
+
+
+
+
+
+
+
+    classesToChange={...
+    {'pcx16','IM'},...
+    {'pcx256','IM'},...
+    {'pcx24b','IM'},...
+    {'pcxmono','IM'},...
+    {'pcxgray','IM'},...
+    {'bmpmono','IM'},...
+    {'bmp256','IM'},...
+    {'bmp16m','IM'},...
+    {'pngmono','IM'},...
+    {'pnggray','IM'},...
+    {'png16m','IM'},...
+    {'png256','IM'},...
+    {'pbm','IM'},...
+    {'pbmraw','IM'},...
+    {'pgm','IM'},...
+    {'pgmraw','IM'},...
+    {'ppm','IM'},...
+    {'ppmraw','IM'},...
+    {'pdfwrite','BI'},...
+    {'jpeg','IM'},...
+    {'meta','BI'},...
+    {'svg','BI'},...
+    {'tiffpack','IM'},...
+    {'tiff24nc','IM'}
+    };
+
+    classesToChange=[classesToChange,{{'bitmap','IM'}}];
+
+    for idx=1:length(classesToChange)
+        changeIndex=find(strcmp(classesToChange{idx}(1),origDevices));
+        if~isempty(changeIndex)
+            origClasses(changeIndex)=classesToChange{idx}(2);
+        end
+    end
+
+
+
+
+
+
+
+    gsIndex=find(strcmp('GS',origClasses));
+    otherDevicesToRemove={'hpgl','ill','setup','mfile'};
+    badDevIndex=zeros(length(otherDevicesToRemove),1);
+    for idx=1:length(otherDevicesToRemove)
+        removeIndex=find(strcmp(otherDevicesToRemove{idx},origDevices));
+        if~isempty(removeIndex)
+            badDevIndex(idx,1)=removeIndex;
+        end
+    end
+    badDevIndex=badDevIndex(badDevIndex~=0);
+
+    removeIndex=[gsIndex;badDevIndex];
+    depDevices=origDevices(removeIndex);
+    depDestinations=origDestinations(removeIndex);
+    depClasses=origClasses(removeIndex);
+end
+

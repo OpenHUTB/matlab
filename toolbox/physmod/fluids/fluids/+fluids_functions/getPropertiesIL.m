@@ -1,0 +1,633 @@
+function[pT_valid,rho_L_atm,beta_L_atm,beta_gain,nu_atm,p_min,p_max,T_limited]=...
+    getPropertiesIL(fluid_list,concentration_param_EG,concentration_param_PG,...
+    c_mass_SW,c_mass_EG,c_mass_PG,c_mass_GL,c_vol_EG,...
+    c_vol_PG,beta_const_EG,beta_const_PG,beta_const_GL,...
+    p_min_EG,p_min_PG,p_min_GL,p_max_EG,p_max_PG,p_max_GL,...
+    p_atm,T)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    [T_TLU,p_TLU,pT_valid_TLU,rho_TLU,~,beta_TLU,~,...
+    ~,~,nu_TLU,~,~,T_min,T_max,p_min,p_max,~]=...
+    fluids_functions.getProperties(fluid_list,concentration_param_EG,concentration_param_PG,...
+    c_mass_SW,c_mass_EG,c_mass_PG,c_mass_GL,c_vol_EG,...
+    c_vol_PG,beta_const_EG,beta_const_PG,beta_const_GL,...
+    p_min_EG,p_min_PG,p_min_GL,p_max_EG,p_max_PG,p_max_GL,...
+    p_atm);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    p_atm=p_atm.*1e-6;
+
+
+    if(p_atm<=p_min)
+        p_atm_limited=p_min;
+    elseif(p_atm>=p_max)
+        p_atm_limited=p_max;
+    else
+        p_atm_limited=p_atm;
+    end
+
+
+    if(T<=T_min)
+        T_limited=T_min;
+    elseif(T>=T_max)
+        T_limited=T_max;
+    else
+        T_limited=T;
+    end
+
+    switch fluid_list
+
+    case fluids.isothermal_liquid.utilities.enum.isothermal_liquid_fluid_list.water
+
+
+
+
+
+
+
+
+
+
+
+
+
+        beta_gain_TLU=[
+5.68882161737111
+5.61613140632784
+5.71449086162464
+5.88045269312629
+6.07607706915242
+6.28045882945046
+6.48550910900596
+6.69204603242714
+6.88926565831376
+7.08779858664835
+7.27603476543166
+7.46172613427188
+7.64018380221704
+7.81322607660718
+7.98311585259681
+8.14979701780099
+8.31019681553131
+8.46958661622035
+8.63226732291398
+8.78804902955656
+8.93687096131771
+9.12441866395044
+9.26155188576083
+9.50264626965392
+9.57496419191013
+9.90923132796178
+9.70354593351394
+9.70354593351394
+        ];
+
+
+
+        beta_L_vacuum_TLU=1e-9.*[
+1964725944.62826
+2115740104.10959
+2208830931.60535
+2255158330.23249
+2263398486.64797
+2240770628.69031
+2193300230.71592
+2126014720.42541
+2043146879.62621
+1948068096.75170
+1843668878.75900
+1732309843.28965
+1615944350.92861
+1496237878.19063
+1374565816.12244
+1252102389.82094
+1129885499.04002
+1008789845.11878
+889445704.309009
+772676057.633909
+659062920.516825
+548402962.920198
+442429433.351860
+339104987.984089
+243080719.382639
+147471801.924628
+66852798.1582186
+66852798.1582186
+        ];
+
+
+        pT_valid=interp2(p_TLU,T_TLU,pT_valid_TLU,p_atm,T,'linear',0);
+
+
+        rho_L_atm=interp2(p_TLU,T_TLU,rho_TLU,p_atm_limited,T_limited,'linear');
+
+
+        beta_gain=interp1(T_TLU,beta_gain_TLU,T_limited,'linear');
+
+
+        beta_L_atm=interp1(T_TLU,beta_L_vacuum_TLU,T_limited,'linear')+beta_gain*p_atm_limited*1e-3;
+
+
+        nu_atm=interp2(p_TLU,T_TLU,nu_TLU,p_atm_limited,T_limited,'linear');
+
+
+
+    case fluids.thermal_liquid.utilities.enum.thermal_liquid_fluid_list.mitsw
+
+
+        beta_vec=interp2(p_TLU,T_TLU,beta_TLU,p_TLU,T_limited,'linear');
+
+
+        coeff_vec=polyfit(p_TLU.*1e-3,beta_vec(:),1);
+
+
+        beta_gain=coeff_vec(1);
+
+
+        beta_L_atm=coeff_vec(2)+beta_gain*p_atm_limited*1e-3;
+
+
+        pT_valid=interp2(p_TLU,T_TLU,pT_valid_TLU,p_atm,T,'linear',0);
+
+
+        rho_L_atm=interp2(p_TLU,T_TLU,rho_TLU,p_atm_limited,T_limited,'linear');
+
+
+        nu_atm=interp2(p_TLU,T_TLU,nu_TLU,p_atm_limited,T_limited,'linear');
+
+
+
+    case fluids.thermal_liquid.utilities.enum.thermal_liquid_fluid_list.ethylene_glycol
+
+
+        rho_L_atm=interp2(p_TLU,T_TLU,rho_TLU,p_atm_limited,T_limited,'linear');
+
+
+        pT_valid=interp2(p_TLU,T_TLU,pT_valid_TLU,p_atm,T,'linear',0);
+
+
+
+
+        beta_gain=6;
+
+
+        beta_L_atm=beta_TLU(1);
+
+
+        nu_atm=interp2(p_TLU,T_TLU,nu_TLU,p_atm_limited,T_limited);
+
+
+
+    case fluids.thermal_liquid.utilities.enum.thermal_liquid_fluid_list.propylene_glycol
+
+
+        rho_L_atm=interp2(p_TLU,T_TLU,rho_TLU,p_atm_limited,T_limited,'linear');
+
+
+        pT_valid=interp2(p_TLU,T_TLU,pT_valid_TLU,p_atm,T,'linear',0);
+
+
+
+
+        beta_gain=6;
+
+
+        beta_L_atm=beta_TLU(1);
+
+
+        nu_atm=interp2(p_TLU,T_TLU,nu_TLU,p_atm_limited,T_limited);
+
+
+
+    case fluids.thermal_liquid.utilities.enum.thermal_liquid_fluid_list.glycerol
+
+
+        rho_L_atm=interp2(p_TLU,T_TLU,rho_TLU,p_atm_limited,T_limited,'linear');
+
+
+        pT_valid=interp2(p_TLU,T_TLU,pT_valid_TLU,p_atm,T,'linear',0);
+
+
+
+
+        beta_gain=6;
+
+
+        beta_L_atm=beta_TLU(1);
+
+
+        nu_atm=interp2(p_TLU,T_TLU,nu_TLU,p_atm_limited,T_limited);
+
+
+
+    case fluids.thermal_liquid.utilities.enum.thermal_liquid_fluid_list.jet_A
+
+
+
+
+
+
+
+
+
+
+
+        beta_gain_TLU=[
+9.581514763270453
+9.598418009972853
+9.616257743796753
+9.635118470813563
+9.655079721513980
+9.676207232587910
+9.698545643614871
+9.722113374890110
+9.746899977673964
+9.772865898972007
+9.799944343307336
+9.828044761115985
+9.857057440349344
+9.886858708692449
+9.917316307443093
+9.948294645911769
+9.979659610643708
+10.011283030984160
+10.043046324205134
+10.074843776514497
+10.106585192043591
+10.138198081931778
+10.169629446242629
+10.200847212241142
+10.231841368648862
+10.262624785969571
+10.293233620116908
+10.323727026615384
+10.354246594266462
+10.384821325324680
+10.415611892093294
+10.446984106722512
+10.478807866319746
+10.511366716014049
+10.545632466536063
+10.580617139864371
+10.618533656963105
+10.657119309101311
+10.700580912753725
+10.743934029938805
+10.795403324344507
+10.844222800851083
+10.906852701667525
+10.960245152574020
+11.037934605935311
+11.090782236518788
+11.187860351213475
+11.301046806863765
+11.344496825592065
+11.486749703373453
+11.466850761658225
+11.633688858243737
+11.843058538186941
+11.606904997307566
+11.795747859534995
+6.155803346090999
+        ];
+
+
+
+
+        beta_L_vacuum_TLU=[
+1.687549677739034
+1.620097967051868
+1.555060323477149
+1.492292486323606
+1.431663574780479
+1.373055565014788
+1.316362734881600
+1.261490991799708
+1.208357048894768
+1.156887457213176
+1.107017531209372
+1.058690219545080
+1.011854975676320
+0.966466676454451
+0.922484625946640
+0.879871668963118
+0.838593426952831
+0.798617658388094
+0.759913739036711
+0.722452251179900
+0.686204668922080
+0.651143124960264
+0.617240244440355
+0.584469032464094
+0.552802803304106
+0.522215141158285
+0.492679884163627
+0.464171125318647
+0.436663141126637
+0.410130680418900
+0.384548648077047
+0.359892024127801
+0.336136872856193
+0.313259099226403
+0.291234070431033
+0.270040420055894
+0.249652716068985
+0.230052509341777
+0.211212576017139
+0.193119744747718
+0.175742104113840
+0.159076764197543
+0.143080740783749
+0.127772302850607
+0.113083216214082
+0.099077048595662
+0.085628631491126
+0.072771331250040
+0.060641577335828
+0.048943901770018
+0.038143431164585
+0.027596868329593
+0.017571112542429
+0.009076553371653
+0.000346587860075
+0.001668530257552
+        ];
+
+
+        pT_valid=interp2(p_TLU,T_TLU,pT_valid_TLU,p_atm,T,'linear',0);
+
+
+        rho_L_atm=interp2(p_TLU,T_TLU,rho_TLU,p_atm_limited,T_limited,'linear');
+
+
+        beta_gain=interp1(T_TLU,beta_gain_TLU,T_limited,'linear');
+
+
+        beta_L_atm=interp1(T_TLU,beta_L_vacuum_TLU,T_limited,'linear')+beta_gain*p_atm_limited*1e-3;
+
+
+        nu_atm=interp2(p_TLU,T_TLU,nu_TLU,p_atm_limited,T_limited,'linear');
+
+
+
+    case fluids.thermal_liquid.utilities.enum.thermal_liquid_fluid_list.diesel
+
+
+
+
+
+
+
+
+
+
+
+        beta_gain_TLU=[
+10.410950735805866
+10.409393998871053
+10.409093721974036
+10.410024829189256
+10.412162100472706
+10.415476827916077
+10.419934362403040
+10.425492658487345
+10.432101804439155
+10.439704428474814
+10.448236811711750
+10.457630512882531
+10.467814314802114
+10.478716313842391
+10.490266045034513
+10.502396469579983
+10.515045931246918
+10.528159754571538
+10.541691582102546
+10.555605349782750
+10.569875514347439
+10.584488539424045
+10.599443587678911
+10.614753185397173
+10.630443717349223
+10.646555683976128
+10.663143574229558
+10.680275068714407
+10.698099034639087
+10.716616238763615
+10.735969612610152
+10.756261510412706
+10.778001941958870
+10.800712830610919
+10.824688043370875
+10.851338533146029
+10.878656817681424
+10.910061422993532
+10.941551008591057
+10.979629600794750
+11.016306851472676
+11.063998849404978
+11.106418286999084
+11.167323254160499
+11.213062651834901
+11.289896536682772
+11.328522018123236
+11.421036216669512
+11.426832995143196
+11.530028576719380
+11.651084333663233
+11.554351602398189
+11.681230603272324
+11.384430834390523
+10.987608013804719
+6.704725875199440
+        ];
+
+
+
+        beta_L_vacuum_TLU=[
+1.625099994529383
+1.551283214052533
+1.480956837498844
+1.413864827992958
+1.349778836814089
+1.288494799192805
+1.229830031702149
+1.173620713332046
+1.119719668571900
+1.067994398144865
+1.018325322040133
+0.970604211554384
+0.924732793894351
+0.880621516210333
+0.838188457061823
+0.797358373565179
+0.758061871917928
+0.720234689407798
+0.683817075568433
+0.648753259508320
+0.614990995346724
+0.582481171613518
+0.551177477998326
+0.521036120263187
+0.492015576367455
+0.464076387779040
+0.437180980999728
+0.411293515382027
+0.386379662748761
+0.362406794767509
+0.339343508218408
+0.317159783013647
+0.295826318470500
+0.275316327214694
+0.255603150940536
+0.236659701177938
+0.218464530900975
+0.200989765738968
+0.184218543278746
+0.168120373679143
+0.152685812950505
+0.137877904704125
+0.123701855984942
+0.110107229961612
+0.097129538140527
+0.084688527491600
+0.072881194421401
+0.061558374489359
+0.050941984005450
+0.040728208791735
+0.031045799301938
+0.022310927208475
+0.013745810905964
+0.006584948692209
+        -0.000125993742587
+        -0.000356862667579
+        ];
+
+
+        pT_valid=interp2(p_TLU,T_TLU,pT_valid_TLU,p_atm,T,'linear',0);
+
+
+        rho_L_atm=interp2(p_TLU,T_TLU,rho_TLU,p_atm_limited,T_limited,'linear');
+
+
+        beta_gain=interp1(T_TLU,beta_gain_TLU,T_limited,'linear');
+
+
+        beta_L_atm=interp1(T_TLU,beta_L_vacuum_TLU,T_limited,'linear')+beta_gain*p_atm_limited*1e-3;
+
+
+        nu_atm=interp2(p_TLU,T_TLU,nu_TLU,p_atm_limited,T_limited,'linear');
+
+
+
+    case fluids.thermal_liquid.utilities.enum.thermal_liquid_fluid_list.sae5w30
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        beta_L_vacuum_TLU=[
+2.580055256400011
+2.419301304400010
+2.275083890585712
+2.144976200042866
+2.027004133799990
+1.919545446685702
+1.821254700228577
+1.731006638042866
+1.647852915099990
+1.570988645571433
+1.499726263685702
+1.433474900585712
+1.371723961685702
+1.314029943099990
+1.260005762071423
+1.209312061700011
+1.161650074871423
+1.116755732685702
+1.074394768828578
+1.034358630400010
+        ];
+
+
+        pT_valid=interp2(p_TLU,T_TLU,pT_valid_TLU,p_atm,T,'linear',0);
+
+
+        rho_L_atm=interp2(p_TLU,T_TLU,rho_TLU,p_atm_limited,T_limited,'linear');
+
+
+        beta_gain=1.0;
+
+
+        beta_L_atm=interp1(T_TLU,beta_L_vacuum_TLU,T_limited,'linear')+beta_gain*p_atm_limited*1e-3;
+
+
+        nu_atm=interp2(p_TLU,T_TLU,nu_TLU,p_atm_limited,T_limited,'linear');
+
+    otherwise
+    end
+
+end

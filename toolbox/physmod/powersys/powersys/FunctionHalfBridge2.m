@@ -1,0 +1,11 @@
+function[Idc]=FunctionHalfBridge2(g,I)
+%#codegen
+    coder.allowpcode('plain');
+    if((I(2)-I(1))>0)
+        Idc=g(1)*(I(2)-I(1));
+    else
+        Idc=(1-g(2))*(I(2)-I(1));
+    end
+    if((g(1)+g(2))==2)
+        Idc=I(1);
+    end
