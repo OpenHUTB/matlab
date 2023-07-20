@@ -1,0 +1,569 @@
+classdef Xilinx<eda.internal.component.FPGA
+
+
+    properties(SetAccess=protected)
+
+    end
+
+    methods
+        function this=Xilinx(varargin)
+            this.HDL=this.hdlcodeinit;
+        end
+
+        function hdlcode=hdlcodeinit(~)
+            hdlcode.entity_comment='';
+            hdlcode.entity_library='LIBRARY UNISIM;\nUSE UNISIM.VComponents.all;\n';
+            hdlcode.entity_package='';
+            hdlcode.entity_decl='';
+            hdlcode.entity_generic='';
+            hdlcode.entity_ports='';
+            hdlcode.entity_portdecls='';
+            hdlcode.entity_end='';
+            hdlcode.arch_comment='';
+            hdlcode.arch_decl='';
+            hdlcode.arch_component_decl='';
+            hdlcode.arch_component_config='';
+            hdlcode.arch_functions='';
+            hdlcode.arch_typedefs='';
+            hdlcode.arch_constants='';
+            hdlcode.arch_signals='';
+            hdlcode.arch_begin='';
+            hdlcode.arch_body_component_instances='';
+            hdlcode.arch_body_blocks='';
+            hdlcode.arch_body_output_assignments='';
+            hdlcode.arch_end='';
+            hdlcode.entity_comment='';
+        end
+
+        function hC=ClkMgr_GMII(this,SYSClk,SynthFreq)%#ok<INUSD>
+            hC='';
+        end
+
+        function hC=ClkMgr_RGMII(this,SYSClk,SynthFreq)%#ok<INUSD>
+            hC='';
+        end
+
+        function ibufg(~,hC,in,out)
+            ibufg=hC.component(...
+            'UniqueName','IBUFG',...
+            'InstName','IBUFG',...
+            'Component',eda.internal.component.BlackBox({...
+            'I','INPUT','boolean',...
+            'O','OUTPUT','boolean'}),...
+            'I',in,...
+            'O',out);
+            ibufg.Partition.Device.PartInfo.FPGAVendor='Xilinx';
+            ibufg.addprop('NoHDLFiles');
+            ibufg.addprop('compDeclNotNeeded');
+            ibufg.addprop('wrapperFileNotNeeded');
+        end
+
+        function ibufds(~,hC,diff_n,diff_p,out)
+            bitWidth=getSignalBitWidth(diff_n);
+            if bitWidth==1
+                ibufds=hC.component(...
+                'UniqueName','IBUFDS',...
+                'InstName','IBUFDS',...
+                'Component',eda.internal.component.BlackBox({...
+                'I','INPUT','boolean',...
+                'IB','INPUT','boolean',...
+                'O','OUTPUT','boolean'}),...
+                'I',diff_p,...
+                'IB',diff_n,...
+                'O',out);
+                ibufds.Partition.Device.PartInfo.FPGAVendor='Xilinx';
+                ibufds.addprop('NoHDLFiles');
+                ibufds.addprop('compDeclNotNeeded');
+                ibufds.addprop('wrapperFileNotNeeded');
+            else
+                for ii=1:bitWidth
+                    in_n(ii)=this.signal('Name',[diff_n.Name,'_n',num2str(ii)],'FiTyep','boolean');
+                    in_p(ii)=this.signal('Name',[diff_p.Name,'_p',num2str(ii)],'FiTyep','boolean');
+                    outBit(ii)=this.signal('Name',[out.Name,'_',num2str(ii)],'FiTyep','boolean');
+                    this.assign(['bitsliceget(diff_n, ',num2str(ii),')'],in_n(ii));
+                    this.assign(['bitsliceget(diff_p, ',num2str(ii),')'],out1_p(ii));
+                    this.assign(['bitsliceget(out, ',num2str(ii),')'],outBit(ii));
+                    ibufds(ii)=hC.component(...
+                    'UniqueName',['IBUFDS_',num2str(ii)],...
+                    'InstName',['IBUFDS_',num2str(ii)],...
+                    'Component',eda.internal.component.BlackBox({...
+                    'I','INPUT','boolean',...
+                    'IB','INPUT','boolean',...
+                    'O','OUTPUT','boolean'}),...
+                    'I',in_n(ii),...
+                    'IB',in_p(ii),...
+                    'O',outBit(ii));
+                    ibufds(ii).Partition.Device.PartInfo.FPGAVendor='Xilinx';
+                    ibufds(ii).addprop('NoHDLFiles');
+                    ibufds(ii).addprop('compDeclNotNeeded');
+                    ibufds(ii).addprop('wrapperFileNotNeeded');
+                end
+            end
+        end
+
+        function ibufgds(~,hC,diff_n,diff_p,out)
+            ibufgds=hC.component(...
+            'UniqueName','IBUFGDS',...
+            'InstName','IBUFGDS',...
+            'Component',eda.internal.component.BlackBox({...
+            'I','INPUT','boolean',...
+            'IB','INPUT','boolean',...
+            'O','OUTPUT','boolean'}),...
+            'I',diff_p,...
+            'IB',diff_n,...
+            'O',out);
+            ibufgds.Partition.Device.PartInfo.FPGAVendor='Xilinx';
+            ibufgds.addprop('generic');
+            ibufgds.generic=generics('DIFF_TERM','boolean','TRUE',...
+            'IBUF_LOW_PWR','boolean','TRUE',...
+            'IOSTANDARD','string','"DEFAULT"');
+            ibufgds.addprop('NoHDLFiles');
+            ibufgds.addprop('compDeclNotNeeded');
+            ibufgds.addprop('wrapperFileNotNeeded');
+        end
+
+
+
+
+
+
+
+
+
+
+        function oddr(this,hC,clk,in1,in2,enb,out,set,reset,mode)%#ok<INUSL>
+            if nargin<10
+                mode='"OPPOSITE_EDGE"';
+            end
+            oddr=hC.component(...
+            'UniqueName','ODDR',...
+            'InstName','ODDR',...
+            'Component',eda.internal.component.BlackBox({...
+            'Q','OUTPUT','boolean',...
+            'C','INPUT','boolean',...
+            'D1','INPUT','boolean',...
+            'D2','INPUT','boolean',...
+            'CE','INPUT','boolean',...
+            'R','INPUT','boolean',...
+            'S','INPUT','boolean'}),...
+            'Q',out,...
+            'C',clk,...
+            'D1',in1,...
+            'D2',in2,...
+            'CE',enb,...
+            'R',reset,...
+            'S',set);
+            oddr.Partition.Device.PartInfo.FPGAVendor='Xilinx';
+            oddr.addprop('generic');
+            oddr.generic=generics('DDR_CLK_EDGE','string',mode,...
+            'INIT','ufix1','''0''',...
+            'SRTYPE','string','"SYNC"');
+
+            oddr.addprop('NoHDLFiles');
+            oddr.addprop('compDeclNotNeeded');
+            oddr.addprop('wrapperFileNotNeeded');
+        end
+
+
+
+
+
+
+
+
+
+
+        function iddr(this,hC,clk,in,enb,out1,out2,set,reset,mode)
+            if nargin<10
+                mode='"OPPOSITE_EDGE"';
+            end
+
+            bitWidth=1;
+            if bitWidth==1
+                oddr=hC.component(...
+                'UniqueName','IDDR',...
+                'InstName','IDDR',...
+                'Component',eda.internal.component.BlackBox({...
+                'Q1','OUTPUT','boolean',...
+                'Q2','OUTPUT','boolean',...
+                'C','INPUT','boolean',...
+                'CE','INPUT','boolean',...
+                'D','INPUT','boolean',...
+                'R','INPUT','boolean',...
+                'S','INPUT','boolean'}),...
+                'Q1',out1,...
+                'Q2',out2,...
+                'C',clk,...
+                'CE',enb,...
+                'D',in,...
+                'R',reset,...
+                'S',set);
+                oddr.Partition.Device.PartInfo.FPGAVendor='Xilinx';
+                oddr.addprop('generic');
+                oddr.generic=generics('DDR_CLK_EDGE','string',mode,...
+                'INIT_Q1','ufix1','''0''',...
+                'INIT_Q2','ufix1','''0''',...
+                'SRTYPE','string','"SYNC"');
+
+                oddr.addprop('NoHDLFiles');
+                oddr.addprop('compDeclNotNeeded');
+                oddr.addprop('wrapperFileNotNeeded');
+            else
+                for ii=1:bitWidth
+                    in_bit(ii)=this.signal('Name',[in.UniqueName,'_',num2str(ii)],'FiTyep','boolean');
+                    out1_bit(ii)=this.signal('Name',[out1.UniqueName,'1_',num2str(ii)],'FiTyep','boolean');
+                    out2_bit(ii)=this.signal('Name',[out2.UniqueName,'2_',num2str(ii)],'FiTyep','boolean');
+                    this.assign(['bitsliceget(in, ',num2str(ii),')'],in_bit(ii));
+                    this.assign(['bitsliceget(out1, ',num2str(ii),')'],out1_bit(ii));
+                    this.assign(['bitsliceget(out2, ',num2str(ii),')'],out2_bit(ii));
+                    oddr(ii)=hC.component(...
+                    'UniqueName','IDDR',...
+                    'InstName','IDDR',...
+                    'Component',eda.internal.component.BlackBox({...
+                    'Q1','OUTPUT','boolean',...
+                    'Q2','OUTPUT','boolean',...
+                    'C','INPUT','boolean',...
+                    'CE','INPUT','boolean',...
+                    'D','INPUT','boolean',...
+                    'R','INPUT','boolean',...
+                    'S','INPUT','boolean'}),...
+                    'Q1',out1_bit(ii),...
+                    'Q2',out2_bit(ii),...
+                    'C',clk,...
+                    'CE',enb,...
+                    'D',in_bit(ii),...
+                    'R',reset,...
+                    'S',set);
+                    oddr(ii).Partition.Device.PartInfo.FPGAVendor='Xilinx';
+                    oddr(ii).addprop('generic');
+                    oddr(ii).generic=generics('DDR_CLK_EDGE','string',mode,...
+                    'INIT_Q1','ufix1','''0''',...
+                    'INIT_Q2','ufix1','''0''',...
+                    'SRTYPE','string','"SYNC"');
+
+                    oddr(ii).addprop('NoHDLFiles');
+                    oddr(ii).addprop('compDeclNotNeeded');
+                    oddr(ii).addprop('wrapperFileNotNeeded');
+                end
+            end
+        end
+
+        function bufg(~,hC,in,out)
+            bufg=hC.component(...
+            'UniqueName','BUFG',...
+            'InstName','BUFG',...
+            'Component',eda.internal.component.BlackBox({...
+            'I','INPUT','boolean',...
+            'O','OUTPUT','boolean'}),...
+            'I',in,...
+            'O',out);
+            bufg.Partition.Device.PartInfo.FPGAVendor='Xilinx';
+            bufg.addprop('NoHDLFiles');
+            bufg.addprop('compDeclNotNeeded');
+            bufg.addprop('wrapperFileNotNeeded');
+        end
+
+        function iobuf(~,hC,in,oe,out,io)
+            iobuf=hC.component(...
+            'UniqueName','IOBUF',...
+            'InstName','IOBUF',...
+            'Component',eda.internal.component.BlackBox({...
+            'I','INPUT','boolean',...
+            'T','INPUT','boolean',...
+            'O','OUTPUT','boolean',...
+            'IO','INOUT','boolean'}),...
+            'I',in,...
+            'T',oe,...
+            'O',out,...
+            'IO',io);
+            iobuf.Partition.Device.PartInfo.FPGAVendor='Xilinx';
+            iobuf.addprop('NoHDLFiles');
+            iobuf.addprop('compDeclNotNeeded');
+            iobuf.addprop('wrapperFileNotNeeded');
+
+
+
+
+        end
+
+        function constraintFile(this,BuildInfo,hC)
+
+            if nargin<3
+                hC=this;
+            end
+
+            if isprop(BuildInfo,'FPGATool')&&strcmpi(BuildInfo.FPGATool,'Xilinx Vivado')
+                hC.SynConstraintFile{end+1}=generateXDC(this,BuildInfo);
+            else
+                hC.SynConstraintFile{end+1}=generateUCF(this,BuildInfo);
+            end
+        end
+
+        function fileName=generateXDC(~,BuildInfo)
+
+            fileName=[BuildInfo.FPGAProjectName,'.xdc'];
+
+            boardObj=BuildInfo.BoardObj;
+            boardObj.setPIN(1);
+
+            dir=hdlGetCodegendir(true);
+            fileId=fopen(fullfile(dir,fileName),'w');
+
+            constraint='';
+
+            if(strcmpi(boardObj.Component.SYSCLK.Type,'DIFF'))
+                clkportname='sysclk_p';
+            else
+                clkportname='sysclk';
+            end
+
+
+            SYSFreq=boardObj.Component.SYSCLK.Frequency;
+            SYSClkPeriod=sprintf('%.3f',1000./SYSFreq);
+            SYSClkPeriod2=sprintf('%.3f',1000./SYSFreq/2);
+            constraint=[constraint,...
+            'create_clock -period ',SYSClkPeriod...
+            ,' -name sysclk -waveform {0.000 ',SYSClkPeriod2,'} [get_ports ',clkportname,']',newline];
+            constraint=[constraint,l_xdcSetPinAndIOStandard(boardObj,clkportname)];
+
+
+            if~isempty(boardObj.getPIN(1,'sysrst'))
+                constraint=[constraint,l_xdcSetPinAndIOStandard(boardObj,'sysrst')];
+            end
+
+
+            interface=BuildInfo.BoardObj.getInterface;
+            signalNames=interface.getSignalNames;
+            for m=1:numel(signalNames)
+                constraint=[constraint,l_xdcSetPinAndIOStandard(boardObj,signalNames{m})];
+            end
+
+            if strcmpi(boardObj.Component.Communication_Channel,'XlnxSGMII')
+                constraint=[constraint,...
+                'create_clock -period 8.000 -name gtrefclk -waveform {0.000 4.000} [get_ports ETH_GTREFCLK_P]',newline];
+
+
+                constraint=[constraint,...
+                'set_false_path -from [get_clocks clkout0] -to [get_clocks clk_out2_clkmgr_sgmii]',newline];
+                constraint=[constraint,...
+                'set_false_path -from [get_clocks clk_out2_clkmgr_sgmii] -to [get_clocks clkout0]',newline];
+            elseif strcmpi(boardObj.Component.Communication_Channel,'XlnxSGMII625MhzRef')
+                constraint=[constraint,...
+                'create_clock -period 1.600 -name gtrefclk -waveform {0.000 0.800} [get_ports ETH_GTREFCLK_P]',newline];
+
+
+                constraint=[constraint,...
+                'set_clock_groups -asynchronous -group [get_clocks clk_out1_clkmgr_sgmii] -group [get_clocks mmcme3_adv_inst_n_5]',newline];
+            elseif strcmpi(boardObj.Component.Communication_Channel,'RMII')
+                constraint=[constraint,...
+                'create_clock -period 40.000 -name Rmii2Mac_tx_clk -waveform {0.000 20.000} [get_nets gmii_tx_clk]',newline];
+                constraint=[constraint,...
+                'create_clock -period 40.000 -name Rmii2Mac_rx_clk -waveform {0.000 20.000} [get_nets gmii_rx_clk]',newline];
+                constraint=[constraint,...
+                'set_false_path -from [get_clocks clk_out1_clk_wiz_0] -to [get_clocks Rmii2Mac_rx_clk]',newline];
+                constraint=[constraint,...
+                'set_false_path -from [get_clocks clk_out2_clk_wiz_0] -to [get_clocks Rmii2Mac_rx_clk]',newline];
+                constraint=[constraint,...
+                'set_false_path -from [get_clocks clk_out1_clk_wiz_0] -to [get_clocks Rmii2Mac_tx_clk]',newline];
+            elseif strcmpi(boardObj.Component.Communication_Channel,'Digilent JTAG')
+                h=eda.internal.boardmanager.BoardManager.getInstance;
+                b=h.getBoardObj(BuildInfo.Board);
+                jtag=b.FPGA.getInterface('JTAG');
+                tckfreq=jtag.TckFrequency;
+                period=sprintf('%f',1000.0/tckfreq);
+                halfperiod=sprintf('%f',500.0/tckfreq);
+                constraint=[constraint,...
+                'create_clock -period ',period,' -name TCK -waveform {0.000 ',halfperiod,'} [get_pins u_BSCANE2/TCK]',newline];
+
+                if(strcmpi(boardObj.Component.SYSCLK.Type,'DIFF'))
+                    constraint=[constraint,...
+                    'set_false_path -from [get_clocks clk_out1_clk_wiz_0_1] -to [get_clocks TCK]',newline];
+                    constraint=[constraint,...
+                    'set_false_path -from [get_clocks TCK] -to [get_clocks clk_out1_clk_wiz_0_1]',newline];
+                else
+                    constraint=[constraint,...
+                    'set_false_path -from [get_clocks clk_out1_clk_wiz_0] -to [get_clocks TCK]',newline];
+                    constraint=[constraint,...
+                    'set_false_path -from [get_clocks TCK] -to [get_clocks clk_out1_clk_wiz_0]',newline];
+                end
+            elseif strcmpi(boardObj.Component.Communication_Channel,'MII')
+                constraint=[constraint,...
+                'create_clock -period 40.000 -name ETH_RXCLK -waveform {0.000 20.000} [get_ports ETH_RXCLK]',newline];
+                constraint=[constraint,...
+                'create_clock -period 40.000 -name ETH_TXCLK -waveform {0.000 20.000} [get_ports ETH_TXCLK]',newline];
+                constraint=[constraint,...
+                'set_false_path -from [get_clocks ETH_RXCLK] -to [get_clocks ETH_TXCLK]',newline];
+                constraint=[constraint,...
+                'set_false_path -from [get_clocks clk] -to [get_clocks ETH_TXCLK]',newline];
+                constraint=[constraint,...
+                'set_false_path -from [get_clocks ETH_RXCLK] -to [get_clocks clk]',newline];
+            end
+
+
+
+            fprintf(fileId,constraint);
+
+
+            if fileId>0
+                fclose(fileId);
+            end
+        end
+        function fileName=generateUCF(this,BuildInfo)
+
+            fileName=[BuildInfo.FPGAProjectName,'.ucf'];
+
+            device=BuildInfo.BoardObj;
+            PartInfo=device.Component.PartInfo;
+            device.setPIN(1);
+
+            dir=hdlGetCodegendir(true);
+            fileId=this.openFile2W(dir,'SYNTH',BuildInfo.FPGAProjectName);
+
+            if strcmpi(device.Component.Communication_Channel,'PCIe')
+                fclose(fileId);
+                return;
+            end
+
+
+            constraint=['## PART ##\n',...
+            'CONFIG PART = ',PartInfo.FPGADevice,'-',PartInfo.FPGAPackage,PartInfo.FPGASpeed,';\n\n'];
+            if(strcmpi(device.Component.SYSCLK.Type,'DIFF'))
+                clkconstraint={...
+                'NET "sysclk_p"         LOC = "',device.getPIN(1,'sysclk_p'),'";\n',...
+                'NET "sysclk_n"         LOC = "',device.getPIN(1,'sysclk_n'),'";\n'};
+            else
+                clkconstraint={...
+                'NET "sysclk"         LOC = "',device.getPIN(1,'sysclk'),'";\n'};
+            end
+
+            constraint=[constraint,'## IO PIN MAP##\n',clkconstraint{:}];
+
+            interface=BuildInfo.BoardObj.getInterface;
+            signalNames=interface.getSignalNames;
+            for m=1:numel(signalNames)
+                sgName=signalNames{m};
+                sgWidth=interface.getBitWidth(sgName);
+
+                if strcmpi(sgWidth,'1')
+                    constraint=[constraint,'NET "',sgName,'"    LOC = "',device.getPIN(1,sgName),'";\n'];
+                else
+                    tmp=device.getPIN(1,sgName);
+                    for i=1:length(tmp)
+                        constraint=[constraint,...
+                        'NET "',sgName,'[',num2str(i-1),']"    LOC = "',tmp{i},'";\n'];%#ok<*AGROW>
+                    end
+                end
+            end
+
+            if~isempty(device.getPIN(1,'sysrst'))
+                constraint=[constraint,...
+                'NET "sysrst"        LOC = "',device.getPIN(1,'sysrst'),'";\n',...
+                ];
+            end
+
+            if strcmpi(device.Component.Communication_Channel,'MII')
+                RxclkPeriod='40';
+            else
+                RxclkPeriod='8';
+            end
+            constraint=[constraint,'\n\n## Clocking ##\n',...
+            'NET "ETH_RXCLK" TNM_NET = "ETH_RXCLK";\n',...
+            'TIMESPEC "TS_ETH_RXCLK" = PERIOD "ETH_RXCLK" ',RxclkPeriod,' ns HIGH 50%%;\n'];
+
+            if strcmpi(device.Component.Communication_Channel,'MII')
+                constraint=[constraint,...
+                'NET "ETH_TXCLK" TNM_NET = "ETH_TXCLK";\n',...
+                'TIMESPEC "TS_ETH_TXCLK" = PERIOD "ETH_TXCLK" ',RxclkPeriod,' ns HIGH 50%%;\n'];
+            end
+
+            SYSFreq=device.Component.SYSCLK.Frequency;
+            SYSClkPeriod=num2str(round(1000./SYSFreq));
+            if(strcmpi(device.Component.SYSCLK.Type,'DIFF'))
+                constraint=[constraint,...
+                'NET "sysclk_p" TNM_NET = "sysclk_p";\n',...
+                'TIMESPEC "TS_sysclk_p" = PERIOD "sysclk_p" ',SYSClkPeriod,' ns HIGH 50%%;\n',...
+                'NET "sysclk_n" TNM_NET = "sysclk_n";\n',...
+                'TIMESPEC "TS_sysclk_n" = PERIOD "sysclk_n" ',SYSClkPeriod,' ns HIGH 50%%;\n\n'];
+            else
+                constraint=[constraint,...
+                'NET "sysclk" TNM_NET = "sysclk";\n',...
+                'TIMESPEC "TS_sysclk" = PERIOD "sysclk" ',SYSClkPeriod,' ns HIGH 50%%;\n\n'];
+            end
+
+            if isfield(device.Component,'DCMLocation')
+                constraint=[constraint,'\n\n## Locking DCM location ## \n',...
+                'INST u_ClockManager/u_dcm LOC = ',device.Component.DCMLocation,';\n\n'];
+            end
+
+            constraint=[constraint,'\n## False Path ## \n'];
+            if strcmpi(device.Component.Communication_Channel,'MII')
+                constraint=[constraint,...
+                'TIMESPEC TS_RXCLK_DUTCLK = FROM "ETH_RXCLK" TO "u_ClockManager_CLKDV" TIG;\n',...
+                'TIMESPEC TS_DUTCLK_RXCLK = FROM "u_ClockManager_CLKDV" TO "ETH_RXCLK" TIG;\n',...
+                'TIMESPEC TS_DUTCLK_TXCLK = FROM "u_ClockManager_CLKDV" TO "ETH_TXCLK" TIG;\n',...
+                'TIMESPEC TS_TXCLK_DUTCLK = FROM "ETH_TXCLK" TO "u_ClockManager_CLKDV" TIG;\n',...
+                'TIMESPEC TS_TXCLK_RXCLK  = FROM "ETH_TXCLK" TO "ETH_RXCLK" TIG;\n',...
+                'TIMESPEC TS_RXCLK_TXCLK  = FROM "ETH_RXCLK" TO "ETH_TXCLK" TIG;\n'];
+            else
+                if strcmpi(device.Component.PartInfo.FPGAFamily,'Spartan6')
+                    constraint=[constraint,...
+                    'TIMESPEC TS_RXCLK_DUTCLK = FROM "ETH_RXCLK" TO "u_ClockManager_CLKDV" TIG;\n',...
+                    'TIMESPEC TS_DUTCLK_RXCLK = FROM "u_ClockManager_CLKDV" TO "ETH_RXCLK" TIG;\n',...
+                    'TIMESPEC TS_DUTCLK_TXCLK = FROM "u_ClockManager_CLKDV" TO "u_ClockManager_dcmclk125" TIG;\n',...
+                    'TIMESPEC TS_TXCLK_DUTCLK = FROM "u_ClockManager_dcmclk125" TO "u_ClockManager_CLKDV" TIG;\n',...
+                    'TIMESPEC TS_TXCLK_RXCLK  = FROM "u_ClockManager_dcmclk125" TO "ETH_RXCLK" TIG;\n',...
+                    'TIMESPEC TS_RXCLK_TXCLK  = FROM "ETH_RXCLK" TO "u_ClockManager_dcmclk125" TIG;\n'];
+                else
+                    constraint=[constraint,...
+                    'TIMESPEC TS_RXCLK_DUTCLK = FROM "ETH_RXCLK" TO "u_ClockManager_CLKDV" TIG;\n',...
+                    'TIMESPEC TS_DUTCLK_RXCLK = FROM "u_ClockManager_CLKDV" TO "ETH_RXCLK" TIG;\n',...
+                    'TIMESPEC TS_DUTCLK_TXCLK = FROM "u_ClockManager_CLKDV" TO "u_ClockManager_CLKFX" TIG;\n',...
+                    'TIMESPEC TS_TXCLK_DUTCLK = FROM "u_ClockManager_CLKFX" TO "u_ClockManager_CLKDV" TIG;\n',...
+                    'TIMESPEC TS_TXCLK_RXCLK  = FROM "u_ClockManager_CLKFX" TO "ETH_RXCLK" TIG;\n',...
+                    'TIMESPEC TS_RXCLK_TXCLK  = FROM "ETH_RXCLK" TO "u_ClockManager_CLKFX" TIG;\n'];
+                end
+            end
+
+
+            fprintf(fileId,constraint);
+
+
+            if fileId>0
+                fclose(fileId);
+            end
+
+        end
+
+    end
+end
+
+function r=l_xdcSetPinAndIOStandard(boardObj,sgName)
+    r='';
+    location=boardObj.getPIN(1,sgName);
+    ioStandard=boardObj.getIOStandard(sgName);
+
+
+    if ischar(location)
+        r=[r,'set_property PACKAGE_PIN ',location,' [get_ports ',sgName,']',newline];
+        if~isempty(ioStandard)
+            r=[r,'set_property IOSTANDARD ',ioStandard,' [get_ports ',sgName,']',newline];
+        end
+    else
+        for m=1:numel(location)
+            portName=[sgName,'[',num2str(m-1),']'];
+            r=[r,'set_property PACKAGE_PIN ',location{m},' [get_ports ',portName,']',newline];
+            if~isempty(ioStandard)
+                r=[r,'set_property IOSTANDARD ',ioStandard,' [get_ports ',portName,']',newline];
+            end
+        end
+    end
+end
+
+
+
+
+
+
+
+
+

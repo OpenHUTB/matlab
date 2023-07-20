@@ -1,0 +1,39 @@
+function dlgStruct=getDialogSchema(this,name)
+
+
+
+
+    adSL=rptgen_sl.appdata_sl;
+    ct=adSL.getContextType(this,false);
+
+    if isempty(ct)
+        ctxtString=getString(message('RptgenSL:rsl_CDialogSnapshot:noCurrentLoopMsg'));
+    else
+        ctxtString=sprintf(getString(message('RptgenSL:rsl_CDialogSnapshot:includeDialogForLabel')),lower(ct));
+    end
+
+
+    dlgStruct=this.dlgMain(name,{
+    this.dlgContainer({
+    this.dlgWidget('ImageFormat',...
+    'RowSpan',[1,1],...
+    'ColSpan',[1,2])
+    this.dlgWidget('CaptureTabs',...
+    'RowSpan',[2,2],...
+    'ColSpan',[1,2])
+    this.dlgText(ctxtString,...
+    'RowSpan',[3,3],...
+    'ColSpan',[1,2])
+    },getString(message('RptgenSL:rsl_CDialogSnapshot:formatLabel')),...
+    'LayoutGrid',[3,2],...
+    'RowSpan',[1,1],...
+    'ColSpan',[1,1])
+    this.gr_dlgDisplayOptions([],[],...
+    'RowSpan',[3,3],...
+    'ColSpan',[1,1])
+    },'LayoutGrid',[3,1],...
+    'RowStretch',[0,0,1]);
+
+
+
+

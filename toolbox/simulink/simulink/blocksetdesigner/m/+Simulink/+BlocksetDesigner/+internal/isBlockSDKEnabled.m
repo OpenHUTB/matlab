@@ -1,0 +1,21 @@
+function[isEnabled,projectRoot]=isBlockSDKEnabled()
+    isEnabled=0;
+    projectRoot='';
+    projectStore=com.mathworks.toolbox.slproject.project.controlset.store.implementations.SingletonProjectStore.getInstance();
+    loadedProject=projectStore.getFirstRoot();
+    if~isempty(loadedProject)
+        projectManager=loadedProject.getProjectControlSet().getProjectManager();
+        fileMetadataManager=projectManager.getFileMetadataManagerFor('BlocksetSDK');
+        proj=simulinkproject();
+        file=java.io.File(proj.RootFolder);
+        fileMap=fileMetadataManager.getFileMetadata();
+        if~fileMap.isEmpty()
+            dataMap=fileMap.get(file);
+            typeToVerify=char(dataMap.get('Enabled'));
+            if isequal(typeToVerify,'true')
+                isEnabled=1;
+                projectRoot=proj.RootFolder;
+            end
+        end
+    end
+end

@@ -1,0 +1,26 @@
+classdef Format<Rptgen.TitlePage.HTML.Format
+
+
+
+
+    methods
+
+        function this=Format()
+            this@Rptgen.TitlePage.HTML.Format('recto');
+            this.IncludeElements=...
+            {
+            Rptgen.TitlePage.HTML.Recto.Title(),...
+            Rptgen.TitlePage.HTML.Recto.Subtitle(),...
+            Rptgen.TitlePage.HTML.Recto.Author(),...
+            Rptgen.TitlePage.HTML.Recto.Image(),...
+            Rptgen.TitlePage.HTML.Recto.Copyright(),...
+            Rptgen.TitlePage.HTML.Recto.PubDate(),...
+            Rptgen.TitlePage.HTML.Recto.LegalNotice(),...
+            Rptgen.TitlePage.HTML.Recto.Abstract()
+            };
+        end
+
+    end
+
+end
+

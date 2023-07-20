@@ -1,0 +1,6 @@
+function storage=getStorageService(obj)
+
+    storage=evolutions.internal.artifactserver.services.internal...
+    .ServiceManager.getStorageService(obj.getServerDirectory,...
+    obj.StorageType);
+end

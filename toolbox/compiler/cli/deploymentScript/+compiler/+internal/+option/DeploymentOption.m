@@ -1,0 +1,91 @@
+classdef(Enumeration)DeploymentOption
+
+
+
+
+    properties(Constant,GetAccess=public)
+        allBuildTargetOptions=[compiler.internal.option.DeploymentOption.AdditionalFiles,...
+        compiler.internal.option.DeploymentOption.AutoDetectDataFiles,...
+        compiler.internal.option.DeploymentOption.OutputDirBuild,...
+        compiler.internal.option.DeploymentOption.SupportPackages,...
+        compiler.internal.option.DeploymentOption.Verbose];
+    end
+
+    enumeration
+        AddInName,
+        AddInVersion,
+        AdditionalFiles,
+        AdditionalInstallerFiles,
+        AddRemoveProgramsIcon,
+        AppFile,
+        ApplicationName,
+        ArchiveName,
+        AssemblyName,
+        AssemblyVersion,
+        AuthorCompany,
+        AuthorEmail,
+        AuthorName,
+        AutoDetectDataFiles,
+        ClassMap,
+        ClassName,
+        ComponentName,
+        ComponentVersion,
+        ConvertExcelDateToString,
+        ConvertNumericOutToDateInExcel,
+        CustomHelpTextFile,
+        DebugBuild,
+        DefaultInstallationDir,
+        Description,
+        EmbedArchive,
+        EnableRemoting,
+        ExecutableIcon,
+        ExecutableName,
+        ExecutableSplashScreen,
+        ExecutableVersion,
+FrameworkVersion
+        FunctionFiles,
+        FunctionSignatures,
+        GenerateVisualBasicFile,
+        InstallationNotes,
+        InstallerIcon,
+        InstallerLogo,
+        InstallerName,
+        InstallerSplash,
+        InstallerVersion,
+        Interface,
+        LibraryName,
+        LibraryVersion,
+        MaxResponseSize,
+        OutputDirBuild,
+        OutputDirPackage,
+        PackageName,
+        ReplaceExcelBlankWithNaN,
+        ReplaceNaNToZeroInExcel,
+        RuntimeDelivery,
+        SampleGenerationFiles,
+        ServerArchive,
+        ServerTimeOut,
+        ServerURL,
+        Shortcut,
+        SSLCertificate,
+        StrongNameKeyFile,
+        Summary,
+        SupportPackages,
+        TreatInputsAsNumeric,
+        Verbose,
+Version
+    end
+
+    methods
+        function optName=optionName(obj)
+            if(obj==compiler.internal.option.DeploymentOption.OutputDirBuild||obj==compiler.internal.option.DeploymentOption.OutputDirPackage)
+                optName="OutputDir";
+            elseif(obj==compiler.internal.option.DeploymentOption.AdditionalInstallerFiles)
+                optName="AdditionalFiles";
+            else
+                optName=string(obj);
+            end
+        end
+    end
+end
+

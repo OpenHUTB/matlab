@@ -1,0 +1,46 @@
+%#codegen
+
+
+function[miniBatch,sampleSequenceLengths,miniBatchSequenceLengthValue]=prepareMinibatchForRNN(obj,...
+    indata,inputSize,miniBatchSize,sequenceLengthMode,sequencePaddingValue,sequencePaddingDirection,...
+    isCellInput,isImageInput,miniBatchIdx,numMiniBatches,remainder,callerFunction)
+
+
+
+
+    coder.allowpcode('plain');
+
+    if isImageInput
+
+        permutationDims=[1,2,3,5,4];
+
+        [miniBatch,sampleSequenceLengths,miniBatchSequenceLengthValue]=...
+        coder.internal.iohandling.rnn.InputDataPreparer.prepareColumnMajorImageInput(...
+        indata,inputSize,miniBatchSize,...
+        sequenceLengthMode,sequencePaddingValue,sequencePaddingDirection,...
+        isCellInput,...
+        miniBatchIdx,numMiniBatches,remainder,permutationDims);
+    else
+
+        permutationDims=[1,3,2];
+
+        [miniBatch,sampleSequenceLengths,miniBatchSequenceLengthValue]=...
+        coder.internal.iohandling.rnn.InputDataPreparer.prepareColumnMajorVectorInput(...
+        indata,inputSize,miniBatchSize,...
+        sequenceLengthMode,sequencePaddingValue,sequencePaddingDirection,...
+        isCellInput,...
+        miniBatchIdx,numMiniBatches,remainder,permutationDims);
+    end
+
+
+    coder.internal.assert(coder.const(~islogical(miniBatch)),...
+    'dlcoder_spkg:cnncodegen:invalid_input',...
+    callerFunction);
+
+
+    coder.internal.coderNetworkUtils.checkAndWarnForHalfInput(class(miniBatch),obj.DataType,callerFunction);
+
+
+    miniBatch=single(miniBatch);
+
+end

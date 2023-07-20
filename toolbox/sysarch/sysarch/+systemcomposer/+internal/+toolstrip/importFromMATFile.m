@@ -1,0 +1,9 @@
+
+function importFromMATFile(cbinfo)
+    studio=cbinfo.studio;
+    [bdOrDDName,interfaceCatalogStorageContext]=...
+    systemcomposer.internal.getModelOrDDName(studio);
+    systemcomposer.InterfaceEditor.importFromMATFile(...
+    bdOrDDName,...
+    interfaceCatalogStorageContext);
+end

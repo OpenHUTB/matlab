@@ -1,0 +1,3 @@
+classdef XYLineDefinitionProps<SimBiology.internal.plotting.sbioplot.definition.LineDefinitionProps
+
+end

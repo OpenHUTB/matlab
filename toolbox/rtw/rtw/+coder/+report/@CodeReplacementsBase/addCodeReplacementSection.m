@@ -1,0 +1,30 @@
+function addCodeReplacementSection(obj)
+    addedContent=zeros(21,1);
+    addedContent(1)=obj.addFunctionReplacementSection;
+    addedContent(2)=obj.addOperatorReplacementSection('RTW_OP_ADD','AddReplacementTitle',obj.getAddReplacementIntro());
+    addedContent(3)=obj.addOperatorReplacementSection('RTW_OP_MINUS','SubReplacementTitle',obj.getSubReplacementIntro());
+    addedContent(4)=obj.addOperatorReplacementSection('RTW_OP_MUL','MulReplacementTitle',obj.getMulReplacementIntro());
+    addedContent(5)=obj.addOperatorReplacementSection('RTW_OP_DIV','DivReplacementTitle',obj.getDivReplacementIntro());
+    addedContent(6)=obj.addOperatorReplacementSection('RTW_OP_CAST','CastReplacementTitle',obj.getCastReplacementIntro());
+    addedContent(7)=obj.addOperatorReplacementSection('RTW_OP_SL','SLReplacementTitle',obj.getSLReplacementIntro());
+    addedContent(8)=obj.addOperatorReplacementSection('RTW_OP_SR','SRReplacementTitle',obj.getSRReplacementIntro());
+    addedContent(9)=obj.addOperatorReplacementSection('RTW_OP_ELEM_MUL','EMReplacementTitle',obj.getEMReplacementIntro());
+    addedContent(10)=obj.addOperatorReplacementSection('RTW_OP_TRANS','TransReplacementTitle',obj.getTransReplacementIntro());
+    addedContent(11)=obj.addOperatorReplacementSection('RTW_OP_CONJUGATE','ConjReplacementTitle',obj.getConjReplacementIntro());
+    addedContent(12)=obj.addOperatorReplacementSection('RTW_OP_HERMITIAN','HermReplacementTitle',obj.getHermReplacementIntro());
+    addedContent(13)=obj.addOperatorReplacementSection('RTW_OP_TRMUL','TRMReplacementTitle',obj.getTRReplacementIntro());
+    addedContent(14)=obj.addOperatorReplacementSection('RTW_OP_HMMUL','HMReplacementTitle',obj.getHMReplacementIntro());
+    addedContent(15)=obj.addOperatorReplacementSection('RTW_OP_GREATER_THAN','GTReplacementTitle',obj.getGTReplacementIntro());
+    addedContent(16)=obj.addOperatorReplacementSection('RTW_OP_GREATER_THAN_OR_EQ','GTEReplacementTitle',obj.getGTEReplacementIntro());
+    addedContent(17)=obj.addOperatorReplacementSection('RTW_OP_LESS_THAN','LTReplacementTitle',obj.getLTReplacementIntro());
+    addedContent(18)=obj.addOperatorReplacementSection('RTW_OP_LESS_THAN_OR_EQ','LTEReplacementTitle',obj.getLTEReplacementIntro());
+    addedContent(19)=obj.addOperatorReplacementSection('RTW_OP_EQUAL','EQReplacementTitle',obj.getEQReplacementIntro());
+    addedContent(20)=obj.addOperatorReplacementSection('RTW_OP_NOT_EQUAL','NEQReplacementTitle',obj.getNEQReplacementIntro());
+    addedContent(21)=obj.addSimdReplacementSection();
+    contentAdded=any(addedContent);
+    if~contentAdded
+        p=Advisor.Paragraph;
+        p.addItem([obj.getMessage('CodeReplacementEmptyReport'),' <br />']);
+        obj.addItem(p)
+    end
+end

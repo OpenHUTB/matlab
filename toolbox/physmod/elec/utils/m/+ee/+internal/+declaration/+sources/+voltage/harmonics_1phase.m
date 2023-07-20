@@ -1,0 +1,6 @@
+function[x_harmonic_orders_value,x_harmonic_ratios_value,x_harmonic_shifts_value]=harmonics_1phase(harmonic_orders_value,harmonic_ratios_value,harmonic_shifts_value)%#codegen
+
+
+
+
+    [x_harmonic_orders_value,x_harmonic_ratios_value,x_harmonic_shifts_value]=harmonics_1phase_private(harmonic_orders_value,harmonic_ratios_value,harmonic_shifts_value);

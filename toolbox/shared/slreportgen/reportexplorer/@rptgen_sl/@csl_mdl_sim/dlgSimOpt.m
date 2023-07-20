@@ -1,0 +1,23 @@
+function dlgStruct=dlgSimOpt(this,varargin)
+
+
+
+
+    wSimParam=RptgenML.twoColumnTable(this,'SimParam','',...
+    'RowSpan',[3,3],'ColSpan',[1,1]);
+    wSimParam=RptgenML.twoColumnTable(this,wSimParam,...
+    '-setColHeader',{getString(message('RptgenSL:rsl_csl_mdl_sim:simulationParameterLabel')),getString(message('RptgenSL:rsl_csl_mdl_sim:valueLabel'))});
+    wSimParam=RptgenML.twoColumnTable(this,wSimParam,...
+    '-setDefaultRow',{'SimParam','SimValue'});
+
+    dlgStruct=this.dlgContainer({
+    this.dlgWidget('CompileModel',...
+    'RowSpan',[1,1],'ColSpan',[1,1])
+    this.dlgWidget('MessageDisplay',...
+    'RowSpan',[2,2],'ColSpan',[1,1])
+wSimParam
+    },getString(message('RptgenSL:rsl_csl_mdl_sim:simulationOptionsLabel')),...
+    'LayoutGrid',[3,1],'RowStretch',[0,0,1],...
+    varargin{:});
+
+

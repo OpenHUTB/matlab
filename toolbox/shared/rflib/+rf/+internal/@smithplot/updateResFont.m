@@ -1,0 +1,6 @@
+function updateResFont(p)
+
+
+    set(p.hResistanceText,...
+    'FontName',p.FontName,...
+    'FontSize',getMagFontSize(p));

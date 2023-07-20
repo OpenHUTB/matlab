@@ -1,0 +1,21 @@
+function openSaveDlg
+
+
+
+
+    MAObj=Simulink.ModelAdvisor.getActiveModelAdvisorObj;
+
+    if isa(MAObj.RPDialog,'DAStudio.Dialog')
+        if~MAObj.RPObj.IsSaveDlg
+
+            MAObj.RPObj.delete;
+        else
+            MAObj.RPDialog.show;
+            return
+        end
+    end
+    ssObj=ModelAdvisor.RestorePoint;
+    ssObj.MAObj=MAObj;
+    ssObj.IsSaveDlg=true;
+    MAObj.RPObj=ssObj;
+    MAObj.RPDialog=DAStudio.Dialog(ssObj,'','DLG_STANDALONE');

@@ -1,0 +1,73 @@
+function normval=elabACSRenorm(~,ACSNet,sm,idx,idxType,thred,...
+    step,stmetType,stmetvType,dataRate)
+
+
+
+
+
+    networkName='ACSRenorm';
+
+    renormNet=pirelab.createNewNetwork(...
+    'Network',ACSNet,...
+    'Name',networkName,...
+    'InportNames',{'stMet'},...
+    'InportTypes',stmetvType,...
+    'InportRates',dataRate,...
+    'OutportNames',{'normval','idx'},...
+    'OutportTypes',[stmetType,idxType]...
+    );
+    renormComment=[...
+'Calculates the minimum state metric value'...
+    ,newline...
+    ,'Compares the minimum value to the threshold parameter'...
+    ,newline...
+    ,'If the minimum value is greater than or equal to the threshold value, '...
+    ,newline...
+    ,'returns the step parameter; otherwise returns zero'...
+    ,newline...
+    ];
+    renormNet.addComment(renormComment);
+
+
+    stm_ip=renormNet.PirInputSignals(1);
+    normval_op=renormNet.PirOutputSignals(1);
+    idx_op=renormNet.PirOutputSignals(2);
+
+
+    minval=renormNet.addSignal(stmetType,'minval');
+
+
+    pipeTree=true;
+
+    pirelab.getTreeArch(renormNet,stm_ip,[minval,idx_op],'min','Floor',...
+    'Wrap','MinimumTree','Zero',pipeTree);
+
+
+    ufix1Type=pir_ufixpt_t(1,0);
+    sel=renormNet.addSignal(ufix1Type,'sel');
+    pirelab.getCompareToValueComp(renormNet,minval,sel,'<',thred);
+
+    step_F=fimath('RoundMode','floor',...
+    'OverflowMode','wrap');
+
+    conststep=renormNet.addSignal(stmetType,'conststep');
+    stepval=fi(-step,0,stmetType.WordLength,0,step_F);
+    cstepcomp=pirelab.getConstComp(renormNet,conststep,stepval);
+    cstepcomp.addComment('Normalization constant adjustment value');
+
+    constzero=renormNet.addSignal(stmetType,'constzero');
+    czerocomp=pirelab.getConstComp(renormNet,constzero,0);
+    czerocomp.addComment('Normalization constant zero');
+
+    pirelab.getSwitchComp(renormNet,[constzero,conststep],normval_op,sel,...
+    'normvalswitch','>',0);
+
+
+
+    normval=ACSNet.addSignal(stmetType,'normval');
+    renormComp=pirelab.instantiateNetwork(ACSNet,renormNet,sm,...
+    [normval,idx],networkName);
+    renormComp.addComment('State Metric Renormalization');
+
+
+end

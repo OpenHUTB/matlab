@@ -1,0 +1,9 @@
+
+
+
+function res=objectIsValidArea(obj)
+    res=~isempty(obj)...
+    &&isa(obj,'SLM3I.Annotation')...
+    &&isvalid(obj)...
+    &&obj.Type==SLM3I.AnnotationType.AREA_ANNOTATION;
+end

@@ -1,0 +1,29 @@
+function finalizeR2MATfile(mdl,domain,filename,varName,leafFmt,inactiveVariants,loggingFilePtr)
+
+
+
+
+
+    if nargin<7
+        loggingFilePtr=[];
+    end
+
+
+    repo=sdi.Repository(1);
+    Simulink.HMI.synchronouslyFlushWorkerQueue(repo);
+
+
+    runID=repo.getCurrentStreamingRunID(mdl);
+    if runID||~isempty(inactiveVariants)
+        Simulink.sdi.internal.export.createMATFileForRun(...
+        runID,...
+        domain,...
+        filename,...
+        varName,...
+        true,...
+        leafFmt,...
+        inactiveVariants,...
+        loggingFilePtr,...
+        mdl);
+    end
+end

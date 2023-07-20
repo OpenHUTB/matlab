@@ -1,0 +1,6 @@
+function SetLastUninheritedValues(this)
+
+
+
+
+end

@@ -1,0 +1,3 @@
+function key=getComplianceReportKey(~)
+    key=['E2CxpsD0QRVPzOGaSzVBVswxFqcyPFhF4FDPVr3F4xwMy5hkO8o6mfLKtGRrZp9SyNQPbPlFZz5yIxsXLT1PT5Klx1p+GGbVj4adl0cIpCHCEMU3FH4TLnOnLgRO6dXGufOQ29MMhixlSNGwVxJZrorZ9VH9FHMiuuf8lCXZWp5oa/Zsnbmg0vAb5GbnTuDA1t9Wp5Bw1TY8WC8='];
+end

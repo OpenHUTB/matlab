@@ -1,0 +1,13 @@
+function tf=isgeotable(T)
+
+
+
+
+
+
+    tf=isa(T,'tabular')...
+    &&~isempty(T.Properties.VariableNames)...
+    &&strcmp(T.Properties.VariableNames(1),'Shape')...
+    &&isa(T.Shape,'map.shape.Shape')...
+    &&iscolumn(T.Shape);
+end

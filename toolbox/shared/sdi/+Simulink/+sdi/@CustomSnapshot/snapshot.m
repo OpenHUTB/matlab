@@ -1,0 +1,9 @@
+function[hFig,img_data]=snapshot(this,varargin)
+
+
+
+    [hFig,img_data]=Simulink.sdi.snapshot(...
+    "from","custom",...
+    "settings",this,...
+    varargin{:});
+end

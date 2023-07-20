@@ -1,0 +1,19 @@
+function[retSignalData,dimsColIDs]=extractMultiDimensionalSignalData(...
+    this,isBus,signalData,signalNames,signalIndices,leafName,timeIndices,ds,sigIdx)
+    extractedLeafName=this.extractSignalNameFromDims(leafName);
+    if isBus
+        nameParts=signalData.BusHier;
+        nameParts{end+1}=extractedLeafName;
+        fullSignalName=strjoin(nameParts,'.');
+        [dimsColIDs,channels,dims]=this.findDimensionColIDs(fullSignalName,...
+        signalNames,signalIndices,timeIndices,ds,signalData.Element.BlockPath,sigIdx);
+    else
+        [dimsColIDs,channels,dims]=this.findDimensionColIDs(extractedLeafName,...
+        signalNames,signalIndices,timeIndices,ds,signalData.Element.BlockPath,sigIdx);
+    end
+    signalData.DimsColIDs=dimsColIDs;
+    signalData.ChannelIdxs=channels;
+    signalData.Dims=dims;
+    signalData.LeafName=extractedLeafName;
+    retSignalData=signalData;
+end
