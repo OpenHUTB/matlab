@@ -1,0 +1,109 @@
+
+
+
+
+classdef Interpolation_n_DBlock<slci.simulink.Block
+
+    methods
+
+
+        function obj=Interpolation_n_DBlock(aBlk,aModel)
+            obj=obj@slci.simulink.Block(aBlk,aModel);
+
+
+
+            obj.removeConstraint('BlockPortsMultiDim');
+
+
+
+            obj.removeConstraint('SupportedPortDataTypes');
+
+
+            obj.addConstraint(...
+            slci.compatibility.PositiveBlockParameterConstraintWithFix(...
+            false,'TableSpecification','Explicit values'));
+
+
+            obj.addConstraint(...
+            slci.compatibility.PositiveBlockParameterConstraintWithFix(...
+            false,'RequireIndexFractionAsBus','off'));
+
+
+            obj.addConstraint(...
+            slci.compatibility.PositiveBlockParameterConstraintWithFix(...
+            false,'InterpMethod','Linear point-slope'));
+
+
+
+            if strcmp(get_param(aBlk,'ExtrapMethod'),'Clip')
+                obj.addConstraint(...
+                slci.compatibility.PositiveBlockParameterConstraintWithFix(...
+                false,'ValidIndexMayReachLast','off'));
+            end
+
+
+            obj.addConstraint(...
+            slci.compatibility.PositiveBlockParameterConstraintWithFix(...
+            false,'InternalRulePriority','Precision'));
+
+
+            obj.addConstraint(...
+            slci.compatibility.PositiveBlockParameterConstraintWithFix(...
+            false,'RndMeth','Floor'));
+
+
+            obj.addConstraint(...
+            slci.compatibility.PositiveBlockParameterConstraintWithFix(...
+            false,'SaturateOnIntegerOverflow','off'));
+
+
+            obj.addConstraint(...
+            slci.compatibility.PositiveBlockParameterConstraint(...
+            false,'IntermediateResultsDataTypeStr',...
+            'Inherit: Inherit via internal rule',...
+            'Inherit: Same as output',...
+            'double','single'));
+
+
+            if strcmp(get_param(aBlk,'TableSource'),'Dialog')
+                obj.addConstraint(...
+                slci.compatibility.PositiveBlockParameterConstraint(...
+                false,'TableDataTypeStr',...
+                'Inherit: Inherit from ''Table data''',...
+                'Inherit: Same as output',...
+                'double','single'));
+                obj.addConstraint(...
+                slci.compatibility.PositiveBlockParameterConstraint(...
+                false,'OutDataTypeStr',...
+                'Inherit: Inherit via back propagation',...
+                'Inherit: Inherit from ''Table data''',...
+                'double','single'));
+            end
+
+
+            obj.addConstraint(...
+            slci.compatibility.Interpolation_n_DDataTypesConstraint(...
+            {'double','single'}));
+
+
+
+
+
+
+            obj.addConstraint(...
+            slci.compatibility.BlockConstantSampleTimeConstraint);
+
+
+
+            obj.addConstraint(...
+            slci.compatibility.Interpolation_n_DConstantPortConstraint());
+        end
+
+
+        function out=checkCompatibility(aObj)
+            out=checkCompatibility@slci.simulink.Block(aObj);
+        end
+
+    end
+
+end
