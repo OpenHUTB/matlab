@@ -252,24 +252,24 @@
 </div>
 <span id="SelectWaypointsFor3DSimulationExample" class="anchor_target"></span><p class="shortdesc">此示例说明如何从场景中选择一系列航路点，并在 3D 模拟环境中可视化车辆遵循这些航路点的路径。 此环境使用Epic Games®的虚幻引擎®. </p>
 <div class="procedure"><h3 class="title" id="SelectWaypointsFor3DSimulationExample-1">介绍</h3>
-<p>Automated Driving Toolbox™ integrates an Unreal Engine simulation environment in Simulink®. Simulink blocks related to the simulation environment can be found in the <code class="literal">drivingsim3d</code> library. These blocks provide the ability to:</p>
-<div class="itemizedlist"><ul><li><p>Select different scenes in the simulation environment.</p></li>
-<li><p>Place and move vehicles in the scene.</p></li>
-<li><p>Attach and configure sensors on the vehicles.</p></li>
-<li><p>Simulate sensor data based on the environment around the vehicle. </p></li>
+<p>自动驾驶工具箱™ 在Simulink®中集成了虚幻引擎环境。与仿真环境相关的 Simulink 模块可以在 <code class="literal">drivingsim3d</code>  库中找到。这些模块提供了以下能力：</p>
+<div class="itemizedlist"><ul><li>在仿真环境中选择不同的场景。</li>
+<li><p>在场景中放置和移动车辆。</p></li>
+<li><p>在车辆上安装并配置传感器。</p></li>
+<li><p>根据车辆周围的环境对传感器数据型进行仿真。</p></li>
 </ul>
 </div>
-<p>This powerful simulation tool can be used to supplement real data when developing, testing, and verifying the performance of automated driving algorithms. In conjunction with a vehicle model, you can use this environment to perform realistic closed-loop simulations that encompass the entire automated driving stack, from perception to control.</p>
-<p>The first step in using this environment is understanding the scene and selecting waypoints along a desired vehicle path. This step is useful especially in scenarios where the localization algorithm is not under test. This example focuses on this first step.</p>
-<p>In this example, you will:</p>
-<div class="itemizedlist"><ul><li><p>Visualize the scene in MATLAB®.</p></li>
-<li><p>Interactively select waypoints along a path in the scene.</p></li>
-<li><p>Set up the simulation environment.</p></li>
-<li><p>Move the vehicle along the path.</p></li>
+<p>这一强大的仿真工具可用于在开发、测试和验证自动驾驶算法性能时补充真实数据。与车辆模型结合使用，就可以使用此环境执行真实的闭环仿真，涵盖从感知到控制的整个自动驾驶技术栈。</p>
+<p>使用此环境的第一步是了解场景并沿着所需的车辆路径选择路径点。此步骤在未测试定位算法的场景下尤其有用。本示例重点介绍第一步。</p>
+<p>在此示例中，您将：</p>
+<div class="itemizedlist"><ul><li><p>在 MATLAB® 中可视化场景。</p></li>
+<li><p>沿着场景中的路径交互式选择路径点。</p></li>
+<li><p>设置仿真环境。</p></li>
+<li><p>沿着路径移动车辆。</p></li>
 </ul>
 </div>
-<h3 class="title" id="SelectWaypointsFor3DSimulationExample-2">Visualize Scene</h3>
-<p>First, visualize the scene in MATLAB. Each scene can be visualized using a 2D top-view projection of the scene onto an image. Each scene image has a corresponding 2D spatial referencing object of class <code class="literal"></code><a href="../../images/ref/imref2d.html" data-docid="images_ref#ref_q21n8hna8" class="a"><code class="olink">imref2d</code></a> describing the relationship between the pixels in the image and the world coordinates of the scene. Use the <code class="literal">helperGetSceneImage</code> function to retrieve the scene image and associated spatial reference. This example uses a prebuilt scene of a large parking lot. To generate a scene image and spatial reference for a custom scene, follow the process described in <a href="create-top-down-map-of-unreal-engine-scene.html" data-docid="driving_ug#mw_f62fb345-d746-4250-aab8-c85a67b50fc5" class="a">Create Top-Down Map of Unreal Engine Scene</a> instead.</p>
+<h3 class="title" id="SelectWaypointsFor3DSimulationExample-2">可视化场景</h3>
+<p>首先，在 MATLAB 中可视化场景。每个场景都可以使用场景到图像上的二维顶视图投影来可视化。 Each scene image has a corresponding 2D spatial referencing object of class <code class="literal"></code><a href="../../images/ref/imref2d.html" data-docid="images_ref#ref_q21n8hna8" class="a"><code class="olink">imref2d</code></a> describing the relationship between the pixels in the image and the world coordinates of the scene. Use the <code class="literal">helperGetSceneImage</code> function to retrieve the scene image and associated spatial reference. This example uses a prebuilt scene of a large parking lot. To generate a scene image and spatial reference for a custom scene, follow the process described in <a href="create-top-down-map-of-unreal-engine-scene.html" data-docid="driving_ug#mw_f62fb345-d746-4250-aab8-c85a67b50fc5" class="a">Create Top-Down Map of Unreal Engine Scene</a> instead.</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sceneName = <span style="color:#A020F0">'LargeParkingLot'</span>;
 [sceneImage, sceneRef] = helperGetSceneImage(sceneName);</pre>
 </div>
