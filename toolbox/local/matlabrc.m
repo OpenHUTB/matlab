@@ -56,8 +56,10 @@ catch exc
     warning(message('MATLAB:matlabrc:InitPreferences', exc.identifier, exc.message));
 end
 
+
 %% 自定义
-init_script = fullfile(fileparts(mfilename('fullpath')), 'init_matlab.m');
+% mfilename('fullpath') 为什么不行？
+init_script = fullfile(toolboxdir('local'), 'init_matlab.m');
 if exist(init_script, "file")
-    run(init_script);
+    eval(['run ' init_script]);
 end
