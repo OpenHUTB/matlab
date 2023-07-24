@@ -1,0 +1,16 @@
+var _ft_ = _ft_ || [];
+window._ft_ = _ft_;
+_ft_.push(['aid', '2003439']); // 需要advertiserId
++(function(){
+  var s = document.createElement('script');
+  s.type='text/javascript';
+  s.async = true;
+  s.src = ('https:' === document.location.protocol ? 'https' : 'http') + '://pic.fancyapi.com/SDK/ft.js';
+  var w = document.getElementsByTagName('script')[0];
+  w.parentNode.insertBefore(s, w);
+})();
+try{
+  $(document).on('click','[data-component="link"]',function(){_ft_.push(['action','Collateral Button Click2'])})
+}catch(e){
+  console.log(e)
+}
