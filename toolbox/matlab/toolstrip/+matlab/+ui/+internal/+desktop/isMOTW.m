@@ -1,7 +1,4 @@
 function flag=isMOTW()
-
-
-
     status=warning('query');
 
     try
