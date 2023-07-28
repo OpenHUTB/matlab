@@ -36,25 +36,45 @@ AOCL.rights: AMD Optimizing CPU Libraries (AOCL)
 
 [AddOnProductInstaller.exe](https://ww2.mathworks.cn/help/matlab/ref/matlab.addons.install.html)  附加功能安装
 
-BuilderJABootstrap.dll
+BuilderJABootstrap.dll  加载Java库？
 
-CERT_Acknowledgments.txt                                    
-CGAL-vc140-mt-4.8.1.dll                                     
-CM2_Meshtools.rights                                        
-CUB.rights                                                  
-CWE.rights                                                  
-ClassPathGenerator.exe                                      
-CmlinkViewExtensions                                        
-ConfigurationAdmin1.dll                                     
-CppMicroServices3.dll                                       
-CrashReporter.exe                                           
-DLXAPI64.DLL                                                
-DeclarativeServices1.dll                                    
-Dirent.rights                                               
-Eclipse_Paho.rights                                         
-FLANN.rights                                                
-FMUServ.exe                                                 
-GDAL.rights                                                 
+CERT_Acknowledgments.txt  SEI CERT C++编码标准——C++中开发安全、可靠和安全系统的规则
+
+CGAL-vc140-mt-4.8.1.dll  该文件被视为 Win64 DLL (动态链接库)文件，最初由MathWorks为 CGAL 软件包创建。
+CGAL-vc140-mt-4.8.1.dll 在 Windows 10 操作系统中的第一个版本于 2009 年 3 月 14 日在MATLAB R2009a内发布
+
+[CM2_Meshtools.rights](https://www.computing-objects.com/cm2-meshtools-sdk/)  CM2 网格工具软件开发工具包。CM2 网格工具 SDK是一个功能强大的用于网格生成的 C++ 库（软件开发工具包），专为独立软件供应商 (ISV) 和涉及 CAD/CAE 计算的研究部门而设计。
+CM2 MeshTools SDK提供了强大而可靠的基础，可为最苛刻的有限元分析 (FEA) 或计算机生成图像 (CGI) 应用程序提供支持。
+该 SDK 包括平面网格生成器、表面网格生成器、实体网格生成器和专用工具。
+
+CUB.rights  英伟达公司的版权文件
+
+[CWE.rights](https://baike.baidu.com/item/MITRE%E5%85%AC%E5%8F%B8/62652334) Mitre公司的版权文件。
+
+ClassPathGenerator.exe  类文件路径生成器？
+
+CmlinkViewExtensions 只包含libmwcmlink_view_git_extension.dll的文件夹
+
+ConfigurationAdmin1.dll
+
+CppMicroServices3.dll  是由MathWorks创建的，用于开发 MATLAB R2009a
+
+[CrashReporter.exe](https://ww2.mathworks.cn/help/releases/R2022b/matlab/matlab_env/error-log-reporting.html) 崩溃报告程序。
+
+DLXAPI64.DLL
+
+DeclarativeServices1.dll
+
+Dirent.rights  麻省理工学院许可证
+
+Eclipse_Paho.rights Eclipse许可证
+
+FLANN.rights   BSD许可证
+
+FMUServ.exe  
+
+GDAL.rights  此文件试图包括在GDAL/OGR源树中应用的所有许可证。
+
 GEOS.rights                                                 
 GecodeDriver-6-0-1-r-x64.dll                                
 GecodeDriver.dll                                            
