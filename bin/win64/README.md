@@ -193,13 +193,13 @@ MDFSortu_x64.dll
                                          
 MIG_SensorFusion.rights  飞思卡尔半导体公司版权文件
                               
-MIG_TSim.rights  
+[MIG_TSim.rights](https://www.nxp.com/company/blog/simulate-motion-for-sensor-fusion:BL-SIMULATE-MOTION-SENSOR-FUSION)  NXP Trajectory Simulation Library for Matlab (TSim)
                                            
 MVMLocal.dll   
                                              
 MWCustomProperties.propdesc        
                          
-MathWorksProductAuthorizer.exe      
+[MathWorksProductAuthorizer.exe](https://ww2.mathworks.cn/help/releases/R2022b/install/ug/activate-matlab-installation-manually.html) 手动激活 MATLAB 安装     
                         
 MathWorks_Privileged_Operation.exe    
                       
@@ -211,25 +211,28 @@ MvmToolboxEventMgr.dll
                              
 OOXMLCreator72.dll    
                                       
-Open3D.dll   
+[Open3D.dll](https://github.com/isl-org/Open3D)  Open3D 是一个开源库，支持快速开发处理 3D 数据的软件。Open3D 前端公开了一组精心挑选的 C++ 和 Python 数据结构和算法。后端经过高度优化并设置为并行化。我们欢迎开源社区的贡献。  
                                                
 Open3D.rights   
                                             
-OpenAL32.dll  
+[OpenAL32.dll](https://www.openal.org/)  OpenAL 是一种跨平台 3D 音频 API，适用于游戏应用程序和许多其他类型的音频应用程序。
+该库模拟了在 3D 空间中移动的音频源集合，这些音频源由该空间中某处的单个听众听到。基本的 OpenAL 对象是监听器、源和缓冲区。可以有大量的Buffer，其中包含音频数据。每个缓冲区都可以附加到一个或多个源，这些源代表 3D 空间中发出音频的点。总是有一个 Listener 对象（每个音频上下文），它代表听到源的位置 - 渲染是从 Listener 的角度完成的。 
                                               
-OpenEXR-3_1.dll   
+[OpenEXR-3_1.dll](https://github.com/AcademySoftwareFoundation/openexr) OpenEXR 提供了 EXR 文件格式（电影行业的专业级图像存储格式）的规范和参考实现。
+EXR 格式的目的是准确有效地表示高动态范围场景线性图像数据和相关元数据，并为多部分、多通道用例提供强大支持。
+OpenEXR 广泛应用于精度至关重要的主机应用软件，例如照片级渲染、纹理访问、图像合成、深度合成和 DI。   
                                           
-OpenEXR.rights       
+OpenEXR.rights  版权文件     
                                        
 OpenEXRCore-3_1.dll            
                              
 OpenEXRUtil-3_1.dll      
                                    
-PDFCreator72.dll          
+[PDFCreator72.dll](https://www.pdfforge.org/pdfcreator) 使用 PDFCreator创建和自动化 PDF          
                                   
 PDFLinearizer72.dll       
                                   
-PDFRes72.dll               
+PDFRes72.dll  缩放大小(Resize)？             
                                  
 PDFToolPage72.dll   
                                         
