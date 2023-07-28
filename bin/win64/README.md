@@ -84,14 +84,14 @@ GecodeDriver.dll
 GecodeDriver.lib
 
 GecodeFlatZinc-6-0-1-r-x64.dll
-                       
+
 GecodeFlatZinc.dll      
                                     
 GecodeFlatZinc.lib                  
                         
 GecodeFloat-6-0-1-r-x64.dll           
                       
-GecodeFloat.dll 
+[GecodeFloat.dll](https://www.gecode.org/)  Gecode 是一个开源 C++ 工具包，用于开发基于约束的系统和应用程序。Gecode 提供了具有最先进性能的约束求解器，同时具有模块化和可扩展性。
                                          
 GecodeFloat.lib               
                               
@@ -131,9 +131,9 @@ GecodeSupport.dll
                                 
 GecodeSupport.lib                
                            
-GraphBLAS.rights                 
+[GraphBLAS.rights](https://github.com/GraphBLAS)  专门用于线性代数语言图的存储库（许可证）
                            
-Halide.dll 
+[Halide.dll](https://github.com/halide/Halide) Halide 是一种嵌入在 C++ 中的编程语言，旨在使在现代机器上编写高性能图像和数组处理代码变得更加容易。
                                                  
 Halide.lib 
                                                  
@@ -141,11 +141,11 @@ Halide.rights
                                              
 Hunspell.rights   
                                           
-ISO-17961_Acknowledgments.txt         
+[ISO-17961_Acknowledgments.txt](https://www.iso.org/standard/61134.html) 信息技术 编程语言、其环境和系统软件接口 C 安全编码规则         
                       
-ITK.rights           
+[ITK.rights](https://itk.org/) ITK是一个跨平台的开源应用程序开发框架，广泛用于开发图像分割和图像配准程序。 
                                        
-ITKCommon-5.2.dll        
+ITKCommon-5.2.dll 
                                    
 ITKLabelMap-5.2.dll  
                                        
@@ -157,41 +157,41 @@ ITKStatistics-5.2.dll
                                 
 ITKTransform-5.2.dll           
                              
-ITM.rights                    
+ITM.rights  ITM软件由美国国家电信和信息管理局开发。
                               
 Ideasstep30.dll 
                                             
 Iex-3_1.dll      
                                            
-IlmThread-3_1.dll  
+[IlmThread-3_1.dll](https://packages.fedoraproject.org/pkgs/mingw-openexr/mingw32-openexr/fedora-37.html) mingw32中提供。  
                                          
-Imath-3_1.dll   
+[Imath-3_1.dll](https://github.com/AcademySoftwareFoundation/Imath) Imath 是一个用于计算机图形学的 2D 和 3D 矢量、矩阵和数学运算的 C++ 和 Python 库   
                                             
-Imath.rights   
+Imath.rights ： Imath许可证。   
                                              
-InertialNav.rights               
-                           
-InstallMATLABStartupAccelerator.exe     
+[InertialNav.rights](https://github.com/priseborough/InertialNav) 惯性导航估计库的许可证
+
+[InstallMATLABStartupAccelerator.exe](https://howtodoninja.com/files/exe/matlabstartupaccelerator-exe/safe-virus-malware-uninstall-fix-matlabstartupaccelerator-exe/)  MATLABStartupAccelerator.exe是一个可执行的 exe 文件，属于 MATLAB R2019b 启动加速器进程，该进程随MATLAB R2014a 软件开发人员开发的MATLAB Production Server Software 一起提供。     
                     
 Invstep30.dll   
                                             
 JTstep30.dll  
                                               
-LICENSE.txt  
+LICENSE.txt 许可证文件
                                                
-MATLAB.exe   
+MATLAB.exe  启动matlab的可执行文件
                                                
-MATLAB.exe.config   
+[MATLAB.exe.config](https://ww2.mathworks.cn/help/matlab/matlab_external/system-requirements-for-using-matlab-interface-to-net.html) ： [指定使用.NET的版本](https://ww2.mathworks.cn/matlabcentral/answers/623843-how-do-you-specify-which-version-of-net-is-used) 。
                                         
-MATLABStartupAccelerator.exe    
+[MATLABStartupAccelerator.exe](https://ww2.mathworks.cn/help/releases/R2022b/matlab/matlab_env/configure-the-matlab-startup-accelerator.html) 配置 MATLAB 启动加速器，要充分利用启动加速器，请安排它在您通常启动 MATLAB 之前的某一时刻运行。 [启动加速原理](https://ww2.mathworks.cn/matlabcentral/answers/68644-has-the-matlab-startup-accelerator-utility-in-any-way-affected-system-performance-memory-usage-for) 。    
                             
-MATLABWebUI.exe 
+[MATLABWebUI.exe](https://ww2.mathworks.cn/matlabcentral/answers/1978679-what-is-the-matlabwebui-process?s_tid=srchtitle_site_search_1_MATLABWebUI) 依赖“ MATLABWebUI ”进程来处理 MATLAB 与任何基于 Web 的 UI 组件（例如应用程序设计器或 Simulink）之间的通信。  
                                             
 MATLABWindow.exe  
                                           
 MDFSortu_x64.dll   
                                          
-MIG_SensorFusion.rights       
+MIG_SensorFusion.rights  飞思卡尔半导体公司版权文件
                               
 MIG_TSim.rights  
                                            
