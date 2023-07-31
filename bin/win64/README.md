@@ -240,26 +240,30 @@ PSCreator72.dll
                                            
 Packet.dll  
                                                 
-Poco.rights       
+Poco.rights  Boost软件许可证       
                                           
-PocoCrypto64.dll    
+[PocoCrypto64.dll](https://docs.pocoproject.org/current/Poco.Crypto.html)     
                                         
-PocoFoundation64.dll     
-                                   
-PocoJSON64.dll         
-                                     
-PocoNet64.dll    
-                                           
-PocoNetSSL64.dll     
-                                       
-PocoUtil64.dll        
-                                      
-PocoXML64.dll       
+[PocoFoundation64.dll](https://pocoproject.org/)  POCO C++ 库是功能强大的跨平台 C++ 库，用于构建在桌面、服务器、移动、物联网和嵌入式系统上运行的基于网络和互联网的应用程序。
+
+[PocoJSON64.dll](https://docs.pocoproject.org/current/Poco.JSON.Object.html) 
+
+[PocoNet64.dll](https://docs.pocoproject.org/current/Poco.Net.html) Poco的网络库
+
+[PocoNetSSL64.dll](https://docs.pocoproject.org/current/Poco.Net.SSLManager.html) 
+
+[PocoUtil64.dll](https://docs.pocoproject.org/current/Poco.Util.html) 
+
+[PocoXML64.dll](https://docs.pocoproject.org/current/Poco.XML.html)        
                                         
-PocoZip64.dll          
+[PocoZip64.dll](https://docs.pocoproject.org/current/ZipUserGuide.html) POCO Zip 添加了对解析和创建 Zip 文件的支持。它具有以下功能：
+从本地文件解压；
+下载网络文件时对其进行解压缩；
+压缩到本地文件；
+直接压缩到网络目的地；          
                                      
-ProjectChecks            
-                                   
+ProjectChecks  目录
+
 ProjectControlSetPluginFactory      
                         
 ProjectExtension           
@@ -270,9 +274,9 @@ ProjectStorePluginFactory
                              
 ProjectWorkingFolder        
                                 
-Qhull.rights            
+[Qhull.rights](http://www.qhull.org/) Qhull 计算凸包、Delaunay 三角剖分、Voronoi 图、关于点的半空间交集、最远站点 Delaunay 三角剖分和最远站点 Voronoi 图。源代码在 2 维、3 维、4 维和更高维度上运行。Qhull 实现了 Quickhull 算法来计算凸包。它处理浮点运算的舍入误差。它计算体积、表面积和凸包的近似值。            
                                     
-Qt5CoreMW.dll             
+[Qt5CoreMW.dll](https://www.zhihu.com/question/68691685/answer/514742089) Matlab低层图形             
                                   
 Qt5GamepadMW.dll  
                                           
@@ -312,55 +316,53 @@ Qt5WinExtrasMW.dll
                                       
 Qt5XmlMW.dll    
                                             
-Qt5XmlPatternsMW.dll   
-                                     
-README.md    
+Qt5XmlPatternsMW.dll
                                                
-Remesher.dll    
+[Remesher.dll](https://ssoftadd.github.io/quadRemeshPage.html)     
                                             
 Rply.rights   
                                               
-SCRCodeGen3.exe    
-                                         
-SDL.rights  
+SCRCodeGen3.exe
+
+[SDL.rights](https://baike.baidu.com/item/SDL/224181?fr=ge_ala)  SDL（Simple DirectMedia Layer）是一套开放源代码的跨平台多媒体开发库，使用C语言写成。SDL提供了数种控制图像、声音、输出入的函数，让开发者只要用相同或是相似的代码就可以开发出跨多个平台（Linux、Windows、Mac OS X等）的应用软件。现SDL多用于开发游戏、模拟器、媒体播放器等多媒体应用领域。
                                                 
 SDL2.dll     
                                                
 SLSymbolicExpr.dll      
                                     
-SVGCreator72.dll   
+[SVGCreator72.dll](https://svgcreator.com/) 将您的图像转换为 SVG   
                                          
-ServiceHost.exe   
+[ServiceHost.exe](https://ww2.mathworks.cn/matlabcentral/answers/1815365-how-do-i-uninstall-and-reinstall-mathworks-service-host)    
                                           
-SimulinkBlock.dll    
-                                       
-SupportSoftwareInstaller.exe       
-                         
+SimulinkBlock.dll
+
+SupportSoftwareInstaller.exe
+
 TFKGEOM.dll   
                                               
 TFUGEOM.dll   
                                               
-TKBO.dll    
+[TKBO.dll](https://www.opencascade.com/) 建模算法模块。Open Cascade Technology（以前称为CAS.CADE）是由Open Cascade SAS公司开发和支持的用于3D CAD，CAM，CAE等的[开源](https://github.com/Open-Cascade-SAS/OCCT) 软件开发平台。OCCT是一个全面的B-Rep建模工具包。  
                                                 
 TKBRep.dll  
                                                 
-TKBin.dll    
+[TKBin.dll](https://hustlei.github.io/2014/11/opencascade-module-library-structrue.html)    
                                                
-TKBinL.dll   
+[TKBinL.dll](https://hustlei.github.io/2014/11/opencascade-module-library-structrue.html) 程序框架模块   
                                                
-TKBinTObj.dll  
+[TKBinTObj.dll](https://hustlei.github.io/2014/11/opencascade-module-library-structrue.html) 
                                              
-TKBinXCAF.dll  
+[TKBinXCAF.dll](https://hustlei.github.io/2014/11/opencascade-module-library-structrue.html) Opencascade数据交换模块
                                              
-TKBool.dll  
+[TKBool.dll](https://hustlei.github.io/2014/11/opencascade-module-library-structrue.html) 建模算法模块  
                                                 
-TKCAF.dll    
+[TKCAF.dll](https://hustlei.github.io/2014/11/opencascade-module-library-structrue.html) 程序框架模块    
                                                
-TKCDF.dll  
+[TKCDF.dll](https://hustlei.github.io/2014/11/opencascade-module-library-structrue.html) 程序框架模块  
                                                  
-TKFeat.dll   
+[TKFeat.dll](https://hustlei.github.io/2014/11/opencascade-module-library-structrue.html) 建模算法模块   
                                                
-TKFillet.dll   
+[TKFillet.dll](https://hustlei.github.io/2014/11/opencascade-module-library-structrue.html) 建模算法模块    
                                              
 TKG2d.dll   
                                                 
@@ -434,7 +436,7 @@ TKXmlTObj.dll
                                            
 TKXmlXCAF.dll   
                                             
-TKernel.dll  
+[TKernel.dll](https://hustlei.github.io/2014/11/opencascade-module-library-structrue.html) 基础类模块。OCCT共有6个模块，每个模块包含多个toolkit（每个toolkit都是一个单独的dll文件）；Opencascade共有57个类库(dll)   
                                                
 TfFontMgr.dll    
                                            
@@ -442,23 +444,30 @@ TfKernel.dll
                                              
 Vdastep30.dll    
                                            
-VectorBINLOG.rights    
+VectorBINLOG.rights    binlog.dll的版权文件
                                      
 WebwindowManagerInterface.dll      
                          
 WinPcap.rights                    
                           
-Windows_Version_Build_info.exe   
+Windows_Version_Build_info.exe 在命令行中执行显示Windows操作系统的构建版本：`Version 10.0 (Build 19044)`，包含在matlab命令`ver`的输出中：
+```text
+MATLAB 版本: 9.13.0.2049777 (R2022b)
+MATLAB 许可证编号: 968398
+操作系统: Microsoft Windows 10 专业版 Version 10.0 (Build 19044)
+Java 版本: Java 1.8.0_202-b08 with Oracle Corporation Java HotSpot(TM) 64-Bit Server VM mixed mode
+```
                            
 XPSCreator72.dll     
                                        
-Xalan-C_1_12.dll    
+[Xalan-C_1_12.dll](https://xml.apache.org/xalan-c/) Xalan 是一个 XSLT 处理器，用于将 XML 文档转换为 HTML、文本或其他 XML 文档类型。    
                                         
-Xalan.exe      
+[Xalan.exe](https://xml.apache.org/xalan-c/commandline.html)  	
+要执行转换，您可以从命令行（或脚本）或从应用程序内调用 Xalan-C++     
                                              
-XalanMessages_1_12.dll    
+[XalanMessages_1_12.dll](https://apache.googlesource.com/xalan-c/+/a6e8e3b20d767bc5ea66114c865c7d7faa8e5427/README)     
                                   
-XfoCommon72.dll       
+[XfoCommon72.dll](https://origin2.cdn.componentsource.com/sites/default/files/resources/antenna-house/534141/xfo-module.html)        
                                       
 XfoDotNetCore31Ctl72.dll     
                                
@@ -484,15 +493,16 @@ XmlParseru_x64.dll
                                    
 Xvlstep30.dll       
                                         
-a2lparser.dll       
+[a2lparser.dll](https://github.com/Luncher91/A2LParser) ?       
                                         
-abseil-cpp.rights           
+[abseil-cpp.rights](https://github.com/abseil/abseil-cpp) Abseil 是 C++ 库代码的开源集合，旨在增强 C++ 标准库。Abseil 库代码是从 Google 自己的 C++ 代码库中收集的，经过了广泛的测试并在生产中使用，与我们日常编码生活中依赖的代码相同。            
                                 
 abseil_dll.dll        
                                       
-activate_matlab.exe         
+[activate_matlab.exe] MathWords软件激活的用户界面        
                                 
-activation                                                  
+activation  文件mwactivationwsserviceimpl.dll所在的目录
+
 activeset.dll                                               
 activitytracking.dll                                        
 actor_plugin.dll                                            
@@ -519,7 +529,7 @@ advisor_filter_sl.dll
 agent                                                       
 agentspfcancellationimpl.dll                                
 agentspfinvokable.dll                                       
-aistep30.dll                                                
+[aistep30.dll](https://steamdb.info/patchnotes/10812302/)                                                 
 alm_artifact_service.dll                                    
 alm_artifacts.dll                                           
 alm_gdb.dll                                                 
@@ -533,11 +543,14 @@ alm_query_plugins
 alm_services                                                
 alm_ui_service.dll                                          
 alm_utils.dll                                               
-amcl-localization.dll                                       
+[amcl-localization.dll](http://wiki.ros.org/amcl) amcl 是一个用于二维移动机器人的概率定位系统。它实现了自适应（或 KLD 采样）蒙特卡罗定位方法（如 Dieter Fox 所描述），该方法使用粒子滤波器根据已知地图跟踪机器人的姿态。                                       
 amcl-localization.notice                                    
-amcl-localization.rights                                    
-amcl-localization.source                                    
-antlr4-runtime.dll                                          
+amcl-localization.rights
+
+amcl-localization.source 经过修改的`amcl-localization`代码位于`$MATLABROOT/toolbox/shared/robotics/externalDependency/amcl-localization`
+
+[antlr4-runtime.dll](https://www.antlr.org/download.html) ANTLR（另一种语言识别工具）是一个强大的解析器生成器，用于读取、处理、执行或翻译结构化文本或二进制文件。它广泛用于构建语言、工具和框架。ANTLR 根据语法生成一个可以构建和遍历解析树的解析器。
+
 antlrv4-runtime.rights                                      
 api-ms-win-core-console-l1-1-0.dll                          
 api-ms-win-core-datetime-l1-1-0.dll                         
@@ -580,8 +593,10 @@ api-ms-win-crt-string-l1-1-0.dll
 api-ms-win-crt-time-l1-1-0.dll                              
 api-ms-win-crt-utility-l1-1-0.dll                           
 appdesigner_mlapp_api.dll                                   
-appdesignercomparisons.dll                                  
-apriltag.dll                                                
+appdesignercomparisons.dll
+
+[apriltag.dll](https://github.com/AprilRobotics/apriltag) AprilTag 是机器人研究中流行的视觉基准系统。该存储库包含 AprilTag 的最新版本 AprilTag 3，其中包括更快（> 2x）的检测器、改进的小标签检测率、灵活的标签布局和姿势估计。AprilTag 由一个具有最小依赖性的小型 C 库组成。
+
 archive.dll                                                 
 arxml_util.dll                                              
 asap2_util.dll                                              
@@ -590,19 +605,26 @@ asynciocore.dll
 asyncioimpl.dll                                             
 atl110.dll                                                  
 auth_gssapi_client.dll                                      
-autodeskfbx.rights                                          
+autodeskfbx.rights Autodesk，股份有限公司开发的Autodesk®FBX™代码 
+
 autosar_routines_library.dll                                
 autosar_shared_dictionary.dll                               
 avfileiopluginmanager.dll                                   
 avfileioutils.dll                                           
 avrocpp.dll                                                 
-avrocpp_boost.rights                                        
-aws-c-common.dll                                            
-aws-c-event-stream.dll                                      
-aws-checksums.dll                                           
-aws-cpp-sdk-core.dll                                        
-aws-cpp-sdk-s3.dll                                          
-aws-cpp-sdk-transfer.dll                                    
+avrocpp_boost.rights [Apache Avro](https://avro.apache.org/) 许可证，Apache Avro™ 是领先的记录数据序列化格式，也是流数据管道的首选。它提供了出色的模式演化，并具有 JVM（Java、Kotlin、Scala 等）、Python、C/C++/C#、PHP、Ruby、Rust、JavaScript 甚至 Perl 的实现。
+
+[aws-c-common.dll](https://github.com/awslabs/aws-c-common/blob/main/source/common.c) 适用于 C 的 AWS 开发工具包的核心 c99 包。包括跨平台原语、配置、数据结构和错误处理。 
+
+[aws-c-event-stream.dll](https://github.com/awslabs/aws-c-event-stream)  vnd.amazon.event-stream 内容类型的 C99 实现。                                     
+[aws-checksums.dll](https://github.com/awslabs/aws-checksums)  AWS 校验和。
+跨平台硬件加速了 CRC32c 和 CRC32，并回退到高效的软件实施。我们每个 SDK 的 C 接口与语言绑定
+
+[aws-cpp-sdk-core.dll](https://github.com/aws/aws-sdk-cpp) 适用于 C++ 的 AWS 开发工具包为 Amazon Web Services (AWS) 提供现代 C++（C++ 11 或更高版本）接口。它旨在通过低级和高级 SDK 实现高性能且功能齐全，同时最大限度地减少依赖性并提供平台可移植性（Windows、OSX、Linux 和移动设备）。
+
+[aws-cpp-sdk-s3.dll](https://github.com/aws/aws-sdk-cpp) ?
+
+aws-cpp-sdk-transfer.dll                                      
 badges.dll                                                  
 bamutil.dll                                                 
 barcode.dll                                                 
