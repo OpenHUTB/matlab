@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>getAttribute</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../roadrunner-scenario-simulation.html",
+          "name": "RoadRunner Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../roadrunner-scenario-cosimulation.html",
+          "name": "Simulate RoadRunner Scenarios with MATLAB and Simulink"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "roadrunner-scenario-cosimulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:getAttribute"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:Simulink.ActorSimulation.getAttribute"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="blk"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function returns the specified runtime attribute of the Simulink.ActorSimulation object actorSim."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1>帮助中心</h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">搜索帮助</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">侧边栏导航菜单切换</span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../roadrunner-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">RoadRunner Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../roadrunner-scenario-cosimulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Simulate RoadRunner Scenarios with MATLAB and Simulink</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">getAttribute</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">在此页面</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_8d52e8c3-259a-4f6e-b481-ad1c84517211" class="intrnllnk">Syntax</a></li>
+<li><a href="#description" class="intrnllnk">Description</a></li>
+<li><a href="#mw_b9503dc5-ab26-4ae4-ac6a-cde37792ff83" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_621fc89f-f6d4-4d1d-844b-a2e6daf4a902" class="intrnllnk">Get Runtime Attributes of Actor</a></li>
+</ul></li>
+<li><a href="#mw_25202e25-112b-47dc-b398-51f38492de9d" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#mw_0812d2f3-a887-4e9f-bd6f-b8e878c62815" class="intrnllnk">actorSim</a></li>
+</ul><ul class="nav"><li><a href="#mw_153045dd-4597-44be-a778-d3ffa8a90062" class="intrnllnk">RuntimeAttrName</a></li>
+</ul></li>
+<li><a href="#mw_f1e4d48d-311f-4215-ae15-ff3ae9e4475f" class="intrnllnk">Output Arguments</a><ul class="nav"><li><a href="#mw_38b865a9-ad69-4986-880d-0ee2fde40ca8" class="intrnllnk">runtimeAttr</a></li>
+</ul></li>
+<li><a href="#mw_e4f0260c-db79-403e-a604-361104e7f564_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_e4f0260c-db79-403e-a604-361104e7f564_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>文档</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">资源<span class="icon-arrow-down icon_16"></span></button><h1 class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>文档</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</h1>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="mw_e4f0260c-db79-403e-a604-361104e7f564" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">getAttribute</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">获取参与者的运行时属性</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<div class="function_icons"><ul class="list-unstyled"></ul>
+</div>
+<span id="mw_8d52e8c3-259a-4f6e-b481-ad1c84517211" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_8d52e8c3-259a-4f6e-b481-ad1c84517211">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e223294" class="intrnllnk">runtimeAttr = getAttribute(actorSim,'RuntimeAttrName')</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="mw_83de64b7-ed3e-4144-918d-0d7d36ee2974" class="anchor_target"></span><h2 id="description">描述</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="simulink.actorsimulation.getattribute.html#mw_621fc89f-f6d4-4d1d-844b-a2e6daf4a902" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e223294" itemprop="syntax"><code class="synopsis"><a href="#mw_38b865a9-ad69-4986-880d-0ee2fde40ca8" class="intrnllnk"><code class="argument">runtimeAttr</code></a> = getAttribute(<a href="#mw_0812d2f3-a887-4e9f-bd6f-b8e878c62815" class="intrnllnk"><code class="argument">actorSim</code></a>,'<a href="#mw_153045dd-4597-44be-a778-d3ffa8a90062" class="intrnllnk"><code class="argument">RuntimeAttrName</code></a>')</code></span></p>
+<p><span style="color: rgb(55, 65, 81); font-family: Söhne, ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, Ubuntu, Cantarell, &quot;Noto Sans&quot;, sans-serif, &quot;Helvetica Neue&quot;, Arial, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; white-space: pre-wrap; background-color: rgba(247, 247, 248, 0.5);">返回Simulink.ActorSimulation对象actorSim的指定运行时属性。</span><span style="background-color: rgba(247, 247, 248, 0.5);"><font color="#374151" face="Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><span style="white-space: pre-wrap;">当您在MATLAB® System object™的stepImpl方法中使用这个函数时，该函数将返回前一个时间步中的状态，但参与者 ID 除外。</span></font></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="mw_b9503dc5-ab26-4ae4-ac6a-cde37792ff83">Examples</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_621fc89f-f6d4-4d1d-844b-a2e6daf4a902"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_621fc89f-f6d4-4d1d-844b-a2e6daf4a902" data-target="#expand_panel_body_mw_621fc89f-f6d4-4d1d-844b-a2e6daf4a902" aria-controls="expand_panel_body_mw_621fc89f-f6d4-4d1d-844b-a2e6daf4a902" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_621fc89f-f6d4-4d1d-844b-a2e6daf4a902">获取参与者的运行时属性<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_621fc89f-f6d4-4d1d-844b-a2e6daf4a902" aria-labelledby="expand_panel_heading_mw_621fc89f-f6d4-4d1d-844b-a2e6daf4a902" class="panel-collapse collapse in"><div class="panel-body">
+        <p class="shortdesc"><b>为具有多个参与者的场景创建 Simulink.ScenarioSimulation 对象。</b><br/></p>
+      <div class="procedure"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rrApp = roadrunner(<span style="color:#A020F0">'C:\Project\TestHighwayRoute'</span>); 
+openScenario(rrApp,<span style="color:#A020F0">'myScenario1'</span>); 
+sim = createSimulation(rrApp);</pre>
+</div>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><b>开始模拟。</b></span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(sim,<span style="color:#A020F0">'SimulationCommand'</span>,<span style="color:#A020F0">'Start'</span>);</pre>
+</div>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><b>暂停模拟。</b></span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(sim,<span style="color:#A020F0">'SimulationCommand'</span>,<span style="color:#A020F0">'Pause'</span>);</pre>
+</div>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">从模拟中获取所有Actor。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>actorsim = get(sim, <span style="color:#A020F0">'ActorSimulation'</span>); 
+</pre>
+</div>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><b>从列表中获取前两个参与者。</b></span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>one = actorsim(1);
+two = actorsim(2);
+</pre>
+</div>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><b>获取第一个演员的 ID。</b></span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>id = getAttribute(one,<span style="color:#A020F0">'ID'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>id =
+
+  uint64
+
+   1
+</pre>
+</div>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><b>获得第一个演员的姿势。</b></span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>pose = getAttribute(one,<span style="color:#A020F0">'Pose'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>pose =
+
+    0.1096    0.9940   -0.0000  -28.1452
+   -0.9940    0.1096    0.0000   -3.2291
+    0.0000    0.0000    1.0000   -0.0000
+         0         0         0    1.0000
+</pre>
+</div>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><b>获取第二个演员的速度。</b></span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>velocity = getAttribute(two,<span style="color:#A020F0">'Velocity'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>velocity =
+
+    6.9507    2.8702    0.0000
+</pre>
+</div>
+</div>
+</div>
+<h3><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><b>获取第一个演员的角速度。</b></span><br/></h3>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>angvelocity = getAttribute(two,<span style="color:#A020F0">'AngularVelocity'</span>) </pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>angvelocity =
+
+     0     0.23     0
+</pre>
+</div>
+</div>
+</div>
+<p><span style="color: rgb(55, 65, 81); font-family: Söhne, ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, Ubuntu, Cantarell, &quot;Noto Sans&quot;, sans-serif, &quot;Helvetica Neue&quot;, Arial, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; white-space: pre-wrap; background-color: rgba(247, 247, 248, 0.5);"><b>获取第二个演员的车轮位姿</b></span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>wheelposes = getAttribute(two,<span style="color:#A020F0">'WheelPoses'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>wheelposes = getAttribute(two,'WheelPoses')
+wheelposes(:,:,1) =
+
+    0.9972   -0.0671   -0.0330   -0.5672
+   -0.0747   -0.8946   -0.4405    1.3838
+         0    0.4417   -0.8971    0.3441
+         0         0         0    1.0000
+
+
+wheelposes(:,:,2) =
+
+    0.9974   -0.0650   -0.0320    0.5672
+   -0.0725   -0.8948   -0.4406    1.3838
+         0    0.4417   -0.8971    0.3441
+         0         0         0    1.0000
+
+
+wheelposes(:,:,3) =
+
+    1.0000         0         0   -0.5672
+         0   -0.8971   -0.4417   -1.3295
+         0    0.4417   -0.8971    0.3441
+         0         0         0    1.0000
+
+
+wheelposes(:,:,4) =
+
+    1.0000         0         0    0.5672
+         0   -0.8971   -0.4417   -1.3295
+         0    0.4417   -0.8971    0.3441
+         0         0         0    1.0000
+</pre>
+</div>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><b>获取第一个演员的地图位置。</b></span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ml = getAttribute(one,<span style="color:#A020F0">'MapLocation'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ml = 
+
+  struct with fields:
+
+          IsOnLane: 1
+    LocationOnLane: [1×1 struct]
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ml.IsOnLane</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+  logical
+
+   1
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ml.LocationOnLane</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  struct with fields:
+
+      LaneID: '{7c2e895c-6b90-4892-aa6e-9ed116db53b5}'
+    Position: 0.5359
+       Angle: 0.0014
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_25202e25-112b-47dc-b398-51f38492de9d">输入参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_25202e25-112b-47dc-b398-51f38492de9d_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_0812d2f3-a887-4e9f-bd6f-b8e878c62815"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_0812d2f3-a887-4e9f-bd6f-b8e878c62815" data-target="#expand_panel_body_mw_0812d2f3-a887-4e9f-bd6f-b8e878c62815" aria-controls="expand_panel_body_mw_0812d2f3-a887-4e9f-bd6f-b8e878c62815" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_actorSim" class="anchor_target"></span><h3 class="panel-title" id="mw_0812d2f3-a887-4e9f-bd6f-b8e878c62815"><code itemprop="name">actorSim</code> — <span itemprop="purpose">Actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">Simulink.ActorSimulation</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_0812d2f3-a887-4e9f-bd6f-b8e878c62815" aria-labelledby="expand_panel_heading_mw_0812d2f3-a887-4e9f-bd6f-b8e878c62815" class="panel-collapse collapse in"><div class="panel-body">
+          <p>从中返回运行时属性的参与者, 指定为 <code class="literal">Simulink.ActorSimulation</code> 对象。</p>
+          <p class="description_valueexample"><strong>Example: </strong><code class="literal">actorSim</code></p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_153045dd-4597-44be-a778-d3ffa8a90062"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_153045dd-4597-44be-a778-d3ffa8a90062" data-target="#expand_panel_body_mw_153045dd-4597-44be-a778-d3ffa8a90062" aria-controls="expand_panel_body_mw_153045dd-4597-44be-a778-d3ffa8a90062" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_RuntimeAttrName" class="anchor_target"></span><h3 class="panel-title" id="mw_153045dd-4597-44be-a778-d3ffa8a90062"><code itemprop="name">RuntimeAttrName</code> — <span itemprop="purpose">运行时属性</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">ID</code></span> | <span itemprop="inputvalue"><code class="literal">Pose</code></span> | <span itemprop="inputvalue"><code class="literal">Velocity</code></span> | <span itemprop="inputvalue"><code class="literal">AngularVelocity</code></span> | <span itemprop="inputvalue"><code class="literal">WheelPoses</code></span> | <span itemprop="inputvalue"><code class="literal">MapLocation</code></span>| <span itemprop="inputvalue"><code class="literal">Children</code></span> | <span itemprop="inputvalue"><code class="literal">Parent</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_153045dd-4597-44be-a778-d3ffa8a90062" aria-labelledby="expand_panel_heading_mw_153045dd-4597-44be-a778-d3ffa8a90062" class="panel-collapse collapse in"><div class="panel-body">
+          <p>要检查的运行时属性的名称，指定为这些字符串之一</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">ID</code></p></li>
+<li><p><code class="literal">Pose</code></p></li>
+<li><p><code class="literal">Velocity</code></p></li>
+<li><p><code class="literal">AngularVelocity</code></p></li>
+<li><p><code class="literal">WheelPoses</code></p></li>
+<li><p><code class="literal">MapLocation</code></p></li>
+<li><p><code class="literal">Children</code></p></li>
+<li><p><code class="literal">Parent</code></p></li>
+</ul>
+</div>
+<p>
+</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_f1e4d48d-311f-4215-ae15-ff3ae9e4475f">输出参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_f1e4d48d-311f-4215-ae15-ff3ae9e4475f_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_38b865a9-ad69-4986-880d-0ee2fde40ca8" data-target="#expand_panel_body_mw_38b865a9-ad69-4986-880d-0ee2fde40ca8" aria-controls="expand_panel_body_mw_38b865a9-ad69-4986-880d-0ee2fde40ca8" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_runtimeAttr" class="anchor_target"></span><h3 class="panel-title" id="mw_38b865a9-ad69-4986-880d-0ee2fde40ca8"><code class="name">runtimeAttr</code> — 参与者运行时属性<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">uint64</code> | <code class="literal">double</code> | <code class="literal">struct</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_38b865a9-ad69-4986-880d-0ee2fde40ca8" aria-labelledby="expand_panel_heading_mw_38b865a9-ad69-4986-880d-0ee2fde40ca8" class="panel-collapse collapse in"><div class="panel-body">
+          <p>actor 的运行时属性，作为对应于输入参数 RuntimeAttrName 的数据类型返回。<br/></p>
+          <p>
+            </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>执行时属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">ID</code></td>
+<td><font _mstmutation="1" _msttexthash="55189030" _msthash="83" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica;">执行组件标识符，返回为 .</font><code class="literal" style="box-sizing: border-box; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 14px; padding: 0px; color: rgb(33, 33, 33); border-radius: 0px;">uint64<br/></code><br/></td>
+</tr>
+<tr><td><code class="literal">Pose</code></td>
+<td>参与者在 <span class="entity" _istranslated="1" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica;">RoadRunner 场景</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">坐标系中的位置和方向，以 4 x 4 数组的形式返回。<br/></span><br/></td>
+</tr>
+<tr><td><code class="literal">Velocity</code></td>
+<td>执行组件在 x、y 和 z 方向上的速度以 1×3 向量返回。单位为米/秒。<br/><br/></td>
+</tr>
+<tr><td><code class="literal">AngularVelocity</code></td>
+<td>参与者在 <span class="emphasis" _istranslated="1" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica;"><em _istranslated="1" style="box-sizing: border-box;">x</em></span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">、</span><span class="emphasis" _istranslated="1" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica;"><em _istranslated="1" style="box-sizing: border-box;">y</em></span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"> 和 </span><span class="emphasis" _istranslated="1" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica;"><em _istranslated="1" style="box-sizing: border-box;">z</em></span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"> 方向上的角速度以 1×3 矢量的形式返回。单位单位为弧度 /秒。<br/></span><br/></td>
+</tr>
+<tr><td><code class="literal">WheelPoses</code></td>
+<td><p><span style="white-space:pre">	</span></p>
+<p>车辆类型Actor的每个车轮的运行时姿势，以多维4×4×N数组的形式返回。N是车辆型演员的车轮数。<code class="literal" style="box-sizing: border-box; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 14px; padding: 0px; color: rgb(33, 33, 33); background-color: rgb(255, 255, 255); border-radius: 0px;">WheelPoses</code><font _mstmutation="1" _msttexthash="747186284" _msthash="88" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">被返回用于车轮 从前轴的最左侧开始，向右移动。 第一个轴完成后，在向右移动之前会考虑第二个轴上最左侧的车轮，依此类推。</font></p>
+<font _mstmutation="1" _msttexthash="747186284" _msthash="88" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);"><br/></font></td>
+</tr>
+<tr><td><code class="literal">MapLocation</code></td>
+<td>车辆型参与者相对于其最近车道的位置，作为结构struct返回。<br/></td>
+</tr>
+<tr><td><code class="literal">Children</code></td>
+<td><p>指定 actor 的直系子项（如果有）作为 Simulink.ActorSimulation 对象的数组返回。<br/></p>
+<p>如果 指定的 actor 没有任何子 actor，则空数组为 返回。</p>
+</td>
+</tr>
+<tr><td><code class="literal">Parent</code></td>
+<td><p>指定 actor 的直接父级作为 Simulink.ActorSimulation 对象的数组返回。<br/></p>
+<p>如果指定的参与者本身是父级，则返回与世界参与者对应的 Simulink.ActorSimulation 对象。<br/></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+
+          </p>
+          <p>下表描述了地图位置结构的字段。<br/></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>字段名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">IsOnLane</code></td>
+<td>指示车辆是否位于车道上的布尔值。如果车辆的模型原点位于该车道的左右边界之间，则认为车辆位于该车道的左侧和右侧边界之间。<br/><br/></td>
+</tr>
+<tr><td><code class="literal">LocationOnLane</code></td>
+<td>车辆的当前车道，作为结构返回。如果车辆横跨多条车道，则返回最对齐的车道。.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+
+          </p>
+          <p>该表描述了地图位置结构的 LocationOnLane 结构的字段。<br/></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>字段名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">LaneID</code></td>
+<td>最对齐的通道的 UUID 标识符，以字符串形式返回。<br/><br/></td>
+</tr>
+<tr><td><code class="literal">Position</code></td>
+<td>车辆在车道中心折线上的位置（以 s 值为单位）。s 值是 [0， 1] 中的双精度值，表示三维折线上的位置，0 在折线的开头，1 在折线的末尾。<br/><br/></td>
+</tr>
+<tr><td><code class="literal">Angle</code></td>
+<td>车辆行驶方向与车道切线之间的夹角位置，以弧度为单位。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_e4f0260c-db79-403e-a604-361104e7f564_vh">版本历史</h2>
+<p><strong>在 R2022a中引入</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_e4f0260c-db79-403e-a604-361104e7f564_seealso">参见</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulink.actorsimulation.html"><span itemprop="name"><code class="object">Simulink.ActorSimulation</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulink.scenariosimulation.html"><span itemprop="name"><code class="object">Simulink.ScenarioSimulation</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulink.actorsimulation.setattribute.html"><span itemprop="name"><code class="function">setAttribute</code></span></a></span></p>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
