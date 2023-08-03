@@ -1,0 +1,1182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>drivingScenario</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../scenario-import-and-export.html",
+          "name": "Scenario Import and Export"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring",
+        "scenario-import-and-export"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:drivingScenario"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:drivingScenario"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:drivingScenario"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The drivingScenario object represents a 3-D arena containing roads, parking lots, vehicles, pedestrians, barriers, and other aspects of a driving scenario."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li><a href="../scenario-simulation.html?s_tid=CRUX_lftnav">Scenario Simulation</a></li>
+<li><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav">Cuboid Scenario Simulation</a></li>
+<li><a href="../scenario-import-and-export.html?s_tid=CRUX_lftnav">Scenario Import and Export</a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas">drivingScenario</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e97815" class="intrnllnk">Description</a></li>
+<li><a href="#bvm8jbf-3" class="intrnllnk">Creation</a><ul class="nav"><li><a href="#d124e97878" class="intrnllnk">Description</a></li>
+</ul></li>
+<li><a href="#bvm8jbf-4" class="intrnllnk">Properties</a><ul class="nav"><li><a href="#bvm8jbf-SampleTime" class="intrnllnk">SampleTime</a></li>
+<li><a href="#bvm8jbf-StopTime" class="intrnllnk">StopTime</a></li>
+<li><a href="#bvm8jbf-SimulationTime" class="intrnllnk">SimulationTime</a></li>
+<li><a href="#bvm8jbf-IsRunning" class="intrnllnk">IsRunning</a></li>
+<li><a href="#bvm8jbf-Actors" class="intrnllnk">Actors</a></li>
+<li><a href="#mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" class="intrnllnk">Barriers</a></li>
+<li><a href="#mw_4afdd268-b179-4268-84fc-65f20efbe6c6" class="intrnllnk">ParkingLots</a></li>
+<li><a href="#mw_5bbea316-3140-4dd5-8516-900a32d756ad" class="intrnllnk">GeoReference</a></li>
+</ul></li>
+<li><a href="#bvm8jbf-5" class="intrnllnk">Object Functions</a><ul class="nav"><li><a href="#d124e98194" class="intrnllnk">Scenarios</a></li>
+<li><a href="#d124e98218" class="intrnllnk">Actors</a></li>
+<li><a href="#d124e98261" class="intrnllnk">Roads</a></li>
+<li><a href="#d124e98278" class="intrnllnk">Lanes</a></li>
+<li><a href="#d124e98308" class="intrnllnk">Parking Lots</a></li>
+</ul></li>
+<li><a href="#bvm8jbf-12" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#bvnu3f0" class="intrnllnk">Create Driving Scenario with Multiple Actors and Roads</a></li>
+</ul><ul class="nav"><li><a href="#mw_df41a1e5-b21f-4d87-b03c-910e508b1007" class="intrnllnk">Show Target Outlines in Driving Scenario Simulation</a></li>
+</ul><ul class="nav"><li><a href="#mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4" class="intrnllnk">Generate Object and Lane Boundary Detections</a></li>
+</ul></li>
+<li><a href="#d124e98325" class="intrnllnk">Algorithms</a><ul class="nav"><li><a href="#d124e98327_head" class="intrnllnk">Specify Actor Motion in Driving Scenarios</a></li>
+</ul></li>
+<li><a href="#bvm8jbf_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#bvm8jbf_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="object_ref"><span id="bvm8jbf" class="anchor_target"></span><span id="drivingDrivingScenario" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title">drivingScenario</h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">创建动态驾驶场景</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div class="refsummary" itemprop="content"><h2 id="d124e97815">描述</h2>
+        <div class="shortsummary"><p>该 <code class="object">drivingScenario</code> 对象代表一个三维活动场，其中包括道路、停车场、车辆、行人、障碍物以及驾驶场景的其他方面。使用该对象对现实交通场景进行建模并生成用于测试控制器或传感器融合算法的合成检测结果。</p>
+</div>
+        <div class="itemizedlist"><ul><li><p>使用 <a href="drivingscenario.road.html"><code class="function">road</code></a> 函数添加道路。要指定道路中的车道，请创建一个 <a href="lanespec.html"><code class="object">lanespec</code></a> 对象。还可以使用 <a href="drivingscenario.roadnetwork.html"><code class="function">roadNetwork</code></a> 函数从第三方路网中导入道路</p></li>
+<li><p>使用 <a href="drivingscenario.parkinglot.html"><code class="function">parkingLot</code></a> 函数添加停车场。</p></li>
+<li><p>使用 <a href="drivingscenario.actor.html"><code class="function">actor</code></a> 函数添加参与者（汽车、行人、自行车等）。使用 <a href="drivingscenario.vehicle.html"><code class="function">vehicle</code></a> 函数添加专门为车辆属性设计的参与者. 使用 <a href="drivingscenario.barrier.html"><code class="function">barrier</code></a> 函数添加障碍物。所有参与者（包括车辆和障碍物）都被建模为具有唯一参与者 ID 的长方体（盒子形状）。</p></li>
+<li><p>要进行场景仿真，请在循环中调用 <a href="drivingscenario.advance.html"><code class="function">advance</code></a> 函数，这会每次推进一步仿真。</p></li>
+</ul>
+</div>
+        <p>还可以使用 <strong class="app"><a href="drivingscenariodesigner-app.html">驾驶场景设计器</a></strong> 应用程序以交互式地方式创建场景。此外，可以从应用程序导出 <code class="object">drivingScenario</code> 对象以生成场景变体，以便在应用程序或 Simulink<sup>®</sup>中使用有关更多信息，请参阅 <a href="../ug/create-driving-scenario-variations-programmatically.html" class="a">以编程方式创建驾驶场景变体</a>。</p>
+    </div>
+<div id="bvm8jbf-3_div" class="ref_sect createobject"><h2 id="bvm8jbf-3">Creation</h2>
+<div class="ref_sect"><h3 id="d124e97876">Syntax</h3>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e97883" class="intrnllnk">scenario = drivingScenario</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e97896" class="intrnllnk">scenario = drivingScenario(Name,Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="d124e97878_div" class="refsect2 description"><h3 id="d124e97878">Description</h3>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="drivingscenario.html#mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e97883" itemprop="syntax"><code class="synopsis"><code class="argument">scenario</code> = drivingScenario</code></span> creates
+                    an empty driving scenario.</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="drivingscenario.html#bvnu3f0" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e97896" itemprop="syntax"><code class="synopsis"><code class="argument">scenario</code> = drivingScenario(<code class="argument">Name,Value</code>)</code></span>
+                    sets the <a href="drivingscenario.html#bvm8jbf-SampleTime" class="intrnllnk"><code class="property">SampleTime</code></a>, <a href="drivingscenario.html#bvm8jbf-StopTime" class="intrnllnk"><code class="property">StopTime</code></a>,
+                    and <a href="drivingscenario.html#mw_5bbea316-3140-4dd5-8516-900a32d756ad" class="intrnllnk"><code class="property">GeoReference</code></a> properties using name-value pairs. For
+                    example, <code class="literal">drivingScenario('GeoReference',[42.3 -71.0 0])</code> sets
+                    the geographic origin of the scene to a latitude-longitude coordinate of (42.3,
+                    –71.0) and an altitude of 0.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bvm8jbf-4">Properties</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="bvm8jbf-4_panel-group" role="tablist" aria-multiselectable="true"><div itemscope="" class="ref_sect" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntityGroup" itemprop="refentitygroup">
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-SampleTime"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-SampleTime" data-target="#expand_panel_body_bvm8jbf-SampleTime" aria-controls="expand_panel_body_bvm8jbf-SampleTime" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_SampleTime" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-SampleTime"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.SampleTime"/><code itemprop="name" id="propname_SampleTime">SampleTime</code></span> — <span itemprop="purpose">Time interval between scenario simulation steps</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0.01</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm8jbf-SampleTime" aria-labelledby="expand_panel_heading_bvm8jbf-SampleTime" class="panel-collapse collapse"><div class="panel-body">
+<p>Time interval between scenario simulation steps, specified as a positive real scalar. Units
+                        are in seconds.</p>
+<p class="description_valueexample"><strong>Example: </strong><code class="literal">1.5</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-StopTime"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-StopTime" data-target="#expand_panel_body_bvm8jbf-StopTime" aria-controls="expand_panel_body_bvm8jbf-StopTime" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_StopTime" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-StopTime"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.StopTime"/><code itemprop="name" id="propname_StopTime">StopTime</code></span> — <span itemprop="purpose">End time of simulation</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">Inf</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm8jbf-StopTime" aria-labelledby="expand_panel_heading_bvm8jbf-StopTime" class="panel-collapse collapse"><div class="panel-body">
+<p>End time of simulation, specified as a positive real scalar. Units are in seconds. The default
+                            <code class="property">StopTime</code> of <code class="literal">Inf</code> causes the
+                        simulation to end when the first actor reaches the end of its
+                        trajectory.</p>
+<p class="description_valueexample"><strong>Example: </strong><code class="literal">60.0</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-SimulationTime"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-SimulationTime" data-target="#expand_panel_body_bvm8jbf-SimulationTime" aria-controls="expand_panel_body_bvm8jbf-SimulationTime" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_SimulationTime" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-SimulationTime"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.SimulationTime"/><code itemprop="name" id="propname_SimulationTime">SimulationTime</code></span> — <span itemprop="purpose">Current time of simulation</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">nonnegative real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm8jbf-SimulationTime" aria-labelledby="expand_panel_heading_bvm8jbf-SimulationTime" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
+<p>Current time of the simulation, specified as a nonnegative real scalar. To reset the time to
+                        zero, call the <a href="drivingscenario.restart.html"><code class="function">restart</code></a> function. Units
+                        are in seconds.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-IsRunning"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-IsRunning" data-target="#expand_panel_body_bvm8jbf-IsRunning" aria-controls="expand_panel_body_bvm8jbf-IsRunning" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_IsRunning" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-IsRunning"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.IsRunning"/><code itemprop="name" id="propname_IsRunning">IsRunning</code></span> — <span itemprop="purpose">Simulation state</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue"><code class="literal">true</code></span> | <span itemprop="inputvalue"><code class="literal">false</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm8jbf-IsRunning" aria-labelledby="expand_panel_heading_bvm8jbf-IsRunning" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
+<p>Simulation state, specified as <code class="literal">true</code> or <code class="literal">false</code>.
+If the simulation is running, <code class="property">IsRunning</code> is <code class="literal">true</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-Actors"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-Actors" data-target="#expand_panel_body_bvm8jbf-Actors" aria-controls="expand_panel_body_bvm8jbf-Actors" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Actors" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-Actors"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.Actors"/><code itemprop="name" id="propname_Actors">Actors</code></span> — <span itemprop="purpose">Actors and vehicles contained in scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">heterogeneous array of <code class="object">Actor</code> and
+                            <code class="object">Vehicle</code> objects</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm8jbf-Actors" aria-labelledby="expand_panel_heading_bvm8jbf-Actors" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
+<p>Actors and vehicles contained in the scenario, specified as a heterogeneous array of
+                            <code class="object">Actor</code> and <code class="object">Vehicle</code> objects. To add
+                        actors and vehicles to a driving scenario, use the <a href="drivingscenario.actor.html"><code class="function">actor</code></a> and <a href="drivingscenario.vehicle.html"><code class="function">vehicle</code></a> functions.</p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_e40dbd26-f2c4-4734-89d1-33100e44ae12"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" data-target="#expand_panel_body_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" aria-controls="expand_panel_body_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Barriers" class="anchor_target"></span><h3 class="panel-title" id="mw_e40dbd26-f2c4-4734-89d1-33100e44ae12"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.Barriers"/><code itemprop="name" id="propname_Barriers">Barriers</code></span> — <span itemprop="purpose">Barriers contained in scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">heterogeneous array of <code class="object">Barrier</code> objects</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" aria-labelledby="expand_panel_heading_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
+                    <p>Barriers contained in the scenario, specified as a heterogeneous array of
+                            <code class="object">Barrier</code> objects. To add barriers to a driving scenario,
+                        use the <a href="drivingscenario.barrier.html"><code class="function">barrier</code></a> function.</p>
+                </div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_4afdd268-b179-4268-84fc-65f20efbe6c6"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" data-target="#expand_panel_body_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" aria-controls="expand_panel_body_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_ParkingLots" class="anchor_target"></span><h3 class="panel-title" id="mw_4afdd268-b179-4268-84fc-65f20efbe6c6"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.ParkingLots"/><code itemprop="name" id="propname_ParkingLots">ParkingLots</code></span> — <span itemprop="purpose">Parking lots contained in scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">heterogeneous array of <code class="object">ParkingLot</code> objects</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" aria-labelledby="expand_panel_heading_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
+                    <p>Parking lots contained in the scenario, specified as a heterogeneous array
+                        of <code class="object">ParkingLot</code> objects. To add parking lots to a driving
+                        scenario, use the <a href="drivingscenario.parkinglot.html"><code class="function">parkingLot</code></a> function.</p>
+                </div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_5bbea316-3140-4dd5-8516-900a32d756ad"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5bbea316-3140-4dd5-8516-900a32d756ad" data-target="#expand_panel_body_mw_5bbea316-3140-4dd5-8516-900a32d756ad" aria-controls="expand_panel_body_mw_5bbea316-3140-4dd5-8516-900a32d756ad" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_GeoReference" class="anchor_target"></span><h3 class="panel-title" id="mw_5bbea316-3140-4dd5-8516-900a32d756ad"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.GeoReference"/><code itemprop="name" id="propname_GeoReference">GeoReference</code></span> — <span itemprop="purpose">Geographic coordinates of road network origin</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">three-element numeric row vector of form [<code class="literal">lat</code>,
+                            <code class="literal">lon</code>, <code class="literal">alt</code>]</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5bbea316-3140-4dd5-8516-900a32d756ad" aria-labelledby="expand_panel_heading_mw_5bbea316-3140-4dd5-8516-900a32d756ad" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
+                    <p>Geographic coordinates of the road network origin, specified as a
+                        three-element numeric row vector of the form [<code class="literal">lat</code>,
+                            <code class="literal">lon</code>, <code class="literal">alt</code>], where:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">lat</code> is the latitude of the coordinate in
+                                    degrees.</p></li>
+<li><p><code class="literal">lon</code> is the longitude of the coordinate in
+                                    degrees.</p></li>
+<li><p><code class="literal">alt</code> is the altitude of the coordinate in
+                                    meters.</p></li>
+</ul>
+</div>
+<p>
+These values are with respect to the WGS84 reference
+                        ellipsoid, which is a standard ellipsoid used by GPS data.</p>
+                    <p>You can set <code class="property">GeoReference</code> when you create the driving
+                        scenario. The <a href="drivingscenario.roadnetwork.html"><code class="function">roadNetwork</code></a> function also sets this property when you import
+                        roads into an empty driving scenario.</p>
+<div class="itemizedlist"><ul><li><p>If you import roads by specifying coordinates, then the
+                                        <code class="function">roadNetwork</code> function sets
+                                        <code class="property">GeoReference</code> to the first (or only)
+                                    specified coordinate.</p></li>
+<li><p>If you import roads by specifying a region or map file, then
+                                    the <code class="function">roadNetwork</code> sets
+                                        <code class="property">GeoReference</code> to the center point of the
+                                    region or map.</p></li>
+</ul>
+</div>
+<p>
+The <code class="function">roadNetwork</code> function overrides any
+                        previously set <code class="property">GeoReference</code> value.</p>
+                    <p>In the <strong class="app"><a href="drivingscenariodesigner-app.html">Driving
+                            Scenario Designer</a></strong> app, when you import map data and export a
+                            <code class="object">drivingScenario</code> object, the
+                            <code class="property">GeoReference</code> property of that object is set to the
+                        geographic reference of the app scenario. </p>
+                    <p>By specifying these coordinates as the origin in the <a href="latlon2local.html"><code class="function">latlon2local</code></a> function, you can the convert geographic
+                        coordinates of a driving route into the local coordinates of a driving
+                        scenario. Then, you can specify this converted route as a vehicle trajectory
+                        in the scenario.</p>
+                    <p>If your driving scenario does not use geographic coordinates, then
+                            <code class="property">GeoReference</code> is an empty array,
+                            <code class="literal">[]</code>.</p>
+                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="bvm8jbf-5_div" class="refsect1 objectfunctions"><h2 id="bvm8jbf-5">Object Functions</h2>
+<div class="doc_classesgroup_container expandableContent"><div class="expandableContent mwExpandToggle1" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true"><!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98194" data-toggle="collapse" data-target="#expand_panel_body_d124e98194" aria-expanded="false" aria-controls="expand_panel_body_d124e98194"><h3 class="panel-title" id="d124e98194">Scenarios</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_d124e98194" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e98194"><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="drivingscenario.advance.html"><code class="function">advance</code></a></td>
+<td class="description">Advance driving scenario simulation by one time step</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.plot.html"><code class="function">plot</code></a></td>
+<td class="description">Plot driving scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.record.html"><code class="function">record</code></a></td>
+<td class="description">Run driving scenario and record actor states</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.restart.html"><code class="function">restart</code></a></td>
+<td class="description">Restart driving scenario simulation from beginning</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.updateplots.html"><code class="function">updatePlots</code></a></td>
+<td class="description">Update driving scenario plots</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.export.html"><code class="function">export</code></a></td>
+<td class="description">Export driving scenario to <span class="trademark entity">ASAM OpenDRIVE</span> or <span class="trademark entity">ASAM OpenSCENARIO</span> file</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+<!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98218" data-toggle="collapse" data-target="#expand_panel_body_d124e98218" aria-expanded="false" aria-controls="expand_panel_body_d124e98218"><h3 class="panel-title" id="d124e98218">Actors</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_d124e98218" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e98218"><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="drivingscenario.actor.html"><code class="function">actor</code></a></td>
+<td class="description">Add actor to driving scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.actorposes.html"><code class="function">actorPoses</code></a></td>
+<td class="description">Positions, velocities, and orientations of actors in driving
+scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.actorprofiles.html"><code class="function">actorProfiles</code></a></td>
+<td class="description">Physical and radar characteristics of actors in driving scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.vehicle.html"><code class="function">vehicle</code></a></td>
+<td class="description">Add vehicle to driving scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.barrier.html"><code class="function">barrier</code></a></td>
+<td class="description">Add a barrier to a driving scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.chaseplot.html"><code class="function">chasePlot</code></a></td>
+<td class="description">Ego-centric projective perspective plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.trajectory.html"><code class="function">trajectory</code></a></td>
+<td class="description">Create actor or vehicle trajectory in driving scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.smoothtrajectory.html"><code class="function">smoothTrajectory</code></a></td>
+<td class="description">Create smooth, jerk-limited actor trajectory in driving scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.targetposes.html"><code class="function">targetPoses</code></a></td>
+<td class="description">Target positions and orientations relative to ego vehicle</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.targetoutlines.html"><code class="function">targetOutlines</code></a></td>
+<td class="description">Outlines of targets viewed by actor</td>
+</tr>
+<tr><td class="term notranslate"><a href="driving.scenario.targetstoego.html"><code class="function">driving.scenario.targetsToEgo</code></a></td>
+<td class="description">Convert target poses from scenario to ego coordinates</td>
+</tr>
+<tr><td class="term notranslate"><a href="driving.scenario.targetstoscenario.html"><code class="function">driving.scenario.targetsToScenario</code></a></td>
+<td class="description">Convert target poses from ego to scenario coordinates</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+<!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98261" data-toggle="collapse" data-target="#expand_panel_body_d124e98261" aria-expanded="false" aria-controls="expand_panel_body_d124e98261"><h3 class="panel-title" id="d124e98261">Roads</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_d124e98261" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e98261"><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="drivingscenario.road.html"><code class="function">road</code></a></td>
+<td class="description">Add road to driving scenario or road group</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.roadnetwork.html"><code class="function">roadNetwork</code></a></td>
+<td class="description">Add road network to driving scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.roadboundaries.html"><code class="function">roadBoundaries</code></a></td>
+<td class="description">Get road boundaries</td>
+</tr>
+<tr><td class="term notranslate"><a href="driving.scenario.roadboundariestoego.html"><code class="function">driving.scenario.roadBoundariesToEgo</code></a></td>
+<td class="description">Convert road boundaries to ego vehicle coordinates</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+<!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98278" data-toggle="collapse" data-target="#expand_panel_body_d124e98278" aria-expanded="false" aria-controls="expand_panel_body_d124e98278"><h3 class="panel-title" id="d124e98278">Lanes</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_d124e98278" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e98278"><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="lanespec.html"><code class="object">lanespec</code></a></td>
+<td class="description">Create road lane specifications</td>
+</tr>
+<tr><td class="term notranslate"><a href="lanemarking.html"><code class="function">laneMarking</code></a></td>
+<td class="description">Create road lane marking object</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.lanemarkingvertices.html"><code class="function">laneMarkingVertices</code></a></td>
+<td class="description">Lane marking vertices and faces in driving scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.currentlane.html"><code class="function">currentLane</code></a></td>
+<td class="description">Get current lane of actor</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.laneboundaries.html"><code class="function">laneBoundaries</code></a></td>
+<td class="description">Get lane boundaries of actor lane</td>
+</tr>
+<tr><td class="term notranslate"><a href="clothoidlaneboundary.html"><code class="object">clothoidLaneBoundary</code></a></td>
+<td class="description">Clothoid-shaped lane boundary model</td>
+</tr>
+<tr><td class="term notranslate"><a href="clothoidlaneboundary.computeboundarymodel.html"><code class="function">computeBoundaryModel</code></a></td>
+<td class="description">Compute lane boundary points from clothoid lane boundary model</td>
+</tr>
+<tr><td class="term notranslate"><a href="lanetype.html"><code class="function">laneType</code></a></td>
+<td class="description">Create road lane type object</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+<!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98308" data-toggle="collapse" data-target="#expand_panel_body_d124e98308" aria-expanded="false" aria-controls="expand_panel_body_d124e98308"><h3 class="panel-title" id="d124e98308">Parking Lots</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_d124e98308" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e98308"><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="drivingscenario.parkinglot.html"><code class="function">parkingLot</code></a></td>
+<td class="description">Add parking lot to driving scenario</td>
+</tr>
+<tr><td class="term notranslate"><a href="parkingspace.html"><code class="object">parkingSpace</code></a></td>
+<td class="description">Define parking space for parking lot</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.insertparkingspaces.html"><code class="function">insertParkingSpaces</code></a></td>
+<td class="description">Insert parking spaces into parking lot</td>
+</tr>
+<tr><td class="term notranslate"><a href="drivingscenario.parkinglanemarkingvertices.html"><code class="function">parkingLaneMarkingVertices</code></a></td>
+<td class="description">Parking lane marking vertices and faces in driving scenario</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+</div>
+</div>
+</div>
+</div>
+<div class="examples"><h2 id="bvm8jbf-12">Examples</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_bvnu3f0"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvnu3f0" data-target="#expand_panel_body_bvnu3f0" aria-controls="expand_panel_body_bvnu3f0" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="bvnu3f0">Create Driving Scenario with Multiple Actors and Roads<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvnu3f0" aria-labelledby="expand_panel_heading_bvnu3f0" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/CreateDrivingScenarioWithMultipleActorsAndRoadExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create Driving Scenario with Multiple Actors and Roads",
+          "description": "Create a driving scenario containing a curved road, two straight roads, and two actors: a car and a bicycle. Both actors move along the road for 60 seconds.",
+          "thumbnailURL": "../../examples/driving/win64/CreateDrivingScenarioWithMultipleActorsAndRoadExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.html"
+
+        },
+          "identifier": "driving.CreateDrivingScenarioWithMultipleActorsAndRoadExample",
+          "name": "CreateDrivingScenarioWithMultipleActorsAndRoadExample",
+          "url": "drivingscenario.html#bvnu3f0"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/CreateDrivingScenarioWithMultipleActorsAndRoadExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateDrivingScenarioWithMultipleActorsAndRoadExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">Create a driving scenario containing a curved road, two straight roads, and two actors: a car and a bicycle. Both actors move along the road for 60 seconds.</p>
+<p>Create the driving scenario object.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario(<span style="color:#A020F0">'SampleTime'</span>,0.1',<span style="color:#A020F0">'StopTime'</span>,60);</pre>
+</div>
+</div>
+</div>
+<p>Create the curved road using road center points following the arc of a circle with an 800-meter radius. The arc starts at 0°, ends at 90°, and is sampled at 5° increments.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>angs = [0:5:90]';
+R = 800;
+roadcenters = R*[cosd(angs) sind(angs) zeros(size(angs))];
+roadwidth = 10;
+cr = road(scenario,roadcenters,roadwidth);</pre>
+</div>
+</div>
+</div>
+<p>Add two straight roads with the default width, using road center points at each end. To the first straight road add barriers on both road edges.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadcenters = [700 0 0; 100 0 0];
+sr1 = road(scenario,roadcenters);
+barrier(scenario,sr1)
+barrier(scenario,sr1,<span style="color:#A020F0">'RoadEdge'</span>,<span style="color:#A020F0">'left'</span>)
+roadcenters = [400 400 0; 0 0 0];
+road(scenario,roadcenters);</pre>
+</div>
+</div>
+</div>
+<p>Get the road boundaries.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rbdry = roadBoundaries(scenario);</pre>
+</div>
+</div>
+</div>
+<p>Add a car and a bicycle to the scenario. Position the car at the beginning of the first straight road.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>car = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1,<span style="color:#A020F0">'Position'</span>,[700 0 0], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Length'</span>,3,<span style="color:#A020F0">'Width'</span>,2,<span style="color:#A020F0">'Height'</span>,1.6);</pre>
+</div>
+</div>
+</div>
+<p>Position the bicycle farther down the road.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bicycle = actor(scenario,<span style="color:#A020F0">'ClassID'</span>,3,<span style="color:#A020F0">'Position'</span>,[706 376 0]', <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Length'</span>,2,<span style="color:#A020F0">'Width'</span>,0.45,<span style="color:#A020F0">'Height'</span>,1.5);</pre>
+</div>
+</div>
+</div>
+<p>Plot the scenario.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario,<span style="color:#A020F0">'Centerline'</span>,<span style="color:#A020F0">'on'</span>,<span style="color:#A020F0">'RoadCenters'</span>,<span style="color:#A020F0">'on'</span>);
+title(<span style="color:#A020F0">'Scenario'</span>);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e98403" class="mediaobject"><p><img src="../../examples/driving/win64/CreateDrivingScenarioWithMultipleActorsAndRoadExample_01.png" alt="Figure contains an axes object. The axes object with title Scenario contains 1221 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<p>Display the actor poses and profiles. </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>allActorPoses = actorPoses(scenario)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>allActorPoses=<span class="emphasis"><em>242×1 struct array with fields:</em></span>
+    ActorID
+    Position
+    Velocity
+    Roll
+    Pitch
+    Yaw
+    AngularVelocity
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>allActorProfiles = actorProfiles(scenario)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>allActorProfiles=<span class="emphasis"><em>242×1 struct array with fields:</em></span>
+    ActorID
+    ClassID
+    Length
+    Width
+    Height
+    OriginOffset
+    MeshVertices
+    MeshFaces
+    RCSPattern
+    RCSAzimuthAngles
+    RCSElevationAngles
+
+</pre>
+</div>
+</div>
+</div>
+<p>Because there are barriers in this scenario, and each barrier segment is considered an actor, <code class="literal">actorPoses</code> and <code class="literal">actorProfiles</code> functions return the poses of all stationary and non-stationary actors. To only obtain the poses and profiles of non-stationary actors such as vehicles and bicycles, first obtain their corresponding actor IDs using the <code class="literal">scenario.Actors.ActorID</code> property.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>movableActorIDs = [scenario.Actors.ActorID];</pre>
+</div>
+</div>
+</div>
+<p>Then, use those IDs to filter only non-stationary actor poses and profiles.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>movableActorPoseIndices = ismember([allActorPoses.ActorID],movableActorIDs);
+
+movableActorPoses = allActorPoses(movableActorPoseIndices)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>movableActorPoses=<span class="emphasis"><em>2×1 struct array with fields:</em></span>
+    ActorID
+    Position
+    Velocity
+    Roll
+    Pitch
+    Yaw
+    AngularVelocity
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>movableActorProfiles = allActorProfiles(movableActorPoseIndices)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>movableActorProfiles=<span class="emphasis"><em>2×1 struct array with fields:</em></span>
+    ActorID
+    ClassID
+    Length
+    Width
+    Height
+    OriginOffset
+    MeshVertices
+    MeshFaces
+    RCSPattern
+    RCSAzimuthAngles
+    RCSElevationAngles
+
+</pre>
+</div>
+</div>
+</div>
+<p>       </p>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-CreateDrivingScenarioWithMultipleActorsAndRoadExample"/>
+<meta itemprop="exampletitle" content="Create Driving Scenario with Multiple Actors and Roads"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_df41a1e5-b21f-4d87-b03c-910e508b1007"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_df41a1e5-b21f-4d87-b03c-910e508b1007" data-target="#expand_panel_body_mw_df41a1e5-b21f-4d87-b03c-910e508b1007" aria-controls="expand_panel_body_mw_df41a1e5-b21f-4d87-b03c-910e508b1007" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_df41a1e5-b21f-4d87-b03c-910e508b1007">Show Target Outlines in Driving Scenario Simulation<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_df41a1e5-b21f-4d87-b03c-910e508b1007" aria-labelledby="expand_panel_heading_mw_df41a1e5-b21f-4d87-b03c-910e508b1007" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/PlotTargetOutlinesExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Show Target Outlines in Driving Scenario Simulation",
+          "description": "Create a driving scenario and show how target outlines change as the simulation advances.",
+          "thumbnailURL": "../../examples/driving/win64/PlotTargetOutlinesExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.html"
+
+        },
+          "identifier": "driving.PlotTargetOutlinesExample",
+          "name": "PlotTargetOutlinesExample",
+          "url": "drivingscenario.html#mw_df41a1e5-b21f-4d87-b03c-910e508b1007"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/PlotTargetOutlinesExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "PlotTargetOutlinesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">Create a driving scenario and show how target outlines change as the simulation advances.</p>
+<p>Create a driving scenario consisting of two intersecting straight roads. The first road segment is 45 meters long. The second straight road is 32 meters long with jersey barriers along both its edges, and intersects the first road. A car traveling at 12.0 meters per second along the first road approaches a running pedestrian crossing the intersection at 2.0 meters per second.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario(<span style="color:#A020F0">'SampleTime'</span>,0.1,<span style="color:#A020F0">'StopTime'</span>,1);
+road1 = road(scenario,[-10 0 0; 45 -20 0]);
+road2 = road(scenario,[-10 -10 0; 35 10 0]);
+barrier(scenario,road1)
+barrier(scenario,road1,<span style="color:#A020F0">'RoadEdge'</span>,<span style="color:#A020F0">'left'</span>)
+ped = actor(scenario,<span style="color:#A020F0">'ClassID'</span>,4,<span style="color:#A020F0">'Length'</span>,0.4,<span style="color:#A020F0">'Width'</span>,0.6,<span style="color:#A020F0">'Height'</span>,1.7);
+car = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+pedspeed = 2.0;
+carspeed = 12.0;
+smoothTrajectory(ped,[15 -3 0; 15 3 0],pedspeed);
+smoothTrajectory(car,[-10 -10 0; 35 10 0],carspeed);</pre>
+</div>
+</div>
+</div>
+<p>Create an ego-centric chase plot for the vehicle.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>chasePlot(car,<span style="color:#A020F0">'Centerline'</span>,<span style="color:#A020F0">'on'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e98473" class="mediaobject"><p><img src="../../examples/driving/win64/PlotTargetOutlinesExample_01.png" width="560"/></p>
+</div>
+</div>
+<p>Create an empty bird's-eye plot and add an outline plotter and lane boundary plotter. Then, run the simulation. At each simulation step:</p>
+<div class="itemizedlist"><ul><li><p>Update the chase plot to display the road boundaries and target outlines.</p></li>
+<li><p>Update the bird's-eye plot to display the updated road boundaries and target outlines. The plot perspective is always with respect to the ego vehicle.</p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bepPlot = birdsEyePlot(<span style="color:#A020F0">'XLim'</span>,[-50 50],<span style="color:#A020F0">'YLim'</span>,[-40 40]);
+outlineplotter = outlinePlotter(bepPlot);
+laneplotter = laneBoundaryPlotter(bepPlot);
+legend(<span style="color:#A020F0">'off'</span>)
+
+<span style="color:#0000FF">while</span> advance(scenario)
+    rb = roadBoundaries(car);
+    [position,yaw,length,width,originOffset,color] = targetOutlines(car);
+    [bposition,byaw,blength,bwidth,boriginOffset,bcolor,barrierSegments] = targetOutlines(car,<span style="color:#A020F0">'Barriers'</span>);
+    plotLaneBoundary(laneplotter,rb)
+    plotOutline(outlineplotter,position,yaw,length,width, <span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'OriginOffset'</span>,originOffset,<span style="color:#A020F0">'Color'</span>,color)
+    plotBarrierOutline(outlineplotter,barrierSegments,bposition,byaw,blength,bwidth, <span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'OriginOffset'</span>,boriginOffset,<span style="color:#A020F0">'Color'</span>,bcolor)
+    pause(0.01)
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e98485" class="mediaobject"><p><img src="../../examples/driving/win64/PlotTargetOutlinesExample_02.png" alt="Figure contains an axes object. The axes object is empty." width="560"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e98490" class="mediaobject"><p><img src="../../examples/driving/win64/PlotTargetOutlinesExample_03.png" width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-PlotTargetOutlinesExample"/>
+<meta itemprop="exampletitle" content="Show Target Outlines in Driving Scenario Simulation"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4" data-target="#expand_panel_body_mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4" aria-controls="expand_panel_body_mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4">Generate Object and Lane Boundary Detections<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4" aria-labelledby="expand_panel_heading_mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/GenerateObjectAndLaneBoundaryDetectionsExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Generate Object and Lane Boundary Detections",
+          "description": "Create a driving scenario containing an ego vehicle and a target vehicle traveling along a three-lane road. Detect the lane boundaries by using a vision detection generator.",
+          "thumbnailURL": "../../examples/driving/win64/GenerateObjectAndLaneBoundaryDetectionsExample_03.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.html"
+
+        },
+          "identifier": "driving.GenerateObjectAndLaneBoundaryDetectionsExample",
+          "name": "GenerateObjectAndLaneBoundaryDetectionsExample",
+          "url": "drivingscenario.html#mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/GenerateObjectAndLaneBoundaryDetectionsExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "GenerateObjectAndLaneBoundaryDetectionsExample.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<div class="procedure"><p class="shortdesc">Create a driving scenario containing an ego vehicle and a target vehicle traveling along a three-lane road. Detect the lane boundaries by using a vision detection generator.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+</pre>
+</div>
+</div>
+</div>
+<p>Create a three-lane road by using lane specifications.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadCenters = [0 0 0; 60 0 0; 120 30 0];
+lspc = lanespec(3);
+road(scenario,roadCenters,<span style="color:#A020F0">'Lanes'</span>,lspc);
+</pre>
+</div>
+</div>
+</div>
+<p>Specify that the ego vehicle follows the center lane at 30 m/s.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>egovehicle = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+egopath = [1.5 0 0; 60 0 0; 111 25 0];
+egospeed = 30;
+smoothTrajectory(egovehicle,egopath,egospeed);
+</pre>
+</div>
+</div>
+</div>
+<p>Specify that the target vehicle travels ahead of the ego vehicle at 40 m/s and changes lanes close to the ego vehicle.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>targetcar = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+targetpath = [8 2; 60 -3.2; 120 33];
+targetspeed = 40;
+smoothTrajectory(targetcar,targetpath,targetspeed);
+</pre>
+</div>
+</div>
+</div>
+<p>Display a chase plot for a 3-D view of the scenario from behind the ego vehicle.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>chasePlot(egovehicle)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e98540" class="mediaobject"><p><img src="../../examples/driving/win64/GenerateObjectAndLaneBoundaryDetectionsExample_01.png"/></p>
+</div>
+</div>
+<p>Create a vision detection generator that detects lanes and objects. The pitch of the sensor points one degree downward.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>visionSensor = visionDetectionGenerator(<span style="color:#A020F0">'Pitch'</span>,1.0);
+visionSensor.DetectorOutput = <span style="color:#A020F0">'Lanes and objects'</span>;
+visionSensor.ActorProfiles = actorProfiles(scenario);
+</pre>
+</div>
+</div>
+</div>
+<p>Run the simulation.</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create a bird's-eye plot and the associated plotters.</p></li>
+<li><p>Display the sensor coverage area.</p></li>
+<li><p>Display the lane markings.</p></li>
+<li><p>Obtain ground truth poses of targets on the road.</p></li>
+<li><p>Obtain ideal lane boundary points up to 60 m ahead.</p></li>
+<li><p>Generate detections from the ideal target poses and lane boundaries.</p></li>
+<li><p>Display the outline of the target.</p></li>
+<li><p>Display object detections when the object detection is valid.</p></li>
+<li><p>Display the lane boundary when the lane detection is valid.</p></li>
+</ol>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bep = birdsEyePlot(<span style="color:#A020F0">'XLim'</span>,[0 60],<span style="color:#A020F0">'YLim'</span>,[-35 35]);
+caPlotter = coverageAreaPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Coverage area'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'blue'</span>);
+detPlotter = detectionPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Object detections'</span>);
+lmPlotter = laneMarkingPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Lane markings'</span>);
+lbPlotter = laneBoundaryPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Lane boundary detections'</span>,<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'red'</span>);
+olPlotter = outlinePlotter(bep);
+plotCoverageArea(caPlotter,visionSensor.SensorLocation,<span style="color:#0000FF">...</span>
+    visionSensor.MaxRange,visionSensor.Yaw, <span style="color:#0000FF">...</span>
+    visionSensor.FieldOfView(1));
+<span style="color:#0000FF">while</span> advance(scenario)
+    [lmv,lmf] = laneMarkingVertices(egovehicle);
+    plotLaneMarking(lmPlotter,lmv,lmf)
+    tgtpose = targetPoses(egovehicle);
+    lookaheadDistance = 0:0.5:60;
+    lb = laneBoundaries(egovehicle,<span style="color:#A020F0">'XDistance'</span>,lookaheadDistance,<span style="color:#A020F0">'LocationType'</span>,<span style="color:#A020F0">'inner'</span>);
+    [obdets,nobdets,obValid,lb_dets,nlb_dets,lbValid] = <span style="color:#0000FF">...</span>
+        visionSensor(tgtpose,lb,scenario.SimulationTime);
+    [objposition,objyaw,objlength,objwidth,objoriginOffset,color] = targetOutlines(egovehicle);
+    plotOutline(olPlotter,objposition,objyaw,objlength,objwidth, <span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'OriginOffset'</span>,objoriginOffset,<span style="color:#A020F0">'Color'</span>,color)
+    <span style="color:#0000FF">if</span> obValid
+        detPos = cellfun(@(d)d.Measurement(1:2),obdets,<span style="color:#A020F0">'UniformOutput'</span>,false);
+        detPos = vertcat(zeros(0,2),cell2mat(detPos')');
+        plotDetection(detPlotter,detPos)
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">if</span> lbValid
+        plotLaneBoundary(lbPlotter,vertcat(lb_dets.LaneBoundaries))
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e98570" class="mediaobject"><p><img src="../../examples/driving/win64/GenerateObjectAndLaneBoundaryDetectionsExample_02.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e98574" class="mediaobject"><p><img src="../../examples/driving/win64/GenerateObjectAndLaneBoundaryDetectionsExample_03.png"/></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-GenerateObjectAndLaneBoundaryDetectionsExample"/>
+<meta itemprop="exampletitle" content="Generate Object and Lane Boundary Detections"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e98325">Algorithms</h2>
+<div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink">expand all</a></p>
+<div class="expand_collapse"><h3 class="expand_trigger collapsed" id="d124e98327_head" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_d124e98327_head" aria-controls="expand_body_d124e98327_head"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>Specify Actor Motion in Driving Scenarios</h3>
+<div id="expand_body_d124e98327_head" class="collapsible_content collapse" aria-expanded="false"><p>To specify the motion of actors in a driving scenario, you can either define
+                trajectories for the actors or specify their motion manually.</p>
+<div id="mw_8e0f33c6-c487-4793-b3a1-1877bb8fc8bb_div" class="refsect3"><strong class="refsect3" id="mw_8e0f33c6-c487-4793-b3a1-1877bb8fc8bb">Specify Motion Using Trajectory</strong><p>The <a href="drivingscenario.trajectory.html"><code class="function">trajectory</code></a> and <a href="drivingscenario.smoothtrajectory.html"><code class="function">smoothTrajectory</code></a> functions determine actor pose properties based
+                    on a set of waypoints and the speeds at which the actor travels between those
+                    waypoints. Actor pose properties are position, velocity, roll, pitch, yaw, and
+                    angular velocity. With this approach, motion is defined by speed, not velocity,
+                    because the trajectory determines the direction of motion.</p>
+<p>The <a href="drivingscenario.smoothtrajectory.html"><code class="function">smoothTrajectory</code></a> function additionally determines the
+                    acceleration of the actor between waypoints based on the waypoints, speed, and
+                    maximum longitudinal jerk.</p>
+<p>The actor moves along the trajectory each time the <a href="drivingscenario.advance.html"><code class="function">advance</code></a> function is called.
+                    You can manually update actor pose properties at any time during a simulation.
+                    However, these properties are overwritten with updated values at the next call
+                    to <code class="function">advance</code>.</p>
+</div>
+<div id="mw_48771222-8bc5-46de-b255-8692b8e854d4_div" class="refsect3"><strong class="refsect3" id="mw_48771222-8bc5-46de-b255-8692b8e854d4">Specify Motion Manually</strong><p>When you specify actor motion manually, setting the velocity or angular
+                    velocity properties does not automatically move the actor in successive calls to
+                    the <a href="drivingscenario.advance.html"><code class="function">advance</code></a> function. Therefore,
+                    you must use your own motion model to update the position, velocity, and other
+                    pose parameters at each simulation time step.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bvm8jbf_vh">Version History</h2>
+<p><strong>Introduced in R2017a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="bvm8jbf_seealso">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenariodesigner-app.html"><span itemprop="name">Driving
+                    Scenario Designer</span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingradardatagenerator-system-object.html"><span itemprop="name"><code class="sysobj">drivingRadarDataGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="visiondetectiongenerator-system-object.html"><span itemprop="name"><code class="sysobj">visionDetectionGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="multiobjecttracker-system-object.html"><span itemprop="name"><code class="sysobj">multiObjectTracker</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="lidarpointcloudgenerator-system-object.html"><span itemprop="name"><code class="sysobj">lidarPointCloudGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="inssensor-system-object.html"><span itemprop="name"><code class="sysobj">insSensor</code></span></a></span></li>
+</ul>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/create-driving-scenario-variations-programmatically.html" class="a">Create Driving Scenario Variations Programmatically</a></li>
+<li><a href="../ug/create-driving-scenario-programmatically.html" class="a">Create Driving Scenario Programmatically</a></li>
+<li><a href="../ug/define-road-layouts.html" class="a">Define Road Layouts Programmatically</a></li>
+<li><a href="../ug/create-actor-and-vehicle-trajectories.html" class="a">Create Actor and Vehicle Trajectories Programmatically</a></li>
+<li><a href="../ug/scenario-generation-from-recorded-vehicle-data.html" class="a">Scenario Generation from Recorded Vehicle Data</a></li>
+<li><a href="../ug/coordinate-systems.html" class="a">Coordinate Systems in Automated Driving Toolbox</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
