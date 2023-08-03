@@ -1,8 +1,5 @@
 classdef Env
 
-
-
-
     properties(Constant=true,Access=private)
         archPathMap=containers.Map({'win64','glnxa64','maci64'},{...
         fullfile("UE4","WindowsNoEditor","VehicleSimulation.exe"),...
@@ -27,8 +24,9 @@ classdef Env
         end
 
         function path=AutomotiveExe()
-            if ispref("Simulation3D","UnrealPath")
-                path=getpref("Simulation3D","UnrealPath");
+            % 确定指定组（Simulation3D）中是否存在自定义预设项（UnrealPath）
+            if ispref("Simulation3D", "UnrealPath")
+                path=getpref("Simulation3D", "UnrealPath");
                 return
             end
 
@@ -39,7 +37,8 @@ classdef Env
                 computer('arch'),' platform.']);
                 throw(notSupportedPlatformException);
             end
-            path=fullfile(sim3d.engine.Env.AutomotiveRoot(),archPath);
+            % 获得汽车工程的根目录：matlab\toolbox\shared\sim3d_projects\automotive_project
+            path=fullfile(sim3d.engine.Env.AutomotiveRoot(), archPath);
         end
     end
 end

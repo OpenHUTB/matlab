@@ -1,3 +1,4 @@
+% 游戏引擎查看器
 classdef GamingEngineScenarioViewer<handle
     properties(Dependent)
         Visible;
@@ -6,7 +7,7 @@ classdef GamingEngineScenarioViewer<handle
     properties(Hidden,SetAccess=protected)
         Animator;
         Application;
-IsValid
+        IsValid
         LastWarnings;
         Offset=[0,0,0];
     end
@@ -27,9 +28,10 @@ IsValid
     end
 
     methods
-        function this=GamingEngineScenarioViewer(hApp,varargin)
-            this.Application=hApp;
-            this.Animator=driving.scenario.internal.GamingEngineScenarioAnimator(varargin{:});
+        function this = GamingEngineScenarioViewer(hApp, varargin)
+            this.Application = hApp;
+            % 构建游戏场景动画师
+            this.Animator = driving.scenario.internal.GamingEngineScenarioAnimator(varargin{:});
             this.SimulatorStateChanged=addStateChangedListener(hApp.Simulator,@this.onSimulatorStateChanged);
             this.SimulatorSampleChanged=addSampleChangedListener(hApp.Simulator,@this.onSimulatorSampleChanged);
             this.RoadPropertyChanged=event.listener(hApp,'RoadPropertyChanged',@this.onRoadPropertyChanged);
@@ -126,7 +128,7 @@ IsValid
                 stop(this.Animator,true);
                 this.IsValid=false;
                 if~any(strcmp(me.identifier,{'sim3d:CommandReader:CommandReader:ReadError',...
-                    'sim3d:CommandWriter:write:Error'}))
+                        'sim3d:CommandWriter:write:Error'}))
                     stop(simulator);
                     string=getString(message('driving:scenarioApp:GamingEngineStepError',me.message));
                     app.ScenarioView.errorMessage(string,me.identifier);
@@ -180,41 +182,39 @@ IsValid
                 if numel(actors)>=indx&&isa(actors(indx),'driving.scenario.Vehicle')
                     actor=actors(indx);
                     pos=driving.scenario.internal.translateVehiclePosition(...
-                    pos,actor.RearOverhang,actor.Length,actor.Roll,actor.Pitch,actor.Yaw);
+                        pos,actor.RearOverhang,actor.Length,actor.Roll,actor.Pitch,actor.Yaw);
                 end
                 poses(indx).Position=pos+offset;
                 poses(indx).ActorID=indx;
             end
             input=struct(...
-            'NumActors',numel(s.Actors)+numel(s.Barriers),...
-            'Time',getCurrentTime(p),...
-            'Actors',poses);
+                'NumActors',numel(s.Actors)+numel(s.Barriers),...
+                'Time',getCurrentTime(p),...
+                'Actors',poses);
         end
 
+
+        % 启动虚幻引擎界面
         function setup(this)
             animator=this.Animator;
 
-            [animator.Scenario,this.Offset,animator.Span,animator.Rotation]=getAnimatorScenario(this);
-            animator.SampleTime=single(this.Application.SampleTime);
+            [animator.Scenario,this.Offset,animator.Span,animator.Rotation] = getAnimatorScenario(this);
+            animator.SampleTime = single(this.Application.SampleTime);
             try
-                this.LastWarnings=setup(animator);
+                % 弹出虚幻引擎界面
+                this.LastWarnings = setup(animator);
             catch ME
                 stop(animator,true)
-                if strcmp(ME.identifier,'sim3d:CommandWriter:CommandWriter:SetupError')
+                if strcmp(ME.identifier, 'sim3d:CommandWriter:CommandWriter:SetupError')
                     msg=getString(message('driving:scenarioApp:GamingEngineSetupError'));
-                elseif strcmp(ME.identifier,'MATLAB:class:InvalidHandle')
-
-
-
-                    msg=sprintf('%s\n',ME.message);
+                elseif strcmp(ME.identifier, 'MATLAB:class:InvalidHandle')
+                    msg=sprintf('%s\n', ME.message);
                     for indx=1:min(3,numel(ME.stack))
                         msg=sprintf('%s\n%s (%d)',ME.stack(indx).name,ME.stack(indx).line);
                     end
                 else
                     msg=ME.message;
                 end
-
-
 
                 this.LastWarnings={msg};
                 return;
@@ -232,11 +232,12 @@ IsValid
     end
 end
 
+
 function b=isPropChanged(changedProps,props)
 
-    if ischar(changedProps)
-        changedProps={changedProps};
-    end
-    b=any(cellfun(@(c)any(strcmp(c,props)),changedProps));
+if ischar(changedProps)
+    changedProps={changedProps};
+end
+b=any(cellfun(@(c)any(strcmp(c,props)),changedProps));
 
 end

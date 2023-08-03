@@ -1,11 +1,9 @@
+% 构造驾驶场景设计器的主类
 classdef Designer<driving.internal.scenarioApp.Display&...
-    driving.internal.scenarioApp.ScenarioBuilder&...
-    matlabshared.application.undoredo.ToolGroupUndoRedo&...
-    matlabshared.application.ToolGroupCutCopyPaste&...
-    matlabshared.application.ToolGroupFileSystem
-
-
-
+        driving.internal.scenarioApp.ScenarioBuilder&...
+        matlabshared.application.undoredo.ToolGroupUndoRedo&...
+        matlabshared.application.ToolGroupCutCopyPaste&...
+        matlabshared.application.ToolGroupFileSystem
 
     properties(Hidden)
         MostRecentCanvas='scenario';
@@ -29,7 +27,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         BarrierAdder;
         SensorAdder;
         ClassEditor;
-        GamingEngineViewer;
+        GamingEngineViewer;  % 游戏引擎查看器
         SimulationSettings;
         ViewCache;
         RoadCreationInProgress=false;
@@ -52,7 +50,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         RestartPlayer=false;
         NeedsAutoScale=false;
         ShowAsymmetricRoads=false;
-LoadWarning
+        LoadWarning
     end
 
     events(NotifyAccess=public)
@@ -65,7 +63,7 @@ LoadWarning
         ActorPropertyChanged;
         NumRoadsChanging;
         NumActorsChanging;
-NumBarriersChanging
+        NumBarriersChanging
         NumRoadsChanged;
         NumActorsChanged;
         NumBarriersChanged;
@@ -151,7 +149,7 @@ NumBarriersChanging
                 functionName=matlab.lang.makeValidName(functionName,'Prefix','ds');
             end
             str=generateMatlabCode@driving.internal.scenarioApp.ScenarioBuilder(...
-            this,functionName,this.EgoCarId,getStopTime(this.Simulator));
+                this,functionName,this.EgoCarId,getStopTime(this.Simulator));
         end
 
         function generateOpenScenarioFile(this,warning)
@@ -167,43 +165,43 @@ NumBarriersChanging
 
             success=true;
             switch mode
-            case 'scenario'
-                fileName=this.CurrentFileName;
-                if isempty(fileName)
-                    selection=uiconfirm(this,getString(message('driving:scenarioApp:ExportSimulinkModelUnsavedSessionText')),...
-                    getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogTitle')),...
-                    {saveAs,cancel},cancel);
-                    switch selection
-                    case saveAs
-                        success=this.saveFileAs();
-                    case cancel
-                        return
+                case 'scenario'
+                    fileName=this.CurrentFileName;
+                    if isempty(fileName)
+                        selection=uiconfirm(this,getString(message('driving:scenarioApp:ExportSimulinkModelUnsavedSessionText')),...
+                            getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogTitle')),...
+                            {saveAs,cancel},cancel);
+                        switch selection
+                            case saveAs
+                                success=this.saveFileAs();
+                            case cancel
+                                return
+                        end
+                    elseif this.IsDirty
+                        save=getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogSave'));
+                        selection=uiconfirm(this,getString(message('driving:scenarioApp:ExportSimulinkModelDirtySessionText')),...
+                            getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogTitle')),...
+                            {save,saveAs,cancel},cancel);
+                        switch selection
+                            case save
+                                success=this.saveFile();
+                            case saveAs
+                                success=this.saveFileAs();
+                            case cancel
+                                return;
+                        end
                     end
-                elseif this.IsDirty
-                    save=getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogSave'));
-                    selection=uiconfirm(this,getString(message('driving:scenarioApp:ExportSimulinkModelDirtySessionText')),...
-                    getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogTitle')),...
-                    {save,saveAs,cancel},cancel);
-                    switch selection
-                    case save
-                        success=this.saveFile();
-                    case saveAs
-                        success=this.saveFileAs();
-                    case cancel
-                        return;
-                    end
-                end
-                fileName=getCurrentFileName(this);
-            case 'sensor'
-                fileName=[];
+                    fileName=getCurrentFileName(this);
+                case 'sensor'
+                    fileName=[];
             end
             if success
                 modelName=generateSimulinkModel@driving.internal.scenarioApp.ScenarioBuilder(...
-                this,getStopTime(this.Simulator.Player),fileName);
+                    this,getStopTime(this.Simulator.Player),fileName);
             else
                 errorMessage(this,...
-                getString(message('driving:scenarioApp:ExportSimulinkModelNotExportedDialogText')),...
-                getString(message('driving:scenarioApp:ExportSimulinkModelNotExportedDialogTitle')));
+                    getString(message('driving:scenarioApp:ExportSimulinkModelNotExportedDialogText')),...
+                    getString(message('driving:scenarioApp:ExportSimulinkModelNotExportedDialogTitle')));
             end
         end
 
@@ -220,8 +218,8 @@ NumBarriersChanging
             if isempty(scene)
                 ok=getString(message('MATLAB:uistring:popupdialogs:OK'));
                 selection=uiconfirm(this,getString(message('driving:scenarioApp:Export3dSimModelNoSceneText')),...
-                getString(message('driving:scenarioApp:Export3dSimModelNoSceneTitle')),...
-                {ok,cancel},cancel);
+                    getString(message('driving:scenarioApp:Export3dSimModelNoSceneTitle')),...
+                    {ok,cancel},cancel);
                 if strcmp(selection,cancel)
                     return;
                 end
@@ -245,84 +243,84 @@ NumBarriersChanging
 
 
                 selection=uiconfirm(this,getString(message('driving:scenarioApp:Export3dSimModelInvalidAssetTypesText')),...
-                getString(message('driving:scenarioApp:Export3dSimModelInvalidAssetTypesTitle')),...
-                {keep,removeAndSave,cancel},cancel);
+                    getString(message('driving:scenarioApp:Export3dSimModelInvalidAssetTypesTitle')),...
+                    {keep,removeAndSave,cancel},cancel);
 
                 switch selection
-                case keep
-                    if dirty||isempty(sessionName)
-                        success=this.saveFile();
-                    else
-                        success=true;
-                    end
-                case removeAndSave
-
-
-                    badIndex=find(~cellfun(@(v)any(strcmp(v,validTypes)),assetTypes));
-
-
-                    edit=driving.internal.scenarioApp.undoredo.DeleteActor(this,badIndex);
-
-
-                    execute(edit);
-
-
-
-                    success=this.saveFileAs();
-                    if success
-
-
-                        addEditNoApply(this,edit);
-                    else
-
-                        undo(edit);
-                        if~dirty
-
-
-                            removeDirty(this);
+                    case keep
+                        if dirty||isempty(sessionName)
+                            success=this.saveFile();
+                        else
+                            success=true;
                         end
-                    end
-                case{cancel,''}
-                    return;
+                    case removeAndSave
+
+
+                        badIndex=find(~cellfun(@(v)any(strcmp(v,validTypes)),assetTypes));
+
+
+                        edit=driving.internal.scenarioApp.undoredo.DeleteActor(this,badIndex);
+
+
+                        execute(edit);
+
+
+
+                        success=this.saveFileAs();
+                        if success
+
+
+                            addEditNoApply(this,edit);
+                        else
+
+                            undo(edit);
+                            if~dirty
+
+
+                                removeDirty(this);
+                            end
+                        end
+                    case{cancel,''}
+                        return;
                 end
             elseif isempty(sessionName)
 
 
                 selection=uiconfirm(this,getString(message('driving:scenarioApp:ExportSimulinkModelUnsavedSessionText')),...
-                getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogTitle')),...
-                {saveAs,cancel},cancel);
+                    getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogTitle')),...
+                    {saveAs,cancel},cancel);
                 switch selection
-                case saveAs
-                    success=this.saveFile();
-                case cancel
-                    return;
+                    case saveAs
+                        success=this.saveFile();
+                    case cancel
+                        return;
                 end
             elseif dirty
 
 
                 save=getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogSave'));
                 selection=uiconfirm(this,getString(message('driving:scenarioApp:ExportSimulinkModelDirtySessionText')),...
-                getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogTitle')),...
-                {save,saveAs,cancel},cancel);
+                    getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogTitle')),...
+                    {save,saveAs,cancel},cancel);
                 success=false;
                 switch selection
-                case save
-                    success=this.saveFile();
-                case saveAs
-                    success=this.saveFileAs();
-                case{cancel,''}
-                    return;
+                    case save
+                        success=this.saveFile();
+                    case saveAs
+                        success=this.saveFileAs();
+                    case{cancel,''}
+                        return;
                 end
             else
                 success=true;
             end
             if success
                 [modelName,warnings]=generate3dSimModel@driving.internal.scenarioApp.ScenarioBuilder(...
-                this,getStopTime(this.Simulator.Player),this.getCurrentFileName,this.EgoCarId,scene);
+                    this,getStopTime(this.Simulator.Player),this.getCurrentFileName,this.EgoCarId,scene);
             else
                 errorMessage(this,...
-                getString(message('driving:scenarioApp:ExportSimulinkModelNotExportedDialogText')),...
-                getString(message('driving:scenarioApp:ExportSimulinkModelNotExportedDialogTitle')));
+                    getString(message('driving:scenarioApp:ExportSimulinkModelNotExportedDialogText')),...
+                    getString(message('driving:scenarioApp:ExportSimulinkModelNotExportedDialogTitle')));
             end
         end
 
@@ -637,13 +635,16 @@ NumBarriersChanging
             pos=matlabshared.application.getInitialToolPosition([1280,768],0.7,true);
         end
 
-        function v=getGamingEngineViewer(this,force,varargin)
+        % 获得虚幻引擎查看器
+        function v=getGamingEngineViewer(this, force, varargin)
             v=this.GamingEngineViewer;
-            if isempty(v)&&nargin>1&&force
+            if isempty(v) && nargin>1 && force
+                % 构建虚幻引擎查看器
                 v=driving.internal.scenarioApp.GamingEngineScenarioViewer(this,varargin{:});
-                this.GamingEngineWindowClosedListener=event.listener(v,...
-                'WindowClosed',@this.onGamingEngineWindowClosed);
-                this.GamingEngineViewer=v;
+                % 监听虚幻引擎窗口关闭的事件
+                this.GamingEngineWindowClosedListener = event.listener(v,...
+                    'WindowClosed', @this.onGamingEngineWindowClosed);
+                this.GamingEngineViewer = v;
             end
         end
 
@@ -660,10 +661,10 @@ NumBarriersChanging
             addComponent(this,sc);
             if~useAppContainer(this)
                 sc.Figure.Visible=true;
-drawnow
+                drawnow
                 md=com.mathworks.mlservices.MatlabDesktopServices.getDesktop;
                 md.setClientLocation(getName(sc),this.ToolGroup.Name,...
-                md.getClientLocation(md.getClient(getName(this.ScenarioView),this.ToolGroup.Name)));
+                    md.getClientLocation(md.getClient(getName(this.ScenarioView),this.ToolGroup.Name)));
             end
         end
 
@@ -696,10 +697,10 @@ drawnow
 
             if~useAppContainer(this)
                 bep.Figure.Visible=true;
-drawnow
+                drawnow
                 md=com.mathworks.mlservices.MatlabDesktopServices.getDesktop;
                 md.setClientLocation(getName(bep),this.ToolGroup.Name,...
-                md.getClientLocation(md.getClient(getName(this.EgoCentricView),this.ToolGroup.Name)));
+                    md.getClientLocation(md.getClient(getName(this.EgoCentricView),this.ToolGroup.Name)));
             end
         end
 
@@ -717,14 +718,14 @@ drawnow
             addComponent(this,sp);
 
             this.PropertyListener.Source={this.ActorProperties,this.RoadProperties...
-            ,getBarrierPropertiesComponent(this),sp};
+                ,getBarrierPropertiesComponent(this),sp};
 
             if~useAppContainer(this)
                 sp.Figure.Visible=true;
-drawnow
+                drawnow
                 md=com.mathworks.mlservices.MatlabDesktopServices.getDesktop;
                 md.setClientLocation(getName(sp),this.ToolGroup.Name,...
-                md.getClientLocation(md.getClient(getName(this.ActorProperties),this.ToolGroup.Name)));
+                    md.getClientLocation(md.getClient(getName(this.ActorProperties),this.ToolGroup.Name)));
             end
         end
 
@@ -742,14 +743,14 @@ drawnow
             addComponent(this,bp);
 
             this.PropertyListener.Source={this.ActorProperties,this.RoadProperties...
-            ,bp,getSensorPropertiesComponent(this)};
+                ,bp,getSensorPropertiesComponent(this)};
 
             if~useAppContainer(this)
                 bp.Figure.Visible=true;
-drawnow
+                drawnow
                 md=com.mathworks.mlservices.MatlabDesktopServices.getDesktop;
                 md.setClientLocation(getName(bp),this.ToolGroup.Name,...
-                md.getClientLocation(md.getClient(getName(this.ActorProperties),this.ToolGroup.Name)));
+                    md.getClientLocation(md.getClient(getName(this.ActorProperties),this.ToolGroup.Name)));
             end
         end
 
@@ -785,9 +786,9 @@ drawnow
                 msgText=getString(message('driving:scenarioApp:CreateLargeRoadWarning'));
             end
             t=timer('StartDelay',period,...
-            'Tag','RoadCreationStarting',...
-            'UserData',msgText,...
-            'TimerFcn',@this.largeRoadNetworkTimerCallback);
+                'Tag','RoadCreationStarting',...
+                'UserData',msgText,...
+                'TimerFcn',@this.largeRoadNetworkTimerCallback);
             start(t);
             this.RoadCreationTimer=t;
             this.RoadCreationInProgress=true;
@@ -804,9 +805,9 @@ drawnow
                 msgText=getString(message('driving:scenarioApp:CreateLargeRoadWarning'));
             end
             t=timer('StartDelay',period,...
-            'Tag','RoadCreationStarting',...
-            'UserData',msgText,...
-            'TimerFcn',@this.openDRIVEWarningTimerCallback);
+                'Tag','RoadCreationStarting',...
+                'UserData',msgText,...
+                'TimerFcn',@this.openDRIVEWarningTimerCallback);
             start(t);
             this.RoadCreationTimer=t;
             this.RoadCreationInProgress=true;
@@ -832,9 +833,9 @@ drawnow
                 warning='';
             end
             t=timer('StartDelay',period,...
-            'Tag','OpenScenarioExport',...
-            'UserData',warning,...
-            'TimerFcn',@this.exportOpenScenarioWarningTimerCallback);
+                'Tag','OpenScenarioExport',...
+                'UserData',warning,...
+                'TimerFcn',@this.exportOpenScenarioWarningTimerCallback);
             start(t);
         end
         function exportOpenScenarioWarningTimerCallback(this,t,~)
@@ -847,10 +848,10 @@ drawnow
             message=t.UserData;
             matlabshared.application.deleteTimer(t);
             this.ScenarioView.warningMessage(message,'LargeRoadNetworkWarning','FontSize',10);
-drawnow
+            drawnow
             t=timer('StartDelay',1.0,...
-            'Tag','RoadCreationTeardown',...
-            'TimerFcn',@this.dismissLargeRoadWarningCallback);
+                'Tag','RoadCreationTeardown',...
+                'TimerFcn',@this.dismissLargeRoadWarningCallback);
             start(t);
         end
         function openDRIVEWarningTimerCallback(this,t,~)
@@ -876,9 +877,9 @@ drawnow
             end
             [cut,copy,paste]=createCutCopyPasteMenus(this,h);
             delete=uimenu(h,...
-            'Tag','DeleteItem',...
-            'Label',getString(message('Spcuilib:application:Delete')),...
-            'Callback',@canvas.deleteCallback);
+                'Tag','DeleteItem',...
+                'Label',getString(message('Spcuilib:application:Delete')),...
+                'Callback',@canvas.deleteCallback);
         end
 
         function b=isCutEnabled(this)
@@ -932,24 +933,24 @@ drawnow
             import matlab.ui.internal.toolstrip.*;
             iconPath=this.getPathToIcons;
             switch type
-            case 'default'
-                [icon,label]=getInfoForRecentFile(this,fileName,getDefaultOpenTag(this));
-                return;
-            case 'classes'
-                icon=Icon(fullfile(iconPath,'Actor24.png'));
-                label=getString(message('driving:scenarioApp:RecentFileClasses'));
-            case{'session','PrebuiltScenario'}
-                icon=Icon(fullfile(iconPath,'Session24.png'));
-                label=getString(message('driving:scenarioApp:RecentFileSession'));
-            case 'sensors'
-                icon=Icon(fullfile(iconPath,'Sensors24.png'));
-                label=getString(message('driving:scenarioApp:RecentFileSensors'));
-            case 'scenario'
-                icon=Icon(fullfile(iconPath,'Scenario24.png'));
-                label=getString(message('driving:scenarioApp:RecentFileScenario'));
-            case 'OpenDRIVEReader'
-                icon=Icon(fullfile(iconPath,'Scenario24.png'));
-                label=getString(message('driving:scenarioApp:RecentFileOpenDRIVE'));
+                case 'default'
+                    [icon,label]=getInfoForRecentFile(this,fileName,getDefaultOpenTag(this));
+                    return;
+                case 'classes'
+                    icon=Icon(fullfile(iconPath,'Actor24.png'));
+                    label=getString(message('driving:scenarioApp:RecentFileClasses'));
+                case{'session','PrebuiltScenario'}
+                    icon=Icon(fullfile(iconPath,'Session24.png'));
+                    label=getString(message('driving:scenarioApp:RecentFileSession'));
+                case 'sensors'
+                    icon=Icon(fullfile(iconPath,'Sensors24.png'));
+                    label=getString(message('driving:scenarioApp:RecentFileSensors'));
+                case 'scenario'
+                    icon=Icon(fullfile(iconPath,'Scenario24.png'));
+                    label=getString(message('driving:scenarioApp:RecentFileScenario'));
+                case 'OpenDRIVEReader'
+                    icon=Icon(fullfile(iconPath,'Scenario24.png'));
+                    label=getString(message('driving:scenarioApp:RecentFileOpenDRIVE'));
             end
             label=sprintf('(%s) %s',label,fileName);
         end
@@ -1074,49 +1075,49 @@ drawnow
                 parentPos=getToolGroupName(this);
             end
             switch tag
-            case 'OpenDRIVEReader'
+                case 'OpenDRIVEReader'
 
-                pos=matlabshared.application.getCenterPosition([650,250],parentPos);
-                dialog=driving.internal.openDRIVEImport.openDRIVE.DialogController(pos,this.ShowImportErrors);
-            case 'HEREHDLiveMap'
-
-                pos=matlabshared.application.getCenterPosition([460,600],parentPos);
-                importer=driving.internal.heremaps.import.RoadNetworkImporter(...
-                this.HEREHDLiveMapImportArgs{:});
-                dialog=driving.internal.heremaps.import.DialogController(...
-                importer,pos);
-            case 'OpenStreetMap'
-
-                pos=matlabshared.application.getCenterPosition([460,600],parentPos);
-                importer=driving.internal.scenarioImport.osm.RoadNetworkImporter(...
-                this.OpenStreetMapImportArgs{:});
-                dialog=driving.internal.scenarioImport.osm.DialogController(...
-                importer,pos);
-            case 'ZenrinJapanMap'
-
-                if driving.internal.scenarioImport.isZenrinJapanMapInstalled()
+                    pos=matlabshared.application.getCenterPosition([650,250],parentPos);
+                    dialog=driving.internal.openDRIVEImport.openDRIVE.DialogController(pos,this.ShowImportErrors);
+                case 'HEREHDLiveMap'
 
                     pos=matlabshared.application.getCenterPosition([460,600],parentPos);
-                    importer=driving.internal.zenrinjapanmap.import.RoadNetworkImporter(...
-                    this.ZenrinJapanMapImportArgs{:});
-                    dialog=driving.internal.zenrinjapanmap.import.DialogController(...
-                    importer,pos);
-                else
+                    importer=driving.internal.heremaps.import.RoadNetworkImporter(...
+                        this.HEREHDLiveMapImportArgs{:});
+                    dialog=driving.internal.heremaps.import.DialogController(...
+                        importer,pos);
+                case 'OpenStreetMap'
 
-                    install=getString(message('driving:scenarioImport:ZenrinJapanMapAppInstallText'));
-                    cancel=getString(message('driving:scenarioImport:ZenrinJapanMapAppCancelText'));
-                    selected=uiconfirm(this,...
-                    getString(message('driving:scenarioImport:ZenrinJapanMapNotInstalled')),...
-                    getString(message('Spcuilib:application:ImportErrorTitle')),...
-                    {install,cancel},install);
-                    if strcmp(selected,install)
-supportPackageInstaller
+                    pos=matlabshared.application.getCenterPosition([460,600],parentPos);
+                    importer=driving.internal.scenarioImport.osm.RoadNetworkImporter(...
+                        this.OpenStreetMapImportArgs{:});
+                    dialog=driving.internal.scenarioImport.osm.DialogController(...
+                        importer,pos);
+                case 'ZenrinJapanMap'
+
+                    if driving.internal.scenarioImport.isZenrinJapanMapInstalled()
+
+                        pos=matlabshared.application.getCenterPosition([460,600],parentPos);
+                        importer=driving.internal.zenrinjapanmap.import.RoadNetworkImporter(...
+                            this.ZenrinJapanMapImportArgs{:});
+                        dialog=driving.internal.zenrinjapanmap.import.DialogController(...
+                            importer,pos);
+                    else
+
+                        install=getString(message('driving:scenarioImport:ZenrinJapanMapAppInstallText'));
+                        cancel=getString(message('driving:scenarioImport:ZenrinJapanMapAppCancelText'));
+                        selected=uiconfirm(this,...
+                            getString(message('driving:scenarioImport:ZenrinJapanMapNotInstalled')),...
+                            getString(message('Spcuilib:application:ImportErrorTitle')),...
+                            {install,cancel},install);
+                        if strcmp(selected,install)
+                            supportPackageInstaller
+                        end
+                        return
                     end
+                otherwise
+                    success=importItem@matlabshared.application.ToolGroupFileSystem(this,tag);
                     return
-                end
-            otherwise
-                success=importItem@matlabshared.application.ToolGroupFileSystem(this,tag);
-                return
             end
 
             if~allowImport(this)
@@ -1131,38 +1132,38 @@ supportPackageInstaller
 
         function spec=getSaveFileSpecification(~,tag)
             switch tag
-            case 'OpenDRIVEReader'
-                spec={'*.xodr;*.xml',getString(message('driving:scenarioApp:OpenDRIVEFileTypeDescription'))};
-            otherwise
-                spec={'*.mat',getString(message('driving:scenarioApp:FileTypeDescription'))};
+                case 'OpenDRIVEReader'
+                    spec={'*.xodr;*.xml',getString(message('driving:scenarioApp:OpenDRIVEFileTypeDescription'))};
+                otherwise
+                    spec={'*.mat',getString(message('driving:scenarioApp:FileTypeDescription'))};
             end
         end
 
         function title=getSaveDialogTitle(~,tag)
             switch tag
-            case 'session'
-                title=getString(message('driving:scenarioApp:SaveDialogTitleSession'));
-            case 'scenario'
-                title=getString(message('driving:scenarioApp:SaveDialogTitleScenario'));
-            case 'sensors'
-                title=getString(message('driving:scenarioApp:SaveDialogTitleSensors'));
-            case 'classes'
-                title=getString(message('driving:scenarioApp:SaveDialogTitleClasses'));
+                case 'session'
+                    title=getString(message('driving:scenarioApp:SaveDialogTitleSession'));
+                case 'scenario'
+                    title=getString(message('driving:scenarioApp:SaveDialogTitleScenario'));
+                case 'sensors'
+                    title=getString(message('driving:scenarioApp:SaveDialogTitleSensors'));
+                case 'classes'
+                    title=getString(message('driving:scenarioApp:SaveDialogTitleClasses'));
             end
         end
 
         function title=getOpenDialogTitle(~,tag)
             switch tag
-            case{'session','PrebuiltScenario'}
-                title=getString(message('driving:scenarioApp:OpenDialogTitleSession'));
-            case 'scenario'
-                title=getString(message('driving:scenarioApp:OpenDialogTitleScenario'));
-            case 'sensors'
-                title=getString(message('driving:scenarioApp:OpenDialogTitleSensors'));
-            case 'classes'
-                title=getString(message('driving:scenarioApp:OpenDialogTitleClasses'));
-            case 'OpenDRIVEReader'
-                title=getString(message('driving:scenarioApp:OpenDialogTitleOpenDRIVE'));
+                case{'session','PrebuiltScenario'}
+                    title=getString(message('driving:scenarioApp:OpenDialogTitleSession'));
+                case 'scenario'
+                    title=getString(message('driving:scenarioApp:OpenDialogTitleScenario'));
+                case 'sensors'
+                    title=getString(message('driving:scenarioApp:OpenDialogTitleSensors'));
+                case 'classes'
+                    title=getString(message('driving:scenarioApp:OpenDialogTitleClasses'));
+                case 'OpenDRIVEReader'
+                    title=getString(message('driving:scenarioApp:OpenDialogTitleOpenDRIVE'));
             end
         end
 
@@ -1188,8 +1189,8 @@ supportPackageInstaller
                 components(2).icon=fullfile(iconPath,'Sensors24.png');
                 components(2).description=getString(message('driving:scenarioApp:NewSensorsDescription'));
                 info={
-                {getString(message('driving:scenarioApp:NewSessionText')),info},...
-                {getString(message('driving:scenarioApp:ComponentsHeader')),components}};
+                    {getString(message('driving:scenarioApp:NewSessionText')),info},...
+                    {getString(message('driving:scenarioApp:ComponentsHeader')),components}};
             else
             end
 
@@ -1295,7 +1296,7 @@ supportPackageInstaller
             iconPath=this.getPathToIcons;
 
             info.text={getString(message('driving:scenarioApp:SaveSessionText')),...
-            getString(message('driving:scenarioApp:SaveSessionAsText'))};
+                getString(message('driving:scenarioApp:SaveSessionAsText'))};
             info.tag='session';
             info.description=getString(message('driving:scenarioApp:SaveSessionDescription'));
 
@@ -1318,13 +1319,13 @@ supportPackageInstaller
             if this.IsADTInstalled
 
                 info={
-                {getString(message('driving:scenarioApp:SessionHeader')),info},...
-                {getString(message('driving:scenarioApp:ComponentsHeader')),components},...
-                {getString(message('driving:scenarioApp:ClassDefinitionsHeader')),class}};
+                    {getString(message('driving:scenarioApp:SessionHeader')),info},...
+                    {getString(message('driving:scenarioApp:ComponentsHeader')),components},...
+                    {getString(message('driving:scenarioApp:ClassDefinitionsHeader')),class}};
             else
                 info={
-                {getString(message('driving:scenarioApp:SessionHeader')),info},...
-                {getString(message('driving:scenarioApp:ClassDefinitionsHeader')),class}};
+                    {getString(message('driving:scenarioApp:SessionHeader')),info},...
+                    {getString(message('driving:scenarioApp:ClassDefinitionsHeader')),class}};
             end
         end
 
@@ -1398,15 +1399,15 @@ supportPackageInstaller
                 rightComps=[egoCentric,bep];
 
                 appContainer.DocumentLayout=struct(...
-                'gridDimensions',struct('w',3,'h',1),...
-                'columnWeights',columnWeights,...
-                'rowWeights',1,...
-                'tileCount',3,...
-                'tileCoverage',[1,2,3],...
-                'tileOccupancy',{getTileOccupancy(this.Window,leftComps,centerComps,rightComps)});
+                    'gridDimensions',struct('w',3,'h',1),...
+                    'columnWeights',columnWeights,...
+                    'rowWeights',1,...
+                    'tileCount',3,...
+                    'tileCoverage',[1,2,3],...
+                    'tileOccupancy',{getTileOccupancy(this.Window,leftComps,centerComps,rightComps)});
                 return;
             else
-drawnow
+                drawnow
 
                 md=com.mathworks.mlservices.MatlabDesktopServices.getDesktop;
                 md.setDocumentArrangement(toolGroup,md.TILED,java.awt.Dimension(3,1))
@@ -1416,7 +1417,7 @@ drawnow
 
 
                 if notFirstCall
-drawnow
+                    drawnow
                 end
 
                 md.setDocumentColumnWidths(toolGroup,columnWeights);
@@ -1450,7 +1451,7 @@ drawnow
                     setLocation(bep,md,toolGroup,column,notFirstCall);
                 end
                 if~notFirstCall
-drawnow
+                    drawnow
                     focusOnComponent(roads);
                 end
             end
@@ -1521,7 +1522,7 @@ drawnow
             actorProps.SpecificationIndex=[newActorSpec.ActorID];
 
             if(isempty(this.EgoCarId)||this.EgoCarId>numel(this.ActorSpecifications))&&...
-                getProperty(this.ClassSpecifications,newActorSpec(1).ClassID,'isVehicle')
+                    getProperty(this.ClassSpecifications,newActorSpec(1).ClassID,'isVehicle')
                 this.EgoCarId=newActorSpec(1).ActorID;
             end
 
@@ -1604,10 +1605,10 @@ drawnow
                     errorAndWarningMessage=driving.scenario.internal.getOpenDRIVEImportMessages(adapterobj.ExceptionsLog,adapterobj.WarningsLog);
 
                     scenario=driving.internal.scenarioAdapter.getDrivingScenario...
-                    (rn,'UseRoadGroups',true,'UseCompositeLaneSpec',true,'AllowSharpCurvature',true);
+                        (rn,'UseRoadGroups',true,'UseCompositeLaneSpec',true,'AllowSharpCurvature',true);
 
                     this.RoadSpecifications=[driving.internal.scenarioApp.road.Arbitrary.fromScenario(scenario),...
-                    driving.internal.scenarioApp.road.RoadGroupArbitrary.fromScenario(scenario)];
+                        driving.internal.scenarioApp.road.RoadGroupArbitrary.fromScenario(scenario)];
                     if isempty(this.RoadSpecifications)
                         error(message('driving:scenario:InvalidRoadEntities'));
                     end
@@ -1633,14 +1634,14 @@ drawnow
                     for roadInd=1:numel(roads)
                         r=roads(roadInd);
                         openDrivePvPairs={'LeftRoadWidth',r.leftRoadWidth,...
-                        'RightRoadWidth',r.rightRoadWidth,...
-                        'Junction',r.junction,...
-                        'LaneOffset',r.laneOffset};
+                            'RightRoadWidth',r.rightRoadWidth,...
+                            'Junction',r.junction,...
+                            'LaneOffset',r.laneOffset};
                         if this.ShowAsymmetricRoads
                             roadSpec=driving.internal.scenarioApp.road.OpenDRIVEArbitrary(r.centers,'BankAngle',r.bankAngles,'Lanes',r.laneSpecification,openDrivePvPairs{:});
                         else
                             roadSpec=driving.internal.scenarioApp.road.Arbitrary(r.centers,'BankAngle',r.bankAngles,'Lanes',...
-                            r.laneSpecification,'Name',r.name,openDrivePvPairs{:},'IsOpenDRIVE',true);
+                                r.laneSpecification,'Name',r.name,openDrivePvPairs{:},'IsOpenDRIVE',true);
                         end
                         roadSpecArray(roadInd)=roadSpec;
                     end
@@ -1780,9 +1781,9 @@ drawnow
             [~,id]=lastwarn;
 
             if strcmp(id,'MATLAB:load:classNotFound')&&...
-                isfield(data.data,'SensorSpecifications')&&...
-                ~isempty(data.data.SensorSpecifications)&&...
-                isempty(data.data.SensorSpecifications(1).Sensor)
+                    isfield(data.data,'SensorSpecifications')&&...
+                    ~isempty(data.data.SensorSpecifications)&&...
+                    isempty(data.data.SensorSpecifications(1).Sensor)
 
 
 
@@ -1797,7 +1798,7 @@ drawnow
         function p=getIconMatFiles(~)
 
             p={fullfile(matlabroot,'toolbox','shared','drivingscenario',...
-            '+driving','+internal','+scenarioApp','icons.mat')};
+                '+driving','+internal','+scenarioApp','icons.mat')};
         end
 
         function id=getInvalidFileFormatId(~)
@@ -1855,15 +1856,15 @@ drawnow
                     warningMessage=[getString(message('driving:scenario:OpenDRIVEWarningHeader')),newline];
                     if(numel(warnings.invalidLaneMarkerTypes)~=0)
                         wInvalidLaneMarkerTypes=getString(message('driving:scenario:InvalidLaneMarkerTypes',...
-                        strjoin(unique(warnings.invalidLaneMarkerTypes),', ')));
+                            strjoin(unique(warnings.invalidLaneMarkerTypes),', ')));
                         warningMessage=[warningMessage,newline,bulletStr,wInvalidLaneMarkerTypes];
                     end
                     footerMessage=getString(message('driving:scenario:OpenDRIVEWarningFooter'));
                     warningMessage=[warningMessage,newline,newline,footerMessage,newline];
                 end
             else
-                if warnings.isElevationInvalid||warnings.isSuperElevationInvalid||warnings.isRoadMarkColorinvalid||warnings.isJunctionInvalid||warnings.isLaneOffsetInvalid||warnings.isLaneMarkWidthInvalid||warnings.isLaneWidthInvalid||numel(warnings.variableLaneWidths)~=0||numel(warnings.variableLaneMarkerStyles)~=0...
-                    ||numel(warnings.invalidLaneMarkerTypes)~=0
+                if warnings.isElevationInvalid||warnings.isSuperElevationInvalid||warnings.isRoadMarkColorinvalid||warnings.isJunctionInvalid||warnings.isLaneOffsetInvalid||warnings.isLaneMarkWidthInvalid||warnings.isLaneWidthInvalid||numel(warnings.variableLaneWidths)~=0||numel(warnings.variableLaneMarkerStyles)~=0 ...
+                        ||numel(warnings.invalidLaneMarkerTypes)~=0
                     warningMessage=[getString(message('driving:scenario:OpenDRIVEWarningHeader')),newline];
                     if(numel(warnings.variableLaneWidths)~=0)
                         wVarLaneWidths=getString(message('driving:scenario:VariableLaneWidths'));
@@ -1875,7 +1876,7 @@ drawnow
                     end
                     if(numel(warnings.invalidLaneMarkerTypes)~=0)
                         wInvalidLaneMarkerTypes=getString(message('driving:scenario:InvalidLaneMarkerTypes',...
-                        strjoin(unique(warnings.invalidLaneMarkerTypes),', ')));
+                            strjoin(unique(warnings.invalidLaneMarkerTypes),', ')));
                         warningMessage=[warningMessage,newline,bulletStr,wInvalidLaneMarkerTypes];
                     end
                     if warnings.isElevationInvalid
@@ -2166,9 +2167,9 @@ drawnow
         function f=createDefaultComponents(this)
             displayBarrierEditPoints=true;
             canvas=driving.internal.scenarioApp.ScenarioCanvas(this,...
-            'ShowWaypoints',true,...
-            'ShowRoadEditPoints',true,...
-            'ShowBarrierEditPoints',displayBarrierEditPoints);
+                'ShowWaypoints',true,...
+                'ShowRoadEditPoints',true,...
+                'ShowBarrierEditPoints',displayBarrierEditPoints);
             this.ScenarioView=canvas;
             if isfield(this.ViewCache,'ScenarioView')&&~isempty(this.ViewCache.ScenarioView)
                 cache=this.ViewCache.ScenarioView;
@@ -2200,17 +2201,17 @@ drawnow
             allProps=[this.RoadProperties,this.ActorProperties,getBarrierPropertiesComponent(this,true)];
 
             this.PropertyListener=event.listener(allProps,...
-            'PropertyChanged',@this.onPropertyChanged);
+                'PropertyChanged',@this.onPropertyChanged);
             this.ScenarioCanvasModeChangedListener=event.listener(canvas,...
-            'ModeChanged',@this.onScenarioCanvasModeChanged);
+                'ModeChanged',@this.onScenarioCanvasModeChanged);
             this.ScenarioCanvasSelectionChangedListener=event.listener(canvas,...
-            'SelectionChanged',@this.onScenarioCanvasSelectionChanged);
+                'SelectionChanged',@this.onScenarioCanvasSelectionChanged);
             this.WaypointsChangedListener=event.listener(canvas,...
-            'PropertyChanged',@this.onCanvasPropertyChanged);
+                'PropertyChanged',@this.onCanvasPropertyChanged);
 
             f=[this.ScenarioView,this.EgoCentricView,allProps...
-            ,getSensorPropertiesComponent(this,true),getBirdsEyePlotComponent(this,true)...
-            ,getSensorCanvasComponent(this,true)];
+                ,getSensorPropertiesComponent(this,true),getBirdsEyePlotComponent(this,true)...
+                ,getSensorCanvasComponent(this,true)];
 
             if this.Scenario.IsOpenDRIVERoad
                 this.Toolstrip.hAddRoad.Enabled=false;
@@ -2223,7 +2224,7 @@ drawnow
             canvas=this.ScenarioView;
             axes=canvas.Axes;
             set(axes,'XLimMode','auto','YLimMode','auto','ZLimMode','auto');
-drawnow
+            drawnow
 
             captureAxesLimits(canvas);
 
@@ -2262,8 +2263,8 @@ drawnow
                 sims=this.AllSimulators;
                 for indx=1:numel(sims)
                     data.Simulators(indx)=struct(...
-                    'class',class(sims(indx)),...
-                    'props',serialize(sims(indx)));
+                        'class',class(sims(indx)),...
+                        'props',serialize(sims(indx)));
                 end
                 data.Simulator=class(this.Simulator);
 
@@ -2326,7 +2327,7 @@ drawnow
                     yes=getString(message('Spcuilib:application:Yes'));
                     no=getString(message('Spcuilib:application:No'));
                     answer=uiconfirm(this,getString(message('driving:scenarioApp:LoadClassesWithExistingActors')),...
-                    getName(this),{yes,no},yes);
+                        getName(this),{yes,no},yes);
                     if isempty(answer)||strcmp(answer,no)
                         return;
                     end
@@ -2368,8 +2369,8 @@ drawnow
 
             if any(strcmp(type,{'session','PrebuiltScenario','scenario'}))
                 if~isfield(newData,'RoadSpecifications')||...
-                    ~isfield(newData,'ActorSpecifications')||...
-                    ~isfield(newData,'EgoCarId')
+                        ~isfield(newData,'ActorSpecifications')||...
+                        ~isfield(newData,'EgoCarId')
                     error(message('driving:scenarioApp:InvalidScenarioFile'));
                 end
 
@@ -2442,7 +2443,7 @@ drawnow
 
                         isVehicle=classSpecs.getProperty(actorSpecs(indx).ClassID,'isVehicle');
                         dims=struct('Length',actorSpecs(indx).Length,'Width',actorSpecs(indx).Width,...
-                        'Height',actorSpecs(indx).Height,'RearOverhang',1);
+                            'Height',actorSpecs(indx).Height,'RearOverhang',1);
                         if isempty(driving.internal.scenarioApp.ClassEditor.getMeshExpression(aMesh,isVehicle,dims))
 
                             actorSpecs(indx).Mesh=classSpecs.getProperty(actorSpecs(indx).ClassID,'Mesh');
@@ -2709,7 +2710,7 @@ drawnow
 
                 if~isempty(scenario.ParkingLots)
                     fig=helpdlg(getString(message('driving:scenarioApp:ParkingLotsNotSupportedText')),...
-                    getString(message('driving:scenarioApp:ParkingLotsNotSupportedTitle')));
+                        getString(message('driving:scenarioApp:ParkingLotsNotSupportedTitle')));
                     uiwait(fig);
                 end
 
@@ -2720,14 +2721,14 @@ drawnow
                 this.AxesOrientation=scenario.AxesOrientation;
                 this.ViewCache.ScenarioView.VerticalAxis=scenario.VerticalAxis;
                 this.RoadSpecifications=[driving.internal.scenarioApp.road.Arbitrary.fromScenario(scenario)...
-                ,driving.internal.scenarioApp.road.RoadGroupArbitrary.fromScenario(scenario)];
+                    ,driving.internal.scenarioApp.road.RoadGroupArbitrary.fromScenario(scenario)];
                 this.ActorSpecifications=driving.internal.scenarioApp.ActorSpecification.fromScenario(scenario,this.ClassSpecifications);
                 this.BarrierSpecifications=driving.internal.scenarioApp.BarrierSpecification.fromScenario(scenario,this.ClassSpecifications.Map);
                 this.Scenario=generateNewScenarioFromSpecifications(this);
 
                 if~isempty(this.RoadSpecifications)&&isa(this.RoadSpecifications(1),...
-                    'driving.internal.scenarioApp.road.Arbitrary')...
-                    &&this.RoadSpecifications(1).IsOpenDRIVE
+                        'driving.internal.scenarioApp.road.Arbitrary')...
+                        &&this.RoadSpecifications(1).IsOpenDRIVE
                     this.Scenario.IsOpenDRIVERoad=true;
                     this.Scenario.ShowRoadBorders=false;
                 end
@@ -2851,7 +2852,7 @@ drawnow
 
 
             this.RoadSpecifications=[Arbitrary.fromScenario(importer.Scenario),...
-            RoadGroupArbitrary.fromScenario(importer.Scenario)];
+                RoadGroupArbitrary.fromScenario(importer.Scenario)];
             this.Scenario=generateNewScenarioFromSpecifications(this);
             this.Scenario.GeographicReference=importer.getGeographicReference();
 
@@ -2875,31 +2876,31 @@ end
 
 function cleanUpWarning(wstate,wstr,wid)
 
-    warning(wstate);
-    lastwarn(wstr,wid);
+warning(wstate);
+lastwarn(wstr,wid);
 
 end
 
 function setLocation(comp,md,toolGroup,column,notFirstCall)
 
-    name=getName(comp);
+name=getName(comp);
 
-    if notFirstCall
-        toolgroupClient=javaMethodEDT('getClient',md,name,toolGroup);
-        tl=javaMethodEDT('getClientLocation',md,toolgroupClient);
-    else
+if notFirstCall
+    toolgroupClient=javaMethodEDT('getClient',md,name,toolGroup);
+    tl=javaMethodEDT('getClientLocation',md,toolgroupClient);
+else
 
-        tl=md.getClientLocation(md.getClient(name,toolGroup));
-    end
+    tl=md.getClientLocation(md.getClient(name,toolGroup));
+end
 
 
-    if tl.getTile~=column.getTile
-        md.setClientLocation(name,toolGroup,column);
-    end
+if tl.getTile~=column.getTile
+    md.setClientLocation(name,toolGroup,column);
+end
 end
 
 function b=isSensor(input)
-    b=isa(input,'driving.internal.AbstractDetectionGenerator')||...
+b=isa(input,'driving.internal.AbstractDetectionGenerator')||...
     isa(input,'lidarsim.internal.AbstractLidarSensor')||...
     isa(input,'insSensor')||...
     isa(input,'drivingRadarDataGenerator')||...

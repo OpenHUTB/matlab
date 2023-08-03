@@ -21,7 +21,7 @@ end
 throwLastWarning(w, true);
 w.RethrowWarning = false;
 
-% Open the Application
+% 打开应用程序（弹出界面）
 open(h);
 
 if nargout
