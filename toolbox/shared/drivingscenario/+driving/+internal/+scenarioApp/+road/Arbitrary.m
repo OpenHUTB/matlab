@@ -1,10 +1,6 @@
 classdef Arbitrary<driving.internal.scenarioApp.road.Specification
-
-
-
-
+    % 任意的道路继承自路的规范
     properties
-
         Centers;
         Width=driving.internal.scenarioApp.road.Specification.getDefaultWidth;
         BankAngle=0;
@@ -20,6 +16,7 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
     properties(Transient,Hidden)
         pHeading=[];
     end
+
 
     methods
 
@@ -45,13 +42,16 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             end
         end
 
+
         function roadCenters=plotEditPoints(this,hAxes,varargin)
             roadCenters=driving.scenario.internal.plotRoadCenters(this.Centers,hAxes,varargin{:});
         end
 
+
         function c=getPropertySheetConstructor(~)
             c='driving.internal.scenarioApp.road.ArbitraryPropertySheet';
         end
+
 
         function set.Centers(this,centers)
 
@@ -62,20 +62,22 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             clearScenario(this);
         end
 
+
         function set.Width(this,width)
             oldWidth=this.Width;
             this.Width=width;
-
 
             if numel(oldWidth)~=numel(width)||any(oldWidth~=width)
                 clearScenario(this);
             end
         end
 
+
         function set.BankAngle(this,angle)
             this.BankAngle=angle;
             clearScenario(this);
         end
+
 
         function set.Lanes(this,lanes)
             oldLanes=this.Lanes;
@@ -85,15 +87,18 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             end
         end
 
+
         function set.Heading(this,headings)
             this.Heading=headings;
             clearScenario(this);
         end
 
+
         function set.pHeading(this,pHeadings)
             this.pHeading=pHeadings;
             clearScenario(this);
         end
+
 
         function applyToScenario(this,scenario)
 
@@ -107,7 +112,6 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             if~isempty(this.Lanes)
                 road(scenario,this.Centers,this.BankAngle,'Lanes',this.Lanes,headingAnglePvPairs{:},openDrivePvPairs{:});
 
-
                 this.Width=scenario.RoadSegments(end).RoadWidth;
                 if isa(this.Lanes,'compositeLaneSpec')
                     this.Lanes=scenario.RoadSegments(end).LaneSpecification;
@@ -115,9 +119,6 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             else
                 road(scenario,this.Centers,this.Width,this.BankAngle,headingAnglePvPairs{:},openDrivePvPairs{:});
             end
-
-
-
 
             pHeadingAngle=rad2deg(scenario.RoadSegments(end).course);
             if~isequal(this.Centers,scenario.RoadSegments(end).RoadCenters)
@@ -134,19 +135,11 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
 
         function str=generateMatlabCode(this,scenarioName,roadID)
 
-
-
-
             str="roadCenters = ";
             centers=this.Centers;
             if isequal(centers(1,:),centers(end,:))
                 precision={};
             else
-
-
-
-
-
                 first=centers(1,:);
                 last=centers(end,:);
                 for precision=14:30
@@ -159,9 +152,6 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             str=str+strrep(mat2str(centers,precision{:}),';',[';',newline,repmat(' ',1,strlength(str)+1)])+';';
 
             trailingArgs="";
-
-
-
 
             roadWidth=getFirstSegmentWidth(this);
             width=roadWidth;
@@ -179,17 +169,13 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
                 trailingArgs=trailingArgs+', bankAngle';
             end
 
-
             if~isempty(heading)&&any(~isnan(heading))
                 str=str+newline+'headings = '+mat2str(heading)+';';
 
                 trailingArgs=trailingArgs+', ''Heading'', headings';
             end
 
-
             if~isempty(this.Lanes)
-
-
                 str=str+newline+driving.internal.scenarioApp.road.lanespecToString(this.Lanes);
                 if isa(this.Lanes,'lanespec')
 
@@ -219,12 +205,12 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             addPoints=this.Centers;
         end
 
+
         function pvPairs=getPvPairsForAddPoints(this,addPoints)
             pvPairs={'Centers',addPoints};
             bankAngle=this.BankAngle;
             headingAngle=this.Heading;
             pHeadingAngle=this.pHeading;
-
 
             if numel(bankAngle)>1
                 numOfNewRoadCenters=size(addPoints,1)-size(this.Centers,1);
@@ -250,6 +236,7 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             end
         end
 
+
         function pvPairs=getPvPairsForDrag(this,offset)
             if numel(offset)==2
                 offset(3)=[];
@@ -257,10 +244,10 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             pvPairs={'Centers',this.Centers+offset};
         end
 
+
         function pvPairs=getPvPairsForDoubleClick(this,location)
             [centers,pointIndex]=this.insertIntoClothoid(this.Centers,location);
             roadWidth=getFirstSegmentWidth(this);
-
 
             pvPairs={'Centers',centers};
             bankAngle=this.BankAngle;
@@ -269,14 +256,12 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
                 pvPairs=[pvPairs,{'BankAngle',bankAngle}];
             end
 
-
             if isempty(this.Heading)
                 headingAngle=nan(size(centers,1),1);
             else
                 headingAngle=[this.Heading(1:pointIndex);nan;this.Heading(pointIndex+1:end)];
             end
             pvPairs=[pvPairs,{'Heading',headingAngle}];
-
 
             if isempty(this.pHeading)
                 pHeadingAngle=nan(size(centers,1),1);
@@ -296,10 +281,10 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             end
         end
 
+
         function pvPairs=getPvPairsForPaste(this,location)
             if nargin>1
                 centers=this.Centers;
-
 
                 if all(centers(1,:)==centers(end,:))
                     midpoint=mean(centers(1:end-1,:),1);
@@ -314,6 +299,7 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             end
         end
 
+
         function schema=getRoadContextMenuSchema(this,location)
             schema=struct(...
             'tag','AddRoadCenter',...
@@ -322,17 +308,13 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             'enable',canAddRoadCenter(this,location));
         end
 
+
         function schema=getEditPointContextMenuSchema(this,id)
             centers=this.Centers;
-
-
-
 
             if all(centers(1,:)==centers(end,:))
                 centers(end,:)=[];
             end
-
-
 
             centers(all(diff(centers)==[0,0,0],2),:)=[];
 
@@ -344,18 +326,19 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
 
         end
 
+
         function id=getEditPointId(this,point,varargin)
             id=this.getMatchingPointIndex(point,this.Centers,varargin{:});
         end
+
 
         function pvPairs=getPvPairsCacheForEditPointDrag(this,~)
             pvPairs={'Centers',this.Centers};
         end
 
+
         function pvPairs=getPvPairsForEditPointDrag(this,id,point,varargin)
             centers=this.Centers;
-
-
 
             point(3)=centers(id(1),3);
 
@@ -366,8 +349,6 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
                 isLooping=this.isWaypointLooping(centers,varargin{:});
                 if isLooping
                     if numCenters==2
-
-
                         pvPairs={'Centers',centers};
                         return;
                     elseif id==1
@@ -381,10 +362,12 @@ classdef Arbitrary<driving.internal.scenarioApp.road.Specification
             pvPairs={'Centers',centers};
         end
 
+
         function rWidth=getFirstSegmentWidth(this)
             rWidth=this.Width(1);
         end
     end
+    
 
     methods(Hidden)
         function b=canAddRoadCenter(this,location)

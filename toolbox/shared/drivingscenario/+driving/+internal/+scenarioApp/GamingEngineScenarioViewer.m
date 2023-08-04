@@ -28,9 +28,10 @@ classdef GamingEngineScenarioViewer<handle
     end
 
     methods
+        % 构建游戏引擎场景查看器
         function this = GamingEngineScenarioViewer(hApp, varargin)
             this.Application = hApp;
-            % 构建游戏场景动画师
+            % 构建游戏引擎场景动画师
             this.Animator = driving.scenario.internal.GamingEngineScenarioAnimator(varargin{:});
             this.SimulatorStateChanged=addStateChangedListener(hApp.Simulator,@this.onSimulatorStateChanged);
             this.SimulatorSampleChanged=addSampleChangedListener(hApp.Simulator,@this.onSimulatorSampleChanged);
@@ -39,6 +40,7 @@ classdef GamingEngineScenarioViewer<handle
             this.NumRoadsChanging=event.listener(hApp,'NumRoadsChanging',@this.onNumRoadsChanging);
             this.NumActorsChanging=event.listener(hApp,'NumActorsChanging',@this.onNumActorsChanging);
             this.NewScenario=event.listener(hApp,'NewScenario',@this.newScenario);
+            % 真正执行构建
             setup(this);
         end
 

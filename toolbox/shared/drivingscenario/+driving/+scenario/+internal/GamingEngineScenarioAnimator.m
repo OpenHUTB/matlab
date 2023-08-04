@@ -230,8 +230,7 @@ classdef GamingEngineScenarioAnimator < handle
         end
         
         function varargout = setup(this)
-            % shut down other windows
-            
+            % 关闭其他窗口
             instances = matlabshared.application.InstanceCache.get(this.InstanceTag);
             instances(instances == this) = [];
             for indx = 1:numel(instances)
@@ -240,14 +239,13 @@ classdef GamingEngineScenarioAnimator < handle
             
             this.setActorClassIDs();
             
-            % Set the runtime trajectories for actors - need this only for
-            % initial position
+            % 设置参与者运行时的轨迹（仅仅初始化位置的时候需要）
             this.updateActorTrajectories();
             
-            % Add the road(s) & lanes
+            % 添加路和车道线
             w = this.addRoadsAndLanes();
             
-            % Add the ego and other actors
+            % 添加智能车和其他参与者
             w = [w; this.addActors()];
             this.setupCommandReaderAndWriter();  % 打开虚幻引擎黑色界面（无内容）
 

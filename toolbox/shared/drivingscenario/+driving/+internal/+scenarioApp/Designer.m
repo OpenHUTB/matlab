@@ -105,6 +105,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+        % 获得当前设计器的所有传感器
         function sensor=getCurrentSensor(this)
             index=getCurrentSensorIndex(this);
             sensors=this.SensorSpecifications;
@@ -134,8 +135,10 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
         function tag=getTag(~)
             tag='DrivingScenarioDesigner';
+
         end
 
+        % 生成Matlab代码（点击 Export -> MATLAB Function）
         function str=generateMatlabCode(this,functionName)
             if nargin<2
                 functionName=this.CurrentFileName;
@@ -152,12 +155,15 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 this,functionName,this.EgoCarId,getStopTime(this.Simulator));
         end
 
+
         function generateOpenScenarioFile(this,warning)
             if~isempty(warning)
                 exportOpenScenarioFileWarning(this,warning+"");
             end
         end
 
+
+        % 生成 Simulink 模型（Export -> Simulink）
         function modelName=generateSimulinkModel(this,mode)
             modelName='';
             cancel=getString(message('Spcuilib:application:Cancel'));
@@ -205,14 +211,13 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function[modelName,warnings]=generate3dSimModel(this)
             freezeUserInterface(this);
             modelName='';
             warnings={};
             cancel=getString(message('Spcuilib:application:Cancel'));
             saveAs=getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogSaveAs'));
-
-
 
             scene=this.Sim3dScene;
             if isempty(scene)
@@ -241,7 +246,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     keep=getString(message('driving:scenarioApp:Export3dSimKeepInvalid'));
                 end
 
-
                 selection=uiconfirm(this,getString(message('driving:scenarioApp:Export3dSimModelInvalidAssetTypesText')),...
                     getString(message('driving:scenarioApp:Export3dSimModelInvalidAssetTypesTitle')),...
                     {keep,removeAndSave,cancel},cancel);
@@ -255,28 +259,18 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                         end
                     case removeAndSave
 
-
                         badIndex=find(~cellfun(@(v)any(strcmp(v,validTypes)),assetTypes));
-
 
                         edit=driving.internal.scenarioApp.undoredo.DeleteActor(this,badIndex);
 
-
                         execute(edit);
-
-
 
                         success=this.saveFileAs();
                         if success
-
-
                             addEditNoApply(this,edit);
                         else
-
                             undo(edit);
                             if~dirty
-
-
                                 removeDirty(this);
                             end
                         end
@@ -284,8 +278,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                         return;
                 end
             elseif isempty(sessionName)
-
-
                 selection=uiconfirm(this,getString(message('driving:scenarioApp:ExportSimulinkModelUnsavedSessionText')),...
                     getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogTitle')),...
                     {saveAs,cancel},cancel);
@@ -296,8 +288,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                         return;
                 end
             elseif dirty
-
-
                 save=getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogSave'));
                 selection=uiconfirm(this,getString(message('driving:scenarioApp:ExportSimulinkModelDirtySessionText')),...
                     getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogTitle')),...
@@ -324,6 +314,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function actorAdder=getActorAdder(this)
             actorAdder=this.ActorAdder;
             if isempty(actorAdder)
@@ -331,6 +322,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 this.ActorAdder=actorAdder;
             end
         end
+
 
         function actorAligner=getActorAligner(this)
             actorAligner=this.ActorAligner;
@@ -349,6 +341,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function roadAdder=getRoadAdder(this)
             roadAdder=this.RoadAdder;
             if isempty(roadAdder)
@@ -356,6 +349,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 this.RoadAdder=roadAdder;
             end
         end
+
 
         function sensorAdder=getSensorAdder(this)
             sensorAdder=this.SensorAdder;
@@ -365,6 +359,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function alertAndDelete(this,varargin)
             if isPlaying(this.Simulator)
                 vetoClose(this.ToolGroup);
@@ -373,19 +368,21 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function close(this)
             stop(this.Simulator);
             close@driving.internal.scenarioApp.Display(this);
         end
+
 
         function initializeClose(this)
             stop(this.Simulator);
             initializeClose@driving.internal.scenarioApp.Display(this);
         end
 
+
         function new(this,tag,force)
             if nargin>2&&force||allowNew(this)
-
                 stop(this.Simulator);
                 scenarioCanvas=this.ScenarioView;
                 exitInteractionMode(scenarioCanvas);
@@ -415,7 +412,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     update(sensorCanvas);
                 end
 
-
                 hScenarioView=this.ScenarioView;
                 if hScenarioView.isInteracting
                     hScenarioView.exitInteraction;
@@ -436,14 +432,16 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
-        function varargout=addRoad(this,varargin)
-            roadSpec=addRoad@driving.internal.scenarioApp.ScenarioBuilder(this,varargin{:});
 
+        % 添加道路
+        function varargout=addRoad(this, varargin)
+            roadSpec=addRoad@driving.internal.scenarioApp.ScenarioBuilder(this, varargin{:});
             updateForNewRoad(this,roadSpec);
             if nargout
                 varargout={roadSpec};
             end
         end
+
 
         function varargout=deleteRoad(this,index)
             exitInteractionMode(this.ScenarioView);
@@ -465,8 +463,9 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
-        function varargout=deleteBarrier(this,index)
 
+        % 删除障碍物
+        function varargout=deleteBarrier(this,index)
             barrierProps=this.getBarrierPropertiesComponent();
             nSpecs=numel(this.BarrierSpecifications);
             canvas=this.ScenarioView;
@@ -488,6 +487,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
+        % 删除参与者
         function varargout=deleteActor(this,index)
 
             actorProps=this.ActorProperties;
@@ -635,12 +636,12 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             pos=matlabshared.application.getInitialToolPosition([1280,768],0.7,true);
         end
 
-        % 获得虚幻引擎查看器
+        % 获得虚幻引擎查看器（点击 3D Display -> View Simulation in 3D display 时调用）
         function v=getGamingEngineViewer(this, force, varargin)
             v=this.GamingEngineViewer;
             if isempty(v) && nargin>1 && force
                 % 构建虚幻引擎查看器
-                v=driving.internal.scenarioApp.GamingEngineScenarioViewer(this,varargin{:});
+                v = driving.internal.scenarioApp.GamingEngineScenarioViewer(this,varargin{:});
                 % 监听虚幻引擎窗口关闭的事件
                 this.GamingEngineWindowClosedListener = event.listener(v,...
                     'WindowClosed', @this.onGamingEngineWindowClosed);
@@ -1062,6 +1063,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
+        % 点击"导入"，包括各种格式文件
         function success=importItem(this,tag)
             success=false;
 
@@ -1076,34 +1079,28 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
             switch tag
                 case 'OpenDRIVEReader'
-
                     pos=matlabshared.application.getCenterPosition([650,250],parentPos);
                     dialog=driving.internal.openDRIVEImport.openDRIVE.DialogController(pos,this.ShowImportErrors);
                 case 'HEREHDLiveMap'
-
                     pos=matlabshared.application.getCenterPosition([460,600],parentPos);
                     importer=driving.internal.heremaps.import.RoadNetworkImporter(...
                         this.HEREHDLiveMapImportArgs{:});
                     dialog=driving.internal.heremaps.import.DialogController(...
                         importer,pos);
                 case 'OpenStreetMap'
-
                     pos=matlabshared.application.getCenterPosition([460,600],parentPos);
                     importer=driving.internal.scenarioImport.osm.RoadNetworkImporter(...
                         this.OpenStreetMapImportArgs{:});
                     dialog=driving.internal.scenarioImport.osm.DialogController(...
                         importer,pos);
                 case 'ZenrinJapanMap'
-
                     if driving.internal.scenarioImport.isZenrinJapanMapInstalled()
-
                         pos=matlabshared.application.getCenterPosition([460,600],parentPos);
                         importer=driving.internal.zenrinjapanmap.import.RoadNetworkImporter(...
                             this.ZenrinJapanMapImportArgs{:});
                         dialog=driving.internal.zenrinjapanmap.import.DialogController(...
                             importer,pos);
                     else
-
                         install=getString(message('driving:scenarioImport:ZenrinJapanMapAppInstallText'));
                         cancel=getString(message('driving:scenarioImport:ZenrinJapanMapAppCancelText'));
                         selected=uiconfirm(this,...
@@ -1130,6 +1127,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             success=true;
         end
 
+
         function spec=getSaveFileSpecification(~,tag)
             switch tag
                 case 'OpenDRIVEReader'
@@ -1138,6 +1136,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     spec={'*.mat',getString(message('driving:scenarioApp:FileTypeDescription'))};
             end
         end
+
 
         function title=getSaveDialogTitle(~,tag)
             switch tag
@@ -1151,6 +1150,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     title=getString(message('driving:scenarioApp:SaveDialogTitleClasses'));
             end
         end
+        
 
         function title=getOpenDialogTitle(~,tag)
             switch tag
@@ -1166,6 +1166,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     title=getString(message('driving:scenarioApp:OpenDialogTitleOpenDRIVE'));
             end
         end
+        
 
         function b=showRecentFiles(~)
             b=true;
