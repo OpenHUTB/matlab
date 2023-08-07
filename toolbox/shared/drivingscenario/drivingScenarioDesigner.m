@@ -39,8 +39,6 @@ function varargout = drivingScenarioDesigner(varargin)
 %   See also drivingScenario, radarDetectionGenerator,
 %   visionDetectionGenerator
 
-%   Copyright 2021 The MathWorks, Inc.
-
 % 确认MATLAB JVM™ 的Java功能是否可用
 % 尝试显示 Java Frame 之前 AWT GUI 组件是否可用
 if ~usejava('jvm') || ~usejava('awt')

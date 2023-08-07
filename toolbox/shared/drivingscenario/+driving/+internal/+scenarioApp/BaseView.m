@@ -7,20 +7,23 @@ classdef BaseView<matlabshared.application.Component
         EnablePlotWaypointsUpdate=false;
     end
 
+
     properties(SetAccess=protected,Hidden)
-Axes
-RoadPatches
-BarrierPatches
-RoadBoundaries
-LaneTypesPatch
-LaneMarkingsPatch
-ActorPatches
-ActorLines
+        Axes
+        RoadPatches
+        BarrierPatches
+        RoadBoundaries
+        LaneTypesPatch
+        LaneMarkingsPatch
+        ActorPatches
+        ActorLines
     end
 
+
     properties(Hidden,Dependent)
-Centerline
+        Centerline
     end
+
 
     properties(Constant,Hidden)
         RoadTileFaceColor=[.8,.8,.8]
@@ -29,10 +32,13 @@ Centerline
         RoadCenterlineColor=[1,1,1]
     end
 
+
     methods
+
         function this=BaseView(varargin)
             this@matlabshared.application.Component(varargin{:});
         end
+
 
         function centerline=get.Centerline(this)
             if this.ShowCenterline
@@ -42,25 +48,30 @@ Centerline
             end
         end
 
+
         function set.ShowWaypoints(this,showWaypoints)
             this.ShowWaypoints=showWaypoints;
             update(this);
         end
+
 
         function set.ShowRoadEditPoints(this,showRoadEditPoints)
             this.ShowRoadEditPoints=showRoadEditPoints;
             update(this);
         end
 
+
         function set.ShowBarrierEditPoints(this,showBarrierEditPoints)
             this.ShowBarrierEditPoints=showBarrierEditPoints;
             update(this);
         end
 
+
         function set.ShowCenterline(this,showCenterline)
             this.ShowCenterline=showCenterline;
             update(this);
         end
+
 
         function updateActor(this,actorId,full)
             if nargin<3
@@ -89,7 +100,6 @@ Centerline
             end
 
             if this.ShowWaypoints&&(~isempty(actorId)||this.EnablePlotWaypointsUpdate||full)&&isStopped(app.Simulator)
-
                 actorLines=this.ActorLines;
                 newActorLines={};
                 if(full&&isempty(actorId))||this.EnablePlotWaypointsUpdate
@@ -128,6 +138,7 @@ Centerline
 
         end
 
+
         function update(this)
             hAxes=this.Axes;
             if isempty(hAxes)
@@ -156,7 +167,6 @@ Centerline
                 this.ActorLines=[];
             end
 
-
             for i=1:numel(barriers)
                 barrierSegments=[barriers(i).BarrierSegments];
                 this.BarrierPatches(i)=driving.scenario.internal.plotBarriers(barrierSegments,hAxes,opts);
@@ -171,23 +181,28 @@ Centerline
         end
     end
 
+
     methods(Access=protected)
+
         function hFig=createFigure(this,varargin)
             hFig=createFigure@matlabshared.application.Component(this,varargin{:});
 
             this.Axes=axes('Parent',hFig,...
-            'Interactions',[],...
-            'Tag',[getTag(this),'Axes']);
+                'Interactions',[],...
+                'Tag',[getTag(this),'Axes']);
         end
+
+
         function onNewActorObjects(~)
-
         end
-        function opts=getPlotActorsOptions(this)
 
+
+        function opts=getPlotActorsOptions(this)
             opts=struct('FullPaint',false,'AxesOrientation',this.Application.AxesOrientation,'EgoActor',[]);
         end
-        function deleteScene(this)
 
+
+        function deleteScene(this)
             delete(this.RoadPatches);
             delete(this.BarrierPatches);
             delete(this.LaneTypesPatch);
@@ -201,6 +216,7 @@ Centerline
             this.LaneMarkingsPatch=[];
             this.ActorLines=[];
         end
+        
 
         function deleteActors(this)
             delete(this.ActorPatches);

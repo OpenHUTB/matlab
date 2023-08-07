@@ -1,72 +1,69 @@
 classdef BarrierProperties<driving.internal.scenarioApp.Properties
-
-
-
-
+    % 障碍物属性
     properties
-        ShowBarrierProperties=false;
+        ShowBarrierProperties = false;
         ShowBarrierCenters=false
         ShowRCSProperties=false;
         ShowPathProperties=false;
     end
+
+
     properties(Hidden)
+        hTable
 
-hTable
-
-hName
-hClassID
-hBankAngle
-hSegmentLength
-hRoadEdgeOffset
-hWidth
-hHeight
-hSegmentGap
-hColorPatch
-hBarrierType
+        hName
+        hClassID
+        hBankAngle
+        hSegmentLength
+        hRoadEdgeOffset
+        hWidth
+        hHeight
+        hSegmentGap
+        hColorPatch
+        hBarrierType
         hImportRCS;
         hRCSElevationAngles;
         hRCSAzimuthAngles;
         hRCSPattern;
 
+        hShowBarrierProperties
+        hShowRCSProperties
+        hShowBarrierCenters
+        hAddBarrierCenters
 
-hShowBarrierProperties
-hShowRCSProperties
-hShowBarrierCenters
-hAddBarrierCenters
+        hBarrierPanel
+        hRCSPanel
+        hRoadOffsetPanel
 
-
-hBarrierPanel
-hRCSPanel
-hRoadOffsetPanel
-
-AllIDsCache
-BarrierPropertiesLayout
-RCSPropertiesLayout
-RoadOffsetPropertyLayout
+        AllIDsCache
+        BarrierPropertiesLayout
+        RCSPropertiesLayout
+        RoadOffsetPropertyLayout
         UpdateTableColumnWidthsOnOpen=false;
     end
+
 
     methods
 
         function this=BarrierProperties(varargin)
-
             this@driving.internal.scenarioApp.Properties(varargin{:});
-
             update(this);
         end
+
 
         function name=getName(~)
             name=getString(message('driving:scenarioApp:BarrierPropertiesTitle'));
         end
 
+
         function tag=getTag(~)
             tag='BarrierProperties';
         end
 
+
         function update(this)
             clearAllMessages(this);
             designer=this.Application;
-
 
             if isempty(designer.ScenarioView)
                 return;
@@ -78,19 +75,18 @@ RoadOffsetPropertyLayout
             if strcmp(designer.ScenarioView.InteractionMode,'addBarrier')
                 barrier=this.Application.ScenarioView.CurrentBarrier;
                 set(this.hSpecificationIndex,...
-                'Enable','off',...
-                'String',getString(message('driving:scenarioApp:AddBarrierSpecificationIndex')),'Value',1);
+                    'Enable','off',...
+                    'String',getString(message('driving:scenarioApp:AddBarrierSpecificationIndex')),'Value',1);
                 isAdd=true;
             elseif isempty(allBarrierSpecs)
                 barrier=[];
                 set(this.hSpecificationIndex,...
-                'Enable','off',...
-                'String',{''},...
-                'Value',1);
+                    'Enable','off',...
+                    'String',{''},...
+                    'Value',1);
                 this.hName.String='';
                 deleteEnab='off';
             else
-
                 nBarriers=numel(allBarrierSpecs);
                 allNames=cell(nBarriers,1);
                 for indx=1:numel(allBarrierSpecs)
@@ -103,8 +99,6 @@ RoadOffsetPropertyLayout
                 end
                 index=this.SpecificationIndex;
 
-
-
                 if isempty(index)
                     index=1;
                 elseif index>nBarriers
@@ -113,10 +107,9 @@ RoadOffsetPropertyLayout
 
                 end
                 set(this.hSpecificationIndex,...
-                'String',allNames,...
-                'Value',index,...
-                'Enable',matlabshared.application.logicalToOnOff(~this.InteractiveMode));
-
+                    'String',allNames,...
+                    'Value',index,...
+                    'Enable',matlabshared.application.logicalToOnOff(~this.InteractiveMode));
                 barrier=allBarrierSpecs(index);
             end
 
@@ -124,22 +117,22 @@ RoadOffsetPropertyLayout
 
             if isempty(barrier)
                 set(this.hTable,'Data',[],...
-                'RowName','numbered');
+                    'RowName','numbered');
                 set(this.hRoadEdgeOffset,...
-                'String','',...
-                'Enable','off');
+                    'String','',...
+                    'Enable','off');
                 set(this.hBankAngle,...
-                'String','',...
-                'Enable','off');
+                    'String','',...
+                    'Enable','off');
                 this.hAddBarrierCenters.Enable='off';
                 set([this.hSpecificationIndex,this.hClassID,this.hBarrierType],...
-                'String',{' '},...
-                'Value',1,...
-                'Enable','off');
+                    'String',{' '},...
+                    'Value',1,...
+                    'Enable','off');
                 set([this.hName,this.hSegmentLength,this.hWidth,this.hSegmentGap...
-                ,this.hHeight,this.hRCSElevationAngles,this.hRCSAzimuthAngles],...
-                'String','',...
-                'Enable','off');
+                    ,this.hHeight,this.hRCSElevationAngles,this.hRCSAzimuthAngles],...
+                    'String','',...
+                    'Enable','off');
                 set(this.hColorPatch,'BackgroundColor',get(0,'DefaultUIControlBackgroundColor'));
                 set([this.hImportRCS],'Enable','off');
                 set(this.hRCSPattern,'Enable','off','RowName',[],'ColumnName',[],'Data',[]);
@@ -188,16 +181,14 @@ RoadOffsetPropertyLayout
                 end
             end
             set(this.hAddBarrierCenters,...
-            'CData',getIcon(app,icon),...
-            'Enable',buttonEnab,...
-            'TooltipString',tooltip);
-
-
+                'CData',getIcon(app,icon),...
+                'Enable',buttonEnab,...
+                'TooltipString',tooltip);
 
             widthEnable=enable;
             set(this.hWidth,...
-            'String',barrier.Width,...
-            'Enable',widthEnable);
+                'String',barrier.Width,...
+                'Enable',widthEnable);
 
             if~isempty(barrier.Road)
 
@@ -205,16 +196,16 @@ RoadOffsetPropertyLayout
                     set(this.hRoadEdgeOffset,'String','','Enable',enable);
                 else
                     set(this.hRoadEdgeOffset,...
-                    'String',mat2str(barrier.RoadEdgeOffset),...
-                    'Enable',enable);
+                        'String',mat2str(barrier.RoadEdgeOffset),...
+                        'Enable',enable);
                 end
                 roadID=barrier.Road.RoadID;
                 roadName=this.Application.RoadSpecifications(roadID).Name;
                 set(this.hRoadEdgeOffset,'TooltipString',...
-                getString(message('driving:scenarioApp:RoadEdgeOffsetDescription',barrier.RoadEdge,roadName)));
+                    getString(message('driving:scenarioApp:RoadEdgeOffsetDescription',barrier.RoadEdge,roadName)));
                 set(this.hBankAngle,...
-                'String',mat2str(barrier.BankAngle),...
-                'Enable','off');
+                    'String',mat2str(barrier.BankAngle),...
+                    'Enable','off');
                 this.hTable.ColumnName{4}=getString(message('driving:scenarioApp:OffsetColumnName'));
                 this.hTable.ColumnWidth={65};
                 this.hTable.ColumnEditable=[true,true,true,true];
@@ -227,19 +218,18 @@ RoadOffsetPropertyLayout
                 end
             else
                 set(this.hRoadEdgeOffset,...
-                'String','',...
-                'Enable','off');
+                    'String','',...
+                    'Enable','off');
                 set(this.hBankAngle,...
-                'String',mat2str(barrier.BankAngle),...
-                'Enable',enable);
+                    'String',mat2str(barrier.BankAngle),...
+                    'Enable',enable);
                 this.hTable.ColumnName{4}=[];
                 this.hTable.ColumnWidth='auto';
             end
             set(this.hTable,...
-            'Data',tableData,...
-            'RowName',rowName,...
-            'Enable',enable);
-
+                'Data',tableData,...
+                'RowName',rowName,...
+                'Enable',enable);
 
             if isAdd
                 color=barrier.PlotColor;
@@ -252,17 +242,15 @@ RoadOffsetPropertyLayout
                     allNames{indx}=sprintf('%d: %s',indx,name);
                 end
                 set(this.hSpecificationIndex,...
-                'String',allNames,...
-                'Value',this.SpecificationIndex,...
-                'Enable','on');
+                    'String',allNames,...
+                    'Value',this.SpecificationIndex,...
+                    'Enable','on');
                 set(this.hColorPatch,'BackgroundColor',barrier.PlotColor);
             end
             enable=matlabshared.application.logicalToOnOff(this.Enabled);
             set(this.hName,...
-            'String',barrier.Name,...
-            'Enable',enable);
-
-
+                'String',barrier.Name,...
+                'Enable',enable);
 
             barrierTypes=driving.internal.scenarioApp.BarrierSpecification.getBarrierTypes();
             setupPopup(this,'BarrierType',barrierTypes{:});
@@ -271,10 +259,10 @@ RoadOffsetPropertyLayout
                 barrier.BarrierType=classSpec.BarrierType;
             end
             switch barrier.BarrierType
-            case 'Jersey Barrier'
-                barrierType=barrierTypes{1};
-            case 'Guardrail'
-                barrierType=barrierTypes{2};
+                case 'Jersey Barrier'
+                    barrierType=barrierTypes{1};
+                case 'Guardrail'
+                    barrierType=barrierTypes{2};
             end
             setPopupValue(this,'BarrierType',barrierType);
             set(this.hBarrierType,'Enable',enable);
@@ -295,18 +283,18 @@ RoadOffsetPropertyLayout
                 [~,h]=getMinimumSize(barrierLayout);
                 h=sum(h)+barrierLayout.VerticalGap*(numel(h)+1);
                 setConstraints(this.Layout,this.hBarrierPanel,...
-                'MinimumHeight',h);
+                    'MinimumHeight',h);
                 update(this.Layout,'force');
             end
-
 
             hAzim=this.hRCSAzimuthAngles;
             hElev=this.hRCSElevationAngles;
             hPatt=this.hRCSPattern;
             driving.internal.scenarioApp.RCSHelper.updateWidgets(...
-            hAzim,hElev,hPatt,barrier,enable)
+                hAzim,hElev,hPatt,barrier,enable)
             this.hImportRCS.Enable=enable;
         end
+
 
         function spec=getCurrentSpecification(this)
             hApp=this.Application;
@@ -324,12 +312,14 @@ RoadOffsetPropertyLayout
         end
     end
 
+
     methods(Hidden)
         function onKeyPress(this,~,ev)
             if this.InteractiveMode&&strcmp(ev.Key,'escape')
                 exitInteractionMode(this.Application.ScenarioView);
             end
         end
+
 
         function onFocus(this)
             app=this.Application;
@@ -338,6 +328,7 @@ RoadOffsetPropertyLayout
                 app.ScenarioView.CurrentSpecification=spec;
             end
         end
+
 
         function removeBarrierCallback(this,~,~)
             hApp=this.Application;
@@ -355,6 +346,7 @@ RoadOffsetPropertyLayout
             update(this);
         end
 
+
         function updateLayout(this)
             layout=this.Layout;
             barrierPanel=this.hBarrierPanel;
@@ -371,10 +363,10 @@ RoadOffsetPropertyLayout
                     insert(layout,'row',5+offset);
                     [~,h]=getMinimumSize(this.BarrierPropertiesLayout);
                     add(layout,barrierPanel,5+offset,[1,6],...
-                    'RightInset',rightInset,...
-                    'TopInset',topInset,...
-                    'Fill','Both',...
-                    'MinimumHeight',h);
+                        'RightInset',rightInset,...
+                        'TopInset',topInset,...
+                        'Fill','Both',...
+                        'MinimumHeight',h);
                 end
                 barrierPanel.Visible='on';
                 offset=offset+1;
@@ -395,10 +387,10 @@ RoadOffsetPropertyLayout
                     insert(layout,'row',6+offset)
                     [~,h]=getMinimumSize(this.RCSPropertiesLayout);
                     add(layout,rcsPanel,6+offset,[1,6],...
-                    'RightInset',rightInset,...
-                    'TopInset',topInset,...
-                    'Fill','Both',...
-                    'MinimumHeight',h);
+                        'RightInset',rightInset,...
+                        'TopInset',topInset,...
+                        'Fill','Both',...
+                        'MinimumHeight',h);
                 end
                 rcsPanel.Visible='on';
             else
@@ -411,7 +403,6 @@ RoadOffsetPropertyLayout
                 end
             end
 
-
             row=7;
             table=this.hTable;
             if this.ShowBarrierCenters
@@ -419,10 +410,10 @@ RoadOffsetPropertyLayout
                     insert(layout,'row',row+offset)
                     [~,h]=getMinimumSize(this.RoadOffsetPropertyLayout);
                     add(layout,roadOffsetPanel,row+offset,[1,6],...
-                    'RightInset',rightInset,...
-                    'TopInset',topInset,...
-                    'Fill','Both',...
-                    'MinimumHeight',h);
+                        'RightInset',rightInset,...
+                        'TopInset',topInset,...
+                        'Fill','Both',...
+                        'MinimumHeight',h);
                 end
                 row=row+1;
                 roadOffsetPanel.Visible='on';
@@ -458,6 +449,7 @@ RoadOffsetPropertyLayout
             matlabshared.application.setToggleCData(this.hShowBarrierProperties);
         end
 
+
         function updateTableColumnWidths(this)
             if~this.ShowPathProperties
                 this.UpdateTableColumnWidthsOnOpen=true;
@@ -485,16 +477,17 @@ RoadOffsetPropertyLayout
             t.ColumnWidth=repmat({floor(w)},1,5);
         end
 
+
         function updateProperty(this,property)
             switch property
-            case 'Centers'
-                updateEditPoints(this);
+                case 'Centers'
+                    updateEditPoints(this);
             end
         end
 
+
         function updateEditPoints(this)
             canvas=this.Application.ScenarioView;
-
             if strncmp(canvas.InteractionMode,'addBarrier',7)
                 tableData=getTableData(canvas);
             else
@@ -508,12 +501,14 @@ RoadOffsetPropertyLayout
             this.hTable.Data=tableData;
         end
 
+
         function edit=createEdit(this,varargin)
             hApp=this.Application;
             hSpec=hApp.BarrierSpecifications(this.SpecificationIndex);
             edit=driving.internal.scenarioApp.undoredo.SetBarrierProperty(...
-            hApp,hSpec,varargin{:});
+                hApp,hSpec,varargin{:});
         end
+
 
         function roadEdgeOffsetEditboxCallback(this,hSrc,~)
             propName=getPropertyFromTag(this,hSrc.Tag);
@@ -524,7 +519,6 @@ RoadOffsetPropertyLayout
             end
             id='';
             str='';
-
 
             if isa(newValue,'double')
                 [id,str]=validateDoubleProperty(this,propName,newValue);
@@ -543,7 +537,9 @@ RoadOffsetPropertyLayout
         end
     end
 
+
     methods(Access='protected')
+
         function setDimensionWidget(this,prop,spec,staticDims,enable)
             if isfield(staticDims,prop)
                 value=staticDims.(prop);
@@ -552,9 +548,11 @@ RoadOffsetPropertyLayout
                 value=spec.(prop);
             end
             set(this.(['h',prop]),...
-            'String',value,...
-            'Enable',enable);
+                'String',value,...
+                'Enable',enable);
         end
+
+
         function onNewInteractiveMode(this)
             if~this.ShowBarrierCenters
                 this.ShowBarrierCenters=true;
@@ -563,9 +561,11 @@ RoadOffsetPropertyLayout
             end
         end
 
+
         function event=getIndexEventName(~)
             event='CurrentBarrierChanged';
         end
+
 
         function[id,str]=validateDoubleProperty(this,name,value)
             spec=getCurrentSpecification(this);
@@ -597,9 +597,11 @@ RoadOffsetPropertyLayout
             end
         end
 
+
         function updateScenario(this)
             generateNewScenarioFromSpecifications(this.Application);
         end
+
 
         function p=createFigure(this,varargin)
             p=createFigure@matlabshared.application.Component(this,varargin{:});
@@ -610,32 +612,31 @@ RoadOffsetPropertyLayout
             createEditbox(this,p,'SpecificationIndex',[],'popup');
 
             this.hColorPatch=uipanel('Parent',p,...
-            'BorderType','none',...
-            'Tag','ColorPatch',...
-            'BackgroundColor',[0.5,0.5,0.5],...
-            'AutoResizeChildren','off',...
-            'Interruptible','off',...
-            'ButtonDownFcn',@this.colorCallback);
+                'BorderType','none',...
+                'Tag','ColorPatch',...
+                'BackgroundColor',[0.5,0.5,0.5],...
+                'AutoResizeChildren','off',...
+                'Interruptible','off',...
+                'ButtonDownFcn',@this.colorCallback);
 
             hNameLabel=createLabelEditPair(this,p,...
-            'Name',@this.nameCallback);
-
+                'Name',@this.nameCallback);
 
             [hBankAngleLabel,this.hBankAngle]=createLabelEditPair(this,p,'BankAngle',...
-            'TooltipString',getString(message('driving:scenarioApp:BankAngleDescription')));
+                'TooltipString',getString(message('driving:scenarioApp:BankAngleDescription')));
 
             hBarrierTypeLabel=createLabelEditPair(this,p,'BarrierType',...
-            @this.barrierTypeCallback,'popupmenu',...
-            'TooltipString',getString(message('driving:scenarioApp:BarrierTypeDescription')));
+                @this.barrierTypeCallback,'popupmenu',...
+                'TooltipString',getString(message('driving:scenarioApp:BarrierTypeDescription')));
 
             createToggle(this,p,'ShowBarrierProperties');
 
             barrierPanel=uipanel(p,...
-            'Tag','BarrierPropertiesPanel',...
-            'AutoResizeChildren','off',...
-            'Units','pixels',...
-            'Visible','off',...
-            'BorderType','none');
+                'Tag','BarrierPropertiesPanel',...
+                'AutoResizeChildren','off',...
+                'Units','pixels',...
+                'Visible','off',...
+                'BorderType','none');
 
             hSegmentLengthLabel=createLabelEditPair(this,barrierPanel,'SegmentLength');
             hWidthLabel=createLabelEditPair(this,barrierPanel,'Width');
@@ -648,41 +649,41 @@ RoadOffsetPropertyLayout
             labelInset=3;
             labelHeight=20-labelInset;
             barrierLayout=matlabshared.application.layout.GridBagLayout(barrierPanel,...
-            'VerticalGap',spacing,...
-            'HorizontalGap',spacing);
+                'VerticalGap',spacing,...
+                'HorizontalGap',spacing);
             labelWidth=barrierLayout.getMinimumWidth([hSegmentLengthLabel...
-            ,hWidthLabel,hHeightLabel,hSegmentGapLabel]);
+                ,hWidthLabel,hHeightLabel,hSegmentGapLabel]);
 
             labelInset=-spacing;
             add(barrierLayout,hWidthLabel,1,1,...
-            'MinimumHeight',labelHeight-2,...
-            'MinimumWidth',labelWidth,...
-            'BottomInset',labelInset,...
-            'Fill','Horizontal')
+                'MinimumHeight',labelHeight-2,...
+                'MinimumWidth',labelWidth,...
+                'BottomInset',labelInset,...
+                'Fill','Horizontal')
             add(barrierLayout,hHeightLabel,1,2,...
-            'MinimumHeight',labelHeight-2,...
-            'MinimumWidth',labelWidth,...
-            'BottomInset',labelInset,...
-            'Fill','Horizontal')
+                'MinimumHeight',labelHeight-2,...
+                'MinimumWidth',labelWidth,...
+                'BottomInset',labelInset,...
+                'Fill','Horizontal')
             add(barrierLayout,this.hWidth,2,1,...
-            'Fill','Horizontal')
+                'Fill','Horizontal')
             add(barrierLayout,this.hHeight,2,2,...
-            'Fill','Horizontal')
+                'Fill','Horizontal')
 
             add(barrierLayout,hSegmentLengthLabel,3,1,...
-            'MinimumHeight',labelHeight-2,...
-            'MinimumWidth',labelWidth,...
-            'BottomInset',labelInset,...
-            'Fill','Horizontal')
+                'MinimumHeight',labelHeight-2,...
+                'MinimumWidth',labelWidth,...
+                'BottomInset',labelInset,...
+                'Fill','Horizontal')
             add(barrierLayout,this.hSegmentLength,4,1,...
-            'Fill','Horizontal')
+                'Fill','Horizontal')
             add(barrierLayout,hSegmentGapLabel,3,2,...
-            'MinimumHeight',labelHeight-2,...
-            'MinimumWidth',labelWidth,...
-            'BottomInset',labelInset,...
-            'Fill','Horizontal')
+                'MinimumHeight',labelHeight-2,...
+                'MinimumWidth',labelWidth,...
+                'BottomInset',labelInset,...
+                'Fill','Horizontal')
             add(barrierLayout,this.hSegmentGap,4,2,...
-            'Fill','Horizontal')
+                'Fill','Horizontal')
 
             this.hBarrierPanel=barrierPanel;
             this.BarrierPropertiesLayout=barrierLayout;
@@ -690,34 +691,34 @@ RoadOffsetPropertyLayout
             createToggle(this,p,'ShowRCSProperties');
 
             rcsPanel=uipanel(p,...
-            'Visible','off',...
-            'AutoResizeChildren','off',...
-            'Units','pixels',...
-            'Tag','BarrierProperties.rcsPanel',...
-            'BorderType','none');
+                'Visible','off',...
+                'AutoResizeChildren','off',...
+                'Units','pixels',...
+                'Tag','BarrierProperties.rcsPanel',...
+                'BorderType','none');
 
             hAzimLabel=createLabelEditPair(this,rcsPanel,'RCSAzimuthAngles',@this.azimuthAnglesCallback,...
-            'TooltipString',getString(message('driving:scenarioApp:RCSAzimuthAnglesDescription')));
+                'TooltipString',getString(message('driving:scenarioApp:RCSAzimuthAnglesDescription')));
             hElevLabel=createLabelEditPair(this,rcsPanel,'RCSElevationAngles',@this.elevationAnglesCallback,...
-            'TooltipString',getString(message('driving:scenarioApp:RCSElevationAnglesDescription')));
+                'TooltipString',getString(message('driving:scenarioApp:RCSElevationAnglesDescription')));
             hPattLabel=createLabelEditPair(this,rcsPanel,'RCSPattern',@this.patternCallback,'table','Tag','BarrierProperties.RCSTable');
 
             createPushButton(this,p,'ImportRCS',@this.importRcsCallback,...
-            'Visible','off',...
-            'String',getString(message('driving:scenarioApp:ImportRCSPattern')),...
-            'TooltipString',getString(message('driving:scenarioApp:ImportRCSPatternDescription')));
+                'Visible','off',...
+                'String',getString(message('driving:scenarioApp:ImportRCSPattern')),...
+                'TooltipString',getString(message('driving:scenarioApp:ImportRCSPatternDescription')));
 
             rcsLayout=matlabshared.application.layout.GridBagLayout(rcsPanel,...
-            'VerticalGap',spacing,...
-            'HorizontalGap',spacing,...
-            'HorizontalWeights',[0,1],...
-            'VerticalWeights',[0,0,0,1]);
+                'VerticalGap',spacing,...
+                'HorizontalGap',spacing,...
+                'HorizontalWeights',[0,1],...
+                'VerticalWeights',[0,0,0,1]);
 
             labelConstraints={...
-            'MinimumWidth',rcsLayout.getMinimumWidth([hAzimLabel,hElevLabel,hPattLabel]),...
-            'Anchor','SouthWest',...
-            'TopInset',labelInset,...
-            'MinimumHeight',labelHeight};
+                'MinimumWidth',rcsLayout.getMinimumWidth([hAzimLabel,hElevLabel,hPattLabel]),...
+                'Anchor','SouthWest',...
+                'TopInset',labelInset,...
+                'MinimumHeight',labelHeight};
 
             add(rcsLayout,hAzimLabel,1,1,labelConstraints{:});
             add(rcsLayout,hElevLabel,2,1,labelConstraints{:});
@@ -726,148 +727,142 @@ RoadOffsetPropertyLayout
             add(rcsLayout,this.hRCSAzimuthAngles,1,2,'Fill','Horizontal');
             add(rcsLayout,this.hRCSElevationAngles,2,2,'Fill','Horizontal');
             add(rcsLayout,this.hRCSPattern,4,[1,2],'Fill','Both',...
-            'BottomInset',-spacing,...
-            'MinimumHeight',80);
+                'BottomInset',-spacing,...
+                'MinimumHeight',80);
 
             this.RCSPropertiesLayout=rcsLayout;
             this.hRCSPanel=rcsPanel;
 
             createToggle(this,p,'ShowBarrierCenters');
 
-
             roadOffsetPanel=uipanel(p,...
-            'Visible','off',...
-            'AutoResizeChildren','off',...
-            'Units','pixels',...
-            'Tag','roadOffsetPanel',...
-            'BorderType','none');
-
+                'Visible','off',...
+                'AutoResizeChildren','off',...
+                'Units','pixels',...
+                'Tag','roadOffsetPanel',...
+                'BorderType','none');
 
             [hRoadEdgeOffsetLabel,this.hRoadEdgeOffset]=createLabelEditPair(this,...
-            roadOffsetPanel,'RoadEdgeOffset');
+                roadOffsetPanel,'RoadEdgeOffset');
             this.hRoadEdgeOffset.Callback=@this.roadEdgeOffsetEditboxCallback;
 
-
             roadOffsetLayout=matlabshared.application.layout.GridBagLayout(roadOffsetPanel,...
-            'HorizontalGap',spacing,'VerticalGap',spacing,'HorizontalWeights',[0,1]);
-
+                'HorizontalGap',spacing,'VerticalGap',spacing,'HorizontalWeights',[0,1]);
 
             add(roadOffsetLayout,hRoadEdgeOffsetLabel,1,1,...
-            'MinimumHeight',labelHeight,...
-            'MinimumWidth',roadOffsetLayout.getMinimumWidth(hRoadEdgeOffsetLabel),...
-            'BottomInset',labelInset,...
-            'Fill','Horizontal')
+                'MinimumHeight',labelHeight,...
+                'MinimumWidth',roadOffsetLayout.getMinimumWidth(hRoadEdgeOffsetLabel),...
+                'BottomInset',labelInset,...
+                'Fill','Horizontal')
             add(roadOffsetLayout,this.hRoadEdgeOffset,1,2,...
-            'Fill','Horizontal')
+                'Fill','Horizontal')
             this.RoadOffsetPropertyLayout=roadOffsetLayout;
             this.hRoadOffsetPanel=roadOffsetPanel;
 
-
             createPushButton(this,p,'AddBarrierCenters',@this.addBarrierCentersCallback,...
-            'CData',icons.add16,...
-            'TooltipString',getString(message('driving:scenarioApp:AddBarrierCentersDescription')));
-
+                'CData',icons.add16,...
+                'TooltipString',getString(message('driving:scenarioApp:AddBarrierCentersDescription')));
 
             columnNames={getString(message('driving:scenarioApp:XColumnName')),...
-            getString(message('driving:scenarioApp:YColumnName')),...
-            getString(message('driving:scenarioApp:ZColumnName')),...
-            getString(message('driving:scenarioApp:OffsetColumnName'))};
+                getString(message('driving:scenarioApp:YColumnName')),...
+                getString(message('driving:scenarioApp:ZColumnName')),...
+                getString(message('driving:scenarioApp:OffsetColumnName'))};
 
             this.hTable=uitable('Parent',p,...
-            'ColumnWidth','auto',...
-            'Tag','BarrierCentersTable',...
-            'Visible','off',...
-            'ColumnName',columnNames,...
-            'CellEditCallback',@this.cellEditCallback,...
-            'ColumnEditable',true);
+                'ColumnWidth','auto',...
+                'Tag','BarrierCentersTable',...
+                'Visible','off',...
+                'ColumnName',columnNames,...
+                'CellEditCallback',@this.cellEditCallback,...
+                'ColumnEditable',true);
 
             createPushButton(this,p,'Delete',@this.removeBarrierCallback,...
-            'Interruptible','off',...
-            'BusyAction','cancel',...
-            'CData',icons.delete16,...
-            'TooltipString',getString(message('driving:scenarioApp:DeleteBarrierDescription')));
-
+                'Interruptible','off',...
+                'BusyAction','cancel',...
+                'CData',icons.delete16,...
+                'TooltipString',getString(message('driving:scenarioApp:DeleteBarrierDescription')));
 
             layout=matlabshared.application.layout.ScrollableGridBagLayout(p,...
-            'HorizontalGap',spacing,...
-            'VerticalGap',spacing,...
-            'HorizontalWeights',[0,1],...
-            'VerticalWeights',[0,0,0,0,0,0,0,1]);
+                'HorizontalGap',spacing,...
+                'VerticalGap',spacing,...
+                'HorizontalWeights',[0,1],...
+                'VerticalWeights',[0,0,0,0,0,0,0,1]);
 
             row=1;
             layout.add(this.hSpecificationIndex,row,[1,5],...
-            'Fill','Horizontal');
+                'Fill','Horizontal');
 
             layout.add(this.hColorPatch,row,6,...
-            'Fill','Both');
+                'Fill','Both');
 
             labelProps={'TopInset',labelInset+6,...
-            'Anchor','West',...
-            'MinimumHeight',labelHeight};
+                'Anchor','West',...
+                'MinimumHeight',labelHeight};
 
             row=row+1;
             width=layout.getMinimumWidth([hNameLabel,hBankAngleLabel]);
             layout.add(hNameLabel,row,1,labelProps{:},...
-            'MinimumWidth',width);
+                'MinimumWidth',width);
             layout.add(this.hName,row,[2,6],'Fill','Horizontal');
 
             row=row+1;
             layout.add(hBankAngleLabel,row,1,labelProps{:},...
-            'MinimumWidth',width);
+                'MinimumWidth',width);
             layout.add(this.hBankAngle,row,[2,6],'Fill','Horizontal',...
-            'MinimumWidth',50);
+                'MinimumWidth',50);
 
             row=row+1;
             layout.add(hBarrierTypeLabel,row,1,labelProps{:},...
-            'MinimumWidth',width);
+                'MinimumWidth',width);
             layout.add(this.hBarrierType,row,[2,6],'Fill','Horizontal',...
-            'MinimumWidth',50);
+                'MinimumWidth',50);
 
             row=row+1;
             layout.add(this.hShowBarrierProperties,row,[1,2],...
-            'Anchor','West',...
-            'Fill','Horizontal',...
-            'MinimumHeight',labelHeight,...
-            'MinimumWidth',layout.getMinimumWidth(this.hShowBarrierProperties)+20);
+                'Anchor','West',...
+                'Fill','Horizontal',...
+                'MinimumHeight',labelHeight,...
+                'MinimumWidth',layout.getMinimumWidth(this.hShowBarrierProperties)+20);
 
             layout.setConstraints(barrierPanel,'BottomInset',-3);
 
             row=row+1;
             layout.add(this.hShowRCSProperties,row,[1,2],...
-            'Anchor','West',...
-            'Fill','Horizontal',...
-            'MinimumHeight',labelHeight,...
-            'MinimumWidth',layout.getMinimumWidth(this.hShowRCSProperties)+20);
+                'Anchor','West',...
+                'Fill','Horizontal',...
+                'MinimumHeight',labelHeight,...
+                'MinimumWidth',layout.getMinimumWidth(this.hShowRCSProperties)+20);
             add(layout,this.hImportRCS,row,[3,6],'Anchor','East',...
-            'MinimumWidth',layout.getMinimumWidth(this.hImportRCS)+20);
+                'MinimumWidth',layout.getMinimumWidth(this.hImportRCS)+20);
 
             row=row+1;
             layout.add(this.hShowBarrierCenters,row,[1,2],...
-            'TopInset',labelInset,...
-            'Anchor','NorthWest',...
-            'Fill','Horizontal',...
-            'MinimumWidth',layout.getMinimumWidth(this.hShowBarrierCenters)+20);
+                'TopInset',labelInset,...
+                'Anchor','NorthWest',...
+                'Fill','Horizontal',...
+                'MinimumWidth',layout.getMinimumWidth(this.hShowBarrierCenters)+20);
             layout.add(this.hAddBarrierCenters,row,[3,6],...
-            'Anchor','NorthEast',...
-            'MinimumHeight',21,...
-            'MinimumWidth',21);
+                'Anchor','NorthEast',...
+                'MinimumHeight',21,...
+                'MinimumWidth',21);
 
             row=row+2;
             layout.add(this.hDelete,row,[2,6],...
-            'Anchor','SouthEast',...
-            'MinimumHeight',21,...
-            'MinimumWidth',21);
+                'Anchor','SouthEast',...
+                'MinimumHeight',21,...
+                'MinimumWidth',21);
 
             setConstraints(layout,this.hTable,...
-            'Fill','Both',...
-            'MinimumWidth',120,...
-            'MinimumHeight',100);
+                'Fill','Both',...
+                'MinimumWidth',120,...
+                'MinimumHeight',100);
 
             this.Layout=layout;
             if usingWebFigure(this)
                 update(layout,'force');
             end
         end
+
 
         function setPropertyForInteractiveMode(this,propName,newValue)
             canvas=this.Application.ScenarioView;
@@ -879,13 +874,14 @@ RoadOffsetPropertyLayout
         end
     end
 
-    methods
-        function azimuthAnglesCallback(this,hAzimuth,~)
 
+    methods
+
+        function azimuthAnglesCallback(this,hAzimuth,~)
             current=getCurrentSpecification(this);
             try
                 [newAzim,newPattern]=driving.internal.scenarioApp.RCSHelper.parseAzimuth(...
-                hAzimuth.String,current.RCSPattern);
+                    hAzimuth.String,current.RCSPattern);
             catch ME
                 update(this);
                 errorMessage(this,ME.message,ME.identifier);
@@ -893,7 +889,7 @@ RoadOffsetPropertyLayout
             end
             hApp=this.Application;
             edit=driving.internal.scenarioApp.undoredo.SetMultipleBarrierProperties(...
-            hApp,current,{'RCSAzimuthAngles','RCSPattern'},{newAzim,newPattern});
+                hApp,current,{'RCSAzimuthAngles','RCSPattern'},{newAzim,newPattern});
             try
                 applyEdit(hApp,edit);
             catch ME
@@ -904,11 +900,12 @@ RoadOffsetPropertyLayout
             update(this);
         end
 
+
         function elevationAnglesCallback(this,hElevation,~)
             current=getCurrentSpecification(this);
             try
                 [newElev,newPattern]=driving.internal.scenarioApp.RCSHelper.parseElevation(...
-                hElevation.String,current.RCSPattern);
+                    hElevation.String,current.RCSPattern);
             catch ME
                 update(this);
                 errorMessage(this,ME.message,ME.identifier);
@@ -916,7 +913,7 @@ RoadOffsetPropertyLayout
             end
             hApp=this.Application;
             edit=driving.internal.scenarioApp.undoredo.SetMultipleBarrierProperties(...
-            hApp,current,{'RCSElevationAngles','RCSPattern'},{newElev,newPattern});
+                hApp,current,{'RCSElevationAngles','RCSPattern'},{newElev,newPattern});
             try
                 applyEdit(hApp,edit);
             catch ME
@@ -927,6 +924,7 @@ RoadOffsetPropertyLayout
             update(this);
         end
 
+
         function patternCallback(this,src,~)
             data=src.Data;
             if any(isnan(data(:)))
@@ -936,19 +934,20 @@ RoadOffsetPropertyLayout
             setProperty(this,'RCSPattern',data);
         end
 
+
         function barrierTypeCallback(this,~,~)
             value=getPopupValue(this,'BarrierType');
             switch value
-            case 'JerseyBarrier'
-                barrierType='Jersey Barrier';
-            case 'Guardrail'
-                barrierType='Guardrail';
+                case 'JerseyBarrier'
+                    barrierType='Jersey Barrier';
+                case 'Guardrail'
+                    barrierType='Guardrail';
             end
             setPropertyForInteractiveMode(this,'BarrierType',barrierType);
         end
 
-        function importRcsCallback(this,~,~)
 
+        function importRcsCallback(this,~,~)
             spec=getCurrentSpecification(this);
             app=this.Application;
             if useAppContainer(app)
@@ -957,7 +956,7 @@ RoadOffsetPropertyLayout
                 app=getToolGroupName(app);
             end
             [az,el,pattern]=driving.internal.scenarioApp.RCSHelper.import(...
-            numel(spec.RCSAzimuthAngles),numel(spec.RCSElevationAngles),app);
+                numel(spec.RCSAzimuthAngles),numel(spec.RCSElevationAngles),app);
             props={};
             values={};
             if isempty(el)
@@ -988,13 +987,12 @@ RoadOffsetPropertyLayout
 
             hApp=this.Application;
 
-
             if numel(props)==1
                 edit=driving.internal.scenarioApp.undoredo.SetBarrierProperty(...
-                hApp,spec,props{1},values{1});
+                    hApp,spec,props{1},values{1});
             else
                 edit=driving.internal.scenarioApp.undoredo.SetMultipleBarrierProperties(...
-                hApp,spec,props,values);
+                    hApp,spec,props,values);
             end
 
             try
@@ -1007,6 +1005,7 @@ RoadOffsetPropertyLayout
             update(this);
         end
 
+
         function colorCallback(this,h,~)
             c=uisetcolor(h.BackgroundColor);
             if isequal(c,h.BackgroundColor)
@@ -1015,6 +1014,7 @@ RoadOffsetPropertyLayout
             h.BackgroundColor=c;
             setPropertyForInteractiveMode(this,'PlotColor',c);
         end
+
 
         function cellEditCallback(this,hTable,~)
             hApp=this.Application;
@@ -1033,16 +1033,12 @@ RoadOffsetPropertyLayout
                 data=cell2mat(data);
             end
 
-
-
-
             if any(isnan(data(:)))||any(isinf(data(:)))||~isempty(data)&&all(all(diff(data,1)==0))
                 update(this);
                 str=getErrorMessageString(this,'BarrierCenters');
                 errorMessage(this,str,'driving:scenarioApp:InvalidBarrierCenters');
                 return;
             end
-
 
             if size(data,2)>3
                 roadEdgeOffset=data(:,4);
@@ -1094,8 +1090,6 @@ RoadOffsetPropertyLayout
 
                 waypoints=[waypoints(1:nCommitted,:);cell2mat(uncommitted)];
 
-
-
                 shouldUpdate=true;
                 if any(isinf(waypoints(:)))||any(any(isnan(waypoints(1:end-1,:))))
                     update(this);
@@ -1122,19 +1116,17 @@ RoadOffsetPropertyLayout
                 end
             end
 
-
             if~isscalar(spec.RoadEdgeOffset)
                 set(this.hRoadEdgeOffset,'String','');
             end
-
         end
+
 
         function addBarrierCentersCallback(this,~,~)
             hApp=this.Application;
             if this.InteractiveMode
                 commitWaypoints(hApp.ScenarioView);
             else
-
                 barrierAdder=getBarrierAdder(hApp);
                 barrierAdder.addViaWaypoints(this.SpecificationIndex);
             end
@@ -1142,11 +1134,12 @@ RoadOffsetPropertyLayout
     end
 end
 
+
 function v=lcl_str2double(v)
 
-    if ischar(v)
-        v=str2double(v);
-    end
+if ischar(v)
+    v=str2double(v);
+end
 end
 
 

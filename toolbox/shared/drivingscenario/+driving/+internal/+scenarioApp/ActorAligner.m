@@ -1,6 +1,6 @@
 classdef ActorAligner<handle
     properties
-Application
+        Application
     end
 
 
@@ -21,8 +21,6 @@ Application
                     left_follower=left(i);
                 end
             end
-
-
 
             newPosition=zeros(length(ind),3);
             oldPosition=zeros(length(ind),3);
@@ -57,6 +55,7 @@ Application
             applyEdit(this.Application,e);
 
         end
+
 
         function alignRight(this,ind,first)
             sel_actors=this.Application.Scenario.Actors;
@@ -105,6 +104,7 @@ Application
             applyEdit(this.Application,e);
 
         end
+
 
         function alignTop(this,ind,first)
             sel_actors=this.Application.Scenario.Actors;
@@ -165,7 +165,6 @@ Application
                     bottom_follower=bottom(i);
                 end
             end
-
 
             newPosition=zeros(length(ind),3);
             oldPosition=zeros(length(ind),3);
@@ -239,11 +238,11 @@ Application
 
                     newPosition(i,:)=Position;
                 end
-
             end
             e=driving.internal.scenarioApp.undoredo.SetActorPosition(this.Application,this.Application.ActorSpecifications(ind),newPosition,oldPosition);
             applyEdit(this.Application,e);
         end
+
 
         function alignHorizMiddle(this,ind,first)
             sel_actors=this.Application.Scenario.Actors;
@@ -281,7 +280,6 @@ Application
                         delta=0;
 
                     end
-
                     newPosition(i,:)=Position;
                 end
 
@@ -289,6 +287,7 @@ Application
             e=driving.internal.scenarioApp.undoredo.SetActorPosition(this.Application,this.Application.ActorSpecifications(ind),newPosition,oldPosition);
             applyEdit(this.Application,e);
         end
+
 
         function distributeHoriz(this,ind)
             sel_actors=this.Application.Scenario.Actors;
@@ -318,14 +317,12 @@ Application
 
                 delta=1;
                 while abs(delta)>.005
-
                     c2p=actor.Position(2)-pos(i,2);
 
                     center_goal=start-c2p_start+dist_btwn*(i-1);
                     Position(2)=start+dist_btwn*(i-1)+c2p-c2p_start;
 
                     if~isempty(this.Application.ActorSpecifications(ind(pos(i,1))).Waypoints)
-
                         oldWaypoints=actorSpecs(ind(pos(i,1))).Waypoints;
                         oldWaypoints(1,:)=Position;
                         trajectory(actor,oldWaypoints)
@@ -341,6 +338,7 @@ Application
             e=driving.internal.scenarioApp.undoredo.SetActorPosition(this.Application,this.Application.ActorSpecifications(ind(pos(:,1))),newPosition,oldPosition);
             applyEdit(this.Application,e);
         end
+
 
         function distributeVert(this,ind)
             sel_actors=this.Application.Scenario.Actors;
@@ -371,7 +369,6 @@ Application
 
                 delta=1;
                 while abs(delta)>.005
-
                     c2p=actor.Position(1)-pos(i,2);
 
                     center_goal=start-c2p_start+dist_btwn*(i-1);
@@ -407,17 +404,18 @@ Application
     end
 end
 
+
 function vertices=getVertices(actor)
-    Position=actor.Position;
-    Width=actor.Width;
+Position=actor.Position;
+Width=actor.Width;
 
-    dims=dimensions(actor);
-    RearOverhang=dims.Length/2+dims.OriginOffset(1);
-    Length=actor.Length;
-    Roll=actor.Roll*(pi/180);
-    Pitch=actor.Pitch*(pi/180);
-    Yaw=actor.Yaw*(pi/180);
-    rotm=eul2rotm([Roll,Pitch,Yaw],'XYZ');
+dims=dimensions(actor);
+RearOverhang=dims.Length/2+dims.OriginOffset(1);
+Length=actor.Length;
+Roll=actor.Roll*(pi/180);
+Pitch=actor.Pitch*(pi/180);
+Yaw=actor.Yaw*(pi/180);
+rotm=eul2rotm([Roll,Pitch,Yaw],'XYZ');
 
-    vertices=repmat(Position,4,1)'+rotm*[Length-RearOverhang,0.5*Width,0;Length-RearOverhang,-0.5*Width,0;-RearOverhang,-0.5*Width,0;-RearOverhang,0.5*Width,0]';
+vertices=repmat(Position,4,1)'+rotm*[Length-RearOverhang,0.5*Width,0;Length-RearOverhang,-0.5*Width,0;-RearOverhang,-0.5*Width,0;-RearOverhang,0.5*Width,0]';
 end

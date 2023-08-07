@@ -1,8 +1,7 @@
 classdef BarrierAdder<driving.internal.scenarioApp.Adder
 
-
-
     methods
+
         function this=BarrierAdder(hApplication)
             this.Application=hApplication;
         end
@@ -22,14 +21,13 @@ classdef BarrierAdder<driving.internal.scenarioApp.Adder
             end
             hScenario.addBarrierCenters(spec);
 
-
             setStatus(hApp,getString(message('driving:scenarioApp:AddBarrierCentersMessage')));
         end
     end
 
+
     methods(Access=protected)
         function specs=getCurrentSpecifications(this)
-
             specs=this.Application.BarrierSpecifications;
         end
     end

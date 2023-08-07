@@ -1,11 +1,10 @@
 classdef ActorAdder<driving.internal.scenarioApp.Adder
 
-
-
     methods
         function this=ActorAdder(hApplication)
             this.Application=hApplication;
         end
+
 
         function addViaMouse(this,spec)
             if nargin>1&&isstruct(spec)
@@ -31,6 +30,7 @@ classdef ActorAdder<driving.internal.scenarioApp.Adder
             hScenario.focusOnComponent;
         end
 
+
         function addWaypoints(this,actorID)
             hApplication=this.Application;
             hScenario=hApplication.ScenarioView;
@@ -40,6 +40,7 @@ classdef ActorAdder<driving.internal.scenarioApp.Adder
             setStatus(hApplication,getString(message('driving:scenarioApp:AddWaypointsMessage')));
         end
     end
+    
 
     methods(Access=protected)
         function specs=getCurrentSpecifications(this)

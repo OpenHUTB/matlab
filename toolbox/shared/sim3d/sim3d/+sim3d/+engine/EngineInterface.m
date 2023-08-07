@@ -1,8 +1,5 @@
 classdef EngineInterface<handle
 
-
-
-
     properties(Access=protected,Hidden=true)
         EnginePid=uint32(0);
         EngineLastError=[];
@@ -11,18 +8,26 @@ classdef EngineInterface<handle
         ProjectTimeout_sec=60;
         IsRunning=false;
     end
+
+
     properties(Constant)
         environmentVariableMatlabPID='mw_matlab_pid_for_unreal';
         environmentVariableMatlabRoot="MATLABROOT";
     end
+
+
     methods(Abstract)
         retcode=startProject(self,project)
 
     end
+
+
     methods(Hidden=true)
         function this=EngineInterface()
             this.EnginePid=uint32(feature('getpid'));
         end
+
+
         function ready=isReady(self,timeout_sec)
 
             status=IsSimulation3DInterfaceReady(timeout_sec);
@@ -30,8 +35,9 @@ classdef EngineInterface<handle
             ~isempty(self.EngineLastError)&&...
             (self.EngineLastError==sim3d.engine.EngineReturnCode.OK);
         end
-        function start(self)
 
+
+        function start(self)
 
             if~self.IsRunning
                 LogSimulation3DInterfaceTraffic(sim3d.engine.Engine.getDebugLevel()>0);
@@ -40,13 +46,15 @@ classdef EngineInterface<handle
                 self.IsRunning=self.EngineLastError==sim3d.engine.EngineReturnCode.OK;
             end
         end
-        function restart(self)
 
+
+        function restart(self)
             self.stop();
             self.start();
         end
-        function stop(self)
 
+
+        function stop(self)
             if self.IsRunning
                 self.EngineLastError=ShutdownSimulation3DInterface();
                 self.checkReturnCode();

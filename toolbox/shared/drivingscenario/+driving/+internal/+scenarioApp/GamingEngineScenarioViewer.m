@@ -44,21 +44,27 @@ classdef GamingEngineScenarioViewer<handle
             setup(this);
         end
 
+
         function delete(this)
             delete(this.Animator);
         end
+
 
         function stop(this)
             pause(this.Animator);
         end
 
+
+        % 开始仿真（无效？）
         function start(this)
             start(this.Animator);
         end
 
+
         function vis=get.Visible(this)
             vis=isOpen(this.Animator);
         end
+
 
         function set.Visible(this,newVis)
             animator=this.Animator;
@@ -75,6 +81,7 @@ classdef GamingEngineScenarioViewer<handle
 
     methods(Hidden)
 
+        % 看动画师是否打开
         function b=isOpen(this)
             b=isOpen(this.Animator);
         end
@@ -104,16 +111,16 @@ classdef GamingEngineScenarioViewer<handle
             end
         end
 
+
         function onSimulatorSampleChanged(this,~,~)
             if this.Visible
-
-
                 if isPaused(this.Application.Simulator)
                     this.Application.freezeUserInterface();
                 end
                 update(this);
             end
         end
+        
 
         function update(this)
             animator=this.Animator;
@@ -121,7 +128,7 @@ classdef GamingEngineScenarioViewer<handle
                 setup(animator);
             end
             app=this.Application;
-            simulator=app.Simulator;
+            simulator = app.Simulator;
 
             try
                 animate(this.Animator,getAnimateInput(this),getCurrentSample(simulator)==1);
@@ -138,22 +145,21 @@ classdef GamingEngineScenarioViewer<handle
             end
         end
 
+
         function newScenario(this,~,~)
             this.Visible=false;
-
         end
 
-        function onRoadPropertyChanged(this,~,ev)
 
+        function onRoadPropertyChanged(this,~,ev)
             props={'Centers','Width','BankAngle','Lanes'};
             if isPropChanged(ev.Property,props)
                 this.Visible=false;
-
             end
         end
 
-        function onActorPropertyChanged(this,~,ev)
 
+        function onActorPropertyChanged(this,~,ev)
             props={'AssetType','Length','Width','Height','Position','Roll','Pitch','Yaw','Waypoints','PlotColor'};
             if isPropChanged(ev.Property,props)
                 this.Visible=false;
@@ -162,16 +168,14 @@ classdef GamingEngineScenarioViewer<handle
         end
 
         function onNumRoadsChanging(this,~,~)
-
             this.Visible=false;
-
         end
+
 
         function onNumActorsChanging(this,~,~)
-
             this.Visible=false;
-
         end
+
 
         function input=getAnimateInput(this)
             s=this.Application.Scenario;
@@ -228,6 +232,7 @@ classdef GamingEngineScenarioViewer<handle
             finishSetup(animator);
         end
 
+        
         function[scenario,offset,span,rotation]=getAnimatorScenario(this)
             [scenario,offset,span,rotation]=get3DScenarioData(this.Application);
         end

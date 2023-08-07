@@ -22,11 +22,12 @@ classdef GamingEngineScenarioAnimator < handle
         Rotation = 0;
     end
 
+
     properties (Hidden)
-        
         % Change of factory to use for testing.
         AssetFactory;
     end
+
     
     % Pre-computed constants
     properties (SetAccess = protected, Hidden)
@@ -39,13 +40,13 @@ classdef GamingEngineScenarioAnimator < handle
         NumActors = 1;
         ActorClassIDs = [];
         ActorTrajectories = [];
-        % Roads info
+        % 道路信息
         
-        % Game objects
+        % 游戏对象
         MainCamera;
         Roads(1,:) sim3d.road.Road;
         
-        % Other actors
+        % 其他参与者
         ActorsMap;
     end
     
@@ -65,7 +66,8 @@ classdef GamingEngineScenarioAnimator < handle
     
     methods
         
-        function this = GamingEngineScenarioAnimator(classSpecs, factory)  % 虚幻引擎场景动画师的构造器
+        % 虚幻引擎场景动画师的构造器
+        function this = GamingEngineScenarioAnimator(classSpecs, factory)
             if nargin < 1
                 classSpecs = driving.internal.scenarioApp.ClassSpecifications;
             end
@@ -78,21 +80,25 @@ classdef GamingEngineScenarioAnimator < handle
             matlabshared.application.InstanceCache.add(this.InstanceTag, this);
         end
         
+
         function set.Scenario(this, scenario)
             this.Scenario = scenario;
             this.NumActors = size(scenario.Actors,1); %#ok<MCSUP>
             this.EgoCarID = scenario.EgoCarId; %#ok<MCSUP>
         end
+
         
         function delete(this)
             stop(this, true);
             matlabshared.application.InstanceCache.remove(this.InstanceTag, this);
         end
         
+
         function b = isRunning(this)
             b = this.CommandWriter.getState() == 2;
         end
         
+
         function b = isOpen(this)
             try
                 b = ~this.Stopped && isvalid(this.CommandWriter);
@@ -101,6 +107,7 @@ classdef GamingEngineScenarioAnimator < handle
             end
         end
         
+
         function pause(this)
             if ~this.Paused
                 writer = this.CommandWriter;
@@ -111,16 +118,20 @@ classdef GamingEngineScenarioAnimator < handle
                 this.Paused = true;
             end
         end
+
         
+        % 开始进行仿真
         function start(this)
             if this.Paused
                 writer = this.CommandWriter;
+                % 设置虚幻引擎的运行命令
                 writer.setState(int32(sim3d.engine.EngineCommands.RUN));
                 writer.write();
                 this.CommandReader.setTimeout(this.RunningReadTimeout);
                 this.Paused = false;
             end
         end
+
         
         function stop(this, force)
             if nargin < 2
@@ -130,7 +141,7 @@ classdef GamingEngineScenarioAnimator < handle
                 return;
             end
             this.Stopped = true;
-            % Clean up writer and reader
+            % 清除读写器
             writer = this.CommandWriter;
             reader = this.CommandReader;
             delete(this.MainCamera);
@@ -299,7 +310,6 @@ classdef GamingEngineScenarioAnimator < handle
     
     methods (Static)
         function assetTypes = getAssetTypes(isVehicle)
-            
             % Don't just use sim3d.auto.VehicleTypes because we don't want this
             % to auto-update, we need to update code here and in DSD for
             % new vehicle types.

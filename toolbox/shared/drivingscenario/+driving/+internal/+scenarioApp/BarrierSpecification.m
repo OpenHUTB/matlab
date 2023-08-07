@@ -1,10 +1,6 @@
 classdef BarrierSpecification<driving.internal.scenarioApp.Specification
 
-
-
-
     properties
-
         BarrierID=0;
         ClassID=0;
         SegmentID=[];
@@ -27,19 +23,20 @@ classdef BarrierSpecification<driving.internal.scenarioApp.Specification
         PlotColor=[];
         AssetType;
 
-Scenario
+        Scenario
     end
+
 
     properties(Hidden)
         BarrierCentersChanged=false
         OriginalBarrierCenters=[]
     end
 
+
     methods
+
         function this=BarrierSpecification(reqInput,varargin)
-
             this@driving.internal.scenarioApp.Specification(varargin{:});
-
             if nargin>0
                 if isa(reqInput,'double')
                     this.BarrierCenters=reqInput;
@@ -49,9 +46,10 @@ Scenario
             end
         end
 
+
         function initializePropertiesFromClassSpecification(this,classSpec)
             barrierProps={'BarrierType','Width','Height','Mesh','PlotColor',...
-            'RCSPattern','RCSAzimuthAngles','RCSElevationAngles'};
+                'RCSPattern','RCSAzimuthAngles','RCSElevationAngles'};
             for i=1:numel(barrierProps)
                 this.(barrierProps{i})=classSpec.(barrierProps{i});
             end
@@ -59,9 +57,9 @@ Scenario
             this.ClassID=classSpec.id;
         end
 
+
         function convertAxesOrientation(this,old,new)
             if strcmpi(old,'ned')&&strcmpi(new,'enu')||strcmpi(old,'enu')&&strcmpi(new,'ned')
-
                 centers=this.BarrierCenters.*[1,-1,-1];
                 centers(centers==0)=0;
                 this.BarrierCenters=centers;
@@ -73,14 +71,17 @@ Scenario
             end
         end
 
+
         function barrierCenters=plotEditPoints(this,hAxes,varargin)
 
             barrierCenters=driving.scenario.internal.plotRoadCenters(this.BarrierCenters,hAxes,varargin{:});
         end
 
+
         function c=getPropertySheetConstructor(~)
             c='driving.internal.scenarioApp.barrierProperties';
         end
+
 
         function resetRoadData(this)
             if this.BarrierCentersChanged
@@ -90,16 +91,17 @@ Scenario
             end
         end
 
+
         function schema=getBarrierContextMenuSchema(this,location)
             schema=struct(...
-            'tag','AddBarrierCenter',...
-            'label',getString(message('driving:scenarioApp:AddBarrierCenterLabel')),...
-            'callback',@addBarrierCenterCallback,...
-            'enable',canAddBarrierCenter(this,location));
+                'tag','AddBarrierCenter',...
+                'label',getString(message('driving:scenarioApp:AddBarrierCenterLabel')),...
+                'callback',@addBarrierCenterCallback,...
+                'enable',canAddBarrierCenter(this,location));
         end
 
-        function set.BarrierCenters(this,centers)
 
+        function set.BarrierCenters(this,centers)
             if size(centers,2)==2
                 centers=[centers,zeros(size(centers,1),1)];
             end
@@ -108,24 +110,26 @@ Scenario
             resetRoadData(this);
         end
 
+
         function set.SegmentLength(this,segmentLength)
             this.SegmentLength=segmentLength;
         end
+
 
         function set.BankAngle(this,angle)
             this.BankAngle=angle;
         end
 
-        function applyToScenario(this,scenario,varargin)
 
+        function applyToScenario(this,scenario,varargin)
             pvPairs=[toPvPairs(this),varargin];
             if~isempty(this.Road)&&~this.BarrierCentersChanged
                 if~isempty(this.RoadEdgeOffset)&&~isempty(this.OriginalBarrierCenters)
                     this.BarrierCenters=this.OriginalBarrierCenters;
                 end
                 barrier(scenario,this.Road,...
-                'RoadEdge',this.RoadEdge,'RoadEdgeOffset',this.RoadEdgeOffset,...
-                'BarrierCenters',this.BarrierCenters,pvPairs{:});
+                    'RoadEdge',this.RoadEdge,'RoadEdgeOffset',this.RoadEdgeOffset,...
+                    'BarrierCenters',this.BarrierCenters,pvPairs{:});
                 this.BarrierCenters=scenario.Barriers(end).BarrierCenters;
             else
                 barrier(scenario,this.BarrierCenters,this.BankAngle,pvPairs{:});
@@ -137,39 +141,39 @@ Scenario
             this.SegmentID=scenario.Barriers(end).SegmentID;
         end
 
+
         function pvPairs=toPvPairs(this)
             pvPairs={
-            'ClassID',this.ClassID,...
-            'Name',this.Name,...
-            'SegmentLength',this.SegmentLength,...
-            'SegmentGap',this.SegmentGap,...
-            'Width',this.Width,...
-            'Height',this.Height,...
-            'RCSPattern',this.RCSPattern,...
-            'RCSAzimuthAngles',this.RCSAzimuthAngles,...
-            'RCSElevationAngles',this.RCSElevationAngles};
-
+                'ClassID',this.ClassID,...
+                'Name',this.Name,...
+                'SegmentLength',this.SegmentLength,...
+                'SegmentGap',this.SegmentGap,...
+                'Width',this.Width,...
+                'Height',this.Height,...
+                'RCSPattern',this.RCSPattern,...
+                'RCSAzimuthAngles',this.RCSAzimuthAngles,...
+                'RCSElevationAngles',this.RCSElevationAngles};
 
             color=this.PlotColor;
             if~isempty(color)
                 pvPairs=[pvPairs,...
-                {'PlotColor',color}];
+                    {'PlotColor',color}];
             end
-
 
             mesh=this.Mesh;
             if~isempty(mesh)
                 pvPairs=[pvPairs,...
-                {'Mesh',mesh}];
+                    {'Mesh',mesh}];
             end
         end
+
 
         function b=shouldEnableAddBarrierCenter(~)
             b=true;
         end
 
-        function str=generateMatlabCode(this,scenarioName)
 
+        function str=generateMatlabCode(this,scenarioName)
             str="";
             if~isempty(this.Road)
                 requiredArgs="road"+num2str(this.Road.RoadID)+", 'RoadEdge', '"+string(this.RoadEdge)+"'";
@@ -184,10 +188,6 @@ Scenario
                 if isequal(centers(1,:),centers(end,:))
                     precision={};
                 else
-
-
-
-
                     first=centers(1,:);
                     last=centers(end,:);
                     for precision=ceil(max(max(log10(abs(centers)))))+(3:20)
@@ -209,7 +209,7 @@ Scenario
 
             pvPairs="";
             props={'ClassID','SegmentLength','SegmentGap','Width','Height',...
-            'RCSPattern','RCSAzimuthAngles','RCSElevationAngles'};
+                'RCSPattern','RCSAzimuthAngles','RCSElevationAngles'};
             for indx=1:numel(props)
                 propName=props{indx};
                 propHandle=findprop(this,props{indx});
@@ -223,10 +223,10 @@ Scenario
             if~isempty(mesh)
                 meshStr="";
                 switch this.BarrierType
-                case 'Jersey Barrier'
-                    meshStr="driving.scenario.jerseyBarrierMesh";
-                case 'Guardrail'
-                    meshStr="driving.scenario.guardrailMesh";
+                    case 'Jersey Barrier'
+                        meshStr="driving.scenario.jerseyBarrierMesh";
+                    case 'Guardrail'
+                        meshStr="driving.scenario.guardrailMesh";
                 end
                 pvPairs=pvPairs+sprintf(", ...\n    'Mesh', %s",meshStr);
             end
@@ -248,18 +248,20 @@ Scenario
             str=str+sprintf('barrier(%s, %s%s);',scenarioName,requiredArgs,pvPairs);
         end
 
+
         function numPoints=getNumAddPoints(~)
             numPoints=[2,inf];
         end
+
 
         function addPoints=getStartingAddPoints(this)
             addPoints=this.BarrierCenters;
         end
 
+
         function pvPairs=getPvPairsForAddPoints(this,addPoints)
             pvPairs={'BarrierCenters',addPoints};
             bankAngle=this.BankAngle;
-
 
             if numel(bankAngle)>1
                 numOfNewBarrierCenters=size(addPoints,1)-size(this.BarrierCenters,1);
@@ -270,10 +272,12 @@ Scenario
             end
         end
 
+
         function pvPairs=getPvPairsForAddRoad(~,road,roadEdge)
             pvPairs={'Road',road,...
-            'RoadEdge',roadEdge};
+                'RoadEdge',roadEdge};
         end
+
 
         function pvPairs=getPvPairsForDrag(this,offset)
             if numel(offset)==2
@@ -282,13 +286,13 @@ Scenario
             pvPairs={'BarrierCenters',this.BarrierCenters+offset};
         end
 
+
         function pvPairs=getPvPairsForDoubleClick(this,location)
             [centers,pointIndex]=this.insertIntoClothoid(this.BarrierCenters,location);
             me=this.validateCenters(centers,this.Width);
             if~isempty(me)
                 throw(me);
             end
-
 
             pvPairs={'BarrierCenters',centers};
             if numel(this.BankAngle)>1
@@ -297,10 +301,10 @@ Scenario
             end
         end
 
+
         function pvPairs=getPvPairsForPaste(this,location)
             if nargin>1
                 centers=this.BarrierCenters;
-
 
                 if all(centers(1,:)==centers(end,:))
                     midpoint=mean(centers(1:end-1,:),1);
@@ -314,40 +318,37 @@ Scenario
             end
         end
 
+
         function schema=getEditPointContextMenuSchema(this,id)
             centers=this.BarrierCenters;
-
-
-
 
             if all(centers(1,:)==centers(end,:))
                 centers(end,:)=[];
             end
 
-
-
             centers(all(diff(centers)==[0,0,0],2),:)=[];
 
             schema=struct(...
-            'tag','DeleteBarrierCenter',...
-            'label',getString(message('driving:scenarioApp:DeleteBarrierCenterLabel')),...
-            'callback',@deleteBarrierCenterCallback,...
-            'enable',size(centers,1)>2&&canRemoveBarrierCenter(this,id));
+                'tag','DeleteBarrierCenter',...
+                'label',getString(message('driving:scenarioApp:DeleteBarrierCenterLabel')),...
+                'callback',@deleteBarrierCenterCallback,...
+                'enable',size(centers,1)>2&&canRemoveBarrierCenter(this,id));
 
         end
+
 
         function id=getEditPointId(this,point,varargin)
             id=this.getMatchingPointIndex(point,this.BarrierCenters,varargin{:});
         end
 
+
         function pvPairs=getPvPairsCacheForEditPointDrag(this,~)
             pvPairs={'BarrierCenters',this.BarrierCenters};
         end
 
+
         function pvPairs=getPvPairsForEditPointDrag(this,id,point,varargin)
             centers=this.BarrierCenters;
-
-
 
             point(3)=centers(id(1),3);
 
@@ -358,8 +359,6 @@ Scenario
                 isLooping=this.isWaypointLooping(centers,varargin{:});
                 if isLooping
                     if numCenters==2
-
-
                         pvPairs={'BarrierCenters',centers};
                         return;
                     elseif id==1
@@ -373,8 +372,8 @@ Scenario
             pvPairs={'BarrierCenters',centers};
         end
 
-        function bbs=getBarrierBoundaries(this)
 
+        function bbs=getBarrierBoundaries(this)
             if~isequal(this.Scenario.Barriers(this.BarrierID).BarrierCenters,this.BarrierCenters)
                 pvPairs=toPvPairs(this);
                 barrier(this.Scenario,this.BarrierCenters,this.BankAngle,pvPairs{:});
@@ -404,11 +403,13 @@ Scenario
             bbs={[rights;lefts;rights(1,:)]};
         end
 
+
         function set.BarrierType(this,value)
             this.BarrierType=value;
             this=driving.internal.scenarioApp.BarrierSpecification.setDefaultBarrierProperties(this);
         end
     end
+
 
     methods(Access=protected)
         function clearScenario(this)
@@ -416,9 +417,9 @@ Scenario
         end
     end
 
+
     methods(Hidden)
         function b=canAddBarrierCenter(this,location)
-
             [centers,pointIndex]=this.insertIntoClothoid(this.BarrierCenters,location);
             bankAngle=this.BankAngle;
             if numel(bankAngle)>1
@@ -426,6 +427,7 @@ Scenario
             end
             b=isempty(this.validateCenters(centers,this.Width,bankAngle));
         end
+
 
         function b=canRemoveBarrierCenter(this,id)
             centers=this.BarrierCenters;
@@ -437,16 +439,16 @@ Scenario
             b=isempty(this.validateCenters(centers,this.Width,bankAngle));
         end
 
-        function addBarrierCenterCallback(this,canvas,location)
 
+        function addBarrierCenterCallback(this,canvas,location)
             pvPairs=getPvPairsForDoubleClick(this,location);
 
             canvas.ShouldDirty=true;
             applyBarrierPvPairs(canvas,pvPairs);
         end
 
-        function deleteBarrierCenterCallback(this,canvas,id)
 
+        function deleteBarrierCenterCallback(this,canvas,id)
             centers=this.BarrierCenters;
             centers(id,:)=[];
             pvPairs={'BarrierCenters',centers};
@@ -460,6 +462,7 @@ Scenario
             canvas.ShouldDirty=true;
             applyBarrierPvPairs(canvas,pvPairs);
         end
+
 
         function[id,str]=validateSegmentLength(this,value)
             id='';
@@ -475,6 +478,7 @@ Scenario
             end
         end
 
+
         function[id,str]=validateSegmentGap(this,value)
             id='';
             str='';
@@ -488,6 +492,7 @@ Scenario
             end
         end
 
+
         function[id,str]=validateHeight(~,value)
             id='';
             str='';
@@ -497,6 +502,7 @@ Scenario
             end
         end
 
+
         function[id,str]=validateRoadEdgeOffset(~,value)
             id='';
             str='';
@@ -505,6 +511,7 @@ Scenario
                 str=getString(message(id));
             end
         end
+
 
         function[id,str]=validateWidth(obj,value,interactiveMode,canvas)
             id='';
@@ -518,10 +525,6 @@ Scenario
                 str=getString(message(id));
             else
                 if interactiveMode
-
-
-
-
                     obj.BarrierCenters=canvas.Waypoints;
                     obj.BankAngle=canvas.CurrentBarrier.BankAngle;
                 end
@@ -539,7 +542,9 @@ Scenario
         end
     end
 
+
     methods(Static)
+
         function classIDMap=getClassAndID(classSpecs)
             classIDMap=containers.Map('KeyType','double','ValueType','char');
             ids=cell2mat(keys(classSpecs));
@@ -559,24 +564,27 @@ Scenario
             end
         end
 
+
         function types=getBarrierTypes()
             types={'JerseyBarrier','Guardrail'};
         end
 
+
         function obj=setDefaultBarrierProperties(obj)
             if isprop(obj,'BarrierType')||isfield(obj,'BarrierType')
                 switch obj.BarrierType
-                case 'Jersey Barrier'
-                    [obj.Width,obj.Height]=driving.scenario.BarrierSegment.getJerseyBarrierDimensions;
-                    obj.Mesh=driving.scenario.jerseyBarrierMesh;
-                    obj.AssetType='Barrier';
-                case 'Guardrail'
-                    [obj.Width,obj.Height]=driving.scenario.BarrierSegment.getGuardrailDimensions;
-                    obj.Mesh=driving.scenario.guardrailMesh;
-                    obj.AssetType='Cuboid';
+                    case 'Jersey Barrier'
+                        [obj.Width,obj.Height]=driving.scenario.BarrierSegment.getJerseyBarrierDimensions;
+                        obj.Mesh=driving.scenario.jerseyBarrierMesh;
+                        obj.AssetType='Barrier';
+                    case 'Guardrail'
+                        [obj.Width,obj.Height]=driving.scenario.BarrierSegment.getGuardrailDimensions;
+                        obj.Mesh=driving.scenario.guardrailMesh;
+                        obj.AssetType='Cuboid';
                 end
             end
         end
+
 
         function barrierSpecs=fromScenario(scenario,classMap)
             barriers=scenario.Barriers;
@@ -585,9 +593,9 @@ Scenario
                 return;
             end
             barrierProps={'BarrierID','Name','RoadEdge','SegmentID',...
-            'SegmentGap','BankAngle','RoadEdgeOffset'};
+                'SegmentGap','BankAngle','RoadEdgeOffset'};
             segmentProps={'ClassID','SegmentLength','Width','Height','Mesh','PlotColor',...
-            'RCSPattern','RCSAzimuthAngles','RCSElevationAngles'};
+                'RCSPattern','RCSAzimuthAngles','RCSElevationAngles'};
             classIDMap=driving.internal.scenarioApp.BarrierSpecification.getClassAndID(classMap);
             validIds=cell2mat(keys(classIDMap));
             allErrors={};
@@ -647,10 +655,10 @@ Scenario
                 classID=barrier.BarrierSegments(1).ClassID;
 
                 switch classID
-                case 5
-                    barrierType='Jersey Barrier';
-                case 6
-                    barrierType='Guardrail';
+                    case 5
+                        barrierType='Jersey Barrier';
+                    case 6
+                        barrierType='Guardrail';
                 end
                 pvPairs=[pvPairs,{'BarrierType',barrierType}];
                 if isempty(barrier.Road)
@@ -671,11 +679,12 @@ Scenario
             end
         end
 
+
         function barrierSpec=convertActorToBarrier(actorSpec)
             barrierSpec=driving.internal.scenarioApp.BarrierSpecification;
 
             commonFields={'Name','ClassID','PlotColor','Width','Height',...
-            'RCSPattern','RCSElevationAngles','RCSAzimuthAngles'};
+                'RCSPattern','RCSElevationAngles','RCSAzimuthAngles'};
             for i=1:numel(commonFields)
                 f=commonFields{i};
                 barrierSpec.(f)=actorSpec.(f);
@@ -684,35 +693,35 @@ Scenario
             barrierSpec.BankAngle=actorSpec.Roll;
 
             switch actorSpec.ClassID
-            case 5
-                barrierSpec.BarrierType='Jersey Barrier';
-                barrierSpec.AssetType='Barrier';
-                barrierSpec.Mesh=driving.scenario.jerseyBarrierMesh;
-                if isempty(barrierSpec.PlotColor)
-                    barrierSpec.PlotColor=[0.65,0.65,0.65];
-                end
-            case 6
-                barrierSpec.BarrierType='Guardrail';
-                barrierSpec.AssetType='Cuboid';
-                barrierSpec.Mesh=driving.scenario.guardrailMesh;
-                if isempty(barrierSpec.PlotColor)
-                    barrierSpec.PlotColor=[0.55,0.55,0.55];
-                end
+                case 5
+                    barrierSpec.BarrierType='Jersey Barrier';
+                    barrierSpec.AssetType='Barrier';
+                    barrierSpec.Mesh=driving.scenario.jerseyBarrierMesh;
+                    if isempty(barrierSpec.PlotColor)
+                        barrierSpec.PlotColor=[0.65,0.65,0.65];
+                    end
+                case 6
+                    barrierSpec.BarrierType='Guardrail';
+                    barrierSpec.AssetType='Cuboid';
+                    barrierSpec.Mesh=driving.scenario.guardrailMesh;
+                    if isempty(barrierSpec.PlotColor)
+                        barrierSpec.PlotColor=[0.55,0.55,0.55];
+                    end
             end
 
             actorOrigin=actorSpec.Position;
             pt1=[-actorSpec.Length/2,0,0];
             pt2=[actorSpec.Length/2,0,0];
             R=driving.scenario.internal.rotZ(actorSpec.Yaw)...
-            *driving.scenario.internal.rotY(actorSpec.Pitch)...
-            *driving.scenario.internal.rotX(actorSpec.Roll);
+                *driving.scenario.internal.rotY(actorSpec.Pitch)...
+                *driving.scenario.internal.rotX(actorSpec.Roll);
             pt1=pt1*R'+actorOrigin;
             pt2=pt2*R'+actorOrigin;
             barrierSpec.BarrierCenters=[pt1;pt2];
         end
 
-        function me=validateCenters(centers,width,varargin)
 
+        function me=validateCenters(centers,width,varargin)
             me=[];
 
             if size(centers,1)<3
@@ -733,21 +742,14 @@ Scenario
 
             dist=sqrt(sum(diff(centers,1,1).^2,2));
 
-
             if all(dist>4*width)
                 return;
             end
 
-
             [r0,r1]=getRadii(centers);
             if all(r0>width*2)&&all(r1>width*2)
-
-
-
                 return;
             elseif any(r0<width/3)||any(r1<width/3)
-
-
                 id='driving:scenario:BarrierCurvatureTooSharp';
                 me=MException(id,getString(message(id)));
                 return;
@@ -755,13 +757,8 @@ Scenario
 
         end
 
+
         function[bankAngle]=calculateBankAngleVector(oldBankAngle,pointIndex)
-
-
-
-
-
-
             if pointIndex==numel(oldBankAngle)
                 bankAngle=[oldBankAngle,oldBankAngle(end)];
             else
@@ -771,29 +768,28 @@ Scenario
     end
 end
 
+
 function[r0,r1]=getRadii(barrierCenters)
 
-    n=size(barrierCenters,1);
+n=size(barrierCenters,1);
 
+course=NaN(n,1);
+course=matlabshared.tracking.internal.scenario.clothoidG2fitMissingCourse(barrierCenters,course);
 
-    course=NaN(n,1);
-    course=matlabshared.tracking.internal.scenario.clothoidG2fitMissingCourse(barrierCenters,course);
+hip=complex(barrierCenters(:,1),barrierCenters(:,2));
 
+[k0,k1]=matlabshared.tracking.internal.scenario.clothoidG1fit2(hip(1:n-1),course(1:n-1),hip(2:n),course(2:n));
 
-    hip=complex(barrierCenters(:,1),barrierCenters(:,2));
-
-
-    [k0,k1]=matlabshared.tracking.internal.scenario.clothoidG1fit2(hip(1:n-1),course(1:n-1),hip(2:n),course(2:n));
-
-    r0=abs(1./k0);
-    r1=abs(1./k1);
+r0=abs(1./k0);
+r1=abs(1./k1);
 
 end
 
+
 function name=getName(name,index)
-    if index>1
-        name=sprintf('%s%d',name,index-1);
-    end
+if index>1
+    name=sprintf('%s%d',name,index-1);
+end
 end
 
 

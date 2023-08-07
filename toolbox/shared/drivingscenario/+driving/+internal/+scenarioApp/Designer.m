@@ -81,29 +81,34 @@ classdef Designer<driving.internal.scenarioApp.Display&...
     end
 
     methods
+
         function this=Designer(varargin)
             this@driving.internal.scenarioApp.Display(varargin{:});
             this.SimulatorListener=addStateChangedListener(this.Simulator,@this.onSimulatorStateChanged);
         end
 
+
+        % 打开图形界面
         function open(this)
             open@driving.internal.scenarioApp.Display(this);
             autoScale(this);
         end
 
 
+        % 获得应用程序的标题
         function title=getTitle(this)
-            fileName=getCurrentFileName(this);
+            fileName = getCurrentFileName(this);
             if isempty(fileName)
                 fileName='untitled';
             end
-            [~,fileName]=fileparts(char(fileName));
+            [~,fileName] = fileparts(char(fileName));
             title=getString(message('driving:scenarioApp:ScenarioBuilderNameWithFileName',fileName));
 
             if this.IsDirty
                 title=sprintf('%s*',title);
             end
         end
+
 
         % 获得当前设计器的所有传感器
         function sensor=getCurrentSensor(this)
@@ -115,6 +120,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 sensor=this.SensorSpecifications(index);
             end
         end
+
 
         function index=getCurrentSensorIndex(this)
             props=this.SensorProperties;
@@ -129,9 +135,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function name=getName(~)
             name=getString(message('driving:scenarioApp:ScenarioBuilderName'));
         end
+
 
         function tag=getTag(~)
             tag='DrivingScenarioDesigner';
@@ -212,12 +220,13 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
-        function[modelName,warnings]=generate3dSimModel(this)
+        % 生成三维模型
+        function[modelName,warnings] = generate3dSimModel(this)
             freezeUserInterface(this);
             modelName='';
             warnings={};
-            cancel=getString(message('Spcuilib:application:Cancel'));
-            saveAs=getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogSaveAs'));
+            cancel = getString(message('Spcuilib:application:Cancel'));
+            saveAs = getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogSaveAs'));
 
             scene=this.Sim3dScene;
             if isempty(scene)
@@ -235,12 +244,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             assetTypes={this.ActorSpecifications.AssetType};
             validTypes={'MuscleCar','Sedan','SportUtilityVehicle','SmallPickupTruck','Hatchback','BoxTruck'};
             if~isempty(setdiff(assetTypes,validTypes))
-
-
                 removeAndSave=getString(message('driving:scenarioApp:Export3dSimRemoveInvalidAndSave'));
                 if isempty(sessionName)||dirty
-
-
                     keep=getString(message('driving:scenarioApp:Export3dSimKeepInvalidAndSave'));
                 else
                     keep=getString(message('driving:scenarioApp:Export3dSimKeepInvalid'));
@@ -258,13 +263,9 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                             success=true;
                         end
                     case removeAndSave
-
                         badIndex=find(~cellfun(@(v)any(strcmp(v,validTypes)),assetTypes));
-
                         edit=driving.internal.scenarioApp.undoredo.DeleteActor(this,badIndex);
-
                         execute(edit);
-
                         success=this.saveFileAs();
                         if success
                             addEditNoApply(this,edit);
@@ -315,7 +316,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
-        function actorAdder=getActorAdder(this)
+        % 获得参与者添加器ActorAdder对象
+        function actorAdder = getActorAdder(this)
             actorAdder=this.ActorAdder;
             if isempty(actorAdder)
                 actorAdder=driving.internal.scenarioApp.ActorAdder(this);
@@ -324,7 +326,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
-        function actorAligner=getActorAligner(this)
+        % 获得参与者对准器（ActorAligner）对象
+        function actorAligner = getActorAligner(this)
             actorAligner=this.ActorAligner;
             if isempty(actorAligner)
                 actorAligner=driving.internal.scenarioApp.ActorAligner(this);
@@ -333,6 +336,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
+        % 获得障碍物添加器（BarrierAdder）对象
         function barrierAdder=getBarrierAdder(this)
             barrierAdder=this.BarrierAdder;
             if isempty(barrierAdder)
@@ -443,6 +447,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
+        % 删除道路
         function varargout=deleteRoad(this,index)
             exitInteractionMode(this.ScenarioView);
             roadProps=this.RoadProperties;
@@ -490,7 +495,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
         % 删除参与者
         function varargout=deleteActor(this,index)
-
             actorProps=this.ActorProperties;
             nSpecs=numel(this.ActorSpecifications);
             canvas=this.ScenarioView;
@@ -506,12 +510,9 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             deletedActor=deleteActor@driving.internal.scenarioApp.ScenarioBuilder(this,index);
             oldEgo=this.EgoCarId;
 
-
             if~isempty(oldEgo)
                 if any(oldEgo==index)
                     newEgo=[];
-
-
 
                     actorSpecs=this.ActorSpecifications;
                     for indx=1:numel(actorSpecs)
@@ -542,30 +543,30 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
+        % 添加参与者
         function varargout=addActor(this,varargin)
-
             actorSpec=addActor@driving.internal.scenarioApp.ScenarioBuilder(this,varargin{:});
-
             updateForNewActor(this,actorSpec);
             if nargout
                 varargout={actorSpec};
             end
         end
 
+
+        % 添加障碍物
         function varargout=addBarrier(this,varargin)
-
             barrierSpec=addBarrier@driving.internal.scenarioApp.ScenarioBuilder(this,varargin{:});
-
             updateForNewBarrier(this,barrierSpec);
             if nargout
                 varargout={barrierSpec};
             end
         end
 
+
+        % 添加传感器
         function varargout=addSensor(this,varargin)
-
             hSensor=addSensor@driving.internal.scenarioApp.ScenarioBuilder(this,varargin{:});
-
             sp=getSensorPropertiesComponent(this);
             sp.SpecificationIndex=numel(this.SensorSpecifications);
             updateForSensors(this);
@@ -575,6 +576,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
+        % 删除传感器
         function varargout=deleteSensor(this,index)
             [varargout{1:nargout}]=deleteSensor@driving.internal.scenarioApp.ScenarioBuilder(this,index);
             sensorProps=getSensorPropertiesComponent(this);
@@ -589,20 +592,20 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             updateForSensors(this);
         end
 
+
+        % 添加道路中心
         function addRoadCenters(this,varargin)
-
-
-
-
             addRoadCenters@driving.internal.scenarioApp.ScenarioBuilder(this,varargin{:});
             setDirty(this);
         end
+
 
         function delete(this)
             this.SimulatorListener=[];
             this.PropertyListener=[];
             delete@driving.internal.scenarioApp.Display(this);
         end
+
 
         function v=getVerticalAxis(this)
             if~isempty(this.ScenarioView)
@@ -621,6 +624,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             appName='Driving Scenario Designer';
         end
 
+
         function title=getDocumentGroupTitle(~,tag)
             if strcmp(tag,'WorkingArea')
                 title=getString(message('driving:scenarioApp:WorkingAreaGroupTitle'));
@@ -628,16 +632,20 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 title=tag;
             end
         end
+
+
         function createStatusItems(this)
             setStatus(this,'','main');
         end
+
 
         function pos=getDefaultPosition(~)
             pos=matlabshared.application.getInitialToolPosition([1280,768],0.7,true);
         end
 
+
         % 获得虚幻引擎查看器（点击 3D Display -> View Simulation in 3D display 时调用）
-        function v=getGamingEngineViewer(this, force, varargin)
+        function v = getGamingEngineViewer(this, force, varargin)
             v=this.GamingEngineViewer;
             if isempty(v) && nargin>1 && force
                 % 构建虚幻引擎查看器
@@ -648,6 +656,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 this.GamingEngineViewer = v;
             end
         end
+
 
         function sc=getSensorCanvasComponent(this,isOpening)
             sc=this.SensorCanvas;
@@ -668,6 +677,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     md.getClientLocation(md.getClient(getName(this.ScenarioView),this.ToolGroup.Name)));
             end
         end
+
+
 
         function bep=getBirdsEyePlotComponent(this,isOpening)
             bep=this.BirdsEyePlot;
@@ -692,9 +703,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 return;
             end
 
-
             addComponent(this,bep);
-
 
             if~useAppContainer(this)
                 bep.Figure.Visible=true;
@@ -704,6 +713,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     md.getClientLocation(md.getClient(getName(this.EgoCentricView),this.ToolGroup.Name)));
             end
         end
+
 
         function sp=getSensorPropertiesComponent(this,isOpening)
             sp=this.SensorProperties;
@@ -730,6 +740,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function bp=getBarrierPropertiesComponent(this,isOpening)
             bp=this.BarrierProperties;
             if~isempty(bp)||isempty(this.BarrierSpecifications)
@@ -755,9 +766,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function onGamingEngineWindowClosed(this,~,~)
             this.ScenarioView.removeMessage('GamingEngineIncompatibility');
         end
+        
 
         function openSplitOpening(this)
             simulator=this.Simulator;
@@ -814,6 +827,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             this.RoadCreationInProgress=true;
         end
 
+
+        % 完成道路创建
         function roadCreationFinished(this,force)
             matlabshared.application.deleteTimer(this.RoadCreationTimer);
             this.RoadCreationInProgress=false;
@@ -822,6 +837,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 this.ScenarioView.removeMessage('LargeRoadNetworkWarning');
             end
         end
+
+
         function exportOpenScenarioFileWarning(this,warning)
             if nargin<3
                 if useAppContainer(this)
@@ -839,11 +856,14 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 'TimerFcn',@this.exportOpenScenarioWarningTimerCallback);
             start(t);
         end
+
+
         function exportOpenScenarioWarningTimerCallback(this,t,~)
             message=t.UserData;
             matlabshared.application.deleteTimer(t);
-            this.ScenarioView.warningMessage(message,'OpenScenarioExport','FontSize',10);
+            this.ScenarioView.warningMessage(message,'OpenScenarioExport', 'FontSize',10);
         end
+
 
         function largeRoadNetworkTimerCallback(this,t,~)
             message=t.UserData;
@@ -855,6 +875,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 'TimerFcn',@this.dismissLargeRoadWarningCallback);
             start(t);
         end
+
+
         function openDRIVEWarningTimerCallback(this,t,~)
             message=t.UserData;
             matlabshared.application.deleteTimer(t);
@@ -862,6 +884,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             message='The following changes will be made before import:';
             this.ScenarioView.warningMessage(message,'OpenDRIVEWarning','FontSize',10,'MoreInfoText',moreInfo);
         end
+
 
         function dismissLargeRoadWarningCallback(this,t,~)
             matlabshared.application.deleteTimer(t);
@@ -871,6 +894,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 this.ScenarioView.removeMessage('LargeRoadNetworkWarning');
             end
         end
+
 
         function[cut,copy,paste,delete]=createCutCopyPasteDeleteMenus(this,h,canvas)
             if nargin<3
@@ -882,6 +906,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 'Label',getString(message('Spcuilib:application:Delete')),...
                 'Callback',@canvas.deleteCallback);
         end
+
 
         function b=isCutEnabled(this)
             if isCopyEnabled(this)
@@ -896,6 +921,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function b=isCopyEnabled(this)
             b=false;
             if isStopped(this.Simulator)
@@ -907,6 +933,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 end
             end
         end
+
 
         function b=isPasteEnabled(this)
             b=isStopped(this.Simulator)&&isPasteEnabled@matlabshared.application.ToolGroupCutCopyPaste(this);
@@ -920,22 +947,26 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+        
+        % 获得菜单"打开"中最近使用的文件
         function files=getRecentFiles(this)
             files=getRecentFiles@matlabshared.application.ToolGroupFileSystem(this);
         end
 
-        function fileName=getRecentFileNameFromText(~,text)
 
+        function fileName=getRecentFileNameFromText(~,text)
             [~,fileName]=strtok(text,')');
             fileName(1:2)=[];
         end
 
-        function[icon,label]=getInfoForRecentFile(this,fileName,type)
+
+        % 得到最近使用文件的信息
+        function[icon,label] = getInfoForRecentFile(this,fileName,type)
             import matlab.ui.internal.toolstrip.*;
             iconPath=this.getPathToIcons;
             switch type
                 case 'default'
-                    [icon,label]=getInfoForRecentFile(this,fileName,getDefaultOpenTag(this));
+                    [icon,label] = getInfoForRecentFile(this,fileName,getDefaultOpenTag(this));
                     return;
                 case 'classes'
                     icon=Icon(fullfile(iconPath,'Actor24.png'));
@@ -956,21 +987,25 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             label=sprintf('(%s) %s',label,fileName);
         end
 
+
         function helpCallback(~,~,~)
             helpview(fullfile(docroot,'driving','ref','drivingscenariodesigner-app.html'));
         end
 
+
+        % 更新鸟瞰图
         function updateBirdsEyePlot(this)
             bep=this.BirdsEyePlot;
             if~isempty(bep)
                 if getCurrentSample(this.Simulator)==1
-
                     calculateSensorData(bep);
                 end
                 update(bep);
             end
         end
 
+
+        % 打开仿真设置
         function openSimulationSettings(this)
             ss=this.SimulationSettings;
             if isempty(ss)
@@ -983,6 +1018,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             open(ss);
         end
 
+
+        % 编辑类的规范
         function varargout=editClassSpecifications(this)
             cse=this.ClassEditor;
             if isempty(cse)
@@ -999,6 +1036,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
+        % 新建类的规范
         function varargout=newClassSpecification(this)
             cse=this.ClassEditor;
             if isempty(cse)
@@ -1025,24 +1064,22 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
+        % 更新类的规范
         function updateClassSpecifications(this,classInfo)
             setDirty(this);
-            updateClassSpecifications@driving.internal.scenarioApp.ScenarioBuilder(this,classInfo);
+            updateClassSpecifications@driving.internal.scenarioApp.ScenarioBuilder(this, classInfo);
             updateActorsGallery(this.Toolstrip);
-
-
-
             update(this.ActorProperties);
         end
 
+
+        % 保存文件
         function success=saveFile(this,varargin)
             success=saveFile@matlabshared.application.ToolGroupFileSystem(this,varargin{:});
             if success
                 saveFile@matlabshared.application.undoredo.ToolGroupUndoRedo(this);
                 removeDirty(this);
-
-
-
                 if nargin<3
                     tag='session';
                 else
@@ -1052,6 +1089,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
+        % 打开文件
         function success=openFile(this,varargin)
             sim=this.Simulator;
             if~isempty(sim)&&isRunning(sim)
@@ -1065,7 +1104,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
 
         % 点击"导入"，包括各种格式文件
-        function success=importItem(this,tag)
+        function success = importItem(this,tag)
             success=false;
 
             if isRunning(this.Simulator)
@@ -1120,14 +1159,13 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             if~allowImport(this)
                 return
             end
-
             dialog.attach(this);
             dialog.open();
-
             success=true;
         end
 
 
+        % 获得保存文件的规范
         function spec=getSaveFileSpecification(~,tag)
             switch tag
                 case 'OpenDRIVEReader'
@@ -1138,6 +1176,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
+        % 获得保存对话框的标题
         function title=getSaveDialogTitle(~,tag)
             switch tag
                 case 'session'
@@ -1152,6 +1191,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
         
 
+        % 获得保存对话框的标题
         function title=getOpenDialogTitle(~,tag)
             switch tag
                 case{'session','PrebuiltScenario'}
@@ -1171,6 +1211,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         function b=showRecentFiles(~)
             b=true;
         end
+
 
         function info=getNewSpecification(this)
             iconPath=this.getPathToIcons;
@@ -1197,9 +1238,9 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
         end
 
+
         function info=getOpenSpecification(this)
             iconPath=this.getPathToIcons;
-
             session(1).text=getString(message('driving:scenarioApp:OpenSessionText'));
             session(1).tag='session';
             session(1).icon=[];
@@ -1236,11 +1277,15 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             info{infoI}={getString(message('driving:scenarioApp:ClassDefinitionsHeader')),class};
         end
 
+
+        % 获得导入的描述
         function info=getImportDescription(this)
             info=getImportDescription@matlabshared.application.ToolGroupFileSystem(this);
             info.description=getString(message('driving:scenarioApp:ImportDescription'));
         end
 
+
+        % 获得导入的规范
         function info=getImportSpecification(this)
             iconPath=this.getPathToIcons;
 
@@ -1280,18 +1325,22 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function tag=getDefaultSaveTag(~)
             tag='session';
         end
+
 
         function tag=getDefaultOpenTag(~)
             tag='session';
         end
 
+        
         function tag=getDefaultNewTag(~)
             tag='session';
         end
 
+        
         function info=getSaveSpecification(this)
 
             iconPath=this.getPathToIcons;
@@ -1330,6 +1379,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function updateActorInScenario(this,index)
             updateActorInScenario@driving.internal.scenarioApp.ScenarioBuilder(this,index);
             if isempty(this.ScenarioView)
@@ -1345,14 +1395,13 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             clearCaches(this.Simulator);
         end
 
+
         function name=getClassNameFromID(this,id)
-
-
             name=getProperty(this.ClassSpecifications,id,'name');
         end
 
-        function updateView(this,notFirstCall)
 
+        function updateView(this,notFirstCall)
             scenario=this.ScenarioView;
             egoCentric=this.EgoCentricView;
             roads=this.RoadProperties;
@@ -1368,7 +1417,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
 
             allComps=[barriers,actors,roads,scenario,egoCentric,sensors,sensorCanvas,bep];
-
 
             set([allComps.Figure],'Visible','on');
 
@@ -1412,10 +1460,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
                 md=com.mathworks.mlservices.MatlabDesktopServices.getDesktop;
                 md.setDocumentArrangement(toolGroup,md.TILED,java.awt.Dimension(3,1))
-
-
-
-
 
                 if notFirstCall
                     drawnow
@@ -1462,16 +1506,13 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function updateForNewRoad(this,newRoadSpec)
-
-
             this.EgoCentricView.update();
             roadProps=this.RoadProperties;
             allSpecs=this.RoadSpecifications;
             roadProps.SpecificationIndex=find(allSpecs==newRoadSpec);
             if numel(allSpecs)==1
-
-
                 notify(this,'CurrentRoadChanged')
             end
             update(roadProps);
@@ -1489,6 +1530,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             update(canvas);
             updateExport(this.Toolstrip);
         end
+
 
         function updateForSensors(this,newSensor)
             if~this.IsADTInstalled
@@ -1516,6 +1558,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             updateCutCopyPasteQab(this);
         end
 
+
         function updateForNewActor(this,newActorSpec)
             actorProps=this.ActorProperties;
             canvas=this.ScenarioView;
@@ -1539,6 +1582,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             canvas.CurrentSpecification=newActorSpec;
         end
 
+
         function updateForNewBarrier(this,newBarrierSpec)
             barrierProps=this.getBarrierPropertiesComponent();
             canvas=this.ScenarioView;
@@ -1558,13 +1602,14 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             updateExport(this.Toolstrip);
         end
 
-        function focusOnComponent(this,comp)
 
+        function focusOnComponent(this,comp)
             canvas=this.ScenarioView;
             if isequal(comp,canvas)||isequal(comp,this.SensorCanvas)||~this.isComponentInSameLocation(comp,canvas)
                 focusOnComponent@matlabshared.application.Application(this,comp);
             end
         end
+
 
         function updateClassEditor(this)
             classEditor=this.ClassEditor;
@@ -1573,27 +1618,25 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function clearCompiledScenarioData(this,tag)
-
-
-
             if any(strcmp(tag,{'session','scenario'}))
 
                 driving.scenario.internal.setGetCompiledScenarioData(getCurrentFileName(this),[]);
             end
         end
 
+
         function h=createCommandLineInterface(this)
             h=driving.scenario.Designer(this);
         end
 
+
         function errorAndWarningMessage=processOpenDRIVERoadNetwork(this,fileName,workflow)
             try
-
                 if strcmp(workflow,'fileImport')
                     roadCreationStarting(this,getString(message('driving:scenarioApp:LoadOpenDRIVEWarning')),0.3);
                 end
-
 
                 if~isempty(this.ScenarioView)
                     new(this,'scenario',true);
@@ -1624,7 +1667,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                         fitToView(canvas);
                     end
                 else
-
                     readerObj=matlabshared.drivingutils.OpenDriveReader(fileName);
                     roadList=readerObj.getStructure();
 
@@ -1652,7 +1694,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                         roadCreationFinished(this);
                     end
 
-
                     this.Scenario.IsOpenDRIVERoad=true;
                     if strcmp(workflow,'fileImport')
 
@@ -1661,7 +1702,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                             openDRIVEFileWarning(this,warningMessage+"",0.3);
                         end
                     else
-
                         warningMessage=getOpenDRIVEWarningMessage(this,warnings,workflow);
                         if~isempty(warningMessage)
                             existState=warning('backtrace');
@@ -1671,7 +1711,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                             warning(existState);
                         end
                     end
-
 
                     this.Toolstrip.hAddRoad.Enabled=false;
                     this.Toolstrip.hExportMatlabCode.Enabled=false;
@@ -1693,11 +1732,13 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
     end
 
-    methods(Hidden,Static)
-        function pathToIcon=getPathToIcons
 
+    methods(Hidden,Static)
+
+        function pathToIcon=getPathToIcons
             pathToIcon=fullfile(matlabroot,'toolbox','shared','drivingscenario','+driving','+internal','+scenarioApp');
         end
+
 
         function varargout=forceAppContainer(varargin)
             persistent forceFlag;
@@ -1712,6 +1753,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
     end
+
 
     methods(Access=protected)
 
@@ -1732,9 +1774,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function id=getWarningIdsToIgnore(~)
             id={'MATLAB:system:nonRelevantProperty','MATLAB:HandleGraphics:ObsoletedProperty:JavaFrame'};
         end
+
 
         function onSimulatorChanged(this)
             actorProps=this.ActorProperties;
@@ -1744,8 +1788,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
-        function convertAxesOrientation(this,oldOrientation,newOrientation)
 
+        function convertAxesOrientation(this,oldOrientation,newOrientation)
             convertAxesOrientation@driving.internal.scenarioApp.ScenarioBuilder(this,oldOrientation,newOrientation);
 
             if~strcmpi(newOrientation,oldOrientation)
@@ -1769,6 +1813,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
+        % 加载数据文件
         function data=loadDataFile(this,fileName,~)
             this.LoadWarning={};
             [oldWarnStr,oldWarnId]=lastwarn;
@@ -1786,9 +1832,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     ~isempty(data.data.SensorSpecifications)&&...
                     isempty(data.data.SensorSpecifications(1).Sensor)
 
-
-
-
                 data.data=rmfield(data.data,'SensorSpecifications');
                 id='driving:scenarioApp:OpenWarningMissingADT';
                 [~,name,ext]=fileparts(fileName);
@@ -1796,15 +1839,17 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
-        function p=getIconMatFiles(~)
 
+        function p=getIconMatFiles(~)
             p={fullfile(matlabroot,'toolbox','shared','drivingscenario',...
                 '+driving','+internal','+scenarioApp','icons.mat')};
         end
 
+
         function id=getInvalidFileFormatId(~)
             id='driving:scenarioApp:InvalidFileFormat';
         end
+
 
         function tag=openFileImpl(this,fileName,tag,inputArgs)
             [~,~,ext]=fileparts(fileName);
@@ -1815,6 +1860,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 tag=openFileImpl@matlabshared.application.ToolGroupFileSystem(this,fileName,tag,inputArgs);
             end
         end
+
 
         function processOpenDRIVEData(this,data)
             if~isfield(data,'RoadSpecifications')
@@ -1836,9 +1882,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
             this.Scenario.IsOpenDRIVERoad=true;
 
-
             generateNewScenarioFromSpecifications(this);
-
 
             if isempty(this.ScenarioView)
                 this.NeedsAutoScale=true;
@@ -1914,9 +1958,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function addRecentFile(this,fileName,tag)
             addRecentFile@matlabshared.application.ToolGroupFileSystem(this,fileName,tag);
         end
+
 
         function updatePlots(this)
             updatePlots@driving.internal.scenarioApp.Display(this);
@@ -1928,6 +1974,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function updatePlotsForActors(this)
             updatePlotsForActors@driving.internal.scenarioApp.Display(this);
             if~isempty(this.BirdsEyePlot)
@@ -1938,6 +1985,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function item=copyItemImpl(this)
             mode=this.MostRecentCanvas;
             item=[];
@@ -1947,12 +1995,10 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 item=getCurrentSensor(this);
             end
             if~isempty(item)
-
-
-
                 item=copy(item);
             end
         end
+
 
         function item=cutItemImpl(this)
             mode=this.MostRecentCanvas;
@@ -1961,8 +2007,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 item=this.ScenarioView.CurrentSpecification;
                 if isa(item,'driving.internal.scenarioApp.ActorSpecification')
                     edit=driving.internal.scenarioApp.undoredo.CutActor(this,item);
-
-
                 elseif isa(item,'driving.internal.scenarioApp.road.Specification')
                     edit=driving.internal.scenarioApp.undoredo.CutRoad(this,item);
                 elseif isa(item,'driving.internal.scenarioApp.BarrierSpecification')
@@ -1977,15 +2021,15 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function pasteItemImpl(this,item,varargin)
             if isa(item,'driving.internal.scenarioApp.SensorSpecification')
                 pasteItem(this.SensorCanvas,item,varargin{:});
-
-
             else
                 pasteItem(this.ScenarioView,item,varargin{:});
             end
         end
+
 
         function onNewUse3dSimDimensions(this,newUse3d)
             canvas=this.ScenarioView;
@@ -1997,9 +2041,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function onNewSampleTime(this,newSampleTime)
             this.Scenario.SampleTime=newSampleTime;
         end
+
 
         function onScenarioCanvasSelectionChanged(this,~,~)
             updateCutCopyPasteQab(this);
@@ -2014,6 +2060,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 focusOnComponent(actorProps);
             end
         end
+
 
         function onScenarioCanvasModeChanged(this,~,~)
             mode=this.ScenarioView.InteractionMode;
@@ -2035,9 +2082,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 actorProps.InteractiveMode=true;
                 focusOnComponent(actorProps);
             end
-
-
-
 
             if~isempty(this.BarrierProperties)
                 barrierProps=this.getBarrierPropertiesComponent();
@@ -2062,6 +2106,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function onCanvasPropertyChanged(this,~,ev)
             if isa(ev.Specification,'driving.internal.scenarioApp.road.Specification')
                 updateProperty(this.RoadProperties,ev.Property);
@@ -2074,6 +2119,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
+        % 当仿真状态改变时
         function onSimulatorStateChanged(this,~,~)
             simulator=this.Simulator;
             stopped=isStopped(simulator);
@@ -2117,12 +2164,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 startTimeStampTimer(canvas);
             end
             if this.IsUpdateAllowed
-
                 updateForSimulationStateChange(canvas);
-
             end
             updateToolstrip(this.Simulator);
         end
+
 
         function b=canUndo(this)
             sim=this.Simulator;
@@ -2136,6 +2182,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function b=canRedo(this)
             sim=this.Simulator;
             if isempty(sim)
@@ -2148,14 +2195,17 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function onPropertyChanged(this,~,~)
             setDirty(this);
         end
+
 
         function h=createToolstrip(this)
 
             h=driving.internal.scenarioApp.Toolstrip(this);
         end
+
 
         function str=getDirtyWarningString(~,type)
             if strcmp(type,'close')
@@ -2164,6 +2214,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 str=getString(message('driving:scenarioApp:DirtyStateWarning'));
             end
         end
+
 
         function f=createDefaultComponents(this)
             displayBarrierEditPoints=true;
@@ -2221,6 +2272,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function autoScaleCanvas(this)
             canvas=this.ScenarioView;
             axes=canvas.Axes;
@@ -2229,12 +2281,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
             captureAxesLimits(canvas);
 
-
-
             canvas.UnitsPerPixel=canvas.UnitsPerPixel*1.1;
             set(axes,'XLimMode','manual','YLimMode','manual');
             fixZLim(canvas);
         end
+
 
         function autoScale(this)
             if this.NeedsAutoScale
@@ -2242,15 +2293,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function data=getSaveData(this,type)
-
-
-
-
-
-
-
-
             if~strcmp(type,'classes')
                 data.AxesOrientation=this.AxesOrientation;
             end
@@ -2259,7 +2303,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 data.ActorSpecifications=this.ActorSpecifications;
                 data.BarrierSpecifications=this.BarrierSpecifications;
                 data.EgoCarId=this.EgoCarId;
-
 
                 sims=this.AllSimulators;
                 for indx=1:numel(sims)
@@ -2288,7 +2331,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 data.ActorCount=this.ActorCount;
                 data.Use3dSimDimensions=this.Use3dSimDimensions;
 
-
                 data.EgoCentricView.ShowActorMeshes=this.EgoCentricView.ShowActorMeshes;
                 data.Sim3dScene=this.Sim3dScene;
             end
@@ -2301,6 +2343,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
         function path=getOpenFilePath(this,tag)
             if strcmp(tag,'PrebuiltScenario')
                 path=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios');
@@ -2308,6 +2351,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 path=getOpenFilePath@matlabshared.application.ToolGroupFileSystem(this);
             end
         end
+
 
         function newTag=updateTag(this,tag)
             if strcmp(tag,'PrebuiltScenario')
@@ -2317,9 +2361,9 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
+
+        % 处理打开的数据
         function processOpenData(this,newData,type)
-
-
             if any(strcmp(type,{'classes'}))
                 if~isfield(newData,'ClassSpecifications')
                     error(message('driving:scenarioApp:InvalidClassDefinitionFile'));
@@ -2344,16 +2388,12 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 notify(this,'NewScenario');
             end
 
-
             if isfield(newData,'AxesOrientation')
                 orientation=newData.AxesOrientation;
             else
                 orientation='ENU';
             end
             if~strcmp(type,'classes')
-
-
-
                 if isfield(newData,'RoadSpecifications')
                     this.RoadSpecifications=[];
                 end
@@ -2367,15 +2407,12 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 this.AxesOrientation=orientation;
             end
 
-
             if any(strcmp(type,{'session','PrebuiltScenario','scenario'}))
                 if~isfield(newData,'RoadSpecifications')||...
                         ~isfield(newData,'ActorSpecifications')||...
                         ~isfield(newData,'EgoCarId')
                     error(message('driving:scenarioApp:InvalidScenarioFile'));
                 end
-
-
 
                 if isfield(newData,'IsOpenDRIVERoad')
                     if newData.IsOpenDRIVERoad
@@ -2399,7 +2436,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     end
                 end
 
-
                 this.RoadSpecifications=transpose(newData.RoadSpecifications(:));
                 newData=extractBarriersFromActorData(this,newData);
                 this.ActorSpecifications=newData.ActorSpecifications;
@@ -2421,12 +2457,9 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     this.Sim3dScene=newData.Sim3dScene;
                 end
 
-
                 actorSpecs=this.ActorSpecifications;
                 classSpecs=this.ClassSpecifications;
                 for indx=1:numel(actorSpecs)
-
-
                     if isempty(actorSpecs(indx).AssetType)
                         actorSpecs(indx).AssetType=classSpecs.getProperty(actorSpecs(indx).ClassID,'AssetType');
                     elseif strcmp(actorSpecs(indx).AssetType,'Unknown')
@@ -2436,17 +2469,13 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     aMesh=actorSpecs(indx).Mesh;
                     shouldUpdateMesh=isempty(aMesh);
                     if~shouldUpdateMesh
-
-
                         shouldUpdateMesh=isequal(size(aMesh.Vertices),[8,3])&&isequal(size(aMesh.Faces),[12,3]);
                     end
                     if shouldUpdateMesh
-
                         isVehicle=classSpecs.getProperty(actorSpecs(indx).ClassID,'isVehicle');
                         dims=struct('Length',actorSpecs(indx).Length,'Width',actorSpecs(indx).Width,...
                             'Height',actorSpecs(indx).Height,'RearOverhang',1);
                         if isempty(driving.internal.scenarioApp.ClassEditor.getMeshExpression(aMesh,isVehicle,dims))
-
                             actorSpecs(indx).Mesh=classSpecs.getProperty(actorSpecs(indx).ClassID,'Mesh');
                         end
                     end
@@ -2460,11 +2489,9 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     end
                 end
 
-
                 if~isempty(this.Scenario)&&this.Scenario.IsOpenDRIVERoad
                     this.Scenario.IsOpenDRIVERoad=false;
                 end
-
 
                 if isfield(newData,'IsOpenDRIVERoad')
                     this.Scenario.IsOpenDRIVERoad=newData.IsOpenDRIVERoad;
@@ -2480,7 +2507,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 this.EgoCarId=newData.EgoCarId;
                 generateNewScenarioFromSpecifications(this);
 
-
                 if isfield(newData,'ScenarioView')&&~isempty(newData.ScenarioView)
                     svData=newData.ScenarioView;
                     canvas=this.ScenarioView;
@@ -2490,7 +2516,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                         else
                             setCenterAndUnitsPerPixel(canvas,svData.Center,svData.UnitsPerPixel);
                         end
-
 
                         if isfield(svData,'EnableRoadInteractivity')
                             canvas.EnableRoadInteractivity=svData.EnableRoadInteractivity;
@@ -2505,8 +2530,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                         else
                             canvas.VerticalAxis=canvas.DefaultVerticalAxis;
                         end
-
-
                     else
                         if isfield(svData,'XLim')
                             this.ViewCache.ScenarioView.XLim=svData.XLim;
@@ -2523,7 +2546,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                         end
                     end
                 end
-
 
                 if isfield(newData,'EgoCentricView')&&~isempty(newData.EgoCentricView)
                     svData=newData.EgoCentricView;
@@ -2580,7 +2602,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
             end
 
-
             if any(strcmp(type,{'session','PrebuiltScenario','sensors'}))
                 if isfield(newData,'CustomSeed')
                     this.CustomSeed=newData.CustomSeed;
@@ -2592,16 +2613,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     end
                     this.SensorSpecifications=sensors;
                 elseif strcmp(type,'sensors')
-
-
                     error(message('driving:scenarioApp:InvalidSensorFile'));
                 end
                 if isOpen(this)
                     updateForSensors(this);
                 end
-
-
-
 
                 if(isfield(newData,'BirdsEyePlot')&&~isempty(newData.BirdsEyePlot))
                     svData=newData.BirdsEyePlot;
@@ -2625,7 +2641,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 end
             end
 
-
             sv=this.ScenarioView;
             if~isempty(sv)
                 exitInteractionMode(sv);
@@ -2639,11 +2654,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 warningMessage(sv,warnings{:});
             end
 
-
             if~isempty(this.Toolstrip)
                 updateExport(this.Toolstrip);
             end
         end
+
 
         function parseInputs(this,varargin)
             fileName=[];
@@ -2654,31 +2669,18 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             if nargin>1
                 if ischar(pvPairs{1})||isstring(pvPairs{1})
 
-
-
                     if~isprop(this,pvPairs{1})
                         fileName=pvPairs{1};
                         pvPairs(1)=[];
                     end
                 end
 
-
-
-
-
-
-
                 while~isempty(pvPairs)&&~ischar(pvPairs{1})&&~isstring(pvPairs{1})
                     if iscell(pvPairs{1})&&~isempty(pvPairs{1})&&isSensor(pvPairs{1}{1})
                         sensors=pvPairs{1};
                     elseif isSensor(pvPairs{1})
-
-
-
                         sensors=pvPairs(1);
                     elseif isnumeric(pvPairs{1})&&~isempty(scenario)
-
-
                         egoCarId=pvPairs{1};
                     elseif isa(pvPairs{1},'drivingScenario')
                         scenario=pvPairs{1};
@@ -2690,34 +2692,24 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 end
             end
 
-
             for indx=1:2:numel(pvPairs)
                 this.(pvPairs{indx})=pvPairs{indx+1};
             end
-
 
             if~isempty(fileName)
                 this.openFile(fileName);
                 removeDirty(this);
             end
 
-
             if~isempty(scenario)
-
-
                 setDirty(this);
                 this.NeedsAutoScale=true;
-
 
                 if~isempty(scenario.ParkingLots)
                     fig=helpdlg(getString(message('driving:scenarioApp:ParkingLotsNotSupportedText')),...
                         getString(message('driving:scenarioApp:ParkingLotsNotSupportedTitle')));
                     uiwait(fig);
                 end
-
-
-
-
 
                 this.AxesOrientation=scenario.AxesOrientation;
                 this.ViewCache.ScenarioView.VerticalAxis=scenario.VerticalAxis;
@@ -2755,8 +2747,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                         classIds=[this.ActorSpecifications.ClassID];
                         cs=this.ClassSpecifications;
 
-
-
                         for index=1:numel(classIds)
                             if cs.getProperty(classIds(index),'isVehicle')
                                 egoCarId=index;
@@ -2768,8 +2758,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
                 if~isempty(scenario.GeoReference)
                     this.Scenario.GeographicReference=scenario.GeoReference;
-
-
                     this.ViewCache.ScenarioView.EnableRoadInteractivity=false;
                 end
 
@@ -2777,9 +2765,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 this.EgoCarId=egoCarId;
             end
 
-
             if~isempty(sensors)
-
                 sensors=driving.internal.scenarioApp.SensorSpecification.fromDetectionGenerators(sensors);
                 [intervals,changed]=driving.internal.scenarioApp.SensorSpecification.fixUpdateIntervals([sensors.UpdateInterval],this.SampleTime*1000);
                 if changed
@@ -2801,8 +2787,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             end
         end
 
-        function newData=extractBarriersFromActorData(this,newData)
 
+        function newData=extractBarriersFromActorData(this,newData)
             egoCarId=newData.EgoCarId;
             egoCar=newData.ActorSpecifications(egoCarId);
 
@@ -2820,7 +2806,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 end
             end
             if~isempty(barrierSpecs)
-
                 newData.ActorSpecifications(barrierIdx)=[];
 
                 egoMatch=arrayfun(@(x)isequal(x,egoCar),newData.ActorSpecifications);
@@ -2838,6 +2823,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
     end
 
+
     methods(Access={?driving.internal.scenarioImport.RoadNetworkImporter})
 
         function applyScenarioImport(this,importer)
@@ -2851,18 +2837,15 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
             setDirty(this);
 
-
             this.RoadSpecifications=[Arbitrary.fromScenario(importer.Scenario),...
                 RoadGroupArbitrary.fromScenario(importer.Scenario)];
             this.Scenario=generateNewScenarioFromSpecifications(this);
             this.Scenario.GeographicReference=importer.getGeographicReference();
 
-
             canvas=this.ScenarioView;
             canvas.VerticalAxis='Y';
             canvas.EnableRoadInteractivity=false;
             fitToView(canvas);
-
 
             importer.postAppImport(this);
 
@@ -2870,10 +2853,9 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 updateExport(this.Toolstrip);
             end
         end
-
     end
-
 end
+
 
 function cleanUpWarning(wstate,wstr,wid)
 
@@ -2881,6 +2863,7 @@ warning(wstate);
 lastwarn(wstr,wid);
 
 end
+
 
 function setLocation(comp,md,toolGroup,column,notFirstCall)
 
@@ -2890,7 +2873,6 @@ if notFirstCall
     toolgroupClient=javaMethodEDT('getClient',md,name,toolGroup);
     tl=javaMethodEDT('getClientLocation',md,toolgroupClient);
 else
-
     tl=md.getClientLocation(md.getClient(name,toolGroup));
 end
 
@@ -2900,6 +2882,7 @@ if tl.getTile~=column.getTile
 end
 end
 
+
 function b=isSensor(input)
 b=isa(input,'driving.internal.AbstractDetectionGenerator')||...
     isa(input,'lidarsim.internal.AbstractLidarSensor')||...
@@ -2907,5 +2890,4 @@ b=isa(input,'driving.internal.AbstractDetectionGenerator')||...
     isa(input,'drivingRadarDataGenerator')||...
     isa(input,'ultrasonicDetectionGenerator');
 end
-
 

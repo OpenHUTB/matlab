@@ -1,8 +1,5 @@
 classdef(Hidden)EngineReturnCode
 
-
-
-
     properties(Constant=true)
         No_Subscriber=-2
         No_Data=-1
@@ -22,6 +19,7 @@ classdef(Hidden)EngineReturnCode
         EntryPointNotFound=13
     end
 
+
     methods(Static)
         function assertObject(obj)
             if isempty(obj)||obj==uint64(0)
@@ -34,6 +32,7 @@ classdef(Hidden)EngineReturnCode
             end
         end
 
+
         function assertReturnCodeIgnoreWarnings(retcode)
             if retcode>sim3d.engine.EngineReturnCode.OK
                 callStack=dbstack;
@@ -45,6 +44,7 @@ classdef(Hidden)EngineReturnCode
             end
         end
 
+
         function assertReturnCode(retcode)
             if retcode~=sim3d.engine.EngineReturnCode.OK
                 callStack=dbstack;
@@ -55,6 +55,7 @@ classdef(Hidden)EngineReturnCode
                 throwAsCaller(me);
             end
         end
+        
 
         function assertReturnCodeAndWarnNoData(retcode,block,steps)
             sim3d.engine.EngineReturnCode.assertReturnCodeIgnoreWarnings(retcode);

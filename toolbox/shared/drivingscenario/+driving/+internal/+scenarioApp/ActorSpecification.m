@@ -1,8 +1,5 @@
 classdef ActorSpecification<driving.internal.scenarioApp.Specification
 
-
-
-
     properties
         ActorID=0;
         ClassID=0;
@@ -37,35 +34,38 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
         Jerk=0.6
     end
 
+
     properties(Transient,Hidden)
         pWaypointsYaw=[];
         ActorSpawn(1,1)logical=false;
     end
+
 
     methods
 
         function this=ActorSpecification(varargin)
             this@driving.internal.scenarioApp.Specification(varargin{:});
 
-
-
-
             if isempty(this.AssetType)
                 this.AssetType='Cuboid';
             end
         end
 
+
         function set.Roll(this,roll)
             this.Roll=driving.scenario.internal.fixAngle(roll);
         end
+
 
         function set.Pitch(this,pitch)
             this.Pitch=driving.scenario.internal.fixAngle(pitch);
         end
 
+
         function set.Yaw(this,yaw)
             this.Yaw=driving.scenario.internal.fixAngle(yaw);
         end
+
 
         function convertAxesOrientation(this,old,new)
             if strcmpi(old,'ned')&&strcmpi(new,'enu')||strcmpi(old,'enu')&&strcmpi(new,'ned')
@@ -90,12 +90,14 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
             end
         end
 
+
         function set.Waypoints(this,waypoints)
             if size(waypoints,2)==2
                 waypoints=[waypoints,zeros(size(waypoints,1),1)];
             end
             this.Waypoints=waypoints;
         end
+
 
         function varargout=applyToScenario(this,scenario,classSpecs,varargin)
             isVehicle=getProperty(classSpecs,this.ClassID,'isVehicle');
@@ -113,8 +115,6 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
                 badIndex=speed==0;
                 isGood=true;
                 if numel(speed)>1
-
-
                     if any(diff(find(badIndex))==1)
                         isGood=false;
                     end
@@ -142,11 +142,9 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
                 end
             end
 
-
             if isempty(this.PlotColor)
                 this.PlotColor=a.PlotColor;
             end
-
 
             if isempty(this.Mesh)
                 this.Mesh=a.Mesh;
@@ -155,6 +153,7 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
                 varargout={a};
             end
         end
+
 
         function pvPairs=toPvPairs(this,isVehicle)
             pvPairs={
@@ -168,13 +167,11 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
             'RCSAzimuthAngles',this.RCSAzimuthAngles,...
             'RCSElevationAngles',this.RCSElevationAngles};
 
-
             color=this.PlotColor;
             if~isempty(color)
                 pvPairs=[pvPairs,...
                 {'PlotColor',color}];
             end
-
 
             mesh=this.Mesh;
             if~isempty(mesh)
@@ -205,6 +202,7 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
             end
         end
 
+
         function applyToActor(this,actor,classSpecs,varargin)
             pvPairs=toPvPairs(this,getProperty(classSpecs,this.ClassID,'isVehicle'));
             pvPairs=[pvPairs,varargin];
@@ -221,11 +219,8 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
                 otherArgs={'Jerk',jerk};
             end
             if~isempty(waypoints)
-
                 dupIndex=all(diff(waypoints)==[0,0,0],2);
                 waypoints(dupIndex,:)=[];
-
-
 
                 if numel(speed)>1&&length(speed)==length(this.Waypoints)
                     speed(dupIndex)=[];
@@ -289,6 +284,8 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
             end
         end
 
+
+        % 生成 Matlab 代码
         function str=generateMatlabCode(this,scenarioName,classSpecs,isEgo,overwriteProps)
 
             if nargin<4
@@ -329,12 +326,6 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
 
             mesh=this.Mesh;
             if~isempty(mesh)
-
-
-
-
-
-
                 dims=struct('Length',this.Length,'Width',this.Width,...
                 'Height',this.Height,'RearOverhang',this.RearOverhang);
                 meshStr=driving.internal.scenarioApp.ClassEditor.getMeshExpression(mesh,isVehicle,dims);
@@ -356,7 +347,6 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
             if~isempty(this.Name)
                 pvPairs=pvPairs+sprintf(", ...\n    'Name', '%s'",getMatlabPrintName(this));
             end
-
 
             jerkStr="";
             if isequal(this.TrajectoryFcn,@trajectory)
@@ -414,6 +404,7 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
             end
         end
 
+
         function set.IsSmoothTrajectory(this,val)
 
             if val
@@ -425,7 +416,9 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
         end
     end
 
+
     methods(Hidden)
+
         function pvPairs=addPVPair(this,pvPairs,propName,defaultValue)
             if~isequal(this.(propName),defaultValue)
                 pvPairs=pvPairs+sprintf(", ...\n    '%s', %s",propName,mat2str(this.(propName)));
@@ -458,7 +451,8 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
             end
         end
 
-        function[id,str]=validateHeight(~,value,isVehicle)
+
+        function[id,str] = validateHeight(~,value,isVehicle)
             id='';
             str='';
             if numel(value)~=1||isnan(value)||...
@@ -473,6 +467,7 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
                 str=getString(message(id));
             end
         end
+
 
         function[id,str]=validateWidth(~,value,isVehicle)
             id='';
@@ -490,6 +485,7 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
             end
         end
 
+
         function[id,str]=validateWaypointsYaw(~,value,~)
             id='';
             str='';
@@ -504,7 +500,9 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
         end
     end
 
+
     methods(Static)
+
         function actorSpecs=fromScenario(scenario,classes)
             actors=scenario.Actors;
             actorSpecs=driving.internal.scenarioApp.ActorSpecification.empty(numel(actors),0);
@@ -614,8 +612,6 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
                 end
 
                 if isprop(actor,'EntryTime')
-
-
                     if indx==1
                         actor.EntryTime=0;
                         actor.ExitTime=Inf;
@@ -634,7 +630,6 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
                     types=actorTypes;
                 end
 
-
                 assetType=getProperty(classes,actorSpecs(indx).ClassID,'AssetType');
                 for jndx=1:numel(types)
                     tdims=dims.(types{jndx});
@@ -644,8 +639,6 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
                     end
                     same=true;
                     for kndx=1:numel(dprops)
-
-
                         if abs(actorSpecs(indx).(dprops{kndx})-tdims.(dprops{kndx}))>0.0001
                             same=false;
                             break;
@@ -670,13 +663,14 @@ classdef ActorSpecification<driving.internal.scenarioApp.Specification
             end
         end
 
-        function index=findDuplicateWaypoints(waypoints)
 
+        function index=findDuplicateWaypoints(waypoints)
             waypoints(:,3:end)=[];
             index=find(sum(diff(waypoints),2)==0)+1;
         end
     end
 end
+
 
 function name=getName(name,index)
     if index>1

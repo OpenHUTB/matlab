@@ -1,12 +1,9 @@
 classdef BirdsEyePlot<matlabshared.application.Component&...
-    driving.internal.scenarioApp.Zoom&...
-    driving.internal.scenarioApp.FillAxes&...
-    matlabshared.application.ComponentBanner&...
-    driving.internal.scenarioApp.UITools&...
-    matlabshared.application.AxesTooltip
-
-
-
+        driving.internal.scenarioApp.Zoom&...
+        driving.internal.scenarioApp.FillAxes&...
+        matlabshared.application.ComponentBanner&...
+        driving.internal.scenarioApp.UITools&...
+        matlabshared.application.AxesTooltip
 
     properties
         ShowRoadBoundaries=true;
@@ -24,24 +21,27 @@ classdef BirdsEyePlot<matlabshared.application.Component&...
         UnitsPerPixel=0.12
     end
 
+
     properties(Dependent)
         ShowLegend;
     end
 
+
     properties(Hidden)
         IsCoverageStale=true;
-hShowRoadBoundaries
-hShowLaneDetections
-hShowLaneMarkings
-hShowCoverageAreas
-hShowActorOutlines
-hShowObjectDetections
-hShowPointCloud
-hShowLegend
-hShowTooltip
-hShowActorMeshes
+        hShowRoadBoundaries
+        hShowLaneDetections
+        hShowLaneMarkings
+        hShowCoverageAreas
+        hShowActorOutlines
+        hShowObjectDetections
+        hShowPointCloud
+        hShowLegend
+        hShowTooltip
+        hShowActorMeshes
         hSettingsButton;
     end
+
 
     properties(SetAccess=protected,Hidden)
         Axes;
@@ -64,51 +64,64 @@ hShowActorMeshes
         GroundTruthCache;
     end
 
+
     methods
         function this=BirdsEyePlot(varargin)
             this@matlabshared.application.Component(varargin{:});
             this.Legend=driving.internal.scenarioApp.BirdsEyePlotLegend(this);
             initializeZoom(this);
             this.SimulatorListener=addSampleChangedListener(this.Application.Simulator,...
-            @this.onPlayerSampleChanged);
+                @this.onPlayerSampleChanged);
             this.EgoCarIdListener=addPropertyListener(this.Application,...
-            'EgoCarId',@this.onEgoCarIdChanged);
+                'EgoCarId',@this.onEgoCarIdChanged);
             contribute(this.Application.Toolstrip,this,'DisplayProperties','BirdsEyePlot',...
-            {'ShowRoadBoundaries','ShowLaneMarkings','ShowActorOutlines',...
-            'ShowLaneDetections','ShowObjectDetections','ShowCoverageAreas','ShowLegend','ShowTooltip','ShowPointCloud','ShowActorMeshes'});
+                {'ShowRoadBoundaries','ShowLaneMarkings','ShowActorOutlines',...
+                'ShowLaneDetections','ShowObjectDetections','ShowCoverageAreas','ShowLegend','ShowTooltip','ShowPointCloud','ShowActorMeshes'});
             this.Legend.Visible=true;
         end
+
 
         function set.ShowRoadBoundaries(this,newValue)
             this.ShowRoadBoundaries=newValue;
             setCheckBoxProperty(this.Application.Toolstrip,'ShowRoadBoundaries',newValue);
             update(this);
         end
+
+
         function set.ShowLaneMarkings(this,newValue)
             this.ShowLaneMarkings=newValue;
             setCheckBoxProperty(this.Application.Toolstrip,'ShowLaneMarkings',newValue);
             update(this);
         end
+
+
         function set.ShowCoverageAreas(this,newValue)
             this.ShowCoverageAreas=newValue;
             setCheckBoxProperty(this.Application.Toolstrip,'ShowCoverageAreas',newValue);
             update(this);
         end
+
+
         function set.ShowActorOutlines(this,newValue)
             this.ShowActorOutlines=newValue;
             setCheckBoxProperty(this.Application.Toolstrip,'ShowActorOutlines',newValue);
             update(this);
         end
+
+
         function set.ShowObjectDetections(this,newValue)
             this.ShowObjectDetections=newValue;
             setCheckBoxProperty(this.Application.Toolstrip,'ShowObjectDetections',newValue);
             update(this);
         end
+
+
         function set.ShowLaneDetections(this,newValue)
             this.ShowLaneDetections=newValue;
             setCheckBoxProperty(this.Application.Toolstrip,'ShowLaneDetections',newValue);
             update(this);
         end
+
 
         function set.ShowLegend(this,newValue)
             setCheckBoxProperty(this.Application.Toolstrip,'ShowLegend',newValue);
@@ -117,15 +130,18 @@ hShowActorMeshes
             resize(this);
         end
 
+
         function vis=get.ShowLegend(this)
             leg=this.Legend;
             vis=~isempty(leg)&&logical(leg.Visible);
         end
 
+
         function set.ShowPointCloud(this,newValue)
             this.ShowPointCloud=newValue;
             update(this);
         end
+
 
         function set.ShowActorMeshes(this,newValue)
             this.ShowActorMeshes=newValue;
@@ -133,13 +149,12 @@ hShowActorMeshes
             update(this);
         end
 
+
         function data=getSensorDataForExport(this)
             data=this.SensorData;
 
             indx=1;
             while indx<=numel(data)
-
-
                 objectDets=data(indx).ObjectDetections;
                 if numel(objectDets)==1
                     objectDets=objectDets{1};
@@ -165,13 +180,14 @@ hShowActorMeshes
             end
         end
 
-        function clear(this)
 
+        function clear(this)
             set(this.ActorPatches,'Visible','off');
             set(this.BarrierPatches,'Visible','off');
             set([this.RoadBoundaryLine,this.CoverageAreaPatches,this.DetectionLines...
-            ,this.VelocityLines,validPointCloudLines(this)],'Visible','off');
+                ,this.VelocityLines,validPointCloudLines(this)],'Visible','off');
         end
+
 
         function update(this)
             hDesigner=this.Application;
@@ -179,27 +195,22 @@ hShowActorMeshes
             egoCarId=hDesigner.EgoCarId;
             sensorSpecs=hDesigner.SensorSpecifications;
             hAxes=this.Axes;
-
-
             sensorSpecs(~[sensorSpecs.Enabled])=[];
             nSensors=numel(sensorSpecs);
 
             coveragePatches=this.CoverageAreaPatches;
 
-
-
             if this.IsCoverageStale
-
                 for sensorIndex=1:nSensors
                     sensor=sensorSpecs(sensorIndex);
                     if sensorIndex>numel(coveragePatches)
                         coveragePatches(sensorIndex)=patch(hAxes,...
-                        'Tag',sprintf('CoverageAreaPatch%d',sensorIndex));
+                            'Tag',sprintf('CoverageAreaPatch%d',sensorIndex));
                     end
                     set(coveragePatches(sensorIndex),...
-                    'EdgeColor',sensor.CoverageEdgeColor,...
-                    'FaceColor',sensor.CoverageFaceColor,...
-                    'FaceAlpha',sensor.CoverageFaceAlpha);
+                        'EdgeColor',sensor.CoverageEdgeColor,...
+                        'FaceColor',sensor.CoverageFaceColor,...
+                        'FaceAlpha',sensor.CoverageFaceAlpha);
 
                     generator=sensor.Sensor;
                     yaw=sensor.Yaw;
@@ -212,10 +223,10 @@ hShowActorMeshes
                         fov=generator.FieldOfView(1);
                     end
                     driving.birdsEyePlot.internal.plotCoverageArea(coveragePatches(sensorIndex),...
-                    sensor.SensorLocation,...
-                    sensor.MaxRange,...
-                    yaw,...
-                    fov);
+                        sensor.SensorLocation,...
+                        sensor.MaxRange,...
+                        yaw,...
+                        fov);
                 end
                 delete(coveragePatches(nSensors+1:end));
                 coveragePatches(nSensors+1:end)=[];
@@ -225,7 +236,7 @@ hShowActorMeshes
 
             if isempty(egoCarId)
                 toHide={'RoadBoundaryLine','ActorPatches','BarrierPatches','LaneDetectionsLine',...
-                'LaneMarkingsPatch','DetectionLines','VelocityLines'};
+                    'LaneMarkingsPatch','DetectionLines','VelocityLines'};
                 for indx=1:numel(toHide)
                     set(this.(toHide{indx}),'Visible','off');
                 end
@@ -242,9 +253,6 @@ hShowActorMeshes
             set(hAxes,'YDir',dir,'ZDir',dir);
 
             if isempty(allData)
-
-
-
                 steppingBack=false;
             else
                 sensorTime=allData(end).Time;
@@ -252,7 +260,6 @@ hShowActorMeshes
 
                     steppingBack=false;
                 else
-
                     while sensorTime>time
                         allData(end)=[];
                         sensorTime=allData(end).Time;
@@ -260,8 +267,6 @@ hShowActorMeshes
                     steppingBack=true;
                 end
             end
-
-
 
             if isempty(egoCarId)||isempty(scenario.Actors)||egoCarId>numel(scenario.Actors)
                 egoCar=[];
@@ -275,7 +280,6 @@ hShowActorMeshes
             actorPatches=this.ActorPatches;
             barrierPatches=this.BarrierPatches;
             haveBarriers=~isempty(scenario.Barriers);
-
 
             barrierSegments=[];
 
@@ -337,26 +341,26 @@ hShowActorMeshes
                 if~isempty(y)
                     if haveBarriers
                         gtc=struct('Time',time,...
-                        'LaneBoundaries',{boundaries},...
-                        'MarkingVertices',markingVertices,...
-                        'MarkingFaces',markingFaces,...
-                        'Position',[p;bp],...
-                        'Yaw',[y;by],...
-                        'Length',[l;bl],...
-                        'Width',[w;bw],...
-                        'Offset',[o;bo],...
-                        'Color',[c;bc]);
+                            'LaneBoundaries',{boundaries},...
+                            'MarkingVertices',markingVertices,...
+                            'MarkingFaces',markingFaces,...
+                            'Position',[p;bp],...
+                            'Yaw',[y;by],...
+                            'Length',[l;bl],...
+                            'Width',[w;bw],...
+                            'Offset',[o;bo],...
+                            'Color',[c;bc]);
                     else
                         gtc=struct('Time',time,...
-                        'LaneBoundaries',{boundaries},...
-                        'MarkingVertices',markingVertices,...
-                        'MarkingFaces',markingFaces,...
-                        'Position',p,...
-                        'Yaw',y,...
-                        'Length',l,...
-                        'Width',w,...
-                        'Offset',o,...
-                        'Color',c);
+                            'LaneBoundaries',{boundaries},...
+                            'MarkingVertices',markingVertices,...
+                            'MarkingFaces',markingFaces,...
+                            'Position',p,...
+                            'Yaw',y,...
+                            'Length',l,...
+                            'Width',w,...
+                            'Offset',o,...
+                            'Color',c);
                     end
                     if isempty(this.GroundTruthCache)
                         this.GroundTruthCache=gtc;
@@ -368,27 +372,25 @@ hShowActorMeshes
             driving.birdsEyePlot.internal.drawLaneBoundaries(roadLine,boundaries);
 
             set(markingPatch,'Vertices',markingVertices,...
-            'Faces',markingFaces);
+                'Faces',markingFaces);
 
             if~isempty(y)
                 if this.ShowActorMeshes
-
-
                     if isempty(egoCar)
                         refCar=scenario.Actors(1);
                     else
                         refCar=egoCar;
                     end
                     actorPatches=driving.birdsEyePlot.internal.plotActorMeshes(hAxes,...
-                    actorPatches,scenario,refCar,this.OutlineFaceAlpha);
+                        actorPatches,scenario,refCar,this.OutlineFaceAlpha);
                 else
                     actorPatches=driving.birdsEyePlot.internal.plotActorPatches(hAxes,...
-                    actorPatches,1,this.OutlineFaceAlpha,p,y,l,w,o,c);
+                        actorPatches,1,this.OutlineFaceAlpha,p,y,l,w,o,c);
                 end
                 if haveBarriers
 
                     barrierPatches=driving.birdsEyePlot.internal.plotBarrierPatches(hAxes,...
-                    barrierPatches,1,this.OutlineFaceAlpha,barrierSegments,bp,by,bl,bw,bo,bc);
+                        barrierPatches,1,this.OutlineFaceAlpha,barrierSegments,bp,by,bl,bw,bo,bc);
                 end
             end
             delete(actorPatches(numel(y)+1:end));
@@ -406,7 +408,6 @@ hShowActorMeshes
             maxXLim=hAxes.XLim(2);
             lanes={};
             for sensorIndex=1:nSensors
-
                 sensor=sensorSpecs(sensorIndex);
                 isLidar=strcmp(sensor.Type,'lidar');
                 isINS=strcmp(sensor.Type,'ins');
@@ -414,14 +415,14 @@ hShowActorMeshes
 
                 if sensorIndex>numel(detectionLines)
                     detectionLines(sensorIndex)=line(hAxes,...
-                    'LineStyle','none');
+                        'LineStyle','none');
                     velocityLines(sensorIndex)=line(hAxes);
                 end
                 set(detectionLines(sensorIndex),...
-                'Marker',sensor.DetectionMarker,...
-                'MarkerSize',sensor.DetectionMarkerSize,...
-                'MarkerEdgeColor',sensor.DetectionMarkerEdgeColor,...
-                'MarkerFaceColor',sensor.DetectionMarkerFaceColor);
+                    'Marker',sensor.DetectionMarker,...
+                    'MarkerSize',sensor.DetectionMarkerSize,...
+                    'MarkerEdgeColor',sensor.DetectionMarkerEdgeColor,...
+                    'MarkerFaceColor',sensor.DetectionMarkerFaceColor);
                 set(velocityLines(sensorIndex),'Color',sensor.DetectionMarkerEdgeColor);
 
                 if sensorIndex>numel(pointCloudLines)
@@ -435,9 +436,9 @@ hShowActorMeshes
                 if isLidar
                     if isLidarPointCloudLineValid
                         set(pointCloudLines(sensorIndex),...
-                        'Marker','o',...
-                        'LineWidth',0.5,...
-                        'SizeData',1);
+                            'Marker','o',...
+                            'LineWidth',0.5,...
+                            'SizeData',1);
                     else
                         pointCloudLines(sensorIndex)=scatter(hAxes,[],[],'filled');
                     end
@@ -532,17 +533,10 @@ hShowActorMeshes
                     end
                 end
 
-
-
                 if isempty(detections)
                     set(detectionLines(sensorIndex),'XData',[],'YData',[]);
                     set(velocityLines(sensorIndex),'XData',[],'YData',[]);
                 else
-
-
-
-
-
                     dataPos=cellfun(posFcn,detections,'UniformOutput',false);
                     dataPos=cell2mat(dataPos')';
                     dataPos=dataPos*posRotate;
@@ -556,15 +550,15 @@ hShowActorMeshes
 
                         dataPos=getArcForPlottingRange(sensor,detections{1});
                         set(detectionLines(sensorIndex),...
-                        'XData',dataPos(:,1),'YData',dataPos(:,2),...
-                        'Marker','none','LineWidth',0.5,'LineStyle','--');
+                            'XData',dataPos(:,1),'YData',dataPos(:,2),...
+                            'Marker','none','LineWidth',0.5,'LineStyle','--');
                     else
                         set(detectionLines(sensorIndex),...
-                        'XData',dataPos(:,1),'YData',dataPos(:,2));
+                            'XData',dataPos(:,1),'YData',dataPos(:,2));
                     end
 
                     driving.birdsEyePlot.internal.drawVelocities(velocityLines(sensorIndex),...
-                    sensor.DetectionVelocityScaling,dataPos,dataVel);
+                        sensor.DetectionVelocityScaling,dataPos,dataVel);
                 end
                 if isempty(laneDets)
                     set(laneLine,'XData',[],'YData',[]);
@@ -575,8 +569,6 @@ hShowActorMeshes
                         lanes{end+1}=[xValues,computeBoundaryModel(boundaries(laneIndex),xValues)]*posRotate+offset;%#ok<AGROW>
                     end
                 end
-
-
 
                 if~isempty(pointCloud)
                     location=pointCloud.Location;
@@ -595,7 +587,7 @@ hShowActorMeshes
                     sortYPos=lidarDataPos(distIndx,2);
                     parulaColors=getParulaColors(distSorted,sensor.MaxRange);
                     set(pointCloudLines(sensorIndex),...
-                    'XData',sortXPos,'YData',sortYPos,'CData',parulaColors);
+                        'XData',sortXPos,'YData',sortYPos,'CData',parulaColors);
                 end
             end
             delete(detectionLines(nSensors+1:end));
@@ -616,18 +608,20 @@ hShowActorMeshes
             set(actorPatches,'Visible',matlabshared.application.logicalToOnOff(this.ShowActorOutlines&&~isempty(egoCar)));
             set(barrierPatches,'Visible',matlabshared.application.logicalToOnOff(this.ShowActorOutlines&&~isempty(egoCar)));
             set([this.DetectionLines,this.VelocityLines],'Visible',...
-            matlabshared.application.logicalToOnOff(this.ShowObjectDetections&&~isempty(allData)));
+                matlabshared.application.logicalToOnOff(this.ShowObjectDetections&&~isempty(allData)));
             set(coveragePatches,'Visible',...
-            matlabshared.application.logicalToOnOff(this.ShowCoverageAreas));
+                matlabshared.application.logicalToOnOff(this.ShowCoverageAreas));
             set(validPointCloudLines(this),'Visible',...
-            matlabshared.application.logicalToOnOff(this.ShowPointCloud&&~isempty(allData)));
+                matlabshared.application.logicalToOnOff(this.ShowPointCloud&&~isempty(allData)));
 
             drawnow limitrate
         end
 
+
         function res=validPointCloudLines(this)
             res=this.PointCloudLines(this.PointCloudLines~=-1);
         end
+
 
         function resize(this)
             figpos=getpixelposition(this.Figure);
@@ -644,6 +638,7 @@ hShowActorMeshes
             updateLimits(this);
         end
 
+
         function isValidTime=calculateSensorData(this)
             designer=this.Application;
             scenario=designer.Scenario;
@@ -651,19 +646,18 @@ hShowActorMeshes
             actors=scenario.Actors;
             nActors=numel(actors);
 
-
             if isempty(egoId)||isempty(scenario.Actors)||egoId>nActors
                 this.GroundTruthCache=struct('Time',{},...
-                'LaneBoundaries',{},...
-                'Position',{},...
-                'Yaw',{},...
-                'Length',{},...
-                'Width',{},...
-                'Offset',{},...
-                'Color',{});
+                    'LaneBoundaries',{},...
+                    'Position',{},...
+                    'Yaw',{},...
+                    'Length',{},...
+                    'Width',{},...
+                    'Offset',{},...
+                    'Color',{});
                 this.SensorData=struct('Time',{},'ActorPoses',{},...
-                'ObjectDetections',{},'LaneDetections',{},...
-                'PointClouds',{},'INSMeasurements',{});
+                    'ObjectDetections',{},'LaneDetections',{},...
+                    'PointClouds',{},'INSMeasurements',{});
                 isValidTime=false;
                 return;
             end
@@ -674,11 +668,8 @@ hShowActorMeshes
             time=getCurrentTime(player);
             sample=getCurrentSample(player);
 
-
             sensors(~[sensors.Enabled])=[];
             nSensors=numel(sensors);
-
-
 
             poses=targetPoses(egoCar,inf);
 
@@ -689,12 +680,11 @@ hShowActorMeshes
 
                     return;
                 else
-
                     actorState=struct('Position',[0,0,0],...
-                    'Velocity',[0,0,0],...
-                    'Orientation',[0,0,0],...
-                    'AngularVelocity',[0,0,0],...
-                    'Acceleration',[0,0,0]);
+                        'Velocity',[0,0,0],...
+                        'Orientation',[0,0,0],...
+                        'AngularVelocity',[0,0,0],...
+                        'Acceleration',[0,0,0]);
                 end
             end
 
@@ -705,15 +695,15 @@ hShowActorMeshes
                     rng(seed);
                 end
                 allData=struct('Time',{},'ActorPoses',{},'ObjectDetections',{},...
-                'LaneDetections',{},'PointClouds',{},'INSMeasurements',{});
+                    'LaneDetections',{},'PointClouds',{},'INSMeasurements',{});
                 this.GroundTruthCache=struct('Time',{},...
-                'LaneBoundaries',{},...
-                'Position',{},...
-                'Yaw',{},...
-                'Length',{},...
-                'Width',{},...
-                'Offset',{},...
-                'Color',{});
+                    'LaneBoundaries',{},...
+                    'Position',{},...
+                    'Yaw',{},...
+                    'Length',{},...
+                    'Width',{},...
+                    'Offset',{},...
+                    'Color',{});
                 actorProfs=actorProfiles(scenario);
                 for sensorIndex=1:nSensors
                     sensor=sensors(sensorIndex).Sensor;
@@ -734,12 +724,10 @@ hShowActorMeshes
             insMeas=repmat({struct.empty},nSensors,1);
 
             iw=matlabshared.application.IgnoreWarnings(...
-            'driving:abstractDetectionGenerator:sensorInsideActor',...
-            'shared_tracking:targetTruth:insideEntity');%#ok<NASGU>
-
+                'driving:abstractDetectionGenerator:sensorInsideActor',...
+                'shared_tracking:targetTruth:insideEntity');%#ok<NASGU>
 
             for sensorIndex=1:nSensors
-
                 sensor=sensors(sensorIndex).Sensor;
                 isVision=isa(sensor,'visionDetectionGenerator');
                 isLidar=isa(sensor,'lidarPointCloudGenerator');
@@ -752,27 +740,14 @@ hShowActorMeshes
                 end
                 if isVision&&strcmp(detectionType,'lanes&objects')
                     if isempty(lanes)
-
-
-
-
-
-
                         maxLaneDetectionRange=min(500,sensor.MaxRange);
                         lanes=laneBoundaries(egoCar,'XDistance',linspace(-maxLaneDetectionRange,maxLaneDetectionRange,101));
                     end
                     [objectDets{sensorIndex},nDetections,isValidTime(sensorIndex),...
-                    laneDets,~,isValidLaneTime(sensorIndex)]=sensor(poses,lanes,time);
+                        laneDets,~,isValidLaneTime(sensorIndex)]=sensor(poses,lanes,time);
                     allLaneDets=[allLaneDets,laneDets];%#ok<AGROW>
                 elseif isVision&&strcmp(detectionType,'lanes')
-
-
-
                     if isempty(lanes)
-
-
-
-
                         maxLaneDetectionRange=min(500,sensor.MaxRange);
                         lanes=laneBoundaries(egoCar,'XDistance',linspace(-maxLaneDetectionRange,maxLaneDetectionRange,101));
                     end
@@ -809,27 +784,26 @@ hShowActorMeshes
                 objectDets{sensorIndex}(nDetections+1:end)=[];
             end
             if any(isValidTime)||any(isValidLaneTime)||...
-                any(isValidPointCloudTime)||any(isValidINSTime)
+                    any(isValidPointCloudTime)||any(isValidINSTime)
                 if all(cellfun(@isempty,objectDets))
                     objectDets={};
                 end
-
-
                 allData(end+1)=struct('Time',time,...
-                'ActorPoses',actorPoses(scenario),...
-                'ObjectDetections',{objectDets},...
-                'LaneDetections',allLaneDets,...
-                'PointClouds',{ptClouds},...
-                'INSMeasurements',{insMeas});
+                    'ActorPoses',actorPoses(scenario),...
+                    'ObjectDetections',{objectDets},...
+                    'LaneDetections',allLaneDets,...
+                    'PointClouds',{ptClouds},...
+                    'INSMeasurements',{insMeas});
             end
             this.SensorData=allData;
         end
 
+
         function clearData(this,index)
             if nargin<2
                 this.SensorData=struct('Time',{},'ActorPoses',{},...
-                'ObjectDetections',{},'LaneDetections',{},...
-                'PointClouds',{},'INSMeasurements',{});
+                    'ObjectDetections',{},'LaneDetections',{},...
+                    'PointClouds',{},'INSMeasurements',{});
             else
                 data=this.SensorData;
                 if isempty(data)
@@ -847,38 +821,48 @@ hShowActorMeshes
         end
     end
 
-    methods(Hidden)
 
+    methods(Hidden)
         function hAxes=getAxes(this)
             hAxes=this.Axes;
         end
+
+
         function hFig=getFigure(this)
             hFig=this.Figure;
         end
+
+
         function tag=getTag(~)
             tag='BirdsEyePlot';
         end
+
 
         function b=isCloseable(~)
             b=false;
         end
 
+
         function b=isIntrinsic(~)
             b=false;
         end
 
+
         function name=getName(~)
             name=getString(message('driving:scenarioApp:BirdsEyePlotTitle'));
         end
+
 
         function[min,max]=getAxesSpan(~)
             min=0.001;
             max=10e3;
         end
 
+
         function applyAxesLimits(this,varargin)
             applyAxesLimits@matlabshared.application.FillAxes(this,varargin{:});
         end
+
 
         function onMouseMotion(this,~,~)
             if~(this.ShowTooltip&&isOverAxes(this))
@@ -917,8 +901,6 @@ hShowActorMeshes
 
             c=this.CoverageAreaPatches;
 
-
-
             s=app.SensorSpecifications;
 
             isINS=string({s.Type})=='ins';
@@ -946,23 +928,22 @@ hShowActorMeshes
         end
     end
 
+
     methods(Access='protected')
 
         function options=getAddToApplicationOptions(this)
 
             app=this.Application;
 
-
-
             tile=getComponentTileIndex(app,app.EgoCentricView);
             if isempty(tile)
                 tile=3;
             end
             options=struct(...
-            'Title',getName(this),...
-            'Tag',getTag(this),...
-            'Closable',isCloseable(this),...
-            'Tile',tile);
+                'Title',getName(this),...
+                'Tag',getTag(this),...
+                'Closable',isCloseable(this),...
+                'Tile',tile);
         end
 
         function onPlayerSampleChanged(this,~,~)
@@ -984,20 +965,20 @@ hShowActorMeshes
 
             set(hFig,'WindowButtonMotionFcn',@this.onMouseMotion);
             hPanel=uipanel('BorderType','none',...
-            'Parent',hFig,...
-            'AutoResizeChildren','off',...
-            'Units','pixels');
+                'Parent',hFig,...
+                'AutoResizeChildren','off',...
+                'Units','pixels');
             hAxes=axes('Parent',hPanel,...
-            'ZLim',[-.1,.1],...
-            'Box','on',...
-            'NextPlot','add',...
-            'LooseInset',[0.07,0.06,0.03,0.03],...
-            'CameraPositionMode','auto',...
-            'CameraTargetMode','auto',...
-            'DataAspectRatio',[1,1,1],...
-            'CameraUpVectorMode','auto',...
-            'CameraViewAngleMode','auto',...
-            'Tag',[getTag(this),'Axes']);
+                'ZLim',[-.1,.1],...
+                'Box','on',...
+                'NextPlot','add',...
+                'LooseInset',[0.07,0.06,0.03,0.03],...
+                'CameraPositionMode','auto',...
+                'CameraTargetMode','auto',...
+                'DataAspectRatio',[1,1,1],...
+                'CameraUpVectorMode','auto',...
+                'CameraViewAngleMode','auto',...
+                'Tag',[getTag(this),'Axes']);
 
             xlabel(hAxes,getString(message('driving:scenarioApp:BirdsEyeXLabel')));
             ylabel(hAxes,getString(message('driving:scenarioApp:BirdsEyeYLabel')));
@@ -1009,22 +990,22 @@ hShowActorMeshes
             this.Axes=hAxes;
             this.RoadBoundaryLine=line(hAxes,'Visible','off','Tag','RoadBoundary');
             this.LaneMarkingsPatch=patch(hAxes,...
-            'FaceColor',[0.6,0.6,0.6],...
-            'EdgeColor','none',...
-            'Visible','off','Tag','LaneMarkings');
+                'FaceColor',[0.6,0.6,0.6],...
+                'EdgeColor','none',...
+                'Visible','off','Tag','LaneMarkings');
             this.LaneDetectionsLine=line(hAxes,'Visible','off','Tag','LaneDetections',...
-            'Color',[1,0,0]);
+                'Color',[1,0,0]);
             createPushButton(this,hFig,'SettingsButton',@this.settingsCallback,...
-            'TooltipString',getString(message('driving:scenarioApp:BirdsEyePlotSettingsDescription')),...
-            'CData',getIcon(this.Application,'settings'),...
-            'Position',[5,5,20,20]);
+                'TooltipString',getString(message('driving:scenarioApp:BirdsEyePlotSettingsDescription')),...
+                'CData',getIcon(this.Application,'settings'),...
+                'Position',[5,5,20,20]);
         end
 
         function settingsCallback(this,h,~)
             hMenu=this.SettingsMenu;
             menuTags={'ShowRoadBoundaries','ShowLaneMarkings','ShowActorOutlines',...
-            'ShowLaneDetections','ShowObjectDetections','ShowCoverageAreas',...
-            'ShowTooltip','ShowPointCloud','ShowLegend','ShowActorMeshes'};
+                'ShowLaneDetections','ShowObjectDetections','ShowCoverageAreas',...
+                'ShowTooltip','ShowPointCloud','ShowLegend','ShowActorMeshes'};
 
             if isempty(hMenu)
                 hMenu=uicontextmenu(this.Figure,'Tag','BirdsEyePlotSettingsMenu');
@@ -1034,8 +1015,8 @@ hShowActorMeshes
             updateToggleMenu(this,menuTags);
             drawnow;
             set(hMenu,...
-            'Position',h.Position(1:2)+[1,0],...
-            'Visible','on');
+                'Position',h.Position(1:2)+[1,0],...
+                'Visible','on');
         end
 
         function windowMotionCallback(varargin)
@@ -1045,56 +1026,56 @@ hShowActorMeshes
 end
 
 function xy=sphericalToCartesian(az,el,r)
-    [x,y]=sph2cart(deg2rad(az),deg2rad(el),r);
-    xy=[x;y];
+[x,y]=sph2cart(deg2rad(az),deg2rad(el),r);
+xy=[x;y];
 
 end
 
 function col=getParulaColors(distSorted,maxRange)
 
 
-    segDist=floor((maxRange-30).^2/5);
-    if segDist<900
-        segDist=900;
-    end
-    parulaColors=[62,38,168
+segDist=floor((maxRange-30).^2/5);
+if segDist<900
+    segDist=900;
+end
+parulaColors=[62,38,168
     52,122,253
     18,190,185
     200,193,41
     249,251,20]/255;
-    col=[];
-    edge1=0;
-    for kndx=1:5
-        edge2=floor(segDist*kndx);
-        segSize=length(distSorted(distSorted>edge1&distSorted<=edge2));
-        edge1=edge2;
-        col=[col;repmat(parulaColors(kndx,:),segSize,1)];%#ok<AGROW>
-    end
-    remToAdd=length(distSorted)-size(col,1);
-    col=[col;repmat(parulaColors(end,:),remToAdd,1)];
+col=[];
+edge1=0;
+for kndx=1:5
+    edge2=floor(segDist*kndx);
+    segSize=length(distSorted(distSorted>edge1&distSorted<=edge2));
+    edge1=edge2;
+    col=[col;repmat(parulaColors(kndx,:),segSize,1)];%#ok<AGROW>
+end
+remToAdd=length(distSorted)-size(col,1);
+col=[col;repmat(parulaColors(end,:),remToAdd,1)];
 
 end
 
 function thisPos=getArcForPlottingRange(sensor,det)
-    angs=zeros(2,100);
-    hfov=sensor.FieldOfView(1)/2;
-    angs(1,:)=linspace(-hfov,hfov,100);
-    angs(2,:)=0;
-    rg=ones(1,100)*det.Measurement(1);
-    angs=deg2rad(angs);
-    [x,y,z]=sph2cart(angs(1,:),angs(2,:),rg);
-    state=[x(:),y(:),z(:)]';
-    for m=1:numel(det.MeasurementParameters)
-        measParam=det.MeasurementParameters(m);
-        T=measParam.OriginPosition(:);
-        orient=driving.internal.rotChildToParent(sensor.Roll,sensor.Pitch,sensor.Yaw);
-        if~measParam.IsParentToChild
-            orient=orient';
-        end
-        state=bsxfun(@plus,orient'*state,T);
+angs=zeros(2,100);
+hfov=sensor.FieldOfView(1)/2;
+angs(1,:)=linspace(-hfov,hfov,100);
+angs(2,:)=0;
+rg=ones(1,100)*det.Measurement(1);
+angs=deg2rad(angs);
+[x,y,z]=sph2cart(angs(1,:),angs(2,:),rg);
+state=[x(:),y(:),z(:)]';
+for m=1:numel(det.MeasurementParameters)
+    measParam=det.MeasurementParameters(m);
+    T=measParam.OriginPosition(:);
+    orient=driving.internal.rotChildToParent(sensor.Roll,sensor.Pitch,sensor.Yaw);
+    if~measParam.IsParentToChild
+        orient=orient';
     end
-    thisPos=state(1:3,:);
-    thisPos=thisPos';
+    state=bsxfun(@plus,orient'*state,T);
+end
+thisPos=state(1:3,:);
+thisPos=thisPos';
 
 end
 

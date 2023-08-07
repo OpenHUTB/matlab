@@ -1,19 +1,18 @@
 classdef Adder<handle
 
     properties
-Application
+        Application
     end
+
 
     methods(Hidden)
         function name=getUniqueName(this,name)
-
             specs=getCurrentSpecifications(this);
             if isempty(specs)
                 return;
             end
 
             rawName=name;
-
 
             rawName(regexp(rawName,'(\d+)$'):end)=[];
             indx=1;

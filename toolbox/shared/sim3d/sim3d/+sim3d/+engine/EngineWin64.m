@@ -1,7 +1,5 @@
 classdef EngineWin64<sim3d.engine.EngineInterface
 
-
-
     methods
         function self=EngineWin64()
             self.EngineLastError=sim3d.engine.EngineReturnCode.OK;
@@ -26,6 +24,7 @@ classdef EngineWin64<sim3d.engine.EngineInterface
         end
     end
 
+
     methods(Access=private,Hidden=true)
         function retcode=checkRunning(self,process)
             retcode=sim3d.engine.EngineReturnCode.Timeout;
@@ -46,6 +45,7 @@ classdef EngineWin64<sim3d.engine.EngineInterface
         end
     end
 
+
     methods(Static=true)
         function process=makeProcess(FileName,Arguments)
             process=System.Diagnostics.Process();
@@ -54,16 +54,9 @@ classdef EngineWin64<sim3d.engine.EngineInterface
             process.StartInfo.Arguments=Arguments;
             process.StartInfo.UseShellExecute=false;
 
-
-
-
-
-
-
             process.StartInfo.EnvironmentVariables.Remove("PATH");
             process.StartInfo.EnvironmentVariables.Add("PATH",...
             fullfile(matlabroot,"bin","win64")+";"+getenv("PATH"));
-
         end
     end
 end
