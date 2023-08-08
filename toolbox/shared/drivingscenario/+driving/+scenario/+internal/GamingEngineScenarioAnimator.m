@@ -421,7 +421,13 @@ classdef GamingEngineScenarioAnimator < handle
         
         function setupCommandReaderAndWriter(this)
             % 开始工程
-            World = sim3d.World(sim3d.engine.Env.AutomotiveExe(), "/Game/Maps/EmptyGrass4k4k"); % EmptyGrass4k4k or BlackLake
+            exe_path = sim3d.engine.Env.AutomotiveExe();
+            % 不从字符数组转成字符串数据，matlab\toolbox\shared\sim3d\sim3d\+sim3d\World.p的检查会报错：
+            % ExecutablePath' 的值无效。它必须满足函数: @(x)isstring(x)||isempty(x)
+            if ~isstring(exe_path)
+                exe_path = string(exe_path);
+            end
+            World = sim3d.World(exe_path, "/Game/Maps/EmptyGrass4k4k"); % EmptyGrass4k4k or BlackLake
             World.start();  % 打开虚幻引擎（黑色）界面
             % 游戏仿真同步控制
             reader = sim3d.io.CommandReader();

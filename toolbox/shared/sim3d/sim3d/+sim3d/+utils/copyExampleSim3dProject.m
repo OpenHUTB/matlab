@@ -1,16 +1,16 @@
+% 将将三维仿真示例工程支持包文件拷贝到目的文件夹
 function copyExampleSim3dProject(varargin)
-
 
     projectName="AutoVrtlEnv";
 
     parser=inputParser();
 
-    parser.addRequired("Destination",@(Destination)~isfolder(fullfile(Destination,projectName)));
+    parser.addRequired("Destination", @(Destination)~isfolder(fullfile(Destination,projectName)));
     parser.addParameter(...
-    "Source",...
-    fullfile(matlabshared.supportpkg.getSupportPackageRoot(),"toolbox","shared","sim3dprojects","spkg"),...
-    @isfolder...
-    );
+        "Source",...
+        fullfile(matlabshared.supportpkg.getSupportPackageRoot(),"toolbox","shared","sim3dprojects","spkg"),...
+        @isfolder...
+        );
     parser.addParameter("VerboseOutput",false,@islogical);
     parser.addParameter("PluginDestination","C:\Program Files\Epic Games\UE_4.26\Engine\Plugins\MathWorks");
 
@@ -20,6 +20,7 @@ function copyExampleSim3dProject(varargin)
     source=parser.Results.Source;
     verboseOutput=parser.Results.VerboseOutput;
     pluginDestination=parser.Results.PluginDestination;
+    % 要确保虚幻引擎中的插件目录没有，否则直接报错"断言失败"
     assert(~isfolder(pluginDestination));
 
     CopyProject(fullfile(source,"project",projectName),fullfile(destination,projectName),verboseOutput);
@@ -28,10 +29,14 @@ function copyExampleSim3dProject(varargin)
     EnablePlugins(pluginDestination,fullfile(destination,projectName,projectName+".uproject"),verboseOutput);
 end
 
+
+% 拷贝虚幻引擎工程
 function CopyProject(root,destination,verboseOutput)
     CopyWithLog(root,destination,verboseOutput);
 end
 
+
+% 拷贝虚幻引擎的插件目录
 function CreatePluginsDir(pluginsDir,verboseOutput)
     if verboseOutput
         fprintf("Creating %s\n",pluginsDir);
@@ -39,6 +44,8 @@ function CreatePluginsDir(pluginsDir,verboseOutput)
     mkdir(pluginsDir);
 end
 
+
+% 拷贝插件
 function CopyPlugins(root,destination,verboseOutput)
     plugins=GetSourcePluginDirectories(root);
     for i=1:length(plugins)
@@ -48,6 +55,8 @@ function CopyPlugins(root,destination,verboseOutput)
     end
 end
 
+
+% 使虚幻引擎插件生效
 function EnablePlugins(pluginDestination,uprojectFile,verboseOutput)
     if verboseOutput
         fprintf("Ensuring %s is writable\n",uprojectFile);
@@ -79,7 +88,9 @@ function EnablePlugins(pluginDestination,uprojectFile,verboseOutput)
     fclose(fid);
 end
 
-function pluginDirectories=GetSourcePluginDirectories(root)
+
+% 获取原始插件的目录
+function pluginDirectories = GetSourcePluginDirectories(root)
     files=dir(fullfile(root,"plugins","*","*"));
     mask=cellfun(@(file)~ismember(file,{'.','..'}),{files.name});
     files=files(mask);
@@ -87,6 +98,8 @@ function pluginDirectories=GetSourcePluginDirectories(root)
     pluginDirectories=string(arrayfun(@(s)fullfile(s.folder,s.name),subdirectories,UniformOutput=false));
 end
 
+
+% 在拷贝的时候输出拷贝过程的详细信息
 function status=CopyWithLog(source,destination,verboseOutput)
     if verboseOutput
         fprintf("Copying %s to %s\n",source,destination);

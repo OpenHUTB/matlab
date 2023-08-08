@@ -23,16 +23,16 @@ classdef Env
             path=fullfile(sim3d.engine.Env.ProjectRoot(),"automotive_project");
         end
 
-        function path=AutomotiveExe()
+        function path = AutomotiveExe()
             % 确定指定组（Simulation3D）中是否存在自定义预设项（UnrealPath）
             if ispref("Simulation3D", "UnrealPath")
-                path=getpref("Simulation3D", "UnrealPath");
+                path = getpref("Simulation3D", "UnrealPath");
                 return
             end
 
-            archPath=sim3d.engine.Env.archPathMap(computer('arch'));
+            archPath = sim3d.engine.Env.archPathMap(computer('arch'));
             if isempty(archPath)
-                notSupportedPlatformException=MException('sim3D:Engine:setup:PlatformException',...
+                notSupportedPlatformException = MException('sim3D:Engine:setup:PlatformException',...
                 ['3D simulation engine interface is not supported on the ',...
                 computer('arch'),' platform.']);
                 throw(notSupportedPlatformException);

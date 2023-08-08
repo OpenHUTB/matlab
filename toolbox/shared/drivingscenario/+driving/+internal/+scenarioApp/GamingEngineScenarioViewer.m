@@ -225,6 +225,10 @@ classdef GamingEngineScenarioViewer<handle
                 this.LastWarnings={msg};
                 return;
             end
+            % TODO：临时加的
+            % 等待场景加载完成，不然自定义导出场景会直接关闭
+            pause(0.75);
+
             onSimulatorStateChanged(this);
             if~isempty(animator.Scenario.Actors)
                 update(this);
