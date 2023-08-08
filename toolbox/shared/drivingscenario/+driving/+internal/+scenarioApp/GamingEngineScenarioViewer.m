@@ -4,7 +4,7 @@ classdef GamingEngineScenarioViewer<handle
         Visible;
     end
 
-    properties(Hidden,SetAccess=protected)
+    properties(Hidden, SetAccess=protected)
         Animator;
         Application;
         IsValid

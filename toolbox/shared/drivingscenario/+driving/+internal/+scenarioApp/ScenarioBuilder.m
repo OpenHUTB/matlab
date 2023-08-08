@@ -1,10 +1,7 @@
 classdef ScenarioBuilder<handle
-
-
-
-
+    % 场景构建器
     properties(Abstract)
-Scenario
+        Scenario
     end
 
     properties
@@ -15,22 +12,20 @@ Scenario
     end
 
     properties(Dependent)
-GeographicReference
+        GeographicReference
     end
 
-    properties(SetAccess=protected,Hidden)
+    properties(SetAccess=protected, Hidden)
         RoadSpecifications=driving.internal.scenarioApp.road.Specification.empty;
         ActorSpecifications=driving.internal.scenarioApp.ActorSpecification.empty;
         BarrierSpecifications=driving.internal.scenarioApp.BarrierSpecification.empty;
-ClassSpecifications
+        ClassSpecifications
         SensorSpecifications=driving.internal.scenarioApp.SensorSpecification.empty;
         ActorCount=0;
     end
 
     methods
         function this=ScenarioBuilder
-
-
             this.ClassSpecifications=driving.internal.scenarioApp.ClassSpecifications;
         end
 
@@ -105,13 +100,9 @@ ClassSpecifications
             createScenarioH1="% createDrivingScenario Returns the drivingScenario defined in the Designer";
             if~isempty(ver('driving'))
                 tbx='driving';
-
                 sensorSpecs(~[sensorSpecs.Enabled])=[];
             elseif~isempty(ver('vdynblks'))
                 tbx='vdynblks';
-
-
-
                 sensorSpecs=[];
             else
                 tbx='';
@@ -165,7 +156,6 @@ ClassSpecifications
                 barrierRoadIDs(barrierRoadIDs==0)=[];
             end
 
-
             if~isempty(roadSpecs)
                 scenarioStr=scenarioStr+newline+"% Add all road segments";
                 for indx=1:numel(roadSpecs)
@@ -177,7 +167,6 @@ ClassSpecifications
                 end
             end
 
-
             if~isempty(barrierSpecs)
                 scenarioStr=scenarioStr+newline+"% Add the barriers";
                 for indx=1:numel(barrierSpecs)
@@ -185,17 +174,12 @@ ClassSpecifications
                 end
             end
 
-
             egoCarName='';
-
 
             allActorSpecs=actorSpecs;
             if~isempty(actorSpecs)
                 actorCommentNeeded=true;
-
                 if isempty(egoCar)||egoCar~=1
-
-
                     actorCommentNeeded=false;
                     scenarioStr=scenarioStr+newline+"% Add the actors";
                 end
@@ -220,9 +204,6 @@ ClassSpecifications
             end
 
             if isempty(sensorSpecs)
-
-
-
                 if isempty(egoCar)
                     outputVariables=scenarioVariableName;
                 else
@@ -234,7 +215,6 @@ ClassSpecifications
                 str=scenarioStr;
                 helpstr=createScenarioH1;
             else
-
                 if isempty(egoCarName)
                     inputs={};
                     sensorStr="";
@@ -243,8 +223,8 @@ ClassSpecifications
                     sensorStr="";
                     if~all(string({sensorSpecs.Type})=="ins")
                         sensorStr=sprintf("%s\n%s(%s);",...
-                        "% Assign into each sensor the physical and radar profiles for all actors",...
-                        "profiles = actorProfiles",scenarioVariableName);
+                            "% Assign into each sensor the physical and radar profiles for all actors",...
+                            "profiles = actorProfiles",scenarioVariableName);
                     end
                 end
 
@@ -258,7 +238,6 @@ ClassSpecifications
                 end
 
                 str="% Create all the sensors";
-
 
                 if isempty(roadSpecs)&&isempty(actorSpecs)&&isempty(egoCarName)
                     str=str+sensorStr;
@@ -275,7 +254,6 @@ ClassSpecifications
                     end
                     helpstr=createSensorsH1;
                 else
-
                     if nSensors==1
                         sensorPostfix='';
                     else
@@ -283,11 +261,9 @@ ClassSpecifications
                     end
 
                     if isempty(egoCarName)
-
-
                         functionLine=sprintf("function [scenario, sensor%s] = createScenario",sensorPostfix);
                         str=sprintf("%s\n%s\n\n%s\n%s\n",...
-                        functionLine,createScenarioH1,scenarioStr,sensorStr);
+                            functionLine,createScenarioH1,scenarioStr,sensorStr);
                         return;
                     elseif isempty(functionName)
                         functionName='generateSensorData';
@@ -474,7 +450,6 @@ ClassSpecifications
                             sensorStr=sensorStr+indent+"    objectDetections = [objectDetections; objectDets(1:numObjects)];"+pragma+newline;
                             sensorStr=sensorStr+indent+"    laneDetections   = [laneDetections laneDets];"+pragma+newline;
                         else
-
                             sensorStr=sensorStr+indent+"    type = getDetectorOutput(sensor);"+newline;
                             sensorStr=sensorStr+indent+"    if strcmp(type, 'Objects only')"+newline;
                             sensorStr=sensorStr+indent+"        if isa(sensor,'ultrasonicDetectionGenerator')"+newline;
@@ -582,19 +557,17 @@ ClassSpecifications
                     if nSensors==1
                         functionLine="function sensor = createSensor";
                         str=sprintf("%s\n%s(%s)\n%s\n\n%s\n",...
-                        sensorStr,functionLine,scenarioVariableName,...
-                        createSensorsH1,sensorFcn);
+                            sensorStr,functionLine,scenarioVariableName,...
+                            createSensorsH1,sensorFcn);
                     else
                         functionLine="function [sensors, numSensors] = createSensors";
                         str=sprintf("%s\n%s(%s)\n%s\n\n%s\nnumSensors = %d;\n",...
-                        sensorStr,functionLine,scenarioVariableName,...
-                        createSensorsH1,sensorFcn,nSensors);
+                            sensorStr,functionLine,scenarioVariableName,...
+                            createSensorsH1,sensorFcn,nSensors);
                     end
                     str=sprintf("%s\nfunction [%s, %s] = createDrivingScenario\n%s\n\n%s",...
-                    str,scenarioVariableName,egoCarName,createScenarioH1,scenarioStr);
+                        str,scenarioVariableName,egoCarName,createScenarioH1,scenarioStr);
                     if addDetectorOutputHelper
-
-
                         outputStr="function output = getDetectorOutput(sensor)"+newline+newline;
                         outputStr=outputStr+"if isa(sensor, 'visionDetectionGenerator')"+newline;
                         outputStr=outputStr+"    output = sensor.DetectorOutput;"+newline;
@@ -608,32 +581,27 @@ ClassSpecifications
                         str=str+newline+outputStr;
                     end
                     helpstr=sprintf('%%%s\n',...
-                    sprintf('%s - Returns sensor detections',functionName),...
-                    sprintf('    allData = %s returns sensor detections in a structure',functionName),...
-                    '    with time for an internally defined scenario and sensor suite.',...
-                    '',...
-                    sprintf('    [allData, scenario, sensors] = %s optionally returns',functionName),...
-                    '    the drivingScenario and detection generator objects.');
+                        sprintf('%s - Returns sensor detections',functionName),...
+                        sprintf('    allData = %s returns sensor detections in a structure',functionName),...
+                        '    with time for an internally defined scenario and sensor suite.',...
+                        '',...
+                        sprintf('    [allData, scenario, sensors] = %s optionally returns',functionName),...
+                        '    the drivingScenario and detection generator objects.');
                     helpstr(end)=[];
                 end
             end
-
             str=sprintf("function %s = %s()\n%s\n\n%s\n\n%s\n",outputVariables,functionName,helpstr,header,str);
-
         end
 
 
         function modelName=generateSimulinkModel(this,stopTime,scenarioFilePath)
-
-
             enabledSensors=this.SensorSpecifications([this.SensorSpecifications.Enabled]==true);
             modelName=driving.scenario.internal.generateSimulinkModel(this.Scenario,...
-            enabledSensors,stopTime,scenarioFilePath,getTitle(this));
+                enabledSensors,stopTime,scenarioFilePath,getTitle(this));
         end
 
+
         function[modelName,warnings]=generate3dSimModel(this,stopTime,scenarioFilePath,varargin)
-
-
             sensors=this.SensorSpecifications;
             sensors=sensors([sensors.Enabled]);
 
@@ -642,12 +610,11 @@ ClassSpecifications
             sensors=sensors(string({sensors.Type})~='ultrasonic');
             actors=this.ActorSpecifications;
             [modelName,warnings]=driving.scenario.internal.generate3dSimModel(this.Scenario,...
-            sensors,stopTime,scenarioFilePath,getTitle(this),actors,varargin{:});
+                sensors,stopTime,scenarioFilePath,getTitle(this),actors,varargin{:});
         end
 
+
         function varargout=addRoad(this,varargin)
-
-
             if nargin>1&&isa(varargin{1},'driving.internal.scenarioApp.road.Specification')
                 roadSpec=varargin{1};
             else
@@ -660,12 +627,9 @@ ClassSpecifications
             end
         end
 
+
         function addRoadSpecification(this,roadSpec,index)
-
-
             roadSpec.applyToScenario(this.Scenario);
-
-
             maxIndex=numel(this.RoadSpecifications)+1;
             if nargin<3||index>maxIndex
                 index=maxIndex;
@@ -675,6 +639,7 @@ ClassSpecifications
             this.RoadSpecifications=allSpecs;
         end
 
+
         function varargout=deleteRoad(this,index)
             if nargout
                 varargout={this.RoadSpecifications(index)};
@@ -682,6 +647,7 @@ ClassSpecifications
             this.RoadSpecifications(index)=[];
             generateNewScenarioFromSpecifications(this);
         end
+
 
         function varargout=deleteBarrier(this,index)
             if nargout
@@ -691,8 +657,8 @@ ClassSpecifications
             generateNewScenarioFromSpecifications(this);
         end
 
-        function varargout=addBarrier(this,varargin)
 
+        function varargout=addBarrier(this,varargin)
             if nargin>1&&isa(varargin{1},'driving.internal.scenarioApp.BarrierSpecification')
                 barrierSpec=varargin{1};
             else
@@ -704,12 +670,9 @@ ClassSpecifications
             end
         end
 
+
         function addBarrierSpecification(this,barrierSpec,index)
-
-
             barrierSpec.applyToScenario(this.Scenario);
-
-
             maxIndex=numel(this.BarrierSpecifications)+1;
             if nargin<3||index>maxIndex
                 index=maxIndex;
@@ -718,6 +681,7 @@ ClassSpecifications
             allSpecs=[allSpecs(1:index-1),barrierSpec,allSpecs(index:end)];
             this.BarrierSpecifications=allSpecs;
         end
+
 
         function varargout=addActor(this,varargin)
             actorSpec=driving.internal.scenarioApp.ActorSpecification(varargin{:});
@@ -728,9 +692,8 @@ ClassSpecifications
             end
         end
 
+
         function varargout=addActorSpecification(this,actorSpec,index)
-
-
             maxIndex=numel(this.ActorSpecifications)+numel(actorSpec);
             applyInMiddle=true;
             if nargin<3||all(index>maxIndex)
@@ -738,7 +701,6 @@ ClassSpecifications
                 applyInMiddle=false;
             end
             allSpecs=this.ActorSpecifications;
-
 
             if(size(actorSpec,2)<size(actorSpec,1))
                 actorSpec=actorSpec';
@@ -754,14 +716,10 @@ ClassSpecifications
 
             this.ActorSpecifications=allSpecs;
 
-
             if applyInMiddle
                 generateScenarioActorsFromSpecifications(this);
                 actor=this.Scenario.Actors(index);
             else
-
-
-
                 if this.Use3dSimDimensions
                     pvPairs=getActorPVPairs(actorSpec);
                 else
@@ -783,6 +741,7 @@ ClassSpecifications
             end
         end
 
+
         function varargout=deleteActor(this,index)
             allActors=this.ActorSpecifications;
             if nargout
@@ -790,10 +749,6 @@ ClassSpecifications
             end
             for indx=1:numel(index)
                 if index(indx)==numel(allActors)&&isempty(getProperty(this.ClassSpecifications,allActors(index(indx)).ClassID,'PlotColor'))
-
-
-
-
                     newCount=this.ActorCount-1;
                     if newCount<0
                         newCount=0;
@@ -806,24 +761,23 @@ ClassSpecifications
             updatePlotsForActors(this);
         end
 
+
         function varargout=addSensor(this,type,varargin)
             switch type
-            case 'vision'
-                hSensor=driving.internal.scenarioApp.VisionSensorSpecification(varargin{:});
-            case 'radar'
-                hSensor=driving.internal.scenarioApp.RadarSensorSpecification(varargin{:});
-            case 'lidar'
-                hSensor=driving.internal.scenarioApp.LidarSensorSpecification(varargin{:});
-            case 'ins'
-                hSensor=driving.internal.scenarioApp.INSSensorSpecification(varargin{:});
-            case 'ultrasonic'
-
-
-                rndx=find(strcmp(varargin,'FieldOfView'));
-                varargin(rndx:rndx+1)=[];
-                rndx=find(strcmp(varargin,'MaxRange'));
-                varargin(rndx:rndx+1)=[];
-                hSensor=driving.internal.scenarioApp.UltrasonicSensorSpecification(varargin{:});
+                case 'vision'
+                    hSensor=driving.internal.scenarioApp.VisionSensorSpecification(varargin{:});
+                case 'radar'
+                    hSensor=driving.internal.scenarioApp.RadarSensorSpecification(varargin{:});
+                case 'lidar'
+                    hSensor=driving.internal.scenarioApp.LidarSensorSpecification(varargin{:});
+                case 'ins'
+                    hSensor=driving.internal.scenarioApp.INSSensorSpecification(varargin{:});
+                case 'ultrasonic'
+                    rndx=find(strcmp(varargin,'FieldOfView'));
+                    varargin(rndx:rndx+1)=[];
+                    rndx=find(strcmp(varargin,'MaxRange'));
+                    varargin(rndx:rndx+1)=[];
+                    hSensor=driving.internal.scenarioApp.UltrasonicSensorSpecification(varargin{:});
             end
             addSensorSpecification(this,hSensor);
             if nargout
@@ -832,11 +786,8 @@ ClassSpecifications
         end
 
         function addSensorSpecification(this,hSensor,index)
-
-
-
             [interval,changed]=driving.internal.scenarioApp.SensorSpecification.fixUpdateIntervals(...
-            hSensor.UpdateInterval,this.SampleTime*1000);
+                hSensor.UpdateInterval,this.SampleTime*1000);
             if changed
                 hSensor.UpdateInterval=interval;
                 id='driving:scenarioApp:UpdateUpdateIntervalOnNew';
@@ -850,6 +801,7 @@ ClassSpecifications
             this.SensorSpecifications=[sensorSpecs(1:index-1),hSensor,sensorSpecs(index:end)];
         end
 
+
         function varargout=deleteSensor(this,index)
             if nargout
                 varargout={this.SensorSpecifications(index)};
@@ -858,11 +810,10 @@ ClassSpecifications
         end
     end
 
+
     methods(Hidden)
 
         function[data,offset,span,rotation]=get3DScenarioData(this,roadSpecs,actorSpecs,egoCarId,sampleTime,fullRun,barrierSpecs)
-
-
             if nargin<2
                 egoCarId=this.EgoCarId;
             end
@@ -971,7 +922,6 @@ ClassSpecifications
                     end
                 end
             end
-
             scenario=this.Scenario;
 
             for kndx=numel(actorSpecs):-1:1
@@ -984,7 +934,7 @@ ClassSpecifications
                     s.FrontOverhang=actor.FrontOverhang;
                     s.RearOverhang=actor.RearOverhang;
                     s.Position=driving.scenario.internal.translateVehiclePosition(...
-                    s.Position,s.RearOverhang,s.Length,s.Roll,s.Pitch,s.Yaw);
+                        s.Position,s.RearOverhang,s.Length,s.Roll,s.Pitch,s.Yaw);
                 end
 
                 s.Position=s.Position+offset;
@@ -1018,8 +968,6 @@ ClassSpecifications
             if isempty(scenario.Actors)&&isempty(scenario.Barriers)
                 vehiclePoses=[];
             else
-
-
                 resetVisibility(scenario.Actors);
 
                 time=0;
@@ -1031,8 +979,8 @@ ClassSpecifications
                     isMoving(indx)=~isa(scenario.Actors(indx).MotionStrategy,'driving.scenario.Stationary');
                     if isa(scenario.Actors(indx),'driving.scenario.Vehicle')
                         poses(indx).Position=driving.scenario.internal.translateVehiclePosition(...
-                        poses(indx).Position,scenario.Actors(indx).RearOverhang,...
-                        scenario.Actors(indx).Length,poses(indx).Roll,poses(indx).Pitch,poses(indx).Yaw);
+                            poses(indx).Position,scenario.Actors(indx).RearOverhang,...
+                            scenario.Actors(indx).Length,poses(indx).Roll,poses(indx).Pitch,poses(indx).Yaw);
                     end
                     poses(indx).Position=poses(indx).Position+offset;
                 end
@@ -1047,7 +995,6 @@ ClassSpecifications
                 while any(isRunning)
                     time=time+sampleTime;
                     vehiclePoses(end+1).SimulationTime=time;%#ok<AGROW>
-
 
                     for indx=1:numel(scenario.Actors)
                         isRunning(indx)=move(scenario.Actors(indx),time);
@@ -1094,8 +1041,8 @@ ClassSpecifications
             end
         end
 
-        function tf=determineHasIntersection(~,scenario)
 
+        function tf=determineHasIntersection(~,scenario)
             tf=false;
             rt=scenario.RoadTiles;
             for kndx=1:length(rt)
@@ -1107,6 +1054,7 @@ ClassSpecifications
             end
         end
 
+
         function updateClassSpecifications(this,classInfo)
             classSpecs=this.ClassSpecifications;
             clear(classSpecs);
@@ -1115,6 +1063,7 @@ ClassSpecifications
                 classSpecs.setSpecification(info.id,rmfield(info,'id'));
             end
         end
+
 
         function generateScenarioActorsFromSpecifications(this,s)
             if nargin<2
@@ -1132,12 +1081,13 @@ ClassSpecifications
             end
         end
 
+
         function varargout=generateNewScenarioFromSpecifications(this)
             s=drivingScenario(...
-            'SampleTime',this.SampleTime,...
-            'AxesOrientation',this.AxesOrientation,...
-            'GeographicReference',this.GeographicReference,...
-            'VerticalAxis',this.getVerticalAxis());
+                'SampleTime',this.SampleTime,...
+                'AxesOrientation',this.AxesOrientation,...
+                'GeographicReference',this.GeographicReference,...
+                'VerticalAxis',this.getVerticalAxis());
 
             if~isempty(this.Scenario)&&this.Scenario.IsOpenDRIVERoad
                 s.ShowRoadBorders=false;
@@ -1157,15 +1107,13 @@ ClassSpecifications
             currentRoadIDs=[s.RoadSegments(:).RoadID];
             for indx=1:numel(barrierSpecs)
                 if~isempty(barrierSpecs(indx).Road)
-
                     barrierRoadID=barrierSpecs(indx).Road.RoadID;
                     if~any(find(currentRoadIDs==barrierRoadID))||...
-                        ~isequal(s.RoadSegments(barrierRoadID).RoadCenters,barrierSpecs(indx).Road.RoadCenters)
+                            ~isequal(s.RoadSegments(barrierRoadID).RoadCenters,barrierSpecs(indx).Road.RoadCenters)
 
                         barrierSpecs(indx).BarrierCentersChanged=true;
                         barrierSpecs(indx).resetRoadData();
                     else
-
                         roadID=barrierSpecs(indx).Road.RoadID;
                         barrierSpecs(indx).Road=driving.scenario.Road(s.RoadSegments(roadID));
                     end
@@ -1179,6 +1127,7 @@ ClassSpecifications
                 this.Scenario=s;
             end
         end
+
 
         function updateActorInScenario(this,index)
             actorSpec=this.ActorSpecifications(index);
@@ -1199,25 +1148,29 @@ ClassSpecifications
             end
         end
 
+
         function name=getClassNameFromID(this,id)
-
-
             name=this.ClassSpecifications.getProperty(id,'name');
         end
     end
 
+
     methods(Access=protected)
+
         function onNewUse3dSimDimensions(~,~)
         end
+
         function onNewSampleTime(~,~)
         end
+
         function updatePlots(~)
         end
+
         function updatePlotsForActors(~)
         end
 
-        function convertAxesOrientation(this,oldOrientation,newOrientation)
 
+        function convertAxesOrientation(this,oldOrientation,newOrientation)
             roadSpecs=this.RoadSpecifications;%#ok<*MCSUP>
             actorSpecs=this.ActorSpecifications;
             sensorSpecs=this.SensorSpecifications;
@@ -1238,68 +1191,65 @@ ClassSpecifications
     end
 end
 
+
 function s=convertToStruct(aObj)
 
-    props=properties(aObj);
-    if isempty(props)
-        s=[];
-    end
-    for kndx=1:length(props)
-        s.(props{kndx})=aObj.(props{kndx});
+props=properties(aObj);
+if isempty(props)
+    s=[];
+end
+for kndx=1:length(props)
+    s.(props{kndx})=aObj.(props{kndx});
+end
+end
+
+
+function s=getBarrierStruct(barrierSpec)
+numSegments=numel(barrierSpec.BarrierSegments);
+fieldNames=properties(driving.internal.scenarioApp.ActorSpecification);
+s=struct;
+for i=1:numel(fieldNames)
+    if isprop(barrierSpec,fieldNames{i})
+        [s(1:numSegments).(fieldNames{i})]=deal(barrierSpec.(fieldNames{i}));
     end
 end
 
-function s=getBarrierStruct(barrierSpec)
-    numSegments=numel(barrierSpec.BarrierSegments);
+[s(1:numSegments).Length]=deal(barrierSpec.SegmentLength);
+[s(1:numSegments).FrontOverhang]=deal(0);
+[s(1:numSegments).Wheelbase]=deal(0);
+[s(1:numSegments).RearOverhang]=deal(0);
+[s(1:numSegments).Waypoints]=deal([]);
+[s(1:numSegments).Speed]=deal(1);
+[s(1:numSegments).WaitTime]=deal([]);
+[s(1:numSegments).WaypointsYaw]=deal([]);
+[s(1:numSegments).EntryTime]=deal(0);
+[s(1:numSegments).ExitTime]=deal(inf);
+[s(1:numSegments).IsVisible]=deal(1);
+[s(1:numSegments).IsSpawnValid]=deal(0);
+[s(1:numSegments).TrajectoryFcn]=deal('');
+[s(1:numSegments).IsSmoothTrajectory]=deal(0);
+[s(1:numSegments).Jerk]=deal(0.6);
 
+pos=reshape([barrierSpec.BarrierSegments(:).Position],3,[])';
+posCell=num2cell(pos,2);
+[s(1:numSegments).Position]=deal(posCell{:});
 
-    fieldNames=properties(driving.internal.scenarioApp.ActorSpecification);
+rollCell=num2cell([barrierSpec.BarrierSegments(:).Roll]);
+[s(1:numSegments).Roll]=deal(rollCell{:});
 
+pitchCell=num2cell([barrierSpec.BarrierSegments(:).Pitch]);
+[s(1:numSegments).Pitch]=deal(pitchCell{:});
 
-    s=struct;
-    for i=1:numel(fieldNames)
-        if isprop(barrierSpec,fieldNames{i})
-            [s(1:numSegments).(fieldNames{i})]=deal(barrierSpec.(fieldNames{i}));
-        end
-    end
-
-    [s(1:numSegments).Length]=deal(barrierSpec.SegmentLength);
-    [s(1:numSegments).FrontOverhang]=deal(0);
-    [s(1:numSegments).Wheelbase]=deal(0);
-    [s(1:numSegments).RearOverhang]=deal(0);
-    [s(1:numSegments).Waypoints]=deal([]);
-    [s(1:numSegments).Speed]=deal(1);
-    [s(1:numSegments).WaitTime]=deal([]);
-    [s(1:numSegments).WaypointsYaw]=deal([]);
-    [s(1:numSegments).EntryTime]=deal(0);
-    [s(1:numSegments).ExitTime]=deal(inf);
-    [s(1:numSegments).IsVisible]=deal(1);
-    [s(1:numSegments).IsSpawnValid]=deal(0);
-    [s(1:numSegments).TrajectoryFcn]=deal('');
-    [s(1:numSegments).IsSmoothTrajectory]=deal(0);
-    [s(1:numSegments).Jerk]=deal(0.6);
-
-
-    pos=reshape([barrierSpec.BarrierSegments(:).Position],3,[])';
-    posCell=num2cell(pos,2);
-    [s(1:numSegments).Position]=deal(posCell{:});
-
-    rollCell=num2cell([barrierSpec.BarrierSegments(:).Roll]);
-    [s(1:numSegments).Roll]=deal(rollCell{:});
-
-    pitchCell=num2cell([barrierSpec.BarrierSegments(:).Pitch]);
-    [s(1:numSegments).Pitch]=deal(pitchCell{:});
-
-    yawCell=num2cell([barrierSpec.BarrierSegments(:).Yaw]);
-    [s(1:numSegments).Yaw]=deal(yawCell{:});
+yawCell=num2cell([barrierSpec.BarrierSegments(:).Yaw]);
+[s(1:numSegments).Yaw]=deal(yawCell{:});
 
 end
 
 
 function pvPairs=getActorPVPairs(spec)
 
-    dims=driving.scenario.internal.GamingEngineScenarioAnimator.getAssetDimensions(spec.AssetType);
-    pvPairs=matlabshared.application.structToPVPairs(dims);
+dims=driving.scenario.internal.GamingEngineScenarioAnimator.getAssetDimensions(spec.AssetType);
+pvPairs=matlabshared.application.structToPVPairs(dims);
 
 end
 

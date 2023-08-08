@@ -18,7 +18,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         RoadProperties;
         ActorProperties;
         BarrierProperties;
-        SensorCanvas;
+        SensorCanvas;      % 传感器画布
         SensorProperties;
         BirdsEyePlot;
         ActorAdder;
@@ -44,8 +44,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         PropertyListener;
         SimulatorListener;
         WaypointsChangedListener;
-        ScenarioCanvasModeChangedListener;
-        ScenarioCanvasSelectionChangedListener;
+        ScenarioCanvasModeChangedListener;       % 场景画布模式改变的监听器
+        ScenarioCanvasSelectionChangedListener;  % 场景画布选择改变的监听器
         GamingEngineWindowClosedListener;
         RestartPlayer=false;
         NeedsAutoScale=false;
@@ -122,6 +122,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
+        % 获得传感器的索引
         function index=getCurrentSensorIndex(this)
             props=this.SensorProperties;
             if isempty(props)
@@ -136,11 +137,13 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
+        % 获取驾驶场景设计器的名字：Driving Scenario Designer
         function name=getName(~)
             name=getString(message('driving:scenarioApp:ScenarioBuilderName'));
         end
 
 
+        % 获取应用程序的标签
         function tag=getTag(~)
             tag='DrivingScenarioDesigner';
 
@@ -316,7 +319,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
-        % 获得参与者添加器ActorAdder对象
+        % 获得参与者添加器 ActorAdder 对象
         function actorAdder = getActorAdder(this)
             actorAdder=this.ActorAdder;
             if isempty(actorAdder)
@@ -346,6 +349,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
+        % 获取道路添加器（RoadAdder）对象
         function roadAdder=getRoadAdder(this)
             roadAdder=this.RoadAdder;
             if isempty(roadAdder)
@@ -355,6 +359,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
+        % 获取传感器添加器（SensorAdder）对象
         function sensorAdder=getSensorAdder(this)
             sensorAdder=this.SensorAdder;
             if isempty(sensorAdder)
@@ -385,13 +390,14 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
-        function new(this,tag,force)
-            if nargin>2&&force||allowNew(this)
+        % 新建一个驾驶场景设计器
+        function new(this, tag, force)
+            if nargin>2 && force || allowNew(this)
                 stop(this.Simulator);
-                scenarioCanvas=this.ScenarioView;
+                scenarioCanvas = this.ScenarioView;  % 该场景视图作为场景的画图
                 exitInteractionMode(scenarioCanvas);
-                scenarioCanvas.CurrentSpecification=[];
-                new@driving.internal.scenarioApp.ScenarioBuilder(this,tag);
+                scenarioCanvas.CurrentSpecification = [];
+                new@driving.internal.scenarioApp.ScenarioBuilder(this, tag);
                 new@matlabshared.application.undoredo.ToolGroupUndoRedo(this);
                 new@matlabshared.application.ToolGroupFileSystem(this);
                 update(this.RoadProperties);
@@ -616,6 +622,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
     end
 
+
+    % 私有的方法
     methods(Hidden)
 
         function[b,product,appName]=shouldSupportDDUX(~)

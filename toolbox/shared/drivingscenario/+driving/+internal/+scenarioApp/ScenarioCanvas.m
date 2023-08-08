@@ -1,7 +1,7 @@
 classdef ScenarioCanvas<driving.internal.scenarioApp.ScenarioView&...
-    matlabshared.application.Canvas&...
-    matlabshared.application.ComponentBanner&...
-    driving.internal.scenarioApp.UITools
+        matlabshared.application.Canvas&...
+        matlabshared.application.ComponentBanner&...
+        driving.internal.scenarioApp.UITools
 
 
 
@@ -32,36 +32,36 @@ classdef ScenarioCanvas<driving.internal.scenarioApp.ScenarioView&...
     properties
 
 
-CurrentSpecification
+        CurrentSpecification
 
 
-PreviousMousePointer
+        PreviousMousePointer
 
 
-CurrentActor
+        CurrentActor
 
 
-CurrentBarrier
+        CurrentBarrier
 
 
-CurrentRoad
-
-
-
-WaypointLine
+        CurrentRoad
 
 
 
-Waypoints
-
-RoadEditPointDragPvPairs
-BarrierEditPointDragPvPairs
+        WaypointLine
 
 
-ActorID
+
+        Waypoints
+
+        RoadEditPointDragPvPairs
+        BarrierEditPointDragPvPairs
 
 
-BarrierID
+        ActorID
+
+
+        BarrierID
 
 
         BarrierRoads=driving.scenario.Road.empty
@@ -75,10 +75,10 @@ BarrierID
 
 
 
-CursorLine
+        CursorLine
 
 
-RoadID
+        RoadID
 
 
 
@@ -86,15 +86,15 @@ RoadID
         IsDraggingStart=false
 
 
-CachedPosition
+        CachedPosition
         CachedYaw;
         CachedOffset;
 
 
-CachedWaypoints
+        CachedWaypoints
 
 
-WaypointIndex
+        WaypointIndex
 
 
         ShouldDirty=false
@@ -104,60 +104,60 @@ WaypointIndex
         RoadOutline=matlab.graphics.primitive.Line.empty
 
 
-RoadCenterMarker
+        RoadCenterMarker
 
 
-RoadEditPointId
-RoadEditPointCache
+        RoadEditPointId
+        RoadEditPointCache
 
 
-BarrierEditPointId
-BarrierEditPointCache
-BarrierCenterMarker
+        BarrierEditPointId
+        BarrierEditPointCache
+        BarrierCenterMarker
         BarrierOutline=matlab.graphics.primitive.Line.empty
         DragOffset=[0,0,0]
     end
 
     properties(Hidden,SetObservable)
-ClickLocation
-ClickIndex
+        ClickLocation
+        ClickIndex
         ClickIndexStale=false;
     end
 
     properties(Hidden)
-hShowWaypointsDuringSim
-hShowRoadEditPointsDuringSim
-hShowPoseIndicatorDuringSim
-hEnableRoadInteractivity
-hShowEgoIndicator
-hScenarioSettings
+        hShowWaypointsDuringSim
+        hShowRoadEditPointsDuringSim
+        hShowPoseIndicatorDuringSim
+        hEnableRoadInteractivity
+        hShowEgoIndicator
+        hScenarioSettings
     end
 
     properties(SetAccess=protected,Hidden)
-Marquee
-RoadHighlight
+        Marquee
+        RoadHighlight
         RoadEdgeHighlight=[]
         RoadEdgeSelect=[]
-ActorHighlight
-BarrierHighlight
-RoadContextMenu
-ActorContextMenu
-BarrierContextMenu
-AxesContextMenu
-WaylineContextMenu
-RoadEditPointsContextMenu
-BarrierEditPointsContextMenu
-WaypointsContextMenu
-HelpText
-RoadInteractivityDisabledMessage
-SettingsMenu
-CustomRoadContextMenus
-CustomBarrierContextMenus
-CustomEditPointContextMenus
-PoseIndicator
-ActorRotator
+        ActorHighlight
+        BarrierHighlight
+        RoadContextMenu
+        ActorContextMenu
+        BarrierContextMenu
+        AxesContextMenu
+        WaylineContextMenu
+        RoadEditPointsContextMenu
+        BarrierEditPointsContextMenu
+        WaypointsContextMenu
+        HelpText
+        RoadInteractivityDisabledMessage
+        SettingsMenu
+        CustomRoadContextMenus
+        CustomBarrierContextMenus
+        CustomEditPointContextMenus
+        PoseIndicator
+        ActorRotator
         EgoIndicator=matlab.graphics.GraphicsPlaceholder.empty;
-SimulatorStateChangedListener
+        SimulatorStateChangedListener
     end
 
     properties(Hidden,Constant)
@@ -165,9 +165,9 @@ SimulatorStateChangedListener
     end
 
     events
-PropertyChanged
-ModeChanged
-SelectionChanged
+        PropertyChanged
+        ModeChanged
+        SelectionChanged
     end
 
     properties(Constant,Hidden)
@@ -197,8 +197,8 @@ SelectionChanged
             this.SimulatorStateChangedListener=addStateChangedListener(this.Application.Simulator,@this.onSimulatorStateChanged);
             this.EgoCarIdListener=addPropertyListener(this.Application,'EgoCarId',@this.onEgoCarIdChanged);
             contribute(this.Application.Toolstrip,this,'DisplayProperties','ScenarioView',...
-            {'EnableRoadInteractivity','ShowRoadEditPointsDuringSim',...
-            'ShowWaypointsDuringSim','ShowPoseIndicatorDuringSim','ShowEgoIndicator'});
+                {'EnableRoadInteractivity','ShowRoadEditPointsDuringSim',...
+                'ShowWaypointsDuringSim','ShowPoseIndicatorDuringSim','ShowEgoIndicator'});
         end
 
         function updateActor(this,varargin)
@@ -368,10 +368,10 @@ SelectionChanged
             else
                 if isempty(hText)||~ishghandle(hText)
                     hText=text(hAxes,...
-                    'FontSize',14,...
-                    'HitTest','off',...
-                    'Color',[.3,.3,.3],...
-                    'HorizontalAlignment','center');
+                        'FontSize',14,...
+                        'HitTest','off',...
+                        'Color',[.3,.3,.3],...
+                        'HorizontalAlignment','center');
                     setappdata(hText,'listener',event.proplistener(hAxes,{hAxes.findprop('XLim'),hAxes.findprop('YLim')},'PostSet',@this.updateHelperTextForLimits));
                     this.HelpText=hText;
                 end
@@ -408,151 +408,151 @@ SelectionChanged
         function tableData=getTableData(this)
             app=this.Application;
             switch this.InteractionMode
-            case{'dragRoad','dragRoadEditPoint','none'}
-                id=this.RoadID;
-                if isempty(id)
-                    roadSpec=this.CurrentSpecification;
-                    if~isa(roadSpec,'driving.internal.scenarioApp.road.Specification')
-                        tableData=[];
-                        return;
+                case{'dragRoad','dragRoadEditPoint','none'}
+                    id=this.RoadID;
+                    if isempty(id)
+                        roadSpec=this.CurrentSpecification;
+                        if~isa(roadSpec,'driving.internal.scenarioApp.road.Specification')
+                            tableData=[];
+                            return;
+                        end
+                    else
+                        roadSpec=app.RoadSpecifications(this.RoadID);
                     end
-                else
-                    roadSpec=app.RoadSpecifications(this.RoadID);
-                end
 
-                if~isa(roadSpec,'driving.internal.scenarioApp.road.RoadGroupArbitrary')
-                    tableData=roadSpec.Centers;
-                else
-                    tableData=deriveCenters(roadSpec);
-                end
-                if strcmpi(this.InteractionMode,'dragRoad')
-                    tableData=tableData+this.DragOffset;
-                end
-            case{'dragBarrier','dragBarrierEditPoint'}
-                id=this.BarrierID;
-                if isempty(id)
-                    barrierSpec=this.CurrentSpecification;
-                    if~isa(barrierSpec,'driving.internal.scenarioApp.BarrierSpecification')
-                        tableData=[];
-                        return;
+                    if~isa(roadSpec,'driving.internal.scenarioApp.road.RoadGroupArbitrary')
+                        tableData=roadSpec.Centers;
+                    else
+                        tableData=deriveCenters(roadSpec);
                     end
-                else
-                    barrierSpec=app.BarrierSpecifications(this.BarrierID);
-                end
+                    if strcmpi(this.InteractionMode,'dragRoad')
+                        tableData=tableData+this.DragOffset;
+                    end
+                case{'dragBarrier','dragBarrierEditPoint'}
+                    id=this.BarrierID;
+                    if isempty(id)
+                        barrierSpec=this.CurrentSpecification;
+                        if~isa(barrierSpec,'driving.internal.scenarioApp.BarrierSpecification')
+                            tableData=[];
+                            return;
+                        end
+                    else
+                        barrierSpec=app.BarrierSpecifications(this.BarrierID);
+                    end
 
-                tableData=barrierSpec.BarrierCenters;
-                if strcmpi(this.InteractionMode,'dragBarrier')
-                    tableData=tableData+this.DragOffset;
-                end
-            case{'addRoadCenters','addBarrierCenters'}
-                waypoints=this.Waypoints;
-                tableData=num2cell(waypoints);
-                if~isempty(waypoints)
-                    zValue=waypoints(end,3);
-                else
-                    zValue=0;
-                end
-                tableData=addEmptiesToTable(this,tableData,zValue);
-            case 'addActorWaypoints'
-                tableData=this.Waypoints;
-                actor=app.ActorSpecifications(this.ActorID);
-                if isempty(tableData)
-                    tableData=actor.Waypoints;
+                    tableData=barrierSpec.BarrierCenters;
+                    if strcmpi(this.InteractionMode,'dragBarrier')
+                        tableData=tableData+this.DragOffset;
+                    end
+                case{'addRoadCenters','addBarrierCenters'}
+                    waypoints=this.Waypoints;
+                    tableData=num2cell(waypoints);
+                    if~isempty(waypoints)
+                        zValue=waypoints(end,3);
+                    else
+                        zValue=0;
+                    end
+                    tableData=addEmptiesToTable(this,tableData,zValue);
+                case 'addActorWaypoints'
+                    tableData=this.Waypoints;
+                    actor=app.ActorSpecifications(this.ActorID);
                     if isempty(tableData)
-                        tableData=actor.Position;
-                        if~isempty(actor.Speed)
-                            tableData(end+1)=actor.Speed;
-                        else
-                            if app.ActorProperties.AddingReverseMotion
-                                tableData(end+1)=-driving.scenario.Path.DefaultReverseSpeed;
+                        tableData=actor.Waypoints;
+                        if isempty(tableData)
+                            tableData=actor.Position;
+                            if~isempty(actor.Speed)
+                                tableData(end+1)=actor.Speed;
                             else
-                                tableData(end+1)=driving.scenario.Path.DefaultSpeed;
+                                if app.ActorProperties.AddingReverseMotion
+                                    tableData(end+1)=-driving.scenario.Path.DefaultReverseSpeed;
+                                else
+                                    tableData(end+1)=driving.scenario.Path.DefaultSpeed;
+                                end
                             end
                         end
                     end
-                end
-                if size(actor.WaitTime,1)>0&&numel(actor.Speed)==1
-                    actor.Speed=[actor.Speed;repmat(actor.Speed,size(actor.Waypoints,1)-numel(actor.Speed),1)];
-                end
-                if numel(actor.Speed)>0
-                    if size(tableData,2)==3
-                        speed=actor.Speed;
-                        lastSpeed=speed(find(speed~=0,1,'last'));
-                        speed=[speed;repmat(lastSpeed,size(tableData,1)-numel(speed),1)];
-                        tableData=[tableData,speed];
+                    if size(actor.WaitTime,1)>0&&numel(actor.Speed)==1
+                        actor.Speed=[actor.Speed;repmat(actor.Speed,size(actor.Waypoints,1)-numel(actor.Speed),1)];
                     end
-                end
-                if~isempty(actor.WaitTime)
-                    if size(tableData,2)==4
-                        waitTime=actor.WaitTime;
-                        waitTime=[waitTime;zeros(size(tableData,1)-numel(waitTime),1)];
-                        tableData=[tableData,waitTime];
+                    if numel(actor.Speed)>0
+                        if size(tableData,2)==3
+                            speed=actor.Speed;
+                            lastSpeed=speed(find(speed~=0,1,'last'));
+                            speed=[speed;repmat(lastSpeed,size(tableData,1)-numel(speed),1)];
+                            tableData=[tableData,speed];
+                        end
                     end
-                else
-                    tableData(:,5)=0;
-                end
-                if~isempty(actor.pWaypointsYaw)
-                    if size(tableData,2)==5
-                        waypointsYaw=actor.pWaypointsYaw;
-                        waypointsYaw=[waypointsYaw;NaN(size(tableData,1)-numel(waypointsYaw),1)];
-                        tableData=[tableData,waypointsYaw];
+                    if~isempty(actor.WaitTime)
+                        if size(tableData,2)==4
+                            waitTime=actor.WaitTime;
+                            waitTime=[waitTime;zeros(size(tableData,1)-numel(waitTime),1)];
+                            tableData=[tableData,waitTime];
+                        end
+                    else
+                        tableData(:,5)=0;
                     end
-                end
-                tableData=addEmptiesToTable(this,num2cell(tableData));
-            case{'dragActorWaypoint','dragActorWayline'}
-                actor=app.ActorSpecifications(this.ActorID);
-                tableData=actor.Waypoints;
-                if numel(actor.Speed)>1
-                    tableData=[tableData,actor.Speed];
-                end
-                if~isempty(actor.WaitTime)
-                    if size(tableData,2)==4
-                        waitTime=actor.WaitTime;
-                        waitTime=[waitTime;zeros(size(tableData,1)-numel(waitTime),1)];
-                        tableData=[tableData,waitTime];
+                    if~isempty(actor.pWaypointsYaw)
+                        if size(tableData,2)==5
+                            waypointsYaw=actor.pWaypointsYaw;
+                            waypointsYaw=[waypointsYaw;NaN(size(tableData,1)-numel(waypointsYaw),1)];
+                            tableData=[tableData,waypointsYaw];
+                        end
                     end
-                else
-                    tableData(:,5)=0;
-                end
-                if~isempty(actor.pWaypointsYaw)
-                    if size(tableData,2)==5
-                        waypointsYaw=actor.pWaypointsYaw;
-                        waypointsYaw=[waypointsYaw;NaN(size(tableData,1)-numel(waypointsYaw),1)];
-                        tableData=[tableData,waypointsYaw];
+                    tableData=addEmptiesToTable(this,num2cell(tableData));
+                case{'dragActorWaypoint','dragActorWayline'}
+                    actor=app.ActorSpecifications(this.ActorID);
+                    tableData=actor.Waypoints;
+                    if numel(actor.Speed)>1
+                        tableData=[tableData,actor.Speed];
                     end
-                end
-                tableData=num2cell(tableData);
-            case 'addRoad'
-                tableData=this.Waypoints;
-                if isempty(tableData)&&~isempty(app.RoadSpecifications)&&~isempty(this.RoadID)
-                    tableData=app.RoadSpecifications(this.RoadID).Centers;
-                end
-                if isempty(tableData)
-                    zValue=0;
-                else
-                    zValue=tableData(end,3);
-                end
-                if~isempty(app.RoadSpecifications)&&~isempty(this.RoadID)&&~isempty(app.RoadSpecifications(this.RoadID).pHeading)
-                    if size(tableData,2)==3
-                        heading=app.RoadSpecifications(this.RoadID).pHeading;
-                        heading=[heading;NaN(size(tableData,1)-numel(heading),1)];
-                        tableData=[tableData,heading];
+                    if~isempty(actor.WaitTime)
+                        if size(tableData,2)==4
+                            waitTime=actor.WaitTime;
+                            waitTime=[waitTime;zeros(size(tableData,1)-numel(waitTime),1)];
+                            tableData=[tableData,waitTime];
+                        end
+                    else
+                        tableData(:,5)=0;
                     end
-                end
-                tableData=addEmptiesToTable(this,num2cell(tableData),zValue);
-            case 'addBarrier'
-                tableData=this.Waypoints;
-                if isempty(tableData)&&~isempty(app.BarrierSpecifications)&&~isempty(this.BarrierID)
-                    tableData=app.BarrierSpecifications(this.BarrierID).BarrierCenters;
-                end
-                if isempty(tableData)
-                    zValue=0;
-                else
-                    zValue=tableData(end,3);
-                end
-                tableData=addEmptiesToTable(this,num2cell(tableData),zValue);
-            otherwise
-                tableData='';
+                    if~isempty(actor.pWaypointsYaw)
+                        if size(tableData,2)==5
+                            waypointsYaw=actor.pWaypointsYaw;
+                            waypointsYaw=[waypointsYaw;NaN(size(tableData,1)-numel(waypointsYaw),1)];
+                            tableData=[tableData,waypointsYaw];
+                        end
+                    end
+                    tableData=num2cell(tableData);
+                case 'addRoad'
+                    tableData=this.Waypoints;
+                    if isempty(tableData)&&~isempty(app.RoadSpecifications)&&~isempty(this.RoadID)
+                        tableData=app.RoadSpecifications(this.RoadID).Centers;
+                    end
+                    if isempty(tableData)
+                        zValue=0;
+                    else
+                        zValue=tableData(end,3);
+                    end
+                    if~isempty(app.RoadSpecifications)&&~isempty(this.RoadID)&&~isempty(app.RoadSpecifications(this.RoadID).pHeading)
+                        if size(tableData,2)==3
+                            heading=app.RoadSpecifications(this.RoadID).pHeading;
+                            heading=[heading;NaN(size(tableData,1)-numel(heading),1)];
+                            tableData=[tableData,heading];
+                        end
+                    end
+                    tableData=addEmptiesToTable(this,num2cell(tableData),zValue);
+                case 'addBarrier'
+                    tableData=this.Waypoints;
+                    if isempty(tableData)&&~isempty(app.BarrierSpecifications)&&~isempty(this.BarrierID)
+                        tableData=app.BarrierSpecifications(this.BarrierID).BarrierCenters;
+                    end
+                    if isempty(tableData)
+                        zValue=0;
+                    else
+                        zValue=tableData(end,3);
+                    end
+                    tableData=addEmptiesToTable(this,num2cell(tableData),zValue);
+                otherwise
+                    tableData='';
             end
         end
 
@@ -622,18 +622,18 @@ SelectionChanged
         function settingsCallback(this,h,~)
             hMenu=this.SettingsMenu;
             menuTags={'EnableRoadInteractivity','ShowRoadEditPointsDuringSim',...
-            'ShowWaypointsDuringSim','ShowPoseIndicatorDuringSim','ShowEgoIndicator'};
+                'ShowWaypointsDuringSim','ShowPoseIndicatorDuringSim','ShowEgoIndicator'};
             if isempty(hMenu)
                 hMenu=uicontextmenu(this.Figure,'Tag','ScenarioSettingsMenu');
                 createToggleMenu(this,hMenu,menuTags);
                 this.SettingsMenu=hMenu;
             end
             updateToggleMenu(this,menuTags);
-drawnow
+            drawnow
 
             set(hMenu,...
-            'Position',h.Position(1:2)+[1,0],...
-            'Visible','on');
+                'Position',h.Position(1:2)+[1,0],...
+                'Visible','on');
         end
 
         function val=canAddWaypoints(this)
@@ -645,23 +645,17 @@ drawnow
             end
         end
 
+
         function exitInteractionMode(this)
-
-
             app=this.Application;
             if strcmp(this.InteractionMode,'addActor')
-
                 this.InteractionMode='none';
-
                 restoreMousePointer(this);
                 enableUndoRedo(app);
             elseif any(strcmp(this.InteractionMode,{'addRoad','addRoadCenters','addBarrier','addMultipleBarriers','addBarrierCenters','addActorWaypoints'}))
-
                 if any(strcmp(this.InteractionMode,{'addBarrier','addBarrierCenters'}))
-
                     delete(this.RoadEdgeSelect(:));
                     this.RoadEdgeSelect=[];
-
                     delete(this.BarrierRoads(:));
                     this.BarrierRoads=driving.scenario.Road.empty;
                     this.BarrierRoadEdges={};
@@ -813,7 +807,7 @@ drawnow
 
         function commitRoadEdgeBarrier(this,is_ctrl_click)
             if~isempty(this.BarrierRoads)&&~isempty(this.BarrierRoadEdges)&&...
-                any(strcmp(this.InteractionMode,{'addBarrier','addMultipleBarriers','addBarrierCenters'}))
+                    any(strcmp(this.InteractionMode,{'addBarrier','addMultipleBarriers','addBarrierCenters'}))
 
                 hApp=this.Application;
                 resetCursorLine(this);
@@ -836,7 +830,7 @@ drawnow
 
                             barriers(i)=driving.internal.scenarioApp.BarrierSpecification(this.BarrierRoads(i));
                             barrierProps={'Name','ClassID','Width','Height','Mesh','PlotColor',...
-                            'BarrierType','RCSPattern','RCSAzimuthAngles','RCSElevationAngles'};
+                                'BarrierType','RCSPattern','RCSAzimuthAngles','RCSElevationAngles'};
                             for j=1:numel(barrierProps)
                                 barriers(i).(barrierProps{j})=this.CurrentBarrier.(barrierProps{j});
                             end
@@ -935,7 +929,7 @@ drawnow
                 this.InteractionMode='none';
                 if size(waypoints,1)>1&&(size(waypoints,2)~=3)
                     edit=driving.internal.scenarioApp.undoredo.AddActorWaypoints(...
-                    hApp,hApp.ActorSpecifications(this.ActorID),waypoints);
+                        hApp,hApp.ActorSpecifications(this.ActorID),waypoints);
                     try
                         applyEdit(this.Application,edit);
                     catch E
@@ -1111,15 +1105,15 @@ drawnow
                 zd=[waypoints(end,3),cp(3)];
                 if isempty(hLine)||~ishghandle(hLine)
                     hLine=line(...
-                    'XData',[],...
-                    'YData',[],...
-                    'ZData',[],...
-                    'Parent',getAxes(this),...
-                    'Tag','CursorLine',...
-                    'PickableParts','none',...
-                    'Color',[0,0,0],...
-                    'LineStyle','--',...
-                    'LineWidth',1);
+                        'XData',[],...
+                        'YData',[],...
+                        'ZData',[],...
+                        'Parent',getAxes(this),...
+                        'Tag','CursorLine',...
+                        'PickableParts','none',...
+                        'Color',[0,0,0],...
+                        'LineStyle','--',...
+                        'LineWidth',1);
                     this.CursorLine=hLine;
                 end
 
@@ -1148,16 +1142,16 @@ drawnow
 
             if isempty(this.WaypointLine)||~ishghandle(this.WaypointLine)
                 this.WaypointLine=line(...
-                'XData',[],...
-                'YData',[],...
-                'Parent',this.Axes,...
-                'Tag','WaypointLine',...
-                'Marker','o',...
-                'MarkerSize',6,...
-                'HitTest','off',...
-                'MarkerEdgeColor','black',...
-                'LineStyle',':',...
-                'LineWidth',1);
+                    'XData',[],...
+                    'YData',[],...
+                    'Parent',this.Axes,...
+                    'Tag','WaypointLine',...
+                    'Marker','o',...
+                    'MarkerSize',6,...
+                    'HitTest','off',...
+                    'MarkerEdgeColor','black',...
+                    'LineStyle',':',...
+                    'LineWidth',1);
             end
         end
 
@@ -1167,19 +1161,19 @@ drawnow
             if isempty(this.WaypointLine)||~ishghandle(this.WaypointLine)
                 patchColor=get(this.ActorPatches(this.ActorID),'FaceColor');
                 this.WaypointLine=line(...
-                'XData',[],...
-                'YData',[],...
-                'ZData',[],...
-                'Parent',this.Axes,...
-                'Tag','WaypointLine',...
-                'Marker','o',...
-                'MarkerSize',6,...
-                'MarkerEdgeColor',patchColor,...
-                'MarkerFaceColor',patchColor,...
-                'Color',patchColor,...
-                'HitTest','off',...
-                'LineStyle','-',...
-                'LineWidth',0.5);
+                    'XData',[],...
+                    'YData',[],...
+                    'ZData',[],...
+                    'Parent',this.Axes,...
+                    'Tag','WaypointLine',...
+                    'Marker','o',...
+                    'MarkerSize',6,...
+                    'MarkerEdgeColor',patchColor,...
+                    'MarkerFaceColor',patchColor,...
+                    'Color',patchColor,...
+                    'HitTest','off',...
+                    'LineStyle','-',...
+                    'LineWidth',0.5);
                 if nargin>1
                     actor=this.Application.ActorSpecifications(this.ActorID);
                     speed=actor.Speed;
@@ -1208,42 +1202,42 @@ drawnow
             if isprop(clickedObj,'Type')
                 tag=clickedObj.Tag;
                 switch clickedObj.Type
-                case 'line'
-                    if contains(tag,'WaylineActor')
-                        type='actorWayline';
-                        tagPrefix='WaylineActor';
-                    elseif contains(tag,'WaypointActor')
-                        type='actorWaypoint';
-                        tagPrefix='WaypointActor';
-                    elseif strcmp(tag,'RoadEditPoint')
-                        type='roadEditPoint';
-                        tagPrefix='RoadEditPoint';
-                    elseif strcmp(tag,'BarrierEditPoint')
-                        type='barrierEditPoint';
-                        tagPrefix='BarrierEditPoint';
-                    elseif contains(tag,'Road')
-                        type='road';
-                        tagPrefix='Road';
-                    elseif contains(tag,'RotateLine')
-                        type='actor';
-                        tag=sprintf('ActorPatch%d',clickedObj.UserData.ActorID);
-                        tagPrefix='ActorPatch';
-                    end
-                case 'patch'
-                    if contains(tag,'ActorPatch')
-                        type='actor';
-                        tagPrefix='ActorPatch';
-                    elseif contains(tag,'PoseIndicator')||contains(tag,'EgoIndicator')
-                        type='actor';
-                        tag=sprintf('ActorPatch%d',clickedObj.UserData.ActorID);
-                        tagPrefix='ActorPatch';
-                    elseif contains(tag,'BarrierPatch')
-                        type='barrier';
-                        tagPrefix='BarrierPatch';
-                    elseif contains(tag,'Road')
-                        type='road';
-                        tagPrefix='RoadTilesPatch';
-                    end
+                    case 'line'
+                        if contains(tag,'WaylineActor')
+                            type='actorWayline';
+                            tagPrefix='WaylineActor';
+                        elseif contains(tag,'WaypointActor')
+                            type='actorWaypoint';
+                            tagPrefix='WaypointActor';
+                        elseif strcmp(tag,'RoadEditPoint')
+                            type='roadEditPoint';
+                            tagPrefix='RoadEditPoint';
+                        elseif strcmp(tag,'BarrierEditPoint')
+                            type='barrierEditPoint';
+                            tagPrefix='BarrierEditPoint';
+                        elseif contains(tag,'Road')
+                            type='road';
+                            tagPrefix='Road';
+                        elseif contains(tag,'RotateLine')
+                            type='actor';
+                            tag=sprintf('ActorPatch%d',clickedObj.UserData.ActorID);
+                            tagPrefix='ActorPatch';
+                        end
+                    case 'patch'
+                        if contains(tag,'ActorPatch')
+                            type='actor';
+                            tagPrefix='ActorPatch';
+                        elseif contains(tag,'PoseIndicator')||contains(tag,'EgoIndicator')
+                            type='actor';
+                            tag=sprintf('ActorPatch%d',clickedObj.UserData.ActorID);
+                            tagPrefix='ActorPatch';
+                        elseif contains(tag,'BarrierPatch')
+                            type='barrier';
+                            tagPrefix='BarrierPatch';
+                        elseif contains(tag,'Road')
+                            type='road';
+                            tagPrefix='RoadTilesPatch';
+                        end
                 end
             end
         end
@@ -1257,7 +1251,7 @@ drawnow
             hAxes.CameraTargetMode='auto';
 
             if vLim(1)>vLim(2)||hLim(1)>hLim(2)||vLim(1)==vLim(2)||...
-                hLim(1)==hLim(2)
+                    hLim(1)==hLim(2)
                 return;
             end
             if abs(vLim(1)-vLim(2))<10*eps(vLim(1))||abs(hLim(1)-hLim(2))<10*eps(hLim(1))
@@ -1285,7 +1279,7 @@ drawnow
 
 
             if any(strcmp(this.InteractionMode,{'addRoad','addRoadCenters','addActor','addActorWaypoints'}))&&...
-                strcmp(this.Figure.Pointer,'cross')
+                    strcmp(this.Figure.Pointer,'cross')
 
                 [tooltip,cp]=getCursorText(this);
 
@@ -1318,7 +1312,7 @@ drawnow
                 hAxes=this.Axes;
                 roadBorderColor=[0,0,0];
                 this.RoadOutline=line(hAxes,x,y,z,...
-                'Tag','RoadOutlineTemp','Color',roadBorderColor,'LineStyle','--');
+                    'Tag','RoadOutlineTemp','Color',roadBorderColor,'LineStyle','--');
             else
                 set(this.RoadOutline,'XData',x,'YData',y,'ZData',z);
             end
@@ -1345,8 +1339,8 @@ drawnow
                 hAxes=this.Axes;
                 barrierBorderColor=[0,0,0];
                 this.BarrierOutline=line(hAxes,x,y,z,...
-                'Tag','BarrierOutlineTemp','Color',barrierBorderColor,...
-                'LineStyle','--');
+                    'Tag','BarrierOutlineTemp','Color',barrierBorderColor,...
+                    'LineStyle','--');
             else
                 set(this.BarrierOutline,'XData',x,'YData',y,'ZData',z);
             end
@@ -1374,8 +1368,8 @@ drawnow
                 roadCenterlineColor=[1,1,1];
                 roadBorderColor=[0,0,0];
                 this.RoadCenterMarker=line(hAxes,point(1),point(2),point(3),...
-                'Tag','RoadCenterMarker','LineStyle','none','Marker','o',...
-                'MarkerFaceColor',roadCenterlineColor,'MarkerEdgeColor',roadBorderColor);
+                    'Tag','RoadCenterMarker','LineStyle','none','Marker','o',...
+                    'MarkerFaceColor',roadCenterlineColor,'MarkerEdgeColor',roadBorderColor);
             else
                 this.RoadCenterMarker.XData=point(1);
                 this.RoadCenterMarker.YData=point(2);
@@ -1391,8 +1385,8 @@ drawnow
                 barrierCenterlineColor=[1,1,1];
                 barrierBorderColor=[0,0,0];
                 this.BarrierCenterMarker=line(hAxes,point(1),point(2),point(3),...
-                'Tag','RoadCenterMarker','LineStyle','none','Marker','o','MarkerSize',3,...
-                'MarkerFaceColor',barrierCenterlineColor,'MarkerEdgeColor',barrierBorderColor);
+                    'Tag','RoadCenterMarker','LineStyle','none','Marker','o','MarkerSize',3,...
+                    'MarkerFaceColor',barrierCenterlineColor,'MarkerEdgeColor',barrierBorderColor);
             else
                 this.BarrierCenterMarker.XData=point(1);
                 this.BarrierCenterMarker.YData=point(2);
@@ -1557,10 +1551,10 @@ drawnow
                 return;
             elseif numel(pvPairs)==2
                 edit=driving.internal.scenarioApp.undoredo.SetRoadProperty(hApp,...
-                road,pvPairs{:},varargin{:});
+                    road,pvPairs{:},varargin{:});
             else
                 edit=driving.internal.scenarioApp.undoredo.SetMultipleRoadProperties(hApp,...
-                road,pvPairs(1:2:end),pvPairs(2:2:end));
+                    road,pvPairs(1:2:end),pvPairs(2:2:end));
             end
             applyEdit(hApp,edit);
 
@@ -1578,10 +1572,10 @@ drawnow
                 return;
             elseif numel(pvPairs)==2
                 edit=driving.internal.scenarioApp.undoredo.SetBarrierProperty(hApp,...
-                barrier,pvPairs{:},varargin{:});
+                    barrier,pvPairs{:},varargin{:});
             else
                 edit=driving.internal.scenarioApp.undoredo.SetMultipleBarrierProperties(hApp,...
-                barrier,pvPairs(1:2:end),pvPairs(2:2:end));
+                    barrier,pvPairs(1:2:end),pvPairs(2:2:end));
             end
 
             applyEdit(hApp,edit);
@@ -1609,11 +1603,11 @@ drawnow
             pasteItem=findobj(h,'Tag','PasteItem');
             if isempty(addRoad)
                 pasteItem=uimenu(h,...
-                'Tag','PasteItem',...
-                'Label',getString(message('Spcuilib:application:Paste')),...
-                'Callback',@this.pasteCallback);
+                    'Tag','PasteItem',...
+                    'Label',getString(message('Spcuilib:application:Paste')),...
+                    'Callback',@this.pasteCallback);
                 enableInteractivity=createToggleMenu(this,h,...
-                'EnableRoadInteractivity','Separator','on');
+                    'EnableRoadInteractivity','Separator','on');
                 addRoad=createMenu(h,'AddRoad',@this.addRoadCallback,'Separator','on');
                 drawnow;
             end
@@ -1805,7 +1799,7 @@ drawnow
                 addReverseWaypoints=createMenu(h,'AddReverseWaypoints',@this.addReverseWaypointsCallback);
                 clearWaypoints=createClearWaypointsMenu(this,h);
                 restoreDefaultYaw=createMenu(h,'RestoreDefaultYaw',@this.restoreDefaultYawCallback);
-drawnow
+                drawnow
             end
             set([deleteWaypoint,addWaypoints,addReverseWaypoints,clearWaypoints],'Enable',enab);
             restoreDefaultYaw.Enable=restoreYawEnable;
@@ -1843,10 +1837,10 @@ drawnow
                     enab='off';
                 end
                 menus(indx)=createMenu(h,sc.tag,@this.barrierContextMenuCallback,...
-                'Label',sc.label,...
-                'UserData',sc.callback,...
-                'Enable',enab,...
-                'Position',indx);
+                    'Label',sc.label,...
+                    'UserData',sc.callback,...
+                    'Enable',enab,...
+                    'Position',indx);
             end
             this.CustomBarrierContextMenus=menus;
 
@@ -1859,7 +1853,7 @@ drawnow
                 pasteItem.Callback=@this.pasteCallback;
             end
 
-drawnow
+            drawnow
             cutBarrier.Separator=~isempty(schema);
             shouldEnable=shouldEnableContextMenus(this,barriers);
             set([cutBarrier,copyBarrier],'Enable',shouldEnable);
@@ -1890,10 +1884,10 @@ drawnow
             for indx=1:numel(schema)
                 sc=schema(indx);
                 menus(indx)=createMenu(h,sc.tag,@this.editBarrierPointContextMenuCallback,...
-                'Label',sc.label,...
-                'UserData',sc.callback,...
-                'Enable',sc.enable,...
-                'Position',indx);
+                    'Label',sc.label,...
+                    'UserData',sc.callback,...
+                    'Enable',sc.enable,...
+                    'Position',indx);
             end
             this.CustomEditPointContextMenus=menus;
 
@@ -1903,7 +1897,7 @@ drawnow
             end
 
 
-drawnow
+            drawnow
 
             deleteBarrierEnab='off';
 
@@ -1945,10 +1939,10 @@ drawnow
                     enab='off';
                 end
                 menus(indx)=createMenu(h,sc.tag,@this.roadContextMenuCallback,...
-                'Label',sc.label,...
-                'UserData',sc.callback,...
-                'Enable',enab,...
-                'Position',indx);
+                    'Label',sc.label,...
+                    'UserData',sc.callback,...
+                    'Enable',enab,...
+                    'Position',indx);
             end
             this.CustomRoadContextMenus=menus;
 
@@ -1959,10 +1953,10 @@ drawnow
                 [cutRoad,copyRoad,pasteItem,deleteRoad]=createCutCopyPasteDeleteMenus(this.Application,h,this);
                 pasteItem.Callback=@this.pasteCallback;
                 enableInteractivity=createToggleMenu(this,h,...
-                'EnableRoadInteractivity','Separator','on');
+                    'EnableRoadInteractivity','Separator','on');
             end
 
-drawnow
+            drawnow
 
             cutRoad.Separator=~isempty(schema);
             shouldEnable=this.EnableRoadInteractivity&&shouldEnableContextMenus(this,roads);
@@ -2002,10 +1996,10 @@ drawnow
                 for indx=1:numel(schema)
                     sc=schema(indx);
                     menus(indx)=createMenu(h,sc.tag,@this.editPointContextMenuCallback,...
-                    'Label',sc.label,...
-                    'UserData',sc.callback,...
-                    'Enable',sc.enable,...
-                    'Position',indx);
+                        'Label',sc.label,...
+                        'UserData',sc.callback,...
+                        'Enable',sc.enable,...
+                        'Position',indx);
                 end
                 this.CustomEditPointContextMenus=menus;
             end
@@ -2015,7 +2009,7 @@ drawnow
             end
 
 
-drawnow
+            drawnow
 
             deleteRoadEnab='off';
 
@@ -2078,11 +2072,11 @@ drawnow
 
         function elevatedRoadJunctionTimerCallback(this,~)
             this.warningMessage(getString(message('driving:scenarioApp:RoadJunctionHeightCalculationWarning')),'RoadJunctionHeightCalculationWarning','FontSize',10);
-drawnow
+            drawnow
             t=timer('StartDelay',8.0,...
-            'Tag','RoadJunctionInvalidHeight',...
-            'TimerFcn',@this.dismissElevatedRoadJunctionTimerCallback,...
-            'StopFcn',@this.dismissElevatedRoadJunctionTimerCallback);
+                'Tag','RoadJunctionInvalidHeight',...
+                'TimerFcn',@this.dismissElevatedRoadJunctionTimerCallback,...
+                'StopFcn',@this.dismissElevatedRoadJunctionTimerCallback);
             start(t);
 
         end
@@ -2159,9 +2153,9 @@ drawnow
             app=this.Application;
             buffer=app.CopyPasteBuffer;
             b=isPasteEnabled(app)&&...
-            (isa(buffer,'driving.internal.scenarioApp.ActorSpecification')||...
-            isa(buffer,'driving.internal.scenarioApp.BarrierSpecification')||...
-            isa(buffer,'driving.internal.scenarioApp.road.Specification'));
+                (isa(buffer,'driving.internal.scenarioApp.ActorSpecification')||...
+                isa(buffer,'driving.internal.scenarioApp.BarrierSpecification')||...
+                isa(buffer,'driving.internal.scenarioApp.road.Specification'));
         end
 
         function b=isAddRoadEnabled(this)
@@ -2232,7 +2226,7 @@ drawnow
 
         function addRoadCallback(this,~,~)
             addViaWaypoints(getRoadAdder(this.Application),...
-            driving.internal.scenarioApp.road.Arbitrary(this.ClickLocation));
+                driving.internal.scenarioApp.road.Arbitrary(this.ClickLocation));
         end
 
         function addBarrierCallback(this,classSpec,~)
@@ -2329,19 +2323,19 @@ drawnow
                 if isempty(waitTime)
                     if isempty(waypointsYaw)&&isempty(pWaypointsYaw)
                         edit=driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(hApp,actor,...
-                        {'Waypoints','Speed','pWaypointsYaw'},{waypoints,speed,pWaypointsYaw});
+                            {'Waypoints','Speed','pWaypointsYaw'},{waypoints,speed,pWaypointsYaw});
                     else
                         edit=driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(hApp,actor,...
-                        {'Waypoints','WaypointsYaw','pWaypointsYaw','Speed'},{waypoints,waypointsYaw,pWaypointsYaw,speed});
+                            {'Waypoints','WaypointsYaw','pWaypointsYaw','Speed'},{waypoints,waypointsYaw,pWaypointsYaw,speed});
                     end
                 else
                     if isempty(waypointsYaw)&&isempty(pWaypointsYaw)
                         edit=driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(hApp,actor,...
-                        {'Waypoints','Speed','Waypoints','WaitTime','pWaypointsYaw'},{waypoints,speed,waypoints,waitTime,pWaypointsYaw});
+                            {'Waypoints','Speed','Waypoints','WaitTime','pWaypointsYaw'},{waypoints,speed,waypoints,waitTime,pWaypointsYaw});
                     else
                         edit=driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(hApp,actor,...
-                        {'Waypoints','Speed','Waypoints','WaitTime','Waypoints','WaypointsYaw','Waypoints','pWaypointsYaw'},...
-                        {waypoints,speed,waypoints,waitTime,waypoints,waypointsYaw,waypoints,pWaypointsYaw});
+                            {'Waypoints','Speed','Waypoints','WaitTime','Waypoints','WaypointsYaw','Waypoints','pWaypointsYaw'},...
+                            {waypoints,speed,waypoints,waitTime,waypoints,waypointsYaw,waypoints,pWaypointsYaw});
                     end
                 end
             else
@@ -2352,17 +2346,17 @@ drawnow
                         edit=driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(hApp,actor,{'Waypoints','Speed'},{waypoints,speed});
                     else
                         edit=driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(hApp,actor,...
-                        {'Waypoints','Speed','Waypoints','WaypointsYaw','Waypoints','pWaypointsYaw'},...
-                        {waypoints,speed,waypoints,waypointsYaw,waypoints,pWaypointsYaw});
+                            {'Waypoints','Speed','Waypoints','WaypointsYaw','Waypoints','pWaypointsYaw'},...
+                            {waypoints,speed,waypoints,waypointsYaw,waypoints,pWaypointsYaw});
                     end
                 else
                     if isempty(waypointsYaw)&&isempty(pWaypointsYaw)
                         edit=driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(hApp,actor,...
-                        {'Waypoints','Speed','Waypoints','WaitTime'},{waypoints,speed,waypoints,waitTime});
+                            {'Waypoints','Speed','Waypoints','WaitTime'},{waypoints,speed,waypoints,waitTime});
                     else
                         edit=driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(hApp,actor,...
-                        {'Waypoints','Speed','Waypoints','WaitTime','Waypoints','WaypointsYaw','Waypoints','pWaypointsYaw'},...
-                        {waypoints,speed,waypoints,waitTime,waypoints,waypointsYaw,waypoints,pWaypointsYaw});
+                            {'Waypoints','Speed','Waypoints','WaitTime','Waypoints','WaypointsYaw','Waypoints','pWaypointsYaw'},...
+                            {waypoints,speed,waypoints,waitTime,waypoints,waypointsYaw,waypoints,pWaypointsYaw});
                     end
                 end
             end
@@ -2393,8 +2387,8 @@ drawnow
             end
 
             applyEdit(hApp,driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(...
-            hApp,actor,{'Waypoints','Speed','WaitTime','WaypointsYaw','pWaypointsYaw',...
-            'EntryTime','ExitTime','Yaw'},nProps));
+                hApp,actor,{'Waypoints','Speed','WaitTime','WaypointsYaw','pWaypointsYaw',...
+                'EntryTime','ExitTime','Yaw'},nProps));
             hApp.setDirty;
             notify(this,'PropertyChanged',driving.internal.scenarioApp.PropertyChangedEventData(actor,'Waypoints'));
         end
@@ -2529,13 +2523,13 @@ drawnow
                         elseif isRoadMenu
                             hMenus(menuIndex)=uimenu(h);
                             addLeft=createMenu(hMenus(menuIndex),'AddLeft',...
-                            matlabshared.application.makeCallback(@this.addBarrierToRoadCallback,spec,'left'),...
-                            'Separator','on');
+                                matlabshared.application.makeCallback(@this.addBarrierToRoadCallback,spec,'left'),...
+                                'Separator','on');
                             addRight=createMenu(hMenus(menuIndex),'AddRight',...
-                            matlabshared.application.makeCallback(@this.addBarrierToRoadCallback,spec,'right'),...
-                            'Separator','off');
+                                matlabshared.application.makeCallback(@this.addBarrierToRoadCallback,spec,'right'),...
+                                'Separator','off');
                             addBarrierCenters=createMenu(hMenus(menuIndex),'AddBarrierCenters',...
-                            matlabshared.application.makeCallback(@this.addBarrierCallback,spec),'Separator','off');
+                                matlabshared.application.makeCallback(@this.addBarrierCallback,spec),'Separator','off');
                             addLeft.Enable='on';
                             addRight.Enable='on';
                             addBarrierCenters.Enable='on';
@@ -2544,9 +2538,9 @@ drawnow
                         end
                     end
                     set(hMenus(menuIndex),...
-                    'Label',getString(message('driving:scenarioApp:AddActorMenuLabel',spec.name)),...
-                    'UserData',spec,...
-                    'Separator',sep);
+                        'Label',getString(message('driving:scenarioApp:AddActorMenuLabel',spec.name)),...
+                        'UserData',spec,...
+                        'Separator',sep);
                     menuIndex=menuIndex+1;
                     sep='off';
                 end
@@ -2576,18 +2570,18 @@ drawnow
             end
 
             edit=driving.internal.scenarioApp.undoredo.AddActor(designer,...
-            'PlotColor',spec.PlotColor,...
-            'Position',clickLocation,...
-            'Name',getUniqueName(getActorAdder(designer),spec.name),...
-            'Length',spec.Length,...
-            'Width',spec.Width,...
-            'Height',spec.Height,...
-            'Speed',spec.Speed,...
-            'ClassID',spec.id,...
-            'AssetType',spec.AssetType,...
-            'RCSElevationAngles',spec.RCSElevationAngles,...
-            'RCSAzimuthAngles',spec.RCSAzimuthAngles,...
-            'RCSPattern',spec.RCSPattern);
+                'PlotColor',spec.PlotColor,...
+                'Position',clickLocation,...
+                'Name',getUniqueName(getActorAdder(designer),spec.name),...
+                'Length',spec.Length,...
+                'Width',spec.Width,...
+                'Height',spec.Height,...
+                'Speed',spec.Speed,...
+                'ClassID',spec.id,...
+                'AssetType',spec.AssetType,...
+                'RCSElevationAngles',spec.RCSElevationAngles,...
+                'RCSAzimuthAngles',spec.RCSAzimuthAngles,...
+                'RCSPattern',spec.RCSPattern);
             applyEdit(designer,edit);
             id=numel(designer.ActorSpecifications);
             this.ActorID=id;
@@ -2607,7 +2601,7 @@ drawnow
         function removeWaypointsCallback(this,~,~)
             designer=this.Application;
             edit=driving.internal.scenarioApp.undoredo.SetActorProperty(designer,...
-            designer.ActorSpecifications(this.ClickIndex),'Waypoints',[]);
+                designer.ActorSpecifications(this.ClickIndex),'Waypoints',[]);
             applyEdit(designer,edit);
         end
 
@@ -2653,9 +2647,9 @@ drawnow
 
                     if isempty(hLine)||~ishghandle(hLine)
                         hLine=line(getAxes(this),...
-                        'LineWidth',2,...
-                        'Tag','RoadHighlight',...
-                        'UIContextMenu',this.RoadContextMenu);
+                            'LineWidth',2,...
+                            'Tag','RoadHighlight',...
+                            'UIContextMenu',this.RoadContextMenu);
                         this.RoadHighlight=hLine;
                     end
                     set(hLine,'Color',rgb);
@@ -2710,10 +2704,10 @@ drawnow
             ei=driving.scenario.internal.plotActorIndicators(app.Scenario.Actors,hAxes,this.EgoIndicator,opts);
             if~isempty(index)&&isempty(oldei)
                 set(findobj(ei),...
-                'Tag','EgoIndicator',...
-                'UserData',app.ActorSpecifications(index),...
-                'UIContextMenu',this.ActorContextMenu,...
-                'ButtonDownFcn',@this.onButtonDown);
+                    'Tag','EgoIndicator',...
+                    'UserData',app.ActorSpecifications(index),...
+                    'UIContextMenu',this.ActorContextMenu,...
+                    'ButtonDownFcn',@this.onButtonDown);
             end
             this.EgoIndicator=ei;
         end
@@ -2731,12 +2725,12 @@ drawnow
             end
             if isempty(anchor)
                 props={this.Axes,'LineWidth',1.5,...
-                'EdgeColor',this.HighlightColor,...
-                'UIContextMenu',this.ActorContextMenu};
+                    'EdgeColor',this.HighlightColor,...
+                    'UIContextMenu',this.ActorContextMenu};
                 anchor=[
-                patch(props{:},'Tag','PoseIndicatorCurrent')
-                patch(props{:},'Tag','PoseIndicatorHover')
-                ];
+                    patch(props{:},'Tag','PoseIndicatorCurrent')
+                    patch(props{:},'Tag','PoseIndicatorHover')
+                    ];
                 this.PoseIndicator=anchor;
             end
 
@@ -2776,11 +2770,11 @@ drawnow
                             z=spec.Position(3)+spec.Height+actor.Length*abs(sin(spec.Pitch))+0.1;
                         end
                         set(anchor(indx),'Visible','on',...
-                        'FaceColor',spec.PlotColor,...
-                        'UserData',spec,...
-                        'XData',xy(:,1),...
-                        'YData',xy(:,2),...
-                        'ZData',repmat(z,4,1));
+                            'FaceColor',spec.PlotColor,...
+                            'UserData',spec,...
+                            'XData',xy(:,1),...
+                            'YData',xy(:,2),...
+                            'ZData',repmat(z,4,1));
                     end
                 end
             end
@@ -2800,24 +2794,24 @@ drawnow
 
 
             if isempty(poseIndicator)||...
-                strcmp(poseIndicator(2).Visible,'off')||...
-                isempty(spec)
+                    strcmp(poseIndicator(2).Visible,'off')||...
+                    isempty(spec)
                 set(rotator,'Visible','off');
                 return;
             end
             if isempty(rotator)
                 color=this.HighlightColor;
                 rotator(1)=line(this.Axes,...
-                'Color',color,...
-                'Tag','RotateLine',...
-                'UIContextMenu',this.ActorContextMenu,...
-                'LineWidth',1.5);
+                    'Color',color,...
+                    'Tag','RotateLine',...
+                    'UIContextMenu',this.ActorContextMenu,...
+                    'LineWidth',1.5);
                 rotator(2)=line(this.Axes,...
-                'Color',color,...
-                'Marker','o',...
-                'MarkerSize',10,...
-                'Tag','RotateNode',...
-                'MarkerFaceColor',color);
+                    'Color',color,...
+                    'Marker','o',...
+                    'MarkerSize',10,...
+                    'Tag','RotateNode',...
+                    'MarkerFaceColor',color);
                 this.ActorRotator=rotator;
                 addButtonDownCallback(this);
             end
@@ -2973,17 +2967,17 @@ drawnow
         function fig=createFigure(this,varargin)
             fig=createFigure@driving.internal.scenarioApp.ScenarioView(this,varargin{:});
             pb=createPushButton(this,fig,'ScenarioSettings',@this.settingsCallback,...
-            'TooltipString',getString(message('driving:scenarioApp:ScenarioCanvasSettingsDescription')),...
-            'CData',getIcon(this.Application,'settings'),...
-            'Position',[5,5,20,20]);
+                'TooltipString',getString(message('driving:scenarioApp:ScenarioCanvasSettingsDescription')),...
+                'CData',getIcon(this.Application,'settings'),...
+                'Position',[5,5,20,20]);
             this.RoadInteractivityDisabledMessage=createLabel(this,fig,...
-            'DisabledRoadInteractivityMessage',...
-            'Visible',~this.EnableRoadInteractivity);
+                'DisabledRoadInteractivityMessage',...
+                'Visible',~this.EnableRoadInteractivity);
             this.RoadInteractivityDisabledMessage.Position=[...
-            pb.Position(1)*2+pb.Position(3),...
-            pb.Position(1),...
-            matlabshared.application.layout.AbstractLayout.getMinimumWidth(this.RoadInteractivityDisabledMessage),...
-            min(this.RoadInteractivityDisabledMessage.Extent(4)-3,pb.Position(4))];
+                pb.Position(1)*2+pb.Position(3),...
+                pb.Position(1),...
+                matlabshared.application.layout.AbstractLayout.getMinimumWidth(this.RoadInteractivityDisabledMessage),...
+                min(this.RoadInteractivityDisabledMessage.Extent(4)-3,pb.Position(4))];
         end
 
         function onNewActorObjects(this)
@@ -3037,7 +3031,7 @@ drawnow
             is_right_click=strcmp(stype,'alt')&&~all(strcmp(this.Keyboard.PressedKey,'control'));
             is_left_click=strcmp(stype,'normal');
             is_shift_click=strcmp(stype,'extend')||...
-            (strcmp(stype,'open')||strcmp(stype,'normal'))&&any(strcmp(this.Keyboard.PressedModifier,'shift'));
+                (strcmp(stype,'open')||strcmp(stype,'normal'))&&any(strcmp(this.Keyboard.PressedModifier,'shift'));
             is_ctrl_click=strcmp(stype,'alt')&&any(strcmp(this.Keyboard.PressedKey,'control'));
 
 
@@ -3047,7 +3041,7 @@ drawnow
             isAddingActorWaypoints=is_left_click&&strcmp(this.InteractionMode,'addActorWaypoints');
             isRemovingWaypoints=is_shift_click&&any(strcmp(this.InteractionMode,{'addRoad','addRoadCenters','addBarrier','addBarrierCenters','addActorWaypoints'}));
             isCommittingWaypoints=(is_double_click||is_right_click)&&...
-            any(strcmp(this.InteractionMode,{'addRoad','addRoadCenters','addBarrier','addBarrierCenters','addActorWaypoints'}));
+                any(strcmp(this.InteractionMode,{'addRoad','addRoadCenters','addBarrier','addBarrierCenters','addActorWaypoints'}));
             noCurrentInteraction=strcmp(this.InteractionMode,'none');
             isDraggingActor=false;
             isDraggingActorWaypoint=false;
@@ -3225,8 +3219,8 @@ drawnow
                     menu=this.AxesContextMenu;
                     this.onAxesContextMenu(menu);
                     set(menu,...
-                    'Position',h_fig.CurrentPoint,...
-                    'Visible',true);
+                        'Position',h_fig.CurrentPoint,...
+                        'Visible',true);
                     return
                 end
                 if~is_shift_click&&~is_ctrl_click
@@ -3251,7 +3245,7 @@ drawnow
                     end
                     newWaypoints=[this.Waypoints;newPt];
                     if~any(strcmp(this.InteractionMode,{'addRoad','addRoadCenters'}))||...
-                        isempty(driving.internal.scenarioApp.road.Arbitrary.validateCenters(newWaypoints))
+                            isempty(driving.internal.scenarioApp.road.Arbitrary.validateCenters(newWaypoints))
                         this.Waypoints=newWaypoints;
                     end
                 end
@@ -3261,7 +3255,7 @@ drawnow
                 marqueeLine=this.Marquee;
                 if isempty(marqueeLine)||~ishghandle(marqueeLine)
                     marqueeLine=line(this.Axes,...
-                    'LineStyle','--');
+                        'LineStyle','--');
                     this.Marquee=marqueeLine;
                 end
                 set(marqueeLine,'Visible',true,'XData',[],'YData',[]);
@@ -3279,7 +3273,7 @@ drawnow
                 end
                 pvPairs=matlabshared.application.structToPVPairs(actor);
                 edit=driving.internal.scenarioApp.undoredo.AddActor(app,...
-                'Position',position,pvPairs{:});
+                    'Position',position,pvPairs{:});
                 applyEdit(app,edit);
                 id=numel(app.ActorSpecifications);
                 this.ActorID=id;
@@ -3717,7 +3711,7 @@ drawnow
                 tag=hitObject.Tag;
                 isSimStopped=isStopped(app.Simulator);
                 isValidHit=~isempty(hitObject)&&isvalid(hitObject)&&...
-                ~any(strcmp(hitObject.Type,{'text'}))&&isSimStopped;
+                    ~any(strcmp(hitObject.Type,{'text'}))&&isSimStopped;
                 iMode=this.InteractionMode;
                 if isValidHit&&any(strcmp(iMode,{'addRoad','addRoadCenters','addBarrier','addMultipleBarriers','addBarrierCenters','addActor','addActorWaypoints'}))
 
@@ -3728,7 +3722,7 @@ drawnow
                     if~strncmp(tag,'Barrier',7)&&any(strcmp(iMode,{'addBarrier','addMultipleBarriers'}))&&isempty(this.Waypoints)
                         hFig=this.Figure;
                         multiHighlight=any(strcmp(get(hFig,'CurrentModifier'),'shift'))||...
-                        any(strcmp(this.Keyboard.PressedModifier,'shift'));
+                            any(strcmp(this.Keyboard.PressedModifier,'shift'));
                         [road,roadEdgeLines,roadEdges]=getRoadEdgeLineForBarrier(app.Scenario.RoadSegments,currPt,app.BarrierSpecifications,multiHighlight);
                         if~isempty(road)
                             this.Figure.Pointer='hand';
@@ -3755,7 +3749,7 @@ drawnow
                                 [x,y,z]=rbsToXyz(roadEdgeLines(i));
                                 offset=driving.scenario.internal.AxesOrientation.getOffset(app.AxesOrientation);
                                 set(hLine,'Visible','on','XData',x,'YData',y,'ZData',z+0.1*offset,'Color',rgb,...
-                                'ButtonDownFcn',matlabshared.application.makeCallback(@this.onRoadEdgeHighlightButtonDown,roadEdgeLines,roadEdges,roads));
+                                    'ButtonDownFcn',matlabshared.application.makeCallback(@this.onRoadEdgeHighlightButtonDown,roadEdgeLines,roadEdges,roads));
                             end
                         end
                     else
@@ -3782,8 +3776,8 @@ drawnow
                     oPoint=this.ClickLocation;
                     cPoint=getCurrentPoint(this);
                     set(marqueeLine,...
-                    'XData',[oPoint(1),cPoint(1),cPoint(1),oPoint(1),oPoint(1)],...
-                    'YData',[oPoint(2),oPoint(2),cPoint(2),cPoint(2),oPoint(2)]);
+                        'XData',[oPoint(1),cPoint(1),cPoint(1),oPoint(1),oPoint(1)],...
+                        'YData',[oPoint(2),oPoint(2),cPoint(2),cPoint(2),oPoint(2)]);
                     newIds=getMarqueeSelectIds(this,oPoint,cPoint);
 
                     updateHighlight(this);
@@ -4482,7 +4476,7 @@ drawnow
                             edit=[];
                         else
                             edit=driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(...
-                            app,pActor,{'Position','Waypoints'},[newPos;nWaypoints]',[oldPos;oWaypoints]');
+                                app,pActor,{'Position','Waypoints'},[newPos;nWaypoints]',[oldPos;oWaypoints]');
                         end
 
                         if any(zPos)
@@ -4498,7 +4492,7 @@ drawnow
                         edit=[];
                     else
                         edit=driving.internal.scenarioApp.undoredo.SetActorProperty(...
-                        app,actor,'Waypoints',actor.Waypoints,this.CachedWaypoints);
+                            app,actor,'Waypoints',actor.Waypoints,this.CachedWaypoints);
                     end
                 end
                 this.InteractionMode='none';
@@ -4569,10 +4563,10 @@ drawnow
                         end
                     end
                     edit=driving.internal.scenarioApp.undoredo.SetMultipleActorProperties(...
-                    app,rActor,{'Yaw','WaypointsYaw'},[nYaw;nwYaw]',[oYaw;owYaw]');
+                        app,rActor,{'Yaw','WaypointsYaw'},[nYaw;nwYaw]',[oYaw;owYaw]');
                 else
                     edit=driving.internal.scenarioApp.undoredo.SetActorProperty(...
-                    app,rActor,'Yaw',newYaw,this.CachedYaw);
+                        app,rActor,'Yaw',newYaw,this.CachedYaw);
                 end
 
                 this.InteractionMode='none';
@@ -4697,7 +4691,7 @@ drawnow
         function b=getShowRoadEditPoints(this)
             isSimStopped=isStopped(this.Application.Simulator);
             b=(this.ShowRoadEditPointsDuringSim&&~isSimStopped)...
-            ||(this.EnableRoadInteractivity&&isSimStopped);
+                ||(this.EnableRoadInteractivity&&isSimStopped);
             if b
                 b=this.ShowRoadEditPoints;
             end
@@ -4793,25 +4787,25 @@ drawnow
         function availableRoadEdgeLines=findAvailableSegmentsForRoadEdge(this,road,roadEdge)
             roadSegment=this.Application.Scenario.RoadSegments(road.RoadID);
             switch roadEdge
-            case 'left'
-                if~isempty(roadSegment.LeftNonOverlappingSegments)
-                    availableSegments=roadSegment.LeftNonOverlappingSegments;
-                else
-                    availableSegments={roadSegment.LeftBoundary};
-                end
-            case 'right'
-                if~isempty(roadSegment.RightNonOverlappingSegments)
-                    availableSegments=roadSegment.RightNonOverlappingSegments;
-                else
-                    availableSegments={roadSegment.RightBoundary};
-                end
+                case 'left'
+                    if~isempty(roadSegment.LeftNonOverlappingSegments)
+                        availableSegments=roadSegment.LeftNonOverlappingSegments;
+                    else
+                        availableSegments={roadSegment.LeftBoundary};
+                    end
+                case 'right'
+                    if~isempty(roadSegment.RightNonOverlappingSegments)
+                        availableSegments=roadSegment.RightNonOverlappingSegments;
+                    else
+                        availableSegments={roadSegment.RightBoundary};
+                    end
             end
             occupiedIdxs=[];
             for i=1:numel(this.Application.BarrierSpecifications)
                 spec=this.Application.BarrierSpecifications(i);
                 if isequal(spec.Road,road)&&strcmp(spec.RoadEdge,roadEdge)
                     segmentMatch=cellfun(@(x)isequal(trimBarrierCenters(x),spec.BarrierCenters),...
-                    availableSegments,'UniformOutput',true);
+                        availableSegments,'UniformOutput',true);
                     occupiedIdxs=[occupiedIdxs,find(segmentMatch==true)];
                 end
             end
@@ -4822,172 +4816,172 @@ drawnow
 end
 
 function pvPairs=addRoadToBarrierPVPair(pvPairs,barrier)
-    if isempty(pvPairs)
-        return;
+if isempty(pvPairs)
+    return;
+end
+if any(strcmp(pvPairs,'BarrierCenters'))
+    barrier.BarrierCentersChanged=true;
+    if~isempty(barrier.Road)
+        pvPairs{end+1}='Road';
+        pvPairs{end+1}=[];
+        pvPairs{end+1}='RoadEdge';
+        pvPairs{end+1}=[];
     end
-    if any(strcmp(pvPairs,'BarrierCenters'))
-        barrier.BarrierCentersChanged=true;
-        if~isempty(barrier.Road)
-            pvPairs{end+1}='Road';
-            pvPairs{end+1}=[];
-            pvPairs{end+1}='RoadEdge';
-            pvPairs{end+1}=[];
-        end
-    end
+end
 end
 
 function menu=createMenu(h,tag,cb,varargin)
 
-    menu=uimenu(h,...
+menu=uimenu(h,...
     'Tag',tag,...
     'Callback',cb,...
     varargin{:});
 
-    if isempty(menu.Label)
-        menu.Label=getString(message(['driving:scenarioApp:',tag,'Label']));
-    end
+if isempty(menu.Label)
+    menu.Label=getString(message(['driving:scenarioApp:',tag,'Label']));
+end
 
 end
 
 function[x,y,z]=rbsToXyz(rbs)
 
-    rbs=[rbs;repmat({[NaN,NaN,NaN]},1,numel(rbs))];
+rbs=[rbs;repmat({[NaN,NaN,NaN]},1,numel(rbs))];
 
-    xyz=vertcat(rbs{:});
-    x=xyz(:,1);
-    y=xyz(:,2);
-    z=xyz(:,3);
-    x(end)=[];
-    y(end)=[];
-    z(end)=[];
+xyz=vertcat(rbs{:});
+x=xyz(:,1);
+y=xyz(:,2);
+z=xyz(:,3);
+x(end)=[];
+y(end)=[];
+z(end)=[];
 
 end
 
 function[cut,copy,paste,delete,addRoadCenter,addBarrierCenter]=findCutCopyPasteDeleteMenus(h)
 
-    cut=findobj(h,'Tag','CutItem');
-    copy=findobj(h,'Tag','CopyItem');
-    paste=findobj(h,'Tag','PasteItem');
-    delete=findobj(h,'Tag','DeleteItem');
-    addRoadCenter=findobj(h,'Tag','AddRoadCenter');
-    addBarrierCenter=findobj(h,'Tag','AddBarrierCenter');
+cut=findobj(h,'Tag','CutItem');
+copy=findobj(h,'Tag','CopyItem');
+paste=findobj(h,'Tag','PasteItem');
+delete=findobj(h,'Tag','DeleteItem');
+addRoadCenter=findobj(h,'Tag','AddRoadCenter');
+addBarrierCenter=findobj(h,'Tag','AddBarrierCenter');
 end
 
 function applyPvPairs(object,pvPairs)
 
-    for indx=1:2:numel(pvPairs)
-        object.(pvPairs{indx})=pvPairs{indx+1};
-    end
+for indx=1:2:numel(pvPairs)
+    object.(pvPairs{indx})=pvPairs{indx+1};
+end
 
 end
 
 function xy=rotate2d(xy,yaw)
 
-    xy=xy*[cosd(yaw),-sind(yaw);sind(yaw),cosd(yaw)];
+xy=xy*[cosd(yaw),-sind(yaw);sind(yaw),cosd(yaw)];
 
 end
 
 function str=deg2str(deg)
-    str=[num2str(deg),'{\circ}'];
+str=[num2str(deg),'{\circ}'];
 end
 
 function[road,roadEdgeLine,roadEdge]=getRoadEdgeLineForBarrier(roadSegments,point,barrierSpecs,multiHighlight)
-    segments={};
-    segmentLocations={};
-    roadIDs=[];
+segments={};
+segmentLocations={};
+roadIDs=[];
 
-    road=[];
-    roadEdgeLine={};
-    roadEdge={};
+road=[];
+roadEdgeLine={};
+roadEdge={};
 
-    if isempty(roadSegments)
-        return;
+if isempty(roadSegments)
+    return;
+end
+
+
+for i=1:numel(roadSegments)
+    currentRoad=roadSegments(i);
+    if~isempty(currentRoad.LeftNonOverlappingSegments)
+        segments=[segments,currentRoad.LeftNonOverlappingSegments];
+        num=numel(currentRoad.LeftNonOverlappingSegments);
+        [segmentLocations{end+1:end+num}]=deal('left');
+        roadIDs(end+1:end+num)=currentRoad.RoadID;
+    else
+        segments{end+1}=currentRoad.LeftBoundary;
+        segmentLocations{end+1}='left';
+        roadIDs(end+1)=currentRoad.RoadID;
     end
-
-
-    for i=1:numel(roadSegments)
-        currentRoad=roadSegments(i);
-        if~isempty(currentRoad.LeftNonOverlappingSegments)
-            segments=[segments,currentRoad.LeftNonOverlappingSegments];
-            num=numel(currentRoad.LeftNonOverlappingSegments);
-            [segmentLocations{end+1:end+num}]=deal('left');
-            roadIDs(end+1:end+num)=currentRoad.RoadID;
-        else
-            segments{end+1}=currentRoad.LeftBoundary;
-            segmentLocations{end+1}='left';
-            roadIDs(end+1)=currentRoad.RoadID;
-        end
-        if~isempty(currentRoad.RightNonOverlappingSegments)
-            segments=[segments,currentRoad.RightNonOverlappingSegments];
-            num=numel(currentRoad.RightNonOverlappingSegments);
-            [segmentLocations{end+1:end+num}]=deal('right');
-            roadIDs(end+1:end+num)=currentRoad.RoadID;
-        else
-            segments{end+1}=currentRoad.RightBoundary;
-            segmentLocations{end+1}='right';
-            roadIDs(end+1)=currentRoad.RoadID;
-        end
+    if~isempty(currentRoad.RightNonOverlappingSegments)
+        segments=[segments,currentRoad.RightNonOverlappingSegments];
+        num=numel(currentRoad.RightNonOverlappingSegments);
+        [segmentLocations{end+1:end+num}]=deal('right');
+        roadIDs(end+1:end+num)=currentRoad.RoadID;
+    else
+        segments{end+1}=currentRoad.RightBoundary;
+        segmentLocations{end+1}='right';
+        roadIDs(end+1)=currentRoad.RoadID;
     end
+end
 
 
-    occupiedIdxs=[];
-    for i=1:numel(barrierSpecs)
-        segmentMatch=cellfun(@(x)isequal(trimBarrierCenters(x),barrierSpecs(i).BarrierCenters),...
+occupiedIdxs=[];
+for i=1:numel(barrierSpecs)
+    segmentMatch=cellfun(@(x)isequal(trimBarrierCenters(x),barrierSpecs(i).BarrierCenters),...
         segments,'UniformOutput',true);
-        occupiedIdxs=[occupiedIdxs,find(segmentMatch==true)];
+    occupiedIdxs=[occupiedIdxs,find(segmentMatch==true)];
+end
+segments(occupiedIdxs)=[];
+segmentLocations(occupiedIdxs)=[];
+roadIDs(occupiedIdxs)=[];
+
+
+minDist=@(x)min(sum((x(:,1:2)-point(:,1:2)).^2,2));
+distances=cellfun(minDist,segments);
+[~,minIdx]=min(distances);
+
+
+if distances(minIdx)<1
+    if multiHighlight
+
+        edge=segmentLocations{minIdx};
+        roadID=roadIDs(minIdx);
+
+        edgeIdxs=find(contains(segmentLocations,edge));
+        roadIDIdxs=find(roadIDs==roadID);
+        newIdxs=intersect(edgeIdxs,roadIDIdxs);
+        roadEdgeLine=segments(newIdxs);
+        roadEdge=segmentLocations(newIdxs);
+        road=roadSegments(roadID);
+    else
+        roadEdgeLine=segments(minIdx);
+        roadEdge=segmentLocations(minIdx);
+        road=roadSegments(roadIDs(minIdx));
     end
-    segments(occupiedIdxs)=[];
-    segmentLocations(occupiedIdxs)=[];
-    roadIDs(occupiedIdxs)=[];
-
-
-    minDist=@(x)min(sum((x(:,1:2)-point(:,1:2)).^2,2));
-    distances=cellfun(minDist,segments);
-    [~,minIdx]=min(distances);
-
-
-    if distances(minIdx)<1
-        if multiHighlight
-
-            edge=segmentLocations{minIdx};
-            roadID=roadIDs(minIdx);
-
-            edgeIdxs=find(contains(segmentLocations,edge));
-            roadIDIdxs=find(roadIDs==roadID);
-            newIdxs=intersect(edgeIdxs,roadIDIdxs);
-            roadEdgeLine=segments(newIdxs);
-            roadEdge=segmentLocations(newIdxs);
-            road=roadSegments(roadID);
-        else
-            roadEdgeLine=segments(minIdx);
-            roadEdge=segmentLocations(minIdx);
-            road=roadSegments(roadIDs(minIdx));
-        end
-    end
+end
 end
 
 function trimmedBarrierCenters=trimBarrierCenters(barrierCenters)
 
 
 
-    barrierCenters=round(barrierCenters,3);
-    isCollinear=rank(barrierCenters(2:end,:)-barrierCenters(1,:))==1;
+barrierCenters=round(barrierCenters,3);
+isCollinear=rank(barrierCenters(2:end,:)-barrierCenters(1,:))==1;
 
-    if isCollinear
-        trimmedBarrierCenters=[barrierCenters(1,:);barrierCenters(end,:)];
+if isCollinear
+    trimmedBarrierCenters=[barrierCenters(1,:);barrierCenters(end,:)];
+else
+    numBarrierCenters=size(barrierCenters,1);
+    if numBarrierCenters<=10
+        separator=ceil(0.2*numBarrierCenters);
     else
-        numBarrierCenters=size(barrierCenters,1);
-        if numBarrierCenters<=10
-            separator=ceil(0.2*numBarrierCenters);
-        else
-            separator=ceil(0.1*numBarrierCenters);
-        end
-        trimmedIdxs=1:separator:numBarrierCenters;
-        if~any(trimmedIdxs==numBarrierCenters)
-            trimmedIdxs=[trimmedIdxs,numBarrierCenters];
-        end
-        trimmedBarrierCenters=barrierCenters(trimmedIdxs,:);
+        separator=ceil(0.1*numBarrierCenters);
     end
+    trimmedIdxs=1:separator:numBarrierCenters;
+    if~any(trimmedIdxs==numBarrierCenters)
+        trimmedIdxs=[trimmedIdxs,numBarrierCenters];
+    end
+    trimmedBarrierCenters=barrierCenters(trimmedIdxs,:);
+end
 end
 
 

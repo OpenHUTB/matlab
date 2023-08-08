@@ -3,7 +3,7 @@ classdef ScenarioSimulator<driving.internal.scenarioApp.Simulator
 
 
     properties(SetAccess=protected)
-Player
+        Player
     end
 
     properties(SetAccess=protected,Hidden)
