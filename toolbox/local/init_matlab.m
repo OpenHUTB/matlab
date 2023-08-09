@@ -101,7 +101,10 @@ cd(fileparts(tmp.Filename));
 
 function init_platform()
 % 用户路径（默认Examples放置的路径）
-userpath(fullfile(fileparts(matlabroot), 'demo'))
+demo_dir = fullfile(fileparts(matlabroot), 'demo');
+if exist(demo_dir, 'dir')
+    userpath(demo_dir)
+end
 
 % 设置和获取自定义支持包根文件夹
 % 修改支持包信息
