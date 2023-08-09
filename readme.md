@@ -38,8 +38,11 @@ userpath
 % matlab 启动时的用户自定义配置的路径
 ```
 
+## 附加文件
+其他附件的文件包括支持包`SupportPackages`、软件`software`、示例`../demo`等。
 
-# 更新
+
+## 更新
 [新版本所加的特性](https://ww2.mathworks.cn/help/driving/release-notes.html)
 
 2023a新增加的例子
