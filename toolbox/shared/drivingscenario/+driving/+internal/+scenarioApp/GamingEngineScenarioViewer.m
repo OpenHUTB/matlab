@@ -221,6 +221,8 @@ classdef GamingEngineScenarioViewer<handle
                 else
                     msg=ME.message;
                 end
+                % 输出异常信息
+                disp(msg);
 
                 this.LastWarnings={msg};
                 return;

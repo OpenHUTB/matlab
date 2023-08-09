@@ -1,14 +1,15 @@
 classdef World < handle
 
-    properties ( Constant = true, Hidden = true )
+    properties(Constant = true, Hidden = true)
         Undefined( 1, : )string = "<none>"
         MaxActorLimit = 10000;
     end
 
-    properties ( Constant = true, Access = private, Hidden = true )
 
-        Worlds = containers.Map(  );
+    properties(Constant = true, Access = private, Hidden = true)
+        Worlds = containers.Map();
     end
+
 
     properties ( Access = public, Hidden = true )
         ExecutablePath
@@ -28,12 +29,14 @@ classdef World < handle
         RateLimiter = [ 0, 0 ];
     end
 
+
     properties ( Access = public )
         Name
         Actors = struct(  );
         UserData
         Viewports = struct(  );
     end
+
 
     properties ( Access = protected )
         NewActorBuffer = [  ];
@@ -43,20 +46,26 @@ classdef World < handle
     end
 
     methods
-        function self = World( varargin )
-            parser = inputParser;
 
-            parser.addOptional( "ExecutablePath", sim3d.engine.Env.AutomotiveExe(  ), @( x )isstring( x ) || isempty( x ) );
-            parser.addOptional( "Map", "/Game/Maps/EmptyScene", @isstring );
-            parser.addParameter( "ExecCmds", "", @isstring );
-            parser.addOptional( "CommandLineArgs", "", @isstring );
-            parser.addParameter( "OverrideExecCmds", false, @islogical )
-            parser.addParameter( "RenderOffScreen", false, @islogical );
-            parser.addParameter( "Setup", [  ] );
-            parser.addParameter( "Output", [  ] );
-            parser.addParameter( "Update", [  ] );
-            parser.addParameter( "Release", [  ] );
-            parser.addParameter( "Name", sim3d.World.generateWorldName(  ), @isstring );
+        % 场景世界的构造函数
+        function self = World(varargin)
+            parser = inputParser;  % 函数的输入解析器
+
+            % 将一个可选输入添加到输入解析器模式中。将参数命名为 ExecutablePath，并为其赋予默认值 13。
+            % 格式：(名字, 默认值, 验证函数)
+            parser.addOptional("ExecutablePath", sim3d.engine.Env.AutomotiveExe(), @(x)isstring(x) || isempty(x) );
+            parser.addOptional("Map", "/Game/Maps/EmptyScene", @isstring);
+            % addParameter 在输入解析器模式中添加可选的名称-值对组参数
+            parser.addParameter("ExecCmds", "", @isstring );        % 可执行命令的全部字符串？（可选）
+            % addOptional 将可选的位置参数添加到输入解析器模式中
+            parser.addOptional("CommandLineArgs", "", @isstring);  % 提供命令行参数
+            parser.addParameter("OverrideExecCmds", false, @islogical)
+            parser.addParameter("RenderOffScreen", false, @islogical);
+            parser.addParameter("Setup", []);
+            parser.addParameter("Output", []);
+            parser.addParameter("Update", []);
+            parser.addParameter("Release", []);
+            parser.addParameter("Name", sim3d.World.generateWorldName(), @isstring);
 
             parser.parse( varargin{ : } );
 
@@ -110,17 +119,18 @@ classdef World < handle
             self.add2ActorBuffer( actor.getTag(  ) );
         end
 
+        
         function run( self, sampleTime, simulationTime )
 
             R36
             self sim3d.World
             sampleTime( 1, 1 )single{ mustBePositive } = 1 / 50.0;
             simulationTime( 1, 1 )single{ mustBePositive } = inf;
+
+            if ~isinf( simulationTime )
+            cleanup = onCleanup(@self.endSim);
         end
-        if ~isinf( simulationTime )
-            cleanup = onCleanup( @self.endSim );
-        end
-        self.setup( sampleTime );
+        this.setup( sampleTime );
         if length( fieldnames( self.Actors ) ) > sim3d.World.MaxActorLimit
             error( message( "shared_sim3d:sim3dWorld:MaxActorLimitExceeded", sim3d.World.MaxActorLimit ) );
         elseif length( fieldnames( self.Actors ) ) > 1200
@@ -145,10 +155,12 @@ classdef World < handle
 
             end
         end
+        end
+        
     end
 
-    function remove( self, object )
 
+    function remove(self, object)
         if nargin == 1
             self.Root.remove(  );
         elseif nargin == 2
@@ -174,7 +186,9 @@ classdef World < handle
         self.add( viewport );
         self.Viewports.Main = viewport;
     end
+
 end
+
 
 methods ( Access = public, Hidden = true )
     function setup( self, sampleTime )

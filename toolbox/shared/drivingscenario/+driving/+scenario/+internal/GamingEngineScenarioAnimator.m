@@ -427,7 +427,19 @@ classdef GamingEngineScenarioAnimator < handle
             if ~isstring(exe_path)
                 exe_path = string(exe_path);
             end
-            World = sim3d.World(exe_path, "/Game/Maps/EmptyGrass4k4k"); % EmptyGrass4k4k or BlackLake
+            % 区分是否需要像素流转发
+            if ispref("Simulation3D", "ExecCmds")
+                ExecCmds = getpref("Simulation3D", "ExecCmds");
+                if ~isstring(ExecCmds)
+                    ExecCmds = string(ExecCmds);
+                end
+                World = sim3d.World(exe_path, ...
+                    "/Game/Maps/EmptyGrass4k4k", ...
+                    ExecCmds, ...
+                    "CommandLineArgs", ExecCmds);
+            else
+                World = sim3d.World(exe_path, "/Game/Maps/EmptyGrass4k4k"); % EmptyGrass4k4k or BlackLake
+            end
             World.start();  % 打开虚幻引擎（黑色）界面
             % 游戏仿真同步控制
             reader = sim3d.io.CommandReader();
