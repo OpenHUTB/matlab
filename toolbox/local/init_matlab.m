@@ -169,11 +169,13 @@ end
 function correct_vgg()
 % correct vgg16 and vgg19 installation information
 vgg16_info_dir = fullfile(matlabshared.supportpkg.getSupportPackageRoot, 'appdata', '3p', 'common', 'vgg16.instrset');
+if ~exist(vgg16_info_dir, 'dir'); mkdir(vgg16_info_dir); end
 vgg16_mat_dir = fullfile(matlabshared.supportpkg.getSupportPackageRoot, '3P.instrset', 'vgg16.instrset');
 vgg16_infos = "installLocation = " + vgg16_mat_dir;
 writelines(vgg16_infos, fullfile(vgg16_info_dir, 'vgg16.instrset_install_info.txt'));
 
 vgg19_info_dir = fullfile(matlabshared.supportpkg.getSupportPackageRoot, 'appdata', '3p', 'common', 'vgg19.instrset');
+if ~exist(vgg19_info_dir, 'dir'); mkdir(vgg19_info_dir); end
 vgg19_mat_dir = fullfile(matlabshared.supportpkg.getSupportPackageRoot, '3P.instrset', 'vgg19.instrset');
 vgg19_infos = "installLocation = " + vgg19_mat_dir;
 writelines(vgg19_infos, fullfile(vgg19_info_dir,'vgg19.instrset_install_info.txt'));
