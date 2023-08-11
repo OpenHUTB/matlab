@@ -1,16 +1,6 @@
 function RadarDetectionGenerator(obj)
 
-
-
-
-
-
-
-
-
     if isR2018bOrEarlier(obj.ver)
-
-
         newRef='drivingscenarioandsensors/Radar Detection Generator';
         oldRef='drivinglib/Radar Detection Generator';
         obj.appendRule(['<ExternalFileReference<Reference|"',newRef,'":repval "',oldRef,'">>']);
