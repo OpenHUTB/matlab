@@ -1,36 +1,12 @@
 function MultiObjectTracker(obj)
 
-
-
-
-
-
-
-
-
     if isR2017aOrEarlier(obj.ver)
-
-
-
         blks=findBlocksWithMaskType(obj,'multiObjectTracker');
         obj.replaceWithEmptySubsystem(blks);
         return
     end
 
     if isR2019bOrEarlier(obj.ver)
-
-
-
-
-
-
-
-
-
-
-
-
-
         blks=obj.findBlocksWithMaskType('multiObjectTracker');
         msg='driving:multiObjectTracker:';
 
