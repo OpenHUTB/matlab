@@ -1,8 +1,5 @@
 function DrivingReplacements(obj)
 
-
-
-
     if isR2018bOrEarlier(obj.ver)
         obj.removeLibraryLinksTo('drivingscenarioandsensors/Scenario Reader');
     end
