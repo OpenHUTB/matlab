@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>barrier</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:barrier"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:drivingScenario.barrier"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:driving.scenario.Barrier.barrier"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function adds a barrier along the entire length of the road object rd."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">barrier</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_1d4c7ab2-9156-4d36-93f5-7edb31065794" class="intrnllnk">Syntax</a></li>
+<li><a href="#description" class="intrnllnk">Description</a></li>
+<li><a href="#mw_a9e08303-a771-44ae-8cd7-a493937dd880" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_b08632c2-b571-4776-b826-8326602cdc50" class="intrnllnk">Add Barriers Along Road Edges in Driving Scenario</a></li>
+</ul><ul class="nav"><li><a href="#mw_6594570e-bc12-4deb-92f2-ed0dfa4fbaf9" class="intrnllnk">Add Barriers to Driving Scenario at Specific Points</a></li>
+</ul></li>
+<li><a href="#mw_f41f4dd8-2f23-4138-beda-8e981408ccf2" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#mw_70a0b09e-ac75-4399-b929-231953983dec" class="intrnllnk">scenario</a></li>
+<li><a href="#mw_b095a539-8652-4dc8-8262-1024dd85fccd" class="intrnllnk">rd</a></li>
+<li><a href="#mw_d7d63dd0-6700-469d-992c-ab2b877ad32e" class="intrnllnk">barrierCenters</a></li>
+<li><a href="#mw_f5b4963d-0eda-47e3-9e2c-f42870df3610" class="intrnllnk">bankAngle</a></li>
+</ul><ul class="nav"><li><a href="#namevaluepairs" class="intrnllnk">Name-Value Arguments</a><ul class="nav"><li><a href="#mw_f5efc775-062c-4d7b-92d2-3f80f48c6a73" class="intrnllnk">RoadEdge</a></li>
+</ul><ul class="nav"><li><a href="#mw_45c55ecb-a339-4d4d-b699-0f4064da0e2d" class="intrnllnk">RoadEdgeOffset</a></li>
+</ul><ul class="nav"><li><a href="#mw_f6197cbf-bcec-4342-9aa1-92719408f263" class="intrnllnk">SegmentLength</a></li>
+</ul><ul class="nav"><li><a href="#mw_6570498a-608c-4b22-a8ad-8f689f328432" class="intrnllnk">SegmentGap</a></li>
+</ul><ul class="nav"><li><a href="#mw_c70a1efd-b1a0-4c44-a423-baccc8275c74" class="intrnllnk">Width</a></li>
+</ul><ul class="nav"><li><a href="#mw_bd8f64b4-b1d4-4506-9cf4-ba72294490b8" class="intrnllnk">Height</a></li>
+</ul><ul class="nav"><li><a href="#mw_258702ee-df7a-4ee4-8083-6f4eecd3a6f2" class="intrnllnk">Mesh</a></li>
+</ul><ul class="nav"><li><a href="#mw_a425b26b-6912-44a7-857d-818a6992b553" class="intrnllnk">PlotColor</a></li>
+</ul><ul class="nav"><li><a href="#mw_ec7468fd-74b9-449d-9b12-32b659b69ff4" class="intrnllnk">RCSPattern</a></li>
+<li><a href="#mw_29357d1e-7926-48d3-a7b9-2b3ddce875e9" class="intrnllnk">RCSAzimuthAngles</a></li>
+<li><a href="#mw_e1e11e3b-0557-4614-b014-4e33e8d37fc2" class="intrnllnk">RCSElevationAngles</a></li>
+</ul><ul class="nav"><li><a href="#mw_60076654-5668-4ca2-96b3-4feed0866807" class="intrnllnk">ClassID</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mw_56ef7004-d51d-474f-9344-d2f842da903a" class="intrnllnk">Limitations</a></li>
+<li><a href="#mw_36235dda-9db4-4fff-96af-5e0397a4bd57" class="intrnllnk">Tips</a></li>
+<li><a href="#mw_9ba5c395-d5b5-431f-a6fe-8c37351a437f_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_9ba5c395-d5b5-431f-a6fe-8c37351a437f_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="mw_9ba5c395-d5b5-431f-a6fe-8c37351a437f" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">barrier</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">为驾驶场景添加护栏</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<span id="mw_1d4c7ab2-9156-4d36-93f5-7edb31065794" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_1d4c7ab2-9156-4d36-93f5-7edb31065794">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e105939" class="intrnllnk">barrier(scenario,rd)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e105960" class="intrnllnk">barrier(scenario,rd,'RoadEdge','left')</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e105981" class="intrnllnk">barrier(scenario,barrierCenters)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e105997" class="intrnllnk">barrier(scenario,barrierCenters,bankAngle)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e106012" class="intrnllnk">barrier(<span class="argument_placeholder">___</span>,Name,Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="mw_d610ce3c-525a-4dc5-bb5f-74b290b13778" class="anchor_target"></span><h2 id="description">描述</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="drivingscenario.barrier.html#mw_b08632c2-b571-4776-b826-8326602cdc50" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e105939" itemprop="syntax"><code class="synopsis">barrier(<a href="#mw_70a0b09e-ac75-4399-b929-231953983dec" class="intrnllnk"><code class="argument">scenario</code></a>,<a href="#mw_b095a539-8652-4dc8-8262-1024dd85fccd" class="intrnllnk"><code class="argument">rd</code></a>)</code></span> adds
+        a barrier along the entire length of the <a href="drivingscenario.road.html"><code class="function">road</code></a> object <code class="argument">rd</code>. By default, the barrier is placed along
+        the right edge and each segment lies on the surface of road.</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="drivingscenario.barrier.html#mw_b08632c2-b571-4776-b826-8326602cdc50" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e105960" itemprop="syntax"><code class="synopsis">barrier(<a href="#mw_70a0b09e-ac75-4399-b929-231953983dec" class="intrnllnk"><code class="argument">scenario</code></a>,<a href="#mw_b095a539-8652-4dc8-8262-1024dd85fccd" class="intrnllnk"><code class="argument">rd</code></a>,'RoadEdge','left')</code></span>
+        adds a barrier along the left edge of the <a href="drivingscenario.road.html"><code class="function">road</code></a> object <code class="argument">rd</code>.</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="drivingscenario.barrier.html#mw_6594570e-bc12-4deb-92f2-ed0dfa4fbaf9" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e105981" itemprop="syntax"><code class="synopsis">barrier(<a href="#mw_70a0b09e-ac75-4399-b929-231953983dec" class="intrnllnk"><code class="argument">scenario</code></a>,<a href="#mw_d7d63dd0-6700-469d-992c-ab2b877ad32e" class="intrnllnk"><code class="argument">barrierCenters</code></a>)</code></span>
+        adds a barrier along a piecewise, clothoid curve that smoothly connects the specified
+        barrier centers. This approach is useful when adding barriers to edges of roads that
+        intersect or overlap.</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e105997" itemprop="syntax"><code class="synopsis">barrier(<a href="#mw_70a0b09e-ac75-4399-b929-231953983dec" class="intrnllnk"><code class="argument">scenario</code></a>,<a href="#mw_d7d63dd0-6700-469d-992c-ab2b877ad32e" class="intrnllnk"><code class="argument">barrierCenters</code></a>,<a href="#mw_f5b4963d-0eda-47e3-9e2c-f42870df3610" class="intrnllnk"><code class="argument">bankAngle</code></a>)</code></span>
+        specifies the angle by which the barrier tilts when traversing the barrier centers.</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="drivingscenario.barrier.html#mw_b08632c2-b571-4776-b826-8326602cdc50" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e106012" itemprop="syntax"><code class="synopsis">barrier(<span class="argument_placeholder">___</span>,<a href="#namevaluepairarguments" class="intrnllnk"><code class="argument">Name,Value</code></a>)</code></span> 除了先前语法中输入参数的任意组合之外，还使用一个或多个名称-值对参数设置护栏属性。</p>
+<p><span class="emphasis"><em>护栏</em></span> 由称为屏障段的单个元素组成。使用名称-值对组参数（例如 <a href="#mw_f6197cbf-bcec-4342-9aa1-92719408f263" class="intrnllnk"><code class="argument">'SegmentLength'</code></a>,
+          <a href="#mw_6570498a-608c-4b22-a8ad-8f689f328432" class="intrnllnk"><code class="argument">'SegmentGap'</code></a>, <a href="#mw_c70a1efd-b1a0-4c44-a423-baccc8275c74" class="intrnllnk"><code class="argument">'Width'</code></a> 和          <a href="#mw_bd8f64b4-b1d4-4506-9cf4-ba72294490b8" class="intrnllnk"><code class="argument">'Height'</code></a> 来调整各个护栏段的属性。防碰撞护栏和护栏是可以添加到场景中的两种类型的护栏。指定合适的 <a href="#mw_258702ee-df7a-4ee4-8083-6f4eecd3a6f2" class="intrnllnk"><code class="argument">'Mesh'</code></a> 和 <a href="#mw_60076654-5668-4ca2-96b3-4feed0866807" class="intrnllnk"><code class="argument">'ClassID'</code></a> 参数以将护栏表示为普通护栏或防碰撞护栏。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="mw_a9e08303-a771-44ae-8cd7-a493937dd880">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_b08632c2-b571-4776-b826-8326602cdc50"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b08632c2-b571-4776-b826-8326602cdc50" data-target="#expand_panel_body_mw_b08632c2-b571-4776-b826-8326602cdc50" aria-controls="expand_panel_body_mw_b08632c2-b571-4776-b826-8326602cdc50" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_b08632c2-b571-4776-b826-8326602cdc50">Add Barriers Along Road Edges in Driving Scenario<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_b08632c2-b571-4776-b826-8326602cdc50" aria-labelledby="expand_panel_heading_mw_b08632c2-b571-4776-b826-8326602cdc50" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/AddBarriersToADrivingScenarioExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Add Barriers Along Road Edges in Driving Scenario",
+          "description": "Create a driving scenario and add a curved road.",
+          "thumbnailURL": "../../examples/driving/win64/AddBarriersToADrivingScenarioExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.barrier.html"
+
+        },
+          "identifier": "driving.AddBarriersToADrivingScenarioExample",
+          "name": "AddBarriersToADrivingScenarioExample",
+          "url": "drivingscenario.barrier.html#mw_b08632c2-b571-4776-b826-8326602cdc50"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/AddBarriersToADrivingScenarioExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "AddBarriersToADrivingScenarioExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">Create a driving scenario and add a curved road.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadCenters = [-14.1 -4.3; 9 -10; 37 -8; 60 3.9; 81.2 29.4; 83.4 57.9];
+road1 = road(scenario,roadCenters);</pre>
+</div>
+</div>
+</div>
+<p>Add a barrier along the right edge of the road. </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>barrier(scenario,road1)</pre>
+</div>
+</div>
+</div>
+<p>Add another barrier along the left edge of the road with a lateral offset of 1 m from the edge. Specify a gap of 1 m between individual barrier segments. </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>barrier(scenario,road1,<span style="color:#A020F0">'RoadEdge'</span>,<span style="color:#A020F0">"left"</span>,<span style="color:#A020F0">'SegmentGap'</span>,1,<span style="color:#A020F0">'RoadEdgeOffset'</span>,1)</pre>
+</div>
+</div>
+</div>
+<p>Plot the scenario.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e106076" class="mediaobject"><p><img src="../../examples/driving/win64/AddBarriersToADrivingScenarioExample_01.png" alt="Figure contains an axes object. The axes object contains 4 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-AddBarriersToADrivingScenarioExample"/>
+<meta itemprop="exampletitle" content="Add Barriers Along Road Edges in Driving Scenario"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_6594570e-bc12-4deb-92f2-ed0dfa4fbaf9"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6594570e-bc12-4deb-92f2-ed0dfa4fbaf9" data-target="#expand_panel_body_mw_6594570e-bc12-4deb-92f2-ed0dfa4fbaf9" aria-controls="expand_panel_body_mw_6594570e-bc12-4deb-92f2-ed0dfa4fbaf9" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_6594570e-bc12-4deb-92f2-ed0dfa4fbaf9">Add Barriers to Driving Scenario at Specific Points<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_6594570e-bc12-4deb-92f2-ed0dfa4fbaf9" aria-labelledby="expand_panel_heading_mw_6594570e-bc12-4deb-92f2-ed0dfa4fbaf9" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/AddBarriersAtSpecificPointsToADrivingScenarioExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Add Barriers to Driving Scenario at Specific Points",
+          "description": "Create a driving scenario and add a straight road.",
+          "thumbnailURL": "../../examples/driving/win64/AddBarriersAtSpecificPointsToADrivingScenarioExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.barrier.html"
+
+        },
+          "identifier": "driving.AddBarriersAtSpecificPointsToADrivingScenarioExample",
+          "name": "AddBarriersAtSpecificPointsToADrivingScenarioExample",
+          "url": "drivingscenario.barrier.html#mw_6594570e-bc12-4deb-92f2-ed0dfa4fbaf9"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/AddBarriersAtSpecificPointsToADrivingScenarioExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "AddBarriersAtSpecificPointsToADrivingScenarioExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">Create a driving scenario and add a straight road.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario2 = drivingScenario;
+roadCenters = [0 0; 20 0];
+rr = road(scenario2,roadCenters);</pre>
+</div>
+</div>
+</div>
+<p>Specify appropriate barrier centers and add a barrier on the road, covering the entire width of the road.  </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>barrierCenters = [20 3; 20 0; 20 -3];
+barrier(scenario2,barrierCenters,<span style="color:#A020F0">'SegmentGap'</span>,0.2)</pre>
+</div>
+</div>
+</div>
+<p>Add two barriers on the road, each covering half the width of the road. </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>barrierCenters1 = [12 3; 12 0];
+barrierCenters2 = [6 -3; 6 0];
+barrier(scenario2,barrierCenters1,<span style="color:#A020F0">'SegmentGap'</span>,0.2)
+barrier(scenario2,barrierCenters2,<span style="color:#A020F0">'SegmentGap'</span>,0.2)</pre>
+</div>
+</div>
+</div>
+<p>Plot the scenario.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario2)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e106113" class="mediaobject"><p><img src="../../examples/driving/win64/AddBarriersAtSpecificPointsToADrivingScenarioExample_01.png" alt="Figure contains an axes object. The axes object contains 5 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-AddBarriersAtSpecificPointsToADrivingScenarioExample"/>
+<meta itemprop="exampletitle" content="Add Barriers to Driving Scenario at Specific Points"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_f41f4dd8-2f23-4138-beda-8e981408ccf2">Input Arguments</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_f41f4dd8-2f23-4138-beda-8e981408ccf2_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_70a0b09e-ac75-4399-b929-231953983dec"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_70a0b09e-ac75-4399-b929-231953983dec" data-target="#expand_panel_body_mw_70a0b09e-ac75-4399-b929-231953983dec" aria-controls="expand_panel_body_mw_70a0b09e-ac75-4399-b929-231953983dec" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_scenario" class="anchor_target"></span><h3 class="panel-title" id="mw_70a0b09e-ac75-4399-b929-231953983dec"><code itemprop="name">scenario</code> — <span itemprop="purpose">Driving scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">drivingScenario</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_70a0b09e-ac75-4399-b929-231953983dec" aria-labelledby="expand_panel_heading_mw_70a0b09e-ac75-4399-b929-231953983dec" class="panel-collapse collapse in"><div class="panel-body">
+          <p>Driving scenario, specified as a <a href="drivingscenario.html"><code class="object">drivingScenario</code></a> object.</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_b095a539-8652-4dc8-8262-1024dd85fccd"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b095a539-8652-4dc8-8262-1024dd85fccd" data-target="#expand_panel_body_mw_b095a539-8652-4dc8-8262-1024dd85fccd" aria-controls="expand_panel_body_mw_b095a539-8652-4dc8-8262-1024dd85fccd" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_rd" class="anchor_target"></span><h3 class="panel-title" id="mw_b095a539-8652-4dc8-8262-1024dd85fccd"><code itemprop="name">rd</code> — <span itemprop="purpose">Road to add a barrier along</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">road</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_b095a539-8652-4dc8-8262-1024dd85fccd" aria-labelledby="expand_panel_heading_mw_b095a539-8652-4dc8-8262-1024dd85fccd" class="panel-collapse collapse in"><div class="panel-body">
+          <p>Road to add a barrier along, specified as a <a href="drivingscenario.road.html"><code class="function">road</code></a> object.</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_d7d63dd0-6700-469d-992c-ab2b877ad32e"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_d7d63dd0-6700-469d-992c-ab2b877ad32e" data-target="#expand_panel_body_mw_d7d63dd0-6700-469d-992c-ab2b877ad32e" aria-controls="expand_panel_body_mw_d7d63dd0-6700-469d-992c-ab2b877ad32e" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_barrierCenters" class="anchor_target"></span><h3 class="panel-title" id="mw_d7d63dd0-6700-469d-992c-ab2b877ad32e"><code itemprop="name">barrierCenters</code> — <span itemprop="purpose">Barrier center coordinates</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">real-valued <code class="literal"><em class="varname">N</em></code>-by-3 matrix</span> | <span itemprop="inputvalue">real-valued <code class="literal"><em class="varname">N</em></code>-by-2 matrix</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_d7d63dd0-6700-469d-992c-ab2b877ad32e" aria-labelledby="expand_panel_heading_mw_d7d63dd0-6700-469d-992c-ab2b877ad32e" class="panel-collapse collapse in"><div class="panel-body">
+          <p>Barrier center coordinates, specified as an <em class="varname">N</em>-by-3 or
+              <em class="varname">N</em>-by-2 matrix.</p>
+<div class="itemizedlist"><ul><li><p>If <code class="argument">barrierCenters</code> is an <em class="varname">N</em>-by-3 matrix,
+                  then each matrix row represents the (<em class="varname">x</em>, <em class="varname">y</em>,
+                    <em class="varname">z</em>) coordinates of a barrier center.</p></li>
+<li><p>If <code class="argument">barrierCenters</code> is an <em class="varname">N</em>-by-2 matrix,
+                  then each matrix row represents the (<em class="varname">x</em>, <em class="varname">y</em>)
+                  coordinates of a barrier center. The <em class="varname">z</em>-coordinate of each
+                  barrier center is zero.</p></li>
+</ul>
+</div>
+<p>
+ The function connects the coordinates along a smooth, piecewise,
+            clothoid curve, and adds a barrier with the curve as its center line. Units are in
+            meters.</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_f5b4963d-0eda-47e3-9e2c-f42870df3610"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_f5b4963d-0eda-47e3-9e2c-f42870df3610" data-target="#expand_panel_body_mw_f5b4963d-0eda-47e3-9e2c-f42870df3610" aria-controls="expand_panel_body_mw_f5b4963d-0eda-47e3-9e2c-f42870df3610" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_bankAngle" class="anchor_target"></span><h3 class="panel-title" id="mw_f5b4963d-0eda-47e3-9e2c-f42870df3610"><code itemprop="name">bankAngle</code> — <span itemprop="purpose">Banking angle of barrier</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">scalar</span> | <span itemprop="inputvalue">real-valued <code class="literal"><em class="varname">N</em></code>-by-1 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_f5b4963d-0eda-47e3-9e2c-f42870df3610" aria-labelledby="expand_panel_heading_mw_f5b4963d-0eda-47e3-9e2c-f42870df3610" class="panel-collapse collapse in"><div class="panel-body">
+          <p>Banking angle of barrier, specified as a real-valued <em class="varname italic">N</em>-by-1 vector. <em class="varname italic">N</em> is the number of barrier
+            centers. The <span class="emphasis"><em>bankAngle</em></span> is the roll angle of the
+            barrier along the direction of the curve formed by the barrier centers. Units are in
+            degrees.</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<span id="namevaluepairarguments" class="anchor_target"></span><span id="mw_c80e3c8e-a064-43ac-ae26-eeba4c9edc87" class="anchor_target"></span><h3 id="namevaluepairs" class="bottom_ruled">Name-Value Arguments</h3>
+<div class="namevaluecontainer"><p class="neqvpair_boilerplate">Specify optional pairs of arguments as
+      <code class="argument">Name1=Value1,...,NameN=ValueN</code>, where <code class="literal">Name</code> is
+      the argument name and <code class="literal">Value</code> is the corresponding value.
+      Name-value arguments must appear after other arguments, but the order of the
+      pairs does not matter.
+    </p>
+<p class="nvpaircompat_boilerplate"><span class="emphasis"><em>
+      Before R2021a, use commas to separate each name and value, and enclose</em></span> 
+      <code class="literal">Name</code> <span class="emphasis"><em>in quotes.</em></span>
+    </p>
+<p><span class="example_desc"><strong>Example: </strong><code class="literal">'RoadEdge','left'</code> adds a barrier along the left edge of the
+        road. </span></p>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_78c808ab-6465-4451-9b0e-e7feb1147ff6_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_f5efc775-062c-4d7b-92d2-3f80f48c6a73"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_f5efc775-062c-4d7b-92d2-3f80f48c6a73" data-target="#expand_panel_body_mw_f5efc775-062c-4d7b-92d2-3f80f48c6a73" aria-controls="expand_panel_body_mw_f5efc775-062c-4d7b-92d2-3f80f48c6a73" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_RoadEdge" class="anchor_target"></span><h3 class="panel-title" id="mw_f5efc775-062c-4d7b-92d2-3f80f48c6a73"><code itemprop="name">RoadEdge</code> — <span itemprop="purpose">Edge of road along which to place a barrier </span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">'right'</code></span> (default) | <span itemprop="inputvalue"><code class="literal">'left'</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_f5efc775-062c-4d7b-92d2-3f80f48c6a73" aria-labelledby="expand_panel_heading_mw_f5efc775-062c-4d7b-92d2-3f80f48c6a73" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Edge of the road along which to place a barrier, specified as the comma-separated
+              pair consisting of <code class="literal">'RoadEdge'</code> and <code class="literal">'right'</code> or
+                <code class="literal">'left'</code>. Use <code class="argument">'RoadEdge'</code> only when you specify
+              a <a href="drivingscenario.road.html"><code class="function">road</code></a> object to add a barrier along.
+            </p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_fecbb726-ece6-4b89-b9fb-082132b0efdc_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_45c55ecb-a339-4d4d-b699-0f4064da0e2d"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_45c55ecb-a339-4d4d-b699-0f4064da0e2d" data-target="#expand_panel_body_mw_45c55ecb-a339-4d4d-b699-0f4064da0e2d" aria-controls="expand_panel_body_mw_45c55ecb-a339-4d4d-b699-0f4064da0e2d" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_RoadEdgeOffset" class="anchor_target"></span><h3 class="panel-title" id="mw_45c55ecb-a339-4d4d-b699-0f4064da0e2d"><code itemprop="name">RoadEdgeOffset</code> — <span itemprop="purpose">Lateral offset from road edge</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">scalar</span> | <span itemprop="inputvalue">real-valued <code class="literal"><em class="varname">N</em></code>-by-1 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_45c55ecb-a339-4d4d-b699-0f4064da0e2d" aria-labelledby="expand_panel_heading_mw_45c55ecb-a339-4d4d-b699-0f4064da0e2d" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Lateral offset from road edge, specified as the comma-separated pair consisting of
+                <code class="literal">'RoadEdgeOffset'</code> and a scalar or real-valued
+              <em class="varname">N</em>-by-1 vector. <em class="varname italic">N</em> is the number of
+              barrier centers. A positive offset value moves the barrier away from the road and a
+              negative offset value moves the barrier into the road. Units are in meters.
+                <code class="argument">'RoadEdgeOffset'</code> is valid only when you specify a <a href="drivingscenario.road.html"><code class="function">road</code></a> object and <a href="#mw_f5efc775-062c-4d7b-92d2-3f80f48c6a73" class="intrnllnk"><code class="argument">'RoadEdge'</code></a> argument.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_519ca009-2d6c-487d-b5d0-b9cf18836433_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_f6197cbf-bcec-4342-9aa1-92719408f263"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_f6197cbf-bcec-4342-9aa1-92719408f263" data-target="#expand_panel_body_mw_f6197cbf-bcec-4342-9aa1-92719408f263" aria-controls="expand_panel_body_mw_f6197cbf-bcec-4342-9aa1-92719408f263" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_SegmentLength" class="anchor_target"></span><h3 class="panel-title" id="mw_f6197cbf-bcec-4342-9aa1-92719408f263"><code itemprop="name">SegmentLength</code> — <span itemprop="purpose">Length of each barrier segment</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">5</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_f6197cbf-bcec-4342-9aa1-92719408f263" aria-labelledby="expand_panel_heading_mw_f6197cbf-bcec-4342-9aa1-92719408f263" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Length of each barrier segment, specified as the comma-separated pair consisting
+              of <code class="literal">'SegmentLength'</code> and a positive real scalar. Units are in meters.
+            </p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_10b9d9e8-aa37-46ca-9f66-2123fb588e59_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_6570498a-608c-4b22-a8ad-8f689f328432"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6570498a-608c-4b22-a8ad-8f689f328432" data-target="#expand_panel_body_mw_6570498a-608c-4b22-a8ad-8f689f328432" aria-controls="expand_panel_body_mw_6570498a-608c-4b22-a8ad-8f689f328432" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_SegmentGap" class="anchor_target"></span><h3 class="panel-title" id="mw_6570498a-608c-4b22-a8ad-8f689f328432"><code itemprop="name">SegmentGap</code> — <span itemprop="purpose">Distance between consecutive barrier segments</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_6570498a-608c-4b22-a8ad-8f689f328432" aria-labelledby="expand_panel_heading_mw_6570498a-608c-4b22-a8ad-8f689f328432" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Distance between consecutive barrier segments, specified as the comma-separated
+              pair consisting of <code class="literal">'SegmentGap'</code> and a positive real scalar. Units
+              are in meters.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_ded9c5da-3939-42a4-885f-7aced9f8cd4c_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_c70a1efd-b1a0-4c44-a423-baccc8275c74"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c70a1efd-b1a0-4c44-a423-baccc8275c74" data-target="#expand_panel_body_mw_c70a1efd-b1a0-4c44-a423-baccc8275c74" aria-controls="expand_panel_body_mw_c70a1efd-b1a0-4c44-a423-baccc8275c74" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Width" class="anchor_target"></span><h3 class="panel-title" id="mw_c70a1efd-b1a0-4c44-a423-baccc8275c74"><code itemprop="name">Width</code> — <span itemprop="purpose">Width of each barrier segment</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0.5</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c70a1efd-b1a0-4c44-a423-baccc8275c74" aria-labelledby="expand_panel_heading_mw_c70a1efd-b1a0-4c44-a423-baccc8275c74" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Width of each barrier segment, specified as the comma-separated pair consisting of
+                <code class="literal">'Width'</code> and a positive real scalar. Units are in meters.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_e25b7f7f-2a70-4420-9298-4c518eda80b2_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_bd8f64b4-b1d4-4506-9cf4-ba72294490b8"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_bd8f64b4-b1d4-4506-9cf4-ba72294490b8" data-target="#expand_panel_body_mw_bd8f64b4-b1d4-4506-9cf4-ba72294490b8" aria-controls="expand_panel_body_mw_bd8f64b4-b1d4-4506-9cf4-ba72294490b8" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Height" class="anchor_target"></span><h3 class="panel-title" id="mw_bd8f64b4-b1d4-4506-9cf4-ba72294490b8"><code itemprop="name">Height</code> — <span itemprop="purpose">Height of each barrier segment</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0.75</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_bd8f64b4-b1d4-4506-9cf4-ba72294490b8" aria-labelledby="expand_panel_heading_mw_bd8f64b4-b1d4-4506-9cf4-ba72294490b8" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Height of each barrier segment, specified as the comma-separated pair consisting
+              of <code class="literal">'Height'</code> and a positive real scalar. Units are in meters.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_3ba8714b-0c11-4e65-ab11-ae6acd4ade93_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_258702ee-df7a-4ee4-8083-6f4eecd3a6f2"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_258702ee-df7a-4ee4-8083-6f4eecd3a6f2" data-target="#expand_panel_body_mw_258702ee-df7a-4ee4-8083-6f4eecd3a6f2" aria-controls="expand_panel_body_mw_258702ee-df7a-4ee4-8083-6f4eecd3a6f2" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Mesh" class="anchor_target"></span><h3 class="panel-title" id="mw_258702ee-df7a-4ee4-8083-6f4eecd3a6f2"><code itemprop="name">Mesh</code> — <span itemprop="purpose">Mesh representation of barrier</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">extendedObjectMesh</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_258702ee-df7a-4ee4-8083-6f4eecd3a6f2" aria-labelledby="expand_panel_heading_mw_258702ee-df7a-4ee4-8083-6f4eecd3a6f2" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Mesh representation of the barrier, specified as the comma-separated pair
+              consisting of <code class="literal">'Mesh'</code> and a valid
+                <code class="literal">extendedObjectMesh</code> object. The available meshes for barrier are
+                <a href="driving.scenario.jerseybarriermesh.html"><code class="function">driving.scenario.jerseyBarrierMesh</code></a>, representing a Jersey barrier and
+                <a href="driving.scenario.guardrailmesh.html"><code class="function">driving.scenario.guardrailMesh</code></a>, representing a guardrail. The <a href="lidarpointcloudgenerator-system-object.html"><code class="object">lidarPointCloudGenerator</code></a> system object uses this mesh to generate
+              detections.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_84c6a02e-91eb-4446-b6d2-7b332cae0557_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_a425b26b-6912-44a7-857d-818a6992b553"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a425b26b-6912-44a7-857d-818a6992b553" data-target="#expand_panel_body_mw_a425b26b-6912-44a7-857d-818a6992b553" aria-controls="expand_panel_body_mw_a425b26b-6912-44a7-857d-818a6992b553" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_PlotColor" class="anchor_target"></span><h3 class="panel-title" id="mw_a425b26b-6912-44a7-857d-818a6992b553"><code itemprop="name">PlotColor</code> — <span itemprop="purpose">Display color of barrier</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[0.6 0.6 0.6]</code></span> (default) | <span itemprop="inputvalue">RGB triplet </span> | <span itemprop="inputvalue">hexadecimal color code</span> | <span itemprop="inputvalue">color name</span> | <span itemprop="inputvalue">short color name</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_a425b26b-6912-44a7-857d-818a6992b553" aria-labelledby="expand_panel_heading_mw_a425b26b-6912-44a7-857d-818a6992b553" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Display color of barrier, specified as the comma-separated pair consisting of
+                <code class="literal">'PlotColor'</code> and an RGB triplet, hexadecimal color code, color
+              name, or short color name.</p>
+            <p>The barrier appears in the specified color in all programmatic scenario
+              visualizations, including the <a href="drivingscenario.plot.html"><code class="function">plot</code></a> function, <a href="drivingscenario.chaseplot.html"><code class="function">chasePlot</code></a> function, and plotting functions of <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> objects. If you import the scenario into the <strong class="app"><a href="drivingscenariodesigner-app.html">Driving Scenario
+                Designer</a></strong> app, then the barrier appears in this color in all app
+              visualizations. If you import the scenario into Simulink<sup>®</sup>, then the barrier appears in this color in the <strong class="app"><a href="birdseyescope-app.html">Bird's-Eye
+                Scope</a></strong>.</p>
+            <p>For a custom color, specify an RGB triplet or a hexadecimal color code.</p>
+<div class="itemizedlist"><ul><li><p>An RGB triplet is a three-element row vector whose elements
+                                        specify the intensities of the red, green, and blue
+                                        components of the color. The intensities must be in the
+                                        range <code class="literal">[0,1]</code>, for example, <code class="literal">[0.4
+                                                0.6 0.7]</code>. </p></li>
+<li><p>A hexadecimal color code is a character vector or a string
+                                        scalar that starts with a hash symbol (<code class="literal">#</code>)
+                                        followed by three or six hexadecimal digits, which can range
+                                        from <code class="literal">0</code> to <code class="literal">F</code>. The
+                                        values are not case sensitive. Therefore, the color codes
+                                                <code class="literal">"#FF8800"</code>,
+                                                <code class="literal">"#ff8800"</code>,
+                                                <code class="literal">"#F80"</code>, and
+                                                <code class="literal">"#f80"</code> are equivalent.</p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>Alternatively, you can specify some common colors by name. This table lists the named color
+        options, the equivalent RGB triplets, and hexadecimal color codes.</p>
+            
+    <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="15%"/>
+<col class="tcol2" width="15%"/>
+<col class="tcol3" width="20%"/>
+<col class="tcol4" width="20%"/>
+<col class="tcol5" width="30%"/>
+</colgroup>
+<thead><tr><th>Color Name</th>
+<th>Short Name</th>
+<th>RGB Triplet</th>
+<th>Hexadecimal Color Code</th>
+<th>Appearance</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">"red"</code></td>
+<td><code class="literal">"r"</code></td>
+<td><code class="literal">[1 0 0]</code></td>
+<td><code class="literal">"#FF0000"</code></td>
+<td><div class="informalfigure"><div id="d124e106616" class="mediaobject"><p><img src="hg_red.png" alt="Sample of the color red" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"green"</code></td>
+<td><code class="literal">"g"</code></td>
+<td><code class="literal">[0 1 0]</code></td>
+<td><code class="literal">"#00FF00"</code></td>
+<td><div class="informalfigure"><div id="d124e106631" class="mediaobject"><p><img src="hg_green.png" alt="Sample of the color green" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"blue"</code></td>
+<td><code class="literal">"b"</code></td>
+<td><code class="literal">[0 0 1]</code></td>
+<td><code class="literal">"#0000FF"</code></td>
+<td><div class="informalfigure"><div id="d124e106646" class="mediaobject"><p><img src="hg_blue.png" alt="Sample of the color blue" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"cyan"</code>
+                                                  </td>
+<td><code class="literal">"c"</code></td>
+<td><code class="literal">[0 1 1]</code></td>
+<td><code class="literal">"#00FFFF"</code></td>
+<td><div class="informalfigure"><div id="d124e106662" class="mediaobject"><p><img src="hg_cyan.png" alt="Sample of the color cyan" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"magenta"</code></td>
+<td><code class="literal">"m"</code></td>
+<td><code class="literal">[1 0 1]</code></td>
+<td><code class="literal">"#FF00FF"</code></td>
+<td><div class="informalfigure"><div id="d124e106677" class="mediaobject"><p><img src="hg_magenta.png" alt="Sample of the color magenta" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"yellow"</code></td>
+<td><code class="literal">"y"</code></td>
+<td><code class="literal">[1 1 0]</code></td>
+<td><code class="literal">"#FFFF00"</code></td>
+<td><div class="informalfigure"><div id="d124e106692" class="mediaobject"><p><img src="hg_yellow.png" alt="Sample of the color yellow" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"black"</code></td>
+<td><code class="literal">"k"</code></td>
+<td><code class="literal">[0 0 0]</code></td>
+<td><code class="literal">"#000000"</code></td>
+<td><div class="informalfigure"><div id="d124e106707" class="mediaobject"><p><img src="hg_black.png" alt="Sample of the color black" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"white"</code></td>
+<td><code class="literal">"w"</code></td>
+<td><code class="literal">[1 1 1]</code></td>
+<td><code class="literal">"#FFFFFF"</code></td>
+<td><div class="informalfigure"><div id="d124e106722" class="mediaobject"><p><img src="hg_white.png" alt="Sample of the color white" height="28" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here are the RGB triplets and hexadecimal color codes for the default colors MATLAB<sup>®</sup> uses in many types of plots.</p>
+    <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="35%"/>
+<col class="tcol2" width="35%"/>
+<col class="tcol3" width="30%"/>
+</colgroup>
+<thead><tr><th>RGB Triplet</th>
+<th>Hexadecimal Color Code</th>
+<th>Appearance</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">[0 0.4470 0.7410]</code></td>
+<td><code class="literal">"#0072BD"</code></td>
+<td><div class="informalfigure"><div id="d124e106753" class="mediaobject"><p><img src="colororder1.png" alt="Sample of RGB triplet [0 0.4470 0.7410], which appears as dark blue" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.8500 0.3250 0.0980]</code></td>
+<td><code class="literal">"#D95319"</code></td>
+<td><div class="informalfigure"><div id="d124e106764" class="mediaobject"><p><img src="colororder2.png" alt="Sample of RGB triplet [0.8500 0.3250 0.0980], which appears as dark orange" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.9290 0.6940 0.1250]</code></td>
+<td><code class="literal">"#EDB120"</code></td>
+<td><div class="informalfigure"><div id="d124e106775" class="mediaobject"><p><img src="colororder3.png" alt="Sample of RGB triplet [0.9290 0.6940 0.1250], which appears as dark yellow" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.4940 0.1840 0.5560]</code></td>
+<td><code class="literal">"#7E2F8E"</code></td>
+<td><div class="informalfigure"><div id="d124e106786" class="mediaobject"><p><img src="colororder4.png" alt="Sample of RGB triplet [0.4940 0.1840 0.5560], which appears as dark purple" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.4660 0.6740 0.1880]</code></td>
+<td><code class="literal">"#77AC30"</code></td>
+<td><div class="informalfigure"><div id="d124e106797" class="mediaobject"><p><img src="colororder5.png" alt="Sample of RGB triplet [0.4660 0.6740 0.1880], which appears as medium green" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.3010 0.7450 0.9330]</code></td>
+<td><code class="literal">"#4DBEEE"</code></td>
+<td><div class="informalfigure"><div id="d124e106808" class="mediaobject"><p><img src="colororder6.png" alt="Sample of RGB triplet [0.3010 0.7450 0.9330], which appears as light blue" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.6350 0.0780 0.1840]</code></td>
+<td><code class="literal">"#A2142F"</code></td>
+<td><div class="informalfigure"><div id="d124e106819" class="mediaobject"><p><img src="colororder7.png" alt="Sample of RGB triplet [0.6350 0.0780 0.1840], which appears as dark red" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_d9886331-0045-4c3d-8f15-c74ad4ce0a35_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_ec7468fd-74b9-449d-9b12-32b659b69ff4"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ec7468fd-74b9-449d-9b12-32b659b69ff4" data-target="#expand_panel_body_mw_ec7468fd-74b9-449d-9b12-32b659b69ff4" aria-controls="expand_panel_body_mw_ec7468fd-74b9-449d-9b12-32b659b69ff4" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_RCSPattern" class="anchor_target"></span><h3 class="panel-title" id="mw_ec7468fd-74b9-449d-9b12-32b659b69ff4"><code itemprop="name">RCSPattern</code> — <span itemprop="purpose">Radar cross-section pattern of barrier</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[10 10; 10 10]</code></span> (default) | <span itemprop="inputvalue"><em class="varname">Q</em>-by-<em class="varname">P</em> real-valued matrix</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_ec7468fd-74b9-449d-9b12-32b659b69ff4" aria-labelledby="expand_panel_heading_mw_ec7468fd-74b9-449d-9b12-32b659b69ff4" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Radar cross-section (RCS) pattern of the barrier, specified as the comma-separated
+              pair consisting of <code class="literal">'RCSPattern'</code> and a
+                <em class="varname">Q</em>-by-<em class="varname">P</em> real-valued matrix. The RCS is a
+              function of the azimuth and elevation angles, where:</p>
+<div class="itemizedlist"><ul><li><p><em class="varname">Q</em> is the number of elevation angles specified by the
+                      <a href="#mw_e1e11e3b-0557-4614-b014-4e33e8d37fc2" class="intrnllnk"><code class="argument">'RCSElevationAngles'</code></a> name-value pair argument.</p></li>
+<li><p>
+                    <em class="varname">P</em> is the number of azimuth angles specified by the
+                      <a href="#mw_29357d1e-7926-48d3-a7b9-2b3ddce875e9" class="intrnllnk"><code class="argument">'RCSAzimuthAngles'</code></a> name-value pair argument. </p></li>
+</ul>
+</div>
+<p>
+Units are in decibels per square meter (dBsm).</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">5.8</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_29357d1e-7926-48d3-a7b9-2b3ddce875e9"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_29357d1e-7926-48d3-a7b9-2b3ddce875e9" data-target="#expand_panel_body_mw_29357d1e-7926-48d3-a7b9-2b3ddce875e9" aria-controls="expand_panel_body_mw_29357d1e-7926-48d3-a7b9-2b3ddce875e9" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_RCSAzimuthAngles" class="anchor_target"></span><h3 class="panel-title" id="mw_29357d1e-7926-48d3-a7b9-2b3ddce875e9"><code itemprop="name">RCSAzimuthAngles</code> — <span itemprop="purpose">Azimuth angles of RCS pattern of barrier</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[-180 180]</code></span> (default) | <span itemprop="inputvalue"><em class="varname">P</em>-element real-valued vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_29357d1e-7926-48d3-a7b9-2b3ddce875e9" aria-labelledby="expand_panel_heading_mw_29357d1e-7926-48d3-a7b9-2b3ddce875e9" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Azimuth angles of RCS pattern of barrier, specified as the comma-separated pair
+              consisting of <code class="literal">'RCSAzimuthAngles'</code> and a <em class="varname">P</em>-element
+              real-valued vector. <em class="varname">P</em> is the number of azimuth angles. Values are
+              in the range [–180°, 180°].</p>
+            <p>Each element of <code class="property">'RCSAzimuthAngles'</code> defines the azimuth angle
+              of the corresponding column of the <a href="#mw_ec7468fd-74b9-449d-9b12-32b659b69ff4" class="intrnllnk"><code class="argument">'RCSPattern'</code></a> name-value pair
+              argument. Units are in degrees.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">[-90:90]</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_e1e11e3b-0557-4614-b014-4e33e8d37fc2"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e1e11e3b-0557-4614-b014-4e33e8d37fc2" data-target="#expand_panel_body_mw_e1e11e3b-0557-4614-b014-4e33e8d37fc2" aria-controls="expand_panel_body_mw_e1e11e3b-0557-4614-b014-4e33e8d37fc2" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_RCSElevationAngles" class="anchor_target"></span><h3 class="panel-title" id="mw_e1e11e3b-0557-4614-b014-4e33e8d37fc2"><code itemprop="name">RCSElevationAngles</code> — <span itemprop="purpose">Elevation angles of RCS pattern of barrier</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[-90 90]</code></span> (default) | <span itemprop="inputvalue"><em class="varname">Q</em>-element real-valued vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e1e11e3b-0557-4614-b014-4e33e8d37fc2" aria-labelledby="expand_panel_heading_mw_e1e11e3b-0557-4614-b014-4e33e8d37fc2" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Elevation angles of RCS pattern of barrier, specified as the comma-separated pair
+              consisting of <code class="literal">'RCSElevationAngles'</code> and a
+              <em class="varname">Q</em>-element real-valued vector. <em class="varname">Q</em> is the number of
+              elevation angles. Values are in the range [–90°, 90°].</p>
+            <p>Each element of <code class="property">'RCSElevationAngles'</code> defines the elevation
+              angle of the corresponding row of the <a href="#mw_ec7468fd-74b9-449d-9b12-32b659b69ff4" class="intrnllnk"><code class="argument">'RCSPattern'</code></a> name-value
+              pair argument. Units are in degrees.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">[0:90]</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_497e5a5d-b565-4389-9785-cb631206f549_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_60076654-5668-4ca2-96b3-4feed0866807"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_60076654-5668-4ca2-96b3-4feed0866807" data-target="#expand_panel_body_mw_60076654-5668-4ca2-96b3-4feed0866807" aria-controls="expand_panel_body_mw_60076654-5668-4ca2-96b3-4feed0866807" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_ClassID" class="anchor_target"></span><h3 class="panel-title" id="mw_60076654-5668-4ca2-96b3-4feed0866807"><code itemprop="name">ClassID</code> — <span itemprop="purpose">Classification identifier</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue"><code class="literal">5</code></span> | <span itemprop="inputvalue"><code class="literal">6</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_60076654-5668-4ca2-96b3-4feed0866807" aria-labelledby="expand_panel_heading_mw_60076654-5668-4ca2-96b3-4feed0866807" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Classification identifier of the barrier, specified as the comma-separated pair
+              consisting of <code class="literal">'ClassID'</code> and a nonnegative integer value of
+                <code class="literal">5</code> or <code class="literal">6</code>. The values <code class="literal">5</code> and
+                <code class="literal">6</code> correspond to Jersey barriers and guardrails, respectively.
+              Specify the appropriate Class ID for each barrier before importing the scenario into
+              the <strong class="app"><a href="drivingscenariodesigner-app.html">Driving Scenario
+                Designer</a></strong> app. For more information about the Class ID values for different
+              actors, refer to the description of the <a href="drivingscenario.actor.html#bvm91xv-1_sep_mw_b437ae7c-2f1d-42ba-aa16-7f363d9cac01"><code class="argument">'ClassID'</code></a> name-value pair argument.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_56ef7004-d51d-474f-9344-d2f842da903a_div" class="ref_sect"><h2 id="mw_56ef7004-d51d-474f-9344-d2f842da903a">Limitations</h2>
+<div class="itemizedlist"><ul><li><p>Road networks added using the <a href="drivingscenario.roadnetwork.html"><code class="function">roadNetwork</code></a>
+          function do not support barriers.</p></li>
+</ul>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_36235dda-9db4-4fff-96af-5e0397a4bd57">Tips</h2>
+<div class="itemizedlist"><ul><li><p>For faster simulations, specify the input argument <code class="literal">range</code> for the
+            <a href="drivingscenario.targetposes.html"><code class="function">targetPoses</code></a> function in the scenario advance
+          loop. </p></li>
+</ul>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_9ba5c395-d5b5-431f-a6fe-8c37351a437f_vh">Version History</h2>
+<p><strong>Introduced in R2021a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_9ba5c395-d5b5-431f-a6fe-8c37351a437f_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.actor.html"><span itemprop="name"><code class="function">actor</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.vehicle.html"><span itemprop="name"><code class="function">vehicle</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="lanespec.html"><span itemprop="name"><code class="object">lanespec</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.roadgroup.html"><span itemprop="name"><code class="function">roadGroup</code></span></a></span></p>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/sensor-fusion-using-synthetic-radar-and-vision-data.html" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

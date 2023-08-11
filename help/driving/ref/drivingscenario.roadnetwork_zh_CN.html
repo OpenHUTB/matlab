@@ -1,0 +1,822 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>roadNetwork</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../scenario-import-and-export.html",
+          "name": "Scenario Import and Export"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring",
+        "scenario-import-and-export"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"><meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:roadNetwork"><meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:drivingScenario.roadNetwork"><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function imports roads from an ASAM OpenDRIVE road network file into a driving scenario."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li><a href="../scenario-simulation.html?s_tid=CRUX_lftnav">Scenario Simulation</a></li><li><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav">Cuboid Scenario Simulation</a></li><li><a href="../scenario-import-and-export.html?s_tid=CRUX_lftnav">Scenario Import and Export</a></li></ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">roadNetwork</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_a03cda90-2ac9-416b-8fae-3a62a427ae2d" class="intrnllnk">Syntax</a></li><li><a href="#description" class="intrnllnk">Description</a><ul class="nav"><li><a href="#mw_0f60d9c2-cb36-4aaa-85f3-8b1b42cecb10" class="intrnllnk"><span class="trademark entity">OpenDRIVE</span></a></li><li><a href="#mw_fbe2a91b-9089-4c77-9e9e-5dfca26682b5" class="intrnllnk">HERE HD Live Map</a></li><li><a href="#mw_f73db684-f85f-4e64-85cc-e9841073d88b" class="intrnllnk"><span class="trademark entity">OpenStreetMap</span></a></li><li><a href="#mw_e89c095b-7202-44de-9922-e93fb2fa9bd3" class="intrnllnk"><span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span></a></li></ul></li><li><a href="#mw_11eb27f1-626e-456b-b2c9-2f0bcbc6c6ce" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_6ce17b1c-5d80-4c77-b825-877340463cd1" class="intrnllnk">Import ASAM OpenDRIVE Road Network into Driving Scenario</a></li></ul><ul class="nav"><li><a href="#mw_b2544400-181c-4e4d-96e4-aa9d13b7ff0d" class="intrnllnk">Import ASAM OpenDRIVE Road with Multiple Lane Types into Driving Scenario</a></li></ul><ul class="nav"><li><a href="#mw_dd9401e9-77a8-4341-ad7e-e68294acbf4f" class="intrnllnk">Import HERE HDLM Roads Using Specified Coordinates</a></li></ul><ul class="nav"><li><a href="#mw_275a59a0-26df-40d5-9a60-b46dd5a296fe" class="intrnllnk">Import HERE HDLM Roads Using Specified Region</a></li></ul><ul class="nav"><li><a href="#mw_9f206d27-3903-410a-9d2c-d40d986e1ad7" class="intrnllnk">Import OpenStreetMap Road Network and Plot Route</a></li></ul><ul class="nav"><li><a href="#mw_927195fe-0387-4d61-bb8d-eb98b0618cea" class="intrnllnk">Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) Roads Using Specified Coordinates</a></li></ul><ul class="nav"><li><a href="#mw_1b8984da-2240-45cb-9927-950fea66782b" class="intrnllnk">Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) Roads Using Specified Region</a></li></ul></li><li><a href="#mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-3" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#bvnho0u-1-sc" class="intrnllnk">scenario</a></li><li><a href="#mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters" class="intrnllnk">filename</a></li><li><a href="#mw_987aa56e-5ff8-483f-b69c-286dc200ac19" class="intrnllnk">showLaneTypes</a></li><li><a href="#mw_226937d7-3657-4a34-b11f-d81204068a1c" class="intrnllnk">lat</a></li><li><a href="#mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81" class="intrnllnk">lon</a></li><li><a href="#mw_409d6b91-02ba-49de-ad5f-461992ea4309" class="intrnllnk">minLat</a></li><li><a href="#mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" class="intrnllnk">minLon</a></li><li><a href="#mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" class="intrnllnk">maxLat</a></li><li><a href="#mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" class="intrnllnk">maxLon</a></li></ul></li><li><a href="#mw_ccf3f488-d5e6-40d6-9144-c7119b0f4ca8" class="intrnllnk"><span id="roadNetworkImportLimitations" class="anchor_target"></span>Limitations</a></li><li><a href="#mw_ecdb4542-33ca-427a-88b4-5f0c46bd4db8" class="intrnllnk">Tips</a></li><li><a href="#mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_vh" class="intrnllnk">Version History</a></li><li><a href="#mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_seealso" class="intrnllnk">See Also</a></li></ul>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li><li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li></ul></div></nav></div><div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li><li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li></ul></div></div></div><div class="col-xs-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">roadNetwork</span></h1><div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">Add road network to driving scenario</p><div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div></div></div>
+<span id="mw_a03cda90-2ac9-416b-8fae-3a62a427ae2d" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_a03cda90-2ac9-416b-8fae-3a62a427ae2d">Syntax</h2><div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e113528" class="intrnllnk">roadNetwork(scenario,'OpenDRIVE',filename)</a></code></div><div class="code_responsive"><code class="synopsis"><a href="#d124e113554" class="intrnllnk">roadNetwork(scenario,'OpenDRIVE',filename,'ShowLaneTypes',showLaneTypes)</a></code></div></div><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e113608" class="intrnllnk">roadNetwork(scenario,'HEREHDLiveMap',lat,lon)</a></code></div><div class="code_responsive"><code class="synopsis"><a href="#d124e113638" class="intrnllnk">roadNetwork(scenario,'HEREHDLiveMap',minLat,minLon,maxLat,maxLon)</a></code></div></div><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e113675" class="intrnllnk">roadNetwork(scenario,'OpenStreetMap',filename)</a></code></div></div><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e113701" class="intrnllnk">roadNetwork(scenario,'ZenrinJapanMap',lat,lon)</a></code></div><div class="code_responsive"><code class="synopsis"><a href="#d124e113749" class="intrnllnk">roadNetwork(scenario,'ZenrinJapanMap',minLat,minLon,maxLat,maxLon)</a></code></div></div></div></div><div class="clear"></div><span id="mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514.bvnho0u-2" class="anchor_target"></span><h2 id="description">Description</h2><div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module">
+            <h3 id="mw_0f60d9c2-cb36-4aaa-85f3-8b1b42cecb10"><span class="trademark entity">OpenDRIVE</span></h3>
+            
+            <div class="description_element"><p class="syntax_example"><a href="drivingscenario.roadnetwork.html#mw_6ce17b1c-5d80-4c77-b825-877340463cd1" class="intrnllnk">example</a></p><div class="code_responsive"><p><span id="d124e113528" itemprop="syntax"><code class="synopsis">roadNetwork(<a href="#bvnho0u-1-sc" class="intrnllnk"><code class="argument">scenario</code></a>,'OpenDRIVE',<a href="#mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters" class="intrnllnk"><code class="argument">filename</code></a>)</code></span>
+                    imports roads from an ASAM OpenDRIVE<sup>&#x00AE;</sup> road network file into a driving scenario. The function supports
+                    importing road networks from OpenDRIVE<sup>&#x00AE;</sup> file versions 1.4 and 1.5, as well as ASAM OpenDRIVE file version 1.6.</p></div></div>
+            <div class="description_element"><p class="syntax_example"><a href="drivingscenario.roadnetwork.html#mw_b2544400-181c-4e4d-96e4-aa9d13b7ff0d" class="intrnllnk">example</a></p><div class="code_responsive"><p><span id="d124e113554" itemprop="syntax"><code class="synopsis">roadNetwork(<a href="#bvnho0u-1-sc" class="intrnllnk"><code class="argument">scenario</code></a>,'OpenDRIVE',<a href="#mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters" class="intrnllnk"><code class="argument">filename</code></a>,'ShowLaneTypes',<a href="#mw_987aa56e-5ff8-483f-b69c-286dc200ac19" class="intrnllnk"><code class="argument">showLaneTypes</code></a>)</code></span>
+                    uses the name-value pair <code class="literal">'ShowLaneTypes'</code> to also import lane
+                    type information from the file and display it in the driving scenario.</p><p>
+                    </p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>As of R2021b, the ASAM OpenDRIVE import feature offers functional and visual improvements,
+                            as well as a few additional limitations.</p>
+<div class="itemizedlist"><ul><li><p>You can now import roads with multiple lane
+                                        specifications.</p></li><li><p>Imported roads show boundary lines that were not shown
+                                        previously.</p></li><li><p>Road centers always appear in the middle of imported
+                                        roads. Previously, some roads were showing road centers on
+                                        the road edges.</p></li><li><p>Junctions are represented using a <a href="driving.scenario.roadgroup.html"><code class="object">RoadGroup</code></a> object that combines road segments
+                                        within a junction. Previously, each road segment within a
+                                        junction was represented separately. As a result, imported
+                                        road networks now use a smaller number of roads.</p></li><li><p>The road IDs, number of roads, junction IDs, and number of
+                                        junctions in a driving scenario may not match those
+                                        specified in the imported ASAM OpenDRIVE file.</p></li></ul></div><p>
+</p></div><p>
+
+                </p></div></div>
+        </div><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module">
+            <h3 id="mw_fbe2a91b-9089-4c77-9e9e-5dfca26682b5">HERE HD Live Map</h3>
+            <div class="description_element"><p class="syntax_example"><a href="drivingscenario.roadnetwork.html#mw_dd9401e9-77a8-4341-ad7e-e68294acbf4f" class="intrnllnk">example</a></p><div class="code_responsive"><p><span id="d124e113608" itemprop="syntax"><code class="synopsis">roadNetwork(<a href="#bvnho0u-1-sc" class="intrnllnk"><code class="argument">scenario</code></a>,'HEREHDLiveMap',<a href="#mw_226937d7-3657-4a34-b11f-d81204068a1c" class="intrnllnk"><code class="argument">lat</code></a>,<a href="#mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81" class="intrnllnk"><code class="argument">lon</code></a>)</code></span>
+                    imports roads from a HERE HD Live Map <sup class="footnote"><a id="d124e113617" class="intrnllnk" href="#ftn.d124e113617">1</a></sup>
+       (HERE HDLM) road network into a driving scenario. The function
+                    imports the roads that are nearest to the latitude and longitude coordinates
+                    specified in <code class="argument">lat</code> and <code class="argument">lon</code>,
+                    respectively.</p></div></div>
+            <div class="description_element"><p class="syntax_example"><a href="drivingscenario.roadnetwork.html#mw_275a59a0-26df-40d5-9a60-b46dd5a296fe" class="intrnllnk">example</a></p><div class="code_responsive"><p><span id="d124e113638" itemprop="syntax"><code class="synopsis">roadNetwork(<a href="#bvnho0u-1-sc" class="intrnllnk"><code class="argument">scenario</code></a>,'HEREHDLiveMap',<a href="#mw_409d6b91-02ba-49de-ad5f-461992ea4309" class="intrnllnk"><code class="argument">minLat</code></a>,<a href="#mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" class="intrnllnk"><code class="argument">minLon</code></a>,<a href="#mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" class="intrnllnk"><code class="argument">maxLat</code></a>,<a href="#mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" class="intrnllnk"><code class="argument">maxLon</code></a>)</code></span>
+                    imports HERE HDLM roads that are at least partially within the geographic
+                    bounding box specified by <code class="argument">minLat</code>,
+                        <code class="argument">minLon</code>, <code class="argument">maxLat</code>, and
+                        <code class="argument">maxLon</code>.</p></div></div>
+        </div><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module">
+            <h3 id="mw_f73db684-f85f-4e64-85cc-e9841073d88b"><span class="trademark entity">OpenStreetMap</span></h3>
+            <div class="description_element"><p class="syntax_example"><a href="drivingscenario.roadnetwork.html#mw_9f206d27-3903-410a-9d2c-d40d986e1ad7" class="intrnllnk">example</a></p><div class="code_responsive"><p><span id="d124e113675" itemprop="syntax"><code class="synopsis">roadNetwork(<a href="#bvnho0u-1-sc" class="intrnllnk"><code class="argument">scenario</code></a>,'OpenStreetMap',<a href="#mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters" class="intrnllnk"><code class="argument">filename</code></a>)</code></span>
+                    imports roads from an OpenStreetMap<sup>&#x00AE;</sup> road network file into a driving scenario.</p></div></div>
+        </div><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module">
+            <h3 id="mw_e89c095b-7202-44de-9922-e93fb2fa9bd3"><span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span></h3>
+            <div class="description_element"><p class="syntax_example"><a href="drivingscenario.roadnetwork.html#mw_927195fe-0387-4d61-bb8d-eb98b0618cea" class="intrnllnk">example</a></p><div class="code_responsive"><p><span id="d124e113701" itemprop="syntax"><code class="synopsis">roadNetwork(<a href="#bvnho0u-1-sc" class="intrnllnk"><code class="argument">scenario</code></a>,'ZenrinJapanMap',<a href="#mw_226937d7-3657-4a34-b11f-d81204068a1c" class="intrnllnk"><code class="argument">lat</code></a>,<a href="#mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81" class="intrnllnk"><code class="argument">lon</code></a>)</code></span>
+                    imports roads from a <span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span>
+                    <sup class="footnote"><a id="d124e113713" class="intrnllnk" href="#ftn.d124e113713">2</a></sup>
+       road network into a driving scenario. The function imports the
+                    roads that are nearest to the latitude and longitude coordinates specified in
+                        <code class="argument">lat</code> and <code class="argument">lon</code>, respectively.</p><p>Importing roads from the <span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span> service requires <a href="https://www.mathworks.com/matlabcentral/fileexchange/88632-automated-driving-toolbox-importer-for-zenrin-japan-map-api-3-0-itsumo-navi-api-3-0-service" target="_blank"><span class="entity"><span class="trademark">Automated Driving Toolbox</span> Importer for Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0) Service</span></a>.</p></div></div>
+            <div class="description_element"><p class="syntax_example"><a href="drivingscenario.roadnetwork.html#mw_1b8984da-2240-45cb-9927-950fea66782b" class="intrnllnk">example</a></p><div class="code_responsive"><p><span id="d124e113749" itemprop="syntax"><code class="synopsis">roadNetwork(<a href="#bvnho0u-1-sc" class="intrnllnk"><code class="argument">scenario</code></a>,'ZenrinJapanMap',<a href="#mw_409d6b91-02ba-49de-ad5f-461992ea4309" class="intrnllnk"><code class="argument">minLat</code></a>,<a href="#mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" class="intrnllnk"><code class="argument">minLon</code></a>,<a href="#mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" class="intrnllnk"><code class="argument">maxLat</code></a>,<a href="#mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" class="intrnllnk"><code class="argument">maxLon</code></a>)</code></span>
+                    imports <span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span> roads that are at least partially within the geographic bounding
+                    box specified by <code class="argument">minLat</code>, <code class="argument">minLon</code>,
+                        <code class="argument">maxLat</code>, and <code class="argument">maxLon</code>.</p></div></div>
+        </div></div><div class="clear"></div><div class="examples"><h2 id="mw_11eb27f1-626e-456b-b2c9-2f0bcbc6c6ce">Examples</h2><div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p><div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_6ce17b1c-5d80-4c77-b825-877340463cd1"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6ce17b1c-5d80-4c77-b825-877340463cd1" data-target="#expand_panel_body_mw_6ce17b1c-5d80-4c77-b825-877340463cd1" aria-controls="expand_panel_body_mw_6ce17b1c-5d80-4c77-b825-877340463cd1" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_6ce17b1c-5d80-4c77-b825-877340463cd1">Import ASAM OpenDRIVE Road Network into Driving Scenario<br/> </h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_6ce17b1c-5d80-4c77-b825-877340463cd1" aria-labelledby="expand_panel_heading_mw_6ce17b1c-5d80-4c77-b825-877340463cd1" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/AddOpenDRIVERoadNetworkToScenarioExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Import ASAM OpenDRIVE Road Network into Driving Scenario",
+          "description": "Create an empty driving scenario.",
+          "thumbnailURL": "../../examples/driving/win64/AddOpenDRIVERoadNetworkToScenarioExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.roadnetwork.html"
+
+        },
+          "identifier": "driving.AddOpenDRIVERoadNetworkToScenarioExample",
+          "name": "AddOpenDRIVERoadNetworkToScenarioExample",
+          "url": "drivingscenario.roadnetwork.html#mw_6ce17b1c-5d80-4c77-b825-877340463cd1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/AddOpenDRIVERoadNetworkToScenarioExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "AddOpenDRIVERoadNetworkToScenarioExample.mlx",
+        "roundabout.xodr"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Create an empty driving scenario.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;</pre></div></div></div><p>Import an ASAM OpenDRIVE road network into the scenario.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>filePath = <span style="color:#A020F0">'roundabout.xodr'</span>;  
+roadNetwork(scenario,<span style="color:#A020F0">'OpenDRIVE'</span>,filePath);</pre></div></div></div><p>Plot the scenario and zoom in on the road network by setting the axes limits.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario)
+xlim([-250 150])
+ylim([-175 225])</pre></div></div></div><div class="informalfigure"><div id="d124e114247" class="mediaobject"><p><img src="../../examples/driving/win64/AddOpenDRIVERoadNetworkToScenarioExample_01.png" alt="Figure contains an axes object. The axes object contains 5 objects of type patch, line." width="560"></p></div></div><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-AddOpenDRIVERoadNetworkToScenarioExample"><meta itemprop="exampletitle" content="Import ASAM OpenDRIVE Road Network into Driving Scenario"></div><div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_b2544400-181c-4e4d-96e4-aa9d13b7ff0d"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b2544400-181c-4e4d-96e4-aa9d13b7ff0d" data-target="#expand_panel_body_mw_b2544400-181c-4e4d-96e4-aa9d13b7ff0d" aria-controls="expand_panel_body_mw_b2544400-181c-4e4d-96e4-aa9d13b7ff0d" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_b2544400-181c-4e4d-96e4-aa9d13b7ff0d">Import ASAM OpenDRIVE Road with Multiple Lane Types into Driving Scenario<br/> </h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_b2544400-181c-4e4d-96e4-aa9d13b7ff0d" aria-labelledby="expand_panel_heading_mw_b2544400-181c-4e4d-96e4-aa9d13b7ff0d" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/ImportOpenDRIVERoadLaneTypesIntoDSExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Import ASAM OpenDRIVE Road with Multiple Lane Types into Driving Scenario",
+          "description": "Create an empty driving scenario.",
+          "thumbnailURL": "../../examples/driving/win64/ImportOpenDRIVERoadLaneTypesIntoDSExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.roadnetwork.html"
+
+        },
+          "identifier": "driving.ImportOpenDRIVERoadLaneTypesIntoDSExample",
+          "name": "ImportOpenDRIVERoadLaneTypesIntoDSExample",
+          "url": "drivingscenario.roadnetwork.html#mw_b2544400-181c-4e4d-96e4-aa9d13b7ff0d"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/ImportOpenDRIVERoadLaneTypesIntoDSExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ImportOpenDRIVERoadLaneTypesIntoDSExample.mlx",
+        "parking.xodr"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Create an empty driving scenario.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;</pre></div></div></div><p>Import an ASAM OpenDRIVE&#174; road composed of driving and parking lanes into the scenario. By default, the function interprets the lane type information and imports the lanes into driving scenario without altering the lane type.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>filePath = <span style="color:#A020F0">'parking.xodr'</span>;  
+roadNetwork(scenario,<span style="color:#A020F0">'OpenDRIVE'</span>,filePath);</pre></div></div></div><p>Plot the scenario. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario)
+zoom(2)
+legend(<span style="color:#A020F0">'Driving lane'</span>,<span style="color:#A020F0">'Parking lane'</span>)</pre></div></div></div><div class="informalfigure"><div id="d124e114282" class="mediaobject"><p><img src="../../examples/driving/win64/ImportOpenDRIVERoadLaneTypesIntoDSExample_01.png" alt="Figure contains an axes object. The axes object contains 4 objects of type patch, line. These objects represent Driving lane, Parking lane." width="560"></p></div></div><p>Import the ASAM OpenDRIVE road into the scenario. Set the <code class="literal">'ShowLaneTypes'</code> value to <code class="literal">false</code> to suppress multiple lane types. The function ignores the lane type information and imports all the lanes as driving lanes.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadNetwork(scenario,<span style="color:#A020F0">'OpenDRIVE'</span>,filePath,<span style="color:#A020F0">'ShowLaneTypes'</span>,false);
+plot(scenario)
+zoom(2)</pre></div></div></div><div class="informalfigure"><div id="d124e114295" class="mediaobject"><p><img src="../../examples/driving/win64/ImportOpenDRIVERoadLaneTypesIntoDSExample_02.png" alt="Figure contains an axes object. The axes object contains 3 objects of type patch, line." width="560"></p></div></div><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-ImportOpenDRIVERoadLaneTypesIntoDSExample"><meta itemprop="exampletitle" content="Import ASAM OpenDRIVE Road with Multiple Lane Types into Driving Scenario"></div><div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_dd9401e9-77a8-4341-ad7e-e68294acbf4f"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_dd9401e9-77a8-4341-ad7e-e68294acbf4f" data-target="#expand_panel_body_mw_dd9401e9-77a8-4341-ad7e-e68294acbf4f" aria-controls="expand_panel_body_mw_dd9401e9-77a8-4341-ad7e-e68294acbf4f" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_dd9401e9-77a8-4341-ad7e-e68294acbf4f">Import HERE HDLM Roads Using Specified Coordinates<br/> </h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_dd9401e9-77a8-4341-ad7e-e68294acbf4f" aria-labelledby="expand_panel_heading_mw_dd9401e9-77a8-4341-ad7e-e68294acbf4f" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/ImportHEREHDLMRoadsUsingSpecifiedCoordinatesExample')" data-ex-genre="Script">Open Script</a></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Import HERE HDLM Roads Using Specified Coordinates",
+          "description": "Import HERE HDLM road network data that is nearest to the coordinates of a specified driving route into a driving scenario. Plot a vehicle following this route in the driving scenario.",
+          "thumbnailURL": "../../examples/driving/win64/ImportHEREHDLMRoadsUsingSpecifiedCoordinatesExample_02.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.roadnetwork.html"
+
+        },
+          "identifier": "driving.ImportHEREHDLMRoadsUsingSpecifiedCoordinatesExample",
+          "name": "ImportHEREHDLMRoadsUsingSpecifiedCoordinatesExample",
+          "url": "drivingscenario.roadnetwork.html#mw_dd9401e9-77a8-4341-ad7e-e68294acbf4f"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/ImportHEREHDLMRoadsUsingSpecifiedCoordinatesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ImportHEREHDLMRoadsUsingSpecifiedCoordinatesExample.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+
+<p class="shortdesc">Import HERE HDLM road network data that is nearest to the coordinates of a specified driving route into a driving scenario. Plot a vehicle following this route in the driving scenario.</p>
+
+<div class="procedure"><p>Load a sequence of geographic coordinates that correspond to a driving route.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data = load(<span style="color:#A020F0">'geoSequence.mat'</span>);
+lat = data.latitude;
+lon = data.longitude;
+</pre></div></div></div><p>Display the route by streaming the coordinates on a geographic player. Set the zoom level to 14 and configure the player to display all points in its history. To speed up the streaming, plot only every tenth coordinate in the route.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>zoomLevel = 14;
+player = geoplayer(lat(1),lon(1),zoomLevel,<span style="color:#A020F0">'HistoryDepth'</span>,Inf);
+timestep = 10;
+
+<span style="color:#0000FF">for</span> i = 1:timestep:length(lat)
+    plotPosition(player,lat(i),lon(i));
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><div class="informalfigure"><div id="d124e114340" class="mediaobject"><p><img src="../../examples/driving/win64/ImportHEREHDLMRoadsUsingSpecifiedCoordinatesExample_01.png"></p></div></div><p>Create a driving scenario. Import the HERE HDLM road data that is nearest to the driving route into the scenario.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadNetwork(scenario,<span style="color:#A020F0">'HEREHDLiveMap'</span>,lat,lon);
+</pre></div></div></div><p>Use the <code class="literal"><a href="latlon2local.html" data-docid="driving_ref#mw_80e7a72c-09f3-40cc-a4c7-2472f5c534d9" class="a"><code class="olink">latlon2local</code></a></code> function to convert the driving route from geographic coordinates to local east-north-up (ENU) Cartesian coordinates used in the driving scenario. For the origin of the ENU coordinate system, use the geographic road network origin stored in the <code class="literal">GeoReference</code> property of the scenario. The origin is the first coordinate specified in the driving route. Because the driving route contains only latitudinal and longitudinal data, set the altitude to <code class="literal">0</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>alt = 0;
+origin = scenario.GeoReference;
+[xEast,yNorth,zUp] = latlon2local(lat,lon,alt,origin);
+</pre></div></div></div><p>Add a vehicle to the driving scenario. Specify the converted driving route as the trajectory of the vehicle. Set a vehicle speed of 30 meters per second.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+speed = 30;
+smoothTrajectory(v,[xEast,yNorth,zUp],speed);
+</pre></div></div></div><p>Plot the scenario and pause every 0.01 seconds to slow down the simulation. To maintain the same alignment with geographic coordinate displays, the <span class="emphasis"><em>X</em></span>-axis is on the bottom and the <span class="emphasis"><em>Y</em></span>-axis is on the left. In driving scenarios not imported from maps, the <span class="emphasis"><em>X</em></span>-axis is on the left and the <span class="emphasis"><em>Y</em></span>-axis is on the bottom. This alignment is consistent with the Automated Driving Toolbox&#8482; world coordinate system.</p><p>After a few seconds, the vehicle appears to drive underneath the road. This issue occurs because the converted trajectory contains no altitude data but the imported road network does. To avoid this issue, if you are specifying a driving route recorded from a GPS, include the altitude data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario)
+<span style="color:#0000FF">while</span> advance(scenario)
+    pause(0.01)
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><div class="informalfigure"><div id="d124e114375" class="mediaobject"><p><img src="../../examples/driving/win64/ImportHEREHDLMRoadsUsingSpecifiedCoordinatesExample_02.png"></p></div></div></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-ImportHEREHDLMRoadsUsingSpecifiedCoordinatesExample"><meta itemprop="exampletitle" content="Import HERE HDLM Roads Using Specified Coordinates"></div><div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_275a59a0-26df-40d5-9a60-b46dd5a296fe"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_275a59a0-26df-40d5-9a60-b46dd5a296fe" data-target="#expand_panel_body_mw_275a59a0-26df-40d5-9a60-b46dd5a296fe" aria-controls="expand_panel_body_mw_275a59a0-26df-40d5-9a60-b46dd5a296fe" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_275a59a0-26df-40d5-9a60-b46dd5a296fe">Import HERE HDLM Roads Using Specified Region<br/> </h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_275a59a0-26df-40d5-9a60-b46dd5a296fe" aria-labelledby="expand_panel_heading_mw_275a59a0-26df-40d5-9a60-b46dd5a296fe" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/ImportHEREHDLMRoadsUsingSpecifiedRegionExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Import HERE HDLM Roads Using Specified Region",
+          "description": "Import HERE HDLM road network data into driving scenario. Select this data from a region that is centered around a specified geographic coordinate.",
+          "thumbnailURL": "../../examples/driving/win64/ImportHEREHDLMRoadsUsingSpecifiedRegionExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.roadnetwork.html"
+
+        },
+          "identifier": "driving.ImportHEREHDLMRoadsUsingSpecifiedRegionExample",
+          "name": "ImportHEREHDLMRoadsUsingSpecifiedRegionExample",
+          "url": "drivingscenario.roadnetwork.html#mw_275a59a0-26df-40d5-9a60-b46dd5a296fe"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/ImportHEREHDLMRoadsUsingSpecifiedRegionExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ImportHEREHDLMRoadsUsingSpecifiedRegionExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Import HERE HDLM road network data into driving scenario. Select this data from a region that is centered around a specified geographic coordinate. </p><p>Define a latitude and longitude coordinates corresponding to a roundabout.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>latCenter = 42.302324;
+lonCenter = -71.384970; </pre></div></div></div><p>Specify the minimum and maximum latitudinal and longitudinal coordinates for a rectangular region around the roundabout. Display a bounding box corresponding to this region on a geographic plot.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>offset = 5e-4;
+minLat = latCenter - offset;
+minLon = lonCenter - offset;
+maxLat = latCenter + offset;
+maxLon = lonCenter + offset;
+
+gx = geoaxes;
+LineSpec = <span style="color:#A020F0">'.-k'</span>;
+geoplot(gx, <span style="color:#0000FF">...</span><span style="color:#228B22"> </span>
+        [minLat maxLat],[minLon minLon],LineSpec, <span style="color:#0000FF">...</span>
+        [maxLat maxLat],[minLon maxLon],LineSpec, <span style="color:#0000FF">...</span>
+        [maxLat minLat],[maxLon maxLon],LineSpec, <span style="color:#0000FF">...</span>
+        [minLat minLat],[maxLon minLon],LineSpec)</pre></div></div></div><div class="informalfigure"><div id="d124e114405" class="mediaobject"><p><img src="../../examples/driving/win64/ImportHEREHDLMRoadsUsingSpecifiedRegionExample_01.png" width="560"></p></div></div><p>Create a driving scenario and import roads from the region by using the minimum and maximum coordinates. The <code class="literal">roadNetwork</code> function imports roads that are at least partially within this region.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadNetwork(scenario,<span style="color:#A020F0">'HEREHDLiveMap'</span>,minLat,minLon,maxLat,maxLon);</pre></div></div></div><p>Plot the scenario. To maintain the same alignment with geographic coordinate displays, the <span class="emphasis"><em>X</em></span>-axis is on the bottom and the <span class="emphasis"><em>Y</em></span>-axis is on the left. In driving scenarios not imported from maps, the <span class="emphasis"><em>X</em></span>-axis is on the left and the <span class="emphasis"><em>Y</em></span>-axis is on the bottom. This alignment is consistent with the Automated Driving Toolbox&#8482; world coordinate system.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario) </pre></div></div></div><div class="informalfigure"><div id="d124e114427" class="mediaobject"><p><img src="../../examples/driving/win64/ImportHEREHDLMRoadsUsingSpecifiedRegionExample_02.png" width="560"></p></div></div><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-ImportHEREHDLMRoadsUsingSpecifiedRegionExample"><meta itemprop="exampletitle" content="Import HERE HDLM Roads Using Specified Region"></div><div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_9f206d27-3903-410a-9d2c-d40d986e1ad7"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9f206d27-3903-410a-9d2c-d40d986e1ad7" data-target="#expand_panel_body_mw_9f206d27-3903-410a-9d2c-d40d986e1ad7" aria-controls="expand_panel_body_mw_9f206d27-3903-410a-9d2c-d40d986e1ad7" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_9f206d27-3903-410a-9d2c-d40d986e1ad7">Import OpenStreetMap Road Network and Plot Route<br/> </h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_9f206d27-3903-410a-9d2c-d40d986e1ad7" aria-labelledby="expand_panel_heading_mw_9f206d27-3903-410a-9d2c-d40d986e1ad7" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/ImportOpenStreetMapRoadNetworkAndPlotRouteExample')" data-ex-genre="Script">Open Script</a></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Import OpenStreetMap Road Network and Plot Route",
+          "description": "Import roads from the OpenStreetMap&#174; web service into a driving scenario. Then, plot a vehicle following a route in the imported road network.",
+          "thumbnailURL": "../../examples/driving/win64/ImportOpenStreetMapRoadNetworkAndPlotRouteExample_02.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.roadnetwork.html"
+
+        },
+          "identifier": "driving.ImportOpenStreetMapRoadNetworkAndPlotRouteExample",
+          "name": "ImportOpenStreetMapRoadNetworkAndPlotRouteExample",
+          "url": "drivingscenario.roadnetwork.html#mw_9f206d27-3903-410a-9d2c-d40d986e1ad7"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/ImportOpenStreetMapRoadNetworkAndPlotRouteExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ImportOpenStreetMapRoadNetworkAndPlotRouteExample.m",
+        "applehill.osm",
+        "geoRouteAH.mat"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+
+<p class="shortdesc">Import roads from the OpenStreetMap&#174; web service into a driving scenario. Then, plot a vehicle following a route in the imported road network.</p>
+
+<div class="procedure"><p>Import a road network of the MathWorks&#174; Apple Hill campus into an empty driving scenario. The file was downloaded from <a href="https://www.openstreetmap.org" target="_blank">https://www.openstreetmap.org</a>, which provides access to crowd-sourced map data all over the world. The data is licensed under the Open Data Commons Open Database License (ODbL), <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">https://opendatacommons.org/licenses/odbl/</a>.</p><p>Plot the imported road network. To maintain the same alignment with geographic coordinate displays, the <span class="emphasis"><em>X</em></span>-axis is on the bottom and the <span class="emphasis"><em>Y</em></span>-axis is on the left. In driving scenarios not imported from maps, the <span class="emphasis"><em>X</em></span>-axis is on the left and the <span class="emphasis"><em>Y</em></span>-axis is on the bottom. This alignment is consistent with the Automated Driving Toolbox&#8482; world coordinate system.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadNetwork(scenario,<span style="color:#A020F0">'OpenStreetMap'</span>,<span style="color:#A020F0">'applehill.osm'</span>);
+plot(scenario)
+</pre></div></div></div><div class="informalfigure"><div id="d124e114489" class="mediaobject"><p><img src="../../examples/driving/win64/ImportOpenStreetMapRoadNetworkAndPlotRouteExample_01.png"></p></div></div><p>Load the latitude and longitude coordinates for a driving route in this road network.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data = load(<span style="color:#A020F0">'geoRouteAH.mat'</span>);
+lat = data.latitude;
+lon = data.longitude;
+</pre></div></div></div><p>Use the <code class="literal"><a href="latlon2local.html" data-docid="driving_ref#mw_80e7a72c-09f3-40cc-a4c7-2472f5c534d9" class="a"><code class="olink">latlon2local</code></a></code> function to convert the driving route from geographic coordinates to local east-north-up (ENU) Cartesian coordinates used in the driving scenario. For the origin of the ENU coordinate system, use the geographic road network origin stored in the <code class="literal">GeoReference</code> property of the scenario. The origin is the first coordinate specified in the driving route. Because the driving route contains only latitudinal and longitudinal data, set the altitude to 0.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>alt = 0;
+origin = scenario.GeoReference;
+[xEast,yNorth,zUp] = latlon2local(lat,lon,alt,origin);
+</pre></div></div></div><p>Add a vehicle to the driving scenario. Specify the converted driving route as the trajectory of the vehicle. Set a vehicle speed of 30 meters per second. Plot the vehicle trajectory and pause every 0.01 seconds to slow down the simulation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+speed = 30;
+smoothTrajectory(v,[xEast,yNorth,zUp],speed);
+
+<span style="color:#0000FF">while</span> advance(scenario)
+    pause(0.01)
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><div class="informalfigure"><div id="d124e114508" class="mediaobject"><p><img src="../../examples/driving/win64/ImportOpenStreetMapRoadNetworkAndPlotRouteExample_02.png"></p></div></div></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-ImportOpenStreetMapRoadNetworkAndPlotRouteExample"><meta itemprop="exampletitle" content="Import OpenStreetMap Road Network and Plot Route"></div><div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_927195fe-0387-4d61-bb8d-eb98b0618cea"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_927195fe-0387-4d61-bb8d-eb98b0618cea" data-target="#expand_panel_body_mw_927195fe-0387-4d61-bb8d-eb98b0618cea" aria-controls="expand_panel_body_mw_927195fe-0387-4d61-bb8d-eb98b0618cea" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_927195fe-0387-4d61-bb8d-eb98b0618cea">Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) Roads Using Specified Coordinates<br/> </h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_927195fe-0387-4d61-bb8d-eb98b0618cea" aria-labelledby="expand_panel_heading_mw_927195fe-0387-4d61-bb8d-eb98b0618cea" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">This example uses:</p><ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li><li><a href="matlab:matlab.internal.language.introspective.showAddon('ZENRINJAPANMAP')">Automated Driving Toolbox Importer for Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0) Service</a></li></ul><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/ImportZenrinRoadsUsingSpecifiedCoordinatesExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) Roads Using Specified Coordinates",
+          "description": "Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) road network data that is nearest to the coordinates of a specified driving route into a driving scenario. Plot a vehicle following this route in the driving scenario.",
+          "thumbnailURL": "../../examples/driving/win64/ImportZenrinRoadsUsingSpecifiedCoordinatesExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.roadnetwork.html"
+
+        },
+          "identifier": "driving.ImportZenrinRoadsUsingSpecifiedCoordinatesExample",
+          "name": "ImportZenrinRoadsUsingSpecifiedCoordinatesExample",
+          "url": "drivingscenario.roadnetwork.html#mw_927195fe-0387-4d61-bb8d-eb98b0618cea"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/ImportZenrinRoadsUsingSpecifiedCoordinatesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ImportZenrinRoadsUsingSpecifiedCoordinatesExample.mlx",
+        "tokyoSequence.mat"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) road network data that is nearest to the coordinates of a specified driving route into a driving scenario. Plot a vehicle following this route in the driving scenario.</p><p>Load a sequence of geographic coordinates that correspond to a driving route.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data = load(<span style="color:#A020F0">'tokyoSequence.mat'</span>);
+lat = data.latitude;
+lon = data.longitude;</pre></div></div></div><p>Display the route by streaming the coordinates on a geographic player. Set the zoom level to 17 and configure the player to display all points in its history. To speed up the streaming, plot only every tenth coordinate in the route.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>zoomLevel = 17;
+player = geoplayer(lat(1),lon(1),zoomLevel,<span style="color:#A020F0">'HistoryDepth'</span>,Inf);
+timestep = 10;
+
+<span style="color:#0000FF">for</span> i = 1:timestep:length(lat)
+    plotPosition(player,lat(i),lon(i));
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="informalfigure"><div id="d124e114539" class="mediaobject"><p><img src="../../examples/driving/win64/ImportZenrinRoadsUsingSpecifiedCoordinatesExample_01.png" width="560"></p></div></div><p>Create a driving scenario. Import the Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) road data that is nearest to the driving route into the scenario.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadNetwork(scenario,<span style="color:#A020F0">'ZenrinJapanMap'</span>,lat,lon)</pre></div></div></div><p>Use the <code class="literal">latlon2local</code> function to convert the driving route from geographic coordinates to local east-north-up (ENU) Cartesian coordinates used in the driving scenario. For the origin of the ENU coordinate system, use the geographic road network origin stored in the <code class="literal">GeoReference</code> property of the scenario. The origin is the first coordinate specified in the driving route.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>alt = 0;
+origin = scenario.GeoReference;
+[xEast,yNorth,zUp] = latlon2local(lat,lon,alt,origin);</pre></div></div></div><p>Add a vehicle to the driving scenario. Specify the converted driving route as the trajectory of the vehicle. Set a vehicle speed of 30 meters per second.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+speed = 30;
+smoothTrajectory(v,[xEast,yNorth,zUp],speed);</pre></div></div></div><p>Plot the scenario and pause every 0.01 seconds to slow down the simulation. To maintain the same alignment with geographic coordinate displays, the <span class="emphasis"><em>X</em></span>-axis is on the bottom and the <span class="emphasis"><em>Y</em></span>-axis is on the left. In driving scenarios not imported from maps, the <span class="emphasis"><em>X</em></span>-axis is on the left and the <span class="emphasis"><em>Y</em></span>-axis is on the bottom. This alignment is consistent with the Automated Driving Toolbox&#8482; world coordinate system.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure 
+plot(scenario)
+<span style="color:#0000FF">while</span> advance(scenario)
+    pause(0.01)
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="informalfigure"><div id="d124e114570" class="mediaobject"><p><img src="../../examples/driving/win64/ImportZenrinRoadsUsingSpecifiedCoordinatesExample_02.png" width="560"></p></div></div><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-ImportZenrinRoadsUsingSpecifiedCoordinatesExample"><meta itemprop="exampletitle" content="Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) Roads Using Specified Coordinates"></div><div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_1b8984da-2240-45cb-9927-950fea66782b"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1b8984da-2240-45cb-9927-950fea66782b" data-target="#expand_panel_body_mw_1b8984da-2240-45cb-9927-950fea66782b" aria-controls="expand_panel_body_mw_1b8984da-2240-45cb-9927-950fea66782b" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_1b8984da-2240-45cb-9927-950fea66782b">Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) Roads Using Specified Region<br/> </h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_1b8984da-2240-45cb-9927-950fea66782b" aria-labelledby="expand_panel_heading_mw_1b8984da-2240-45cb-9927-950fea66782b" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">This example uses:</p><ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li><li><a href="matlab:matlab.internal.language.introspective.showAddon('ZENRINJAPANMAP')">Automated Driving Toolbox Importer for Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0) Service</a></li></ul><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/ImportZenrinRoadsUsingSpecifiedRegionExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) Roads Using Specified Region",
+          "description": "Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) road network data into a driving scenario. Select this data from a region that is centered around a specified geographic coordinate.",
+          "thumbnailURL": "../../examples/driving/win64/ImportZenrinRoadsUsingSpecifiedRegionExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.roadnetwork.html"
+
+        },
+          "identifier": "driving.ImportZenrinRoadsUsingSpecifiedRegionExample",
+          "name": "ImportZenrinRoadsUsingSpecifiedRegionExample",
+          "url": "drivingscenario.roadnetwork.html#mw_1b8984da-2240-45cb-9927-950fea66782b"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/ImportZenrinRoadsUsingSpecifiedRegionExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ImportZenrinRoadsUsingSpecifiedRegionExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) road network data into a driving scenario. Select this data from a region that is centered around a specified geographic coordinate.</p><p>Define latitude and longitude coordinates corresponding to a park.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>latCenter = 35.6889;
+lonCenter = 139.8458;</pre></div></div></div><p>Specify the minimum and maximum latitude and longitude coordinates for a rectangular region around the park. Display a bounding box corresponding to this region on a geographic plot.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>offset = 0.0013;
+minLat = latCenter - offset;
+minLon = lonCenter - offset;
+maxLat = latCenter + offset;
+maxLon = lonCenter + offset;
+
+figure
+gx = geoaxes;
+LineSpec = <span style="color:#A020F0">'.-k'</span>;
+geoplot(gx, <span style="color:#0000FF">...</span><span style="color:#228B22"> </span>
+        [minLat maxLat],[minLon minLon],LineSpec, <span style="color:#0000FF">...</span>
+        [maxLat maxLat],[minLon maxLon],LineSpec, <span style="color:#0000FF">...</span>
+        [maxLat minLat],[maxLon maxLon],LineSpec, <span style="color:#0000FF">...</span>
+        [minLat minLat],[maxLon minLon],LineSpec)</pre></div></div></div><div class="informalfigure"><div id="d124e114601" class="mediaobject"><p><img src="../../examples/driving/win64/ImportZenrinRoadsUsingSpecifiedRegionExample_01.png" width="560"></p></div></div><p>Create a driving scenario and import roads from the region by using the minimum and maximum coordinates. The <code class="literal">roadNetwork</code> function imports roads that are at least partially within this region.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadNetwork(scenario,<span style="color:#A020F0">'ZenrinJapanMap'</span>,minLat,minLon,maxLat,maxLon) </pre></div></div></div><p>Plot the scenario. To maintain the same alignment with geographic coordinate displays, the <span class="emphasis"><em>X</em></span>-axis is on the bottom and the <span class="emphasis"><em>Y</em></span>-axis is on the left. In driving scenarios not imported from maps, the <span class="emphasis"><em>X</em></span>-axis is on the left and the <span class="emphasis"><em>Y</em></span>-axis is on the bottom. This alignment is consistent with the Automated Driving Toolbox&#8482; world coordinate system.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+plot(scenario)</pre></div></div></div><div class="informalfigure"><div id="d124e114623" class="mediaobject"><p><img src="../../examples/driving/win64/ImportZenrinRoadsUsingSpecifiedRegionExample_02.png" width="560"></p></div></div><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-ImportZenrinRoadsUsingSpecifiedRegionExample"><meta itemprop="exampletitle" content="Import Zenrin Japan Map 3.0 (Itsumo NAVI API 3.0) Roads Using Specified Region"></div></div></div><div class="ref_sect"><h2 id="mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-3">Input Arguments</h2><div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p><div class="panel-group" id="mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514.bvnho0u-3_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="bvnho0u-1-sc"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvnho0u-1-sc" data-target="#expand_panel_body_bvnho0u-1-sc" aria-controls="expand_panel_body_bvnho0u-1-sc" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_scenario" class="anchor_target"></span><h3 class="panel-title" id="bvnho0u-1-sc"><code itemprop="name">scenario</code> &#8212; <span itemprop="purpose">Driving scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">drivingScenario</code> object</span></span></span></h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_bvnho0u-1-sc" aria-labelledby="expand_panel_heading_bvnho0u-1-sc" class="panel-collapse collapse in"><div class="panel-body">
+                    <p>Driving scenario, specified as a <a href="drivingscenario.html"><code class="object">drivingScenario</code></a> object.
+                            <code class="argument">scenario</code> must contain no previously created or
+                        imported roads.</p>
+                </div></div></div></div></div><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters" data-target="#expand_panel_body_mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters" aria-controls="expand_panel_body_mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_filename" class="anchor_target"></span><h3 class="panel-title" id="mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters"><code itemprop="name">filename</code> &#8212; <span itemprop="purpose">Name of road network file</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">character vector</span> | <span itemprop="inputvalue">string scalar</span></span></span></h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters" aria-labelledby="expand_panel_heading_mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_sep_bvnho0u-1-roadcenters" class="panel-collapse collapse in"><div class="panel-body">
+                    <p>Name of the road network file, specified as a character vector or string
+                        scalar.</p>
+                    <p>
+                        <code class="argument">filename</code> must specify a file in the current folder, a
+                        file that is on the MATLAB<sup>&#x00AE;</sup> search path, or a full or relative path to a file.</p>
+                    <p><code class="argument">filename</code> must end with a file extension that is valid
+                        for the source of the road network.</p>
+                    <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Road Network Source</th><th>Valid File Extensions</th><th>Sample Syntax</th></tr></thead><tbody><tr><td>OpenDRIVE</td><td><p><code class="literal">.xodr</code></p><p><code class="literal">.xml</code></p></td><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadNetwork(scenario, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'OpenDRIVE'</span>,<span style="color:#A020F0">'C:\Desktop\roads.xodr'</span></pre></div></div></div>
+                                    </td></tr><tr><td>OpenStreetMap</td><td><p><code class="literal">.osm</code></p><p><code class="literal">.xml</code></p></td><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadNetwork(scenario, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'OpenStreetMap'</span>,<span style="color:#A020F0">'C:\Desktop\map.osm'</span></pre></div></div></div>
+                                    </td></tr></tbody></table></div>
+                </div></div></div></div></div><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_987aa56e-5ff8-483f-b69c-286dc200ac19"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_987aa56e-5ff8-483f-b69c-286dc200ac19" data-target="#expand_panel_body_mw_987aa56e-5ff8-483f-b69c-286dc200ac19" aria-controls="expand_panel_body_mw_987aa56e-5ff8-483f-b69c-286dc200ac19" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_showLaneTypes" class="anchor_target"></span><h3 class="panel-title" id="mw_987aa56e-5ff8-483f-b69c-286dc200ac19"><code itemprop="name">showLaneTypes</code> &#8212; <span itemprop="purpose">Import lane type information</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">true</code> or 1</span> (default) | <span itemprop="inputvalue"><code class="literal">false</code> or 0</span></span></span></h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_987aa56e-5ff8-483f-b69c-286dc200ac19" aria-labelledby="expand_panel_heading_mw_987aa56e-5ff8-483f-b69c-286dc200ac19" class="panel-collapse collapse in"><div class="panel-body">
+                    <p>Import lane type information from the OpenDRIVE road network file and display it in the driving scenario,
+                        specified as a comma-separated pair consisting of
+                            <code class="literal">'ShowLaneTypes'</code> and one of these values:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">true</code> or 1 &#8212; Import lane type information
+                                    and render lane types.</p></li><li><p><code class="literal">false</code> or 0 &#8212;  Ignore lane type information
+                                    and import all lanes as driving lanes in the driving
+                                    scenario.</p></li></ul></div><p>
+The table summarized the supported lane types and their
+                        default appearance after importing them into the driving scenario.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="39%"><col class="tcol2" width="30%"><col class="tcol3" width="31%"></colgroup><tbody><tr><td><strong class="emphasis bold">Supported Lane
+                                            Types</strong></td><td><strong class="emphasis bold">Description</strong></td><td><strong class="emphasis bold">Default
+                                            Appearance</strong></td></tr><tr><td>Driving lanes</td><td>Lanes for driving</td><td>
+                                            <div class="informalfigure"><div id="d124e113943" class="mediaobject"><p><img src="lt_driving.png" alt="Sample of a driving lane" height="63" width="222"></p></div></div>
+                                        </td></tr><tr><td>Border lanes</td><td>Lanes at the road borders</td><td>
+                                            <div class="informalfigure"><div id="d124e113956" class="mediaobject"><p><img src="lt_border.png" alt="Sample of a border lane" height="56" width="222"></p></div></div>
+                                        </td></tr><tr><td>Restricted lanes</td><td>Lanes reserved for high-occupancy vehicles</td><td>
+                                            <div class="informalfigure"><div id="d124e113969" class="mediaobject"><p><img src="lt_restricted.png" alt="Sample of a restricted lane" height="57" width="222"></p></div></div>
+                                        </td></tr><tr><td>Shoulder lanes</td><td>Lanes reserved for emergency stopping</td><td>
+                                            <div class="informalfigure"><div id="d124e113982" class="mediaobject"><p><img src="lt_shoulder.png" alt="Sample of a shoulder lane" height="60" width="222"></p></div></div>
+                                        </td></tr><tr><td>Parking lanes</td><td>Lanes alongside driving lanes, intended for parking
+                                            vehicles</td><td>
+                                            <div class="informalfigure"><div id="d124e113995" class="mediaobject"><p><img src="lt_parking.png" alt="Sample of a parking lane" height="57" width="222"></p></div></div>
+                                        </td></tr></tbody></table></div><p>
+Any other unsupported lane types are rendered as border
+                        lanes.</p>
+                    <p class="description_valueexample"><strong>Example: </strong><code class="literal">'ShowLaneTypes',false</code></p>
+                </div></div></div></div></div><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_226937d7-3657-4a34-b11f-d81204068a1c"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_226937d7-3657-4a34-b11f-d81204068a1c" data-target="#expand_panel_body_mw_226937d7-3657-4a34-b11f-d81204068a1c" aria-controls="expand_panel_body_mw_226937d7-3657-4a34-b11f-d81204068a1c" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_lat" class="anchor_target"></span><h3 class="panel-title" id="mw_226937d7-3657-4a34-b11f-d81204068a1c"><code itemprop="name">lat</code> &#8212; <span itemprop="purpose">Latitude coordinates</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">vector of elements in range [&#8211;90, 90]</span></span></span></h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_226937d7-3657-4a34-b11f-d81204068a1c" aria-labelledby="expand_panel_heading_mw_226937d7-3657-4a34-b11f-d81204068a1c" class="panel-collapse collapse in"><div class="panel-body">
+                    <p>Latitude coordinates, specified as a vector of elements in the range [&#8211;90,
+                        90]. <code class="argument">lat</code> must be the same size as
+                            <a href="#mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81" class="intrnllnk"><code class="argument">lon</code></a>. Units are in degrees.</p>
+                </div></div></div></div></div><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81" data-target="#expand_panel_body_mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81" aria-controls="expand_panel_body_mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_lon" class="anchor_target"></span><h3 class="panel-title" id="mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81"><code itemprop="name">lon</code> &#8212; <span itemprop="purpose">Longitude coordinates</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">vector of elements in range [&#8211;180, 180]</span></span></span></h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81" aria-labelledby="expand_panel_heading_mw_1f6a6d73-2ad3-4f2f-aae8-a76eb3c46e81" class="panel-collapse collapse in"><div class="panel-body">
+                    <p>Longitude coordinates, specified as a vector of elements in the range
+                        [&#8211;180, 180]. <code class="argument">lon</code> must be the same size as
+                            <a href="#mw_226937d7-3657-4a34-b11f-d81204068a1c" class="intrnllnk"><code class="argument">lat</code></a>. Units are in degrees.</p>
+                </div></div></div></div></div><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_409d6b91-02ba-49de-ad5f-461992ea4309"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_409d6b91-02ba-49de-ad5f-461992ea4309" data-target="#expand_panel_body_mw_409d6b91-02ba-49de-ad5f-461992ea4309" aria-controls="expand_panel_body_mw_409d6b91-02ba-49de-ad5f-461992ea4309" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_minLat" class="anchor_target"></span><h3 class="panel-title" id="mw_409d6b91-02ba-49de-ad5f-461992ea4309"><code itemprop="name">minLat</code> &#8212; <span itemprop="purpose">Minimum latitude coordinate of bounding box</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">scalar in range [&#8211;90, 90]</span></span></span></h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_409d6b91-02ba-49de-ad5f-461992ea4309" aria-labelledby="expand_panel_heading_mw_409d6b91-02ba-49de-ad5f-461992ea4309" class="panel-collapse collapse in"><div class="panel-body">
+                    <p>Minimum latitude coordinate of the bounding box, specified as a scalar in
+                        the range [&#8211;90, 90]. <code class="argument">minLat</code> must be less than
+                            <a href="#mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" class="intrnllnk"><code class="argument">maxLat</code></a>. Units are in degrees.</p>
+                    <p>The <code class="function">roadNetwork</code> function imports any roads
+    that are at least partially within the bounding box specified by inputs
+        <code class="argument">minLat</code>, <a href="#mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" class="intrnllnk"><code class="argument">minLon</code></a>, <code class="argument">maxLat</code>, and
+        <a href="#mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" class="intrnllnk"><code class="argument">maxLon</code></a>. This diagram displays the relationship between these coordinates.</p>
+<div class="informalfigure"><div id="d124e114086" class="mediaobject"><p><img src="here_roadnetworkimport_latlonbbox.png" alt="Map of an intersection with a rectangular bounding box around it. Moving clockwise from the top, the sides are labeled maxLat, maxLon, minLat, and minLon." height="366" width="415"></p></div></div><p></p>
+                </div></div></div></div></div><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" data-target="#expand_panel_body_mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" aria-controls="expand_panel_body_mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_minLon" class="anchor_target"></span><h3 class="panel-title" id="mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f"><code itemprop="name">minLon</code> &#8212; <span itemprop="purpose">Minimum longitude coordinate of bounding box</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">scalar in range [&#8211;180, 180]</span></span></span></h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" aria-labelledby="expand_panel_heading_mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" class="panel-collapse collapse in"><div class="panel-body">
+                    <p>Minimum longitude coordinate of the bounding box, specified as a scalar in
+                        the range [&#8211;180, 180]. <code class="argument">minLon</code> must be less than
+                            <a href="#mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" class="intrnllnk"><code class="argument">maxLon</code></a>. Units are in degrees.</p>
+                    <p>The <code class="function">roadNetwork</code> function imports any roads
+    that are at least partially within the bounding box specified by inputs
+        <a href="#mw_409d6b91-02ba-49de-ad5f-461992ea4309" class="intrnllnk"><code class="argument">minLat</code></a>, <code class="argument">minLon</code>, <a href="#mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" class="intrnllnk"><code class="argument">maxLat</code></a>, and
+        <code class="argument">maxLon</code>. This diagram displays the relationship between these coordinates.</p>
+<div class="informalfigure"><div id="d124e114127" class="mediaobject"><p><img src="here_roadnetworkimport_latlonbbox.png" alt="Map of an intersection with a rectangular bounding box around it. Moving clockwise from the top, the sides are labeled maxLat, maxLon, minLat, and minLon." height="366" width="415"></p></div></div><p></p>
+                </div></div></div></div></div><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" data-target="#expand_panel_body_mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" aria-controls="expand_panel_body_mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_maxLat" class="anchor_target"></span><h3 class="panel-title" id="mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e"><code itemprop="name">maxLat</code> &#8212; <span itemprop="purpose">Maximum latitude coordinate of bounding box</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">scalar in range [&#8211;90, 90]</span></span></span></h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" aria-labelledby="expand_panel_heading_mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" class="panel-collapse collapse in"><div class="panel-body">
+                    <p>Maximum latitude coordinate of the bounding box, specified as a scalar in
+                        the range [&#8211;90, 90]. <code class="argument">maxLat</code> must be greater than
+                            <a href="#mw_409d6b91-02ba-49de-ad5f-461992ea4309" class="intrnllnk"><code class="argument">minLat</code></a>. Units are in degrees.</p>
+                    <p>The <code class="function">roadNetwork</code> function imports any roads
+    that are at least partially within the bounding box specified by inputs
+        <code class="argument">minLat</code>, <a href="#mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" class="intrnllnk"><code class="argument">minLon</code></a>, <code class="argument">maxLat</code>, and
+        <a href="#mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" class="intrnllnk"><code class="argument">maxLon</code></a>. This diagram displays the relationship between these coordinates.</p>
+<div class="informalfigure"><div id="d124e114168" class="mediaobject"><p><img src="here_roadnetworkimport_latlonbbox.png" alt="Map of an intersection with a rectangular bounding box around it. Moving clockwise from the top, the sides are labeled maxLat, maxLon, minLat, and minLon." height="366" width="415"></p></div></div><p></p>
+                </div></div></div></div></div><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" data-target="#expand_panel_body_mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" aria-controls="expand_panel_body_mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_maxLon" class="anchor_target"></span><h3 class="panel-title" id="mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03"><code itemprop="name">maxLon</code> &#8212; <span itemprop="purpose">Maximum longitude coordinate of bounding box</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">scalar in range [&#8211;180, 180]</span></span></span></h3><span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div><div role="tabpanel" id="expand_panel_body_mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" aria-labelledby="expand_panel_heading_mw_74d74a2f-1d8b-4e28-ab73-027ad7730b03" class="panel-collapse collapse in"><div class="panel-body">
+                    <p>Maximum longitude coordinate of the bounding box, specified as a scalar in
+                        the range [&#8211;180, 180]. <code class="argument">maxLon</code> must be greater than
+                            <a href="#mw_f6767e8f-faf8-4efa-bfa7-03f14ed3098f" class="intrnllnk"><code class="argument">minLon</code></a>. Units are in degrees.</p>
+                    <p>The <code class="function">roadNetwork</code> function imports any roads
+    that are at least partially within the bounding box specified by inputs
+        <a href="#mw_409d6b91-02ba-49de-ad5f-461992ea4309" class="intrnllnk"><code class="argument">minLat</code></a>, <code class="argument">minLon</code>, <a href="#mw_397f8505-8cf6-4b8e-bcdd-28df6b261d1e" class="intrnllnk"><code class="argument">maxLat</code></a>, and
+        <code class="argument">maxLon</code>. This diagram displays the relationship between these coordinates.</p>
+<div class="informalfigure"><div id="d124e114209" class="mediaobject"><p><img src="here_roadnetworkimport_latlonbbox.png" alt="Map of an intersection with a rectangular bounding box around it. Moving clockwise from the top, the sides are labeled maxLat, maxLon, minLat, and minLon." height="366" width="415"></p></div></div><p></p>
+                </div></div></div></div></div></div></div></div><div id="mw_ccf3f488-d5e6-40d6-9144-c7119b0f4ca8_div" class="ref_sect"><h2 id="mw_ccf3f488-d5e6-40d6-9144-c7119b0f4ca8"><span id="roadNetworkImportLimitations" class="anchor_target"></span>Limitations</h2><p><strong class="emphasis bold">OpenDRIVE Import Limitations</strong></p>
+<div class="itemizedlist"><ul><li><p>You can import only lanes, lane type information, and roads. The import of
+                        road objects and traffic signals is not supported.</p></li><li><p>ASAM OpenDRIVE files containing large road networks can take up to several
+                        minutes to load. Examples of large road networks include ones that model the
+                        roads of a city or ones with roads that are thousands of meters long.</p></li><li><p>Lanes with variable widths are not supported. The width is set to the
+                        highest width found within that lane. For example, if a lane has a width
+                        that varies from 2 meters to 4 meters, the function sets the lane width to 4
+                        meters throughout.</p></li><li><p>When you import one-way roads with multiple lane specifications, the
+                        function supports only those segment taper positions that match the travel
+                        direction of lane. For example, the function supports importing only right
+                        taper position for the right lanes. Left or both types of taper position are
+                        not supported for right lanes.</p></li><li><p>Roads with lane type information specified as <code class="literal">driving</code>,
+                            <code class="literal">border</code>, <code class="literal">restricted</code>,
+                            <code class="literal">shoulder</code>, and <code class="literal">parking</code> are
+                        supported. Lanes with any other lane type information are imported as border
+                        lanes.</p></li><li><p>Lane marking styles <code class="literal">Bott Dots</code>,
+                        <code class="literal">Curbs</code>, and <code class="literal">Grass</code> are not supported.
+                        Lanes with these marking styles are imported as unmarked.</p></li></ul></div><p>
+</p><p><strong class="emphasis bold">HERE HD Live Map Import Limitations</strong></p><div class="itemizedlist"><ul><li><p>Importing HERE HDLM roads with lanes of varying widths is not supported. In the generated road network, each lane is set to have the maximum width found along its entire length. Consider a HERE HDLM lane with a width that varies from 2 to 4 meters along its length. In the generated road network, the lane width is 4 meters along its entire length. This modification to road networks can sometimes cause roads to overlap in the driving scenario.</p></li><li><p>Some issues with the imported roads might be due to missing or
+    inaccurate map data in the HERE HDLM service. For example, you might see black lines where roads
+    and junctions meet. To check where the issue stems from in the map data, use the HERE HD Live
+    Map Viewer to view the geometry of the HERE HDLM road network. This viewer requires a valid HERE
+    license. For more details, see the <a href="https://www.here.com" target="_blank">HERE
+        Technologies</a> website.</p></li></ul></div><p><strong class="emphasis bold">OpenStreetMap Import Limitations</strong></p><p>When importing OpenStreetMap data, road and lane features have these limitations:</p>
+<div class="itemizedlist"><ul><li><p>Lane-level information is not imported from OpenStreetMap roads. Lane specifications are based only on the direction of travel
+                specified in the OpenStreetMap road network, where:</p>
+<div class="itemizedlist"><ul><li><p>One-way roads are imported as single-lane roads with default lane
+                            specifications. These lanes are programmatically equivalent to <a href="lanespec.html"><code class="function">lanespec</code></a><code class="literal">(1)</code>.</p></li><li><p>Two-way roads are imported as two-lane roads with bidirectional travel
+                            and default lane specifications. These lanes are programmatically
+                            equivalent to <a href="lanespec.html"><code class="function">lanespec</code></a><code class="literal">([1 1])</code>.</p></li></ul></div><p>
+The table shows these differences in the OpenStreetMap road network and the road network in the imported driving
+                scenario.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>OpenStreetMap Road Network</th><th>Imported Driving Scenario</th></tr></thead><tbody><tr><td><div class="informalfigure"><div id="d124e114747" class="mediaobject"><p class="listimage"><img src="osm2scenario_lane_merge_osm.png" alt="Two one-way roads gradually taper into one lane" height="125" width="75"></p></div></div></td><td><div class="informalfigure"><div id="d124e114753" class="mediaobject"><p class="listimage"><img src="osm2scenario_lane_merge_dsd.png" alt="Two single-lane roads, with no direction of travel indicated, abruptly transition into a two-lane road with bidirectional travel" height="126" width="75"></p></div></div></td></tr></tbody></table></div></li><li><p>When importing OpenStreetMap road networks that specify elevation data, if elevation data is not
+                specified for all roads being imported, then the generated road network might
+                contain inaccuracies and some roads might overlap.</p></li><li><p>OpenStreetMap files containing large road networks can take a long time to load. In
+                addition, these road networks can make some of the app options unusable. To avoid
+                this limitation, import files that contain only an area of interest, typically
+                smaller than 20 square kilometers.</p></li><li><p>The basemap used in the app can have slight differences from the map used in the
+                    OpenStreetMap service. Some imported road issues might also be due to missing or
+                inaccurate map data in the OpenStreetMap service. To check whether the data is missing or inaccurate due to the
+                map service, consider viewing the map data on an external map viewer.</p></li></ul></div><p>
+</p><p><strong class="emphasis bold"><span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span> Import Limitations</strong></p><p>When
+    you import <span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span> data, the generated road network has these limitations. As a result of these
+    limitations, the generated network might contain inaccuracies and the roads might overlap.</p>
+<div class="itemizedlist"><ul><li><p>The generated road network uses road elevation data when the <span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span> provides it. Otherwise, the generated network uses terrain elevation
+                data provided by the service. </p></li><li><p>When the <span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span> service provides information using a range, such as by specifying a
+                road with two to three lanes or a road between 3&#8211;5.5 meters wide, the generated road
+                network uses scalar values instead. Consider a <span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span> road that has two to three lanes. The generated road network has two
+                lanes.</p></li><li><p>Lanes within roads in the generated network have a uniform width. Consider a road
+                that is 4.25 meters wide with two lanes. In the generated road network, each lane is
+                2.125 meters wide. </p></li><li><p>Where possible, the generated road network uses road names provided by the
+                    <span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span> service. Otherwise, the generated road network uses default names,
+                such as <code class="literal">Road1</code> and <code class="literal">Road2</code>.</p></li></ul></div><p>
+</p></div><div class="ref_sect"><h2 id="mw_ecdb4542-33ca-427a-88b4-5f0c46bd4db8">Tips</h2><div class="itemizedlist"><ul><li><p>If the roads that you import do not look as expected, consider importing them
+                    by using the <a href="drivingscenariodesigner-app.html" class="a">Driving Scenario Designer</a> app. The
+                    app can make the process of troubleshooting and correcting roads easier than
+                    trying to troubleshoot and correct them by using the
+                        <code class="function">roadNetwork</code> function.</p></li></ul></div></div><div class="ref_sect"><h2 id="mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_vh">Version History</h2><p><strong>Introduced in R2018b</strong></p></div><div class="ref_sect"><h2 id="mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514_seealso">See Also</h2><h3>Apps</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenariodesigner-app.html"><span itemprop="name">Driving
+                    Scenario Designer</span></a></span></li></ul><h3>Objects</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span></li></ul><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.actor.html"><span itemprop="name"><code class="function">actor</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.vehicle.html"><span itemprop="name"><code class="function">vehicle</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.export.html"><span itemprop="name"><code class="function">export</code></span></a></span></li></ul><div class="examples_container"><h3 class="remove_border">Topics</h3><div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/import-opendrive-roads-into-driving-scenario.html" class="a">Import ASAM OpenDRIVE Roads into Driving Scenario</a></li><li><a href="../ug/import-here-hd-live-map-roads-into-driving-scenario.html" class="a">Import HERE HD Live Map Roads into Driving Scenario</a></li><li><a href="../ug/import-openstreetmap-data-into-driving-scenario.html" class="a">Import OpenStreetMap Data into Driving Scenario</a></li><li><a href="../ug/import-zenrin-roads-into-driving-scenario.html" class="a">Import Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0) into Driving Scenario</a></li><li><a href="../ug/scenario-generation-from-recorded-vehicle-data.html" class="a">Scenario Generation from Recorded Vehicle Data</a></li><li><a href="../ug/export-driving-scenario-to-asam-openscenario-file.html" class="a">Export Driving Scenario to ASAM OpenSCENARIO File</a></li><li><a href="../ug/export-driving-scenario-to-opendrive-file.html" class="a">Export Driving Scenario to ASAM OpenDRIVE File</a></li></ul></div></div><div class="examples_container"><h3 class="remove_border">External Websites</h3><div itemprop="content"><ul class="list-unstyled"><li><a href="https://www.asam.net/standards/detail/opendrive/" target="_blank">ASAM
+                OpenDRIVE</a></li><li><a href="https://www.here.com" target="_blank">HERE Technologies</a></li><li><a href="https://www.openstreetmap.org/" target="_blank">openstreetmap.org</a></li><li><a href="https://www.zenrin-datacom.net/toppage/" target="_blank"><span class="entity">ZENRIN DataCom CO., LTD.</span></a></li></ul></div></div></div><hr /><p><sup><a id="ftn.d124e113617" class="intrnllnk" href="#d124e113617">1</a></sup>&nbsp;You need to enter into a separate agreement with <a href="https://www.here.com" target="_blank">HERE</a> in order to gain access to the HDLM services and to get the required
+        credentials (access_key_id and access_key_secret) for using the HERE Service.</p><p><sup><a id="ftn.d124e113713" class="intrnllnk" href="#d124e113713">2</a></sup>&nbsp;To gain access to the <span class="entity">Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0)</span> service and get the required credentials (a client ID and secret key), you
+        must enter into a separate agreement with <a href="https://support.e-map.ne.jp/manuals/v3/" target="_blank"><span class="entity">ZENRIN DataCom CO., LTD.</span></a></p>
+    </div></div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2></div><div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p></div><div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div></div></div></div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></section>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

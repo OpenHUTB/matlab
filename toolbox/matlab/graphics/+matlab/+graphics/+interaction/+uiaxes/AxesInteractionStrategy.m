@@ -1,11 +1,9 @@
 classdef AxesInteractionStrategy<matlab.graphics.interaction.uiaxes.InteractionStrategy
-
-
-
+    % 图形化界面（驾驶场景设计器）在进行添加相机编辑时调用
     properties
-fig
-ax
-Chart
+        fig
+        ax
+        Chart
     end
 
     methods

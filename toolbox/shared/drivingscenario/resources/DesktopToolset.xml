@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016-2017 The MathWorks, Inc. -->
+<!-- 该文件为经过精心策划的MATLAB应用程序库做出了贡献 -->
+<!-- 添加和更改必须经过高级管理层的设计审查过程 -->
+<!-- 这个过程由MATLAB桌面团队管理。请参阅工具栏(这两个图标是工具栏中显示的图标)指南以开始 -->
+<toolset id="drivingscenario_toolset" message_catalog="driving:desktop">
+    <tool id="drivingScenarioDesigner">
+        <icon filename="drivingScenarioDesigner_16.png" path="+driving/+internal/+scenarioApp" id="drivingScenarioDesignerApp"/>
+        <icon filename="drivingScenarioDesigner_24.png" path="+driving/+internal/+scenarioApp" />
+        <callback>drivingScenarioDesigner</callback>
+        <parent_tool id="automotive_products" toolset_id="apps_toolset" />
+    </tool>
+</toolset>
