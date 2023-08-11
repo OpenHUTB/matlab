@@ -1,12 +1,7 @@
 function ScenarioReader(obj)
-
-
-
-
     scenarioReaderRef='drivingscenarioandsensors/Scenario Reader';
 
     if isR2021aOrEarlier(obj.ver)
-
         rmParams={'OutputEgoVehicleState','BusName4Source','BusName4'};
         for rndx=1:numel(rmParams)
             obj.appendRule(getRuleRemovePair(scenarioReaderRef,rmParams{rndx},obj));
@@ -14,7 +9,6 @@ function ScenarioReader(obj)
     end
 
     if isR2020bOrEarlier(obj.ver)
-
         rmParams={'BusNumActorsSource','BusNumActors','BusNumLaneBoundariesSource','BusNumLaneBoundaries'};
         for rndx=1:numel(rmParams)
             obj.appendRule(getRuleRemovePair(scenarioReaderRef,rmParams{rndx},obj));
@@ -22,7 +16,6 @@ function ScenarioReader(obj)
     end
 
     if isR2019bOrEarlier(obj.ver)
-
         rmParams={'OrientVehiclesOnRoad','OutputEgoVehiclePose','ShowCoordinateLabels','BusName3Source','BusName3'};
         for rndx=1:numel(rmParams)
             obj.appendRule(getRuleRemovePair(scenarioReaderRef,rmParams{rndx},obj));
@@ -30,8 +23,6 @@ function ScenarioReader(obj)
     end
 
     if isR2019aOrEarlier(obj.ver)
-
-
         obj.appendRule(getRuleRenameValue(scenarioReaderRef,'EgoVehicleSource',...
         'Scenario','Scenario file',obj));
 
@@ -42,9 +33,6 @@ function ScenarioReader(obj)
     end
 
     if isR2018bOrEarlier(obj.ver)
-
-
-
         blks=findBlocksWithMaskType(obj,'driving.scenario.internal.ScenarioReader');
         obj.replaceWithEmptySubsystem(blks);
 
