@@ -1,0 +1,130 @@
+function [ hdlbody, hdlsignals ] = verilogsubsubrealrealbittrue( in1, in2, out, rounding, saturation )
+
+
+
+
+
+
+
+
+
+
+
+
+[ in1, in2, hdlsignals, hdlbody ] =  ...
+hdlsignedtounsigned_dtc( in1, in2, out, rounding, saturation );
+
+
+[ assign_prefix, assign_op ] = hdlassignforoutput( out );
+
+name1 = hdlsignalname( in1 );
+vtype1 = hdlsignalvtype( in1 );
+sltype1 = hdlsignalsltype( in1 );
+[ size1, bp1, signed1 ] = hdlwordsize( sltype1 );
+
+name2 = hdlsignalname( in2 );
+vtype2 = hdlsignalvtype( in2 );
+sltype2 = hdlsignalsltype( in2 );
+[ size2, bp2, signed2 ] = hdlwordsize( sltype2 );
+
+outname = hdlsignalname( out );
+outvtype = hdlsignalvtype( out );
+outsltype = hdlsignalsltype( out );
+[ outsize, outbp, outsigned ] = hdlwordsize( outsltype );
+
+realonly = true;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if signed1 == 0 && signed2 == 0 && saturation == 0
+resultsigned = 0;
+else 
+resultsigned = 1;
+end 
+
+
+
+if size1 == 0
+if size2 ~= 0
+error( message( 'HDLShared:directemit:realwithnonreal' ) );
+end 
+[ name1, size1 ] = hdlsignaltypeconvert( name1, size1, signed1, vtype1, resultsigned );%#ok<NASGU>
+[ name2, size2 ] = hdlsignaltypeconvert( name2, size2, signed2, vtype2, resultsigned );%#ok<NASGU>
+hdlbody = [ '  ', assign_prefix, outname, ' ', assign_op, ' -', name1, ' - ', name2, ';\n\n' ];
+elseif size2 == 0
+if size1 ~= 0
+error( message( 'HDLShared:directemit:realwithnonreal' ) );
+end 
+[ name1, size1 ] = hdlsignaltypeconvert( name1, size1, signed1, vtype1, resultsigned );%#ok<NASGU>
+[ name2, size2 ] = hdlsignaltypeconvert( name2, size2, signed2, vtype2, resultsigned );%#ok<NASGU>
+hdlbody = [ '  ', assign_prefix, outname, ' ', assign_op, ' -', name1, ' - ', name2, ';\n\n' ];
+
+elseif ( size1 == 1 ) || ( size2 == 1 ) || ( outsize == 1 ), 
+
+[ hdlbody, hdlsignals ] = hdlonebitaddsub( in1, in2, out, rounding, saturation, { '-', '-' }, true );
+
+else 
+
+
+if ( signed1 == 0 && signed2 == 0 && saturation == 1 )
+
+
+castsize = outsize + 1;
+else 
+castsize = outsize;
+end 
+
+[ castvtype, castsltype ] = hdlgettypesfromsizes( castsize, outbp, resultsigned );
+
+
+[ tempunary, tempunary_ptr ] = hdlnewsignal( 'subsub_temp', 'block',  - 1, 0, 0, castvtype, castsltype );
+hdlsignals = [ hdlsignals, makehdlsignaldecl( tempunary_ptr ) ];
+
+[ tempbody, tempsigs ] = hdlunaryminus( in1, tempunary_ptr, rounding, saturation, realonly );
+hdlsignals = [ hdlsignals, tempsigs ];
+hdlbody = [ hdlbody, tempbody ];
+
+[ tempbody, tempsigs ] = verilogsubrealrealbittrue( tempunary_ptr, in2, out, rounding, saturation );
+hdlsignals = [ hdlsignals, tempsigs ];
+hdlbody = [ hdlbody, tempbody ];
+
+end 
+
+
+
+
+if ( ( hdlwordsize( sltype1 ) == 0 ) || ( hdlwordsize( sltype2 ) == 0 ) ), 
+if hdlconnectivity.genConnectivity, 
+hConnDir = hdlconnectivity.getConnectivityDirector;
+
+
+hConnDir.addDriverReceiverPair( in1, out, 'realonly', true );
+hConnDir.addDriverReceiverPair( in2, out, 'realonly', true );
+end 
+end 
+
+
+
+
+
+
+
+
+% Decoded using De-pcode utility v1.2 from file /tmp/tmpXGrQl4.p.
+% Please follow local copyright laws when handling this file.
+

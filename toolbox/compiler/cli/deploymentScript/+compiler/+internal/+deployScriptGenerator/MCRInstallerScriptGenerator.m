@@ -1,0 +1,66 @@
+classdef MCRInstallerScriptGenerator < compiler.internal.deployScriptGenerator.DeployScriptGenerator
+
+
+properties ( Constant, Access = private )
+PACKAGE_COMMAND = "compiler.package.installer";
+PACKAGE_OPTIONS_COMMAND = "compiler.package.InstallerOptions";
+PACKAGE_OPTS_VAR = "packageOpts";
+end 
+
+methods 
+function obj = MCRInstallerScriptGenerator( adapter )
+obj = obj@compiler.internal.deployScriptGenerator.DeployScriptGenerator( adapter );
+
+obj.generatorOptions = [ compiler.internal.option.DeploymentOption.AdditionalInstallerFiles,  ...
+compiler.internal.option.DeploymentOption.AddRemoveProgramsIcon,  ...
+compiler.internal.option.DeploymentOption.ApplicationName,  ...
+compiler.internal.option.DeploymentOption.AuthorName,  ...
+compiler.internal.option.DeploymentOption.AuthorEmail,  ...
+compiler.internal.option.DeploymentOption.AuthorCompany,  ...
+compiler.internal.option.DeploymentOption.DefaultInstallationDir,  ...
+compiler.internal.option.DeploymentOption.Description,  ...
+compiler.internal.option.DeploymentOption.InstallerIcon,  ...
+compiler.internal.option.DeploymentOption.InstallerLogo,  ...
+compiler.internal.option.DeploymentOption.InstallerName,  ...
+compiler.internal.option.DeploymentOption.InstallerSplash,  ...
+compiler.internal.option.DeploymentOption.InstallationNotes,  ...
+compiler.internal.option.DeploymentOption.OutputDirPackage,  ...
+compiler.internal.option.DeploymentOption.RuntimeDelivery,  ...
+compiler.internal.option.DeploymentOption.Shortcut,  ...
+compiler.internal.option.DeploymentOption.Summary,  ...
+compiler.internal.option.DeploymentOption.Version
+ ];
+end 
+
+function script = generateScript( obj )
+packageOptionsCreationLine = strcat( obj.PACKAGE_OPTS_VAR, " = ", obj.PACKAGE_OPTIONS_COMMAND, "(", obj.BUILD_RESULTS_VAR, ");" );
+packageOptionsPropertySetLines = arrayfun( @( packageOpt )obj.serializeOption( packageOpt, obj.PACKAGE_OPTS_VAR ), obj.generatorOptions );
+packageOptionsPropertySetLines = packageOptionsPropertySetLines( packageOptionsPropertySetLines ~= "" );
+packageLine = strcat( obj.PACKAGE_COMMAND, "(", obj.BUILD_RESULTS_VAR, ", ""Options"", ", obj.PACKAGE_OPTS_VAR, ");" );
+
+script = strjoin( [ "% " + string( message( "Compiler:deploymentscript:packageIntro" ) ),  ...
+packageOptionsCreationLine,  ...
+packageOptionsPropertySetLines,  ...
+packageLine ], newline );
+end 
+end 
+
+methods ( Access = protected )
+function defaultValue = getDefaultValue( obj, option )
+mustBeMember( option, obj.generatorOptions );
+switch option.optionName(  )
+case "RuntimeDelivery"
+defaultValue = "web";
+case "Version"
+defaultValue = "1.0";
+otherwise 
+defaultValue = "";
+end 
+end 
+end 
+end 
+
+
+% Decoded using De-pcode utility v1.2 from file /tmp/tmphLwEHa.p.
+% Please follow local copyright laws when handling this file.
+

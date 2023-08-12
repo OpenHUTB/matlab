@@ -1,0 +1,16 @@
+function getSingleUnpackComp( hN, hInSignals, hOutSignals, compName )
+hNewC = hN.addComponent2( 'kind', 'cgireml',  ...
+'Name', compName,  ...
+'InputSignals', hInSignals,  ...
+'OutputSignals', hOutSignals,  ...
+'EMLFileName', 'nfp_unpack32',  ...
+'EMLParams', {  } );
+hNewC.treatInputIntsAsFixpt( false );
+hNewC.treatInputBoolsAsUfix1( false );
+hNewC.saturateOnIntOverflow( false );
+hNewC.addComment( 'Split 32 bit word into FP sign, exponent, mantissa' );
+end 
+
+% Decoded using De-pcode utility v1.2 from file /tmp/tmpyHuGtU.p.
+% Please follow local copyright laws when handling this file.
+
