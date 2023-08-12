@@ -1,7 +1,5 @@
 classdef Simulator<handle&matlab.mixin.Heterogeneous
 
-
-
     properties(SetAccess=protected)
 Designer
 Tag
