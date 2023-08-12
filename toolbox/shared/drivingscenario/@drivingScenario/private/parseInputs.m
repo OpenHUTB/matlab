@@ -1,7 +1,4 @@
 function parseInputs(obj,varargin)
-
-
-
     if~checkoutFirstAvailableLicense({'Automated_Driving_Toolbox','Vehicle_Dynamics_Blockset'})
         id='driving:scenario:NoLicenseAvailable';
         throwAsCaller(MException(id,getString(message(id))));
