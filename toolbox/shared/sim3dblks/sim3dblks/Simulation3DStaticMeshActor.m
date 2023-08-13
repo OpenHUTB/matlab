@@ -2,9 +2,6 @@ classdef Simulation3DStaticMeshActor<Simulation3DActor&...
 Simulation3DHandleMap
 
 
-
-
-
     properties(Nontunable)
 
         StaticMeshActorType='Cone';
