@@ -1,12 +1,6 @@
 classdef(Hidden)EvaluationOutputsService
 
 
-
-
-
-
-
-
     properties(Constant)
         REGION_EVAL_START='/liveEval/regionEvaluating/';
         SECTION_EVAL_END='/liveEval/sectionEvaled/';
