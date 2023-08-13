@@ -1,12 +1,5 @@
 function normlizedfullFileName=normalizeFullFileName(fullFileName,expectedExtension)
 
-
-
-
-
-
-
-
     [filePath,file,ext]=fileparts(fullFileName);
     passedInFileName=[file,ext];
 
