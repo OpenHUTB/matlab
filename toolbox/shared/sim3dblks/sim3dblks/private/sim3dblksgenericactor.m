@@ -1,8 +1,5 @@
 function[varargout]=sim3dblksgenericactor(varargin)
 
-
-
-
     varargout{1}={};
 
     block=varargin{1};
