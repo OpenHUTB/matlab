@@ -1,9 +1,5 @@
 classdef ActorTransformWriter<handle
 
-
-
-
-
     properties
         Writer=[]
         NumberOfParts=1
