@@ -1,10 +1,6 @@
 function workspaceVarDetails=getWorkspaceVariableDetails(variablesList,requestedVariable)
 
-
-
-
     workspaceVarDetails=struct("Name",{},"CodeValue",{});
-
 
     if nargin<1
         return;
