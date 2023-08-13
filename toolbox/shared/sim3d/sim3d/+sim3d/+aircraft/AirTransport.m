@@ -1,18 +1,6 @@
 classdef AirTransport
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Constant=true)
         Nose=struct(...
         'translation',single([12.22,0,-0.26]),...
