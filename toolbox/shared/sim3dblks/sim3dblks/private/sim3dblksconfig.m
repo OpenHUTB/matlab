@@ -1,8 +1,5 @@
 function[varargout]=sim3dblksconfig(varargin)
 
-
-
-
     varargout{1}={};
 
     block=varargin{1};
