@@ -1,10 +1,5 @@
 function str=lanespecToString(ls)
 
-
-
-
-
-
     str="";
     isMultiLanespec=false;
     laneSpec=ls;
