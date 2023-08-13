@@ -1,8 +1,6 @@
 classdef LidarPropertySheet<driving.internal.scenarioApp.PropertySheet
 
 
-
-
     properties
         ShowPointCloudReportingParameters=false;
         ShowDetectionParameters=false;
