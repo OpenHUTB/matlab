@@ -1,9 +1,6 @@
 classdef LiveTaskUtilities<handle
 
 
-
-
-
     methods
         function utility=LiveTaskUtilities
             mlock;
