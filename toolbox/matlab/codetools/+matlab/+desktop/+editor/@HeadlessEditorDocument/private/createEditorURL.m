@@ -1,8 +1,5 @@
 function url = createEditorURL( filename, editorId )
 
-
-
-
 R36
 filename{ mustBeTextScalar }
 editorId{ mustBeTextScalar }
