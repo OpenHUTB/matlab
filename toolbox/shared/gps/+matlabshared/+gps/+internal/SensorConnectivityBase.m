@@ -1,8 +1,6 @@
 classdef(Hidden)SensorConnectivityBase<matlab.System
 
 
-
-
     methods
         function obj=SensorConnectivityBase()
             try
