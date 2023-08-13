@@ -1,9 +1,5 @@
 classdef LastConnectionInfo
 
-
-
-
-
     properties(Constant,Access=private)
         Group="MATLAB_HARDWARE"
         Pref="BLUETOOTH"
