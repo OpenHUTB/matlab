@@ -1,20 +1,8 @@
 classdef AirTransportAircraft<sim3d.aircraft.Aircraft
 
 
-
-
-
     methods
         function self=AirTransportAircraft(actorName,AircraftType,varargin)
-
-
-
-
-
-
-
-
-
 
             numberOfParts=30;
 
