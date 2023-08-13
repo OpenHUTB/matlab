@@ -1,6 +1,3 @@
-
-
-
 function url=getBaseUrl(path)
     if nargin==0||numel(path)==0
         path='/';
