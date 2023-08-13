@@ -3,10 +3,7 @@ classdef Simulation3DScenarioReader<Simulation3DSensor...
     &Simulation3DHandleMap
 
 
-
     properties(Nontunable)
-
-
 
         SensorConfiguration(1,:)char='APlayerStart,AStaticMeshActor,ASim3dActor,ASim3dPassVeh';
         maxNumReportedActors(1,1)int32=64;
