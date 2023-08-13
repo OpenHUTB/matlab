@@ -1,8 +1,5 @@
 classdef ADTSim3dPackageInfo<matlab.addons.internal.SupportPackageInfoBase
 
-
-
-
     methods
         function obj=ADTSim3dPackageInfo()
             obj.baseProduct='Automated Driving Toolbox';
