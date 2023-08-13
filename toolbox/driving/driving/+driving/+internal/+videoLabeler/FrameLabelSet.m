@@ -1,9 +1,3 @@
-
-
-
-
-
-
 classdef FrameLabelSet<handle
 
     methods(Static,Hidden)
