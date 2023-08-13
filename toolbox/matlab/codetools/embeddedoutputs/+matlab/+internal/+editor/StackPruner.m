@@ -1,8 +1,6 @@
 classdef StackPruner<handle
 
 
-
-
     properties
 Base
     end
