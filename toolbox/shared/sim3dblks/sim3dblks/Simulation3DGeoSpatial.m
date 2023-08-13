@@ -1,7 +1,6 @@
 classdef Simulation3DGeoSpatial<Simulation3DActor&Simulation3DHandleMap
 
 
-
     properties(Nontunable)
         AccessTokenID="";
         OriginLatitude(1,1)double=40.744652;
