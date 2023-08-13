@@ -1,9 +1,6 @@
 classdef RootObject<sim3d.AbstractActor
 
 
-
-
-
     methods
         function self=RootObject()
 
