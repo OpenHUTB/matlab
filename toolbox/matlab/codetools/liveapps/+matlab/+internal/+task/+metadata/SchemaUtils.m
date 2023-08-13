@@ -1,14 +1,12 @@
 classdef SchemaUtils<handle
 
 
-
     properties(Access=private)
 Schema
     end
 
     methods(Access=public)
         function obj=SchemaUtils()
-
 
             obj.loadSchema();
         end
