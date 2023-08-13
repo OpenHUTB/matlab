@@ -1,9 +1,5 @@
 function bool=mcodeDefaultIgnoreProperty(hObj,hProp)
 
-
-
-
-
     bool=false;
 
     prop_name=hProp.Name;
