@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 classdef Session<vision.internal.labeler.tool.Session&...
     vision.internal.videoLabeler.tool.Session
 
