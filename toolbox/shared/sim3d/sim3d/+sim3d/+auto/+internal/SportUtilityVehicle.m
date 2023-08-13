@@ -1,8 +1,5 @@
 classdef SportUtilityVehicle
 
-
-
-
     properties(Constant=true)
         FrontBumper=struct(...
         'translation',single([2.424,0,0.5]),...
