@@ -1,8 +1,5 @@
 classdef CabOverTractor
 
-
-
-
     properties(Constant=true)
         FrontBumper=struct(...
         'translation',single([5.24,0,0.69]),...
