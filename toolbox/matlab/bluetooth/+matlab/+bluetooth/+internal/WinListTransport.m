@@ -1,8 +1,5 @@
 classdef WinListTransport<matlab.bluetooth.internal.ListTransportBase
 
-
-
-
     methods
         function obj=WinListTransport(channel)
             obj@matlab.bluetooth.internal.ListTransportBase(channel);
@@ -13,10 +10,6 @@ classdef WinListTransport<matlab.bluetooth.internal.ListTransportBase
         end
 
         function output=parseSDPData(~,input)
-
-
-
-
 
             output=[];
             ProtocolDescriptorListID=4;
