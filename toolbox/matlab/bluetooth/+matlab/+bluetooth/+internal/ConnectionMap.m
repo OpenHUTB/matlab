@@ -1,9 +1,5 @@
 classdef ConnectionMap
 
-
-
-
-
     properties(Access=private)
 ConnectedDevices
     end
