@@ -1,7 +1,5 @@
 function[varargout]=sim3dblks3dvehterrfb(varargin)
 
-
-
     varargout{1}={};
 
     Block=varargin{1};
