@@ -1,8 +1,5 @@
 classdef DataStoreStrategy<driving.internal.heremaps.DataServiceStrategy
 
-
-
-
     properties(Constant,Hidden)
         CredentialsTokens={'AppID','AppCode'}
         ValidationURL='https://here-hdmap-ext-weu-1.catalogs.datastore.api.here.com/v2/catalog/versions/latest?startVersion=-1'
