@@ -1,7 +1,5 @@
 classdef MetadataUIViewModel<handle
 
-
-
     properties(Access=private)
 Metadata
 Status
