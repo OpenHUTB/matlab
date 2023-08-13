@@ -1,8 +1,5 @@
 function ex=notSupportedError
 
-
-
-
     stack=dbstack(1);
 
     unsupportedFile=stack(1).name;
