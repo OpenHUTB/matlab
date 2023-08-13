@@ -1,62 +1,26 @@
 classdef Simulation3DGenericActor<Simulation3DActor
 
-
-
-
-
-
     properties(Nontunable)
-
-
 
         ActorName(1,:)char='Actor1';
 
-
-
-
         ParentName(1,:)char='Scene Origin';
-
-
-
-
 
         Translation(1,3)single=[0,0,0];
 
-
-
-
-
         Rotation(1,3)single=[0,0,0];
-
-
-
 
         Scale(1,3)single=[1,1,1];
 
         Operation(1,1)string{matlab.system.mustBeMember(Operation,["Create at setup","Create at step","Reference by name","Reference by instance number"])}="Create at setup"
 
-
-
-
         SourceFile(1,:)char='';
-
-
-
 
         InitScript(1,:)char='';
 
-
-
-
         Inputs(1,:)char='';
 
-
-
-
         Outputs(1,:)char='';
-
-
-
 
         Events(1,:)char='';
     end
