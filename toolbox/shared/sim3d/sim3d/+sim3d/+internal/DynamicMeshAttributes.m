@@ -1,42 +1,6 @@
 classdef DynamicMeshAttributes < sim3d.internal.BaseAttributes
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 properties 
 IsValid( 1, 1 )logical = false;
 Vertices( :, 3 )double = [  ];
