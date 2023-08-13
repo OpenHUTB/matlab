@@ -3,12 +3,7 @@ classdef(Hidden)AbstractSim3DTruthSensor<...
 Simulation3DHandleMap
 
 
-
-
-
     properties(Nontunable)
-
-
 
         SensorIdentifier(1,1)uint32{mustBeLessThanOrEqual(SensorIdentifier,65535)}=uint32(1);
 
@@ -25,73 +20,22 @@ Simulation3DHandleMap
     properties(Nontunable)
 
 
-
-
-
-
-
         UpdateInterval=0.1
-
-
-
-
-
-
-
 
 
         MaxNumDetectionsSource='Auto'
 
 
-
-
-
-
-
-
-
         MaxNumDetections(1,1){mustBePositive,mustBeInteger}=50
-
-
-
-
-
-
-
-
-
 
 
         HasNoise(1,1)logical=true
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         InitialSeedSource='Repeatable'
 
 
-
-
-
-
-
         InitialSeed=0
-
-
-
-
-
 
 
         UsedSeed=0
