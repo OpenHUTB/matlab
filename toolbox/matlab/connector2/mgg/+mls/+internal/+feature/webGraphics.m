@@ -1,11 +1,5 @@
 function value=webGraphics(value)
 
-
-
-
-
-
-
     mlock;
     persistent webGraphicsOn;
     persistent origDefaultMenubar;
