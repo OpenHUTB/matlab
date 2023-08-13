@@ -1,6 +1,5 @@
 function hostInfo=ensureServiceOn
 
-
     if nargout==1
         hostInfo=connector.internal.doEnsureServiceOn();
     else
