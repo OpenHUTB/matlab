@@ -1,17 +1,6 @@
 classdef Subscriber<handle
 
 
-
-
-
-
-
-
-
-
-
-
-
     properties
 topic
         Reader=[]
