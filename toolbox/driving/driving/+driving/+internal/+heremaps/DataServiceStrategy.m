@@ -1,8 +1,5 @@
 classdef DataServiceStrategy<handle
 
-
-
-
     properties(Abstract,Constant,Hidden)
         CredentialsTokens(:,1)cell
     end
