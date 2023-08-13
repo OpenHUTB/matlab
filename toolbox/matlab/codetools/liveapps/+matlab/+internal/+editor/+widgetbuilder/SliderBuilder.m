@@ -1,8 +1,6 @@
 classdef SliderBuilder<matlab.internal.editor.widgetbuilder.WidgetBuilder
 
 
-
-
     methods(Static)
         function slider=layout(task,parent,data)
             id=data.widget.id;
