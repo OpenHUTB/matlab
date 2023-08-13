@@ -1,8 +1,6 @@
 classdef MacListTransport<matlab.bluetooth.internal.ListTransportBase
 
 
-
-
     methods
         function obj=MacListTransport(channel)
             obj@matlab.bluetooth.internal.ListTransportBase(channel);
@@ -13,12 +11,6 @@ classdef MacListTransport<matlab.bluetooth.internal.ListTransportBase
         end
 
         function output=parseSDPData(~,input)
-
-
-
-
-
-
 
             output=[];
             ProtocolDescriptorListID=4;
