@@ -1,19 +1,7 @@
 function VisionDetectionGenerator(obj)
-
-
-
-
-
-
-
-
-
     visionDetGenRef='drivingscenarioandsensors/Vision Detection Generator';
 
     if isR2020aOrEarlier(obj.ver)
-
-
-
         obj.appendRule(getRuleRenameValue(visionDetGenRef,'ActorProfilesSource',...
         'From Scenario Reader block','Parameters',obj));
     end
