@@ -1,7 +1,5 @@
 classdef EvaluationEndInfo<handle
 
-
-
     properties
 DidRunToCompletion
 ErrorType
