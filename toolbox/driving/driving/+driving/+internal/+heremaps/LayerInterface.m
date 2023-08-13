@@ -1,8 +1,5 @@
 classdef(Abstract,Hidden)LayerInterface<handle&matlab.mixin.CustomDisplay
 
-
-
-
     properties(SetAccess=protected)
 
         Catalog char
