@@ -1,7 +1,4 @@
-
 function loadSession(sessionName,sessionHomeDir,userDir,addonsDir,updatePath)
-
-
 
     if nargin==2
         userDir=connector.internal.userdir;
