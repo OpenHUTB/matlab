@@ -1,9 +1,6 @@
 classdef TransformISO8855 < sim3d.utils.Transform
 
 
-
-
-
 methods 
 function self = TransformISO8855( translation, rotation, scale, units )
 
