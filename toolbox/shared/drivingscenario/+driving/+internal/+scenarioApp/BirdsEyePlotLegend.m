@@ -1,8 +1,5 @@
 classdef BirdsEyePlotLegend<handle
 
-
-
-
     properties
         FirstStruct=struct;
     end
