@@ -1,8 +1,6 @@
 classdef One<handle
 
 
-
-
     methods
         function value=get(~,variable)
 
