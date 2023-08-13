@@ -1,11 +1,5 @@
 classdef(Abstract)RESTClient<handle
 
-
-
-
-
-
-
     properties(SetAccess=protected)
 
         BaseURL(1,1)matlab.net.URI
