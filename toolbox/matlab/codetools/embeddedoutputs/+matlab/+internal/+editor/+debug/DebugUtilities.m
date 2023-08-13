@@ -1,7 +1,5 @@
 classdef DebugUtilities<handle
 
-
-
     properties
         isEnabled=true;
         pruningEnabled=false;
