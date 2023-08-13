@@ -1,8 +1,6 @@
 classdef TruthSensor<handle
 
 
-
-
     methods(Static)
         function tag=GetActorTag(id)
             tokens=strsplit(mfilename('class'),'.');
