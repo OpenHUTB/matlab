@@ -1,7 +1,6 @@
 classdef(Abstract)Constants<handle
 
 
-
     properties(Constant)
         UpdateModelEvent='UpdateModelEvent'
         CleanUpAppEvent='CleanUpAppEvent'
