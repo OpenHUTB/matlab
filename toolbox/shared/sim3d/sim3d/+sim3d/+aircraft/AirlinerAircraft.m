@@ -1,14 +1,8 @@
 classdef AirlinerAircraft<sim3d.aircraft.Aircraft
 
 
-
-
-
     methods
         function self=AirlinerAircraft(actorName,AircraftType,varargin)
-
-
-
 
             numberOfParts=12;
 
