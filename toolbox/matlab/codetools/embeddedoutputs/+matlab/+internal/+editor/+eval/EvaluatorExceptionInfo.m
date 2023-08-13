@@ -1,7 +1,5 @@
 classdef EvaluatorExceptionInfo
 
-
-
     properties(Constant,Access=private)
         UNSUPPORTED_LANGUAGE_OP='MATLAB:lang:UnsupportedOperation';
         GRAPHICS_USER_BREAK='MATLAB:handle_graphics:exceptions:UserBreak';
