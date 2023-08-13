@@ -1,26 +1,6 @@
 
 classdef BinaryStream<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(GetAccess=public,SetAccess=private)
 
 Name
@@ -30,30 +10,15 @@ ReceiveCallback
 
     methods
         function send(obj,message)
-
-
-
-
-
             connector.internal.binaryBuiltins.send(obj.Name,message);
         end
 
         function send64(obj,message)
 
-
-
-
-
             connector.internal.binaryBuiltins.send64(obj.Name,message);
         end
 
         function receive(obj,callback)
-
-
-
-
-
-
 
             if isa(callback,'function_handle')
                 obj.ReceiveCallback=callback;
