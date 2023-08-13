@@ -1,9 +1,6 @@
 classdef FigureReadyEventData<event.EventData
 
 
-
-
-
     properties
         FigureStruct;
 EditorId
