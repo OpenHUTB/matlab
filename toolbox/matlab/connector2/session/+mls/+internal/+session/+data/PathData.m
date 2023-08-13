@@ -1,8 +1,5 @@
 classdef PathData<handle
 
-
-
-
     properties
 session
     end
