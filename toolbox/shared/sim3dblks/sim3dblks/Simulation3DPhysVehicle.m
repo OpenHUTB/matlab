@@ -2,9 +2,6 @@ classdef Simulation3DPhysVehicle<Simulation3DActor&...
 Simulation3DHandleMap
 
 
-
-
-
     properties(Nontunable)
 
         PassVehMesh='Muscle car';
