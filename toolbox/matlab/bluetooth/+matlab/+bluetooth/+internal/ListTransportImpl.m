@@ -1,9 +1,5 @@
 classdef ListTransportImpl
 
-
-
-
-
     methods(Access=public)
         function output=get(~)
             if isunix&&~ismac
