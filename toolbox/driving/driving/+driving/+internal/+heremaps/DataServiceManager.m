@@ -1,8 +1,5 @@
 classdef DataServiceManager<handle
 
-
-
-
     properties(Hidden,SetAccess=private)
         DataServiceName(1,1)string
 DataService
