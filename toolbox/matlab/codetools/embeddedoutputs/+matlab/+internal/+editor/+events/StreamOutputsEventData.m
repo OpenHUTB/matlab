@@ -1,8 +1,6 @@
 classdef StreamOutputsEventData<matlab.internal.editor.events.EvaluationBaseEventData
 
 
-
-
     properties
         PreviousRegionNumber;
         PreviousRegionLineNumber;
