@@ -1,17 +1,8 @@
 classdef FixedWingAircraft<sim3d.aircraft.Aircraft
 
 
-
-
-
     methods
         function self=FixedWingAircraft(actorName,AircraftType,varargin)
-
-
-
-
-
-
 
             numberOfParts=57;
 
