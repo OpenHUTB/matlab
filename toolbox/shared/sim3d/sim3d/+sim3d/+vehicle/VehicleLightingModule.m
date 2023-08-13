@@ -1,8 +1,5 @@
 classdef VehicleLightingModule<handle
 
-
-
-
     properties(Access=public,Constant)
         ValidLightTypes=["Spotlight","PointLight","MatLight"];
 
