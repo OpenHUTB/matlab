@@ -1,7 +1,6 @@
 classdef WidgetClassHandler<handle
 
 
-
     properties(Constant)
         handlers=struct('uigridlayout','DataGridBuilder',...
         'uibutton','ButtonBuilder',...
