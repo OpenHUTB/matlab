@@ -1,10 +1,6 @@
 classdef FixedWingUAV<sim3d.uav.UAV
 
 
-
-
-
-
     methods
         function self=FixedWingUAV(actorName,FixedWingType,varargin)
 
