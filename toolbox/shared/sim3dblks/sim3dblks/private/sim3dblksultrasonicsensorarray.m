@@ -1,7 +1,5 @@
 function[varargout]=sim3dblksultrasonicsensorarray(varargin)
 
-
-
     varargout{1}={};
 
     Block=varargin{1};
