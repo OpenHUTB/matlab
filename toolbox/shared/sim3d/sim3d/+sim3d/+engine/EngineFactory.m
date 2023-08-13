@@ -1,10 +1,5 @@
 classdef EngineFactory<handle
 
-
-
-
-
-
     properties(Constant=true,Access=private)
         map=containers.Map({'win64','glnxa64','maci64'},{'EngineWin64','EngineGlnxa64',[]});
     end
