@@ -1,7 +1,5 @@
 function startDatatypes()
 
-
-
     if~isempty(which('dataset'))
         [~]=dataset();
     end
