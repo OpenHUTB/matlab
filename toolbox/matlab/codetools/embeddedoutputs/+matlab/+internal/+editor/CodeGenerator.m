@@ -1,12 +1,6 @@
 classdef CodeGenerator<handle
 
 
-
-
-
-
-
-
     properties(SetAccess=private,GetAccess=private)
 
 
