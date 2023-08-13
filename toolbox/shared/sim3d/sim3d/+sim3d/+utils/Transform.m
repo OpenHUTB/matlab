@@ -1,26 +1,5 @@
 classdef Transform < handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 properties ( SetAccess = 'protected', GetAccess = 'protected' )
 
 
