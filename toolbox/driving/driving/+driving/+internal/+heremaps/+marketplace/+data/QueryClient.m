@@ -1,8 +1,5 @@
 classdef QueryClient<driving.internal.heremaps.marketplace.ResourceClient
 
-
-
-
     properties(Constant,Access=protected)
 
         APIName='Query'
