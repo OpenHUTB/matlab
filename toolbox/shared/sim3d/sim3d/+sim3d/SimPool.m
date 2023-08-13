@@ -1,17 +1,6 @@
 classdef SimPool
 
 
-
-
-
-
-
-
-
-
-
-
-
     methods(Static=true,Access=private)
         function out=pool(action,Mdl,blk,varargin)
             mlock;
