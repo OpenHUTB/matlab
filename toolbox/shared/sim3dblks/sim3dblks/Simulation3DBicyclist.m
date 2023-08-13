@@ -1,8 +1,6 @@
 classdef Simulation3DBicyclist<Simulation3DActor&Simulation3DHandleMap
 
 
-
-
     properties(Nontunable)
 
         Scale=[1,1,1];
