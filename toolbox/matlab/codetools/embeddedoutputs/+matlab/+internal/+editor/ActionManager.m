@@ -1,16 +1,5 @@
 classdef ActionManager<handle
 
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=private,GetAccess=private)
         CodeGenerator matlab.internal.editor.CodeGenerator
 
