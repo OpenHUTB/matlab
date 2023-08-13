@@ -1,7 +1,3 @@
-
-
-
-
 function setPromiseException(promiseId,msg)
     if connector.isRunning
         service=connector.internal.ConnectorManager.Impl.NativeBridgeServiceProvider;
