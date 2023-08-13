@@ -1,58 +1,13 @@
 classdef TextureMapping
 
 
-
-
-
-
-
-
-
-
-
-
-
     properties
-
-
-
-
-
-
-
-
 
         Blend(1,3)double=[0,0,0];
 
-
-
-
-
-
-
-
-
-
-
         Displacement(1,3)double=[0,0,0];
 
-
-
-
-
-
-
-
-
         Bumps(1,3)double=[0,0,0];
-
-
-
-
-
-
-
-
 
         Roughness(1,3)double=[0,0,0];
     end
