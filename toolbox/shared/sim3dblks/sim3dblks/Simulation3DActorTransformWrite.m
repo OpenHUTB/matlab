@@ -2,8 +2,6 @@ classdef(StrictDefaults)Simulation3DActorTransformWrite<Simulation3DActor&...
 Simulation3DHandleMap
 
 
-
-
     methods(Access=protected)
         function icon=getIconImpl(~)
             icon={'Transform','Set'};
