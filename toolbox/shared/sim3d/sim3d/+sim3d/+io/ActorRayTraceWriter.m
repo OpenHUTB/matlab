@@ -1,8 +1,5 @@
 classdef ActorRayTraceWriter<handle
 
-
-
-
     properties
         Publisher=[];
         RayConfig;
