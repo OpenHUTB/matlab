@@ -1,8 +1,5 @@
 classdef MuscleCar
 
-
-
-
     properties(Constant=true)
         FrontBumper=struct(...
         'translation',single([2.4735,0,0.44]),...
