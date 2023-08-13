@@ -1,7 +1,6 @@
 classdef Simulation3DUltrasonicArray<Simulation3DSensor&...
 Simulation3DHandleMap
 
-
     properties(Nontunable)
         RelativeMountingLocations=[]
         RelativeMountingRotations=[]
