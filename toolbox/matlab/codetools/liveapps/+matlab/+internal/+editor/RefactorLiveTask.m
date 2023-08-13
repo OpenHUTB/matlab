@@ -1,8 +1,6 @@
 classdef RefactorLiveTask<matlab.task.LiveTask
 
 
-
-
     properties(Access=private)
 
 SerializedLayout
