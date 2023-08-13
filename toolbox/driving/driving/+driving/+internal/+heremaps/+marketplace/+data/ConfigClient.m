@@ -1,8 +1,5 @@
 classdef ConfigClient<driving.internal.heremaps.marketplace.RESTClient
 
-
-
-
     properties(Constant,Access=protected)
 
         APIName='Config';
