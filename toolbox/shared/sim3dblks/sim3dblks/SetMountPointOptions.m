@@ -1,6 +1,5 @@
 function SetMountPointOptions(Block)
 
-
     if~autoblkschecksimstopped(Block)
         return
     end
