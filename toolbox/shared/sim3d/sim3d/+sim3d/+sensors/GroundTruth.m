@@ -1,30 +1,6 @@
 classdef GroundTruth<sim3d.sensors.Sensor
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=protected)
         SignalReader=[];
         SensorWriter=[];
