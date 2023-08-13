@@ -1,11 +1,6 @@
 classdef(Hidden)EvaluationManager<handle
 
 
-
-
-
-
-
     properties(Constant)
         EDITOR_LOCK_TAG='EDITOR_LOCK'
     end
