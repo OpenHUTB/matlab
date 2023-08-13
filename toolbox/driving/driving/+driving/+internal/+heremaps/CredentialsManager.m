@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef CredentialsManager<handle
 
     properties(Dependent,Access=protected)
