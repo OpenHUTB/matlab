@@ -1,7 +1,5 @@
 classdef ScenesMapping
 
-
-
     properties(Constant=true)
         SuburbanScene=struct('MapName','Suburban scene','PakFile','pakchunk66-WindowsNoEditor.pak');
         LargeParkingLot=struct('MapName','Large parking lot','PakFile','pakchunk7-WindowsNoEditor.pak');
