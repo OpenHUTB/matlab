@@ -1,10 +1,5 @@
 function mcodeDefaultConstructor(hObj,hCode)
 
-
-
-
-
-
     if ishghandle(hObj)
         localSetConstructorFunction(hObj,hCode);
     end
