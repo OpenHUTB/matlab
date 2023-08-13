@@ -1,9 +1,5 @@
 classdef LiveAppContainer<handle
 
-
-
-
-
     properties(SetAccess='private',GetAccess='public')
 appInstance
 appStateChangeEventAggregator
@@ -15,17 +11,6 @@ autoRunEventListener
         function obj=LiveAppContainer(appInstance)
             obj.appInstance=appInstance;
         end
-
-
-
-
-
-
-
-
-
-
-
 
 
         function registerChangedListener(obj,callback,fig)
