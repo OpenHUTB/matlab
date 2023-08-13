@@ -1,9 +1,6 @@
 classdef EditFieldBuilder<matlab.internal.editor.widgetbuilder.WidgetBuilder
 
 
-
-
-
     methods(Static)
         function editField=layout(task,parent,data)
             id=data.widget.id;
