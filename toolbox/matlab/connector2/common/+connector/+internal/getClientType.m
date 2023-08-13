@@ -1,8 +1,5 @@
 function clientType=getClientType
 
-
-
-
     try
 
         prop=connector.internal.getClientTypeProperties();
