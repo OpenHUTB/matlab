@@ -1,7 +1,5 @@
 classdef EvaluationBaseEventData<event.EventData
 
-
-
     properties
         CallbackData;
     end
