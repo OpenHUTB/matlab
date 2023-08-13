@@ -1,7 +1,5 @@
 function[xdotW,delta]=wheelEstCalc(Xdot,Ydot,psi,r,wb,delta0)
 
-
-
     whlLim=pi/3;
     xdotLim=.1;
     xdot=Xdot*cos(psi)+Ydot*sin(psi);
@@ -23,9 +21,6 @@ end
 
 function[y,yabs]=automltirediv0prot(u,tol)%#codegen
     coder.allowpcode('plain')
-
-
-
 
     yabs=abs(u);
     ytolinds=yabs<tol;
