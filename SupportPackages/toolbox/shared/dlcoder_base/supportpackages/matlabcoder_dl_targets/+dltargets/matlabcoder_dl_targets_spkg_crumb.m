@@ -1,10 +1,5 @@
 function rootDir=matlabcoder_dl_targets_spkg_crumb
 
-
-
-
-
-
     currentFilePath=mfilename('fullpath');
     filesubpath=fullfile('matlabcoder_dl_targets','+dltargets',...
     'matlabcoder_dl_targets_spkg_crumb');
