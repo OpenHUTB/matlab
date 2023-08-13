@@ -1,14 +1,5 @@
 function VideoDisplayMSfcnWin(block)
 
-
-
-
-
-
-
-
-
-
     setup(block);
 end
 
