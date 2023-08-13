@@ -1,12 +1,5 @@
 classdef FigureUtils<handle
 
-
-
-
-
-
-
-
     properties(Access=private)
 FigureCreatedListener
     end
