@@ -1,6 +1,5 @@
 classdef CreateActor<handle
 
-
     properties
         Writer=[];
         CreateActorStruct=[];
