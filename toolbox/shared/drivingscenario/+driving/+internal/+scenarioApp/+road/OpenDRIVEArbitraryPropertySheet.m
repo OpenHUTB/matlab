@@ -1,8 +1,6 @@
 classdef OpenDRIVEArbitraryPropertySheet<driving.internal.scenarioApp.road.PropertySheet&...
     driving.internal.scenarioApp.road.OpenDRIVELanesWidgets
 
-
-
     properties
         ShowRoadCenters=false
     end
