@@ -2,40 +2,20 @@ classdef Simulation3DFisheyeCamera<Simulation3DSensor&...
 Simulation3DHandleMap
 
 
-
-
     properties(Nontunable)
-
-
 
         OpticalCenter(1,2)uint32=[320,320];
 
 
-
-
         ImageSize(1,2)uint32=[640,640];
-
-
-
 
         MappingCoefficients(1,4)single=[320,-0.001,0,0];
 
-
-
         StretchMatrix(2,2)single{sim3d.sensors.FisheyeCamera.stretchMatrixValidation(StretchMatrix)}=[1,0;0,1];
-
-
-
 
         TransformOutportEnabled(1,1)logical=true;
 
-
-
-
         TranslationInportEnabled(1,1)logical=false;
-
-
-
 
         RotationInportEnabled(1,1)logical=false;
     end
