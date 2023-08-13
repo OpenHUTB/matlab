@@ -1,8 +1,5 @@
 classdef CommandReader<handle
 
-
-
-
     properties
         Reader=[]
         Timeout(1,1)int32=120000
