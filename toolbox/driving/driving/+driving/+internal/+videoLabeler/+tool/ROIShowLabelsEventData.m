@@ -1,7 +1,5 @@
 classdef(ConstructOnLoad)ROIShowLabelsEventData<event.EventData
 
-
-
     properties
 ShowLabels
     end
