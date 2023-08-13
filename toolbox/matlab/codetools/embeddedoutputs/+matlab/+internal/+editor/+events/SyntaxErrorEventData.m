@@ -1,8 +1,6 @@
 classdef SyntaxErrorEventData<matlab.internal.editor.events.ErrorEventData
 
 
-
-
     properties
 RegionLineNumber
     end
