@@ -1,4 +1,3 @@
-
 classdef MobileEventsController
     methods(Static,Hidden)
         function reset
