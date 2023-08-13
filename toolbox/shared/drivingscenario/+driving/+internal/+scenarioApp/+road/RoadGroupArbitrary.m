@@ -1,8 +1,5 @@
 classdef RoadGroupArbitrary<driving.internal.scenarioApp.road.Specification
 
-
-
-
     properties
 Roads
     end
