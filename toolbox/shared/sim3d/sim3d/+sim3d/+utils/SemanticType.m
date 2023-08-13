@@ -1,16 +1,5 @@
 classdef SemanticType<uint16
 
-
-
-
-
-
-
-
-
-
-
-
     enumeration
         None(0)
         Building(1)
