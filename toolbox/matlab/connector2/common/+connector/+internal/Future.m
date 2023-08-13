@@ -1,6 +1,5 @@
 classdef(Hidden=true)Future<handle
 
-
     properties(Access=private)
 Promise
 ResultPromise
