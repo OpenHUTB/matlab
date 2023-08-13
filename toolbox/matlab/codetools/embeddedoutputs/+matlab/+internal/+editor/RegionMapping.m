@@ -1,9 +1,6 @@
 classdef RegionMapping<handle
 
 
-
-
-
     properties(Access=private)
         Mapping;
         LineNumberArray;
