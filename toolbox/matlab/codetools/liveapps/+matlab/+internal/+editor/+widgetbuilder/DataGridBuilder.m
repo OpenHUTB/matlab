@@ -1,12 +1,7 @@
 classdef DataGridBuilder<matlab.internal.editor.widgetbuilder.WidgetBuilder
 
 
-
-
-
-
     methods(Static)
-
 
 
         function canHandleOwnChildren=processEachWidget(task,grid,data,type)
