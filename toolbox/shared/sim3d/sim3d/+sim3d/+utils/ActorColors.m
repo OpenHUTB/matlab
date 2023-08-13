@@ -1,7 +1,5 @@
 classdef ActorColors
 
-
-
     properties(Constant=true)
         Black='/MathWorksSimulation/VehicleCommon/Materials/CarPaint/MI_CarPaint_01_Black.MI_CarPaint_01_Black'
         Red='/MathWorksSimulation/VehicleCommon/Materials/CarPaint/MI_CarPaint_10_Red.MI_CarPaint_10_Red'
