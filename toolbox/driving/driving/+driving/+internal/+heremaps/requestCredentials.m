@@ -1,16 +1,5 @@
 function isValid=requestCredentials(manager,dialog)
 
-
-
-
-
-
-
-
-
-
-
-
     isValid=false;
 
     while~isValid
