@@ -1,11 +1,6 @@
 classdef EvaluateCodeException<matlab.internal.editor.EvaluatorException
 
 
-
-
-
-
-
     properties(Access=private)
 Stack
 LineNumber
