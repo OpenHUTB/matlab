@@ -4,11 +4,6 @@ function warmupProgrammingAids
     cleanupObj=onCleanup(@()feature('TabCompletionUseHistory',featureValue));
     feature('TabCompletionUseHistory',0);
 
-
-
-
-
-
     s=settings;
     if~s.matlab.editor.codingui.Prewarm.hasTemporaryValue
         s.matlab.editor.codingui.Prewarm.TemporaryValue=0;
