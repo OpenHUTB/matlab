@@ -2,9 +2,6 @@ classdef ClassEditor<matlabshared.application.Component&...
     matlabshared.application.ComponentBanner&...
     driving.internal.scenarioApp.UITools
 
-
-
-
     properties
         ShowRCSProperties=false;
         SetAsPreference=true;
