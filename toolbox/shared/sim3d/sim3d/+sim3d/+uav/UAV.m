@@ -1,12 +1,8 @@
 classdef(Hidden)UAV<sim3d.vehicle.Vehicle
 
 
-
-
-
     methods
         function self=UAV(actorName,actorID,translation,rotation,scale)
-
 
 
             mesh='';
