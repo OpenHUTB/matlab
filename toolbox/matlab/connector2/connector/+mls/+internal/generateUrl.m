@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 function url=generateUrl(path,varargin)
 
     url="http://127.0.0.1:31415";
