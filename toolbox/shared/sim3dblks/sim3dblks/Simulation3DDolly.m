@@ -2,9 +2,6 @@ classdef Simulation3DDolly<Simulation3DActor&...
 Simulation3DHandleMap
 
 
-
-
-
     properties
         Translation(:,3)double{mustBeFinite,mustBeReal,mustBeNonmissing}=zeros(5,3);
         Rotation(:,3)double{mustBeFinite,mustBeReal,mustBeNonmissing}=zeros(5,3);
