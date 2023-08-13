@@ -1,8 +1,6 @@
 classdef EvaluationEventData<matlab.internal.editor.events.EvaluationBaseEventData
 
 
-
-
     properties
         FinalRegionNumber;
         FinalRegionLineNumber;
