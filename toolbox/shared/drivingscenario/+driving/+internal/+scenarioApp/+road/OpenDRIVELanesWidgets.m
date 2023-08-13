@@ -1,8 +1,5 @@
 classdef OpenDRIVELanesWidgets<driving.internal.scenarioApp.UITools
 
-
-
-
     properties
 
         ShowLanes=false
