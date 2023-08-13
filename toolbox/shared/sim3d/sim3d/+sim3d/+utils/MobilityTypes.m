@@ -1,7 +1,5 @@
 classdef MobilityTypes
 
-
-
     properties(Constant=true)
         Min=0
         Static=0
