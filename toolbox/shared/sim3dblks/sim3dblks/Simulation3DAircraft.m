@@ -1,23 +1,17 @@
 classdef Simulation3DAircraft<Simulation3DActor
 
 
-
-
-
     properties
     end
 
     properties(Nontunable)
 
 
-
         Translation(:,3)double{mustBeFinite,mustBeReal}=zeros(11,3)
 
 
 
-
         Rotation(:,3)double{mustBeFinite,mustBeReal}=zeros(11,3)
-
 
 
         Mesh='Sky Hogg'
