@@ -1,8 +1,6 @@
 classdef SyntheticMouseWheelEvent<handle
 
 
-
-
     properties
 VerticalScrollCount
 VerticalScrollAmount
