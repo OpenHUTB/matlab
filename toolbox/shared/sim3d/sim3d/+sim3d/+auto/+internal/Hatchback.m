@@ -1,8 +1,5 @@
 classdef Hatchback
 
-
-
-
     properties(Constant=true)
         FrontBumper=struct(...
         'translation',single([1.9315,0,0.5]),...
