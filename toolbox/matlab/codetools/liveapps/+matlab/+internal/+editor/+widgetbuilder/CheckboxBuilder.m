@@ -1,9 +1,6 @@
 classdef CheckboxBuilder<matlab.internal.editor.widgetbuilder.WidgetBuilder
 
 
-
-
-
     methods(Static)
         function checkbox=layout(task,parent,data)
             id=data.widget.id;
