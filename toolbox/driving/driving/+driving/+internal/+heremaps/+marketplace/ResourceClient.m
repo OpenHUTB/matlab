@@ -1,11 +1,4 @@
 classdef(Abstract)ResourceClient<driving.internal.heremaps.marketplace.RESTClient
-
-
-
-
-
-
-
     properties(Abstract,Constant,Access=protected)
 
 APIName
