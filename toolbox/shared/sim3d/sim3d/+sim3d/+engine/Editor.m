@@ -1,12 +1,5 @@
 classdef Editor
 
-
-
-
-
-
-
-
     properties(SetAccess='private',GetAccess='public')
         Uproject string{mustBeNonempty}=fullfile(matlabroot,...
         "toolbox","shared","sim3d","sim3d","internal","sim3dtemplates",...
