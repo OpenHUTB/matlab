@@ -1,24 +1,14 @@
 function jsonOutput=getOutputDataFromCaller(variableName)
 
 
-
     import matlab.internal.editor.OutputPackager
     import matlab.internal.editor.VariableOutputPackager
-
 
 
     jsonOutput="";
     if nargin~=1
         return
     end
-
-
-
-
-
-
-
-
 
     variableExistsInWorkspace=evalin('caller',['exist(''',variableName,''')']);
 
@@ -30,11 +20,6 @@ function jsonOutput=getOutputDataFromCaller(variableName)
             return;
         end
 
-
-
-
-
-
         [objectPart,methodOrProperty]=DataTipUtilities.getVariableNameParts(variableName);
         if evalin('caller',['ismethod(',objectPart,', ''',methodOrProperty,''')'])
             return;
@@ -45,8 +30,6 @@ function jsonOutput=getOutputDataFromCaller(variableName)
         variableValue=evalin('caller',variableName);
 
         if istall(variableValue)
-
-
 
             displayOfVariableValue=VariableOutputPackager.isolatedDisplaying(variableName,...
             variableValue);
