@@ -1,7 +1,5 @@
 classdef RadarData<handle
 
-
-
     properties
 semanticActorTypes
 semanticRcsInterpolants
