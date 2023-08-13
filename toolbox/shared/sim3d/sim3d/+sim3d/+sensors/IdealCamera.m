@@ -1,36 +1,6 @@
 classdef IdealCamera<sim3d.sensors.AbstractCameraSensor
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
         function self=IdealCamera(varargin)
             r=sim3d.sensors.IdealCamera.parseInputs(varargin{:});
