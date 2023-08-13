@@ -1,8 +1,6 @@
 classdef Deg<sim3d.units.One
 
 
-
-
     methods
         function value=get(~,variable)
 
