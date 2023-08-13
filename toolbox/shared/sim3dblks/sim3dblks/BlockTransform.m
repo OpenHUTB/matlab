@@ -1,6 +1,5 @@
 function transform=BlockTransform(Block)
 
-
     transform=[];
 
     if~autoblkschecksimstopped(Block)
