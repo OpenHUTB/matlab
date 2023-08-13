@@ -1,8 +1,5 @@
 function exportOpenDriveFile(toolStripApplication)
 
-
-
-
     try
         if isempty(toolStripApplication.RoadSpecifications)
             ME=MException('DSD:NoRoadNetwork',getString(message('driving:exportOpenDrive:EmptyScenario')));
