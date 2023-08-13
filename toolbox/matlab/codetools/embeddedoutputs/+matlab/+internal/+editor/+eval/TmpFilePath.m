@@ -1,15 +1,5 @@
 classdef(Sealed)TmpFilePath
 
-
-
-
-
-
-
-
-
-
-
     properties(Constant,Hidden)
         EDITOR_FILE_TAG='EditorFileInfo';
     end
