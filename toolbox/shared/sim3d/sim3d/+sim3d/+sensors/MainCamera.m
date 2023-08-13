@@ -1,36 +1,6 @@
 classdef MainCamera<sim3d.sensors.AbstractCameraSensor
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
         function self=MainCamera(sensorID,vehicleID,cameraProperties,transform)
             sensorName='MainCamera1';
