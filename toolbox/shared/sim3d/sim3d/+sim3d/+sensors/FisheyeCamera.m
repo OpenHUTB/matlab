@@ -1,21 +1,9 @@
 classdef FisheyeCamera<sim3d.sensors.AbstractCameraSensor
 
 
-
-
     properties
-
-
-
         MappingCoefficients(1,4)single=[320,-0.001,0,0];
-
-
-
-
         DistortionCenter(1,2)uint32=[640,320];
-
-
-
 
         StretchMatrix(2,2)single{sim3d.sensors.FisheyeCamera.stretchMatrixValidation(StretchMatrix)}=[1,0;0,1];
     end
