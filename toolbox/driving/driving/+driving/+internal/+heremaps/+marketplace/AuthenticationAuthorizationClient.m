@@ -1,8 +1,5 @@
 classdef AuthenticationAuthorizationClient<handle
 
-
-
-
     properties(Access=private)
 
 AccessKeyId
