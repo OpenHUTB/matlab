@@ -1,7 +1,5 @@
 function[varargout]=sim3dblksprobabilisticradar(varargin)
 
-
-
     varargout{1}={};
 
     Block=varargin{1};
