@@ -1,8 +1,5 @@
 classdef ErrorRecoveryUtilities
 
-
-
-
     properties(Constant=true,Access=private)
         SUPRESS_OUTPUT_FEATURE_FLAG='SuppressCommandLineOutput';
     end
