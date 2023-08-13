@@ -1,13 +1,5 @@
 classdef OutputEventPreprocessor<handle
 
-
-
-
-
-
-
-
-
     properties(Access=private)
 EventCollector
 PreviousEvent
