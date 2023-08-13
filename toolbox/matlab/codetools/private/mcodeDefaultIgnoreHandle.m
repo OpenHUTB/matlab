@@ -1,13 +1,10 @@
 function retval=mcodeDefaultIgnoreHandle(hParent,h)
 
 
-
-
     retval=false;
 
     hParent=handle(hParent);
     h=handle(h);
-
 
 
     classname=class(h);
