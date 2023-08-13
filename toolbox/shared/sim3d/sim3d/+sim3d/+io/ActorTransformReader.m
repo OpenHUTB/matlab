@@ -1,9 +1,5 @@
 classdef ActorTransformReader<handle
 
-
-
-
-
     properties
         Reader=[];
         NumberOfParts=1;
