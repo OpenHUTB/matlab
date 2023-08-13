@@ -1,11 +1,5 @@
 function sim3dblkssharedhelp(fileStr)
 
-
-
-
-
-
-
     narginchk(0,1);
 
     if nargin<1
