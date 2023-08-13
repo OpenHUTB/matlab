@@ -1,7 +1,5 @@
 function[varargout]=sim3dblkspassrayset(varargin)
 
-
-
     varargout{1}={};
 
     Block=varargin{1};
