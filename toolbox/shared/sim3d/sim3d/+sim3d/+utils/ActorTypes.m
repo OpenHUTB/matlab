@@ -1,7 +1,5 @@
 classdef ActorTypes
 
-
-
     properties(Constant=true)
         PassVehicle='Sim3dPassVeh'
         PhysVehicle='Sim3dPhysVehicle'
