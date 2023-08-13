@@ -1,6 +1,5 @@
 classdef PreferredSide
 
-
     enumeration
 TOP
 LEFT
