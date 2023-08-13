@@ -1,8 +1,4 @@
 classdef ClassSpecifications<handle
-
-
-
-
     properties(SetAccess=protected,Hidden)
 Map
     end
