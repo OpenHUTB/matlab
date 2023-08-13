@@ -1,4 +1,3 @@
-
 function hgState=mobileGetChangedFigures(varargin)
 
     p=inputParser;
