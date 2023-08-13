@@ -1,8 +1,6 @@
 classdef SectionEventData<event.EventData
 
 
-
-
     properties
 SectionNumber
     end
