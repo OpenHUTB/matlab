@@ -1,45 +1,13 @@
 classdef TextureTransform
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties
-
-
 
         Position(1,2)double=[0,0];
 
-
-
-
-
-
         Velocity(1,2)double=[0,0];
 
-
-
-
-
-
         Scale(1,2)double=[1,1];
-
-
-
-
-
-
-
-
 
         Angle(1,1)double=0;
     end
