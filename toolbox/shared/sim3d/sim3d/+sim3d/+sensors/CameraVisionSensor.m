@@ -1,8 +1,5 @@
 classdef CameraVisionSensor<sim3d.sensors.VisionSensor
 
-
-
-
     methods
         function self=CameraVisionSensor(sensorID,vehicleID,sensorProperties,transform)
             sensorName=sim3d.sensors.Sensor.getSensorName('Camera',sensorID);
