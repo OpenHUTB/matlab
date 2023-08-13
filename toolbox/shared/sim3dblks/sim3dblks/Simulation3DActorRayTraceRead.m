@@ -2,10 +2,6 @@ classdef Simulation3DActorRayTraceRead<Simulation3DActor&...
 Simulation3DHandleMap
 
 
-
-
-
-
     methods(Access=protected)
         function icon=getIconImpl(~)
             icon={'Ray Trace','Get'};
