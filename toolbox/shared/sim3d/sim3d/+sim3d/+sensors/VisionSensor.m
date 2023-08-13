@@ -1,22 +1,5 @@
 classdef VisionSensor<sim3d.sensors.AbstractCameraSensor
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=protected,Constant=true)
 
 
