@@ -1,6 +1,5 @@
 classdef LastWarningGuard<handle
 
-
     properties
 WarningMessage
 WarningId
