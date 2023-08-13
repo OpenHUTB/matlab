@@ -1,40 +1,18 @@
 classdef Simulation3DUAV<Simulation3DActor
 
 
-
-
-
-
-
-
-
-
-
-
     properties
-
-
         Translation=zeros(1,3)
-
-
-
-
 
         Rotation=zeros(1,3)
     end
 
     properties(Nontunable)
-
-
         Mesh=messageString('TypeQuadrotor')
 
 
         MeshPath='/MathWorksUAVContent/UAVs/HexaRotorUAV/HexaRotor.HexaRotor'
-
-
-
         UAVColor=messageString('ColorBlack')
-
 
         ActorTag='SimulinkVehicle1'
     end
