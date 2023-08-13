@@ -1,10 +1,6 @@
 classdef CodeGenerationProxy<handle
 
 
-
-
-
-
     properties
         ActionRegistrator matlab.internal.editor.figure.Registrator
     end
