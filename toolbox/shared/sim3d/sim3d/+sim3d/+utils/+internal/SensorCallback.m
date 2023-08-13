@@ -1,13 +1,7 @@
 classdef SensorCallback
 
-
-
-
     methods(Static=true,Hidden=true)
         function addSensorTag(blk)
-
-
-
             if~bdIsLibrary(bdroot(blk))
                 Mdl=bdroot(blk);
                 sensorType='Sim3dSensor';
