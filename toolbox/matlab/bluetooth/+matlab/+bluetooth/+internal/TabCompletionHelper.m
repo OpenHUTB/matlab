@@ -1,9 +1,5 @@
 classdef TabCompletionHelper
 
-
-
-
-
     methods(Static,Access=public)
         function identifiers=getFoundSPPDevices
             cache=matlab.bluetooth.internal.SPPDevicesCache.getInstance;
