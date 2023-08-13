@@ -1,9 +1,6 @@
 classdef LiveAppManager<handle
 
 
-
-
-
     properties(Constant)
 
         INSERT_REQUEST_CHANNEL='/liveapps/insertRequest/';
