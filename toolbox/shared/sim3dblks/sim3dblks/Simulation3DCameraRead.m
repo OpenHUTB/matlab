@@ -2,11 +2,6 @@ classdef Simulation3DCameraRead<Simulation3DVisionSensor&...
 Simulation3DHandleMap
 
 
-
-
-
-
-
     properties(Access=private)
         ModelName=[];
     end
