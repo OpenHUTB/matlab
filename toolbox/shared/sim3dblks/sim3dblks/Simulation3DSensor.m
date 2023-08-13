@@ -1,54 +1,30 @@
 classdef Simulation3DSensor<Simulation3DActor
 
     properties(Constant,Hidden)
-
-
         MaxSensorIdentifier=65535;
     end
 
     properties(Nontunable)
-
-
-
         SensorIdentifier(1,1)uint32{mustBeLessThanOrEqual(SensorIdentifier,65535)}=uint32(1);
 
-
-
-
         VehicleIdentifier(1,:)char='SimulinkVehicle1';
-
-
-
 
 
         Translation(1,3)single=[0,0,0];
 
 
-
-
         Rotation(1,3)single=[0,0,0];
-
-
 
 
         IsEnabled(1,1)logical=true;
     end
 
     properties(Access=protected)
-
-
-
         Sensor=[];
-
-
 
         Translation0=[];
 
-
-
         Rotation0=[];
-
-
 
         MountTransform=[];
     end
