@@ -1,8 +1,6 @@
 classdef ConfigureMetadata<handle
 
 
-
-
     properties(Access=private)
         Model matlab.internal.task.metadata.Model
         MetadataUIViewModel matlab.internal.task.metadata.MetadataUIViewModel
