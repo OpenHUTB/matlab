@@ -1,8 +1,5 @@
 classdef BlobClient<driving.internal.heremaps.marketplace.ResourceClient
 
-
-
-
     properties(Constant,Access=protected)
 
         APIName='Blob'
