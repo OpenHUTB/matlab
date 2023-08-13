@@ -2,9 +2,6 @@ classdef Simulation3DTrailer<Simulation3DActor&...
 Simulation3DHandleMap
 
 
-
-
-
     properties
         Translation(:,3)double{mustBeFinite,mustBeReal,mustBeNonmissing}=zeros(7,3);
         Rotation(:,3)double{mustBeFinite,mustBeReal,mustBeNonmissing}=zeros(7,3);
