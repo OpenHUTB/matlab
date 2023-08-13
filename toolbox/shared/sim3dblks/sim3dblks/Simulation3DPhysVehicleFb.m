@@ -1,11 +1,6 @@
 classdef(StrictDefaults)Simulation3DPhysVehicleFb<Simulation3DActor&...
 Simulation3DHandleMap
 
-
-
-
-
-
     methods(Access=protected)
         function icon=getIconImpl(~)
             icon={'Transform','Get'};
