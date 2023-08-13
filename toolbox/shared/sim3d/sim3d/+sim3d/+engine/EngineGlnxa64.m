@@ -1,7 +1,5 @@
 classdef EngineGlnxa64<sim3d.engine.EngineInterface
 
-
-
     methods
         function self=EngineGlnxa64()
             self.EngineLastError=sim3d.engine.EngineReturnCode.OK;
