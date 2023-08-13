@@ -1,23 +1,5 @@
 function validatedFullFileName=getValidatedFile(inputFile,fileExtension)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if~ischar(inputFile)&&~(isstring(inputFile)&&isscalar(inputFile))
         error(message('rich_text_component:liveApps:InvalidInput'));
     end
@@ -42,7 +24,6 @@ function validatedFullFileName=getValidatedFile(inputFile,fileExtension)
     elseif~strcmp(ext,fileExtension)
         error(message('rich_text_component:liveApps:InvalidGeneralFileExtension',inputFile,fileExtension));
     end
-
 
 
     if isempty(filepath)
