@@ -2,57 +2,25 @@ classdef Simulation3DLidarSensor<Simulation3DSensor&...
 Simulation3DHandleMap
 
 
-
-
-
     properties(Nontunable)
-
-
-
 
         DetectionRange(1,1)single{mustBePositive,mustBeLessThanOrEqual(DetectionRange,500)}=single(120);
 
-
-
-
-
         RangeResolution(1,1)single{mustBePositive}=0.002;
-
-
-
 
         VerticalFOV(1,1)single{mustBePositive,mustBeLessThanOrEqual(VerticalFOV,90)}=40;
 
-
-
-
-
         VerticalResolution(1,1)single{mustBePositive,mustBeLessThanOrEqual(VerticalResolution,10)}=1.25;
-
-
-
 
         HorizontalFOV(1,1)single{mustBePositive,mustBeLessThanOrEqual(HorizontalFOV,360)}=360;
 
-
-
-
         HorizontalResolution(1,1)single{mustBePositive,mustBeLessThanOrEqual(HorizontalResolution,10)}=0.16;
-
-
-
 
         DistanceOutputEnabled(1,1)logical=true;
 
-
-
         ReflectivityOutportEnabled(1,1)logical=true;
 
-
-
         SemanticOutportEnabled(1,1)logical=true;
-
-
 
         TransformOutportEnabled(1,1)logical=true;
     end
