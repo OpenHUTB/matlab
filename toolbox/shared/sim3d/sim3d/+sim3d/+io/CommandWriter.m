@@ -1,8 +1,5 @@
 classdef CommandWriter < handle
 
-
-
-
 properties 
 Writer = [  ];
 SampleTime( 1, 1 )single{ mustBeFinite } = single(  - 1 );
