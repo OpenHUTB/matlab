@@ -1,7 +1,5 @@
 function setDependentFieldVisibility(block,fields)
 
-
-
     maskHandle=Simulink.Mask.get(block);
 
     independentFieldStatus=...
