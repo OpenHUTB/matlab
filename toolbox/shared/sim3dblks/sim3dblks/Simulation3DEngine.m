@@ -2,10 +2,6 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
 Simulation3DHandleMap
 
 
-
-
-
-
     methods(Access=protected)
         function icon=getIconImpl(~)
             icon={'3D Scene Configuration'};
