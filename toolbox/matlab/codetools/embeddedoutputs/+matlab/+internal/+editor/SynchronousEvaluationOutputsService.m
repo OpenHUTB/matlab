@@ -1,11 +1,5 @@
 classdef(Hidden)SynchronousEvaluationOutputsService<handle
 
-
-
-
-
-
-
     properties
         BatchedOutputs=[];
         EvalEndData=[];
