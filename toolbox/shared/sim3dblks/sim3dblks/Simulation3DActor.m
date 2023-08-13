@@ -1,9 +1,6 @@
 classdef(StrictDefaults)Simulation3DActor<matlab.System
 
     properties(Nontunable)
-
-
-
         SampleTime=Simulation3DEngine.DEFAULT_SAMPLE_TIME;
     end
 
