@@ -1,13 +1,8 @@
 classdef EvaluationOutputsServiceUtilities
 
 
-
-
     methods(Static,Hidden)
         function shouldUseTempFile=shouldUseTempFile(isSavedFile,filePath)
-
-
-
 
 
             import matlab.internal.editor.EvaluationOutputsServiceUtilities;
