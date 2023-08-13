@@ -1,23 +1,5 @@
 classdef(Sealed)FileSystemCacheHandler<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=immutable)
 
         Path string
