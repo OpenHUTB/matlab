@@ -1,7 +1,6 @@
 function typeArgumentValidations=validateFunctionSignaturesJSON_privateTypeArgumentValidations()
 
 
-
     typeArgumentValidations={...
     @(p,idx,log)validateChoicesValidExpression(p,idx,log)...
     };
