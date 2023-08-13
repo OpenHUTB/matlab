@@ -1,8 +1,5 @@
 classdef APILookupClient<driving.internal.heremaps.marketplace.RESTClient
 
-
-
-
     properties(Access=private)
 
 PlatformResponse
