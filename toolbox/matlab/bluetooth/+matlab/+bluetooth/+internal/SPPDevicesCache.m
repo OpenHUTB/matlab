@@ -1,9 +1,6 @@
 classdef SPPDevicesCache<handle
 
 
-
-
-
     properties(Constant,Access=?matlab.bluetooth.test.TestAccessor)
 
         Devices=containers.Map
@@ -12,8 +9,6 @@ classdef SPPDevicesCache<handle
 
     methods(Static,Access=public)
         function obj=getInstance()
-
-
 
             mlock;
             persistent cache;
@@ -31,9 +26,6 @@ classdef SPPDevicesCache<handle
 
     methods(Access=public)
         function setDevice(obj,name,address,channel)
-
-
-
 
 
             if isKey(obj.Devices,address)&&...
