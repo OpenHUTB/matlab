@@ -2,8 +2,6 @@ classdef Display<matlabshared.application.Application&...
     matlabshared.application.DynamicTabs
 
 
-
-
     properties
         Scenario;
 Simulator
