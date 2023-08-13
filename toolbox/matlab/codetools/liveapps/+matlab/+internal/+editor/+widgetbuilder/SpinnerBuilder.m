@@ -1,8 +1,6 @@
 classdef SpinnerBuilder<matlab.internal.editor.widgetbuilder.WidgetBuilder
 
 
-
-
     methods(Static)
         function spinner=layout(task,parent,data)
             id=data.widget.id;
