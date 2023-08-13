@@ -1,8 +1,5 @@
 classdef ActorRayTraceReader<handle
 
-
-
-
     properties
         Subscriber=[];
         NumberOfRays=1;
