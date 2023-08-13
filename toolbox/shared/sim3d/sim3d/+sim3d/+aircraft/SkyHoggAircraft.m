@@ -1,13 +1,8 @@
 classdef SkyHoggAircraft<sim3d.aircraft.Aircraft
 
 
-
-
     methods
         function self=SkyHoggAircraft(actorName,AircraftType,varargin)
-
-
-
 
             numberOfParts=11;
 
