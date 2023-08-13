@@ -1,13 +1,5 @@
 function labelDefs=checkLabelDefinitions(labelDefs)
 
-
-
-
-
-
-
-
-
     validateattributes(labelDefs,{'table'},{'nonempty'},'groundTruthMultisignal','LabelDefinitions');
 
     import vision.internal.labeler.validation.*
