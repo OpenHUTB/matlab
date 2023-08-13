@@ -1,18 +1,6 @@
 classdef SkyHogg
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Constant=true)
         Nose=struct(...
         'translation',single([2.46,0,-0.175]),...
