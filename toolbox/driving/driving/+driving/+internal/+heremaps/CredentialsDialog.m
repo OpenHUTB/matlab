@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 classdef CredentialsDialog<handle
 
     properties
