@@ -1,11 +1,6 @@
 classdef SemanticSegmentationVisionSensor<sim3d.sensors.VisionSensor
 
 
-
-
-
-
-
     methods
         function self=SemanticSegmentationVisionSensor(sensorID,vehicleID,sensorProperties,transform)
             sensorName=sim3d.sensors.Sensor.getSensorName('SemanticSegmentationSensor',sensorID);
