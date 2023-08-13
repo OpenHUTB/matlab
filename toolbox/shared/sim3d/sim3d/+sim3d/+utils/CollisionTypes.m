@@ -1,7 +1,5 @@
 classdef CollisionTypes
 
-
-
     properties(Constant=true)
         Min=0
         NoCollision=0
