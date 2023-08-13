@@ -1,15 +1,9 @@
 classdef CameraReader<handle
 
-
-
     properties
         Reader=[];
 
-
-
         HorizontalResolution=uint32(1920);
-
-
 
 
         VerticalResolution=uint32(1080);
