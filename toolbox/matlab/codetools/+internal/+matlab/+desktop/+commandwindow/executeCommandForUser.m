@@ -1,14 +1,5 @@
 function executeCommandForUser(command)
 
-
-
-
-
-
-
-
-
-
     import matlab.internal.lang.capability.Capability;
     useJavaScript=~Capability.isSupported(Capability.LocalClient)||feature('webdesktop');
 
