@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 function result=userdir()
 
     result=userpath;
