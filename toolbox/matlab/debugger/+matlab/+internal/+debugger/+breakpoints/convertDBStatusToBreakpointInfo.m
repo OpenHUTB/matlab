@@ -1,7 +1,5 @@
 function allBreakpointInfos=convertDBStatusToBreakpointInfo(dbstatusResult)
 
-
-
     allBreakpointInfos=struct([]);
     for i=1:length(dbstatusResult)
         dbStatusEntry=dbstatusResult(i);
