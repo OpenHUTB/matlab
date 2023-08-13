@@ -1,21 +1,7 @@
 classdef Math<handle
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods(Static)
-
 
         function M=rot321(XYZ)
             c=cos(XYZ);
