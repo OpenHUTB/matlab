@@ -1,9 +1,5 @@
 classdef Factory<handle
 
-
-
-
-
     properties(Constant,Access=?matlab.bluetooth.test.TestAccessor)
 
         Switcher=matlab.bluetooth.internal.ImplSwitcher
