@@ -1,8 +1,6 @@
 classdef LineEventData<matlab.internal.editor.events.EvaluationBaseEventData
 
 
-
-
     properties
         LineNumber;
     end
