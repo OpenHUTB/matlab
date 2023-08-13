@@ -1,16 +1,5 @@
 function insertCommandIntoHistoryWithNoPrompt(command)
 
-
-
-
-
-
-
-
-
-
-
-
     import matlab.internal.lang.capability.Capability;
     useJavaScript=~Capability.isSupported(Capability.LocalClient)||feature('webdesktop');
     if(useJavaScript)
