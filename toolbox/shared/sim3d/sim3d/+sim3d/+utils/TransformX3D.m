@@ -1,9 +1,6 @@
 classdef TransformX3D < sim3d.utils.Transform
 
 
-
-
-
 methods 
 function self = TransformX3D( translation, rotation, scale, units )
 
