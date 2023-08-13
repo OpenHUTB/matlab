@@ -1,14 +1,4 @@
 classdef(Abstract)HasAsyncCacheWriter<handle
-
-
-
-
-
-
-
-
-
-
     properties(Abstract,Constant,Access=protected)
 
 WebOptions
