@@ -1,11 +1,5 @@
 function value=webGraphicsPopup(value)
 
-
-
-
-
-
-
     mlock;
     persistent webGraphicsPopupOn;
 
