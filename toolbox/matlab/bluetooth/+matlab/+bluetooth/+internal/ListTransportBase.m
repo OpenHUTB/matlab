@@ -1,9 +1,5 @@
 classdef ListTransportBase<handle
 
-
-
-
-
     properties(Access=private)
 
 AsyncioChannel
@@ -27,9 +23,7 @@ RawDeviceData
 
         timeout=getScanTimeout(obj)
 
-
         output=parseSDPData(obj,input)
-
 
         output=extractDeviceInfo(obj,input);
     end
