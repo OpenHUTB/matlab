@@ -1,8 +1,6 @@
 classdef BoxTruck
 
 
-
-
     properties(Constant=true)
         FrontBumper=struct(...
         'translation',single([5.10,0,0.60]),...
