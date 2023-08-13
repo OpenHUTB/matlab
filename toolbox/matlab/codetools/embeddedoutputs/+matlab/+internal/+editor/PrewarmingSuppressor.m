@@ -1,8 +1,6 @@
 classdef PrewarmingSuppressor<handle
 
 
-
-
     properties(Access=private)
         wasPreviouslyDisabled=[];
         hadTemporaryValueSet=false;
