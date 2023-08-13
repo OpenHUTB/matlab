@@ -1,8 +1,5 @@
 classdef OpenDRIVEArbitrary<driving.internal.scenarioApp.road.Specification
 
-
-
-
     properties
         Centers;
         Width=6;
