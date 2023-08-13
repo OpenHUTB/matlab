@@ -1,7 +1,6 @@
 classdef Vehicle < sim3d.AbstractActor
 
 
-
 properties ( SetAccess = protected )
 
 Config
