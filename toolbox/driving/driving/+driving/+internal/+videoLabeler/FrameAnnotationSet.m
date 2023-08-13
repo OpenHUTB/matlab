@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 classdef FrameAnnotationSet<handle
     methods(Static,Hidden)
         function this=loadobj(that)
