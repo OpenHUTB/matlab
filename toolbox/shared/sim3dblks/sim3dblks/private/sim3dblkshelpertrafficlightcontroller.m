@@ -1,6 +1,5 @@
 function[varargout]=sim3dblkshelpertrafficlightcontroller(varargin)
 
-
     varargout{1}={};
 
     block=varargin{1};
