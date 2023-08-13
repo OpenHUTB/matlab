@@ -1,8 +1,5 @@
 classdef Simulation3DPedestrian<Simulation3DActor&Simulation3DHandleMap
 
-
-
-
     properties(Nontunable)
 
         PedMesh='Male 1';
