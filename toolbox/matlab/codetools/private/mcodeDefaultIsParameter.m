@@ -1,9 +1,6 @@
 function bool=mcodeDefaultIsParameter(hObj,hProp)
 
 
-
-
-
     bool=false;
     if isa(hObj,'matlab.graphics.Graphics')
         name=hProp.Name;
