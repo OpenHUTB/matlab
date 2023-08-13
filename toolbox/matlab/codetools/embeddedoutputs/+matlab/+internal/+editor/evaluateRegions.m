@@ -4,42 +4,10 @@ function evaluateRegions(editorId,requestId,regionList,fullText,shouldResetState
     outputStreamingEndHandler,isPrewarmExecution)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     import matlab.internal.editor.*
 
     regionEvaluator=matlab.internal.language.RegionEvaluator();
     outputsManager=OutputsManager();
-
 
 
     cleanupObj.endCapture=onCleanup(@()cleanupOutputManager(outputsManager,editorId));
@@ -66,8 +34,6 @@ function evaluateRegions(editorId,requestId,regionList,fullText,shouldResetState
         evalEndLis=addlistener(regionEvaluator,'EVALUATION_ENDING',evaluationEndHandler);
         cleanupObj.deleteEvalEndLis=onCleanup(@(~,~)delete(evalEndLis));
     end
-
-
 
 
     EDITOR_LOCK_TAG='EDITOR_LOCK';
