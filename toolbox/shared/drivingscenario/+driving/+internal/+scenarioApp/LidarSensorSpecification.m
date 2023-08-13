@@ -1,8 +1,5 @@
 classdef(ConstructOnLoad)LidarSensorSpecification<driving.internal.scenarioApp.SensorSpecification
 
-
-
-
     properties
 HasOrganizedOutput
 HasEgoVehicle
