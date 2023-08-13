@@ -1,8 +1,5 @@
 classdef MetadataClient<driving.internal.heremaps.marketplace.ResourceClient
 
-
-
-
     properties(Constant,Access=protected)
 
         APIName='Metadata'
