@@ -1,11 +1,5 @@
 function forceMGGUndock(fig)
 
-
-
-
-
-
-
     if strcmp(mls.internal.feature('graphicsAndGuis'),'off')
         return;
     end
