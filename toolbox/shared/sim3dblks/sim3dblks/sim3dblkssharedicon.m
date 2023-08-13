@@ -1,28 +1,19 @@
 function[varargout]=sim3dblkssharedicon(varargin)
 
-
-
-
-
-
     if nargin<2
         error(message('shared_sim3dblks:sim3dsharederrAutoIcon:invalidUsage'));
     end
-
 
     action=varargin{1};
     block=varargin{2};
 
     sim3dblksshared(block);
 
-
     if nargin>=3
         context=varargin{3};
     end
 
-
     varargout{1}=0;
-
 
     switch action
     case 'sim3dblksconfig'
