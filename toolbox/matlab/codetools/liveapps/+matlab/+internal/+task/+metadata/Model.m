@@ -1,8 +1,6 @@
 classdef Model<handle
 
 
-
-
     properties(Access=private)
 Directory
 RegisteredTaskList
@@ -19,16 +17,9 @@ IsValid
     methods(Access=public)
 
         function obj=Model(filePath)
-
-
-
-
-
             obj.SchemaUtils=matlab.internal.task.metadata.SchemaUtils();
 
-
             obj.parseFilePath(filePath);
-
 
 
             obj.updateModel();
