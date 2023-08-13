@@ -94,6 +94,3 @@ MANIFEST.MF是所有的jar包必须要有的吗
 不是所有的 JAR 文件都必须要包含 MANIFEST.MF 文件。在 Java 中，JAR 文件可以包含两种类型的条目：一种是类文件，另一种是元数据文件（如 MANIFEST.MF）。如果 JAR 文件中不包含 MANIFEST.MF 文件，则默认使用一个空的 MANIFEST.MF 文件。
 
 但是，在某些情况下，我们可能需要在 MANIFEST.MF 文件中指定一些属性，例如应用程序的主类，或者其他的元数据信息。在这种情况下，我们就需要手动创建一个 MANIFEST.MF 文件，并将其添加到 JAR 文件中。
-————————————————
-版权声明：本文为CSDN博主「G探险者」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/qq_34050399/article/details/129222527
