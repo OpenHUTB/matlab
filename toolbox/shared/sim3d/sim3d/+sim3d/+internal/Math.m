@@ -1,18 +1,6 @@
 classdef Math<handle
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     methods(Static)
 
 
