@@ -1,8 +1,5 @@
 classdef Engine < handle
 
-
-
-
 properties ( Constant = true, Hidden = true )
 engine = sim3d.engine.Engine(  )
 end 
