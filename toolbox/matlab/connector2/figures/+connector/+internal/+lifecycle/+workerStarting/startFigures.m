@@ -6,19 +6,8 @@ function startFigures()
     f=figure;
     peaks;
 
-
-
-
     matlab.graphics.internal.drawnow.startUpdate;
 
     close(f);
-
-
-
-
-
-
-
-
 
 end
