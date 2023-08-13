@@ -2,26 +2,13 @@ classdef(StrictDefaults)Simulation3dGet<Simulation3DActor&...
 Simulation3DHandleMap
 
 
-
-
-
-
     properties(Nontunable)
-
-
-
 
 
         TopicName char='mySignal'
 
 
-
-
-
         DataType char='uint8'
-
-
-
 
         MessageSize(1,2)uint32{mustBePositive}=[1,1];
     end
