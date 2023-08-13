@@ -1,9 +1,5 @@
 classdef AsyncIOChannelImpl
 
-
-
-
-
     methods(Access=public)
         function output=get(~)
             pluginDir=fullfile(toolboxdir("matlab"),"bluetooth","bin",computer("arch"));
