@@ -1,8 +1,5 @@
 function[varargout]=sim3dblksmessageget(varargin)
 
-
-
-
     varargout{1}={};
 
     Block=varargin{1};
