@@ -1,49 +1,6 @@
 classdef Actor < sim3d.AbstractActor
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 properties ( Hidden )
 Material( 1, 1 )sim3d.internal.MaterialAttributes;
 Physical( 1, 1 )sim3d.internal.PhysicalAttributes;
