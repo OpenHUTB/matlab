@@ -2,15 +2,7 @@ classdef Simulation3dSet<Simulation3DActor&...
 Simulation3DHandleMap
 
 
-
-
-
-
     properties(Nontunable)
-
-
-
-
 
         TopicName char='mySignal'
     end
