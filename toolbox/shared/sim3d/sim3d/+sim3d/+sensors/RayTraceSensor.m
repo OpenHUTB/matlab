@@ -1,7 +1,6 @@
 classdef RayTraceSensor<sim3d.sensors.Sensor
 
 
-
     properties(Access=private)
         RaytraceConfigPublisher=[];
         RaytraceSignalSubscriber=[];
