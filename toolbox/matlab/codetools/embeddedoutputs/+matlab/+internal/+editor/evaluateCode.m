@@ -3,23 +3,6 @@ function evaluateCode(fileName,filePath,...
     currentDocumentState,editorId,fileType,shouldThrowError,isSilent)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     import matlab.internal.editor.eval.EvaluatorExceptionInfo
     import matlab.internal.editor.eval.EvaluationEndInfo
     import matlab.internal.editor.events.ErrorEventData
