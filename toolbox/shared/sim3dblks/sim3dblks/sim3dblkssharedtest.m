@@ -1,11 +1,4 @@
 function licType=sim3dblkssharedtest(block)
-
-
-
-
-
-
-
     maskObj=get_param(block,'MaskObject');
     maskVars=maskObj.Parameters;
     maskVars=maskVars(strcmp({maskVars.Name},'aMode'));
