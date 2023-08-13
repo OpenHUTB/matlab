@@ -1,10 +1,5 @@
 function openPort=getOpenPort()
 
-
-
-
-
-
     if(isempty(getenv('MW_INSTALL')))
         openPort=0;
         return;
