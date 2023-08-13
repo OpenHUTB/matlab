@@ -14,25 +14,6 @@ end
 function takeSnapshot( self, Actor, Name, Properties, IncludeChildren )
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 R36
 self( 1, 1 )sim3d.internal.Snapshots;
 Actor( 1, 1 )sim3d.AbstractActor
