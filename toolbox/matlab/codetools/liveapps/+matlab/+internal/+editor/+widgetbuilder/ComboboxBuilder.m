@@ -1,9 +1,6 @@
 classdef ComboboxBuilder<matlab.internal.editor.widgetbuilder.WidgetBuilder
 
 
-
-
-
     methods(Static)
         function comboBox=layout(task,parent,data)
             import matlab.internal.editor.widgetbuilder.ComboboxBuilder;
