@@ -1,13 +1,5 @@
 function figureCreated(fig)
 
-
-
-
-
-
-
-
-
     if feature('LiveEditorRunning')
         return;
     end
