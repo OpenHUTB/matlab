@@ -1,124 +1,39 @@
 classdef(StrictDefaults)Simulation3DRadarTruthSensor<AbstractSim3DTruthSensor
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Nontunable)
 
-
-
-
-
         DetectionRange=[1,150];
-
-
-
-
-
-
 
 
         DetectionProbability=0.9
 
 
-
-
-
-
-
-
-
         ReferenceRange=100
-
-
-
-
-
-
-
-
 
 
         ReferenceRCS=0
 
 
-
-
-
-
-
-
-
         FalseAlarmRate=1e-6
-
-
-
-
-
-
-
 
 
         FieldOfView=[20,5]
 
 
-
-
-
-
-
-
         RangeResolution=2.5
-
-
-
-
-
 
 
         RangeBiasFraction=0.05
 
 
-
-
-
-
-
-
-
         AzimuthResolution=4
-
-
-
-
-
 
 
         AzimuthBiasFraction=0.1
 
 
-
-
-
-
-
         HasElevation(1,1)logical=true
-
-
-
-
-
 
         DisplayProjection(1,1)logical=false
 
