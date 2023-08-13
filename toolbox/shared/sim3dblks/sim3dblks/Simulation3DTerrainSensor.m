@@ -1,9 +1,6 @@
 classdef Simulation3DTerrainSensor<Simulation3DSensor&...
 Simulation3DHandleMap
 
-
-
-
     properties(Nontunable)
 NumberOfRays
 NumberOfWheels
