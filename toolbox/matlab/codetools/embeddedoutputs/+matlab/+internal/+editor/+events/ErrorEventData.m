@@ -1,8 +1,5 @@
 classdef ErrorEventData<matlab.internal.editor.events.EvaluationBaseEventData
 
-
-
-
     properties
 Exception
 FullFilePath
