@@ -1,15 +1,7 @@
 classdef Simulation3DHandleMap<matlab.System
 
 
-
-
-
-
-
     properties(Hidden,SetAccess=private)
-
-
-
         loadflag=false;
     end
 
