@@ -1,17 +1,7 @@
-
-
-
-
-
-
-
 classdef ROIAnnotationSet<handle
 
     methods(Static,Hidden)
         function this=loadobj(that)
-
-
-
             sublabelSet=vision.internal.labeler.ROISublabelSet;
             attributeSet=vision.internal.labeler.ROIAttributeSet;
 
