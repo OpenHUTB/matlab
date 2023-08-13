@@ -1,9 +1,3 @@
-
-
-
-
-
-
 function setLocalTimezone(~,timezone)
 
     persistent logger
