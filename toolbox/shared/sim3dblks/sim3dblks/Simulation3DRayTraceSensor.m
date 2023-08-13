@@ -2,8 +2,6 @@ classdef Simulation3DRayTraceSensor<Simulation3DSensor&...
 Simulation3DHandleMap
 
 
-
-
     properties(Nontunable)
         NumberOfBounces;
         NumberOfRays;
