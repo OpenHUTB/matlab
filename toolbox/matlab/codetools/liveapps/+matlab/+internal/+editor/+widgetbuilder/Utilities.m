@@ -4,25 +4,6 @@ classdef Utilities
     methods(Static)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function parse(data,handler)
             import matlab.internal.editor.widgetbuilder.Utilities;
 
