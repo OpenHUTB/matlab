@@ -1,29 +1,14 @@
 function datatipinfo(varName)
 
-
-
-
-
     if nargin~=1
         return;
     end
-
-
 
     varName=convertStringsToChars(varName);
 
     origFormat=get(0,'FormatSpacing');
     c=onCleanup(@()format(origFormat));
     format loose;
-
-
-
-
-
-
-
-
-
 
     variableExistsInWorkspace=evalin('caller',['exist(''',varName,''')']);
 
