@@ -1,7 +1,5 @@
 classdef IndicatorLamps
 
-
-
     properties(Constant=true)
         NONE=0
         ENGINE=1
