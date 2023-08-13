@@ -1,18 +1,8 @@
 classdef WeatherConfiguration<handle
 
 
-
-
-
     properties
-
-
-
-
         WeatherConfigParas(1,6)single=[40,90,10,0,0,1]
-
-
-
 
         RefreshWeather=false
     end
