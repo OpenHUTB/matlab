@@ -1,15 +1,5 @@
 classdef Publisher<handle
 
-
-
-
-
-
-
-
-
-
-
     properties(Constant=true,Access=protected)
         DefaultQueueDepth=1
         DefaultPacketSize=8192
