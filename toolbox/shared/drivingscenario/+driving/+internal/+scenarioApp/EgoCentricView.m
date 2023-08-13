@@ -1,8 +1,5 @@
 classdef EgoCentricView<driving.internal.scenarioApp.BaseView
 
-
-
-
     properties(SetAccess=protected,Hidden)
 EgoCarIdListener
 AxesContextMenu
