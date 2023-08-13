@@ -1,26 +1,16 @@
 classdef CameraConfigurationWriter<handle
 
 
-
-
     properties
         Writer=[];
 
-
-
         HorizontalResolution=uint32(1920);
-
-
 
 
         VerticalResolution=uint32(1080);
 
 
-
-
         HorizontalFOV=single(90);
-
-
 
 
         VerticalFOV=single(67.5);
