@@ -1,10 +1,5 @@
 function groundTruthLabelerInternal(varargin)
 
-
-
-
-
-
     if isdeployed()
         appName=getString(message('vision:labeler:ToolTitleVL'));
         disabledForCompile=~vision.internal.labeler.checkEnabledforCompiling(appName);
