@@ -1,36 +1,5 @@
 classdef(Hidden)AbstractCameraSensor<sim3d.sensors.Sensor
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=protected)
 
         HorizontalResolution(1,1)uint32=1920;
