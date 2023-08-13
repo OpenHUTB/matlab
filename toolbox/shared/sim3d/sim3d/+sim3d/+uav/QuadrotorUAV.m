@@ -1,10 +1,6 @@
 classdef QuadrotorUAV<sim3d.uav.UAV
 
 
-
-
-
-
     methods
         function self=QuadrotorUAV(actorName,quadRotorType,varargin)
 
