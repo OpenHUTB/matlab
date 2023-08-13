@@ -1,8 +1,5 @@
 classdef SmallPickupTruck
 
-
-
-
     properties(Constant=true)
         FrontBumper=struct(...
         'translation',single([3.0705,0,0.5]),...
