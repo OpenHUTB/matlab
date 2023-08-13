@@ -1,11 +1,6 @@
 classdef LidarSensor<sim3d.sensors.Sensor
 
 
-
-
-
-
-
     properties(Access=private)
         LidarPublisher=[];
         LidarDataSubscriber=[];
