@@ -1,9 +1,5 @@
 function licStatus=sim3dblkssharedeval(licType)
 
-
-
-
-
     switch licType
     case '0'
         licOrder=0;
