@@ -1,17 +1,8 @@
-
-
-
-
-
-
-
 classdef UnitRadarDelay<...
     matlabshared.tracking.internal.SimulinkBusUtilities
 %#codegen
 
     properties(Nontunable)
-
-
 
         NumUnitDelay(1,1){mustBeNonnegative,mustBeReal,mustBeFinite,mustBeInteger}=1
     end
