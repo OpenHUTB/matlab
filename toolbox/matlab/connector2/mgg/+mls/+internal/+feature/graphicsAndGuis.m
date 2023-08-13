@@ -1,8 +1,5 @@
 function value=graphicsAndGuis(value)
 
-
-
-
     if~isempty(getenv('Decaf'))||~usejava('swing')
         value='off';
         return;
