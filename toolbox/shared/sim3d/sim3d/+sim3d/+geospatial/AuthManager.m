@@ -1,7 +1,6 @@
 classdef AuthManager<handle
 
 
-
     methods(Static)
         function obj=AuthManager()
             settingsTree=settings;
