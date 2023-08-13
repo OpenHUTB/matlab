@@ -1,8 +1,5 @@
 function sub=subscribe(channel,callback,varargin)
 
-
-
-
     persistent logger
     if isempty(logger)
         logger=connector.internal.Logger('connector::message_service_m');
