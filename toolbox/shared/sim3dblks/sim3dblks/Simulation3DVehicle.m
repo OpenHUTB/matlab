@@ -1,10 +1,6 @@
 classdef Simulation3DVehicle<Simulation3DActor&...
 Simulation3DHandleMap
 
-
-
-
-
     properties
         Translation(5,3)double{mustBeFinite,mustBeReal,mustBeNonmissing}=zeros(5,3);
         Rotation(5,3)double{mustBeFinite,mustBeReal,mustBeNonmissing}=zeros(5,3);
