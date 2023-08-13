@@ -4,10 +4,6 @@ function setContainerBoundaries()
     connector.internal.updateContainerBoundaryPreferences();
 
 
-
-
-
-
     if isempty(isCallbackRegistered)
         matlab.prefdir.internal.regCallbackPrefdirUpdated(@connector.internal.updateContainerBoundaryPreferences);
         isCallbackRegistered=true;
