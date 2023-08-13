@@ -1,13 +1,5 @@
 classdef(Sealed)TempFolder<handle
 
-
-
-
-
-
-
-
-
     properties(Constant,Hidden)
 
         FolderList={
