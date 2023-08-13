@@ -1,10 +1,5 @@
 function preferServerSideRendering(value)
 
-
-
-
-
-
     if(nargin<1)
         value=true;
     end
@@ -16,8 +11,6 @@ function preferServerSideRendering(value)
 
     isWebGraphicsOn=strcmp(mls.internal.feature('webGraphics'),'on');
     if(value&&isWebGraphicsOn)
-
-
 
         setenv('capabilities_avoidWebGraphics','true');
 
