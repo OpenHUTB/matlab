@@ -1,10 +1,5 @@
 classdef EvaluationCompletionData<matlab.internal.editor.events.EvaluationBaseEventData
 
-
-
-
-
-
     properties
 DidRunToCompletion
 ErrorType
