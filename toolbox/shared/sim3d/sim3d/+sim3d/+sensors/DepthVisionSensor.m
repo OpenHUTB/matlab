@@ -1,10 +1,5 @@
 classdef DepthVisionSensor<sim3d.sensors.VisionSensor
 
-
-
-
-
-
     properties(Constant=true)
         DetectionRange=1000;
     end
