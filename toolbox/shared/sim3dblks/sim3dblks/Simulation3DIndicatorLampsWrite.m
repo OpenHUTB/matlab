@@ -1,8 +1,6 @@
 classdef Simulation3DIndicatorLampsWrite<matlab.System
 
 
-
-
     methods(Access=protected)
         function icon=getIconImpl(~)
             icon={'Transform','Set'};
@@ -12,41 +10,22 @@ classdef Simulation3DIndicatorLampsWrite<matlab.System
 
     properties(Nontunable)
 
-
-
         Engine(1,1)logical=false;
-
-
-
 
         Oil(1,1)logical=false;
 
-
-
-
         TurnSignalLeft(1,1)logical=false;
 
-
-
-
         TurnSignalRight(1,1)logical=false;
-
-
 
 
         Hazards(1,1)logical=false;
 
 
-
-
         LowBeams(1,1)logical=false;
 
 
-
-
         HighBeams(1,1)logical=false;
-
-
 
 
         FrontFog(1,1)logical=false;
