@@ -1,8 +1,4 @@
 classdef Specification<driving.internal.scenarioApp.Specification
-
-
-
-
     properties(Access=protected,Transient)
 Scenario
 RoadBoundaries
