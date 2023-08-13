@@ -1,8 +1,6 @@
 classdef SyntheticMouseEvent<handle
 
 
-
-
     properties
 HitObject
 Point
