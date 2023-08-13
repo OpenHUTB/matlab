@@ -1,9 +1,3 @@
-
-
-
-
-
-
 classdef ROILabelSet<handle
 
     methods(Static,Hidden)
