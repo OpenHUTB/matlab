@@ -1,15 +1,5 @@
 classdef PartitionTable<handle
 
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=private)
 
 Table
