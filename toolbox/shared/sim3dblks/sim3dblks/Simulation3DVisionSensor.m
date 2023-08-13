@@ -1,24 +1,11 @@
 classdef(Hidden)Simulation3DVisionSensor<Simulation3DSensor
 
 
-
-
-
-
-
     properties(Nontunable)
-
-
 
         HorizontalResolution(1,1)uint32{mustBeLessThanOrEqual(HorizontalResolution,1920)}=1920;
 
-
-
-
         VerticalResolution(1,1)uint32{mustBeLessThanOrEqual(VerticalResolution,1080)}=1080;
-
-
-
 
         HorizontalFOV(1,1)single{mustBeNonnegative,mustBeLessThanOrEqual(HorizontalFOV,120)}=60;
     end
