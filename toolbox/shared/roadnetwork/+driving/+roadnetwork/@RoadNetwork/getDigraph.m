@@ -1,9 +1,5 @@
 function g=getDigraph(this)
 
-
-
-
-
     roadArray=this.Roads.toArray;
     numRoads=length(roadArray);
 
