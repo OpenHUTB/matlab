@@ -1,10 +1,5 @@
 classdef CodeUtilities
 
-
-
-
-
-
     properties(Constant=true,Access=private)
     end
 
