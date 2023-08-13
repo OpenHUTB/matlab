@@ -2,61 +2,28 @@ classdef Simulation3DCamera<Simulation3DSensor&...
 Simulation3DHandleMap
 
 
-
-
     properties(Nontunable)
-
-
 
         FocalLength(1,2)single{mustBePositive(FocalLength)}=[1108,1108]
 
-
-
-
         OpticalCenter(1,2)single{mustBePositive(OpticalCenter)}=[640,360]
-
-
-
 
         ImageSize(1,2)uint32{mustBePositive(ImageSize)}=[720,1280]
 
-
-
-
         RadialDistortion(1,:)single{Simulation3DCamera.validateRadialDistortion(RadialDistortion)}=[0,0]
-
-
-
 
         TangentialDistortion(1,2)single=[0,0]
 
 
-
-
         SensorSkew(1,1)single=0
-
-
-
 
         DepthOutportEnabled(1,1)logical=false
 
-
-
-
         SemanticOutportEnabled(1,1)logical=false
-
-
-
 
         TransformOutportEnabled(1,1)logical=false
 
-
-
-
         TranslationInportEnabled(1,1)logical=false
-
-
-
 
         RotationInportEnabled(1,1)logical=false
     end
