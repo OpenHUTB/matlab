@@ -1,14 +1,9 @@
 classdef OutputsManager<handle
 
 
-
-
-
     properties
         EventPreprocessor=[];
         EventCollector=[];
-
-
 
 
         OutOfBandOutputEvents=[];
@@ -28,12 +23,6 @@ classdef OutputsManager<handle
 
         DebugHandler=[];
         DebugEventListeners=event.listener.empty;
-
-
-
-
-
-
 
 
         LastKnownLineNumber=-1;
