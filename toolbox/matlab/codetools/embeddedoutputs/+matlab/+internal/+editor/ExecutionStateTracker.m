@@ -1,7 +1,6 @@
 classdef ExecutionStateTracker
 
 
-
     methods(Static)
         function notifyExecutionStarted(editorId,requestId)
             obj=matlab.internal.editor.ExecutionStateTracker.getInstance();
