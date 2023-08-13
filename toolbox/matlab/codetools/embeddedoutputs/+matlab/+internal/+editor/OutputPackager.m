@@ -1,14 +1,6 @@
 classdef OutputPackager
 
 
-
-
-
-
-
-
-
-
     methods(Static)
 
         function outputsMessage=packageOutputs(editorId,requestId,filePath,outputs,completedRegionNumbers)
