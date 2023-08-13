@@ -1,9 +1,5 @@
 classdef ImplSwitcher<handle
 
-
-
-
-
     properties(SetAccess=?matlab.bluetooth.test.TestAccessor)
 ListTransportImpl
 ChannelImpl
