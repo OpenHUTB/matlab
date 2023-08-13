@@ -1,7 +1,6 @@
 classdef TerrainSensor<sim3d.sensors.Sensor
 
 
-
     properties(Access=private)
         TerrainSensorConfigPublisher=[]
         TerrainSensorSignalSubscriber=[]
