@@ -1,7 +1,5 @@
 function deleteSession(sessionName,sessionHomeDir,userDir,addonsDir)
 
-
-
     if nargin==2
         userDir=connector.internal.userdir;
         addonsDir=connector.internal.addonsdir;
