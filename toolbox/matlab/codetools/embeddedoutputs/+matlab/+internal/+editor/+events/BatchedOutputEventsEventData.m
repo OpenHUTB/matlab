@@ -1,8 +1,5 @@
 classdef BatchedOutputEventsEventData<event.EventData
 
-
-
-
     properties
 BatchedOutputEvents
 CompletedRegionNumbers
