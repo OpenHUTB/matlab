@@ -1,8 +1,5 @@
 classdef MarketplaceStrategy<driving.internal.heremaps.DataServiceStrategy
 
-
-
-
     properties(Constant,Hidden)
         CredentialsTokens={'AccessKeyID','AccessKeySecret'}
         ValidationURL=driving.internal.heremaps.marketplace.Constants.PlatformBaseURL
