@@ -1,29 +1,6 @@
 classdef ( Hidden )AbstractActor < handle
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 properties ( SetAccess = 'protected', GetAccess = 'protected' )
 
 
