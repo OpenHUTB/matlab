@@ -1,6 +1,3 @@
-
-
-
 function result=fevalJSON(functionName,arguments,numberOfOutputs,varargin)
 
     if nargin>3
