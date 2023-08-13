@@ -1,8 +1,5 @@
 function publish(channel,msg,varargin)
 
-
-
-
     if nargin>1
         msg=convertStringsToChars(msg);
     end
