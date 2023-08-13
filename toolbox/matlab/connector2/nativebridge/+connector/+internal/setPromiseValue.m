@@ -1,7 +1,3 @@
-
-
-
-
 function setPromiseValue(promiseId,json)
     if connector.isRunning
         service=connector.internal.ConnectorManager.Impl.NativeBridgeServiceProvider;
