@@ -1,7 +1,6 @@
 function typeArgumentValidations=validateFunctionSignaturesJSON_privateCrossSignatureValidations()
 
 
-
     typeArgumentValidations={...
     @(functionInfo,log)validateInputNamesAgaintDocumentation(functionInfo,log)...
     };
