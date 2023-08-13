@@ -1,11 +1,6 @@
 classdef EvaluatorException<MException
 
 
-
-
-
-
-
     properties(Access=private)
 PrunedStack
 LineNumber
@@ -14,10 +9,6 @@ Arg
     end
 
     properties(Constant=true,Access=private)
-
-
-
-
 
 
         LINE_NUMBER_REGEX='.+filename[^:]+:\s*(\d+)';
