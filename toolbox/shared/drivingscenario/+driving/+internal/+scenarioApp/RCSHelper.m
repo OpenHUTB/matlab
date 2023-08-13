@@ -1,8 +1,6 @@
 classdef RCSHelper<handle
 
 
-
-
     properties
         CurrentAzimuthLength=2;
         CurrentElevationLength=2;
