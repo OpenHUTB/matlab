@@ -1,8 +1,6 @@
 classdef ( Hidden )Aircraft < sim3d.vehicle.Vehicle
 
 
-
-
 properties ( SetAccess = protected )
 
 LightModule = [  ]
