@@ -1,8 +1,5 @@
 classdef LayerFactory<handle
 
-
-
-
     properties(Constant,Hidden)
 
         RequiredFields={'HereTileId','TileCenterHere2dCoordinate',...
