@@ -1,9 +1,5 @@
 function[csrfToken,validForMs]=getCsrfToken()
 
-
-
-
-
     if connector.isRunning
 
         msg=struct('type','connector/v1/CreateCsrfToken');
