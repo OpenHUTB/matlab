@@ -1,10 +1,4 @@
 function productName=getProductNameByClientType
-
-
-
-
-
-
     clientType=connector.internal.getClientType;
 
     productName='';
