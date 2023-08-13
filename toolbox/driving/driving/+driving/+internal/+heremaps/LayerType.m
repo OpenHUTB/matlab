@@ -1,17 +1,5 @@
 classdef LayerType
 
-
-
-
-
-
-
-
-
-
-
-
-
     enumeration
         None("")
 
