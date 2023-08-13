@@ -1,10 +1,7 @@
 classdef LayoutBuilder<matlab.internal.editor.widgetbuilder.WidgetBuilder
 
 
-
     methods(Static)
-
-
 
 
         function canHandleOwnChildren=processWidget(task,parent,data,type)
