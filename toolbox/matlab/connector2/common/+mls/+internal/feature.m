@@ -1,7 +1,5 @@
 function varargout=feature(name,newValue)
 
-
-
     if(nargin==0)
         error('Please specify a feature');
     end
