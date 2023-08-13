@@ -1,8 +1,5 @@
 classdef ThreeAxleTrailer
 
-
-
-
     properties(Constant=true)
         RearCenter=struct(...
         'translation',single([-12.0,0,4.0]),...
