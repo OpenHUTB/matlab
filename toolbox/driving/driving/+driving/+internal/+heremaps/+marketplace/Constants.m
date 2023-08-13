@@ -1,8 +1,5 @@
 classdef Constants
 
-
-
-
     properties(Constant)
         CatalogSearchStr={'hdlm-protobuf','hdlm-native'};
         CatalogConfigVersion='2';
