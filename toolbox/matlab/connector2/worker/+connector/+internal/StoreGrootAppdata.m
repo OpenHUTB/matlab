@@ -1,7 +1,5 @@
 classdef StoreGrootAppdata<handle
 
-
-
     properties(Constant)
         This=connector.internal.StoreGrootAppdata;
     end
