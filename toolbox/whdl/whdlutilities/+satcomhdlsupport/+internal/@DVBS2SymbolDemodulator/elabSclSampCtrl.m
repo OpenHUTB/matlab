@@ -1,0 +1,59 @@
+function sampleScControlNet=elabSclSampCtrl(~,topNet,blockInfo,datarate)
+
+
+
+
+
+    inDataRate(1)=datarate;
+    inDataRate(2)=datarate;
+
+    inportNames={'scalValidIn','readyOpReg'};
+    outportNames={'scalValidOut','inpRecvFlag'};
+
+    inTypes(1)=pir_ufixpt_t(1,0);
+    inTypes(2)=pir_ufixpt_t(1,0);
+
+
+    outTypes(1)=pir_ufixpt_t(1,0);
+    outTypes(2)=pir_ufixpt_t(1,0);
+
+
+    sampleScControlNet=pirelab.createNewNetwork(...
+    'Network',topNet,...
+    'Name','sampleScControlNet',...
+    'InportNames',inportNames,...
+    'InportTypes',inTypes,...
+    'InportRates',inDataRate,...
+    'OutportNames',outportNames,...
+    'OutportTypes',outTypes...
+    );
+
+    validIn=sampleScControlNet.PirInputSignals(1);
+    rdyOpReg=sampleScControlNet.PirInputSignals(2);
+    scalarValidIn=sampleScControlNet.PirOutputSignals(1);
+    inpRecvFlag=sampleScControlNet.PirOutputSignals(2);
+
+    desc='sampleScalarCtrl - controller for scalar valid';
+
+    fid=fopen(fullfile(matlabroot,'toolbox','whdl','whdlutilities',...
+    '+satcomhdlsupport','+internal','@DVBS2SymbolDemodulator','cgireml',...
+    'validScController.m'),'r');
+
+    fcnBody=fread(fid,Inf,'char=>char');
+    fclose(fid);
+
+    inports=[validIn,rdyOpReg];
+    outports=[scalarValidIn,inpRecvFlag];
+
+    sampleBusCtrl=sampleScControlNet.addComponent2(...
+    'kind','cgireml',...
+    'Name','validScController',...
+    'InputSignals',inports,...
+    'OutputSignals',outports,...
+    'EMLFileName','validScController',...
+    'EMLFileBody',fcnBody,...
+    'BlockComment',desc...
+    );
+    sampleBusCtrl.runConcurrencyMaximizer(0);
+
+end

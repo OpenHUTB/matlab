@@ -1,0 +1,59 @@
+classdef ParallelRandomizedHeuristic<DataTypeOptimization.ParallelRandomizedDescentHeuristic
+
+
+
+
+    methods(Hidden)
+        function initialize(this,solutionRepo)
+            this.solutionRepo=DataTypeOptimization.MetaHeuristics.TemperatureScheduler(solutionRepo,10);
+
+
+
+            nsHeuristics={};
+
+
+            nsHeuristics{end+1}=DataTypeOptimization.MetaHeuristics.RandomPerturbation(...
+            [-min(1,numel(this.problemPrototype.gddm)),0],...
+            min(this.workerOverloadFactor,numel(this.problemPrototype.dv)),...
+            numel(this.problemPrototype.dv));
+
+
+            nsHeuristics{end+1}=DataTypeOptimization.MetaHeuristics.RandomPerturbation(...
+            [-min(2,numel(this.problemPrototype.gddm)),0],...
+            min(this.workerOverloadFactor,numel(this.problemPrototype.dv)),...
+            numel(this.problemPrototype.dv));
+
+
+            nsHeuristics{end+1}=DataTypeOptimization.MetaHeuristics.RandomPerturbation(...
+            [-min(3,numel(this.problemPrototype.gddm)),0],...
+            min(this.workerOverloadFactor,numel(this.problemPrototype.dv)),...
+            numel(this.problemPrototype.dv));
+
+
+            nsHeuristics{end+1}=DataTypeOptimization.MetaHeuristics.RandomPerturbation(...
+            [-min(1,numel(this.problemPrototype.gddm)),min(1,numel(this.problemPrototype.gddm))],...
+            min(this.workerOverloadFactor,numel(this.problemPrototype.dv)),...
+            numel(this.problemPrototype.dv));
+
+
+            nsHeuristics{end+1}=DataTypeOptimization.MetaHeuristics.RandomPerturbation(...
+            [-min(2,numel(this.problemPrototype.gddm)),min(2,numel(this.problemPrototype.gddm))],...
+            min(this.workerOverloadFactor,numel(this.problemPrototype.dv)),...
+            numel(this.problemPrototype.dv));
+
+
+            nsHeuristics{end+1}=DataTypeOptimization.MetaHeuristics.RandomPerturbation(...
+            [-min(3,numel(this.problemPrototype.gddm)),min(3,numel(this.problemPrototype.gddm))],...
+            min(this.workerOverloadFactor,numel(this.problemPrototype.dv)),...
+            numel(this.problemPrototype.dv));
+
+
+
+            this.heuristicsScheduler=DataTypeOptimization.MetaHeuristics.HeuristicsScheduler(nsHeuristics);
+        end
+
+    end
+
+end
+
+

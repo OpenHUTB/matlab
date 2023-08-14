@@ -1,0 +1,16 @@
+function demuxComp=getHardwareDemuxComp(hN,hInSignals,hOutSignals,compName)
+
+
+
+    if nargin<4
+        compName='hwdemux';
+    end
+
+    demuxComp=hN.addComponent2(...
+    'kind','hwdemux_comp',...
+    'Name',compName,...
+    'InputSignals',hInSignals,...
+    'OutputSignals',hOutSignals...
+    );
+
+end

@@ -1,0 +1,3 @@
+function key = getDOMLicenseKey(~)
+key = ['E2CxoMCUQQVPCuGaQyyA+odbFuLq4ieXO+u0uhzGpzT2Hw34q1xv96l9ODrOkrNjuke8EzcwhwvHhM33VwjEJnnCCAz+JqX7gyMIXffpSWshECfKdtsl/yCbar4CmoP79VT5mojb3Bk2NxEn3mdeTYDwxgNUYif3Nouw0zNOf4ybkqyuhquPmjZ1Ud8AfXQ5A3Fim7I0FJUyWRm5EpUZw4nmGNCIjO77JivRI5V6rdKj1i5GuGkpJgQoeJCkVRQd56Yuhx0oL3eQVeCcOo2TAisjvHa1mwRg57Rj49ya9giZ' ];
+end

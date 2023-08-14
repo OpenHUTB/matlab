@@ -1,0 +1,35 @@
+function dlgStruct=getDialogSchema(this,str)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    dlgStruct=[];

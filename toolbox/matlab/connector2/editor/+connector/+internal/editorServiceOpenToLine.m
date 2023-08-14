@@ -1,0 +1,6 @@
+function future=editorServiceOpenToLine(filePath,lineNumber,column)
+    message=struct('type','connector/v1/OpenToLineInEditor','path',filePath,...
+    'lineNumber',lineNumber,'column',column);
+    future=connector.internal.synchronousNativeBridgeServiceProviderDeliver(message,...
+    {'connector/json/deserialize','connector/v1/editor'});
+end

@@ -1,0 +1,238 @@
+/*
+-----------------------------------
+TOC
+-----------------------------------
+
+Bootstrap Overrides:......Changes to base-Bootstrap CSS
+
+Globals:..................Styling of HTML and BODY
+
+Site Elements:............Re-usable site elements   
+
+Structure:................Site structural components
+
+Section Specific:.........Styles for Home and all Sub Pages
+
+Page/Element Specific:....Page, element or flow Specific CSS
+
+Responsive:...............Specific styles for Desktop, Tablet and Mobile
+
+Additive CSS:.............Additive/override CSS
+
+Browser Hacks:............Functionality Fixes for Older Browsers
+
+*/
+
+
+
+/* ---- Globals ---- */
+html { margin-bottom:0; }
+html body { overflow-x:hidden; position:relative; }
+
+.section_header { position:-webkit-sticky; position:sticky; top:0; /*z-index:6;*/ z-index:1036; }
+
+.sticky_header_container { border-bottom:1px solid #d4d4d4; border-left:1px solid #d4d4d4; background:#fff; position:sticky; position:-webkit-sticky; top:52px; z-index:5; }
+.sticky_header_container.peek { box-shadow:2px 2px 2px 0 rgba(0, 0, 0, 0.25);  }
+
+  /* Affix Overrides */
+  .sticky_header_container.affix,
+  .sticky_header_container.affix-bottom { box-shadow:2px 2px 2px 0 rgba(0, 0, 0, 0.25);  }
+
+  /* Fade Nav on Open/Close Off-Canvas Menu */
+  .horizontal_nav_container #subnav { opacity:1.0; transition:opacity 0.3s ease; }
+
+.horizontal_nav_container .navbar-nav { padding-top:7px; padding-left:0; margin-left:0; line-height:1.00; }
+.horizontal_nav_container .navbar-nav > li { padding:0; }
+.horizontal_nav_container .navbar-nav > li > a { padding:10px 10px 8px; line-height:1.00; text-align:center; }
+.horizontal_nav_container .navbar-nav > li > a > .result_count { font-size:11px; }
+.horizontal_nav_container .crux_search li > a { padding:3px 10px 2px; }
+.horizontal_nav_container .crux_search li > a.no_results { color:#1a1a1a; pointer-events:none; cursor:default; opacity:.5; }
+
+.horizontal_nav_container .navbar-nav > li.supplemental_crux_resource { border-left:1px solid #e6e6e6; }
+.horizontal_nav_container .navbar-nav > li.supplemental_crux_resource + li { border-left:none; }
+
+.horizontal_nav_container .navbar-nav > li > a,
+.horizontal_nav_container .navbar-nav > li > a:visited { color:#0076a8; }
+.horizontal_nav_container .navbar-nav > li > a:hover { color:#004b87; }
+
+.horizontal_nav_container .navbar-nav > li.active > a,
+.horizontal_nav_container .navbar-nav > li.active > a:hover { border-radius:4px; background:#e6f2fa; color:#1a1a1a; }
+
+.horizontal_nav_container .navbar-nav > li + li { padding-left:1px; border-left:none; }
+
+  /* Link-less */
+  .horizontal_nav_container .navbar-nav > li#crux_nav_documentation.active { padding:10px 10px 8px; border-radius:4px; background:#e6f2fa; color:#1a1a1a; line-height:1.00; text-align:center; }  
+  .horizontal_nav_container .navbar-nav > li#crux_nav_documentation.active > a { padding:0; background:transparent; } 
+
+
+@media only screen and (min-width:320px) {
+
+  #responsive_offcanvas .sticky_header_container { margin-left:46px; transition:margin-left .5s ease-in; }
+  #responsive_offcanvas .sticky_header_container { margin-left:35px; }
+  #responsive_offcanvas.offcanvas_active .sticky_header_container { margin-left:269px; }
+
+  #responsive_offcanvas.no_animate .offcanvas_actuator,
+  #responsive_offcanvas.no_animate .sticky_header_container,
+  #responsive_offcanvas.no_animate .offcanvas_content_container { transition:none; }
+
+  .offcanvas_actuator { font-size:14px; }
+  .sidebar-offcanvas { margin-top:-44px; }
+
+  #responsive_offcanvas.locked .sidebar-offcanvas { margin-top:0; }
+
+  .has_horizontal_local_nav#section_header_title:after { content: none; }
+
+}
+
+@media only screen and (min-width:320px) and (max-width:991px)  {   
+
+  #responsive_offcanvas.offcanvas_active .sticky_header_container { margin-left:46px; }
+  #responsive_offcanvas.offcanvas_active .sticky_header_container { margin-left:35px; }
+  .offcanvas_actuator { transition:none; overflow:hidden; }
+
+  /* Fix for iOS (g2179355) - Requires a non-zero left margin */
+  #responsive_offcanvas.offcanvas_active.locked .sticky_header_container { margin-left:0.000001px !important; }  
+
+}
+
+
+@media only screen and (max-width:767px) {
+
+  .mobile_crux_nav_trigger { margin-left:-15px; }
+  .mobile_crux_nav_trigger .btn { height:45px; border:none; border-radius:0; background:transparent !important; box-shadow:none !important; }
+  .mobile_crux_nav_trigger .dropdown-menu { width:200px; }
+  .mobile_crux_nav_trigger .dropdown-menu li { padding:0; margin-bottom:1px; font-size:13px;  }
+  .mobile_crux_nav_trigger .dropdown-menu li > a { color:#333; padding:5px 10px; display:block; }
+  .mobile_crux_nav_trigger .dropdown-menu li > a > .result_count { margin:0 0 5px 7px; display: block; float: right; }
+  .mobile_crux_nav_trigger .dropdown-menu li > a:hover { background-color:#f5f5f5; text-decoration: none; }
+
+  .mobile_crux_nav_trigger .dropdown-menu li ul { padding:0; }
+  .mobile_crux_nav_trigger .dropdown-menu li li { padding-left:7px; }
+
+  .mobile_crux_nav_trigger .dropdown-menu li.active > a { background:#e6f2fa; color:#333; }
+
+  .mobile_crux_nav_trigger .dropdown-menu li.crux_resource + li.crux_resource > a { padding-left:20px; }
+
+    /* Link-less */
+    .mobile_crux_nav_trigger .dropdown-menu li#crux_nav_mobile_documentation.active { padding:5px 10px; background:#e6f2fa; color:#333; display:block; }
+    .mobile_crux_nav_trigger .dropdown-menu li#crux_nav_mobile_documentation.active > a { padding:0; background:transparent; }  
+
+}
+
+
+
+#footer { position:relative; z-index:4; }
+
+
+
+/* ---- Off-Canvas Template ---- */
+.row-offcanvas { background:#fff; position:relative; }
+
+.sidebar-offcanvas { width:269px; padding:0; background-color:#fafafa; float:left; /*overflow-y:hidden; Need to move actuator */ }
+  
+.offcanvas_content_container { margin-left:35px; border-left:1px solid #d4d4d4; position:relative; transition:width .5s ease-in, margin-left .5s ease-in; /* z-index:4; */ }
+
+.content_container { min-height:100vh; }
+
+  /* Off-Canvas Template: Active */
+  .row-offcanvas.active .offcanvas_content_container { margin-left:269px; }
+  
+
+
+/* ---- Off-Canvas Nav ---- */
+.nav_list_wrapper { width:100%; /*padding-top:10px;*/ position:absolute; top:44px; right:0; bottom:0; left:0; overflow-y:auto; opacity:0; transition:opacity .25s ease }
+.nav_list_wrapper * { pointer-events: none; }
+
+.offcanvas_nav { font-size:12px; }
+
+
+  /* Off-Canvas Nav: Active */
+  .row-offcanvas.active .nav_list_wrapper { opacity:1.0; }
+  .row-offcanvas.active .nav_list_wrapper * { pointer-events: auto; }
+
+  /* Off-Canvas Nav:  Borderless Tabs */
+  .offcanvas_nav .tab-content { background:transparent; }
+
+  .offcanvas_nav .borderless_tab_controls a:focus { outline-offset:2px;  }  
+
+
+
+/* ---- Off-Canvas Actuator  ---- */
+
+  /* Actuator Container: Inactive */   
+  .offcanvas_actuator { width:100%; height:44px; color:#428bca; cursor:pointer; display:block; position:absolute; top:0; left:0; vertical-align:top; transition: all .5s ease-in; /*z-index:3; Removing bc of issue with Edge*/ }
+  .offcanvas_actuator { padding-top:6px; overflow:hidden; white-space: nowrap; }
+
+
+  /* Actuator Container: Active */ 
+  .offcanvas_actuator.active { transition: all .5s ease-in; }
+  
+
+  /* Actuator Container: Mobile */ 
+  .mobile_offcanvas_actuator { display: none; }
+
+
+  /* Off-Canvas Actuator: Button */
+
+    /* Actuator Button: Inactive */  
+    .offcanvas_actuator .btn { padding: 4px; margin-right: 3px; margin-left: 2px; background-color: transparent; float: left; }
+    .offcanvas_actuator .btn { padding:0; margin:0 0 0 1px; margin-right:2px; }
+
+    .offcanvas_actuator .btn,
+    .offcanvas_actuator .btn:active { box-shadow: none; /* outline: none; */ }
+
+    .offcanvas_actuator .btn:hover,
+    .offcanvas_actuator .btn:focus,
+    .offcanvas_actuator .btn:active { color: #428bca; }
+
+    /* Actuator Button: Active */
+    .offcanvas_actuator.active .btn:hover,
+    .offcanvas_actuator.active .btn:focus,
+    .offcanvas_actuator.active .btn:active { /* color: #9e9e9e; */ color: #428bca; } 
+
+    /* Actuator Button: Icon */
+    .offcanvas_actuator .btn .icon-menu { margin-top:0; color:#616161; font-size: 33px !important; line-height: 1.00; }
+    
+
+  /* Off-Canvas Actuator: Labels */
+
+    /* Actuator Labels: Inctive */  
+    .offcanvas_actuator .offcanvas_actuator_label { margin-top: 6px; color:#616161; display: block; float: left; opacity:0; transition: opacity .25s ease; }
+    .offcanvas_actuator .offcanvas_actuator_label:before { content: "CONTENTS"; }
+    .offcanvas_actuator .offcanvas_actuator_label:focus { padding: 4px; margin-top:2px; margin-left: -4px; border-radius: 4px;  background: #e5e5e5; /* outline: none; */ }
+    
+    .offcanvas_actuator .offcanvas_actuator_close:before { content: "Close"; }
+    .offcanvas_actuator .offcanvas_actuator_close { margin: 12px 15px 0 0; color: #0076a8; display: block; float: right; opacity: 1; transition: all .25s ease-in; }
+    .offcanvas_actuator .offcanvas_actuator_close:hover { color: #004b87; }
+    .offcanvas_actuator .offcanvas_actuator_close:focus { padding: 4px; margin-top: 8px; margin-right: 11px; border-radius: 4px; background: #e5e5e5; /* outline: none; */ }
+
+
+    /* Actuator Labels: Active */
+    .row-offcanvas.active .offcanvas_actuator .offcanvas_actuator_label { opacity:1.0;  }
+    
+    .offcanvas_actuator.active .offcanvas_actuator_close { opacity: 1; transition: all .25s ease-in; }      
+
+
+.offcanvas_content_container .sticky_header_container { margin-left:0 !important; border-left:none; top:52px !important; }
+.sidebar-offcanvas { margin-top:0 !important; }
+
+
+/* ---- CRUX Search Clear Affordance ---- */
+.crux_search li.active > a:hover:before { content:"\e64b" !important; font-family:'mathworks'; font-size:80%; font-style:normal; font-variant:normal; font-weight:normal; opacity:0.90; position:absolute; top:1px; right:1px; speak:none; text-decoration:none !important; text-transform:none; }
+
+
+/* ---- iPhone | iPad | Android Fixes ---- */
+@media only screen and (max-width:767px) {
+  .row-offcanvas { width:100vw; max-width:100vw; overflow-x:hidden; }
+
+  .sticky_header_container { position:static !important; }
+  .sticky_header_container.affix { position:fixed !important; }
+
+  .sticky_header_container.affix + .content_container { padding-top:66px !important; }
+}
+
+
+/* --- AEM Requried ---- */
+/* Global */
+.offcanvas_nav { padding: 7px 24px 20px 20px !important; color: #666; }
+.offcanvas_nav a { color: #666; }

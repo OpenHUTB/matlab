@@ -1,0 +1,2 @@
+
+pixelcontrol=privpixelcontrolbus;

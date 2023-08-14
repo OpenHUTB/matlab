@@ -1,0 +1,9 @@
+function instruction=createInstructionFromTgtFcn(targetSimdFcn,simdApi)
+
+    [~,tgtSimdType]=RTW.SimdServiceHelper.internal.getSimdIntrinsicAndType(targetSimdFcn,simdApi);
+
+    instruction=target.internal.create('Instruction',...
+    'Intrinsic',targetSimdFcn.Operation.Name,...
+    'BaseType',tgtSimdType.BaseDataTypeName,...
+    'Width',uint16(tgtSimdType.NumberOfElements));
+end

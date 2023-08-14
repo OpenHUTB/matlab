@@ -1,0 +1,50 @@
+/* Overrides for Archived Doc Center */
+
+/*
+-----------------------------------
+TOC
+-----------------------------------
+
+Bootstrap Overrides:......Changes to base-Bootstrap CSS
+
+Page Globals:.............Styling of HTML and BODY
+
+Site Elements:............Re-usable site elements   
+
+Structure:................Site structural components
+
+Section Specific:.........Styles for Home and all Sub Pages
+
+Page/Element Specific:....Page, element or flow Specific CSS
+
+Responsive:...............Specific styles for Desktop, Tablet and Mobile
+
+Additive CSS:.............Additive/override CSS
+
+*/
+
+
+/*-----------------------------------
+   Structure
+-------------------------------------*/
+
+/* ---- Horizontal Nav ---- */
+.horizontal_nav_container .crux_browse > li.supplemental_crux_resource { display:none !important; }
+
+.mobile_crux_nav_trigger .dropdown-menu > li.supplemental_crux_resource { display:none !important; }
+
+
+
+/*-----------------------------------
+   Site Elements
+-------------------------------------*/
+
+/* ---- Product and Web Specific Links ---- */
+
+  /* Product and Web Specific Links: Hide/Show */
+  .not_coming_from_product .doc_section_title { display:none; }
+  .not_coming_from_product .archived_doc_section_title { display:block; }
+
+
+/* ---- Search : g2606295 ---- */
+.thumbnail_container[style*="background-image:url(matlab/ref/plottype"] { background-size:auto !important; }  

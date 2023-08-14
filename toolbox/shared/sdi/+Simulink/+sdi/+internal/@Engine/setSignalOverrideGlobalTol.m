@@ -1,0 +1,13 @@
+
+function setSignalOverrideGlobalTol(this,id,value)
+    this.helperSetTol(id,value,@(id,value)this.sigRepository.setSignalOverrideGlobalTol(id,value),...
+    'SDI:sdi:mgOverrideGlobalTol','overrideGlobalTol');
+    notifyValue=DAStudio.message('SDI:sdi:mgOptionNo');
+    if(value)
+        notifyValue=DAStudio.message('SDI:sdi:mgOptionYes');
+    end
+    notify(this,'propertyChangeEvent',...
+    Simulink.sdi.internal.SDIEvent('propertyChangeEvent',id,...
+    Simulink.sdi.internal.StringDict.mgLaggingTol,...
+    notifyValue));
+end

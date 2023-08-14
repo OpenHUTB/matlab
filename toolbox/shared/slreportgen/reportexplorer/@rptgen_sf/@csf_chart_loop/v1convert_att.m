@@ -1,0 +1,23 @@
+function att=v1convert_att(h,att,varargin)
+
+
+
+
+
+
+
+    att.SortBy=att.SortBy(2:end);
+    att.LoopType=att.LoopType(2:end);
+
+
+
+
+    att.isFilterList=att.isSLFilterList;
+
+    att.SFFilterTerms=att.FilterTerms{1};
+    att.FilterTerms=att.FilterTerms{2};
+
+    if~isempty(att.SFFilterTerms)&~isempty(att.SFFilterTerms{1})
+
+        att.SFFilterTerms{1}=['.',att.SFFilterTerms{1}];
+    end

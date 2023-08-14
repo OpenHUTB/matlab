@@ -1,0 +1,26 @@
+classdef Format<Rptgen.TitlePage.HTML.Format
+
+
+
+
+    methods
+
+        function this=Format()
+            this@Rptgen.TitlePage.HTML.Format('verso');
+            this.IncludeElements=...
+            {
+            Rptgen.TitlePage.HTML.Verso.Title(),...
+            Rptgen.TitlePage.HTML.Verso.Subtitle(),...
+            Rptgen.TitlePage.HTML.Verso.Author(),...
+            Rptgen.TitlePage.HTML.Verso.Image(),...
+            Rptgen.TitlePage.HTML.Verso.Copyright(),...
+            Rptgen.TitlePage.HTML.Verso.PubDate(),...
+            Rptgen.TitlePage.HTML.Verso.LegalNotice(),...
+            Rptgen.TitlePage.HTML.Verso.Abstract()
+            };
+        end
+
+    end
+
+end
+

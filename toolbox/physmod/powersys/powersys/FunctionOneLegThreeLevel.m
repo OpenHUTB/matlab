@@ -1,0 +1,47 @@
+function[V,Idc]=FunctionOneLegThreeLevel(g,Vdc,I)
+%#codegen
+    coder.allowpcode('plain');
+    dataType='double';
+    V=zeros(2,1,dataType);
+    Idc=zeros(2,1,dataType);
+    if(g(1)>g(2))
+        k2=g(2);
+    else
+        k2=g(1);
+    end
+    if(g(4)>g(3))
+        k1=g(3);
+    else
+        k1=g(4);
+    end
+    V(1)=-k1*Vdc(2)+(1-g(3))*Vdc(1);
+    V(2)=-k2*Vdc(1)+(1-g(2))*Vdc(2);
+    In=I(2)-I(1);
+    if(In>=0)
+        Idc(1)=k2*In+I(1);
+        Idc(2)=g(2)*In-I(2);
+    else
+        Idc(1)=-g(3)*In-I(1);
+        Idc(2)=-k1*In-I(2);
+    end
+    if((g(3)+g(4)==2)&&(g(2)==1)&&(g(1)==0))
+        Idc(1)=0;
+        Idc(2)=I(2);
+        V(1)=-Vdc(2);
+        V(2)=0;
+    end
+    if((g(1)+g(2)==2)&&(g(3)==1)&&(g(4)==0))
+        Idc(1)=I(1);
+        Idc(2)=0;
+        V(1)=0;
+        V(2)=-Vdc(1);
+    end
+    if((g(1)+g(2)+g(3)+g(4))==4)
+        Idc(1)=I(1);
+        Idc(2)=I(2);
+        V(1)=-Vdc(2);
+        V(2)=-Vdc(1);
+    end
+
+
+

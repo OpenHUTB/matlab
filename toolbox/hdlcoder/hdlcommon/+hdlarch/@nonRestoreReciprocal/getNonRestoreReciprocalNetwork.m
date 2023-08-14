@@ -1,0 +1,23 @@
+function hnonRestoreNet=getNonRestoreReciprocalNetwork(topNet,hInSignals,hOutSignals,reciprocalInfo)
+
+
+
+
+
+    hnonRestoreNet=pirelab.createNewNetwork(...
+    'Network',topNet,...
+    'Name',reciprocalInfo.networkName,...
+    'InportNames',{'recip_in'},...
+    'InportTypes',[hInSignals(1).Type],...
+    'InportRates',[hInSignals(1).SimulinkRate],...
+    'OutportNames',{'recip_out'},...
+    'OutportTypes',[hOutSignals(1).Type]);
+
+
+    recip_in=hnonRestoreNet.PirInputSignals(1);
+
+    recip_out=hnonRestoreNet.PirOutputSignals(1);
+
+
+    hdlarch.nonRestoreReciprocal.getNonRestoreReciprocalComp(hnonRestoreNet,[recip_in],recip_out,reciprocalInfo);
+

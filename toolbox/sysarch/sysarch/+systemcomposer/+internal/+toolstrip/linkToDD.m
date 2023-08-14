@@ -1,0 +1,9 @@
+
+function linkToDD(cbinfo)
+    studio=cbinfo.studio;
+    [bdOrDDName,interfaceCatalogStorageContext]=...
+    systemcomposer.internal.getModelOrDDName(studio);
+    systemcomposer.InterfaceEditor.linkToDD(...
+    bdOrDDName,...
+    interfaceCatalogStorageContext);
+end

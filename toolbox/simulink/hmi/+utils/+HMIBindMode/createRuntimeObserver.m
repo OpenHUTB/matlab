@@ -1,0 +1,16 @@
+function createRuntimeObserver(sigSpec,bIsModelSimulating)
+    if bIsModelSimulating
+        observers=[];
+        c=Simulink.HMI.SignalClient;
+        c.ObserverType='webclient_observer';
+        c.ObserverParams=...
+        Simulink.HMI.AsyncQueueObserverAPI.getDefaultObserverParams(c.ObserverType);
+        observers(1).CustomClients=Simulink.HMI.StreamingClients();
+        observers(1).CustomClients.add(c);
+        simulink.hmi.signal.addRuntimeObserver(...
+        sigSpec.BlockPath,...
+        sigSpec.OutputPortIndex,...
+        observers,...
+        true);
+    end
+end

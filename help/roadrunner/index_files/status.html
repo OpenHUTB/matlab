@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://login.mathworks.com/embedded-login/v2/status.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>MathWorks Account Status</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script src="./jquery.min.js.下载"></script>
+<script src="./embedded-sso.js.下载"></script>
+<script type="text/javascript">
+(function(window){
+	/** initialization **/
+  window.addEventListener('message', EmbeddedSSO.receiver, false);
+  var msg = {"event":"connected","component":"status"};
+  if(!EmbeddedSSO.cookiesAreEnabled()){
+	  msg = {"event":"cookiesDisabled","component":"status"};
+  }
+  EmbeddedSSO.sendMessage(msg, "*");
+})(window);
+</script>
+</head>
+<body>
+
+ </body></html>

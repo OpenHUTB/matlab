@@ -1,0 +1,9 @@
+function mcodeConstructor(this,code)
+
+
+
+
+
+
+
+

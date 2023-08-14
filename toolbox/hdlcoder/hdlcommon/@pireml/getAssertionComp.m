@@ -1,0 +1,4 @@
+function absComp=getAssertionComp()
+
+
+end

@@ -1,0 +1,89 @@
+function[originX_w,originZ_w,posX_fw_l,posZ_fw_l,posX_rw_l,posZ_rw_l]=automlMotoLngBodyGeomInplane(px,pz,thetara,thetafrm,pdf,ArmRrLen,WhlRrR,FrkOfs,FrmLen,CpRrX0,CpRrZ0,FrmAng0,ArmRrAng0,FrkFrL0)
+
+%#codegen
+
+    coder.allowpcode('plain')
+
+
+
+
+    Grade=0;
+    t2=cos(Grade);
+    t3=sin(Grade);
+    t4=cos(thetara);
+    t5=cos(thetafrm);
+    t6=cos(ArmRrAng0);
+    t7=cos(FrmAng0);
+    t8=sin(thetara);
+    t9=sin(thetafrm);
+    t10=sin(ArmRrAng0);
+    t11=sin(FrmAng0);
+    t12=FrkOfs+FrmLen;
+    t20=-WhlRrR;
+    t22=-px;
+    t23=-pz;
+    t24=-ArmRrAng0;
+    t25=-FrmAng0;
+    t26=-CpRrX0;
+    t27=-CpRrZ0;
+    t13=ArmRrLen.*t4;
+    t14=ArmRrLen.*t6;
+    t15=ArmRrLen.*t8;
+    t16=ArmRrLen.*t10;
+    t17=FrkFrL0.*t7;
+    t18=pdf.*t5;
+    t19=FrkFrL0.*t11;
+    t21=pdf.*t9;
+    t28=t5.*t12;
+    t29=t7.*t12;
+    t30=t9.*t12;
+    t31=t11.*t12;
+    t44=t24+t25+thetara+thetafrm;
+    t32=px+t13;
+    t33=t14+CpRrX0;
+    t40=WhlRrR+t15+t23;
+    t41=WhlRrR+t16+t27;
+    t45=cos(t44);
+    t46=sin(t44);
+    t47=ArmRrLen+t19+t29;
+    t48=ArmRrLen+t21+t28;
+    t61=-t6.*(t17-t31);
+    t63=-t10.*(t17-t31);
+    t68=(t10.*(t17-t31))./2.0;
+    t36=t2.*t32;
+    t37=t2.*t33;
+    t38=t3.*t32;
+    t39=t3.*t33;
+    t49=t2.*t40;
+    t50=t2.*t41;
+    t51=t3.*t40;
+    t53=t3.*t41;
+    t57=t6.*t47;
+    t58=t4.*t48;
+    t59=t10.*t47;
+    t60=t8.*t48;
+    t42=-t37;
+    t43=-t38;
+    t55=-t49;
+    t56=-t51;
+    t66=t57./2.0;
+    t69=t66+t68+CpRrX0;
+    t70=t3.*t69;
+    t71=t2.*t69;
+    t72=-t70;
+    t74=t42+t53+t71;
+    t75=t39+t50+t72;
+    t76=t45.*t74;
+    t78=t46.*t74;
+    t77=t45.*t75;
+    t79=t46.*t75;
+    originX_w=t36+t56+t76+t79;
+    t81=-t78;
+    originZ_w=t43+t55+t77+t81;
+    t80=-t77;
+    t82=t22+t36+t56+t76+t79;
+    t83=pz+t20+t38+t49+t78+t80;
+    posX_fw_l=t26-t57+t63+t71+t45.*(px-t36+t51+t58-t76-t79+t8.*(t18-t30))-t46.*(-t60+t83+t4.*(t18-t30));
+    posZ_fw_l=WhlRrR+t27+t59+t61+t72+t46.*(px-t36+t51+t58-t76-t79+t8.*(t18-t30))+t45.*(-t60+t83+t4.*(t18-t30));
+    posX_rw_l=t26+t71-t45.*t82-t46.*t83;
+    posZ_rw_l=WhlRrR+t27+t72+t45.*t83-t46.*t82;

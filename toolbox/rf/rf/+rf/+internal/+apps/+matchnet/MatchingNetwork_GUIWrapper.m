@@ -1,0 +1,343 @@
+
+classdef MatchingNetwork_GUIWrapper<matchingnetwork
+
+
+
+    properties(Access=protected)
+
+
+        PerformanceScoreComponents cell
+    end
+
+
+    methods(Access=public)
+        function this=MatchingNetwork_GUIWrapper(varargin)
+            this@matchingnetwork(varargin{:});
+            this.clearEvaluationParameter(1);
+        end
+    end
+
+
+    methods(Access=public)
+        function pauseAutoupdate(obj)
+            obj.AutoupdateEnabled=false;
+        end
+
+        function resumeAutoupdate(obj)
+            obj.AutoupdateEnabled=true;
+            obj.autoupdate();
+        end
+
+        function forceSort(this)
+            this.autosort_2();
+        end
+
+        function[auto,user,sorted]=getAllCircuitNames(this)
+            auto=this.AutoCktsNames;
+            user=this.UserCktsNames;
+            sorted=this.SortedCktsNames;
+        end
+
+        function testsFailed=getPerformanceTestsFailed(this,circuitNames)
+            [~,~,circuitIndices]=this.cktNamesToIndices(circuitNames);
+            testsFailed=this.PerformanceTestsFailed(circuitIndices);
+            if(length(testsFailed)~=length(circuitNames))
+                testsFailed=cell(length(circuitNames),1);
+            end
+        end
+
+
+        function[net,values]=getCircuitDetails(this,circuitName)
+            [~,~,circuitIndex]=this.cktNamesToIndices(circuitName);
+            if(isempty(circuitIndex))
+                net=[];
+                values=[];
+                return;
+            end
+            if(this.Nets(circuitIndex,1))
+                net=this.Nets(circuitIndex,:);
+                values=this.Values(circuitIndex,:);
+
+                badComponents=(net==0);
+                net(badComponents)=[];
+                values(badComponents)=[];
+            else
+                net=this.exportCircuits(circuitIndex);
+                values=[];
+            end
+
+        end
+    end
+
+
+
+
+    methods(Access=public)
+
+
+
+
+
+
+
+        function[params,srcS,loadS,origMatch]=calculateLoadedSParameters(this,frequencyList)
+
+            circuitIndices=1:length(this.SortedCkts);
+            if(nargin<2||isempty(frequencyList))
+                [frequencyList]=this.constructFrequencyList();
+            end
+            validateattributes(frequencyList,{'numeric'},{'vector','real','finite','nonnan','positive','nondecreasing'});
+
+            if(isempty(frequencyList))
+                error(message('rf:matchingnetwork:NonIntersectSrcLoad'))
+            end
+
+
+
+
+
+            [~,srcZ]=this.interpretImpedanceData(this.SourceImpedanceData,this.SourceDataType,frequencyList);
+            [~,loadZ]=this.interpretImpedanceData(this.LoadImpedanceData,this.LoadDataType,frequencyList);
+            tempSrcZ=reshape(squeeze(srcZ),[],1);
+            tempLoadZ=reshape(squeeze(loadZ),[],1);
+            z0=50;
+
+
+            ckts=this.exportCircuits(circuitIndices);
+
+            initialCircuit=circuit;initialCircuit.setports([1,0],[1,0]);
+            ckts(end+1)=initialCircuit;
+
+            cktZParams=arrayfun(@(c)zparameters(sparameters(c,frequencyList,z0)),ckts,'UniformOutput',false);
+
+            params=cell(length(ckts),2);
+            for k=1:length(ckts)
+                if(k<=length(this.SortedCktsNames))
+                    params{k,1}=this.SortedCktsNames{k};
+                end
+
+                z=zparameters(cktZParams{k});
+
+                S=zeros(2,2,length(z.Parameters(1,1,:)));
+
+                for l=1:length(S(1,1,:))
+                    F=diag([1/(2*sqrt(real(tempSrcZ(l)))),1/(2*sqrt(real(tempLoadZ(l))))]);
+                    zr=diag([tempSrcZ(l),tempLoadZ(l)]);
+                    S(:,:,l)=F*(z.Parameters(:,:,l)-conj(zr))*inv(z.Parameters(:,:,l)+zr)*inv(F);
+                end
+                params{k,2}=sparameters(S,frequencyList,z0);
+            end
+
+
+            origMatch=params{end,2};params(end,:)=[];
+            srcS=(tempSrcZ-conj(z0))./(tempSrcZ+z0);
+            loadS=(tempLoadZ-conj(z0))./(tempLoadZ+z0);
+            srcS=sparameters(srcS,frequencyList,z0);
+            loadS=sparameters(loadS,frequencyList,z0);
+        end
+
+        function Z=interpretZ(this,type,varargin)
+            if nargin==2
+                freqlist=this.CenterFrequency;
+            else
+                freqlist=varargin{1};
+            end
+            [~,Z]=this.interpretImpedanceData(this.(type+"ImpedanceData"),...
+            this.(type+"DataType"),freqlist);
+        end
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+
+
+
+
+
+
+        function autosort_2(this)
+
+
+            persistent srcZ loadZ freqList
+
+            if isempty(freqList)
+                freqList=this.constructFrequencyList();
+
+                [~,srcZ]=this.interpretImpedanceData(...
+                this.SourceImpedanceData,this.SourceDataType,freqList);
+                [~,loadZ]=this.interpretImpedanceData(...
+                this.LoadImpedanceData,this.LoadDataType,freqList);
+            else
+                freqListnew=this.constructFrequencyList();
+                if~isequal(freqList,freqListnew)
+                    freqList=freqListnew;
+
+                    [~,srcZ]=this.interpretImpedanceData(...
+                    this.SourceImpedanceData,this.SourceDataType,freqList);
+                    [~,loadZ]=this.interpretImpedanceData(...
+                    this.LoadImpedanceData,this.LoadDataType,freqList);
+                end
+            end
+
+
+
+            circuitPerformance=zeros(1,length(this.SortedCkts));
+
+            c=this.exportCircuits('all');
+            passed=zeros(1,length(c));
+            testsFailed=cell(1,length(c));
+
+            for k=1:length(this.SortedCkts)
+                [gamma,gain]=this.calcS11S21_circuitobj(srcZ,c(k),loadZ,freqList);
+                [circuitPerformance(k),passed(k),testsFailed{k}]=this.EvaluationParameters.evaluatePerformance(20*log10(abs(gamma)),10*log10(abs(gain)),freqList);
+            end
+
+
+
+            [this.PerformanceScores,sortedIndices]=sort(circuitPerformance,'descend');
+            this.PerformancePassed=passed(sortedIndices);
+            this.PerformanceTestsFailed=testsFailed(sortedIndices);
+
+
+            this.SortedCkts=this.SortedCkts(sortedIndices);
+            this.SortedCktsNames=this.SortedCktsNames(sortedIndices);
+
+
+            userCktNets=zeros([length(this.UserCkts),1]);
+            userCktValues=userCktNets;
+            for j=1:length(this.UserCkts)
+                [tempnet,tempval,flag]=this.parseCircuitObject(this.UserCkts(j),false);
+
+                if(flag~=0)
+                    tempnet=[];
+                    tempval=[];
+
+                end
+
+                if(length(tempnet)<length(userCktNets(1,:)))
+
+                    tempnet(1,end+1:length(userCktNets(1,:)))=0;
+                    tempval(1,end+1:length(userCktNets(1,:)))=0;
+                elseif(length(tempnet)>length(userCktNets(1,:)))
+
+                    userCktNets(:,end+1:length(tempnet))=0;
+                    userCktValues(:,end+1:length(tempnet))=0;
+                end
+                userCktNets(j,:)=tempnet;
+                userCktValues(j,:)=tempval;
+            end
+
+            if(~isempty(userCktNets))
+                if(length(userCktNets(1,:))<length(this.Nets(1,:)))
+
+                    userCktNets(:,end+1:length(this.Nets(1,:)))=0;
+                    userCktValues(:,end+1:length(this.Nets(1,:)))=0;
+                elseif(length(userCktNets(1,:))>length(this.Nets(1,:)))
+
+                    this.Nets(:,end+1:length(userCktNets(1,:)))=0;
+                    this.Values(:,end+1:length(userCktNets(1,:)))=0;
+                end
+                this.Nets=[this.Nets;userCktNets];
+                this.Values=[this.Values;userCktValues];
+            end
+            this.Nets=this.Nets(sortedIndices,:);
+            this.Values=this.Values(sortedIndices,:);
+
+        end
+    end
+
+end

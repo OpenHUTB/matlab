@@ -1,0 +1,16 @@
+function isValidVariableName=isVariableName(DTString)
+
+
+
+
+
+
+
+
+    isValidVariableName=isvarname(DTString)...
+    &&~SimulinkFixedPoint.DataTypeContainer.isStringBuiltInFloat(DTString)...
+    &&~SimulinkFixedPoint.DataTypeContainer.isStringBuiltInInteger(DTString)...
+    &&~SimulinkFixedPoint.DataTypeContainer.isFixedPointTypeSimulinkName(DTString)...
+    &&~SimulinkFixedPoint.DataTypeContainer.isStringBoolean(DTString)...
+    &&~SimulinkFixedPoint.DataTypeContainer.isInheritedDTStr(DTString);
+end

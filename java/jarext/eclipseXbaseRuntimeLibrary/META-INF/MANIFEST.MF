@@ -1,0 +1,388 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.xtext.xbase.lib
+Bundle-SymbolicName: org.eclipse.xtext.xbase.lib
+Export-Package: org.eclipse.xtend2.lib;version="2.27.0",org.eclipse.xtex
+ t.xbase.lib;version="2.27.0",org.eclipse.xtext.xbase.lib.internal;x-int
+ ernal:="true",org.eclipse.xtext.xbase.lib.util;version="2.27.0"
+Bundle-Name: Xbase Runtime Library
+Bundle-Version: 2.27.0.v20220501-0907
+Require-Bundle: com.google.guava;bundle-version="[30.1.0,31.0.0)";visibi
+ lity:=reexport
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Eclipse-SourceReferences: scm:git:https://github.com/eclipse/xtext-lib.g
+ it;path="org.eclipse.xtext.xbase.lib";commitId=1084faae9d852e5673ac698d
+ b5eb3db71465cf27
+Bundle-Vendor: Eclipse Xtext
+
+Name: org/eclipse/xtext/xbase/lib/ExclusiveRange.class
+SHA-256-Digest: ohaP+bT5traDE4XKQNZ8F4wwXuOOfYH3/2x1lWI6Ulk=
+
+Name: org/eclipse/xtext/xbase/lib/util/ToStringBuilder$IndentationAwareS
+ tringBuilder.class
+SHA-256-Digest: gbbvB85/4T1Kbu+NA0Dgzg6tJCefRqyUQye3dYtR+fg=
+
+Name: org/eclipse/xtext/xbase/lib/Functions$Function1.class
+SHA-256-Digest: WVYLr2K569lOr8TM6ZxMkl8+pz8PmlZhiSl/Shc4qp0=
+
+Name: org/eclipse/xtext/xbase/lib/Procedures$Procedure2.class
+SHA-256-Digest: GXAUXoY59w5L7NP8vD+9cL+eYlDiESpGvYzO7xXWfKk=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions$2.class
+SHA-256-Digest: 4gvOZwQLzmA9b4zk1NNMkxLRZadGkvfoNDi3nCELjiU=
+
+Name: org/eclipse/xtext/xbase/lib/ProcedureExtensions$3.class
+SHA-256-Digest: kNilQUshGM4TQzzL1mdV0AjfFkAj1NfvMJ5VYyatzNU=
+
+Name: org/eclipse/xtext/xbase/lib/DoubleExtensions.class
+SHA-256-Digest: Eb9k1/uGXtF0HHAspPaKWUjUs2/3Rbw3UlQdbnv7Vpw=
+
+Name: org/eclipse/xtext/xbase/lib/IterableExtensions.class
+SHA-256-Digest: 9U9cjSltp4mh2uU+0XNU2uURxbuFzgAgGMD+7gK35FA=
+
+Name: org/eclipse/xtend2/lib/StringConcatenationClient$TargetStringConca
+ tenation.class
+SHA-256-Digest: 1booYzElHO6Qy4QkNYSUEH6LXqwmE4XKYjJnzay2iXU=
+
+Name: org/eclipse/xtext/xbase/lib/Functions$Function4.class
+SHA-256-Digest: pCV0rPHyoWY0RRcKbTLsHrEVF/XIzCYbTHbZj77VYcU=
+
+Name: org/eclipse/xtext/xbase/lib/ProcedureExtensions$6.class
+SHA-256-Digest: 2QHGQgOZicwEcDIHydWf1TjHt/ELiSVhAoZq7qvHX/U=
+
+Name: org/eclipse/xtext/xbase/lib/ArrayExtensions.class
+SHA-256-Digest: gGguX13lJVgNSnS6EGb/DZmNA95FGmZyspNscnIBG/o=
+
+Name: org/eclipse/xtext/xbase/lib/ExclusiveRange$RangeIterator.class
+SHA-256-Digest: 0ZM31l+erLUpdxR2/s0pd+bHbGPy+E2A4nuzsuR6l4g=
+
+Name: org/eclipse/xtext/xbase/lib/util/ReflectExtensions.class
+SHA-256-Digest: aOSjKYiVv9YJBppJ9CANsayNp9CBcCsXTl2UXz988Vo=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions$5.class
+SHA-256-Digest: hF37P2xdrOLBED6wsjKUz5odWQHw2MV5TwZlwjCE2PI=
+
+Name: org/eclipse/xtext/xbase/lib/IteratorExtensions$6.class
+SHA-256-Digest: 5bmVoKG5ovH2Xcr9+4TamwJIy7QUhobCLSaPRRvL/vc=
+
+Name: org/eclipse/xtext/xbase/lib/MapExtensions.class
+SHA-256-Digest: u7xiIwuoYNrlkuMbAy3IzwNnN+KcquOTBXMsk1BRNck=
+
+Name: org/eclipse/xtext/xbase/lib/IntegerRange.class
+SHA-256-Digest: hPyNsrcEeLJ+aIDXBzp9KNbU0Ce9bjnP8QdUhGmaXqE=
+
+Name: org/eclipse/xtext/xbase/lib/MapExtensions$4.class
+SHA-256-Digest: 3yOPVASGrz5braMz7fDymBFZx29ImCB/kSJRHPeknn0=
+
+Name: org/eclipse/xtext/xbase/lib/Conversions$WrappedIntegerArray.class
+SHA-256-Digest: n7lRq7QDsuDIF9WjeecQwx1N7W6yT1Il/HKri8a8jcM=
+
+Name: org/eclipse/xtext/xbase/lib/StringExtensions.class
+SHA-256-Digest: u40m671t3y8L8NT4PyCpo488+0Wh5ArkwQ3y3YpcS04=
+
+Name: org/eclipse/xtext/xbase/lib/MapExtensions$5.class
+SHA-256-Digest: 8WQLHctUkTCwUM72uibd2X27XbruB7johO/HPaDkV38=
+
+Name: org/eclipse/xtext/xbase/lib/BigDecimalExtensions.class
+SHA-256-Digest: GxdM7+0vXbmyLAf5CmVU9FVeoa9Sot0vbkyImvSVV5I=
+
+Name: org/eclipse/xtext/xbase/lib/Procedures$Procedure0.class
+SHA-256-Digest: AKFpqCUgZEgBW3LjeJZhQ+FEa93aK5X4mRY6uNg0Wng=
+
+Name: org/eclipse/xtext/xbase/lib/internal/FunctionDelegate.class
+SHA-256-Digest: nL/RO8mfNQnUyRivrEWe9dO7mQyn7XRdebhK5UDs06Y=
+
+Name: org/eclipse/xtext/xbase/lib/Conversions$WrappedDoubleArray.class
+SHA-256-Digest: g/VyfJCgig33ufLUdvUj3ywCOjEwpvz2XJOHLKtZX0w=
+
+Name: org/eclipse/xtext/xbase/lib/Procedures$Procedure4.class
+SHA-256-Digest: SOuiTLShu2bsx1HHjLOHe98vH7ORC13xEcYFN5mIf/8=
+
+Name: org/eclipse/xtext/xbase/lib/InputOutput.class
+SHA-256-Digest: P0QcXfqp3VO+w9h9WaJf2rHMbnBQykvptB8nF1EsyJc=
+
+Name: org/eclipse/xtext/xbase/lib/IteratorExtensions$1.class
+SHA-256-Digest: hGEyB1XZGaAk1uhgTy28rs7LLfIz+pUlLpH2FyfZ+gk=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions.class
+SHA-256-Digest: J4m2PeJuMsCpQ/TdBeDgy/W4ZlaA0y4oY7R9OUa5zYU=
+
+Name: org/eclipse/xtext/xbase/lib/ProcedureExtensions$1.class
+SHA-256-Digest: 1E8AUgPFe37hBWn95/n68hvZcJOvosOS1MRD+FvUmkI=
+
+Name: org/eclipse/xtext/xbase/lib/Functions$Function6.class
+SHA-256-Digest: TFlSv0oEtpftFhSbjJeO5S9F9l2RxVgm86xs/EX+tZM=
+
+Name: org/eclipse/xtext/xbase/lib/IterableExtensions$3.class
+SHA-256-Digest: cP2ZSjLNLOcUxeI1e2jcBGaQWJbsgIUeafXx60Eu4jE=
+
+Name: org/eclipse/xtext/xbase/lib/util/ToStringContext$1.class
+SHA-256-Digest: u72JQc9jg8DktU3EPPXmUCM6+tVtPP2gfdg1lrcthVU=
+
+Name: org/eclipse/xtext/xbase/lib/internal/UnmodifiableMergingMapView$Ab
+ stractEarlyFailingSet.class
+SHA-256-Digest: C4Xh9RGqGg0/Jsbk+6z7IVjA4IhGKOOaATNNspy7Nmw=
+
+Name: org/eclipse/xtext/xbase/lib/IterableExtensions$2.class
+SHA-256-Digest: GaB5u/Dn0gBwxg05YGLmif9xAsXN+NItTh2UXDD+LQk=
+
+Name: org/eclipse/xtext/xbase/lib/Conversions$WrappedCharacterArray.clas
+ s
+SHA-256-Digest: hWnfrgQnGRqm1as/OTDfRFhks/2axPGTNa0yxc8oCvk=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions$4.class
+SHA-256-Digest: q/MHZgtzBT9aLOmlvXrvSe4a80qSDIvMMU/n2p+U4+A=
+
+Name: org/eclipse/xtext/xbase/lib/Conversions$WrappedShortArray.class
+SHA-256-Digest: zp193WWK+qLzO4FCbfnv5vNJ8eytD1j5FyRlH/6J6Z0=
+
+Name: org/eclipse/xtext/xbase/lib/Functions$Function5.class
+SHA-256-Digest: 3UzF2uvehqeXf35B5RslUsCtt8Il9tBk68nktOAzhQo=
+
+Name: org/eclipse/xtext/xbase/lib/ExclusiveRange$1.class
+SHA-256-Digest: 41AKPOomIz4gO19r3uOeVZ/OB7D4OwamG4EKKgJiYS8=
+
+Name: org/eclipse/xtext/xbase/lib/Procedures$Procedure5.class
+SHA-256-Digest: rI0Fm4ZAIBTf6ccgQFChGKJtyWeMGqR4srMtlPNR21o=
+
+Name: org/eclipse/xtext/xbase/lib/ProcedureExtensions$2.class
+SHA-256-Digest: U0AXiJW6cfRfDz/HMS+br5wNx238t+Ykbmmsqpnafwc=
+
+Name: org/eclipse/xtext/xbase/lib/ArrayLiterals.class
+SHA-256-Digest: GjTgKlf5SdRNNz1h/Rca2n3FdcKnqScUseGqECCXfIQ=
+
+Name: org/eclipse/xtext/xbase/lib/LongExtensions.class
+SHA-256-Digest: Trfre8pHeF9zSlWA9VDpgLY0XETHcgWBMqWhV8tL3fg=
+
+Name: org/eclipse/xtext/xbase/lib/Conversions$WrappedByteArray.class
+SHA-256-Digest: ED3Eh3cEDCBn75r+GUdU0Z1aoqImcV6ETH2krQ3h7A0=
+
+Name: org/eclipse/xtext/xbase/lib/IntegerRange$RangeIterator.class
+SHA-256-Digest: KI1pRucZHTBoz+90PszMZfrNn9I5SqDJHKRXsUnDmoA=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions$10.class
+SHA-256-Digest: OIgPqL4gUDWEjzf0ucOxlN+cNPCB5yPpY8/g1GE73NM=
+
+Name: org/eclipse/xtend2/lib/StringConcatenation$1.class
+SHA-256-Digest: W15Hd81BNP7VauoP2dDcRRx3iJo8rbs0DoUInZ2q8y0=
+
+Name: org/eclipse/xtext/xbase/lib/IntegerExtensions.class
+SHA-256-Digest: tra7s23GtWBHrZ0lrsfYFrjZ0ZHjuV17jdjAl+edck0=
+
+Name: org/eclipse/xtext/xbase/lib/IterableExtensions$1.class
+SHA-256-Digest: JnFMRuWvxASQ4YP0Z9S3h/PhP7bDHJxlakj4pU7r7Jw=
+
+Name: org/eclipse/xtext/xbase/lib/MapExtensions$3.class
+SHA-256-Digest: yonEgKFOSHCAvdwvfUhA0KhvLdVZK3NrQ5wPtGq4B4Y=
+
+Name: org/eclipse/xtext/xbase/lib/Pair.class
+SHA-256-Digest: Km8FS9ga2FNZ3RVWz8/dVs9IEVDDF+o7tbODW4ndvwI=
+
+Name: org/eclipse/xtext/xbase/lib/util/ToStringBuilder.class
+SHA-256-Digest: e0s9rp9DfAo9ISlP5ImRiUPNXrMOgQO0KGY3gXlyNNY=
+
+Name: org/eclipse/xtext/xbase/lib/internal/ToStringHelper.class
+SHA-256-Digest: kGJB8qyCnsVRBoApwiYdy+B0fDVci13/zTTnF9UK3Hc=
+
+Name: org/eclipse/xtext/xbase/lib/Inline.class
+SHA-256-Digest: WIo9Pk19N6O+COTm66oaNh01YuqPYL5BJmLkpcjWVuU=
+
+Name: about_org.eclipse.xtext.xbase.lib.html
+SHA-256-Digest: 7mbS+ztMDS7S5/aYvJ7U49bPd/pcr0CtAylhJdsaxfA=
+
+Name: org/eclipse/xtext/xbase/lib/Conversions$WrappedArray.class
+SHA-256-Digest: iUDILoyDA9MW6J4c6puPO1Im9LcRXhsnQ7bjhYlfGRk=
+
+Name: org/eclipse/xtext/xbase/lib/Procedures$Procedure6.class
+SHA-256-Digest: M1xRx6NNEtBRCYI6bx0ERRWcCyZjz//uOooJmPlx27k=
+
+Name: org/eclipse/xtext/xbase/lib/CharacterExtensions.class
+SHA-256-Digest: 2952iVTtEjIlp/Mm1t2X5yM/V4q0onAkzKyc6EZDLWM=
+
+Name: org/eclipse/xtext/xbase/lib/Procedures$Procedure1.class
+SHA-256-Digest: giCHTc6dwi/wThM4zTbyozRT9mvFFNMeBG/MOugtQo8=
+
+Name: org/eclipse/xtext/xbase/lib/Pure.class
+SHA-256-Digest: CGRJa8NtsJYDDVRuw+SOXU+6REYKTFl4AD6e5SYRsCs=
+
+Name: org/eclipse/xtext/xbase/lib/Functions$Function0.class
+SHA-256-Digest: 6oxG6Cz8UkwEyXFWKRAbXty+Y0e2niPatEBMcFoTg1U=
+
+Name: org/eclipse/xtext/xbase/lib/IteratorExtensions$5.class
+SHA-256-Digest: eC8DvDRaeN1BPsKJPI/YzSPu1R3ca61PV5jQKpGwpbw=
+
+Name: org/eclipse/xtext/xbase/lib/ObjectExtensions.class
+SHA-256-Digest: T+d6SvLlyUPbWzQyQ47SV2/M9yIaLoyQ3V9JiYHq0Z0=
+
+Name: org/eclipse/xtext/xbase/lib/ProcedureExtensions.class
+SHA-256-Digest: /jpy1Bnyu4n0jzTO596LdelEBhLN9XHq7OTrbLJd9cg=
+
+Name: org/eclipse/xtext/xbase/lib/ByteExtensions.class
+SHA-256-Digest: Xuy22j9VMDAafKGLhCkUljGh61bXm/ZagfqvMmj2lsg=
+
+Name: org/eclipse/xtext/xbase/lib/util/ToStringBuilder$Part.class
+SHA-256-Digest: /mwbjpS4QWf6WlibTZOnawIAcDmk/IorMu7dNxmzbOU=
+
+Name: org/eclipse/xtext/xbase/lib/Procedures$Procedure3.class
+SHA-256-Digest: kxoh8Dd5qMy6APQAj58gzlL/AckjhvwmpkoXAjwpgp4=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions$3.class
+SHA-256-Digest: YCkcoCwguFclnO16ZWsirOq+H6KOHvVy01xUVnhej1k=
+
+Name: org/eclipse/xtext/xbase/lib/ProcedureExtensions$4.class
+SHA-256-Digest: UmEbwvasl/VMrxhIcKfJQtXGfs1u6drrxtBIPKIl6IM=
+
+Name: org/eclipse/xtext/xbase/lib/internal/UnmodifiableMergingMapView$1.
+ class
+SHA-256-Digest: ZiNQROrN2r3zwxzVoNdw078DYazzIv/Jlnp309q0OTs=
+
+Name: org/eclipse/xtend2/lib/StringConcatenation$IndentedTarget.class
+SHA-256-Digest: w7iEIZhAMO63u4wQuBnVZclvvq81PbOtk9Ql8OpAWUA=
+
+Name: org/eclipse/xtext/xbase/lib/CollectionExtensions.class
+SHA-256-Digest: SnxNGw7s1d7VXDap4CVa/Wl4q6lvafZTh3yvl4pEaMU=
+
+Name: org/eclipse/xtext/xbase/lib/internal/KeyComparator.class
+SHA-256-Digest: PcDYkGnmlRw2fLNSH3pj8T6gasSlcVGLKRThniROcB8=
+
+Name: org/eclipse/xtext/xbase/lib/ReassignFirstArgument.class
+SHA-256-Digest: RkR4zJqhmo5dRgZnVBH5u4V5o2DNJznBvgFcO1160yI=
+
+Name: org/eclipse/xtext/xbase/lib/IterableExtensions$4.class
+SHA-256-Digest: mO45zEg4tfYtKDMP2NCjKOPlGpntVNo4CrbT4xvkVXo=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions$6.class
+SHA-256-Digest: z5NwVHnIb+E7oL8NF1YcuCX1lluiMjtCRkSFh1bC0Mo=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions$9.class
+SHA-256-Digest: lvNFyFdrRJCz9nx7kS+ECA42xB5t7xP44tGaLMpgJ4w=
+
+Name: org/eclipse/xtext/xbase/lib/IteratorExtensions$2.class
+SHA-256-Digest: uA8GZdCMFONobN3aRbhCZatGgDQLh6omBmvcCG9uOe4=
+
+Name: org/eclipse/xtext/xbase/lib/IntegerRange$1.class
+SHA-256-Digest: JigQ5brgolcboopkn4iVGMpSOQFgJG2kvozdZ4u4msE=
+
+Name: org/eclipse/xtext/xbase/lib/ComparableExtensions.class
+SHA-256-Digest: WM0TwuU4bR52LKP7EHMZcocKBN+ycIs2BDSOe+CjLRg=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions$7.class
+SHA-256-Digest: SF+yvcq9Ji3eoPeGsudVUiIkvZM5LmagjoL2lmKntzM=
+
+Name: org/eclipse/xtext/xbase/lib/util/ToStringContext.class
+SHA-256-Digest: ++54cy9LsDUa22/Bs3g27Jln7hqHFkDKuKLjGWPTW4A=
+
+Name: org/eclipse/xtext/xbase/lib/util/ToStringHelper.class
+SHA-256-Digest: R3NOzloAJmk4LhS1qabjoeuqmF+nkA4+Y+ghpFozy6U=
+
+Name: org/eclipse/xtext/xbase/lib/Conversions$WrappedFloatArray.class
+SHA-256-Digest: Z9hdskln/t/ITkb++3wfzGWncrwtQX1D9eJ9C2NBnhA=
+
+Name: org/eclipse/xtext/xbase/lib/internal/UnmodifiableMergingMapView.cl
+ ass
+SHA-256-Digest: vd7N8EJU8eWzVP6x8v9iK4i0edVS2deFN8y2VD8BxZE=
+
+Name: org/eclipse/xtend2/lib/DefaultLineDelimiter.class
+SHA-256-Digest: l3Co23UGHwpNrNjgci/ZKfAI9m29Y/zz31BKp9Ky1iE=
+
+Name: org/eclipse/xtext/xbase/lib/Conversions.class
+SHA-256-Digest: nVRWzDzj9V46Eb3Mp6vB0naOt7lhWCVJGWpwHqmjkZg=
+
+Name: org/eclipse/xtext/xbase/lib/Exceptions.class
+SHA-256-Digest: qE3CGofqg961xf40fwV7QhsQYeqhr2TsSGd9IHt+R+4=
+
+Name: org/eclipse/xtext/xbase/lib/ShortExtensions.class
+SHA-256-Digest: gDhWRhouXxB5TMPaZ3ZJYApBQxl9bgO5sprBtH7r0nE=
+
+Name: org/eclipse/xtext/xbase/lib/IteratorExtensions$4.class
+SHA-256-Digest: Rdngn3dnMSZlmg20hlvPtpEPw5OnHOFsy1M03J8W3kU=
+
+Name: org/eclipse/xtext/xbase/lib/internal/BooleanFunctionDelegate.class
+SHA-256-Digest: XxrwZJ0l7zp34TX4jCMhmut8ZxFhS2dhNSCg1p6gRLk=
+
+Name: org/eclipse/xtext/xbase/lib/Conversions$WrappedLongArray.class
+SHA-256-Digest: nDq3JXnrSIcNGN6N9M8sh2Ibv37+ukf5RT+zAoPmRZo=
+
+Name: org/eclipse/xtext/xbase/lib/Functions.class
+SHA-256-Digest: wTt49U8NwAIVM+WzaHA8eoMluXrkqQtC/7wVsr661mQ=
+
+Name: org/eclipse/xtext/xbase/lib/util/ToStringBuilder$1.class
+SHA-256-Digest: OwbEvlU2+nd3038UAQMiDAYqYdmOOa1xk9Qly5rn9UI=
+
+Name: org/eclipse/xtext/xbase/lib/HardcodedInInterpreterException.class
+SHA-256-Digest: Ix87PlGg6VxkmIijzwKYJa99dcepv4IcGbTpcl4kHuw=
+
+Name: org/eclipse/xtext/xbase/lib/CollectionLiterals.class
+SHA-256-Digest: BwYbXT37lhJZ2zw9oqu2+8WJFjtQcTlU7TFaGBeD5xw=
+
+Name: org/eclipse/xtext/xbase/lib/Functions$Function3.class
+SHA-256-Digest: r5fMMmWl903CKb1AShEmq83YEgygeswEUsEOZMMGstU=
+
+Name: org/eclipse/xtext/xbase/lib/internal/UnmodifiableMergingMapView$2.
+ class
+SHA-256-Digest: 7YgT0cADzoZFWfwLdKPplM+0skFp3A13FrMdSFVUcSU=
+
+Name: org/eclipse/xtext/xbase/lib/MapExtensions$1.class
+SHA-256-Digest: hWOik4Igd7F26HzWV3uY/lYDa073K6lAsIm9tNS1Ibo=
+
+Name: org/eclipse/xtend2/lib/StringConcatenation$SimpleTarget.class
+SHA-256-Digest: Ls9L+yY7PYn9G1eqr5Hh/r0fo9o96FCQXRKwIVg73Os=
+
+Name: org/eclipse/xtend2/lib/StringConcatenation.class
+SHA-256-Digest: ObvxW/HJ4lrNMV0Pc6zrh3R2xnBntSzbzn3BXY619z4=
+
+Name: org/eclipse/xtext/xbase/lib/BooleanExtensions.class
+SHA-256-Digest: rMCwSLfR3DNvS6SEC+n4CmPEIw035Zhhqwx6fxQsN7g=
+
+Name: org/eclipse/xtext/xbase/lib/Procedures.class
+SHA-256-Digest: ko91qh/cEj5RL7divaqW4rkbv3OZRyqp0thNz6oyd1U=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions$1.class
+SHA-256-Digest: xBb5vLdr3957gzARmIoLvq8Dj8zqI7MzMWiHeumVM7o=
+
+Name: org/eclipse/xtend2/lib/StringConcatenationClient.class
+SHA-256-Digest: 690yMHwnVnM91Rr6kidakvc+rckRWBH1CrdUA4FDp9c=
+
+Name: org/eclipse/xtext/xbase/lib/BigIntegerExtensions.class
+SHA-256-Digest: iz1VxqtlF0IKy25LxBucbqR7yShLZkKgtykX6dzCcOc=
+
+Name: org/eclipse/xtext/xbase/lib/IteratorExtensions$3.class
+SHA-256-Digest: N53AuY8HDZP9u7815bDUdYSH+KiPHlRG3WCrwp+qf4M=
+
+Name: org/eclipse/xtext/xbase/lib/FunctionExtensions$8.class
+SHA-256-Digest: 28B1EFB/Z7u+cKcqCIWqA3pC9iLL0mCuo5XCC3cLMdY=
+
+Name: org/eclipse/xtext/xbase/lib/ListExtensions.class
+SHA-256-Digest: 4lf54O7YDc8cdoakqsKcQOCgiwc1upurqlOL6fH9U+s=
+
+Name: org/eclipse/xtext/xbase/lib/Conversions$WrappedBooleanArray.class
+SHA-256-Digest: eM+BpVQrmFtM2yJ+ii9J6TYkBSmYCYb6R3imtr3gi6Q=
+
+Name: org/eclipse/xtext/xbase/lib/IterableExtensions$5.class
+SHA-256-Digest: M81zCtuv+h4BEepKYo01yg8ICH6qsUWs3L/76c51zhw=
+
+Name: org/eclipse/xtext/xbase/lib/internal/UnmodifiableMergingMapView$3.
+ class
+SHA-256-Digest: wPYzMBhl35vGGgPAyR7fe/nr+dHXz48qbQeoB+28n2s=
+
+Name: org/eclipse/xtext/xbase/lib/Extension.class
+SHA-256-Digest: xv9nnYN5skLpjbyc6oj0+wfAWjE0YjHTZuLato4Ghkc=
+
+Name: org/eclipse/xtext/xbase/lib/ProcedureExtensions$5.class
+SHA-256-Digest: Tn+ScSfVo94pyF4DismbSnXbFDiUysNFRGtQgevD+sE=
+
+Name: org/eclipse/xtend2/lib/WhitespaceMatcher.class
+SHA-256-Digest: LKD6bmC+i8C+Aeno/f7gN9xWnDu3Tc2JMp5+tYrU64E=
+
+Name: org/eclipse/xtext/xbase/lib/MapExtensions$2.class
+SHA-256-Digest: g6qhxChT9+SWKhtUuJMFxDtOFt5XgYK7RG+bKIybV5k=
+
+Name: org/eclipse/xtext/xbase/lib/FloatExtensions.class
+SHA-256-Digest: o7NZMMQiDj5vYl1IKOSLlzcPMLt2FOa+sr+/rC7QyDU=
+
+Name: org/eclipse/xtext/xbase/lib/Functions$Function2.class
+SHA-256-Digest: 46bcUICkvpRUQ/VtM2RrD/sTzAHitM48d50v5nY3kqg=
+
+Name: org/eclipse/xtext/xbase/lib/IteratorExtensions.class
+SHA-256-Digest: h2z8nWb5vZ8zB1MCSNb6FbBDOytPGZxAqVgDx7ODdtA=
+

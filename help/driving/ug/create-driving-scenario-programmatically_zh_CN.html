@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Create Driving Scenario Programmatically</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../getting-started-with-automated-driving-toolbox.html",
+          "name": "Get Started with Automated Driving Toolbox"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "getting-started-with-automated-driving-toolbox",
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create Driving Scenario Programmatically",
+          "description": "Programmatically create ground truth driving scenarios for synthetic sensor data and tracking algorithms.",
+          "thumbnailURL": "../../examples/driving/win64/DrivingScenarioTutorialExample_15.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving.DrivingScenarioTutorialExample",
+          "name": "DrivingScenarioTutorialExample",
+          "url": "create-driving-scenario-programmatically.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/DrivingScenarioTutorialExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "DrivingScenarioTutorialExample.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex gs"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Programmatically create ground truth driving scenarios for synthetic sensor data and tracking algorithms."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/DrivingScenarioTutorialExample_15.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../getting-started-with-automated-driving-toolbox.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Get Started with Automated Driving Toolbox</span></a></li>
+</ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li><a href="../scenario-simulation.html?s_tid=CRUX_lftnav">Scenario Simulation</a></li>
+<li><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav">Cuboid Scenario Simulation</a></li>
+<li><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav">Programmatic Scenario Authoring</a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Create Driving Scenario Programmatically</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e39629" class="intrnllnk">Introduction</a></li>
+<li><a href="#d124e39635" class="intrnllnk">Convert Pose Information to an Actor's Reference Frame</a></li>
+<li><a href="#d124e39733" class="intrnllnk">Convert Road Boundaries to an Actor's Reference Frame</a></li>
+<li><a href="#d124e39787" class="intrnllnk">Specify Actor Trajectory</a></li>
+<li><a href="#d124e39803" class="intrnllnk">Advance the Simulation</a></li>
+<li><a href="#d124e39839" class="intrnllnk">Record a Scenario</a></li>
+<li><a href="#d124e39852" class="intrnllnk">Incorporating Multiple Views with the Bird's Eye Plot</a></li>
+<li><a href="#d124e39887" class="intrnllnk">Next Steps</a></li>
+<li><a href="#d124e39899" class="intrnllnk">Further Information</a></li>
+<li><a href="#d124e39924" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e39970" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_53cf4bbe-a186-45c0-8d86-57dc9d64a71b"><span style="font-size: 18.72px;">以编程方式创建驾驶场景</span><br/></h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/DrivingScenarioTutorialExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-DrivingScenarioTutorialExample"/>
+<meta itemprop="exampletitle" content="Create Driving Scenario Programmatically"/>
+</div>
+<span id="DrivingScenarioTutorialExample" class="anchor_target"></span>
+
+<p class="shortdesc">此示例演示如何为合成传感器数据和跟踪算法生成真实情况。它还展示了如何在开环和闭环模拟中更新演员姿势。最后，它展示了如何使用驾驶场景执行坐标转换并将其合并到鸟瞰图中。</p>
+
+<p>在此示例中，您将以编程方式从 MATLAB® 命令行创建驾驶方案。或者，您可以使用驾驶方案设计器应用以交互方式创建方案。有关示例，请参阅以交互方式创建驾驶方案和生成合成传感器数据。<br/></p>
+
+<div class="procedure"><h3 class="title" id="d124e39629">介绍<span id="DrivingScenarioTutorialExample-1" class="anchor_target"></span></h3>
+<p>驾驶场景的目标之一是生成“真实”测试用例，用于特定车辆上使用的传感器检测和跟踪算法。</p>
+<p>此基本事实通常在全局坐标系中定义;但是，由于传感器通常安装在移动的车辆上，因此需要将这些数据转换为随车辆移动的参考系。驾驶方案会自动促进此转换，允许您在全局坐标中指定对象的道路和轨迹，并提供用于在场景中任何参与者的参考系中转换和可视化此信息的工具。</p>
+<h3 class="title" id="d124e39635">将姿势信息转换为参与者的参考帧<span id="DrivingScenarioTutorialExample-2" class="anchor_target"></span></h3>
+<p>驾驶场景由道路和可移动对象的模型组成，称为参与者。您可以使用Actor对场景中的行人、停车计时器、消防栓和其他对象进行建模。Actor由具有长度，宽度，高度和雷达横截面（RCS）的长方体组成。演员围绕其底面中心的单个点进行定位和定向。<br/></p>
+<p>一种特殊的在轮子上移动的参与者是车辆，它定位和定向在后轴中心正下方的地面上，这是一个更自然的旋转中心。</p>
+<p>所有Actor（包括载具）都可以通过指定各自的位置、横滚、俯仰、偏航、速度和角度速度属性来放置在场景中的任何位置。<br/></p>
+<p>下面是一个场景示例，该场景由相距 10 米的两辆车组成，分别以每秒 3 米和 4 米的速度驶向原点：</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+v1 = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1',<span style="color:#A020F0">'Position'</span>,[6 0 0],<span style="color:#A020F0">'Velocity'</span>,[-3 0 0],<span style="color:#A020F0">'Yaw'</span>,180)
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>v1 = 
+
+  Vehicle with properties:
+
+         FrontOverhang: 0.9000
+          RearOverhang: 1
+             Wheelbase: 2.8000
+             EntryTime: 0
+              ExitTime: Inf
+               ActorID: 1
+               ClassID: 1
+                  Name: ""
+             PlotColor: [0 0.4470 0.7410]
+              Position: [6 0 0]
+              Velocity: [-3 0 0]
+                   Yaw: 180
+                 Pitch: 0
+                  Roll: 0
+       AngularVelocity: [0 0 0]
+                Length: 4.7000
+                 Width: 1.8000
+                Height: 1.4000
+                  Mesh: [1x1 extendedObjectMesh]
+            RCSPattern: [2x2 double]
+      RCSAzimuthAngles: [-180 180]
+    RCSElevationAngles: [-90 90]
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v2 = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1,<span style="color:#A020F0">'Position'</span>,[0 10 0],<span style="color:#A020F0">'Velocity'</span>,[0 -4 0],<span style="color:#A020F0">'Yaw'</span>,-90)
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>v2 = 
+
+  Vehicle with properties:
+
+         FrontOverhang: 0.9000
+          RearOverhang: 1
+             Wheelbase: 2.8000
+             EntryTime: 0
+              ExitTime: Inf
+               ActorID: 2
+               ClassID: 1
+                  Name: ""
+             PlotColor: [0.8500 0.3250 0.0980]
+              Position: [0 10 0]
+              Velocity: [0 -4 0]
+                   Yaw: -90
+                 Pitch: 0
+                  Roll: 0
+       AngularVelocity: [0 0 0]
+                Length: 4.7000
+                 Width: 1.8000
+                Height: 1.4000
+                  Mesh: [1x1 extendedObjectMesh]
+            RCSPattern: [2x2 double]
+      RCSAzimuthAngles: [-180 180]
+    RCSElevationAngles: [-90 90]
+<font face="Arial"><span style="white-space: normal;">
+</span></font></pre>
+</div>
+</div>
+</div>
+<p>若要可视化方案，请对其调用绘图函数：<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario);
+set(gcf,<span style="color:#A020F0">'Name'</span>,<span style="color:#A020F0">'Scenario Plot'</span>)
+xlim([-20 20]);
+ylim([-20 20]);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39676" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_01.png"/></p>
+</div>
+</div>
+<p>创建场景中的所有Actor后，可以通过检查每个Actor的位置、滚动、俯仰、偏航、速度和角度速度属性来检查场景坐标中所有Actor的姿势信息，也可以通过在场景中调用actorPoses函数以方便的结构获取所有这些角色：<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ap = actorPoses(scenario)
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ap = 
+
+  2x1 struct array with fields:
+
+    ActorID
+    Position
+    Velocity
+    Roll
+    Pitch
+    Yaw
+    AngularVelocity
+<font face="Arial"><span style="white-space: normal;">
+</span></font></pre>
+</div>
+</div>
+</div>
+<p>要获取特定Actor在其自己的参考系中看到的所有其他对象（或目标）的姿势信息，可以在Actor本身上调用targetPos函数：<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v2TargetPoses = targetPoses(v2)
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>v2TargetPoses = 
+
+  struct with fields:
+
+            ActorID: 1
+            ClassID: 1
+           Position: [10 6.0000 0]
+           Velocity: [-4 -3.0000 0]
+               Roll: 0
+              Pitch: 0
+                Yaw: -90.0000
+    AngularVelocity: [0 0 0]
+
+</pre>
+</div>
+</div>
+</div>
+<p>我们可以通过添加车辆的追逐图来定性地确认相对车辆位置。默认情况下，追逐图显示车辆后方固定距离的投影透视视图。</p>
+<p>在这里，我们显示了第二辆车（红色）后面的视角。第二辆车看到的目标姿势显示，另一辆车的位置（蓝色）在第二辆车前方6米，在第二辆车左侧10米处。我们可以在追逐剧情中定性地看到这一点：</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>chasePlot(v2)
+set(gcf,<span style="color:#A020F0">'Name'</span>,<span style="color:#A020F0">'Chase Plot'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39713" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_02.png"/></p>
+</div>
+</div>
+<p>通常，在调用 advance 函数时，与驾驶场景关联的所有绘图都会在仿真过程中更新。如果手动更新另一个 actor 的位置属性，则可以调用 updatePlot 立即查看结果：<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v1.Yaw = 135;
+updatePlots(scenario);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39726" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_03.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39730" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_04.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e39733">将道路边界转换为参与者的参考系<span id="DrivingScenarioTutorialExample-11" class="anchor_target"></span></h3>
+<p>驾驶方案还可用于检索方案中定义的道路边界。</p>
+<p>在这里，我们利用以编程方式定义道路布局中描述的简单椭圆形轨道，该轨道覆盖了大约 200 米长、100 米宽的区域，其曲线的倾斜角为 9 度：<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadCenters = <span style="color:#0000FF">...</span>
+    [  0  40  49  50 100  50  49 40 -40 -49 -50 -100  -50  -49  -40    0
+     -50 -50 -50 -50   0  50  50 50  50  50  50    0  -50  -50  -50  -50
+       0   0 .45 .45 .45 .45 .45  0   0 .45 .45  .45  .45  .45    0    0]';
+bankAngles = <span style="color:#0000FF">...</span>
+    [  0   0   9   9   9   9   9  0   0   9   9    9    9    9    0    0];
+
+road(scenario, roadCenters, bankAngles, <span style="color:#A020F0">'lanes'</span>, lanespec(2));
+plot(scenario);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39745" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_05.png"/></p>
+</div>
+</div>
+<p>要获取定义道路边界的线，请在驾驶方案中使用 roadBorders 函数。它返回一个包含道路边界的单元格数组（在上面的方案图中显示为黑色实线）。<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rb = roadBoundaries(scenario)
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>rb =
+
+  1x2 cell array
+
+    {258x3 double}    {258x3 double}
+
+</pre>
+</div>
+</div>
+</div>
+<p>在上面的示例中，有两个道路边界（外部边界和内部边界）。您可以按如下方式自行绘制它们：</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+
+outerBoundary = rb{1};
+innerBoundary = rb{2};
+
+plot3(innerBoundary(:,1),innerBoundary(:,2),innerBoundary(:,3),<span style="color:#A020F0">'r'</span>, <span style="color:#0000FF">...</span>
+      outerBoundary(:,1),outerBoundary(:,2),outerBoundary(:,3),<span style="color:#A020F0">'g'</span>)
+axis <span style="color:#A020F0">equal</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39760" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_06.png"/></p>
+</div>
+</div>
+<p>您可以使用Actor上的roadBorders函数来获取Actor坐标中的道路边界。为此，只需将 actor 作为第一个参数传递，而不是场景。<br/></p>
+<p>要看到这一点，添加一个“自我车辆”并将其放在轨道上：</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>egoCar = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1,<span style="color:#A020F0">'Position'</span>,[80 -40 0.45],<span style="color:#A020F0">'Yaw'</span>,30);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39772" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_07.png"/></p>
+</div>
+</div>
+<p>接下来，在车辆上调用 roadBorders 函数并像以前一样绘制它。它将相对于车辆的坐标进行渲染：<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+
+rb = roadBoundaries(egoCar)
+outerBoundary = rb{1};
+innerBoundary = rb{2};
+
+plot3(innerBoundary(:,1),innerBoundary(:,2),innerBoundary(:,3),<span style="color:#A020F0">'r'</span>, <span style="color:#0000FF">...</span>
+      outerBoundary(:,1),outerBoundary(:,2),outerBoundary(:,3),<span style="color:#A020F0">'g'</span>)
+axis <span style="color:#A020F0">equal</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>rb =
+
+  1x2 cell array
+
+    {258x3 double}    {258x3 double}
+
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39784" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_08.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e39787">指定参与者轨迹<span id="DrivingScenarioTutorialExample-17" class="anchor_target"></span></h3>
+<p>您可以沿着预定义的三维路径定位和绘制任何特定角色。</p>
+<p>以下是两辆车的示例，它们分别以 30 m/s 和 50 m/s 的速度在赛道上行驶，每辆车都在各自的车道上。我们通过设置偏移位置将偏移位置设置为半条车道宽度（2.7 米）来将汽车从道路中心偏移，对于轨道的倾斜角度部分，每侧的垂直高度为一半：</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>chasePlot(egoCar);
+fastCar = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+
+d = 2.7/2;
+h = .45/2;
+roadOffset = [ 0  0  0  0  d  0  0  0  0  0  0 -d  0  0  0  0
+              -d -d -d -d  0  d  d  d  d  d  d  0 -d -d -d -d
+               0  0  h  h  h  h  h  0  0  h  h  h  h  h  0  0]';
+
+rWayPoints = roadCenters + roadOffset;
+lWayPoints = roadCenters - roadOffset;
+
+<span style="color:#228B22">% loop around the track four times</span>
+rWayPoints = [repmat(rWayPoints(1:end-1,:),5,1); rWayPoints(1,:)];
+lWayPoints = [repmat(lWayPoints(1:end-1,:),5,1); lWayPoints(1,:)];
+
+smoothTrajectory(egoCar,rWayPoints(:,:), 30);
+smoothTrajectory(fastCar,lWayPoints(:,:), 50);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39796" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_09.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39800" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_10.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e39803">推进仿真<span id="DrivingScenarioTutorialExample-18" class="anchor_target"></span></h3>
+<p>遵循轨迹的Actor通过呼叫驾驶场景的前进来更新。当调用前进时，每个遵循轨迹的Actor都会向前移动，相应的情节也会更新。只有定义了轨迹的参与者才会真正更新。这样您就可以在模拟运行时提供自己的逻辑。<br/></p>
+<p>方案中的 SampleTime 属性控制更新之间的时间间隔。默认情况下为 10 毫秒，但您可以使用任意分辨率指定它：<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario.SampleTime = 0.02
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>scenario = 
+
+  drivingScenario with properties:
+
+        SampleTime: 0.0200
+          StopTime: Inf
+    SimulationTime: 0
+         IsRunning: 1
+            Actors: [1x2 driving.scenario.Vehicle]
+          Barriers: [0x0 driving.scenario.Barrier]
+       ParkingLots: [0x0 driving.scenario.ParkingLot]
+<font face="Arial"><span style="white-space: normal;">
+</span></font></pre>
+</div>
+</div>
+</div>
+<p>您可以通过在 while 循环的条件中调用 advance 并在循环正文中放置命令来检查或修改方案来运行模拟。<br/></p>
+<p>当任何车辆的轨迹完成或达到可选的停止时间时，while 循环将自动终止。<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario.StopTime = 4;
+<span style="color:#0000FF">while</span> advance(scenario)
+  pause(0.001)
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39832" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_11.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39836" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_12.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e39839">录制场景<span id="DrivingScenarioTutorialExample-20" class="anchor_target"></span></h3>
+<p>为了方便，当事先知道所有Actor的轨迹时，您可以调用场景上的record函数来返回一个结构，其中包含每个Actor在每个时间步的姿势信息。<br/></p>
+<p>例如，您可以检查每个Actor在模拟的前100毫秒的姿势信息，并检查第五个记录的样本：</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close <span style="color:#A020F0">all</span>
+
+scenario.StopTime = 0.100;
+poseRecord = record(scenario)
+
+r = poseRecord(5)
+r.ActorPoses(1)
+r.ActorPoses(2)
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>poseRecord = 
+
+  1x5 struct array with fields:
+
+    SimulationTime
+    ActorPoses
+
+
+r = 
+
+  struct with fields:
+
+    SimulationTime: 0.0800
+        ActorPoses: [2x1 struct]
+
+
+ans = 
+
+  struct with fields:
+
+            ActorID: 1
+           Position: [2.4000 -51.3502 0]
+           Velocity: [30.0000 -0.0038 0]
+               Roll: 0
+              Pitch: 0
+                Yaw: -0.0073
+    AngularVelocity: [0 0 -0.0823]
+
+
+ans = 
+
+  struct with fields:
+
+            ActorID: 2
+           Position: [4.0000 -48.6504 0]
+           Velocity: [50.0000 -0.0105 0]
+               Roll: 0
+              Pitch: 0
+                Yaw: -0.0120
+    AngularVelocity: [0 0 -0.1235]
+
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e39852">将多个视图与鸟瞰图合并<span id="DrivingScenarioTutorialExample-21" class="anchor_target"></span></h3>
+<p>调试模拟时，您可能希望报告特定参与者的鸟瞰图中的“真实”数据，同时查看场景生成的图。为此，您可以首先创建一个图形，其中轴以自定义排列方式放置：</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close <span style="color:#A020F0">all</span>;
+hFigure = figure;
+hFigure.Position(3) = 900;
+
+hPanel1 = uipanel(hFigure,<span style="color:#A020F0">'Units'</span>,<span style="color:#A020F0">'Normalized'</span>,<span style="color:#A020F0">'Position'</span>,[0 1/4 1/2 3/4],<span style="color:#A020F0">'Title'</span>,<span style="color:#A020F0">'Scenario Plot'</span>);
+hPanel2 = uipanel(hFigure,<span style="color:#A020F0">'Units'</span>,<span style="color:#A020F0">'Normalized'</span>,<span style="color:#A020F0">'Position'</span>,[0 0 1/2 1/4],<span style="color:#A020F0">'Title'</span>,<span style="color:#A020F0">'Chase Plot'</span>);
+hPanel3 = uipanel(hFigure,<span style="color:#A020F0">'Units'</span>,<span style="color:#A020F0">'Normalized'</span>,<span style="color:#A020F0">'Position'</span>,[1/2 0 1/2 1],<span style="color:#A020F0">'Title'</span>,<span style="color:#A020F0">'Bird''s-Eye Plot'</span>);
+
+hAxes1 = axes(<span style="color:#A020F0">'Parent'</span>,hPanel1);
+hAxes2 = axes(<span style="color:#A020F0">'Parent'</span>,hPanel2);
+hAxes3 = axes(<span style="color:#A020F0">'Parent'</span>,hPanel3);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39860" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_13.png"/></p>
+</div>
+</div>
+<p>定义轴后，您可以在创建图时通过 Parent 属性指定它们：<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% assign scenario plot to first axes and add indicators for ActorIDs 1 and 2</span>
+plot(scenario, <span style="color:#A020F0">'Parent'</span>, hAxes1,<span style="color:#A020F0">'ActorIndicators'</span>,[1 2]);
+
+<span style="color:#228B22">% assign chase plot to second axes</span>
+chasePlot(egoCar, <span style="color:#A020F0">'Parent'</span>, hAxes2);
+
+<span style="color:#228B22">% assign bird's-eye plot to third axes</span>
+egoCarBEP = birdsEyePlot(<span style="color:#A020F0">'Parent'</span>,hAxes3,<span style="color:#A020F0">'XLimits'</span>,[-200 200],<span style="color:#A020F0">'YLimits'</span>,[-240 240]);
+fastTrackPlotter = trackPlotter(egoCarBEP,<span style="color:#A020F0">'MarkerEdgeColor'</span>,<span style="color:#A020F0">'red'</span>,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'target'</span>,<span style="color:#A020F0">'VelocityScaling'</span>,.5);
+egoTrackPlotter = trackPlotter(egoCarBEP,<span style="color:#A020F0">'MarkerEdgeColor'</span>,<span style="color:#A020F0">'blue'</span>,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'ego'</span>,<span style="color:#A020F0">'VelocityScaling'</span>,.5);
+egoLanePlotter = laneBoundaryPlotter(egoCarBEP);
+plotTrack(egoTrackPlotter, [0 0]);
+egoOutlinePlotter = outlinePlotter(egoCarBEP);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39870" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_14.png"/></p>
+</div>
+</div>
+<p>您现在可以重新启动模拟并运行它完成，这次通过 targetPose 提取目标汽车的位置信息并将其显示在鸟瞰图中。同样，你也可以直接从自我车辆中调用roadBorders和targetOutline 来提取道路边界和Actor的轮廓。鸟瞰图能够直接显示这些函数的结果：<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>restart(scenario)
+scenario.StopTime = Inf;
+
+<span style="color:#0000FF">while</span> advance(scenario)
+    t = targetPoses(egoCar);
+    plotTrack(fastTrackPlotter, t.Position, t.Velocity);
+    rbs = roadBoundaries(egoCar);
+    plotLaneBoundary(egoLanePlotter, rbs);
+    [position, yaw, length, width, originOffset, color] = targetOutlines(egoCar);
+    plotOutline(egoOutlinePlotter, position, yaw, length, width, <span style="color:#A020F0">'OriginOffset'</span>, originOffset, <span style="color:#A020F0">'Color'</span>, color);
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39884" class="mediaobject"><p><img src="../../examples/driving/win64/DrivingScenarioTutorialExample_15.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e39887">后续步骤<span id="DrivingScenarioTutorialExample-24" class="anchor_target"></span></h3>
+<p>此示例演示了如何使用 driveScenario 对象生成和可视化合成传感器数据和跟踪算法的基本事实。若要在交互式环境中模拟、可视化或修改此驾驶方案，请尝试将 drivingScenario 对象导入到驾驶方案设计器应用中：<br/></p>
+<div class="code_responsive"><pre id="d124e39897" class="programlisting">drivingScenarioDesigner(scenario)
+</pre>
+</div>
+<h3 class="title" id="d124e39899">更多信息<span id="DrivingScenarioTutorialExample-25" class="anchor_target"></span></h3>
+<p>For more information on how to define actors and roads, see <a href="create-actor-and-vehicle-trajectories.html" data-docid="driving_ug#mw_165f4466-8fd6-4fba-9659-b9b9d83ec3d3" class="a">Create Actor and Vehicle Trajectories Programmatically</a> and <a href="define-road-layouts.html" data-docid="driving_ug#mw_bdf810cf-9986-48fa-9e34-793c2f7d4a2d" class="a">Define Road Layouts Programmatically</a>.</p>
+<p>For a more in-depth example on how to use the bird's-eye plot with detections and tracks, see <a href="visualize-sensor-coverage-detections-and-tracks.html" data-docid="driving_ug#mw_5e511f44-0799-4bf8-b5d3-d72a8107f12f" class="a">Visualize Sensor Coverage, Detections, and Tracks</a>.</p>
+<p>For examples that use the driving scenario to assist in generating synthetic data, see <a href="model-radar-sensor-detections.html" data-docid="driving_ug#mw_44602a3e-a50e-4483-84fd-120cc0af0363" class="a">Model Radar Sensor Detections</a>, <a href="model-vision-sensor-detections.html" data-docid="driving_ug#mw_9650020b-8fbc-4f7a-9b08-bf4d5e1d35c0" class="a">Model Vision Sensor Detections</a>, and <a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" data-docid="driving_ug#mw_4b0a3201-1e7b-487f-961c-8f0ebf14df97" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a>.</p>
+</div>
+      <h2 id="d124e39924">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving Scenario
+            Designer</span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyeplot.html"><span itemprop="name"><code class="object">birdsEyePlot</code></span></a></span></li>
+</ul>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.vehicle.html"><span itemprop="name"><code class="function">vehicle</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.actorposes.html"><span itemprop="name"><code class="function">actorPoses</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.targetposes.html"><span itemprop="name"><code class="function">targetPoses</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.road.html"><span itemprop="name"><code class="function">road</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.roadboundaries.html"><span itemprop="name"><code class="function">roadBoundaries</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.updateplots.html"><span itemprop="name"><code class="function">updatePlots</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.chaseplot.html"><span itemprop="name"><code class="function">chasePlot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.record.html"><span itemprop="name"><code class="function">record</code></span></a></span></li>
+</ul>
+      <h2 id="d124e39970">Related Topics</h2>
+<ul><li><a href="create-driving-scenario-variations-programmatically.html" class="a">Create Driving Scenario Variations Programmatically</a></li>
+<li><a href="create-actor-and-vehicle-trajectories.html" class="a">Create Actor and Vehicle Trajectories Programmatically</a></li>
+<li><a href="define-road-layouts.html" class="a">Define Road Layouts Programmatically</a></li>
+<li><a href="scenario-generation-from-recorded-vehicle-data.html" class="a">Scenario Generation from Recorded Vehicle Data</a></li>
+<li><a href="automatic-scenario-generation.html" class="a">Automatic Scenario Generation</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

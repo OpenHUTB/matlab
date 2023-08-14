@@ -1,0 +1,39 @@
+function transformationMatrix=ned2bodyTransform(attitude)%#codegen
+
+
+
+
+
+
+
+
+
+
+    coder.allowpcode('plain');
+
+
+    attitude=reshape(attitude,3,[]);
+    roll=attitude(1,:);
+    pitch=attitude(2,:);
+    yaw=attitude(3,:);
+
+
+    C1=permute(cat(3,...
+    cat(1,cos(yaw),-sin(yaw),zeros(size(yaw))),...
+    cat(1,sin(yaw),cos(yaw),zeros(size(yaw))),...
+    cat(1,zeros(size(yaw)),zeros(size(yaw)),ones(size(yaw)))),...
+    [3,1,2]);
+    C2=permute(cat(3,...
+    cat(1,cos(pitch),zeros(size(pitch)),sin(pitch)),...
+    cat(1,zeros(size(pitch)),ones(size(pitch)),zeros(size(pitch))),...
+    cat(1,-sin(pitch),zeros(size(pitch)),cos(pitch))),...
+    [3,1,2]);
+    C3=permute(cat(3,...
+    cat(1,ones(size(roll)),zeros(size(roll)),zeros(size(roll))),...
+    cat(1,zeros(size(roll)),cos(roll),-sin(roll)),...
+    cat(1,zeros(size(roll)),sin(roll),cos(roll))),...
+    [3,1,2]);
+
+    transformationMatrix=pagemtimes(pagemtimes(C1,C2),C3);
+    transformationMatrix=permute(transformationMatrix,[2,1,3]);
+end

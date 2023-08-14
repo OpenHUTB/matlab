@@ -1,0 +1,76 @@
+classdef VectorController_PMSM__class<ConvClass&handle
+
+
+
+    properties
+
+        OldParam=struct(...
+        'Ts_vect',[],...
+        'h',[],...
+        'freq_max',[],...
+        'fc_bus',[],...
+        'car_freq',[],...
+        'nb_p',[],...
+        'fluxConstant',[],...
+        'voltageConstant',[],...
+        'torqueConstant',[],...
+        'kp_Id',[],...
+        'ki_Id',[],...
+        'kp_Iq',[],...
+        'ki_Iq',[]...
+        )
+
+
+        OldDropdown=struct(...
+        'detailLevel',[],...
+        'nb_ph',[],...
+        'modulationType',[],...
+        'machineConstant',[]...
+        )
+
+
+        NewDirectParam=struct(...
+        )
+
+
+        NewDerivedParam=struct(...
+        )
+
+
+        NewDropdown=struct(...
+        )
+
+
+        BlockOption={...
+        }
+        OldBlockName=[];
+        NewBlockPath=[];
+        ConversionType=[];
+    end
+
+    properties(Constant)
+        OldPath='electricdrivelib/Fundamental Drive Blocks/Vector Controller (PMSM)'
+        NewPath='elec_conv_sl_VectorController_PMSM_/VectorController_PMSM_'
+    end
+
+    methods
+        function obj=objParamMappingDirect(obj)
+        end
+
+        function obj=VectorController_PMSM__class()
+            if nargin>0
+            end
+        end
+
+        function obj=objParamMappingDerived(obj)
+
+
+        end
+
+        function obj=objDropdownMapping(obj)
+            logObj=ElecAssistantLog.getInstance();
+            logObj.addMessage(obj,'BlockNotSupported');
+        end
+    end
+
+end

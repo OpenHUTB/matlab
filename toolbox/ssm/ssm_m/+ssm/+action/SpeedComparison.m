@@ -1,0 +1,10 @@
+classdef SpeedComparison<uint32
+
+    enumeration
+        SPEED_COMPARISON_UNSPECIFIED(0)
+        SPEED_COMPARISON_ABSOLUTE(1)
+        SPEED_COMPARISON_SAME_AS(2)
+        SPEED_COMPARISON_FASTER_THAN(3)
+        SPEED_COMPARISON_SLOWER_THAN(4)
+    end
+end

@@ -1,0 +1,3 @@
+classdef TimeLineDefinitionProps<SimBiology.internal.plotting.sbioplot.definition.LineDefinitionProps
+
+end

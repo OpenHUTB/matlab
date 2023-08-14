@@ -1,0 +1,5 @@
+function getResource(this)
+
+
+
+

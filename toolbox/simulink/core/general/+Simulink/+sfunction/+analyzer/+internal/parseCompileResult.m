@@ -1,0 +1,94 @@
+function[result,details]=parseCompileResult(mexVerboseText,compiler,mexErrorReturn)
+    note=DAStudio.message('Simulink:SFunctions:ComplianceCheckNote');
+    warning=DAStudio.message('Simulink:SFunctions:ComplianceCheckWarningL');
+    error=DAStudio.message('Simulink:SFunctions:ComplianceCheckError');
+    switch(compiler)
+    case{'gcc','Clang'}
+        notePattern=['([^:^\n]+):(\d+):(\d+):\s(',note,'\s*\w*):\s(.+)(\s+)(.*)\s+'];
+        warningPattern=['([^:^\n]+):(\d+):(\d+):\s(',warning,'\s*\w*):\s(.+)(\s+)(.*)\s+'];
+        errorPattern1=['([^:^\n]+):(\d+):(\d+):\s(',error,'\s*\w*):\s(.+)(\s+)(.*)\s+'];
+        errorPattern2='([^:^]+):(\d+):\s(.+)(.*)\s+';
+    case 'mingw64'
+        notePattern=['([^^\n]+):(\d+):(\d+):\s(',note,'\s*\w*):\s(.+)(\s+)(.*)\s+'];
+        warningPattern=['([^^\n]+):(\d+):(\d+):\s(',warning,'\s*\w*):\s(.+)(\s+)(.*)\s+'];
+        errorPattern1=['([^^\n]+):(\d+):(\d+):\s(',error,'\s*\w*):\s(.+)(\s+)(.*)\s+'];
+        errorPattern2='([^^]+):(\d+):\s(.+)(.*)\s+';
+    case{'MSVC140'}
+        errorPattern1=['([^\n]+)(\(\d+\)):\s(',error,'\s*\w*):\s(.+):(\s+)(.*)\s'];
+        warningPattern='';
+        notePattern='';
+        errorPattern2='';
+    case{'MSVC120'}
+        errorPattern1=['([^\n]+)(\(\d+\))\s:\s(',error,'\s*\w*):\s(.+):(\s+)(.*)\s'];
+        warningPattern='';
+        notePattern='';
+        errorPattern2='';
+    otherwise
+        if(contains(mexVerboseText,error)&mexErrorReturn)
+            result=Simulink.sfunction.analyzer.internal.ComplianceCheck.FAIL;
+            details={mexVerboseText};
+            return;
+        elseif(~mexErrorReturn)
+            result=Simulink.sfunction.analyzer.internal.ComplianceCheck.PASS;
+            details={mexVerboseText};
+            return;
+        else
+            result=Simulink.sfunction.analyzer.internal.ComplianceCheck.NOTRUN;
+            details={mexVerboseText};
+            return;
+        end
+    end
+    errorDescriptions=regexp(mexVerboseText,errorPattern1,'match','dotexceptnewline');
+    if(isempty(errorDescriptions)&&isempty(warningPattern))
+        if(contains(mexVerboseText,error)&mexErrorReturn)
+            result=Simulink.sfunction.analyzer.internal.ComplianceCheck.FAIL;
+            details={mexVerboseText};
+            return;
+        elseif(~mexErrorReturn)
+            result=Simulink.sfunction.analyzer.internal.ComplianceCheck.PASS;
+            details={mexVerboseText};
+            return;
+        else
+            result=Simulink.sfunction.analyzer.internal.ComplianceCheck.NOTRUN;
+            details={mexVerboseText};
+            return;
+        end
+    else
+
+        rawWarnings=regexp(mexVerboseText,warningPattern,'match','dotexceptnewline');
+        warningDescriptions={};
+        for i=1:numel(rawWarnings)
+            if~contains(rawWarnings{i},'simulink.c')&~contains(rawWarnings{i},'simstruc_types.h')
+                warningDescriptions=[warningDescriptions,{rawWarnings{i}}];
+            end
+        end
+        rawNoteDescriptions=regexp(mexVerboseText,notePattern,'match','dotexceptnewline');
+        noteDescriptions={};
+        for i=1:numel(rawNoteDescriptions)
+            if~contains(rawNoteDescriptions{i},'simulink.c')&~contains(rawNoteDescriptions{i},'simstruc_types.h')
+                noteDescriptions=[noteDescriptions,{rawNoteDescriptions{i}}];
+            end
+        end
+        noteDescriptions=unique(noteDescriptions);
+
+        if(contains(mexVerboseText,error)&mexErrorReturn)
+            result=Simulink.sfunction.analyzer.internal.ComplianceCheck.FAIL;
+            errorDescriptions=regexp(mexVerboseText,errorPattern1,'match','dotexceptnewline');
+            if isempty(errorDescriptions)
+                errorDescriptions=regexp(mexVerboseText,errorPattern2,'match','dotexceptnewline');
+            end
+
+            details={errorDescriptions{:},warningDescriptions{:}};
+        elseif(~mexErrorReturn&~isempty(warningDescriptions))
+            result=Simulink.sfunction.analyzer.internal.ComplianceCheck.WARNING;
+            details={noteDescriptions{:},warningDescriptions{:}};
+        elseif(~mexErrorReturn)
+            result=Simulink.sfunction.analyzer.internal.ComplianceCheck.PASS;
+            details={''};
+        else
+            result=Simulink.sfunction.analyzer.internal.ComplianceCheck.NOTRUN;
+            details={DAStudio.message('Simulink:SFunctions:ComplianceCheckNoSource')};
+        end
+    end
+
+end

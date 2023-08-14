@@ -1,0 +1,359 @@
+function dlgStruct=getDialogSchema(this,name)
+
+
+
+
+
+    [classExists,pkgDir,pkgExists]=isComponentBuilt(this,false);
+    if isempty(pkgDir)
+        this.PkgDir=pwd;
+    elseif pkgExists&&~strcmpi(pkgDir,this.PkgDir)
+        this.PkgDir=pkgDir;
+    end
+
+    if classExists
+        buildMsg=sprintf(getString(message('rptgen:RptgenML_ComponentMaker:componentExistsMsg')),...
+        this.PkgName,this.ClassName);
+    else
+        buildMsg=sprintf(getString(message('rptgen:RptgenML_ComponentMaker:writeFilesMsg')),...
+        this.PkgName,this.ClassName);
+    end
+
+
+
+    r=RptgenML.Root;
+
+    if~isempty(r.Library)
+        allCat=find(r.Library,'-depth',1,'-isa','RptgenML.LibraryCategory');
+        if~isempty(allCat)
+            if length(allCat)==1
+                categoryNames={get(allCat,'CategoryName')};
+            else
+                categoryNames=get(allCat,'CategoryName');
+                categoryNames=categoryNames(:)';
+            end
+        else
+
+            categoryNames={getString(message('rptgen:RptgenML_ComponentMaker:noCategoriesMsg'))};
+        end
+
+
+
+
+
+
+
+
+
+
+
+
+
+    else
+        categoryNames={getString(message('rptgen:RptgenML_ComponentMaker:loadingCategoriesMsg'))};
+
+
+        mlreportgen.utils.internal.defer(@()showLibrary(RptgenML.Root));
+    end
+
+    [tClassName,wClassName]=locSplitWidget(this,'ClassName',...
+    'RowSpan',[1,1],...
+    'ColSpan',[1,3],...
+    'DialogRefresh',true);
+    [tPkgName,wPkgName]=locSplitWidget(this,'PkgName',...
+    'ColSpan',[1,3],...
+    'RowSpan',[2,2],...
+    'DialogRefresh',true);
+    [tPkgDir,wPkgDir]=locSplitWidget(this,'PkgDir',...
+    'Enabled',~pkgExists,...
+    'ColSpan',[1,2],...
+    'RowSpan',[3,3],...
+    'DialogRefresh',true);
+
+
+    [tDisplayName,wDisplayName]=locSplitWidget(this,'DisplayName',...
+    'RowSpan',[1,1],...
+    'ColSpan',[1,2]);
+    [tDescription,wDescription]=locSplitWidget(this,'Description',...
+    'RowSpan',[2,2],...
+    'ColSpan',[1,2]);
+    [tType,wType]=locSplitWidget(this,'Type',...
+    'Type','combobox',...
+    'Entries',categoryNames,...
+    'Editable',1,...
+    'RowSpan',[3,3],...
+    'ColSpan',[1,2]);
+
+
+    pkgDirShort=this.PkgDir;
+    if length(pkgDirShort)>24
+        pkgDirShort=[pkgDirShort(1:12),' ... ',pkgDirShort(end-12:end)];
+    end
+    dlgStruct=this.dlgMain(name,{
+    this.dlgContainer({
+tClassName
+wClassName
+tPkgName
+wPkgName
+tPkgDir
+wPkgDir
+    this.dlgFileBrowse('PkgDir','-directory',...
+    'RowSpan',wPkgDir.RowSpan,...
+    'ColSpan',[3,3],...
+    'Enabled',~pkgExists)
+    this.dlgText(getString(message('rptgen:RptgenML_ComponentMaker:destinationDirectoryLabel')),...
+    'RowSpan',[4,4],...
+    'ColSpan',[1,1])
+    this.dlgText(fullfile(pkgDirShort,...
+    ['@',this.PkgName],...
+    ['@',this.ClassName]),...
+    'WordWrap',true,...
+    'RowSpan',[4,4],...
+    'ColSpan',[2,2])
+    struct('Type','pushbutton',...
+    'Enabled',classExists,...
+    'RowSpan',[4,4],...
+    'ColSpan',[3,3],...
+    'Name',[getString(message('rptgen:RptgenML_ComponentMaker:editLabel')),'...'],...
+    'ToolTip',getString(message('rptgen:RptgenML_ComponentMaker:editAllCodeFilesLabel')),...
+    'MatlabMethod','viewAllFiles',...
+    'MatlabArgs',{{'%source',2}},...
+    'DialogRefresh',false)
+    },getString(message('rptgen:RptgenML_ComponentMaker:fileLocationLabel')),...
+    'RowSpan',[2,2],'ColSpan',[1,2],...
+    'LayoutGrid',[4,3],'RowStretch',[0,0,0,0],'ColStretch',[0,1,0])
+    this.dlgContainer({
+tDisplayName
+wDisplayName
+tDescription
+wDescription
+tType
+wType
+    this.dlgWidget('isWriteHeader',...
+    'RowSpan',[4,4],...
+    'ColSpan',[1,2],...
+    'Visible',this.isWriteHeader)
+    this.dlgWidget('Parentable',...
+    'RowSpan',[5,5],...
+    'ColSpan',[1,2])
+    },getString(message('rptgen:RptgenML_ComponentMaker:displayOptionsLabel')),...
+    'RowSpan',[3,3],'ColSpan',[1,2],...
+    'LayoutGrid',[5,2],'RowStretch',[0,0,0,0,0],'ColStretch',[0,1])
+    this.dlgContainer({
+    struct('Type','pushbutton',...
+    'RowSpan',[1,1],...
+    'ColSpan',[1,1],...
+    'Name',getString(message('rptgen:RptgenML_ComponentMaker:buildComponentLabel')),...
+    'MatlabMethod','build',...
+    'MatlabArgs',{{'%source',true}},...
+    'DialogRefresh',true)
+    this.dlgText(buildMsg,...
+    'WordWrap',true,...
+    'RowSpan',[1,1],...
+    'ColSpan',[2,2]);
+    struct('Type','pushbutton',...
+    'Enabled',classExists,...
+    'RowSpan',[2,2],...
+    'ColSpan',[1,1],...
+    'Name',getString(message('rptgen:RptgenML_ComponentMaker:rebuildConstructorLabel')),...
+    'MatlabMethod','build',...
+    'MatlabArgs',{{'%source',false}},...
+    'DialogRefresh',true)
+    this.dlgText(getString(message('rptgen:RptgenML_ComponentMaker:createConstructorLabel')),...
+    'Enabled',classExists,...
+    'WordWrap',true,...
+    'RowSpan',[2,2],...
+    'ColSpan',[2,2])
+    },getString(message('rptgen:RptgenML_ComponentMaker:buildLabel')),...
+    'RowSpan',[1,1],'ColSpan',[1,2],...
+    'LayoutGrid',[2,2],'RowStretch',[0,0],'ColStretch',[0,1])
+    getPropertyTable(this,'RowSpan',[4,4],'ColSpan',[1,2])
+    },'LayoutGrid',[4,2],...
+    'DialogTitle',getString(message('rptgen:RptgenML_ComponentMaker:createComponentLabel')),...
+    'RowStretch',[0,0,0,1],...
+    'ColStretch',[0,1]);
+
+
+
+
+
+    function allPkg=locAllPackages(this,r)
+
+
+
+
+
+
+
+
+
+
+
+
+        allComp=find(r.Library,'-isa','RptgenML.LibraryComponent');
+        allCls=get(allComp,'ClassName');
+
+        for i=1:length(allCls)
+            dotLoc=findstr(allCls{i},'.');
+            allCls{i}=allCls{i}(1:dotLoc(1)-1);
+        end
+        allCls=unique(allCls);
+
+        if this.isWriteHeader
+
+            allPkg=allCls(:);
+        else
+            allPkg={};
+            tbxDir=fullfile(matlabroot,'toolbox');
+            for i=1:length(allCls)
+                pkgDir=what(['@',allCls{i}]);
+                if~isempty(pkgDir)&&isempty(findstr(tbxDir,pkgDir(1).path))
+                    allPkg{end+1,1}=allCls{i};
+                end
+            end
+        end
+
+
+
+
+
+
+
+
+        function cProps=getPropertyTable(this,varargin)
+
+            hProps=this.getHierarchicalChildren;
+            hCount=length(hProps);
+
+            toDisplay={
+            'PropertyName',getString(message('rptgen:RptgenML_ComponentMaker:nameLabel'))
+            'DataTypeString',getString(message('rptgen:RptgenML_ComponentMaker:dataTypeLabel'))
+            'FactoryValueString',getString(message('rptgen:RptgenML_ComponentMaker:defaultValueLabel'))
+            };
+            dCount=size(toDisplay,1);
+
+
+            if hCount>0
+                if this.DlgCurrentPropertyIdx<1
+                    this.DlgCurrentPropertyIdx=1;
+                elseif this.DlgCurrentPropertyIdx>hCount
+                    this.DlgCurrentPropertyIdx=hCount;
+                end
+
+
+
+
+
+
+
+
+
+
+
+
+
+                tableData=cell(hCount,dCount);
+                for objIdx=1:hCount;
+                    for propIdx=1:dCount;
+                        tableData{objIdx,propIdx}=rmfield(dlgWidget(hProps(objIdx),...
+                        toDisplay{propIdx,1},...
+                        'Source',hProps(objIdx)),'Name');
+                    end
+                end
+                tableEditable=true;
+            else
+                this.DlgCurrentPropertyIdx=0;
+                tableData={};
+
+                tableEditable=false;
+            end
+
+            cProps=this.dlgContainer({
+            struct('Type','pushbutton',...
+            'RowSpan',[1,1],...
+            'ColSpan',[1,1],...
+            'FilePath',fullfile(matlabroot,'toolbox','rptgen','resources','ComponentMakerData.png'),...
+            'Name',getString(message('rptgen:RptgenML_ComponentMaker:addPropertyLabel')),...
+            'MatlabMethod','addProperty',...
+            'MatlabArgs',{{'%source',...
+            'PropertyName','NewProperty',...
+            'DataTypeString','string',...
+            'FactoryValueString','''default value'''}},...
+            'DialogRefresh',true)
+            struct('Type','pushbutton',...
+            'RowSpan',[1,1],...
+            'ColSpan',[2,2],...
+            'Enabled',tableEditable,...
+            'Name',getString(message('rptgen:RptgenML_ComponentMaker:editPropertyLabel')),...
+            'MatlabMethod','editProperty',...
+            'MatlabArgs',{{'%source'}})
+            struct('Type','table',...
+            'Tag','PropertiesTable',...
+            'Size',[hCount,dCount],...
+            'Grid',true,...
+            'SelectedRow',this.DlgCurrentPropertyIdx-1,...
+            'Data',{tableData},...
+            'ColHeader',{toDisplay(:,2)'},...
+            'ColumnCharacterWidth',[16,8,24],...
+            'Editable',tableEditable,...
+            'HeaderVisibility',[0,1],...
+            'ValueChangedCallback',@onValueChanged,...
+            'CurrentItemChangedCallback',@onCurrentChanged,...
+            'RowSpan',[2,2],...
+            'ColSpan',[1,3])
+            },getString(message('rptgen:RptgenML_ComponentMaker:propLabel')),...
+            'LayoutGrid',[2,3],'ColStretch',[0,0,1],'RowStretch',[0,1],...
+            varargin{:});
+
+
+            function[t,w]=locSplitWidget(this,varargin)
+
+
+                w=this.dlgWidget(varargin{:});
+                t=this.dlgText(w.Name,...
+                'RowSpan',w.RowSpan,...
+                'ColSpan',[1,1]);
+                w=rmfield(w,'Name');
+                w.ColSpan=[2,w.ColSpan(2)];
+
+
+
+
+
+                function onValueChanged(d,r,c,val)
+
+                    if c==0
+
+                        this=d.getDialogSource;
+                        allProps=this.getHierarchicalChildren;
+                        changedProp=allProps(r+1);
+
+
+                        changedProp.PropertyName=val;
+                        ed=DAStudio.EventDispatcher;
+                        ed.broadcastEvent('PropertyChangedEvent',changedProp);
+                    end
+
+
+
+
+
+
+
+
+                    function onCurrentChanged(d,r,c)
+
+                        this=d.getDialogSource;
+                        this.DlgCurrentPropertyIdx=r+1;
+                        d.selectTableRow('PropertiesTable',r);
+
+
+
+
+
+
+
+
+
+
+

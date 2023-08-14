@@ -1,0 +1,13 @@
+function hNewC=lowerGround(hN,hC)
+
+
+
+
+    constVal=0;
+    hNewC=pireml.getConstComp(...
+    hN,...
+    hC.PirOutputSignals,...
+    constVal,...
+    hC.Name);
+
+end

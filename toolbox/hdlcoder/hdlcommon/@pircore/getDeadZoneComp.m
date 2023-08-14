@@ -1,0 +1,19 @@
+function dzComp=getDeadZoneComp(hN,hInSignals,hOutSignals,lowerLimit,upperLimit,name)
+
+
+
+    if(nargin<6)
+        name='deadzone';
+    end
+
+    dzComp=hN.addComponent2(...
+    'kind','deadzone_comp',...
+    'Name',name,...
+    'InputSignals',hInSignals,...
+    'OutputSignals',hOutSignals,...
+    'LowerLimit',lowerLimit,...
+    'UpperLimit',upperLimit);
+
+end
+
+

@@ -1,0 +1,13 @@
+function sumOfValues=addSlopeBiasFiValues(value1,value2)
+
+
+
+
+
+    fiMath=fimath(...
+    'SumMode','SpecifyPrecision',...
+    'SumWordLength',value1.WordLength+1,...
+    'SumSlope',value1.Slope,...
+    'SumBias',value1.Bias+value2.Bias);
+    sumOfValues=removefimath(setfimath(value1,fiMath)+setfimath(value2,fiMath));
+end

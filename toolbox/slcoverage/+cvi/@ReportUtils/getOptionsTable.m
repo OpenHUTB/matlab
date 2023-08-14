@@ -1,0 +1,49 @@
+function ret=getOptionsTable
+
+
+
+
+    persistent optionsTable;
+
+    if isempty(optionsTable)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        optionsTable={...
+        getString(message('Slvnv:simcoverage:RepOptShowReport')),'showReport','sRT',1,;...
+        getString(message('Slvnv:simcoverage:RepOptGenerateWebViewReport')),'generateWebViewReport','sVT',0;...
+        getString(message('Slvnv:simcoverage:RepOptEachTest')),'allTestInMdlSumm','aTS',1,;...
+        getString(message('Slvnv:simcoverage:RepOptAggregatedTests')),'aggregatedTests','agT',1,;...
+        getString(message('Slvnv:simcoverage:RepOptBarGraphs')),'barGrInMdlSumm','bRG',1,;...
+        getString(message('Slvnv:simcoverage:RepOptTwoColorGraphs')),'twoColorBarGraphs','bTC',1,;...
+        getString(message('Slvnv:simcoverage:RepOptDisplayRatio')),'hitCntInMdlSumm','hTR',0,;...
+        getString(message('Slvnv:simcoverage:RepOptNoFullCoverage')),'elimFullCov','nFC',0,;...
+        getString(message('Slvnv:simcoverage:RepOptNoFullCoverageDetails')),'elimFullCovDetails','nFD',1,;...
+        getString(message('Slvnv:simcoverage:RepOptCycInSummary')),'complexInSumm','scm',1,;...
+        getString(message('Slvnv:simcoverage:RepOptCycInDetails')),'complexInBlkTable','bcm',1,;...
+        getString(message('Slvnv:simcoverage:RepOptFilterEvents')),'filtSFEvent','xEv',0,;...
+        getString(message('Slvnv:simcoverage:RepOptFilterExec')),'filtExecMetric','xEM',0,;...
+        getString(message('Slvnv:simcoverage:RepOptShowReqTable')),'showReqTable','req',1...
+        };
+
+        rows=numel(optionsTable);
+        for i=1:rows
+            optionsTable{i}=optionsTable{i};
+        end
+
+    end
+    ret=optionsTable;

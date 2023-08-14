@@ -1,0 +1,28 @@
+if((window.location.pathname.indexOf("/api/parts/") == -1)  && 
+		(window.location.pathname !== "/login") && 
+		(window.location.pathname.indexOf("/login/") == -1) &&
+		(window.location.search.indexOf("requestedDomain=") == -1) &&
+		(window.location.hostname.indexOf("mathworks.com") == -1)){
+	
+	MWEmbeddedStatus.initialize({
+		clientString: "equus",
+		embeddedEndpoint: embeddedEndpoint,
+		logout: function(){
+			window.location.replace("https://" + window.location.hostname + "/login/logout?uri=" + encodeURIComponent(location.href));
+		},
+		handle3PCookieDisabled: function(){
+			var ssoCookie = MWEmbeddedStatus.prototype.findCookie("mwa_SID");
+			if(ssoCookie == null){
+				window.location.replace(embeddedEndpoint + ssoEndpointForDisabled3P());
+			}
+		},
+		handlePolicy: function(){
+			window.location.replace("https://" + window.location.hostname.replace("ww2", "www").replace(".cn",".com") + "/login/cookies/refresh/redirect?uri=" + encodeURIComponent(location.href));
+		}
+	});
+	
+	function ssoEndpointForDisabled3P(){
+		return "v2/status/redirect?origin=https://" + window.location.hostname + "&forward=" + encodeURIComponent(location.href);
+	}
+
+}

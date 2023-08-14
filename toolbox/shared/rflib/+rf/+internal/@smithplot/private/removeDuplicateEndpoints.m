@@ -1,0 +1,6 @@
+function d=removeDuplicateEndpoints(d)
+
+
+
+
+

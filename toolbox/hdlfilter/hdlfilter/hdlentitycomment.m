@@ -1,0 +1,79 @@
+function comment=hdlentitycomment(nname,revisiontag,infostr,commentchars,...
+    specstr,impstr)
+
+
+
+
+
+    if nargin==3
+        commentchars='--';
+        specstr=[];
+        impstr=[];
+    end
+
+    if nargin==4
+        specstr=[];
+        impstr=[];
+    end
+
+    if nargin==5
+        impstr=[];
+    end
+    if isempty(revisiontag)
+        rcs_cvs_tag='';
+    else
+        rcs_cvs_tag=[revisiontag,commentchars,'\n'];
+    end
+
+
+    fheader=sptfileheader('','hdlfilter',commentchars,31);
+
+    separatorline=[commentchars,' ','-'*ones(1,63-length(commentchars)),'\n'];
+
+
+
+
+    if any(any(infostr>127))
+
+        infoComment='';
+    else
+        info=hdlcommentfixupcbsinfo(cellstr([repmat([commentchars,' '],...
+        size(infostr,1),1),infostr]),...
+        commentchars);
+        infoComment=[commentchars,' Filter Settings:\n',...
+        commentchars,'\n',...
+        sprintf('%s\n',info{:}),...
+        separatorline];
+    end
+
+    if~isempty(specstr)
+        specinfo=cellstr([repmat([commentchars,' '],...
+        size(specstr,1),1),specstr]);
+        specinfo=['\n',commentchars,' Filter Specifications:\n',commentchars,'\n',...
+        sprintf('%s\n',specinfo{:}),separatorline];
+    else
+        specinfo=[];
+    end
+
+    optionscell=hdlfilterparameters();
+
+    codeoptions=hdlcommentcodeoptions(optionscell,commentchars);
+
+    comment=[separatorline,...
+    commentchars,'\n',...
+    commentchars,' Module: ',nname,'\n',...
+    fheader,...
+    '\n',...
+    rcs_cvs_tag,...
+    separatorline,...
+    '\n',...
+    separatorline,...
+    commentchars,' HDL Code Generation Options:\n',commentchars,'\n',...
+    codeoptions,...
+    specinfo,...
+    '\n',...
+    separatorline,...
+    impstr,...
+    separatorline,...
+    infoComment];
+

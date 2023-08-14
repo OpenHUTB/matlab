@@ -1,0 +1,36 @@
+function hdlcode=componentBody(this)
+
+
+
+
+    hdlcode=this.hdlcodeinit;
+    hdlcode.entity_library='LIBRARY IEEE;\nUSE IEEE.std_logic_unsigned.ALL;\n';
+    datawidth=this.generic.CNTWIDTH.Name;
+
+    clk=this.findSignalName('clk','componentBody');
+    rst=this.findSignalName('rst','componentBody');
+    enb=this.findSignalName('enb','componentBody');
+    cnt=this.findSignalName('cnt','componentBody');
+
+    if this.flatten==true
+        finalAssignment='';
+    else
+        [cnt_tmp,ptr]=hdlnewsignal('cnt_tmp','block',-1,0,0,['unsigned(',datawidth,' - 1 DOWNTO 0)'],'');
+        hdlcode.arch_signals=[hdlcode.arch_signals,makehdlsignaldecl(ptr)];
+        finalAssignment='cnt <= std_logic_vector(cnt_tmp);\n';
+
+    end
+    hdlcode.arch_body_blocks=[...
+    'PROCESS (',clk,',',rst,')\n',...
+    'BEGIN  -- PROCESS\n',...
+    '  IF (',rst,' =''1'') THEN\n',...
+    '     ',cnt_tmp,' <= (OTHERS => ''0'');\n',...
+    '  ELSIF ',clk,'''event AND ',clk,' = ''1'' THEN\n',...
+    '    IF ',enb,' = ''1'' THEN\n',...
+    '     ',cnt_tmp,' <= ',cnt_tmp,' + to_unsigned(1,',datawidth,');\n',...
+    '    END IF;\n',...
+    '  END IF;\n',...
+    'END PROCESS;\n\n',...
+    finalAssignment];
+
+end

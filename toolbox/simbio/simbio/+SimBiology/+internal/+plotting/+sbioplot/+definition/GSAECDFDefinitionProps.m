@@ -1,0 +1,2 @@
+classdef GSAECDFDefinitionProps<SimBiology.internal.plotting.sbioplot.definition.GSAPlotDefinitionProps
+end

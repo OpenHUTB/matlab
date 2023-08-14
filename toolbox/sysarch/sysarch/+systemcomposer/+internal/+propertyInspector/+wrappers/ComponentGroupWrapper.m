@@ -1,0 +1,50 @@
+classdef ComponentGroupWrapper<systemcomposer.internal.propertyInspector.wrappers.ElementWrapper
+
+
+
+    properties
+        mdl;
+        occurenceElement;
+        bdH;
+        schemaType;
+    end
+
+    methods
+        function obj=ComponentGroupWrapper(varargin)
+            obj=obj@systemcomposer.internal.propertyInspector.wrappers.ElementWrapper(varargin{:});
+            obj.schemaType='ComponentGroup';
+        end
+        function type=getObjectType(~)
+            type='ComponentGroup';
+        end
+
+        function setPropElement(obj)
+            obj.bdH=get_param(obj.archName,'Handle');
+            obj.app=Simulink.SystemArchitecture.internal.ApplicationManager.getAppMgrFromBDHandle(obj.bdH);
+            obj.mdl=obj.app.getArchViewsAppMgr.getModel();
+            obj.element=obj.mdl.findElement(obj.uuid);
+        end
+
+        function name=getName(obj)
+            name=obj.element.getName;
+        end
+
+        function error=setName(obj,changeSet,~)
+            error='';
+            newName=changeSet.newValue;
+            try
+                obj.element.p_Source.setName(newName);
+            catch
+                error='Failed to set Name';
+            end
+        end
+        function name=getNameTooltip(obj)
+            name=obj.element.getName;
+        end
+
+        function status=isNameEditable(~)
+            status=true;
+        end
+    end
+end
+

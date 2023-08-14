@@ -1,0 +1,36 @@
+function emitBuildInfoCalculation(this,codeWriter,sfunInfoVar,tabString)
+
+
+
+
+
+    buildInfoCalculationTxt=[...
+    tabString,'%% Call the helper\n'...
+    ,tabString,'pathInfo = legacycode.lct.util.resolvePaths(%s, isSimTarget==1, currDir, matlabPath);'];
+
+    codeWriter.wLine(buildInfoCalculationTxt,sfunInfoVar);
+
+    if this.EmittingObjsIsSingleCPPMexFile
+        buildInfoCalculationTxt=['\n'...
+        ,tabString,'%% Add the sources to the list of dependencies\n'...
+        ,tabString,'if %s.singleCPPMexFile && ~isempty(%s.SourceFiles)\n'...
+        ,tabString,'    allSrcs = RTW.unique([allSrcs %s.SourceFiles(:)'']);\n'...
+        ,tabString,'end'];
+
+        codeWriter.wLine(buildInfoCalculationTxt,sfunInfoVar,sfunInfoVar,sfunInfoVar);
+    end
+
+    buildInfoCalculationTxt=['\n'...
+    ,tabString,'%% Concatenate known include and source directories\n'...
+    ,tabString,'allIncPaths = RTW.uniquePath([allIncPaths pathInfo.IncPaths(:)'']);\n'...
+    ,tabString,'allSrcPaths = RTW.uniquePath([allSrcPaths pathInfo.SrcPaths(:)'']);'];
+
+    codeWriter.wLine(sprintf(buildInfoCalculationTxt));
+
+    if this.EmittingObjsHasLibs
+        buildInfoCalculationTxt=['\n'...
+        ,tabString,'%% Concatenate Host or Target libraries\n'...
+        ,tabString,'allLibs = RTW.uniquePath([allLibs pathInfo.LibFiles(:)'']);'];
+        codeWriter.wLine(sprintf(buildInfoCalculationTxt));
+    end
+

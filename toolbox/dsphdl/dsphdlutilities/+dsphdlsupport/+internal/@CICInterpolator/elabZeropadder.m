@@ -1,0 +1,56 @@
+function pSection=elabZeropadder(~,hTopN,blockInfo,slRate,integOutreg_re,integOutreg_im,ireg_vout,ireg_rstout,integOut_re,integOut_im,i_vout)
+
+
+
+
+    in1=integOutreg_re;
+    in2=integOutreg_im;
+    in3=ireg_vout;
+    in4=ireg_rstout;
+
+    out1=integOut_re;
+    out2=integOut_im;
+    out3=i_vout;
+
+
+    pSection=pirelab.createNewNetwork(...
+    'Network',hTopN,...
+    'Name','pSection',...
+    'InportNames',{'integOutreg_re','integOutreg_im','ireg_vout','ireg_rstout'},...
+    'InportTypes',[in1.Type,in2.Type,in3.Type,in4.Type],...
+    'Inportrates',[slRate,slRate,slRate,slRate],...
+    'OutportNames',{'integOut_re','integOut_im','i_vout'},...
+    'OutportTypes',[out1.Type,out2.Type,out3.Type]...
+    );
+
+
+    integOutreg_re=pSection.PirInputSignals(1);
+    integOutreg_im=pSection.PirInputSignals(2);
+    ireg_vout=pSection.PirInputSignals(3);
+    ireg_rstout=pSection.PirInputSignals(4);
+
+    integOut_re=pSection.PirOutputSignals(1);
+    integOut_im=pSection.PirOutputSignals(2);
+    i_vout=pSection.PirOutputSignals(3);
+
+    numsec=blockInfo.NumSections;
+    outvecsize=blockInfo.R1;
+
+
+    fid=fopen(fullfile(matlabroot,'toolbox','dsphdl','dsphdlutilities','+dsphdlsupport','+internal',...
+    '@CICInterpolator','cgireml','zeroPadder.m'),'r');
+    zeroPadder=fread(fid,Inf,'char=>char');
+    fclose(fid);
+    pSection.addComponent2(...
+    'kind','cgireml',...
+    'Name','zeroPadder',...
+    'InputSignals',[integOutreg_re,integOutreg_im,ireg_vout,ireg_rstout],...
+    'OutputSignals',[integOut_re,integOut_im,i_vout],...
+    'EMLFileName','zeroPadder',...
+    'EMLFileBody',zeroPadder,...
+    'EmlParams',{numsec,outvecsize},...
+    'EMLFlag_TreatInputIntsAsFixpt',true);
+
+
+
+end

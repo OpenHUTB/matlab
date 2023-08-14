@@ -1,0 +1,11 @@
+function SPSVerifyLinkStatus(varargin)
+
+
+
+
+
+
+
+
+
+    return

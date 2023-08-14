@@ -1,0 +1,31 @@
+classdef fault_type_option<int32
+    enumeration
+        ag(1)
+        bg(2)
+        cg(3)
+        ab(4)
+        bc(5)
+        ca(6)
+        abg(7)
+        bcg(8)
+        cag(9)
+        abc(10)
+        abcg(11)
+    end
+    methods(Static)
+        function map=displayText()
+            map=containers.Map;
+            map('ag')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_SinglePhaseToGroundaG';
+            map('bg')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_SinglePhaseToGroundbG';
+            map('cg')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_SinglePhaseToGroundcG';
+            map('ab')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_TwoPhaseaB';
+            map('bc')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_TwoPhasebC';
+            map('ca')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_TwoPhasecA';
+            map('abg')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_TwoPhaseToGroundaBG';
+            map('bcg')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_TwoPhaseToGroundbCG';
+            map('cag')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_TwoPhaseToGroundcAG';
+            map('abc')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_ThreePhaseaBC';
+            map('abcg')='physmod:ee:library:comments:utilities:faults:gui:Xabc:combo_ThreePhaseToGroundaBCG';
+        end
+    end
+end

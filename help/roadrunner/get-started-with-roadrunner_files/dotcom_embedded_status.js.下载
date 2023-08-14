@@ -1,0 +1,174 @@
+﻿var MWEmbeddedStatus;
+
+if (MWEmbeddedStatus === undefined) { MWEmbeddedStatus = {}; }
+
+String.prototype.endsWith = function(pattern) {
+	var d = this.length - pattern.length;
+	return d >= 0 && this.lastIndexOf(pattern) === d;
+};
+
+MWEmbeddedStatus = (function () {
+	"use strict";
+
+	var MWEmbeddedStatus;
+
+	MWEmbeddedStatus = function (options,callback) {
+		this.instance;
+		this.config = $.extend({}, MWEmbeddedStatus.defaultConfig, options || {});
+		var aObject = {};
+		aObject['src'] = this.config.embeddedEndpoint + 'v2/status.html';
+		aObject['tabindex'] = "-1";
+		aObject['height'] = 0;
+		aObject['width'] = 0;
+		aObject['id'] = "embeddedStatus";
+		aObject['frameborder'] = 0;
+		this._iframe = $('<iframe>', aObject);
+	};
+
+	MWEmbeddedStatus.defaultConfig = {};
+	MWEmbeddedStatus.defaultConfig['success'] = function(){};
+	MWEmbeddedStatus.defaultConfig['error'] = function(){};
+
+	/* Class Methods */
+
+	MWEmbeddedStatus.initialize = function(options,callback){
+		var _instance = new MWEmbeddedStatus(options,callback);
+		try{
+			MWEmbeddedStatus.instance = _instance.initialize();
+			return this;
+		} catch (err) {
+			//ignore
+		}
+	};
+
+	MWEmbeddedStatus.findCookie = function(cname) {
+		return MWEmbeddedStatus.instance.findCookie(cname);
+	}
+
+	MWEmbeddedStatus.verifyEvent = function(event){
+		return MWEmbeddedStatus.instance.verifyOrigin(event.origin);
+	};
+
+	MWEmbeddedStatus.getConfig = function(){
+		return MWEmbeddedStatus.instance.config;
+	};
+
+	MWEmbeddedStatus.getIframe = function(){
+		return MWEmbeddedStatus.instance._getIframe();
+	};
+
+	MWEmbeddedStatus.postMessage = function(msg){
+		return MWEmbeddedStatus.instance.postMessage(msg);
+	};
+
+	/* Public Methods */
+
+	MWEmbeddedStatus.prototype.initialize = function(){
+		if (window.addEventListener){
+			window.addEventListener('message', this._receiver, false);
+			this._writeIframe();
+			return this;
+		}
+	};
+
+	MWEmbeddedStatus.prototype.findCookie = function(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return;
+	};
+
+	MWEmbeddedStatus.prototype.redirectToSSO = function(tx){
+		if(MWEmbeddedStatus.instance.config.redirectToSSO){
+			MWEmbeddedStatus.instance.config.redirectToSSO(tx);
+		}else{
+			window.location.href = "https://" + location.hostname + "/login/mwa-sso?uri=" + encodeURIComponent(window.location.href) + "&tx_id=" + tx;
+		}
+	};
+	
+	MWEmbeddedStatus.prototype.handle3PCookieDisabled = function(){
+		if(MWEmbeddedStatus.instance.config.handle3PCookieDisabled){
+			MWEmbeddedStatus.instance.config.handle3PCookieDisabled();
+		}
+	};
+	
+	MWEmbeddedStatus.prototype.handlePolicy = function(){
+		if(MWEmbeddedStatus.instance.config.handlePolicy){
+			MWEmbeddedStatus.instance.config.handlePolicy();
+		}
+	};
+
+	MWEmbeddedStatus.prototype.verifyOrigin = function(origin) {
+		return origin.endsWith(".mathworks.com");
+	};
+
+	MWEmbeddedStatus.prototype.logout = function(){
+		document.cookie = "mwa_SID=; domain=" + window.location.hostname + ";path=/";
+		MWEmbeddedStatus.instance.config.logout();
+	};
+	
+	MWEmbeddedStatus.prototype.synced = function(){
+		if(MWEmbeddedStatus.instance.config.synced){
+			MWEmbeddedStatus.instance.config.synced();
+		}
+	};
+
+	MWEmbeddedStatus.prototype.postMessage = function(msg, event){
+		MWEmbeddedStatus.getIframe().contentWindow.postMessage(JSON.stringify(msg), event.origin);
+	};
+
+	/* Private Methods */
+	MWEmbeddedStatus.prototype._receiver = function(event){
+
+		try {
+			if( MWEmbeddedStatus.verifyEvent(event) ){
+				var responseData = JSON.parse(event.data);
+				var eventCode = responseData.event;
+				console.log('received event: ' + eventCode );
+				if (eventCode == "connected") {
+					var msg = {
+							"event": "getStatus",
+							"sessionId": MWEmbeddedStatus.prototype.findCookie("mwa_SID")
+					};
+					MWEmbeddedStatus.prototype.postMessage(msg, event);
+				} else if (eventCode == "sso"){
+					MWEmbeddedStatus.prototype.redirectToSSO(responseData.tx_id);
+				} else if (eventCode == "logout"){
+					MWEmbeddedStatus.prototype.logout();
+				} else if (eventCode == "synced"){
+					MWEmbeddedStatus.prototype.synced();
+				} else if (eventCode == "cookiesDisabled"){
+					MWEmbeddedStatus.prototype.handle3PCookieDisabled();
+				} else if (eventCode == "policy"){
+					MWEmbeddedStatus.prototype.handlePolicy();
+				}
+			}
+		} catch (err) {
+			return;//not one of our postMessages, move along
+		}
+	};
+
+	MWEmbeddedStatus.prototype._writeIframe = function(callback) {
+		window.addEventListener('DOMContentLoaded', function(){
+			if(!document.querySelector("#embeddedStatus")){
+				document.querySelector("body").appendChild(MWEmbeddedStatus.getIframe());
+			}
+		}, false);
+	};
+
+	MWEmbeddedStatus.prototype._getIframe = function(){
+		return this._iframe[0];
+	};
+
+
+	return MWEmbeddedStatus;
+}());

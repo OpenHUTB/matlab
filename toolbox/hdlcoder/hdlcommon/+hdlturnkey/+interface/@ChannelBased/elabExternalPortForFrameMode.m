@@ -1,0 +1,16 @@
+function elabExternalPortForFrameMode(hN,hChannel)
+
+
+
+    hInterfaceSignal=pirelab.addIOPortToNetwork(...
+    'Network',hN,...
+    'InportNames',hChannel.ExtInportNames,...
+    'InportWidths',hChannel.ExtInportWidths,...
+    'OutportNames',hChannel.ExtOutportNames,...
+    'OutportWidths',hChannel.ExtOutportWidths);
+
+
+    hChannel.ExtTopInportSignals=hInterfaceSignal.hInportSignals;
+    hChannel.ExtTopOutportSignals=hInterfaceSignal.hOutportSignals;
+
+end

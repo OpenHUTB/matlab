@@ -1,0 +1,3 @@
+classdef SlicingInteractivity<cad.utilities.SlicingInteractivity
+
+end

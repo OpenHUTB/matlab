@@ -1,0 +1,30 @@
+function cn=connect(this,other,varargin)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    cn=this.Parent.connect(this,other,varargin{:});
+
+

@@ -1,0 +1,5 @@
+classdef ResidualDistributionDefinitionProps<SimBiology.internal.plotting.sbioplot.definition.DefinitionProps
+
+
+
+end

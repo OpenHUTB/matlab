@@ -1,0 +1,23 @@
+classdef(Abstract)JitterCommon<serdes.internal.ibisami.ami.parameter.JitterOrNoiseParameter
+
+...
+...
+...
+...
+...
+...
+...
+
+
+
+    methods
+        function param=JitterCommon()
+            param.Usage=serdes.internal.ibisami.ami.usage.Info();
+            param.Type=serdes.internal.ibisami.ami.type.UI();
+            param.Format=serdes.internal.ibisami.ami.format.Value(0);
+            param.AllowedUsages=["Info"];
+            param.AllowedTypes=["Float","UI"];
+            param.AllowedFormats=["Value","Range","Corner","List"];
+        end
+    end
+end

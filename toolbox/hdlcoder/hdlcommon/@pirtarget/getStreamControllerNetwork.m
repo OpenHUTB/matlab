@@ -1,0 +1,56 @@
+function hStreamNet=getStreamControllerNetwork(...
+    hN,topInSignals,topOutSignals,hPirInstance,networkName,extra_delay)
+
+
+
+
+    ufix1Type=pir_ufixpt_t(1,0);
+
+    top_fifo_in_empty=topInSignals(1);
+    top_fifo_out_full=topInSignals(2);
+    top_end_of_stream=topInSignals(3);
+
+    top_fifo_in_read=topOutSignals(1);
+    top_fifo_out_write=topOutSignals(2);
+    top_dut_enable=topOutSignals(3);
+    top_cnt_enable=topOutSignals(4);
+
+    hStreamNet=pirelab.createNewNetwork(...
+    'PirInstance',hPirInstance,...
+    'Network',hN,...
+    'Name',networkName,...
+    'InportNames',{'fifo_in_empty','fifo_out_full','end_of_stream'},...
+    'InportTypes',[top_fifo_in_empty.Type,top_fifo_out_full.Type,top_end_of_stream.Type],...
+    'InportRates',[top_fifo_in_empty.SimulinkRate,top_fifo_out_full.SimulinkRate,top_end_of_stream.SimulinkRate],...
+    'OutportNames',{'fifo_in_read','fifo_out_write','dut_enable','cnt_enable'},...
+    'OutportTypes',[top_fifo_in_read.Type,top_fifo_out_write.Type,top_dut_enable.Type,top_cnt_enable.Type]...
+    );
+
+
+    fifo_in_empty=hStreamNet.PirInputSignals(1);
+    fifo_out_full=hStreamNet.PirInputSignals(2);
+    end_of_stream=hStreamNet.PirInputSignals(3);
+
+    fifo_in_read=hStreamNet.PirOutputSignals(1);
+    fifo_out_write=hStreamNet.PirOutputSignals(2);
+    dut_enable=hStreamNet.PirOutputSignals(3);
+    cnt_enable=hStreamNet.PirOutputSignals(4);
+
+
+    [~,clkenb,~]=hStreamNet.getClockBundle(fifo_in_empty,1,1,0);
+    const_1=hStreamNet.addSignal(ufix1Type,'const_1');
+    pirelab.getConstComp(hStreamNet,const_1,1);
+    pirelab.getWireComp(hStreamNet,const_1,clkenb);
+
+
+    hStreamNet.addComponent2(...
+    'kind','cgireml',...
+    'Name','sctrl',...
+    'InputSignals',[fifo_in_empty,fifo_out_full,end_of_stream],...
+    'OutputSignals',[fifo_in_read,fifo_out_write,dut_enable,cnt_enable],...
+    'EMLFileName','hdleml_stream_controller',...
+    'EMLParams',{extra_delay}...
+    );
+
+end
+
