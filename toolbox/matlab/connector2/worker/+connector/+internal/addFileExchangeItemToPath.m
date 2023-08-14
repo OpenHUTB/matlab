@@ -1,12 +1,5 @@
 function addFileExchangeItemToPath(fxid,forceFlag)
 
-
-
-
-
-
-
-
     if nargin<2
         forceFlag=false;
     end
