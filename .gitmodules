@@ -7,3 +7,9 @@
 [submodule "exe_unpack"]
 	path = exe_unpack
 	url = https://github.com/OpenHUTB/matlab_exe_unpack
+[submodule "help/roadrunner-scenario"]
+	path = help/roadrunner-scenario
+	url = https://github.com/OpenHUTB/roadrunner-scenario
+[submodule "help/roadrunner"]
+	path = help/roadrunner
+	url = https://github.com/OpenHUTB/roadrunner
