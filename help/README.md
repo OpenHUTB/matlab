@@ -21,16 +21,3 @@ doc('select-waypoints-for-3d-simulation')
 ## 其他文档翻译
 翻译`matlab`不自带的文档，包括[`Raodrunner`](https://ww2.mathworks.cn/help/roadrunner/index.html) 和[`Roadrunner Scenario`](https://ww2.mathworks.cn/help/roadrunner-scenario/index.html) 工具箱的文档。
 
-1. 使用浏览器打开`Roadrunner`文档[链接](https://ww2.mathworks.cn/help/releases/R2022b/roadrunner/index.html) ；
-
-2. 右键网页点击“另存为”，将文档保存到`matlab/help/roadrunner`中的指定目录，并将文件名命名为`.html`对应的文件名；
-<img src=fig/save_html.png alt="保存页面" width="780" />
-
-3. 将页面中的在线链接改为本地链接，如将`https://ww2.mathworks.cn/help/releases/R2022b/roadrunner/get-started-with-roadrunner.html` 改为`get-started-with-roadrunner.html` 。
-
-<img src=fig/unvalid_link.png alt="保存页面" width="780" />
-
-<img src=fig/valid_link.png alt="保存页面" width="780" />
-
-
-4. 页面内容参考[环境配置](#环境配置) 
