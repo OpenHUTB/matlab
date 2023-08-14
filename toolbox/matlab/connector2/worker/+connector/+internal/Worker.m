@@ -1,4 +1,3 @@
-
 classdef(Hidden=true)Worker<handle
 
     properties(Constant,Access=private)
