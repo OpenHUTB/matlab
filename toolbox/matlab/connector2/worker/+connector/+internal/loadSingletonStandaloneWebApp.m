@@ -1,11 +1,6 @@
-
 function out=loadSingletonStandaloneWebApp(fullFilePath,appClassName)
 
-
-
-
     persistent currentAppHandle
-
     if(~isempty(currentAppHandle)&&isvalid(currentAppHandle))
 
 
