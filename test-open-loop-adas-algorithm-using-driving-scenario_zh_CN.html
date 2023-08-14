@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Test Open-Loop ADAS Algorithm Using Driving Scenario</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../scenarios-in-simulink.html",
+          "name": "Scenarios in Simulink"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "scenarios-in-simulink"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Test Open-Loop ADAS Algorithm Using Driving Scenario",
+          "description": "Test open-loop ADAS algorithms in Simulink by using driving scenarios saved from the Driving Scenario Designer app.",
+          "thumbnailURL": "../../examples/driving/win64/TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "Simulink"
+
+        },
+          "identifier": "driving.TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample",
+          "name": "TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample",
+          "url": "test-open-loop-adas-algorithm-using-driving-scenario.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample.mlx",
+        "LeftTurnScenario.mat",
+        "OpenLoopWithScenarios.slx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Test open-loop ADAS algorithms in Simulink by using driving scenarios saved from the Driving Scenario Designer app."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample_02.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenarios-in-simulink.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenarios in Simulink</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Test Open-Loop ADAS Algorithm Using Driving Scenario</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample-1" class="intrnllnk">Inspect Driving Scenario</a></li>
+<li><a href="#TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample-2" class="intrnllnk">Inspect Model</a></li>
+<li><a href="#TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample-3" class="intrnllnk">Visualize Simulation</a></li>
+<li><a href="#TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample-4" class="intrnllnk">Update Simulation Settings</a></li>
+<li><a href="#d124e12509" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e12536" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_ceaa38ba-2dc5-4c22-bf2a-5da81514cc18">使用驾驶场景测试开环ADAS算法</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">This example uses:</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('SL')">Simulink</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('driving/TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample"/>
+<meta itemprop="exampletitle" content="Test OpenLoop ADAS Algorithm Using Driving Scenario"/>
+</div>
+<span id="TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample" class="anchor_target"></span><p class="shortdesc">这个示例演示了如何在Simulink中测试一个开环ADAS（高级驾驶员辅助系统）算法。在开环ADAS算法中，自车的行为是预定义的，并且在仿真过程中随着场景的发展不会改变。 </p>
+<p>测试该算法，您需要使用从<a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> 应用程序保存的驾驶场景。在这个示例中，您可以使用Scenario Reader块读取场景，并在<a href="../ref/birdseyescope-app.html" data-docid="driving_ref#mw_59742eb7-dce8-4938-9c2e-44d34c7b8891" class="a">Bird's-Eye Scope</a>上可视化场景和传感器检测结果。</p>
+<div class="procedure"><h3 class="title" id="TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample-1">检查驾驶场景</h3>
+<p>这个示例使用的驾驶场景是基于Driving Scenario Designer应用程序中的预建场景之一。有关这些场景的更多详细信息，请参阅<a href="prebuilt-driving-scenarios-in-driving-scenario-designer.html" data-docid="driving_ug#mw_a8459f52-ba65-4354-a24b-3eb233ada699" class="a">Prebuilt Driving Scenarios in Driving Scenario Designer</a>。</p>
+<p>在应用程序中打开场景文件。</p>
+<div class="code_responsive"><pre id="d124e12368" class="programlisting">drivingScenarioDesigner(<span style="color:#A020F0">'LeftTurnScenario.mat'</span>)
+</pre>
+</div>
+<p>要模拟这个场景，点击<strong class="emphasis bold">Run</strong>。在这个场景中，自动驾驶车辆向北行驶，并直接通过一个十字路口。一辆来自十字路口左侧的车辆左转，并最终停在自动驾驶车辆前方。</p>
+<div class="informalfigure"><div id="d124e12376" class="mediaobject"><p><img src="../../examples/driving/win64/TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample_01.png" height="489" width="494"/></p>
+</div>
+</div>
+<p><span style="background-color: rgb(255, 255, 255); color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px;">自我车辆具有以下传感器：</span></p>
+<div class="itemizedlist"><ul><li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="64213162" _msthash="61" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">用于生成物体检测的前置雷达</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="178804015" _msthash="62" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">前置摄像头和后置摄像头，用于生成物体和车道边界检测</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="133031925" _msthash="63" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">屋顶中心的激光雷达，用于生成场景的点云数据</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="197366468" _msthash="64" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">两个超声波传感器，分别面向前方和前方，用于生成物体检测</p></li>
+</ul>
+</div>
+<div class="informalfigure"><div id="d124e12390" class="mediaobject"><p><img src="../../examples/driving/win64/TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample_02.png" height="450" width="374"/></p>
+</div>
+</div>
+<h3 class="title" id="TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample-2">检查模型</h3>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">此示例中的模型是通过选择</span><strong class="emphasis bold">Export &gt; Export Simulink Model</strong><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">从应用程序生成的。在模型中，</span><a href="../ref/scenarioreader.html" data-docid="driving_ref#mw_0abe0f52-f25a-4829-babb-d9bafe8fdbf3" class="a">Scenario Reader</a><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">从场景文件中读取参与者和道路，并输出非自我参与者和车道边界。打开模型。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">'OpenLoopWithScenarios.slx'</span>)</pre>
+</div>
+</div>
+</div>
+<p>在 <a href="../ref/scenarioreader.html" data-docid="driving_ref#mw_0abe0f52-f25a-4829-babb-d9bafe8fdbf3" class="a">Scenario Reader</a> 模块中，<strong class="emphasis bold">Driving Scenario Designer file name</strong>参数指定了场景文件的名称。您可以指定一个位于MATLAB®搜索路径上的场景文件，例如此示例中使用的场景文件，或者指定场景文件的完整路径。或者，您可以通过将<a href="../ref/drivingscenario.html" data-docid="driving_ref#bvm8jbf" class="a"><code class="olink">drivingScenario</code></a>设置为<span style="font-family: monospace;">From workspace</span>，然后将MATLAB或模型工作区变量名称设置为有效的<span style="font-family: monospace;">drivingScenario</span>对象工作区变量的名称，来指定一个驾驶场景对象。</p>
+<p>Scenario Reader模块输出场景中非自我参与者的姿势以及自我车辆的左车道和右车道边界。要输出自我车辆行驶的道路的所有车道边界，选择<strong class="emphasis bold">Lane boundaries to output</strong> 参数的相应选项。</p>
+<p><span style="background-color: rgb(255, 255, 255); color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px;">参与者、车道边界和自我车辆姿势被传递到包含传感器块的子系统。打开子系统。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">'OpenLoopWithScenarios/Detection Generators'</span>)</pre>
+</div>
+</div>
+</div>
+<p><a href="../ref/drivingradardatagenerator.html" data-docid="driving_ref#mw_535e4736-f89b-4dc7-a609-b8c323c4ce32" class="a">Driving Radar Data Generator</a>, <a href="../ref/visiondetectiongenerator.html" data-docid="driving_ref#mw_2fa86dfd-52db-4f59-8781-7d954ae3e8dc" class="a">Vision Detection Generator</a>, <a href="../ref/lidarpointcloudgenerator.html" data-docid="driving_ref#mw_b87c4ea6-1e17-45b6-8b0c-62226f5a1b28" class="a">Lidar Point Cloud Generator</a>, 和 <a href="../ref/ultrasonicdetectiongenerator.html" data-docid="driving_ref#mw_9df498a1-b589-4dae-88b6-c1a985cd9773" class="a">Ultrasonic Detection Generator</a> 模块会从场景中生成合成的检测数据。您可以将这些传感器数据融合起来生成轨迹，例如在<a href="sensor-fusion-using-synthetic-radar-and-vision-data-in-simulink.html" data-docid="driving_ug#mw_8ae0eb21-efca-4a6d-9a4a-0415a638c554" class="a">Sensor Fusion Using Synthetic Radar and Vision Data in Simulink</a>中所示。</p>
+<p><span style="background-color: rgb(255, 255, 255); color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px;">该模型中传感器模块的输出以车辆坐标为单位，其中：</span></p>
+<div class="itemizedlist"><ul><li><p><span class="emphasis" _istranslated="1" style="font-size: 14px; box-sizing: border-box;"><em _istranslated="1" style="box-sizing: border-box;">X</em></span><span style="font-size: 14px;">轴从自我车辆指向前方。</span></p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="49452975" _msthash="73" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;"><span class="emphasis" _istranslated="1" style="box-sizing: border-box;"><em _istranslated="1" style="box-sizing: border-box;">Y</em></span>轴指向自我车辆的左侧。</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="63975379" _msthash="74" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">原点位于自我车辆后轴的中心。</p></li>
+</ul>
+</div>
+<p>由于该模型是开环模型，随着仿真的进行，自车的行为不会改变。因此，<strong class="emphasis bold">Source of ego vehicle</strong> 参数被设置为<span style="font-family: monospace;">Scenario</span>，该模块从场景文件中读取预定义的自车姿态和轨迹。对于车辆控制器和其他闭环模型，将<strong class="emphasis bold">Source of ego vehicle</strong>参数设置为“Input port”。通过此选项，您可以将在模型中定义的自车作为输入传递给场景读取器模块。有关示例，请参阅<a href="test-closed-loop-adas-algorithm-using-driving-scenario.html" data-docid="driving_ug#mw_953c7fae-43f3-430f-99d4-a5f673caa1ba" class="a">Test Closed-Loop ADAS Algorithm Using Driving Scenario</a>.。</p>
+<h3 class="title" id="TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample-3">可视化仿真</h3>
+<p>要可视化场景和传感器检测结果，请使用 <a href="../ref/birdseyescope-app.html" data-docid="driving_ref#mw_59742eb7-dce8-4938-9c2e-44d34c7b8891" class="a">Bird's-Eye Scope</a>。在 Simulink 工具栏上，点击 <strong class="emphasis bold">Review Results</strong>，然后选择<strong class="emphasis bold">Bird's-Eye Scope</strong>。然后，在 Scope 中，点击 <strong class="emphasis bold">Find Signals </strong>并运行仿真。</p>
+<div class="informalfigure"><div id="d124e12489" class="mediaobject"><p><img src="../../examples/driving/win64/TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample_03.png" height="528" width="700"/></p>
+</div>
+</div>
+<h3 class="title" id="TestOpenLoopADASAlgorithmUsingGeneratedScenarioExample-4">更新仿真设置</h3>
+<p>该模型使用默认的仿真停止时间为10秒。由于场景的长度约为5秒，即使场景结束后，仿真仍会在 Bird's-Eye Scope 中继续运行。为了使仿真停止时间与场景停止时间同步，在 Simulink 模型工具栏上，将仿真停止时间设置为5.2秒，这是应用场景的确切停止时间。运行仿真后，应用程序会在场景画布的右下角显示该值。<br/></p>
+<p>如果 Bird's-Eye Scope 中的仿真运行过快，您可以使用仿真节奏来减慢仿真速度。在 Simulink 工具栏上，选择 <strong class="emphasis bold">Run &gt; Simulation Pacing</strong>。选中“Enable pacing to slow down simulation”复选框，并将仿真时间减少到略低于每秒钟的墙钟时间1秒，例如0.8秒。然后，在 Bird's-Eye Scope 中重新运行仿真。</p>
+</div>
+        <h2 id="d124e12509">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyescope-app.html"><span itemprop="name">Bird's-Eye
+                    Scope</span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving
+                    Scenario Designer</span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/scenarioreader.html"><span itemprop="name"><span class="block">Scenario
+                    Reader</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator.html"><span itemprop="name"><span class="block">Driving Radar
+                    Data Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator.html"><span itemprop="name"><span class="block">Vision
+                    Detection Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/lidarpointcloudgenerator.html"><span itemprop="name"><span class="block">Lidar Point
+                    Cloud Generator</span></span></a></span></li>
+</ul>
+        <h2 id="d124e12536">Related Topics</h2>
+<ul><li><a href="sensor-fusion-using-synthetic-radar-and-vision-data-in-simulink.html" class="a">在 Simulink 中使用合成雷达和视觉数据的传感器融合</a></li>
+<li><a href="test-closed-loop-adas-algorithm-using-driving-scenario.html" class="a">使用驾驶场景测试闭环ADAS算法</a></li>
+<li><a href="create-driving-scenario-variations-programmatically.html" class="a">以编程方式创建驾驶方案变体</a></li>
+<li><a href="generate-sensor-detection-blocks-using-driving-scenario-designer.html" class="a">使用驾驶方案设计器生成传感器块</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

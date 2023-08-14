@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Scenarios in Simulink</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleTopics",
+
+        "itemListElement":
+        [
+        "ug/generate-sensor-detection-blocks-using-driving-scenario-designer.html",
+        "ug/test-open-loop-adas-algorithm-using-driving-scenario.html",
+        "ug/test-closed-loop-adas-algorithm-using-driving-scenario.html",
+        "ug/visualize-3d-simulation-sensor-coverages-and-detections.html",
+        "ug/generate-ins-measurements-from-driving-scenario-in-simulink.html",
+        "ug/simulate-ins-block.html"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ReferenceEntities",
+        
+        "itemListElement":
+        [ {
+          "@type": "ListItem",
+          "position": 1,
+            "item": {
+          "identifier": "app:Driving Scenario Designer",
+          "name": "Driving Scenario Designer"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 2,
+            "item": {
+          "identifier": "app:Bird's-Eye Scope",
+          "name": "Bird's-Eye Scope"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 3,
+            "item": {
+          "identifier": "block:Scenario Reader",
+          "name": "Scenario Reader"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 4,
+            "item": {
+          "identifier": "block:Vehicle To World",
+          "name": "Vehicle To World"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 5,
+            "item": {
+          "identifier": "block:World To Vehicle",
+          "name": "World To Vehicle"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 6,
+            "item": {
+          "identifier": "block:Cuboid To 3D Simulation",
+          "name": "Cuboid To 3D Simulation"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 7,
+            "item": {
+          "identifier": "block:INS",
+          "name": "INS"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 8,
+            "item": {
+          "identifier": "block:Driving Radar Data Generator",
+          "name": "Driving Radar Data Generator"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 9,
+            "item": {
+          "identifier": "block:Vision Detection Generator",
+          "name": "Vision Detection Generator"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 10,
+            "item": {
+          "identifier": "block:Lidar Point Cloud Generator",
+          "name": "Lidar Point Cloud Generator"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 11,
+            "item": {
+          "identifier": "block:Ultrasonic Detection Generator",
+          "name": "Ultrasonic Detection Generator"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 12,
+            "item": {
+          "identifier": "block:Detection Concatenation",
+          "name": "Detection Concatenation"
+
+          }
+          } ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "UnlistedReferenceEntities",
+        
+        "itemListElement":
+        [ {
+          "@type": "ListItem",
+          "position": 1,
+            "item": {
+          "identifier": "block:Radar Detection Generator",
+          "name": "Radar Detection Generator"
+
+          }
+          } ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="cat"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="cat"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Test ADAS and automated driving systems in Simulink using synthetic driving scenarios"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../docset.xml";
+            product_help_location = "driving";
+            pagetype = "module";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_product_ancestors"><li><a href="index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+</ul><div id="left_nav_categories"><div class="search_refine"><h3>Category</h3>
+<div id="nav_categories"><ul class="nav_toc"><li><a href="programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" class="corrected_url">Programmatic Scenario Authoring</a></li>
+<li><a href="interactive-scenario-authoring.html?s_tid=CRUX_lftnav" class="corrected_url">Interactive Scenario Authoring</a></li>
+<li><a href="scenario-import-and-export.html?s_tid=CRUX_lftnav" class="corrected_url">Scenario Import and Export</a></li>
+<li class="active"><a href="scenarios-in-simulink.html?s_tid=CRUX_lftnav" class="corrected_url">Scenarios in Simulink</a></li>
+</ul>
+</div>
+</div>
+</div></nav>
+</div></nav>
+<script src="../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="examples.html?category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="referencelist.html?type=block&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="referencelist.html?type=scene&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="examples.html?category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="referencelist.html?type=block&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="referencelist.html?type=scene&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-category">
+<h1 class="r2022b" itemprop="content title" _msttexthash="21400691" _msthash="42" style="font-variant-numeric: normal; font-variant-east-asian: normal; box-sizing: border-box; margin: 0px 0px 13px; font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-weight: 400; line-height: 1.136; color: rgb(192, 87, 8); padding: 0px 61px 2px 0px; font-kerning: auto; font-variation-settings: normal; font-stretch: normal; font-feature-settings: &quot;kern&quot;; border-bottom: none; background-position: right bottom; background-repeat: no-repeat; background-size: 58px; background-image: url(&quot;/images/responsive/global/r2022b.svg&quot;); background-color: rgb(255, 255, 255); font-size: 22px !important;"><span class="trademark entity" _istranslated="1" style="box-sizing: border-box;">Simulink</span> 中的场景</h1>
+<div class="doc_topic_desc" itemprop="content purpose"><font _mstmutation="1" _msttexthash="160933331" _msthash="43" style="box-sizing: border-box; font-size: 14px; color: rgb(106, 106, 106); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">使用合成驾驶场景在 Simulink 中测试 ADAS 和自动驾驶系统</font><span style="box-sizing: border-box; font-size: 12px; line-height: 0; position: relative; vertical-align: baseline; top: -0.6em; color: rgb(106, 106, 106); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">®</span><br/></div>
+<div class="start_here_container" id="starthere">
+<div id="start_here_content"><div itemprop="content">
+<p><span style="color: rgb(36, 41, 47); font-family: &quot;Microsoft Yahei&quot;, &quot;PingFang SC&quot;, &quot;SF Pro SC&quot;, &quot;SF Pro Text&quot;, &quot;SF Pro Icons&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; background-color: rgba(0, 0, 0, 0.05);">为了在Simulink中测试使用Driving Scenario Designer应用程序或使用drivingScenario对象构建的高级驾驶辅助系统（ADAS）或自动驾驶系统，您可以使用合成驾驶场景。然后，通过使用Scenario Reader模块将驾驶场景读取到Simulink中。为了在Simulink中可视化场景，可以使用Bird's-Eye Scope应用程序。</span><br/></p>
+</div>
+</div>
+</div>
+<div class="doc_blocksgroup_container"><h2>Apps</h2>
+<div class="table-responsive"><strong class="app"></strong><strong class="app"></strong><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/drivingscenariodesigner-app.html">Driving Scenario Designer</a></td>
+<td class="description">设计驾驶场景、配置传感器并生成合成数据<br/></td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyescope-app.html">Bird's-Eye Scope</a></td>
+<td class="description">可视化传感器覆盖范围、检测结果和轨迹<br/></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc_blocksgroup_container"><h2>Blocks</h2>
+<div class="expandableContent mwExpandToggle1" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true"><!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_1" data-toggle="collapse" data-target="#expand_panel_body_1" aria-expanded="false" aria-controls="expand_panel_body_1"><h3 class="panel-title">Driving Scenarios</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_1"><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/scenarioreader.html"><span class="block">Scenario Reader</span></a></td>
+<td class="description">将驾驶场景读入模型<br/></td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/vehicletoworld.html"><span class="block">Vehicle To World</span></a></td>
+<td class="description">将演员从自我车辆坐标转换为世界坐标<br/></td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/worldtovehicle.html"><span class="block">World To Vehicle</span></a></td>
+<td class="description">将演员从世界坐标转换为自我车辆坐标<br/></td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/cuboidto3dsimulation.html"><span class="block">Cuboid To 3D Simulation</span></a></td>
+<td class="description">将演员从长方体坐标转换为 3D 模拟坐标<br/></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+<!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_2" data-toggle="collapse" data-target="#expand_panel_body_2" aria-expanded="false" aria-controls="expand_panel_body_2"><h3 class="panel-title">Sensors</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_2"><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/ins.html"><span class="block">INS</span></a></td>
+<td class="description">模拟 INS 传感器</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingradardatagenerator.html"><span class="block">Driving
+                        Radar Data Generator</span></a></td>
+<td class="description">从驾驶场景中生成雷达传感器检测和轨迹<br/></td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/visiondetectiongenerator.html"><span class="block">Vision
+                        Detection Generator</span></a></td>
+<td class="description">从目视测量中检测物体和车道<br/></td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/lidarpointcloudgenerator.html"><span class="block">Lidar Point
+                        Cloud Generator</span></a></td>
+<td class="description">为驾驶场景生成激光雷达点云数据<br/></td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/ultrasonicdetectiongenerator.html"><span class="block">Ultrasonic
+                        Detection Generator</span></a></td>
+<td class="description">从驾驶场景生成超声波传感器检测<br/></td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/detectionconcatenation.html"><span class="block">Detection
+                        Concatenation</span></a></td>
+<td class="description">从驾驶场景生成超声波传感器检测<br/></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+</div>
+</div>
+</div>
+<div class="examples_container"><h2>Topics</h2>
+<div itemprop="content">
+<ul class="list-unstyled"><li><strong><a href="ug/generate-sensor-detection-blocks-using-driving-scenario-designer.html" class="a">Generate Sensor Blocks Using Driving Scenario Designer</a></strong><br/><p><span style="color: rgb(36, 41, 47); font-family: &quot;Microsoft Yahei&quot;, &quot;PingFang SC&quot;, &quot;SF Pro SC&quot;, &quot;SF Pro Text&quot;, &quot;SF Pro Icons&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; background-color: rgba(0, 0, 0, 0.05);">使用Driving Scenario Designer应用程序构建的驾驶场景和传感器生成Simulink模块。</span><br/></p></li>
+<li><strong><a href="ug/test-open-loop-adas-algorithm-using-driving-scenario.html" class="a">Test Open-Loop ADAS Algorithm Using Driving Scenario</a></strong><br/><p><span style="color: rgb(36, 41, 47); font-family: &quot;Microsoft Yahei&quot;, &quot;PingFang SC&quot;, &quot;SF Pro SC&quot;, &quot;SF Pro Text&quot;, &quot;SF Pro Icons&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; background-color: rgba(0, 0, 0, 0.05);">通过使用从Driving Scenario Designer应用程序保存的驾驶场景，在Simulink中测试开环ADAS算法。</span><br/></p></li>
+<li><strong><a href="ug/test-closed-loop-adas-algorithm-using-driving-scenario.html" class="a">Test Closed-Loop ADAS Algorithm Using Driving Scenario</a></strong><br/><p><span style="color: rgb(36, 41, 47); font-family: &quot;Microsoft Yahei&quot;, &quot;PingFang SC&quot;, &quot;SF Pro SC&quot;, &quot;SF Pro Text&quot;, &quot;SF Pro Icons&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; background-color: rgba(0, 0, 0, 0.05);">通过使用从Driving Scenario Designer应用程序保存的驾驶场景，在Simulink中测试闭环ADAS算法。</span><br/></p></li>
+<li><strong><a href="ug/visualize-sensor-data-and-tracks-in-birds-eye-scope.html" class="a">Visualize Sensor Data and Tracks in Bird's-Eye Scope</a></strong><br/><p>从Simulink模型中可视化传感器覆盖范围、检测结果和轨迹。</p></li>
+<li><strong><a href="ug/visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">Visualize Sensor Data from Unreal Engine Simulation Environment</a></strong><br/><p><span style="color: rgb(36, 41, 47); font-family: &quot;Microsoft Yahei&quot;, &quot;PingFang SC&quot;, &quot;SF Pro SC&quot;, &quot;SF Pro Text&quot;, &quot;SF Pro Icons&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; background-color: rgba(0, 0, 0, 0.05);">在Unreal Engine®模拟环境中可视化高保真度雷达和激光雷达传感器获得的传感器覆盖范围和检测结果。</span><br/></p></li>
+<li><strong><a href="ug/generate-ins-measurements-from-driving-scenario-in-simulink.html" class="a">Generate INS Measurements from Driving Scenario in Simulink</a></strong><br/><p><span style="color: rgb(36, 41, 47); font-family: &quot;Microsoft Yahei&quot;, &quot;PingFang SC&quot;, &quot;SF Pro SC&quot;, &quot;SF Pro Text&quot;, &quot;SF Pro Icons&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; background-color: rgba(0, 0, 0, 0.05);">在驾驶场景中，从安装在车辆上的INS传感器生成测量数据。</span><br/></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

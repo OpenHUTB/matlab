@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Adaptive Cruise Control with Sensor Fusion</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../automated-driving-applications.html",
+          "name": "Applications"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../collision-avoidance-assistance.html",
+          "name": "Collision Avoidance Assistance"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "collision-avoidance-assistance"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Adaptive Cruise Control with Sensor Fusion",
+          "description": "Implement an automotive adaptive cruise controller using sensor fusion.",
+          "thumbnailURL": "../../examples/autonomous_control/win64/mpcBirdsEyeScopeACC1.png",
+          "genre": "Model",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "Simulink"
+
+        },
+          "identifier": "autonomous_control.AdaptiveCruiseControlWithSensorFusionExample",
+          "name": "AdaptiveCruiseControlWithSensorFusionExample",
+          "url": "adaptive-cruise-control-with-sensor-fusion.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('autonomous_control/AdaptiveCruiseControlWithSensorFusionExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "AdaptiveCruiseControlWithSensorFusionExample.m",
+        "ACCTestBenchExample.slx",
+        "ACCWithSensorFusionMdlRef.slx",
+        "data_mpc.mat",
+        "dynamicsEqn.png",
+        "helperACCCleanUp.m",
+        "helperACCLinearModel.m",
+        "helperACCSetUp.m",
+        "helperCloseAll.m",
+        "helperCloseReq.m",
+        "helperOpenFcn.m",
+        "helperPlotACCResults.m",
+        "helperScenarioAuthoring.m",
+        "mpcBirdsEyeScopeACC1.png",
+        "mpcBirdsEyeScopeACC2.png",
+        "mpcBirdsEyeScopeACC3.png",
+        "mpcBirdsEyeScopeACC4.png",
+        "optimizationEqn.png",
+        "plotACCScenario.m",
+        "scenario.png",
+        "steeringError.png",
+        "ACCTestBenchScenario.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Implement an automotive adaptive cruise controller using sensor fusion."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/autonomous_control/win64/mpcBirdsEyeScopeACC1.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../automated-driving-applications.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Applications</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../collision-avoidance-assistance.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Collision Avoidance Assistance</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Adaptive Cruise Control with Sensor Fusion</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e28266" class="intrnllnk">Introduction</a></li>
+<li><a href="#d124e28298" class="intrnllnk">Overview of Test Bench Model and Simulation Results</a></li>
+<li><a href="#d124e28428" class="intrnllnk">Tracking and Sensor Fusion</a></li>
+<li><a href="#d124e28452" class="intrnllnk">Adaptive Cruise Controller</a></li>
+<li><a href="#d124e28547" class="intrnllnk">Vehicle and Environment</a></li>
+<li><a href="#d124e28728" class="intrnllnk">Scenario Creation</a></li>
+<li><a href="#d124e28754" class="intrnllnk">Generating Code for the Control Algorithm</a></li>
+<li><a href="#d124e28779" class="intrnllnk">Conclusions</a></li>
+<li><a href="#d124e28789" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e28825" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_b4610d86-3504-44a2-aa53-2f832f749013">带传感器融合的自适应巡航控制</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">This example uses:</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('EC')">Embedded Coder</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('MP')">Model Predictive Control Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('SD')">Simulink Control Design</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('SL')">Simulink</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('autonomous_control/AdaptiveCruiseControlWithSensorFusionExample')" data-ex-genre="Model">Open Model</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="autonomous_control-AdaptiveCruiseControlWithSensorFusionExample"/>
+<meta itemprop="exampletitle" content="Adaptive Cruise Control with Sensor Fusion"/>
+</div>
+<span id="AdaptiveCruiseControlWithSensorFusionExample" class="anchor_target"></span>
+
+<p class="shortdesc"><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例演示如何使用传感器融合为在弯道上行驶的车辆实现基于传感器融合的汽车自适应巡航控制器。</span></p>
+
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在此示例中，您：</span></p>
+
+<p></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>查看结合了传感器融合和自适应巡航控制器 （ACC） 的控制系统。ACC 提供了两种变体：经典控制器和模型预测控制工具箱中的自适应巡航控制系统模块。<br/></p></li>
+<li><p>使用自动驾驶工具箱生成的合成数据在闭环 Simulink 模型中测试控制系统。<br/></p></li>
+<li><p>配置软件在环仿真的代码生成设置，并自动生成控制算法的代码。<br/></p></li>
+</ol>
+</div>
+<p>
+</p>
+
+<div class="procedure"><h3 class="title" id="d124e28266">介绍<span id="AdaptiveCruiseControlWithSensorFusionExample-1" class="anchor_target"></span></h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">自适应巡航控制系统是一种控制系统，可根据道路状况修改自我车辆的速度。与常规巡航控制一样，驾驶员为汽车设置所需的速度；此外，如果前方车道上有另一辆车行驶较慢，自适应巡航控制系统可以减慢自我车辆的速度。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">为了使ACC正常工作，自我车辆必须确定其前面的车道如何弯曲，以及哪辆车是“领头车”，即在车道中的自我车辆前面。从自我车辆的角度来看，一个典型的场景如下图所示。自我车辆（蓝色）沿着弯曲的道路行驶。一开始，领头的车是粉色车。然后紫色汽车切入自我车辆的车道，成为领头车。过了一会儿，紫色的车换到另一条车道，粉色的车又变成了领头的车。之后，粉红色的汽车仍然是领头的汽车。ACC设计必须对道路上领头车的变化做出反应。</span></p>
+<p></p>
+<div class="informalfigure"><div id="d124e28274" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/xxscenario.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">目前的ACC设计主要依赖于从雷达获得的范围和范围速率测量，并且设计为在笔直的道路上工作得最好。使用模型</span><a href="../../mpc/ug/adaptive-cruise-control-using-model-predictive-controller.html" data-docid="mpc_ug#mw_5d3362c7-033d-4773-a8e5-5f3d303a9c10" class="a">Adaptive Cruise Control System Using Model Predictive Control</a><span role="cross_prod"> </span><span style="font-family: &quot;Microsoft YaHei&quot;;">（</span><span role="cross_prod" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">模型预测控制工具箱</span><span style="font-family: &quot;Microsoft YaHei&quot;;">）和使用</span><span role="cross_prod" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;"><a href="../../radar/ug/automotive-adaptive-cruise-control-using-fmcw-technology.html" data-docid="radar_ug#example-ex11665805" class="a" style="font-family: Arial;">Automotive Adaptive Cruise Control Using FMCW Technology</a>（雷达工具箱）</span><span style="font-family: &quot;Microsoft YaHei&quot;;">给出了这种系统的示例。</span><a href="../../mpc/ug/adaptive-cruise-control-using-model-predictive-controller.html" data-docid="mpc_ug#mw_5d3362c7-033d-4773-a8e5-5f3d303a9c10" class="a" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;"></a><span style="font-family: &quot;Microsoft YaHei&quot;;">从高级驾驶辅助系统（ADAS）设计转向更自主的系统，ACC必须应对以下挑战：</span></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>估计靠近自我车辆且相对于自我车辆具有显着横向运动的汽车的相对位置和速度。</p></li>
+<li><p>估计自我车辆前方的车道，以找出自我车辆前面的哪辆车是同一车道上最近的车。<br/></p></li>
+<li><p>对环境中其他车辆的攻击性动作做出反应，特别是当另一辆车切入自我车道时。<br/></p></li>
+</ol>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">本示例演示了现有 ACC 设计的两个主要补充，以应对这些挑战：添加传感器融合系统和更新基于模型预测控制 （MPC） 的控制器设计。同时使用视觉和雷达传感器的传感器融合和跟踪系统具有以下优点：</span></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>它将从视觉传感器获得的更好的位置和速度横向测量与雷达传感器的距离和距离速率测量相结合。<br/></p></li>
+<li><p>视觉传感器可以检测车道，提供车道相对于自我车辆的横向位置的估计，并相对于自我车辆车道定位场景中的其他汽车。此示例假定理想车道检测。<br/></p></li>
+</ol>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">先进的MPC控制器增加了对环境中其他车辆更激进的动作做出反应的能力。与使用具有恒定增益的PID设计的经典控制器相比，MPC控制器调节自我车辆的速度，同时保持严格的安全距离限制。因此，当环境快速变化时，控制器可以以类似于人类驾驶员的方式应用更激进的动作。</span></p>
+<h3 class="title" id="d124e28298">测试台模型和仿真结果概述</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要打开主 Simulink 模型，请使用以下命令：</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">'ACCTestBenchExample'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28306" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_01.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">该模型包含两个主要子系统：</span></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>带有传感器融合的 ACC，可模拟传感器融合并控制车辆的纵向加速度。此组件允许您选择设计的经典或模型预测控制版本。<br/></p></li>
+<li><p>车辆和环境子系统，它模拟自我车辆的运动并模拟环境。雷达和视觉传感器的仿真为控制子系统提供合成数据。<br/></p></li>
+</ol>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要在运行模型之前运行关联的初始化脚本，请在 Simulink 模型中单击</span> <strong class="emphasis bold">Run Setup Script</strong> <span style="font-family: &quot;Microsoft YaHei&quot;;">，或在命令提示符下键入以下内容：</span></p>
+<div class="code_responsive"><pre id="d124e28320" class="programlisting">helperACCSetUp
+</pre>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">该脚本加载 Simulink 模型所需的某些常量，例如场景对象、车辆参数和 ACC 设计参数。默认 ACC 是经典控制器。该脚本还创建定义控制系统参考模型的输入和输出所需的总线。在模型编译之前，必须在工作区中定义这些总线。当模型编译时，其他 Simulink 总线由其各自的模块自动生成。</span></p>
+<p>To plot the results of the simulation and depict the surroundings of the ego vehicle, including the tracked objects, use the <a href="../ref/birdseyescope-app.html" data-docid="driving_ref#mw_59742eb7-dce8-4938-9c2e-44d34c7b8891" class="a">Bird's-Eye Scope</a>. The Bird's-Eye Scope is a model-level visualization tool that you can open from the Simulink toolstrip. On the <strong class="emphasis bold">Simulation</strong> tab, under <strong class="emphasis bold">Review Results</strong>, click <strong class="emphasis bold">Bird's-Eye Scope</strong>. After opening the scope, click <strong class="emphasis bold">Find Signals</strong> to set up the signals. The following commands run the simulation to <code class="literal">15</code> seconds to get a mid-simulation picture and run again all the way to end of the simulation to gather results.为了绘制模拟结果并描绘自我车辆的周围环境，包括跟踪对象，使用 <a href="../ref/birdseyescope-app.html" data-docid="driving_ref#mw_59742eb7-dce8-4938-9c2e-44d34c7b8891" class="a">Bird's-Eye Scope</a>。Bird's-Eye Scope是一个模型级可视化工具，您可以从Simulink工具栏打开它。在<b>Simulation</b>选项卡上，在<b>Review Results</b>下，单击<b>Bird -’s- eye Scope</b>。打开作用域后，单击<b>Find Signals</b>来设置信号。下面的命令将模拟运行 <code class="literal">15 </code>秒，以获得模拟中期图像，并再次运行到模拟结束以收集结果。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sim(<span style="color:#A020F0">'ACCTestBenchExample'</span>,<span style="color:#A020F0">'StopTime'</span>,<span style="color:#A020F0">'15'</span>) <span style="color:#228B22">%Simulate 15 seconds</span>
+sim(<span style="color:#A020F0">'ACCTestBenchExample'</span>) <span style="color:#228B22">%Simulate to end of scenario</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  Simulink.SimulationOutput:
+                logsout: [1x1 Simulink.SimulationData.Dataset] 
+                   tout: [151x1 double] 
+
+     SimulationMetadata: [1x1 Simulink.SimulationMetadata] 
+           ErrorMessage: [0x0 char] 
+
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<div class="informalfigure"><div id="d124e28349" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/xxmpcBirdsEyeScopeACC1.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p></p>
+<div class="informalfigure"><div id="d124e28355" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/xxmpcBirdsEyeScopeACC2.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">鸟瞰镜显示传感器融合的结果。它显示了雷达和视觉传感器如何检测其传感器覆盖区域内的车辆。它还显示了由多对象跟踪器块维护的轨迹。黄色轨道显示最重要的物体（MIO）：在其车道上自我车辆前面最近的轨道。我们看到，在场景的开头，最重要的对象是自我车辆前面的快速移动的汽车。当过往的汽车靠近缓慢行驶的汽车时，它越过左侧车道，传感器融合系统将其识别为MIO。这辆车离自我车辆更近，也比它慢得多。因此，ACC必须减慢自我车辆的速度。</span></p>
+<span style="font-family: &quot;Microsoft YaHei&quot;;">在经典 ACC 系统的以下结果中：</span><div class="itemizedlist"><ul><li><p>上图显示了自我车辆速度。</p></li>
+<li><p _msttexthash="143854880" _msthash="71">中间图显示了自我车辆和领头车之间的相对距离。</p></li>
+<li><p _msttexthash="52811707" _msthash="72">下图显示了自我车辆加速。</p></li>
+</ul>
+</div>
+<p>在本例中，来自跟踪和传感器融合系统的原始数据用于ACC设计，而无需进行后处理。由于传感器模型的不确定性，你可能会看到一些“尖峰”（中间图），尤其是当另一辆车驶入或离开自我车道时。</p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要查看模拟结果，请使用以下命令。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotACCResults(logsout,default_spacing,time_gap)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28373" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_02.png"/></p>
+</div>
+</div>
+<div class="itemizedlist"><ul><li><p _msttexthash="549983018" _msthash="75">在前 11 秒，领头车远远领先于自我车辆（中图）。自我车辆加速并达到驾驶员设定的速度（上图）。</p></li>
+<li><p>当汽车切入自我车辆车道（中间图）时，另一辆车在 11 到 20 秒内成为领头车。当领头车和自我车辆之间的距离很大（11-15秒）时，自我车辆仍然以驾驶员设定的速度行驶。当距离变小（15-20秒）时，自我车辆减速以保持与领头车的安全距离（顶部图）。</p></li>
+<li><p _msttexthash="2700056307" _msthash="77">从 20 秒到 34 秒，前面的汽车移动到另一条车道，出现一辆新的领头车（中间图）。由于领头车和自我车辆之间的距离很大，因此自我车辆加速，直到在 27 秒达到驾驶员设定的速度。然后，自我车辆继续以驾驶员设定的速度行驶（顶部图）。</p></li>
+<li><p>下图表明加速度在 [-3，2] m/s^2 范围内。平稳的瞬态行为表明驾驶员舒适性令人满意。<br/></p></li>
+</ul>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在基于 MPC 的 ACC 设计中，通过跟踪驾驶员设定的速度来制定潜在的优化问题，前提是强制与前车保持安全距离。自适应巡航控制器部分介绍了 MPC 控制器设计。若要使用 MPC 设计运行模型，请先激活 MPC 变型，然后运行以下命令。此步骤需要模型预测控制工具箱软件。您可以使用以下代码检查此许可证是否存在。如果不存在代码，则描述类似结果的示例。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hasMPCLicense = license(<span style="color:#A020F0">'checkout'</span>,<span style="color:#A020F0">'MPC_Toolbox'</span>);
+<span style="color:#0000FF">if</span> hasMPCLicense
+    controller_type = 2;
+    sim(<span style="color:#A020F0">'ACCTestBenchExample'</span>,<span style="color:#A020F0">'StopTime'</span>,<span style="color:#A020F0">'15'</span>) <span style="color:#228B22">%Simulate 15 seconds</span>
+    sim(<span style="color:#A020F0">'ACCTestBenchExample'</span>) <span style="color:#228B22">%Simulate to end of scenario</span>
+<span style="color:#0000FF">else</span>
+    load <span style="color:#A020F0">data_mpc</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>--&gt;Converting model to discrete time.
+--&gt;Assuming output disturbance added to measured output channel #2 is integrated white noise.
+   Assuming no disturbance added to measured output channel #1.
+--&gt;The "Model.Noise" property is empty. Assuming white noise on each measured output.
+
+ans = 
+
+  Simulink.SimulationOutput:
+                logsout: [1x1 Simulink.SimulationData.Dataset] 
+                   tout: [151x1 double] 
+
+     SimulationMetadata: [1x1 Simulink.SimulationMetadata] 
+           ErrorMessage: [0x0 char] 
+
+--&gt;Converting model to discrete time.
+--&gt;Assuming output disturbance added to measured output channel #2 is integrated white noise.
+   Assuming no disturbance added to measured output channel #1.
+--&gt;The "Model.Noise" property is empty. Assuming white noise on each measured output.
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<div class="informalfigure"><div id="d124e28393" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/xxmpcBirdsEyeScopeACC3.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p></p>
+<div class="informalfigure"><div id="d124e28399" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/xxmpcBirdsEyeScopeACC4.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在基于MPC的ACC仿真结果中，类似于经典的ACC设计，实现了速度和间距控制的目标。与传统的ACC设计相比，基于MPC的ACC更具侵略性，因为它使用全油门或制动进行加速或减速。此行为是由于对相对距离的显式约束。当道路上发生突然变化时，例如当领头车变成慢速车时，攻击性行为可能是首选。要降低控制器的侵略性，请打开自适应巡航控制系统块的掩码，并减小</span><strong class="emphasis bold" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">控制器行为</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">参数的值。如前所述，中间图中的尖峰是由于传感器模型中的不确定性造成的。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">若要使用基于 MPC 的 ACC 查看仿真结果，请使用以下命令。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotACCResults(logsout,default_spacing,time_gap)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28412" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_03.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">下面将更详细地描述测试台模型中每个子系统的功能。带传感器融合子系统的自适应巡航控制器包含两个主要组件：</span></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Tracking and Sensor Fusion subsystem</p></li>
+<li><p>Adaptive Cruise Controller subsystem</p></li>
+</ol>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">'ACCTestBenchExample/ACC with Sensor Fusion'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28425" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_04.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e28428">跟踪和传感器融合</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">跟踪和传感器融合子系统处理来自车辆和环境子系统的视觉和雷达检测，并生成自我车辆周围环境的综合情况图。此外，它还为 ACC 提供了自我车辆前方车道中最近汽车的估计值。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">'ACCWithSensorFusionMdlRef/Tracking and Sensor Fusion'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28436" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_05.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">跟踪和传感器融合子系统的主要模块是</span><a href="../ref/multiobjecttracker.html" data-docid="driving_ref#mw_1cb02a28-0c4b-491e-aa45-55747c487a25" class="a" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">多对象跟踪器</a><span style="font-family: &quot;Microsoft YaHei&quot;;">模块，其输入是所有传感器检测和预测时间的组合列表。多对象跟踪器块的输出是已确认轨道的列表。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">检测</span><a href="../ref/detectionconcatenation.html" data-docid="driving_ref#mw_d736c020-7eef-4c00-9248-9762e9746af5" class="a" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">串联</a><span style="font-family: &quot;Microsoft YaHei&quot;;">模块连接视觉和雷达检测。预测时间由车辆和环境子系统中的时钟驱动。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">检测聚类模块对多个雷达检测进行聚类，因为跟踪器期望每个传感器每个对象最多检测一次。</span></p>
+<p><code class="literal">findLeadCar</code>  MATLAB功能块使用已确认的轨迹列表和道路曲率，找出哪辆车最靠近自我车辆，并在同一车道上领先。这辆车被称为引导车，当汽车进出自我车辆前方的车道时，它可能会发生变化。该功能提供引导车相对于自我车辆的位置和速度，以及最重要物体（MIO）轨迹的索引。</p>
+<h3 class="title" id="d124e28452">自适应巡航控制器</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">自适应巡航控制器有两种变体：经典设计（默认）和基于 MPC 的设计。对于这两种设计，都应用了以下设计原则。配备ACC的车辆（自我车辆）使用传感器融合来估计与领头车的相对距离和相对速度。ACC使自我车辆以驾驶员设定的速度行驶，同时与领头车保持安全距离。领头车和自我车之间的安全距离定义为</span></p>
+<div id="d124e28458" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq14801814151811460403.png" alt="$D_{safe} = D_{default} + T_{gap} \cdot V_x$"/></p>
+</div>
+</div>
+<p>其中默认间距 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq03521983930449584226.png" alt="$D_{default}$"/></span></span>, 和时间间距 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq02930627123526895651.png" alt="$T_{gap}$"/></span></span> 是设计参数，  <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq11045485964257603559.png" alt="$V_x$"/></span></span> 是自我车辆的纵向速度。<span style="font-family: &quot;Microsoft YaHei&quot;;">ACC根据以下输入为自我车辆生成纵向加速度：</span></p>
+<div class="itemizedlist"><ul><li><p _msttexthash="39184509" _msthash="98">自我车辆的纵向速度</p></li>
+<li><p _msttexthash="243286628" _msthash="99">领头车和自我车之间的相对距离（来自跟踪和传感器融合系统）</p></li>
+<li><p _msttexthash="241626814" _msthash="100">领头车和自我车之间的相对速度（来自跟踪和传感器融合系统）</p></li>
+</ul>
+</div>
+<p>考虑到自我车辆的物理限制，纵向加速度被限制在范围 [-3,2] <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq06666451655067986932.png" alt="$m/s^2$"/></span></span>.</p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在经典的ACC设计中，如果相对距离小于安全距离，则主要目标是减速并保持安全距离。如果相对距离大于安全距离，则主要目标是在保持安全距离的同时达到驾驶员设定的速度。这些设计原则是通过最小和开关模块实现的。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">'ACCWithSensorFusionMdlRef/Adaptive Cruise Controller/ACC Classical'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28506" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_06.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在基于 MPC 的 ACC 设计中，通过跟踪受约束的驱动程序集速度来制定基础优化问题。约束强制相对距离始终大于安全距离。</span></p>
+<p></p>
+<div class="informalfigure"><div id="d124e28512" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/xxoptimizationEqn.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p>要配置自适应巡航控制系统块,请使用 <code class="literal">helperACCSetUp</code> 文件中定义的参数。例如，用于 ACC 设计的 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq03493110191331711391.png" alt="$G$"/>线性模型</span></span>,  <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq03493110191331711391.png" alt="$G$"/></span></span> 是从车辆动力学中获得的。两个Switch块实现了简单的逻辑来处理来自传感器的大量数据（例如，传感器在未检测到MIO时可能返回<code class="literal">Inf</code> ）。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">'ACCWithSensorFusionMdlRef/Adaptive Cruise Controller/ACC Model Predictive Control'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28540" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_07.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">有关 ACC 的 MPC 设计的详细信息，请参阅使用模型预测</span><a href="../../mpc/ug/adaptive-cruise-control-using-model-predictive-controller.html" data-docid="mpc_ug#mw_5d3362c7-033d-4773-a8e5-5f3d303a9c10" class="a" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">控制的自适应巡航控制系统</a><span role="cross_prod" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">（模型预测控制工具箱）。</span><br/></p>
+<h3 class="title" id="d124e28547">车辆与环境</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">车辆和环境子系统由两部分组成：</span><br/></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>车辆动力学和全局坐标</p></li>
+<li><p _msttexthash="37115013" _msthash="112">执行组件和传感器仿真</p></li>
+</ol>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">'ACCTestBenchExample/Vehicle and Environment'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28560" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_08.png"/></p>
+</div>
+</div>
+<p>车辆动力学子系统使用自动驾驶工具箱中的 Bicycle Model - Force Input 模块进行建模。 T车辆动力学，输入 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq15012583454694319273.png" alt="$u$"/></span></span> (纵向加速度) 和前转向角 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq12492974332187978896.png" alt="$\delta$"/></span></span>, 近似如下:</p>
+<p></p>
+<div class="informalfigure"><div id="d124e28581" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/xxdynamicsEqn.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p>在状态向量中, <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq12054789590542575519.png" alt="$V_y$"/></span></span> 表示横向速度, <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq11045485964257603559.png" alt="$V_x$"/></span></span> 表示纵向速度 ， <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq03702555302202684472.png" alt="$\psi$"/></span></span> 表示偏航角。<code class="literal">helperACCSetUp</code> 文件中提供了车辆参数。</p>
+<p>车辆动力学的输出 (如纵向速度 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq11045485964257603559.png" alt="$V_x$"/></span></span> 和横向速度 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq12054789590542575519.png" alt="$V_y$"/></span></span>) 是基于车身固定坐标。为了获得车辆经过的轨迹，通过以下关系将车身固定坐标转换为全局坐标：</p>
+<div id="d124e28627" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq02813323758086210955.png" alt="$$\dot{X} = V_x\cos(\psi)-V_y\sin(\psi),\quad \dot{Y} = V_x\sin(\psi)+V_y\cos(\psi)$$"/></p>
+</div>
+</div>
+<p>偏航角 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq03702555302202684472.png" alt="$\psi$"/></span></span> 和偏航率 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq16859182121350046929.png" alt="$\dot{\psi}$"/></span></span> 也转换为度数单位。</p>
+<p>驾驶员转向模型的目标是通过转向角 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq12492974332187978896.png" alt="$\delta$"/> </span></span>使车辆保持在车道上并沿着弯曲的道路行驶。此目标是通过将偏航角误差 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq10098877553561436700.png" alt="$e_2$"/></span></span> 和横向位移误差 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq16261906598696099342.png" alt="$e_1$"/></span></span> 驱动到零来实现的(见下图), 其中</p>
+<div id="d124e28673" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq15208404165936792923.png" alt="$$\dot{e_1} = V_xe_2+V_y,\quad e_2 = \psi - \psi_{des}$$"/></p>
+</div>
+</div>
+<p>所需的偏航角速率有 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq08317205671408921333.png" alt="$Vx/R$"/></span></span> (<span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_eq04843170888871284642.png" alt="$R$"/></span></span> 表示道路曲率的半径)给出.</p>
+<p></p>
+<div class="informalfigure"><div id="d124e28696" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/xxsteeringError.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p>Actors和Sensor Simulation子系统生成跟踪和传感器融合所需的合成传感器数据。在运行此示例之前，<a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> 应用程序用于创建一个有弯曲道路和多个参与者在道路上移动的场景。然后将该场景中的道路和参与者导出到MATLAB函数 <code class="literal">ACCTestBenchScenario.m</code>。要了解如何定义场景，请参阅场景创建部分。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">'ACCTestBenchExample/Vehicle and Environment/Actors and Sensor Simulation'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28709" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_09.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">自我车辆的运动由控制系统控制，而不是从场景文件中读取。相反，自我车辆位置、速度、偏航角和偏航率作为来自车辆动力学模块的输入接收，并使用 </span> <code class="literal">packEgo</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">MATLAB 功能块打包到单个参与者姿势结构中。</span></p>
+<p><a href="../ref/scenarioreader.html" data-docid="driving_ref#mw_0abe0f52-f25a-4829-babb-d9bafe8fdbf3" class="a">Scenario Reader</a> 块从工作区中加载的 <span style="font-family: monospace;">scenario </span>变量中读取演员姿势数据。该模型运行<code class="literal">ACCTestBenchScenario.m</code> ，以便在模拟开始时将场景加载到工作空间中。您也可以通过单击模型中的“运行场景脚本”按钮来加载场景。该块将演员的姿势从场景的世界坐标转换为自我-车辆坐标。演员的姿势在块生成的总线上进行流式传输。在本例中，将使用 <a href="../ref/visiondetectiongenerator.html" data-docid="driving_ref#mw_2fa86dfd-52db-4f59-8781-7d954ae3e8dc" class="a">Vision Detection Generator</a> 块和<a href="../ref/radardetectiongenerator.html" data-docid="driving_ref#mw_09922365-011c-47bd-8b62-feadcb8af9d8" class="a">Radar Detection Generator</a>块。这两个传感器都是远程和前瞻性的，并根据ACC的需要提供对自我车辆前部的良好覆盖。传感器使用自我车辆坐标中的演员姿势来生成自我车辆前方的车辆检测列表。最后，使用时钟块作为车辆如何具有集中时间源的示例。时间由“多对象跟踪器”块使用。</p>
+<h3 class="title" id="d124e28728" style="font-family: &quot;Microsoft YaHei&quot;;"><font _mstmutation="1" _msttexthash="10379265" _msthash="138">场景创建</font></h3>
+<p><strong class="emphasis bold">Driving Scenario Designer </strong><span style="font-family: &quot;Microsoft YaHei&quot;;">应用程序允许您定义在道路上移动的道路和车辆。在本例中，您将定义两条曲率恒定的平行道路。要定义道路，请定义道路中心、道路宽度和倾斜角度（如果需要）。道路中心是通过沿圆弧的采样点来选择的，该圆弧跨越 60 度的恒定曲率半径。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">定义方案中的所有车辆。要定义车辆的运动，请通过一组航点和速度来定义其轨迹。定义航点的一种快速方法是选择之前定义的道路中心的子集，并在道路中心的左侧或右侧偏移以控制车辆行驶的车道。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例显示四辆车：左侧车道上的快速行驶的汽车、右侧车道上的慢速行驶的汽车、道路对面接近的汽车，以及从右侧车道开始但随后移动到左侧车道以超越缓慢行驶的汽车的汽车。</span><br/></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">可以使用</span> <strong class="emphasis bold">Driving Scenario Designer</strong> <span style="font-family: &quot;Microsoft YaHei&quot;;">应用程序修改方案，并将其导出并保存到同一方案的</span> <code class="literal">ACCTestBenchScenario.m </code><span style="font-family: &quot;Microsoft YaHei&quot;;">文件中。重新运行模拟时，场景读取器块会自动选取更改。若要以编程方式生成方案，可以使用</span> <code class="literal">helperScenarioAuthoring</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">函数。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plotACCScenario
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28751" class="mediaobject"><p><img src="../../examples/autonomous_control/win64/AdaptiveCruiseControlWithSensorFusionExample_10.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e28754">为控制算法生成代码</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">尽管整个模型不支持代码生成，但 </span><code class="literal">ACCWithSensorFusionMdlRef</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">模型配置为支持使用嵌入式编码器软件生成 C 代码。要检查您是否有权访问嵌入式编码器，请运行：</span></p>
+<div class="code_responsive"><pre id="d124e28762" class="programlisting">hasEmbeddedCoderLicense = license(<span style="color:#A020F0">'checkout'</span>,<span style="color:#A020F0">'RTW_Embedded_Coder'</span>)
+</pre>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">您可以为模型生成 C 函数，并通过运行以下命令浏览代码生成报告：</span></p>
+<div class="code_responsive"><pre id="d124e28765" class="programlisting"><span style="color:#0000FF">if</span> hasEmbeddedCoderLicense
+    rtwbuild(<span style="color:#A020F0">'ACCWithSensorFusionMdlRef'</span>)
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">您可以使用软件在环 （SIL） 模拟来验证编译的 C 代码是否按预期运行。要在 SIL 模式下模拟引用的</span> <code class="literal">ACCWithSensorFusionMdlRef</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">模型，请使用：</span></p>
+<div class="code_responsive"><pre id="d124e28771" class="programlisting"><span style="color:#0000FF">if</span> hasEmbeddedCoderLicense
+    set_param(<span style="color:#A020F0">'ACCTestBenchExample/ACC with Sensor Fusion'</span>,<span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'SimulationMode'</span>,<span style="color:#A020F0">'Software-in-the-loop (SIL)'</span>)
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+<p>运行<code class="literal">ACCTestBenchExample</code> 模型时，将为 <code class="literal">ACCWithSensorFusionMdlRef</code> 模型生成、编译和执行代码。这使您能够通过模拟来测试编译后的代码的行为。</p>
+<h3 class="title" id="d124e28779">结论</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例展示了如何在具有传感器融合功能的弯道上实现集成自适应巡航控制器 （ACC），如何使用自动驾驶工具箱生成的合成数据在 Simulink 中对其进行测试，对其进行组件化，并为其自动生成代码。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bdclose <span style="color:#A020F0">all</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+      <h2 id="d124e28789">See Also</h2>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.record.html"><span itemprop="name"><code class="function">record</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.roadboundaries.html"><span itemprop="name"><code class="function">roadBoundaries</code></span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator.html"><span itemprop="name"><span class="block">Vision Detection
+            Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator.html"><span itemprop="name"><span class="block">Driving Radar Data
+            Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/detectionconcatenation.html"><span itemprop="name"><span class="block">Detection
+            Concatenation</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/multiobjecttracker.html"><span itemprop="name"><span class="block">Multi-Object
+            Tracker</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../mpc/ref/adaptivecruisecontrolsystem.html"><span itemprop="name"><span class="block">Adaptive Cruise Control
+            System</span></span></a> (Model Predictive Control Toolbox)</span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span></li>
+</ul>
+      <h2 id="d124e28825">Related Topics</h2>
+<ul><li><a href="../../mpc/ug/adaptive-cruise-control-using-model-predictive-controller.html" class="a">Adaptive Cruise Control System Using Model Predictive Control</a><span role="cross_prod"> (Model Predictive Control Toolbox)</span></li>
+<li><a href="../../radar/ug/automotive-adaptive-cruise-control-using-fmcw-technology.html" class="a">Automotive Adaptive Cruise Control Using FMCW Technology</a><span role="cross_prod"> (Radar Toolbox)</span></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
