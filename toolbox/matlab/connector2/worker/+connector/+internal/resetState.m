@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 unlockAndClearItems;
 
 lasterror('reset');
