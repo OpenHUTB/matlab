@@ -1,12 +1,6 @@
 function warmupHelp()
 
-
-
-
-
     help figure;
-
-
     matlab.internal.web.htmlrenderer('textonly');
 
     com.mathworks.mlservices.MLHelpServices.registerMLHelpBrowser(...
