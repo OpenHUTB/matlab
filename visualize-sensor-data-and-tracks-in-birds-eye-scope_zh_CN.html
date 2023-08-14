@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Visualize Sensor Data and Tracks in Bird's-Eye Scope</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../scenarios-in-simulink.html",
+          "name": "Scenarios in Simulink"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "scenarios-in-simulink"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Visualize sensor coverages, detections, and tracks from a Simulink model."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenarios-in-simulink.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenarios in Simulink</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Visualize Sensor Data and Tracks in
+        Bird's-Eye Scope</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_59f6725d-648f-4035-8057-39f8123688d2" class="intrnllnk">Open Model and Scope</a></li>
+<li><a href="#mw_b93561ec-7617-4c03-8561-dec4e30b6627" class="intrnllnk">Find Signals</a></li>
+<li><a href="#mw_78ca682e-0199-4f2d-99bb-3d5413f14683" class="intrnllnk">Run Simulation</a></li>
+<li><a href="#mw_dbed4583-6da7-4cd4-8291-064ba090e17d" class="intrnllnk">Organize Signal Groups (Optional)</a></li>
+<li><a href="#mw_99075bb2-f9eb-4c77-b094-08f243831ae7" class="intrnllnk">Update Model and Rerun Simulation</a></li>
+<li><a href="#mw_33ced103-3ca3-4006-a170-1ff942178c74" class="intrnllnk">Save and Close Model</a></li>
+<li><a href="#d124e4158" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e4195" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=scenarios-in-simulink&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_9f4f3a87-1442-47e2-8e19-17da9f20644b"><span id="birdseyescope-find-signals" class="anchor_target"></span>在鸟瞰图范围内可视化传感器数据和轨迹</h2>
+<p><strong class="app"><a href="../ref/birdseyescope-app.html">Bird's-Eye Scope</a></strong><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">可可视化来自 Simulink 模型的信号，这些信号表示驾驶场景的各个方面。使用该范围，您可以分析：</span></p>
+<div class="itemizedlist"><ul><li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="128712610" _msthash="50" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">视觉、雷达和激光雷达传感器的传感器覆盖范围</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="68072329" _msthash="51" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">参与者和车道边界的传感器检测</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="44279482" _msthash="52" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">场景中移动对象的轨迹</p></li>
+</ul>
+</div>
+<p>这个例子展示了如何在示波器上显示这些信号并在仿真过程中分析这些信号。</p>
+<section itemprop="content"><h3 class="title" id="mw_59f6725d-648f-4035-8057-39f8123688d2">打开模型和范围</h3>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">打开包含用于传感器检测和跟踪的信号的模型。使用此模型 在</span><a href="sensor-fusion-using-synthetic-radar-and-vision-data-in-simulink.html" class="a">Sensor Fusion Using Synthetic Radar and Vision Data in Simulink</a><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">示例中。还要添加模型的文件夹到 MATLAB 搜索 路径。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>addpath(genpath(fullfile(matlabroot,<span style="color:#A020F0">'examples'</span>,<span style="color:#A020F0">'driving'</span>)))
+open_system(<span style="color:#A020F0">'SyntheticDataSimulinkExample'</span>)</pre>
+</div>
+</div>
+</div>
+<p></p>
+<div class="informalfigure"><div id="d124e3670" class="mediaobject"><p><img src="radar_model_after.png" alt="A Simulink model titled &quot;Synthetic Data Simulation&quot;" height="213" width="889"/></p>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">从 Simulink 工具之旅中打开示波器。在</span><strong class="guilabel">Review Results</strong><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">下，单</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">击 </span><strong class="guimenuitem">Bird's-Eye Scope </strong><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">。</span></p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_b93561ec-7617-4c03-8561-dec4e30b6627">查找信号</h3>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">首次打开</span><strong class="app">Bird's-Eye Scope</strong><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">时，</span>scope <span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">画布为空白，并且不显示任何信号。要从打开的模型中查找示波器可以显示的信号， 在“范围工具”上，单击</span><strong class="guilabel">查找信号</strong><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">。范围更新 框图并自动查找模型中的信号。</span></p>
+<div class="informalfigure"><div id="d124e3696" class="mediaobject"><p><img src="birdseyescope_findsignals.png" alt="Bird's-Eye Scope canvas displaying a car on a road with sensor coverage areas in red and blue" height="637" width="770"/></p>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">左窗格列出了示波器找到的所有信号。这些信号被分组 基于它们在模型中的来源。</span><br/></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"/>
+<col class="tcol2" width="33%"/>
+<col class="tcol3" width="33%"/>
+</colgroup>
+<thead><tr><th>Signal Group</th>
+<th>Description</th>
+<th>Signal Sources</th>
+</tr>
+</thead>
+<tbody><tr><td><strong class="guilabel">Ground Truth</strong></td>
+<td><p>在这个场景中，道路边界、车道标线和障碍物</p>
+<p>您无法修改此组或其任何信号。</p>
+<p>要检查大型道路网络，请使用<b>世界坐标视图</b>窗口。请查看<a href="../ref/birdseyescope-app.html#mw_772aeb22-b9b6-43a0-9f9b-8fd313257be9" class="a">Vehicle and World Coordinate Views</a>。</p>
+</td>
+<td>
+                    <div class="itemizedlist"><ul><li><p><a href="../ref/scenarioreader.html"><span class="block">Scenario Reader</span></a> block </p></li>
+</ul>
+</div>
+                </td>
+</tr>
+<tr><td><strong class="guilabel">Actors</strong></td>
+<td><p>场景中的参与者，包括自我车辆</p>
+<p>你不能修改此组或其任何信号或子组。</p>
+<p>要查看远离自动驾驶车辆的角色，请使用世界坐标视图窗口。请参阅<a href="../ref/birdseyescope-app.html#mw_772aeb22-b9b6-43a0-9f9b-8fd313257be9" class="a">Vehicle and World Coordinate Views</a><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">。</span></p>
+</td>
+<td>
+                    <div class="itemizedlist"><ul><li><p><a href="../ref/scenarioreader.html"><span class="block">Scenario Reader</span></a> block </p></li>
+<li><p><a href="../ref/visiondetectiongenerator.html"><span class="block">Vision Detection Generator</span></a>, <a href="../ref/drivingradardatagenerator.html"><span class="block">Driving Radar Data Generator</span></a>, and <a href="../ref/lidarpointcloudgenerator.html"><span class="block">Lidar Point Cloud Generator</span></a> blocks (仅查看角色的配置文件信息，例如角色的长度、宽度和高度。)</p><div class="itemizedlist"><ul><li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: circle; font-size: 14px !important;"><p _msttexthash="625404858" _msthash="76" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">如果参与者配置文件信息未设置或不一致 在块之间，作用域将执行组件配置文件设置为 每个块的默认参与者配置文件值。</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: circle; font-size: 14px !important;"><p _msttexthash="174897996" _msthash="77" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">自我车辆的配置文件始终设置为 每个块的默认配置文件。</p></li>
+</ul>
+</div></li>
+</ul>
+</div>
+                </td>
+</tr>
+<tr><td><strong class="guilabel">Sensor Coverage</strong></td>
+<td><p>视觉、雷达和激光雷达传感器的覆盖区域，分为<span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">视觉</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">、雷达、</span><span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">激光雷达</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">和</span><span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">超声波</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">子组</span></p>
+<p>您可以修改此组中的信号。</p>
+<p>你可以重命名或删除子组，但不能重命名或删除顶级<span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">传感器覆盖范围</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">组。您还可以添加子组和移动信号子组之间。如果删除子组，其信号将移动到顶级</span><span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">传感器覆盖范围</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">组。</span></p>
+</td>
+<td>
+                    <div class="itemizedlist"><ul><li><p><a href="../ref/visiondetectiongenerator.html"><span class="block">Vision Detection Generator</span></a> block</p></li>
+<li><p><a href="../ref/simulation3dvisiondetectiongenerator.html"><span class="block">Simulation 3D Vision Detection Generator</span></a> block</p></li>
+<li><p><a href="../ref/drivingradardatagenerator.html"><span class="block">Driving Radar Data Generator</span></a> block</p></li>
+<li><p><a href="../ref/simulation3dprobabilisticradar.html"><span class="block">Simulation 3D Probabilistic Radar</span></a> block</p></li>
+<li><p><a href="../ref/lidarpointcloudgenerator.html"><span class="block">Lidar Point Cloud Generator</span></a> block</p></li>
+<li><p><a href="../ref/simulation3dlidar.html"><span class="block">Simulation 3D Lidar</span></a> block</p></li>
+<li><p><a href="../ref/ultrasonicdetectiongenerator.html"><span class="block">Ultrasonic Detection Generator</span></a></p></li>
+</ul>
+</div>
+                </td>
+</tr>
+<tr><td><strong class="guilabel">Detections</strong></td>
+<td><p>从视觉、雷达和激光雷达传感器获得的检测结果，分为<span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">视觉</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">、雷达、</span><span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">激光雷达</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">和</span><span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">超声波</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">子组</span></p>
+<p>您可以修改此组中的信号。</p>
+<p>你可以重命名或删除子组，但不能重命名或删除顶级<span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">检测</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">组。您还可以添加子组和 在子组之间移动信号。如果删除子组，其信号将移动到顶级</span><span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">检测</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">组。</span></p>
+</td>
+<td>
+                    <div class="itemizedlist"><ul><li><p><a href="../ref/visiondetectiongenerator.html"><span class="block">Vision Detection Generator</span></a> block</p></li>
+<li><p><a href="../ref/simulation3dvisiondetectiongenerator.html"><span class="block">Simulation 3D Vision Detection Generator</span></a> block</p></li>
+<li><p><a href="../ref/drivingradardatagenerator.html"><span class="block">Driving Radar Data Generator</span></a> block</p></li>
+<li><p><a href="../ref/lidarpointcloudgenerator.html"><span class="block">Lidar Point Cloud Generator</span></a> block</p></li>
+<li><p><a href="../ref/simulation3dprobabilisticradar.html"><span class="block">Simulation 3D Probabilistic Radar</span></a> block</p></li>
+<li><p><a href="../ref/simulation3dlidar.html"><span class="block">Simulation 3D Lidar</span></a> block</p></li>
+<li><p><a href="../ref/ultrasonicdetectiongenerator.html"><span class="block">Ultrasonic Detection Generator</span></a></p></li>
+</ul>
+</div>
+                </td>
+</tr>
+<tr><td><strong class="guilabel">Tracks</strong></td>
+<td><p>场景中对象的轨迹</p>
+<p>您可以在此修改信号 群。</p>
+<p>您可以重命名或删除子组，但不能重命名或删除顶级<span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">轨道</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">组。您还可以向其添加子组对信号进行分组并将信号移动到其中。如果删除子组，其信号将移动 到顶级</span><span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">轨道</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">组。</span></p>
+</td>
+<td><div class="itemizedlist"><ul><li><p><a href="../ref/multiobjecttracker.html"><span class="block">Multi-Object Tracker</span></a> block</p></li>
+<li><p>Tracker blocks in Sensor Fusion and Tracking Toolbox™</p></li>
+</ul>
+</div>
+<p><span class="app" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">鸟瞰镜</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">显示自我中的曲目 车辆坐标。任何其他坐标系中的轨迹将显示为 作用域中的偏移量。</span></p>
+</td>
+</tr>
+<tr><td><strong class="guilabel">Other Applicable Signals</strong></td>
+<td><p>示波器无法自动分组的信号，例如组合的信号 来自多个传感器的信息</p>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">您可以在此修改信号组，但不能添加子组。</span><br/></p>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">此组中的信号不在模拟期间显示。</span><br/></p>
+</td>
+<td>
+                    <div class="itemizedlist"><ul><li><p><span style="font-size: 14px;">组合或聚类信号的块（例如</span><span style="font-size: 14px;"><a href="../ref/detectionconcatenation.html" style="font-size: medium;"><span class="block">Detection Concatenation</span></a>块）</span></p></li>
+<li><p><a href="../ref/vehicletoworld.html"><span class="block">Vehicle To World</span></a> and <a href="../ref/worldtovehicle.html"><span class="block">World To Vehicle</span></a> blocks</p></li>
+<li><p>创建包含演员姿势的非虚拟 Simulink 总线的任何块</p><p>有关演员姿势的详细信息，创建时所需的姿势信息 这些总线，请参阅场景的<span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><strong class="guilabel" style="color: rgb(0, 0, 0); font-size: medium; font-family: Arial;"><a href="../ref/scenarioreader.html#mw_8f64f730-b9b2-40ac-8d77-e7d0f33fe6b5">Actors</a></strong>输出端口</span><span class="block" _istranslated="1" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);"> 读取器</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">块。</span></p></li>
+<li><p>创建包含检测的非虚拟 Simulink 总线的任何块</p><p>有关创建时所需的检测信息的详细信息 这些总线，请参阅视觉的<strong class="guilabel"><a href="../ref/visiondetectiongenerator.html#mw_4c2467bd-7243-4496-bd36-dbcbd2901779">Object Detections</a></strong>和<span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><strong class="guilabel" style="color: rgb(0, 0, 0); font-size: medium; font-family: Arial;"><a href="../ref/visiondetectiongenerator.html#mw_986ae8f8-7f17-41d9-b7f3-fba36826c546">Lane Detections</a></strong>输出端口</span><span class="guilabel" _istranslated="1" style="box-sizing: border-box; font-weight: 700; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);"><a href="https://ww2.mathworks.cn/help/releases/R2022b/driving/ref/visiondetectiongenerator.html#mw_4c2467bd-7243-4496-bd36-dbcbd2901779" _istranslated="1" style="box-sizing: border-box; background-color: transparent; color: rgb(0, 118, 168); text-decoration-line: none;"></a></span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"> </span><span class="block" _istranslated="1" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">检测发电机</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">块。</span></p></li>
+<li><p>创建包含磁道的非虚拟 Simulink 总线的任何块</p><p>有关创建这些时所需的轨道信息的详细信息 总线，请参阅<span class="block" _istranslated="1" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">多对象跟踪器</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">块的</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);"><strong class="guilabel" style="color: rgb(0, 0, 0); font-size: medium; font-family: Arial;"><a href="../ref/multiobjecttracker.html#mw_9e022787-7c8a-437b-a60d-7b66d991a97a">Confirmed Tracks</a></strong><span style="color: rgb(0, 0, 0); font-size: medium; font-family: Arial;"> </span>输出端口。</span></p></li>
+</ul>
+</div>
+                </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><font color="#212121" face="Microsoft YaHei, Segoe UI, Arial, Helvetica"><span style="font-size: 14px;">在模拟之前但在点击“<b>查找信号</b>”之后，范围画布会显示除非自动驾驶车辆以外的所有<b>地面真实</b>信号，以及所有<b>传感器覆盖</b>信号。非自动驾驶车辆和“<b>检测</b>”和“<b>跟踪</b>”下的信号只有在模拟模型后才会显示。在模拟过程中，<b>其他适用信号</b>不会显示。如果您希望范围显示特定的信号，请在模拟之前将它们移动到适当的组中。如果适当的组不存在，请创建一个。</span></font></p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_78ca682e-0199-4f2d-99bb-3d5413f14683">运行仿真</h3>
+<p>通过在<strong class="app">Bird's-Eye Scope</strong> 范围内点击<strong class="guilabel">Run</strong>来模拟模型。范围画布会显示检测和跟踪结果。要显示图例，请在范围工具栏上点击“<strong class="guilabel">Legend</strong>”。</p>
+<div class="informalfigure"><div id="d124e4012" class="mediaobject"><p><img src="birdseyescope_thumbnail.png" alt="Bird's-Eye Scope canvas with legend for road boundaries, vision coverage, radar coverage, vision detections, radar detections, and tracks" height="661" width="605"/></p>
+</div>
+</div>
+<p>在模拟过程中，您可以执行以下操作：</p>
+<div class="itemizedlist"><ul><li><p>检查检测、跟踪、传感器覆盖区域和自车行为。默认视图以车辆坐标显示模拟，并以自车为中心。要查看自车周围的更大区域，或者查看场景的其他部分，在范围工具栏上点击<strong class="guilabel">World Coordinates</strong>。<b>世界坐标视图</b>窗口会显示整个场景，并在自车周围画圈。这个圈不是传感器覆盖区域。要返回默认显示的任一窗口，请将鼠标指针悬停在窗口上方，并在右上角点击出现的主页按钮。有关这些视图的更多详细信息，请参阅<a href="../ref/birdseyescope-app.html#mw_772aeb22-b9b6-43a0-9f9b-8fd313257be9" class="a">Vehicle and World Coordinate Views</a>。</p></li>
+<li><p>更新信号属性。要访问信号的属性，请首先从左窗格中选择信号。然后，在范围工具栏上点击“<b>属性</b>”。使用这些属性，您可以显示或隐藏传感器覆盖区域或检测结果。此外，为了突出显示特定的传感器覆盖区域，您可以更改它们的颜色或透明度。</p></li>
+<li><p>更新<b>鸟瞰视图</b>设置，例如更改车辆坐标视图窗口的坐标轴限制或更改信号名称的显示方式。在范围工具栏上点击 <strong class="guilabel">Settings</strong>。在模拟过程中，无法更改<strong class="guilabel">Track position selector</strong> 和 <strong class="guilabel">Track velocity selector</strong>的设置。有关更多详细信息，请参阅<strong class="guilabel">Settings &gt; Vehicle Coordinates View</strong>部分的 <strong class="app"><a href="../ref/birdseyescope-app.html">Bird's-Eye Scope</a> </strong>。</p></li>
+</ul>
+</div>
+<p>在模拟结束后，您可以隐藏某些检测或跟踪以供下一次模拟使用。在左窗格中，在 <strong class="guilabel">Detections</strong>或 <strong class="guilabel">Tracks</strong>下，右键单击要隐藏的信号。然后，选择 <strong class="guilabel">Move to Other Applicable </strong>将该信号移动到 <strong class="guilabel">Other Applicable Signals </strong>组中。要隐藏传感器覆盖区域，选择左窗格中对应的信号，然后在“属性”选项卡上取消选中<strong class="guilabel">Show Sensor Coverage</strong>参数。在模拟过程中，无法隐藏 <b>Ground Truth </b>信号。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_dbed4583-6da7-4cd4-8291-064ba090e17d">组织信号组（可选）<span style="font-size: medium; font-weight: 400;"></span><br/></h3>
+<p>为了进一步组织信号，您可以重命名信号组或将信号移动到新的组中。例如，您可以将<b>Vision</b>和<b>Radar</b>子组重命名为<strong class="guilabel">Front of Car</strong>和 <strong class="guilabel">Back of Car</strong>。然后，根据新的组名，根据需要拖动信号将其移动到相应的组中。当您将信号拖动到新的组中时，信号的颜色会更改为与其所属组分配的颜色相匹配。</p>
+<p>您无法重命名或删除左窗格中的顶级组，但可以重命名或删除任何子组。如果删除一个子组，其信号将移动到顶级组中。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_99075bb2-f9eb-4c77-b094-08f243831ae7">更新模型并重新运行仿真</h3>
+<p>在运行模拟之后，修改模型并检查这些更改对鸟瞰视图的可视化效果。例如，在模型的传感器模拟子系统中，打开两个“Vision Detection Generator”块。这些块分别具有传感器索引为1和2。在每个块的<strong class="guilabel">Measurements</strong> 选项卡上，将 <strong class="guilabel">Maximum detection range (m) </strong>参数减小到50。为了查看传感器覆盖范围的变化，重新运行模拟。</p>
+<p>当您修改块参数时，可以重新运行模拟而无需重新查找信号。如果添加或删除块、端口或信号线，则必须在重新运行模拟之前再次点击“<b>查找信号</b>”。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_33ced103-3ca3-4006-a170-1ff942178c74">保存并关闭模型</h3>
+<p>当您保存并关闭模型时，<strong class="app">Bird's-Eye Scope</strong>的设置也会被保存。</p>
+<p>如果重新打开模型和<strong class="app">Bird's-Eye Scope</strong>，范围画布最初为空白。点击 <strong class="guilabel">Run</strong> 以运行模拟并可视化保存的信号属性。例如，如果在上一步中减小了检测范围，范围画布将显示这个减小的范围。</p>
+<p><br/></p>
+<div class="informalfigure"><div id="d124e4124" class="mediaobject"><p><img src="birdseyescope_savedsignalproperties.png" alt="Bird's-Eye Scope canvas with small vision detection ranges in blue" height="646" width="744"/></p>
+</div>
+</div>
+<p>如果向模型中添加新的信号，请点击 <strong class="guilabel">Update Signals</strong> 以查找新的信号，然后点击 <strong class="guilabel">Run</strong> 以可视化带有新信号的模型。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>注意</strong></p>
+<p>如果在关闭模型之前没有对<strong class="app">Bird's-Eye Scope</strong>进行图形更改，则在重新打开模型之前必须再次查找信号才能运行模拟。图形更改包括以下内容：</p>
+<div class="itemizedlist"><ul><li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="26688441" _msthash="141" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">将信号拖动到新组</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="56283877" _msthash="142" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">启用图例或世界坐标视图窗口</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="17402034" _msthash="143" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">更改轴限制</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background-image: initial; background-position: 0px center; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; list-style: disc; font-size: 14px !important;"><p _msttexthash="137502924" _msthash="144" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">更改演员、车道标记或传感器的视觉属性 覆盖区域</p></li>
+</ul>
+</div>
+<p>
+
+            </p>
+</div>
+<p>完成模型仿真后，从 MATLAB 搜索路径。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rmpath(genpath(fullfile(matlabroot,<span style="color:#A020F0">'examples'</span>,<span style="color:#A020F0">'driving'</span>)))</pre>
+</div>
+</div>
+</div>
+</section>
+        <h2 id="d124e4158">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyescope-app.html"><span itemprop="name">Bird's-Eye
+                    Scope</span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/detectionconcatenation.html"><span itemprop="name"><span class="block">Detection
+                    Concatenation</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator.html"><span itemprop="name"><span class="block">Vision
+                    Detection Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator.html"><span itemprop="name"><span class="block">Driving Radar
+                    Data Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/multiobjecttracker.html"><span itemprop="name"><span class="block">Multi-Object
+                    Tracker</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/scenarioreader.html"><span itemprop="name"><span class="block">Scenario
+                    Reader</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dlidar.html"><span itemprop="name"><span class="block">Simulation 3D
+                    Lidar</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dprobabilisticradar.html"><span itemprop="name"><span class="block">Simulation 3D
+                    Probabilistic Radar</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/lidarpointcloudgenerator.html"><span itemprop="name"><span class="block">Lidar Point
+                    Cloud Generator</span></span></a></span></li>
+</ul>
+        <h2 id="d124e4195">Related Topics</h2>
+<ul><li><u style="color: rgb(0, 0, 238);">可视化虚幻引擎模拟环境中的传感器数据</u></li>
+<li><font color="#0000ee"><u>在 Simulink 中使用合成雷达和视觉数据的传感器融合</u></font></li>
+<li><font color="#0000ee"><u>横向控制教程</u></font></li>
+<li><font color="#0000ee"><u>采用传感器融合的自动紧急制动</u></font></li>
+<li><font color="#0000ee"><u>使用驾驶场景测试开环ADAS算法</u></font></li>
+<li><font color="#0000ee"><u>使用驾驶场景测试闭环ADAS算法</u></font></li>
+</ul>
+    </section>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
