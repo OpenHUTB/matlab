@@ -1,8 +1,5 @@
-
-
 function warmupSymbolic()
     if strcmp(getenv('PREWARM_SYMBOLIC_TOOLBOX'),'true')
-
 
         try
             parallel.internal.lmgr.addFeatures("SYMBOLIC_TOOLBOX");
