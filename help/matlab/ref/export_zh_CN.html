@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>export</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../live-scripts-and-functions.html",
+          "name": "Live Scripts and Functions"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "live-scripts-and-functions"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:export"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function converts the specified live script or function to a PDF file with the same name and returns the full path to the converted file."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "matlab";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../live-scripts-and-functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Live Scripts and Functions</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">export</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_1a00cc29-e2a6-4da2-9fdf-67856f30d48a" class="intrnllnk">Syntax</a></li>
+<li><a href="#description" class="intrnllnk">Description</a></li>
+<li><a href="#mw_588c2654-ebc4-4d82-83e3-5067777cc710" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_527e37b5-97e0-47bc-b836-ec6356c42119" class="intrnllnk">Export Live Script to PDF File</a></li>
+</ul><ul class="nav"><li><a href="#mw_fc29a319-dba6-4f1e-8e6a-ee4ab5470fca" class="intrnllnk">Export Live Script to Microsoft Word Document</a></li>
+</ul><ul class="nav"><li><a href="#mw_7113f449-ff54-4756-a474-f665a716b41b" class="intrnllnk">Customize Converted File</a></li>
+</ul></li>
+<li><a href="#mw_8a2819f8-c5df-47e6-a54e-5482e42df6a6" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#mw_6edef99e-762a-4729-82d5-7e1a72ef9434" class="intrnllnk">file</a></li>
+<li><a href="#mw_ed596c31-6302-435c-a437-98582890975c" class="intrnllnk">outputfile</a></li>
+</ul><ul class="nav"><li><a href="#namevaluepairs" class="intrnllnk">Name-Value Arguments</a><ul class="nav"><li><a href="#mw_196f007f-10a4-4dae-bfb4-72e70f001df0" class="intrnllnk">Output Options</a></li>
+</ul><ul class="nav"><li><a href="#mw_6a64dd75-e5ef-4ff5-a134-9d95db140d6d" class="intrnllnk">Code Options</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mw_3a49ca2e-64b4-438f-b05a-029c2ab71c57_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_3a49ca2e-64b4-438f-b05a-029c2ab71c57_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=live-scripts-and-functions&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=live-scripts-and-functions&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=live-scripts-and-functions&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=live-scripts-and-functions&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=live-scripts-and-functions&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=live-scripts-and-functions&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="mw_3a49ca2e-64b4-438f-b05a-029c2ab71c57" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">export</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">将实时脚本或函数转换为标准格式</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<div class="function_icons"><ul class="list-unstyled"></ul>
+</div>
+<span id="mw_1a00cc29-e2a6-4da2-9fdf-67856f30d48a" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_1a00cc29-e2a6-4da2-9fdf-67856f30d48a">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e422061" class="intrnllnk">path = export(file)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e422082" class="intrnllnk">path = export(file,outputfile)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e422100" class="intrnllnk">path = export(<span class="argument_placeholder">___</span>,Name=Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="mw_b8597627-67d7-424f-9a72-951826a642ef" class="anchor_target"></span><h2 id="description">描述</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="export.html#mw_527e37b5-97e0-47bc-b836-ec6356c42119" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e422061" itemprop="syntax"><code class="synopsis">path = export(<a href="#mw_6edef99e-762a-4729-82d5-7e1a72ef9434" class="intrnllnk"><code class="argument">file</code></a>)</code></span> 将指定的实时脚本或函数转换为同名的 PDF 文件，并返回转换后文件的完整路径。 <code class="function">export</code> 将转换后的文件保存到当前文件夹。默认情况下，在创建转换文件时使用 <code class="function">export</code> 使用 <a href="matlab.editor-settings.html"><span class="settingslist">matlab.editor Settings</span></a> 设置的指定值。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="export.html#mw_fc29a319-dba6-4f1e-8e6a-ee4ab5470fca" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e422082" itemprop="syntax"><code class="synopsis">path = export(<a href="#mw_6edef99e-762a-4729-82d5-7e1a72ef9434" class="intrnllnk"><code class="argument">file</code></a>,<a href="#mw_ed596c31-6302-435c-a437-98582890975c" class="intrnllnk"><code class="argument">outputfile</code></a>)</code></span> 指定转换后文件的文件名和位置。如果
+          <code class="argument">outputfile</code> 包含文件扩展名，导出功能将会将实时脚本或函数转换为该格式。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="export.html#mw_7113f449-ff54-4756-a474-f665a716b41b" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e422100" itemprop="syntax"><code class="synopsis">path = export(<span class="argument_placeholder">___</span>,<a href="#namevaluepairarguments" class="intrnllnk"><code class="argument">Name=Value</code></a>)</code></span>
+        specifies options for customizing the converted file by using one or more name-value
+        arguments in addition to the input argument combinations in previous syntaxes. For example,
+        you can convert the specified file to a <span class="entity">Microsoft<sup>®</sup> Word</span> document instead of a PDF file, specify whether to hide code, or adjust the
+        paper size and page orientation of the converted file. </p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="mw_588c2654-ebc4-4d82-83e3-5067777cc710">Examples</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_527e37b5-97e0-47bc-b836-ec6356c42119"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_527e37b5-97e0-47bc-b836-ec6356c42119" data-target="#expand_panel_body_mw_527e37b5-97e0-47bc-b836-ec6356c42119" aria-controls="expand_panel_body_mw_527e37b5-97e0-47bc-b836-ec6356c42119" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_527e37b5-97e0-47bc-b836-ec6356c42119">将实时脚本导出为 PDF 文件<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_527e37b5-97e0-47bc-b836-ec6356c42119" aria-labelledby="expand_panel_heading_mw_527e37b5-97e0-47bc-b836-ec6356c42119" class="panel-collapse collapse in"><div class="panel-body">
+        <p class="shortdesc">Convert a live script to a PDF file including the code, output, and
+          formatted text, and save it in the current folder.</p>
+      <div class="procedure"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>export(<span style="color:#A020F0">"myscript.mlx"</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+    'C:\myFiles\myscript.pdf'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_fc29a319-dba6-4f1e-8e6a-ee4ab5470fca"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_fc29a319-dba6-4f1e-8e6a-ee4ab5470fca" data-target="#expand_panel_body_mw_fc29a319-dba6-4f1e-8e6a-ee4ab5470fca" aria-controls="expand_panel_body_mw_fc29a319-dba6-4f1e-8e6a-ee4ab5470fca" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_fc29a319-dba6-4f1e-8e6a-ee4ab5470fca">将实时脚本导出到 Microsoft Word 文档<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_fc29a319-dba6-4f1e-8e6a-ee4ab5470fca" aria-labelledby="expand_panel_heading_mw_fc29a319-dba6-4f1e-8e6a-ee4ab5470fca" class="panel-collapse collapse in"><div class="panel-body">
+        <p class="shortdesc">Convert a live script to a <span class="entity">Microsoft Word</span> document including the code, output, and formatted text.</p>
+      <div class="procedure"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>wordfile = export(<span style="color:#A020F0">"myscripts\myscript.mlx"</span>,<span style="color:#A020F0">"myconvertedfiles\livescripts\myscript.docx"</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>wordfile =
+    'C:\myMATLABFiles\myconvertedfiles\livescripts\myscript.docx'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_7113f449-ff54-4756-a474-f665a716b41b"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7113f449-ff54-4756-a474-f665a716b41b" data-target="#expand_panel_body_mw_7113f449-ff54-4756-a474-f665a716b41b" aria-controls="expand_panel_body_mw_7113f449-ff54-4756-a474-f665a716b41b" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_7113f449-ff54-4756-a474-f665a716b41b">Customize Converted File<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_7113f449-ff54-4756-a474-f665a716b41b" aria-labelledby="expand_panel_heading_mw_7113f449-ff54-4756-a474-f665a716b41b" class="panel-collapse collapse in"><div class="panel-body">
+        <p class="shortdesc">Use name-value arguments to hide the code and change the page size
+          and orientation of the converted file.</p>
+      <div class="procedure"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>wordfile = export(<span style="color:#A020F0">"myscript.mlx"</span>,<span style="color:#A020F0">"C:\Work\myfiles\myscript.docx"</span>, <span style="color:#0000FF">...</span>
+    HideCode=true,PageSize=<span style="color:#A020F0">"A4"</span>,Orientation=<span style="color:#A020F0">"Landscape"</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>wordfile =
+    'C:\Work\myfiles\myscript.docx'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_8a2819f8-c5df-47e6-a54e-5482e42df6a6">Input Arguments</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_8a2819f8-c5df-47e6-a54e-5482e42df6a6_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_6edef99e-762a-4729-82d5-7e1a72ef9434"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6edef99e-762a-4729-82d5-7e1a72ef9434" data-target="#expand_panel_body_mw_6edef99e-762a-4729-82d5-7e1a72ef9434" aria-controls="expand_panel_body_mw_6edef99e-762a-4729-82d5-7e1a72ef9434" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_file" class="anchor_target"></span><h3 class="panel-title" id="mw_6edef99e-762a-4729-82d5-7e1a72ef9434"><code itemprop="name">file</code> — <span itemprop="purpose">Name of live script or function to convert</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">character vector</span> | <span itemprop="inputvalue">string scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_6edef99e-762a-4729-82d5-7e1a72ef9434" aria-labelledby="expand_panel_heading_mw_6edef99e-762a-4729-82d5-7e1a72ef9434" class="panel-collapse collapse in"><div class="panel-body">
+          <p>Name of live script or function to convert, specified as a character vector or
+            string scalar. Specify <code class="argument">file</code> as an absolute or relative path. If
+              <code class="argument">file</code> is not on the MATLAB<sup>®</sup> path, include the <code class="literal">.mlx</code> extension.</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_ed596c31-6302-435c-a437-98582890975c"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ed596c31-6302-435c-a437-98582890975c" data-target="#expand_panel_body_mw_ed596c31-6302-435c-a437-98582890975c" aria-controls="expand_panel_body_mw_ed596c31-6302-435c-a437-98582890975c" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_outputfile" class="anchor_target"></span><h3 class="panel-title" id="mw_ed596c31-6302-435c-a437-98582890975c"><code itemprop="name">outputfile</code> — <span itemprop="purpose">Name of converted file</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">character vector</span> | <span itemprop="inputvalue">string scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_ed596c31-6302-435c-a437-98582890975c" aria-labelledby="expand_panel_heading_mw_ed596c31-6302-435c-a437-98582890975c" class="panel-collapse collapse in"><div class="panel-body">
+          <p>Name of converted file, specified as a character vector or string scalar. Specify
+              <code class="argument">outputfile</code> as an absolute or relative path. The destination
+            folder specified by <code class="argument">outputfile</code> must exist and be writable.</p>
+          <p><code class="function">export</code> uses the file extension of
+              <code class="argument">outputfile</code> to determine the format of the converted file. For
+            example, if <code class="argument">outputfile</code> has a <code class="literal">.docx</code> extension,
+              <code class="function">export</code> converts the live script or function to a <span class="entity">Microsoft Word</span> document.</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<span id="namevaluepairarguments" class="anchor_target"></span><span id="mw_abf3ffe2-503a-469f-b3e6-e7269861be6a" class="anchor_target"></span><h3 id="namevaluepairs" class="bottom_ruled">Name-Value Arguments</h3>
+<div class="namevaluecontainer"><p class="neqvpair_boilerplate">Specify optional pairs of arguments as
+      <code class="argument">Name1=Value1,...,NameN=ValueN</code>, where <code class="literal">Name</code> is
+      the argument name and <code class="literal">Value</code> is the corresponding value.
+      Name-value arguments must appear after other arguments, but the order of the
+      pairs does not matter.
+    </p>
+<p><span class="example_desc"><strong>Example: </strong><code class="literal">path =
+        export("myfiles/mylivescript.mlx",Format="docx")</code></span></p>
+</div>
+<div class="ref_sect"><strong class="mw-doc-parametersgrp" id="mw_196f007f-10a4-4dae-bfb4-72e70f001df0">Output Options</strong><div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_196f007f-10a4-4dae-bfb4-72e70f001df0_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_1662e9c4-24d2-40cb-a68c-ca4924a63fe6"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1662e9c4-24d2-40cb-a68c-ca4924a63fe6" data-target="#expand_panel_body_mw_1662e9c4-24d2-40cb-a68c-ca4924a63fe6" aria-controls="expand_panel_body_mw_1662e9c4-24d2-40cb-a68c-ca4924a63fe6" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Format" class="anchor_target"></span><h3 class="panel-title" id="mw_1662e9c4-24d2-40cb-a68c-ca4924a63fe6"><code itemprop="name">Format</code> — <span itemprop="purpose">Output format</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">"pdf"</code></span> (default) | <span itemprop="inputvalue"><code class="literal">"html"</code></span> | <span itemprop="inputvalue"><code class="literal">"docx"</code></span> | <span itemprop="inputvalue"><code class="literal">"latex"</code></span> | <span itemprop="inputvalue"><code class="literal">"m"</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_1662e9c4-24d2-40cb-a68c-ca4924a63fe6" aria-labelledby="expand_panel_heading_mw_1662e9c4-24d2-40cb-a68c-ca4924a63fe6" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Output format, specified as one of the values listed in the table.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"/>
+<col class="tcol2" width="33%"/>
+<col class="tcol3" width="33%"/>
+</colgroup>
+<thead><tr><th>Value</th>
+<th>Output Format</th>
+<th>Default File Extension</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">"pdf"</code> (default)</td>
+<td>Portable Document Format (PDF)</td>
+<td><code class="literal">.pdf</code></td>
+</tr>
+<tr><td><code class="literal">"html"</code></td>
+<td>Hypertext Markup Language</td>
+<td><code class="literal">.html</code></td>
+</tr>
+<tr><td><code class="literal">"docx"</code></td>
+<td><span class="entity">Microsoft Word</span> document</td>
+<td><code class="literal">.docx</code></td>
+</tr>
+<tr><td><code class="literal">"latex"</code></td>
+<td>LaTeX</td>
+<td><code class="literal">.tex</code></td>
+</tr>
+<tr><td><code class="literal">"m"</code></td>
+<td>MATLAB code file</td>
+<td><code class="literal">.m</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+<code class="argument">Format</code> takes precedence over the format specified
+              by <a href="#mw_ed596c31-6302-435c-a437-98582890975c" class="intrnllnk"><code class="argument">outputfile</code></a>. If <code class="argument">outputfile</code> does not
+              include a file extension, <code class="function">export</code> uses the default file extension
+              for the specified <code class="argument">Format</code>.</p>
+            <p>When exporting to LaTeX, MATLAB creates a separate <code class="literal">matlab.sty</code> file in the same folder
+              as the output document, if one does not exist already. STY files, also known as LaTeX
+              Style Documents, give you more control over the appearance of the output
+              document.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">path = export("myfiles/mylivescript.mlx","myfiles/outfile.xml",
+                Format="html")</code> creates an HTML file with a <code class="literal">.xml</code>
+              extension.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_3e228446-5d41-4ea9-88da-ccafb78d60bf"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3e228446-5d41-4ea9-88da-ccafb78d60bf" data-target="#expand_panel_body_mw_3e228446-5d41-4ea9-88da-ccafb78d60bf" aria-controls="expand_panel_body_mw_3e228446-5d41-4ea9-88da-ccafb78d60bf" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_OpenExportedFile" class="anchor_target"></span><h3 class="panel-title" id="mw_3e228446-5d41-4ea9-88da-ccafb78d60bf"><code itemprop="name">OpenExportedFile</code> — <span itemprop="purpose">Whether to open converted file</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">false</code> or <code class="literal">0</code></span> (default) | <span itemprop="inputvalue"><code class="literal">true</code> or <code class="literal">1</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_3e228446-5d41-4ea9-88da-ccafb78d60bf" aria-labelledby="expand_panel_heading_mw_3e228446-5d41-4ea9-88da-ccafb78d60bf" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Whether to open the converted file after creating it, specified as a numeric or
+              logical <code class="literal">1</code> (<code class="literal">true</code>) or <code class="literal">0</code>
+                (<code class="literal">false</code>).</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">path =
+                export("myfiles/mylivescript.mlx",OpenExportedFile=true)</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><strong class="mw-doc-parametersgrp" id="mw_6a64dd75-e5ef-4ff5-a134-9d95db140d6d">Code Options</strong><div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_6a64dd75-e5ef-4ff5-a134-9d95db140d6d_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_faf2b3eb-71da-4ca1-beee-b1d3bbf3eb11"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_faf2b3eb-71da-4ca1-beee-b1d3bbf3eb11" data-target="#expand_panel_body_mw_faf2b3eb-71da-4ca1-beee-b1d3bbf3eb11" aria-controls="expand_panel_body_mw_faf2b3eb-71da-4ca1-beee-b1d3bbf3eb11" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Run" class="anchor_target"></span><h3 class="panel-title" id="mw_faf2b3eb-71da-4ca1-beee-b1d3bbf3eb11"><code itemprop="name">Run</code> — <span itemprop="purpose">Whether to run code</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">true</code> or <code class="literal">1</code></span> (default) | <span itemprop="inputvalue"><code class="literal">false</code> or <code class="literal">0</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_faf2b3eb-71da-4ca1-beee-b1d3bbf3eb11" aria-labelledby="expand_panel_heading_mw_faf2b3eb-71da-4ca1-beee-b1d3bbf3eb11" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Whether to run the code and include the output in the converted file, specified as
+              a numeric or logical <code class="literal">1</code> (<code class="literal">true</code>) or
+                <code class="literal">0</code> (<code class="literal">false</code>).</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">path =
+              export("myfiles/mylivescript.mlx",Run=false)</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_4184cdfa-9fe1-49a9-903f-409bd3ed53f4"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4184cdfa-9fe1-49a9-903f-409bd3ed53f4" data-target="#expand_panel_body_mw_4184cdfa-9fe1-49a9-903f-409bd3ed53f4" aria-controls="expand_panel_body_mw_4184cdfa-9fe1-49a9-903f-409bd3ed53f4" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_CatchError" class="anchor_target"></span><h3 class="panel-title" id="mw_4184cdfa-9fe1-49a9-903f-409bd3ed53f4"><code itemprop="name">CatchError</code> — <span itemprop="purpose">Whether to catch errors</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">true</code> or <code class="literal">1</code></span> (default) | <span itemprop="inputvalue"><code class="literal">false</code> or <code class="literal">0</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4184cdfa-9fe1-49a9-903f-409bd3ed53f4" aria-labelledby="expand_panel_heading_mw_4184cdfa-9fe1-49a9-903f-409bd3ed53f4" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Whether to catch errors when running the live script or function during
+              conversion, specified as a numeric or logical <code class="literal">1</code>
+                (<code class="literal">true</code>) or <code class="literal">0</code> (<code class="literal">false</code>). If
+                <code class="literal">true</code> and an error occurs, <code class="function">export</code> includes
+              the error in the converted file. If <code class="literal">false</code> and an error occurs,
+                <code class="function">export</code> displays the error in the Command Window and does not
+              create a converted file.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">path =
+                export("myfiles/mylivescript.mlx",CatchError=false)</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_0337d369-384c-4468-8b38-844effedc838"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_0337d369-384c-4468-8b38-844effedc838" data-target="#expand_panel_body_mw_0337d369-384c-4468-8b38-844effedc838" aria-controls="expand_panel_body_mw_0337d369-384c-4468-8b38-844effedc838" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_HideCode" class="anchor_target"></span><h3 class="panel-title" id="mw_0337d369-384c-4468-8b38-844effedc838"><code itemprop="name">HideCode</code> — <span itemprop="purpose">Whether to hide the code</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">true</code> or <code class="literal">1</code></span> | <span itemprop="inputvalue"><code class="literal">false</code> or <code class="literal">0</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_0337d369-384c-4468-8b38-844effedc838" aria-labelledby="expand_panel_heading_mw_0337d369-384c-4468-8b38-844effedc838" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Whether to hide the code, specified as a numeric or logical <code class="literal">1</code>
+                (<code class="literal">true</code>) or <code class="literal">0</code> (<code class="literal">false</code>). If
+                <code class="literal">true</code>, the code in the live script or function is hidden (not
+              included) in the converted file. If <code class="literal">false</code>, the code is included. If
+              this option is not specified, <code class="function">export</code> uses the current saved state
+              of the live script or function to determine whether to hide the code in the converted
+              file. For example, if the specified live script or function was last saved with the
+              code hidden, then the code is also hidden in the converted file.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">path =
+                export("myfiles/mylivescript.mlx",HideCode=false)</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_90aab1c4-259b-44b4-9d0d-11135fe635a8"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_90aab1c4-259b-44b4-9d0d-11135fe635a8" data-target="#expand_panel_body_mw_90aab1c4-259b-44b4-9d0d-11135fe635a8" aria-controls="expand_panel_body_mw_90aab1c4-259b-44b4-9d0d-11135fe635a8" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_PageSize" class="anchor_target"></span><h3 class="panel-title" id="mw_90aab1c4-259b-44b4-9d0d-11135fe635a8"><code itemprop="name">PageSize</code> — <span itemprop="purpose">Page size</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">"Letter"</code></span> | <span itemprop="inputvalue"><code class="literal">"Legal"</code></span> | <span itemprop="inputvalue"><code class="literal">"Tabloid"</code></span> | <span itemprop="inputvalue"><code class="literal">"A2"</code></span> | <span itemprop="inputvalue"><code class="literal">"A3"</code></span> | <span itemprop="inputvalue"><code class="literal">"A4"</code></span> | <span itemprop="inputvalue"><code class="literal">"A5"</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_90aab1c4-259b-44b4-9d0d-11135fe635a8" aria-labelledby="expand_panel_heading_mw_90aab1c4-259b-44b4-9d0d-11135fe635a8" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Page size of the converted file, specified as one of the standard paper type
+              values in this table.</p>
+            <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="45%"/>
+<col class="tcol2" width="56%"/>
+</colgroup>
+<thead><tr><th><p>Value</p>
+</th>
+<th><p>Paper Size (Width x Height)</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td><p><code class="literal">"Letter'</code></p>
+</td>
+<td><p>8.5-by-11 in (default in US)</p>
+</td>
+</tr>
+<tr><td><p><code class="literal">"Legal"</code></p>
+</td>
+<td><p>8.5-by-14 in</p>
+</td>
+</tr>
+<tr><td><p><code class="literal">"Tabloid"</code></p>
+</td>
+<td><p>11-by-17 in</p>
+</td>
+</tr>
+<tr><td><p><code class="literal">"A2"</code></p>
+</td>
+<td><p>42-by-59.4 cm</p>
+</td>
+</tr>
+<tr><td><p><code class="literal">"A3"</code></p>
+</td>
+<td><p>29.7-by-42 cm</p>
+</td>
+</tr>
+<tr><td><p><code class="literal">"A4"</code></p>
+</td>
+<td><p>21-by-29.7 cm (default in Europe and Asia)</p>
+</td>
+</tr>
+<tr><td><p><code class="literal">"A5"</code></p>
+</td>
+<td><p>14.8-by-21 cm</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+            <p>This option is available only when the converted file is a <span class="entity">Microsoft Word</span> document, PDF file, or LaTeX file.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">path =
+                export("myfiles/mylivescript.mlx",PageSize="Legal")</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_090d718a-1b42-4c63-85b5-f2ef4e1b6ae3"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_090d718a-1b42-4c63-85b5-f2ef4e1b6ae3" data-target="#expand_panel_body_mw_090d718a-1b42-4c63-85b5-f2ef4e1b6ae3" aria-controls="expand_panel_body_mw_090d718a-1b42-4c63-85b5-f2ef4e1b6ae3" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Orientation" class="anchor_target"></span><h3 class="panel-title" id="mw_090d718a-1b42-4c63-85b5-f2ef4e1b6ae3"><code itemprop="name">Orientation</code> — <span itemprop="purpose">Page orientation</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">"Portrait"</code></span> (default) | <span itemprop="inputvalue"><code class="literal">"Landscape"</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_090d718a-1b42-4c63-85b5-f2ef4e1b6ae3" aria-labelledby="expand_panel_heading_mw_090d718a-1b42-4c63-85b5-f2ef4e1b6ae3" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Page orientation of the converted file, specified as <code class="literal">"Portrait"</code>
+              or <code class="literal">"Landscape"</code>.</p>
+            <p>This option is available only when the converted file is a <span class="entity">Microsoft Word</span> document, PDF file, or LaTeX file.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">path =
+                export("myfiles/mylivescript.mlx",Orientation="Landscape")</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_4a4078d3-f21f-445e-ac7e-e2955e2d659e"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4a4078d3-f21f-445e-ac7e-e2955e2d659e" data-target="#expand_panel_body_mw_4a4078d3-f21f-445e-ac7e-e2955e2d659e" aria-controls="expand_panel_body_mw_4a4078d3-f21f-445e-ac7e-e2955e2d659e" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Margins" class="anchor_target"></span><h3 class="panel-title" id="mw_4a4078d3-f21f-445e-ac7e-e2955e2d659e"><code itemprop="name">Margins</code> — <span itemprop="purpose">Document margins</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[72 72 72 72]</code></span> (default) | <span itemprop="inputvalue">1-by-4 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4a4078d3-f21f-445e-ac7e-e2955e2d659e" aria-labelledby="expand_panel_heading_mw_4a4078d3-f21f-445e-ac7e-e2955e2d659e" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Document margins of the converted file, specified as a 1-by-4 vector of margin
+              values with the format [<em class="replaceable"><code>left</code></em>
+              <em class="replaceable"><code>top</code></em>
+              <em class="replaceable"><code>right</code></em>
+              <em class="replaceable"><code>bottom</code></em>]. Each margin value is specified in points as a
+              positive integer between 0 and 255. A value of 72 points is equivalent to 1 inch or
+              2.54 cm.</p>
+            <p>This option is available only when the converted file is a <span class="entity">Microsoft Word</span> document, PDF file, or LaTeX file.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">path = export("myfiles/mylivescript.mlx",Margins=[25 72 72
+                25])</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_c56cd7b1-5552-4cf4-af96-daedeeca98f7"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c56cd7b1-5552-4cf4-af96-daedeeca98f7" data-target="#expand_panel_body_mw_c56cd7b1-5552-4cf4-af96-daedeeca98f7" aria-controls="expand_panel_body_mw_c56cd7b1-5552-4cf4-af96-daedeeca98f7" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_FigureFormat" class="anchor_target"></span><h3 class="panel-title" id="mw_c56cd7b1-5552-4cf4-af96-daedeeca98f7"><code itemprop="name">FigureFormat</code> — <span itemprop="purpose">Figure format</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">"png"</code></span> | <span itemprop="inputvalue"><code class="literal">"jpeg"</code></span> | <span itemprop="inputvalue"><code class="literal">"bmp"</code></span> | <span itemprop="inputvalue"><code class="literal">"svg"</code></span> | <span itemprop="inputvalue"><code class="literal">"eps"</code></span> | <span itemprop="inputvalue"><code class="literal">"pdf"</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c56cd7b1-5552-4cf4-af96-daedeeca98f7" aria-labelledby="expand_panel_heading_mw_c56cd7b1-5552-4cf4-af96-daedeeca98f7" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Figure format of output figures in the converted file, specified as
+                <code class="literal">"png"</code>, <code class="literal">"jpeg"</code>, <code class="literal">"bmp"</code>,
+                <code class="literal">"svg"</code>, <code class="literal">"eps"</code>, or <code class="literal">"pdf"</code>. By
+              default, the value of this name-value argument is <code class="literal">"png"</code> for PDF
+              files and <code class="literal">"eps"</code> for LaTeX files.</p>
+            <p>This option is available only when the converted file is a PDF file or a LaTeX
+              file. In addition, the <a href="#mw_faf2b3eb-71da-4ca1-beee-b1d3bbf3eb11" class="intrnllnk"><code class="argument">Run</code></a> name-value argument must be
+                <code class="literal">true</code> (default value) for this option to have an effect.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">path =
+                export("myfiles/mylivescript.mlx",FigureFormat="jpeg")</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_4bf3f613-bed7-4224-9666-6c7afc369771"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4bf3f613-bed7-4224-9666-6c7afc369771" data-target="#expand_panel_body_mw_4bf3f613-bed7-4224-9666-6c7afc369771" aria-controls="expand_panel_body_mw_4bf3f613-bed7-4224-9666-6c7afc369771" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_FigureResolution" class="anchor_target"></span><h3 class="panel-title" id="mw_4bf3f613-bed7-4224-9666-6c7afc369771"><code itemprop="name">FigureResolution</code> — <span itemprop="purpose">Figure resolution</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">600</code></span> (default) | <span itemprop="inputvalue">positive integer</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4bf3f613-bed7-4224-9666-6c7afc369771" aria-labelledby="expand_panel_heading_mw_4bf3f613-bed7-4224-9666-6c7afc369771" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Figure resolution of output figures in the converted file, specified in DPI as a
+              positive integer between 36 and 2880.</p>
+            <p>This option is available only when the converted file is a PDF file or a LaTeX
+              file. In addition, the <a href="#mw_faf2b3eb-71da-4ca1-beee-b1d3bbf3eb11" class="intrnllnk"><code class="argument">Run</code></a> name-value argument must be
+                <code class="literal">true</code> (default value) for this option to have an effect.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">path =
+                export("myfiles/mylivescript.mlx",FigureFormat=800)</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_3a49ca2e-64b4-438f-b05a-029c2ab71c57_vh">Version History</h2>
+<p><strong>Introduced in R2022a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_3a49ca2e-64b4-438f-b05a-029c2ab71c57_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="matlab.editor-settings.html"><span itemprop="name"><span class="settingslist">matlab.editor Settings</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="publish.html"><span itemprop="name"><code class="function">publish</code></span></a></span></p>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../matlab_prog/create-live-scripts.html" class="a">Create Live Scripts in the Live Editor</a></li>
+<li><a href="../matlab_prog/share-live-scripts.html" class="a">Share Live Scripts and Functions</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
