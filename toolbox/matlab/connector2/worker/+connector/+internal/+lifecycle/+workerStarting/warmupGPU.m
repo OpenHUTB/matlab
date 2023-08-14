@@ -1,5 +1,3 @@
-
-
 function warmupGPU()
     if strcmp(getenv('PREWARM_GPU'),'true')
         disp('Checking GPU availability on Worker');
