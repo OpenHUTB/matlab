@@ -11,7 +11,10 @@
 资源所在路径`resources/MATLAB/en{ja_JP}{ko_KR}`
 
 
-## 关闭p文件解码后的警告
+## p文件
+只剩下`mcr/toolbox`（Matlab Compiler run-time）目录下的可执行文件未解码，对应的源文件位于没有`mcr`前缀的`toolbox`文件夹下。
+
+### 关闭p文件解码后的警告
 ```
 warning('query','last')
 ```
