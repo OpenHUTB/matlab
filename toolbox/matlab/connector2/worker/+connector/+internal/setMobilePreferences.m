@@ -1,6 +1,3 @@
-
-
-
 function setMobilePreferences(clientType)
     if contains(clientType,'mobile')
         set(groot,'DefaultFigureToolbar','none');
