@@ -1,8 +1,5 @@
 function resetPath()
 
-
-
-
     request=struct('type','connector/v1/ContainerRequest','messages',struct('ResetToolboxes',{{struct()}}));
     future=connector.internal.synchronousNativeBridgeServiceProviderDeliver(request,{'connector/json/deserialize',...
     'connector/v1/container'});
