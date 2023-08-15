@@ -1,5 +1,5 @@
 
-工业仿真软件的解码和二次开发。
+工业仿真软件的注释和二次开发。
 
 # 部署
 
@@ -7,14 +7,11 @@
 
 
 # 平台
-平台支持语言：英语，部分支持：中文、日语、韩语。
-资源所在路径`resources/MATLAB/en{ja_JP}{ko_KR}`
+平台支持语言：英语，部分支持：汉语、日语、韩语。
+资源所在路径`resources/MATLAB/en{zh_CN}{ja_JP}{ko_KR}`
 
 
-## p文件
-只剩下`mcr/toolbox`（Matlab Compiler run-time）目录下的可执行文件未解码，对应的源文件位于没有`mcr`前缀的`toolbox`文件夹下。
-
-### 关闭p文件解码后的警告
+### 关闭使用.m文件替换后的警告
 ```
 warning('query','last')
 ```
@@ -30,14 +27,12 @@ warning('off', 'MATLAB:pfileOlderThanMfile')
 
 ## 设置支持包的根路径
 Matlab 运行时的外部路径包括：
-```commandline
-% C:\BaiduSyncdisk\workspace\demo
+```shell
 matlabshared.supportpkg.getSupportPackageRoot
 
-% 用户的工作空间：C:\BaiduSyncdisk\matlab\software\matlab_utils\SupportPackages\R2022b
+% 用户的工作空间：{matlabroot}\software\matlab_utils\SupportPackages\R2022b
 % 包括打开例子时拷贝的路径
 userpath
-
 % matlab 启动时的用户自定义配置的路径
 ```
 
