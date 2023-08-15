@@ -44,8 +44,13 @@ userpath
 ## 附加文件
 其他附件的文件包括支持包`SupportPackages`、软件`software`、示例`../demo`等。
 
+# 计划
 
-## 更新
+界面快捷键：Alt+D选中地址栏；
+
+虚拟机中测试环境搭建；
+
+# 更新
 [新版本所加的特性](https://ww2.mathworks.cn/help/driving/release-notes.html)
 
 2023a新增加的例子
