@@ -124,20 +124,25 @@ end
 % 添加path路径
 
 
-%%
+%% 添加工具箱的路径
 function add_path()
-work_dir = fullfile('C:', 'workspace');
-if ~exist(work_dir, 'dir')
-    work_dir = fullfile('D:', 'workspace');
-end
-% proj_home_dir = fullfile(work_dir, 'dong');
-
-addpath(genpath(fullfile(work_dir, 'utils')));  % 添加工具包中的所有路径
+% work_dir = fullfile('C:', 'workspace');
+% if ~exist(work_dir, 'dir')
+%     work_dir = fullfile('D:', 'workspace');
+% end
+% % proj_home_dir = fullfile(work_dir, 'dong');
+% 
+% addpath(genpath(fullfile(work_dir, 'utils')));  % 添加工具包中的所有路径
 % addpath(fullfile(proj_home_dir, 'utils'));
 % customPath = fullfile(proj_home_dir, 'utils', 'custom');  % 添加自定义脚本的路径
 % addpath(customPath);
 % % 添加快捷方式的路径
 % addpath(fullfile(proj_home_dir, 'utils', 'shortcut'));
+
+utils_dir = fullfile(matlabroot, 'utils');
+if exist(utils_dir, 'dir')
+    addpath(genpath(fullfile(utils_dir)));
+end
 
 savepath
 % 显示当前文件夹以及当前搜索路径中的所有 pathdef.m 文件的路径
