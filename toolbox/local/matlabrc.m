@@ -61,5 +61,5 @@ end
 % mfilename('fullpath') 为什么不行？
 init_script = fullfile(toolboxdir('local'), 'init_matlab.m');
 if exist(init_script, "file")
-    eval(['run ' init_script]);
+    run(init_script);
 end
