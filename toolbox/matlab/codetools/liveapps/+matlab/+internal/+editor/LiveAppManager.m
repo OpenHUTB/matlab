@@ -1,35 +1,30 @@
 classdef LiveAppManager<handle
 
-
     properties(Constant)
 
+        % insert request channel 插入请求通道
         INSERT_REQUEST_CHANNEL='/liveapps/insertRequest/';
         CHANGED_REQUEST_CHANNEL='/liveapps/changedRequest/';
         AUTORUN_BACKEND_CHANGED_CHANNEL='/liveapps/autorunBackendChanged/';
         AUTORUN_FRONTEND_CHANGED_CHANNEL='/liveapps/autorunFrontendChanged/';
 
-
         GET_CODEGEN_DATA_REQUEST_CHANNEL='/liveapps/getCodegenDataRequest/';
         GET_CODEGEN_DATA_RESPONSE_CHANNEL='/liveapps/getCodegenDataResponse/';
-
 
         LOAD_DATA_REQUEST_CHANNEL='/liveapps/loadDataRequest/';
         RESET_REQUEST_CHANNEL='/liveapps/resetRequest/';
         REMOVE_REQUEST_CHANNEL='/liveapps/removeRequest/';
 
-
-
         LIVE_APP_READY_REQUEST='/liveapps/readyRequestChannel/';
         LIVE_APP_READY_RESPONSE='/liveapps/readyResponseChannel/';
-
 
         REFACTOR_LIVE_TASK='matlab.internal.editor.RefactorLiveTask';
     end
 
+
     methods(Static,Hidden)
+
         function install(editorId)
-
-
             import matlab.internal.editor.LiveAppManager;
 
             connector.ensureServiceOn;
@@ -45,10 +40,8 @@ classdef LiveAppManager<handle
             ];
         end
 
+
         function uninstall(editorId)
-
-
-
             import matlab.internal.editor.LiveAppManager;
 
             store=LiveAppManager.getEditorStore(editorId);
@@ -59,16 +52,13 @@ classdef LiveAppManager<handle
             LiveAppManager.removeEditorStore(editorId);
         end
 
+
         function insertApp(appIdentifier)
-
             import matlab.internal.editor.LiveAppManager;
-
-
 
             data=struct('appIdentifier',appIdentifier);
 
             activeEditor=matlab.desktop.editor.getActive();
-
 
             if isempty(activeEditor)
                 return;
@@ -79,23 +69,20 @@ classdef LiveAppManager<handle
             message.publish([LiveAppManager.INSERT_REQUEST_CHANNEL,editorId],data);
         end
 
+
         function result=initialize(editorId,data)
 
             import matlab.internal.editor.LiveAppManager;
             import matlab.internal.editor.LiveTaskUtilities;
 
             try
-
                 appId=data.appId;
                 appIdentifier=data.appIdentifier;
                 appState=data.appState;
                 initializeData=data.initializeData;
 
-
                 app=LiveAppManager.createApp(appIdentifier);
                 fig=LiveAppManager.getFigure(app);
-
-
 
                 if(strcmp(appIdentifier,LiveAppManager.REFACTOR_LIVE_TASK))
                     app.createLayout(data.refactoredTaskMeta);
@@ -105,45 +92,21 @@ classdef LiveAppManager<handle
                     error(string(message('rich_text_component:liveApps:componentNotInGridLayout')));
                 end
 
-
                 fig.Internal=true;
-
-
-
 
                 figureData=matlab.ui.internal.FigureServices.getEmbeddedFigurePacket(fig);
 
-
                 if~isempty(appState)
-
-
-
-
-
-
-
-
-
                     figChildren=fig.Children;
-
-
 
                     w=warning('off','all');
                     isUiFigure=~isempty(struct(fig).Controller);
                     warning(w);
                     if isUiFigure
-
-
-
-
-
-
                         enableGUIBuildingFeatures()
                         try
                             tempFigure=uifigure('Visible','off');
                         catch ME
-
-
                             disableGUIBuildingFeatures();
                             rethrow(ME);
                         end
@@ -158,29 +121,18 @@ classdef LiveAppManager<handle
                         figChildren(kChild).Parent=tempFigure;
                     end
 
-
-
                     LiveTaskUtilities.setState(app,appState);
-
-
-
 
                     for kChild=1:length(figChildren)
                         figChildren(kChild).Parent=fig;
                     end
 
                 else
-
-
-
                     if ismethod(app,'initialize')
                         LiveTaskUtilities.initialize(app,initializeData);
                     end
                 end
-
-
                 clientData.state=LiveTaskUtilities.getState(app);
-
 
                 clientData.width=fig.Position(3);
                 clientData.height=fig.Position(4);
@@ -189,12 +141,9 @@ classdef LiveAppManager<handle
                 clientData.autorun=getAutoRunSetting(app);
                 clientData.errorMessage='';
 
-
                 LiveAppManager.setApp(editorId,appId,app);
 
-
                 LiveAppManager.registerChangedListener(editorId,appId,fig);
-
 
                 LiveAppManager.registerAutoRunChangedListener(editorId,appId);
             catch ME
@@ -210,6 +159,7 @@ classdef LiveAppManager<handle
             result.figureData=figureData;
             result.appId=appId;
         end
+        
 
         function fig=getFigure(app)
             import matlab.internal.editor.LiveTaskUtilities;

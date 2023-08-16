@@ -1,12 +1,15 @@
+% 代码的提示信息
+% 在使用编辑模式并且之前启用了数据提示
+% （通过选择 主页 > 预设项 > 编辑器/调试器 > 显示，
+% 然后选择"在编辑模式下启用数据提示"
 function datatipinfo(varName)
-
     if nargin~=1
         return;
     end
 
     varName=convertStringsToChars(varName);
 
-    origFormat=get(0,'FormatSpacing');
+    origFormat=get(0, 'FormatSpacing');
     c=onCleanup(@()format(origFormat));
     format loose;
 
@@ -19,11 +22,6 @@ function datatipinfo(varName)
         if variableExistsInWorkspace~=1
             return;
         end
-
-
-
-
-
 
         [objectPart,methodOrProperty]=DataTipUtilities.getVariableNameParts(varName);
         if evalin('caller',['ismethod(',objectPart,', ''',methodOrProperty,''')'])
@@ -39,13 +37,8 @@ function datatipinfo(varName)
     name=varName;
 
     if istall(val)
-
-
-
         callDisplay('val');
     elseif isstruct(val)
-
-
         displayStr=evalcWithHotlinksOff('display(val)');
         pat='\s*val\s*=\s*([^\n]*)\n+';
         rep=[name,': $1\n'];
@@ -57,21 +50,11 @@ function datatipinfo(varName)
     elseif isempty(val)
         callDisp('sizeType');
     elseif isa(size(val),'java.awt.Dimension')
-
-
         callDisp('[sizeType '' ='']');
         callDisp('val');
     else
-
-
-
-
-
-
         s=size(val);
         tooBig=max(s)>500||numel(val)>500;
-
-
 
         isBigMatrix=~ismatrix(val)||tooBig&&s(1)~=1&&s(2)~=1;
         if isBigMatrix
@@ -84,13 +67,9 @@ function datatipinfo(varName)
             isBigRowOrColumnMatrix=isNotObjectExceptString&&...
             ~issparse(val)&&tooBig;
 
-
-
             if isBigRowOrColumnMatrix
                 val=val(1:500);
             end
-
-
 
             isBigVectorTable=tooBig&&istable(val)&&isvector(val);
             if isBigVectorTable
@@ -101,19 +80,13 @@ function datatipinfo(varName)
                 end
             end
 
-
-
             if ischar(val)&&s(1)==1
                 while~isempty(regexp(val,'[^\b]\b','once'))
-
                     val=regexprep(val,'[^\b]\b','');
                 end
 
-
                 val=regexprep(val,'\r','\n');
             end
-
-
 
             isScalarString=isString&&isscalar(val);
             if isScalarString
@@ -122,8 +95,6 @@ function datatipinfo(varName)
                     val{1}=val{1}(1:500);
                 end
 
-
-
                 val='     "'+val+'"';
             end
 
@@ -131,9 +102,8 @@ function datatipinfo(varName)
         end
     end
 
+
     function prefix=sizeType %#ok<DEFNU> All uses are in EVALC calls.
-
-
 
         header=matlab.internal.editor.VariableUtilities.getHeader(val);
 
@@ -151,8 +121,6 @@ function datatipinfo(varName)
 
             classOfVal=class(val);
 
-
-
             complexType='';
             if strcmp(classOfVal,'double')&&~isreal(val)
                 complexType='complex ';
@@ -168,20 +136,24 @@ function datatipinfo(varName)
         end
     end
 
+
     function varargout=evalcWithHotlinksOff(cmdStr)
         evalStr=['feature(''hotlinks'', 0); ',cmdStr];
         varargout{1:nargout}=evalc(evalStr);
     end
+
 
     function callDisp(stringArg)
         evalStr=['disp(',stringArg,')'];
         dispStringWithHotLinksOff(evalStr);
     end
 
+
     function callDisplay(stringArg)
         evalStr=['display(',stringArg,', '''')'];
         dispStringWithHotLinksOff(evalStr);
     end
+
 
     function dispStringWithHotLinksOff(evalStr)
         evaledStr=evalcWithHotlinksOff(evalStr);
@@ -189,6 +161,7 @@ function datatipinfo(varName)
         evaledStr=truncateText(evaledStr);
         disp(evaledStr);
     end
+
 
     function text=truncateText(text)
         evaledStrLength=numel(text);
@@ -199,6 +172,7 @@ function datatipinfo(varName)
             text=[text,'...'];
         end
     end
+
 
     function limit=getTruncationLimit()
 
