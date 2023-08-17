@@ -1302,7 +1302,7 @@ libfmm3d.dll
 libfreetype.dll                                             
 libfreetype.rights                                          
 libgiflib.rights                                            
-libgit2.dll                                                 
+[libgit2.dll](https://libgit2.org/docs/guides/build-and-link/)  源代码版本控制
 libhdfeos.dll                                               
 libhdl_pir_reuse.dll                                        
 libhunspell.dll                                             
