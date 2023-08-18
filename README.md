@@ -10,8 +10,9 @@
 平台支持语言：英语，部分支持：汉语、日语、韩语。
 资源所在路径`resources/MATLAB/en{zh_CN}{ja_JP}{ko_KR}`
 
+# 定制
 
-### 关闭使用.m文件替换后的警告
+## 关闭使用.m文件替换后的警告
 ```
 warning('query','last')
 ```
@@ -24,6 +25,16 @@ state: 'on'
 ```
 warning('off', 'MATLAB:pfileOlderThanMfile')
 ```
+
+## 增加新示例
+1. 根据文档中的打开示例的命令（如：`openExample('sl3d/CreateActorInWorldSceneExample')`在新版本软件中打开并找到`.mlx`文件；
+2. 复制到示例目录下，如`{matlab_root}\examples\sl3d\main`（注：文件名不修改）；
+3. 在`{matlab_root}\examples\sl3d\examples.xml`中增加示例的元信息；
+4. 使用命令进行测试。
+```shell
+openExample('sl3d/CreateActorInWorldSceneExample
+```
+
 
 ## 设置支持包的根路径
 Matlab 运行时的外部路径包括：
