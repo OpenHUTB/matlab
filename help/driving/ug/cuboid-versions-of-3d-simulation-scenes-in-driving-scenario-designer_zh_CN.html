@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Cuboid Versions of 3D Simulation Scenes in Driving Scenario Designer</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../interactive-scenario-authoring.html",
+          "name": "Interactive Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "interactive-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Specify vehicle trajectories on cuboid versions of prebuilt 3D simulation scenes."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../interactive-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Interactive Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Cuboid Versions of 3D Simulation Scenes in Driving Scenario Designer</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_e9c760df-591f-4a88-a60e-833ace7768e2" class="intrnllnk">Choose 3D Simulation Scenario</a></li>
+<li><a href="#mw_579460e5-d20d-49ff-8086-4a91ccb66a9b" class="intrnllnk">Modify Scenario</a></li>
+<li><a href="#mw_d7f17393-33f2-41af-a0c9-567b38fcd2fd" class="intrnllnk">Save Scenario</a></li>
+<li><a href="#mw_435d5418-4280-4bab-8578-12cf27a680df" class="intrnllnk">Recreate Scenario in Simulink for 3D Environment</a></li>
+<li><a href="#d124e8800" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e8823" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_be43977b-1cd6-4647-b590-a2fd40bfbe3e">驾驶场景设计器中 3D 模拟场景的长方体版本</h2>
+<p><strong class="app"><a href="../ref/drivingscenariodesigner-app.html">Driving Scenario Designer</a></strong> <span style="font-family: &quot;Microsoft YaHei&quot;;">应用提供从 3D 重新创建场景的预生成方案 长方体模拟环境中的模拟环境。在这些长方体版本中 场景中，您可以添加使用简单框形表示的车辆并指定其 轨迹。然后，您可以使用场景的更高保真度 3D 模拟版本，在 </span>Simulink<sup>®</sup> <span style="font-family: &quot;Microsoft YaHei&quot;;">模型中模拟这些车辆和轨迹。这 3D环境使用</span>Epic Games<sup>® </sup><span style="font-family: &quot;Microsoft YaHei&quot;;">的</span>Unreal Engine<sup>®</sup> <span style="font-family: &quot;Microsoft YaHei&quot;;">渲染这些场景。有关环境的更多详细信息，请参阅用于</span> <a href="3d-simulation-for-automated-driving.html" class="a">Unreal Engine Simulation for Automated Driving</a><span style="font-family: &quot;Microsoft YaHei&quot;;">。</span></p>
+<section itemprop="content"><h3 class="title" id="mw_e9c760df-591f-4a88-a60e-833ace7768e2">Choose 3D Simulation Scenario</h3>
+<p>Open the <strong class="app">Driving Scenario Designer</strong> app. At the MATLAB<sup>®</sup> command prompt, enter <code class="literal">drivingScenarioDesigner</code>.</p>
+<p>该应用程序将 3D 模拟场景保存为名为<em class="firstterm">scenario files</em>的MAT文件。要打开场景文件，请首先在应用程序工具栏上选择 <strong class="guimenuitem">Open</strong> &gt; <strong class="guimenuitem">Prebuilt Scenario</strong> 。打开的 <strong class="guilabel">PrebuiltScenarios</strong> 文件夹包含所有可在应用程序中使用的预建场景的子文件夹。</p>
+<p>双击 <strong class="guilabel">Simulation3D</strong> 文件夹，然后选择表中描述的其中一个场景。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"/>
+<col class="tcol2" width="33%"/>
+<col class="tcol3" width="33%"/>
+</colgroup>
+<thead><tr><th>File Name of Cuboid Scenario</th>
+<th>Description</th>
+<th>Corresponding 3D Scene</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">CurvedRoad.mat</code></td>
+<td><p>弯曲的环形道路</p>
+<div class="informalfigure"><div id="d124e8580" class="mediaobject"><p><img src="dsd_sim3d_prebuilt_curved_road.png" alt="Curved road scene in cuboid environment" height="364" width="347"/></p>
+</div>
+</div>
+<p></p>
+</td>
+<td><p><a href="../ref/curvedroad.html"><span class="scene">Curved Road</span></a></p>
+<div class="informalfigure"><div id="d124e8589" class="mediaobject"><p><img src="curved_road_map.png" alt="Curved road scene in 3D environment" height="365" width="615"/></p>
+</div>
+</div>
+<p></p>
+</td>
+</tr>
+<tr><td><code class="literal">DoubleLaneChange.mat</code></td>
+<td><p>直线道路上设置了用于执行双车道变道的交通锥和交通桶</p>
+<p>立方体版本不包括相应的3D场景中的交通标志或交通灯。</p>
+<div class="informalfigure"><div id="d124e8601" class="mediaobject"><p><img src="dsd_sim3d_prebuilt_double_lane_change.png" alt="Double lane change scene in cuboid environment" height="364" width="347"/></p>
+</div>
+</div>
+<p></p>
+</td>
+<td><p><a href="../ref/doublelanechange.html"><span class="scene">Double Lane Change</span></a></p>
+<div class="informalfigure"><div id="d124e8610" class="mediaobject"><p><img src="double_lane_change_map.png" alt="Double lane change scene in 3D environment" height="274" width="434"/></p>
+</div>
+</div>
+<p></p>
+</td>
+</tr>
+<tr><td><code class="literal">StraightRoad.mat</code></td>
+<td><p>直路段</p>
+<div class="informalfigure"><div id="d124e8621" class="mediaobject"><p><img src="dsd_sim3d_prebuilt_straight_road.png" alt="Straight road scene in cuboid environment" height="364" width="347"/></p>
+</div>
+</div>
+<p></p>
+</td>
+<td><p><a href="../ref/straightroad.html"><span class="scene">Straight Road</span></a></p>
+<div class="informalfigure"><div id="d124e8630" class="mediaobject"><p><img src="straight_road_map.png" alt="Straight road scene in 3D environment" height="270" width="580"/></p>
+</div>
+</div>
+<p></p>
+</td>
+</tr>
+<tr><td><code class="literal">USCityBlock.mat</code></td>
+<td><p>城市街区，包括交叉口和障碍物</p>
+<p>立方体版本不包括相应的3D场景中的交通灯。它还不包括交叉口处的人行横道或行人标记，以及城市街区内的建筑物、树木和消防栓等物体。</p>
+<div class="informalfigure"><div id="d124e8642" class="mediaobject"><p><img src="dsd_sim3d_prebuilt_us_city_block.png" alt="US city block scene in cuboid environment" height="364" width="347"/></p>
+</div>
+</div>
+<p></p>
+</td>
+<td><p><a href="../ref/uscityblock.html"><span class="scene">US City Block</span></a></p>
+<div class="informalfigure"><div id="d124e8651" class="mediaobject"><p><img src="us_city.png" alt="US city block scene in 3D environment" height="455" width="624"/></p>
+</div>
+</div>
+<p></p>
+</td>
+</tr>
+<tr><td><code class="literal">USHighway.mat</code></td>
+<td><p>高速公路，设置了交通锥和障碍物。</p>
+<p>立方体版本不包括相应的3D场景中的交通标志或护栏。</p>
+<div class="informalfigure"><div id="d124e8663" class="mediaobject"><p><img src="dsd_sim3d_prebuilt_us_highway.png" alt="US highway scene in cuboid environment" height="364" width="348"/></p>
+</div>
+</div>
+<p></p>
+</td>
+<td><p><a href="../ref/ushighway.html"><span class="scene">US Highway</span></a></p>
+<div class="informalfigure"><div id="d124e8672" class="mediaobject"><p><img src="us_hw.png" alt="US highway scene in 3D environment" height="344" width="634"/></p>
+</div>
+</div>
+<p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>注意</strong></p>
+<p><strong class="app">Driving Scenario Designer </strong>应用程序不包括这些场景的立方体版本：</p>
+<div class="itemizedlist"><ul><li><p><a href="../ref/largeparkinglot.html"><span class="scene">Large Parking Lot</span></a></p></li>
+<li><p><a href="../ref/opensurface.html"><span class="scene">Open Surface</span></a></p></li>
+<li><p><a href="../ref/parkinglot.html"><span class="scene">Parking Lot</span></a></p></li>
+<li><p><a href="../ref/virtualmcity.html"><span class="scene">Virtual Mcity</span></a></p></li>
+</ul>
+</div>
+<p><font face="Microsoft YaHei">要为这些不受支持的场景或自定义场景生成车辆轨迹，请使用 </font><a href="select-waypoints-for-3d-simulation.html" class="a">Select Waypoints for Unreal Engine Simulation</a> <font face="Microsoft YaHei">示例中描述的过程。</font></p>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_579460e5-d20d-49ff-8086-4a91ccb66a9b">修改场景</h3>
+<p>加载场景后，您可以向场景中添加车辆，设置它们的轨迹，并将其中一个车辆指定为自车。有关如何执行这些操作的示例，请参阅 <a href="create-driving-scenario-interactively-and-generate-synthetic-detections.html" class="a">Create Driving Scenario Interactively and Generate Synthetic Sensor Data</a>。</p>
+<p>如果您计划在相应的 3D 场景中模拟这些车辆，请避免修改道路网络或现有的道路对象，如障碍物和交通锥。否则，可能会破坏两个版本之间的一致性，导致模拟结果不同。为了防止意外更改现有道路网络，道路交互默认处于禁用状态。如果您想修改道路网络，请在 <strong class="guilabel">Scenario Canvas</strong> 窗格的左下角单击“配置Scenario Canvas”按钮。然后，选择 <strong class="guilabel">Enable road interactions</strong>。</p>
+<p>您可以向自车添加传感器，但无法在 3D 环境中重新创建这些传感器。环境具有自己的传感器，以 Simulink 块的形式存在。有关更多详细信息，请参阅 <a href="choose-a-sensor-for-3d-simulation.html" class="a">Choose a Sensor for Unreal Engine Simulation</a>。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_d7f17393-33f2-41af-a0c9-567b38fcd2fd">保存场景</h3>
+<p>由于这些场景是只读的，要保存您的场景文件，您必须将其另存为一个新文件夹中的副本。在应用程序工具栏上，选择 <strong class="guimenuitem bold">Save</strong> &gt; <strong class="guimenuitem bold">Scenario File As</strong>。</p>
+<p>您可以从应用程序中重新打开保存的场景文件。或者，您可以在MATLAB命令提示符处输入以下命令，其中 <em class="varname">scenarioFileName</em> 表示要打开的场景文件。</p>
+<div class="code_responsive"><pre class="programlisting">drivingScenarioDesigner(<span class="emphasis"><em>scenarioFileName</em></span>)</pre>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_435d5418-4280-4bab-8578-12cf27a680df">在<span style="font-family: &quot;Microsoft YaHei&quot;;"> </span><span class="trademark entity" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">Simulink</span><span style="font-family: &quot;Microsoft YaHei&quot;;"> </span><span style="font-family: &quot;Microsoft YaHei&quot;;">中为 3D 环境重新创建场景</span></h3>
+<p>在保存包含您添加的车辆和其他角色的场景文件后，您可以在Simulink中重新创建这些车辆的轨迹。在高层次上，按照以下工作流程进行操作：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Configure 3D scene — 在新模型中，添加一个 <a href="../ref/simulation3dsceneconfiguration.html"><span class="block">Simulation 3D Scene Configuration</span></a> 块，并指定与您的场景文件对应的 3D 场景。</p></li>
+<li><p>Read actor poses from scenario file — 添加一个 <a href="../ref/scenarioreader.html"><span class="block">Scenario Reader</span></a> 块，并从您的场景文件中读取每个时间步的角色姿势。这些姿势构成了角色的轨迹。</p></li>
+<li><p>Transform actor poses — 从Scenario Reader块输出角色，包括自车。使用 <a href="../ref/vehicletoworld.html"><span class="block">Vehicle To World</span></a> 和 <a href="../ref/cuboidto3dsimulation.html"><span class="block">Cuboid To 3D Simulation</span></a> 块将角色姿势转换为3D环境中使用的坐标系。</p></li>
+<li><p>Specify actor poses to vehicles — 添加与模型中的车辆相对应的 <a href="../ref/simulation3dvehiclewithgroundfollowing.html"><span class="block">Simulation 3D Vehicle with Ground Following</span></a> 块。将转换后的角色姿势指定为车辆块的输入。</p></li>
+<li><p>Add sensors and simulate — 添加传感器，模拟3D环境，并使用 <strong class="app"><a href="../ref/birdseyescope-app.html">Bird's-Eye Scope</a> </strong>查看传感器数据。</p></li>
+</ol>
+</div>
+<p>有关按照此工作流程进行操作的示例，请参阅 <a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">Visualize Sensor Data from Unreal Engine Simulation Environment</a>。</p>
+</section>
+        <h2 id="d124e8800">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving
+                    Scenario Designer</span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name">Simulation 3D Scene Configuration</span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/scenarioreader.html"><span itemprop="name"><span class="block">Scenario
+                    Reader</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/vehicletoworld.html"><span itemprop="name"><span class="block">Vehicle To
+                    World</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/cuboidto3dsimulation.html"><span itemprop="name"><span class="block">Cuboid To 3D
+                    Simulation</span></span></a></span></li>
+</ul>
+        <h2 id="d124e8823">Related Topics</h2>
+<ul><li><a href="prebuilt-driving-scenarios-in-driving-scenario-designer.html" class="a">Prebuilt Driving Scenarios in Driving Scenario Designer</a></li>
+<li><a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">Visualize Sensor Data from Unreal Engine Simulation Environment</a></li>
+</ul>
+        
+    </section>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
