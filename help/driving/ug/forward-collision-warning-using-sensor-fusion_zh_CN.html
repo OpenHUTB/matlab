@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Forward Collision Warning Using Sensor Fusion</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../automated-driving-applications.html",
+          "name": "Applications"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../collision-avoidance-assistance.html",
+          "name": "Collision Avoidance Assistance"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "collision-avoidance-assistance"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Forward Collision Warning Using Sensor Fusion",
+          "description": "Perform forward collision warning by fusing data from vision and radar sensors to track objects in front of the vehicle.",
+          "thumbnailURL": "../../examples/driving/win64/ForwardCollisionWarningUsingSensorFusionExample_01.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving.ForwardCollisionWarningUsingSensorFusionExample",
+          "name": "ForwardCollisionWarningUsingSensorFusionExample",
+          "url": "forward-collision-warning-using-sensor-fusion.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/ForwardCollisionWarningUsingSensorFusionExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ForwardCollisionWarningUsingSensorFusionExample.m",
+        "helperCreateFCWDemoBirdsEyePlot.m",
+        "helperCreateFCWDemoDisplay.m",
+        "helperUpdateFCWDemoBirdsEyePlot.m",
+        "helperUpdateFCWDemoDisplay.m",
+        "helperAnnotateFCWDemoVideoFrame.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Perform forward collision warning by fusing data from vision and radar sensors to track objects in front of the vehicle."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/ForwardCollisionWarningUsingSensorFusionExample_01.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../automated-driving-applications.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Applications</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../collision-avoidance-assistance.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Collision Avoidance Assistance</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Forward Collision Warning Using Sensor Fusion</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e27808" class="intrnllnk">Overview</a></li>
+<li><a href="#d124e27853" class="intrnllnk">Create the Multi-Object Tracker</a></li>
+<li><a href="#d124e27926" class="intrnllnk">Define a Kalman Filter</a></li>
+<li><a href="#d124e27936" class="intrnllnk">Process and Format the Detections</a></li>
+<li><a href="#d124e27956" class="intrnllnk">Update the Tracker</a></li>
+<li><a href="#d124e27986" class="intrnllnk">Find the Most Important Object and Issue a Forward Collision Warning</a></li>
+<li><a href="#d124e28049" class="intrnllnk">Summary</a></li>
+<li><a href="#d124e28065" class="intrnllnk">Supporting Functions</a></li>
+<li><a href="#d124e28127" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e28161" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_7998055b-23be-4950-aa9f-a11b98f2e1de">使用传感器融合的前方碰撞警告</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/ForwardCollisionWarningUsingSensorFusionExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-ForwardCollisionWarningUsingSensorFusionExample"/>
+<meta itemprop="exampletitle" content="Forward Collision Warning Using Sensor Fusion"/>
+</div>
+<span id="ForwardCollisionWarningUsingSensorFusionExample" class="anchor_target"></span>
+
+<p class="shortdesc"><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例说明如何通过融合来自视觉和雷达传感器的数据来跟踪车辆前方的物体，从而执行前方碰撞警告。</span></p>
+
+<div class="procedure"><h3 class="title" id="d124e27808">概述</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">前方碰撞警告</span> (FCW) <span style="font-family: &quot;Microsoft YaHei&quot;;">是驾驶员辅助和自动驾驶系统的一项重要功能，其目标是在即将与前方车辆发生碰撞之前向驾驶员提供正确、及时和可靠的警告。为了实现这一目标，车辆配备了前向视觉和雷达传感器。需要传感器融合来增加准确警告的概率，并将错误警告的概率降至最低。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">出于此示例的目的，测试车（自我车辆）配备了各种传感器并记录了它们的输出。此示例中使用的传感器是：</span></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Vision sensor, 提供观察到的物体列表及其分类和有关车道边界的信息。对象列表每秒报告 10 次。车道边界每秒报告20次。</p></li>
+<li><p>Radar sensor with medium and long range modes, 提供未分类的观测对象列表。对象列表每秒报告20次。</p></li>
+<li><p>IMU, 它每秒报告自我车辆的速度和转弯率 20 次。</p></li>
+<li><p>Video camera, 记录了车前场景的视频片段。注意：跟踪器不会使用此视频，仅用于在视频上显示跟踪结果以进行验证。</p></li>
+</ol>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">提供前向碰撞警告的过程包括以下步骤：</span></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>从传感器获取数据</p></li>
+<li><p>融合传感器数据以获得轨迹列表，即汽车前方物体的估计位置和速度。</p></li>
+<li><p _msttexthash="614231306" _msthash="49">根据轨道和 FCW 标准发出警告。FCW 标准基于Euro NCAP AEB测试程序，并考虑了与汽车前方物体的相对距离和相对速度。</p></li>
+</ol>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">有关跟踪多个对象的详细信息，请参阅</span> <a href="../../vision/ug/multiple-object-tracking.html" data-docid="vision_ug#buq9qny-1" class="a">Multiple Object Tracking</a> <span style="font-family: &quot;Microsoft YaHei&quot;;">。</span></p>
+<p>这个例子中的可视化是使用 <code class="literal"><a href="../ref/monocamera.html" data-docid="driving_ref#bvgu10o-1" class="a"><code class="olink">monoCamera</code></a></code> 和 <code class="literal"><code class="olink"><a href="../ref/birdseyeplot.html" data-docid="driving_ref#bvi0yqz-1" class="a">birdsEyePlot</a> </code></code>完成的。为了简洁起见，创建和更新显示的函数被移动到了此示例之外的辅助函数中。有关如何使用这些显示的更多信息，请参阅<a href="annotate-video-using-detections-in-vehicle-coordinates.html" data-docid="driving_ug#mw_8e648db8-f7b8-449e-a475-e82768322dd8" class="a">Annotate Video Using Detections in Vehicle Coordinates</a> 和 <a href="visualize-sensor-coverage-detections-and-tracks.html" data-docid="driving_ug#mw_5e511f44-0799-4bf8-b5d3-d72a8107f12f" class="a">Visualize Sensor Coverage, Detections, and Tracks</a>。</p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例是一个脚本，此处显示了主体，以下各节中以本地函数的形式提供了帮助程序例程。有关本地函数的更多详细信息，请参阅 </span><a href="../../matlab/matlab_prog/local-functions-in-scripts.html" data-docid="matlab_prog#bvckk6a" class="a">Add Functions to Scripts</a><span style="font-family: &quot;Microsoft YaHei&quot;;">。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Set up the display</span>
+[videoReader, videoDisplayHandle, bepPlotters, sensor] = helperCreateFCWDemoDisplay(<span style="color:#A020F0">'01_city_c2s_fcw_10s.mp4'</span>, <span style="color:#A020F0">'SensorConfigurationData.mat'</span>);
+
+<span style="color:#228B22">% Read the recorded detections file</span>
+[visionObjects, radarObjects, inertialMeasurementUnit, laneReports, <span style="color:#0000FF">...</span>
+    timeStep, numSteps] = readSensorRecordingsFile(<span style="color:#A020F0">'01_city_c2s_fcw_10s_sensor.mat'</span>);
+
+<span style="color:#228B22">% An initial ego lane is calculated. If the recorded lane information is</span>
+<span style="color:#228B22">% invalid, define the lane boundaries as straight lines half a lane</span>
+<span style="color:#228B22">% distance on each side of the car</span>
+laneWidth = 3.6; <span style="color:#228B22">% meters</span>
+egoLane = struct(<span style="color:#A020F0">'left'</span>, [0 0 laneWidth/2], <span style="color:#A020F0">'right'</span>, [0 0 -laneWidth/2]);
+
+<span style="color:#228B22">% Prepare some time variables</span>
+time = 0;           <span style="color:#228B22">% Time since the beginning of the recording</span>
+currentStep = 0;    <span style="color:#228B22">% Current timestep</span>
+snapTime = 9.3;     <span style="color:#228B22">% The time to capture a snapshot of the display</span>
+
+<span style="color:#228B22">% Initialize the tracker</span>
+[tracker, positionSelector, velocitySelector] = setupTracker();
+
+<span style="color:#0000FF">while</span> currentStep &lt; numSteps &amp;&amp; ishghandle(videoDisplayHandle)
+    <span style="color:#228B22">% Update scenario counters</span>
+    currentStep = currentStep + 1;
+    time = time + timeStep;
+
+    <span style="color:#228B22">% Process the sensor detections as objectDetection inputs to the tracker</span>
+    [detections, laneBoundaries, egoLane] = processDetections(<span style="color:#0000FF">...</span>
+        visionObjects(currentStep), radarObjects(currentStep), <span style="color:#0000FF">...</span>
+        inertialMeasurementUnit(currentStep), laneReports(currentStep), <span style="color:#0000FF">...</span>
+        egoLane, time);
+
+    <span style="color:#228B22">% Using the list of objectDetections, return the tracks, updated to time</span>
+    confirmedTracks = updateTracks(tracker, detections, time);
+
+    <span style="color:#228B22">% Find the most important object and calculate the forward collision</span>
+    <span style="color:#228B22">% warning</span>
+    mostImportantObject = findMostImportantObject(confirmedTracks, egoLane, positionSelector, velocitySelector);
+
+    <span style="color:#228B22">% Update video and birds-eye plot displays</span>
+    frame = readFrame(videoReader);     <span style="color:#228B22">% Read video frame</span>
+    helperUpdateFCWDemoDisplay(frame, videoDisplayHandle, bepPlotters, <span style="color:#0000FF">...</span>
+        laneBoundaries, sensor, confirmedTracks, mostImportantObject, positionSelector, <span style="color:#0000FF">...</span>
+        velocitySelector, visionObjects(currentStep), radarObjects(currentStep));
+
+    <span style="color:#228B22">% Capture a snapshot</span>
+    <span style="color:#0000FF">if</span> time &gt;= snapTime &amp;&amp; time &lt; snapTime + timeStep
+        snapnow;
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e27853">创建多对象跟踪器</h3>
+<p><code class="literal"><a href="../ref/multiobjecttracker-system-object.html" data-docid="driving_ref#bvigrmf-1" class="a"><code class="olink">multiObjectTracker</code></a></code> 基于视觉和雷达传感器报告的物体列表来跟踪自车周围的物体。通过融合两个传感器的信息，可以降低误报碰撞警告的概率。</p>
+<p><code class="literal">setupTracker</code> 函数返回 <span style="font-family: monospace;">multiObjectTracker</span>。在创建 <span style="font-family: monospace;">multiObjectTracker </span>时，请考虑以下几点：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><code class="literal">FilterInitializationFcn</code>: 在这种情况下，需要考虑物体的可能运动和测量模型。预计物体具有恒定加速度运动。虽然可以为此模型配置线性卡尔曼滤波器，但<code class="literal">initConstantAccelerationFilter</code> 函数配置了扩展卡尔曼滤波器。请参阅'Define a Kalman filter' 部分。</p></li>
+<li><p><code class="literal">AssignmentThreshold</code>: 检测结果与跟踪结果之间的最大距离。该参数的默认值为30。如果有未分配给跟踪结果但应该分配的检测结果，则增加此值。如果有被分配给距离太远的跟踪结果的检测结果，则减小此值。此示例中使用了35。</p></li>
+<li><p><code class="literal">DeletionThreshold</code>: 当一个跟踪结果被确认后，在第一次更新时如果没有检测结果被分配给它，不应该将其删除。相反，应该对其进行惯性预测，直到明确该跟踪结果没有接收到任何传感器信息进行更新。这个逻辑是，如果跟踪结果在 <span class="emphasis"><em>Q</em></span> 次中有 <span class="emphasis"><em>P</em></span> 次未被检测到，则应该将其删除。该参数的默认值为 5 次中的 5 次。在这种情况下，跟踪器每秒被调用 20 次，并且有两个传感器，所以没有必要修改默认值。</p></li>
+<li><p><code class="literal">ConfirmationThreshold</code>: 用于确认跟踪结果的参数。每个未分配的检测结果都会初始化一个新的跟踪结果。其中一些检测结果可能是错误的，因此所有的跟踪结果都被初始化为<span style="font-family: monospace;">'Tentative'</span>（暂定状态）。要确认一个跟踪结果，它必须在<span class="emphasis"><em>N</em></span> 次跟踪器更新中至少被检测到 <span class="emphasis"><em>M</em></span> 次。 <span class="emphasis"><em>M</em></span> 和 <span class="emphasis"><em>N</em></span> 的选择取决于物体的可见性。此示例使用默认值，即在3次更新中至少有2次检测到跟踪结果。</p></li>
+</ol>
+</div>
+<p><code class="literal">setupTracker</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">的输出是：</span></p>
+<div class="itemizedlist"><ul><li><p><code class="literal">tracker</code> - The <code class="literal">multiObjectTracker</code> that is configured for this case.</p></li>
+<li><p><code class="literal">positionSelector</code> - A matrix that specifies which elements of the   State vector are the position: <code class="literal">position = positionSelector * State</code></p></li>
+<li><p><code class="literal">velocitySelector</code> - A matrix that specifies which elements of the   State vector are the velocity: <code class="literal">velocity = velocitySelector * State</code></p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">function</span> [tracker, positionSelector, velocitySelector] = setupTracker()
+        tracker = multiObjectTracker(<span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'FilterInitializationFcn'</span>, @initConstantAccelerationFilter, <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'AssignmentThreshold'</span>, 35, <span style="color:#A020F0">'ConfirmationThreshold'</span>, [2 3], <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'DeletionThreshold'</span>, 5);
+
+        <span style="color:#228B22">% The State vector is:</span>
+        <span style="color:#228B22">%   In constant velocity:     State = [x;vx;y;vy]</span>
+        <span style="color:#228B22">%   In constant acceleration: State = [x;vx;ax;y;vy;ay]</span>
+
+        <span style="color:#228B22">% Define which part of the State is the position. For example:</span>
+        <span style="color:#228B22">%   In constant velocity:     [x;y] = [1 0 0 0; 0 0 1 0] * State</span>
+        <span style="color:#228B22">%   In constant acceleration: [x;y] = [1 0 0 0 0 0; 0 0 0 1 0 0] * State</span>
+        positionSelector = [1 0 0 0 0 0; 0 0 0 1 0 0];
+
+        <span style="color:#228B22">% Define which part of the State is the velocity. For example:</span>
+        <span style="color:#228B22">%   In constant velocity:     [x;y] = [0 1 0 0; 0 0 0 1] * State</span>
+        <span style="color:#228B22">%   In constant acceleration: [x;y] = [0 1 0 0 0 0; 0 0 0 0 1 0] * State</span>
+        velocitySelector = [0 1 0 0 0 0; 0 0 0 0 1 0];
+    <span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e27926">Define a Kalman Filter<span id="ForwardCollisionWarningUsingSensorFusionExample-3" class="anchor_target"></span></h3>
+<p>在前面的部分中定义的<code class="literal">multiObjectTracker</code> 使用本节中定义的滤波器初始化函数来创建卡尔曼滤波器（线性、扩展或无迹）。然后，该滤波器用于跟踪自车周围的每个物体。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> filter = initConstantAccelerationFilter(detection)
+<span style="color:#228B22">% This function shows how to configure a constant acceleration filter. The</span>
+<span style="color:#228B22">% input is an objectDetection and the output is a tracking filter.</span>
+<span style="color:#228B22">% For clarity, this function shows how to configure a trackingKF,</span>
+<span style="color:#228B22">% trackingEKF, or trackingUKF for constant acceleration.</span>
+<span style="color:#228B22">%</span>
+<span style="color:#228B22">% Steps for creating a filter:</span>
+<span style="color:#228B22">%   1. Define the motion model and state</span>
+<span style="color:#228B22">%   2. Define the process noise</span>
+<span style="color:#228B22">%   3. Define the measurement model</span>
+<span style="color:#228B22">%   4. Initialize the state vector based on the measurement</span>
+<span style="color:#228B22">%   5. Initialize the state covariance based on the measurement noise</span>
+<span style="color:#228B22">%   6. Create the correct filter</span>
+
+    <span style="color:#228B22">% Step 1: Define the motion model and state</span>
+    <span style="color:#228B22">% This example uses a constant acceleration model, so:</span>
+    STF = @constacc;     <span style="color:#228B22">% State-transition function, for EKF and UKF</span>
+    STFJ = @constaccjac; <span style="color:#228B22">% State-transition function Jacobian, only for EKF</span>
+    <span style="color:#228B22">% The motion model implies that the state is [x;vx;ax;y;vy;ay]</span>
+    <span style="color:#228B22">% You can also use constvel and constveljac to set up a constant</span>
+    <span style="color:#228B22">% velocity model, constturn and constturnjac to set up a constant turn</span>
+    <span style="color:#228B22">% rate model, or write your own models.</span>
+
+    <span style="color:#228B22">% Step 2: Define the process noise</span>
+    dt = 0.05; <span style="color:#228B22">% Known timestep size</span>
+    sigma = 1; <span style="color:#228B22">% Magnitude of the unknown acceleration change rate</span>
+    <span style="color:#228B22">% The process noise along one dimension</span>
+    Q1d = [dt^4/4, dt^3/2, dt^2/2; dt^3/2, dt^2, dt; dt^2/2, dt, 1] * sigma^2;
+    Q = blkdiag(Q1d, Q1d); <span style="color:#228B22">% 2-D process noise</span>
+
+    <span style="color:#228B22">% Step 3: Define the measurement model</span>
+    MF = @fcwmeas;       <span style="color:#228B22">% Measurement function, for EKF and UKF</span>
+    MJF = @fcwmeasjac;   <span style="color:#228B22">% Measurement Jacobian function, only for EKF</span>
+
+    <span style="color:#228B22">% Step 4: Initialize a state vector based on the measurement</span>
+    <span style="color:#228B22">% The sensors measure [x;vx;y;vy] and the constant acceleration model's</span>
+    <span style="color:#228B22">% state is [x;vx;ax;y;vy;ay], so the third and sixth elements of the</span>
+    <span style="color:#228B22">% state vector are initialized to zero.</span>
+    state = [detection.Measurement(1); detection.Measurement(2); 0; detection.Measurement(3); detection.Measurement(4); 0];
+
+    <span style="color:#228B22">% Step 5: Initialize the state covariance based on the measurement</span>
+    <span style="color:#228B22">% noise. The parts of the state that are not directly measured are</span>
+    <span style="color:#228B22">% assigned a large measurement noise value to account for that.</span>
+    L = 100; <span style="color:#228B22">% A large number relative to the measurement noise</span>
+    stateCov = blkdiag(detection.MeasurementNoise(1:2,1:2), L, detection.MeasurementNoise(3:4,3:4), L);
+
+    <span style="color:#228B22">% Step 6: Create the correct filter.</span>
+    <span style="color:#228B22">% Use 'KF' for trackingKF, 'EKF' for trackingEKF, or 'UKF' for trackingUKF</span>
+    FilterType = <span style="color:#A020F0">'EKF'</span>;
+
+    <span style="color:#228B22">% Creating the filter:</span>
+    <span style="color:#0000FF">switch</span> FilterType
+        <span style="color:#0000FF">case</span> <span style="color:#A020F0">'EKF'</span>
+            filter = trackingEKF(STF, MF, state,<span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'StateCovariance'</span>, stateCov, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'MeasurementNoise'</span>, detection.MeasurementNoise(1:4,1:4), <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'StateTransitionJacobianFcn'</span>, STFJ, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'MeasurementJacobianFcn'</span>, MJF, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'ProcessNoise'</span>, Q <span style="color:#0000FF">...</span>
+                );
+        <span style="color:#0000FF">case</span> <span style="color:#A020F0">'UKF'</span>
+            filter = trackingUKF(STF, MF, state, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'StateCovariance'</span>, stateCov, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'MeasurementNoise'</span>, detection.MeasurementNoise(1:4,1:4), <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'Alpha'</span>, 1e-1, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'ProcessNoise'</span>, Q <span style="color:#0000FF">...</span>
+                );
+        <span style="color:#0000FF">case</span> <span style="color:#A020F0">'KF'</span> <span style="color:#228B22">% The ConstantAcceleration model is linear and KF can be used</span>
+            <span style="color:#228B22">% Define the measurement model: measurement = H * state</span>
+            <span style="color:#228B22">% In this case:</span>
+            <span style="color:#228B22">%   measurement = [x;vx;y;vy] = H * [x;vx;ax;y;vy;ay]</span>
+            <span style="color:#228B22">% So, H = [1 0 0 0 0 0; 0 1 0 0 0 0; 0 0 0 1 0 0; 0 0 0 0 1 0]</span>
+            <span style="color:#228B22">%</span>
+            <span style="color:#228B22">% Note that ProcessNoise is automatically calculated by the</span>
+            <span style="color:#228B22">% ConstantAcceleration motion model</span>
+            H = [1 0 0 0 0 0; 0 1 0 0 0 0; 0 0 0 1 0 0; 0 0 0 0 1 0];
+            filter = trackingKF(<span style="color:#A020F0">'MotionModel'</span>, <span style="color:#A020F0">'2D Constant Acceleration'</span>, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'MeasurementModel'</span>, H, <span style="color:#A020F0">'State'</span>, state, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'MeasurementNoise'</span>, detection.MeasurementNoise(1:4,1:4), <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'StateCovariance'</span>, stateCov);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e27936">处理检测并设置检测格式</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">记录的信息必须经过处理和格式化，然后才能被跟踪器使用。这包含以下步骤：</span></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>滤除不必要的雷达杂波检测。雷达会报告许多与固定物体对应的物体，包括护栏、道路中央隔离带、交通标志等。如果这些检测结果用于跟踪，它们会在道路边缘创建固定物体的虚假轨迹，因此在调用跟踪器之前必须将其移除。如果雷达物体在车前静止或在其附近移动，它们被认为是非杂波物体。</p></li>
+<li><p>将检测结果格式化为跟踪器的输入，即 <code class="literal"><a href="../ref/objectdetection.html" data-docid="driving_ref#bvie5il-1" class="a"><code class="olink">objectDetection</code></a></code> 元素的数组。请参阅此示例末尾的 <code class="literal">processVideo</code> 和 <code class="literal">processRadar</code> 支持函数。</p></li>
+</ol>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">function</span> [detections,laneBoundaries, egoLane] = processDetections<span style="color:#0000FF">...</span>
+            (visionFrame, radarFrame, IMUFrame, laneFrame, egoLane, time)
+        <span style="color:#228B22">% Inputs:</span>
+        <span style="color:#228B22">%   visionFrame - objects reported by the vision sensor for this time frame</span>
+        <span style="color:#228B22">%   radarFrame  - objects reported by the radar sensor for this time frame</span>
+        <span style="color:#228B22">%   IMUFrame    - inertial measurement unit data for this time frame</span>
+        <span style="color:#228B22">%   laneFrame   - lane reports for this time frame</span>
+        <span style="color:#228B22">%   egoLane     - the estimated ego lane</span>
+        <span style="color:#228B22">%   time        - the time corresponding to the time frame</span>
+
+        <span style="color:#228B22">% Remove clutter radar objects</span>
+        [laneBoundaries, egoLane] = processLanes(laneFrame, egoLane);
+        realRadarObjects = findNonClutterRadarObjects(radarFrame.object,<span style="color:#0000FF">...</span>
+            radarFrame.numObjects, IMUFrame.velocity, laneBoundaries);
+
+        <span style="color:#228B22">% Return an empty list if no objects are reported</span>
+
+        <span style="color:#228B22">% Counting the total number of objects</span>
+        detections = {};
+        <span style="color:#0000FF">if</span> (visionFrame.numObjects + numel(realRadarObjects)) == 0
+            <span style="color:#0000FF">return</span>;
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#228B22">% Process the remaining radar objects</span>
+        detections = processRadar(detections, realRadarObjects, time);
+
+        <span style="color:#228B22">% Process video objects</span>
+        detections = processVideo(detections, visionFrame, time);
+    <span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e27956">Update the Tracker</h3>
+<p>要更新跟踪器，请使用以下输入调用 <code class="literal">updateTracks</code> 方法：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><code class="literal">tracker</code> - 之前配置的 <code class="literal">multiObjectTracker</code> 。请参阅'Create the Multi-Object Tracker'部分。</p></li>
+<li><p><code class="literal">detections</code> - <code class="literal">由 processDetections 创建的<span style="font-family: Arial;"> </span><code class="literal">objectDetection</code><span style="font-family: Arial;"> </span>对象列表。</code></p></li>
+<li><p><code class="literal">time</code> - 当前方案时间。</p></li>
+</ol>
+</div>
+<p>The output from the tracker is a <code class="literal">struct</code> array of tracks.</p>
+<h3 class="title" id="d124e27986">找到最重要的物体并发出前方碰撞警告</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">最重要的对象</span> (MIO) <span style="font-family: &quot;Microsoft YaHei&quot;;">定义为位于自我车道且最靠近汽车前方的轨道，即具有最小的正 </span><span class="emphasis" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;"><em _istranslated="1">x</em></span><span style="font-family: &quot;Microsoft YaHei&quot;;"> 值。为了降低误报的可能性，仅考虑已确认的轨迹。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">找到 MIO 后，计算汽车和 MIO 之间的相对速度。相对距离和相对速度决定了前方碰撞警告。FCW有3例：</span></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>安全（绿色）：自我车道上没有汽车（没有 MIO），MIO 正在远离汽车，或者到 MIO 的距离保持不变。<br/></p></li>
+<li><p>注意（黄色）：MIO 正在靠近汽车，但仍高于 FCW 距离。FCW 距离是使用 Euro NCAP AEB 测试协议计算的。请注意，此距离随 MIO 和汽车之间的相对速度而变化，当关闭速度较高时，该距离越大。</p></li>
+<li><p>警告（红色）：MIO 正在靠近汽车，其距离小于 FCW 距离<span class="inlineequation"><img src="../../examples/driving/win64/ForwardCollisionWarningUsingSensorFusionExample_eq18204016978203361295.png" alt="$d_{FCW}$"/></span>.</p></li>
+</ol>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">Euro NCAP AEB 测试协议定义了以下距离计算</span></p>
+<div id="d124e28012" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><img src="../../examples/driving/win64/ForwardCollisionWarningUsingSensorFusionExample_eq11826769562870928230.png" alt="$d_{FCW} = 1.2 * v_{rel} + \frac{v_{rel}^2}{2a_{max}}$"/></p>
+</div>
+</div>
+<p>where:</p>
+<p><span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ForwardCollisionWarningUsingSensorFusionExample_eq18204016978203361295.png" alt="$d_{FCW}$"/></span></span> is the forward collision warning distance.</p>
+<p><span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ForwardCollisionWarningUsingSensorFusionExample_eq16231795959491402943.png" alt="$v_{rel}$"/></span></span> is the relative velocity between the two vehicles.</p>
+<p><span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ForwardCollisionWarningUsingSensorFusionExample_eq01791436397436244266.png" alt="$a_{max}$"/></span></span> is the maximum deceleration, defined to be 40% of the gravity acceleration.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">function</span> mostImportantObject = findMostImportantObject(confirmedTracks,egoLane,positionSelector,velocitySelector)
+
+        <span style="color:#228B22">% Initialize outputs and parameters</span>
+        MIO = [];               <span style="color:#228B22">% By default, there is no MIO</span>
+        trackID = [];           <span style="color:#228B22">% By default, there is no trackID associated with an MIO</span>
+        FCW = 3;                <span style="color:#228B22">% By default, if there is no MIO, then FCW is 'safe'</span>
+        threatColor = <span style="color:#A020F0">'green'</span>;  <span style="color:#228B22">% By default, the threat color is green</span>
+        maxX = 1000;  <span style="color:#228B22">% Far enough forward so that no track is expected to exceed this distance</span>
+        gAccel = 9.8; <span style="color:#228B22">% Constant gravity acceleration, in m/s^2</span>
+        maxDeceleration = 0.4 * gAccel; <span style="color:#228B22">% Euro NCAP AEB definition</span>
+        delayTime = 1.2; <span style="color:#228B22">% Delay time for a driver before starting to brake, in seconds</span>
+
+        positions = getTrackPositions(confirmedTracks, positionSelector);
+        velocities = getTrackVelocities(confirmedTracks, velocitySelector);
+
+        <span style="color:#0000FF">for</span> i = 1:numel(confirmedTracks)
+            x = positions(i,1);
+            y = positions(i,2);
+
+            relSpeed = velocities(i,1); <span style="color:#228B22">% The relative speed between the cars, along the lane</span>
+
+            <span style="color:#0000FF">if</span> x &lt; maxX &amp;&amp; x &gt; 0 <span style="color:#228B22">% No point checking otherwise</span>
+                yleftLane  = polyval(egoLane.left,  x);
+                yrightLane = polyval(egoLane.right, x);
+                <span style="color:#0000FF">if</span> (yrightLane &lt;= y) &amp;&amp; (y &lt;= yleftLane)
+                    maxX = x;
+                    trackID = i;
+                    MIO = confirmedTracks(i).TrackID;
+                    <span style="color:#0000FF">if</span> relSpeed &lt; 0 <span style="color:#228B22">% Relative speed indicates object is getting closer</span>
+                        <span style="color:#228B22">% Calculate expected braking distance according to</span>
+                        <span style="color:#228B22">% Euro NCAP AEB Test Protocol</span>
+                        d = abs(relSpeed) * delayTime + relSpeed^2 / 2 / maxDeceleration;
+                        <span style="color:#0000FF">if</span> x &lt;= d <span style="color:#228B22">% 'warn'</span>
+                            FCW = 1;
+                            threatColor = <span style="color:#A020F0">'red'</span>;
+                        <span style="color:#0000FF">else</span> <span style="color:#228B22">% 'caution'</span>
+                            FCW = 2;
+                            threatColor = <span style="color:#A020F0">'yellow'</span>;
+                        <span style="color:#0000FF">end</span>
+                    <span style="color:#0000FF">end</span>
+                <span style="color:#0000FF">end</span>
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+        mostImportantObject = struct(<span style="color:#A020F0">'ObjectID'</span>, MIO, <span style="color:#A020F0">'TrackIndex'</span>, trackID, <span style="color:#A020F0">'Warning'</span>, FCW, <span style="color:#A020F0">'ThreatColor'</span>, threatColor);
+    <span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e28046" class="mediaobject"><p><img src="../../examples/driving/win64/ForwardCollisionWarningUsingSensorFusionExample_01.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e28049">总结</h3>
+<p>这个例子展示了如何为一辆配备了视觉、雷达和IMU传感器的车辆创建一个前向碰撞警告系统。它使用 <code class="literal">objectDetection</code> 对象将传感器报告传递给 <code class="literal">multiObjectTracker</code> 对象，后者将它们融合并跟踪自车前方的物体。</p>
+<p>尝试使用不同的参数来调整跟踪器，看看它们对跟踪质量的影响。尝试修改跟踪滤波器，使用 <code class="literal">trackingKF </code>或 <span style="font-family: monospace;">trackingUKF</span>，或者定义不同的运动模型，例如常速度或常转向。最后，您可以尝试定义自己的运动模型。</p>
+<h3 class="title" id="d124e28065">Supporting Functions<span id="ForwardCollisionWarningUsingSensorFusionExample-9" class="anchor_target"></span></h3>
+<p><strong class="emphasis bold">readSensorRecordingsFile</strong> <span style="font-family: &quot;Microsoft YaHei&quot;;">从文件中读取记录的传感器数据</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [visionObjects, radarObjects, inertialMeasurementUnit, laneReports, <span style="color:#0000FF">...</span>
+    timeStep, numSteps] = readSensorRecordingsFile(sensorRecordingFileName)
+<span style="color:#228B22">% Read Sensor Recordings</span>
+<span style="color:#228B22">% The |ReadDetectionsFile| function reads the recorded sensor data file.</span>
+<span style="color:#228B22">% The recorded data is a single structure that is divided into the</span>
+<span style="color:#228B22">% following substructures:</span>
+<span style="color:#228B22">%</span>
+<span style="color:#228B22">% # |inertialMeasurementUnit|, a struct array with fields: timeStamp,</span>
+<span style="color:#228B22">%   velocity, and yawRate. Each element of the array corresponds to a</span>
+<span style="color:#228B22">%   different timestep.</span>
+<span style="color:#228B22">% # |laneReports|, a struct array with fields: left and right. Each element</span>
+<span style="color:#228B22">%   of the array corresponds to a different timestep.</span>
+<span style="color:#228B22">%   Both left and right are structures with fields: isValid, confidence,</span>
+<span style="color:#228B22">%   boundaryType, offset, headingAngle, and curvature.</span>
+<span style="color:#228B22">% # |radarObjects|, a struct array with fields: timeStamp (see below),</span>
+<span style="color:#228B22">%   numObjects (integer) and object (struct). Each element of the array</span>
+<span style="color:#228B22">%   corresponds to a different timestep.</span>
+<span style="color:#228B22">%   |object| is a struct array, where each element is a separate object,</span>
+<span style="color:#228B22">%   with the fields: id, status, position(x;y;z), velocity(vx,vy,vz),</span>
+<span style="color:#228B22">%   amplitude, and rangeMode.</span>
+<span style="color:#228B22">%   Note: z is always constant and vz=0.</span>
+<span style="color:#228B22">% # |visionObjects|, a struct array with fields: timeStamp (see below),</span>
+<span style="color:#228B22">%   numObjects (integer) and object (struct). Each element of the array</span>
+<span style="color:#228B22">%   corresponds to a different timestep.</span>
+<span style="color:#228B22">%   |object| is a struct array, where each element is a separate object,</span>
+<span style="color:#228B22">%   with the fields: id, classification, position (x;y;z),</span>
+<span style="color:#228B22">%   velocity(vx;vy;vz), size(dx;dy;dz). Note: z=vy=vz=dx=dz=0</span>
+<span style="color:#228B22">%</span>
+<span style="color:#228B22">% The timeStamp for recorded vision and radar objects is a uint64 variable</span>
+<span style="color:#228B22">% holding microseconds since the Unix epoch. Timestamps are recorded about</span>
+<span style="color:#228B22">% 50 milliseconds apart. There is a complete synchronization between the</span>
+<span style="color:#228B22">% recordings of vision and radar detections, therefore the timestamps are</span>
+<span style="color:#228B22">% not used in further calculations.</span>
+
+A = load(sensorRecordingFileName);
+visionObjects = A.vision;
+radarObjects = A.radar;
+laneReports = A.lane;
+inertialMeasurementUnit = A.inertialMeasurementUnit;
+
+timeStep = 0.05;                 <span style="color:#228B22">% Data is provided every 50 milliseconds</span>
+numSteps = numel(visionObjects); <span style="color:#228B22">% Number of recorded timesteps</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold">processLanes</strong> Converts sensor-reported lanes to <code class="literal">parabolicLaneBoundary</code> lanes and maintains a persistent ego lane estimate</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [laneBoundaries, egoLane] = processLanes(laneReports, egoLane)
+<span style="color:#228B22">% Lane boundaries are updated based on the laneReports from the recordings.</span>
+<span style="color:#228B22">% Since some laneReports contain invalid (isValid = false) reports or</span>
+<span style="color:#228B22">% impossible parameter values (-1e9), these lane reports are ignored and</span>
+<span style="color:#228B22">% the previous lane boundary is used.</span>
+leftLane    = laneReports.left;
+rightLane   = laneReports.right;
+
+<span style="color:#228B22">% Check the validity of the reported left lane</span>
+cond = (leftLane.isValid &amp;&amp; leftLane.confidence) &amp;&amp; <span style="color:#0000FF">...</span>
+    ~(leftLane.headingAngle == -1e9 || leftLane.curvature == -1e9);
+<span style="color:#0000FF">if</span> cond
+    egoLane.left = cast([leftLane.curvature, leftLane.headingAngle, leftLane.offset], <span style="color:#A020F0">'double'</span>);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Update the left lane boundary parameters or use the previous ones</span>
+leftParams  = egoLane.left;
+leftBoundaries = parabolicLaneBoundary(leftParams);
+leftBoundaries.Strength = 1;
+
+<span style="color:#228B22">% Check the validity of the reported right lane</span>
+cond = (rightLane.isValid &amp;&amp; rightLane.confidence) &amp;&amp; <span style="color:#0000FF">...</span>
+    ~(rightLane.headingAngle == -1e9 || rightLane.curvature == -1e9);
+<span style="color:#0000FF">if</span> cond
+    egoLane.right  = cast([rightLane.curvature, rightLane.headingAngle, rightLane.offset], <span style="color:#A020F0">'double'</span>);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Update the right lane boundary parameters or use the previous ones</span>
+rightParams = egoLane.right;
+rightBoundaries = parabolicLaneBoundary(rightParams);
+rightBoundaries.Strength = 1;
+
+laneBoundaries = [leftBoundaries, rightBoundaries];
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold">findNonClutterRadarObjects</strong> Removes radar objects that are considered part of the clutter</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> realRadarObjects = findNonClutterRadarObjects(radarObject, numRadarObjects, egoSpeed, laneBoundaries)
+<span style="color:#228B22">% The radar objects include many objects that belong to the clutter.</span>
+<span style="color:#228B22">% Clutter is defined as a stationary object that is not in front of the</span>
+<span style="color:#228B22">% car. The following types of objects pass as nonclutter:</span>
+<span style="color:#228B22">%</span>
+<span style="color:#228B22">% # Any object in front of the car</span>
+<span style="color:#228B22">% # Any moving object in the area of interest around the car, including</span>
+<span style="color:#228B22">%   objects that move at a lateral speed around the car</span>
+
+    <span style="color:#228B22">% Allocate memory</span>
+    normVs = zeros(numRadarObjects, 1);
+    inLane = zeros(numRadarObjects, 1);
+    inZone = zeros(numRadarObjects, 1);
+
+    <span style="color:#228B22">% Parameters</span>
+    LaneWidth = 3.6;            <span style="color:#228B22">% What is considered in front of the car</span>
+    ZoneWidth = 1.7*LaneWidth;  <span style="color:#228B22">% A wider area of interest</span>
+    minV = 1;                   <span style="color:#228B22">% Any object that moves slower than minV is considered stationary</span>
+    <span style="color:#0000FF">for</span> j = 1:numRadarObjects
+        [vx, vy] = calculateGroundSpeed(radarObject(j).velocity(1),radarObject(j).velocity(2),egoSpeed);
+        normVs(j) = norm([vx,vy]);
+        laneBoundariesAtObject = computeBoundaryModel(laneBoundaries, radarObject(j).position(1));
+        laneCenter = mean(laneBoundariesAtObject);
+        inLane(j) = (abs(radarObject(j).position(2) - laneCenter) &lt;= LaneWidth/2);
+        inZone(j) = (abs(radarObject(j).position(2) - laneCenter) &lt;= max(abs(vy)*2, ZoneWidth));
+    <span style="color:#0000FF">end</span>
+    realRadarObjectsIdx = union(<span style="color:#0000FF">...</span>
+        intersect(find(normVs &gt; minV), find(inZone == 1)), <span style="color:#0000FF">...</span>
+        find(inLane == 1));
+
+    realRadarObjects = radarObject(realRadarObjectsIdx);
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold">calculateGroundSpeed</strong> Calculates the true ground speed of a radar-reported object from the relative speed and the ego vehicle speed</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [Vx,Vy] = calculateGroundSpeed(Vxi,Vyi,egoSpeed)
+<span style="color:#228B22">% Inputs</span>
+<span style="color:#228B22">%   (Vxi,Vyi) : relative object speed</span>
+<span style="color:#228B22">%   egoSpeed  : ego vehicle speed</span>
+<span style="color:#228B22">% Outputs</span>
+<span style="color:#228B22">%   [Vx,Vy]   : ground object speed</span>
+
+    Vx = Vxi + egoSpeed;    <span style="color:#228B22">% Calculate longitudinal ground speed</span>
+    theta = atan2(Vyi,Vxi); <span style="color:#228B22">% Calculate heading angle</span>
+    Vy = Vx * tan(theta);   <span style="color:#228B22">% Calculate lateral ground speed</span>
+
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold">processVideo</strong> Converts reported vision objects to a list of <code class="literal">objectDetection</code> objects</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> postProcessedDetections = processVideo(postProcessedDetections, visionFrame, t)
+<span style="color:#228B22">% Process the video objects into objectDetection objects</span>
+numRadarObjects = numel(postProcessedDetections);
+numVisionObjects = visionFrame.numObjects;
+<span style="color:#0000FF">if</span> numVisionObjects
+    classToUse = class(visionFrame.object(1).position);
+    visionMeasCov = cast(diag([2,2,2,100]), classToUse);
+    <span style="color:#228B22">% Process Vision Objects:</span>
+    <span style="color:#0000FF">for</span> i=1:numVisionObjects
+        object = visionFrame.object(i);
+        postProcessedDetections{numRadarObjects+i} = objectDetection(t,<span style="color:#0000FF">...</span>
+            [object.position(1); object.velocity(1); object.position(2); 0], <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'SensorIndex'</span>, 1, <span style="color:#A020F0">'MeasurementNoise'</span>, visionMeasCov, <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'MeasurementParameters'</span>, {1}, <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'ObjectClassID'</span>, object.classification, <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'ObjectAttributes'</span>, {object.id, object.size});
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold">processRadar</strong> Converts reported radar objects to a list of <code class="literal">objectDetection</code> objects</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> postProcessedDetections = processRadar(postProcessedDetections, realRadarObjects, t)
+<span style="color:#228B22">% Process the radar objects into objectDetection objects</span>
+numRadarObjects = numel(realRadarObjects);
+<span style="color:#0000FF">if</span> numRadarObjects
+    classToUse = class(realRadarObjects(1).position);
+    radarMeasCov = cast(diag([2,2,2,100]), classToUse);
+    <span style="color:#228B22">% Process Radar Objects:</span>
+    <span style="color:#0000FF">for</span> i=1:numRadarObjects
+        object = realRadarObjects(i);
+        postProcessedDetections{i} = objectDetection(t, <span style="color:#0000FF">...</span>
+            [object.position(1); object.velocity(1); object.position(2); object.velocity(2)], <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'SensorIndex'</span>, 2, <span style="color:#A020F0">'MeasurementNoise'</span>, radarMeasCov, <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'MeasurementParameters'</span>, {2}, <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'ObjectAttributes'</span>, {object.id, object.status, object.amplitude, object.rangeMode});
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold">fcwmeas</strong> The measurement function used in this forward collision warning example</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> measurement = fcwmeas(state, sensorID)
+<span style="color:#228B22">% The example measurements depend on the sensor type, which is reported by</span>
+<span style="color:#228B22">% the MeasurementParameters property of the objectDetection. The following</span>
+<span style="color:#228B22">% two sensorID values are used:</span>
+<span style="color:#228B22">%   sensorID=1: video objects, the measurement is [x;vx;y].</span>
+<span style="color:#228B22">%   sensorID=2: radar objects, the measurement is [x;vx;y;vy].</span>
+<span style="color:#228B22">% The state is:</span>
+<span style="color:#228B22">%   Constant velocity       state = [x;vx;y;vy]</span>
+<span style="color:#228B22">%   Constant turn           state = [x;vx;y;vy;omega]</span>
+<span style="color:#228B22">%   Constant acceleration   state = [x;vx;ax;y;vy;ay]</span>
+
+    <span style="color:#0000FF">if</span> numel(state) &lt; 6 <span style="color:#228B22">% Constant turn or constant velocity</span>
+        <span style="color:#0000FF">switch</span> sensorID
+            <span style="color:#0000FF">case</span> 1 <span style="color:#228B22">% video</span>
+                measurement = [state(1:3); 0];
+            <span style="color:#0000FF">case</span> 2 <span style="color:#228B22">% radar</span>
+                measurement = state(1:4);
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">else</span> <span style="color:#228B22">% Constant acceleration</span>
+        <span style="color:#0000FF">switch</span> sensorID
+            <span style="color:#0000FF">case</span> 1 <span style="color:#228B22">% video</span>
+                measurement = [state(1:2); state(4); 0];
+            <span style="color:#0000FF">case</span> 2 <span style="color:#228B22">% radar</span>
+                measurement = [state(1:2); state(4:5)];
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold">fcwmeasjac</strong> The Jacobian of the measurement function used in this forward collision warning example</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> jacobian = fcwmeasjac(state, sensorID)
+<span style="color:#228B22">% The example measurements depend on the sensor type, which is reported by</span>
+<span style="color:#228B22">% the MeasurementParameters property of the objectDetection. We choose</span>
+<span style="color:#228B22">% sensorID=1 for video objects and sensorID=2 for radar objects.  The</span>
+<span style="color:#228B22">% following two sensorID values are used:</span>
+<span style="color:#228B22">%   sensorID=1: video objects, the measurement is [x;vx;y].</span>
+<span style="color:#228B22">%   sensorID=2: radar objects, the measurement is [x;vx;y;vy].</span>
+<span style="color:#228B22">% The state is:</span>
+<span style="color:#228B22">%   Constant velocity       state = [x;vx;y;vy]</span>
+<span style="color:#228B22">%   Constant turn           state = [x;vx;y;vy;omega]</span>
+<span style="color:#228B22">%   Constant acceleration   state = [x;vx;ax;y;vy;ay]</span>
+
+    numStates = numel(state);
+    jacobian = zeros(4, numStates, <span style="color:#A020F0">'like'</span>, state);
+
+    <span style="color:#0000FF">if</span> numel(state) &lt; 6 <span style="color:#228B22">% Constant turn or constant velocity</span>
+        <span style="color:#0000FF">switch</span> sensorID
+            <span style="color:#0000FF">case</span> 1 <span style="color:#228B22">% video</span>
+                jacobian(1,1) = 1;
+                jacobian(2,2) = 1;
+                jacobian(3,3) = 1;
+            <span style="color:#0000FF">case</span> 2 <span style="color:#228B22">% radar</span>
+                jacobian(1,1) = 1;
+                jacobian(2,2) = 1;
+                jacobian(3,3) = 1;
+                jacobian(4,4) = 1;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">else</span> <span style="color:#228B22">% Constant acceleration</span>
+        <span style="color:#0000FF">switch</span> sensorID
+            <span style="color:#0000FF">case</span> 1 <span style="color:#228B22">% video</span>
+                jacobian(1,1) = 1;
+                jacobian(2,2) = 1;
+                jacobian(3,4) = 1;
+            <span style="color:#0000FF">case</span> 2 <span style="color:#228B22">% radar</span>
+                jacobian(1,1) = 1;
+                jacobian(2,2) = 1;
+                jacobian(3,4) = 1;
+                jacobian(4,5) = 1;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+      <h2 id="d124e28127">See Also</h2>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/multiobjecttracker.updatetracks.html"><span itemprop="name"><code class="function">updateTracks</code></span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyeplot.html"><span itemprop="name"><code class="object">birdsEyePlot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/monocamera.html"><span itemprop="name"><code class="object">monoCamera</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/trackingkf.html"><span itemprop="name"><code class="object">trackingKF</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/trackingekf.html"><span itemprop="name"><code class="object">trackingEKF</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/objectdetection.html"><span itemprop="name"><code class="object">objectDetection</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/trackingukf.html"><span itemprop="name"><code class="object">trackingUKF</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/multiobjecttracker-system-object.html"><span itemprop="name"><code class="sysobj">multiObjectTracker</code></span></a></span></li>
+</ul>
+      <h2 id="d124e28161">Related Topics</h2>
+<ul><li><a href="code-generation-for-tracking-and-sensor-fusion.html" class="a">Code Generation for Tracking and Sensor Fusion</a></li>
+<li><a href="annotate-video-using-detections-in-vehicle-coordinates.html" class="a">Annotate Video Using Detections in Vehicle Coordinates</a></li>
+<li><a href="visualize-sensor-coverage-detections-and-tracks.html" class="a">Visualize Sensor Coverage, Detections, and Tracks</a></li>
+<li><a href="multiple-object-tracking-tutorial.html" class="a">Multiple Object Tracking Tutorial</a></li>
+<li><a href="../../vision/ug/multiple-object-tracking.html" class="a">Multiple Object Tracking</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

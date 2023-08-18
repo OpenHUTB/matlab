@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Prebuilt Driving Scenarios in Driving Scenario Designer</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../interactive-scenario-authoring.html",
+          "name": "Interactive Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "interactive-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Test driving algorithms on prebuilt driving scenarios in the Driving Scenario Designer app."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../interactive-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Interactive Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Prebuilt Driving Scenarios in Driving Scenario Designer</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_9a667947-e597-4b4e-9e34-395a7670c11b" class="intrnllnk">Choose a Prebuilt Scenario</a><ul class="nav"><li><a href="#mw_6904645e-b3b1-4615-8c84-f52623dff77e" class="intrnllnk">Euro NCAP</a></li>
+<li><a href="#mw_a2340796-8fe2-4bad-95fc-2b0f3ebfc541" class="intrnllnk">Intersections</a></li>
+<li><a href="#mw_5df52883-1886-4a2a-a2a6-ceb15444da6e" class="intrnllnk">Simulation 3D</a></li>
+<li><a href="#mw_b96a4b3d-e5dc-4fe4-8c3f-507a2c3f1d16" class="intrnllnk">Turns</a></li>
+<li><a href="#mw_f49adc64-fffa-47f7-be6d-9de928c4b890" class="intrnllnk">U-Turns</a></li>
+</ul></li>
+<li><a href="#mw_a8459f52-ba65-4354-a24b-3eb233ada699_sep_mw_9c65850f-cc4b-425f-8928-bbc09ed5dc6a" class="intrnllnk">Modify Scenario</a></li>
+<li><a href="#mw_a0e54677-39b6-42c3-b9c2-8f3041986463" class="intrnllnk">Generate Synthetic Sensor Data</a></li>
+<li><a href="#mw_051de167-b464-418b-833c-a82cafe28338" class="intrnllnk">Save Scenario</a></li>
+<li><a href="#d124e7938" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e7977" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_a8459f52-ba65-4354-a24b-3eb233ada699">Driving Scenario Designer中的预生成驾驶方案</h2>
+<p><strong class="app"><a href="../ref/drivingscenariodesigner-app.html">Driving Scenario Designer</a></strong> 应用程序提供了一个预先构建的场景库，代表了常见的驾驶操作。该应用程序还包括代表欧洲新车评估计划 (Euro NCAP<sup>®</sup>) 测试协议以及在3D模拟环境中使用的预构建场景的长方体版本的场景。</p>
+<section itemprop="content"><h3 class="title" id="mw_9a667947-e597-4b4e-9e34-395a7670c11b">Choose a Prebuilt Scenario</h3>
+<p>要开始使用，打开<strong class="app">Driving Scenario Designer</strong>应用程序。在 MATLAB<sup>®</sup> 命令提示符下，输入 <code class="literal">drivingScenarioDesigner</code>。</p>
+<p>在应用程序中，预先构建的场景以MAT文件的形式存储，并组织在文件夹中。要打开一个预先构建的场景文件，请从应用程序的工具栏中选择 <strong class="guimenuitem">Open</strong> &gt; <strong class="guimenuitem">Prebuilt Scenario </strong>。然后从其中一个文件夹中选择一个预先构建的场景。</p>
+<ul><li><p><a class="intrnllnk" href="#mw_6904645e-b3b1-4615-8c84-f52623dff77e">Euro NCAP</a></p></li>
+<li><p><a class="intrnllnk" href="#mw_a2340796-8fe2-4bad-95fc-2b0f3ebfc541">Intersections</a></p></li>
+<li><p><a class="intrnllnk" href="#mw_5df52883-1886-4a2a-a2a6-ceb15444da6e">Simulation 3D</a></p></li>
+<li><p><a class="intrnllnk" href="#mw_b96a4b3d-e5dc-4fe4-8c3f-507a2c3f1d16">Turns</a></p></li>
+<li><p><a class="intrnllnk" href="#mw_f49adc64-fffa-47f7-be6d-9de928c4b890">U-Turns</a></p></li>
+</ul>
+<section itemprop="content"><h4 class="title" id="mw_6904645e-b3b1-4615-8c84-f52623dff77e">Euro NCAP</h4>
+<p>这些场景代表了Euro NCAP测试协议。该应用程序包含用于测试自动紧急制动、紧急车道保持和车道保持辅助系统的场景。有关更多详细信息，请参阅 <a href="euro-ncap-driving-scenarios-in-driving-scenario-designer.html" class="a">Euro NCAP Driving Scenarios in Driving Scenario Designer</a>。</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_a2340796-8fe2-4bad-95fc-2b0f3ebfc541">Intersections</h4>
+<p>这些场景涉及四路交叉口和环形交叉口的常见交通模式。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>File Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">EgoVehicleGoesStraight_BicycleFromLeftGoesStraight_Collision.mat</code></td>
+<td><p>自我车辆向北行驶并直接穿过十字路口。 一辆从十字路口左侧驶来的自行车直行并相撞 与自我车辆。</p>
+<div class="informalfigure"><div id="d124e7599" class="mediaobject"><p><img src="dsd_prebuilt_intersection1.png" alt="Vehicle and bicycle collision at intersection" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleGoesStraight_PedestrianToRightGoesStraight.mat</code></td>
+<td><p>自我车辆向北行驶并直接穿过十字路口。 自我车辆右侧车道上的行人也向北行驶， 直接穿过十字路口。</p>
+<div class="informalfigure"><div id="d124e7609" class="mediaobject"><p><img src="dsd_prebuilt_intersection2.png" alt="Vehicle and pedestrian side-by-side in same lane" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleGoesStraight_VehicleFromLeftGoesStraight.mat</code></td>
+<td><p>The ego vehicle travels north and goes straight through an intersection.
+                  A vehicle coming from the left side of the intersection also goes straight. The
+                  ego vehicle crosses in front of the other vehicle.自我车辆向北行驶并直接穿过十字路口。 从十字路口左侧驶来的车辆也直行。这 自我车辆在另一辆车前交叉。</p>
+<div class="informalfigure"><div id="d124e7619" class="mediaobject"><p><img src="dsd_prebuilt_intersection3.png" alt="Vehicles crossing at intersection" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleGoesStraight_VehicleFromRightGoesStraight.mat</code></td>
+<td><p>自我车辆向北行驶并直接穿过十字路口。 从十字路口右侧驶来的车辆也直行， 首先穿过十字路口。</p>
+<div class="informalfigure"><div id="d124e7629" class="mediaobject"><p><img src="dsd_prebuilt_intersection4.png" alt="Vehicles crossing at intersection" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">Roundabout.mat</code></td>
+<td><p>自我车辆向北行驶并穿过行人的路径，同时 进入环形交叉路口。然后自我车辆穿过另一辆车的路径作为 两辆车都驶过环形交叉路口。</p>
+<div class="informalfigure"><div id="d124e7639" class="mediaobject"><p><img src="dsd_prebuilt_intersection5.png" alt="Two vehicles in roundabout with a pedestrian crossing the road leading up to the roundabout" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_5df52883-1886-4a2a-a2a6-ceb15444da6e">Simulation 3D</h4>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">这些方案是 3D 模拟环境。您可以将车辆和轨迹添加到这些方案中。然后 您可以将这些车辆和轨迹包含在 </span>Simulink<sup>®</sup><span style="font-family: &quot;Microsoft YaHei&quot;;"> 模型中，以便在 3D 环境中对其进行仿真。呈现此环境 使用</span>Epic Games<sup>® </sup><span style="font-family: &quot;Microsoft YaHei&quot;;">的 </span>Unreal Engine<sup>®</sup><span style="font-family: &quot;Microsoft YaHei&quot;;">。有关这些方案的更多详细信息，请参阅</span> <a href="cuboid-versions-of-3d-simulation-scenes-in-driving-scenario-designer.html" class="a">Cuboid Versions of 3D Simulation Scenes in Driving Scenario Designer</a><span style="font-family: &quot;Microsoft YaHei&quot;;">。</span></p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_b96a4b3d-e5dc-4fe4-8c3f-507a2c3f1d16">Turns</h4>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">这些场景涉及四向交叉路口的转弯。</span></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>File Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">EgoVehicleGoesStraight_VehicleFromLeftTurnsLeft.mat</code></td>
+<td><p>自我车辆向北行驶并直接穿过十字路口。来自十字路口左侧的车辆左转并最终进入自我车辆的前方。</p>
+<div class="informalfigure"><div id="d124e7678" class="mediaobject"><p><img src="dsd_prebuilt_turn1.png" alt="Vehicle turning from the left at an intersection to pull in front of another vehicle" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleGoesStraight_VehicleFromRightTurnsRight.mat</code></td>
+<td><p>自我车辆向北行驶并直接穿过十字路口。来自十字路口右侧的车辆右转并结束 在自我车辆前。</p>
+<div class="informalfigure"><div id="d124e7688" class="mediaobject"><p><img src="dsd_prebuilt_turn2.png" alt="Vehicle turning from the right at an intersection to pull in front of another vehicle" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleGoesStraight_VehicleInFrontTurnsLeft.mat</code></td>
+<td><p>自我车辆向北行驶并直接穿过十字路口。自我车辆前方的车辆在十字路口左转。</p>
+<div class="informalfigure"><div id="d124e7698" class="mediaobject"><p><img src="dsd_prebuilt_turn3.png" alt="Vehicle turning left at an intersection as the other vehicle continues straight" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleGoesStraight_VehicleInFrontTurnsRight.mat</code></td>
+<td><p>自我车辆向北行驶并直接穿过十字路口。自我车辆前面的车辆在十字路口右转。</p>
+<div class="informalfigure"><div id="d124e7708" class="mediaobject"><p><img src="dsd_prebuilt_turn4.png" alt="Vehicle turning right at an intersection as the other vehicle continues straight" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleTurnsLeft_PedestrianFromLeftGoesStraight.mat</code></td>
+<td><p>自我车辆向北行驶并在十字路口左转。一个从十字路口左侧来的行人直行。自我 车辆在行人完成穿越之前完成转弯路口。</p>
+<div class="informalfigure"><div id="d124e7718" class="mediaobject"><p><img src="dsd_prebuilt_turn5.png" alt="Vehicle turning left at an intersection as a pedestrian crosses the road from left to right" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleTurnsLeft_PedestrianInOppLaneGoesStraight.mat</code></td>
+<td><p>自我车辆向北行驶并在十字路口左转。一个对面车道的行人直通十字路口。自我车辆在行人完成穿越之前完成转弯路口。</p>
+<div class="informalfigure"><div id="d124e7728" class="mediaobject"><p><img src="dsd_prebuilt_turn6.png" alt="Vehicle turning left at an intersection as a pedestrian crosses the road from top to bottom" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleTurnsLeft_VehicleInFrontGoesStraight.mat</code></td>
+<td><p>自我车辆向北行驶并在十字路口左转。一个自我车辆前面的车辆直接穿过十字路口。</p>
+<div class="informalfigure"><div id="d124e7738" class="mediaobject"><p><img src="dsd_prebuilt_turn7.png" alt="Vehicle turning left at an intersection as another vehicle travels straight" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleTurnsRight_VehicleInFrontGoesStraight.mat</code></td>
+<td><p>自我车辆向北行驶并在十字路口右转。一个自我车辆前面的车辆直接穿过十字路口。</p>
+<div class="informalfigure"><div id="d124e7748" class="mediaobject"><p><img src="dsd_prebuilt_turn8.png" alt="One vehicle turns right at an intersection and the other goes straight" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_f49adc64-fffa-47f7-be6d-9de928c4b890">U-Turns</h4>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">这些场景涉及四向交叉路口的掉头。</span></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="53%"/>
+<col class="tcol2" width="47%"/>
+</colgroup>
+<thead><tr><th>File Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">EgoVehicleGoesStraight_VehicleInOppLaneMakesUTurn.mat</code></td>
+<td><p>自我车辆向北行驶并直接穿过十字路口。对面车道上的车辆掉头。自我车辆最终落后于后面车辆。</p>
+<div class="informalfigure"><div id="d124e7772" class="mediaobject"><p><img src="dsd_prebuilt_uturn1.png" alt="One vehicle makes a U-turn at an intersection and the other goes straight through the intersection" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleMakesUTurn_PedestrianFromRightGoesStraight.mat</code></td>
+<td><p>自我车辆向北行驶，并在十字路口掉头。一个从十字路口右侧来的行人直行，穿过掉头的路径。</p>
+<div class="informalfigure"><div id="d124e7782" class="mediaobject"><p><img src="dsd_prebuilt_uturn2.png" alt="A vehicle makes a U-turn at an intersection while a pedestrian crosses the road" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleMakesUTurn_VehicleInOppLaneGoesStraight.mat</code></td>
+<td><p>自我车辆向北行驶，并在十字路口掉头。一个 向南行驶的相反方向的车辆直行并最终落后自我车辆。</p>
+<div class="informalfigure"><div id="d124e7792" class="mediaobject"><p><img src="dsd_prebuilt_uturn3.png" alt="One vehicle makes a U-turn at an intersection and the other goes straight through the intersection" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleTurnsLeft_Vehicle1MakesUTurn_Vehicle2GoesStraight.mat</code></td>
+<td><p>自我车辆向北行驶并在十字路口左转。一个自我车辆前方的车辆在十字路口掉头。一秒钟车辆，一辆卡车，来自十字路口的右侧。自我载体最终进入卡车旁边的车道。</p>
+<div class="informalfigure"><div id="d124e7802" class="mediaobject"><p><img src="dsd_prebuilt_uturn4.png" alt="One vehicle makes a U-turn at an intersection,another vehicle turns left at the intersection, and another vehicle goes straight through the intersection" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleTurnsLeft_VehicleFromLeftMakesUTurn.mat</code></td>
+<td><p>自我车辆向北行驶并在十字路口左转。一个从十字路口左侧驶来的车辆掉头。自我车辆最终停在另一辆车旁边的车道上。</p>
+<div class="informalfigure"><div id="d124e7812" class="mediaobject"><p><img src="dsd_prebuilt_uturn5.png" alt="One vehicle makes a U-turn at an intersection and other vehicle turns left at the intersection" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">EgoVehicleTurnsRight_VehicleFromRightMakesUTurn.mat</code></td>
+<td><p>自我车辆向北行驶并在十字路口右转。一个从十字路口右侧驶来的车辆掉头。自我车辆最终在车辆后面，在相邻的车道上。</p>
+<div class="informalfigure"><div id="d124e7822" class="mediaobject"><p><img src="dsd_prebuilt_uturn6.png" alt="One vehicle makes a U-turn at an intersection and other vehicle turns right at the intersection" height="364" width="347"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_a8459f52-ba65-4354-a24b-3eb233ada699_sep_mw_9c65850f-cc4b-425f-8928-bbc09ed5dc6a">修改场景</h3>
+<p>在选择场景后，您可以修改道路和参与者的参数。例如，在左侧的 <strong class="guilabel">Actors</strong> 选项卡中，您可以更改自车或其他参与者的位置或速度。从 <strong class="guilabel">Roads</strong> 选项卡中，您可以更改车道的宽度或车道标线的类型。</p>
+<p>您还可以添加或修改传感器。例如，从 <strong class="guilabel">Sensors </strong>选项卡中，您可以更改检测参数或传感器的位置。默认情况下，在Euro NCAP场景中，自车不包含传感器。所有其他预建场景至少有一个面向前方的摄像头或雷达传感器，设置为检测车道和物体。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_a0e54677-39b6-42c3-b9c2-8f3041986463">生成合成传感器数据</h3>
+<p>要从传感器生成检测结果，请在应用程序工具栏上点击 <strong class="guibutton">Run </strong>。随着场景的运行，<strong class="guilabel">Ego-Centric View</strong> 将以自车的视角显示场景。<strong class="guilabel">Bird’s-Eye Plot</strong> 显示了检测结果。</p>
+<div class="informalfigure"><div id="d124e7852" class="mediaobject"><p><img src="dsd_prebuilt_detections.png" alt="Bird's-eye plot of a prebuilt scenario with three vehicles. The camera sensor coverage area on the ego vehicle is shown in light blue, the object detections are shown as blue circles, and the lane detections are in red" height="396" width="309"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">导出传感器数据。</span></p>
+<div class="itemizedlist"><ul><li><p>若要将传感器数据导出到 MATLAB 工作区，请在应用工具行程中，选择 <strong class="guimenuitem">Export</strong> &gt; <strong class="guimenuitem">Export Sensor Data</strong>。命名工作空间变量，然后单击 <strong class="guibutton">OK</strong>。该应用程序 将传感器数据保存为包含传感器数据的结构，例如演员姿势，对象检测，以及每个时间步的车道检测。</p></li>
+<li><p>要导出生成场景及其传感器数据的 MATLAB 函数，请选择<strong class="guimenuitem">Export</strong> &gt; <strong class="guimenuitem">Export MATLAB Function</strong>。<strong class="guimenuitem" _istranslated="1"></strong>此函数将传感器数据作为结构返回，将方案作为 <a href="../ref/drivingscenario.html"><code class="object">drivingScenario</code></a> 对象返回，并将传感器返回 模型作为系统对象。通过修改此函数，您可以创建 原始场景。有关此过程的示例，请参阅 <a href="create-driving-scenario-variations-programmatically.html" class="a">Create Driving Scenario Variations Programmatically</a>。<br/></p></li>
+</ul>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_051de167-b464-418b-833c-a82cafe28338">保存方案</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">由于预生成方案是只读的，因此请将驾驶方案的副本保存到新的文件夹。若要保存方案文件，请在应用程序工具行程上选择 </span><strong class="guimenuitem">Save</strong> &gt; <strong class="guimenuitem">Scenario File As</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">您可以从应用重新打开此方案文件。或者在 MATLAB 命令提示符下，您可以使用此语法。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>drivingScenarioDesigner(scenarioFileName)</pre>
+</div>
+</div>
+</div>
+您还可以使用导出的 <a href="../ref/drivingscenario.html"><code class="object">drivingScenario</code></a> 对象重新打开场景。在 MATLAB 命令提示符下，使用以下语法，其中 <code class="literal">scenario</code> 是导出对象的名称。<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>drivingScenarioDesigner(scenario)</pre>
+</div>
+</div>
+</div>
+要重新打开传感器，请使用以下语法，其中 <code class="literal">sensors</code> 是一个传感器对象或该类对象的单元数组。<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>drivingScenarioDesigner(scenario,sensors)</pre>
+</div>
+</div>
+</div>
+如果您在 Simulink 中开发驾驶算法，可以使用 <span class="block"><a href="../ref/scenarioreader.html">Scenario Reader</a> </span>模块将道路和参与者从场景文件或 <code class="object">drivingScenario</code> 对象读入到您的模型中。该模块不直接读取传感器数据。要将您在应用程序中创建的传感器添加到Simulink模型中，可以通过选择 <strong class="guimenuitem">Export</strong> &gt; <strong class="guimenuitem">Export Simulink Model </strong>来生成包含您的场景和传感器的模型。在该模型中，生成的 <span class="block"><a href="../ref/scenarioreader.html">Scenario Reader</a> </span>模块读取场景，而生成的传感器模块定义了传感器。<p></p>
+</section>
+    <h2 id="d124e7938">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving Scenario
+          Designer</span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator.html"><span itemprop="name"><span class="block">Driving Radar Data
+          Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator.html"><span itemprop="name"><span class="block">Vision Detection
+          Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/lidarpointcloudgenerator.html"><span itemprop="name"><span class="block">Lidar Point Cloud
+          Generator</span></span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator-system-object.html"><span itemprop="name"><code class="sysobj">drivingRadarDataGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator-system-object.html"><span itemprop="name"><code class="sysobj">visionDetectionGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/lidarpointcloudgenerator-system-object.html"><span itemprop="name"><code class="sysobj">lidarPointCloudGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/inssensor-system-object.html"><span itemprop="name"><code class="sysobj">insSensor</code></span></a></span></li>
+</ul>
+    <h2 id="d124e7977">Related Topics</h2>
+<ul><li><a href="create-driving-scenario-interactively-and-generate-synthetic-detections.html" class="a">Create Driving Scenario Interactively and Generate Synthetic Sensor Data</a></li>
+<li><a href="euro-ncap-driving-scenarios-in-driving-scenario-designer.html" class="a">Euro NCAP Driving Scenarios in Driving Scenario Designer</a></li>
+<li><a href="cuboid-versions-of-3d-simulation-scenes-in-driving-scenario-designer.html" class="a">Cuboid Versions of 3D Simulation Scenes in Driving Scenario Designer</a></li>
+<li><a href="test-open-loop-adas-algorithm-using-driving-scenario.html" class="a">Test Open-Loop ADAS Algorithm Using Driving Scenario</a></li>
+<li><a href="test-closed-loop-adas-algorithm-using-driving-scenario.html" class="a">Test Closed-Loop ADAS Algorithm Using Driving Scenario</a></li>
+</ul>
+  </section>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
