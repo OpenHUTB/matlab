@@ -1,10 +1,9 @@
 classdef Display<matlabshared.application.Application&...
-    matlabshared.application.DynamicTabs
-
+        matlabshared.application.DynamicTabs
 
     properties
         Scenario;
-Simulator
+        Simulator  % 仿真器，有run()方法，相当于点击图形界面的"运行"
     end
 
     properties(SetObservable)
@@ -13,8 +12,8 @@ Simulator
 
     properties(SetAccess='protected',Hidden)
         AllSimulators=driving.internal.scenarioApp.Simulator.empty;
-ScenarioView
-EgoCentricView
+        ScenarioView
+        EgoCentricView
         CloseRequested=false;
         ShowSimulators=false;
     end
@@ -24,7 +23,7 @@ EgoCentricView
     end
 
     properties(Access=protected)
-SimulatorSampleChangedListener
+        SimulatorSampleChangedListener
     end
 
     methods
@@ -32,11 +31,8 @@ SimulatorSampleChangedListener
             this@matlabshared.application.Application(varargin{:});
         end
 
+
         function set.Scenario(this,newScenario)
-
-
-
-
             this.IsUpdateAllowed=false;%#ok<MCSUP>
             this.Scenario=newScenario;
             sim=this.Simulator;%#ok<MCSUP>
@@ -75,6 +71,7 @@ SimulatorSampleChangedListener
         end
     end
 
+
     methods(Hidden)
 
         function onSimulatorSampleChanged(this,~,~)
@@ -88,8 +85,8 @@ SimulatorSampleChangedListener
             end
         end
 
-        function updateView(this)
 
+        function updateView(this)
             scenario=this.ScenarioView;
             egoCentric=this.EgoCentricView;
             toolGroup=this.ToolGroup.Name;
@@ -97,19 +94,17 @@ SimulatorSampleChangedListener
             md=com.mathworks.mlservices.MatlabDesktopServices.getDesktop;
             md.setDocumentArrangement(toolGroup,md.TILED,java.awt.Dimension(2,1))
 
-
             md.setDocumentColumnWidths(toolGroup,[0.65,0.35]);
 
-
             md.setClientLocation(scenario.getName(),toolGroup,...
-            com.mathworks.widgets.desk.DTLocation.create(0));
+                com.mathworks.widgets.desk.DTLocation.create(0));
 
             md.setClientLocation(egoCentric.getName(),toolGroup,...
-            com.mathworks.widgets.desk.DTLocation.create(1));
-
+                com.mathworks.widgets.desk.DTLocation.create(1));
 
             set([scenario.Figure,egoCentric.Figure],'Visible','on');
         end
+
 
         function approveClose(this)
             simulator=this.Simulator;
@@ -121,11 +116,13 @@ SimulatorSampleChangedListener
             end
         end
 
+
         function finalizeClose(this)
             delete(this.Simulator);
             deleteTimeStampTimer(this.ScenarioView);
             finalizeClose@matlabshared.application.Application(this);
         end
+
 
         function varargout=initSimulator(this,className)
             allSims=this.AllSimulators;
@@ -143,16 +140,19 @@ SimulatorSampleChangedListener
         end
     end
 
+
     methods(Access=protected)
 
         function onSimulatorChanged(~)
 
         end
 
+
         function updateComponents(this)
             updatePlots(this);
             updateView(this);
         end
+
 
         function f=createDefaultComponents(this)
             this.ScenarioView=driving.internal.scenarioApp.ScenarioView(this);
@@ -160,6 +160,7 @@ SimulatorSampleChangedListener
 
             f=[this.EgoCentricView,this.ScenarioView];
         end
+
 
         function updatePlots(this)
             if~isempty(this.ScenarioView)
@@ -170,6 +171,7 @@ SimulatorSampleChangedListener
             end
         end
 
+
         function updatePlotsForActors(this)
             if~isempty(this.ScenarioView)
                 updateActor(this.ScenarioView,[],true);
@@ -179,6 +181,7 @@ SimulatorSampleChangedListener
             end
         end
 
+        
         function parseInputs(this,scenario,egoCarId)
             if nargin<2
                 scenario=drivingScenario;

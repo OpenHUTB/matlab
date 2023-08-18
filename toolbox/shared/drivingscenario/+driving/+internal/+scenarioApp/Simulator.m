@@ -1,13 +1,14 @@
 classdef Simulator<handle&matlab.mixin.Heterogeneous
 
     properties(SetAccess=protected)
-Designer
-Tag
+        Designer
+        Tag
     end
 
     properties(Access=protected)
         TabCache;
     end
+
 
     methods
         function this=Simulator(designer)
@@ -74,9 +75,7 @@ Tag
     end
 
     methods(Abstract)
-
-
-        run(this)
+        run(this)  % 相当于点击图形界面的"运行"
         stop(this)
         pause(this)
         b=isRunning(this)
