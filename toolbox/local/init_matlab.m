@@ -146,6 +146,12 @@ if exist(utils_dir, 'dir')
     addpath(genpath(fullfile(utils_dir)));
 end
 
+% 初始化量子计算工具箱
+quantum_dir = fullfile(matlabshared.supportpkg.getSupportPackageRoot, 'toolbox', 'matlab', 'quantum');
+if exist(quantum_dir, 'dir')
+    addpath(genpath(quantum_dir));
+end
+
 savepath
 % 显示当前文件夹以及当前搜索路径中的所有 pathdef.m 文件的路径
 % which pathdef.m -all
