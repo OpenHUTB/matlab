@@ -1,12 +1,9 @@
 classdef Prop<handle
-
     properties(SetAccess='private',GetAccess='public')
 
         ObjectType;
 
-
         ActorIdentifier;
-
 
         ActorTag;
     end
@@ -15,15 +12,11 @@ classdef Prop<handle
 
         Mesh;
 
-
         Translation;
-
 
         Rotation;
 
-
         Scale;
-
 
         ActorID;
     end
@@ -44,8 +37,6 @@ classdef Prop<handle
 
             self.ActorTag=actorName;
             self.ObjectType=objectType;
-
-
             r=sim3d.Prop.parseInputs(varargin{:});
             switch objectType
             case 'Custom'
@@ -53,13 +44,10 @@ classdef Prop<handle
             otherwise
                 self.Mesh=self.getMesh();
             end
-
             self.Translation=single(r.Translation);
             self.Rotation=single(r.Rotation);
             self.Scale=single(r.Scale);
             self.ActorID=r.ActorID;
-
-
             self.CreateActor=sim3d.utils.CreateActor;
             self.CreateActor.setActorName(self.ActorTag);
             self.CreateActor.setParentName('Scene Origin');
@@ -80,16 +68,14 @@ classdef Prop<handle
                 actorLocation.scale=self.Scale;
             end
             self.CreateActor.setActorLocation(actorLocation);
-
-
             self.CreateActor.setMobility(sim3d.utils.MobilityTypes.Movable);
             self.CreateActor.setVisiblity(true);
             self.CreateActor.setHidden(false);
             self.CreateActor.setPhysics(true);
 
-
             self.CreateActor.write;
         end
+
 
         function ret=getMesh(self)
             switch self.ObjectType
@@ -102,9 +88,11 @@ classdef Prop<handle
             end
         end
 
+
         function actorType=getActorType(~)
             actorType=sim3d.utils.ActorTypes.BaseStatic;
         end
+
 
         function delete(self)
 
@@ -134,14 +122,12 @@ classdef Prop<handle
             'Scale',[1,1,1],...
             'ActorID',4);
 
-
             parser=inputParser;
             parser.addParameter('Mesh',defaultParams.Mesh);
             parser.addParameter('Translation',defaultParams.Translation);
             parser.addParameter('Rotation',defaultParams.Rotation);
             parser.addParameter('Scale',defaultParams.Scale);
             parser.addParameter('ActorID',defaultParams.ActorID);
-
 
             parser.parse(varargin{:});
             r=parser.Results;
