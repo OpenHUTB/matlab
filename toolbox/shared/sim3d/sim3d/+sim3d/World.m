@@ -32,9 +32,11 @@ classdef World < handle
 
     properties ( Access = public )
         Name
-        Actors = struct(  );
+        Actors = struct();
+        % world.UserData.Step = 0;
+        % 将用户数据结构初始化为零。在更新函数中，将使用此结构从世界中删除参与者之前插入延迟。
         UserData
-        Viewports = struct(  );
+        Viewports = struct();
     end
 
 
@@ -81,7 +83,7 @@ classdef World < handle
             self.Root.ParentWorld = self;
 
             if ( self.Map == "/Game/Maps/EmptyScene" )
-                sim3d.World.validateLicense(  );
+                sim3d.World.validateLicense();
             end
 
             if parser.Results.OverrideExecCmds
@@ -120,420 +122,433 @@ classdef World < handle
         end
 
         
-        function run( self, sampleTime, simulationTime )
-
-            R36
-            self sim3d.World
-            sampleTime( 1, 1 )single{ mustBePositive } = 1 / 50.0;
-            simulationTime( 1, 1 )single{ mustBePositive } = inf;
+        function run(self, sampleTime, simulationTime)
+            % R36
+            % self sim3d.World
+            % sampleTime(1, 1) single{ mustBePositive } = 1 / 50.0;
+            arguments
+                self sim3d.World
+                sampleTime(1, 1) single{ mustBePositive } = 1/50.0;
+                simulationTime(1, 1) single{ mustBePositive } = inf;
+            end
 
             if ~isinf( simulationTime )
-            cleanup = onCleanup(@self.endSim);
-        end
-        this.setup( sampleTime );
-        if length( fieldnames( self.Actors ) ) > sim3d.World.MaxActorLimit
-            error( message( "shared_sim3d:sim3dWorld:MaxActorLimitExceeded", sim3d.World.MaxActorLimit ) );
-        elseif length( fieldnames( self.Actors ) ) > 1200
-            self.updateTimeout(  );
-        end
-        self.start(  );
-        self.reset(  );
-        if isinf( simulationTime )
-
-            self.StepTimer = timer( 'Period', sampleTime, 'ExecutionMode', 'fixedRate', 'TimerFcn', @self.onTimerEvent );
-            self.StepTimer.start(  );
-        else
-            currentTime = 0;
-            stepIndex = 0;
-            try
-                while ( currentTime < simulationTime )
-                    self.step(  );
-                    stepIndex = stepIndex + 1;
-                    currentTime = stepIndex * sampleTime;
+                cleanup = onCleanup(@self.endSim);
+            end
+            this.setup( sampleTime );
+            if length( fieldnames( self.Actors ) ) > sim3d.World.MaxActorLimit
+                error( message( "shared_sim3d:sim3dWorld:MaxActorLimitExceeded", sim3d.World.MaxActorLimit ) );
+            elseif length( fieldnames( self.Actors ) ) > 1200
+                self.updateTimeout(  );
+            end
+            self.start(  );
+            self.reset(  );
+            if isinf( simulationTime )
+                self.StepTimer = timer('Period', sampleTime, 'ExecutionMode', 'fixedRate', 'TimerFcn', @self.onTimerEvent );
+                self.StepTimer.start(  );
+            else
+                currentTime = 0;
+                stepIndex = 0;
+                try
+                    while (currentTime < simulationTime)
+                        self.step();
+                        stepIndex = stepIndex + 1;
+                        currentTime = stepIndex * sampleTime;
+                    end
+                catch
                 end
-            catch
-
             end
         end
+
+
+        function remove(self, object)
+            if nargin == 1
+                self.Root.remove(  );
+            elseif nargin == 2
+                tag = '';
+                if isa( object, 'sim3d.AbstractActor' )
+                    tag = object.getTag(  );
+                elseif isa( object, 'char' )
+                    tag = object;
+                end
+                if isfield( self.Actors, tag )
+                    if ~isequal( self, self.Actors.( tag ).ParentWorld )
+                        error( message( "shared_sim3d:sim3dWorld:DelActorInDiffWorld", tag ) );
+                    end
+                    self.Actors.( tag ).remove( false );
+                end
+            end
+        end
+
+        
+        % 函数创建一个带有单个字段 Main 的视口，其中包含一个 sim3d.sensors.MainCamera 对象。
+        function viewport = createViewport(self)
+            cameraProperties = sim3d.sensors.MainCamera.getMainCameraProperties();
+            cameraTransform = sim3d.utils.Transform( [  - 6, 0, 2 ], [ 0, 0, 0 ] );
+            viewport = sim3d.sensors.MainCamera( 1, 'Scene Origin', cameraProperties, cameraTransform );
+            self.add( viewport );
+            self.Viewports.Main = viewport;
         end
         
     end
 
 
-    function remove(self, object)
-        if nargin == 1
-            self.Root.remove(  );
-        elseif nargin == 2
-            tag = '';
-            if isa( object, 'sim3d.AbstractActor' )
-                tag = object.getTag(  );
-            elseif isa( object, 'char' )
-                tag = object;
+    methods ( Access = public, Hidden = true )
+        function setup(self, sampleTime)
+            % R36
+            % self sim3d.World
+            % sampleTime(1, 1)single{ mustBePositive }
+            arguments
+                self sim3d.World
+                sampleTime(1,1) single{mustBePositive}
             end
-            if isfield( self.Actors, tag )
-                if ~isequal( self, self.Actors.( tag ).ParentWorld )
-                    error( message( "shared_sim3d:sim3dWorld:DelActorInDiffWorld", tag ) );
+            
+            status = sim3d.engine.Engine.getState(  );
+            if status == sim3d.engine.EngineCommands.RUN || status == sim3d.engine.EngineCommands.INITIALIZE
+                error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
+            end
+            self.Root.setupTree(  );
+        
+            self.SampleTime = sampleTime;
+            self.CommandReader = sim3d.io.CommandReader(  );
+            self.CommandReader.setTimeout( self.CommandReadTimeout );
+            self.CommandWriter = sim3d.io.CommandWriter(  );
+            self.CommandWriter.setSampleTime( self.SampleTime );
+        
+            if ~isempty( self.SetupImpl )
+                self.SetupImpl( self );
+            end
+            self.emptyActorBuffer();
+        end
+
+        function start( self )
+            status = sim3d.engine.Engine.getState(  );
+            if status == sim3d.engine.EngineCommands.RUN
+                error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
+            end
+            sim3d.engine.Engine.startSimulation( self.asCommand(  ) );
+        end
+
+        function reset( self )
+            status = sim3d.engine.Engine.getState(  );
+            if status == sim3d.engine.EngineCommands.RUN || status == sim3d.engine.EngineCommands.INITIALIZE
+                error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
+            end
+        
+            self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.INITIALIZE ) );
+            self.CommandWriter.write(  );
+            self.CommandReader.read(  );
+            sim3d.engine.Engine.setState( sim3d.engine.EngineCommands.RUN );
+            self.State = sim3d.engine.EngineCommands.RUN;
+        end
+
+
+        function updateNewActorsInWorld( self )
+            for n = 1:length( self.NewActorBuffer )
+                newactor = self.Actors.( self.NewActorBuffer{ n } );
+                newactor.setup(  );
+                newactor.reset(  );
+            end
+            self.emptyActorBuffer(  );
+        end
+
+
+        function step( self )
+        
+            if ~isempty( self.OutputImpl )
+                self.OutputImpl( self );
+            end
+            self.updateNewActorsInWorld(  );
+            self.Root.output(  );
+            self.updateNewActorsInWorld(  );
+            self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.RUN ) );
+            self.CommandWriter.write(  );
+            self.CommandReader.read(  );
+            self.Root.update(  );
+        
+            if ~isempty( self.UpdateImpl )
+                self.UpdateImpl( self )
+            end
+        end
+
+        function stop( self )
+            self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.STOP ) );
+            self.CommandWriter.write(  );
+            if self.State == sim3d.engine.EngineCommands.RUN
+                sim3d.engine.Engine.setState( sim3d.engine.EngineCommands.STOP );
+                self.State = sim3d.engine.EngineCommands.STOP;
+            end
+        end
+
+
+        function release( self )
+            if ~isempty( self.ReleaseImpl )
+                self.ReleaseImpl( self );
+            end
+            if ~isempty( self.CommandWriter )
+                self.CommandWriter.delete(  );
+            end
+            if ~isempty( self.CommandReader )
+                self.CommandReader.delete(  );
+            end
+            self.Root.delete(  );
+            sim3d.engine.Engine.stop(  );
+        end
+
+        function command = asCommand( self )
+            if strcmp( self.ExecutablePath, sim3d.World.Undefined ) || isempty( self.ExecutablePath )
+                command = sim3d.World.Undefined;
+                return
+            end
+        
+            command.FileName = self.ExecutablePath;
+            command.Arguments = "";
+            if ( ~strcmp( self.Map, "" ) )
+                command.Arguments = command.Arguments.append(  ...
+                    strcat( self.Map, " " ) ...
+                    );
+            end
+            command.Arguments = command.Arguments.append(  ...
+                strcat( "-nosound", " " ),  ...
+                strcat( "-ExecCmds=", """", strjoin( self.ExecCmds, ";" ), """", " " ) ...
+                );
+            if ( ~strcmp( self.CommandLineArgs, "" ) )
+                command.Arguments = command.Arguments.append(  ...
+                    strcat( self.CommandLineArgs, " " ) ...
+                    );
+            end
+            if ( ~strcmp( self.RenderOffScreenFlag, "" ) )
+                command.Arguments = command.Arguments.append(  ...
+                    strcat( self.RenderOffScreenFlag, " " ) ...
+                    );
+            end
+            command.Arguments = command.Arguments.append(  ...
+                strcat( "-pakdir=", """", fullfile( userpath, "sim3d_project", string( sprintf( 'R%s', version( '-release' ) ) ), "WindowsNoEditor", "AutoVrtlEnv", "Content", "Paks" ), """" ) ...
+                );
+        end
+
+
+        function add2ActorBuffer( self, actorName )
+            self.NewActorBuffer{ end  + 1 } = actorName;
+        end
+        
+        function emptyActorBuffer( self )
+            self.NewActorBuffer = [  ];
+        end
+        
+        
+        function cleanupTextures( self )
+            self.Textures.reset(  );
+        end
+        
+        function textureName = addTexture( self, varargin )
+            textureName = self.Textures.add( varargin{ : } );
+        end
+        
+        function removeTexture( self, textureName )
+            self.Textures.remove( textureName );
+        end
+        
+        function addActorToTexture( self, texture, actorName )
+            self.Textures.addActor( texture, actorName );
+        end
+        
+        function addTextureToActor( self, actor, texture )
+            self.Textures.addTexture( texture, actor );
+        end
+        
+        function removeActorFromTexture( self, texture, actorName )
+            self.Textures.removeActor( texture, actorName );
+        end
+        
+        function textureData = getTextureData( self, textureName )
+            textureData = self.Textures.getTextureData( textureName );
+        end
+        
+        function textureStruct = exportTexture( self )
+            textureStruct = self.Textures.exportAsStruct(  );
+        end
+        
+        function textureMap = importTexture( self, textureStruct )
+            textureMap = self.Textures.importFromStruct( textureStruct );
+        end
+        
+        function atMock = IsMockWorld( self )
+            atMock = isa( self, 'MockWorld' );
+        end
+
+        function updateTimeout( self ) %#ok
+            self.CommandReadTimeout = length( fieldnames( self.Actors ) ) * 0.1;
+        end
+
+        function onTimerEvent( self, src, eventData )%#ok
+            try
+                self.step(  );
+            catch
+                self.endSim(  );
+            end
+        end
+
+        function endSim( self )
+        
+            if ~isempty( self.StepTimer )
+                self.StepTimer.stop(  );
+                self.StepTimer.delete(  );
+                self.StepTimer = [  ];
+            end
+            self.stop(  );
+            self.release(  );
+            self.Root.generateUniqueActorID( 1 );
+        end
+
+        function keepRate( self, Rate )
+        
+            self.RateLimiter( 2 ) = self.RateLimiter( 2 ) + 1;
+            ExpectedTime = self.RateLimiter( 1 ) + self.RateLimiter( 2 ) / Rate;
+            CurrentTime = now * 86400;
+            Delay = ( ExpectedTime - CurrentTime );
+            if abs( Delay ) > 10 / Rate
+                Delay = 0.5 / Rate;
+                self.RateLimiter = [ now * 86400, 0 ];
+            end
+            if Delay > 0
+                pause( Delay );
+            else
+                drawnow;
+            end
+        end
+
+    end
+
+
+    methods ( Static = true, Access = public, Hidden = false )
+        function world = getWorld( worldName )
+    
+            world = [  ];
+            map = sim3d.World.Worlds;
+            if ( map.isKey( worldName ) )
+                world = map( worldName );
+            end
+        end
+        function worldName = generateWorldName(  )
+    
+            map = sim3d.World.Worlds;
+            worldName = sprintf( "World%d", map.Count );
+        end
+    end
+
+
+    methods ( Static = true, Access = public, Hidden = true )
+
+        function validateLicense
+            licenseCheckedOut = builtin( 'license', 'checkout', 'virtual_reality_toolbox' );
+            licenseExists = builtin( 'license', 'test', 'virtual_reality_toolbox' );
+            if licenseCheckedOut ~= 1 || licenseExists ~= 1
+                error( message( 'shared_sim3dblks:sim3dsharederrAutoIcon:invalidSL3DLicense' ) );
+            end
+        end
+
+
+        function addWorld( worldName, world )
+    
+            map = sim3d.World.Worlds;
+            if ( ~map.isKey( worldName ) )
+                map( worldName ) = world;%#ok
+            else
+                error( message( "shared_sim3d:sim3dWorld:WorldNameDuplicated", worldName ) );
+            end
+        end
+
+
+        function removeWorld( worldName )
+    
+            map = sim3d.World.Worlds;
+            if ~isempty( map ) && ( map.isKey( worldName ) )
+                map.remove( worldName );
+            end
+        end
+
+
+        function world = buildWorldFromModel( modelName )
+    
+            world = sim3d.World.getWorld( modelName );
+            if ~isempty( world )
+                if ~isvalid( world )
+    
+                    sim3d.World.removeWorld( modelName );
+                    world = sim3d.World( 'Name', modelName );
                 end
-                self.Actors.( tag ).remove( false );
-            end
-        end
-    end
-
-    function viewport = createViewport( self )
-        cameraProperties = sim3d.sensors.MainCamera.getMainCameraProperties(  );
-        cameraTransform = sim3d.utils.Transform( [  - 6, 0, 2 ], [ 0, 0, 0 ] );
-        viewport = sim3d.sensors.MainCamera( 1, 'Scene Origin', cameraProperties, cameraTransform );
-        self.add( viewport );
-        self.Viewports.Main = viewport;
-    end
-
-end
-
-
-methods ( Access = public, Hidden = true )
-    function setup( self, sampleTime )
-        R36
-        self sim3d.World
-        sampleTime( 1, 1 )single{ mustBePositive }
-    end
-
-    status = sim3d.engine.Engine.getState(  );
-    if status == sim3d.engine.EngineCommands.RUN || status == sim3d.engine.EngineCommands.INITIALIZE
-        error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
-    end
-    self.Root.setupTree(  );
-
-    self.SampleTime = sampleTime;
-    self.CommandReader = sim3d.io.CommandReader(  );
-    self.CommandReader.setTimeout( self.CommandReadTimeout );
-    self.CommandWriter = sim3d.io.CommandWriter(  );
-    self.CommandWriter.setSampleTime( self.SampleTime );
-
-    if ~isempty( self.SetupImpl )
-        self.SetupImpl( self );
-    end
-    self.emptyActorBuffer(  );
-end
-
-function start( self )
-    status = sim3d.engine.Engine.getState(  );
-    if status == sim3d.engine.EngineCommands.RUN
-        error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
-    end
-    sim3d.engine.Engine.startSimulation( self.asCommand(  ) );
-end
-
-function reset( self )
-    status = sim3d.engine.Engine.getState(  );
-    if status == sim3d.engine.EngineCommands.RUN || status == sim3d.engine.EngineCommands.INITIALIZE
-        error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
-    end
-
-    self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.INITIALIZE ) );
-    self.CommandWriter.write(  );
-    self.CommandReader.read(  );
-    sim3d.engine.Engine.setState( sim3d.engine.EngineCommands.RUN );
-    self.State = sim3d.engine.EngineCommands.RUN;
-end
-
-function updateNewActorsInWorld( self )
-
-    for n = 1:length( self.NewActorBuffer )
-        newactor = self.Actors.( self.NewActorBuffer{ n } );
-        newactor.setup(  );
-        newactor.reset(  );
-    end
-    self.emptyActorBuffer(  );
-end
-
-
-function step( self )
-
-    if ~isempty( self.OutputImpl )
-        self.OutputImpl( self );
-    end
-    self.updateNewActorsInWorld(  );
-    self.Root.output(  );
-    self.updateNewActorsInWorld(  );
-    self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.RUN ) );
-    self.CommandWriter.write(  );
-    self.CommandReader.read(  );
-    self.Root.update(  );
-
-    if ~isempty( self.UpdateImpl )
-        self.UpdateImpl( self )
-    end
-end
-
-function stop( self )
-    self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.STOP ) );
-    self.CommandWriter.write(  );
-    if self.State == sim3d.engine.EngineCommands.RUN
-        sim3d.engine.Engine.setState( sim3d.engine.EngineCommands.STOP );
-        self.State = sim3d.engine.EngineCommands.STOP;
-    end
-end
-
-function release( self )
-    if ~isempty( self.ReleaseImpl )
-        self.ReleaseImpl( self );
-    end
-    if ~isempty( self.CommandWriter )
-        self.CommandWriter.delete(  );
-    end
-    if ~isempty( self.CommandReader )
-        self.CommandReader.delete(  );
-    end
-    self.Root.delete(  );
-    sim3d.engine.Engine.stop(  );
-end
-
-function command = asCommand( self )
-    if strcmp( self.ExecutablePath, sim3d.World.Undefined ) || isempty( self.ExecutablePath )
-        command = sim3d.World.Undefined;
-        return
-    end
-
-    command.FileName = self.ExecutablePath;
-    command.Arguments = "";
-    if ( ~strcmp( self.Map, "" ) )
-        command.Arguments = command.Arguments.append(  ...
-            strcat( self.Map, " " ) ...
-            );
-    end
-    command.Arguments = command.Arguments.append(  ...
-        strcat( "-nosound", " " ),  ...
-        strcat( "-ExecCmds=", """", strjoin( self.ExecCmds, ";" ), """", " " ) ...
-        );
-    if ( ~strcmp( self.CommandLineArgs, "" ) )
-        command.Arguments = command.Arguments.append(  ...
-            strcat( self.CommandLineArgs, " " ) ...
-            );
-    end
-    if ( ~strcmp( self.RenderOffScreenFlag, "" ) )
-        command.Arguments = command.Arguments.append(  ...
-            strcat( self.RenderOffScreenFlag, " " ) ...
-            );
-    end
-    command.Arguments = command.Arguments.append(  ...
-        strcat( "-pakdir=", """", fullfile( userpath, "sim3d_project", string( sprintf( 'R%s', version( '-release' ) ) ), "WindowsNoEditor", "AutoVrtlEnv", "Content", "Paks" ), """" ) ...
-        );
-end
-
-
-function add2ActorBuffer( self, actorName )
-    self.NewActorBuffer{ end  + 1 } = actorName;
-end
-
-function emptyActorBuffer( self )
-    self.NewActorBuffer = [  ];
-end
-
-
-function cleanupTextures( self )
-    self.Textures.reset(  );
-end
-
-function textureName = addTexture( self, varargin )
-    textureName = self.Textures.add( varargin{ : } );
-end
-
-function removeTexture( self, textureName )
-    self.Textures.remove( textureName );
-end
-
-function addActorToTexture( self, texture, actorName )
-    self.Textures.addActor( texture, actorName );
-end
-
-function addTextureToActor( self, actor, texture )
-    self.Textures.addTexture( texture, actor );
-end
-
-function removeActorFromTexture( self, texture, actorName )
-    self.Textures.removeActor( texture, actorName );
-end
-
-function textureData = getTextureData( self, textureName )
-    textureData = self.Textures.getTextureData( textureName );
-end
-
-function textureStruct = exportTexture( self )
-    textureStruct = self.Textures.exportAsStruct(  );
-end
-
-function textureMap = importTexture( self, textureStruct )
-    textureMap = self.Textures.importFromStruct( textureStruct );
-end
-
-function atMock = IsMockWorld( self )
-    atMock = isa( self, 'MockWorld' );
-end
-
-function updateTimeout( self )%#ok
-    self.CommandReadTimeout = length( fieldnames( self.Actors ) ) * 0.1;
-end
-
-function onTimerEvent( self, src, eventData )%#ok
-    try
-        self.step(  );
-    catch
-        self.endSim(  );
-    end
-end
-
-function endSim( self )
-
-    if ~isempty( self.StepTimer )
-        self.StepTimer.stop(  );
-        self.StepTimer.delete(  );
-        self.StepTimer = [  ];
-    end
-    self.stop(  );
-    self.release(  );
-    self.Root.generateUniqueActorID( 1 );
-end
-
-function keepRate( self, Rate )
-
-    self.RateLimiter( 2 ) = self.RateLimiter( 2 ) + 1;
-    ExpectedTime = self.RateLimiter( 1 ) + self.RateLimiter( 2 ) / Rate;
-    CurrentTime = now * 86400;
-    Delay = ( ExpectedTime - CurrentTime );
-    if abs( Delay ) > 10 / Rate
-        Delay = 0.5 / Rate;
-        self.RateLimiter = [ now * 86400, 0 ];
-    end
-    if Delay > 0
-        pause( Delay );
-    else
-        drawnow;
-    end
-end
-
-end
-
-methods ( Static = true, Access = public, Hidden = false )
-    function world = getWorld( worldName )
-
-        world = [  ];
-        map = sim3d.World.Worlds;
-        if ( map.isKey( worldName ) )
-            world = map( worldName );
-        end
-    end
-    function worldName = generateWorldName(  )
-
-        map = sim3d.World.Worlds;
-        worldName = sprintf( "World%d", map.Count );
-    end
-end
-
-methods ( Static = true, Access = public, Hidden = true )
-
-    function validateLicense
-        licenseCheckedOut = builtin( 'license', 'checkout', 'virtual_reality_toolbox' );
-        licenseExists = builtin( 'license', 'test', 'virtual_reality_toolbox' );
-        if licenseCheckedOut ~= 1 || licenseExists ~= 1
-            error( message( 'shared_sim3dblks:sim3dsharederrAutoIcon:invalidSL3DLicense' ) );
-        end
-    end
-
-    function addWorld( worldName, world )
-
-        map = sim3d.World.Worlds;
-        if ( ~map.isKey( worldName ) )
-            map( worldName ) = world;%#ok
-        else
-            error( message( "shared_sim3d:sim3dWorld:WorldNameDuplicated", worldName ) );
-        end
-    end
-
-    function removeWorld( worldName )
-
-        map = sim3d.World.Worlds;
-        if ~isempty( map ) && ( map.isKey( worldName ) )
-            map.remove( worldName );
-        end
-    end
-
-    function world = buildWorldFromModel( modelName )
-
-        world = sim3d.World.getWorld( modelName );
-        if ~isempty( world )
-            if ~isvalid( world )
-
-                sim3d.World.removeWorld( modelName );
+            else
+    
                 world = sim3d.World( 'Name', modelName );
             end
-        else
-
-            world = sim3d.World( 'Name', modelName );
-        end
-        libraryBlock = 'sim3dlib/Simulation 3D Actor';
-        blockList = find_system( modelName, 'LookUnderMasks', 'on',  ...
-            'MatchFilter', @Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,  ...
-            'FollowLinks', 'on', 'ReferenceBlock', libraryBlock );
-
-        for i = 1:length( blockList )
-            blockOp = get_param( blockList{ i }, 'Operation' );
-            if ( strcmp( blockOp, 'Create at setup' ) )
-                sim3d.World.createBlockActors( blockList{ i }, world );
-            end
-        end
-        world.Root.generateUniqueActorID( 1 );
-    end
-
-    function actor = createBlockActors( block, world )
-        maskObj = get_param( block, 'MaskObject' );
-        actorPrm = maskObj.getParameter( 'ActorName' );
-        actorName = actorPrm.Value;
-        parentPrm = maskObj.getParameter( 'ParentName' );
-        parentName = parentPrm.Value;
-        translationPrm = maskObj.getParameter( 'Translation' );
-        translation = eval( translationPrm.Value );
-        rotationPrm = maskObj.getParameter( 'Rotation' );
-        rotation = eval( rotationPrm.Value );
-        scalePrm = maskObj.getParameter( 'Scale' );
-        scale = eval( scalePrm.Value );
-        if isfield( world.Actors, actorName )
-
-            return ;
-        end
-        actor = sim3d.Actor( 'ActorName', actorName,  ...
-            'Translation', translation,  ...
-            'Rotation', rotation,  ...
-            'Scale', scale,  ...
-            'Mobility', sim3d.utils.MobilityTypes.Movable );
-        world.add( actor );
-        if ~( strcmp( 'Scene Origin', parentName ) )
-            actor.setParentIdentifier( parentName );
-        end
-        SrcPrm = maskObj.getParameter( 'SourceFile' );
-        SrcFile = SrcPrm.Value;
-        InitPrm = maskObj.getParameter( 'InitScriptText' );
-        InitScript = InitPrm.Value;
-        if ~isempty( SrcFile )
-            try
-                [ ~, name, ext ] = fileparts( strtrim( SrcFile ) );
-                if strcmpi( ext, '.m' )
-                    feval( name, actor, world );
-                else
-                    actor.load( SrcFile );
+            libraryBlock = 'sim3dlib/Simulation 3D Actor';
+            blockList = find_system( modelName, 'LookUnderMasks', 'on',  ...
+                'MatchFilter', @Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,  ...
+                'FollowLinks', 'on', 'ReferenceBlock', libraryBlock );
+    
+            for i = 1:length( blockList )
+                blockOp = get_param( blockList{ i }, 'Operation' );
+                if ( strcmp( blockOp, 'Create at setup' ) )
+                    sim3d.World.createBlockActors( blockList{ i }, world );
                 end
-            catch e
-                error( e.message );
+            end
+            world.Root.generateUniqueActorID( 1 );
+        end
+
+
+        function actor = createBlockActors( block, world )
+            maskObj = get_param( block, 'MaskObject' );
+            actorPrm = maskObj.getParameter( 'ActorName' );
+            actorName = actorPrm.Value;
+            parentPrm = maskObj.getParameter( 'ParentName' );
+            parentName = parentPrm.Value;
+            translationPrm = maskObj.getParameter( 'Translation' );
+            translation = eval( translationPrm.Value );
+            rotationPrm = maskObj.getParameter( 'Rotation' );
+            rotation = eval( rotationPrm.Value );
+            scalePrm = maskObj.getParameter( 'Scale' );
+            scale = eval( scalePrm.Value );
+            if isfield( world.Actors, actorName )
+    
+                return ;
+            end
+            actor = sim3d.Actor( 'ActorName', actorName,  ...
+                'Translation', translation,  ...
+                'Rotation', rotation,  ...
+                'Scale', scale,  ...
+                'Mobility', sim3d.utils.MobilityTypes.Movable );
+            world.add( actor );
+            if ~( strcmp( 'Scene Origin', parentName ) )
+                actor.setParentIdentifier( parentName );
+            end
+            SrcPrm = maskObj.getParameter( 'SourceFile' );
+            SrcFile = SrcPrm.Value;
+            InitPrm = maskObj.getParameter( 'InitScriptText' );
+            InitScript = InitPrm.Value;
+            if ~isempty( SrcFile )
+                try
+                    [ ~, name, ext ] = fileparts( strtrim( SrcFile ) );
+                    if strcmpi( ext, '.m' )
+                        feval( name, actor, world );
+                    else
+                        actor.load( SrcFile );
+                    end
+                catch e
+                    error( e.message );
+                end
+            end
+            if ~isempty( InitScript )
+                try
+                    World = world;
+                    Actor = actor;
+                    eval( InitScript );
+                catch e
+                    error( e.message );
+                end
             end
         end
-        if ~isempty( InitScript )
-            try
-                World = world;
-                Actor = actor;
-                eval( InitScript );
-            catch e
-                error( e.message );
-            end
-        end
+
     end
-end
+
 end

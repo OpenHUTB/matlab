@@ -57,6 +57,16 @@ userpath
 ```
 
 
+## 解码经验
+脚本中出现`R36`表示声明函数参数验证，比如（`matlab\toolbox\shared\sim3d\sim3d\+sim3d\World.m`中的`setup()`）：
+```shell
+arguments
+    self sim3d.World
+    sampleTime(1,1) single{mustBePositive}
+end
+```
+
+
 # 计划
 
 编程实现.mlx中清除输出结果；
