@@ -1,6 +1,5 @@
 classdef Actor < sim3d.AbstractActor
 
-
     properties ( Hidden )
         Material( 1, 1 )sim3d.internal.MaterialAttributes;
         Physical( 1, 1 )sim3d.internal.PhysicalAttributes;
@@ -16,14 +15,11 @@ classdef Actor < sim3d.AbstractActor
 
     properties ( Dependent )
 
-
-
         Faces;
         Vertices;
         Normals;
         TextureCoordinates;
         VertexColors;
-
 
         Color;
         Transparency;
@@ -37,7 +33,6 @@ classdef Actor < sim3d.AbstractActor
         TextureMapping;
         TextureTransform;
 
-
         LinearVelocity;
         AngularVelocity;
         Mass;
@@ -48,6 +43,7 @@ classdef Actor < sim3d.AbstractActor
         LocationLocked;
         RotationLocked
     end
+
 
     properties ( Dependent, Hidden )
         Inertia( 1, 3 )double;
@@ -66,9 +62,11 @@ classdef Actor < sim3d.AbstractActor
 
     end
 
+
     properties ( Access = protected )
         GenericActorSubscriber = [  ];
     end
+
 
     methods
 
@@ -101,6 +99,7 @@ classdef Actor < sim3d.AbstractActor
         end
 
     end
+
 
     methods ( Access = public, Hidden )
 
@@ -189,17 +188,6 @@ classdef Actor < sim3d.AbstractActor
 
         function rotateAround( objs, Axis, Angle, Incremental )
 
-
-
-
-
-
-
-
-
-
-
-
             R36
             objs( 1, : )sim3d.Actor
             Axis( 1, 3 )double
@@ -280,23 +268,6 @@ end
 
 function createShape( objs, Type, varargin )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 R36
 objs( 1, : )sim3d.Actor
 Type( 1, : )char
@@ -318,20 +289,6 @@ end
 
 function createMesh( self, Vertices, Normals, Faces, TCoords, VColors )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 R36
 self( 1, : )sim3d.Actor
 Vertices( :, 3 )double
@@ -345,19 +302,8 @@ self.DynamicMesh.createMesh( Vertices, Normals, Faces, TCoords, VColors );
 self.DynamicMesh.IsValid = true;
 end
 
+
 function addMesh( self, Vertices, Normals, Faces, TCoords, VColors )
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 self( 1, : )sim3d.Actor
@@ -373,26 +319,6 @@ self.DynamicMesh.IsValid = true;
 end
 
 function load( objs, Source, varargin )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 for obj = objs
     if ischar( Source ) || isstring( Source )
@@ -445,14 +371,8 @@ for obj = objs
 end
 end
 
+
 function save( objs, FileName )
-
-
-
-
-
-
-
 
 isMultiple = numel( objs ) > 1;
 for obj = objs
@@ -476,23 +396,8 @@ for obj = objs
 end
 end
 
+
 function propagate( self, PropName, PropValue, Condition )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 self( 1, : )sim3d.AbstractActor
@@ -503,18 +408,8 @@ end
 propagate@sim3d.AbstractActor( self, PropName, PropValue, Condition );
 end
 
+
 function Result = gather( self, PropName, IncludeChildren )
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 self( 1, 1 )sim3d.AbstractActor
@@ -525,10 +420,8 @@ Result = gather@sim3d.AbstractActor( self, PropName, IncludeChildren );
 end
 end
 
+
 methods
-
-
-
 
 function faces = get.Faces( self )
 faces = self.DynamicMesh.Faces;
