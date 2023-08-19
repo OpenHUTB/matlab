@@ -2,37 +2,17 @@ classdef VehicleLightingModule<handle
 
     properties(Access=public,Constant)
         ValidLightTypes=["Spotlight","PointLight","MatLight"];
-
-
         PassVehLightCategories=["HighBeams","LowBeams","BrakeLights","ReverseLights","LeftSignals","RightSignals","MatHeadlights"];
         MotorcycleLightCategories=["HighBeams","LowBeams","BrakeLights","LeftSignals","RightSignals"];
         AircraftLightCategories=["LandingLights","TaxiLights","AnticollisionBeacons","WingtipStrobeLights",...
         "TailStrobeLights","NavigationLights","PositionLights"];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         GlobalLightParameters=["LightType"];
         SpotlightParameters=["LightType","Category","LightName","LightColor","Intensity","SocketName","RelativeTransform","AttenuationRadius","InnerConeAngle","OuterConeAngle","ReverseState","InitState"];
         PointLightParameters=["LightType","Category","LightName","LightColor","Intensity","SocketName","RelativeTransform","AttenuationRadius","SourceRadius","SoftSourceRadius","SourceLength","ReverseState","InitState"];
         MatLightParameters=["LightType","Category","MatPath","MatSlotName","ParamName","ParamOn","ParamOff","LightColor","ReverseState","InitState"];
     end
+
 
     properties(Access=private)
         LightConfigs={};
@@ -41,6 +21,7 @@ classdef VehicleLightingModule<handle
         LightSetFlag=true;
         RebuildLightsFlag=false;
     end
+
 
     methods(Access=public)
         function self=VehicleLightingModule(configs)
@@ -52,6 +33,7 @@ classdef VehicleLightingModule<handle
             end
         end
 
+
         function setVehicleLightStatesArray(self,categories,states)
             chk=self.LightStates;
             for i=1:length(categories)
@@ -61,6 +43,8 @@ classdef VehicleLightingModule<handle
                 self.LightSetFlag=true;
             end
         end
+
+
         function setVehicleLightStates(self,states)
             chk=self.LightStates;
             for i=1:length(states)
@@ -72,6 +56,7 @@ classdef VehicleLightingModule<handle
             end
         end
 
+
         function messageString=generateInitMessageString(self)
             self.RebuildLightsFlag=false;
             messageStruct=[];
@@ -79,6 +64,7 @@ classdef VehicleLightingModule<handle
             messageStruct.config=self.LightConfigs;
             messageString=jsonencode(messageStruct);
         end
+
 
         function messageString=generateStepMessageString(self)
             messageStruct=struct('cmd',"SKIP");
@@ -108,6 +94,7 @@ classdef VehicleLightingModule<handle
             end
         end
 
+
         function clearLightConfigs(self)
             self.LightConfigs={};
         end
@@ -116,6 +103,8 @@ classdef VehicleLightingModule<handle
                 self.addLightConfig(configs{i});
             end
         end
+
+
         function addLightConfig(self,config)
             parser=sim3d.vehicle.VehicleLightingModule.configParser();
             parser.parse(config);
@@ -123,6 +112,8 @@ classdef VehicleLightingModule<handle
             populated=sim3d.vehicle.VehicleLightingModule.populateLightConfig(parsed);
             self.appendLightConfig(populated);
         end
+
+
         function addLight(self,varargin)
             parser=sim3d.vehicle.VehicleLightingModule.configParser();
             parser.parse(varargin{:});
