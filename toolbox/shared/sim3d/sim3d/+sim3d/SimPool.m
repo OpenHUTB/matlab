@@ -1,6 +1,5 @@
 classdef SimPool
 
-
     methods(Static=true,Access=private)
         function out=pool(action,Mdl,blk,varargin)
             mlock;
@@ -169,6 +168,8 @@ classdef SimPool
             end
         end
     end
+
+
     methods(Static=true,Hidden=true)
         function reset(blk)
             if~bdIsLibrary(bdroot(blk))
@@ -179,31 +180,47 @@ classdef SimPool
         function ActorTag=next(Mdl,blk,ActorType)
             ActorTag=sim3d.SimPool.pool('next',Mdl,blk,ActorType);
         end
+
+
         function ActorTag=add(Mdl,blk,ActorType,ID)
             if~sim3d.SimPool.exist(Mdl,blk,ActorType,ID)
                 ActorTag=sim3d.SimPool.pool('add',Mdl,blk,ActorType,ID);
             end
         end
+
+
         function disp()
             [~]=sim3d.SimPool.pool('disp',[],[]);
         end
+
+
         function ActorName(Mdl,blk,ActorType,ID)
             [~]=sim3d.SimPool.pool('ActorName',Mdl,blk,ActorType,ID);
         end
+
+
         function out=exist(Mdl,blk,ActorType,ID)
             out=sim3d.SimPool.pool('exist',Mdl,blk,ActorType,ID);
         end
+
+
         function list=getActorList(Mdl,ActorType)
             list=sim3d.SimPool.pool('getList',Mdl,[],ActorType);
         end
+
+
         function remove(Mdl,blk,ActorType,ID)
             [~]=sim3d.SimPool.pool('remove',Mdl,blk,ActorType,ID);
         end
+
+
         function copyCallback(blk)
             if~bdIsLibrary(bdroot(blk))
                 set_param(blk,'ActorTag','','ActorName','','ID','');
             end
         end
+
+
         function preDeleteCallback(blk)
             if~bdIsLibrary(bdroot(blk))
                 Mdl=bdroot(blk);
@@ -219,27 +236,37 @@ classdef SimPool
 
             end
         end
+
+
         function DestroyCallback(blk)
             lib=strsplit(blk,'/');
             if~strcmp(lib{1},'built-in')
                 sim3d.SimPool.preDeleteCallback(blk)
             end
         end
+
+
         function UndoDeleteCallback(blk)
             sim3d.SimPool.addActorTag(blk);
         end
+
+
         function loadCallback(blk)
             sim3d.SimPool.addActorTag(blk);
         end
+
+
         function nameChangeCallback(blk)
             sim3d.SimPool.loadCallback(blk);
         end
+
+
         function postSaveCallback(blk)
             sim3d.SimPool.addActorTag(blk);
         end
+
+
         function addActorTag(blk)
-
-
 
             if~bdIsLibrary(bdroot(blk))
                 Mdl=bdroot(blk);
@@ -285,6 +312,8 @@ classdef SimPool
 
             end
         end
+
+
         function out=checkTag(Mdl,blk,ActorTag)
 
             out=false;
@@ -299,10 +328,14 @@ classdef SimPool
                 end
             end
         end
+
+
         function actorBlk=getActorBlock(blk,ActorType,ActorTag)
             Mdl=bdroot(blk);
             actorBlk=sim3d.SimPool.pool('getBlock',Mdl,blk,ActorType,ActorTag);
         end
+
+
         function out=getStatus(blk)
             Mdl=bdroot(blk);
             ActorName=get_param(blk,'ActorName');
@@ -331,7 +364,6 @@ classdef SimPool
                     out='Refresh';
                 end
             else
-
                 poolBlk=[sim3d.SimPool.getActorBlock(blk,ActorType,ActorName),sim3d.SimPool.getActorBlock(blk,'Custom',ActorName)];
                 if isempty(poolBlk)
                     out='Refresh';
@@ -344,6 +376,8 @@ classdef SimPool
                 end
             end
         end
+
+
         function out=isCustomTag(ActorTag,ActorType)
 
             if length(ActorTag)<=length(ActorType)||~strcmp(ActorTag(1:length(ActorType)),ActorType)
