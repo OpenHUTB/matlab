@@ -50,6 +50,12 @@ userpath
 ## 附加文件
 其他附件的文件包括支持包`SupportPackages`、软件`software`、示例`../demo`等。
 
+### 支持包
+量子计算
+```shell
+{matlab_root}\SupportPackages\toolbox\matlab\quantum
+```
+
 
 # 计划
 
