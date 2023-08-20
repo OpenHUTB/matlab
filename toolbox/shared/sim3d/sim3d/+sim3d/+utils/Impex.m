@@ -2,28 +2,22 @@ classdef Impex < handle
 
 methods ( Static )
 
-
 function exportToMATFile( inActor, FileName )
 
-
-Actors = inActor.exportAsStruct(  );
+Actors = inActor.exportAsStruct();
 
 World = inActor.ParentWorld;
-Textures = World.exportTexture(  );
-
+Textures = World.exportTexture();
 
 Info.Version = 20220315;
 Info.Date = datetime;
 Info.Author = getenv( 'username' );
-
 
 if ~isempty( FileName )
 save( FileName, '-mat', 'Info', 'Actors', 'Textures' );
 end 
 
 end 
-
-
 
 
 function importFromMATFile( Actor, FileName )
@@ -43,9 +37,6 @@ children = fieldnames( World.Actors );
 for idx = 1:numel( children )
 a = World.Actors.( children{ idx } );
 if ( isa( a, 'sim3d.Actor' ) && isfield( textureMap, a.Texture ) )
-
-
-
 
 a.Texture = data.Textures.( a.Texture ).Data;
 end 
@@ -75,7 +66,6 @@ end
 if nargin < 3
 Scale = 1;
 end 
-
 
 if ( Model.ActorID >  - 1 ) && ~( strcmp( Model.Name, 'DefaultViewpoint' ) && ~isa( Actor, 'sim3d.internal.RootObject' ) )
 
@@ -147,7 +137,6 @@ else
 NewActor = Actor;
 end 
 
-
 if ~isempty( Model.Children )
 children = struct2cell( Model.Children );
 for i = 1:numel( children )
@@ -168,13 +157,7 @@ if ~isempty( States )
 NewActor.setSnapshotState( States );
 end 
 
-
-
-
-
-
 end 
-
 
 
 function importSurf( Actor, S, Scale )
@@ -216,7 +199,6 @@ P( 1, 1 )matlab.graphics.primitive.Patch
 Scale( 1, 3 )double = [ 1, 1, 1 ]
 end 
 
-
 V = P.Vertices;
 N = V;
 if size( P.Vertices, 2 ) == 2
@@ -224,8 +206,7 @@ if size( P.Vertices, 2 ) == 2
 V( end , 3 ) = 0;
 N = zeros( size( V ) );
 N( :, 3 ) = 1;
-end 
-
+end
 
 FaceLen = size( P.Faces, 2 );
 F = [  ];
@@ -310,7 +291,6 @@ end
 end 
 
 
-
 function importSTL( Actor, FileName, Scale )
 R36
 Actor( 1, 1 )sim3d.Actor
@@ -318,12 +298,10 @@ FileName( 1, : )char
 Scale( 1, 3 )double = [ 1, 1, 1 ]
 end 
 
-
 STL = stlread( FileName );
 V = STL.Points;
 N = STL.vertexNormal;
 F = STL.ConnectivityList;
-
 
 x = V( :, 1 );
 y = V( :, 2 );
@@ -357,10 +335,6 @@ if ~isempty( WorkDir )
 WorkDir = [ WorkDir, '/' ];
 end 
 
-
-
-
-
 open( World );
 rootName = vrsfunc( 'GetRootNode', get( World, 'id' ) );
 wNodes = World.( rootName ).children;
@@ -371,9 +345,6 @@ close( World );
 if worldCreated
 delete( World );
 end 
-
-
-
 
 
 function readNode( VRNode, ParentActor )
@@ -408,7 +379,6 @@ NewActor = sim3d.Actor( 'ActorName', nName );
 ParentActor.ParentWorld.add( NewActor, ParentActor );
 NewActor.UserData.Name = nName;
 NewActor.UserData.Type = nType;
-
 
 NewActor.Scale = VRNode.scale;
 NewActor.rotateAround( VRNode.rotation( 1:3 ), VRNode.rotation( 4 ), false );
@@ -526,6 +496,7 @@ end
 end 
 end 
 
+
 function Path = clearPath( Path )
 if startsWith( Path, '*sl3dlib' )
 Path = [ matlabroot, '/toolbox/sl3d/library', Path( 9:end  ) ];
@@ -533,6 +504,7 @@ else
 Path = [ WorkDir, Path ];
 end 
 end 
+
 
 function Result = readVRProp( VRObj, PropName, DefValue )
 try 
@@ -545,12 +517,15 @@ end
 
 end 
 
+
 methods ( Access = private, Static )
+
 function Valid = checkSim3dActorStruct( Data )
 Valid = isfield( Data, 'Info' ) &&  ...
 isfield( Data.Info, 'Version' ) &&  ...
 isfield( Data, 'Actors' );
 end 
+
 
 function FixedName = fixName( nName )
 if strcmp( nName, '' )
@@ -566,6 +541,5 @@ end
 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpw3qRaQ.p.
-% Please follow local copyright laws when handling this file.
+
 
