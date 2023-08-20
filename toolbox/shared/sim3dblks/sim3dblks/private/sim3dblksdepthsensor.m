@@ -23,6 +23,7 @@ function[varargout]=sim3dblksdepthsensor(varargin)
     end
 end
 
+
 function Initialization(Block)
     GrayscaleOutportEnabled=get_param(Block,'GrayscaleOutportEnabled');
     GrayscaleOutportOptions={'simulink/Sinks/Terminator','Grayscale Terminator';...
@@ -33,7 +34,6 @@ function Initialization(Block)
     else
         autoblksreplaceblock(Block,GrayscaleOutportOptions,2);
     end
-
     sim3d.utils.internal.SensorCallback.addSensorTag(Block);
     MaskObj=get_param(Block,'MaskObject');
     vehTag=MaskObj.getParameter('vehTag');
@@ -43,6 +43,7 @@ function Initialization(Block)
     SetMountLocation(Block,"Simulation 3D Depth Sensor");
 end
 
+
 function InitVehTagList(block)
     maskObj=get_param(block,'MaskObject');
     vehTagList=maskObj.getParameter('vehTagList');
@@ -50,12 +51,10 @@ function InitVehTagList(block)
     vehTag.TypeOptions=eval(vehTagList.Value);
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     AliasNames={};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3ddepth.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end
