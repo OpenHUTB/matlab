@@ -12,15 +12,15 @@ function[varargout]=sim3dblksrayget(varargin)
     end
 end
 
+
 function Initialization(Block)
     autoblkscheckparams(Block,{'Ts',[1,1],{'st',0}});
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     AliasNames={};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
 
     IconInfo.ImageName='sim3dray.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,100,'white');
