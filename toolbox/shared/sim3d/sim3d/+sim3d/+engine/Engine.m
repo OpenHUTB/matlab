@@ -4,11 +4,13 @@ properties ( Constant = true, Hidden = true )
 engine = sim3d.engine.Engine(  )
 end 
 
+
 properties ( Constant = true, Access = private )
 NumberOfWarmUpSteps( 1, 1 )uint32 = 1
 DefHttp = 7070;
 DefStreamer = 8888;
 end 
+
 
 properties ( Access = private, Hidden = true )
 engineInterface;
