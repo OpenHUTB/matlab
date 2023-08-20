@@ -1,18 +1,18 @@
 classdef Snapshots < handle
 
-
 properties 
-States = [  ];
+States = [];
 end 
+
 
 methods 
-function self = Snapshots(  )
+function self = Snapshots()
 
-self.States = [  ];
+self.States = [];
 end 
 
-function takeSnapshot( self, Actor, Name, Properties, IncludeChildren )
 
+function takeSnapshot( self, Actor, Name, Properties, IncludeChildren )
 
 R36
 self( 1, 1 )sim3d.internal.Snapshots;
@@ -28,14 +28,10 @@ end
 
 Time = now;
 
-
-
 data = Actor.gather( Properties, IncludeChildren );
-
 
 hash = char( Properties );
 hash = [ hash( :, 1 )', num2str( size( data, 1 ) ) ];
-
 
 if ~isempty( self.States ) && ( Time < self.States{ end , 1 } )
 self.States = sortrows( [ self.States;{ Time, Name, Properties, data, hash } ], 1 );
@@ -43,19 +39,10 @@ else
 self.States = [ self.States;{ Time, Name, Properties, data, hash } ];
 end 
 
-
 end 
 
+
 function found = restoreSnapshot( self, SnapID )
-
-
-
-
-
-
-
-
-
 
 found = 1;
 
@@ -65,7 +52,6 @@ else
 [ ~, id ] = min( abs( [ self.States{ :, 1 } ] - SnapID ) );
 end 
 states = self.States( id, : );
-
 
 if ~isempty( states )
 props = states{ end , 3 };
@@ -86,15 +72,6 @@ end
 
 function removeSnapshot( self, SnapID )
 
-
-
-
-
-
-
-
-
-
 R36
 self( 1, 1 )sim3d.internal.Snapshots
 SnapID
@@ -113,13 +90,16 @@ end
 self.States( id, : ) = [  ];
 end 
 
+
 function States = getStates( self )
 States = self.States;
 end 
 
+
 function setStates( self, States )
 self.States = States;
 end 
+
 
 function reset( self )
 self.States = [  ];
@@ -127,6 +107,3 @@ end
 
 end 
 end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpITs7TX.p.
-% Please follow local copyright laws when handling this file.
-
