@@ -1,8 +1,8 @@
 classdef RBTReader<robotics.manip.internal.InternalAccess
 
-
     properties
     end
+
 
     methods
 
@@ -20,7 +20,6 @@ classdef RBTReader<robotics.manip.internal.InternalAccess
                 Visuals=[];
             end
         end
-
         function[Loc,Rot]=getTransform(obj,RBT)
             try
                 Loc=RBT.Joint.JointToParentTransform(1:3,4)';
@@ -29,12 +28,10 @@ classdef RBTReader<robotics.manip.internal.InternalAccess
                 if RBT.Joint.HomePosition~=0
                     Rot=Rot*sim3d.internal.Math.rot321(RBT.Joint.JointAxis*RBT.Joint.HomePosition*180/pi);
                 end
-
                 if~isequal(RBT.Joint.ChildToJointTransform,eye(4))
                     Loc=Loc+RBT.Joint.ChildToJointTransform(1:3,4)';
                     Rot=Rot*RBT.Joint.ChildToJointTransform(1:3,1:3);
                 end
-
                 Rot=sim3d.internal.Math.decomp321(Rot);
             catch
                 Loc=[0,0,0];
