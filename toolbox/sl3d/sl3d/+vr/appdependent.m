@@ -1,11 +1,4 @@
 function appset=appdependent(action)
-
-
-
-
-
-
-
     persistent deployed fullinstall;
     if isempty(deployed)
         deployed=isdeployed;
@@ -14,10 +7,8 @@ function appset=appdependent(action)
         fullinstall=exist(fullfile(fileparts(fileparts(fileparts(mfilename('fullpath')))),'sl3dext','sl3d','Contents.m'),'file')~=0;
     end
 
-
     isdemo=~deployed&&(~fullinstall||~license('test','Virtual_Reality_Toolbox'));
     onoff={'on','off'};
-
 
     if nargin==0
         appset.capture=onoff{1+isdemo};
