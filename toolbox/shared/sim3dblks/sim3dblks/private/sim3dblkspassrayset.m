@@ -16,18 +16,16 @@ function[varargout]=sim3dblkspassrayset(varargin)
     end
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     AliasNames={};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3dpassray.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,100,'white');
 end
 
-function Initialization(Block)
 
+function Initialization(Block)
     SrcSelVeh=get_param(Block,'VehExtEn');
     VehDistToCenterOptions={'sim3dcommon/Vehicle Center Distance Constant Inputs','Vehicle Center Distance Constant Inputs';...
     'sim3dcommon/Vehicle Center Distance External Inputs','Vehicle Center Distance External Inputs'};
@@ -37,7 +35,6 @@ function Initialization(Block)
     else
         autoblksreplaceblock(Block,VehDistToCenterOptions,2);
     end
-
     SrcSelTire=get_param(Block,'TireRadiiExt');
     TireDistToCenterOptions={'sim3dcommon/Tire Center Distance Constant Inputs','Tire Center Distance Constant Inputs';...
     'sim3dcommon/Tire Center Distance External Inputs','Tire Center Distance External Inputs'};
@@ -48,16 +45,13 @@ function Initialization(Block)
         autoblksreplaceblock(Block,TireDistToCenterOptions,2);
     end
 
-
     InportNames={'VehCntr';'TireRadii'};
-
     FoundNames=get_param(find_system(Block,'LookUnderMasks','all','SearchDepth',1,'FollowLinks','on','BlockType','Inport'),'Name');
     [~,PortI]=intersect(InportNames,FoundNames);
     PortI=sort(PortI);
     for i=1:length(PortI)
         set_param([Block,'/',InportNames{PortI(i)}],'Port',num2str(i));
     end
-
 
     ParamList={...
     'VehRayLngth',[1,1],{'gte',0};...
@@ -78,6 +72,7 @@ function Initialization(Block)
     autoblkscheckparams(Block,ParamList);
 end
 
+
 function VehExtDistToCenterCallback(Block)
     SrcSelection=get_param(Block,'VehExtEn');
     DistToCenterSel={'VehCntrLngthVal'};
@@ -88,6 +83,7 @@ function VehExtDistToCenterCallback(Block)
         autoblksenableparameters(Block,[],DistToCenterSel);
     end
 end
+
 
 function TireExtDistToCenterCallback(Block)
     SrcSelection=get_param(Block,'TireRadiiExt');
