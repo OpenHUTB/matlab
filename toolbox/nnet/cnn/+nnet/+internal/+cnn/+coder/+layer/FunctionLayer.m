@@ -1,8 +1,5 @@
 classdef FunctionLayer<nnet.layer.Layer
 
-
-
-
 %#codegen
 
     properties
@@ -10,15 +7,17 @@ PredictFcnStr
         CodegenCompatibilityMessageID=''
     end
 
+
     methods
+
         function layer=FunctionLayer(predictFcn,numInputs,numOutputs,name)
             coder.allowpcode('plain');
-
             layer.PredictFcnStr=func2str(predictFcn);
             layer.Name=name;
             layer.NumInputs=numInputs;
             layer.NumOutputs=numOutputs;
         end
+
 
         function varargout=predict(this,varargin)
             f=coder.const(str2func(this.PredictFcnStr));
@@ -27,14 +26,18 @@ PredictFcnStr
 
     end
 
+
     methods(Static,Access=public,Hidden)
+
         function n=matlabCodegenNontunableProperties(~)
             n={'PredictFcnStr','CodegenCompatibilityMessageID'};
         end
 
     end
 
+
     methods(Static)
+
         function msg=checkCodegenCompatibility(mlObj)
             if~iIsCodegenCompatibleFunction(mlObj)
                 msg='nnet_cnn:nnet:checklayer:constraints:SupportedFunctionLayerForCodegen:UnsupportedFunctionHandle';
@@ -44,6 +47,7 @@ PredictFcnStr
                 msg='';
             end
         end
+
 
         function cgObj=matlabCodegenToRedirected(mlObj)
             cgObj=nnet.internal.cnn.coder.layer.FunctionLayer(mlObj.PredictFcn,...
@@ -57,6 +61,7 @@ PredictFcnStr
 
     end
 end
+
 
 function supported=iIsCodegenCompatibleFunction(mlObj)
     funInfo=functions(mlObj.PredictFcn);
