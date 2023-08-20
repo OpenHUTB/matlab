@@ -1,14 +1,18 @@
 classdef Textures<handle
+
     properties(Access=private)
         TextureCache;
         TextureUniqueId;
     end
 
+
     methods
+
         function self=Textures()
             self.TextureCache=struct();
             self.TextureUniqueId=0;
         end
+
 
         function textureName=add(self,texture,textureName)
             if nargin<3
@@ -25,18 +29,18 @@ classdef Textures<handle
             end
         end
 
-        function remove(self,textureName)
 
+        function remove(self,textureName)
             if isfield(self.TextureCache,textureName)
                 self.TextureCache=rmfield(self.TextureCache,textureName);
             end
         end
 
+
         function reset(self)
             self.TextureCache=struct();
             self.TextureUniqueId=0;
         end
-
         function[found,textureName]=exists(self,texture,textureName)
             found=false;
             textureNameList=fieldnames(self.TextureCache);
@@ -63,6 +67,7 @@ classdef Textures<handle
             end
         end
 
+
         function addTexture(self,texture,actor)
             if(~isempty(actor.ParentWorld))
                 if isfield(self.TextureCache,texture)
@@ -73,16 +78,17 @@ classdef Textures<handle
             end
         end
 
+
         function addActor(self,textureName,actorName)
             if~isfield(self.TextureCache,textureName)
                 error("Texturefile not available in cache, add texture first then add actor to use texture");
             end
-
             if~any(contains(self.TextureCache.(textureName).Actors,actorName))
 
                 self.TextureCache.(textureName).Actors{end+1}=actorName;
             end
         end
+
 
         function removeActor(self,textureName,actorName)
             if isfield(self.TextureCache,textureName)
@@ -92,6 +98,7 @@ classdef Textures<handle
             end
         end
 
+
         function textureData=getTextureData(self,textureName)
             textureData=[];
             if isfield(self.TextureCache,textureName)
@@ -99,9 +106,11 @@ classdef Textures<handle
             end
         end
 
+
         function textureStruct=exportAsStruct(self)
             textureStruct=self.TextureCache;
         end
+
 
         function textureMap=importFromStruct(self,textureStruct)
             textureMap=struct();
