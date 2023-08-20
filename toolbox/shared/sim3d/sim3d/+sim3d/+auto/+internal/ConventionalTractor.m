@@ -1,6 +1,5 @@
 classdef ConventionalTractor
 
-
     properties(Constant=true)
         FrontBumper=struct(...
         'translation',single([7.73,0,0.69]),...
