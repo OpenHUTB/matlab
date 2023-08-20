@@ -4,7 +4,6 @@ function setSubsystemName(block)
         if strcmp(get_param(blocks(i),"Name"),"Simulation 3D Range Sensor")
             continue;
         end
-
         set_param(blocks(i),"Name",get_param(gcb,"Name"));
     end
 end
