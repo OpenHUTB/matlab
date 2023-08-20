@@ -27,6 +27,7 @@ function[varargout]=sim3dblksvisiondetectiongenerator(varargin)
     end
 end
 
+
 function Initialization(Block)
     if bdIsLibrary(bdroot(Block))
         return
@@ -34,7 +35,6 @@ function Initialization(Block)
 
     configureTruthOutports(Block);
     configureLanesAndObjectsOutports(Block);
-
     sim3d.utils.internal.SensorCallback.addSensorTag(Block);
     MaskObj=get_param(Block,'MaskObject');
     vehTag=MaskObj.getParameter('vehTag');
