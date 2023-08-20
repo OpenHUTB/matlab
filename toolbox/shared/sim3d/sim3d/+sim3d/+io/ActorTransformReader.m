@@ -7,13 +7,18 @@ classdef ActorTransformReader<handle
         rotation=[];
         scale=[];
     end
+
+
     properties(Constant=true)
         Suffix='/Transform_IN';
         TranslationIndex=1
         RotationIndex=2
         ScaleIndex=3
     end
+
+
     methods
+
         function self=ActorTransformReader(actorTag,NumberOfParts)
             self.Reader=sim3d.io.Subscriber([actorTag,sim3d.io.ActorTransformReader.Suffix]);
             self.NumberOfParts=NumberOfParts;
@@ -23,6 +28,7 @@ classdef ActorTransformReader<handle
                 throw(timeoutException);
             end
         end
+
 
         function delete(self)
             if~isempty(self.Reader)
