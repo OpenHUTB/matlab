@@ -4,14 +4,20 @@ classdef CommandReader<handle
         Reader=[]
         Timeout(1,1)int32=120000
     end
+
+
     properties(Constant=true)
         Topic='Simulation3DEngineStatus'
         LeaseDuration=10000
     end
+
+
     methods
+
         function self=CommandReader()
             self.Reader=sim3d.io.Subscriber(sim3d.io.CommandReader.Topic,'LeaseDuration',sim3d.io.CommandReader.LeaseDuration);
         end
+
 
         function delete(self)
             if~isempty(self.Reader)
@@ -48,6 +54,7 @@ classdef CommandReader<handle
                 end
             end
         end
+
 
         function setTimeout(self,timeout)
             self.Timeout=1000*timeout;
