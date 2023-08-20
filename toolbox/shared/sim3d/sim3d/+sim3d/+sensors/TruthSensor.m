@@ -1,12 +1,13 @@
 classdef TruthSensor<handle
 
-
     methods(Static)
+
         function tag=GetActorTag(id)
             tokens=strsplit(mfilename('class'),'.');
             tag=sprintf(strcat(tokens{end},'%d'),id);
         end
     end
+
 
     properties
         ActorTag;
@@ -19,41 +20,44 @@ classdef TruthSensor<handle
         TruthTopic=[];
     end
 
+
     properties(Constant=true)
         SuffixIn='/TruthSensorSignal_IN';
         SuffixOut='/TruthSensor_OUT';
     end
 
+
     properties(Access=private)
         CreateActor=[]
     end
 
+
     methods
+
         function self=TruthSensor(actorID,vehicleID,NumberOfRays,translation,rotation)
             ActorTag=self.GetActorTag(actorID);
             self.CreateActor=sim3d.utils.CreateActor;
             self.CreateActor.setActorName(ActorTag);
             self.CreateActor.setParentName(vehicleID);
             self.CreateActor.setCreateActorType(self.getActorType());
-
             transform=struct('translation',translation,'rotation',deg2rad(rotation),'scale',[1,1,1]);
             self.CreateActor.setActorLocation(transform);
             self.CreateActor.write;
-
             self.NumberOfRays=NumberOfRays;
             self.TruthTopic=struct('NumberOfRays',uint32(self.NumberOfRays),...
             'RayStartingPoints',single(zeros(uint32(self.NumberOfRays),3)),...
             'RayEndingPoints',single(zeros(uint32(self.NumberOfRays),3)),...
             'Translation',single(zeros(1,3)),...
             'Rotation',single(zeros(1,3)));
-
             self.Reader=sim3d.io.Subscriber([ActorTag,sim3d.sensors.TruthSensor.SuffixIn]);
             self.Writer=sim3d.io.Publisher([ActorTag,sim3d.sensors.TruthSensor.SuffixOut],'Packet',self.TruthTopic);
         end
 
+
         function actorType=getActorType(~)
             actorType=sim3d.utils.ActorTypes.RadarGroundTruth;
         end
+
 
         function delete(self)
             if~isempty(self.Reader)
@@ -92,12 +96,11 @@ classdef TruthSensor<handle
                 result=sim3d.engine.EngineReturnCode.No_Data;
             end
             sim3d.engine.EngineReturnCode.assertReturnCodeAndWarnNoData(result,gcb,self.StepCounter);
-
-
             ImpactPoints(2,:)=-1*ImpactPoints(2,:);
             ObjLocations(2,:)=-1*ObjLocations(2,:);
             Velocities(2,:)=-1*Velocities(2,:);
         end
+
 
         function write(self,rayStartingPoints,rayEndingPoints,translation,rotation)
             if size(rayStartingPoints,1)~=uint32(self.NumberOfRays)||size(rayStartingPoints,2)~=3
