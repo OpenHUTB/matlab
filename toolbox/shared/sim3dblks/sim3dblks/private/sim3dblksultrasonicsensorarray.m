@@ -23,6 +23,7 @@ function[varargout]=sim3dblksultrasonicsensorarray(varargin)
     end
 end
 
+
 function Initialization(block)
     sim3d.utils.internal.SensorCallback.addSensorTag(block);
     MaskObj=get_param(block,'MaskObject');
@@ -38,6 +39,7 @@ function Initialization(block)
     autoblkscheckparams(block,ParamList);
 end
 
+
 function InitVehTagList(block)
     maskObj=get_param(block,'MaskObject');
     vehTagList=maskObj.getParameter('vehTagList');
@@ -45,15 +47,15 @@ function InitVehTagList(block)
     vehTag.TypeOptions=eval(vehTagList.Value);
 end
 
+
 function IconInfo=DrawCommands(Block)
 
     AliasNames={};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3d_ultrasonic_sensor.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end
+
 
 function ConfigureOutputPorts(block)
     DetectionsOptions={...
@@ -75,7 +77,6 @@ function ConfigureOutputPorts(block)
     'simulink/Sinks/Terminator','Range terminator';...
     'simulink/Sinks/Out1','Range'...
     };
-
     useBusOutput=get_param(block,"useBusOutput");
     if strcmp(useBusOutput,'off')
         autoblksreplaceblock(block,DetectionsOptions,1);
