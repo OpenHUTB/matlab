@@ -1,8 +1,4 @@
 function SL3DReplacements(obj)
-
-
-
-
     if isR2018bOrEarlier(obj.ver)
         obj.removeLibraryLinksTo(sprintf('vrlib/Utilities/VR Rotation to\nRotation Matrix'));
         obj.removeLibraryLinksTo(sprintf('vrlib/Utilities/MATLAB to\nVR Coordinates'));
