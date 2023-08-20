@@ -5,9 +5,13 @@ classdef EngineGlnxa64<sim3d.engine.EngineInterface
             self.EngineLastError=sim3d.engine.EngineReturnCode.OK;
             self.EnginePid=uint32(feature('getpid'));
         end
+
+
         function delete(self)
             self.stop();
         end
+
+
         function retcode=startProject(self,project)
             retcode=sim3d.engine.EngineReturnCode.Error;
             projcommand=strcat(project.FileName," ",project.Arguments);
@@ -17,7 +21,10 @@ classdef EngineGlnxa64<sim3d.engine.EngineInterface
             end
         end
     end
+
+
     methods(Access=private,Hidden=true)
+
         function retcode=checkRunning(self,project)
             retcode=sim3d.engine.EngineReturnCode.Timeout;
             projcommand=strcat(project.FileName," ",project.Arguments);
