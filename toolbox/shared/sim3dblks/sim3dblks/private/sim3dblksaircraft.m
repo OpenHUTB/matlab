@@ -18,8 +18,8 @@ function[varargout]=sim3dblksaircraft(varargin)
     end
 end
 
-function MeshDependencies(Block)
 
+function MeshDependencies(Block)
     block_h=getSimulinkBlockHandle(Block);
     maskObj=Simulink.Mask.get(block_h);
     mesh=get_param(block_h,'Mesh');
@@ -47,7 +47,6 @@ function MeshDependencies(Block)
         meshPath.Visible='on';
     end
 
-
     cs=sprintf('[%d, %d]',nrows,ncols);
     ccs=get_param([Block,'/Translation'],'PortDimensions');
     if~strcmp(ccs,cs)
@@ -58,8 +57,8 @@ function MeshDependencies(Block)
     LightConfiguration(Block);
 end
 
-function AltitudeSensor(Block)
 
+function AltitudeSensor(Block)
     block_h=getSimulinkBlockHandle(Block);
     maskObj=Simulink.Mask.get(block_h);
     viz=get_param(block_h,'IsGHSensorEnabled');
@@ -67,8 +66,8 @@ function AltitudeSensor(Block)
     [maskObj.Parameters(i1:i1+5).Visible]=deal(viz);
 end
 
-function LightConfiguration(Block)
 
+function LightConfiguration(Block)
     block_h=getSimulinkBlockHandle(Block);
     maskObj=Simulink.Mask.get(block_h);
     lightsConfig=get_param(block_h,'LightsConfig');
@@ -95,7 +94,6 @@ function LightConfiguration(Block)
         beaconPanel.Visible='on';
     end
 
-
     mesh=get_param(block_h,'Mesh');
     np=36;
     enabled=true(1,np);
@@ -116,7 +114,6 @@ function LightConfiguration(Block)
         enabled(19:22)=false;
         enabled(25:26)=false;
 
-
     case 'General aviation'
     case 'Air transport'
     case 'Custom'
@@ -128,26 +125,22 @@ function LightConfiguration(Block)
     end
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     aliasNames={'Translation','Translation';'Rotation','Rotation'};
     IconInfo=autoblksgetportlabels(Block,aliasNames);
-
-
     IconInfo.ImageName='aeroblksim3d.svg';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end
 
-function Initialization(Block)
 
+function Initialization(Block)
     sim3d.utils.SimPool.addActorTag(Block);
     maskObj=get_param(Block,'MaskObject');
     vehName=maskObj.getParameter('ActorTag');
     set_param([Block,'/Simulation 3D Aircraft'],'ActorTag',vehName.Value);
     paramList={'SampleTime',[1,1],{'st',0};};
     autoblkscheckparams(Block,paramList);
-
-
     isOutportEnabled=get_param(Block,'IsGHSensorEnabled');
     outport1Options={'simulink/Sinks/Terminator','Alt Terminator';...
     'simulink/Sinks/Out1','Altitude'};
@@ -160,8 +153,6 @@ function Initialization(Block)
         autoblksreplaceblock(Block,outport1Options,2);
         autoblksreplaceblock(Block,outport2Options,2);
     end
-
-
     lightsConfig=get_param(Block,'LightsConfig');
     inportOptions={'simulink/Sources/Ground','Lights Ground';...
     'simulink/Sources/In1','LightStates'};
