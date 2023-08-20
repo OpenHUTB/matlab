@@ -146,16 +146,24 @@ end
 
 
 methods ( Access = public, Hidden = true )
-function actorType = getActorType( ~ )
+
+function actorType = getActorType(~)
 actorType = sim3d.utils.ActorTypes.Motorcycle;
-end 
+end
+
+
 function numberOfParts = getNumberOfParts( self )
 numberOfParts = self.NumberOfParts;
-end 
+end
+
+
 function tagName = getTagName( ~ )
 tagName = 'Motorcycle';
-end 
-end 
+end
+
+end
+
+
 methods ( Access = private, Static )
 
 function ret = getBlueprintPath( motorcycleType )
@@ -171,6 +179,7 @@ ret = 'Blueprint''/MathWorksAutomotiveContent/Vehicles/Motorcycle/Blueprints/BP_
 end 
 end 
 
+
 function r = parseInputs( numberOfParts, varargin )
 
 defaultParams = struct(  ...
@@ -183,7 +192,6 @@ defaultParams = struct(  ...
 'ActorID', sim3d.utils.SemanticType.Vehicle,  ...
 'DebugRayTrace', false );
 
-
 parser = inputParser;
 parser.addParameter( 'Color', defaultParams.Color );
 parser.addParameter( 'Mesh', defaultParams.Mesh );
@@ -192,8 +200,7 @@ parser.addParameter( 'Translation', defaultParams.Translation );
 parser.addParameter( 'Rotation', defaultParams.Rotation );
 parser.addParameter( 'Scale', defaultParams.Scale );
 parser.addParameter( 'ActorID', defaultParams.ActorID );
-parser.addParameter( 'LightConfiguration', {  } );
-
+parser.addParameter( 'LightConfiguration', {} );
 
 parser.parse( varargin{ : } );
 r = parser.Results;
@@ -201,6 +208,5 @@ end
 end 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp2ijfue.p.
-% Please follow local copyright laws when handling this file.
+
 
