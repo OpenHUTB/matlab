@@ -1,19 +1,18 @@
 classdef Trailer < sim3d.auto.WheeledVehicle
 
-
 properties ( SetAccess = 'private', GetAccess = 'public' )
 TrailerType;
 end 
 
-methods 
+
+methods
+
 function self = Trailer( actorName, trailerType, varargin )
 narginchk( 2, inf );
 [ numberOfParts ] = sim3d.auto.Trailer.getNumberOfPartsFromTrailerType( trailerType );
 r = sim3d.auto.Trailer.parseInputs( numberOfParts, varargin{ : } );
 
-
 mesh = '';
-
 
 self@sim3d.auto.WheeledVehicle( actorName, r.ActorID, r.Translation,  ...
 r.Rotation, r.Scale, numberOfParts, mesh );
@@ -26,12 +25,12 @@ self.Rotation = single( r.Rotation );
 self.Scale = single( r.Scale );
 self.ActorID = r.ActorID;
 
-
 self.Config.MeshPath = self.Mesh;
 self.Config.AnimationPath = self.Animation;
 self.Config.ColorPath = '';
 self.Config.AdditionalOptions = '';
-end 
+end
+
 
 function ret = getVehicleType( self )
 switch self.TrailerType
@@ -42,9 +41,10 @@ ret = 1;
 otherwise 
 error( 'sim3d:invalidVehicleType', 'Invalid Vehicle Type. Please check help and select a valid Vehicle Type' );
 end 
-end 
+end
 
-function ret = getMesh( self )
+
+function ret = getMesh(self)
 switch self.TrailerType
 case 'TwoAxleTrailer'
 ret = '/MathWorksAutomotiveContent/Vehicles/USBoxTrailer/Mesh/SK_USBoxTrailer.SK_USBoxTrailer';
@@ -53,9 +53,10 @@ ret = '/MathWorksAutomotiveContent/Vehicles/EUBoxTrailer/Mesh/SK_EUBoxTrailer.SK
 otherwise 
 ret = '';
 end 
-end 
+end
 
-function ret = getAnimation( self )
+
+function ret = getAnimation(self)
 switch self.TrailerType
 case 'TwoAxleTrailer'
 ret = '/MathWorksAutomotiveContent/Vehicles/USBoxTrailer/Animations/USTrailerAnimBP.USTrailerAnimBP_C';
@@ -64,18 +65,20 @@ ret = '/MathWorksAutomotiveContent/Vehicles/EUBoxTrailer/Animations/EUTrailerAni
 otherwise 
 ret = '';
 end 
-end 
+end
 
-function actorType = getActorType( ~ )
+
+function actorType = getActorType(~)
 actorType = sim3d.utils.ActorTypes.Trailer;
-end 
+end
 
-function tagName = getTagName( ~ )
+
+function tagName = getTagName(~)
 tagName = 'Trailer';
 end 
 
 
-function setRaytraceConfig( self )
+function setRaytraceConfig(self)
 switch self.TrailerType
 case 'TwoAxleTrailer'
 self.RayStart = [ 0, 0,  - 1;0, 0,  - 1;0, 0,  - 1;0, 0,  - 1 ];
@@ -88,7 +91,8 @@ end
 if ( self.DebugRayTrace )
 self.RayEnd( :, 2 ) = 1;
 end 
-end 
+end
+
 
 function copy( self, other, CopyChildren, UseSourcePosition )
 R36
@@ -98,27 +102,29 @@ CopyChildren( 1, 1 )logical = true
 UseSourcePosition( 1, 1 )logical = false
 end 
 
-
 self.TrailerType = other.TrailerType;
-
 
 copy@sim3d.auto.WheeledVehicle( self, other, CopyChildren, UseSourcePosition );
 
 end 
+
 
 function actorS = getAttributes( self )
 actorS = getAttributes@sim3d.auto.WheeledVehicle( self );
 actorS.TrailerType = self.TrailerType;
 end 
 
+
 function setAttributes( self, actorS )
 setAttributes@sim3d.auto.WheeledVehicle( self, actorS );
 self.TrailerType = actorS.TrailerType;
 end 
 
-end 
+end
+
 
 methods ( Access = private, Static )
+
 function r = parseInputs( numberOfParts, varargin )
 
 defaultParams = struct(  ...
@@ -131,7 +137,6 @@ defaultParams = struct(  ...
 'ActorID', 10,  ...
 'DebugRayTrace', false );
 
-
 parser = inputParser;
 parser.addParameter( 'Color', defaultParams.Color );
 parser.addParameter( 'Mesh', defaultParams.Mesh );
@@ -142,13 +147,13 @@ parser.addParameter( 'Scale', defaultParams.Scale );
 parser.addParameter( 'ActorID', defaultParams.ActorID );
 parser.addParameter( 'DebugRayTrace', defaultParams.DebugRayTrace );
 
-
 parser.parse( varargin{ : } );
 r = parser.Results;
 r.Translation( 2:end , : ) = 0;
 r.Rotation( 2:end , : ) = 0;
 r.Scale( 2:end , : ) = 1;
-end 
+end
+
 
 function [ numberOfParts ] = getNumberOfPartsFromTrailerType( trailerType )
 switch trailerType
@@ -165,6 +170,5 @@ end
 end 
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpJyZSoG.p.
-% Please follow local copyright laws when handling this file.
+
 
