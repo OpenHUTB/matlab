@@ -2,20 +2,21 @@ classdef Motorcycle < sim3d.auto.WheeledVehicle
 
 properties ( SetAccess = 'private', GetAccess = 'public' )
 
-LightModule = {  };
+LightModule = {};
 MotorcycleType;
-end 
+end
+
+
 properties ( Access = private )
 WheelBase = 1.72;
 WheelRadius = 0.35;
-end 
+end
+
 
 methods 
 function self = Motorcycle( actorName, motorcycleType, varargin )
 numberOfParts = uint32( 4 );
 r = sim3d.auto.Motorcycle.parseInputs( numberOfParts, varargin{ : } );
-
-
 
 self@sim3d.auto.WheeledVehicle( actorName, r.ActorID, r.Translation,  ...
 r.Rotation, r.Scale, numberOfParts, sim3d.auto.Motorcycle.getBlueprintPath( motorcycleType ) );
@@ -30,17 +31,16 @@ self.ActorID = r.ActorID;
 self.RayStart = [ 0, 0,  - 0.35;0, 0,  - 0.35 ];
 self.RayEnd = [ 1, 0, 5;1, 0, 5 ];
 
-
 self.Config.MeshPath = self.Mesh;
 self.Config.AnimationPath = self.Animation;
 self.Config.ColorPath = self.Color;
 self.Config.AdditionalOptions = '';
 
-
 self.LightModule = sim3d.vehicle.VehicleLightingModule( r.LightConfiguration );
 
 self.Config.AdditionalOptions = self.LightModule.generateInitMessageString(  );
-end 
+end
+
 
 function step( self, X, Y, Yaw )
 translation = zeros( self.NumberOfParts, 3, 'single' );
@@ -62,11 +62,11 @@ pYaw = previousRotation( 1, 3 );
 pWheelRotation = previousRotation( 2, 2 );
 currentWheelRotation = self.EstimateWheelRotationAndSteerAngle( pX, pY, pYaw, pWheelRotation, X, Y, Yaw, self.WheelBase, self.WheelRadius );
 
-
 rotation( 2:3, 2 ) = single( currentWheelRotation );
 self.writeTransform( translation, rotation, scale );
 self.writeConfig(  );
 end 
+
 
 function writeConfig( self )
 
@@ -74,11 +74,10 @@ self.Config.AdditionalOptions = self.LightModule.generateStepMessageString(  );
 
 self.ConfigWriter.send( self.Config );
 
-end 
+end
 
 
 function wheelRotation = EstimateWheelRotationAndSteerAngle( ~, pX, pY, pYaw, pWheelRotation, X, Y, Yaw, WheelBase, WheelRadius )
-
 
 dX = X - pX;
 dY = Y - pY;
@@ -95,14 +94,15 @@ Rest = CGdisp / 2 / sin( dPsi / 2 );
 deltaL = atan( WheelBase / ( Rest - 1.9 / 2 ) );
 deltaR = atan( WheelBase / ( Rest + 1.9 / 2 ) );
 
-
 wheelRotation = cos( median( [ deltaL, deltaR ] ) ) * CGdisp / WheelRadius * cos( beta );
 wheelRotation = pWheelRotation + wheelRotation;
-end 
+end
+
 
 function ret = getMesh( self )
 ret = self.Mesh;
 end 
+
 
 function ret = getColor( ~, color )
 switch color
@@ -127,6 +127,7 @@ error( 'sim3d:invalidVehicleColor', 'Invalid Vehicle Color. Please check help an
 end 
 end 
 
+
 function copy( self, other, CopyChildren, UseSourcePosition )
 R36
 self( 1, 1 )sim3d.auto.PassengerVehicle
@@ -135,15 +136,15 @@ CopyChildren( 1, 1 )logical = true
 UseSourcePosition( 1, 1 )logical = false
 end 
 
-
 self.LightModule = other.LightModule;
-
 
 copy@sim3d.auto.WheeledVehicle( self, other, CopyChildren, UseSourcePosition );
 
 end 
 
-end 
+end
+
+
 methods ( Access = public, Hidden = true )
 function actorType = getActorType( ~ )
 actorType = sim3d.utils.ActorTypes.Motorcycle;
