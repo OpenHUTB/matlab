@@ -1,10 +1,10 @@
 classdef Publisher<handle
-
     properties(Constant=true,Access=protected)
         DefaultQueueDepth=1
         DefaultPacketSize=8192
         DefaultLeaseDuration=0
     end
+
 
     properties
 Domain
@@ -15,7 +15,9 @@ Topic
         LeaseDuration=sim3d.io.Publisher.DefaultLeaseDuration
     end
 
+
     methods(Access=public)
+
         function self=Publisher(topic,varargin)
             parser=inputParser;
             parser.addParameter('Domain',num2str(uint32(feature('getpid'))));
@@ -42,14 +44,17 @@ Topic
             self.Writer=liveio.SharedMemoryPublisher(self.Domain,self.Topic,qos);
         end
 
+
         function delete(self)
             self.Writer.delete();
             self.Writer=[];
         end
 
+
         function publish(self,message)
             self.send(message);
         end
+
 
         function success=send(self,message)
             messageSize=liveio.ArrayPacketSize(message);
