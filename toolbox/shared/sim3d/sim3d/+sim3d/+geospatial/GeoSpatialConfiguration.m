@@ -1,4 +1,5 @@
 classdef GeoSpatialConfiguration<sim3d.AbstractActor
+
     properties
         ActorTag;
         AuthManager;
@@ -7,11 +8,14 @@ classdef GeoSpatialConfiguration<sim3d.AbstractActor
         ConfigPublisher=[];
     end
 
+
     properties(Access=protected,Constant)
         Suffix='/GeoSpatialConfiguration_OUT';
     end
 
+
     methods
+
         function self=GeoSpatialConfiguration(actorName,accessTokenID,geoSpatialProperties)
             self@sim3d.AbstractActor(uint32(1),'Scene Origin',[0,0,0],[0,0,0],[1,1,1],'ActorName',actorName);
             self.ActorTag=actorName;
@@ -22,29 +26,38 @@ classdef GeoSpatialConfiguration<sim3d.AbstractActor
             self.reset();
         end
 
+
         function setup(self)
             setup@sim3d.AbstractActor(self);
             self.ConfigPublisher=sim3d.io.Publisher([self.getTag(),self.Suffix]);
         end
 
+
         function reset(self)
             self.ConfigPublisher.publish(self.Config);
         end
+
 
         function delete(self)
             delete@sim3d.AbstractActor(self);
         end
     end
 
+
     methods(Access=public,Hidden=true)
+
         function tag=getTag(self)
             tag=self.ActorTag;
         end
+
         function actorType=getActorType(~)
             actorType=sim3d.utils.ActorTypes.GeoSpatialActor;
         end
     end
+
+
     methods(Static)
+
         function configProperties=getGeoSpatialConfigProperties()
             configProperties=struct(...
             'AccessToken',"",...
