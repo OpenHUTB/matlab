@@ -1,6 +1,5 @@
 classdef VehicleTypes
 
-
     properties(Constant=true)
         MuscleCar=0
         Sedan=1
