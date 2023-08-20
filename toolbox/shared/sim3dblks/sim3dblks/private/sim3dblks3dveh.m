@@ -16,8 +16,8 @@ function[varargout]=sim3dblks3dveh(varargin)
     end
 end
 
-function VehLightsControl(Block)
 
+function VehLightsControl(Block)
     LightsEnabled=get_param(Block,'VehLightsControl');
     p=Simulink.Mask.get(Block);
     if strcmp(LightsEnabled,'off')
@@ -41,15 +41,14 @@ function VehLightsControl(Block)
     end
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     AliasNames={'X','X';'Y','Y';'Yaw','Yaw'};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3dvehtxfrm.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end
+
 
 function VehicleSelection(Block)
     MaskObj=get_param(Block,'MaskObject');
@@ -60,6 +59,7 @@ function VehicleSelection(Block)
         MeshPath.Visible='on';
     end
 end
+
 
 function Initialization(Block)
     sim3d.utils.SimPool.addActorTag(Block);
@@ -80,12 +80,8 @@ function Initialization(Block)
     'SignallightPeriod',[1,1],{};...
     'SignalPulseWidth',[1,1],{};};
     autoblkscheckparams(Block,ParamList);
-
-
     MeshPath=MaskObj.getParameter('MeshPath');
     set_param([Block,'/Simulation 3D Vehicle'],'MeshPath',MeshPath.Value);
-
-
     LightsEnabled=get_param(Block,'VehLightsControl');
     LightsInportOptions={'built-in/Constant','LightStates';...
     'simulink/Sources/In1','Light controls'};
