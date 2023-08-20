@@ -1,7 +1,7 @@
 classdef AuthManager<handle
 
-
     methods(Static)
+
         function obj=AuthManager()
             settingsTree=settings;
             if(~settingsTree.hasGroup('sim3dgeospatial'))
@@ -12,6 +12,7 @@ classdef AuthManager<handle
             end
         end
 
+
         function tokenVal=getTokenValue(tokenID)
             tokenVal="";
             settingsTree=settings;
@@ -21,12 +22,14 @@ classdef AuthManager<handle
             end
         end
 
+
         function addToken(tokenID,tokenVal)
             settingsTree=settings;
             accessTokens=settingsTree.sim3dgeospatial.accesstokens;
             accessTokens.addSetting(tokenID);
             accessTokens.(tokenID).PersonalValue=tokenVal;
         end
+
 
         function updateToken(tokenID,tokenVal)
             settingsTree=settings;
@@ -38,6 +41,7 @@ classdef AuthManager<handle
             end
         end
 
+
         function removeToken(tokenID)
             settingsTree=settings;
             accessTokens=settingsTree.sim3dgeospatial.accesstokens;
@@ -45,6 +49,7 @@ classdef AuthManager<handle
                 accessTokens.removeSetting(tokenID);
             end
         end
+
 
         function tokenList=getAvailableTokenIDs()
             settingsTree=settings;
