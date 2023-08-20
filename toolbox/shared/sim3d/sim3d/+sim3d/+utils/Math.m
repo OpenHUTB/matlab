@@ -1,6 +1,5 @@
 classdef Math<handle
 
-
     methods(Static)
 
         function M=rot321(XYZ)
@@ -25,15 +24,12 @@ classdef Math<handle
                 cB=cos(Angle);
                 sB=sin(Angle);
                 M=zeros(3);
-
                 M(1,1)=cB+Axis(1)*Axis(1)*(1-cB);
                 M(1,2)=Axis(1)*Axis(2)*(1-cB)-Axis(3)*sB;
                 M(1,3)=Axis(1)*Axis(3)*(1-cB)+Axis(2)*sB;
-
                 M(2,1)=Axis(1)*Axis(2)*(1-cB)+Axis(3)*sB;
                 M(2,2)=cB+Axis(2)*Axis(2)*(1-cB);
                 M(2,3)=Axis(2)*Axis(3)*(1-cB)-Axis(1)*sB;
-
                 M(3,1)=Axis(1)*Axis(3)*(1-cB)-Axis(2)*sB;
                 M(3,2)=Axis(2)*Axis(3)*(1-cB)+Axis(1)*sB;
                 M(3,3)=cB+Axis(3)*Axis(3)*(1-cB);
@@ -55,19 +51,14 @@ classdef Math<handle
         function outXYZ=rotToUnreal(inXYZ,CoordinateSystem)
             switch CoordinateSystem
             case 'unreal'
-
                 outXYZ=inXYZ;
             case 'matlab'
-
                 outXYZ=[inXYZ(:,1),-inXYZ(:,2),-inXYZ(:,3)];
             case 'vrml'
-
                 outXYZ=[inXYZ(:,1),inXYZ(:,3),-inXYZ(:,2)];
             case 'lhcs'
-
                 outXYZ=inXYZ;
             case 'aerospace'
-
                 outXYZ=inXYZ;
             end
         end
