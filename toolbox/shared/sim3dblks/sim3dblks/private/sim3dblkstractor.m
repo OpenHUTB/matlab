@@ -12,15 +12,14 @@ function[varargout]=sim3dblkstractor(varargin)
     end
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     AliasNames={'Translation','Translation';'Rotation','Rotation';'Scale','Scale'};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3dtractor.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end
+
 
 function Initialization(Block)
     sim3d.utils.SimPool.addActorTag(Block);
