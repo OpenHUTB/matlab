@@ -8,23 +8,15 @@ function functionText=generateObjectDetectorFunction(...
     labelsEnabled,...
     scoresEnabled,...
     enumTypeName)
-
-
-
-
-
     possibleOutputs=["bboxes","labels","scores"];
     possibleTempOutputs=["bboxes","labels_idxs","scores"];
     outputDependencies=[bboxesEnabled,labelsEnabled,scoresEnabled];
 
     possibleConversion="labels = "+enumTypeName+"(labels_idxs);";
     conversionDependency=labelsEnabled;
-
-
     outputs=possibleOutputs(outputDependencies);
     tempOutputs=possibleTempOutputs(outputDependencies);
     conversions=possibleConversion(conversionDependency);
-
 
     outputsString=join(outputs,", ");
     if isempty(outputsString)
@@ -38,19 +30,14 @@ function functionText=generateObjectDetectorFunction(...
     end
     tempOutputsString="["+tempOutputsString+"]";
 
-
     numOutputs=length(outputs);
     if numOutputs>0
         signature="function "+outputsString+" = objectDetector(image)";
     else
         signature="function objectDetector(image)";
     end
-
-
     detectArgsStr=deep.blocks.internal.cell2str(detectArgs);
     ssbmArgsStr=deep.blocks.internal.cell2str(ssbmArgs);
-
-
     [useExtrinsicLines,extrinsicVar]=deep.blocks.internal.generateUseExtrinsicCode(simSupported);
 
     tempInputsString=join([...
