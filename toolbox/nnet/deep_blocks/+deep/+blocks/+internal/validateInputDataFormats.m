@@ -1,8 +1,5 @@
 function validateInputDataFormats(inputFormats,isDlNetwork)
 
-
-
-
     if~isDlNetwork
         return
     end
