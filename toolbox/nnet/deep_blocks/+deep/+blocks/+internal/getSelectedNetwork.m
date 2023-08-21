@@ -3,10 +3,6 @@ function networkToLoad=getSelectedNetwork(...
     networkSelect,...
     networkFilePath,...
     networkFunction)
-
-
-
-
     blockType=get_param(block,'MaskType');
     if strcmp(blockType,'Deep Learning Object Detector')
         keyword='Detector';
@@ -15,10 +11,8 @@ function networkToLoad=getSelectedNetwork(...
     end
 
     if nargin<4
-
         networkSelectValue=get_param(block,keyword);
         blockObject=get_param(block,'Object');
-
         allowedValues=blockObject.getPropAllowedValues(keyword);
         networkSelect=find(strcmpi(networkSelectValue,allowedValues));
 
