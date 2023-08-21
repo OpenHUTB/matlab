@@ -23,6 +23,7 @@ function[varargout]=sim3dblkssemanticsegmentation(varargin)
     end
 end
 
+
 function Initialization(Block)
     sim3d.utils.internal.SensorCallback.addSensorTag(Block);
     MaskObj=get_param(Block,'MaskObject');
@@ -33,6 +34,7 @@ function Initialization(Block)
     SetMountLocation(Block,"Simulation 3D Semantic Segmentation");
 end
 
+
 function InitVehTagList(block)
     maskObj=get_param(block,'MaskObject');
     vehTagList=maskObj.getParameter('vehTagList');
@@ -40,12 +42,10 @@ function InitVehTagList(block)
     vehTag.TypeOptions=eval(vehTagList.Value);
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     AliasNames={};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3dsemantic.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end

@@ -1,5 +1,4 @@
 classdef Road<sim3d.AbstractActor
-
  properties(SetAccess='private',GetAccess='public')
         splineValues=[];
         splineValuesSize=1;
@@ -8,31 +7,22 @@ classdef Road<sim3d.AbstractActor
         pathWidth=[];
         pathWidthSize=1;
 
-
         SplineLoc;
-
 
         BankAngles;
 
-
         RoadWidth;
-
 
         LaneStyle;
 
-
         LaneStyleColor;
-
 
 LaneWidth
 
-
         ActorTag;
-
 
         CrownHeight;
         CrownType;
-
 
         MeshLength;
         MeshWidth;
@@ -64,7 +54,6 @@ LaneWidth
         MaxStrLengthName=128;
         MaxStrLengthMesh=256;
         MaxLaneNum=100;
-
         ValidMarkerTypes=["Unmarked","Solid","Dashed","DoubleSolid","DoubleDashed","SolidDashed","DashedSolid","ShortDashed"];
         ValidColorKeys=[" ","w","y","o","r","b","br","g","p","pr","yg"];
         ValidColorRGBA={...
@@ -82,29 +71,25 @@ LaneWidth
         ValidCrownTypes=["Parabolic","Radial","Linear"];
     end
 
+
     methods
+
         function self=Road(actorName,splineLoc,bankAngles,roadWidth,laneStyle,laneStyleColor,laneWidth,varargin)
             narginchk(7,inf);
             r=sim3d.road.Road.parseInputs(varargin{:});
             numberOfParts=1;
             self@sim3d.AbstractActor(actorName,'Scene Origin',r.Translation,r.Rotation,r.Scale,...
             'ActorClassId',r.ActorID,'NumberOfParts',numberOfParts);
-
-
             self.splineValues=single(ones(1,3));
             self.splineValuesSize=uint32(0);
-
             self.bankAngleValues=single(zeros(1,1));
             self.bankAngleValuesSize=uint32(0);
-
             self.pathWidth=single(zeros(1,1));
             self.pathWidthSize=uint32(0);
-
             normPathBuffer=char(zeros(1,sim3d.utils.CreateActor.MaxStrLengthMesh));
             normStr='NormalPath';
             normPathLength=length(normStr);
             normPathBuffer(1:normPathLength)=normStr(1:normPathLength);
-
             laneWidthBuffer=single(ones(1,sim3d.road.Road.MaxLaneNum));
             markerBuffer=int32(zeros(1,sim3d.road.Road.MaxLaneNum+1));
             colorBuffer=uint8(zeros(1,4*(sim3d.road.Road.MaxLaneNum+1)));
@@ -114,7 +99,6 @@ LaneWidth
             splineValuesBuffer=single(ones(1,3));
             bankAngleValuesBuffer=single(zeros(1,1));
             pathWidthBuffer=single(zeros(1,1));
-
             self.RoadConfigStruct=struct(...
             'Length',single(0),...
             'Width',single(0),...
@@ -142,23 +126,16 @@ LaneWidth
 
 
             self.ActorTag=actorName;
-
-
             self.SplineLoc=splineLoc*[1,0,0;0,-1,0;0,0,1];
             self.BankAngles=deg2rad(bankAngles);
             self.RoadWidth=roadWidth;
             self.LaneStyle=laneStyle;
             self.LaneStyleColor=laneStyleColor;
             self.LaneWidth=laneWidth;
-
-
-
             self.Translation=single(r.Translation);
             self.Rotation=single(r.Rotation);
             self.Scale=single(r.Scale);
             self.ActorID=r.ActorID;
-
-
             self.CrownHeight=r.CrownHeight;
             self.CrownType=r.CrownType;
             self.MeshLength=r.MeshLength;
@@ -181,11 +158,9 @@ LaneWidth
             if length(self.MarkerStencils)==1
                 self.MarkerStencils=self.MarkerStencils*ones(1,length(laneWidth)+1);
             end
-
             self.setTexProperties(self.MarkWidth,self.DashLength,self.DashSpace,self.AbsWidth,self.NormalPath,self.RoadColor);
             self.setMeshProperties(self.MeshLength,self.MeshWidth,self.CrownHeight,self.CrownType,self.VertCrownCount,self.VertFlatCount,self.ClosedLoop);
             self.setLaneConfig(length(laneWidth),laneWidth,laneStyle,laneStyleColor,self.LaneStencils,self.MarkerStencils);
-
             self.setSpline(self.SplineLoc);
             self.setBank(self.BankAngles);
             self.setPathWidth(self.RoadWidth);
@@ -193,12 +168,14 @@ LaneWidth
             self.writeConfig();
         end
 
+
         function setup(self)
             setup@sim3d.AbstractActor(self);
             roadTopicStr=['RoadConfigTopic',(self.ActorTag)];
             self.ConfigWriter=sim3d.io.Publisher(roadTopicStr,'Packet',self.RoadConfigStruct);
             self.ConfigWriter.send(self.RoadConfigStruct);
         end
+
 
         function writeConfig(self)
             if self.splineValuesSize~=self.bankAngleValuesSize
@@ -223,6 +200,7 @@ LaneWidth
             end
         end
 
+
         function delete(self)
             if~isempty(self.ConfigWriter)
                 self.ConfigWriter.delete();
@@ -231,6 +209,7 @@ LaneWidth
 
             delete@sim3d.AbstractActor(self);
         end
+
 
         function setSpline(self,splineValues)
             splineDimension1=size(splineValues,1);
@@ -253,6 +232,7 @@ LaneWidth
             self.RoadConfigStruct.SplineValuesSize=self.splineValuesSize;
         end
 
+
         function setBank(self,bankAngleValues)
             bankAngleDimension1=size(bankAngleValues,1);
             bankAngleDimension2=size(bankAngleValues,2);
@@ -272,6 +252,7 @@ LaneWidth
             self.bankAngleValuesSize=uint32(size(self.bankAngleValues,1));
             self.RoadConfigStruct.BankAngleValues=self.bankAngleValues;
         end
+
 
         function setPathWidth(self,pathWidth)
             pathWidthDimension1=size(pathWidth,1);
@@ -293,6 +274,7 @@ LaneWidth
             self.RoadConfigStruct.PathWidth=self.pathWidth;
         end
 
+
         function setTexProperties(self,mw,ml,sl,bwid,npath,roadClr)
             [r,c]=size(roadClr);
             if r~=1||c~=4
@@ -300,7 +282,6 @@ LaneWidth
                 'Road color array is incorrectly shaped');
                 throw(setupException);
             end
-
             self.RoadConfigStruct.MarkWidth=single(mw);
             self.RoadConfigStruct.DashLength=single(ml);
             self.RoadConfigStruct.DashSpace=single(sl);
@@ -311,6 +292,7 @@ LaneWidth
             self.RoadConfigStruct.NormPath(1:npathLen)=npath(1:npathLen);
             self.RoadConfigStruct.RoadColor(1:4)=uint8(roadClr(1:4));
         end
+
 
         function setMeshProperties(self,len,wid,hm,crn,vn,vfn,closed)
             if len<0||wid<0||hm<0||~any(self.ValidCrownTypes==crn)||vn<2||vfn<2
@@ -328,18 +310,16 @@ LaneWidth
             self.RoadConfigStruct.ClosedLoop=logical(closed);
         end
 
+
         function setLaneConfig(self,laneCount,wids,marks,clrs,laneStencils,markerStencils)
             if length(wids)~=laneCount||length(marks)~=laneCount+1||length(clrs)~=laneCount+1||length(laneStencils)~=laneCount||length(markerStencils)~=laneCount+1||laneCount<=0
                 setupException=MException('sim3d:Road:setLaneConfig:InvalidSize',...
                 'LaneWidths, LaneConfig, and/or LaneColors is an improper size');
                 throw(setupException);
             end
-
             self.RoadConfigStruct.NumLanes=uint32(laneCount);
-
             self.RoadConfigStruct.LaneWidths=single(zeros(1,sim3d.road.Road.MaxLaneNum));
             self.RoadConfigStruct.LaneWidths(1:laneCount)=single(wids(1:laneCount));
-
             self.RoadConfigStruct.Markers=int32(zeros(1,sim3d.road.Road.MaxLaneNum+1));
             if~all(ismember(marks,self.ValidMarkerTypes))
                 setupException=MException('sim3d:Road:setLaneConfig:InvalidLaneTypeError',...
@@ -363,13 +343,12 @@ LaneWidth
             end
             self.RoadConfigStruct.LaneStencils(1:laneCount)=uint16(laneStencils(1:laneCount));
             self.RoadConfigStruct.MarkerStencils(1:(laneCount+1))=uint16(markerStencils(1:(laneCount+1)));
-
-
             ValidColorMap=containers.Map(self.ValidColorKeys,self.ValidColorRGBA);
             ctags=arrayfun(@(x)(ValidColorMap(x)),clrs,'UniformOutput',false);
             rgba=reshape(cat(1,ctags{:})',1,[]);
             self.RoadConfigStruct.ColorsRGBA(1:(length(rgba)))=int32(rgba(1:(length(rgba))));
         end
+
 
         function actorType=getActorType(~)
             actorType=sim3d.utils.ActorTypes.SplineTrack;
@@ -378,8 +357,8 @@ LaneWidth
 
 
     methods(Access=private,Static=true,Hidden=true)
-        function r=parseInputs(varargin)
 
+        function r=parseInputs(varargin)
             defaultParams=struct(...
             'Translation',[0,0,0],...
             'Rotation',[0,0,0],...
@@ -400,10 +379,7 @@ LaneWidth
             'MarkerStencils',6,...
             'RoadColor',[13,13,13,255],...
             'NormalPath','/MathWorksSimulation/LandScape/Roads/FourLaneRoad/Texture/T_FourLaneRoad_N');
-
-
             parser=inputParser;
-
             parser.addParameter('Translation',defaultParams.Translation);
             parser.addParameter('Rotation',defaultParams.Rotation);
             parser.addParameter('Scale',defaultParams.Scale);
@@ -423,8 +399,6 @@ LaneWidth
             parser.addParameter('MarkerStencils',defaultParams.MarkerStencils);
             parser.addParameter('RoadColor',defaultParams.RoadColor);
             parser.addParameter('NormalPath',defaultParams.NormalPath);
-
-
             parser.parse(varargin{:});
             r=parser.Results;
         end

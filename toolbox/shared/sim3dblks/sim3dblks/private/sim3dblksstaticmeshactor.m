@@ -19,15 +19,16 @@ function[varargout]=sim3dblksstaticmeshactor(varargin)
     end
 end
 
+
 function Initialization(Block)
     ActorControlEnabled(Block)
     EnableOutportTransformPort(Block)
     EnableOutportCollisionPort(Block)
     autoblkscheckparams(Block,{'SampleTime',[1,1],{'st',0}});
 end
+
+
 function ActorControlEnabled(Block)
-
-
     MaskObject=get_param(Block,'MaskObject');
     ActorControlEnabled=MaskObject.getParameter('ActorControl');
     TranslationInportOptions={'simulink/Sources/Ground','Translation Ground';...
@@ -41,13 +42,13 @@ function ActorControlEnabled(Block)
         autoblksreplaceblock(Block,TranslationInportOptions,1);
         autoblksreplaceblock(Block,RotationInportOptions,1);
         autoblksreplaceblock(Block,ScaleInportOptions,1);
-
     else
         autoblksreplaceblock(Block,TranslationInportOptions,2);
         autoblksreplaceblock(Block,RotationInportOptions,2);
         autoblksreplaceblock(Block,ScaleInportOptions,2);
     end
 end
+
 
 function ActorControlEnabled2(Block)
     MaskObject=get_param(Block,'MaskObject');
@@ -70,8 +71,8 @@ function ActorControlEnabled2(Block)
     end
 end
 
-function SetMobility(Block)
 
+function SetMobility(Block)
     MaskObject=get_param(Block,'MaskObject');
     ActorControlEnabled=MaskObject.getParameter('ActorControl');
     SimPhys=MaskObject.getParameter('SimulatePhysics');
@@ -98,6 +99,7 @@ function SetMobility(Block)
 
 end
 
+
 function SimulatePhysics(Block)
     MaskObject=get_param(Block,'MaskObject');
     ActorControlEnabled=MaskObject.getParameter('ActorControl');
@@ -115,15 +117,13 @@ function SimulatePhysics(Block)
     end
 end
 
+
 function EnableOutportTransformPort(Block)
-
-
     OutputTransformEnabled=get_param(Block,'Parameter15');
     LocationOuportOptions={'simulink/Sinks/Terminator','Location Terminator';...
     'simulink/Sinks/Out1','Location'};
     OrientationOuportOptions={'simulink/Sinks/Terminator','Orientation Terminator';...
     'simulink/Sinks/Out1','Orientation'};
-
     if strcmp(OutputTransformEnabled,'off')
         autoblksreplaceblock(Block,LocationOuportOptions,1);
         autoblksreplaceblock(Block,OrientationOuportOptions,1);
@@ -133,9 +133,8 @@ function EnableOutportTransformPort(Block)
     end
 end
 
+
 function EnableOutportCollisionPort(Block)
-
-
     OutputCollisionEnabled=get_param(Block,'Parameter16');
     CollisionOutportOptions={'simulink/Sinks/Terminator','Collision Terminator';...
     'simulink/Sinks/Out1','Collision_Flag'};

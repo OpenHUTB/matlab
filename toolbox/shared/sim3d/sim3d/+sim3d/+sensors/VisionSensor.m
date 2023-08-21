@@ -1,48 +1,28 @@
 classdef VisionSensor<sim3d.sensors.AbstractCameraSensor
-
     properties(Access=protected,Constant=true)
-
-
         MaxHorizontalFieldOfView(1,1)single=150;
-
-
-
         NumberOfCoefficientsOpenCVModel(1,1)uint32=6
     end
 
+
     properties
-
-
 
         FocalLength=[1109,1109];
 
-
-
-
         OpticalCenter=[640,360];
-
-
-
 
         ImageSize=[720,1280];
 
-
-
-
         RadialDistortion=[0,0];
 
-
-
-
         TangentialDistortion=[0,0];
-
-
-
 
         SensorSkew=0;
     end
 
+
     methods
+
         function self=VisionSensor(sensorID,vehicleID,sensorProperties,transform)
             horizontalFieldOfView=single(2*rad2deg(atan(0.5*double(sensorProperties.ImageSize(2))/double(sensorProperties.FocalLength(1)))));
             sensorName=sim3d.sensors.Sensor.getSensorName('VisionSensor',sensorID);
@@ -56,14 +36,19 @@ classdef VisionSensor<sim3d.sensors.AbstractCameraSensor
             self.SensorSkew=single(sensorProperties.SensorSkew);
         end
     end
+
+
     methods(Access=protected,Hidden=true)
+
         function focalLength=getFocalLength(self)
             focalLength=uint32(self.FocalLength);
         end
 
+
         function opticalCenter=getOpticalCenter(self)
             opticalCenter=uint32(self.OpticalCenter);
         end
+
 
         function skew=getSkew(self)
             skew=single(self.SensorSkew/single(self.FocalLength(2)));
@@ -81,6 +66,7 @@ classdef VisionSensor<sim3d.sensors.AbstractCameraSensor
             tangentialDistortion(1:tangentialDistortionLength)=self.TangentialDistortion(1:tangentialDistortionLength);
         end
 
+
         function parameters=createCameraConfigurationParameters(self)
             parameters=createCameraConfigurationParameters@sim3d.sensors.AbstractCameraSensor(self);
             parameters=self.recalculateRadialDistortionCoefficients(parameters);
@@ -89,6 +75,8 @@ classdef VisionSensor<sim3d.sensors.AbstractCameraSensor
                 error(message('shared_sim3dblks:sim3dblkCameraPinHole:blkPrmError_fieldOfView'));
             end
         end
+
+
         function cameraParameters=recalculateRadialDistortionCoefficients(self,cameraParameters)
             m=double(cameraParameters.horizontalResolution);
             n=double(cameraParameters.verticalResolution);
@@ -131,14 +119,8 @@ classdef VisionSensor<sim3d.sensors.AbstractCameraSensor
             v=(y-cy)/fy;
             r2=u^2+v^2;
 
-
             N=length(radialDistortion);
             if N==sim3d.sensors.VisionSensor.NumberOfCoefficientsOpenCVModel
-
-
-
-
-
                 numerator=1;
                 denominator=1;
                 N_2=N/2;
@@ -171,7 +153,10 @@ classdef VisionSensor<sim3d.sensors.AbstractCameraSensor
             yd=vd*fy+cy;
         end
     end
+
+
     methods(Static)
+
         function visionSensorProperties=getVisionSensorProperties()
             visionSensorProperties=struct(...
             'FocalLength',[1108,1108],...

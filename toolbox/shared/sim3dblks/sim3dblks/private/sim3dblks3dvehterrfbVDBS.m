@@ -17,15 +17,14 @@ function[varargout]=sim3dblks3dvehterrfbVDBS(varargin)
     end
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     AliasNames={'X','X';'Y','Y';'Yaw','Yaw'};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3dvehicle.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end
+
 
 function VehicleSelection(Block)
     MaskObj=get_param(Block,'MaskObject');
@@ -36,8 +35,8 @@ function VehicleSelection(Block)
     end
 end
 
-function VehLightsControl(Block)
 
+function VehLightsControl(Block)
     LightsEnabled=get_param(Block,'VehLightsControl');
     p=Simulink.Mask.get(Block);
     if strcmp(LightsEnabled,'off')
@@ -60,10 +59,10 @@ function VehLightsControl(Block)
         p.getDialogControl('SignallightSettingsMenu').Expand='on';
     end
 end
+
+
 function ParamStruct=Initialization(Block)
     BlkHdl=get_param(Block,'Handle');
-
-
     vehType=get_param(BlkHdl,'PassVehMesh');
     MaskObj=get_param(Block,'MaskObject');
     TrackWidth=MaskObj.getParameter('TrackWidth');
@@ -97,8 +96,6 @@ function ParamStruct=Initialization(Block)
         fprintf('The "%s" has a wheel radius of %0.3g m and a wheelbase of %0.3g m.',...
         vehType,ParamStruct.WheelRadius,ParamStruct.WheelBase);
     end
-
-
     sim3d.utils.SimPool.addActorTag(Block);
     vehName=MaskObj.getParameter('ActorTag');
     set_param([Block,'/Simulation 3D Vehicle'],'ActorTag',vehName.Value);
@@ -120,18 +117,12 @@ function ParamStruct=Initialization(Block)
     'SignallightIntensity',[1,1],{'gte',0};...
     'SignallightPeriod',[1,1],{};...
     'SignalPulseWidth',[1,1],{};};
-
-
-
     MeshPath=MaskObj.getParameter('MeshPath');
     set_param([Block,'/Simulation 3D Vehicle'],'MeshPath',MeshPath.Value);
 
     set_param([Block,'/Simulation 3D Vehicle'],'TrackWidth',TrackWidth.Value);
     set_param([Block,'/Simulation 3D Vehicle'],'WheelBase',WheelBase.Value);
     set_param([Block,'/Simulation 3D Vehicle'],'WheelRadius',WheelRadius.Value);
-
-
-
     LightsEnabled=get_param(Block,'VehLightsControl');
     LightsInportOptions={'built-in/Constant','LightStates';...
     'simulink/Sources/In1','Light controls'};

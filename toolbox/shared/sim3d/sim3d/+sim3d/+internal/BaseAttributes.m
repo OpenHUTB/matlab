@@ -6,9 +6,11 @@ classdef BaseAttributes<handle
         AttributesBuffer=[];
     end
 
+
     properties(Hidden,Constant)
         All=0;
     end
+
 
     methods
 
@@ -16,22 +18,22 @@ classdef BaseAttributes<handle
             self.AttributesBuffer=zeros(1,self.getTotalAttributes());
         end
 
+
         function setup(self,messageTopicOut)
             message=self.createMessage();
             packetSize=liveio.ArrayPacketSize(message);
             self.AttributesPublisher=sim3d.io.Publisher(messageTopicOut,'PacketSize',packetSize);
         end
 
+
         function publish(self)
-
-
             message=self.createMessage();
             self.publishMessage(message);
             self.emptyAttributesBuffer();
         end
 
-        function delete(self)
 
+        function delete(self)
             if~isempty(self.AttributesPublisher)
                 self.AttributesPublisher.delete();
                 self.AttributesPublisher=[];
@@ -40,8 +42,8 @@ classdef BaseAttributes<handle
         end
     end
 
-    methods(Access=protected)
 
+    methods(Access=protected)
 
         function publishMessage(self,message)
             if nargin==1
@@ -51,6 +53,7 @@ classdef BaseAttributes<handle
                 self.AttributesPublisher.publish(message);
             end
         end
+
 
         function selectedMessage=createMessage(self)
             selectedMessage=[];
@@ -65,20 +68,24 @@ classdef BaseAttributes<handle
             self.AttributesBuffer(attributesID)=1;
         end
 
+
         function buffer=getAttributesBuffer(self)
             buffer=self.AttributesBuffer;
         end
 
+
         function emptyAttributesBuffer(self)
             self.AttributesBuffer=zeros(1,self.getTotalAttributes());
         end
-
     end
 
+
     methods(Hidden)
+
         function totalAttributes=getTotalAttributes(self)
             totalAttributes=self.All;
         end
+
 
         function selectedAttributes=getSelectedAttributes(~)
             selectedAttributes=[];

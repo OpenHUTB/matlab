@@ -7,28 +7,10 @@ AvailablePrimitives = { 'arrow', 'box', 'cone', 'cylinder', 'checker',  ...
 'voxel' };
 end 
 
+
 methods ( Static )
 
-
-
 function [ V, N, F, T, C ] = arrow( ASize, Segments, Axis )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
@@ -36,9 +18,7 @@ Segments( 1, 1 )double = 9
 Axis( 1, 1 )double = 3
 end 
 
-
 [ V, N, F, T, C ] = sim3d.utils.Geometry.revolution( [  - 0.5, 0;0.2, 0.25;0.2, 0.5;0.5, 0 ], Segments, false, false );
-
 
 if Axis == 3
 V = V .* ASize;
@@ -48,74 +28,39 @@ N = circshift( N, [ 0, Axis ] );
 end 
 end 
 
+
 function [ V, N, F, T, C ] = box( ASize )
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
 end 
 
-
 V = repmat( ( [ 0, 0, 0;1, 0, 0;1, 1, 0;0, 1, 0;0, 0, 1;1, 0, 1;1, 1, 1;0, 1, 1 ] - 0.5 ) .* ASize, [ 3, 1 ] );
-
 
 N = [ 0, 0,  - 1;0, 0,  - 1;0, 0,  - 1;0, 0,  - 1;0, 0, 1;0, 0, 1;0, 0, 1;0, 0, 1; ...
  - 1, 0, 0;1, 0, 0;1, 0, 0; - 1, 0, 0; - 1, 0, 0;1, 0, 0;1, 0, 0; - 1, 0, 0; ...
 0,  - 1, 0;0,  - 1, 0;0, 1, 0;0, 1, 0;0,  - 1, 0;0,  - 1, 0;0, 1, 0;0, 1, 0 ];
 
-
 T = [ 0, 0;1, 0;1, 1;0, 1;0, 1;1, 1;1, 0;0, 0; ...
 1, 1;0, 1;1, 1;0, 1;1, 0;0, 0;1, 0;0, 0; ...
 0, 1;1, 1;0, 1;1, 1;0, 0;1, 0;0, 0;1, 0 ];
 
-
-
 F = [ 0, 2, 3;0, 1, 2;16, 20, 21;21, 17, 16;9, 13, 10;10, 13, 14;18, 22, 19;19, 22, 23;11, 15, 8;8, 15, 12;4, 7, 5;5, 7, 6 ];
-
 
 C = [  ];
 end 
 
+
 function [ V, N, F, T, C ] = cone( ASize, Segments, Axis )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
 Segments( 1, 1 )double = 24
 Axis( 1, 1 )double = 3
 end 
-
 
 [ V, N, F, T, C ] = sim3d.utils.Geometry.revolution( [  - 0.5, 0.5;0.5, 0 ], Segments, true, false );
 
-
 if Axis == 3
 V = V .* ASize;
 else 
@@ -124,25 +69,8 @@ N = circshift( N, [ 0, Axis ] );
 end 
 end 
 
+
 function [ V, N, F, T, C ] = cylinder( ASize, Segments, Axis )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
@@ -150,9 +78,7 @@ Segments( 1, 1 )double = 24
 Axis( 1, 1 )double = 3
 end 
 
-
 [ V, N, F, T, C ] = sim3d.utils.Geometry.revolution( [  - 0.5, 0.5;0.5, 0.5 ], Segments, true, true );
-
 
 if Axis == 3
 V = V .* ASize;
@@ -162,26 +88,8 @@ N = circshift( N, [ 0, Axis ] );
 end 
 end 
 
+
 function [ V, N, F, T, C ] = checker( ASize, Segments, Color1, Color2 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
@@ -226,37 +134,8 @@ end
 end 
 end 
 
+
 function [ V, N, F, T, C ] = extrusion( Spine, Scale, Profile, BeginCap, EndCap )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 Spine
@@ -285,7 +164,6 @@ Scale = [ ones( size( Scale, 1 ), 1 ), Scale( :, [ 1, 2 ] ) ];
 end 
 end 
 
-
 if BeginCap
 bcShift = Spine( 2, : ) - Spine( 1, : );
 Scale = [ 1, 0, 0;Scale( 1, : );Scale ];
@@ -296,7 +174,6 @@ ecShift = Spine( end , : ) - Spine( end  - 1, : );
 Scale = [ Scale;Scale( end , : );1, 0, 0 ];
 Spine = [ Spine;Spine( end , : ) + ecShift;Spine( end , : ) + 2 * ecShift ];
 end 
-
 
 if length( Profile ) == 1
 
@@ -315,12 +192,10 @@ for i = 1:Segments + 1
 n0( i, : ) = [ 0, n0( i, 3 ),  - n0( i, 2 ) ] / norm( n0( i, : ) );
 end 
 t0 = [ linspace( 0, 1, Segments + 1 )', v0( :, 1 ) ];
-end 
-
+end
 
 f = ( 0:Segments - 1 )';
 f0 = [ f, f + Segments + 2, f + 1;f, f + Segments + 1, f + Segments + 2 ];
-
 
 nS = size( Spine, 1 );
 if ~BeginCap && ~EndCap
@@ -332,7 +207,6 @@ tY = [ 0, 0, linspace( 0, 1, nS - 2 ) ];
 elseif BeginCap && EndCap
 tY = [ 0, 0, linspace( 0, 1, nS - 4 ), 1, 1 ];
 end 
-
 
 Ptot = Spine( 1, : );
 for i = 2:nS
@@ -350,12 +224,10 @@ f0 = f0 + Segments + 1;
 T = vertcat( T, t0 + [ 0, tY( i ) ] );
 end 
 
-
 lp = Segments + 1;
 V = [ ( V( 1:lp, : ) - Spine( 2, : ) ) .* Scale( 1, : ) ./ Scale( 2, : ) + Spine( 1, : );V ];
 N = [ N( 1:lp, : );N ];
 T = [ t0;T ];
-
 
 if BeginCap
 V( 1:lp * 2, : ) = V( 1:lp * 2, : ) + bcShift;
@@ -369,45 +241,23 @@ N( end  - lp * 2 + 1:end , : ) = zeros( lp * 2, 3 ) + ecShift;
 end 
 end 
 
+
 function [ V, N, F, T, C ] = icosphere( ASize, Subdivision, Axis )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
 Subdivision( 1, 1 )double = 1
 Axis( 1, 1 )double = 3
-end 
-
+end
 
 fi = ( 1 + sqrt( 5 ) ) / 2;
 V = [ 0,  + 1,  + fi;0,  + 1,  - fi;0,  - 1,  + fi;0,  - 1,  - fi ];
 V = [ V;circshift( V, [ 0,  - 1 ] );circshift( V, [ 0,  - 2 ] ) ];
 
-
 F = [ 1, 9, 3;9, 6, 3;6, 8, 3;8, 10, 3;10, 1, 3; ...
 7, 2, 5;5, 2, 11;11, 2, 4;4, 2, 12;12, 2, 7; ...
 1, 7, 5;5, 9, 1;9, 5, 11;11, 6, 9;6, 11, 4; ...
 4, 8, 6;8, 4, 12;12, 10, 8;10, 12, 7;7, 1, 10 ] - 1;
-
 
 for j = 2:Subdivision
 N = length( F );
@@ -430,13 +280,10 @@ F = F2;
 V = [ V;V2 ];
 end 
 
-
 V = V ./ sqrt( sum( V .^ 2, 2 ) );
 N = V;
 
-
 T = [ ( atan2( N( :, 2 ), N( :, 1 ) ) + pi ) / ( 2 * pi ), acos( N( :, 3 ) ) / pi ];
-
 
 if Axis == 3
 V = V .* ASize / 2;
@@ -445,37 +292,17 @@ V = circshift( V, [ 0, Axis ] ) .* ASize / 2;
 N = circshift( N, [ 0, Axis ] );
 end 
 
-
 C = [  ];
 end 
 
+
 function [ V, N, F, T, C ] = plane( ASize, Axis, BothSides )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
 Axis( 1, 1 )double = 3
 BothSides( 1, 1 )logical = true
 end 
-
 
 if BothSides
 V = [ 0, 0, 0;1, 0, 0;1, 1, 0;0, 1, 0;0, 0, 0;1, 0, 0;1, 1, 0;0, 1, 0 ] - [ 0.5, 0.5, 0 ];
@@ -489,43 +316,17 @@ T = [ 0, 1;1, 1;1, 0;0, 0 ];
 F = [ 0, 3, 2;0, 2, 1 ];
 end 
 
-
 if Axis ~= 3
 V = circshift( V, [ 0, Axis ] );
 N = circshift( N, [ 0, Axis ] );
 end 
 V = V .* ASize;
 
-
 C = [  ];
 end 
 
+
 function [ V, N, F, T, C ] = terrain( ASize, Height, Axis, PlanarNormals )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
@@ -534,16 +335,13 @@ Axis( 1, 1 )double = 3
 PlanarNormals( 1, 1 )logical = false
 end 
 
-
 x = linspace( 0, 1, size( Height, 2 ) );
 y = linspace( 0, 1, size( Height, 1 ) );
 [ gx, gy ] = meshgrid( x, y );
 V = [ gx( : ) - 0.5, gy( : ) - 0.5, Height( : ) ];
 
-
 F = delaunay( gx, gy );
 F = F( :, [ 1, 3, 2 ] );
-
 
 if PlanarNormals
 N = repmat( [ 0, 0, 1 ], [ size( V, 1 ), 1 ] );
@@ -553,9 +351,7 @@ N =  - tr.vertexNormal;
 end 
 F = F - 1;
 
-
 T = [ gx( : ), gy( : ) ];
-
 
 if Axis ~= 3
 V = circshift( V, [ 0, Axis ] );
@@ -563,30 +359,11 @@ N = circshift( N, [ 0, Axis ] );
 end 
 V = V .* ASize;
 
-
 C = [  ];
 end 
 
+
 function [ V, N, F, T, C ] = prism( ASize, Peak, Axis )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
@@ -594,13 +371,11 @@ Peak( 1, 1 )double = 0.5
 Axis( 1, 1 )double = 3
 end 
 
-
 V = [ 0, 0, 0;1, 0, 0;Peak, 0, 1;
 1, 0, 0;1, 1, 0;Peak, 1, 1;Peak, 0, 1;
 1, 1, 0;0, 1, 0;Peak, 1, 1;
 0, 1, 0;0, 0, 0;Peak, 0, 1;Peak, 1, 1;
 0, 0, 0;1, 0, 0;1, 1, 0;0, 1, 0 ] - 0.5;
-
 
 N = [ 0,  - 1, 1;0,  - 1, 1;0,  - 1, 1;
 1, 0, 1;1, 0, 1;1, 0, 1;1, 0, 1;
@@ -608,16 +383,13 @@ N = [ 0,  - 1, 1;0,  - 1, 1;0,  - 1, 1;
  - 1, 0, 1; - 1, 0, 1; - 1, 0, 1; - 1, 0, 1;
 0, 0,  - 1;0, 0,  - 1;0, 0,  - 1;0, 0,  - 1 ];
 
-
 T = [ 0, 0;1, 0;0.5, 1;
 0, 0;1, 0;1, 1;0, 1;
 0, 0;1, 0;0.5, 1;
 0, 0;1, 0;1, 1;0, 1;
 0, 0;1, 0;1, 1;0, 1 ];
 
-
 F = [ 0, 2, 1;3, 5, 4;3, 6, 5;7, 9, 8;10, 12, 11;10, 13, 12;14, 15, 17;17, 15, 16 ];
-
 
 if Axis ~= 3
 V = circshift( V, [ 0, Axis ] ) .* ASize;
@@ -626,32 +398,16 @@ else
 V = V .* ASize;
 end 
 
-
 C = [  ];
 end 
 
+
 function [ V, N, F, T, C ] = pyramid( ASize, Axis )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
 Axis( 1, 1 )double = 3
 end 
-
 
 V = [ 0, 0, 0;1, 0, 0;0.5, 0.5, 1;
 1, 0, 0;1, 1, 0;0.5, 0.5, 1;
@@ -659,13 +415,11 @@ V = [ 0, 0, 0;1, 0, 0;0.5, 0.5, 1;
 0, 1, 0;0, 0, 0;0.5, 0.5, 1;
 0, 0, 0;1, 0, 0;1, 1, 0;0, 1, 0 ] - 0.5;
 
-
 N = [ 0,  - 1, 1;0,  - 1, 1;0,  - 1, 1;
 1, 0, 1;1, 0, 1;1, 0, 1;
 0, 1, 1;0, 1, 1;0, 1, 1;
  - 1, 0, 1; - 1, 0, 1; - 1, 0, 1;
 0, 0,  - 1;0, 0,  - 1;0, 0,  - 1;0, 0,  - 1 ];
-
 
 T = [ 0, 0;1, 0;0.5, 1;
 0, 0;1, 0;0.5, 1;
@@ -673,9 +427,7 @@ T = [ 0, 0;1, 0;0.5, 1;
 0, 0;1, 0;0.5, 1;
 0, 0;1, 0;1, 1;0, 1 ];
 
-
 F = [ 0, 2, 1;3, 5, 4;6, 8, 7;9, 11, 10;12, 13, 15;15, 13, 14 ];
-
 
 if Axis ~= 3
 V = circshift( V, [ 0, Axis ] ) .* ASize;
@@ -684,33 +436,11 @@ else
 V = V .* ASize;
 end 
 
-
 C = [  ];
 end 
 
+
 function [ V, N, F, T, C ] = revolution( ZX, Segments, beginCap, endCap )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ZX
@@ -726,25 +456,20 @@ if endCap
 ZX = [ ZX;ZX( end , : );ZX( end , : ) .* [ 1, 0 ] ];
 end 
 
-
 v = [ ZX( :, 2 ), ZX( :, 2 ) * 0, ZX( :, 1 ) ];
-
 
 dv = diff( v );
 n = [ dv( 1, : );dv( 1:end  - 1, : ) + dv( 2:end , : );dv( end , : ) ];
 n = [ n( :, 3 ), n( :, 2 ),  - n( :, 1 ) ];
 n = n ./ sqrt( sum( n .^ 2, 2 ) );
 
-
 lv = cumsum( sqrt( sum( dv .^ 2, 2 ) ) );
 lv = [ 0;lv / lv( end  ) ];
 t = [ lv * 0, 1 - lv ];
 
-
 r = size( n, 1 );
 f = [ 0:r - 2;1:r - 1;r:2 * r - 2 ]';
 f = [ f;f + [ r, 0, 1 ] ];
-
 
 nv = size( v, 1 );
 nf = size( f, 1 );
@@ -767,7 +492,6 @@ T( nv * i + 1:nv * i + nv, : ) = t + [ i / Segments, 0 ];
 F( nf * i - nf + 1:nf * i, : ) = f + ( i - 1 ) * r;
 end 
 
-
 Fm = F + 1;
 v1 = V( Fm( :, 1 ), : );
 v2 = V( Fm( :, 2 ), : );
@@ -778,29 +502,11 @@ b31 = sum( abs( v3 - v1 ), 2 ) < 0.001;
 b = or( or( b12, b23 ), b31 );
 F( b, : ) = [  ];
 
-
 C = [  ];
 end 
 
+
 function [ V, N, F, T, C ] = sphere( ASize, Segments, Axis )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
@@ -808,12 +514,10 @@ Segments( 1, 1 )double = 24
 Axis( 1, 1 )double = 3
 end 
 
-
 a = linspace( 0, 180, Segments )';
 z =  - cosd( a ) * 0.5;
 x = sind( a ) * 0.5;
 [ V, N, F, T, C ] = sim3d.utils.Geometry.revolution( [ z, x ], Segments, false, false );
-
 
 if Axis == 3
 V = V .* ASize;
@@ -828,7 +532,6 @@ function [ V, N, F, T, C ] = surf( X, Y, Z )
 
 V = [ X( : ), Y( : ), Z( : ) ];
 
-
 minx = min( V( :, 1 ) );
 maxx = max( V( :, 1 ) );
 miny = min( V( :, 2 ) );
@@ -839,7 +542,6 @@ R = size( X, 1 );
 r = R - 1;
 p = ( 1:r )';
 
-
 F = [  ];
 for i = 1:size( X, 2 ) - 1
 f1 = [ p, p + 1, p + R ] + R * ( i - 1 );
@@ -848,10 +550,8 @@ F = vertcat( F, f1, f2 );
 end 
 F = F - 1;
 
-
 TR = triangulation( F + 1, V );
 N =  - vertexNormal( TR );
-
 
 C = [  ];
 end 
@@ -863,18 +563,13 @@ ASize( 1, 3 )double = [ 1, 1, 1 ]
 Axis( 1, 1 )double = 3
 end 
 
-
 V = [ 0, 0, 0;1, 0, 0;1, 1, 0;0, 1, 0;0, 0, 0;1, 0, 0;1, 1, 0;0, 1, 0 ] - 0.5;
-
 
 N = [ 0, 0, 1;0, 0, 1;0, 0, 1;0, 0, 1;0, 0,  - 1;0, 0,  - 1;0, 0,  - 1;0, 0,  - 1 ];
 
-
 T = [ 0, 1;1, 1;1, 0;0, 0;0, 1;1, 1;1, 0;0, 0 ];
 
-
 F = [ 0, 3, 2;0, 2, 1;4, 6, 7;4, 5, 6 ];
-
 
 if Axis ~= 3
 V = circshift( V, [ 0, Axis ] );
@@ -883,32 +578,11 @@ end
 V = V .* ASize;
 V = V - [ 0, 0, 0.001 ];
 
-
 C = [  ];
 end 
 
+
 function [ V, N, F, T, C ] = tube( ASize, Bore, Segments, Axis )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
@@ -916,7 +590,6 @@ Bore( 1, 1 )double = 0.5
 Segments( 1, 1 )double = 24
 Axis( 1, 1 )double = 3
 end 
-
 
 Outer = [  - 0.5, 0.5;0.5, 0.5;0.5, 0.5;0.5, 0.5 * Bore ];
 [ V, N, F, T, C ] = sim3d.utils.Geometry.revolution( Outer, Segments, false, false );
@@ -926,7 +599,6 @@ V = [ V;v ];
 N = [ N; - n ];
 F = [ F;fliplr( f ) + size( v, 1 ) ];
 T = [ T;t ];
-
 
 if Axis == 3
 V = V .* ASize;
@@ -939,34 +611,12 @@ end
 
 function [ V, N, F, T, C ] = torus( ASize, InnerR, Segments, Axis )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
 InnerR( 1, 1 )double = 0.5
 Segments( 1, 1 )double = 24
 Axis( 1, 1 )double = 3
 end 
-
 
 R = ( InnerR + 1 ) / 2;
 r = ( 1 - InnerR ) / 2;
@@ -977,13 +627,11 @@ x = ( R + r .* cos( Th ) ) .* cos( Phi );
 y = ( R + r .* cos( Th ) ) .* sin( Phi );
 z = sin( Th );
 
-
 TR = surf2patch( x, y, z, 'triangles' );
 V = TR.vertices;
 N = V - R * normalize( V .* [ 1, 1, 0 ], 2, 'norm' );
 F = fliplr( TR.faces ) - 1;
 T = [  ];
-
 
 if Axis == 3
 V = V .* ASize / 2;
@@ -994,27 +642,11 @@ N = circshift( N, [ 0, Axis ] ) .* ASize;
 end 
 N = normalize( N, 2, 'norm' );
 
-
 C = [  ];
 end 
 
+
 function [ V, N, F, T, C ] = triad( ASize, Segments, D )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 ASize( 1, 3 )double = [ 1, 1, 1 ]
@@ -1049,19 +681,16 @@ if nargin < 4
 Colormap = parula( 100 );
 end 
 
-
 if isa( ColorData, 'uint8' )
 ColorData = double( ColorData );
 ColorData( ColorData == 0 ) = NaN;
 end 
-
 
 cmax = max( ColorData( : ) );
 cmin = min( ColorData( : ) );
 if ( cmin < 0 ) || ( cmax > 1 )
 ColorData = ( ColorData - cmin ) / ( cmax - cmin );
 end 
-
 
 [ nx, ny, nz ] = size( ColorData );
 voxSize = ASize ./ [ nx, ny, nz ];
@@ -1072,7 +701,6 @@ if ScalePerVoxel
 else 
 [ voxV, voxN, voxF ] = sim3d.utils.Geometry.box( voxSize .* VoxelScale );
 end 
-
 
 nv = size( voxV, 1 );
 good = repelem( ~isnan( ColorData( : ) ), nv, 1 );
@@ -1085,37 +713,19 @@ V = repmat( voxV, nx * ny * nz, 1 ) + repelem( ind, nv, 1 ) .* voxSize - Center;
 end 
 V = V( good, : );
 
-
 cd = repelem( ColorData( : ), nv, 1 );
 cd = round( cd( good ) * ( size( Colormap, 1 ) - 1 ) + 1 );
 C = Colormap( cd, : );
 
-
 nb = size( V, 1 ) / nv;
 N = repmat( voxN, nb, 1 );
-
 
 nf = size( voxF, 1 );
 F = repmat( voxF, nb, 1 ) + repelem( ( 0:nb - 1 ) * nv, 1, nf )';
 end 
 
 
-
-
 function Floor = templateFloor( Parent, Size, varargin )
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 Parent( 1, 1 )sim3d.AbstractActor
@@ -1154,23 +764,8 @@ end
 end 
 end 
 
+
 function Room = templateRoom( Parent, Size, FloorLevel, SeeThrough )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 Parent( 1, 1 )sim3d.AbstractActor
@@ -1206,7 +801,6 @@ Wall.Rotation( 3 ) =  - pi;
 Wall.TextureTransform.Angle =  - pi / 2;
 Wall.TextureTransform.Scale = [  - 1, 1 ];
 
-
 Wall = sim3d.Actor( 'ActorName', 'Bottom' );
 ParentWorld.add( Wall, Room );
 Wall.createShape( 'box', [ W, L, H / 20 ] );
@@ -1218,13 +812,11 @@ Wall.createShape( 'plane', [ W, L, 0 ], 3, ~SeeThrough );
 Wall.Translation( 3 ) =  + H / 2;
 Wall.Rotation( 1 ) = pi;
 
-
 Wall = sim3d.Actor( 'ActorName', 'Left' );
 ParentWorld.add( Wall, Room );
 Wall.createShape( 'plane', [ 0, L, H ], 1, ~SeeThrough );
 Wall.Translation( 1 ) =  - W / 2;
 Wall.TextureTransform.Scale = [  - 1, 1 ];
-
 
 Wall = sim3d.Actor( 'ActorName', 'Right' );
 ParentWorld.add( Wall, Room );
@@ -1240,21 +832,8 @@ Room.propagate( 'Shininess', 0 );
 Room.propagate( 'Shadows', false );
 end 
 
+
 function Grid = templateGrid( Parent, Size, Planes )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 Parent( 1, 1 )sim3d.AbstractActor
@@ -1303,8 +882,6 @@ Grid.propagate( 'Collisions', false );
 end 
 
 
-
-
 function Merged = mergeActors( SrcActors, DstParent )
 R36
 SrcActors( 1, : )sim3d.Actor
@@ -1341,29 +918,21 @@ end
 
 end 
 
+
 methods ( Static, Hidden )
-
-
-
 
 function [ coord, normal, coordIndex, texCoord, color ] = getMeshDataUnreal( id, nodeName )
 [ cl, co, no, tc, ci ] = vrsfunc( 'GetMeshData', id, nodeName );
 
-
 [ newPoint, ~, ic ] = unique( [ co, no, tc, cl ], 'rows' );
-
 
 newCI = reshape( ci, [ 4, length( ci ) / 4 ] );
 newCI = newCI( [ 1, 3, 2 ], : );
 
-
-
 coordIndex = ic( newCI + 1 )' - 1;
-
 
 coord = newPoint( :, 1:3 );
 normal = newPoint( :, 4:6 );
-
 
 if isempty( tc )
 texCoord = tc;
@@ -1373,7 +942,6 @@ texCoord = [ newPoint( :, 7 ), 1 - newPoint( :, 8 ) ];
 i = 9;
 end 
 
-
 if isempty( cl )
 color = cl;
 else 
@@ -1381,9 +949,9 @@ color = newPoint( :, i:i + 2 );
 end 
 end 
 
+
 function [ V, F, N, T, C ] = reduceMesh( Ratio, V, F, N, T, C )
 F = F + 1;
-
 
 if true
 [ V, i, j ] = unique( V, 'rows' );
@@ -1406,7 +974,6 @@ C = C( i, : );
 end 
 end 
 
-
 [ F, newV ] = reducepatch( F, V, Ratio, 'fast' );
 F = F - 1;
 
@@ -1423,7 +990,6 @@ if ~isempty( C )
 C = C( id, : );
 end 
 end 
-
 
 
 function TileMenu( Actor, ItemID, CurPos )
@@ -1443,7 +1009,7 @@ if ischar( fileName )
 Actor.load( fullfile( dir, fileName ) );
 end 
 case 3
-Actor.remove(  );
+Actor.remove();
 end 
 end 
 
@@ -1451,6 +1017,4 @@ end
 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpDna5_w.p.
-% Please follow local copyright laws when handling this file.
 

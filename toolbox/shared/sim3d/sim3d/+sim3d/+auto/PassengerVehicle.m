@@ -1,11 +1,12 @@
 classdef PassengerVehicle < sim3d.auto.WheeledVehicle
+
 properties ( SetAccess = 'private', GetAccess = 'public' )
 
-LightModule = {  };
-
+LightModule = {};
 
 PassengerVehicleType;
-end 
+end
+
 
 properties ( Access = private )
 TrackWidth = 1.9;
@@ -15,15 +16,14 @@ TraceStart_cache;
 TraceEnd_cache;
 end 
 
+
 methods 
 function self = PassengerVehicle( actorName, passVehicleType, varargin )
 narginchk( 2, inf );
 
-
-numberOfParts = uint32( 5 );
+numberOfParts = uint32(5);
 
 r = sim3d.auto.PassengerVehicle.parseInputs( varargin{ : } );
-
 
 switch passVehicleType
 case 'Custom'
@@ -34,15 +34,14 @@ end
 self@sim3d.auto.WheeledVehicle( actorName, r.ActorID, r.Translation,  ...
 r.Rotation, r.Scale, numberOfParts, mesh );
 
-
 self.PassengerVehicleType = self.getVehType( passVehicleType );
 switch passVehicleType
 case 'Custom'
 self.Mesh = r.Mesh;
 otherwise 
-self.Mesh = self.getMesh(  );
+self.Mesh = self.getMesh();
 end 
-self.Animation = self.getAnimation(  );
+self.Animation = self.getAnimation();
 self.Color = self.getColor( r.Color );
 self.Translation = single( r.Translation );
 self.Rotation = single( r.Rotation );
@@ -62,12 +61,12 @@ self.Config.MeshPath = self.Mesh;
 self.Config.AnimationPath = self.Animation;
 self.Config.ColorPath = self.Color;
 
-
 self.LightModule = sim3d.vehicle.VehicleLightingModule( r.LightConfiguration );
-self.Config.AdditionalOptions = self.LightModule.generateInitMessageString(  );
+self.Config.AdditionalOptions = self.LightModule.generateInitMessageString();
 end 
 
-function step( self, X, Y, Yaw )
+
+function step(self, X, Y, Yaw)
 translation = zeros( self.NumberOfParts, 3, 'single' );
 rotation = zeros( self.NumberOfParts, 3, 'single' );
 scale = ones( self.NumberOfParts, 3, 'single' );
@@ -77,20 +76,19 @@ self.writeTransform( translation, rotation, scale );
 end 
 
 
-
-
-
-function write( self, translation, rotation, scale )
+function write(self, translation, rotation, scale)
 self.writeTransform( translation, rotation, scale );
-end 
+end
+
 
 function [ translation, rotation, scale ] = read( self )
-[ translation, rotation, scale ] = self.readTransform(  );
-end 
+[ translation, rotation, scale ] = self.readTransform();
+end
+
 
 function [ translation, rotation ] = UpdateVehiclePosition( self, translation, rotation, X, Y, Yaw )
-[ ~, traceEnd, ~ ] = self.VehicleRayTraceRead(  );
-[ previousTranslation, previousRotation, ~ ] = self.readTransform(  );
+[ ~, traceEnd, ~ ] = self.VehicleRayTraceRead();
+[ previousTranslation, previousRotation, ~ ] = self.readTransform();
 wheelHitZ = traceEnd( 2:5, 3 );
 if ( any( wheelHitZ > self.RayTraceMaxValueLimit ) )
 error( 'sim3d:TerrainSensor:InvalidZValue', 'Check the position of vehicle to make sure vehicle did not encounter a large variation in terrain' );
@@ -105,8 +103,6 @@ pYaw = previousRotation( 1, 3 );
 pWheelRotation = previousRotation( 2:5, 1 )';
 [ steerAngle, wheelRotation ] = self.EstimateWheelRotationAndSteerAngle( pX, pY, pYaw, pWheelRotation, X, Y, Yaw, self.WheelBase, self.TrackWidth, self.WheelRadius );
 
-
-
 translation( 1, 1 ) = single( X );
 translation( 1, 2 ) = single( Y );
 translation( 1, 3 ) = single( Zcg );
@@ -114,22 +110,23 @@ rotation( 1, 1 ) = single( theta );
 rotation( 1, 2 ) = single( psi );
 rotation( 1, 3 ) = single( Yaw );
 
-
 rotation( 2:5, 1 ) = single( wheelRotation( 1:4 ) );
 rotation( 2:5, 3 ) = single( steerAngle( 1:4 ) );
 end 
 
-function writeTransform( self, translation, rotation, scale )
+
+function writeTransform(self, translation, rotation, scale)
 
 if ~isempty( self.TransformWriter )
 self.TransformWriter.write( single( translation ), single( rotation ), single( scale ) );
-self.TransformReader.read(  );
+self.TransformReader.read();
 end 
 
 self.Config.AdditionalOptions = self.LightModule.generateStepMessageString(  );
 
 self.ConfigWriter.send( self.Config );
 end 
+
 
 function [ translation, rotation, scale ] = readTransform( self )
 
@@ -143,10 +140,11 @@ scale = [  ];
 end 
 end 
 
+
 function [ traceStart, traceEnd, status ] = VehicleRayTraceRead( self )
 status = 0;
 if self.TerrainSensorSubscriber.has_message(  )
-terrainSensorDetections = self.TerrainSensorSubscriber.take(  );
+terrainSensorDetections = self.TerrainSensorSubscriber.take();
 traceStart = terrainSensorDetections.TraceStart;
 traceEnd = terrainSensorDetections.TraceEnd;
 self.TraceStart_cache = traceStart;
@@ -158,7 +156,9 @@ end
 if ( isempty( traceStart ) || isempty( traceEnd ) )
 status = sim3d.engine.EngineReturnCode.No_Data;
 end 
-end 
+end
+
+
 function ret = getVehType( ~, VType )
 switch VType
 case 'MuscleCar'
@@ -179,6 +179,7 @@ otherwise
 error( 'sim3d:invalidVehicleType', 'Invalid Vehicle Type. Please check help and select a valid Vehicle Type' );
 end 
 end 
+
 
 function ret = getColor( ~, color )
 switch color
@@ -215,6 +216,7 @@ error( 'sim3d:invalidVehicleColor', 'Invalid Vehicle Color. Please check help an
 end 
 end 
 
+
 function ret = getMesh( self )
 switch self.PassengerVehicleType
 case sim3d.auto.VehicleTypes.MuscleCar
@@ -234,6 +236,7 @@ ret = '';
 end 
 end 
 
+
 function ret = getAnimation( self )
 switch self.PassengerVehicleType
 case sim3d.auto.VehicleTypes.BoxTruck
@@ -243,23 +246,18 @@ ret = '/MathWorksAutomotiveContent/VehicleCommon/Blueprints/Sim3dVehicleAnimBP.S
 end 
 end 
 
+
 function actorType = getActorType( ~ )
 actorType = sim3d.utils.ActorTypes.PassVehicle;
 end 
+
 
 function tagName = getTagName( ~ )
 tagName = 'PassengerVehicle';
 end 
 
+
 function [ steerAngle, wheelRotation ] = EstimateWheelRotationAndSteerAngle( ~, pX, pY, pYaw, pWheelRotation, X, Y, Yaw, WheelBase, TrackWidth, WheelRadius )
-
-
-
-
-
-
-
-
 
 dX = X - pX;
 dY = Y - pY;
@@ -280,10 +278,10 @@ if ( abs( dx ) < 0.01 )
 steerAngle = [ 0, 0, 0, 0 ];
 end 
 
-
 wheelRotation = [ cos( deltaL ), cos( deltaR ), 1, 1 ] * CGdisp / WheelRadius * cos( beta );
 wheelRotation = pWheelRotation - wheelRotation;
-end 
+end
+
 
 function copy( self, other, CopyChildren, UseSourcePosition )
 R36
@@ -293,19 +291,19 @@ CopyChildren( 1, 1 )logical = true
 UseSourcePosition( 1, 1 )logical = false
 end 
 
-
 self.PassengerVehicleType = other.PassengerVehicleType;
 self.LightModule = other.LightModule;
-
 
 copy@sim3d.auto.WheeledVehicle( self, other, CopyChildren, UseSourcePosition );
 
 end 
 
+
 function actorS = getAttributes( self )
 actorS = getAttributes@sim3d.auto.WheeledVehicle( self );
 actorS.PassengerVehicleType = self.PassengerVehicleType;
 end 
+
 
 function setAttributes( self, actorS )
 setAttributes@sim3d.auto.WheeledVehicle( self, actorS );
@@ -334,7 +332,8 @@ ret = '/MathWorksAutomotiveContent/Vehicles/Boxtruck/Meshes/SK_BoxTruck.SK_BoxTr
 otherwise 
 ret = '';
 end 
-end 
+end
+
 
 function r = parseInputs( varargin )
 
@@ -350,8 +349,6 @@ defaultParams = struct(  ...
 'WheelBase', 3,  ...
 'WheelRadius', 0.35 );
 
-
-
 parser = inputParser;
 parser.addParameter( 'Color', defaultParams.Color );
 parser.addParameter( 'Mesh', defaultParams.Mesh );
@@ -365,7 +362,6 @@ parser.addParameter( 'TrackWidth', defaultParams.TrackWidth );
 parser.addParameter( 'WheelBase', defaultParams.WheelBase );
 parser.addParameter( 'WheelRadius', defaultParams.WheelRadius );
 
-
 parser.parse( varargin{ : } );
 r = parser.Results;
 r.Translation( 2:5, : ) = 0;
@@ -373,7 +369,8 @@ r.Rotation( 2:5, : ) = 0;
 r.Scale( 2:5, : ) = 1;
 end 
 end 
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpe0EiMz.p.
-% Please follow local copyright laws when handling this file.
+end
+
+
+
 

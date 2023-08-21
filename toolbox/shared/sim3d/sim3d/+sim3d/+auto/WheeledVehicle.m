@@ -1,8 +1,8 @@
 classdef WheeledVehicle<sim3d.vehicle.Vehicle
-
     properties(SetAccess='public',GetAccess='public')
         DebugRayTrace;
     end
+
     properties(Access=protected)
         TerrainSensorPublisher=[];
         TerrainSensorSubscriber=[];
@@ -17,15 +17,14 @@ classdef WheeledVehicle<sim3d.vehicle.Vehicle
         TerrainSensorSuffixIn='/TerrainSensorDetection_IN';
     end
 
+
     methods
-
-
-
 
         function self=WheeledVehicle(actorName,actorID,translation,rotation,scale,numberOfParts,mesh)
             self@sim3d.vehicle.Vehicle(actorName,actorID,translation,rotation,scale,numberOfParts,mesh);
 
         end
+
 
         function setup(self)
             setup@sim3d.vehicle.Vehicle(self);
@@ -35,6 +34,7 @@ classdef WheeledVehicle<sim3d.vehicle.Vehicle
             self.TerrainSensorSubscriber=sim3d.io.Subscriber([self.ActorName,self.TerrainSensorSuffixIn]);
             self.TerrainSensorPublisher.publish(self.TerrainSensorConfig);
         end
+
 
         function writeTransform(self,translation,rotation,scale)
             writeTransform@sim3d.vehicle.Vehicle(self,translation,rotation,scale);
@@ -54,10 +54,10 @@ classdef WheeledVehicle<sim3d.vehicle.Vehicle
         end
     end
 
+
     methods(Access=protected,Static)
+
         function VerifyInitialTransformSize(translation,rotation,scale,numberOfParts)
-
-
             if(~(all(size(translation)==[numberOfParts,3])&&all(size(rotation)==[numberOfParts,3])&&all(size(scale)==[numberOfParts,3])))
                 error('sim3d:invalidInitialTransform','Incorrect size for initial Translation/Rotation. Make sure size of initial Translation/Rotation matched with corresponding Dolly type.');
             end

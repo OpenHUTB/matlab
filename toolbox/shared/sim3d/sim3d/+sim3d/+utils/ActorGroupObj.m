@@ -6,11 +6,14 @@ Actors
 LastActor
     end
     methods
+
         function obj=ActorGroupObj(ActorType)
             obj.ActorType=ActorType;
             obj.LastActor=sim3d.utils.Actors.empty;
             obj.Actors=containers.Map;
         end
+
+
         function addNewActor(obj,blk,pCustom)
 
             if isempty(obj.LastActor)
@@ -40,6 +43,8 @@ LastActor
             obj.Actors(ActorTag)=newActor;
             obj.LastActor=newActor;
         end
+
+
         function addCustomActor(obj,blk,ActorTag)
             if isempty(obj.LastActor)
                 newActor=sim3d.utils.Actors(1,obj.LastActor,sim3d.utils.Actors.empty,blk,ActorTag);
@@ -53,6 +58,8 @@ LastActor
                 obj.LastActor=newActor;
             end
         end
+
+
         function addActor(obj,blk,ID)
 
             if ischar(ID)
@@ -91,6 +98,8 @@ LastActor
                 obj.LastActor=obj.Actors([obj.ActorType,num2str(ID)]);
             end
         end
+
+
         function out=removeCustomActor(obj,ActorTag)
             currActor=obj.LastActor;
             out=false;
@@ -102,6 +111,8 @@ LastActor
                 currActor=currActor.Prev;
             end
         end
+
+
         function out=removeActor(obj,ActorTag)
             if~isKey(obj.Actors,ActorTag)
                 out=false;
@@ -120,6 +131,8 @@ LastActor
                 out=true;
             end
         end
+
+
         function out=exist(obj,ActorTag,Blk)
 
             out=false;
@@ -131,8 +144,8 @@ LastActor
             end
         end
 
-        function out=existBlk(obj,ActorTag,Blk)
 
+        function out=existBlk(obj,ActorTag,Blk)
 
             out=false;
             if isKey(obj.Actors,ActorTag)

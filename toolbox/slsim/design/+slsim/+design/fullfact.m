@@ -1,33 +1,16 @@
 function design=fullfact(levels)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     [m,n]=size(levels);
     if~isfloat(levels)
         levels=double(levels);
     end
 
     assert(min(m,n)==1,'levels must be a vector');
-
     assert(all(floor(levels)==levels)&&all(levels>=1),...
     'levels must have integer values');
 
     ssize=prod(levels);
     ncycles=ssize;
     cols=max(m,n);
-
     design=zeros(cols,ssize,class(levels));
 
     for k=1:cols

@@ -1,14 +1,10 @@
 classdef QuadrotorUAV<sim3d.uav.UAV
 
-
     methods
         function self=QuadrotorUAV(actorName,quadRotorType,varargin)
-
-
             r=sim3d.uav.QuadrotorUAV.parseInputs(varargin{:});
             self@sim3d.uav.UAV(actorName,r.ActorID,r.Translation,...
             r.Rotation,r.Scale);
-
             self.Mesh=self.getMesh(quadRotorType,r.Mesh);
             self.Animation=self.getAnimation(quadRotorType);
             self.Color=self.getColor(quadRotorType,r.Color);
@@ -16,20 +12,15 @@ classdef QuadrotorUAV<sim3d.uav.UAV
             self.Rotation=single(r.Rotation);
             self.Scale=single(r.Scale);
             self.ActorID=r.ActorID;
-
-
             self.Config.MeshPath=self.Mesh;
             self.Config.AnimationPath=self.Animation;
             self.Config.ColorPath=self.Color;
             self.Config.AdditionalOptions='';
         end
 
+
         function ret=getColor(~,quadrotorType,color)
-
-
             if strcmp(quadrotorType,'custom')
-
-
                 ret='/MathWorksUAVContent/UAVs/HexaRotorUAV/UAV_Body.UAV_Body';
             else
                 switch color
@@ -55,9 +46,8 @@ classdef QuadrotorUAV<sim3d.uav.UAV
             end
         end
 
+
         function ret=getMesh(~,quadRotorType,meshPath)
-
-
             switch quadRotorType
             case 'Quadrotor'
                 ret='/MathWorksUAVContent/UAVs/Quadrotor_UAV/Mesh/SK_QuadrotorUAV.SK_QuadrotorUAV';
@@ -68,8 +58,8 @@ classdef QuadrotorUAV<sim3d.uav.UAV
             end
         end
 
-        function ret=getAnimation(~,quadRotorType)
 
+        function ret=getAnimation(~,quadRotorType)
             switch quadRotorType
             case 'Quadrotor'
                 ret='/MathWorksUAVContent/UAVs/Quadrotor_UAV/Animation/QuadRotorAnimBP.QuadRotorAnimBP_C';
@@ -81,6 +71,7 @@ classdef QuadrotorUAV<sim3d.uav.UAV
         end
     end
 
+
     methods(Access=public,Hidden=true)
 
         function actorType=getActorType(~)
@@ -91,9 +82,6 @@ classdef QuadrotorUAV<sim3d.uav.UAV
 
     methods(Access=private,Static)
         function r=parseInputs(varargin)
-
-
-
             defaultParams=struct(...
             'Color','black',...
             'Mesh','MeshText',...
@@ -103,8 +91,6 @@ classdef QuadrotorUAV<sim3d.uav.UAV
             'Scale',single(ones(1,3)),...
             'ActorID',10,...
             'DebugRayTrace',false);
-
-
             parser=inputParser;
             parser.addParameter('Color',defaultParams.Color);
             parser.addParameter('Mesh',defaultParams.Mesh);
@@ -113,8 +99,6 @@ classdef QuadrotorUAV<sim3d.uav.UAV
             parser.addParameter('Rotation',defaultParams.Rotation);
             parser.addParameter('Scale',defaultParams.Scale);
             parser.addParameter('ActorID',defaultParams.ActorID);
-
-
             parser.parse(varargin{:});
             r=parser.Results;
         end

@@ -1,7 +1,7 @@
 classdef IdealCamera<sim3d.sensors.AbstractCameraSensor
 
-
     methods
+
         function self=IdealCamera(varargin)
             r=sim3d.sensors.IdealCamera.parseInputs(varargin{:});
             sensorID=r.SensorID;
@@ -21,18 +21,17 @@ classdef IdealCamera<sim3d.sensors.AbstractCameraSensor
             if(strcmp(transform,""))
                 transform=sim3d.utils.Transform();
             end
-
             if(strcmp(cameraProperties,""))
                 cameraProperties=sim3d.sensors.IdealCamera.getIdealCameraProperties();
                 cameraProperties.ImageSize=imageSize;
                 cameraProperties.HorizontalFieldOfView=horizontalFieldOfView;
             end
-
             self@sim3d.sensors.AbstractCameraSensor(sensorName,vehicleID,...
             cameraProperties.ImageSize(2),cameraProperties.ImageSize(1),...
             cameraProperties.HorizontalFieldOfView,transform);
         end
     end
+
 
     methods(Static)
         function tagName=getTagName()
@@ -40,16 +39,21 @@ classdef IdealCamera<sim3d.sensors.AbstractCameraSensor
         end
     end
 
+
     methods(Access=public,Hidden=true)
         function actorType=getActorType(~)
             actorType=sim3d.utils.ActorTypes.IdealCamera;
         end
     end
+
+
     methods(Static)
+
         function cameraProperties=getIdealCameraProperties()
             cameraProperties=struct('ImageSize',[1080,1920],'HorizontalFieldOfView',90);
         end
     end
+
 
     methods(Access=private,Static)
         function r=parseInputs(varargin)
@@ -60,7 +64,6 @@ classdef IdealCamera<sim3d.sensors.AbstractCameraSensor
             'HorizontalFieldOfView',single(90)...
             );
 
-
             parser=inputParser;
             parser.addOptional('SensorID',"");
             parser.addOptional('VehicleID',"",@(s)isstring(s)||ischar(s));
@@ -69,7 +72,6 @@ classdef IdealCamera<sim3d.sensors.AbstractCameraSensor
             parser.addParameter('ActorName',defaultParams.ActorName);
             parser.addParameter('ImageSize',defaultParams.ImageSize);
             parser.addParameter('HorizontalFieldOfView',defaultParams.HorizontalFieldOfView);
-
 
             parser.parse(varargin{:});
             r=parser.Results;

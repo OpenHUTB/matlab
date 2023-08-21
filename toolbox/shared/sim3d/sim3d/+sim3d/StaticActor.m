@@ -4,6 +4,7 @@ classdef StaticActor<sim3d.AbstractActor
         SignalReader=[];
     end
     
+
     methods
         function self=StaticActor(actorName,meshFile,translation,varargin)
             narginchk(3,inf);
@@ -24,9 +25,11 @@ classdef StaticActor<sim3d.AbstractActor
             'CastShadow',r.CastShadow);
         end
 
+
         function actorType=getActorType(~)
             actorType=sim3d.utils.ActorTypes.BaseStatic;
         end
+
 
         function writeTransform(self,translation,rotation,scale)
 
@@ -36,9 +39,11 @@ classdef StaticActor<sim3d.AbstractActor
             writeTransform@sim3d.AbstractActor(self);
         end
 
+
         function reset(self)
             self.SignalReader=setupSimulation3DMessageInt8Reader(self.getTag(),uint32((1)));
         end
+
 
         function collision=readMessage(self)
 
@@ -53,18 +58,17 @@ classdef StaticActor<sim3d.AbstractActor
 
             elseif result==13&&~isempty(readMessage)
 
-
             else
                 collision=0;
             end
         end
 
+
         function delete(self)
-
-
             delete@sim3d.AbstractActor(self);
         end
     end
+
 
     methods(Access=private,Static)
         function r=parseInputs(varargin)
@@ -93,7 +97,6 @@ classdef StaticActor<sim3d.AbstractActor
             parser.addParameter('SimulatePhysics',defaultParams.SimulatePhysics);
             parser.addParameter('EnableGravity',defaultParams.EnableGravity);
             parser.addParameter('CastShadow',defaultParams.CastShadow);
-
 
             parser.parse(varargin{:});
             r=parser.Results;

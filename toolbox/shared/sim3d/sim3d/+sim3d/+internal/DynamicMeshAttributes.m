@@ -1,6 +1,5 @@
 classdef DynamicMeshAttributes < sim3d.internal.BaseAttributes
 
-
 properties 
 IsValid( 1, 1 )logical = false;
 Vertices( :, 3 )double = [  ];
@@ -9,8 +8,6 @@ Faces( :, 3 )double = [  ];
 TextureCoordinates( :, 2 )double = [  ];
 VertexColors( :, 3 )double = [  ];
 end 
-
-
 
 
 properties ( Hidden, Constant )
@@ -24,7 +21,9 @@ Suffix_Out = 'DynamicMesh_OUT';
 Suffix_In = 'DynamicMesh_IN';
 end 
 
-methods 
+
+methods
+
 function self = DynamicMeshAttributes( varargin )
 r = sim3d.internal.DynamicMeshAttributes.parseInputs( varargin{ : } );
 self@sim3d.internal.BaseAttributes(  );
@@ -32,14 +31,17 @@ self.createMesh( r.Vertices, r.Normals, r.Faces,  ...
 r.TextureCoordinates, r.VertexColors );
 end 
 
+
 function setup( self, actorName )
 messageTopic = [ actorName, self.Suffix_Out ];
 setup@sim3d.internal.BaseAttributes( self, messageTopic );
 end 
 
+
 function DynamicMesh = getAttributes( self )
 DynamicMesh = self.createDynamicMesh( self );
-end 
+end
+
 
 function setAttributes( self, DynamicMeshStruct )
 
@@ -64,21 +66,6 @@ end
 
 function createMesh( self, Vertices, Normals, Faces, TCoords, VColors )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 R36
 self( 1, : )sim3d.internal.DynamicMeshAttributes
 Vertices( :, 3 )double
@@ -96,19 +83,8 @@ self.VertexColors = VColors;
 
 end 
 
+
 function addMesh( self, Vertices, Normals, Faces, TCoords, VColors )
-
-
-
-
-
-
-
-
-
-
-
-
 
 R36
 self( 1, : )sim3d.internal.DynamicMeshAttributes
@@ -119,7 +95,6 @@ TCoords( :, 2 )double = [  ]
 VColors( :, 3 )double = [  ]
 end 
 
-
 faceOffset = size( self.Vertices, 1 );
 self.Vertices = vertcat( self.Vertices, Vertices );
 self.Normals = vertcat( self.Normals, Normals );
@@ -127,6 +102,7 @@ self.Faces = vertcat( self.Faces, Faces + faceOffset );
 self.VertexColors = vertcat( self.VertexColors, VColors );
 self.TextureCoordinates = vertcat( self.TextureCoordinates, TCoords );
 end 
+
 
 function reduceMesh( self, Ratio )
 R36
@@ -140,7 +116,6 @@ F = self.Faces;
 T = self.TextureCoordinates;
 C = self.VertexColors;
 F = F + 1;
-
 
 if true
 [ V, i, j ] = unique( V, 'rows' );
@@ -181,14 +156,8 @@ end
 self.createMesh( V, N, F, T, C );
 end 
 
+
 function transformMesh( self, T )
-
-
-
-
-
-
-
 
 R36
 self( 1, : )sim3d.internal.DynamicMeshAttributes
@@ -217,15 +186,8 @@ end
 end 
 end 
 
+
 function updateMesh( self, Vertices, Normals )
-
-
-
-
-
-
-
-
 
 R36
 self( 1, : )sim3d.internal.DynamicMeshAttributes
@@ -238,13 +200,8 @@ self.Normals = Normals;
 end 
 end 
 
+
 function invertSurface( self, invertFaces, invertNormals )
-
-
-
-
-
-
 
 R36
 self( 1, : )sim3d.internal.DynamicMeshAttributes
@@ -273,9 +230,8 @@ end
 self.createMesh( [  ], [  ], [  ], [  ], [  ] );
 end 
 
+
 function copy( self, other )
-
-
 self.Vertices = other.Vertices;
 self.Normals = other.Normals;
 self.Faces = other.Faces;
@@ -285,49 +241,54 @@ self.VertexColors = other.VertexColors;
 end 
 
 
-
-
-
-
 function set.Faces( self, Faces )
 self.Faces = Faces;
 self.add2Buffer( self.FacesID )
 end 
 
+
 function Faces = get.Faces( self )
 Faces = self.Faces;
 end 
+
 
 function set.Vertices( self, Vertices )
 self.Vertices = Vertices;
 self.add2Buffer( self.VerticesID )
 end 
 
+
 function Vertices = get.Vertices( self )
 Vertices = self.Vertices;
-end 
+end
+
 
 function set.Normals( self, Normals )
 self.Normals = Normals;
 self.add2Buffer( self.NormalsID )
-end 
+end
+
 
 function Normals = get.Normals( self )
 Normals = self.Normals;
-end 
+end
+
 
 function set.TextureCoordinates( self, TextureCoordinates )
 self.TextureCoordinates = TextureCoordinates;
 self.add2Buffer( self.TextureID )
-end 
+end
+
 
 function set.VertexColors( self, VertexColors )
 self.VertexColors = VertexColors;
 self.add2Buffer( self.VertexColorID );
 end 
-end 
+end
+
 
 methods ( Static )
+
 function defaultAttribs = getDefaultAttributes(  )
 defaultAttribs = struct(  ...
 'Vertices', [  ],  ...
@@ -337,13 +298,13 @@ defaultAttribs = struct(  ...
 'VertexColors', [  ] ...
  );
 end 
-end 
+end
+
 
 methods ( Access = private, Static )
 
 function r = parseInputs( varargin )
-defaultValues = sim3d.internal.DynamicMeshAttributes.getDefaultAttributes(  );
-
+defaultValues = sim3d.internal.DynamicMeshAttributes.getDefaultAttributes();
 
 parser = inputParser;
 parser.addParameter( 'Vertices', defaultValues.Vertices );
@@ -352,10 +313,10 @@ parser.addParameter( 'Normals', defaultValues.Normals );
 parser.addParameter( 'TextureCoordinates', defaultValues.TextureCoordinates );
 parser.addParameter( 'VertexColors', defaultValues.VertexColors );
 
-
 parser.parse( varargin{ : } );
 r = parser.Results;
 end 
+
 
 function DynamicMesh = createDynamicMesh( self )
 DynamicMesh = struct(  ...
@@ -369,10 +330,13 @@ end
 
 end 
 
+
 methods ( Hidden )
+
 function totalAttributes = getTotalAttributes( self )
 totalAttributes = self.Full;
 end 
+
 
 function selectedAttributes = getSelectedAttributes( self, messageIds )
 selectedAttributes = struct(  );
@@ -406,6 +370,5 @@ end
 end 
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp_iMad2.p.
-% Please follow local copyright laws when handling this file.
+
 

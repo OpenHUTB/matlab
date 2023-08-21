@@ -1,36 +1,28 @@
 classdef DAGNetworkMexAccelerationConfig<nnet.internal.cnn.coder.MexNetworkConfig
 
-
-
-
-
     properties(SetAccess=private)
 
         IsCallingPredict(1,1)logical
 
-
 MiniBatchSize
     end
+
 
     properties(Access=private)
 
         ActivationLayerName=[]
 
-
         HasMultipleInputs(1,1)logical
 
-
         InputSize(1,:)cell
-
 
 NetworkInfo
     end
 
+
     methods
+
         function obj=DAGNetworkMexAccelerationConfig(inputSize,precision,miniBatchSize,targetLib,activationLayerName,netInfo)
-
-
-
             isCallingPredict=isempty(activationLayerName);
             if isCallingPredict
                 numOutputs=numel(netInfo.OutputSizes);
@@ -38,7 +30,6 @@ NetworkInfo
                 numOutputs=1;
             end
             constInputs=iGenerateConstantInputs(isCallingPredict,numOutputs,activationLayerName,miniBatchSize);
-
             obj=obj@nnet.internal.cnn.coder.MexNetworkConfig(...
             targetLib,precision,numOutputs,constInputs);
 
@@ -49,8 +40,6 @@ NetworkInfo
             obj.NetworkInfo=netInfo;
             obj.IsCallingPredict=isCallingPredict;
 
-
-
             if any(obj.NetworkInfo.HasSequenceInput)
                 error(message('nnet_cnn:dlAccel:SequenceInputLayerUnsupported'));
             end
@@ -60,18 +49,17 @@ NetworkInfo
         end
     end
 
+
     methods(Access=protected)
         function keyContent=getKeyContent(this)
-
             keyContent={this.InputSize;this.Precision;this.MiniBatchSize;...
             this.TargetLib;this.ActivationLayerName};
         end
 
+
         function inputArgs=getCodegenVariableInputArgs(this)
 
-
             if this.HasMultipleInputs
-
 
                 dataInputs={};
                 for i=1:numel(this.InputSize)
@@ -80,15 +68,11 @@ NetworkInfo
                 end
                 inputArgs={dataInputs};
             else
-
                 inputArgs={gpuArray(zeros([this.InputSize{1},this.MiniBatchSize],this.Precision))};
             end
         end
 
         function[designFileName,designFilePath]=getDesignFileNameAndPath(this)
-
-
-
             designFilePath=getMexNetworkPrivateDirectoryPath(this);
 
             if this.IsCallingPredict
@@ -106,24 +90,21 @@ NetworkInfo
             end
         end
 
+
         function fusedLayerFcn=getAssociatedFusedLayerFcn(~)
             fusedLayerFcn=@nnet.internal.cnn.coder.MexDAGNetworkLayer;
         end
 
+
         function inputSizes=getInputSizesForValidation(this,network)
-
-
-
-
             iAssertHasOnlySupportedInputLayers(network);
-
             inputSizes=this.NetworkInfo.InputSizes;
         end
     end
 end
 
-function constInputs=iGenerateConstantInputs(isCallingPredict,numOutputs,activationLayerName,miniBatchSize)
 
+function constInputs=iGenerateConstantInputs(isCallingPredict,numOutputs,activationLayerName,miniBatchSize)
 
     constInputs={miniBatchSize};
 
@@ -132,6 +113,7 @@ function constInputs=iGenerateConstantInputs(isCallingPredict,numOutputs,activat
         constInputs=[constInputs,{activationLayerName}];
     end
 end
+
 
 function iAssertHasOnlySupportedInputLayers(network)
     internalNet=network.getInternalDAGNetwork();

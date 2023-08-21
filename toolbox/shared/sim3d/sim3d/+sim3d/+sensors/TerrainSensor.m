@@ -1,6 +1,5 @@
 classdef TerrainSensor<sim3d.sensors.Sensor
 
-
     properties(Access=private)
         TerrainSensorConfigPublisher=[]
         TerrainSensorSignalSubscriber=[]
@@ -16,7 +15,10 @@ NumberOfRays
         SuffixIn='/TerrainSensorDetection_IN';
         SuffixOut='/TerrainSensorConfiguration_OUT';
     end
+
+
     methods
+
         function self=TerrainSensor(sensorID,vehicleID,terrainSensorProperties,transform)
             sensorName=sim3d.sensors.Sensor.getSensorName('TerrainSensor',sensorID);
             self@sim3d.sensors.Sensor(sensorName,vehicleID,transform);
@@ -28,12 +30,15 @@ NumberOfRays
             self.TerrainSensorProperties=terrainSensorProperties;
             self.validateInputSizes();
         end
+
+
         function setup(self)
             setup@sim3d.sensors.Sensor(self);
-
             self.TerrainSensorConfigPublisher=sim3d.io.Publisher([self.getTag(),sim3d.sensors.TerrainSensor.SuffixOut]);
             self.TerrainSensorSignalSubscriber=sim3d.io.Subscriber([self.getTag(),sim3d.sensors.TerrainSensor.SuffixIn]);
         end
+
+
         function reset(self)
             reset@sim3d.sensors.Sensor(self);
             self.TerrainSensorConfigPublisher.publish(self.TerrainSensorProperties);
@@ -46,25 +51,27 @@ NumberOfRays
             end
         end
 
+
         function delete(self)
             if~isempty(self.TerrainSensorConfigPublisher)
                 self.TerrainSensorConfigPublisher.delete();
                 self.TerrainSensorConfigPublisher=[];
             end
-
             if~isempty(self.TerrainSensorSignalSubscriber)
                 self.TerrainSensorSignalSubscriber.delete();
                 self.TerrainSensorSignalSubscriber=[];
             end
-
             delete@sim3d.sensors.Sensor(self);
         end
     end
 
+
     methods(Access=private)
+
         function outMatrix=formatMatrix(~,inMatrix,numRows,numColumns)
             outMatrix=reshape(inMatrix(1:numRows*numColumns),numColumns,numRows)';
         end
+
 
         function validateInputSizes(self)
             if(self.NumberOfRays<=0||size(self.RayOrigins,1)~=self.NumberOfRays||size(self.RayDirections,1)~=self.NumberOfRays||size(self.RayLengths,1)~=self.NumberOfRays)
@@ -84,13 +91,17 @@ NumberOfRays
         end
     end
 
+
     methods(Access=public,Hidden=true)
+
         function actorType=getActorType(~)
             actorType=sim3d.utils.ActorTypes.TerrainSensor;
         end
     end
 
+
     methods(Static)
+
         function sensorProperties=getTerrainSensorProperties()
             sensorProperties=struct(...
             'RayOrigins',zeros(10,3),...
@@ -99,6 +110,7 @@ NumberOfRays
             'VisualizeTraceLines',true...
             );
         end
+
 
         function tagName=getTagName()
             tagName='TerrainSensor';

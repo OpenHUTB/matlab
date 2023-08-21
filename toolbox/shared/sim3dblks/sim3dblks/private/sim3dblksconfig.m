@@ -60,16 +60,12 @@ function[varargout]=sim3dblksconfig(varargin)
     end
 end
 
-function IconInfo=DrawCommands(block)
 
+function IconInfo=DrawCommands(block)
     AliasNames={};
     IconInfo=autoblksgetportlabels(block,AliasNames);
-
-
     IconInfo.ImageName='sim3dscene_configuration.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,50,'white');
-
-
     if strcmp(get_param(block,'aMode'),'4')
         IconInfo.ImageName='sim3dscene_configuration_uav.png';
         [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,0,0,'white');
@@ -80,27 +76,20 @@ function IconInfo=DrawCommands(block)
     end
 end
 
+
 function Initialization(block)
-
-
-
-
     SrcSelVeh=get_param(block,'OpVisEn');
     ConfgDispOptions={'sim3dcommon/Scene Config Term','Scene Config Term';...
     'sim3dcommon/Scene Config Ops','Scene Config Ops'};
-
     if strcmp(SrcSelVeh,'off')
         autoblksreplaceblock(block,ConfgDispOptions,1);
     else
         autoblksreplaceblock(block,ConfgDispOptions,2);
     end
-
-
     sim3d.utils.internal.MainCameraCallback.addSensorTag(block);
     maskObj=get_param(block,'MaskObject');
     vehTag=maskObj.getParameter('vehTag');
     set_param([block,'/Simulation 3D Main Camera'],'VehicleIdentifier',vehTag.Value);
-
     simulationStatus=get_param(bdroot,'SimulationStatus');
     if~strcmp(simulationStatus,'running')
 
@@ -112,16 +101,8 @@ function Initialization(block)
             set_param([block,'/Simulation 3D Main Camera'],'Rotation','[0, 0, 0]');
         end
     end
-
-
     sceneDesc=maskObj.getParameter('SceneDesc');
-
-
     enableGeoSpatial=maskObj.getParameter('EnableGeospatial');
-
-
-
-
     originalMaps={...
     'shared_sim3dblks:sim3dblkConfig:StraightRoad';...
     'shared_sim3dblks:sim3dblkConfig:CurvedRoad';...
@@ -136,9 +117,6 @@ function Initialization(block)
     'shared_sim3dblks:sim3dblkConfig:EmptyScene';...
     'shared_sim3dblks:sim3dblkConfig:Geospatial',...
     };
-
-
-
     aMode=get_param(block,'aMode');
     ASBMaps={'Airport'};
     GeospatialMap={'Geospatial'};
@@ -155,7 +133,6 @@ function Initialization(block)
     };
     UAVMaps={'shared_sim3dblks:sim3dblkConfig:USCityBlock'};
     SL3DMaps={'shared_sim3dblks:sim3dblkConfig:EmptyScene'};
-
     MapsFolder=fullfile(userpath,'sim3d_project',['R',version('-release')],'WindowsNoEditor/AutoVrtlEnv/Content/Paks/');
     MapsFolderExist=dir(MapsFolder);
 
@@ -189,7 +166,6 @@ function Initialization(block)
     elseif strcmp(aMode,'5')
         sceneDesc.TypeOptions=SL3DMaps;
     end
-
     if(strcmp(enableGeoSpatial.Value,"on"))
         sceneDesc.TypeOptions=GeospatialMap;
     end
@@ -197,6 +173,7 @@ function Initialization(block)
     SetProjName(block);
     EnableGeoSpatialTab(block);
 end
+
 
 function EnableGeoSpatialTab(block)
     maskObj=get_param(block,'MaskObject');
@@ -207,12 +184,14 @@ function EnableGeoSpatialTab(block)
     end
 end
 
+
 function InitVehTagList(block)
     maskObj=get_param(block,'MaskObject');
     vehTagList=maskObj.getParameter('vehTagList');
     vehTag=maskObj.getParameter('vehTag');
     vehTag.TypeOptions=eval(vehTagList.Value);
 end
+
 
 function ProjFrmtCallback(block)
     SrcSelection=get_param(block,'ProjectFormat');

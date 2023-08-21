@@ -1,6 +1,5 @@
 classdef RayTraceSensor<sim3d.sensors.Sensor
 
-
     properties(Access=private)
         RaytraceConfigPublisher=[];
         RaytraceSignalSubscriber=[];
@@ -29,16 +28,21 @@ classdef RayTraceSensor<sim3d.sensors.Sensor
             self.validateInputSizes();
 
         end
+
+
         function setup(self)
             setup@sim3d.sensors.Sensor(self);
             payloadSize=liveio.ArrayPacketSize(self.RaytraceSensorProperties);
             self.RaytraceConfigPublisher=sim3d.io.Publisher([self.getTag(),sim3d.sensors.RayTraceSensor.SuffixOut],'PacketSize',payloadSize);
             self.RaytraceSignalSubscriber=sim3d.io.Subscriber([self.getTag(),sim3d.sensors.RayTraceSensor.SuffixIn]);
         end
+
+
         function reset(self)
             self.RaytraceConfigPublisher.publish(self.RaytraceSensorProperties);
         end
-        function[surfaceIds,hitDistances,hitLocations,hitNormals,validHits]=read(self)
+       
+ function[surfaceIds,hitDistances,hitLocations,hitNormals,validHits]=read(self)
             hitLocations=single(zeros(self.MaxNumberOfHits,3));
             hitNormals=single(zeros(self.MaxNumberOfHits,3));
             hitDistances=single(zeros(self.MaxNumberOfHits,1));
@@ -53,19 +57,22 @@ classdef RayTraceSensor<sim3d.sensors.Sensor
                 validHits=raytraceSensorDetections.IsValidHit;
             end
         end
+
+
         function delete(self)
             if~isempty(self.RaytraceConfigPublisher)
                 self.RaytraceConfigPublisher=[];
             end
-
             if~isempty(self.RaytraceSignalSubscriber)
                 self.RaytraceSignalSubscriber=[];
             end
-
             delete@sim3d.sensors.Sensor(self);
         end
     end
+
+
     methods(Access=private)
+
         function outMatrix=formatMatrix(~,inMatrix,numRows,numColumns)
             outMatrix=reshape(inMatrix(1:numRows*numColumns),numColumns,numRows)';
         end
@@ -76,26 +83,27 @@ classdef RayTraceSensor<sim3d.sensors.Sensor
             if(size(self.RaytraceSensorProperties.RayOrigins,2)~=3)
                 error('sim3d:RayTraceSensor:InvalidSize','Ray origins must be of size [NumberOfRays, 3]');
             end
-
             if(size(self.RaytraceSensorProperties.RayDirections,2)~=3)
                 error('sim3d:RayTraceSensor:InvalidSize','Ray directions must be of size [NumberOfRays, 3]');
             end
-
             if(size(self.RaytraceSensorProperties.RayLengths,2)~=1)
                 error('sim3d:RayTraceSensor:InvalidSize','Ray lengths must be of size [NumberOfRays, 1]');
             end
         end
     end
+
+
     methods(Access=public,Hidden=true)
+
         function actorType=getActorType(~)
             actorType=sim3d.utils.ActorTypes.RayTraceSensor;
         end
     end
+
+
     methods(Static)
+
         function sensorProperties=getRayTraceSensorProperties()
-
-
-
             sensorProperties=struct('RayOrigins',zeros(10,3),...
             'RayDirections',ones(10,3),...
             'RayLengths',(ones(10,1)*10),...
@@ -104,6 +112,7 @@ classdef RayTraceSensor<sim3d.sensors.Sensor
             'EnableOptimization',false,...
             'TargetActorTags',[""]);
         end
+
 
         function tagName=getTagName()
             tagName='RayTraceSensor';

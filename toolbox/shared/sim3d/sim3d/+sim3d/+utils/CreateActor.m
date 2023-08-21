@@ -14,11 +14,12 @@ classdef CreateActor<handle
         MaxStrLengthAnim=256;
         QueueDepth=sim3d.World.MaxActorLimit;
     end
+
+
     methods
+
         function self=CreateActor()
-
             sim3d.engine.Engine.start();
-
             actorTypeBuffer=char(zeros(1,sim3d.utils.CreateActor.MaxStrLengthName));
             actorType='Sim3dPassVeh';
             actorTypeLength=length(actorType);
@@ -33,24 +34,18 @@ classdef CreateActor<handle
             actorName='ActorName';
             actorNameLength=length(actorName);
             actorNameBuffer(1:actorNameLength)=actorName(1:actorNameLength);
-
-
-
             meshNameBuffer=char(zeros(1,sim3d.utils.CreateActor.MaxStrLengthMesh));
             meshName='MeshPath';
             meshNameLength=length(meshName);
             meshNameBuffer(1:meshNameLength)=meshName(1:meshNameLength);
-
             animNameBuffer=char(zeros(1,sim3d.utils.CreateActor.MaxStrLengthAnim));
             animName='AnimPath';
             animNameLength=length(animName);
             animNameBuffer(1:animNameLength)=animName(1:animNameLength);
-
             actorLocationStruct=struct(...
             'translation',single(zeros(1,3)),...
             'rotation',single(zeros(1,3)),...
             'scale',single(ones(1,3)));
-
             self.CreateActorStruct=struct(...
             'CreateActorType',actorTypeBuffer,...
             'ActorInitialLocation',actorLocationStruct,...
@@ -67,11 +62,11 @@ classdef CreateActor<handle
             'Weight',single(0),...
             'GravityEnabled',true,...
             'ShadowsEnabled',true);
-
             self.Writer=sim3d.io.Publisher('CreateActorTopic',...
             'Packet',self.CreateActorStruct,...
             'QueueDepth',sim3d.utils.CreateActor.QueueDepth);
         end
+
 
         function delete(self)
             if~isempty(self.Writer)
@@ -79,6 +74,7 @@ classdef CreateActor<handle
                 self.Writer=[];
             end
         end
+
 
         function write(self)
             sim3d.engine.EngineReturnCode.assertObject(self.Writer);
@@ -101,21 +97,20 @@ classdef CreateActor<handle
             self.CreateActorStruct.CreateActorType(1:actorTypeLength)=createActorType(1:actorTypeLength);
         end
 
+
         function setActorLocation(self,actorlLocation)
             initLocFieldNames=fieldnames(actorlLocation);
             if~isempty(find(strcmp(initLocFieldNames,'translation'),1))
-
                 self.CreateActorStruct.ActorInitialLocation.translation=single(100*actorlLocation.translation(1,:));
             end
             if~isempty(find(strcmp(initLocFieldNames,'rotation'),1))
-
                 self.CreateActorStruct.ActorInitialLocation.rotation=single(rad2deg(actorlLocation.rotation(1,:)));
             end
             if~isempty(find(strcmp(initLocFieldNames,'scale'),1))
-
                 self.CreateActorStruct.ActorInitialLocation.scale=single(actorlLocation.scale(1,:));
             end
         end
+
 
         function setParentName(self,parentName)
             pNameDimension1=size(parentName,1);
@@ -128,6 +123,7 @@ classdef CreateActor<handle
             self.CreateActorStruct.ParentName(1:parentNameLength)=parentName(1:parentNameLength);
         end
 
+
         function setActorName(self,actorName)
             aNameDimension1=size(actorName,1);
             if aNameDimension1>sim3d.utils.CreateActor.MaxStrLengthName
@@ -139,9 +135,11 @@ classdef CreateActor<handle
             self.CreateActorStruct.ActorName(1:actorNameLength)=actorName(1:actorNameLength);
         end
 
+
         function setActorId(self,actorId)
             self.CreateActorStruct.ActorId=uint16(actorId);
         end
+
 
         function setMesh(self,meshName)
             meshDimension1=size(meshName,1);
@@ -154,6 +152,7 @@ classdef CreateActor<handle
             self.CreateActorStruct.Mesh(1:meshNameLength)=meshName(1:meshNameLength);
         end
 
+
         function setAnimation(self,animName)
             animDimension1=size(animName,1);
             if animDimension1>sim3d.utils.CreateActor.MaxStrLengthAnim
@@ -165,21 +164,26 @@ classdef CreateActor<handle
             self.CreateActorStruct.Animation(1:animNameLength)=animName(1:animNameLength);
         end
 
+
         function setMobility(self,mobilityType)
             self.CreateActorStruct.Mobility=int32(mobilityType);
         end
+
 
         function setVisiblity(self,visibilityEn)
             self.CreateActorStruct.Visible=logical(visibilityEn);
         end
 
+
         function setHidden(self,hiddenEn)
             self.CreateActorStruct.Hidden=logical(hiddenEn);
         end
 
+
         function setPhysics(self,physicsEn)
             self.CreateActorStruct.SimulatePhysics=logical(physicsEn);
         end
+
 
         function setCollision(self,collisionType)
             collTypeDim1=size(collisionType,1);
@@ -195,13 +199,16 @@ classdef CreateActor<handle
             self.CreateActorStruct.CollisionType=int32(collisionType);
         end
 
+
         function setWeight(self,weight)
             self.CreateActorStruct.Weight=single(weight);
         end
 
+
         function setGravity(self,gravityEn)
             self.CreateActorStruct.GravityEnabled=logical(gravityEn);
         end
+
 
         function setShadows(self,shadowsEn)
             self.CreateActorStruct.ShadowsEnabled=logical(shadowsEn);

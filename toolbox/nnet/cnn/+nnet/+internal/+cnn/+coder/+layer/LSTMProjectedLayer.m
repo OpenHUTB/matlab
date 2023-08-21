@@ -1,7 +1,5 @@
 %#codegen
-
 classdef LSTMProjectedLayer<coder.internal.layer.RecurrentLayer&nnet.layer.Formattable
-
 
     properties(SetAccess=private)
 StateActivationFunction
@@ -12,6 +10,7 @@ NumHiddenUnits
 InputProjectorSize
 OutputProjectorSize
     end
+
 
     properties
 InputGateWeights
@@ -24,7 +23,9 @@ InputProjector
 OutputProjector
     end
 
+
     methods
+
         function layer=LSTMProjectedLayer(name,numHiddenUnits,inputSize,...
             outputProjectorSize,inputProjectorSize,...
             inputWeights,recurrentWeights,...
@@ -35,7 +36,6 @@ OutputProjector
             layer.NumHiddenUnits=numHiddenUnits;
             layer.OutputProjectorSize=outputProjectorSize;
             layer.InputProjectorSize=inputProjectorSize;
-
             layer.StateActivationFunction=stateActivationFcn;
             layer.GateActivationFunction=gateActivationFcn;
             layer.ReturnLast=strcmp(outputMode,'last');
@@ -44,20 +44,15 @@ OutputProjector
             layer.State{1}=initCellState;
             layer.State{2}=initHiddenState;
             layer.InputSize=inputSize;
-
             layer.InputProjector=inputProjector';
             layer.OutputProjector=outputProjector';
-
-
             [layer.InputGateWeights,layer.InputStateWeights]=...
             coder.internal.layer.rnnUtils.lstmUtils.getGateAndStateWeights(...
             numHiddenUnits,inputWeights);
-
             [layer.RecurrentGateWeights,...
             layer.RecurrentStateWeights]=...
             coder.internal.layer.rnnUtils.lstmUtils.getGateAndStateWeights(...
             numHiddenUnits,recurrentWeights);
-
             [layer.GateBias,layer.StateBias]=...
             coder.internal.layer.rnnUtils.lstmUtils.getGateAndStateWeights(...
             numHiddenUnits,bias);
@@ -65,10 +60,7 @@ OutputProjector
 
         function[Y,CS,HS]=predict(layer,X,cellState,hiddenState)
             coder.allowpcode('plain');
-
-
             [Z,formatAfterFlattening]=iFlattenSpatialDimOfRecurrentInput(X);
-
             [Y,CS,HS]=nnet.internal.cnn.coder.layer.utils.rnnUtils.lstmProjectedUtils.forward(...
             extractdata(Z),layer.NumHiddenUnits,layer.OutputProjectorSize,...
             layer.InputSize,layer.InputProjectorSize,...
@@ -79,14 +71,11 @@ OutputProjector
             coder.const(coder.internal.layer.utils.getGateActivation(layer.GateActivationFunction)),...
             cellState,hiddenState,...
             formatAfterFlattening,layer.ReturnLast);
-
-
             outputFormat=iPrepareOutputFormat(layer.ReturnLast,X);
-
-
             Y=dlarray(Y,outputFormat);
         end
     end
+
 
     methods(Static,Hidden)
 
@@ -99,12 +88,11 @@ OutputProjector
             inputGateWeights,inputStateWeights,...
             recurrentGateWeights,recurrentStateWeights,...
             gateBias,stateBias,numHiddenUnits)
-
-
             inputWeights=[inputGateWeights(1:2*numHiddenUnits,:);inputStateWeights;inputGateWeights(2*numHiddenUnits+1:3*numHiddenUnits,:)];
             recurrentWeights=[recurrentGateWeights(1:2*numHiddenUnits,:);recurrentStateWeights;recurrentGateWeights(2*numHiddenUnits+1:3*numHiddenUnits,:)];
             bias=[gateBias(1:2*numHiddenUnits,:);stateBias;gateBias(2*numHiddenUnits+1:3*numHiddenUnits,:)];
         end
+
 
         function cgObj=matlabCodegenToRedirected(mlObj)
             cgObj=nnet.internal.cnn.coder.layer.LSTMProjectedLayer(mlObj.Name,...
@@ -117,6 +105,7 @@ OutputProjector
             mlObj.OutputMode);
         end
 
+
         function mlObj=matlabCodegenFromRedirected(cgObj)
             [inputWeights,recurrentWeights,bias]=nnet.internal.cnn.coder.layer.LSTMProjectedLayer.recombineWeights(...
             cgObj.InputGateWeights,cgObj.InputStateWeights,...
@@ -128,7 +117,6 @@ OutputProjector
             else
                 outputMode="sequence";
             end
-
             mlObj=lstmProjectedLayer(cgObj.NumHiddenUnits,...
             cgObj.OutputProjectorSize,cgObj.InputProjectorSize,...
             "Name",cgObj.Name,...
@@ -143,16 +131,14 @@ OutputProjector
 
 end
 
-function[dlY,formatAfterFlattening]=iFlattenSpatialDimOfRecurrentInput(dlX)
 
+function[dlY,formatAfterFlattening]=iFlattenSpatialDimOfRecurrentInput(dlX)
 
     cIdx=finddim(dlX,'C');
     inputFormat=dims(dlX);
     formatAfterFlattening=inputFormat(cIdx:end);
 
     if coder.const(~isempty(finddim(dlX,'S')))
-
-
         sz=size(dlX);
         flatChannels=prod(sz(1:cIdx));
         bIdx=finddim(dlX,'B');
@@ -177,8 +163,8 @@ function[dlY,formatAfterFlattening]=iFlattenSpatialDimOfRecurrentInput(dlX)
     end
 end
 
-function outputFormat=iPrepareOutputFormat(returnLast,X)
 
+function outputFormat=iPrepareOutputFormat(returnLast,X)
     if coder.const(returnLast)
 
         if coder.const(isempty(finddim(X,'B')))

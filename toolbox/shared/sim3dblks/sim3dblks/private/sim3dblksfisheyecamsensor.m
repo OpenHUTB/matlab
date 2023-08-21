@@ -23,12 +23,12 @@ function[varargout]=sim3dblksfisheyecamsensor(varargin)
     end
 end
 
+
 function Initialization(Block)
     simStopped=autoblkschecksimstopped(Block);
     blkMask=Simulink.Mask.get(Block);
     mountLocParam=findobj(blkMask.Parameters,'Name','mountLoc');
     offsetFlagParam=findobj(blkMask.Parameters,'Name','offsetFlag');
-
     if(strcmp(get_param(Block,'aMode'),'4'))
         mountLocParam.Enabled='off';
         offsetFlagParam.Value='on';
@@ -37,7 +37,6 @@ function Initialization(Block)
         mountLocParam.Enabled='on';
         offsetFlagParam.Enabled='on';
     end
-
     TransformOutportEnabled=get_param(Block,'TransformOutportEnabled');
     TranslationOutportOptions={'simulink/Sinks/Terminator','Translation Terminator';...
     'simulink/Sinks/Out1','Translation'};
@@ -82,6 +81,7 @@ function Initialization(Block)
     SetMountLocation(Block,"Simulation 3D Fisheye Camera");
 end
 
+
 function InitVehTagList(block)
     maskObj=get_param(block,'MaskObject');
     vehTagList=maskObj.getParameter('vehTagList');
@@ -89,28 +89,26 @@ function InitVehTagList(block)
     vehTag.TypeOptions=eval(vehTagList.Value);
 end
 
+
 function IconInfo=DrawCommands(Block)
 
     AliasNames={};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3dfisheye.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end
 
+
 function sim3dFisheyeCameraMountOffsetToggle(Block)
     if strcmp(get_param(Block,'offsetFlag'),'on')
 
-
         autoblksenableparameters(Block,{'tmountOffset','rmountOffset','extTmount','extRmount'});
     else
-
-
         autoblksenableparameters(Block,{},{'tmountOffset','rmountOffset','extTmount','extRmount'});
     end
     sim3dblkscamerasensor(Block,'ExtOffsetInputs');
 end
+
 
 function SwitchPort(Block,PortName,UsePort,Param)
 

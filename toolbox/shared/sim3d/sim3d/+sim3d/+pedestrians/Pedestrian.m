@@ -1,18 +1,18 @@
 classdef Pedestrian<sim3d.AbstractActor
-
     properties(SetAccess='private',GetAccess='public')
 
         PedestrianType;
 
-
         ActorTag;
     end
 
-    properties(SetAccess='public',GetAccess='public')
+   
+ properties(SetAccess='public',GetAccess='public')
         Animation;
 ActorID
 
     end
+
 
     properties(Access=private)
         PedestrianConfigPublisher=[];
@@ -29,12 +29,13 @@ ActorID
         TerrainSensorSuffixOut='/TerrainSensorConfiguration_OUT';
         TerrainSensorSuffixIn='/TerrainSensorDetection_IN';
     end
+
+
     methods
+
         function self=Pedestrian(actorName,pedestrianType,varargin)
             narginchk(2,inf);
             numberOfParts=uint32(1);
-
-
             r=sim3d.pedestrians.Pedestrian.parseInputs(varargin{:});
             switch pedestrianType
             case 'Custom'
@@ -45,25 +46,21 @@ ActorID
                 Animation=sim3d.pedestrians.Pedestrian.getAnimationPath(pedestrianType);
             end
             self@sim3d.AbstractActor(actorName,'Scene Origin',r.Translation,r.Rotation,r.Scale,'ActorClassId',r.ActorID,'NumberOfParts',numberOfParts);
-
-
             self.Translation=single(r.Translation);
             self.Rotation=single(r.Rotation);
             self.Scale=single(r.Scale);
             self.ActorTag=actorName;
-
             self.PedestrianConfig.PedestrianMesh=Mesh;
             self.PedestrianConfig.PedestrianAnimation=Animation;
-
             self.TerrainSensorConfig.RayStart=[0,0,0];
             self.TerrainSensorConfig.RayEnd=[1,0,3];
         end
+
 
         function reset(self)
             self.PedestrianConfigPublisher=sim3d.io.Publisher([self.ActorTag,self.SuffixOut]);
             self.TerrainSensorPublisher=sim3d.io.Publisher([self.ActorTag,self.TerrainSensorSuffixOut]);
             self.TerrainSensorSubscriber=sim3d.io.Subscriber([self.ActorTag,self.TerrainSensorSuffixIn]);
-
             sim3d.engine.EngineReturnCode.assertObject(self.TransformWriter);
             if~isempty(self.Translation)&&~isempty(self.Rotation)&&~isempty(self.Scale)
                 translation=self.Translation;
@@ -75,6 +72,8 @@ ActorID
             self.PedestrianConfigPublisher.publish(self.PedestrianConfig);
             self.TerrainSensorPublisher.publish(self.TerrainSensorConfig);
         end
+
+
         function step(self,X,Y,Yaw)
             rotation=[0,0,Yaw];
             [~,traceEnd]=self.readTerrainSensorDetections();
@@ -96,6 +95,7 @@ ActorID
             end
         end
 
+
         function write(self,translation,rotation,scale)
             self.writeTransform(translation,rotation,scale);
         end
@@ -104,8 +104,8 @@ ActorID
             [translation,rotation,scale]=self.readTransform();
         end
 
-        function writeTransform(self,translation,rotation,scale)
 
+        function writeTransform(self,translation,rotation,scale)
             if~isempty(self.TransformWriter)
                 rotation(3)=rotation(3)-pi/2;
                 self.TransformWriter.write(single(translation),single(rotation),single(scale));
@@ -114,7 +114,6 @@ ActorID
         end
 
         function[translation,rotation,scale]=readTransform(self)
-
             sim3d.engine.EngineReturnCode.assertObject(self.TransformReader);
             [translation,rotation,scale]=self.TransformReader.read;
             rotation(3)=rotation(3)+pi/2;
@@ -123,12 +122,13 @@ ActorID
             end
         end
 
+
         function actorType=getActorType(~)
             actorType=sim3d.utils.ActorTypes.Pedestrian;
         end
 
-        function delete(self)
 
+        function delete(self)
             if~isempty(self.TerrainSensorPublisher)
                 self.TerrainSensorPublisher=[];
             end
@@ -144,6 +144,7 @@ ActorID
 
 
     methods(Access=private,Static)
+
         function r=parseInputs(varargin)
 
             defaultParams=struct(...
@@ -154,7 +155,6 @@ ActorID
             'Scale',single(ones(1,3)),...
             'ActorID',4);
 
-
             parser=inputParser;
             parser.addParameter('Mesh',defaultParams.Mesh);
             parser.addParameter('Animation',defaultParams.Animation);
@@ -163,10 +163,10 @@ ActorID
             parser.addParameter('Scale',defaultParams.Scale);
             parser.addParameter('ActorID',defaultParams.ActorID);
 
-
             parser.parse(varargin{:});
             r=parser.Results;
         end
+
 
         function newType=legacyPedestrianTypeMapper(PedestrianType)
             switch PedestrianType
@@ -195,6 +195,8 @@ ActorID
                 newType=PedestrianType;
             end
         end
+
+
         function ret=getMeshPath(PedestrianType)
             PedestrianType=sim3d.pedestrians.Pedestrian.legacyPedestrianTypeMapper(PedestrianType);
             switch PedestrianType
@@ -216,6 +218,7 @@ ActorID
                 error('sim3dblks:invalidPedestrianType','Invalid Pedestrian Type. Please check help and select a valid Pedestrian Type.');
             end
         end
+
 
         function ret=getAnimationPath(PedestrianType)
             PedestrianType=sim3d.pedestrians.Pedestrian.legacyPedestrianTypeMapper(PedestrianType);

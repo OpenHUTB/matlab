@@ -23,12 +23,12 @@ function[varargout]=sim3dblkscamerasensor(varargin)
     end
 end
 
+
 function Initialization(Block)
     simStopped=autoblkschecksimstopped(Block);
     blkMask=Simulink.Mask.get(Block);
     mountLocParam=findobj(blkMask.Parameters,'Name','mountLoc');
     offsetFlagParam=findobj(blkMask.Parameters,'Name','offsetFlag');
-
     if(strcmp(get_param(Block,'aMode'),'4'))
         mountLocParam.Enabled='off';
         offsetFlagParam.Value='on';
@@ -37,7 +37,6 @@ function Initialization(Block)
         mountLocParam.Enabled='on';
         offsetFlagParam.Enabled='on';
     end
-
     DepthOutportEnabled=get_param(Block,'DepthOutportEnabled');
     DepthOutportOptions={'simulink/Sinks/Terminator','Depth Terminator';...
     'simulink/Sinks/Out1','Depth'};
@@ -56,7 +55,6 @@ function Initialization(Block)
     else
         autoblksreplaceblock(Block,SemanticOutportOptions,2);
     end
-
     TransformOutportEnabled=get_param(Block,'TransformOutportEnabled');
     TranslationOutportOptions={'simulink/Sinks/Terminator','Translation Terminator';...
     'simulink/Sinks/Out1','Translation'};
@@ -96,10 +94,7 @@ function Initialization(Block)
     MaskObj=get_param(Block,'MaskObject');
     vehTag=MaskObj.getParameter('vehTag');
     set_param([Block,'/Simulation 3D Camera'],'VehicleIdentifier',vehTag.Value);
-
-
     InportNames={'Image','Depth','Semantic','Translation','Rotation'};
-
     FoundNames=get_param(find_system(Block,'LookUnderMasks','all','SearchDepth',1,'FollowLinks','on','BlockType','Outport'),'Name');
     [~,PortI]=intersect(InportNames,FoundNames);
     PortI=sort(PortI);
@@ -111,6 +106,7 @@ function Initialization(Block)
     SetMountLocation(Block,"Simulation 3D Camera");
 end
 
+
 function InitVehTagList(block)
     maskObj=get_param(block,'MaskObject');
     vehTagList=maskObj.getParameter('vehTagList');
@@ -118,28 +114,27 @@ function InitVehTagList(block)
     vehTag.TypeOptions=eval(vehTagList.Value);
 end
 
+
 function IconInfo=DrawCommands(Block)
 
     AliasNames={};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3dpinhole.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end
 
+
 function sim3dCameraMountOffsetToggle(Block)
     if strcmp(get_param(Block,'offsetFlag'),'on')
 
-
         autoblksenableparameters(Block,{'tmountOffset','rmountOffset','extTmount','extRmount'});
     else
-
 
         autoblksenableparameters(Block,{},{'tmountOffset','rmountOffset','extTmount','extRmount'});
     end
     sim3dblkscamerasensor(Block,'ExtOffsetInputs');
 end
+
 
 function SwitchPort(Block,PortName,UsePort,Param)
 

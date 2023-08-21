@@ -7,6 +7,8 @@ classdef Actors<handle
 ActorTag
 Blk
     end
+
+
     methods
         function obj=Actors(ID,Prev,Next,Blk,ActorTag)
             obj.Next=Next;

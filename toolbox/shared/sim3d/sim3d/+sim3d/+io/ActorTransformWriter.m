@@ -4,13 +4,18 @@ classdef ActorTransformWriter<handle
         Writer=[]
         NumberOfParts=1
     end
+
+
     properties(Constant=true)
         Suffix='/Transform_OUT'
         TranslationIndex=1
         RotationIndex=2
         ScaleIndex=3
     end
+
+
     methods
+
         function self=ActorTransformWriter(actorTag,NumberOfParts)
             self.Writer=sim3d.io.Publisher([actorTag,sim3d.io.ActorTransformWriter.Suffix],'Packet',zeros(NumberOfParts,3,3,'single'));
             self.NumberOfParts=NumberOfParts;
@@ -21,11 +26,13 @@ classdef ActorTransformWriter<handle
             end
         end
 
+
         function delete(self)
             if~isempty(self.Writer)
                 self.Writer.delete()
             end
         end
+
 
         function write(self,translation,rotation,scale)
             transform(:,:,sim3d.io.ActorTransformWriter.TranslationIndex)=translation;

@@ -21,6 +21,7 @@ classdef(Hidden)EngineReturnCode
 
 
     methods(Static)
+
         function assertObject(obj)
             if isempty(obj)||obj==uint64(0)
                 callStack=dbstack;

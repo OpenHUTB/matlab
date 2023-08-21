@@ -17,11 +17,13 @@ classdef ActorRayTraceWriter<handle
             end
         end
 
+
         function delete(self)
             if~isempty(self.Publisher)&&self.Publisher~=uint64(0)
                 self.Publisher=[];
             end
         end
+
 
         function write(self,traceStart,traceEnd)
             sim3d.engine.EngineReturnCode.assertObject(self.Publisher);

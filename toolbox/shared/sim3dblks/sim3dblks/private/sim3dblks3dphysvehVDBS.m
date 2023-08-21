@@ -27,15 +27,14 @@ function[varargout]=sim3dblks3dphysvehVDBS(varargin)
     end
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     AliasNames={'Steer','Steer';'Accel','Accel';'Decel','Decel';'Gear','Gear';'HndBrk','HndBrk';};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3dphysicalvehicle.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,0,0,'white');
 end
+
 
 function VehicleSelection(Block)
     MaskObj=get_param(Block,'MaskObject');
@@ -46,14 +45,16 @@ function VehicleSelection(Block)
     end
 end
 
-function VehLightsControl(Block,LightsEnabled)
 
+function VehLightsControl(Block,LightsEnabled)
     if LightsEnabled
         autoblksenableparameters(Block,[],[],{'HeadlightSettingsMenu';'BrakelightSettingsMenu';'ReverselightSettingsMenu';'SignallightSettingsMenu'},[]);
     else
         autoblksenableparameters(Block,[],[],[],{'HeadlightSettingsMenu';'BrakelightSettingsMenu';'ReverselightSettingsMenu';'SignallightSettingsMenu'});
     end
 end
+
+
 function ParamStruct=Initialization(Block)
     BlkHdl=get_param(Block,'Handle');
     HandbrakeEnabled=strcmp(get_param(Block,'HndBrkEnable'),'on');
@@ -65,10 +66,6 @@ function ParamStruct=Initialization(Block)
     DrivetrainType(Block,strcmp(get_param(Block,'DrivetrainType'),'All Wheel Drive'));
     FrntHndbrk(Block,strcmp(get_param(Block,'FrntWhlHndBrkEnable'),'on'));
     RearHndbrk(Block,strcmp(get_param(Block,'RearWhlHndBrkEnable'),'on'));
-
-
-
-
     sim3d.utils.SimPool.addActorTag(Block);
     MaskObj=get_param(Block,'MaskObject');
     vehName=MaskObj.getParameter('ActorTag');
@@ -138,16 +135,13 @@ function ParamStruct=Initialization(Block)
 
     };
 
-
     LookupTblList={{'SpdCrv',{}},'TrqCrv',{};...
     {'SteerVehSpdBpts',{}},'SteerSpdFctTbl',{};...
     {'G',{'int',0}},'N',{};...
     };
-
     shiftParams=autoblksgetmaskparms(Block,{'G','UpShiftPts','DownShiftPts'},true);
 
     gearVec=shiftParams{1};
-
 
     if~any(shiftParams{1}<0)||~any(shiftParams{1}==0)
         error(message('shared_sim3dblks:sim3dsharederrAutoIcon:gearVectorRandN'));
@@ -174,16 +168,12 @@ function ParamStruct=Initialization(Block)
             error(string(message('shared_sim3dblks:sim3dsharederrAutoIcon:vectorGt0'))+" DownShiftPts");
         end
 
-
         if length(find(gearVec>0))~=sizeUpShiftPts(2)
             error(message('shared_sim3dblks:sim3dsharederrAutoIcon:shiftIndLength2GearLength'));
         end
     end
-
     MeshPath=MaskObj.getParameter('MeshPath');
     set_param([Block,'/PhysicalVehicle'],'MeshPath',MeshPath.Value);
-
-
 
     if~LightsEnabled
         SwitchPort(Block,'Light controls','Constant','zeros(1,6)');
@@ -196,7 +186,6 @@ function ParamStruct=Initialization(Block)
     else
         SwitchPort(Block,'HndbrkCmd','Inport',[]);
     end
-
 
     if strcmp(get_param(Block,'StandardOutportEnabled'),'on')
         SwitchPort(Block,'Info','Outport',[]);
@@ -220,8 +209,6 @@ function ParamStruct=Initialization(Block)
         SwitchPort(Block,'Orientation','Terminator',[]);
     end
     autoblkscheckparams(Block,ParamList,LookupTblList);
-
-
     vehType=get_param(BlkHdl,'PassVehMesh');
 
     switch vehType
@@ -277,6 +264,8 @@ function HndbrkUpdate(Block,HandbrakeEnabled)
         autoblksenableparameters(Block,[],{'FrntWhlHndBrkEnable';'RearWhlHndBrkEnable';'FrntWhlMaxHndBrkTrq';'RearWhlMaxHndBrkTrq'},[],[],'false')
     end
 end
+
+
 function Transcntrl(Block,AutomaticTrans)
     if AutomaticTrans
         autoblksenableparameters(Block,{'UpShiftPts';'tMinShift';'DownShiftPts'},[],[],[],'false')
@@ -284,6 +273,8 @@ function Transcntrl(Block,AutomaticTrans)
         autoblksenableparameters(Block,[],{'UpShiftPts';'tMinShift';'DownShiftPts'},[],[],'false')
     end
 end
+
+
 function DrivetrainType(Block,AllWheelDrive)
     if AllWheelDrive
         autoblksenableparameters(Block,{'FrontRearSplit'},[],[],[],'false')
@@ -291,6 +282,8 @@ function DrivetrainType(Block,AllWheelDrive)
         autoblksenableparameters(Block,[],{'FrontRearSplit'},[],[],'false')
     end
 end
+
+
 function FrntHndbrk(Block,FrontHandbrakeEnabled)
     if FrontHandbrakeEnabled
         autoblksenableparameters(Block,{'FrntWhlMaxHndBrkTrq'},[],[],[],'false')
@@ -298,6 +291,8 @@ function FrntHndbrk(Block,FrontHandbrakeEnabled)
         autoblksenableparameters(Block,[],{'FrntWhlMaxHndBrkTrq'},[],[],'false')
     end
 end
+
+
 function RearHndbrk(Block,RearHandbrakeEnabled)
     if RearHandbrakeEnabled
         autoblksenableparameters(Block,{'RearWhlMaxHndBrkTrq'},[],[],[],'false')
@@ -305,6 +300,8 @@ function RearHndbrk(Block,RearHandbrakeEnabled)
         autoblksenableparameters(Block,[],{'RearWhlMaxHndBrkTrq'},[],[],'false')
     end
 end
+
+
 function SwitchPort(Block,PortName,UsePort,Param)
 
     InportOption={'built-in/Constant',[PortName,'Constant'];...
@@ -325,7 +322,6 @@ function SwitchPort(Block,PortName,UsePort,Param)
     case 'Ground'
         autoblksreplaceblock(Block,InportOption,5);
     end
-
     InportNames={'SteerCmd';'AccelCmd';'DecelCmd';'GearCmd';'HndbrkCmd';'LightStates'};
     OutportNames={'Info';'xdot';'ydot';'psi';'r';'Location';'Orientation'};
     FoundInNames=get_param(find_system(Block,'LookUnderMasks','all','SearchDepth',1,'FollowLinks','on','BlockType','Inport'),'Name');

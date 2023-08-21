@@ -2,6 +2,7 @@ classdef BusConverter<...
     matlab.System&...
     matlabshared.tracking.internal.SimulinkBusPropagation
 
+
     properties(Nontunable)
         SensorIndex{mustBeNonnegative,mustBeInteger}=0;
         useBusOutput{mustBeNumericOrLogical}=true;
@@ -12,11 +13,14 @@ classdef BusConverter<...
         FieldOfView(1,2){mustBeReal}=[0,0];
     end
 
+
     properties(Constant,Access=protected)
         pBusPrefix='BusSimulation3DRangeSensor';
     end
 
+
     methods(Access=protected)
+
         function varargout=stepImpl(self,HasObject,HasRange,Range)
             if~self.useBusOutput
                 varargout{1}=HasObject;
@@ -105,36 +109,32 @@ classdef BusConverter<...
             );
         end
 
+
         function detection=defaultEmptyReturn(self,time)
             distance=0;
             actorID=0;
             pointOnTarget=[0,0,0]';
-
             detection={objectDetection(time,distance)};
-
 
             detection{1}.Time=time;
             detection{1}.Measurement=distance;
             detection{1}.MeasurementNoise=0.005^2;
             detection{1}.SensorIndex=self.SensorIndex;
             detection{1}.ObjectClassID=0;
-
             detection{1}.MeasurementParameters=...
             matlabshared.tracking.internal.fusion.objectDetection.MeasurementParameters(1);
             detection{1}.MeasurementParameters.Frame=drivingCoordinateFrameType.Spherical;
             detection{1}.MeasurementParameters.OriginPosition(:)=self.MountingLocation;
             detection{1}.MeasurementParameters.FieldOfView=self.FieldOfView;
-
             detection{1}.ObjectAttributes{1}.TargetIndex=actorID;
-
-
-
             detection{1}.ObjectAttributes{1}.PointOnTarget=pointOnTarget;
         end
+
 
         function num=getNumInputsImpl(~)
             num=3;
         end
+
 
         function num=getNumOutputsImpl(self)
             if self.useBusOutput
@@ -143,6 +143,7 @@ classdef BusConverter<...
                 num=3;
             end
         end
+
 
         function names=getInputNamesImpl(~)
             names=[...
@@ -164,6 +165,7 @@ classdef BusConverter<...
             end
         end
 
+
         function varargout=isOutputFixedSizeImpl(self)
             if~self.useBusOutput
                 varargout={true,true,true};
@@ -171,6 +173,7 @@ classdef BusConverter<...
                 varargout={true};
             end
         end
+
 
         function varargout=getOutputSizeImpl(self)
             if~self.useBusOutput
@@ -180,6 +183,7 @@ classdef BusConverter<...
             end
         end
 
+
         function varargout=isOutputComplexImpl(self)
             if~self.useBusOutput
                 varargout={false,false,false};
@@ -187,6 +191,7 @@ classdef BusConverter<...
                 varargout={false};
             end
         end
+
 
         function varargout=getOutputDataTypeImpl(self)
             if self.useBusOutput
@@ -199,6 +204,7 @@ classdef BusConverter<...
         end
     end
 
+
     methods(Hidden)
         function[sensorType,sensorIndex,fov,maxRange,orientation,...
             location,detCoordSys,detOffset]=getSensorExtrinsicsForBES(self,~)
@@ -206,7 +212,6 @@ classdef BusConverter<...
             sensorIndex=double(self.SensorIndex);
             fov=double(self.FieldOfView(1,1));
             maxRange=double(self.MaximumRange);
-
             orientation=double(self.MountingOrientation);
             location=double(self.MountingLocation(1:2));
             detOffset=double([0,0,0]);

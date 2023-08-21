@@ -1,21 +1,20 @@
 classdef Tractor < sim3d.auto.WheeledVehicle
 
-
 properties ( SetAccess = 'private', GetAccess = 'public' )
 TractorType;
 
 end 
 
-methods 
+
+methods
+
 function self = Tractor( actorName, tractorType, varargin )
 narginchk( 2, inf );
 numberOfParts = uint32( 7 );
 
 r = sim3d.auto.Tractor.parseInputs( numberOfParts, varargin{ : } );
 
-
 mesh = '';
-
 
 self@sim3d.auto.WheeledVehicle( actorName, r.ActorID, r.Translation,  ...
 r.Rotation, r.Scale, numberOfParts, mesh );

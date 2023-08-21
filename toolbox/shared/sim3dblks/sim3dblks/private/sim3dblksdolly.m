@@ -14,15 +14,15 @@ function[varargout]=sim3dblksdolly(varargin)
     end
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     AliasNames={'Translation','Translation';'Rotation','Rotation';'Scale','Scale'};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
 
     IconInfo.ImageName='sim3ddolly.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end
+
 
 function Initialization(Block)
     sim3d.utils.SimPool.addActorTag(Block);
@@ -31,9 +31,8 @@ function Initialization(Block)
     set_param([Block,'/Simulation 3D Dolly'],'ActorTag',vehName.Value);
     ParamList={'SampleTime',[1,1],{'st',0};};
     autoblkscheckparams(Block,ParamList);
-
-
 end
+
 
 function SetInitialValues(Block)
     MaskObj=get_param(Block,'MaskObject');

@@ -1,6 +1,5 @@
 classdef PhysicalAttributes<sim3d.internal.BaseAttributes
 
-
     properties
 ActorName
         LinearVelocity(1,3)double;
@@ -13,9 +12,8 @@ ActorName
         LocationLocked(1,1)logical;
         RotationLocked(1,1)logical;
         Mobility(1,1)int32;
-
-
     end
+
 
     properties(Hidden)
         Inertia(1,3)double;
@@ -28,6 +26,7 @@ ActorName
         Hidden(1,1)logical;
         ConstantAttributes(1,1)logical;
     end
+
 
     properties(Hidden,Constant)
         LinearVelocityID=1
@@ -54,13 +53,15 @@ ActorName
         Suffix_In='PhysicalAttributes_IN';
     end
 
-    methods
-        function self=PhysicalAttributes(varargin)
 
+    methods
+
+        function self=PhysicalAttributes(varargin)
             self@sim3d.internal.BaseAttributes();
             r=sim3d.internal.PhysicalAttributes.parseInputs(varargin{:});
             self.setAttributes(r);
         end
+
 
         function setup(self,actorName)
             messageTopic=[actorName,self.Suffix_Out];
@@ -71,6 +72,7 @@ ActorName
         function PhysicalAttribs=getAttributes(self)
             PhysicalAttribs=self.createPhysicalStruct(self);
         end
+
 
         function setAttributes(self,PhysicalStruct)
             if(isfield(PhysicalStruct,'Mobility'))
@@ -131,32 +133,26 @@ ActorName
                 self.ConstantAttributes=PhysicalStruct.ConstantAttributes;
             end
 
-
         end
-
-
-
-
-
 
 
         function set.LinearVelocity(self,LinearVelocity)
             if(max(abs(LinearVelocity))>1e-5&&self.Mobility==sim3d.utils.MobilityTypes.Static)
                 warning(message("shared_sim3d:sim3dActor:UnsupportedMobilityType",'Linear Velocity'));
             end
-
             self.LinearVelocity=LinearVelocity;
             self.add2Buffer(self.LinearVelocityID);
         end
+
 
         function set.AngularVelocity(self,AngularVelocity)
             if(max(abs(AngularVelocity))>1e-5&&self.Mobility==sim3d.utils.MobilityTypes.Static)
                 warning(message("shared_sim3d:sim3dActor:UnsupportedMobilityType",'Angular Velocity'));
             end
-
             self.AngularVelocity=AngularVelocity;
             self.add2Buffer(self.AngularVelocityID);
         end
+
 
         function set.Mass(self,Mass)
             if(Mass~=0&&self.Mobility==sim3d.utils.MobilityTypes.Static)
@@ -166,20 +162,24 @@ ActorName
             self.add2Buffer(self.MassID);
         end
 
+
         function set.Inertia(self,Inertia)
             self.Inertia=Inertia;
             self.add2Buffer(self.InertiaID);
         end
 
+
         function set.Force(self,Force)
             self.Force=Force;
             self.add2Buffer(self.ForceID);
-
         end
+
+
         function set.Torque(self,Torque)
             self.Torque=Torque;
             self.add2Buffer(self.TorqueID);
         end
+
 
         function set.CenterOfMass(self,CenterOfMass)
             if(max(abs(CenterOfMass))>1e-5&&self.Mobility==sim3d.utils.MobilityTypes.Static)
@@ -189,6 +189,7 @@ ActorName
             self.add2Buffer(self.CenterOfMassID);
         end
 
+
         function set.Gravity(self,Gravity)
             if(Gravity==true&&self.Mobility==sim3d.utils.MobilityTypes.Static)
                 warning(message("shared_sim3d:sim3dActor:UnsupportedMobilityType",'Gravity'));
@@ -196,6 +197,7 @@ ActorName
             self.Gravity=Gravity;
             self.add2Buffer(self.GravityID);
         end
+
 
         function set.Physics(self,Physics)
             if(Physics==true&&self.Mobility==sim3d.utils.MobilityTypes.Static)
@@ -205,45 +207,54 @@ ActorName
             self.add2Buffer(self.PhysicsID);
         end
 
+
         function set.ContinuousMovement(self,ContinuousMovement)
             self.ContinuousMovement=ContinuousMovement;
             self.add2Buffer(self.ContinuousMovementID);
         end
+
 
         function set.Friction(self,Friction)
             self.Friction=Friction;
             self.add2Buffer(self.FrictionID);
         end
 
+
         function set.Restitution(self,Restitution)
             self.Restitution=Restitution;
             self.add2Buffer(self.RestitutionID);
         end
+
 
         function set.PreciseContacts(self,PreciseContacts)
             self.PreciseContacts=PreciseContacts;
             self.add2Buffer(self.PreciseContactsID);
         end
 
+
         function set.Collisions(self,Collisions)
             self.Collisions=Collisions;
             self.add2Buffer(self.CollisionsID);
         end
+
 
         function set.LocationLocked(self,LocationLocked)
             self.LocationLocked=LocationLocked;
             self.add2Buffer(self.LocationLockedID);
         end
 
+
         function set.RotationLocked(self,RotationLocked)
             self.RotationLocked=RotationLocked;
             self.add2Buffer(self.RotationLockedID);
         end
 
+
         function set.ConstantAttributes(self,ConstantAttributes)
             self.ConstantAttributes=ConstantAttributes;
             self.add2Buffer(self.ConstantAttributesID);
         end
+
 
         function set.Mobility(self,Mobility)
             self.Mobility=Mobility;
@@ -256,8 +267,8 @@ ActorName
             self.add2Buffer(self.HiddenID);
         end
 
-        function copy(self,other)
 
+        function copy(self,other)
             self.Mobility=other.Mobility;
             self.LinearVelocity=other.LinearVelocity;
             self.AngularVelocity=other.AngularVelocity;
@@ -279,15 +290,15 @@ ActorName
             self.ConstantAttributes=other.ConstantAttributes;
         end
 
+
         function delete(self)
-
-
         end
     end
 
-    methods(Access=private,Static)
-        function r=parseInputs(varargin)
 
+    methods(Access=private,Static)
+
+        function r=parseInputs(varargin)
             defaultParams=struct(...
             'LinearVelocity',[0,0,0],...
             'AngularVelocity',[0,0,0],...
@@ -308,7 +319,6 @@ ActorName
             'Mobility',int32(sim3d.utils.MobilityTypes.Static),...
             'Hidden',false,...
             'ConstantAttributes',false);
-
 
             parser=inputParser;
             parser.addParameter('LinearVelocity',defaultParams.LinearVelocity);
@@ -331,10 +341,10 @@ ActorName
             parser.addParameter('Hidden',defaultParams.Hidden);
             parser.addParameter('ConstantAttributes',defaultParams.ConstantAttributes);
 
-
             parser.parse(varargin{:});
             r=parser.Results;
         end
+
 
         function PhysicalStruct=createPhysicalStruct(self)
             PhysicalStruct=struct('LinearVelocity',self.LinearVelocity,'AngularVelocity',self.AngularVelocity,...
@@ -350,19 +360,18 @@ ActorName
 
 
     methods(Hidden)
+
         function totalAttributes=getTotalAttributes(self)
             totalAttributes=self.Full;
         end
 
-        function selectedAttributes=getSelectedAttributes(self,messageIds)
 
+        function selectedAttributes=getSelectedAttributes(self,messageIds)
             selectedAttributes=struct();
             if(messageIds(self.Full)==1)
-
                 selectedAttributes=self.getAttributes();
                 return;
             end
-
             if(messageIds(self.LinearVelocityID)==1)
                 selectedAttributes.LinearVelocity=self.LinearVelocity;
             end
@@ -378,7 +387,6 @@ ActorName
             if(messageIds(self.ForceID)==1)
                 selectedAttributes.Force=self.Force;
             end
-
             if(messageIds(self.TorqueID)==1)
                 selectedAttributes.Torque=self.Torque;
             end
@@ -391,7 +399,6 @@ ActorName
             if(messageIds(self.PhysicsID)==1)
                 selectedAttributes.Physics=self.Physics;
             end
-
             if(messageIds(self.ContinuousMovementID)==1)
                 selectedAttributes.ContinuousMovement=self.ContinuousMovement;
             end
@@ -419,7 +426,6 @@ ActorName
             if(messageIds(self.HiddenID)==1)
                 selectedAttributes.Hidden=self.Hidden;
             end
-
             if(messageIds(self.ConstantAttributesID)==1)
                 selectedAttributes.ConstantAttributes=self.ConstantAttributes;
             end

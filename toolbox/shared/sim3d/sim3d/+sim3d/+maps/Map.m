@@ -1,5 +1,4 @@
 classdef Map
-
     properties(Constant=true,Access=private,Hidden=true)
         baseUrl='https://ssd.mathworks.com/supportfiles/R2022a/';
         pakDestPath=fullfile(userpath,'sim3d_project',['R',version('-release')],'WindowsNoEditor/AutoVrtlEnv/Content/Paks/');
@@ -9,10 +8,6 @@ classdef Map
 
     methods(Static=true,Access=public)
         function download(map)
-
-
-
-
             pakFile=sim3d.utils.internal.ScenesMapping.getPakFile(map);
             if(~isempty(pakFile))
                 try
@@ -31,8 +26,6 @@ classdef Map
                     csvlocal=csvFileServer;
                     csvlocal(:,:)=[];
                 end
-
-
                 colServer=width(csvFileServer);
                 colLocal=width(csvlocal);
                 if colLocal<colServer
@@ -41,8 +34,6 @@ classdef Map
                         csvlocal.(name)(:)="[]";
                     end
                 end
-
-
                 mapIndexServer=find(strcmp(csvFileServer.MapName,map),1);
                 mapIndexLocal=find(strcmp(csvlocal.MapName,map),1);
                 if~isempty(mapIndexLocal)
@@ -57,19 +48,14 @@ classdef Map
                     csvlocal=[csvlocal;newMap];
                     mapIndexLocal=height(csvlocal);
                 end
-
-
                 currentVersion=version('-release');
                 currentVersionSplit=split(currentVersion,{'a','b'});
                 currentVersionFiltered=str2double(currentVersionSplit(1));
-
                 requiredVersion=csvlocal.MinimumRelease{mapIndexLocal};
                 requiredVersionSplit=split(requiredVersion,{'R','a','b'});
                 requiredVersionFiltered=str2double(requiredVersionSplit(2));
-
                 currentVersionOrder=currentVersion(end);
                 requiredVersionOrder=requiredVersion(end);
-
 
                 currentVersion=version;
                 requiredVersion=csvlocal.ReleaseUpdate{mapIndexLocal};
@@ -77,7 +63,6 @@ classdef Map
                 updateCompatible=false;
                 releaseCompatible=false;
                 matlabSupportsMap=false;
-
                 if(~strcmp(requiredVersion,'[]'))
                     if(contains(currentVersion,requiredVersion))
                         updateCompatible=true;
@@ -85,11 +70,9 @@ classdef Map
                 else
                     updateCompatible=true;
                 end
-
                 if((currentVersionFiltered==requiredVersionFiltered)&&(currentVersionOrder>=requiredVersionOrder))||(currentVersionFiltered>requiredVersionFiltered)
                     releaseCompatible=true;
                 end
-
                 if(updateCompatible&&releaseCompatible)
                     matlabSupportsMap=true;
                 end
@@ -115,8 +98,6 @@ classdef Map
                         error('Could not connect to the server. Please try again');
                     end
                     fprintf('\nMap is susccesfully downloaded and is up-to-date\n')
-
-
                     writetable(csvlocal,fullfile(sim3d.maps.Map.pakDestPath,[sim3d.maps.Map.csvFileName,sim3d.maps.Map.csvFileExtension]),'WriteMode','overwritesheet');
                 else
                     fprintf('\n');
@@ -131,9 +112,8 @@ classdef Map
             end
         end
 
+
         function delete(map)
-
-
             pakFile=sim3d.utils.internal.ScenesMapping.getPakFile(map);
             if(~isempty(pakFile))
                 mapPath=fullfile(sim3d.maps.Map.pakDestPath,pakFile);
@@ -176,16 +156,14 @@ classdef Map
             end
         end
 
+
         function server()
-
-
             try
                 tempFolder=tempname;
                 mkdir(tempFolder);
                 websave(fullfile(tempFolder,[sim3d.maps.Map.csvFileName,sim3d.maps.Map.csvFileExtension]),fullfile(sim3d.maps.Map.baseUrl,[sim3d.maps.Map.csvFileName,sim3d.maps.Map.csvFileExtension]));
                 csvFileServer=readtable(fullfile(tempFolder,[sim3d.maps.Map.csvFileName,sim3d.maps.Map.csvFileExtension]));
                 if(~isempty(csvFileServer))
-
                     cols=width(csvFileServer);
                     for i=1:cols
                         csvFileServer.(i)=string(csvFileServer.(i));
@@ -193,11 +171,8 @@ classdef Map
                     fprintf('\n')
                     disp(csvFileServer)
                     fprintf('\n');
-
                     csvlocalPath=fullfile(sim3d.maps.Map.pakDestPath,[sim3d.maps.Map.csvFileName,sim3d.maps.Map.csvFileExtension]);
                     csvlocalExist=dir(csvlocalPath);
-
-
                     if~isempty(csvlocalExist)
                         csvlocal=readtable(fullfile(sim3d.maps.Map.pakDestPath,[sim3d.maps.Map.csvFileName,sim3d.maps.Map.csvFileExtension]));
                         numOfMaps=length(csvlocal.MapName);
@@ -205,7 +180,6 @@ classdef Map
                             mapIndex=find((strcmp(csvFileServer.MapName,csvlocal.MapName(i))),1);
                             mapVersionServer=str2double(csvFileServer.Version(mapIndex));
                             mapVersionLocal=csvlocal.Version(i);
-
                             if(mapVersionServer>mapVersionLocal)
                                 fprintf('\n');
                                 warning("%s has an updated version. Make sure you download the map again in the supported MATLAB release",csvlocal.MapName{i})
@@ -223,16 +197,8 @@ classdef Map
             end
         end
 
+
         function local()
-
-
-
-
-
-
-
-
-
             try
                 csvlocal=readtable(fullfile(sim3d.maps.Map.pakDestPath,[sim3d.maps.Map.csvFileName,sim3d.maps.Map.csvFileExtension]));
                 cols=width(csvlocal);

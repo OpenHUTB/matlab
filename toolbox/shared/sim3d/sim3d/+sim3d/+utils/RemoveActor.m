@@ -1,32 +1,34 @@
 classdef RemoveActor<handle
 
-
     properties
         Writer=[];
         RemoveActorStruct=[];
     end
+
+
     properties(Constant=true)
         MaxStrLengthName=128;
         QueueDepth=sim3d.World.MaxActorLimit;
     end
+
+
     methods
+
         function self=RemoveActor()
             self.Writer=sim3d.io.Publisher('RemoveActorTopic','QueueDepth',sim3d.utils.CreateActor.QueueDepth);
-
             actorTypeBuffer=char(zeros(1,sim3d.utils.RemoveActor.MaxStrLengthName));
             actorType='Sim3dPassVeh';
             actorTypeLength=length(actorType);
             actorTypeBuffer(1:actorTypeLength)=actorType(1:actorTypeLength);
-
             actorNameBuffer=char(zeros(1,sim3d.utils.RemoveActor.MaxStrLengthName));
             actorName='ActorName';
             actorNameLength=length(actorName);
             actorNameBuffer(1:actorNameLength)=actorName(1:actorNameLength);
-
             self.RemoveActorStruct=struct(...
             'RemoveActorType',actorTypeBuffer,...
             'ActorName',actorNameBuffer);
         end
+
 
         function delete(self)
             if~isempty(self.Writer)
@@ -34,6 +36,7 @@ classdef RemoveActor<handle
                 self.Writer=[];
             end
         end
+
 
         function write(self)
             sim3d.engine.EngineReturnCode.assertObject(self.Writer);
@@ -53,6 +56,7 @@ classdef RemoveActor<handle
             actorTypeLength=length(removeActorType);
             self.RemoveActorStruct.RemoveActorType(1:actorTypeLength)=removeActorType(1:actorTypeLength);
         end
+
 
         function setActorName(self,actorName)
             aNameDimension1=size(actorName,1);

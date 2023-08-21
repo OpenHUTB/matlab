@@ -1,7 +1,6 @@
 classdef RangeSensor<Simulation3DSensor&...
 Simulation3DHandleMap
 
-
     properties(Nontunable)
         MinimumDetectionOnlyRange=[]
         MinimumRangeWithDistance=[]
@@ -11,19 +10,19 @@ Simulation3DHandleMap
         VerticalFOV=[]
     end
 
+
     methods(Access=protected)
+
         function setupImpl(self)
             setupImpl@Simulation3DSensor(self);
 
             if~coder.target('MATLAB')
                 return;
             end
-
             sensorProperties=sim3d.sensors.RangeSensor.getRangeSensorProperties();
             sensorProperties.Range=self.MaximumRange;
             sensorProperties.HorizontalFOV=self.HorizontalFOV;
             sensorProperties.VerticalFOV=self.VerticalFOV;
-
             self.Sensor=sim3d.sensors.RangeSensor(...
             self.SensorIdentifier,...
             self.VehicleIdentifier,...
@@ -41,7 +40,6 @@ Simulation3DHandleMap
             if~coder.target('MATLAB')
                 return
             end
-
             [objectInFoV,detectionPoint]=self.Sensor.readSignal();
             rangeSquared=dot(detectionPoint,detectionPoint);
 
@@ -63,6 +61,7 @@ Simulation3DHandleMap
             hasRange=true;
             distance=sqrt(rangeSquared);
         end
+
 
         function num=getNumOutputsImpl(~)
             num=3;
@@ -98,6 +97,7 @@ Simulation3DHandleMap
             pn3='Range';
         end
 
+
         function resetImpl(self)
             if~coder.target('MATLAB')
                 return
@@ -108,12 +108,14 @@ Simulation3DHandleMap
             end
         end
 
+
         function releaseImpl(self)
             releaseImpl@Simulation3DSensor(self);
             if self.loadflag
                 self.Sim3dSetGetHandle([self.ModelName,'/Sensor'],[]);
             end
         end
+
 
         function loadObjectImpl(self,s,wasInUse)
             if self.loadflag
@@ -125,26 +127,29 @@ Simulation3DHandleMap
             end
         end
 
+
         function s=saveObjectImpl(self)
             s=saveObjectImpl@Simulation3DSensor(self);
-
             s.MinimumDetectionOnlyRange=self.MinimumDetectionOnlyRange;
             s.MinimumRangeWithDistance=self.MinimumRangeWithDistance;
             s.MaximumRange=self.MaximumRange;
-
             s.HorizontalFOV=self.HorizontalFOV;
             s.VerticalFOV=self.VerticalFOV;
         end
+
 
         function icon=getIconImpl(~)
             icon=matlab.system.display.Icon('sim3draytracesensor.png');
         end
     end
 
+
     methods(Access=public,Hidden=true)
+
         function tag=getTag(self)
             tag=sprintf('RayTraceSensor%d',self.SensorIdentifier);
         end
+
     end
 
 end

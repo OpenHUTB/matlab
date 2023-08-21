@@ -14,8 +14,8 @@ function[varargout]=sim3dblksmotorcycle(varargin)
     end
 end
 
-function MotorcycleLightsControl(Block)
 
+function MotorcycleLightsControl(Block)
     LightsEnabled=get_param(Block,'MotorcycleLightsControl');
     p=Simulink.Mask.get(Block);
     if strcmp(LightsEnabled,'off')
@@ -35,15 +35,14 @@ function MotorcycleLightsControl(Block)
     end
 end
 
-function IconInfo=DrawCommands(Block)
 
+function IconInfo=DrawCommands(Block)
     AliasNames={'Translation','Translation';'Rotation','Rotation';'Scale','Scale'};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
-
     IconInfo.ImageName='sim3dmotorcycle.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
 end
+
 
 function Initialization(Block)
     sim3d.utils.SimPool.addActorTag(Block);
@@ -62,10 +61,6 @@ function Initialization(Block)
     'SignallightPeriod',[1,1],{};...
     'SignalPulseWidth',[1,1],{};...
     };
-
-
-
-
     LightsEnabled=get_param(Block,'MotorcycleLightsControl');
     LightsInportOptions={'built-in/Constant','LightStates';...
     'simulink/Sources/In1','Light controls'};

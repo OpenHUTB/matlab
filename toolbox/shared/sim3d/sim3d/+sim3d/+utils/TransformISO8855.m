@@ -4,7 +4,6 @@ classdef TransformISO8855 < sim3d.utils.Transform
 methods 
 function self = TransformISO8855( translation, rotation, scale, units )
 
-
 R36
 translation( :, 3 )single = zeros( 1, 3 )
 rotation( :, 3 )single = zeros( size( translation ) )
@@ -15,8 +14,8 @@ self@sim3d.utils.Transform( translation, rotation, scale, units );
 self.set( translation, rotation, scale );
 end 
 
-function set( self, translation, rotation, scale )
 
+function set( self, translation, rotation, scale )
 
 R36
 self sim3d.utils.TransformISO8855
@@ -33,6 +32,7 @@ rotation( :, 3 ) =  - ( rotation( :, 3 ) );
 set@sim3d.utils.Transform( self, translation, rotation, scale );
 end 
 
+
 function [ translation, rotation, scale ] = get( self )
 
 [ translation, rotation, scale ] = get@sim3d.utils.Transform( self );
@@ -46,6 +46,5 @@ end
 end 
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpUl1uzW.p.
-% Please follow local copyright laws when handling this file.
+
 
