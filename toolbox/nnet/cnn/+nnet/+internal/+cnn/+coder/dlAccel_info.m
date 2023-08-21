@@ -1,23 +1,12 @@
 classdef dlAccel_info
 
-
-
-
-
-
-
     properties(SetAccess=private)
-
-
         inputType char='single'
         inputSize{mustBePositive,mustBeInteger}
         activationLayerName=[]
-
-
         miniBatchSize{mustBePositive,mustBeInteger}=128
 
         targetLib char='cudnn'
-
 
         dlAccelDir char
         mexFunctionName char
@@ -25,9 +14,10 @@ classdef dlAccel_info
         checksum=[]
     end
 
-    methods
-        function obj=dlAccel_info(buildDir,dataSize,precision,miniBatchSize,targetLib,activationLayerName)
 
+    methods
+
+        function obj=dlAccel_info(buildDir,dataSize,precision,miniBatchSize,targetLib,activationLayerName)
             uniqueStr=strrep(tempname,tempdir,'');
 
             if isempty(activationLayerName)
@@ -45,31 +35,21 @@ classdef dlAccel_info
             obj.inputSize=dataSize;
         end
 
+
         function varargout=invoke(this,varargin)
-
-
             try
                 [varargout{1:nargout}]=feval(this.mexFunctionName,varargin{:});
             catch err
-
-
-
                 clear(this.mexFunctionName);
-
-
                 e=MException(message('nnet_cnn:dlAccel:MEXCallFailed'));
                 e=addCause(e,err);
                 throw(e)
             end
         end
 
+
         function delete(this)
-
-
-
             clear(this.mexFunctionName);
-
-
             mexFile=fullfile(this.dlAccelDir,[this.mexFunctionName,'.',mexext]);
             if exist(mexFile,'file')
                 delete(mexFile);
@@ -77,14 +57,13 @@ classdef dlAccel_info
             iRmDirNoError(fullfile(this.dlAccelDir,this.mexFunctionName));
         end
 
-        function this=setChecksum(this)
 
+        function this=setChecksum(this)
             this.checksum=computeChecksum(this);
         end
 
+
         function status=isValid(this)
-
-
             [chksum,mexExist]=computeChecksum(this);
             status=isequal(this.checksum,chksum)&&mexExist;
         end
