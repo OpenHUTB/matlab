@@ -1,98 +1,16 @@
 function jx=jac_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     numLayerDelays=net.numLayerDelays;
     S=hints.totalOutputSize;
     QS=Q*S;
-
-
     gE=nndata(nn.output_sizes(net),Q,TS,-1);
     gE=remove_dont_care_errors(gE,T);
 
-
     gE=gmultiply(gE,gsqrt(EW));
-
-
     gE=nn_performance_fcn.normalize_error(net,gE,hints.perform.param);
-
 
     gE=stretch(gE);
     gE=outputs2layersE(hints,gE);
-
 
     A=cell(net.numLayers,TS);
     for i=hints.outputInd
@@ -101,10 +19,7 @@ function jx=jac_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
         end
     end
     gE=nn7.dperf(net,A,gE,QS,hints);
-
-
     [gB,gIW,gLW]=nn7.grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,1);
-
 
     inputLearn=hints.inputLearn;
     layerLearn=hints.layerLearn;
@@ -112,7 +27,6 @@ function jx=jac_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
     inputWeightInd=hints.inputWeightInd;
     layerWeightInd=hints.layerWeightInd;
     biasInd=hints.biasInd;
-
 
     jx=zeros(hints.xLen,QS*TS);
     for ss=1:S
@@ -145,8 +59,6 @@ function jx=jac_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
 
 
         function gE2=stretch(gE1)
-
-
             [N,Q,TS]=nnfast.nnsize(gE1);
             S=sum(N);
             QS=Q*S;
@@ -172,7 +84,6 @@ function jx=jac_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
 
 
                 function m=repcolint(m,n)
-
 
                     mcols=size(m,2);
                     m=m(:,floor([0:(mcols*n-1)]/n)+1);
