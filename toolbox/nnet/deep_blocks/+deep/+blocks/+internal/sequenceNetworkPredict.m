@@ -8,16 +8,10 @@ function[varargout]=sequenceNetworkPredict(...
     isDlNetwork,...
     inputFormats)%#codegen
 
-
-
-
-
     coder.inline('always');
     coder.allowpcode('plain');
     coder.extrinsic('deep.blocks.internal.getNetworkSizeInfo');
     coder.extrinsic('coder.internal.getFileInfo');
-
-
     coder.internal.errorIf(~coder.internal.isConst(inputSizes),'deep_blocks:common:VarsizeInputNotSupported');
     if coder.const(useExtrinsic)
         [predictOutputSizes,predictOutputTypes]=coder.const(...
@@ -33,8 +27,6 @@ function[varargout]=sequenceNetworkPredict(...
     end
 
     coder.internal.assert(useExtrinsic||~isDlNetwork,'deep_blocks:common:DlNetworkUpdateStateCodegenNotSupported');
-
-
     fileName=coder.const(@coder.internal.getFileInfo,networkToLoad);
     coder.internal.addDependentFile(fileName);
     persistent network;
@@ -47,14 +39,10 @@ function[varargout]=sequenceNetworkPredict(...
     end
 
     if coder.const(isDlNetwork)
-
-
         coder.unroll();
         for i=1:coder.const(nargout)
             varargout{i}=zeros(coder.const(predictOutputSizes{i}),predictOutputTypes{i});
         end
-
-
         [network,varargout{:}]=feval('deep.blocks.internal.dlnetworkPredictAndUpdateState',...
         network,inputs,inputFormats);
     else
@@ -66,11 +54,9 @@ function[varargout]=sequenceNetworkPredict(...
                 varargout{i}=zeros(coder.const(predictOutputSizes{i}),predictOutputTypes{i});
             end
 
-
             [network,varargout{:}]=...
             feval('predictAndUpdateState',network,inputs{:});
         else
-
             [network,varargout{:}]=...
             predictAndUpdateState(network,inputs{:});
         end
