@@ -11,10 +11,6 @@ function functionText=generateDeepNetworkFunction(...
     inputFormats,...
     activationLayers)
 
-
-
-
-
     inputs=strings(1,numInputLayers);
     inputSizes=strings(1,numInputLayers);
     inputTypes=strings(1,numInputLayers);
@@ -25,7 +21,6 @@ function functionText=generateDeepNetworkFunction(...
         inputSizes(i)="size("+input+")";
         inputTypes(i)="class("+input+")";
     end
-
     numOutputs=numPredictOutputLayers+numActivationOutputLayers;
 
     if numOutputs>0
@@ -53,12 +48,9 @@ function functionText=generateDeepNetworkFunction(...
     else
         signature="function deepNetwork("+inputsString+")";
     end
-
     inputFormatsString=deep.blocks.internal.cell2str(inputFormats);
     activationsString=deep.blocks.internal.cell2str(activationLayers);
-
     [useExtrinsicLines,extrinsicVar]=deep.blocks.internal.generateUseExtrinsicCode(simSupported);
-
 
     innerInputsString=join([...
     inputsString,...
