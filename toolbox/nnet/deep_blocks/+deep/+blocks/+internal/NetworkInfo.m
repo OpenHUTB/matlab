@@ -1,11 +1,9 @@
 classdef NetworkInfo < handle
 
-
-
-
 properties ( Constant, Access = private )
 SimTargetLibs = { 'mkldnn', 'onednn', 'cudnn', 'tensorrt' };
 end 
+
 
 properties ( SetAccess = private )
 NetworkToLoad
@@ -21,13 +19,12 @@ IsObjectDetector
 IsDlNetwork
 IsSequenceNetwork
 HasSequenceOutput
-Classes = categorical(  );
+Classes = categorical();
 NumLoads = 0;
-
-
 
 IsQuantizedNet( 1, 1 )logical = false
 end 
+
 
 properties ( Access = private )
 MatlabCoderSpkgInstalled;
@@ -46,7 +43,9 @@ ActivationTypes = {  };
 Error = [  ];
 end 
 
+
 methods ( Access = public )
+
 function obj = NetworkInfo( networkToLoad, timeStamp )
 obj.NetworkToLoad = networkToLoad;
 obj.TimeStamp = timeStamp;
@@ -61,10 +60,7 @@ end
 obj.LayerNames = { net.Layers.Name };
 obj.IsDlNetwork = isa( net, 'dlnetwork' );
 
-
-
 obj.IsQuantizedNet = deep.internal.quantization.isQuantizationEnabled( net );
-
 
 if ( obj.IsQuantizedNet && ~dlcoderfeature( 'QulNetInSL' ) )
 error( message( 'deep_blocks:common:QuantizedNetNotSupported' ) );
@@ -112,8 +108,6 @@ obj.NumOutputs = numel( obj.OutputLayerNames );
 
 obj.computeSimSupported( net );
 
-
-
 activationLayerNames = setdiff( obj.LayerNames, obj.OutputLayerNames, 'stable' );
 numActivationNames = 0;
 for i = 1:numel( net.Layers )
@@ -144,6 +138,7 @@ end
 obj.computeSimSupported( net );
 end 
 
+
 function [ predictOutputSizes, predictOutputTypes, activationSizes, activationTypes ] =  ...
 getSizeInfo( obj, inputSizes, inputTypes, resizeInput, predictEnabled, inputFormats, activationLayers, mustRecompute )
 assert( ~obj.IsObjectDetector, 'Cannot call getSizeInfo on an object detector' );
@@ -164,10 +159,10 @@ obj.ResizeInput = resizeInput;
 obj.PredictEnabled = predictEnabled;
 obj.InputFormats = inputFormats;
 obj.ActivationLayers = activationLayers;
-obj.Error = [  ];
+obj.Error = [];
 
 try 
-obj.computeSizeInfo(  );
+obj.computeSizeInfo();
 catch e
 obj.Error = e;
 end 
