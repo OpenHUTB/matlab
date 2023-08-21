@@ -1,16 +1,9 @@
 function mustBeSupportedPlatformForMex(gpuShouldBeUsed)
-
-
-
-
-
-
     if ismac
         error(message('nnet_cnn:dlAccel:UnsupportedPlatform','Mac'));
     end
 
     if isdeployed
-
         error(message('nnet_cnn:dlAccel:UnsupportedInDeployedApplication'));
     end
 
@@ -22,7 +15,6 @@ function mustBeSupportedPlatformForMex(gpuShouldBeUsed)
             error(message('gpucoder:cnncodegen:missing_support_package','cudnn',spkgName,spkgbasecode));
         end
     else
-
         error(message('nnet_cnn:dlAccel:CPUIsNotSupported'));
     end
 end
