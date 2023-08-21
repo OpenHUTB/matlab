@@ -9,10 +9,6 @@ function[varargout]=sequenceNetworkClassify(...
     topkEnabled,...
     kValue)%#codegen
 
-
-
-
-
     coder.inline('always');
     coder.allowpcode('plain');
     coder.extrinsic('deep.blocks.internal.getNetworkSizeInfo');
@@ -31,8 +27,6 @@ function[varargout]=sequenceNetworkClassify(...
         {},...
         {});
     end
-
-
     fileName=coder.const(@coder.internal.getFileInfo,networkToLoad);
     coder.internal.addDependentFile(fileName);
     persistent network;
@@ -44,14 +38,12 @@ function[varargout]=sequenceNetworkClassify(...
         end
     end
 
-
     if coder.const(useExtrinsic)
         predictOut=zeros(coder.const(predictOutputSizes{1}),predictOutputTypes{1});%#ok<PREALL>
         [network,predictOut]=feval('predictAndUpdateState',network,input);
     else
         [network,predictOut]=predictAndUpdateState(network,input);
     end
-
 
     if coder.const(hasSequenceOutput)
         dim=1;
@@ -60,7 +52,6 @@ function[varargout]=sequenceNetworkClassify(...
     end
 
     if coder.const(classifyEnabled&&~topkEnabled)
-
 
         [~,topIdx]=max(predictOut,[],dim);
     elseif coder.const(topkEnabled)
@@ -73,13 +64,11 @@ function[varargout]=sequenceNetworkClassify(...
         topIdx=idxs(1,:);
     end
 
-
     startIndex=0;
     if coder.const(classifyEnabled)
         startIndex=startIndex+1;
         varargout{coder.const(startIndex)}=topIdx;
     end
-
 
     if coder.const(predictEnabled)
         if coder.const(topkEnabled)
