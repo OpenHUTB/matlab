@@ -10,15 +10,9 @@ function configureDeepNetwork(...
     activationLayers,...
     forceInterpretedSim,...
     dlnetworkEnabled)
-
-
-
-
-
     simTargetLang=get_param(system,'SimTargetLang');
     simTargetLib=get_param(system,'SimDLTargetLibrary');
     gpuAcceleration=get_param(system,'GPUAcceleration')=="on";
-
     networkToLoad=deep.blocks.internal.getSelectedNetwork(...
     block,networkSelect,networkFilePath,networkFunction);
 
@@ -28,24 +22,16 @@ function configureDeepNetwork(...
     catch
         error(message('deep_blocks:predict:ActivationsNotCell'));
     end
-
     networkSelected=~isempty(networkToLoad);
     isInLibrary=isempty(libinfo(block));
-
     simStatus=get_param(bdroot,'SimulationStatus');
     isModelUpdate=any(strcmp({'updating','initializing'},simStatus));
-
     systemTargetFile=get_param(bdroot,'SystemTargetFile');
     isAccel=ismember(systemTargetFile,{'modelrefsim.tlc','raccel.tlc'});
 
     if isInLibrary
-
-
-
-
         return
     end
-
     assert(networkSelected,message('deep_blocks:common:NoNetworkSelected'));
 
     try
@@ -62,10 +48,8 @@ function configureDeepNetwork(...
 
         assert(~networkInfo.IsDlNetwork||dlnetworkEnabled,...
         message('deep_blocks:predict:DlNetworkNotSupported'));
-
         assert(~networkInfo.IsObjectDetector,...
         message('deep_blocks:common:ObjectDetectorNotSupported'));
-
         simSupported=networkInfo.isSimSupported(simTargetLib,simTargetLang);
         isDlNetwork=networkInfo.IsDlNetwork;
 
@@ -73,14 +57,11 @@ function configureDeepNetwork(...
             deep.blocks.internal.checkSupportPackage(simTargetLib,simTargetLang,gpuAcceleration);
             deep.blocks.internal.validateInputDataFormats(inputFormats,isDlNetwork);
         end
-
-
         assert(iscell(activationLayers),message('deep_blocks:predict:ActivationsNotCell'));
         for i=1:numel(activationLayers)
             layer=activationLayers{i};
             assert(any(strcmp(layer,networkInfo.ActivationNames)),message('deep_blocks:predict:InvalidActivationLayer',layer));
         end
-
         inputNames=networkInfo.InputLayerNames;
         numInputLayers=networkInfo.NumInputs;
 
@@ -108,7 +89,6 @@ function configureDeepNetwork(...
         numInputLayers=numel(inputNames);
     end
 
-
     functionText=deep.blocks.internal.generateDeepNetworkFunction(...
     block,...
     networkToLoad,...
@@ -121,7 +101,6 @@ function configureDeepNetwork(...
     predictEnabled,...
     inputFormats,...
     activationLayers);
-
     deep.blocks.internal.generateSubsystemInternals(...
     block,functionText,inputNames,predictOutputNames,activationNames,false);
 
