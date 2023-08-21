@@ -1,0 +1,1249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>sim3d.Actor</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "index.html",
+          "name": "Simulink 3D Animation"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "scenario-simulation.html",
+          "name": "Unreal Engine Scenario Applications"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "scenario-simulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:sim3d.Actor"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:sim3d.Actor"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Use the sim3d.Actor object for user-defined Unreal Engine C++ or blueprint actors."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../docset.xml";
+            product_help_location = "sl3d";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+<style type="text/css">math { visibility: hidden; }</style>
+<link type="text/css" rel="stylesheet" href="../includes/shared/equationrenderer/release/index-css.css"/>
+<script type="text/javascript" src="../includes/shared/equationrenderer/release/bundle.index.js"></script>
+</head>
+<body id="responsive_offcanvas" class="no_animate offcanvas_active">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header" style=""></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1" disabled=""></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left active">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar" style="height: 613px; position: absolute;">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator active" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../overview/reporting-and-database-access.html" itemprop="url"><span itemprop="title">Reporting and Database Access</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="index.html?s_tid=CRUX_lftnav">Simulink 3D Animation</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Applications</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate active"><a href="#responsive_offcanvas">sim3d.Actor</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e47068" class="intrnllnk">Description</a></li>
+<li><a href="#mw_0eebcc29-4a3e-4900-8834-61660aac0dee" class="intrnllnk">Creation</a><ul class="nav"><li><a href="#mw_d823108c-cc63-475c-976b-3d3a7b7c77e1" class="intrnllnk">Description</a></li>
+</ul><ul class="nav"><li><a href="#mw_fbac65d4-dfc8-4eec-a13c-5a7e3cd453f1" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#mw_12c6a365-bef9-4412-b972-d7c4db8fbbe2" class="intrnllnk">Name-Value Arguments</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_d3707bef-5eb2-453c-8551-9e6659a5c6ad" class="intrnllnk">Output Arguments</a><ul class="nav"><li><a href="#mw_4911a24d-9bf9-4eb3-8244-23a766814ca8" class="intrnllnk">actor</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mw_999c522c-9cf8-4011-a770-d78346216615" class="intrnllnk">Properties</a><ul class="nav"><li><a href="#mw_f6370cb5-516a-4404-8e26-05ae9020b426" class="intrnllnk">Base Attributes</a><ul class="nav"><li><a href="#mw_9df302ed-c019-4ac5-9d08-2e191020da6e" class="intrnllnk">UserData</a></li>
+<li><a href="#mw_1df8b1f2-88ac-45e6-8705-c9fa9382d020" class="intrnllnk">Parent</a></li>
+<li><a href="#mw_22ab1089-e3f4-4096-b466-27f551a8f78a" class="intrnllnk">Children</a></li>
+<li><a href="#mw_7645fa96-9a36-41aa-bb33-4f5edfeb1537" class="intrnllnk">ParentWorld</a></li>
+<li><a href="#mw_9eec53d5-c27c-499b-9b89-35722cf7fc22" class="intrnllnk">Translation</a></li>
+<li><a href="#mw_75b8258d-87e4-478c-94a9-233ca8564008" class="intrnllnk">Rotation</a></li>
+<li><a href="#mw_0849a2d1-aa29-4cab-9c57-110d9fdf2cde" class="intrnllnk">Scale</a></li>
+<li><a href="#mw_0a659b1d-9a09-4cff-a09e-78bbde75c0aa" class="intrnllnk">Mobility</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_8971fdcd-de97-49fc-9abc-db84ff238bf0" class="intrnllnk">Mesh Attributes</a><ul class="nav"><li><a href="#mw_94ba2a03-9e25-4535-8077-f8897544faed" class="intrnllnk">Vertices</a></li>
+<li><a href="#mw_27a78667-800a-4581-97f4-8467bc950e23" class="intrnllnk">Faces</a></li>
+<li><a href="#mw_c2c3bf18-4c4d-4447-9c45-cb073aab5ed0" class="intrnllnk">Normals</a></li>
+<li><a href="#mw_f335c6ae-2760-4283-89d1-1bf8a7218bf0" class="intrnllnk">TextureCoordinates</a></li>
+<li><a href="#mw_c08b6679-4249-4953-9588-0ef7d7dbfe7d" class="intrnllnk">VertexColors</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_e68516db-1e9b-4263-a006-24582bf13883" class="intrnllnk">Material Attributes</a><ul class="nav"><li><a href="#mw_9b682298-e948-4d33-a670-6d23d251f9b1" class="intrnllnk">Color</a></li>
+<li><a href="#mw_12e77d0d-02b5-44a5-a160-1bc1a817ec5d" class="intrnllnk">Transparency</a></li>
+<li><a href="#mw_2fe1cfdc-0651-4f22-9d90-fc9971946b4b" class="intrnllnk">Shininess</a></li>
+<li><a href="#mw_9777ce7c-2d04-47ff-b888-486fe915d034" class="intrnllnk">Metallic</a></li>
+<li><a href="#mw_704f8374-af4d-4dc6-a1c7-6c5cf5205fea" class="intrnllnk">Flat</a></li>
+<li><a href="#mw_6dd0d36d-107f-49a2-a766-49a0502ebade" class="intrnllnk">Tessellation</a></li>
+<li><a href="#mw_7f93c656-bb36-431e-ba2c-01442b63d207" class="intrnllnk">VertexBlend</a></li>
+<li><a href="#mw_32614a9b-db54-4a40-95b4-b78e43c7f393" class="intrnllnk">TextureTransform</a></li>
+<li><a href="#mw_465674d1-735f-4dbd-955b-676a0234425a" class="intrnllnk">TextureMapping</a></li>
+<li><a href="#mw_76d34825-cba2-4b48-b07d-5334f7174fee" class="intrnllnk">Texture</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_e4a690c0-6052-4de5-bb0e-84741b4ee092" class="intrnllnk">Physical Attributes</a><ul class="nav"><li><a href="#mw_a981adb2-9aa2-4b91-b310-18bc61966f6f" class="intrnllnk">Shadows</a></li>
+<li><a href="#mw_fc19a473-b637-4f98-b6c3-365b641b44d8" class="intrnllnk">LinearVelocity</a></li>
+<li><a href="#mw_ca54d215-b601-4e90-a9af-5be1d154048b" class="intrnllnk">AngularVelocity</a></li>
+<li><a href="#mw_853a93c4-2ea4-43b5-a78e-5d483e608b1c" class="intrnllnk">Mass</a></li>
+<li><a href="#mw_1cdbb766-cf95-429e-9660-fb06201c9c45" class="intrnllnk">CenterOfMass</a></li>
+<li><a href="#mw_77f22be4-7fd7-4c7a-9925-9154e49edb2c" class="intrnllnk">Gravity</a></li>
+<li><a href="#mw_343b53d4-8f43-4cc2-b4ea-8a28d964b447" class="intrnllnk">Physics</a></li>
+<li><a href="#mw_46ff7508-6002-49bf-ab9c-af46ff0154d3" class="intrnllnk">Collisions</a></li>
+<li><a href="#mw_38797a8a-17b5-4990-977e-10c1590e2a2c" class="intrnllnk">LocationLocked</a></li>
+<li><a href="#mw_7eece4f1-7037-4f01-bfaf-d75acc239519" class="intrnllnk">RotationLocked</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mw_a770e474-cff7-4b62-b845-5ec5c1a401e8" class="intrnllnk">Object Functions</a></li>
+<li><a href="#mw_d373691d-65c1-404e-b119-877da1910d49_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_d373691d-65c1-404e-b119-877da1910d49_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container" style="padding-right: 0px;">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container affix-top" style="width: auto;"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="examples.html?category=scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="referencelist.html?type=block&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="examples.html?category=scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="referencelist.html?type=block&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content" style="width: auto;">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="object_ref"><span id="mw_d373691d-65c1-404e-b119-877da1910d49" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title">sim3d.Actor</h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">用于在虚幻引擎查看器中定义参与者的对象<br/></p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div class="function_icons"><ul class="list-unstyled"></ul>
+</div>
+<div class="refsummary" itemprop="content"><h2 id="d124e47068">描述</h2>
+    <div class="shortsummary"><p>将 <code class="literal">sim3d.Actor</code> 对象用于用户定义的虚幻引擎<sup>®</sup> C++ 或蓝图参与者。</p>
+</div>
+  </div>
+<div id="mw_0eebcc29-4a3e-4900-8834-61660aac0dee_div" class="ref_sect createobject"><h2 id="mw_0eebcc29-4a3e-4900-8834-61660aac0dee">创建</h2>
+<span id="mw_f800ae56-c176-493f-b30e-46329a6345b2" class="anchor_target"></span><div class="ref_sect"><h3 id="mw_f800ae56-c176-493f-b30e-46329a6345b2">Syntax</h3>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e47087" class="intrnllnk">actor = sim3d.Actor</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e47095" class="intrnllnk">actor = sim3d.Actor(<span class="argument_placeholder">___</span>,Name,Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="mw_d823108c-cc63-475c-976b-3d3a7b7c77e1_div" class="refsect2 description"><h3 id="mw_d823108c-cc63-475c-976b-3d3a7b7c77e1">Description</h3>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><div class="code_responsive"><p><span id="d124e47087" itemprop="syntax"><code class="synopsis"><a href="#mw_4911a24d-9bf9-4eb3-8244-23a766814ca8" class="intrnllnk"><code class="argument">actor</code></a> = sim3d.Actor</code></span> creates a default actor
+          object that represents all items in the virtual reality world.</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e47095" itemprop="syntax"><code class="synopsis"><a href="#mw_4911a24d-9bf9-4eb3-8244-23a766814ca8" class="intrnllnk"><code class="argument">actor</code></a> = sim3d.Actor(<span class="argument_placeholder">___</span>,<a href="#namevaluepairarguments" class="intrnllnk"><code class="argument">Name,Value</code></a>)</code></span>
+          specifies additional options using one or more name-value arguments.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h3 id="mw_fbac65d4-dfc8-4eec-a13c-5a7e3cd453f1">Input Arguments</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_fbac65d4-dfc8-4eec-a13c-5a7e3cd453f1_panel-group" role="tablist" aria-multiselectable="true"><span id="namevaluepairarguments" class="anchor_target"></span><strong class="refsect3" id="mw_12c6a365-bef9-4412-b972-d7c4db8fbbe2">Name-Value Arguments</strong><p class="neqvpair_boilerplate">Specify optional pairs of arguments as
+      <code class="argument">Name1=Value1,...,NameN=ValueN</code>, where <code class="literal">Name</code> is
+      the argument name and <code class="literal">Value</code> is the corresponding value.
+      Name-value arguments must appear after other arguments, but the order of the
+      pairs does not matter.
+    </p>
+<p><span class="example_desc"><strong>Example: </strong><code class="literal">actor1 = sim3d.Actor('ActorName','vehicle1','Translation', [3, 4, 3],
+            'Rotation', [], 'Scale',[1 2 1])</code></span></p>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_2a3ee2e8-1402-4e81-9c91-8263e0ede3de_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_5e412e13-16c3-42e5-942d-3315ed3bf8e1"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5e412e13-16c3-42e5-942d-3315ed3bf8e1" data-target="#expand_panel_body_mw_5e412e13-16c3-42e5-942d-3315ed3bf8e1" aria-controls="expand_panel_body_mw_5e412e13-16c3-42e5-942d-3315ed3bf8e1" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_ActorName" class="anchor_target"></span><h3 class="panel-title" id="mw_5e412e13-16c3-42e5-942d-3315ed3bf8e1"><code itemprop="name">ActorName</code> — <span itemprop="purpose">Name of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue">autogenerated name</span> (default) | <span itemprop="inputvalue">character array</span> | <span itemprop="inputvalue">string</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5e412e13-16c3-42e5-942d-3315ed3bf8e1" aria-labelledby="expand_panel_heading_mw_5e412e13-16c3-42e5-942d-3315ed3bf8e1" class="panel-collapse collapse"><div class="panel-body">
+              <p>Name of actor, specified as a character array or string. If an actor name is not
+                specified, then the actor is assigned an autogenerated name.</p>
+              <div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p>
+<p>If you specify the same name as an actor that already exists, then the actor
+                  name you specify is appended with a unique identifier to differentiate it.</p>
+</div>
+            </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_306aed32-65de-4875-ac3e-b370cd8c3273"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_306aed32-65de-4875-ac3e-b370cd8c3273" data-target="#expand_panel_body_mw_306aed32-65de-4875-ac3e-b370cd8c3273" aria-controls="expand_panel_body_mw_306aed32-65de-4875-ac3e-b370cd8c3273" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Translation" class="anchor_target"></span><h3 class="panel-title" id="mw_306aed32-65de-4875-ac3e-b370cd8c3273"><code itemprop="name">Translation</code> — <span itemprop="purpose">Relative translation</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[0,0,0]</code></span> (default) | <span itemprop="inputvalue">real 1-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_306aed32-65de-4875-ac3e-b370cd8c3273" aria-labelledby="expand_panel_heading_mw_306aed32-65de-4875-ac3e-b370cd8c3273" class="panel-collapse collapse"><div class="panel-body">
+              <p>Relative translation
+                  (<em class="varname">x</em>,<em class="varname">y</em>,<em class="varname">z</em>) of the actor
+                object to its parent actor, specified as a real 1-by-3 vector, in meters. Use this
+                argument to set the <code class="property">Translation</code> property of the
+                  <code class="literal">sim3d.Actor</code> object.</p>
+            <p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_b4995cee-5043-445b-8d4d-555fe9b2c33e"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b4995cee-5043-445b-8d4d-555fe9b2c33e" data-target="#expand_panel_body_mw_b4995cee-5043-445b-8d4d-555fe9b2c33e" aria-controls="expand_panel_body_mw_b4995cee-5043-445b-8d4d-555fe9b2c33e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Rotation" class="anchor_target"></span><h3 class="panel-title" id="mw_b4995cee-5043-445b-8d4d-555fe9b2c33e"><code itemprop="name">Rotation</code> — <span itemprop="purpose">Relative rotation</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[0,0,0]</code></span> (default) | <span itemprop="inputvalue">real 1-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_b4995cee-5043-445b-8d4d-555fe9b2c33e" aria-labelledby="expand_panel_heading_mw_b4995cee-5043-445b-8d4d-555fe9b2c33e" class="panel-collapse collapse"><div class="panel-body">
+              <p>Relative rotation (roll, pitch, yaw) of the actor object to its parent actor,
+                specified as a real 1-by-3 vector, in radians. Use this argument to set the
+                  <code class="property">Rotation</code> property of the <code class="literal">sim3d.Actor</code>
+                object.</p>
+            <p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_9902791e-e63d-4b86-a4ac-33b378b147d0"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9902791e-e63d-4b86-a4ac-33b378b147d0" data-target="#expand_panel_body_mw_9902791e-e63d-4b86-a4ac-33b378b147d0" aria-controls="expand_panel_body_mw_9902791e-e63d-4b86-a4ac-33b378b147d0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Scale" class="anchor_target"></span><h3 class="panel-title" id="mw_9902791e-e63d-4b86-a4ac-33b378b147d0"><code itemprop="name">Scale</code> — <span itemprop="purpose">Relative scaling</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[1,1,1]</code></span> (default) | <span itemprop="inputvalue">real 1-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9902791e-e63d-4b86-a4ac-33b378b147d0" aria-labelledby="expand_panel_heading_mw_9902791e-e63d-4b86-a4ac-33b378b147d0" class="panel-collapse collapse"><div class="panel-body">
+              <p>Relative scaling in <em class="varname">x</em>, <em class="varname">y</em> and
+                  <em class="varname">z</em> coordinates, specified as a real 1-by-3 vector. Use this name
+                value argument to set the <code class="property">Scale</code> property of the
+                  <code class="literal">sim3d.Actor</code> object.</p>
+            <p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_862caf50-1a50-4703-8fe6-25e6abca7591"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_862caf50-1a50-4703-8fe6-25e6abca7591" data-target="#expand_panel_body_mw_862caf50-1a50-4703-8fe6-25e6abca7591" aria-controls="expand_panel_body_mw_862caf50-1a50-4703-8fe6-25e6abca7591" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_ActorClassId" class="anchor_target"></span><h3 class="panel-title" id="mw_862caf50-1a50-4703-8fe6-25e6abca7591"><code itemprop="name">ActorClassId</code> — <span itemprop="purpose">Semantic segmentation map of object class identifiers</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue"><em class="varname">m</em>-by-<em class="varname">n</em> array</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_862caf50-1a50-4703-8fe6-25e6abca7591" aria-labelledby="expand_panel_heading_mw_862caf50-1a50-4703-8fe6-25e6abca7591" class="panel-collapse collapse"><div class="panel-body">
+              
+              <p>Semantic segmentation map of object class identifiers, returned as an
+                  <em class="varname">m</em>-by-<em class="varname">n</em> array. <em class="varname">m</em> is the
+                vertical resolution of the image, and <em class="varname">n</em> is the horizontal
+                resolution of the image.</p>
+              <p>The table shows the object IDs used in the default scenes that available in the
+                  <a href="simulation3dsceneconfiguration.html"><span class="block">Simulation 3D Scene
+                  Configuration</span></a> block. If you are using a custom scene, you can assign new
+                object types to unused IDs. If a scene contains an object that does not have an
+                assigned ID, that object is assigned an ID of <code class="literal">0</code>. The detection of
+                lane markings is not supported.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>ID</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">0</code></td>
+<td><p>None/default</p>
+</td>
+</tr>
+<tr><td><code class="literal">1</code></td>
+<td><p>Building</p>
+</td>
+</tr>
+<tr><td><code class="literal">2</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">3</code></td>
+<td><p>Other</p>
+</td>
+</tr>
+<tr><td><code class="literal">4</code></td>
+<td><p>Pedestrians</p>
+</td>
+</tr>
+<tr><td><code class="literal">5</code></td>
+<td><p>Pole</p>
+</td>
+</tr>
+<tr><td><code class="literal">6</code></td>
+<td><p>Lane Markings</p>
+</td>
+</tr>
+<tr><td><code class="literal">7</code></td>
+<td><p>Road</p>
+</td>
+</tr>
+<tr><td><code class="literal">8</code></td>
+<td><p>Sidewalk</p>
+</td>
+</tr>
+<tr><td><code class="literal">9</code></td>
+<td><p>Vegetation</p>
+</td>
+</tr>
+<tr><td><code class="literal">10</code></td>
+<td><p>Vehicle</p>
+</td>
+</tr>
+<tr><td><code class="literal">11</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">12</code></td>
+<td><p>Generic traffic sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">13</code></td>
+<td><p>Stop sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">14</code></td>
+<td><p>Yield sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">15</code></td>
+<td><p>Speed limit sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">16</code></td>
+<td><p>Weight limit sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">17-18</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">19</code></td>
+<td><p>Left and right arrow warning sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">20</code></td>
+<td><p>Left chevron warning sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">21</code></td>
+<td><p>Right chevron warning sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">22</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">23</code></td>
+<td><p>Right one-way sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">24</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">25</code></td>
+<td><p>School bus only sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">26-38</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">39</code></td>
+<td><p>Crosswalk sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">40</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">41</code></td>
+<td><p>Traffic signal</p>
+</td>
+</tr>
+<tr><td><code class="literal">42</code></td>
+<td><p>Curve right warning sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">43</code></td>
+<td><p>Curve left warning sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">44</code></td>
+<td><p>Up right arrow warning sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">45-47</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">48</code></td>
+<td><p>Railroad crossing sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">49</code></td>
+<td><p>Street sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">50</code></td>
+<td><p>Roundabout warning sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">51</code></td>
+<td><p>Fire hydrant</p>
+</td>
+</tr>
+<tr><td><code class="literal">52</code></td>
+<td><p>Exit sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">53</code></td>
+<td><p>Bike lane sign</p>
+</td>
+</tr>
+<tr><td><code class="literal">54-56</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">57</code></td>
+<td><p>Sky</p>
+</td>
+</tr>
+<tr><td><code class="literal">58</code></td>
+<td><p>Curb</p>
+</td>
+</tr>
+<tr><td><code class="literal">59</code></td>
+<td><p>Flyover ramp</p>
+</td>
+</tr>
+<tr><td><code class="literal">60</code></td>
+<td><p>Road guard rail</p>
+</td>
+</tr>
+<tr><td>61</td>
+<td>Bicyclist</td>
+</tr>
+<tr><td><code class="literal">62-66</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">67</code></td>
+<td><p>Deer</p>
+</td>
+</tr>
+<tr><td><code class="literal">68-70</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+<tr><td><code class="literal">71</code></td>
+<td><p>Barricade</p>
+</td>
+</tr>
+<tr><td><code class="literal">72</code></td>
+<td><p>Motorcycle</p>
+</td>
+</tr>
+<tr><td><code class="literal">73-255</code></td>
+<td><p><span class="emphasis"><em>Not used</em></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+              
+                <h4 class="descriptionsect">Dependencies</h4>
+                <p>To enable this port, on the <a href="simulation3dsceneconfiguration.html"><span class="block">Simulation 3D Scene
+                    Configuration</span></a> block, select <strong class="guilabel">Output semantic
+                    segmentation</strong> on the <strong class="guilabel">Ground Truth</strong> tab.</p>
+              
+            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>In addition to these name-value arguments, you also can specify any of the properties
+          on this page as name-value arguments.</p>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h3 id="mw_d3707bef-5eb2-453c-8551-9e6659a5c6ad">Output Arguments</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_d3707bef-5eb2-453c-8551-9e6659a5c6ad_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4911a24d-9bf9-4eb3-8244-23a766814ca8" data-target="#expand_panel_body_mw_4911a24d-9bf9-4eb3-8244-23a766814ca8" aria-controls="expand_panel_body_mw_4911a24d-9bf9-4eb3-8244-23a766814ca8" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="outputarg_actor" class="anchor_target"></span><h3 class="panel-title" id="mw_4911a24d-9bf9-4eb3-8244-23a766814ca8"><code class="name">actor</code> — Actor object<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">sim3d.Actor</code> object</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4911a24d-9bf9-4eb3-8244-23a766814ca8" aria-labelledby="expand_panel_heading_mw_4911a24d-9bf9-4eb3-8244-23a766814ca8" class="panel-collapse collapse"><div class="panel-body">
+            <p>Actor object, returned as a <code class="literal">sim3d.Actor</code> object. A unique
+              identifier and unique name is assigned to the actor. You can change the actor name,
+              but the unique identifier is associated with the actor until the actor is deleted. The
+              virtual reality world is composed of a hierarchical structure of actors.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_999c522c-9cf8-4011-a770-d78346216615">Properties</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_999c522c-9cf8-4011-a770-d78346216615_panel-group" role="tablist" aria-multiselectable="true"><div id="mw_f6370cb5-516a-4404-8e26-05ae9020b426_div" class="refsect2"><h3 id="mw_f6370cb5-516a-4404-8e26-05ae9020b426">Base Attributes</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_9df302ed-c019-4ac5-9d08-2e191020da6e"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9df302ed-c019-4ac5-9d08-2e191020da6e" data-target="#expand_panel_body_mw_9df302ed-c019-4ac5-9d08-2e191020da6e" aria-controls="expand_panel_body_mw_9df302ed-c019-4ac5-9d08-2e191020da6e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_UserData" class="anchor_target"></span><h3 class="panel-title" id="mw_9df302ed-c019-4ac5-9d08-2e191020da6e"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.UserData"/><code itemprop="name" id="propname_UserData">UserData</code></span> — <span itemprop="purpose">Structure to hold actor data</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">structure</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9df302ed-c019-4ac5-9d08-2e191020da6e" aria-labelledby="expand_panel_heading_mw_9df302ed-c019-4ac5-9d08-2e191020da6e" class="panel-collapse collapse"><div class="panel-body">
+            <p>Structure to hold actor data, specified as a structure. You can update and
+              maintain this data and use it to update the fields of the structure during simulation
+              or in the setup method.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_1df8b1f2-88ac-45e6-8705-c9fa9382d020"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1df8b1f2-88ac-45e6-8705-c9fa9382d020" data-target="#expand_panel_body_mw_1df8b1f2-88ac-45e6-8705-c9fa9382d020" aria-controls="expand_panel_body_mw_1df8b1f2-88ac-45e6-8705-c9fa9382d020" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Parent" class="anchor_target"></span><h3 class="panel-title" id="mw_1df8b1f2-88ac-45e6-8705-c9fa9382d020"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Parent"/><code itemprop="name" id="propname_Parent">Parent</code></span> — <span itemprop="purpose">Parent of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">handle to parent <code class="literal">sim3d.actor</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_1df8b1f2-88ac-45e6-8705-c9fa9382d020" aria-labelledby="expand_panel_heading_mw_1df8b1f2-88ac-45e6-8705-c9fa9382d020" class="panel-collapse collapse"><div class="panel-body">
+            <p>Parent of actor, specified as a handle to the parent
+                <code class="literal">sim3d.Actor</code> object. You can set this property using the 
+              <code class="argument">Parent</code> argument.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_22ab1089-e3f4-4096-b466-27f551a8f78a"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_22ab1089-e3f4-4096-b466-27f551a8f78a" data-target="#expand_panel_body_mw_22ab1089-e3f4-4096-b466-27f551a8f78a" aria-controls="expand_panel_body_mw_22ab1089-e3f4-4096-b466-27f551a8f78a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Children" class="anchor_target"></span><h3 class="panel-title" id="mw_22ab1089-e3f4-4096-b466-27f551a8f78a"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Children"/><code itemprop="name" id="propname_Children">Children</code></span> — <span itemprop="purpose">Children of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">handle to children <code class="literal">sim3d.actor</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_22ab1089-e3f4-4096-b466-27f551a8f78a" aria-labelledby="expand_panel_heading_mw_22ab1089-e3f4-4096-b466-27f551a8f78a" class="panel-collapse collapse"><div class="panel-body">
+            <p>Children of actor, specified as a handle to the <code class="literal">sim3d.Actor</code>
+              object.</p>
+            <p>This property is read only.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_7645fa96-9a36-41aa-bb33-4f5edfeb1537"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7645fa96-9a36-41aa-bb33-4f5edfeb1537" data-target="#expand_panel_body_mw_7645fa96-9a36-41aa-bb33-4f5edfeb1537" aria-controls="expand_panel_body_mw_7645fa96-9a36-41aa-bb33-4f5edfeb1537" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_ParentWorld" class="anchor_target"></span><h3 class="panel-title" id="mw_7645fa96-9a36-41aa-bb33-4f5edfeb1537"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.ParentWorld"/><code itemprop="name" id="propname_ParentWorld">ParentWorld</code></span> — <span itemprop="purpose">Parent world method handle</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">handle to parent <code class="literal">sim3d.World</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_7645fa96-9a36-41aa-bb33-4f5edfeb1537" aria-labelledby="expand_panel_heading_mw_7645fa96-9a36-41aa-bb33-4f5edfeb1537" class="panel-collapse collapse"><div class="panel-body">
+            <p>This property is read only.</p>
+            <p>Parent world method handle, specified as a handle to the parent
+                <code class="literal">sim3d.Actor</code> object.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_9eec53d5-c27c-499b-9b89-35722cf7fc22"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9eec53d5-c27c-499b-9b89-35722cf7fc22" data-target="#expand_panel_body_mw_9eec53d5-c27c-499b-9b89-35722cf7fc22" aria-controls="expand_panel_body_mw_9eec53d5-c27c-499b-9b89-35722cf7fc22" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Translation" class="anchor_target"></span><h3 class="panel-title" id="mw_9eec53d5-c27c-499b-9b89-35722cf7fc22"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Translation"/><code itemprop="name" id="propname_Translation">Translation</code></span> — <span itemprop="purpose">Cartesian coordinates for actor position</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">[0,0,0]</code></span> (default) | <span itemprop="inputvalue">real 1-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9eec53d5-c27c-499b-9b89-35722cf7fc22" aria-labelledby="expand_panel_heading_mw_9eec53d5-c27c-499b-9b89-35722cf7fc22" class="panel-collapse collapse"><div class="panel-body">
+            <p>Cartesian coordinates for actor position in the Unreal<sup>®</sup> Editor scene, specified as a real 1-by-3 vector. You can set this
+              property using the 
+              <code class="argument">Translation</code> argument.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_75b8258d-87e4-478c-94a9-233ca8564008"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_75b8258d-87e4-478c-94a9-233ca8564008" data-target="#expand_panel_body_mw_75b8258d-87e4-478c-94a9-233ca8564008" aria-controls="expand_panel_body_mw_75b8258d-87e4-478c-94a9-233ca8564008" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Rotation" class="anchor_target"></span><h3 class="panel-title" id="mw_75b8258d-87e4-478c-94a9-233ca8564008"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Rotation"/><code itemprop="name" id="propname_Rotation">Rotation</code></span> — <span itemprop="purpose">Rotation of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">[0,0,0]</code></span> (default) | <span itemprop="inputvalue">real 1-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_75b8258d-87e4-478c-94a9-233ca8564008" aria-labelledby="expand_panel_heading_mw_75b8258d-87e4-478c-94a9-233ca8564008" class="panel-collapse collapse"><div class="panel-body">
+            <p>Rotation of actor in the Unreal Editor scene, specified as a three element vector. You can set this
+              property using the 
+              <code class="argument">Rotation</code> name value argument.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_0849a2d1-aa29-4cab-9c57-110d9fdf2cde"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_0849a2d1-aa29-4cab-9c57-110d9fdf2cde" data-target="#expand_panel_body_mw_0849a2d1-aa29-4cab-9c57-110d9fdf2cde" aria-controls="expand_panel_body_mw_0849a2d1-aa29-4cab-9c57-110d9fdf2cde" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Scale" class="anchor_target"></span><h3 class="panel-title" id="mw_0849a2d1-aa29-4cab-9c57-110d9fdf2cde"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Scale"/><code itemprop="name" id="propname_Scale">Scale</code></span> — <span itemprop="purpose">Scale of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">[1,1,1]</code></span> (default) | <span itemprop="inputvalue">real 1-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_0849a2d1-aa29-4cab-9c57-110d9fdf2cde" aria-labelledby="expand_panel_heading_mw_0849a2d1-aa29-4cab-9c57-110d9fdf2cde" class="panel-collapse collapse"><div class="panel-body">
+            <p>Scale of actor used for scaling in each of three directions in the Unreal Editor scene, specified as a real 1-by-3 vector. You can set this
+              property using the 
+              <code class="argument">Scale</code> argument.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_0a659b1d-9a09-4cff-a09e-78bbde75c0aa"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_0a659b1d-9a09-4cff-a09e-78bbde75c0aa" data-target="#expand_panel_body_mw_0a659b1d-9a09-4cff-a09e-78bbde75c0aa" aria-controls="expand_panel_body_mw_0a659b1d-9a09-4cff-a09e-78bbde75c0aa" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Mobility" class="anchor_target"></span><h3 class="panel-title" id="mw_0a659b1d-9a09-4cff-a09e-78bbde75c0aa"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Mobility"/><code itemprop="name" id="propname_Mobility">Mobility</code></span> — <span itemprop="purpose">Type of actor mobility</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">'sim3d.utils.MobilityTypes.Movable'</code></span> (default) | <span itemprop="inputvalue"><code class="literal">'sim3d.utils.MobilityTypes.Static'</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_0a659b1d-9a09-4cff-a09e-78bbde75c0aa" aria-labelledby="expand_panel_heading_mw_0a659b1d-9a09-4cff-a09e-78bbde75c0aa" class="panel-collapse collapse"><div class="panel-body">
+            <p>Type of actor mobility to respond to physics and/or move the actor during
+              simulation, specified as <code class="literal">'sim3d.utils.MobilityTypes.Movable'</code> or
+                <code class="literal">'sim3d.utils.MobilityTypes.Static'</code>.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>string</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_8971fdcd-de97-49fc-9abc-db84ff238bf0_div" class="refsect2"><h3 id="mw_8971fdcd-de97-49fc-9abc-db84ff238bf0">Mesh Attributes</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_94ba2a03-9e25-4535-8077-f8897544faed"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_94ba2a03-9e25-4535-8077-f8897544faed" data-target="#expand_panel_body_mw_94ba2a03-9e25-4535-8077-f8897544faed" aria-controls="expand_panel_body_mw_94ba2a03-9e25-4535-8077-f8897544faed" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Vertices" class="anchor_target"></span><h3 class="panel-title" id="mw_94ba2a03-9e25-4535-8077-f8897544faed"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Vertices"/><code itemprop="name" id="propname_Vertices">Vertices</code></span> — <span itemprop="purpose">Vertices of mesh geometry</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue">empty array</span> (default) | <span itemprop="inputvalue">real <em class="varname">n</em>-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_94ba2a03-9e25-4535-8077-f8897544faed" aria-labelledby="expand_panel_heading_mw_94ba2a03-9e25-4535-8077-f8897544faed" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vertices of the mesh geometry, specified as a real <em class="varname">n</em>-by-3
+              vector, where <em class="varname">n</em> is the number of vertices.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Vertices = [1, 2, 3; 43, 54, 65]</code></p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_27a78667-800a-4581-97f4-8467bc950e23"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_27a78667-800a-4581-97f4-8467bc950e23" data-target="#expand_panel_body_mw_27a78667-800a-4581-97f4-8467bc950e23" aria-controls="expand_panel_body_mw_27a78667-800a-4581-97f4-8467bc950e23" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Faces" class="anchor_target"></span><h3 class="panel-title" id="mw_27a78667-800a-4581-97f4-8467bc950e23"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Faces"/><code itemprop="name" id="propname_Faces">Faces</code></span> — <span itemprop="purpose">Vertices of each triangle</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue">empty array</span> (default) | <span itemprop="inputvalue">real <em class="varname">n</em>-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_27a78667-800a-4581-97f4-8467bc950e23" aria-labelledby="expand_panel_heading_mw_27a78667-800a-4581-97f4-8467bc950e23" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vertices of each triangle, specified as a real <em class="varname">n</em>-by-3 vector,
+              where <em class="varname">n</em> is the number of vertices. You can use this property to
+              define how each triangle of the mesh is drawn.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Faces = [1, 2, 3; 4, 5, 6]</code></p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_c2c3bf18-4c4d-4447-9c45-cb073aab5ed0"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c2c3bf18-4c4d-4447-9c45-cb073aab5ed0" data-target="#expand_panel_body_mw_c2c3bf18-4c4d-4447-9c45-cb073aab5ed0" aria-controls="expand_panel_body_mw_c2c3bf18-4c4d-4447-9c45-cb073aab5ed0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Normals" class="anchor_target"></span><h3 class="panel-title" id="mw_c2c3bf18-4c4d-4447-9c45-cb073aab5ed0"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Normals"/><code itemprop="name" id="propname_Normals">Normals</code></span> — <span itemprop="purpose">Normals of each vertex</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue">empty array</span> (default) | <span itemprop="inputvalue">real <em class="varname">n</em>-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c2c3bf18-4c4d-4447-9c45-cb073aab5ed0" aria-labelledby="expand_panel_heading_mw_c2c3bf18-4c4d-4447-9c45-cb073aab5ed0" class="panel-collapse collapse"><div class="panel-body">
+            <p>Normals of each vertex, specified as a real <em class="varname">n</em>-by-3 vector,
+              where <em class="varname">n</em> is the number of vertices. <code class="argument">Normals</code>
+              must be of the same length as <code class="argument">Vertices</code>.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Normals = [1, 2, 3; 43, 54, 65]</code></p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_f335c6ae-2760-4283-89d1-1bf8a7218bf0"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_f335c6ae-2760-4283-89d1-1bf8a7218bf0" data-target="#expand_panel_body_mw_f335c6ae-2760-4283-89d1-1bf8a7218bf0" aria-controls="expand_panel_body_mw_f335c6ae-2760-4283-89d1-1bf8a7218bf0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_TextureCoordinates" class="anchor_target"></span><h3 class="panel-title" id="mw_f335c6ae-2760-4283-89d1-1bf8a7218bf0"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.TextureCoordinates"/><code itemprop="name" id="propname_TextureCoordinates">TextureCoordinates</code></span> — <span itemprop="purpose">Texture coordinates</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue">empty array</span> (default) | <span itemprop="inputvalue">real <em class="varname">n</em>-by-2 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_f335c6ae-2760-4283-89d1-1bf8a7218bf0" aria-labelledby="expand_panel_heading_mw_f335c6ae-2760-4283-89d1-1bf8a7218bf0" class="panel-collapse collapse"><div class="panel-body">
+            <p>Texture coordinates for each vertex, specified as a real <em class="varname">n</em>-by-2
+              vector, where <em class="varname">n</em> is the number of vertices. This argument is
+              optional, and if specified, must be the same length as
+              <code class="argument">Vertices</code>.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.TextureCoordinates = [1 2;3 4]</code></p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_c08b6679-4249-4953-9588-0ef7d7dbfe7d"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c08b6679-4249-4953-9588-0ef7d7dbfe7d" data-target="#expand_panel_body_mw_c08b6679-4249-4953-9588-0ef7d7dbfe7d" aria-controls="expand_panel_body_mw_c08b6679-4249-4953-9588-0ef7d7dbfe7d" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_VertexColors" class="anchor_target"></span><h3 class="panel-title" id="mw_c08b6679-4249-4953-9588-0ef7d7dbfe7d"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.VertexColors"/><code itemprop="name" id="propname_VertexColors">VertexColors</code></span> — <span itemprop="purpose">Vertex colors</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue">empty array</span> (default) | <span itemprop="inputvalue">real <em class="varname">n</em>-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c08b6679-4249-4953-9588-0ef7d7dbfe7d" aria-labelledby="expand_panel_heading_mw_c08b6679-4249-4953-9588-0ef7d7dbfe7d" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vertex colors, specified as a real <em class="varname">n</em>-by-3 vector, where
+                <em class="varname">n</em> is the number of vertices. This argument is optional, and if
+              specified, must be the same length as <code class="argument">Vertices</code>.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.VertexColors = [1, 2,3; 4, 5, 6]</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_e68516db-1e9b-4263-a006-24582bf13883_div" class="refsect2"><h3 id="mw_e68516db-1e9b-4263-a006-24582bf13883">Material Attributes</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_9b682298-e948-4d33-a670-6d23d251f9b1"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9b682298-e948-4d33-a670-6d23d251f9b1" data-target="#expand_panel_body_mw_9b682298-e948-4d33-a670-6d23d251f9b1" aria-controls="expand_panel_body_mw_9b682298-e948-4d33-a670-6d23d251f9b1" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Color" class="anchor_target"></span><h3 class="panel-title" id="mw_9b682298-e948-4d33-a670-6d23d251f9b1"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Color"/><code itemprop="name" id="propname_Color">Color</code></span> — <span itemprop="purpose">Base color of actor</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">[1,1,1]</code></span> (default) | <span itemprop="inputvalue">real 1-by-3 vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9b682298-e948-4d33-a670-6d23d251f9b1" aria-labelledby="expand_panel_heading_mw_9b682298-e948-4d33-a670-6d23d251f9b1" class="panel-collapse collapse"><div class="panel-body">
+            <p>Base color of actor, specified as a real 1-by-3 vector. <code class="argument">Color</code>
+              consists of a vector of color RGB components <code class="literal">[red green blue]</code>.
+              Values greater than <code class="literal">1</code> cause glowing and can be used for various
+              indicators. If the <a href="sim3d.actor.html"><code class="class">sim3d.Actor</code></a>
+              object has a texture, the <code class="literal">TextureMapping.Blend</code> coefficient can be
+              used to control how it blends with the base color.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Color = [0.3 0.27 0.9]</code></p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_12e77d0d-02b5-44a5-a160-1bc1a817ec5d"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_12e77d0d-02b5-44a5-a160-1bc1a817ec5d" data-target="#expand_panel_body_mw_12e77d0d-02b5-44a5-a160-1bc1a817ec5d" aria-controls="expand_panel_body_mw_12e77d0d-02b5-44a5-a160-1bc1a817ec5d" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Transparency" class="anchor_target"></span><h3 class="panel-title" id="mw_12e77d0d-02b5-44a5-a160-1bc1a817ec5d"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Transparency"/><code itemprop="name" id="propname_Transparency">Transparency</code></span> — <span itemprop="purpose">Transparency of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">real positive number in the range (0,1)</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_12e77d0d-02b5-44a5-a160-1bc1a817ec5d" aria-labelledby="expand_panel_heading_mw_12e77d0d-02b5-44a5-a160-1bc1a817ec5d" class="panel-collapse collapse"><div class="panel-body">
+            <p>Transparency of actor, specified as a real positive number in the range (0,1),
+              where 0 indicates a nontransparent object and 1 indicates a completely transparent
+              object.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Transparency = 0.8</code></p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_2fe1cfdc-0651-4f22-9d90-fc9971946b4b"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_2fe1cfdc-0651-4f22-9d90-fc9971946b4b" data-target="#expand_panel_body_mw_2fe1cfdc-0651-4f22-9d90-fc9971946b4b" aria-controls="expand_panel_body_mw_2fe1cfdc-0651-4f22-9d90-fc9971946b4b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Shininess" class="anchor_target"></span><h3 class="panel-title" id="mw_2fe1cfdc-0651-4f22-9d90-fc9971946b4b"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Shininess"/><code itemprop="name" id="propname_Shininess">Shininess</code></span> — <span itemprop="purpose">Shininess of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0.7</code></span> (default) | <span itemprop="inputvalue">real positive number in the range (0,1)</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_2fe1cfdc-0651-4f22-9d90-fc9971946b4b" aria-labelledby="expand_panel_heading_mw_2fe1cfdc-0651-4f22-9d90-fc9971946b4b" class="panel-collapse collapse"><div class="panel-body">
+            <p>Shininess of actor, specified as a real positive number in the range (0,1), where
+              0 indicates a nonshiny object and 1 indicates a completely shiny object.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Shininess = 0.3</code></p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_9777ce7c-2d04-47ff-b888-486fe915d034"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9777ce7c-2d04-47ff-b888-486fe915d034" data-target="#expand_panel_body_mw_9777ce7c-2d04-47ff-b888-486fe915d034" aria-controls="expand_panel_body_mw_9777ce7c-2d04-47ff-b888-486fe915d034" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Metallic" class="anchor_target"></span><h3 class="panel-title" id="mw_9777ce7c-2d04-47ff-b888-486fe915d034"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Metallic"/><code itemprop="name" id="propname_Metallic">Metallic</code></span> — <span itemprop="purpose">Metallic look of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0.7</code></span> (default) | <span itemprop="inputvalue">real positive number in the range (0,1)</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9777ce7c-2d04-47ff-b888-486fe915d034" aria-labelledby="expand_panel_heading_mw_9777ce7c-2d04-47ff-b888-486fe915d034" class="panel-collapse collapse"><div class="panel-body">
+            <p>Metallic look of actor, specified as a real positive number in the range (0,1),
+              where 0 indicates a plastic surface and 1 indicates a metallic surface.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Metallic = 0.1</code></p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_704f8374-af4d-4dc6-a1c7-6c5cf5205fea"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_704f8374-af4d-4dc6-a1c7-6c5cf5205fea" data-target="#expand_panel_body_mw_704f8374-af4d-4dc6-a1c7-6c5cf5205fea" aria-controls="expand_panel_body_mw_704f8374-af4d-4dc6-a1c7-6c5cf5205fea" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Flat" class="anchor_target"></span><h3 class="panel-title" id="mw_704f8374-af4d-4dc6-a1c7-6c5cf5205fea"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Flat"/><code itemprop="name" id="propname_Flat">Flat</code></span> — <span itemprop="purpose">Flat shading factor of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">real positive number in the range (0,1)</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_704f8374-af4d-4dc6-a1c7-6c5cf5205fea" aria-labelledby="expand_panel_heading_mw_704f8374-af4d-4dc6-a1c7-6c5cf5205fea" class="panel-collapse collapse"><div class="panel-body">
+            <p>Flat shading factor of actor, specified as a real positive number in the range
+              (0,1), where 0 indicates a smooth surface and 1 indicates a faceted surface.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Flat = 0.7</code></p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_6dd0d36d-107f-49a2-a766-49a0502ebade"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6dd0d36d-107f-49a2-a766-49a0502ebade" data-target="#expand_panel_body_mw_6dd0d36d-107f-49a2-a766-49a0502ebade" aria-controls="expand_panel_body_mw_6dd0d36d-107f-49a2-a766-49a0502ebade" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Tessellation" class="anchor_target"></span><h3 class="panel-title" id="mw_6dd0d36d-107f-49a2-a766-49a0502ebade"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Tessellation"/><code itemprop="name" id="propname_Tessellation">Tessellation</code></span> — <span itemprop="purpose">Tessellation factor of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue">0</span> (default) | <span itemprop="inputvalue">real positive integer in the range (0,8)</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_6dd0d36d-107f-49a2-a766-49a0502ebade" aria-labelledby="expand_panel_heading_mw_6dd0d36d-107f-49a2-a766-49a0502ebade" class="panel-collapse collapse"><div class="panel-body">
+            <p>Tessellation factor of actor, specified as a real positive integer in the range
+              (0,8). Use this property to specify the coefficient of automatic geometry refinement.
+              This property can be useful when texture displacement mapping is used.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Tessellation = 5</code></p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_7f93c656-bb36-431e-ba2c-01442b63d207"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7f93c656-bb36-431e-ba2c-01442b63d207" data-target="#expand_panel_body_mw_7f93c656-bb36-431e-ba2c-01442b63d207" aria-controls="expand_panel_body_mw_7f93c656-bb36-431e-ba2c-01442b63d207" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_VertexBlend" class="anchor_target"></span><h3 class="panel-title" id="mw_7f93c656-bb36-431e-ba2c-01442b63d207"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.VertexBlend"/><code itemprop="name" id="propname_VertexBlend">VertexBlend</code></span> — <span itemprop="purpose">Color blending coefficient of vertices</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue">0</span> (default) | <span itemprop="inputvalue">real positive number in the range (0,1)</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_7f93c656-bb36-431e-ba2c-01442b63d207" aria-labelledby="expand_panel_heading_mw_7f93c656-bb36-431e-ba2c-01442b63d207" class="panel-collapse collapse"><div class="panel-body">
+            <p>Color blending coefficient of vertices, specified as a real positive number in the
+              range (0,1). This value can be larger to achieve the effect of glowing colors..</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.VertexBlend = 0.5</code></p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_32614a9b-db54-4a40-95b4-b78e43c7f393"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_32614a9b-db54-4a40-95b4-b78e43c7f393" data-target="#expand_panel_body_mw_32614a9b-db54-4a40-95b4-b78e43c7f393" aria-controls="expand_panel_body_mw_32614a9b-db54-4a40-95b4-b78e43c7f393" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_TextureTransform" class="anchor_target"></span><h3 class="panel-title" id="mw_32614a9b-db54-4a40-95b4-b78e43c7f393"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.TextureTransform"/><code itemprop="name" id="propname_TextureTransform">TextureTransform</code></span> — <span itemprop="purpose">Texture transformations applied to actor texture</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">real positive vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_32614a9b-db54-4a40-95b4-b78e43c7f393" aria-labelledby="expand_panel_heading_mw_32614a9b-db54-4a40-95b4-b78e43c7f393" class="panel-collapse collapse"><div class="panel-body">
+            <p>Texture transformations applied to actor texture, specified as a real positive
+              scalar. Use <code class="literal">TextureTransform</code> to define texture position, velocity,
+              scale, and angle.</p>
+<div itemprop="content" id="mw_64072793-3a6d-40c7-8bd9-5699c55b55bb" class="table_class"><p class="title"><strong class="title">Transformation Properties</strong></p>
+<div class="table-responsive"><table class="table table-condensed" summary="Transformation Properties"><colgroup><col class="tcol1" width="22%"/>
+<col class="tcol2" width="29%"/>
+<col class="tcol3" width="25%"/>
+<col class="tcol4" width="25%"/>
+</colgroup>
+<thead><tr><th>Property</th>
+<th>Detail</th>
+<th>Value</th>
+<th>Value Example</th>
+</tr>
+</thead>
+<tbody><tr><td>Position</td>
+<td><p>Use this property to set the position of the texture. You can use
+                            <code class="literal">Position</code> to move the texture along
+                            <em class="varname">U</em> and <em class="varname">V</em>
+                        coordinates.</p>
+</td>
+<td>
+                        <div class="itemizedlist"><ul><li><p>Value – Real positive (1,2) vector</p></li>
+<li><p>Default Value – (0,0)</p></li>
+<li><p>Data Type – <code class="literal">double</code></p></li>
+</ul>
+</div>
+                      </td>
+<td><code class="literal">actor.TextureTransform.Position = [2, 3]</code></td>
+</tr>
+<tr><td>Velocity</td>
+<td><p>Use this property to set the velocity of the texture movement.
+                          velocity is expressed as a change of <em class="varname">U</em> and
+                            <em class="varname">V</em> coordinates per second of simulation time. The
+                          animated surface has no effect on physical interactions.</p>
+</td>
+<td>
+                        <div class="itemizedlist"><ul><li><p>Value – Real positive (1,2) vector</p></li>
+<li><p>Default Value – (0,0)</p></li>
+<li><p>Data Type – <code class="literal">double</code></p></li>
+</ul>
+</div>
+                      </td>
+<td><code class="literal">actor.TextureTransform.Velocity = [2, 3]</code></td>
+</tr>
+<tr><td>Scale</td>
+<td><p>Use this property to set the relative texture scale. If the
+                          texture is smaller than the surface to be covered, the scale repeats
+                          automatically in all directions. Negative values can be used to flip the
+                          texture in corresponding coordinate.</p>
+</td>
+<td>
+                        <div class="itemizedlist"><ul><li><p>Value – Real positive (1,2) vector</p></li>
+<li><p>Default Value – (0,0)</p></li>
+<li><p>Data Type – <code class="literal">double</code></p></li>
+</ul>
+</div>
+                      </td>
+<td><code class="literal">actor.TextureTransform.Scale = [2, 2]</code></td>
+</tr>
+<tr><td>Angle</td>
+<td><p>Use this property to set the relative texture angle. The texture
+                          rotates always around its center point [0.5, 0.5] in the
+                            <em class="varname">UV</em> coordinates. The center is fixed to the texture
+                          and moves with it depending on the Position and Velocity parameters..
+                          Negative values can be used to flip the texture in corresponding
+                          coordinate.</p>
+</td>
+<td>
+                        <div class="itemizedlist"><ul><li><p>Value – Real positive scalar</p></li>
+<li><p>Default Value – 0</p></li>
+<li><p>Data Type – <code class="literal">double</code></p></li>
+</ul>
+</div>
+                      </td>
+<td><code class="literal">actor.TextureTransform.Angle = pi/2</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>
+</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_465674d1-735f-4dbd-955b-676a0234425a"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_465674d1-735f-4dbd-955b-676a0234425a" data-target="#expand_panel_body_mw_465674d1-735f-4dbd-955b-676a0234425a" aria-controls="expand_panel_body_mw_465674d1-735f-4dbd-955b-676a0234425a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_TextureMapping" class="anchor_target"></span><h3 class="panel-title" id="mw_465674d1-735f-4dbd-955b-676a0234425a"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.TextureMapping"/><code itemprop="name" id="propname_TextureMapping">TextureMapping</code></span> — <span itemprop="purpose">Texture mapping parameters applied to actor texture</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">real positive vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_465674d1-735f-4dbd-955b-676a0234425a" aria-labelledby="expand_panel_heading_mw_465674d1-735f-4dbd-955b-676a0234425a" class="panel-collapse collapse"><div class="panel-body">
+            <p>Texture mapping parameters applied to actor texture, specified as a real positive
+              vector. Use <code class="literal">TextureMapping</code> to define texture blend, displacement,
+              bump factor, and roughness.</p>
+<div itemprop="content" id="mw_03b71422-2209-4843-8531-30491bca9af3" class="table_class"><p class="title"><strong class="title">Mapping Properties</strong></p>
+<div class="table-responsive"><table class="table table-condensed" summary="Mapping Properties"><colgroup><col class="tcol1" width="22%"/>
+<col class="tcol2" width="29%"/>
+<col class="tcol3" width="25%"/>
+<col class="tcol4" width="25%"/>
+</colgroup>
+<thead><tr><th>Property</th>
+<th>Detail</th>
+<th>Value</th>
+<th>Value Example</th>
+</tr>
+</thead>
+<tbody><tr><td>Blend</td>
+<td><p>Use this property to set the blend ratio of the
+                          texture.</p>
+<p>You can use <code class="literal">Blend</code> to set the ratio
+                          of texture mixing with the base color of the surface using linear
+                          interpolation.</p>
+<p>To create an effect of glowing texture, use a
+                          black base color ([0 0 0]) and blend values greater than
+                          1.</p>
+<p>You can set the value independently for each color channel
+                          ([red green blue]).</p>
+</td>
+<td>
+                        <div class="itemizedlist"><ul><li><p>Value – Real positive (1,3) vector</p></li>
+<li><p>Default Value – (0,0,0)</p></li>
+<li><p>Data Type – <code class="literal">double</code></p></li>
+</ul>
+</div>
+                      </td>
+<td><code class="literal">actor.TextureMapping.Blend = [1 1 0.5]</code></td>
+</tr>
+<tr><td>Displacement</td>
+<td><p>Use this property to set the displacement of the
+                          texture.</p>
+<p>You can use <code class="literal">Displacement</code> to move
+                          the vertex of a geometric mesh in the direction of the normal depending on
+                          the color of the texture at that location. This deformation is only visual
+                          and does not affect physical interactions.</p>
+<p>You can set the
+                          value independently for each color channel ([red green blue]) and its
+                          range is unlimited.</p>
+</td>
+<td>
+                        <div class="itemizedlist"><ul><li><p>Value – Real positive (1,3) vector</p></li>
+<li><p>Default Value – (0,0,0)</p></li>
+<li><p>Data Type – <code class="literal">double</code></p></li>
+</ul>
+</div>
+                      </td>
+<td><code class="literal">actor.TextureMapping.Displacement = [1 2 5]</code></td>
+</tr>
+<tr><td>Bumps</td>
+<td><p>Use this property to set the bump factor of the
+                          texture.</p>
+<p>You can use <code class="literal">Bump</code> to create the
+                          effect of a bumpy surface (such as a stone wall) by making small
+                          manipulations with normals and lighting.</p>
+<p>You can set the value
+                          independently for each color channel ([red green blue]) and its range is
+                          unlimited.</p>
+</td>
+<td>
+                        <div class="itemizedlist"><ul><li><p>Value – Real positive (1,3) vector</p></li>
+<li><p>Default Value – (0,0,0)</p></li>
+<li><p>Data Type – <code class="literal">double</code></p></li>
+</ul>
+</div>
+                      </td>
+<td><code class="literal">actor.TextureMapping.Bumps = [10 10 0.5]</code></td>
+</tr>
+<tr><td>Roughness</td>
+<td><p>Use this property to set the roughness factor of the
+                          texture.</p>
+<p>You can use <code class="literal">Roughness</code> to locally
+                          manipulate the global surface shininess specified by the <a href="sim3d.actor.html#mw_2fe1cfdc-0651-4f22-9d90-fc9971946b4b" class="intrnllnk"><span class="property">Shininess</span></a> property.</p>
+<p>You can set the value
+                          independently for each color channel ([red green blue]) and its range is
+                          unlimited.</p>
+</td>
+<td>
+                        <div class="itemizedlist"><ul><li><p>Value – Real positive (1,3) vector</p></li>
+<li><p>Default Value – (0,0,0)</p></li>
+<li><p>Data Type – <code class="literal">double</code></p></li>
+</ul>
+</div>
+                      </td>
+<td><code class="literal">actor.TextureMapping.Roughness = [1 1 0.5]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>
+</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_76d34825-cba2-4b48-b07d-5334f7174fee"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_76d34825-cba2-4b48-b07d-5334f7174fee" data-target="#expand_panel_body_mw_76d34825-cba2-4b48-b07d-5334f7174fee" aria-controls="expand_panel_body_mw_76d34825-cba2-4b48-b07d-5334f7174fee" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Texture" class="anchor_target"></span><h3 class="panel-title" id="mw_76d34825-cba2-4b48-b07d-5334f7174fee"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Texture"/><code itemprop="name" id="propname_Texture">Texture</code></span> — <span itemprop="purpose">Source file for actor shape</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue">''</span> (default) | <span itemprop="inputvalue">character array</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_76d34825-cba2-4b48-b07d-5334f7174fee" aria-labelledby="expand_panel_heading_mw_76d34825-cba2-4b48-b07d-5334f7174fee" class="panel-collapse collapse"><div class="panel-body">
+            <p>Source file for actor shape, specified as a character array. The supported file
+              types are JPEG, PNG, BMP, and TGA. The filepath should be absolute.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Texture = "file.jpg"</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_e4a690c0-6052-4de5-bb0e-84741b4ee092_div" class="refsect2"><h3 id="mw_e4a690c0-6052-4de5-bb0e-84741b4ee092">Physical Attributes</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_a981adb2-9aa2-4b91-b310-18bc61966f6f"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a981adb2-9aa2-4b91-b310-18bc61966f6f" data-target="#expand_panel_body_mw_a981adb2-9aa2-4b91-b310-18bc61966f6f" aria-controls="expand_panel_body_mw_a981adb2-9aa2-4b91-b310-18bc61966f6f" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Shadows" class="anchor_target"></span><h3 class="panel-title" id="mw_a981adb2-9aa2-4b91-b310-18bc61966f6f"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Shadows"/><code itemprop="name" id="propname_Shadows">Shadows</code></span> — <span itemprop="purpose">Actor shadows</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code> or <code class="literal">false</code></span> (default) | <span itemprop="inputvalue"><code class="literal">1</code> or <code class="literal">true</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_a981adb2-9aa2-4b91-b310-18bc61966f6f" aria-labelledby="expand_panel_heading_mw_a981adb2-9aa2-4b91-b310-18bc61966f6f" class="panel-collapse collapse"><div class="panel-body">
+            <p>Actor shadows, specified as <code class="literal">0</code> (<code class="literal">false</code>) if the
+              actor does not cast shadows or <code class="literal">1</code> (<code class="literal">true</code>) if it
+              does.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_fc19a473-b637-4f98-b6c3-365b641b44d8"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_fc19a473-b637-4f98-b6c3-365b641b44d8" data-target="#expand_panel_body_mw_fc19a473-b637-4f98-b6c3-365b641b44d8" aria-controls="expand_panel_body_mw_fc19a473-b637-4f98-b6c3-365b641b44d8" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_LinearVelocity" class="anchor_target"></span><h3 class="panel-title" id="mw_fc19a473-b637-4f98-b6c3-365b641b44d8"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.LinearVelocity"/><code itemprop="name" id="propname_LinearVelocity">LinearVelocity</code></span> — <span itemprop="purpose">Linear velocity of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">(0,0,0)</code></span> (default) | <span itemprop="inputvalue">real positive vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_fc19a473-b637-4f98-b6c3-365b641b44d8" aria-labelledby="expand_panel_heading_mw_fc19a473-b637-4f98-b6c3-365b641b44d8" class="panel-collapse collapse"><div class="panel-body">
+            <p>Linear velocity of actor in local coordinates, specified as a real positive
+              vector, in meters per second.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.LinearVelocity = [1 1 1]</code></p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p><code class="argument">Mobility</code> should be set to
+                  <code class="literal">'sim3d.utils.MobilityTypes.Movable'</code> for velocities to work.
+                Otherwise the actor will not move, and you will see a warning.</p>
+            
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_ca54d215-b601-4e90-a9af-5be1d154048b"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ca54d215-b601-4e90-a9af-5be1d154048b" data-target="#expand_panel_body_mw_ca54d215-b601-4e90-a9af-5be1d154048b" aria-controls="expand_panel_body_mw_ca54d215-b601-4e90-a9af-5be1d154048b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_AngularVelocity" class="anchor_target"></span><h3 class="panel-title" id="mw_ca54d215-b601-4e90-a9af-5be1d154048b"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.AngularVelocity"/><code itemprop="name" id="propname_AngularVelocity">AngularVelocity</code></span> — <span itemprop="purpose">Angular velocity of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">(0,0,0)</code></span> (default) | <span itemprop="inputvalue">real positive vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_ca54d215-b601-4e90-a9af-5be1d154048b" aria-labelledby="expand_panel_heading_mw_ca54d215-b601-4e90-a9af-5be1d154048b" class="panel-collapse collapse"><div class="panel-body">
+            <p>Angular velocity of actor in local coordinates, specified as a real positive
+              vector, in radians per second.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.AngularVelocity = [2 2 2]</code></p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p><code class="argument">Mobility</code> should be set to
+                  <code class="literal">'sim3d.utils.MobilityTypes.Movable'</code> for velocities to work.
+                Otherwise the actor will not move, and you will see a warning.</p>
+            
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_853a93c4-2ea4-43b5-a78e-5d483e608b1c"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_853a93c4-2ea4-43b5-a78e-5d483e608b1c" data-target="#expand_panel_body_mw_853a93c4-2ea4-43b5-a78e-5d483e608b1c" aria-controls="expand_panel_body_mw_853a93c4-2ea4-43b5-a78e-5d483e608b1c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Mass" class="anchor_target"></span><h3 class="panel-title" id="mw_853a93c4-2ea4-43b5-a78e-5d483e608b1c"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Mass"/><code itemprop="name" id="propname_Mass">Mass</code></span> — <span itemprop="purpose">Mass of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">real positive scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_853a93c4-2ea4-43b5-a78e-5d483e608b1c" aria-labelledby="expand_panel_heading_mw_853a93c4-2ea4-43b5-a78e-5d483e608b1c" class="panel-collapse collapse"><div class="panel-body">
+            <p>Mass of actor, specified as a real positive scalar, in kilograms.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Mass = 12</code></p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_1cdbb766-cf95-429e-9660-fb06201c9c45"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1cdbb766-cf95-429e-9660-fb06201c9c45" data-target="#expand_panel_body_mw_1cdbb766-cf95-429e-9660-fb06201c9c45" aria-controls="expand_panel_body_mw_1cdbb766-cf95-429e-9660-fb06201c9c45" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_CenterOfMass" class="anchor_target"></span><h3 class="panel-title" id="mw_1cdbb766-cf95-429e-9660-fb06201c9c45"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.CenterOfMass"/><code itemprop="name" id="propname_CenterOfMass">CenterOfMass</code></span> — <span itemprop="purpose">Center of mass of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">(0,0,0)</code></span> (default) | <span itemprop="inputvalue">real positive vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_1cdbb766-cf95-429e-9660-fb06201c9c45" aria-labelledby="expand_panel_heading_mw_1cdbb766-cf95-429e-9660-fb06201c9c45" class="panel-collapse collapse"><div class="panel-body">
+            <p>Center of mass of <a href="sim3d.actor.html"><code class="class">sim3d.Actor</code></a>
+              object, specified as a real positive vector. Use this property to shift the center of
+              gravity from the origin of the local coordinate system.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.CenterOfMass = [1 0 1 ]</code></p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_77f22be4-7fd7-4c7a-9925-9154e49edb2c"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_77f22be4-7fd7-4c7a-9925-9154e49edb2c" data-target="#expand_panel_body_mw_77f22be4-7fd7-4c7a-9925-9154e49edb2c" aria-controls="expand_panel_body_mw_77f22be4-7fd7-4c7a-9925-9154e49edb2c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Gravity" class="anchor_target"></span><h3 class="panel-title" id="mw_77f22be4-7fd7-4c7a-9925-9154e49edb2c"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Gravity"/><code itemprop="name" id="propname_Gravity">Gravity</code></span> — <span itemprop="purpose">Application of gravity to actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code> or <code class="literal">false</code></span> (default) | <span itemprop="inputvalue"><code class="literal">1</code> or <code class="literal">true</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_77f22be4-7fd7-4c7a-9925-9154e49edb2c" aria-labelledby="expand_panel_heading_mw_77f22be4-7fd7-4c7a-9925-9154e49edb2c" class="panel-collapse collapse"><div class="panel-body">
+            <p>Application of gravity to actor, specified as <code class="literal">0</code>
+                (<code class="literal">false</code>) if no gravity is applied or <code class="literal">1</code>
+                (<code class="literal">true</code>) if gravity is applied.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Gravity = false</code></p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <div class="itemizedlist"><ul><li><p>This property works when <code class="argument">Physics</code> property is set to
+                      <code class="literal">1</code> or<code class="literal">true</code>.</p></li>
+<li><p><code class="argument">Mobility</code> should be set to
+                      <code class="literal">'sim3d.utils.MobilityTypes.Movable'</code> for the actor to
+                    experience the effects of gravity. Otherwise the actor will not move, and you
+                    will see a warning.</p></li>
+</ul>
+</div>
+            
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_343b53d4-8f43-4cc2-b4ea-8a28d964b447"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_343b53d4-8f43-4cc2-b4ea-8a28d964b447" data-target="#expand_panel_body_mw_343b53d4-8f43-4cc2-b4ea-8a28d964b447" aria-controls="expand_panel_body_mw_343b53d4-8f43-4cc2-b4ea-8a28d964b447" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Physics" class="anchor_target"></span><h3 class="panel-title" id="mw_343b53d4-8f43-4cc2-b4ea-8a28d964b447"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Physics"/><code itemprop="name" id="propname_Physics">Physics</code></span> — <span itemprop="purpose">Reaction of actor to physical forces</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code> or <code class="literal">false</code></span> (default) | <span itemprop="inputvalue"><code class="literal">1</code> or <code class="literal">true</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_343b53d4-8f43-4cc2-b4ea-8a28d964b447" aria-labelledby="expand_panel_heading_mw_343b53d4-8f43-4cc2-b4ea-8a28d964b447" class="panel-collapse collapse"><div class="panel-body">
+            <p>Reaction of actor to physical forces such as gravity and collision, specified as
+                <code class="literal">0</code> (<code class="literal">false</code>) or <code class="literal">1</code>
+                (<code class="literal">true</code>).</p>
+            <p>If <code class="argument">Physics</code> is enabled, the actor moves independently of its
+              parent actor object but together with its children, unless the children also have
+                <code class="argument">Physics</code> enabled.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Physics = true</code></p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_46ff7508-6002-49bf-ab9c-af46ff0154d3"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_46ff7508-6002-49bf-ab9c-af46ff0154d3" data-target="#expand_panel_body_mw_46ff7508-6002-49bf-ab9c-af46ff0154d3" aria-controls="expand_panel_body_mw_46ff7508-6002-49bf-ab9c-af46ff0154d3" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Collisions" class="anchor_target"></span><h3 class="panel-title" id="mw_46ff7508-6002-49bf-ab9c-af46ff0154d3"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.Collisions"/><code itemprop="name" id="propname_Collisions">Collisions</code></span> — <span itemprop="purpose">Object collision</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code> or <code class="literal">false</code></span> (default) | <span itemprop="inputvalue"><code class="literal">1</code> or <code class="literal">true</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_46ff7508-6002-49bf-ab9c-af46ff0154d3" aria-labelledby="expand_panel_heading_mw_46ff7508-6002-49bf-ab9c-af46ff0154d3" class="panel-collapse collapse"><div class="panel-body">
+            <p>Object collision, specified as <code class="literal">0</code> (<code class="literal">false</code>) for
+              no collision or <code class="literal">1</code> (<code class="literal">true</code>) if objects will
+              collide.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.Collisions = true</code></p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_38797a8a-17b5-4990-977e-10c1590e2a2c"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_38797a8a-17b5-4990-977e-10c1590e2a2c" data-target="#expand_panel_body_mw_38797a8a-17b5-4990-977e-10c1590e2a2c" aria-controls="expand_panel_body_mw_38797a8a-17b5-4990-977e-10c1590e2a2c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_LocationLocked" class="anchor_target"></span><h3 class="panel-title" id="mw_38797a8a-17b5-4990-977e-10c1590e2a2c"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.LocationLocked"/><code itemprop="name" id="propname_LocationLocked">LocationLocked</code></span> — <span itemprop="purpose">Stationary translational motion</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code> or <code class="literal">false</code></span> (default) | <span itemprop="inputvalue"><code class="literal">1</code> or <code class="literal">true</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_38797a8a-17b5-4990-977e-10c1590e2a2c" aria-labelledby="expand_panel_heading_mw_38797a8a-17b5-4990-977e-10c1590e2a2c" class="panel-collapse collapse"><div class="panel-body">
+            <p>Stationary translational motion, specified as either <code class="literal">0</code>
+                (<code class="literal">false</code>) or <code class="literal">1</code> (<code class="literal">true</code>). If
+              this property is enabled, the actor is fixed in place. If the actor has defined a
+              nonzero linear velocity, it interacts with other objects as if it were moving itself.
+              You can use this property to model belt conveyors.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.LocationLocked = true</code></p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_7eece4f1-7037-4f01-bfaf-d75acc239519"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7eece4f1-7037-4f01-bfaf-d75acc239519" data-target="#expand_panel_body_mw_7eece4f1-7037-4f01-bfaf-d75acc239519" aria-controls="expand_panel_body_mw_7eece4f1-7037-4f01-bfaf-d75acc239519" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_RotationLocked" class="anchor_target"></span><h3 class="panel-title" id="mw_7eece4f1-7037-4f01-bfaf-d75acc239519"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.Actor.RotationLocked"/><code itemprop="name" id="propname_RotationLocked">RotationLocked</code></span> — <span itemprop="purpose">Stationary rotational motion</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code> or <code class="literal">false</code></span> (default) | <span itemprop="inputvalue"><code class="literal">1</code> or <code class="literal">true</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_7eece4f1-7037-4f01-bfaf-d75acc239519" aria-labelledby="expand_panel_heading_mw_7eece4f1-7037-4f01-bfaf-d75acc239519" class="panel-collapse collapse"><div class="panel-body">
+            <p>Stationary rotational motion, specified as either <code class="literal">0</code>
+                (<code class="literal">false</code>) or <code class="literal">1</code> (<code class="literal">true</code>). If
+              this property is enabled, the <a href="sim3d.actor.html"><code class="class">sim3d.Actor</code></a>
+              object is fixed in place. If the actor has defined a nonzero angular velocity, it
+              interacts with other objects as if it were moving itself. You can use this property to
+              model circular conveyors (carousels).</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">actor.RotationLocked = true</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_a770e474-cff7-4b62-b845-5ec5c1a401e8_div" class="refsect1 objectfunctions"><h2 id="mw_a770e474-cff7-4b62-b845-5ec5c1a401e8">Object Functions</h2>
+<div class="doc_classesgroup_container"><div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="sim3d.actor.copy.html"><code class="function">copy</code></a></td>
+<td class="description">Copy all properties from another actor</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.actor.findby.html"><code class="function">findBy</code></a></td>
+<td class="description">Find all actors that match specified criteria</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.actor.propagate.html"><code class="function">propagate</code></a></td>
+<td class="description">Propagate value of selected property to actor and its children</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.actor.gather.html"><code class="function">gather</code></a></td>
+<td class="description">Return values of selected property from all objects in selected branch</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.actor.takesnapshot.html"><code class="function">takeSnapshot</code></a></td>
+<td class="description">Take snapshot of selected properties</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.actor.restoresnapshot.html"><code class="function">restoreSnapshot</code></a></td>
+<td class="description">Restore actor to state of properties saved in specified snapshot</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.actor.createmesh.html"><code class="function">createMesh</code></a></td>
+<td class="description">Create new mesh with specified values</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.actor.addmesh.html"><code class="function">addMesh</code></a></td>
+<td class="description">Add mesh on top of current mesh</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.actor.load.html"><code class="function">load</code></a></td>
+<td class="description">Load or import 3D file</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.actor.save.html"><code class="function">save</code></a></td>
+<td class="description">Save actor and children to a MAT file</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.actor.createshape.html"><code class="function">createShape</code></a></td>
+<td class="description">Create geometry for basic primitives</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_d373691d-65c1-404e-b119-877da1910d49_vh">Version History</h2>
+<p><strong>Introduced in R2022b</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_d373691d-65c1-404e-b119-877da1910d49_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="sim3d.world.html"><span itemprop="name"><code class="class">sim3d.World</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="sim3d.sensors.idealcamera.html"><span itemprop="name"><code class="class">sim3d.sensors.IdealCamera</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="sim3d.sensors.maincamera.html"><span itemprop="name"><code class="class">sim3d.sensors.MainCamera</code></span></a></span></p>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer" style="width: auto;">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+<a class="btn btn_color_mediumgray" id="go-top"><span class="icon-arrow-open-up icon_24"></span></a>
+</body>
+</html>
