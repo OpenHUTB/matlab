@@ -30,6 +30,7 @@ classdef (Hidden)AbstractActor < handle
 
 
     properties (Access = public)
+        % 参与者的父对象
         Parent = [];
 
         Children = struct();

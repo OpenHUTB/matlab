@@ -1,3 +1,4 @@
+% 对象类别标识符的语义分割图
 classdef SemanticType<uint16
 
     enumeration

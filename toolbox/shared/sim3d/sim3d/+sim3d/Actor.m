@@ -11,17 +11,21 @@ classdef Actor < sim3d.AbstractActor
 
 
     properties
+        % 保存参与者数据的结构，指定为结构体。
+        % 可以更新和维护此数据，并在仿真期间或设置方法中使用它来更新结构的字段。
         UserData = [];
     end
 
 
     properties (Dependent)
-        Faces;
-        Vertices;
-        Normals;
-        TextureCoordinates;
+        %% 网格属性
+        Faces;                  % 每个三角形的顶点
+        Vertices;               % 网格几何体的顶点
+        Normals;                % 每个顶点的法线
+        TextureCoordinates;     % 纹理坐标
         VertexColors;
 
+        %% 材质属性
         Color;
         Transparency;
         Shininess;
@@ -70,16 +74,16 @@ classdef Actor < sim3d.AbstractActor
 
     methods
 
-        function self = Actor( varargin )
-            sim3d.World.validateLicense(  );
-            r = sim3d.Actor.parseInputs( varargin{ : } );
-            actorName = r.ActorName;
-            self@sim3d.AbstractActor( actorName,  ...
-                r.ParentActor,  ...
-                single( r.Translation ),  ...
-                single( r.Rotation ),  ...
-                single( r.Scale ),  ...
-                'ActorClassId', uint16( r.ActorClassId ),  ...
+        function self = Actor(varargin)
+            sim3d.World.validateLicense();
+            r = sim3d.Actor.parseInputs(varargin{:});
+            actorName = r.ActorName;  % 参与者名称
+            self@sim3d.AbstractActor(actorName, ...
+                r.ParentActor, ...
+                single(r.Translation), ...
+                single(r.Rotation), ...
+                single(r.Scale), ...
+                'ActorClassId', uint16(r.ActorClassId), ...
                 'Mesh', r.Mesh,  ...
                 'Mobility', r.Mobility,  ...
                 'Visibility', r.Visibility,  ...
@@ -578,234 +582,234 @@ classdef Actor < sim3d.AbstractActor
         end
 
         
-        function flat = get.Flat( self )
+        function flat = get.Flat(self)
             flat = self.Material.Flat;
         end
 
         
-        function set.Flat( self, flat )
+        function set.Flat(self, flat)
             self.Material.Flat = flat;
         end
 
         
-        function tessellation = get.Tessellation( self )
+        function tessellation = get.Tessellation(self)
             tessellation = self.Material.Tessellation;
         end
 
         
-        function set.Tessellation( self, tessellation )
+        function set.Tessellation(self, tessellation)
             self.Material.Tessellation = tessellation;
         end
         
 
-        function vertexBlend = get.VertexBlend( self )
+        function vertexBlend = get.VertexBlend(self)
             vertexBlend = self.Material.VertexBlend;
         end
         
 
-        function set.VertexBlend( self, vertexBlend )
+        function set.VertexBlend(self, vertexBlend)
             self.Material.VertexBlend = vertexBlend;
         end
         
 
-        function shadows = get.Shadows( self )
+        function shadows = get.Shadows(self)
             shadows = self.Material.Shadows;
         end
 
         
-        function set.Shadows( self, shadows )
+        function set.Shadows(self, shadows)
             self.Material.Shadows = shadows;
         end
         
         
-        function linearVelocity = get.LinearVelocity( self )
+        function linearVelocity = get.LinearVelocity(self)
             linearVelocity = self.Physical.LinearVelocity;
         end
         
 
-        function set.LinearVelocity( self, linearVelocity )
+        function set.LinearVelocity(self, linearVelocity)
             self.Physical.LinearVelocity = linearVelocity;
         end
 
         
-        function angularVelocity = get.AngularVelocity( self )
+        function angularVelocity = get.AngularVelocity(self)
             angularVelocity = self.Physical.AngularVelocity;
         end
         
 
-        function set.AngularVelocity( self, angularVelocity )
+        function set.AngularVelocity(self, angularVelocity)
             self.Physical.AngularVelocity = angularVelocity;
         end
         
 
-        function mass = get.Mass( self )
+        function mass = get.Mass(self)
             mass = self.Physical.Mass;
         end
         
 
-        function set.Mass( self, mass )
+        function set.Mass(self, mass)
             self.Physical.Mass = mass;
         end
 
         
-        function inertia = get.Inertia( self )
+        function inertia = get.Inertia(self)
             inertia = self.Physical.Inertia;
         end
         
 
-        function set.Inertia( self, inertia )
+        function set.Inertia(self, inertia)
             self.Physical.Inertia = inertia;
         end
         
 
-        function force = get.Force( self )
+        function force = get.Force(self)
             force = self.Physical.Force;
         end
 
         
-        function set.Force( self, force )
+        function set.Force(self, force)
             self.Physical.Force = force;
         end
 
         
-        function torque = get.Torque( self )
+        function torque = get.Torque(self)
             torque = self.Physical.Torque;
         end
 
         
-        function set.Torque( self, torque )
+        function set.Torque(self, torque)
             self.Physical.Torque = torque;
         end
         
 
-        function CenterOfMass = get.CenterOfMass( self )
+        function CenterOfMass = get.CenterOfMass(self)
             CenterOfMass = self.Physical.CenterOfMass;
         end
 
         
-        function set.CenterOfMass( self, CenterOfMass )
+        function set.CenterOfMass(self, CenterOfMass)
             self.Physical.CenterOfMass = CenterOfMass;
         end
 
         
-        function gravity = get.Gravity( self )
+        function gravity = get.Gravity(self)
             gravity = self.Physical.Gravity;
         end
         
 
-        function set.Gravity( self, gravity )
+        function set.Gravity(self, gravity)
             self.Physical.Gravity = gravity;
         end
 
         
-        function physics = get.Physics( self )
+        function physics = get.Physics(self)
             physics = self.Physical.Physics;
         end
         
 
-        function set.Physics( self, physics )
-            self.propagatePhysicsIfEmpty( physics );
+        function set.Physics(self, physics)
+            self.propagatePhysicsIfEmpty(physics);
         end
 
         
-        function continuousMovement = get.ContinuousMovement( self )
+        function continuousMovement = get.ContinuousMovement(self)
             continuousMovement = self.Physical.ContinuousMovement;
         end
 
         
-        function set.ContinuousMovement( self, continuousMovement )
+        function set.ContinuousMovement(self, continuousMovement)
             self.Physical.ContinuousMovement = continuousMovement;
         end
 
         
-        function friction = get.Friction( self )
+        function friction = get.Friction(self)
             friction = self.Physical.Friction;
         end
         
         
-        function set.Friction( self, friction )
+        function set.Friction(self, friction)
             self.Physical.Friction = friction;
         end
 
         
-        function restitution = get.Restitution( self )
+        function restitution = get.Restitution(self)
             restitution = self.Physical.Restitution;
         end
         
 
-        function set.Restitution( self, restitution )
+        function set.Restitution(self, restitution)
             self.Physical.Restitution = restitution;
         end
         
 
-        function preciseContacts = get.PreciseContacts( self )
+        function preciseContacts = get.PreciseContacts(self)
             preciseContacts = self.Physical.PreciseContacts;
         end
 
         
-        function set.PreciseContacts( self, preciseContacts )
+        function set.PreciseContacts(self, preciseContacts)
             self.Physical.PreciseContacts = preciseContacts;
         end
 
         
-        function collisions = get.Collisions( self )
+        function collisions = get.Collisions(self)
             collisions = self.Physical.Collisions;
         end
 
         
-        function set.Collisions( self, collisions )
-            self.propagateCollisionsIfEmpty( collisions );
+        function set.Collisions(self, collisions)
+            self.propagateCollisionsIfEmpty(collisions);
         end
 
         
-        function locationLocked = get.LocationLocked( self )
+        function locationLocked = get.LocationLocked(self)
             locationLocked = self.Physical.LocationLocked;
         end
 
         
-        function set.LocationLocked( self, locationLocked )
+        function set.LocationLocked(self, locationLocked)
             self.Physical.LocationLocked = locationLocked;
         end
 
         
-        function rotationLocked = get.RotationLocked( self )
+        function rotationLocked = get.RotationLocked(self)
             rotationLocked = self.Physical.RotationLocked;
         end
 
         
-        function set.RotationLocked( self, rotationLocked )
+        function set.RotationLocked(self, rotationLocked)
             self.Physical.RotationLocked = rotationLocked;
         end
 
         
-        function set.Hidden( self, hidden )
+        function set.Hidden(self, hidden)
             self.Physical.Hidden = hidden;
         end
 
         
-        function hidden = get.Hidden( self )
+        function hidden = get.Hidden(self)
             hidden = self.Physical.Hidden;
         end
 
         
-        function constantAttributes = get.ConstantAttributes( self )
+        function constantAttributes = get.ConstantAttributes(self)
             constantAttributes = self.Physical.ConstantAttributes;
         end
 
         
-        function set.ConstantAttributes( self, constantAttributes )
+        function set.ConstantAttributes(self, constantAttributes)
             self.Physical.ConstantAttributes = constantAttributes;
         end
 
         
-        function setGenericActorMobility( self, mobility )
+        function setGenericActorMobility(self, mobility)
             self.Physical.Mobility = mobility;
         end
 
     end
 
 
-    methods ( Access = private )
+    methods (Access = private)
     
         function propagatePhysicsIfEmpty( self, physics )
             self.Physical.Physics = physics;
@@ -831,10 +835,10 @@ classdef Actor < sim3d.AbstractActor
     end
 
 
-    methods ( Access = private, Static )
+    methods (Access = private, Static)
     
+        % 解析 sim3d.Actor() 构造函数所传入的参数
         function r = parseInputs( varargin )
-        
             defaultParams = struct(  ...
                 'Translation', single( zeros( 1, 3 ) ),  ...
                 'Rotation', single( zeros( 1, 3 ) ),  ...
@@ -842,32 +846,32 @@ classdef Actor < sim3d.AbstractActor
                 'ParentActor', 'Scene Origin',  ...
                 'ActorName', '',  ...
                 'Mesh', '',  ...
-                'ActorClassId', uint16( sim3d.utils.SemanticType.None ),  ...
-                'Mobility', int32( sim3d.utils.MobilityTypes.Static ),  ...
+                'ActorClassId', uint16(sim3d.utils.SemanticType.None),  ...  % 对象类别标识符的语义分割图
+                'Mobility', int32( sim3d.utils.MobilityTypes.Static),  ...
                 'Visibility', true,  ...
                 'HiddenInGame', false,  ...
                 'SimulatePhysics', false,  ...
                 'EnableGravity', true,  ...
                 'CastShadow', false,  ...
-                'Output', [  ],  ...
-                'Update', [  ] );
+                'Output', [],  ...
+                'Update', []);
             
             parser = inputParser;
-            parser.addParameter( 'Translation', defaultParams.Translation );
-            parser.addParameter( 'Rotation', defaultParams.Rotation );
-            parser.addParameter( 'Scale', defaultParams.Scale );
-            parser.addParameter( 'ParentActor', defaultParams.ParentActor );
-            parser.addParameter( 'ActorName', defaultParams.ActorName );
-            parser.addParameter( 'Mesh', defaultParams.Mesh );
-            parser.addParameter( 'ActorClassId', defaultParams.ActorClassId );
-            parser.addParameter( 'Mobility', defaultParams.Mobility );
-            parser.addParameter( 'Visibility', defaultParams.Visibility );
-            parser.addParameter( 'HiddenInGame', defaultParams.HiddenInGame );
-            parser.addParameter( 'SimulatePhysics', defaultParams.SimulatePhysics );
-            parser.addParameter( 'EnableGravity', defaultParams.EnableGravity );
-            parser.addParameter( 'CastShadow', defaultParams.CastShadow );
-            parser.addParameter( "Output", defaultParams.Output );
-            parser.addParameter( "Update", defaultParams.Update );
+            parser.addParameter('Translation', defaultParams.Translation);  % 相对平移
+            parser.addParameter('Rotation', defaultParams.Rotation);        % 相对旋转
+            parser.addParameter('Scale', defaultParams.Scale);              % 相对缩放
+            parser.addParameter('ParentActor', defaultParams.ParentActor);
+            parser.addParameter('ActorName', defaultParams.ActorName);
+            parser.addParameter('Mesh', defaultParams.Mesh);
+            parser.addParameter('ActorClassId', defaultParams.ActorClassId);
+            parser.addParameter('Mobility', defaultParams.Mobility );
+            parser.addParameter('Visibility', defaultParams.Visibility );
+            parser.addParameter('HiddenInGame', defaultParams.HiddenInGame );
+            parser.addParameter('SimulatePhysics', defaultParams.SimulatePhysics );
+            parser.addParameter('EnableGravity', defaultParams.EnableGravity );
+            parser.addParameter('CastShadow', defaultParams.CastShadow );
+            parser.addParameter("Output", defaultParams.Output );
+            parser.addParameter("Update", defaultParams.Update );
     
             parser.parse( varargin{ : } );
             r = parser.Results;
