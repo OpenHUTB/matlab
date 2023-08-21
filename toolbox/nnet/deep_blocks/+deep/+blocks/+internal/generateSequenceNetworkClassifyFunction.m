@@ -8,11 +8,6 @@ function functionText=generateSequenceNetworkClassifyFunction(...
     topkEnabled,...
     kValue,...
     labelsTypeName)
-
-
-
-
-
     possibleOutputs=["ypred","scores","labels"];
     possibleTempOutputs=["ypredIdx","scores","idxs"];
     outputDependencies=[classifyEnabled,predictEnabled,predictEnabled];
@@ -21,12 +16,9 @@ function functionText=generateSequenceNetworkClassifyFunction(...
     "ypred = "+labelsTypeName+"(ypredIdx);",...
     "labels = "+labelsTypeName+"(idxs);"];
     conversionDependencies=[classifyEnabled,predictEnabled];
-
-
     outputs=possibleOutputs(outputDependencies);
     tempOutputs=possibleTempOutputs(outputDependencies);
     conversions=possibleConversions(conversionDependencies);
-
 
     outputsString=join(outputs,", ");
     if isempty(outputsString)
@@ -40,15 +32,12 @@ function functionText=generateSequenceNetworkClassifyFunction(...
     end
     tempOutputsString="["+tempOutputsString+"]";
 
-
     numOutputs=length(outputs);
     if numOutputs>0
         signature="function "+outputsString+" = sequenceNetworkClassify(input)";
     else
         signature="function sequenceNetworkClassify(input, reset)";
     end
-
-
     [useExtrinsicLines,extrinsicVar]=deep.blocks.internal.generateUseExtrinsicCode(simSupported);
 
     inputsString=join([...
