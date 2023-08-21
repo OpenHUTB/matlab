@@ -1,13 +1,8 @@
 function setDlNetworkOptionsVisibility(block)
 
-
-
-
     mask=Simulink.Mask.get(block);
-
     miniBatchSize=mask.getParameter('MiniBatchSize');
     inputFormat=mask.getParameter('InputDataFormats');
-
     networkToLoad=deep.blocks.internal.getSelectedNetwork(block);
 
     try
@@ -20,7 +15,6 @@ function setDlNetworkOptionsVisibility(block)
     dlnetworkEnabled=strcmp(get_param(block,'EnableDLNetwork'),'on');
 
     if validNetwork&&networkInfo.IsDlNetwork&&dlnetworkEnabled
-
         currentTableData=eval(inputFormat.Value);
         if~isequal(currentTableData(:,1),networkInfo.InputLayerNames)
             tableData=cell(networkInfo.NumInputs,2);
@@ -32,7 +26,6 @@ function setDlNetworkOptionsVisibility(block)
                 valueString=valueString+sprintf("'%s', '%s';",tableData{i,:});
             end
             valueString=valueString+"}";
-
             inputFormat.Value=valueString;
         end
 
