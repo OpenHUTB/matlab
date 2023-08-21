@@ -1,13 +1,9 @@
 function networkInfo=getNetworkInfo(block,networkToLoad)
 
-
-
-
     persistent cache;
     if isempty(cache)
         cache=containers.Map('KeyType','char','ValueType','any');
     end
-
     [~,timeStamp,canCache]=coder.internal.getFileInfo(networkToLoad);
 
     createNewNetworkInfo=true;
