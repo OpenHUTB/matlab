@@ -11,15 +11,10 @@ function[varargout]=classifier(...
     topkEnabled,...
     kValue)%#codegen
 
-
-
-
-
     coder.inline('always');
     coder.allowpcode('plain');
     coder.extrinsic('deep.blocks.internal.getNetworkSizeInfo');
     coder.extrinsic('coder.internal.getFileInfo');
-
     coder.internal.errorIf(~coder.internal.isConst(size(input)),'deep_blocks:common:VarsizeInputNotSupported');
 
     if useExtrinsic
@@ -34,8 +29,6 @@ function[varargout]=classifier(...
         {},...
         {});
     end
-
-
     fileName=coder.const(@coder.internal.getFileInfo,networkToLoad);
     coder.internal.addDependentFile(fileName);
     persistent network;
@@ -47,13 +40,11 @@ function[varargout]=classifier(...
         end
     end
 
-
     if coder.const(resizeInput)
         inputResized=imresize(input,coder.const(inputLayerSize(1:2)));
     else
         inputResized=input;
     end
-
 
     if coder.const(useExtrinsic)
         predictOut=zeros(coder.const(predictOutputSizes{1}),predictOutputTypes{1});
@@ -62,9 +53,7 @@ function[varargout]=classifier(...
         predictOut=predict(network,inputResized,'MiniBatchSize',coder.const(miniBatchSize));
     end
 
-
     if coder.const(classifyEnabled&&~topkEnabled)
-
 
         [~,topIdx]=max(predictOut,[],2);
     elseif coder.const(topkEnabled)
@@ -77,13 +66,11 @@ function[varargout]=classifier(...
         topIdx=idxs(:,1);
     end
 
-
     startIndex=0;
     if coder.const(classifyEnabled)
         startIndex=startIndex+1;
         varargout{coder.const(startIndex)}=topIdx;
     end
-
 
     if coder.const(predictEnabled)
         if coder.const(topkEnabled)
