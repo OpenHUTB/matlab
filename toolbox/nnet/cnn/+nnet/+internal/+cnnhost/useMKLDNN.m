@@ -1,11 +1,4 @@
 function tf=useMKLDNN(newstate)
-
-
-
-
-
-
-
     persistent mklLoaded
     if isempty(mklLoaded)
         matlab.internal.language.versionPlugins.lapack;
