@@ -1,8 +1,5 @@
 function[Perfs,PerfN]=perfs(net,data,masks,hints)
 
-
-
-
     Q=data.Q;
     TS=data.TS;
     numMasks=numel(masks);
@@ -21,7 +18,6 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
         end
     end
 
-
     if hints.doProcessInputs
         Pc=cell(net.numInputs,net.numInputDelays+1);
         for ts=1:net.numInputDelays
@@ -38,8 +34,6 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
     end
 
     for ts=1:TS
-
-
         if hints.doProcessInputs
             for i=1:net.numInputs
                 if hints.doProcessInputs
@@ -54,12 +48,9 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
         end
 
         for i=hints.layerOrder
-
-
             if net.biasConnect(i)
                 Z{1}=bz{i};
             end
-
 
             for j=1:net.numInputs
                 if net.inputConnect(i,j)
@@ -77,7 +68,6 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
                 end
             end
 
-
             for j=1:net.numLayers
                 if net.layerConnect(i,j)
                     a_ts=rem((net.numLayerDelays-net.layerWeights{i,j}.delays)-1+ts,net.numLayerDelays+1)+1;
@@ -86,11 +76,9 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
                 end
             end
 
-
             N=hints.netApply{i}(Z(1:hints.numZ(i)),net.layers{i}.size,Q,hints.netParam{i});
             a_ts=rem(net.numLayerDelays+ts-1,net.numLayerDelays+1)+1;
             Ac{i,a_ts}=hints.tfApply{i}(N,hints.tfParam{i});
-
 
             if net.outputConnect(i)
                 yi=Ac{i,a_ts};
@@ -99,15 +87,11 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
                     yi=hints.out(ii).procRev{j}(yi,hints.out(ii).procSet{j});
                 end
 
-
                 e=data.T{ii,ts}-yi;
                 e=bsxfun(@times,e,hints.errNorm{ii});
-
-
                 perf=hints.perfApply(data.T{ii,ts},yi,e,hints.perfParam);
                 ew=data.EW{(EWii*(ii-1))+1,EWts*(ts-1)+1};
                 perf=bsxfun(@times,perf,ew);
-
 
                 for k=1:numMasks
                     perfk=perf.*masks{k}{ii,ts};
