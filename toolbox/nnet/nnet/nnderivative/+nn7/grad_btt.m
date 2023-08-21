@@ -1,18 +1,6 @@
 function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
 
-
-
-
-
-
-
-
-
-
-
-
     if nargin<13,time_base=0;end
-
 
     numLayers=net.numLayers;
     numInputs=net.numInputs;
@@ -37,8 +25,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
         LCTWD{i}=setxor(LCT{i},LCTOZD{i},'legacy');
     end
 
-
-
     Ad=cell(numLayers,numLayers,TS);
     for i=1:numLayers
         for j=LCF{i}
@@ -48,12 +34,10 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
         end
     end
 
-
     Ae=cell(numLayers,1);
     for i=1:numLayers
         Ae{i}=[Ac{i,(1+numLayerDelays):end}];
     end
-
 
     gBZ=[];
     gIWZ=cell(numLayers,numInputs);
@@ -64,7 +48,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
     gTa=cell(numLayers,Q,TS+1+numLayerDelays,TS+1+numLayerDelays,SS);
     gTa_safe=~isempty(gTa);
     QS=Q*SS;
-
 
     if time_base
         gB=cell(numLayers,TS*QS);
@@ -81,14 +64,10 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
 
     ES=cell(1,numLayers);
 
-
     for i=bpLayerOrder
-
         for u=Uprime
-
             fcn=hints.layers(i).transfer;
             S_temp=nnprop.da_dn(i,fcn,1:TS,Q,Ae,numLayerDelays,N,1,net.layers{i}.size);
-
 
             for k=LCTOZD{i}
                 if size(S{u,k},1)>0
@@ -126,7 +105,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
             end
         end
 
-
         if outputConnect(i)||size(LCTWD{i},1)~=0
             fcn=hints.layers(i).transfer;
             S{i,i}=nnprop.da_dn(i,fcn,1:TS,Q,Ae,numLayerDelays,N,1,net.layers{i}.size);
@@ -136,13 +114,11 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
             ES{i}=[ES{i},i];
         end
 
-
         netFcn=hints.layers(i).netInput;
         jjj=0;
         if netFcn.is_netsum
             dz=ones(net.layers{i}.size,Q);
         end
-
 
         if biasConnect(i)
             jjj=jjj+1;
@@ -152,7 +128,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                     dz=netFcn.dn_dzj(jjj,Z,N{i,ts},netFcn.param);
                 end
                 for qq=1:Q
-
 
                     for k=Uprime
                         gBZ{i,k}(:,:,qq,ts)=dz(:,qq+zeros(1,layers{k}.size));
@@ -166,7 +141,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                 gB{i}=zeros(biases{i}.size,1);
             end
         end
-
 
         for j=ICF{i}
             jjj=jjj+1;
@@ -183,8 +157,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                         gIWZ{i,j,k}(:,:,qq,ts)=dz(:,qq+zeros(1,layerSize));
                     end
                 end
-
-
                 weightFcn=hints.inputWeights(i,j).weight;
                 for qq=1:Q
                     pd=nntraining.pd(net,Q,P,PD,i,j,ts,qq);
@@ -212,11 +184,9 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
             end
         end
 
-
         for j=LCF{i}
             jjj=jjj+1;
             for ts=1:TS
-
 
                 if~netFcn.is_netsum
                     Z=[BZ(i,biasConnect(i)),IWZ(i,ICF{i},ts),LWZ(i,LCF{i},ts)];
@@ -225,13 +195,10 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
 
                 for qq=1:Q
 
-
                     for k=Uprime
                         gLWZ{i,j,k}(:,:,qq,ts)=dz(:,qq+zeros(1,layers{k}.size));
                     end
                 end
-
-
                 weightFcn=hints.layerWeights(i,j).weight;
                 for qq=1:Q
                     if weightFcn.is_dotprod
@@ -262,7 +229,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
     if gTa_safe
         if time_base
             for jz=fliplr(Uprime)
-
                 zzeros=zeros(layers{jz}.size,1);
                 for qq=1:Q,
                     for tt1=1:TS+1+numLayerDelays,
@@ -274,12 +240,10 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                     end
                 end
 
-
                 if outputConnect(jz)
                     for ts=1:TS
                         for qq=1:Q
                             for ss=1:SS
-
                                 gTa{jz,qq,ts,ts,ss}=gE{jz,ts}(:,(qq-1)*SS+ss);
                             end
                         end
@@ -301,8 +265,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
             end
         end
     end
-
-
 
     for ts=TS:-1:1
         if time_base
@@ -380,7 +342,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
             for u2=Uprime
                 if gTa_safe&&(size([gTa{ES{u2},qq,ts}],2)~=0)&&(size(S{ES{u2},i},2)~=0)
 
-
                     if biasConnect(i)
                         for qq=1:Q
                             if time_base
@@ -395,7 +356,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                             end
                         end
                     end
-
 
                     for j=ICF{i}
                         fcn=hints.inputWeights(i,j).weight;
@@ -447,7 +407,6 @@ function[gB,gIW,gLW]=grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                             end
                         end
                     end
-
 
                     for j=LCF{i}
                         fcn=hints.layerWeights(i,j).weight;
