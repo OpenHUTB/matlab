@@ -1,52 +1,48 @@
 classdef dlAccel_map<handle
-
-
-
-
-
-
-
     properties(SetAccess=private,Hidden=true)
 
         buildDir=[]
-
     end
+
 
     properties(Access=private)
-
 dlMap
-
     end
+
 
     methods
         function dlAccelMap=dlAccel_map()
             dlAccelMap.dlMap=containers.Map;
         end
 
+
         function buildDir=initializeBuildDir(this)
-
-
             if isempty(this.buildDir)
                 this.buildDir=tempname;
             end
             buildDir=this.buildDir;
         end
 
+
         function value=dl_getValue(this,key)
             value=this.dlMap(key);
         end
+
 
         function dl_insert(this,key,value)
             this.dlMap(key)=value;
         end
 
+
         function dl_remove(this,key)
             remove(this.dlMap,key);
         end
 
+
         function out=dl_isKey(this,key)
             out=isKey(this.dlMap,key);
         end
+
 
         function key=dl_keys(this)
             key=keys(this.dlMap);
@@ -70,7 +66,6 @@ dlMap
 
 
         function delete(this)
-
             allkeys=keys(this.dlMap);
             for i=1:numel(allkeys)
                 delete(this.dlMap(allkeys{i}));
