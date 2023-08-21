@@ -1,72 +1,50 @@
 classdef MexNetworkCache<handle
 
-
-
-
-
     properties(SetAccess=private)
 
 MexNetworkMap
 
-
         GenerationFolder=[]
     end
 
-    properties(Access=private)
 
+    properties(Access=private)
         GPUDeviceIndex=[]
     end
 
+
     methods
         function this=MexNetworkCache()
-
-
             this.MexNetworkMap=containers.Map;
         end
 
         function[mexNetwork,key]=getMexNetwork(this,network,mexNetworkConfig)
 
-
-
             import nnet.internal.cnn.coder.MexNetwork
 
-
             key=getKey(mexNetworkConfig);
-
             initializeGenerationDirectoryIfNeeded(this);
             manageGPUDevice(this);
 
-
-
             if this.isMexNetworkValid(key)
-
                 mexNetwork=this.MexNetworkMap(key);
             else
-
                 mexNetwork=MexNetwork(network,this.GenerationFolder,mexNetworkConfig);
-
                 this.MexNetworkMap(key)=mexNetwork;
             end
-
-
             if~contains(path,this.GenerationFolder)
                 addpath(this.GenerationFolder);
             end
         end
 
+
         function delete(this)
-
-
-
-
             for k=keys(this.MexNetworkMap)
                 key=k{:};
                 mexNetwork=this.MexNetworkMap(key);
                 removeGeneratedFiles(mexNetwork);
                 this.MexNetworkMap.remove(key);
             end
-
-
             if~isempty(this.GenerationFolder)
                 S=warning('off','MATLAB:rmpath:DirNotFound');
                 rmpath(this.GenerationFolder);
@@ -77,17 +55,14 @@ MexNetworkMap
         end
     end
 
+
     methods(Access=private)
 
         function initializeGenerationDirectoryIfNeeded(this)
 
-
-
             if isempty(this.GenerationFolder)
                 this.GenerationFolder=tempname;
             end
-
-
             if~exist(this.GenerationFolder,'dir')
                 [status,mess,messid]=mkdir(this.GenerationFolder);
                 if status==0
@@ -103,10 +78,8 @@ MexNetworkMap
             end
         end
 
+
         function manageGPUDevice(this)
-
-
-
             currentDevice=gpuDevice();
             currentDeviceIdx=currentDevice.Index;
 
@@ -121,8 +94,6 @@ MexNetworkMap
         end
 
         function tf=isMexNetworkValid(this,key)
-
-
 
             if this.MexNetworkMap.isKey(key)
                 mexNetwork=this.MexNetworkMap(key);
@@ -139,10 +110,9 @@ MexNetworkMap
         end
     end
 
+
     methods(Static)
         function mexNetworkCache=getCacheFromNetwork(network)
-
-
             mexNetworkCache=network.getMexNetworkCache();
         end
     end
