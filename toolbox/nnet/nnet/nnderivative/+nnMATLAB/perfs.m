@@ -1,8 +1,5 @@
 function[Perfs,PerfN]=perfs(net,data,masks,hints)
 
-
-
-
     Q=data.Q;
     TS=data.TS;
     numMasks=numel(masks);
@@ -22,7 +19,6 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
             bz{i}=net.b{i}(:,bq);
         end
     end
-
 
     if hints.doProcessInputs
         Pc=cell(net.numInputs,net.numInputDelays+1);
@@ -47,8 +43,6 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
     end
 
     for ts=1:TS
-
-
         if hints.doProcessInputs
             for i=1:net.numInputs
                 if hints.doProcessInputs
@@ -70,8 +64,6 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
         end
 
         for i=hints.layerOrder
-
-
             if net.biasConnect(i)
                 if hints.netNetsum(i)
                     n=bz{i};
@@ -81,7 +73,6 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
             elseif hints.netNetsum(i)
                 n=zeros(hints.layerSizes(i),Q);
             end
-
 
             for j=1:net.numInputs
                 if net.inputConnect(i,j)
@@ -108,7 +99,6 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
                 end
             end
 
-
             for j=1:net.numLayers
                 if net.layerConnect(i,j)
                     a_ts=net.numLayerDelays-net.layerWeights{i,j}.delays+ts;
@@ -126,7 +116,6 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
                 end
             end
 
-
             if hints.netNetsum(i)
                 N=n;
             else
@@ -142,7 +131,6 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
             end
         end
     end
-
 
     a_ind=net.numLayerDelays+(1:TS);
     for i=1:net.numLayers
@@ -160,15 +148,12 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
                 end
             end
 
-
             ti=[data.T{ii,:}];
             e=ti-yi;
-
 
             if hints.doErrNorm(ii)
                 e=bsxfun(@times,e,hints.errNorm{ii});
             end
-
 
             if hints.perfMSE
                 perf=e.*e;
@@ -176,13 +161,11 @@ function[Perfs,PerfN]=perfs(net,data,masks,hints)
                 perf=hints.perfApply(ti,yi,e,hints.perfParam);
             end
 
-
             if hints.doEW
                 if(hints.M_EW==1),ewii=1;else ewii=ii;end
                 ew=[data.EW{ewii,:}];
                 perf=bsxfun(@times,perf,ew);
             end
-
 
             for k=1:numMasks
                 perfk=perf.*[masks{k}{ii,:}];
