@@ -7,8 +7,8 @@ classdef Publisher<handle
 
 
     properties
-Domain
-Topic
+        Domain
+        Topic
         Writer=[]
         PacketSize=sim3d.io.Publisher.DefaultPacketSize
         QueueDepth=sim3d.io.Publisher.DefaultQueueDepth

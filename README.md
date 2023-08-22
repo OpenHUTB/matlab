@@ -66,6 +66,13 @@ arguments
 end
 ```
 
+## 维护
+
+### 覆盖本地的文件
+```shell
+git fetch --all
+git reset --hard origin/master
+```
 
 # 计划
 
