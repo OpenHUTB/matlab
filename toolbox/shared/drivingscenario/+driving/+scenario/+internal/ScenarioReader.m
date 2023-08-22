@@ -1,24 +1,13 @@
 classdef(StrictDefaults)ScenarioReader<...
     matlabshared.tracking.internal.SimulinkBusUtilities
 
-
-
-
-
-
-
-
-
 %#codegen
-
 
     properties(Nontunable)
         OrientVehiclesOnRoad(1,1)logical=false
         OutputEgoVehiclePose(1,1)logical=false;
         OutputEgoVehicleState(1,1)logical=false;
         ShowCoordinateLabels(1,1)logical=true;
-
-
         ScenarioFileName='EgoVehicleGoesStraight.mat'
 
         ScenarioVariableName='scenario'
@@ -34,16 +23,14 @@ classdef(StrictDefaults)ScenarioReader<...
         SampleTime=0.1
 
         LaneBoundaryOutput='None'
-
         LaneBoundaryDistance=linspace(-150,150,101)
 
         LaneBoundaryLocation='Center of lane markings'
     end
 
+
     properties(Constant,Hidden)
-
         OutputCoordinateSystemSet=matlab.system.internal.MessageCatalogSet({'driving:scenarioReader:VehicleCoordinates','driving:scenarioReader:WorldCoordinates'});
-
         LaneBoundaryOutputSet=matlab.system.internal.MessageCatalogSet({'driving:scenarioReader:None',...
         'driving:scenarioReader:EgoLane','driving:scenarioReader:AllLanes'});
 
