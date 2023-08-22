@@ -1,41 +1,42 @@
 classdef RoadProperties<driving.internal.scenarioApp.Properties&driving.internal.scenarioApp.HasPropertySheets
 
-
-
-
-
-
     properties(Hidden)
 
 hName
     end
 
+
     properties(Access=protected)
 RoadChangedListener
     end
 
+
     methods
         function this=RoadProperties(varargin)
-
             this@driving.internal.scenarioApp.Properties(varargin{:});
             update(this);
         end
+
 
         function icon=getIcon(this,varargin)
             icon=getIcon(this.Application,varargin{:});
         end
 
+
         function name=getName(~)
             name=getString(message('driving:scenarioApp:RoadPropertiesTitle'));
         end
+
 
         function tag=getTag(~)
             tag='RoadProperties';
         end
 
+
         function zValue=getAddRoadCentersZValue(this)
             zValue=getAddRoadCentersZValue(this.CurrentPropertySheet);
         end
+
 
         function updateProperty(this,property)
             switch property
@@ -44,6 +45,7 @@ RoadChangedListener
             end
         end
 
+
         function updateEditPoints(this)
             sheet=this.CurrentPropertySheet;
             if~isempty(sheet)
@@ -51,9 +53,9 @@ RoadChangedListener
             end
         end
 
+
         function update(this)
             clearAllMessages(this);
-
             designer=this.Application;
             allRoadSpecs=designer.RoadSpecifications;
 
@@ -72,7 +74,6 @@ RoadChangedListener
                 this.hName.String='';
                 deleteEnab='off';
             else
-
                 nRoads=numel(allRoadSpecs);
                 allNames=cell(nRoads,1);
                 for indx=1:numel(allRoadSpecs)
@@ -85,8 +86,6 @@ RoadChangedListener
                 end
                 index=this.SpecificationIndex;
 
-
-
                 if isempty(index)
                     index=1;
                 elseif index>nRoads
@@ -98,12 +97,9 @@ RoadChangedListener
                 'String',allNames,...
                 'Value',index,...
                 'Enable',matlabshared.application.logicalToOnOff(~this.InteractiveMode));
-
                 currentRoad=allRoadSpecs(index);
             end
-
             set(this.hDelete,'Enable',deleteEnab);
-
             update@driving.internal.scenarioApp.HasPropertySheets(this,currentRoad);
             if usingWebFigure(this)&&strcmp(this.Figure.Visible,'off')
                 update(this.Layout,'force');
@@ -111,13 +107,16 @@ RoadChangedListener
             end
         end
 
+
         function c=getDefaultPropertySheet(~)
             c='driving.internal.scenarioApp.road.ArbitraryPropertySheet';
         end
 
+
         function row=getPropertySheetRow(~)
             row=3;
         end
+
 
         function spec=getCurrentSpecification(this)
             canvas=this.Application.ScenarioView;
@@ -135,13 +134,17 @@ RoadChangedListener
         end
     end
 
+
     methods(Hidden)
         function row=getLastLabelRow(~)
             row=2;
         end
+
+
         function onSheetHeightChanged(this,~,~)
             this.Layout.setConstraints(3,1,'MinimumHeight',getMinimumHeight(this.CurrentPropertySheet));
         end
+
 
         function onKeyPress(this,~,ev)
             if this.InteractiveMode
@@ -153,16 +156,15 @@ RoadChangedListener
             end
         end
 
+
         function onFocus(this)
             app=this.Application;
             spec=getCurrentSpecification(this);
             if~isempty(spec)
                 app.ScenarioView.CurrentSpecification=spec;
             end
-
-
-
         end
+
 
         function removeCallback(this,~,~)
             hApp=this.Application;
@@ -180,12 +182,11 @@ RoadChangedListener
             update(this);
         end
 
+
         function roadChanged(this)
-
-
-
             onRoadChanged(this.CurrentPropertySheet);
         end
+
 
         function edit=createEdit(this,names,varargin)
             hApp=this.Application;
@@ -200,6 +201,7 @@ RoadChangedListener
         end
     end
 
+
     methods(Access=protected)
 
         function onNewInteractiveMode(this)
@@ -209,10 +211,10 @@ RoadChangedListener
             end
         end
 
+
         function event=getIndexEventName(~)
             event='CurrentRoadChanged';
         end
-
         function[id,str]=validateDoubleProperty(this,name,value)
             [id,str]=validateDoubleProperty(this.CurrentPropertySheet,name,value);
             if isempty(id)
@@ -220,33 +222,25 @@ RoadChangedListener
             end
         end
 
+
         function updateScenario(this)
             generateNewScenarioFromSpecifications(this.Application);
         end
+
 
         function p=createFigure(this,varargin)
             p=createFigure@matlabshared.application.Component(this,varargin{:});
 
             app=this.Application;
-
-
             this.RoadChangedListener=event.listener(app,...
             'CurrentRoadChanged',@(~,~)roadChanged(this));
-
-
             hListLabel=createLabel(this,p,'RoadList');
             createEditbox(this,p,'SpecificationIndex',[],'popupmenu');
-
-
             hNameLabel=createLabelEditPair(this,p,'Name',@this.nameCallback);
-
-
             vw=[0,0,1,0];
-
             createPushButton(this,p,'Delete',@this.removeCallback,...
             'CData',getIcon(app,'delete16'),...
             'TooltipString',getString(message('driving:scenarioApp:DeleteRoadDescription')));
-
             layout=matlabshared.application.layout.ScrollableGridBagLayout(p,...
             'HorizontalGap',3,...
             'VerticalGap',3,...
@@ -255,7 +249,6 @@ RoadChangedListener
 
             labelInset=5;
             labelHeight=20-labelInset;
-
             labelWidth=layout.getMinimumWidth([hListLabel,hNameLabel]);
             this.LabelWidth=labelWidth;
 
@@ -284,6 +277,7 @@ RoadChangedListener
                 update(layout,'force');
             end
         end
+
 
         function setPropertyForInteractiveMode(this,prop,value)
             canvas=this.Application.ScenarioView;
