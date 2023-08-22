@@ -1,8 +1,5 @@
 function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
 
-
-
-
     gWB=zeros(net.numWeightElements,1);
     numMasks=numel(masks);
     Perfs=zeros(1,numMasks);
@@ -36,7 +33,6 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
         end
     end
 
-
     if doProcessInputs
         Pc=cell(net.numInputs,net.numInputDelays+1);
         for ts=1:net.numInputDelays
@@ -58,8 +54,6 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
     end
 
     for ts=1:TS
-
-
         if doProcessInputs
             for i=1:net.numInputs
                 pi=X{i,ts};
@@ -78,9 +72,7 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
             end
         end
 
-
         for i=hints.layerOrder
-
 
             if net.biasConnect(i)
                 if hints.netNetsum(i)
@@ -96,7 +88,6 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
             elseif hints.netNetsum(i)
                 n=zeros(hints.layerSizes(i),Q);
             end
-
 
             for j=1:net.numInputs
                 if net.inputConnect(i,j)
@@ -130,7 +121,6 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                 end
             end
 
-
             for j=1:net.numLayers
                 if net.layerConnect(i,j)
                     ii=hints.lwzInd(i,j);
@@ -146,7 +136,6 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                     else
                         Z{ii}=zi;
                     end
-
                     dAd=cat(1,dA{j,a_ts});
                     dzw1=hints.lwFP{i,j}(dAd,net.LW{i,j},ad,zi,hints.lwParam{i,j});
                     if hints.lwInclude(i,j)
@@ -157,14 +146,12 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                 end
             end
 
-
             if hints.netNetsum(i)
                 N=n;
             else
                 Zi=Z(1:hints.numZ(i));
                 N=hints.netApply{i}(Zi,net.layers{i}.size,Q,hints.netParam{i});
             end
-
             dN=zeros(net.layers{i}.size,Q,net.numWeightElements);
             for j=1:net.numLayers
                 if net.layerConnect(i,j)
@@ -193,8 +180,6 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                     dN=dN+hints.netFP{i}(dZ{1},1,Zi,N,hints.netParam{i});
                 end
             end
-
-
             a_ts=rem(net.numLayerDelays+ts-1,net.numLayerDelays+1)+1;
             if hints.tfPurelin(i)
                 A{i,a_ts}=N;
@@ -211,7 +196,6 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
             else
                 dA{i,a_ts}=hints.tfFP{i}(dN,N,A{i,a_ts},hints.tfParam{i});
             end
-
 
             if net.outputConnect(i)
                 yi=A{i,a_ts};
@@ -235,12 +219,10 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                     end
                 end
 
-
                 e=T{ii,ts}-yi;
                 if hints.doErrNorm(ii)
                     e=bsxfun(@times,e,hints.errNorm{ii});
                 end
-
 
                 if hints.perfMSE
                     perf=e.*e;
@@ -251,7 +233,6 @@ function[gWB,Perfs,PerfN]=fg(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                     ew=EW{(EWii*(ii-1))+1,EWts*(ts-1)+1};
                     perf=bsxfun(@times,perf,ew);
                 end
-
 
                 for k=1:numMasks
                     perfk=perf.*masks{k}{ii,ts};

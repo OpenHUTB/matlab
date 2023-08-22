@@ -1,12 +1,7 @@
 function[enumName,networks]=getClassifierEnumName(model,block)
 
-
-
-
-
     blocks=getClassifierBlocks(model);
     networks=cell(size(blocks));
-
 
     for i=1:length(blocks)
         networks{i}=deep.blocks.internal.getSelectedNetwork(blocks{i});
@@ -15,25 +10,19 @@ function[enumName,networks]=getClassifierEnumName(model,block)
     [names,~,idx]=unique(networks);
     numUniqueNames=length(names);
 
-
-
     [~,names,~]=fileparts(names);
     if numUniqueNames==1
-
-
-
         names={names};
     end
-
 
     suffix='_labels';
     names=matlab.lang.makeValidName(names);
     names=matlab.lang.makeUniqueStrings(names,{},namelengthmax-length(suffix));
     names=strcat(names,suffix);
-
     enumName=names{idx(strcmp(blocks,block))};
 
 end
+
 
 function blocks=getClassifierBlocks(model)
 

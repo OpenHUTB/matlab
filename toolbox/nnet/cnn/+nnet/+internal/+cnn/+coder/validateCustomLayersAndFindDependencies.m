@@ -1,9 +1,5 @@
 function customLayerFiles=validateCustomLayersAndFindDependencies(network)
 
-
-
-
-
     layers=network.Layers;
     nLayers=numel(layers);
     customLayerFiles={};
@@ -19,8 +15,6 @@ function customLayerFiles=validateCustomLayersAndFindDependencies(network)
                     customLayerFiles=[customLayerFiles;files(:)];%#ok<AGROW>
                 end
             else
-
-
                 error(message('nnet_cnn:dlAccel:InvalidCustomLayer',customLayerClass))
             end
         end

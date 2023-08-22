@@ -1,8 +1,5 @@
 function[Y,Af]=y(net,data,hints)
 
-
-
-
     Q=data.Q;
     TS=data.TS;
 
@@ -23,7 +20,6 @@ function[Y,Af]=y(net,data,hints)
             bz{i}=net.b{i}(:,bq);
         end
     end
-
 
     if hints.doProcessInputs
         Pc=cell(net.numInputs,net.numInputDelays+1);
@@ -48,8 +44,6 @@ function[Y,Af]=y(net,data,hints)
     end
 
     for ts=1:TS
-
-
         if hints.doProcessInputs
             for i=1:net.numInputs
                 if hints.doProcessInputs
@@ -71,8 +65,6 @@ function[Y,Af]=y(net,data,hints)
         end
 
         for i=hints.layerOrder
-
-
             if net.biasConnect(i)
                 if hints.netNetsum(i)
                     n=bz{i};
@@ -109,7 +101,6 @@ function[Y,Af]=y(net,data,hints)
                 end
             end
 
-
             for j=1:net.numLayers
                 if net.layerConnect(i,j)
                     a_ts=net.numLayerDelays+ts-net.layerWeights{i,j}.delays;
@@ -127,7 +118,6 @@ function[Y,Af]=y(net,data,hints)
                 end
             end
 
-
             if hints.netNetsum(i)
                 N=n;
             else
@@ -143,7 +133,6 @@ function[Y,Af]=y(net,data,hints)
             end
         end
     end
-
 
     Y=cell(net.numOutputs,TS);
     a_ind=net.numLayerDelays+(1:TS);
@@ -165,11 +154,11 @@ function[Y,Af]=y(net,data,hints)
         end
     end
 
-
     if nargout>1
         a_ts=TS+(1:net.numLayerDelays);
         Af=Ac(:,a_ts);
     end
+
 
     function c=fast_mat2cell(m,colSize,cols)
         c=cell(1,cols);

@@ -10,11 +10,6 @@ function functionText=generateClassifierFunction(...
     topkEnabled,...
     kValue,...
     labelsTypeName)
-
-
-
-
-
     possibleOutputs=["ypred","scores","labels"];
     possibleTempOutputs=["ypredIdx","scores","idxs"];
     outputDependencies=[classifyEnabled,predictEnabled,predictEnabled];
@@ -23,16 +18,12 @@ function functionText=generateClassifierFunction(...
     "ypred = "+labelsTypeName+"(ypredIdx);",...
     "labels = "+labelsTypeName+"(idxs);"];
     conversionDependencies=[classifyEnabled,predictEnabled];
-
-
     outputs=possibleOutputs(outputDependencies);
     tempOutputs=possibleTempOutputs(outputDependencies);
     conversions=possibleConversions(conversionDependencies);
 
-
     outputsString="["+join(outputs,", ")+"]";
     tempOutputsString="["+join(tempOutputs,", ")+"]";
-
 
     numOutputs=length(outputs);
     if numOutputs>0
@@ -41,15 +32,12 @@ function functionText=generateClassifierFunction(...
         signature="function classifier(image)";
     end
 
-
     if isempty(inputLayerSize)
         inputLayerSizeString="";
     else
         inputLayerSizeString=join(string(inputLayerSize),", ");
     end
     inputLayerSizeString="["+inputLayerSizeString+"]";
-
-
     [useExtrinsicLines,extrinsicVar]=deep.blocks.internal.generateUseExtrinsicCode(simSupported);
 
     inputsString=join([...

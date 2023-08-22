@@ -1,8 +1,4 @@
 function layers=getSortedLayers(net)
-
-
-
-
     if isa(net,'SeriesNetwork')
         layers=net.Layers;
     elseif isa(net,'DAGNetwork')

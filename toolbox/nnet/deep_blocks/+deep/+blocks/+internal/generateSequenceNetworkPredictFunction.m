@@ -7,10 +7,6 @@ function functionText=generateSequenceNetworkPredictFunction(...
     isDlNetwork,...
     inputFormats)
 
-
-
-
-
     inputs=strings(1,numInputLayers);
     inputSizes=strings(1,numInputLayers);
     inputTypes=strings(1,numInputLayers);
@@ -35,11 +31,7 @@ function functionText=generateSequenceNetworkPredictFunction(...
     outputsString="["+outputsString+"]";
 
     signature="function "+outputsString+" = sequenceNetworkPredict("+inputsString+")";
-
-
     inputFormatsString=deep.blocks.internal.cell2str(inputFormats);
-
-
     [useExtrinsicLines,extrinsicVar]=deep.blocks.internal.generateUseExtrinsicCode(simSupported);
 
     innerInputsString=join([...

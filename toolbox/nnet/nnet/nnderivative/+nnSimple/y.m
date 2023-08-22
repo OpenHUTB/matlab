@@ -1,8 +1,5 @@
 function[Y,Af]=y(net,data,hints)
 
-
-
-
     Q=data.Q;
     TS=data.TS;
 
@@ -17,7 +14,6 @@ function[Y,Af]=y(net,data,hints)
     end
 
     Y=cell(net.numOutputs,TS);
-
 
     if hints.doProcessInputs
         Pc=cell(net.numInputs,net.numInputDelays+1);
@@ -35,8 +31,6 @@ function[Y,Af]=y(net,data,hints)
     end
 
     for ts=1:TS
-
-
         if hints.doProcessInputs
             for i=1:net.numInputs
                 if hints.doProcessInputs
@@ -51,12 +45,9 @@ function[Y,Af]=y(net,data,hints)
         end
 
         for i=hints.layerOrder
-
-
             if net.biasConnect(i)
                 Z{1}=bz{i};
             end
-
 
             for j=1:net.numInputs
                 if net.inputConnect(i,j)
@@ -74,7 +65,6 @@ function[Y,Af]=y(net,data,hints)
                 end
             end
 
-
             for j=1:net.numLayers
                 if net.layerConnect(i,j)
                     a_ts=rem((net.numLayerDelays-1+ts)-net.layerWeights{i,j}.delays,net.numLayerDelays+1)+1;
@@ -83,11 +73,9 @@ function[Y,Af]=y(net,data,hints)
                 end
             end
 
-
             N=hints.netApply{i}(Z(1:hints.numZ(i)),net.layers{i}.size,Q,hints.netParam{i});
             a_ts=rem(net.numLayerDelays+ts-1,net.numLayerDelays+1)+1;
             Ac{i,a_ts}=hints.tfApply{i}(N,hints.tfParam{i});
-
 
             if net.outputConnect(i)
                 yi=Ac{i,a_ts};
@@ -99,7 +87,6 @@ function[Y,Af]=y(net,data,hints)
             end
         end
     end
-
 
     if nargout>1
         a_ts=rem((TS-1)+(1:net.numLayerDelays),net.numLayerDelays+1)+1;

@@ -1,19 +1,9 @@
 function addonTripwire( addonName, mode )
 
-
-
-
-
-
-
-
-
 R36
 addonName( 1, 1 )string{ mustBeMember( addonName, [ "cufflinks", "bwa", "bowtie2" ] ) }
 mode( 1, 1 )string{ mustBeMember( mode, [ "error", "warn" ] ) } = "error"
 end 
-
-
 
 [ fullName, version, GUID, binName, addonFolderFunc ] = getAddonInfo( addonName );
 
@@ -29,8 +19,6 @@ addonEnabled = addons.Enabled( idx );
 
 if isscalar( addonVersion )
 if addonEnabled
-
-
 
 addonFolder = addonFolderFunc(  );
 if addonName ~= "bowtie2"
@@ -54,7 +42,6 @@ end
 end 
 end 
 
-
 if ~isInstalled && ~isempty( getenv( 'MWE_INSTALL' ) )
 
 qePath = getQePath( addonName );
@@ -77,14 +64,9 @@ return ;
 end 
 else 
 
-
-
 if ~contains( [ pathsep, getenv( 'PATH' ), pathsep ], [ pathsep, char( addonFolder ), pathsep ] )
 setenv( 'PATH', [ char( addonFolder ), pathsep, getenv( 'PATH' ) ] );
 end 
-
-
-
 
 if ispc
 [ wslAvailable, wslErrorMessage ] = bioinfo.internal.wsl.ensureWSL( fullName );

@@ -11,15 +11,10 @@ function[varargout]=deepNetwork(...
     inputFormats,...
     activationLayers)%#codegen
 
-
-
-
-
     coder.inline('always');
     coder.allowpcode('plain');
     coder.extrinsic('deep.blocks.internal.getNetworkSizeInfo');
     coder.extrinsic('coder.internal.getFileInfo');
-
     coder.internal.errorIf(~coder.internal.isConst(inputSizes),'deep_blocks:common:VarsizeInputNotSupported');
 
     if coder.const(useExtrinsic)
@@ -34,15 +29,12 @@ function[varargout]=deepNetwork(...
         inputFormats,...
         activationLayers);
     end
-
     numOutputs=coder.const(nargout-numel(activationLayers));
     if coder.const(predictEnabled)
         startIndex=numOutputs;
     else
         startIndex=0;
     end
-
-
     fileName=coder.const(@coder.internal.getFileInfo,networkToLoad);
     coder.internal.addDependentFile(fileName);
     persistent network;
@@ -55,9 +47,7 @@ function[varargout]=deepNetwork(...
     end
 
     if coder.const(isDlNetwork)
-
         if coder.const(useExtrinsic)
-
             if coder.const(predictEnabled)
                 coder.unroll();
                 for i=1:coder.const(numOutputs)
@@ -69,12 +59,9 @@ function[varargout]=deepNetwork(...
             for i=1:coder.const(length(activationSizes))
                 varargout{startIndex+i}=zeros(coder.const(activationSizes{i}),activationTypes{i});
             end
-
-
             [varargout{:}]=feval('deep.blocks.internal.dlnetworkPredict',...
             network,inputs,inputFormats,predictEnabled,activationLayers);
         else
-
             [varargout{:}]=deep.blocks.internal.dlnetworkPredict(...
             network,inputs,inputFormats,predictEnabled,activationLayers);
 
@@ -88,8 +75,6 @@ function[varargout]=deepNetwork(...
                 for i=1:coder.const(numOutputs)
                     varargout{i}=zeros(coder.const(predictOutputSizes{i}),predictOutputTypes{i});
                 end
-
-
                 [varargout{1:coder.const(numOutputs)}]=...
                 feval('predict',network,inputs{:},'MiniBatchSize',coder.const(miniBatchSize));
             else
@@ -97,7 +82,6 @@ function[varargout]=deepNetwork(...
                 predict(network,inputs{:},'MiniBatchSize',coder.const(miniBatchSize));
             end
         end
-
 
         coder.unroll();
         for i=1:coder.const(length(activationLayers))

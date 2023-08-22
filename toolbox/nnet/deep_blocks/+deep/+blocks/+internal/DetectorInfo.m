@@ -1,12 +1,10 @@
 classdef DetectorInfo<handle
 
-
-
-
     properties(Constant,Access=private)
         MklDnnTargetLib='mkldnn';
         CodeGenObjectDetectorClasses={'yolov2ObjectDetector','ssdObjectDetector','yolov3ObjectDetector','yolov4ObjectDetector'};
     end
+
 
     properties(SetAccess=private)
 DetectorToLoad
@@ -24,6 +22,7 @@ RatioTypeDefault
 UseThresholdAsOverlap
     end
 
+
     properties(Access=private)
         MatlabCoderSpkgInstalled;
         GpuCoderSpkgInstalled;
@@ -31,15 +30,15 @@ UseThresholdAsOverlap
 InputLayerSizes
     end
 
+
     methods(Access=public)
+
         function obj=DetectorInfo(detectorToLoad,timeStamp)
             obj.MatlabCoderSpkgInstalled=dlcoder_base.internal.isMATLABCoderDLTargetsInstalled;
             obj.GpuCoderSpkgInstalled=dlcoder_base.internal.isGpuCoderDLTargetsInstalled;
-
             obj.DetectorToLoad=detectorToLoad;
             obj.TimeStamp=timeStamp;
             detector=obj.loadDetector();
-
             obj.ObjectDetectorClass=class(detector);
             obj.IsCodeGenObjectDetector=deep.blocks.internal.DetectorInfo.isCodeGenObjectDetector(detector);
             obj.Classes=categorical(detector.ClassNames,detector.ClassNames);
@@ -91,7 +90,6 @@ InputLayerSizes
             else
                 matlabCoderSpkgInstalled=dlcoder_base.internal.isMATLABCoderDLTargetsInstalled;
                 gpuCoderSpkgInstalled=dlcoder_base.internal.isGpuCoderDLTargetsInstalled;
-
                 simTargetLib=obj.sanitizeSimTargetLib(simTargetLib);
                 isMklDnn=any(strcmp(simTargetLib,obj.MklDnnTargetLib));
 
@@ -104,11 +102,14 @@ InputLayerSizes
         end
     end
 
+
     methods(Access=private)
+
         function detector=loadDetector(obj)
             detector=deep.blocks.internal.loadObjectDetector(obj.DetectorToLoad);
             obj.NumLoads=obj.NumLoads+1;
         end
+
 
         function setDetectorProperties(obj)
             obj.ThresholdSupported=true;
@@ -120,12 +121,15 @@ InputLayerSizes
         end
     end
 
+
     methods(Access=private,Static)
+
         function isCodeGenDetector=isCodeGenObjectDetector(detector)
             detectorClass=class(detector);
             isCodeGenDetector=any(strcmp(detectorClass,...
             deep.blocks.internal.DetectorInfo.CodeGenObjectDetectorClasses));
         end
+
 
         function sanitizedSimTargetLib=sanitizeSimTargetLib(simTargetLib)
             sanitizedSimTargetLib=lower(simTargetLib);

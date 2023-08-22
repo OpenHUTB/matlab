@@ -1,18 +1,5 @@
 function[gB,gIW,gLW,gA]=grad_static(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     numLayers=net.numLayers;
     numInputs=net.numInputs;
     numLayerDelays=net.numLayerDelays;
@@ -26,7 +13,6 @@ function[gB,gIW,gLW,gA]=grad_static(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints)
     TSall=1:TS;
     Qall=1:Q;
     BC=net.biasConnect;
-
 
     Ae=cell(numLayers,1);
     for i=1:numLayers
@@ -49,7 +35,6 @@ function[gB,gIW,gLW,gA]=grad_static(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints)
         end
     end
 
-
     gA=cell(numLayers,1);
     gN=cell(numLayers,1);
     gLWZ=cell(numLayers,numLayers);
@@ -57,16 +42,12 @@ function[gB,gIW,gLW,gA]=grad_static(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints)
     gIW=cell(numLayers,numInputs);
     gLW=cell(numLayers,numLayers);
 
-
     for i=hints.bpLayerOrder
-
-
         if net.outputConnect(i)
             gA{i}=[gE{i,:}];
         else
             gA{i}=zeros(net.layers{i}.size,QTS);
         end
-
 
         Ne=[N{i,:}];
         for k=find(net.layerConnect(:,i)')
@@ -92,8 +73,6 @@ function[gB,gIW,gLW,gA]=grad_static(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints)
                 end
             end
         end
-
-
         transferFcn=hints.layers(i).transfer;
         Fdot=transferFcn.da_dn(Ne,Ae{i},transferFcn.param);
         if transferFcn.isScalar
@@ -106,16 +85,13 @@ function[gB,gIW,gLW,gA]=grad_static(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints)
             gN{i}=gNi;
         end
 
-
         netFcn=hints.layers(i).netInput;
         if netFcn.is_netsum
             NderivZ=ones(size(Ne));
         else
-
             Z=[BZe(i,BC(i)),IWZe(i,ICF{i}),LWZe(i,LCF{i})];
         end
         jjj=0;
-
 
         if net.biasConnect(i)
             jjj=jjj+1;
@@ -125,17 +101,13 @@ function[gB,gIW,gLW,gA]=grad_static(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints)
             gB{i}=sum(NderivZ.*gN{i},2);
         end
 
-
         for j=ICF{i}
             jjj=jjj+1;
-
 
             if~netFcn.is_netsum
                 NderivZ=netFcn.dn_dzj(jjj,Z,Ne,netFcn.param);
             end
             temp1=NderivZ.*gN{i};
-
-
             pd=nntraining.pd(net,Q,P,PD,i,j,TSall);
             weightFcn=hints.inputWeights(i,j).weight;
             if weightFcn.is_dotprod
@@ -158,17 +130,13 @@ function[gB,gIW,gLW,gA]=grad_static(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints)
             end
         end
 
-
         for j=LCF{i}
             jjj=jjj+1;
-
 
             if~netFcn.is_netsum
                 NderivZ=netFcn.dn_dzj(jjj,Z,Ne,netFcn.param);
             end
             gLWZ{i,j}=NderivZ.*gN{i};
-
-
             numDelays=length(layerDelays{i,j});
             if numDelays==0
                 Ad=zeros(0,QTS);

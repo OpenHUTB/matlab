@@ -1,8 +1,5 @@
 function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
 
-
-
-
     if nargin>1
         if isstring(X)
             X=cellstr(X);
@@ -84,7 +81,6 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
         end
     end
 
-
     if doProcessInputs
         Pc=cell(net.numInputs,net.numInputDelays+TS);
         for ts=1:net.numInputDelays
@@ -105,9 +101,7 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
         end
     end
 
-
     for ts=1:TS
-
 
         if doProcessInputs
             for i=1:net.numInputs
@@ -126,9 +120,7 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
             end
         end
 
-
         for i=hints.layerOrder
-
 
             if net.biasConnect(i)
                 Z{i,1,ts}=bz{i};
@@ -138,7 +130,6 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
             else
                 n=zeros(hints.layerSizes(i),Q);
             end
-
 
             for j=1:net.numInputs
                 if net.inputConnect(i,j)
@@ -160,7 +151,6 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                 end
             end
 
-
             for j=1:net.numLayers
                 if net.layerConnect(i,j)
                     a_ts=(net.numLayerDelays+ts)-net.layerWeights{i,j}.delays;
@@ -176,7 +166,6 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                     end
                 end
             end
-
 
             if hints.netNetsum(i)
                 N{i,ts}=n;
@@ -194,10 +183,8 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
         end
     end
 
-
     for ts=TS:-1:1
         for i=fliplr(hints.layerOrder)
-
 
             if net.outputConnect(i)
                 yi=Ac{i,net.numLayerDelays+ts};
@@ -215,17 +202,12 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                     Yp{j}=yi;
                 end
 
-
                 e=T{ii,ts}-yi;
                 if hints.doErrNorm(ii)
                     e=bsxfun(@times,e,hints.errNorm{ii});
                 end
 
-
                 perf=e.*e;
-
-
-
 
                 if hints.doEW
                     ew=EW{(EWii*(ii-1))+1,EWts*(ts-1)+1};
@@ -233,7 +215,6 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                     sqrtew=sqrt(ew);
                     e=bsxfun(@times,e,sqrtew);
                 end
-
 
                 for k=1:numMasks
                     perfk=perf.*masks{k}{ii,ts};
@@ -266,13 +247,11 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                                 dy=hints.out(ii).procBPrev{j}(dy,Yp{j},Yp{j+1},hints.out(ii).procSet{j});
                             end
                         end
-
                         extra_ind=(ts-1)*hints.numOutputElements+hints.outInd{ii};
                         dA{i,ts}(:,:,extra_ind)=dA{i,ts}(:,:,extra_ind)+dy;
                     end
                 end
             end
-
 
             a_ts=net.numLayerDelays+ts;
             if hints.tfPurelin(i)
@@ -285,7 +264,6 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
             end
             dA(i,ts)={[]};
             Zi=Z(i,1:hints.numZ(i),ts);
-
 
             for j=net.numLayers:-1:1
                 if net.layerConnect(i,j)
@@ -324,7 +302,6 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                 end
             end
 
-
             for j=net.numInputs:-1:1
                 if net.inputConnect(i,j)
                     ii=hints.iwzInd(i,j);
@@ -351,7 +328,6 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                 end
             end
 
-
             if hints.bInclude(i)
                 if hints.netNetsum(i)
                     dB{i}=dB{i}+dn;
@@ -361,7 +337,6 @@ function[JE,JJ,Perfs,PerfN]=bj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
             end
         end
     end
-
 
     numCol=Q*hints.numOutputElements*TS;
     J=zeros(net.numWeightElements,numCol);

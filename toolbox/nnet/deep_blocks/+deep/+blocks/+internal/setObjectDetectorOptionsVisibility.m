@@ -1,9 +1,4 @@
 function setObjectDetectorOptionsVisibility(block)
-
-
-
-
-
     detectorToLoad=deep.blocks.internal.getSelectedNetwork(block);
 
     try
@@ -11,8 +6,6 @@ function setObjectDetectorOptionsVisibility(block)
     catch
         detectorInfo=[];
     end
-
-
 
     validNetwork=~isempty(detectorInfo);
 
@@ -22,17 +15,16 @@ function setObjectDetectorOptionsVisibility(block)
         numStrongestRegions=mask.getParameter('NumStrongestRegions');
         useMinSize=mask.getParameter('UseMinSize');
         useMaxSize=mask.getParameter('UseMaxSize');
-
         setParamVisibility(threshold,detectorInfo.ThresholdSupported);
         setParamVisibility(numStrongestRegions,detectorInfo.NumStrongestRegionsSupported);
         setParamVisibility(useMinSize,detectorInfo.MinSizeSupported);
         setParamVisibility(useMaxSize,detectorInfo.MaxSizeSupported);
-
         deep.blocks.internal.setEnabledParameterVisibility(block,'UseMinSize','MinSize');
         deep.blocks.internal.setEnabledParameterVisibility(block,'UseMaxSize','MaxSize');
     end
 
 end
+
 
 function setParamVisibility(parameter,enable)
     if enable

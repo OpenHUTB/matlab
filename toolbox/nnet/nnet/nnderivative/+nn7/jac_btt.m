@@ -1,80 +1,5 @@
 function jx=jac_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     numLayerDelays=net.numLayerDelays;
     S=hints.totalOutputSize;
     QS=Q*S;
@@ -83,21 +8,14 @@ function jx=jac_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
         jx=zeros(hints.xLen,0);
         return
     end
-
-
     gE=nndata(nn.output_sizes(net),Q,TS,-1);
     gE=remove_dont_care_errors(gE,T);
 
-
     gE=gmultiply(gE,gsqrt(EW));
-
-
     gE=nn_performance_fcn.normalize_error(net,gE,hints.perform.param);
-
 
     gE=stretch(gE);
     gE=outputs2layersE(hints,gE);
-
 
     A=cell(net.numLayers,TS);
     for i=hints.outputInd
@@ -106,10 +24,7 @@ function jx=jac_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
         end
     end
     gE=nn7.dperf(net,A,gE,QS,hints);
-
-
     [gB,gIW,gLW]=nn7.grad_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,1);
-
 
     jx=zeros(hints.xLen,QS*TS);
     for ts=1:TS
@@ -132,7 +47,6 @@ function jx=jac_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
 
 
         function gE2=stretch(gE1)
-
 
             [N,Q,TS]=nnfast.nnsize(gE1);
             S=sum(N);
@@ -157,9 +71,7 @@ function jx=jac_btt(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
                 e2=cell(hints.numLayers,size(e1,2));
                 e2(hints.outputInd,:)=e1;
 
-
                 function m=repcolint(m,n)
-
 
                     mcols=size(m,2);
                     m=m(:,floor((0:(mcols*n-1))/n)+1);

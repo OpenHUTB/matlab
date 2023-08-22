@@ -1,8 +1,5 @@
 function setNetworkSelectVisibility(block)
 
-
-
-
     mask=Simulink.Mask.get(block);
     blockType=mask.Type;
 
@@ -19,7 +16,6 @@ function setNetworkSelectVisibility(block)
     blockObj=get_param(block,'Object');
     allowedValues=blockObj.getPropAllowedValues(keyword);
     currentValue=get_param(block,keyword);
-
     valueIdx=find(strcmpi(currentValue,allowedValues));
 
     fileOptionIdx=1;

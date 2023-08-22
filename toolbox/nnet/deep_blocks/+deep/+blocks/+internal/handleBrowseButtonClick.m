@@ -1,10 +1,5 @@
 function handleBrowseButtonClick(block)
-
-
-
-
     [file,path,~]=uigetfile('*.mat');
-
     blockType=get_param(block,'MaskType');
     if strcmp(blockType,'Deep Learning Object Detector')
         keyword='Detector';

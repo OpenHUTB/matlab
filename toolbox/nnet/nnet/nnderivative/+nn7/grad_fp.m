@@ -1,18 +1,6 @@
 function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
 
-
-
-
-
-
-
-
-
-
-
-
     if nargin<13,time_base=0;end
-
 
     numLayers=net.numLayers;
     numInputs=net.numInputs;
@@ -33,7 +21,6 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
     layerDelays=hints.layerDelays;
     IW=net.IW;
     LW=net.LW;
-
 
     LWsize1=zeros(numLayers,numLayers);
     LWsize2=zeros(numLayers,numLayers);
@@ -68,14 +55,10 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
             forw_redun_order=[forw_redun_order,i];
         end
     end
-
-
-
     gLWZ=cell(numLayers,numLayers,numLayers);
     gyB=cell(numLayers,numLayers,numLayerDelays+1,Q);
     gyIW=cell(numLayers,net.numInputs,numLayers,numLayerDelays+1,Q);
     gyLW=cell(numLayers,numLayers,numLayers,numLayerDelays+1,Q);
-
 
     if time_base
         gB=cell(numLayers,TS*QS);
@@ -86,13 +69,9 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
         gIW=cell(numLayers,net.numInputs);
         gLW=cell(numLayers,numLayers);
     end
-
-
     input_delays=cell(numLayers,numLayers);
 
-
     S=cell(numLayers,numLayers);
-
 
     Ad=cell(numLayers,numLayers,TS);
     for i=1:numLayers
@@ -103,17 +82,14 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
         end
     end
 
-
     Ae=cell(numLayers,1);
     for i=1:numLayers
         Ae{i}=[Ac{i,(1+numLayerDelays):end}];
     end
 
-
     ES=cell(1,numLayers);
 
     ESx=cell(1,numLayers);
-
 
     for i=bpLayerOrder
 
@@ -161,7 +137,6 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
         end
     end
 
-
     for ts=1:TS
 
         for i=bpLayerOrder
@@ -189,10 +164,7 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
             end
         end
 
-
-
         Uprime=[];
-
 
         for i=bpLayerOrder
 
@@ -235,9 +207,7 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                 end
             end
 
-
             if outputConnect(i)||size(LCTWD{i},1)~=0
-
                 transferFcn=hints.layers(i).transfer;
                 S{i,i}=nnprop.da_dn(i,transferFcn,ts,Q,Ae,numLayerDelays,N,0,layers{i}.size);
 
@@ -249,8 +219,6 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                     ESx{i}=nnunion(ESx{i},i);
                 end
             end
-
-
             netFcn=hints.layers(i).netInput;
             if netFcn.is_netsum
                 dz=ones(size(N{i,ts}));
@@ -258,7 +226,6 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                 Z=[BZ(i,biasConnect(i)),IWZ(i,ICF{i},ts),LWZ(i,LCF{i},ts)];
             end
             jjj=0;
-
 
             if biasConnect(i)
                 jjj=jjj+1;
@@ -275,7 +242,6 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                     end
                 end
             end
-
 
             for j=ICF{i}
                 jjj=jjj+1;
@@ -327,7 +293,6 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                 end
             end
 
-
             for j=LCF{i}
                 jjj=jjj+1;
                 if~netFcn.is_netsum
@@ -376,8 +341,6 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                 end
             end
         end
-
-
 
         for jz=simLayerOrder
 
@@ -452,7 +415,6 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                                         temp{nx}=gyLW{i,j,xx,numLayerDelays+1-nd,qq};
                                     end
                                     temp=cat(1,temp{:});
-
                                     if~isempty(temp)
                                         if iscell(gLWc)
                                             gyLW{i,j,jz,numLayerDelays+1,qq}=gyLW{i,j,jz,numLayerDelays+1,qq}+...
@@ -469,7 +431,6 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                 end
             end
         end
-
 
         for jz=find(outputConnect)
 
@@ -553,7 +514,6 @@ function[gB,gIW,gLW]=grad_fp(net,P,PD,BZ,IWZ,LWZ,N,Ac,gE,Q,TS,hints,time_base)
                 end
             end
         end
-
 
         for i=bpLayerOrder
             if numLayerDelays

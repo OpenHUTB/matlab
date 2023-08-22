@@ -1,17 +1,5 @@
 function detector = loadObjectDetector( matfile, nvps )
 
-
-
-
-
-
-
-
-
-
-
-
-
 R36
 matfile
 nvps.ReturnDetectorClassName( 1, 1 )logical = false
@@ -24,9 +12,7 @@ foundDLObject = false;
 matobj = load( matfile );
 f = fields( matobj );
 
-
 for i = 1:numel( f )
-
 
 if isObjectDetector( matobj.( f{ i } ) )
 if ~foundDLObject
@@ -38,7 +24,6 @@ error( message( 'vision:ObjectDetectorBlock:InvalidDLObjectCount' ) );
 end 
 end 
 end 
-
 
 assert( ~isempty( detector ),  ...
 message( 'vision:ObjectDetectorBlock:InvalidMatFileObject', matfile ) );
@@ -55,6 +40,7 @@ detector = class( detector );
 end 
 end 
 
+
 function isDetector = isObjectDetector( obj )
 isDetector =  ...
 isa( obj, 'yolov4ObjectDetector' ) ||  ...
@@ -65,6 +51,5 @@ isa( obj, 'rcnnObjectDetector' ) ||  ...
 isa( obj, 'fastRCNNObjectDetector' ) ||  ...
 isa( obj, 'fasterRCNNObjectDetector' );
 end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpLW0Ysh.p.
-% Please follow local copyright laws when handling this file.
+
 

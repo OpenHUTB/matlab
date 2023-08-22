@@ -17,19 +17,11 @@ function configureObjectDetector(...
     labelsEnabled,...
     scoresEnabled,...
     forceInterpretedSim)
-
-
-
-
-
     simTargetLang=get_param(system,'SimTargetLang');
     simTargetLib=get_param(system,'SimDLTargetLibrary');
     gpuAcceleration=get_param(system,'GPUAcceleration')=="on";
-
     detectorToLoad=deep.blocks.internal.getSelectedNetwork(...
     block,detectorSelect,detectorFilePath,detectorFunction);
-
-
     detectorSelected=~isempty(detectorToLoad);
     isInLibrary=isempty(libinfo(block));
     simStatus=get_param(system,'SimulationStatus');
@@ -38,17 +30,12 @@ function configureObjectDetector(...
     isAccel=ismember(systemTargetFile,{'modelrefsim.tlc','raccel.tlc'});
 
     if isInLibrary
-
-
-
         return
     end
 
     if isModelUpdate
         assert(detectorSelected,message('vision:ObjectDetectorBlock:NoDetectorSelected'));
-
         detectorInfo=deep.blocks.internal.getDetectorInfo(block,detectorToLoad);
-
         simSupported=detectorInfo.isSimSupported(simTargetLib,simTargetLang);
         deep.blocks.internal.checkSupportPackage(simTargetLib,simTargetLang,gpuAcceleration);
 
@@ -57,10 +44,8 @@ function configureObjectDetector(...
         classes=matlab.lang.makeValidName(classes);
         classes=matlab.lang.makeUniqueStrings(classes,{},namelengthmax-length(suffix));
         classes=strcat(classes,suffix);
-
         enumTypeName=deep.blocks.internal.getClassifierEnumName(system,block);
         Simulink.defineIntEnumType(enumTypeName,classes,1:numel(classes));
-
         detectArgs=generateDetectArgs(detectorInfo,useROI,roi,threshold,numStrongestRegions,useMinSize,minSize,useMaxSize,maxSize);
         ssbmArgs=generateSSBMArgs(detectorInfo,maxDetections,threshold);
     else
@@ -69,7 +54,6 @@ function configureObjectDetector(...
         detectArgs={};
         ssbmArgs={};
     end
-
 
     functionText=deep.blocks.internal.generateObjectDetectorFunction(...
     detectorToLoad,...
@@ -86,9 +70,7 @@ function configureObjectDetector(...
     possibleOutputNames={'Bboxes','Labels','Scores'};
     outputDependencies=[bboxesEnabled,labelsEnabled,scoresEnabled];
     outputNames=possibleOutputNames(outputDependencies);
-
     mlfbPortInfo=generateMLFBPortInfo(bboxesEnabled,labelsEnabled,scoresEnabled,maxDetections);
-
     deep.blocks.internal.generateSubsystemInternals(...
     block,functionText,inputNames,{},outputNames,false,mlfbPortInfo);
 
@@ -129,11 +111,9 @@ function detectArgs=generateDetectArgs(detectorInfo,useROI,roi,threshold,numStro
         index=index+2;
     end
 
-
     detectArgs{index}='SelectStrongest';
     detectArgs{index+1}=false;
 end
-
 
 
 function ssbmArgs=generateSSBMArgs(detectorInfo,maxDetections,threshold)
@@ -149,6 +129,7 @@ function ssbmArgs=generateSSBMArgs(detectorInfo,maxDetections,threshold)
     end
 
 end
+
 
 function mlfbPortInfo=generateMLFBPortInfo(bboxesEnabled,labelsEnabled,scoresEnabled,maxDetections)
     index=1;

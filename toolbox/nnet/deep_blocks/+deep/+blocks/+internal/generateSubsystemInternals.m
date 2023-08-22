@@ -6,17 +6,10 @@ function generateSubsystemInternals(...
     namedOutputNames,...
     includeSignalSpec,...
     mlfbPortInfo)
-
-
-
-
-
     inputNames=strrep(inputNames,'/','_');
     predictOutputNames=strrep(predictOutputNames,'/','_');
     namedOutputNames=strrep(namedOutputNames,'/','_');
-
     [inputNames,predictOutputNames,namedOutputNames]=iDisambiguateNames(inputNames,predictOutputNames,namedOutputNames);
-
 
     lines=find_system(...
     subsystem,...
@@ -27,7 +20,6 @@ function generateSubsystemInternals(...
 
     delete_line(lines);
 
-
     mlfb="MLFB";
     fullMlfb=subsystem+"/"+mlfb;
 
@@ -37,17 +29,10 @@ function generateSubsystemInternals(...
     for i=1:numel(outputs)
         mlfbOutputNames{i}=outputs(i).Name;
     end
-
     predictOutputKey=deep.blocks.internal.getPredictOutputKey();
     currentPredictOutputs=contains(mlfbOutputNames,predictOutputKey);
 
-
     mlfbSource='simulink/User-Defined Functions/MATLAB Function';
-
-
-
-
-
     mlfbConfig=get_param(fullMlfb,'MATLABFunctionConfiguration');
     mlfbUpdateMethod=mlfbConfig.UpdateMethod;
     mlfbSampleTime=mlfbConfig.SampleTime;
@@ -57,26 +42,18 @@ function generateSubsystemInternals(...
     end
     mlfbPosition=[200,200,400,400];
     add_block(mlfbSource,fullMlfb,'Position',mlfbPosition);
-
     config=get_param(fullMlfb,'MATLABFunctionConfiguration');
     config.FunctionScript=functionText;
 
-
     config.UpdateMethod=mlfbUpdateMethod;
     if~(strcmp(mlfbUpdateMethod,'Continuous')||strcmp(mlfbUpdateMethod,'Inherited'))
-
-
-
         config.SampleTime=mlfbSampleTime;
     end
 
     if nargin>6
         configureMLFBPorts(fullMlfb,mlfbPortInfo);
     end
-
-
     currentInports=renamePorts(subsystem,'Inport','___in_');
-
     numCurrentInports=length(currentInports);
     numInputs=length(inputNames);
     inportStartPosition=[50,50,90,70];
@@ -84,13 +61,11 @@ function generateSubsystemInternals(...
 
     for i=1:max(numCurrentInports,numInputs)
         if i>numCurrentInports
-
             block=subsystem+"/"+inputNames{i};
             increment=100*i;
             portPosition=inportStartPosition+[0,increment,0,increment];
             add_block(inportSource,block,'Position',portPosition);
         elseif i>numInputs
-
             block=currentInports{i};
             delete_block(block);
         else
@@ -100,9 +75,7 @@ function generateSubsystemInternals(...
         end
     end
 
-
     if includeSignalSpec
-
         existingSignalSpecs=find_system(...
         subsystem,...
         'LookUnderMasks','on',...
@@ -110,7 +83,6 @@ function generateSubsystemInternals(...
         'SearchDepth',1,...
         'BlockType','SignalSpecification');
         delete_block(existingSignalSpecs);
-
 
         signalSpecSource='simulink/Signal Attributes/Signal Specification';
         signalSpecStartPosition=[70,50,150,70];
@@ -123,8 +95,6 @@ function generateSubsystemInternals(...
             set_param(block,'SampleTime','SampleTime');
         end
     end
-
-
     oldNames=getPortNames(subsystem,'Outport');
     oldActivationNames=oldNames(~currentPredictOutputs);
     lastPredictIdx=find(currentPredictOutputs,1,'last');
@@ -134,16 +104,13 @@ function generateSubsystemInternals(...
         lastPredictIdx=0;
     end
 
-
     outportStartPosition=[500,50,540,70];
     outportSource='simulink/Sinks/Out1';
     numPredictOutputs=numel(predictOutputNames);
-
     currentOutports=renamePorts(subsystem,'Outport','___out_');
 
     for i=1:max(lastPredictIdx,numPredictOutputs)
         if i>lastPredictIdx
-
             block=subsystem+"/"+predictOutputNames{i};
             increment=100*i;
             portPosition=outportStartPosition+[0,increment,0,increment];
@@ -172,7 +139,6 @@ function generateSubsystemInternals(...
         if index>0
             increment=100*(numPredictOutputs+index);
             portPosition=outportStartPosition+[0,increment,0,increment];
-
             set_param(port,'Port',num2str(numPredictOutputs+index));
             set_param(port,'Position',portPosition);
             set_param(port,'Name',namedOutputNames{index});
@@ -182,14 +148,12 @@ function generateSubsystemInternals(...
 
     for i=1:numel(idx)
         if idx(i)==0
-
             block=subsystem+"/"+namedOutputNames{i};
             increment=100*(numPredictOutputs+i);
             portPosition=outportStartPosition+[0,increment,0,increment];
             add_block(outportSource,block,'Position',portPosition,'Port',num2str(numPredictOutputs+i));
         end
     end
-
 
     if includeSignalSpec
 
@@ -198,7 +162,6 @@ function generateSubsystemInternals(...
             destination=signalSpecName+" "+inputNames{i}+"/1";
             add_line(subsystem,source,destination,'autorouting','on');
         end
-
 
         for i=1:length(inputNames)
             source=signalSpecName+" "+inputNames{i}+"/1";
@@ -228,6 +191,7 @@ function generateSubsystemInternals(...
 
 end
 
+
 function newPorts=renamePorts(subsystem,blockType,prefix)
     ports=find_system(...
     subsystem,...
@@ -246,6 +210,7 @@ function newPorts=renamePorts(subsystem,blockType,prefix)
     end
 end
 
+
 function names=getPortNames(subsystem,blockType)
 
     ports=find_system(...
@@ -263,8 +228,8 @@ function names=getPortNames(subsystem,blockType)
 
 end
 
-function[idx,pidx]=getIdx(prev,next)
 
+function[idx,pidx]=getIdx(prev,next)
     idx=zeros(size(next));
     pidx=zeros(size(prev));
 
@@ -284,6 +249,7 @@ function[idx,pidx]=getIdx(prev,next)
 
 end
 
+
 function configureMLFBPorts(fullMlfb,portInfo)
     sfblkId=sf('Private','block2chart',getSimulinkBlockHandle(fullMlfb));
     sfblkobj=sf('IdToHandle',sfblkId);
@@ -298,19 +264,14 @@ function configureMLFBPorts(fullMlfb,portInfo)
 
 end
 
-function[inputNames,predictOutputNames,namedOutputNames]=iDisambiguateNames(inputNames,predictOutputNames,namedOutputNames)
 
+function[inputNames,predictOutputNames,namedOutputNames]=iDisambiguateNames(inputNames,predictOutputNames,namedOutputNames)
 
     inputNames=inputNames';
     inputNamesLen=numel(inputNames);
     predictOutputNamesLen=numel(predictOutputNames);
-
-
     combinedNames=[inputNames,predictOutputNames,namedOutputNames];
-
-
     uniqueNames=matlab.lang.makeUniqueStrings(combinedNames);
-
     inputNames=uniqueNames(1:inputNamesLen);
     predictOutputNames=uniqueNames(inputNamesLen+1:inputNamesLen+predictOutputNamesLen);
     namedOutputNames=uniqueNames(inputNamesLen+predictOutputNamesLen+1:end);

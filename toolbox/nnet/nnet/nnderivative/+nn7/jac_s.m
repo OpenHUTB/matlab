@@ -1,75 +1,5 @@
 function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     numLayerDelays=net.numLayerDelays;
     BC=cell(1,net.numLayers);
     for i=find(net.biasConnect)'
@@ -79,24 +9,16 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
     LCF=hints.layerConnectFrom;
     LCT=hints.layerConnectTo;
 
-
     S=hints.totalOutputSize;
     QS=Q*S;
-
-
     gE=nndata(nn.output_sizes(net),Q,TS,-1);
     gE=remove_dont_care_errors(gE,T);
 
-
     gE=gmultiply(gE,gsqrt(EW));
-
-
     gE=nn_performance_fcn.normalize_error(net,gE,hints.perform.param);
-
 
     gE=stretch(gE);
     gE=outputs2layersE(net,gE,hints);
-
 
     A=cell(net.numLayers,TS);
     for i=hints.outputInd
@@ -105,7 +27,6 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
         end
     end
     gE=nn7.dperf(net,A,gE,QS,hints);
-
 
     expandIndices=floor((0:(QS-1))/S)+1;
     for i=find(net.biasConnect)'
@@ -134,7 +55,6 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
 
     Q=QS;
 
-
     gA=cell(net.numLayers,TS);
     gN=cell(net.numLayers,TS);
     gBZ=cell(net.numLayers,TS);
@@ -144,17 +64,14 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
     gIW=gIWZ;
     gLW=gIWZ;
 
-
     for ts=TS:-1:1
         for i=hints.bpLayerOrder
-
 
             if net.outputConnect(i)
                 gA{i,ts}=gE{i,ts};
             else
                 gA{i,ts}=zeros(net.layers{i}.size,Q);
             end
-
 
             for k=LCT{i}
                 if(any(net.layerWeights{k,i}.delays==0))
@@ -170,8 +87,6 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
                     end
                 end
             end
-
-
             transferFcn=hints.layers(i).transfer;
             Fdot=transferFcn.da_dn(N{i,ts},Ac{i,ts+numLayerDelays},transferFcn.param);
             if iscell(Fdot)
@@ -182,25 +97,20 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
             else
                 gN{i,ts}=Fdot.*gA{i,ts};
             end
-
-
             netFcn=hints.layers(i).netInput;
             Z=[BZ(BC{i}),IWZ(i,ICF{i},ts),LWZ(i,LCF{i},ts)];
             jjj=0;
-
 
             if net.biasConnect(i)
                 jjj=jjj+1;
                 gBZ{i,ts}=netFcn.dn_dzj(jjj,Z,N{i,ts},netFcn.param).*gN{i,ts};
             end
 
-
             for j=ICF{i}
                 jjj=jjj+1;
                 fcn=hints.layers(i).netInput;
                 gIWZ{i,j,ts}=fcn.dn_dzj(jjj,Z,N{i,ts},fcn.param).*gN{i,ts};
             end
-
 
             for j=LCF{i}
                 jjj=jjj+1;
@@ -209,18 +119,13 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
             end
         end
     end
-
-
     inputWeightCols=hints.inputWeightCols;
     layerWeightCols=hints.layerWeightCols;
-
 
     for ts=1:TS
         for i=1:net.numLayers
 
-
             gB{i,ts}=gBZ{i,ts};
-
 
             for j=ICF{i}
                 pd=nn7.delayed_inputs(net,P,PD,i,j,ts);
@@ -249,7 +154,6 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
 
             end
 
-
             for j=LCF{i}
                 Ad=cell2mat(Ac(j,ts+numLayerDelays-net.layerWeights{i,j}.delays)');
                 weightFcn=hints.layerWeights(i,j).weight;
@@ -276,14 +180,12 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
         end
     end
 
-
     inputLearn=hints.inputLearn;
     layerLearn=hints.layerLearn;
     biasLearn=hints.biasLearn;
     inputWeightInd=hints.inputWeightInd;
     layerWeightInd=hints.layerWeightInd;
     biasInd=hints.biasInd;
-
 
     jx=zeros(hints.xLen,QS*TS);
     for i=1:net.numLayers
@@ -314,7 +216,6 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
 
         function gE2=stretch(gE1)
 
-
             [N,Q,TS]=nnfast.nnsize(gE1);
             S=sum(N);
             QS=Q*S;
@@ -341,20 +242,17 @@ function jx=jac_s(net,P,PD,BZ,IWZ,LWZ,N,Ac,T,EW,Q,TS,hints)
 
                 function m=repcolint(m,n)
 
-
                     mcols=size(m,2);
                     m=m(:,floor((0:(mcols*n-1))/n)+1);
 
 
                     function m=reprow(m,n)
 
-
                         mrows=size(m,1);
                         m=m(rem(0:(mrows*n-1),mrows)+1,:);
 
 
                         function m=reprowint(m,n)
-
 
                             mrows=size(m,1);
                             m=m(floor((0:(mrows*n-1))/n)+1,:);

@@ -1,8 +1,5 @@
 function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
 
-
-
-
     JE=zeros(net.numWeightElements,1);
     JJ=zeros(net.numWeightElements,net.numWeightElements);
 
@@ -38,7 +35,6 @@ function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
         end
     end
 
-
     if hints.doProcessInputs
         Pc=cell(net.numInputs,net.numInputDelays+1);
         for ts=1:net.numInputDelays
@@ -60,8 +56,6 @@ function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
     end
 
     for ts=1:TS
-
-
         if hints.doProcessInputs
             for i=1:net.numInputs
                 pi=X{i,ts};
@@ -80,10 +74,7 @@ function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
             end
         end
 
-
         for i=hints.layerOrder
-
-
             dN=zeros(hints.layerSizes(i),Q,net.numWeightElements);
             if net.biasConnect(i)
                 if hints.netNetsum(i)
@@ -103,7 +94,6 @@ function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
             else
                 N=zeros(hints.layerSizes(i),Q);
             end
-
 
             for j=1:net.numInputs
                 if net.inputConnect(i,j)
@@ -142,7 +132,6 @@ function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                 end
             end
 
-
             for j=1:net.numLayers
                 if net.layerConnect(i,j)
                     ii=hints.lwzInd(i,j);
@@ -177,7 +166,6 @@ function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                 end
             end
 
-
             Zi=Z(1:hints.numZ(i));
             if~hints.netNetsum(i)
                 N=hints.netApply{i}(Zi,net.layers{i}.size,Q,hints.netParam{i});
@@ -199,8 +187,6 @@ function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                     dN=dN+hints.netFP{i}(dZ{1},1,Zi,N,hints.netParam{i});
                 end
             end
-
-
             a_ts=rem(net.numLayerDelays+ts-1,net.numLayerDelays+1)+1;
             if hints.tfPurelin(i)
                 A{i,a_ts}=N;
@@ -217,7 +203,6 @@ function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
             else
                 dA{i,a_ts}=hints.tfFP{i}(dN,N,A{i,a_ts},hints.tfParam{i});
             end
-
 
             if net.outputConnect(i)
                 yi=A{i,a_ts};
@@ -241,21 +226,17 @@ function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                     end
                 end
 
-
                 e=T{ii,ts}-yi;
                 if hints.doErrNorm(ii)
                     e=bsxfun(@times,e,hints.errNorm{ii});
                 end
 
-
                 perf=e.*e;
-
 
                 if hints.doEW
                     ew=EW{(EWii*(ii-1))+1,EWts*(ts-1)+1};
                     perf=bsxfun(@times,perf,ew);
                 end
-
 
                 for k=1:numMasks
                     if isempty(masks{k})
@@ -278,7 +259,6 @@ function[JE,JJ,Perfs,PerfN]=fj(net,X,Xi,Pc,Pd,Ai,T,EW,masks,Q,TS,hints)
                             if hints.doErrNorm(ii)
                                 dY=bsxfun(@times,dY,hints.errNorm{ii});
                             end
-
                             J=reshape(dY,hints.outputSizes(ii)*Q,net.numWeightElements);
                             J(indk,:)=0;
                             E=reshape(e,1,hints.outputSizes(ii)*Q);
