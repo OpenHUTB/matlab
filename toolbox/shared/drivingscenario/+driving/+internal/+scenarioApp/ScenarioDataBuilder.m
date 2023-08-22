@@ -1,22 +1,19 @@
 classdef ScenarioDataBuilder<driving.internal.scenarioApp.ScenarioBuilder
 
-
-
     properties
 Scenario
     end
 
+
     methods
         function this=ScenarioDataBuilder
-
             this@driving.internal.scenarioApp.ScenarioBuilder;
             this.Scenario=drivingScenario;
         end
 
+
         function generateCompiledScenarioData(this,roadSpecs,actorSpecs,...
             barrierSpecs,egoCarId,sampleTime,stopTime,verticalAxis,sessionFilePath)
-
-
 
             for kndx=1:length(roadSpecs)
                 this.addRoadSpecification(roadSpecs(kndx),kndx);
@@ -35,9 +32,9 @@ Scenario
             cacheCompiledScenarioData(this,sessionFilePath,egoCarId);
         end
 
+
         function updateCompiledScenarioData(this,sd,actorSpecs,sampleTime,...
             stopTime,verticalAxis,sessionFilePath)
-
 
             for kndx=1:length(actorSpecs)
                 this.addActorSpecification(actorSpecs(kndx),kndx);
@@ -48,14 +45,12 @@ Scenario
             sd.StopTime=stopTime;
             sd.SampleTime=sampleTime;
             sd.VerticalAxis=verticalAxis;
-
             driving.scenario.internal.setGetCompiledScenarioData(sessionFilePath,sd);
         end
 
+
         function cacheCompiledScenarioData(this,key,varargin)
-
             sd=this.getScenarioData(varargin{:});
-
             driving.scenario.internal.setGetCompiledScenarioData(key,sd);
 
         end
@@ -86,8 +81,6 @@ Scenario
                     time=time+scenario.SampleTime;
                     vehiclePoses(end+1).SimulationTime=time;%#ok<AGROW>
                     vehicleStates(end+1).SimulationTime=time;%#ok<AGROW>
-
-
                     isRunning=move(scenario.Actors,time)&isMoving;
                     vehiclePoses(end).ActorPoses=actorPoses(scenario);
                     vehicleStates(end).ActorStates=actorStates(scenario);
@@ -95,12 +88,11 @@ Scenario
             end
         end
 
+
         function sd=getScenarioData(this,varargin)
 
             scenario=this.Scenario;
             [vehiclePoses,vehicleStates,isSmoothTrajectory]=getVehiclePoses(this);
-
-
             roads=roadBoundaries(scenario);
             catRoads=[];
             for kndx=1:numel(roads)
@@ -110,14 +102,8 @@ Scenario
                 catRoads(end,:)=[];
             end
             RoadBoundaries=struct('RoadBoundaries',catRoads);
-
-
             RoadNetwork=driving.scenario.internal.getRoadNetwork(scenario);
-
-
             [LaneMarkingVertices,LaneMarkingFaces]=laneMarkingVertices(scenario);%#ok<*ASGLU>
-
-
             sd.vehiclePoses=vehiclePoses;
             sd.vehicleStates=vehicleStates;
             sd.isSmoothTrajectory=isSmoothTrajectory;
@@ -133,9 +119,6 @@ Scenario
             else
                 ap=actorProfiles(scenario);
 
-
-
-
                 maxVertSize=1;
                 maxFaceSize=1;
                 for apndx=1:length(ap)
@@ -145,14 +128,12 @@ Scenario
 
                 a=scenario.Actors;
                 for indx=1:numel(a)
-
                     ap(indx).Color=round(255*a(indx).PlotColor);
                     ap(indx).MeshVertices(end+1:maxVertSize,:)=NaN;
                     ap(indx).MeshFaces(end+1:maxFaceSize,:)=NaN;
                 end
                 b=scenario.Barriers;
                 for indx=1:numel(b)
-
                     ap(indx+numel(a)).Color=round(255*b(indx).BarrierSegments(1).PlotColor);
                     ap(indx+numel(a)).MeshVertices(end+1:maxVertSize,:)=NaN;
                     ap(indx+numel(a)).MeshFaces(end+1:maxFaceSize,:)=NaN;
