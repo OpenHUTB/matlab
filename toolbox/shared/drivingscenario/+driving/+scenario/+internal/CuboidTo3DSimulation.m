@@ -1,8 +1,5 @@
 classdef CuboidTo3DSimulation<matlab.System
 
-
-
-
 %#codegen
 
     properties(Nontunable)
@@ -13,10 +10,9 @@ classdef CuboidTo3DSimulation<matlab.System
 
 
     properties(Access=private)
-
-
 pActorProfiles
     end
+
 
     methods
 
@@ -30,25 +26,23 @@ pActorProfiles
             else
                 coder.license('checkout','Automated_Driving_Toolbox');
             end
-
             setProperties(obj,nargin,varargin{:})
         end
     end
 
+
     methods(Access=protected)
 
         function setupImpl(~)
-
         end
 
-        function resetImpl(obj)
 
+        function resetImpl(obj)
             updateActorProfiles(obj);
         end
 
+
         function flag=isInactivePropertyImpl(obj,prop)
-
-
             flag=false;
             if strcmp(prop,'ActorIDToConvert')
                 flag=~obj.SpecifyActorID;
@@ -56,8 +50,6 @@ pActorProfiles
         end
 
         function[x,y,yaw]=stepImpl(obj,actorPose)
-
-
             if isfield(actorPose,'Actors')
                 actors=actorPose.Actors;
                 if obj.SpecifyActorID
@@ -70,7 +62,6 @@ pActorProfiles
                     if~isempty(selActors)
                         actor=selActors(1);
                     else
-
                         coder.internal.error('driving:block:UnknownActorID',obj.ActorIDToConvert);
                     end
                 else
@@ -81,12 +72,8 @@ pActorProfiles
                 actor=actorPose;
             end
             if isempty(actor)
-                actor=driving.scenario.internal.defaultActorPose;
+               actor=driving.scenario.internal.defaultActorPose;
             end
-
-
-
-
             if~isempty(obj.pActorProfiles)
                 numActorsInProfile=numel(obj.pActorProfiles);
                 apIDs=ones(numActorsInProfile,1);
@@ -105,6 +92,7 @@ pActorProfiles
             yaw=actor(1).Yaw;
         end
 
+
         function validateInputsImpl(~,varargin)
 
             if isfield(varargin{1},'Actors')
@@ -115,36 +103,31 @@ pActorProfiles
             driving.scenario.internal.validateInput('ActorPosesBus',actors,'CuboidTo3DSimulation');
         end
 
+
         function flag=isInputSizeMutableImpl(~,~)
-
-
             flag=false;
         end
 
-        function num=getNumInputsImpl(~)
 
+        function num=getNumInputsImpl(~)
             num=1;
         end
 
+
         function num=getNumOutputsImpl(~)
-
-
             num=3;
         end
 
+
         function loadObjectImpl(obj,s,wasLocked)
-
-
             if wasLocked
                 obj.pActorProfiles=s.pActorProfiles;
             end
-
             loadObjectImpl@matlab.System(obj,s,wasLocked);
         end
 
+
         function s=saveObjectImpl(obj)
-
-
             s=saveObjectImpl@matlab.System(obj);
 
             if isLocked(obj)
@@ -153,23 +136,21 @@ pActorProfiles
         end
 
         function[outx,outy,outyaw]=getOutputSizeImpl(~)
-
             outx=[1,1];
             outy=[1,1];
             outyaw=[1,1];
         end
 
         function[out,out2,out3]=getOutputDataTypeImpl(obj)
-
             out="double";
             out2="double";
             out3="double";
             updateActorProfiles(obj);
         end
 
+
         function updateActorProfiles(obj)
             coder.extrinsic('gcbh');
-
             if isSourceBlock(obj)
                 blkHandle=coder.const(gcbh);
                 obj.pActorProfiles=coder.const(driving.scenario.internal.ScenarioReader.getCompiledActorProfiles(blkHandle));
@@ -177,58 +158,56 @@ pActorProfiles
         end
 
         function[out,out2,out3]=isOutputComplexImpl(~)
-
             out=false;
             out2=false;
             out3=false;
         end
 
         function[out,out2,out3]=isOutputFixedSizeImpl(~)
-
             out=true;
             out2=true;
             out3=true;
         end
 
+
         function flag=supportsMultipleInstanceImpl(~)
-
-
             flag=true;
         end
 
-        function icon=getIconImpl(obj)
 
+        function icon=getIconImpl(obj)
             icon="CuboidTo3DSimulation";
             if obj.SpecifyActorID
                 icon=icon+newline+"ActorID: "+obj.ActorIDToConvert;
             end
         end
 
-        function names=getInputNamesImpl(~)
 
+        function names=getInputNamesImpl(~)
             names="Actor";
         end
 
-        function names=getOutputNamesImpl(~)
 
+        function names=getOutputNamesImpl(~)
             names=["X","Y","Yaw"];
         end
 
-        function flag=isSourceBlock(obj)
 
+        function flag=isSourceBlock(obj)
             flag=obj.getExecPlatformIndex();
         end
     end
 
+
     methods(Static,Access=protected)
 
         function header=getHeaderImpl
-
             header=matlab.system.display.Header(...
             'Title','driving:block:CuboidTo3DSimulationTitle',...
             'Text','driving:block:CuboidTo3DSimulationDialogText',...
             'ShowSourceLink',false);
         end
+
 
         function groups=getPropertyGroupsImpl
 
