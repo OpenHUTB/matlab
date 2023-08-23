@@ -1,27 +1,7 @@
 
 function[outMat,outSize]=findGpuImpl(inpMat,predMatInp)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
-
-
 
     coder.gpu.kernelfun;
     coder.inline('never');
@@ -35,14 +15,11 @@ function[outMat,outSize]=findGpuImpl(inpMat,predMatInp)
         outSize=uint32(0);
         return;
     end
-
     if~(isvector(predMatInp)&&(inpRows==size(predMatInp,1)||inpCols==size(predMatInp,2)))
-
         outMat=zeros(size(inpMat));
         outSize=uint32(0);
         return;
     end
-
 
     if~islogical(predMatInp)
         predMat=(predMatInp>0);
@@ -50,19 +27,14 @@ function[outMat,outSize]=findGpuImpl(inpMat,predMatInp)
         predMat=predMatInp;
     end
 
-
     idxMat=predMat;
     idxMat=cumsum(idxMat);
-
-
 
     outSize=uint32(0);
     coder.gpu.kernel;
     for i=1:1
         outSize=uint32(idxMat(predLength));
     end
-
-
 
     if isrow(predMat)
         outMat=coder.nullcopy(zeros(inpRows,outSize));
@@ -75,8 +47,6 @@ function[outMat,outSize]=findGpuImpl(inpMat,predMatInp)
             end
         end
     else
-
-
         outMat=coder.nullcopy(zeros(outSize,inpCols));
         coder.gpu.kernel;
         for i=1:size(inpMat,2)
