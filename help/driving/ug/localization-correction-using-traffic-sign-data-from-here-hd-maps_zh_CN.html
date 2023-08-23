@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Localization Correction Using Traffic Sign Data from HERE HD Maps</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../localization-and-mapping.html",
+          "name": "Localization and Mapping"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../geographic-and-hd-maps.html",
+          "name": "Geographic and HD Maps"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "geographic-and-hd-maps"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Localization Correction Using Traffic Sign Data from HERE HD Maps",
+          "description": "Use HERE HD Live Map (HDLM) traffic sign data to correct GPS measurements from an autonomous vehicle.",
+          "thumbnailURL": "../../examples/driving/win64/PositionCorrectionUsingTrafficSignDataFromHDLMExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving.PositionCorrectionUsingTrafficSignDataFromHDLMExample",
+          "name": "PositionCorrectionUsingTrafficSignDataFromHDLMExample",
+          "url": "localization-correction-using-traffic-sign-data-from-here-hd-maps.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/PositionCorrectionUsingTrafficSignDataFromHDLMExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "PositionCorrectionUsingTrafficSignDataFromHDLMExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Use HERE HD Live Map (HDLM) traffic sign data to correct GPS measurements from an autonomous vehicle."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/PositionCorrectionUsingTrafficSignDataFromHDLMExample_03.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../localization-and-mapping.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Localization and Mapping</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../geographic-and-hd-maps.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Geographic and HD Maps</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Localization Correction Using Traffic Sign Data from HERE HD Maps</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#PositionCorrectionUsingTrafficSignDataFromHDLMExample-1" class="intrnllnk">Overview</a></li>
+<li><a href="#PositionCorrectionUsingTrafficSignDataFromHDLMExample-2" class="intrnllnk">Load Sensor Data</a></li>
+<li><a href="#PositionCorrectionUsingTrafficSignDataFromHDLMExample-3" class="intrnllnk">Read Map Data</a></li>
+<li><a href="#PositionCorrectionUsingTrafficSignDataFromHDLMExample-4" class="intrnllnk">Localization, Traffic Sign Matching, and Error Correction</a></li>
+<li><a href="#PositionCorrectionUsingTrafficSignDataFromHDLMExample-5" class="intrnllnk">Display Results on Map</a></li>
+<li><a href="#PositionCorrectionUsingTrafficSignDataFromHDLMExample-6" class="intrnllnk">Helper Functions</a></li>
+<li><a href="#d124e44384" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e44390" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_903f6099-3a12-48da-af0d-bbef436ab1f3">使用来自HERE HD地图的交通标志数据进行定位校正</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/PositionCorrectionUsingTrafficSignDataFromHDLMExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-PositionCorrectionUsingTrafficSignDataFromHDLMExample"/>
+<meta itemprop="exampletitle" content="Localization Correction Using Traffic Sign Data from HERE HD Maps"/>
+</div>
+<span id="PositionCorrectionUsingTrafficSignDataFromHDLMExample" class="anchor_target"></span><p class="shortdesc">这个例子展示了如何使用HERE HD Live Map (HERE HDLM) 服务中的交通标志数据来校正自动驾驶车辆收集的GPS测量数据。</p>
+<div class="procedure"><h3 class="title" id="PositionCorrectionUsingTrafficSignDataFromHDLMExample-1">概述</h3>
+<p>HERE HDLM数据包含有关车辆环境的高度详细和准确的信息，例如道路和车道拓扑，非常适合开发自动驾驶应用程序。关于可以从HERE HDLM图层中访问的数据的概述，请参阅 <a href="here-hd-live-map-layers.html" data-docid="driving_ug#mw_4b697ed4-ad52-4319-ace2-03999280b820" class="a">HERE HD Live Map Layers</a>。本例重点介绍HD Localization Model图层，该图层包含有关交通标志的精确且密集的信息。通过将此信息与车载传感器的实时交通标志检测结果结合起来，可以提高定位的准确性。本例演示了一种简化的解决方案，您可以检索道路标志位置数据，然后使用它来校正GPS读数。更完整的解决方案将使用此类数据作为地标在基于地标的同时定位与地图构建（SLAM）流水线中使用。</p>
+<p>在这个例子中，您将学习以下内容：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>使用GPS序列从HERE HDLM数据中读取和处理交通标志信息。</p></li>
+<li><p>将车载激光雷达和摄像头传感器检测到的交通标志与存储在HERE HDLM数据中的标志进行匹配</p></li>
+<li><p>通过比较HERE HDLM中已知标志位置与GPS返回位置来计算位置误差，并校正定位结果。</p></li>
+</ol>
+</div>
+<h3 class="title" id="PositionCorrectionUsingTrafficSignDataFromHDLMExample-2">加载传感器数据</h3>
+<p>这个例子中使用的车辆传感器数据已经使用ROS记录到了一个rosbag中。为了展示如何提取、同步和后处理数据，例子中只包含了rosbag的一小部分内容。为了简化定位校正过程，例子的其余部分使用存储在MAT文件中的后处理数据。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Download sensor data</span>
+baseDownloadURL = <span style="color:#A020F0">'https://ssd.mathworks.com/supportfiles/vision/data/localizationAutonomousCarDataset.zip'</span>; 
+dataFolder = fullfile(tempdir,<span style="color:#A020F0">'localizationAutonomousCarDataset'</span>,filesep); 
+options = weboptions(<span style="color:#A020F0">'Timeout'</span>,Inf);
+zipFileName = [dataFolder,<span style="color:#A020F0">'localizationAutonomousCarDataset.zip'</span>];
+folderExists = exist(dataFolder,<span style="color:#A020F0">'dir'</span>);
+
+<span style="color:#228B22">% Create a folder in a temporary directory to save the downloaded file</span>
+<span style="color:#0000FF">if</span> ~folderExists  
+    mkdir(dataFolder)
+    disp(<span style="color:#A020F0">'Downloading localizationAutonomousCarDataset.zip (1.01 GB). This download can take a few minutes.'</span>) 
+    websave(zipFileName, baseDownloadURL, options); 
+    
+    <span style="color:#228B22">% Extract contents of the downloaded file</span>
+    disp(<span style="color:#A020F0">'Extracting localizationAutonomousCarDataset.zip (1.01 GB) ...'</span>) 
+    unzip(zipFileName, dataFolder)
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Extract data from a rosbag (requires ROS Toolbox)</span>
+readRosbagData = false;
+hasROSToolbox = license(<span style="color:#A020F0">'test'</span>,<span style="color:#A020F0">'ros_toolbox'</span>);
+<span style="color:#0000FF">if</span> readRosbagData &amp;&amp; hasROSToolbox   
+    filepath = [dataFolder,<span style="color:#A020F0">'\rosbag\demoRosbag.bag'</span>];
+    <span style="color:#228B22">% helperReadRosbag uses a small rosbag sample to show how a larger </span>
+    <span style="color:#228B22">% rosbag can be processed.  An entire data set is loaded below from MAT files.</span>
+    [ptCloudsRosbag, imgsRosbag, gpsRosbag] = helperReadRosbag(filepath);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Load synchronized sensor data directly from MAT files. This data was </span>
+<span style="color:#228B22">% extracted from a much larger rosbag collected using an autonomous car.</span>
+imgs = load([dataFolder,<span style="color:#A020F0">'\sensor\images.mat'</span>]).imgs;    <span style="color:#228B22">% Images</span>
+ptClouds = load([dataFolder,<span style="color:#A020F0">'\sensor\ptClouds.mat'</span>]).pcds;  <span style="color:#228B22">% Point clouds</span>
+gps = load([dataFolder,<span style="color:#A020F0">'\sensor\gps.mat'</span>]).gps;        <span style="color:#228B22">% GPS signals</span></pre>
+</div>
+</div>
+</div>
+<p>在完整的流程中，首先在摄像头图像中检测交通标志，然后使用激光雷达-摄像头标定结果将它们投影到激光雷达点云上。这个投影可以给出交通标志的三维位置，可以用来根据HERE HD地图数据中检测到的交通标志计算误差指标。为了简化说明目的，这个例子中的交通标志数据已经使用 <a href="../ref/groundtruthlabeler-app.html" data-docid="driving_ref#bvie3n7-1" class="a">Ground Truth Labeler</a> 应用程序进行了手动注释。加载图像和点云中交通标志的边界框。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>imgBBoxes = load([dataFolder,<span style="color:#A020F0">'\utility\imgBBoxes.mat'</span>]).imgBBoxes;
+pcBBoxes = load([dataFolder,<span style="color:#A020F0">'\utility\pcBBoxes.mat'</span>]).pcBBoxes;</pre>
+</div>
+</div>
+</div>
+<p>通过使用相机标定来矫正图像畸变。相机标定数据是使用 <a href="../../vision/ref/cameracalibrator-app.html" data-docid="vision_ref#burd_hd-1" class="a">Camera Calibrator</a> 应用程序获得的。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>camCalib = load([dataFolder,<span style="color:#A020F0">'\utility\calibration.mat'</span>]).calib;
+intrinsics = camCalib.intrinsics;</pre>
+</div>
+</div>
+</div>
+<p>显示其中一个帧以检查传感器数据。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Pick a frame</span>
+frameIndex = 110; 
+
+<span style="color:#228B22">% Display the camera image and 2-D bounding box of the traffic sign </span>
+helperDisplayCameraFrame(imgs,imgBBoxes,frameIndex,intrinsics);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e44225" class="mediaobject"><p><img src="../../examples/driving/win64/PositionCorrectionUsingTrafficSignDataFromHDLMExample_01.png" width="800"/></p>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Display the point cloud and 3-D bounding box of the traffic sign </span>
+helperDisplayPointCloud(ptClouds, pcBBoxes, frameIndex);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e44232" class="mediaobject"><p><img src="../../examples/driving/win64/PositionCorrectionUsingTrafficSignDataFromHDLMExample_02.png" width="560"/></p>
+</div>
+</div>
+<p>HERE HDLM数据包含地图瓦片内的链接。加载完整路线的GPS坐标。这条路线覆盖了一条跨越三个HDLM瓦片的链接。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>gpsRoute = load([dataFolder,<span style="color:#A020F0">'\utility\gpsRoute.mat'</span>]).gps_route;</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="PositionCorrectionUsingTrafficSignDataFromHDLMExample-3">读取地图数据</h3>
+<p>要从GPS路线所在的地图瓦片中读取数据，请使用 <a href="../ref/herehdlmreader.html" data-docid="driving_ref#mw_1b07178b-8143-4b99-81ce-ee194738f9e4" class="a"><code class="olink">hereHDLMReader</code></a> 对象。使用HERE HD Live Map服务需要有效的HERE HDLM凭证。您需要与HERE达成单独的协议，以获得访问HDLM服务所需的凭证（access_key_id 和access_key_secret）。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create and configure the reader</span>
+config = hereHDLMConfiguration(<span style="color:#A020F0">'hrn:here:data::olp-here-had:here-hdlm-protobuf-na-2'</span>,2291);
+reader = hereHDLMReader(gpsRoute(:,1),gpsRoute(:,2),<span style="color:#A020F0">'Configuration'</span>,config);
+
+<span style="color:#228B22">% Read data</span>
+topologyLayer = read(reader,<span style="color:#A020F0">'TopologyGeometry'</span>);
+signLayer= read(reader,<span style="color:#A020F0">'LocalizationSign'</span>);</pre>
+</div>
+</div>
+</div>
+<p>预处理数据以提高查询所需数据的搜索时间。示例的末尾定义了一个名为<code class="literal">helperProcessHDLMData</code>的辅助函数，它接受GPS路线并返回以下数据：</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">linkData</code> — 包含跨越GPS路线的瓦片中存在的所有链接。链接被分割成一对一对的 <code class="literal">[lat, lon]</code> 坐标。</p></li>
+<li><p><code class="literal">signData</code> — 包含跨越GPS路线的瓦片中可用标志的信息</p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[linkData,signData] = helperProcessHDLMData(config,topologyLayer,signLayer);</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="PositionCorrectionUsingTrafficSignDataFromHDLMExample-4">定位、交通标志匹配和误差校正</h3>
+<p>为了对自动驾驶车辆进行定位，使用GPS测量值和构成每条道路的链接在 <code class="literal">TopologyGeometry</code> 图层中：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>对于每个GPS位置，使用 <code class="literal">helperFindClosestLink</code><strong class="emphasis bold"> </strong>函数找到瓦片中最近的链接。 </p></li>
+<li><p>基于 <code class="literal">LocalizationSign</code> 图层的数据，找到离车辆位置最近的交通标志。然后，将该标志与激光雷达和摄像机检测到的交通标志进行匹配。 </p></li>
+<li><p>一旦交通标志不再被检测到，计算激光雷达和摄像机检测到的交通标志与从HERE HDLM数据中选择的交通标志之间的位置差异。</p></li>
+<li><p>将这些校正应用于先前的GPS测量值。</p></li>
+</ol>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Initialize variables</span>
+hdlmDetectedSigns = zeros(0,2);
+lidarDetectedSigns = zeros(0,2);
+relevantGPS = zeros(0,2); 
+finalGPS = zeros(0,4);
+finalSigns = zeros(0,4);
+numDetections = 0;
+
+<span style="color:#0000FF">for</span> i = 1:numel(gps)
+    
+    gpsMeasurement = gps{i};
+    pcBBox = pcBBoxes{i};
+    
+    <span style="color:#228B22">% Find the closest link</span>
+    closestLinkID = helperFindClosestLink(linkData, gpsMeasurement);
+    
+    isSignDetected = ~isempty(pcBBox);
+    <span style="color:#0000FF">if</span> isSignDetected
+        <span style="color:#228B22">% If a traffic sign is detected by lidar and camera, find the ID of</span>
+        <span style="color:#228B22">% the traffic sign that is closest to the current GPS position.</span>
+        distToSigns = helperDistance(gpsMeasurement(1),gpsMeasurement(2), <span style="color:#0000FF">...</span>
+            signData(:,2),signData(:,3));
+        [~,minIndex] = min(distToSigns);
+        closestSignID = signData(minIndex,1);
+        
+        <span style="color:#228B22">% Make sure that the closest traffic sign is on the closest link</span>
+        <span style="color:#0000FF">for</span> m = 1:size(signLayer,1)
+            roadToSignsRefs = signLayer(m,1).RoadToSignsReferences;
+            
+            <span style="color:#0000FF">if</span> ismember(closestLinkID,[roadToSignsRefs.LinkRef])
+                signRefs = vertcat(roadToSignsRefs.SignRefs);
+                <span style="color:#0000FF">if</span> ismember(closestSignID,[signRefs.SignId])
+                    <span style="color:#228B22">% Transform the coordinates from the lidar frame to the GPS frame</span>
+                    [lat,lon] = helperLidar2latlon(pcBBox,gps,i);
+                    
+                    <span style="color:#228B22">% Store relevant results</span>
+                    hdlmDetectedSigns = [hdlmDetectedSigns; signData(minIndex,2:3)]; <span style="color:#228B22">%#ok&lt;*AGROW&gt;</span>
+                    lidarDetectedSigns = [lidarDetectedSigns; lat, lon];
+                    relevantGPS = [relevantGPS; gpsMeasurement(1:2)];
+                    numDetections = numDetections+1;
+                    <span style="color:#0000FF">break</span>
+                <span style="color:#0000FF">end</span>
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+        
+    <span style="color:#0000FF">elseif</span> numDetections &gt; 1
+        <span style="color:#228B22">% Once a traffic sign is not detected anymore, calculate the error between </span>
+        <span style="color:#228B22">% the traffic signs detected by the lidar and camera and the traffic signs </span>
+        <span style="color:#228B22">% selected from the HDLM data.</span>
+        error = hdlmDetectedSigns(end,1:2) - mean(lidarDetectedSigns(:,1:2));
+        
+        <span style="color:#228B22">% Apply the correction to the GPS coordinates reported by the GPS sensor</span>
+        correctedGPS = relevantGPS + error;
+        
+        <span style="color:#228B22">% Store results</span>
+        finalGPS = [finalGPS; relevantGPS, correctedGPS];
+        finalSigns = [finalSigns; mean(lidarDetectedSigns), hdlmDetectedSigns(end,:)];
+        
+        <span style="color:#228B22">% Re-initialize storage variables</span>
+        numDetections = 0;
+        relevantGPS = zeros(0,2);
+        hdlmDetectedSigns = zeros(0,2);
+        lidarDetectedSigns = zeros(0,2);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="PositionCorrectionUsingTrafficSignDataFromHDLMExample-5">在地图上显示结果</h3>
+<p>使用计算得到的纬度和经度测量值，在地图上显示定位流水线的结果。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperDisplayResults(finalSigns,finalGPS,topologyLayer);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e44294" class="mediaobject"><p><img src="../../examples/driving/win64/PositionCorrectionUsingTrafficSignDataFromHDLMExample_03.png" width="560"/></p>
+</div>
+</div>
+<p>校正后的定位轨迹与实际驾驶相比更准确地匹配车道级别的定位。</p>
+<h3 class="title" id="PositionCorrectionUsingTrafficSignDataFromHDLMExample-6">辅助函数</h3>
+<p><strong class="emphasis bold"><code class="literal">helperReadRosbag</code></strong><span class="emphasis"><em> </em></span>从rosbag读取传感器数据，并输出同步的点云、图像和GPS数据。它旨在说明rosbag的处理过程。在此示例中，它仅处理存储在后处理MAT文件中的数据片段。此函数需要ROS Toolbox™。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [ptClouds, images, gps] = helperReadRosbag(filepath)
+
+bag = rosbag(filepath);
+
+<span style="color:#228B22">% Names of ROS topics</span>
+lidarTopic = <span style="color:#A020F0">'/os1_cloud_node/points'</span>;
+imageTopic = <span style="color:#A020F0">'/camera/image_color'</span>;
+gpsTopic = <span style="color:#A020F0">'/raw_fix'</span>;
+
+bagLidar = select(bag,<span style="color:#A020F0">'Topic'</span>,lidarTopic);
+bagImage = select(bag,<span style="color:#A020F0">'Topic'</span>,imageTopic);
+bagGPS = select(bag,<span style="color:#A020F0">'Topic'</span>,gpsTopic);
+
+<span style="color:#228B22">% Read the messages</span>
+msgStructsImage = readMessages(bagImage);
+msgStructsPC = readMessages(bagLidar);
+msgStructsGPS = readMessages(bagGPS);
+
+numLidarFrames = size(bagLidar.MessageList,1);
+
+ptClouds = cell(numLidarFrames, 1);
+images = cell(numLidarFrames, 1);
+gps = cell(numLidarFrames, 1);
+
+<span style="color:#228B22">% Since each sensor runs at a different frequency, use the</span>
+<span style="color:#228B22">% lidar's acquisition rate as the basis for synchronizing lidar, </span>
+<span style="color:#228B22">% video and GPS data. Collect frames from other sensors by</span>
+<span style="color:#228B22">% selecting the closest ones according to their time stamps.</span>
+<span style="color:#0000FF">for</span> i = 1:numLidarFrames
+    timeStamp = bagLidar.MessageList.Time(i);
+    
+    <span style="color:#228B22">% Lidar point cloud</span>
+    msgPC = msgStructsPC{i};
+    ptClouds{i} = pointCloud(readXYZ(msgPC));
+    
+    <span style="color:#228B22">% Camera data</span>
+    [~, minIdx] = min(abs(bagImage.MessageList.Time-timeStamp));
+    images{i} = readImage(msgStructsImage{minIdx});
+    
+    <span style="color:#228B22">% GPS data</span>
+    [~, minIdx] = min(abs(bagGPS.MessageList.Time-timeStamp));
+    gps{i} = [msgStructsGPS{minIdx}.Latitude, <span style="color:#0000FF">...</span>
+        msgStructsGPS{minIdx}.Longitude, <span style="color:#0000FF">...</span>
+        msgStructsGPS{minIdx}.Altitude];
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">helperProcessHDLMData</code></strong><span class="emphasis"><em> </em></span>函数处理用于定位的 <code class="literal">TopologyGeometry</code> 和 <code class="literal">LocalizationSign</code> 图层中可用的数据。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [linkData,signData] = helperProcessHDLMData(config,topologyLayer,signLayer)
+
+<span style="color:#228B22">% Collect all the links in the tiles from the TopologyGeometry layer</span>
+[linkIDs,linkGeometries] = helperCollectLinksData(config,topologyLayer);
+
+<span style="color:#228B22">% Divide the links into segments of two points. This gives more accurate </span>
+<span style="color:#228B22">% results when finding the closest link for a given GPS position</span>
+linkData = helperSegmentLinks(linkIDs,linkGeometries);
+
+<span style="color:#228B22">% Collect all the signs in the tiles from the LocalizationSign layer</span>
+signData = helperCollectSignData(signLayer);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">helperCollectLinksData </code></strong>函数收集在瓦片中出现的所有链接的相关信息。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [linkIDs, linkGeometries] = helperCollectLinksData(config,topologyLayer)
+
+linkIDs=[];
+linkGeometries=[];
+
+intersectLinkRefs = vertcat(topologyLayer.IntersectingLinkRefs);
+tileIDs = unique(vertcat(intersectLinkRefs.LinkHereTileId));
+reader = hereHDLMReader(tileIDs,<span style="color:#A020F0">'Configuration'</span>,config);
+topologies = read(reader,<span style="color:#A020F0">'TopologyGeometry'</span>); 
+
+<span style="color:#0000FF">for</span> j = 1:size(topologyLayer,1)
+    <span style="color:#228B22">% Intersecting links</span>
+    currIntersectLinkRefs = topologyLayer(j, 1).IntersectingLinkRefs;
+    <span style="color:#0000FF">for</span> i = 1:size(currIntersectLinkRefs,1)
+        tileID = currIntersectLinkRefs(i).LinkHereTileId;
+        linkID = currIntersectLinkRefs(i).LinkId;
+        topology = topologies(tileIDs==tileID);
+        
+        linksStartingInTile = topology.LinksStartingInTile;
+        linksTileID = vertcat(linksStartingInTile.LinkId);
+        linkGeometry = linksStartingInTile(linksTileID==linkID).Geometry.Here2dCoordinateDiffs;
+        linkIDs = [linkIDs; linkID];
+        linkGeometries = [linkGeometries; {linkGeometry}];
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#228B22">% Links starting in tile</span>
+    linksStartingInTile = topologyLayer(j,1).LinksStartingInTile;
+    <span style="color:#0000FF">for</span> i = 1:size(linksStartingInTile,1)
+        linkIDs = [linkIDs; linksStartingInTile(i).LinkId];
+        linkGeometry = linksStartingInTile(i).Geometry.Here2dCoordinateDiffs;
+        linkGeometries = [linkGeometries; {linkGeometry}];
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">helperCollectSignData</code></strong><span class="emphasis"><em> </em></span>函数收集交通标志的ID和位置信息。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> signData = helperCollectSignData(signLayer)
+
+signData = [];
+<span style="color:#0000FF">for</span> i = 1:size(signLayer,1)
+    signData = [signData; double(vertcat(signLayer(i).Signs.SignId)), <span style="color:#0000FF">...</span>
+        vertcat(signLayer(i).Signs.Here2dCoordinate)];
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">helperSegmentLinks</code></strong> 函数将长链接分割为较短的段。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> linkData = helperSegmentLinks(linkIDs,linkGeometries)
+
+linkData = zeros(0,5); <span style="color:#228B22">% [LinkID, start_lat, start_lon, end_lat, end_lon]</span>
+<span style="color:#0000FF">for</span> i = 1:numel(linkIDs)
+    points = linkGeometries{i};
+    numSegments = size(points, 1) - 1;
+    linkData = [linkData; [repmat(double(linkIDs(i)),numSegments,1), <span style="color:#0000FF">...</span>
+        points(1:numSegments, 1:2), points(2:numSegments+1, 1:2)]];
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<span id="mw_rtc_PositionCorrectionUsingTrafficSignDataFromHDLMExample_83F291AF" class="anchor_target"></span><p><strong class="emphasis bold"><code class="literal">helperFindClosestLink</code></strong><strong class="emphasis bold"> </strong>函数找到最接近GPS位置的道路链接。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> closestLinkID = helperFindClosestLink(linkData,gps)
+
+<span style="color:#228B22">% Compute distance to link</span>
+distToLinkStart = helperDistance(gps(1),gps(2),linkData(:, 2),linkData(:, 3));
+distToLinkEnd = helperDistance(gps(1),gps(2),linkData(:, 4),linkData(:, 5));
+distToLinks = min(distToLinkStart,distToLinkEnd);
+
+<span style="color:#228B22">% Find closest link</span>
+[~,index] = min(distToLinks);
+closestLinkID = linkData(index, 1);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">helperLidar2latlon</code></strong><span class="emphasis"><em> </em></span>函数将坐标从激光雷达坐标系转换为GPS坐标系。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [lat,lon] = helperLidar2latlon(bbox, gps, i)
+<span style="color:#228B22">% Converts the lidar coordinates of the detected traffic sign to latitude and </span>
+<span style="color:#228B22">% longitude measurements. This is done by first converting the lidar coordinates </span>
+<span style="color:#228B22">% to the vehicle frame, then the East, North, Up (ENU) frame, and finally the GPS frame.</span>
+
+<span style="color:#228B22">% Center of the bounding box in the lidar frame.</span>
+center = bbox(1:3);
+
+<span style="color:#228B22">% Calculate the bearing angle.</span>
+lon1 = gps{1,i-4}(1);
+lon2 = gps{1,i}(1);
+lat1 = gps{1,i-4}(2);
+lat2 = gps{1,i}(2);
+
+dLon = lon2 - lon1;
+y = sin(dLon) * cos(lat2);
+x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
+theta = atan2(y, x);
+
+initialBearing = mod(theta + 2*pi, 2*pi);
+finalBearing   = mod(initialBearing + pi/2, 2*pi);
+
+<span style="color:#228B22">% Transform from the lidar frame to the vehicle frame.</span>
+x = -center(1);
+y = -center(2);
+
+<span style="color:#228B22">% Transform from the vehicle frame to the ENU frame.</span>
+e = sin(finalBearing)*x - cos(finalBearing)*y;
+n = cos(finalBearing)*x + sin(finalBearing)*y;
+
+<span style="color:#228B22">% Transform from the ENU frame to the GPS frame.</span>
+<span style="color:#228B22">% The origin of the ENU local frame is set to the current GPS location.</span>
+origin     = [gps{1,i}(1) gps{1,i}(2) gps{1,i}(3)];
+[lat,lon] = local2latlon(e,n,0,origin);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">helperDistance</code></strong><span class="emphasis"><em> </em></span>函数计算两组GPS点之间的距离。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> d = helperDistance(lat1,lon1,lat2,lon2)
+numSignals = numel(lat2);
+[x,y] = latlon2local(lat2,lon2,zeros(numSignals,1),[lat1 lon1 0]); <span style="color:#228B22">% Assuming zero altitude</span>
+d = sqrt(x.^2 + y.^2);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">helperDisplayResults</code></strong> 函数在地图上显示流水线的GPS结果。这个底图来自HERE Technologies，需要一个有效的许可证，与您的HERE HDLM许可证分开。要使用该地图，您必须输入与您的HERE许可证对应的Access Key ID。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> helperDisplayResults(finalSigns,finalGPS,topologyLayer)
+
+<span style="color:#228B22">% Create dialog box for entering the Access Key ID.</span>
+url = [<span style="color:#A020F0">'https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'newest/normal.day/${z}/${x}/${y}/256/png?apikey=%s'</span>];
+
+prompt = {<span style="color:#A020F0">'HERE Access Key ID:'</span>};
+title = <span style="color:#A020F0">'HERE Tokens'</span>;
+
+dims = [1 40]; <span style="color:#228B22">% Text edit field height and width</span>
+hereTokens = inputdlg(prompt,title,dims);
+
+<span style="color:#0000FF">if</span> ~isempty(hereTokens)
+    
+    <span style="color:#228B22">% Add HERE basemap with custom attribution.</span>
+    url = sprintf(url,hereTokens{1});
+    copyrightSymbol = char(169); 
+    attribution = [copyrightSymbol,<span style="color:#A020F0">' '</span>,datestr(now,<span style="color:#A020F0">'yyyy'</span>),<span style="color:#A020F0">' HERE'</span>];
+    addCustomBasemap(<span style="color:#A020F0">'herestreets'</span>,url,<span style="color:#A020F0">'Attribution'</span>,attribution);
+    
+    f = figure(<span style="color:#A020F0">'Name'</span>,<span style="color:#A020F0">'Corrected GPS measurements'</span>);
+    gx = geoaxes(<span style="color:#A020F0">"Parent"</span>,f);
+    plot(topologyLayer,<span style="color:#A020F0">'Axes'</span>,gx);
+    hold(gx,<span style="color:#A020F0">'on'</span>);
+    legend(gx,<span style="color:#A020F0">'Boundaries'</span>,<span style="color:#A020F0">'Nodes'</span>,<span style="color:#A020F0">'Links'</span>,<span style="color:#A020F0">'Location'</span>,<span style="color:#A020F0">'northwest'</span>);
+    
+    nlat = [finalSigns(1,1) finalSigns(end,1)];
+    nlon = [finalSigns(1,2) finalSigns(end,2)];
+    nzoom = 16;
+    
+    geolimits(gx,nlat,nlon);
+    gx.ZoomLevel = nzoom;
+    
+    geobasemap(gx,<span style="color:#A020F0">'herestreets'</span>);
+    geoplot(gx,finalSigns(:,1),finalSigns(:,2),<span style="color:#A020F0">'o'</span>,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Lidar traffic signs'</span>);
+    geoplot(gx,finalSigns(:,3),finalSigns(:,4),<span style="color:#A020F0">'*'</span>,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'HDLM traffic signs'</span>);
+    geoplot(gx,finalGPS(:,1),finalGPS(:,2),<span style="color:#A020F0">'r-+'</span>,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'GPS before correction'</span>);
+    geoplot(gx,finalGPS(:,3),finalGPS(:,4),<span style="color:#A020F0">'g-+'</span>,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'GPS after correction'</span>);
+<span style="color:#0000FF">else</span>
+    error(<span style="color:#A020F0">'You must enter valid credentials to access maps from HERE Technologies'</span>);
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">helperDisplayCameraFrame</code></strong> 函数显示一张带有二维交通标志边界框的摄像头图像。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> helperDisplayCameraFrame(imgs,imgBBoxes,frameIndex,intrinsics)
+
+img = undistortImage(imgs{frameIndex},intrinsics);
+
+f  = figure(<span style="color:#A020F0">'Name'</span>,<span style="color:#A020F0">'Camera frame'</span>);
+ax = gca(f);
+
+<span style="color:#228B22">% Display camera frame</span>
+imshow(img,<span style="color:#A020F0">'Parent'</span>,ax);
+hold(ax,<span style="color:#A020F0">'on'</span>)
+
+showShape(<span style="color:#A020F0">'rectangle'</span>,imgBBoxes{frameIndex},<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'blue'</span>,<span style="color:#A020F0">'LineWidth'</span>,2,<span style="color:#A020F0">'Parent'</span>,ax);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">helperDisplayPointCloud</code></strong> 函数显示一个带有三维交通标志边界框的激光雷达点云。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> helperDisplayPointCloud(ptClouds,pcBBoxes,frameIndex)
+
+f = figure(<span style="color:#A020F0">'Name'</span>,<span style="color:#A020F0">'Point cloud'</span>);
+ax = gca(f);
+
+pcshow(ptClouds{frameIndex},<span style="color:#A020F0">'Parent'</span>,ax);
+hold(ax,<span style="color:#A020F0">'on'</span>)
+xlabel(ax,<span style="color:#A020F0">'X'</span>)
+ylabel(ax,<span style="color:#A020F0">'Y'</span>)
+zlabel(ax,<span style="color:#A020F0">'Z'</span>)
+
+xlim([-40 40])
+ylim([-20 40])
+zlim([-5 10])
+view([90 45])
+
+showShape(<span style="color:#A020F0">'cuboid'</span>, pcBBoxes{frameIndex},<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'red'</span>,<span style="color:#A020F0">'LineWidth'</span>,2,<span style="color:#A020F0">'Parent'</span>,ax);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+</div>
+      <h2 id="d124e44384">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/herehdlmreader.html"><span itemprop="name"><code class="object">hereHDLMReader</code></span></a></span></p>
+      <h2 id="d124e44390">Related Topics</h2>
+<ul><li><a href="use-here-hd-live-map-data-to-verify-lane-configurations.html" class="a">Use HERE HD Live Map Data to Verify Lane Configurations</a></li>
+<li><a href="read-and-visualize-here-hd-live-map-data.html" class="a">Read and Visualize HERE HD Live Map Data</a></li>
+</ul>
+      
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Read and Visualize HERE HD Live Map Data</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../file-io.html",
+          "name": "File I/O"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../localization-and-mapping.html",
+          "name": "Localization and Mapping"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../geographic-and-hd-maps.html",
+          "name": "Geographic and HD Maps"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "file-io",
+        "geographic-and-hd-maps"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Read and visualize highly accurate map data for use with automated driving applications."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../file-io.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">File I/O</span></a></li>
+</ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li><a href="../localization-and-mapping.html?s_tid=CRUX_lftnav">Localization and Mapping</a></li>
+<li><a href="../geographic-and-hd-maps.html?s_tid=CRUX_lftnav">Geographic and HD Maps</a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Read and Visualize HERE HD Live Map Data</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_daf5b92c-9462-4586-9050-254883b3aebb" class="intrnllnk">Enter Credentials</a></li>
+<li><a href="#mw_6bd1bd44-1d5e-431f-a7a0-35baab3abc0e" class="intrnllnk">Configure Reader to Search Specific Catalog</a></li>
+<li><a href="#mw_3a27049b-efeb-45d7-93e3-facbf24027f6" class="intrnllnk">Create Reader for Specific Map Tiles</a></li>
+<li><a href="#mw_91625e7b-a3a8-40c4-97c6-4a3afefd0c19" class="intrnllnk">Read Map Layer Data</a></li>
+<li><a href="#mw_33be3d53-c106-408f-8dfc-539c159f368e" class="intrnllnk">Visualize Map Layer Data</a></li>
+<li><a href="#d124e5302" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e5320" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=file-io&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=file-io&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=file-io&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=file-io&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=file-io&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=file-io&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=file-io&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=file-io&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=file-io&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=file-io&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_c163ae0a-d4d6-40a3-97f1-3dd424bb4b21">读取和可视化HERE HD Live地图数据</h2>
+<p>HERE HD Live Map <sup class="footnote"><a id="d124e5139" class="intrnllnk" href="#ftn.d124e5139">1</a></sup> (HERE HDLM)是由HERE Technologies开发的基于云的网络服务，可让您访问高度精确、持续更新的地图数据。这些数据由瓦片地图图层组成，包含道路和车道的拓扑和几何信息、道路级属性和车道级属性，以及沿途的障碍物、标志和杆子等信息。这些数据适用于各种高级驾驶辅助系统（ADAS）应用，包括定位、场景生成、导航和路径规划。</p>
+<p>使用Automated Driving Toolbox™的函数和对象，您可以配置和创建HERE HDLM读取器，从HERE HDLM网络服务中读取地图数据，然后可视化某些图层的数据。</p>
+<section itemprop="content"><h3 class="title" id="mw_daf5b92c-9462-4586-9050-254883b3aebb">输入凭据</h3>
+<p>在使用HERE HDLM网络服务之前，您必须输入从与HERE Technologies的协议中获得的凭据。要设置您的凭据，请使用 <a href="../ref/herehdlmcredentials.html"><code class="function">hereHDLMCredentials</code></a> 函数。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hereHDLMCredentials <span style="color:#A020F0">setup</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e5161" class="mediaobject"><p><img src="here_credentialsdialogbox.png" alt="The HERE HD Live Map Credentials dialog box" height="332" width="377"/></p>
+</div>
+</div>
+<p>请输入有效的 <strong class="guilabel">Access Key ID</strong> 和 <strong class="guilabel">Access Key Secret</strong>，并点击 <strong class="guibutton bold">OK</strong>。这些凭据将在您的计算机上的MATLAB®会话的其余部分中保存。要在您的计算机上保存凭据以供将来的MATLAB会话使用，在对话框中选择 <strong class="guilabel">Save my credentials between MATLAB sessions</strong>。这些凭据将保留保存，直到您删除它们。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_6bd1bd44-1d5e-431f-a7a0-35baab3abc0e">配置读取器以搜索特定目录</h3>
+<p>在HERE HDLM网络服务中，地图数据存储在一组称为目录的数据库中。每个目录大致对应于不同的地理区域，如北美或西欧。通过创建一个 <a href="../ref/herehdlmconfiguration.html"><code class="object">hereHDLMConfiguration</code></a> 对象，您可以配置HERE HDLM读取器仅搜索特定目录的地图数据。您还可以选择指定要搜索的目录版本。这些配置可以加快读取器的性能，因为读取器不会搜索不必要的目录以获取地图数据。</p>
+<p>例如，创建一个配置，用于大致对应于北美地区的目录。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>config = hereHDLMConfiguration(<span style="color:#A020F0">'hrn:here:data::olp-here-had:here-hdlm-protobuf-na-2'</span>);</pre>
+</div>
+</div>
+</div>
+<p>使用此配置创建的读取器仅从指定的目录中搜索地图数据。</p>
+<div class="informalfigure"><div id="d124e5198" class="mediaobject"><p><img src="here_catalogs_north_america.png" alt="A map of the world with only North America highlighted. A HERE HD Live Map catalog is overlaid on top of the North America region." height="312" width="528"/></p>
+</div>
+</div>
+<p>配置HERE HDLM读取器是可选的。如果您不指定配置，读取器将默认搜索所有目录中的地图瓦片。读取器将返回在这些瓦片中找到的最新版本的目录中的地图数据。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_3a27049b-efeb-45d7-93e3-facbf24027f6">创建特定地图瓦片的读取器</h3>
+<p><code class="object"><a href="../ref/herehdlmreader.html">hereHDLMReader</a></code>对象从一组地图瓦片中读取HERE HDLM数据。默认情况下，这些地图瓦片的缩放级别设置为14，对应于大约5-10平方公里的矩形区域。</p>
+<div class="informalfigure"><div id="d124e5211" class="mediaobject"><p><img src="here_empty_tiles.png" alt="Two side-by-side map tiles" height="351" width="425"/></p>
+</div>
+</div>
+<p>创建 <span style="font-family: monospace;">hereHDLMReader </span>对象时，您可以选择从中读取数据的地图瓦片。您可以直接指定地图瓦片的ID。或者，您可以指定驾驶路线的坐标，并从该路线的地图瓦片中读取数据。</p>
+<p>加载北美驾驶路线的纬度-经度坐标。为了参考，显示该路线在地理坐标轴上的位置。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>route = load(<span style="color:#A020F0">'geoSequenceNatickMA.mat'</span>);
+lat = route.latitude;
+lon = route.longitude;
+
+geoplot(lat,lon,<span style="color:#A020F0">'bo-'</span>)
+geobasemap(<span style="color:#A020F0">'streets'</span>)
+title(<span style="color:#A020F0">'Driving Route'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e5223" class="mediaobject"><p><img src="here_route_on_geoplot.png" alt="A driving route on a map" height="410" width="516"/></p>
+</div>
+</div>
+<p>使用指定的驾驶路线和配置创建一个 <code class="object">hereHDLMReader</code> 对象。
+            </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>reader = hereHDLMReader(lat,lon,<span style="color:#A020F0">'Configuration'</span>,config);</pre>
+</div>
+</div>
+</div>
+该读取器使您能够读取此驾驶路线所在的瓦片的地图数据。地图数据存储在一组包含有关地图各个方面的详细信息的图层中。该读取器支持从道路中心线模型、HD车道模型和HD定位模型的地图图层中读取数据。<p></p>
+<div id="d124e5234" class="mediaobject"><p><img src="here_catalog_tile_layers_workflow6a9dfcb794a1390bfda3ae0722c78573.png" alt="The North America catalog points to two tiles containing a driving route. The available layers for these tiles are shown expanding from these tiles." height="580" width="651"/></p>
+</div>
+<p>有关这些模型中图层的更多详细信息，请参阅 <a href="here-hd-live-map-layers.html" class="a">HERE HD Live Map Layers</a>。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_91625e7b-a3a8-40c4-97c6-4a3afefd0c19">读取地图图层数据</h3>
+<p><a href="../ref/herehdlmreader.read.html"><code class="function">read</code></a> 函数读取所选地图瓦片的数据。地图数据以一系列图层对象的形式返回。从包含道路拓扑几何的图层中读取数据。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>topology = read(reader,<span style="color:#A020F0">'TopologyGeometry'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>topology = 
+
+  2×1 TopologyGeometry array with properties:
+
+   Data:
+    HereTileId
+    IntersectingLinkRefs
+    LinksStartingInTile
+    NodesInTile
+    TileCenterHere2dCoordinate
+
+   Metadata:
+    Catalog
+    CatalogVersion</pre>
+</div>
+</div>
+</div>
+<p>每个地图图层对象对应于使用 <code class="object">hereHDLMReader</code> 对象选择的地图瓦片。这些地图瓦片的ID存储在读取器的 <code class="property">TileIds</code> 属性中。检查第一个地图瓦片的地图图层对象的属性。您的目录版本和地图数据可能与此处显示的不同。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>topology(1)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  TopologyGeometry with properties:
+
+   Data:
+                    HereTileId: 321884279
+          IntersectingLinkRefs: [42×1 struct]
+           LinksStartingInTile: [905×1 struct]
+                   NodesInTile: [635×1 struct]
+    TileCenterHere2dCoordinate: [42.3083 -71.3782]
+
+   Metadata:
+                       Catalog: 'hrn:here:data::olp-here-had:here-hdlm-protobuf-na-2'
+                CatalogVersion: 3321</pre>
+</div>
+</div>
+</div>
+<p><code class="literal">TopologyGeometry</code> 图层对象的属性对应于该图层的有效HERE HDLM字段。在这些图层对象中，图层字段的名称已修改以适应MATLAB对象属性的命名约定。有关图层对象的更多详细信息，请参阅 <code class="function">read</code> 函数参考页面上的 <a href="../ref/herehdlmreader.read.html#mw_f13c3200-f4c8-49fd-b655-5e3ff68424ba"><code class="argument">layerData</code></a> 输出参数描述。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_33be3d53-c106-408f-8dfc-539c159f368e">可视化地图图层数据</h3>
+<p>要可视化地图图层的数据，请使用 <a href="../ref/driving.heremaps.lanetopology.plot.html"><code class="function">plot</code></a> 函数。绘制返回的地图图层的拓扑几何。绘图显示了地图瓦片内的边界、节点（交叉口和死胡同）和链接（街道）。如果链接超出了指定地图瓦片的边界，图层数据将包括该链接。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(topology)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e5285" class="mediaobject"><p><img src="here_topology_plot_no_route.png" alt="A road topology plot displaying the nodes and links on the map tiles" height="452" width="551"/></p>
+</div>
+</div>
+<p>地图图层绘图返回的是地理坐标轴上的绘图。要自定义地图显示，可以使用地理坐标轴的属性。有关更多详细信息，请参阅<a href="../../matlab/ref/matlab.graphics.axis.geographicaxes-properties.html" class="a">GeographicAxes Properties</a>。在绘图上叠加驾驶路线。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hold <span style="color:#A020F0">on</span>
+geoplot(lat,lon,<span style="color:#A020F0">'bo-'</span>,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Route'</span>)
+hold <span style="color:#A020F0">off</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e5296" class="mediaobject"><p><img src="here_topology_plot_with_route.png" alt="The road topology plot with the route overlaid on top of it" height="479" width="551"/></p>
+</div>
+</div>
+</section>
+        <h2 id="d124e5302">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/herehdlmreader.html"><span itemprop="name"><code class="object">hereHDLMReader</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/herehdlmconfiguration.html"><span itemprop="name"><code class="object">hereHDLMConfiguration</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/herehdlmcredentials.html"><span itemprop="name"><code class="function">hereHDLMCredentials</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/herehdlmreader.read.html"><span itemprop="name"><code class="function">read</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/driving.heremaps.lanetopology.plot.html"><span itemprop="name"><code class="function">plot</code></span></a></span></p>
+        <h2 id="d124e5320">Related Topics</h2>
+<ul><li><a href="here-hd-live-map-layers.html" class="a">HERE HD Live Map Layers</a></li>
+<li><a href="use-here-hd-live-map-data-to-verify-lane-configurations.html" class="a">Use HERE HD Live Map Data to Verify Lane Configurations</a></li>
+<li><a href="localization-correction-using-traffic-sign-data-from-here-hd-maps.html" class="a">Localization Correction Using Traffic Sign Data from HERE HD Maps</a></li>
+<li><a href="import-here-hd-live-map-roads-into-driving-scenario.html" class="a">Import HERE HD Live Map Roads into Driving Scenario</a></li>
+</ul>
+    </section>
+<hr/>
+<p><sup><a id="ftn.d124e5139" class="intrnllnk" href="#d124e5139">1</a></sup> You need to enter into a separate agreement with <a href="https://www.here.com" target="_blank">HERE</a> in order to gain access to the HDLM services and to get the required
+        credentials (access_key_id and access_key_secret) for using the HERE Service.</p>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

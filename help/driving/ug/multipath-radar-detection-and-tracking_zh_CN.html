@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Highway Vehicle Tracking with Multipath Radar Reflections</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../detection-and-tracking.html",
+          "name": "Detection and Tracking"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../tracking-and-sensor-fusion.html",
+          "name": "Tracking and Sensor Fusion"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "tracking-and-sensor-fusion"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Highway Vehicle Tracking with Multipath Radar Reflections",
+          "description": "Assess and mitigate the impact of multipath radar reflections when tracking highway vehicles using an extended object tracker.",
+          "thumbnailURL": "../../examples/driving_radar_fusion/win64/MultipathRadarDetectionsTrackingExample_03.gif",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving_radar_fusion.MultipathRadarDetectionsTrackingExample",
+          "name": "MultipathRadarDetectionsTrackingExample",
+          "url": "multipath-radar-detection-and-tracking.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving_radar_fusion/MultipathRadarDetectionsTrackingExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "MultipathRadarDetectionsTrackingExample.mlx",
+        "helperClassifyGhostsUsingReflectors.m",
+        "helperClassifyRadarDetections.m",
+        "helperClassifyStaticAndDynamic.m",
+        "helperCreateMultipathDrivingScenario.m",
+        "helperMultiPathTrackingDisplay.m",
+        "helperAssembleData.m",
+        "helperInitGGIWFilter.m",
+        "helperRecordData.m",
+        "MultiPathRadarScenarioRecording.mat",
+        "helperClassifyGhostsUsingTracks.m",
+        "helperFindStaticReflectors.m",
+        "helperMultipathExamplePartitionFcn.m",
+        "helperConfusionMatrix.m",
+        "helperTrueClassificationInfo.m",
+        "helperGOSPADistance.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Assess and mitigate the impact of multipath radar reflections when tracking highway vehicles using an extended object tracker."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving_radar_fusion/win64/MultipathRadarDetectionsTrackingExample_03.gif" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../detection-and-tracking.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Detection and Tracking</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../tracking-and-sensor-fusion.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Tracking and Sensor Fusion</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Highway Vehicle Tracking with Multipath Radar Reflections</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#MultipathRadarDetectionsTrackingExample-1" class="intrnllnk">Introduction</a></li>
+<li><a href="#MultipathRadarDetectionsTrackingExample-2" class="intrnllnk">Generate Sensor Data</a></li>
+<li><a href="#MultipathRadarDetectionsTrackingExample-3" class="intrnllnk">Radar Processing Chain: Radar Detections to Track List</a></li>
+<li><a href="#MultipathRadarDetectionsTrackingExample-4" class="intrnllnk">Setup GGIW-PHD Extended Object Tracker</a></li>
+<li><a href="#MultipathRadarDetectionsTrackingExample-5" class="intrnllnk">Run Scenario and Track Objects</a></li>
+<li><a href="#MultipathRadarDetectionsTrackingExample-6" class="intrnllnk">Results</a></li>
+<li><a href="#MultipathRadarDetectionsTrackingExample-7" class="intrnllnk">Summary</a></li>
+<li><a href="#MultipathRadarDetectionsTrackingExample-8" class="intrnllnk">References</a></li>
+<li><a href="#d124e35079" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_c52bb34e-3f18-440c-8224-50716152fba0">具有多径雷达反射的公路车辆跟踪</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">此示例使用：</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('TF')">Sensor Fusion and Tracking Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('RA')">Radar Toolbox</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('driving_radar_fusion/MultipathRadarDetectionsTrackingExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving_radar_fusion-MultipathRadarDetectionsTrackingExample"/>
+<meta itemprop="exampletitle" content="Highway Vehicle Tracking with Multipath Radar Reflections"/>
+</div>
+<span id="MultipathRadarDetectionsTrackingExample" class="anchor_target"></span><p class="shortdesc">此示例显示了在存在多径雷达反射的情况下跟踪高速公路上的车辆所面临的挑战。它还展示了一种与扩展对象跟踪器一起使用的重影过滤方法，以同时过滤重影检测并跟踪对象。 </p>
+<div class="procedure"><h3 class="title" id="MultipathRadarDetectionsTrackingExample-1">介绍<span id="mw_rtc_MultipathRadarDetectionsTrackingExample_H_D3781B21" class="anchor_target"></span></h3>
+<span id="mw_rtc_MultipathRadarDetectionsTrackingExample_M_42281738" class="anchor_target"></span><p>汽车雷达传感器对于驾驶过程中遇到的恶劣环境条件（如雾、雪、雨和强烈阳光）具有很强的鲁棒性。汽车雷达传感器之所以具有这种优势，是因为它们使用的波长比可见光传感器（如激光雷达和摄像头）要大得多。使用大波长的一个副作用是，雷达传感器周围的表面会像镜子一样，由于多径传播会产生不希望的检测结果。这些检测结果通常被称为幽灵检测，因为它们似乎来自没有目标存在的区域。这个例子展示了多径反射对使用雷达检测进行目标跟踪策略设计和配置的影响。有关多径现象和模拟幽灵检测的更多详细信息，请参阅<a href="../../radar/ug/simulating-radar-ghosts-due-to-multipath.html" data-docid="radar_ug#example-ex22577625" class="a">Simulate Radar Ghosts Due to Multipath Return</a><span role="cross_prod"> (Radar Toolbox)</span> 的示例。 </p>
+<p>在这个例子中，我们模拟了城市高速公路驾驶场景中雷达传感器的多径检测。高速公路被模拟为道路两侧有隔离栏。场景包括一个自车和四辆其他车辆在高速公路上行驶。自车配备了四个雷达传感器，提供360度的覆盖范围。这张图片展示了雷达传感器的配置以及一个扫描周期内的检测结果。红色区域表示雷达传感器的视野范围，黑点表示检测结果。 </p>
+<div class="informalfigure"><div id="d124e34905" class="mediaobject"><p><img src="../../examples/driving_radar_fusion/win64/MultipathRadarDetectionsTrackingExample_01.png" height="498" width="357"/></p>
+</div>
+</div>
+<p>雷达传感器报告了来自车辆和高速公路两侧隔离栏的检测结果。雷达还报告了一些看起来并不来自场景中任何真实物体的检测结果。这些是由于雷达信号的多径传播而产生的幽灵检测。目标跟踪器通常假设所有的检测结果都来自真实物体或视野范围内均匀分布的随机杂波。然而，与这一假设相反，幽灵检测通常比杂波更持久，并表现得像来自真实目标的检测结果。因此，目标跟踪算法很可能会从这些检测结果中生成虚假的轨迹。在使用跟踪器处理雷达扫描之前，过滤掉这些检测结果非常重要。 </p>
+<h3 class="title" id="MultipathRadarDetectionsTrackingExample-2">生成传感器数据<span id="mw_rtc_MultipathRadarDetectionsTrackingExample_H_02C0E3E5" class="anchor_target"></span></h3>
+<p>这个例子中使用的场景是使用 <code class="literal">drivingScenario</code> 类创建的。你使用 <a href="../../radar/ref/radardatagenerator-system-object.html" data-docid="radar_ref#mw_b0da7921-fb07-44d0-b537-c0d7fab36472" class="a"><code class="olink">radarDataGenerator</code></a><span role="cross_prod"> (Radar Toolbox)</span> System object™来模拟场景中的雷达返回信号，包括直接路径和反射路径。传感器的 <code class="literal">HasGhosts</code> 属性被设置为 <code class="literal">true</code> ，以模拟多径反射。场景和传感器模型的创建被封装在名为 <code class="literal">helperCreateMultipathDrivingScenario </code>的辅助函数中，该函数已经附在了这个例子中。传感器模拟得到的数据集被记录在一个MAT文件中，其中包含了来自雷达的返回信号和相应的传感器配置。要记录不同场景或传感器配置的数据，你可以使用以下命令：</p>
+<div class="code_responsive"><pre id="d124e34925" class="programlisting"> helperRecordData(scenario, egoVehicle, sensors, fName);
+</pre>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create the scenario</span>
+[scenario, egoVehicle, sensors] = helperCreateMultipathDrivingScenario;
+
+<span style="color:#228B22">% Load the recorded data</span>
+load(<span style="color:#A020F0">'MultiPathRadarScenarioRecording.mat'</span>,<span style="color:#A020F0">'detectionLog'</span>,<span style="color:#A020F0">'configurationLog'</span>);</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="MultipathRadarDetectionsTrackingExample-3">雷达处理链：从雷达检测到跟踪列表<span id="mw_rtc_MultipathRadarDetectionsTrackingExample_H_ADB63E55" class="anchor_target"></span></h3>
+<p>在这一部分中，你将设置一个集成的算法，同时对雷达检测进行滤波并跟踪扩展目标。下面的块图展示了这个例子中使用的雷达处理链。</p>
+<div class="informalfigure"><div id="d124e34935" class="mediaobject"><p><img src="../../examples/driving_radar_fusion/win64/MultipathRadarDetectionsTrackingExample_02.png" height="241" width="745"/></p>
+</div>
+</div>
+<p>接下来，您将了解每个步骤及其相应的辅助函数。 </p>
+<p><strong class="emphasis bold">多普勒分析</strong></p>
+<p>雷达传感器报告反射信号的相对径向速度。在这一步骤中，您利用检测到的径向速度来确定目标是静态的还是动态的 [1]。在之前的雷达扫描中，大部分雷达检测结果来自于环绕自车的静态环境。因此，将每个检测结果分类为静态或动态有助于提高对场景的理解。您可以使用辅助函数 <code class="literal">helperClassifyStaticDynamic</code> 来对每个检测结果进行分类，判断其是静态还是动态的。 </p>
+<p><strong class="emphasis bold">静态反射体</strong></p>
+<p>静态环境通常也是雷达传感器报告的幽灵反射体的主要来源之一。在对数据集进行分割并找到静态检测结果后，您需要对其进行处理，以在自车坐标系中找到二维线段。首先，您可以使用DBSCAN算法将静态检测结果聚类到自车周围的不同簇中。然后，您对每个簇拟合一个二维线段。这些拟合的线段定义了信号传播回雷达的可能反射表面。您可以使用辅助函数 <code class="literal">helperFindStaticReflectors</code> 来从静态检测结果中找到这些二维线段。 </p>
+<p><strong class="emphasis bold">遮挡分析</strong></p>
+<p>表面的反射会导致雷达传感器检测到的信号似乎来自于反射体后面。在对雷达的动态检测结果进行分割后，您可以使用简单的遮挡分析来确定雷达检测结果是否被可能的反射体所遮挡。由于信号可以被静态或动态物体反射，因此遮挡分析分为两个步骤。首先，将动态检测结果与代表静态反射体的二维线段进行遮挡检查。您可以使用辅助函数 <code class="literal">helperClassifyGhostsUsingReflectors</code> 来判断检测结果是否被静态反射体所遮挡。其次，算法使用来自扩展跟踪算法的预测轨迹信息来检查是否存在场景中的动态物体对检测结果的遮挡。算法仅使用跟踪器中的已确认轨迹，以防止在存在临时轨迹或错误轨迹时对雷达检测结果进行过滤。您可以使用辅助函数 <code class="literal">helperClassifyGhostsUsingTracks</code> 来判断检测结果是否被动态物体所遮挡。</p>
+<p>然后，将用于处理雷达检测结果并对其进行分类的整个算法封装在一个更大的辅助函数 <code class="literal">helperClassifyRadarDetections </code>中，该函数将检测结果列表分类并进行分割为四个主要类别：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Target detections – 这些检测结果被分类为来自场景中真实的动态目标。 </p></li>
+<li><p>Environment detections – 这些检测结果被分类为来自静态环境。 </p></li>
+<li><p>Ghost (Static) – 这些检测结果被分类为来自动态目标，但经由静态环境反射。 </p></li>
+<li><p>Ghost (Dynamic) – 这些检测结果被分类为来自动态目标，但经由其他动态物体反射。 </p></li>
+</ol>
+</div>
+<h3 class="title" id="MultipathRadarDetectionsTrackingExample-4">设置GGIW-PHD扩展目标跟踪器<span id="mw_rtc_MultipathRadarDetectionsTrackingExample_H_412D93CF" class="anchor_target"></span></h3>
+<p>目标检测结果将使用扩展目标跟踪器进行处理。在这个例子中，您将使用一个伽马高斯逆Wishart概率密度（GGIW-PHD）扩展目标跟踪器。GGIW-PHD跟踪器将目标建模为椭圆形，测量模型假设检测结果在目标的范围内均匀分布。这个模型允许目标接受二次反射的幽灵检测结果，这些检测结果更容易被错误地分类为真实目标。这些二次反射的幽灵检测结果还会报告与目标实际运动不一致的多普勒测量值。当这些幽灵检测结果和来自同一对象的真实目标检测结果被估计为属于同一检测分区时，不正确的多普勒信息有可能导致跟踪估计发散。 </p>
+<p>为了减少这个问题，跟踪器会使用较高的测量噪声方差处理速度-距离测量结果，以考虑目标测量模型的不完美性。跟踪器还使用高分配阈值和低合并阈值的组合。高分配阈值可以减少将幽灵目标检测结果错误分类为目标检测结果而生成新组件的情况。低合并阈值使跟踪器能够丢弃已经由于幽灵检测结果的修正而发散的跟踪组件（假设）。 </p>
+<p>您可以使用 <code class="literal">trackerPHD</code> System object™来设置跟踪器。有关扩展目标跟踪器的更多详细信息，请参考 <a href="extended-object-tracking.html" data-docid="driving_ug#mw_1bfc8524-56dd-4dad-b55b-2d1dc0e14538" class="a">Extended Object Tracking of Highway Vehicles with Radar and Camera</a> 的示例。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Configuration of the sensors from the recording to set up the tracker</span>
+[~, sensorConfigurations] = helperAssembleData(detectionLog{1},configurationLog{1});
+
+<span style="color:#228B22">% Configure the tracker to use the GGIW-PHD filter with constant turn-rate motion model</span>
+<span style="color:#0000FF">for</span> i = 1:numel(sensorConfigurations)
+    sensorConfigurations{i}.FilterInitializationFcn = @helperInitGGIWFilter;    
+    sensorConfigurations{i}.SensorTransformFcn = @ctmeas;
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Create the tracker using trackerPHD with Name-value pairs</span>
+tracker = trackerPHD(SensorConfigurations = sensorConfigurations,<span style="color:#0000FF">...</span>
+     PartitioningFcn = @(x)helperMultipathExamplePartitionFcn(x,2,5),<span style="color:#0000FF">...</span>
+     AssignmentThreshold = 450,<span style="color:#0000FF">...</span>
+     ExtractionThreshold = 0.8,<span style="color:#0000FF">...</span>
+     ConfirmationThreshold = 0.85,<span style="color:#0000FF">...</span>
+     MergingThreshold = 25,<span style="color:#0000FF">...</span>
+     DeletionThreshold = 1e-3,<span style="color:#0000FF">...</span>
+     BirthRate = 1e-4,<span style="color:#0000FF">...</span>
+     HasSensorConfigurationsInput = true<span style="color:#0000FF">...</span><span style="color:#228B22"> </span>
+    );
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="MultipathRadarDetectionsTrackingExample-5">运行场景并跟踪物体<span id="mw_rtc_MultipathRadarDetectionsTrackingExample_H_8791944F" class="anchor_target"></span></h3>
+<p>接下来，您将推进场景，使用传感器记录的测量结果，并使用先前描述的算法对其进行处理。您可以使用广义最优子模式分配（GOSPA）度量来分析跟踪算法的性能。您还可以通过估计雷达检测结果的真实分类和估计分类之间的混淆矩阵来分析分类过滤算法的性能。您可以使用 <code class="literal">helperTrueClassificationInfo</code> 辅助函数获取有关检测结果的真实分类信息。  </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create trackGOSPAMetric object to calculate GOSPA metric</span>
+gospaMetric = trackGOSPAMetric(Distance = <span style="color:#A020F0">'custom'</span>, <span style="color:#0000FF">...</span>
+    DistanceFcn = @helperGOSPADistance, <span style="color:#0000FF">...</span>
+    CutoffDistance = 35);
+
+<span style="color:#228B22">% Create display for visualization of results</span>
+display = helperMultiPathTrackingDisplay;
+
+<span style="color:#228B22">% Predicted track list for ghost filtering</span>
+predictedTracks = objectTrack.empty(0,1);
+
+<span style="color:#228B22">% Confusion matrix</span>
+confMat = zeros(5,5,numel(detectionLog));
+
+<span style="color:#228B22">% GOSPA metric</span>
+gospa = zeros(4,numel(detectionLog));
+
+<span style="color:#228B22">% Ground truth </span>
+groundTruth = scenario.Actors(2:end);
+
+<span style="color:#0000FF">for</span> i = 1:numel(detectionLog)
+    <span style="color:#228B22">% Advance scene for visualization of ground truth</span>
+    advance(scenario);
+    
+    <span style="color:#228B22">% Current time</span>
+    time = scenario.SimulationTime;
+    
+    <span style="color:#228B22">% Detections and sensor configurations</span>
+    [detections, configurations] = helperAssembleData(detectionLog{i},configurationLog{i});
+    
+    <span style="color:#228B22">% Predict confirmed tracks to current time for classifying ghosts</span>
+    <span style="color:#0000FF">if</span> isLocked(tracker)
+        predictedTracks = predictTracksToTime(tracker,<span style="color:#A020F0">'confirmed'</span>,time);
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#228B22">% Classify radar detections as targets, ghosts, or static environment</span>
+    [targets, ghostStatic, ghostDynamic, static, reflectors, classificationInfo] = helperClassifyRadarDetections(detections, egoVehicle, predictedTracks);
+    
+    <span style="color:#228B22">% Pass detections from target and sensor configurations to the tracker</span>
+    confirmedTracks = tracker(targets, configurations, time);
+
+    <span style="color:#228B22">% Visualize the results</span>
+    display(egoVehicle, sensors, targets, confirmedTracks, ghostStatic, ghostDynamic, static, reflectors);
+    
+    <span style="color:#228B22">% Calculate GOSPA metric</span>
+    [gospa(1, i),~,~,gospa(2,i),gospa(3,i),gospa(4,i)] = gospaMetric(confirmedTracks, groundTruth);
+    
+    <span style="color:#228B22">% Get true classification information and generate confusion matrix</span>
+    trueClassificationInfo = helperTrueClassificationInfo(detections);
+    confMat(:,:,i) = helperConfusionMatrix(trueClassificationInfo, classificationInfo);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="MultipathRadarDetectionsTrackingExample-6">结果<span id="mw_rtc_MultipathRadarDetectionsTrackingExample_H_04814931" class="anchor_target"></span></h3>
+<p><strong class="emphasis bold">动画和快照分析</strong></p>
+<p>接下来的动画展示了雷达数据处理链的结果。车辆周围的黑色椭圆表示估计的轨迹。根据算法的预测分类，雷达检测结果以四种不同的颜色进行可视化。可视化中的黑色点代表静态雷达目标检测结果。请注意，这些检测结果被黑色线条重叠，表示使用DBSCAN算法找到的静态反射体。栗色标记代表扩展目标跟踪器处理的检测结果，而绿色和蓝色标记分别代表被分类为静态和动态反射的雷达检测结果。请注意，在整个场景中，跟踪器能够对四辆车进行跟踪。 </p>
+<div class="informalfigure"><div id="d124e35009" class="mediaobject"><p><img src="../../examples/driving_radar_fusion/win64/MultipathRadarDetectionsTrackingExample_03.gif" alt="MultipathTrackingExample.gif" height="640" width="1200"/></p>
+</div>
+</div>
+<p>接下来，使用模拟期间捕获的不同快照分析算法的性能。下面的快照是在 3 秒处捕获的，显示了自我车辆前方的情况。此时，自我车辆正在接近缓慢移动的卡车，左侧雷达传感器通过左侧屏障观察这些物体的反射。这些检测在屏障中显示为这些对象的镜像检测。请注意，估计为 2-D 反射器的黑线位于这些检测的视线范围内。因此，该算法能够将这些检测正确分类为从静态对象反射的幽灵目标 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>f = showSnaps(display,1:2,1);
+<span style="color:#0000FF">if</span> ~isempty(f)
+    ax = findall(f,<span style="color:#A020F0">'Type'</span>,<span style="color:#A020F0">'Axes'</span>,<span style="color:#A020F0">'Tag'</span>,<span style="color:#A020F0">'birdsEyePlotAxes'</span>);
+    ax.XLim = [-10 30];
+    ax.YLim = [-10 20];
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e35017" class="mediaobject"><p><img src="../../examples/driving_radar_fusion/win64/MultipathRadarDetectionsTrackingExample_04.png" alt="{&quot;String&quot;:&quot;Figure contains an axes object and other objects of type uipanel. The axes object contains 13 objects of type patch, line, text. These objects represent lane, track, (history), Reflectors, Targets, Ghost (S), Ghost (D), Static.&quot;,&quot;Tex&quot;:[],&quot;LaTex&quot;:[]}" width="1000"/></p>
+</div>
+</div>
+<p>接下来，使用在 4.3 秒捕获的快照分析算法的性能。此时，自我车辆甚至更接近卡车，卡车大约在绿色车辆和自我车辆之间。在这些情况下，卡车的左侧充当强反射器并生成鬼影检测。绿色车辆右半部分的检测来自绿色车辆的两次反弹检测，因为信号在卡车反射后传播回传感器。该算法能够将这些检测分类为从动态对象反射生成的重影检测，因为卡车的估计范围位于这些检测的直接视线范围内。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>f = showSnaps(display,1:2,2);
+<span style="color:#0000FF">if</span> ~isempty(f)
+    ax = findall(f,<span style="color:#A020F0">'Type'</span>,<span style="color:#A020F0">'Axes'</span>,<span style="color:#A020F0">'Tag'</span>,<span style="color:#A020F0">'birdsEyePlotAxes'</span>);
+    ax.XLim = [-10 30];
+    ax.YLim = [-10 20];
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e35025" class="mediaobject"><p><img src="../../examples/driving_radar_fusion/win64/MultipathRadarDetectionsTrackingExample_05.png" alt="{&quot;String&quot;:&quot;Figure contains an axes object and other objects of type uipanel. The axes object contains 13 objects of type patch, line, text. These objects represent lane, track, (history), Reflectors, Targets, Ghost (S), Ghost (D), Static.&quot;,&quot;Tex&quot;:[],&quot;LaTex&quot;:[]}" width="1000"/></p>
+</div>
+</div>
+<p>还要注意自我车辆左侧黄色汽车表示的过往车辆。这些检测似乎来自黄色车辆的不可见表面，是障碍物的两次反弹检测，通过过往车辆的前表面反射。这些幽灵检测被错误地归类为目标检测，因为它们似乎来自车辆的估计范围内部。在同一位置，当信号从屏障反射并返回传感器时，超出屏障的检测也是正面的两次反弹检测。由于这些检测超出了轨道的范围，并且轨道位于直接视线范围内，因此它们被归类为来自动态物体反射的鬼影检测。  </p>
+<p><strong class="emphasis bold">性能分析</strong></p>
+<p>使用GOSPA度量及其相关组件对跟踪算法的性能进行定量评估。度量值越低表示跟踪性能越好。在下图中，度量的 <span class="emphasis"><em>Missed-target</em></span> 组件在开始的几个步骤后保持为零，表示跟踪器的建立延迟以及一个被遮挡的目标。该组件的零值表示跟踪器没有错过任何目标。度量的 <span class="emphasis"><em>False-tracks</em></span> 组件在第85个时间步骤左右增加了约1秒。这表示跟踪器确认了一个虚假轨迹，该轨迹是由错误分类为真实目标的幽灵检测结果引起的，持续时间很短。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure;
+plot(gospa',<span style="color:#A020F0">'LineWidth'</span>,2);
+legend(<span style="color:#A020F0">'GOSPA'</span>,<span style="color:#A020F0">'Localization GOSPA'</span>,<span style="color:#A020F0">'Missed-target GOSPA'</span>,<span style="color:#A020F0">'False-tracks GOSPA'</span>);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e35043" class="mediaobject"><p><img src="../../examples/driving_radar_fusion/win64/MultipathRadarDetectionsTrackingExample_06.png" alt="Figure contains an axes object. The axes object contains 4 objects of type line. These objects represent GOSPA, Localization GOSPA, Missed-target GOSPA, False-tracks GOSPA." width="560"/></p>
+</div>
+</div>
+<p>与跟踪算法类似，您还可以使用混淆矩阵[2]对雷达检测分类算法的性能进行定量分析。表中的行表示雷达检测的真实分类信息，列表示预测的分类信息。例如，第一行的第二个元素定义了将目标检测预测为静态物体反射的幽灵的百分比。</p>
+<p>超过90%的目标检测被正确分类。然而，有一小部分目标检测被错误地分类为动态反射的幽灵。此外，约有3%的静态物体反射的幽灵和20%的动态物体反射的幽灵被错误地分类为目标并送入跟踪器进行处理。在这个示例中，当两次反射的检测结果位于车辆的估计范围内时，通常会发生这种情况。此外，该示例中使用的分类算法并不用于检测场景中的误报或杂波。因此，混淆矩阵的第五列为零。由于误报在视场内的空间分布，大部分误报检测要么被分类为来自静态物体的反射，要么被分类为动态物体的反射。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Accumulate confusion matrix over all steps</span>
+confusionMatrix = sum(confMat,3);
+numElements = sum(confusionMatrix,2);
+numElemsTable = array2table(numElements,<span style="color:#A020F0">'VariableNames'</span>,{<span style="color:#A020F0">'Number of Detections'</span>},<span style="color:#A020F0">'RowNames'</span>,{<span style="color:#A020F0">'Targets'</span>,<span style="color:#A020F0">'Ghost (S)'</span>,<span style="color:#A020F0">'Ghost (D)'</span>,<span style="color:#A020F0">'Environment'</span>,<span style="color:#A020F0">'Clutter'</span>});
+disp(<span style="color:#A020F0">'True Information'</span>);disp(numElemsTable);</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>True Information
+                   Number of Detections
+                   ____________________
+
+    Targets                1969        
+    Ghost (S)              3155        
+    Ghost (D)               849        
+    Environment           27083        
+    Clutter                 138        
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Calculate percentages</span>
+percentMatrix = confusionMatrix./numElements*100;
+
+percentMatrixTable = array2table(round(percentMatrix,2),<span style="color:#A020F0">'RowNames'</span>,{<span style="color:#A020F0">'Targets'</span>,<span style="color:#A020F0">'Ghost (S)'</span>,<span style="color:#A020F0">'Ghost (D)'</span>,<span style="color:#A020F0">'Environment'</span>,<span style="color:#A020F0">'Clutter'</span>},<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"VariableNames"</span>,{<span style="color:#A020F0">'Targets'</span>,<span style="color:#A020F0">'Ghost (S)'</span>,<span style="color:#A020F0">'Ghost (D)'</span>, <span style="color:#A020F0">'Environment'</span>,<span style="color:#A020F0">'Clutter'</span>});
+
+disp(<span style="color:#A020F0">'True vs Predicted Confusion Matrix (%)'</span>);disp(percentMatrixTable);</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>True vs Predicted Confusion Matrix (%)
+                   Targets    Ghost (S)    Ghost (D)    Environment    Clutter
+                   _______    _________    _________    ___________    _______
+
+    Targets         90.76        0.56         8.28          0.41          0   
+    Ghost (S)         3.2       83.77        12.68          0.35          0   
+    Ghost (D)       18.26        0.24        81.51             0          0   
+    Environment      1.05        2.71         4.06         92.17          0   
+    Clutter         21.74       62.32        15.22          0.72          0   
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="MultipathRadarDetectionsTrackingExample-7">总结<span id="mw_rtc_MultipathRadarDetectionsTrackingExample_H_BE480909" class="anchor_target"></span></h3>
+<p>I在这个例子中，您模拟了城市高速公路驾驶场景中由多径传播引起的雷达检测。您配置了一个数据处理算法，同时过滤幽灵检测结果并对高速公路上的车辆进行跟踪。您还使用GOSPA度量和混淆矩阵分析了跟踪算法和分类算法的性能。 </p>
+<h3 class="title" id="MultipathRadarDetectionsTrackingExample-8"><strong class="emphasis bold">References</strong></h3>
+<p>[1] Prophet, Robert, et al. "Instantaneous Ghost Detection Identification in Automotive Scenarios." <span class="emphasis"><em>2019 IEEE Radar Conference (RadarConf)</em></span>. IEEE, 2019.</p>
+<p>[2] Kraus, Florian, et al. "Using machine learning to detect ghost images in automotive radar." <span class="emphasis"><em>2020 IEEE 23rd International Conference on Intelligent Transportation Systems (ITSC)</em></span>. IEEE, 2020.</p>
+</div>
+      
+      <h2 id="d124e35079">Related Topics</h2>
+<ul><li><a href="radar-ghost-multipath.html" class="a">Simulate Radar Ghosts Due to Multipath Return</a></li>
+</ul>
+      
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

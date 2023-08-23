@@ -1,0 +1,449 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Radar Signal Simulation and Processing for Automated Driving</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Radar Signal Simulation and Processing for Automated Driving",
+          "description": "Model the hardware, signal processing, and propagation environment of a radar for a driving scenario.",
+          "thumbnailURL": "../../examples/driving_radar/win64/AutomatedDrivingRadarSimulationExample_04.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving_radar.AutomatedDrivingRadarSimulationExample",
+          "name": "AutomatedDrivingRadarSimulationExample",
+          "url": "radar-signal-simulation-and-processing-for-automated-driving.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving_radar/AutomatedDrivingRadarSimulationExample')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "AutomatedDrivingRadarSimulationExample.mlx",
+        "helperAutoDrivingRadarSigProc.m",
+        "FMCWExample_acc.png",
+        "FMCWExample_tworay.png"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Model the hardware, signal processing, and propagation environment of a radar for a driving scenario."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving_radar/win64/AutomatedDrivingRadarSimulationExample_04.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li></ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Radar Signal Simulation and Processing for Automated Driving</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#AutomatedDrivingRadarSimulationExample-1" class="intrnllnk">Introduction</a></li><li><a href="#AutomatedDrivingRadarSimulationExample-2" class="intrnllnk">Calculate Radar Parameters from Long-Range Radar Requirements</a></li><li><a href="#AutomatedDrivingRadarSimulationExample-3" class="intrnllnk">Model Automotive Radar Transceiver</a></li><li><a href="#AutomatedDrivingRadarSimulationExample-4" class="intrnllnk">Define Radar Signal Processing Chain</a></li><li><a href="#AutomatedDrivingRadarSimulationExample-5" class="intrnllnk">Model Free Space Propagation Channel</a></li><li><a href="#AutomatedDrivingRadarSimulationExample-6" class="intrnllnk">Simulate the Driving Scenario</a></li><li><a href="#AutomatedDrivingRadarSimulationExample-7" class="intrnllnk">Model a Multipath Channel</a></li><li><a href="#AutomatedDrivingRadarSimulationExample-8" class="intrnllnk">Summary</a></li><li><a href="#AutomatedDrivingRadarSimulationExample-9" class="intrnllnk">Reference</a></li><li><a href="#d124e39151" class="intrnllnk">See Also</a></li><li><a href="#d124e39179" class="intrnllnk">Related Topics</a></li></ul>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li><li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li></ul></div></nav></div><div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li><li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li></ul></div></div></div><div class="col-xs-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_bb68880e-7cf2-494c-9859-1025b2a7862e">Radar Signal Simulation and Processing for Automated Driving</h1><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">This example uses:</p><ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li><li><a href="matlab:matlab.internal.language.introspective.showAddon('RA')">Radar Toolbox</a></li></ul><a class="btn btn_secondary btn-block" href="matlab:openExample('driving_radar/AutomatedDrivingRadarSimulationExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving_radar-AutomatedDrivingRadarSimulationExample"><meta itemprop="exampletitle" content="Radar Signal Simulation and Processing for Automated Driving"></div><span id="AutomatedDrivingRadarSimulationExample" class="anchor_target"></span><p class="shortdesc">This example shows how to model the hardware, signal processing, and propagation environment of an automotive radar. First you model a highway scenario using Automated Driving Toolbox&#8482;. Then, you develop a model of the radar transmit and receive hardware, signal processing and tracker using Radar Toolbox&#8482;. Finally, you simulate multipath propagation effects on the radar model.</p><div class="procedure"><h3 class="title" id="AutomatedDrivingRadarSimulationExample-1">Introduction</h3><p>You can model vehicle motion by using the <code class="literal">drivingScenario</code> object from Automated Driving Toolbox. The vehicle ground truth can then be used as an input to the radar model to generate synthetic sensor detections. For an example of this workflow, see <a href="../../radar/ug/simulating-radar-ghosts-due-to-multipath.html" data-docid="radar_ug#example-ex22577625" class="a">Simulate Radar Ghosts Due to Multipath Return</a><span role="cross_prod"> (Radar Toolbox)</span>. The automotive radar used in this example uses a statistical model that is parameterized according to high-level radar specifications. The generic radar architecture modeled in this example does not include specific antenna configurations, waveforms, or unique channel propagation characteristics. When designing an automotive radar, or when the specific architecture of a radar is known, use a radar model that includes this additional information.</p><p>Radar Toolbox enables you to evaluate different radar architectures. You can explore different transmit and receive array configurations, waveforms, and signal processing chains. You can also evaluate your designs against different channel models to assess their robustness to different environmental conditions. This modeling helps you to identify the specific design that best fits your application requirements.</p><p>In this example, you learn how to define a radar model from a set of system requirements for a long-range radar. You then simulate a driving scenario to generate detections from your radar model. A tracker is used to process these detections to generate precise estimates of the position and velocity of the vehicles detected by your automotive radar.</p><h3 class="title" id="AutomatedDrivingRadarSimulationExample-2">Calculate Radar Parameters from Long-Range Radar Requirements</h3><p>The radar parameters are defined for the frequency-modulated continuous wave (FMCW) waveform, as described in the example <a href="../../radar/ug/automotive-adaptive-cruise-control-using-fmcw-technology.html" data-docid="radar_ug#example-ex11665805" class="a">Automotive Adaptive Cruise Control Using FMCW Technology</a><span role="cross_prod"> (Radar Toolbox)</span>. The radar operates at a center frequency of 77 GHz. This frequency is commonly used by automotive radars. For long-range operation, the radar must detect vehicles at a maximum range of 250-300 meters in front of the ego vehicle. The radar is required to resolve objects in range that are at least 1 meter apart. Because this is a forward-facing radar application, the radar also needs to handle targets with large closing speeds as high as 230 km/hr.</p><p>The radar is designed to use an FMCW waveform. These waveforms are common in automotive applications because they enable range and Doppler estimation through computationally efficient FFT operations. For illustration purpose, in this example, configure the radar to a maximum range of 100 meters.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Set random number generator for repeatable results</span>
+rng(2017);
+
+<span style="color:#228B22">% Compute hardware parameters from specified long-range requirements</span>
+fc = 77e9;                                  <span style="color:#228B22">% Center frequency (Hz) </span>
+c = physconst(<span style="color:#A020F0">'LightSpeed'</span>);                <span style="color:#228B22">% Speed of light in air (m/s)</span>
+lambda = freq2wavelen(fc,c);                              <span style="color:#228B22">% Wavelength (m)</span>
+
+<span style="color:#228B22">% Set the chirp duration to be 5 times the max range requirement</span>
+rangeMax = 100;                             <span style="color:#228B22">% Maximum range (m)</span>
+tm = 5*range2time(rangeMax,c);              <span style="color:#228B22">% Chirp duration (s)</span>
+
+<span style="color:#228B22">% Determine the waveform bandwidth from the required range resolution</span>
+rangeRes = 1;                               <span style="color:#228B22">% Desired range resolution (m)</span>
+bw = rangeres2bw(rangeRes,c);               <span style="color:#228B22">% Corresponding bandwidth (Hz)</span>
+
+<span style="color:#228B22">% Set the sampling rate to satisfy both the range and velocity requirements</span>
+<span style="color:#228B22">% for the radar</span>
+sweepSlope = bw/tm;                           <span style="color:#228B22">% FMCW sweep slope (Hz/s)</span>
+fbeatMax = range2beat(rangeMax,sweepSlope,c); <span style="color:#228B22">% Maximum beat frequency (Hz)</span>
+
+vMax = 230*1000/3600;                    <span style="color:#228B22">% Maximum Velocity of cars (m/s)</span>
+fdopMax = speed2dop(2*vMax,lambda);      <span style="color:#228B22">% Maximum Doppler shift (Hz)</span>
+
+fifMax = fbeatMax+fdopMax;   <span style="color:#228B22">% Maximum received IF (Hz)</span>
+fs = max(2*fifMax,bw);       <span style="color:#228B22">% Sampling rate (Hz)</span>
+
+<span style="color:#228B22">% Configure the FMCW waveform using the waveform parameters derived from</span>
+<span style="color:#228B22">% the long-range requirements</span>
+waveform = phased.FMCWWaveform(<span style="color:#A020F0">'SweepTime'</span>,tm,<span style="color:#A020F0">'SweepBandwidth'</span>,bw,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SampleRate'</span>,fs,<span style="color:#A020F0">'SweepDirection'</span>,<span style="color:#A020F0">'Up'</span>);
+<span style="color:#0000FF">if</span> strcmp(waveform.SweepDirection,<span style="color:#A020F0">'Down'</span>)
+    sweepSlope = -sweepSlope;
+<span style="color:#0000FF">end</span>
+Nsweep = 192;
+sig = waveform();</pre></div></div></div><h3 class="title" id="AutomatedDrivingRadarSimulationExample-3">Model Automotive Radar Transceiver</h3><p>The radar uses an isotropic element to transmit and a uniform linear array (ULA) to receive the radar waveforms. Using a linear array enables the radar to estimate the azimuthal direction of the reflected energy received from the target vehicles. The long-range radar needs to detect targets across a coverage area that spans 15 degrees in front of the ego vehicle. A six-element receive array satisfies this requirement by providing a 17-degree half-power beamwidth. On transmit, the radar uses only a single array element, enabling it to cover a larger area than on receive.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Model the antenna element</span>
+antElmnt = phased.IsotropicAntennaElement(<span style="color:#A020F0">'BackBaffled'</span>,true);
+
+<span style="color:#228B22">% Construct the receive array</span>
+Ne = 6;
+rxArray = phased.ULA(<span style="color:#A020F0">'Element'</span>,antElmnt,<span style="color:#A020F0">'NumElements'</span>,Ne,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ElementSpacing'</span>,lambda/2);
+
+<span style="color:#228B22">% Half-power beamwidth of the receive array</span>
+hpbw = beamwidth(rxArray,fc,<span style="color:#A020F0">'PropagationSpeed'</span>,c)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>hpbw = 17.1800
+</pre></div></div></div><p>Model the radar transmitter for a single transmit channel, and model a receiver preamplifier for each receive channel, using the parameters defined in the example <a href="../../radar/ug/automotive-adaptive-cruise-control-using-fmcw-technology.html" data-docid="radar_ug#example-ex11665805" class="a">Automotive Adaptive Cruise Control Using FMCW Technology</a><span role="cross_prod"> (Radar Toolbox)</span>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>antAperture = 6.06e-4;                        <span style="color:#228B22">% Antenna aperture (m^2)</span>
+antGain = aperture2gain(antAperture,lambda);  <span style="color:#228B22">% Antenna gain (dB)</span>
+
+txPkPower = db2pow(5)*1e-3;                   <span style="color:#228B22">% Tx peak power (W)</span>
+txGain = antGain;                             <span style="color:#228B22">% Tx antenna gain (dB)</span>
+
+rxGain = antGain;                             <span style="color:#228B22">% Rx antenna gain (dB)</span>
+rxNF = 4.5;                                   <span style="color:#228B22">% Receiver noise figure (dB)</span>
+
+<span style="color:#228B22">% Waveform transmitter</span>
+transmitter = phased.Transmitter(<span style="color:#A020F0">'PeakPower'</span>,txPkPower,<span style="color:#A020F0">'Gain'</span>,txGain);
+
+<span style="color:#228B22">% Radiator for single transmit element</span>
+radiator = phased.Radiator(<span style="color:#A020F0">'Sensor'</span>,antElmnt,<span style="color:#A020F0">'OperatingFrequency'</span>,fc);
+
+<span style="color:#228B22">% Collector for receive array</span>
+collector = phased.Collector(<span style="color:#A020F0">'Sensor'</span>,rxArray,<span style="color:#A020F0">'OperatingFrequency'</span>,fc);
+
+<span style="color:#228B22">% Receiver preamplifier</span>
+receiver = phased.ReceiverPreamp(<span style="color:#A020F0">'Gain'</span>,rxGain,<span style="color:#A020F0">'NoiseFigure'</span>,rxNF,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SampleRate'</span>,fs);
+
+<span style="color:#228B22">% Define radar</span>
+radar = radarTransceiver(<span style="color:#A020F0">'Waveform'</span>,waveform,<span style="color:#A020F0">'Transmitter'</span>,transmitter,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'TransmitAntenna'</span>,radiator,<span style="color:#A020F0">'ReceiveAntenna'</span>,collector,<span style="color:#A020F0">'Receiver'</span>,receiver);
+</pre></div></div></div><h3 class="title" id="AutomatedDrivingRadarSimulationExample-4">Define Radar Signal Processing Chain</h3><p>The radar collects multiple sweeps of the waveform on each of the linear phased array antenna elements. These collected sweeps form a data cube, which is defined in <a href="../../phased/gs/radar-data-cube.html" data-docid="phased_gs#bsmig5l-1" class="a">Radar Data Cube</a><span role="cross_prod"> (Phased Array System Toolbox)</span>. These sweeps are coherently processed along the fast- and slow-time dimensions of the data cube to estimate the range and Doppler of the vehicles.</p><p>Estimate the direction-of-arrival of the received signals using a root MUSIC estimator. A beamscan is also used for illustrative purposes to help visualize the spatial distribution of the received signal energy.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Direction-of-arrival estimator for linear phased array signals</span>
+doaest = phased.RootMUSICEstimator(<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SensorArray'</span>,rxArray,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'PropagationSpeed'</span>,c,<span style="color:#A020F0">'OperatingFrequency'</span>,fc,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'NumSignalsSource'</span>,<span style="color:#A020F0">'Property'</span>,<span style="color:#A020F0">'NumSignals'</span>,1);
+
+<span style="color:#228B22">% Scan beams in front of ego vehicle for range-angle image display</span>
+angscan = -80:80;
+beamscan = phased.PhaseShiftBeamformer(<span style="color:#A020F0">'Direction'</span>,[angscan;0*angscan],<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SensorArray'</span>,rxArray,<span style="color:#A020F0">'OperatingFrequency'</span>,fc);
+
+<span style="color:#228B22">% Form forward-facing beam to detect objects in front of the ego vehicle</span>
+beamformer = phased.PhaseShiftBeamformer(<span style="color:#A020F0">'SensorArray'</span>,rxArray,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'PropagationSpeed'</span>,c,<span style="color:#A020F0">'OperatingFrequency'</span>,fc,<span style="color:#A020F0">'Direction'</span>,[0;0]);
+</pre></div></div></div><p>Use the <code class="literal">phased.RangeDopplerResponse</code> object to perform the range and Doppler processing on the radar data cubes. Use a Hanning window to suppress the large sidelobes produced by the vehicles when they are close to the radar.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Nft = waveform.SweepTime*waveform.SampleRate; <span style="color:#228B22">% Number of fast-time samples</span>
+Nst = Nsweep;                                 <span style="color:#228B22">% Number of slow-time samples</span>
+Nr = 2^nextpow2(Nft);                         <span style="color:#228B22">% Number of range samples </span>
+Nd = 2^nextpow2(Nst);                         <span style="color:#228B22">% Number of Doppler samples </span>
+rngdopresp = phased.RangeDopplerResponse(<span style="color:#A020F0">'RangeMethod'</span>,<span style="color:#A020F0">'FFT'</span>,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'DopplerOutput'</span>,<span style="color:#A020F0">'Speed'</span>,<span style="color:#A020F0">'SweepSlope'</span>,sweepSlope,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeFFTLengthSource'</span>,<span style="color:#A020F0">'Property'</span>,<span style="color:#A020F0">'RangeFFTLength'</span>,Nr,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeWindow'</span>,<span style="color:#A020F0">'Hann'</span>,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'DopplerFFTLengthSource'</span>,<span style="color:#A020F0">'Property'</span>,<span style="color:#A020F0">'DopplerFFTLength'</span>,Nd,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'DopplerWindow'</span>,<span style="color:#A020F0">'Hann'</span>,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'PropagationSpeed'</span>,c,<span style="color:#A020F0">'OperatingFrequency'</span>,fc,<span style="color:#A020F0">'SampleRate'</span>,fs);</pre></div></div></div><p>Identify detections in the processed range and Doppler data by using a constant false alarm rate (CFAR) detector. CFAR detectors estimate the background noise level of the received radar data. Detections are found at locations where the signal power exceeds the estimated noise floor by a certain threshold. Low threshold values result in a higher number of reported false detections due to environmental noise. Increasing the threshold produces fewer false detections, but also reduces the probability of detection of an actual target in the scenario. For more information on CFAR detection, see the example <a href="../../phased/ug/constant-false-alarm-rate-cfar-detection.html" data-docid="phased_ug#example-ex14061099" class="a">Constant False Alarm Rate (CFAR) Detection</a><span role="cross_prod"> (Phased Array System Toolbox)</span>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Guard cell and training regions for range dimension</span>
+nGuardRng = 4;
+nTrainRng = 4;
+nCUTRng = 1+nGuardRng+nTrainRng;
+
+<span style="color:#228B22">% Guard cell and training regions for Doppler dimension</span>
+dopOver = round(Nd/Nsweep);
+nGuardDop = 4*dopOver;
+nTrainDop = 4*dopOver;
+nCUTDop = 1+nGuardDop+nTrainDop;
+
+cfar = phased.CFARDetector2D(<span style="color:#A020F0">'GuardBandSize'</span>,[nGuardRng nGuardDop],<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'TrainingBandSize'</span>,[nTrainRng nTrainDop],<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ThresholdFactor'</span>,<span style="color:#A020F0">'Custom'</span>,<span style="color:#A020F0">'CustomThresholdFactor'</span>,db2pow(13),<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'NoisePowerOutputPort'</span>,true,<span style="color:#A020F0">'OutputFormat'</span>,<span style="color:#A020F0">'Detection index'</span>);
+
+<span style="color:#228B22">% Perform CFAR processing over all of the range and Doppler cells</span>
+freqs = ((0:Nr-1)'/Nr-0.5)*fs;
+rnggrid = beat2range(freqs,sweepSlope);
+iRngCUT = find(rnggrid&gt;0);
+iRngCUT = iRngCUT((iRngCUT&gt;=nCUTRng)&amp;(iRngCUT&lt;=Nr-nCUTRng+1));
+iDopCUT = nCUTDop:(Nd-nCUTDop+1);
+[iRng,iDop] = meshgrid(iRngCUT,iDopCUT);
+idxCFAR = [iRng(:) iDop(:)]';
+
+<span style="color:#228B22">% Perform clustering algorithm to group detections</span>
+clusterer = clusterDBSCAN(<span style="color:#A020F0">'Epsilon'</span>,2);</pre></div></div></div><p>The <code class="literal">phased.RangeEstimator</code> and <code class="literal">phased.DopplerEstimator</code> objects convert the locations of the detections found in the range-Doppler data into measurements and their corresponding measurement variances. These estimators fit quadratic curves to the range-Doppler data to estimate the peak location of each detection. The resulting measurement resolutions are a fraction of the range and Doppler sampling of the data.</p><p>The root-mean-square (RMS) range resolution of the transmitted waveform is needed to compute the variance of the range measurements. The Rayleigh range resolution for the long-range radar was defined previously as 1 meter. The Rayleigh resolution is the minimum separation at which two unique targets can be resolved. This value defines the distance between range resolution cells for the radar. However, the variance of the target within a resolution cell is determined by the RMS resolution of the waveform. For an LFM chirp waveform, the relationship between the Rayleigh resolution and the RMS resolution is given by [1].</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msub><mrow><mi>σ</mi></mrow><mrow><mi>R</mi><mi>M</mi><mi>S</mi></mrow></msub><mo>=</mo><msqrt><mrow><mn>1</mn><mn>2</mn></mrow></msqrt><msub><mrow><mi>Δ</mi></mrow><mrow><mi>R</mi><mi>a</mi><mi>y</mi><mi>l</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi></mrow></msub></mrow></math></p></div><p></p><p>where <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msub><mrow><mi>σ</mi></mrow><mrow><mi>R</mi><mi>M</mi><mi>S</mi></mrow></msub></mrow></math></span> is the RMS range resolution and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msub><mrow><mi>Δ</mi></mrow><mrow><mi>R</mi><mi>a</mi><mi>y</mi><mi>l</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi></mrow></msub></mrow></math></span> is the Rayleigh range resolution.</p><p>The variance of the Doppler measurements depends on the number of sweeps processed.</p><p>Now, create the range and Doppler estimation objects using the parameters previously defined.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rmsRng = sqrt(12)*rangeRes;
+rngestimator = phased.RangeEstimator(<span style="color:#A020F0">'ClusterInputPort'</span>,true,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'VarianceOutputPort'</span>,true,<span style="color:#A020F0">'NoisePowerSource'</span>,<span style="color:#A020F0">'Input port'</span>,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RMSResolution'</span>,rmsRng);
+
+dopestimator = phased.DopplerEstimator(<span style="color:#A020F0">'ClusterInputPort'</span>,true,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'VarianceOutputPort'</span>,true,<span style="color:#A020F0">'NoisePowerSource'</span>,<span style="color:#A020F0">'Input port'</span>,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'NumPulses'</span>,Nsweep);</pre></div></div></div><p>To further improve the precision of the estimated vehicle locations, pass the radar detections to a tracker. Configure the tracker to use an extended Kalman filter (EKF), which converts the spherical radar measurements into the Cartesian coordinate frame of the ego vehicle. Also configure the tracker to use constant velocity dynamics for the detected vehicles. By comparing vehicle detections over multiple measurement time intervals, the tracker further improves the accuracy of the vehicle positions and provides vehicle velocity estimates.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tracker = radarTracker(<span style="color:#A020F0">'FilterInitializationFcn'</span>,@initcvekf,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'AssignmentThreshold'</span>,50);</pre></div></div></div><h3 class="title" id="AutomatedDrivingRadarSimulationExample-5">Model Free Space Propagation Channel</h3><p>Use the free space channel to model the propagation of the transmitted and received radar signals.</p><p>In a free space model, the radar energy propagates along a direct line-of-sight between the radar and the target vehicles, as shown in the following illustration.</p><div class="informalfigure"><div id="d124e39072" class="mediaobject"><p><img src="../../examples/driving_radar/win64/AutomatedDrivingRadarSimulationExample_01.png" height="212" width="957"></p></div></div><h3 class="title" id="AutomatedDrivingRadarSimulationExample-6">Simulate the Driving Scenario</h3><p>Create a highway driving scenario with three vehicles traveling in the vicinity of the ego vehicle. The vehicles are modeled as cuboids and have different velocities and positions defined in the driving scenario. The ego vehicle is moving with a velocity of 80 km/hr and the other three cars are moving at 110 km/hr, 100 km/hr, and 130 km/hr, respectively. For details on modeling a driving scenario see the example <a href="create-actor-and-vehicle-trajectories.html" data-docid="driving_ug#mw_165f4466-8fd6-4fba-9659-b9b9d83ec3d3" class="a">Create Actor and Vehicle Trajectories Programmatically</a>. The radar sensor is mounted on the front of the ego vehicle.</p><p>To create the driving scenario, use the <code class="literal">helperAutoDrivingRadarSigProc</code> function. To examine the contents of this function, use the <code class="literal">edit('helperAutoDrivingRadarSigProc')</code> command.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create driving scenario</span>
+[scenario,egoCar,radarParams] = <span style="color:#0000FF">...</span>
+    helperAutoDrivingRadarSigProc(<span style="color:#A020F0">'Setup Scenario'</span>,c,fc);</pre></div></div></div><p>The following loop uses the <code class="literal">drivingScenario</code> object to advance the vehicles in the scenario. At every simulation time step, a radar data cube is assembled by collecting 192 sweeps of the radar waveform. The assembled data cube is then processed in range and Doppler. The range and Doppler processed data is then beamformed, and CFAR detection is performed on the beamformed data. Range, radial speed, and direction of arrival measurements are estimated for the CFAR detections. These detections are then assembled into <code class="literal">objectDetection</code> objects, which are then processed by the <code class="literal">radarTracker</code> object.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Initialize display for driving scenario example</span>
+helperAutoDrivingRadarSigProc(<span style="color:#A020F0">'Initialize Display'</span>,egoCar,radarParams,<span style="color:#0000FF">...</span>
+    rxArray,fc,vMax,rangeMax);
+
+tgtProfiles = actorProfiles(scenario);
+tgtProfiles = tgtProfiles(2:end);
+tgtHeight = [tgtProfiles.Height];
+
+<span style="color:#228B22">% Run the simulation loop</span>
+sweepTime = waveform.SweepTime;
+<span style="color:#0000FF">while</span> advance(scenario)
+    
+    <span style="color:#228B22">% Get the current scenario time</span>
+    time = scenario.SimulationTime;
+    
+    <span style="color:#228B22">% Get current target poses in ego vehicle's reference frame</span>
+    tgtPoses = targetPoses(egoCar);
+    tgtPos = reshape([tgtPoses.Position],3,[]);
+    <span style="color:#228B22">% Position point targets at half of each target's height</span>
+    tgtPos(3,:) = tgtPos(3,:)+0.5*tgtHeight; 
+    tgtVel = reshape([tgtPoses.Velocity],3,[]);
+    
+    <span style="color:#228B22">% Assemble data cube at current scenario time</span>
+    Xcube = zeros(Nft,Ne,Nsweep);
+    <span style="color:#0000FF">for</span> m = 1:Nsweep
+        
+        ntgt = size(tgtPos,2);
+        tgtStruct = struct(<span style="color:#A020F0">'Position'</span>,mat2cell(tgtPos(:).',1,repmat(3,1,ntgt)),<span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'Velocity'</span>,mat2cell(tgtVel(:).',1,repmat(3,1,ntgt)),<span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'Signature'</span>,{rcsSignature,rcsSignature,rcsSignature});
+        rxsig = radar(tgtStruct,time+(m-1)*sweepTime);
+        <span style="color:#228B22">% Dechirp the received signal</span>
+        rxsig = dechirp(rxsig,sig);
+        
+        <span style="color:#228B22">% Save sweep to data cube</span>
+        Xcube(:,:,m) = rxsig;
+        
+        <span style="color:#228B22">% Move targets forward in time for next sweep</span>
+        tgtPos = tgtPos+tgtVel*sweepTime;
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#228B22">% Calculate the range-Doppler response</span>
+    [Xrngdop,rnggrid,dopgrid] = rngdopresp(Xcube);
+    
+    <span style="color:#228B22">% Beamform received data</span>
+    Xbf = permute(Xrngdop,[1 3 2]);
+    Xbf = reshape(Xbf,Nr*Nd,Ne);
+    Xbf = beamformer(Xbf);
+    Xbf = reshape(Xbf,Nr,Nd);
+    
+    <span style="color:#228B22">% Detect targets</span>
+    Xpow = abs(Xbf).^2;
+    [detidx,noisepwr] = cfar(Xpow,idxCFAR);
+    
+    <span style="color:#228B22">% Cluster detections</span>
+    [~,clusterIDs] = clusterer(detidx.');  
+    
+    <span style="color:#228B22">% Estimate azimuth, range, and radial speed measurements</span>
+    [azest,azvar,snrdB] = <span style="color:#0000FF">...</span>
+        helperAutoDrivingRadarSigProc(<span style="color:#A020F0">'Estimate Angle'</span>,doaest,<span style="color:#0000FF">...</span>
+        conj(Xrngdop),Xbf,detidx,noisepwr,clusterIDs);
+    azvar = azvar+radarParams.RMSBias(1)^2;
+    
+    [rngest,rngvar] = rngestimator(Xbf,rnggrid,detidx,noisepwr,clusterIDs);
+    rngvar = rngvar+radarParams.RMSBias(2)^2;
+    
+    [rsest,rsvar] = dopestimator(Xbf,dopgrid,detidx,noisepwr,clusterIDs);
+    
+    <span style="color:#228B22">% Convert radial speed to range rate for use by the tracker</span>
+    rrest = -rsest;
+    rrvar = rsvar;
+    rrvar = rrvar+radarParams.RMSBias(3)^2;
+    
+    <span style="color:#228B22">% Assemble object detections for use by tracker</span>
+    numDets = numel(rngest);
+    dets = cell(numDets,1);
+    <span style="color:#0000FF">for</span> iDet = 1:numDets
+        dets{iDet} = objectDetection(time,<span style="color:#0000FF">...</span>
+            [azest(iDet) rngest(iDet) rrest(iDet)]',<span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'MeasurementNoise'</span>,diag([azvar(iDet) rngvar(iDet) rrvar(iDet)]),<span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'MeasurementParameters'</span>,{radarParams},<span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'ObjectAttributes'</span>,{struct(<span style="color:#A020F0">'SNR'</span>,snrdB(iDet))});
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#228B22">% Track detections</span>
+    tracks = tracker(dets,time);
+    
+    <span style="color:#228B22">% Update displays</span>
+    helperAutoDrivingRadarSigProc(<span style="color:#A020F0">'Update Display'</span>,egoCar,dets,tracks,<span style="color:#0000FF">...</span>
+        dopgrid,rnggrid,Xbf,beamscan,Xrngdop);
+    
+    <span style="color:#228B22">% Collect free space channel metrics</span>
+    metricsFS = helperAutoDrivingRadarSigProc(<span style="color:#A020F0">'Collect Metrics'</span>,<span style="color:#0000FF">...</span>
+        radarParams,tgtPos,tgtVel,dets);
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="informalfigure"><div id="d124e39100" class="mediaobject"><p><img src="../../examples/driving_radar/win64/AutomatedDrivingRadarSimulationExample_02.png" alt="FMCWExample_freespace_snapshot.png" height="524" width="901"></p></div></div><p>The previous figure shows the radar detections and tracks for the three target vehicles at 1.1 seconds of simulation time. The plot on the upper-left side shows the chase camera view of the driving scenario from the perspective of the ego vehicle (shown in blue). For reference, the ego vehicle is traveling at 80 km/hr and the other three cars are traveling at 110 km/hr (orange car), 100 km/hr (yellow car), and 130 km/hr (purple car).</p><p>The right side of the figure shows the bird's-eye plot, which presents a top down perspective of the scenario. All of the vehicles, detections, and tracks are shown in the coordinate reference frame of the ego vehicle. The estimated signal-to-noise ratio (SNR) for each radar measurement is printed next to each detection. The vehicle location estimated by the tracker is shown in the plot using black squares with text next to them indicating the ID of each track. The velocity for each vehicle estimated by the tracker is shown as a black line pointing in the direction of the velocity of the vehicle. The length of the line corresponds to the estimated speed, with longer lines denoting vehicles with higher speeds relative to the ego vehicle. The track of the purple car (ID2) has the longest line while the track of the yellow car (ID1) has the shortest line. The tracked speeds are consistent with the modeled vehicle speeds previously listed.</p><p>The two plots on the lower-left side show the radar images generated by the signal processing. The upper plot shows how the received radar echoes from the target vehicles are distributed in range and radial speed. Here, all three vehicles are observed. The measured radial speeds correspond to the velocities estimated by the tracker, as shown in the bird's-eye plot. The lower plot shows how the received target echoes are spatially distributed in range and angle. Again, all three targets are present, and their locations match what is shown in the bird's-eye plot.</p><p>Due to its close proximity to the radar, the orange car can still be detected despite the large beamforming losses due to its position well outside of the 3 dB beamwidth of the beam. These detections have generated a track (ID3) for the orange car.</p><h3 class="title" id="AutomatedDrivingRadarSimulationExample-7">Model a Multipath Channel</h3><p>The previous driving scenario simulation used free space propagation. This is a simple model that models only direct line-of-sight propagation between the radar and each of the targets. In reality, the radar signal propagation is much more complex, involving reflections from multiple obstacles before reaching each target and returning back to the radar. This phenomenon is known as <span class="emphasis"><em>multipath propagation</em></span>. The following illustration shows one such case of multipath propagation, where the signal impinging the target is coming from two directions: line-of-sight and a single bounce from the road surface.</p><div class="informalfigure"><div id="d124e39115" class="mediaobject"><p><img src="../../examples/driving_radar/win64/AutomatedDrivingRadarSimulationExample_03.png" height="244" width="966"></p></div></div><p>The overall effect of multipath propagation is that the received radar echoes can interfere constructively and destructively. This constructive and destructive interference results from path length differences between the various signal propagation paths. As the distance between the radar and the vehicles changes, these path length differences also change. When the differences between these paths result in echoes received by the radar that are almost 180 degrees out of phase, the echoes destructively combine, and the radar makes no detection for that range.</p><p>Replace the free space channel model with a two-ray channel model to demonstrate the propagation environment shown in the previous illustration. Reuse the remaining parameters in the driving scenario and radar model, and run the simulation again.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Reset the driving scenario</span>
+[scenario,egoCar,radarParams,pointTgts] = <span style="color:#0000FF">...</span>
+    helperAutoDrivingRadarSigProc(<span style="color:#A020F0">'Setup Scenario'</span>,c,fc);
+
+<span style="color:#228B22">% Run the simulation again, now using the two-ray channel model</span>
+metrics2Ray = helperAutoDrivingRadarSigProc(<span style="color:#A020F0">'Two Ray Simulation'</span>,<span style="color:#0000FF">...</span>
+    c,fc,rangeMax,vMax,Nsweep,<span style="color:#0000FF">...</span><span style="color:#228B22">           % Waveform parameters</span>
+    rngdopresp,beamformer,cfar,idxCFAR,clusterer,<span style="color:#0000FF">...</span><span style="color:#228B22">           % Signal processing</span>
+    rngestimator,dopestimator,doaest,beamscan,tracker,<span style="color:#0000FF">...</span><span style="color:#228B22">   % Estimation</span>
+    radar,sig);                      <span style="color:#228B22">% Hardware models</span></pre></div></div></div><p><span class="guiicon"><span class="inlinemediaobject"><img src="../../examples/driving_radar/win64/AutomatedDrivingRadarSimulationExample_04.png" alt="FMCWExample_tworay_snapshot.png" height="576" width="990"></span></span>The previous figure shows the chase plot, bird's-eye plot, and radar images at 1.1 seconds of simulation time, just as was shown for the free space channel propagation scenario. Comparing these two figures, observe that for the two-ray channel, no detection is present for the purple car at this simulation time. This detection loss is because the path length differences for this car are destructively interfering at this range, resulting in a total loss of detection.</p><p>Plot the SNR estimates generated from the CFAR processing against the range estimates of the purple car from the free space and two-ray channel simulations.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperAutoDrivingRadarSigProc(<span style="color:#A020F0">'Plot Channels'</span>,metricsFS,metrics2Ray);</pre></div></div></div><div class="informalfigure"><div id="d124e39133" class="mediaobject"><p><img src="../../examples/driving_radar/win64/AutomatedDrivingRadarSimulationExample_05.png" alt="Figure Channel Propagation contains an axes object. The axes object with title Propagation Channels contains 2 objects of type line. These objects represent Free space, Two-ray." width="560"></p></div></div><p>As the car approaches a range of 72 meters from the radar, a large loss in the estimated SNR from the two-ray channel is observed with respect to the free space channel. It is near this range that the multipath interference combines destructively, resulting in a loss in signal detections. However, observe that the tracker is able to coast the track during these times of signal loss and provide a predicted position and velocity for the purple car.</p><h3 class="title" id="AutomatedDrivingRadarSimulationExample-8">Summary</h3><p>This example shows how to model the hardware and signal processing of an automotive radar using Radar Toolbox. You also learn how to integrate this radar model with the Automated Driving Toolbox driving scenario simulation. First you generate synthetic radar detections. Then you process these detections further by using a tracker to generate precise position and velocity estimates in the coordinate frame of the ego vehicle. Finally, you learn how to simulate multipath propagation effects.</p><p>The workflow presented in this example enables you to understand how your radar architecture design decisions impact higher-level system requirements. Using this workflow enables you select a radar design that satisfies your unique application requirements.</p><h3 class="title" id="AutomatedDrivingRadarSimulationExample-9">Reference</h3><p>[1] Richards, Mark. <span class="emphasis"><em>Fundamentals of Radar Signal Processing</em></span>. New York: McGraw Hill, 2005.</p></div>
+      <h2 id="d124e39151">See Also</h2><h3>Objects</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/multiobjecttracker-system-object.html"><span itemprop="name"><code class="sysobj">multiObjectTracker</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../phased/ref/phased.fmcwwaveform-system-object.html"><span itemprop="name"><code class="sysobj">phased.FMCWWaveform</code></span></a> (Phased Array System Toolbox)</span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../phased/ref/phased.ula-system-object.html"><span itemprop="name"><code class="sysobj">phased.ULA</code></span></a> (Phased Array System Toolbox)</span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../phased/ref/phased.dopplerestimator-system-object.html"><span itemprop="name"><code class="sysobj">phased.DopplerEstimator</code></span></a> (Phased Array System Toolbox)</span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../phased/ref/phased.rootmusicestimator-system-object.html"><span itemprop="name"><code class="sysobj">phased.RootMUSICEstimator</code></span></a> (Phased Array System Toolbox)</span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../phased/ref/phased.freespace-system-object.html"><span itemprop="name"><code class="sysobj">phased.FreeSpace</code></span></a> (Phased Array System Toolbox)</span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../radar/ref/tworaychannel-system-object.html"><span itemprop="name"><code class="object">twoRayChannel</code></span></a> (Radar Toolbox)</span></li></ul>
+      <h2 id="d124e39179">Related Topics</h2><ul><li><a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a></li><li><a href="../../radar/ug/automotive-adaptive-cruise-control-using-fmcw-technology.html" class="a">Automotive Adaptive Cruise Control Using FMCW Technology</a><span role="cross_prod"> (Radar Toolbox)</span></li><li><a href="../../phased/ug/constant-false-alarm-rate-cfar-detection.html" class="a">Constant False Alarm Rate (CFAR) Detection</a><span role="cross_prod"> (Phased Array System Toolbox)</span></li><li><a href="../../phased/gs/radar-data-cube.html" class="a">Radar Data Cube</a><span role="cross_prod"> (Phased Array System Toolbox)</span></li><li><a href="create-actor-and-vehicle-trajectories.html" class="a">Create Actor and Vehicle Trajectories Programmatically</a></li></ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2></div><div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p></div><div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div></div></div></div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></section>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

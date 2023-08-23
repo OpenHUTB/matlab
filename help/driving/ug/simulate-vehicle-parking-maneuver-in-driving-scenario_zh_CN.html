@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Simulate Vehicle Parking Maneuver in Driving Scenario</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Simulate Vehicle Parking Maneuver in Driving Scenario",
+          "description": "Simulate a parking maneuver and generate sensor detections in a large parking lot using a cuboid driving scenario.",
+          "thumbnailURL": "../../examples/driving/win64/SimulateVehicleParkingManeuverInDrivingScenarioExample_05.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving.SimulateVehicleParkingManeuverInDrivingScenarioExample",
+          "name": "SimulateVehicleParkingManeuverInDrivingScenarioExample",
+          "url": "simulate-vehicle-parking-maneuver-in-driving-scenario.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/SimulateVehicleParkingManeuverInDrivingScenarioExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "SimulateVehicleParkingManeuverInDrivingScenarioExample.m",
+        "helperAddActors.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Simulate a parking maneuver and generate sensor detections in a large parking lot using a cuboid driving scenario."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/SimulateVehicleParkingManeuverInDrivingScenarioExample_05.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Simulate Vehicle Parking Maneuver in Driving Scenario</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e40515" class="intrnllnk">Create Scenario</a></li>
+<li><a href="#d124e40550" class="intrnllnk">Define Ultrasonic Sensors</a></li>
+<li><a href="#d124e40557" class="intrnllnk">Visualize Scenario</a></li>
+<li><a href="#d124e40568" class="intrnllnk">Simulate the Scenario</a></li>
+<li><a href="#d124e40590" class="intrnllnk">Summary</a></li>
+<li><a href="#d124e40596" class="intrnllnk">Supporting Functions</a></li>
+<li><a href="#d124e40626" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_1f5d56b0-e662-496e-86e2-93a6b3ead434">仿真驾驶场景中的车辆停车操作</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/SimulateVehicleParkingManeuverInDrivingScenarioExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-SimulateVehicleParkingManeuverInDrivingScenarioExample"/>
+<meta itemprop="exampletitle" content="Simulate Vehicle Parking Maneuver in Driving Scenario"/>
+</div>
+<span id="SimulateVehicleParkingManeuverInDrivingScenarioExample" class="anchor_target"></span>
+
+<p class="shortdesc">此示例演示如何使用长方体驾驶场景环境模拟停车策略并在大型停车场生成传感器检测。此场景和传感器模拟环境使您能够生成罕见且具有潜在危险的事件，以测试您的自动驾驶汽车算法。</p>
+
+<div class="procedure"><h3 class="title" id="d124e40515">创建场景<span id="SimulateVehicleParkingManeuverInDrivingScenarioExample-1" class="anchor_target"></span></h3>
+<p>此示例中使用的场景包含道路、停车场、移动车辆、静止车辆和行人。此场景中的自我车辆包含超声波传感器，可为场景中的其他参与者生成合成检测。</p>
+<p>定义一个空场景。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+scenario.SampleTime = 0.2;
+</pre>
+</div>
+</div>
+</div>
+<p>在场景中添加一条双车道、70米长的道路。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadCenters = [69.2 11.7 0;
+              -1.1 11.5 0];
+marking = [laneMarking(<span style="color:#A020F0">"Solid"</span>)
+           laneMarking(<span style="color:#A020F0">"DoubleSolid"</span>,Color=[1 0.9 0])
+           laneMarking(<span style="color:#A020F0">"Solid"</span>)];
+laneSpecification = lanespec(2,Width=5.925,Marking=marking);
+road(scenario,roadCenters,Lanes=laneSpecification,Name=<span style="color:#A020F0">"Road"</span>);
+</pre>
+</div>
+</div>
+</div>
+<p>在场景中添加第二条较短的道路，作为停车场的入口。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadCenters = [12.4 7.7 0;
+               12.4 -15.8 0];
+road(scenario,roadCenters,Name=<span style="color:#A020F0">"Road1"</span>);
+</pre>
+</div>
+</div>
+</div>
+<p>使用 <a href="../ref/drivingscenario.parkinglot.html" data-docid="driving_ref#mw_f20bd7d2-0d79-4e16-9d3b-e244f5da0d59" class="a"><code class="olink">parkingLot</code></a> 函数创建一个停车场，包括四个停车位网格：一个位于停车场顶部边缘，一个位于底部边缘，两个位于停车场中间。边缘的停车位网格包含普通停车位，而中间的停车位网格包含普通停车位和无障碍停车位的组合。停车场还包括右侧边缘的消防通道。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lot = parkingLot(scenario,[3 -5; 60 -5; 60 -48; 3 -48]);
+
+<span style="color:#228B22">% Create the parking spaces.</span>
+cars = parkingSpace;
+accessible = parkingSpace(Type=<span style="color:#A020F0">"Accessible"</span>);
+accessibleLane = parkingSpace(Type=<span style="color:#A020F0">"NoParking"</span>,MarkingColor=[1 1 1],Width=1.5);
+fireLane = parkingSpace(Type=<span style="color:#A020F0">"NoParking"</span>,Length=2,Width=40);
+
+<span style="color:#228B22">% Insert the parking spaces.</span>
+insertParkingSpaces(lot,cars,Edge=2); <span style="color:#228B22">% Top edge</span>
+insertParkingSpaces(lot,cars,Edge=4); <span style="color:#228B22">% Bottom edge</span>
+insertParkingSpaces(lot, <span style="color:#0000FF">...</span>
+    [cars accessibleLane accessible accessibleLane accessible], <span style="color:#0000FF">...</span>
+    [7 1 1 1 1],Rows=2,Position=[42 -12]);
+insertParkingSpaces(lot, <span style="color:#0000FF">...</span>
+    [cars accessibleLane accessible accessibleLane accessible], <span style="color:#0000FF">...</span>
+    [7 1 1 1 1],Rows=2,Position=[23 -12]);
+insertParkingSpaces(lot,fireLane,1,Edge=3,Offset=8); <span style="color:#228B22">% Right edge</span>
+
+<span style="color:#228B22">% Plot the scenario.</span>
+plot(scenario)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e40536" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateVehicleParkingManeuverInDrivingScenarioExample_01.png"/></p>
+</div>
+</div>
+<p>在驾驶场景中添加参与者。参与者的位置和轨迹在 <code class="literal">helperAddActors</code> 辅助文件中定义。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Add actors.</span>
+scenario = helperAddActors(scenario);
+
+<span style="color:#228B22">% Define ego vehicle.</span>
+ego = scenario.Actors(1);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e40547" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateVehicleParkingManeuverInDrivingScenarioExample_02.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e40550">定义超声波传感器<span id="SimulateVehicleParkingManeuverInDrivingScenarioExample-6" class="anchor_target"></span></h3>
+<p>在这个例子中，您仿真了一辆具有12个超声波传感器的自车。传感器的最大探测范围为5.5米，方位角视野为60度，俯仰角视野为35度。下一节的图示显示了传感器的覆盖范围。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numUltrasonics = 12;
+sensors = cell(1,numUltrasonics);
+mountingLocations = [3.7 0.9 0.2; 3.7 -0.9 0.2; 3.7 0.4 0.2; 3.7 -0.4 0.2; 3.3 0.9 0.2; 3.3 -0.9 0.2; <span style="color:#0000FF">...</span>
+    -1 0.9 0.2; -1 -0.9 0.2; -1 0.4 0.2; -1 -0.4 0.2; -0.6 0.9 0.2; -0.6 -0.9 0.2;];
+mountingAngles = [45 0 0; -45 0 0; 10 0 0; -10 0 0; 80 0 0; -80 0 0; <span style="color:#0000FF">...</span>
+    135 0 0; -135 0 0; 170 0 0; -170 0 0; 100 0 0; -100 0 0; ];
+<span style="color:#228B22">% Create all the sensors</span>
+<span style="color:#0000FF">for</span> sndx = 1:numUltrasonics
+    sensors{sndx} = ultrasonicDetectionGenerator(<span style="color:#A020F0">'SensorIndex'</span>, sndx, <span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'MountingLocation'</span>, mountingLocations(sndx,:), <span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'MountingAngles'</span>, mountingAngles(sndx,:), <span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'FieldOfView'</span>, [60 35]);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Register actor profiles with the sensors.</span>
+profiles = actorProfiles(scenario);
+<span style="color:#0000FF">for</span> m = 1:numel(sensors)
+    sensors{m}.Profiles = profiles;
+<span style="color:#0000FF">end</span>
+sensorColor = [39 99 25]/255;
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e40557">可视化场景<span id="SimulateVehicleParkingManeuverInDrivingScenarioExample-7" class="anchor_target"></span></h3>
+<p>创建一个场景显示。该显示从自车的俯视角度和后方角度可视化场景，并在鸟瞰图上显示传感器的覆盖范围。它还返回一个用于在仿真期间调用的该图的句柄。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>BEP = createDemoDisplay(ego,sensors,sensorColor);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e40565" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateVehicleParkingManeuverInDrivingScenarioExample_03.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e40568">进行场景仿真<span id="SimulateVehicleParkingManeuverInDrivingScenarioExample-8" class="anchor_target"></span></h3>
+<p>使用循环来移动车辆并调用传感器仿真。</p>
+<p>请注意，场景生成和传感器仿真可以具有不同的时间步长。为场景和传感器指定不同的时间步长可以将场景仿真与传感器仿真解耦。这种技术对于独立于传感器的测量速率以高精度建模参与者运动非常有用。</p>
+<p>在这个例子中，场景的时间步长为0.01秒，而传感器每0.1秒检测一次。传感器返回一个逻辑标志 <code class="literal">isValidTime</code>，如果传感器生成了检测结果，则为 <code class="literal">true</code>。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">while</span> advance(scenario) &amp;&amp; ishghandle(BEP.Parent)
+
+    <span style="color:#228B22">% Get scenario time</span>
+    time = scenario.SimulationTime;
+
+    <span style="color:#228B22">% Get position of other vehicle in ego vehicle coordinates</span>
+    poses = targetPoses(ego);
+
+    <span style="color:#228B22">% Simulate sensors</span>
+    detections = {};
+    fovs = [];
+    locations = [];
+    angles = [];
+    isValidTime = false;
+
+    <span style="color:#0000FF">for</span> sndx = 1:length(sensors)
+        [sensorDets,isValidTime(sndx)] = sensors{sndx}(poses,time);
+        <span style="color:#0000FF">if</span> ~isempty(sensorDets)
+            detections = [detections; sensorDets]; <span style="color:#228B22">%#ok&lt;*AGROW&gt;</span>
+            fovs = [fovs sensors{sndx}.FieldOfView(1)];
+            locations = [locations; sensors{sndx}.MountingLocation];
+            angles = [angles; sensors{sndx}.MountingAngles];
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Update bird's-eye plot</span>
+    <span style="color:#0000FF">if</span> any(isValidTime)
+        updateBEP(BEP,ego,detections,fovs,locations,angles);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e40583" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateVehicleParkingManeuverInDrivingScenarioExample_04.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e40587" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateVehicleParkingManeuverInDrivingScenarioExample_05.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e40590">总结<span id="SimulateVehicleParkingManeuverInDrivingScenarioExample-9" class="anchor_target"></span></h3>
+<p>这个例子展示了如何生成一个包含停车场的场景，模拟传感器的检测，并利用这些检测结果来检测停车场中的车辆和行人。</p>
+<p>你可以尝试修改停车场，添加或删除车辆。你也可以尝试添加、删除或修改自车上的传感器。</p>
+<h3 class="title" id="d124e40596">支持函数<span id="SimulateVehicleParkingManeuverInDrivingScenarioExample-10" class="anchor_target"></span></h3>
+<p><strong class="emphasis bold"><code class="literal">createDemoDisplay</code></strong></p>
+<p>这个函数创建一个三窗格的显示：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>左上窗格 — 俯视图，跟随自车。</p></li>
+<li><p>左下窗格 — 追踪摄像机视角，跟随自车。</p></li>
+<li><p>右窗格 — <code class="literal"><a href="../ref/birdseyeplot.html" data-docid="driving_ref#bvi0yqz-1" class="a"><code class="olink">birdsEyePlot</code></a></code> 显示。</p></li>
+</ol>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> BEP = createDemoDisplay(egoCar,sensors,sensorColor)
+    <span style="color:#228B22">% Make a figure</span>
+    hFigure = figure(Position=[0 0 1200 640],Name=<span style="color:#A020F0">"Parking Maneuver Scenario"</span>);
+    movegui(hFigure,[0 -1]); <span style="color:#228B22">% Moves figure left and a little down from the top</span>
+
+    <span style="color:#228B22">% Add a car plot that follows the ego vehicle from behind</span>
+    hCarViewPanel = uipanel(hFigure,Position=[0 0 0.5 0.5],Title=<span style="color:#A020F0">"Chase Camera View"</span>);
+    hCarPlot = axes(hCarViewPanel);
+    chasePlot(egoCar,Parent=hCarPlot,Meshes=<span style="color:#A020F0">"on"</span>);
+
+    <span style="color:#228B22">% Add a car plot that follows the ego vehicle from a top view</span>
+    hTopViewPanel = uipanel(hFigure,Position=[0 0.5 0.5 0.5],Title=<span style="color:#A020F0">"Top View"</span>);
+    hCarPlot = axes(hTopViewPanel);
+    chasePlot(egoCar,Parent=hCarPlot,ViewHeight=130,ViewLocation=[0 0],ViewPitch=90);
+
+    <span style="color:#228B22">% Add pane for bird's-eye plot</span>
+    hBEVPanel = uipanel(hFigure,Position=[0.5 0 0.5 1],Title=<span style="color:#A020F0">"Bird's-Eye Plot"</span>);
+
+    <span style="color:#228B22">% Create bird's-eye plot for the ego vehicle and sensor coverage</span>
+    hBEVPlot = axes(hBEVPanel);
+    frontBackLim = 60;
+    BEP = birdsEyePlot(Parent=hBEVPlot,Xlimits=[-frontBackLim frontBackLim],Ylimits=[-35 35]);
+
+    <span style="color:#228B22">% Plot the coverage area for ultrasonic</span>
+    <span style="color:#0000FF">for</span> sndx = 1:length(sensors)
+        cap = coverageAreaPlotter(BEP,FaceColor=sensorColor,EdgeColor=sensorColor);
+        plotCoverageArea(cap,sensors{sndx}.MountingLocation(1:2), <span style="color:#0000FF">...</span>
+            sensors{sndx}.DetectionRange(3),sensors{sndx}.MountingAngles(1),sensors{sndx}.FieldOfView(1));
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Combine all ultrasonic detections into one entry and store it for later update</span>
+    rangeDetectionPlotter(BEP,DisplayName=<span style="color:#A020F0">"Ultrasonic Detection"</span>,LineStyle=<span style="color:#A020F0">'--'</span>);
+
+    <span style="color:#228B22">% Add road borders to plot</span>
+    laneBoundaryPlotter(BEP,DisplayName=<span style="color:#A020F0">"Road boundaries"</span>);
+
+    <span style="color:#228B22">% Add lane markings to plot</span>
+    laneMarkingPlotter(BEP,DisplayName=<span style="color:#A020F0">"Lane markings"</span>);
+
+    axis(BEP.Parent,<span style="color:#A020F0">"equal"</span>);
+    xlim(BEP.Parent,[-frontBackLim frontBackLim]);
+    ylim(BEP.Parent,[-40 40]);
+
+    <span style="color:#228B22">% Add an outline plotter for ground truth</span>
+    outlinePlotter(BEP,Tag=<span style="color:#A020F0">"Ground truth"</span>);
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">updateBEP</code></strong></p>
+<p>这个函数使用道路边界、范围和轨迹更新鸟瞰图显示。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> updateBEP(BEP,ego,detections,fovs,locations,angles)
+    <span style="color:#228B22">% Update road boundaries and their display</span>
+    [lmv,lmf] = laneMarkingVertices(ego);
+    plotLaneMarking(findPlotter(BEP,DisplayName=<span style="color:#A020F0">"Lane markings"</span>),lmv,lmf);
+
+    <span style="color:#228B22">% Update parking lot boundaries and markings and their display</span>
+    [plmv,plmf] = parkingLaneMarkingVertices(ego);
+    plotParkingLaneMarking(findPlotter(BEP,DisplayName=<span style="color:#A020F0">"Lane markings"</span>),plmv,plmf);
+
+    <span style="color:#228B22">% Update ground truth data</span>
+    [position,yaw,length,width,originOffset,color] = targetOutlines(ego);
+    plotOutline(findPlotter(BEP,Tag=<span style="color:#A020F0">"Ground truth"</span>),position,yaw,length,width, <span style="color:#0000FF">...</span>
+        OriginOffset=originOffset,Color=color);
+
+    <span style="color:#228B22">% Update road boundaries</span>
+    rbs = roadBoundaries(ego);
+    plotLaneBoundary(findPlotter(BEP,DisplayName=<span style="color:#A020F0">"Road boundaries"</span>),rbs);
+
+    <span style="color:#228B22">% Prepare and update detections display</span>
+    N = numel(detections);
+    detRanges = zeros(N,1);
+    <span style="color:#0000FF">for</span> i = 1:N
+        detRanges(i,:) = detections{i}.Measurement(1);
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">if</span> ~isempty(detRanges)
+        plotRangeDetection(findPlotter(BEP,DisplayName=<span style="color:#A020F0">"Ultrasonic Detection"</span>), detRanges, fovs, locations, angles);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+      <h2 id="d124e40626">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/parkingspace.html"><span itemprop="name"><code class="object">parkingSpace</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.insertparkingspaces.html"><span itemprop="name"><code class="function">insertParkingSpaces</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyeplot.html"><span itemprop="name"><code class="object">birdsEyePlot</code></span></a></span></p>
+      
+      
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

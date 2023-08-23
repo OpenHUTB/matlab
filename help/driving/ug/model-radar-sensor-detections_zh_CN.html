@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Model Radar Sensor Detections</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Model Radar Sensor Detections",
+          "description": "Model and simulate the output of an automotive radar sensor for various driving scenarios.",
+          "thumbnailURL": "../../examples/driving/win64/ModelRadarSensorDetectionsExample_02.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving.ModelRadarSensorDetectionsExample",
+          "name": "ModelRadarSensorDetectionsExample",
+          "url": "model-radar-sensor-detections.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/ModelRadarSensorDetectionsExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ModelRadarSensorDetectionsExample.m",
+        "helperCollectScenarioMetrics.m",
+        "helperCreateSensorDemoDisplay.m",
+        "helperCreateSensorDemoScenario.m",
+        "helperPlotSensorDemoDetections.m",
+        "helperPublishSnapshot.m",
+        "helperRunSensorDemoScenario.m",
+        "helperUpdateSensorDemoDisplay.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Model and simulate the output of an automotive radar sensor for various driving scenarios."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/ModelRadarSensorDetectionsExample_02.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Model Radar Sensor Detections</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e38177" class="intrnllnk">Introduction</a></li>
+<li><a href="#d124e38186" class="intrnllnk">Radar Sensor Model</a></li>
+<li><a href="#d124e38255" class="intrnllnk">Position Measurements</a></li>
+<li><a href="#d124e38300" class="intrnllnk">Velocity Measurements</a></li>
+<li><a href="#d124e38369" class="intrnllnk">Pedestrian and Vehicle Detection</a></li>
+<li><a href="#d124e38424" class="intrnllnk">Detection of Closely Spaced Targets</a></li>
+<li><a href="#d124e38458" class="intrnllnk">Summary</a></li>
+<li><a href="#d124e38476" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e38497" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_44602a3e-a50e-4483-84fd-120cc0af0363">模型雷达传感器检测</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/ModelRadarSensorDetectionsExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-ModelRadarSensorDetectionsExample"/>
+<meta itemprop="exampletitle" content="Model Radar Sensor Detections"/>
+</div>
+<span id="ModelRadarSensorDetectionsExample" class="anchor_target"></span>
+
+<p class="shortdesc">这个示例展示了如何对不同驾驶场景下的汽车雷达传感器输出进行建模和模拟。生成合成雷达检测对于在边缘情况下或当传感器硬件不可用时测试和验证跟踪和传感器融合算法非常重要。该示例分析了前向碰撞警告（FCW）场景、超车车辆场景和目标间距紧密的场景中雷达测量与车辆真实位置和速度之间的差异。还包括在不同距离下行人和车辆目标之间信噪比（SNR）值的比较。</p>
+
+<p>在这个示例中，您可以通过编程方式生成雷达检测。您也可以使用 <a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> 应用程序生成检测。有关示例，请参阅<a href="create-driving-scenario-interactively-and-generate-synthetic-detections.html" data-docid="driving_ug#mw_e49e404a-0301-4634-b5c2-c8a6da2db9f6" class="a">Create Driving Scenario Interactively and Generate Synthetic Sensor Data</a>。</p>
+
+<div class="procedure"><h3 class="title" id="d124e38177">介绍</h3>
+<p>包含高级驾驶辅助系统（ADAS）功能或设计为完全自动驾驶的车辆通常依赖于多种类型的传感器，包括声纳、雷达、激光雷达和视觉传感器。一个强大的解决方案包括传感器融合算法，将系统中各种类型传感器的优势结合起来。有关从多传感器ADAS系统合成检测的传感器融合更多信息，请参阅<a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" data-docid="driving_ug#mw_4b0a3201-1e7b-487f-961c-8f0ebf14df97" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a>。</p>
+<p>在使用合成检测来测试和验证跟踪和传感器融合算法时，了解生成的检测如何模拟传感器的独特性能特征非常重要。每种类型的汽车传感器都提供一组特定的优势和劣势，这些特性对融合解决方案起到贡献作用。本示例介绍了汽车雷达的一些重要性能特征，并展示了如何使用合成检测来建模雷达性能。</p>
+<h3 class="title" id="d124e38186">雷达传感器模型<span id="ModelRadarSensorDetectionsExample-2" class="anchor_target"></span></h3>
+<p>本示例使用 <code class="literal">drivingRadarDataGenerator</code> 生成合成雷达检测。<code class="literal">drivingRadarDataGenerator </code>模拟了汽车雷达的以下性能特征：</p>
+<p><strong class="emphasis bold">Strengths</strong></p>
+<div class="itemizedlist"><ul><li><p>在长距离检测范围内具有良好的距离和速度准确性</p></li>
+<li><p>对车辆具有较长的检测范围</p></li>
+</ul>
+</div>
+<p><strong class="emphasis bold">Weaknesses</strong></p>
+<div class="itemizedlist"><ul><li><p>在横向范围维度上的位置和速度准确性较差</p></li>
+<li><p>对于行人和其他非金属物体的检测范围较短</p></li>
+<li><p>近距离检测聚类对跟踪算法构成挑战</p></li>
+<li><p>无法在长距离上解析紧密间隔的目标</p></li>
+</ul>
+</div>
+<p><b><i>FCW驾驶场景</i></b></p>
+<p>创建一个前向碰撞警告（FCW）的测试场景，用于说明如何使用典型的长距离汽车雷达测量目标的位置。该场景包括一个移动的自车和一个静止的目标车辆，目标车辆位于道路下方150米处。自车在刹车前具有50公里/小时的初始速度，以实现 3 m/s^2 的恒定减速度。然后，车辆在距离目标车辆后保险杠1米处完全停下来。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>addpath(fullfile(matlabroot,<span style="color:#A020F0">'toolbox'</span>,<span style="color:#A020F0">'shared'</span>,<span style="color:#A020F0">'tracking'</span>,<span style="color:#A020F0">'fusionlib'</span>));
+
+rng <span style="color:#A020F0">default</span>;
+initialDist = 150; <span style="color:#228B22">% m</span>
+initialSpeed = 50; <span style="color:#228B22">% kph</span>
+brakeAccel = 3;    <span style="color:#228B22">% m/s^2</span>
+finalDist = 1;     <span style="color:#228B22">% m</span>
+[scenario, egoCar] = helperCreateSensorDemoScenario(<span style="color:#A020F0">'FCW'</span>, initialDist, initialSpeed, brakeAccel, finalDist);
+</pre>
+</div>
+</div>
+</div>
+<p><b><i>前向长距离雷达</i></b></p>
+<p>创建一个安装在自车前保险杠上、距离地面20厘米的前向长距离雷达传感器。该传感器以10赫兹（每0.1秒）的频率生成原始检测结果，其方位视野为20度，角度分辨率为4度。其最大范围为150米，范围分辨率为2.5米。 <code class="literal">ActorProfiles</code> 属性指定了模拟中雷达所看到的车辆的物理尺寸和雷达散射截面（RCS）模式。作为原始检测结果的替代， <code class="literal">drivingRadarDataGeneratior</code> 可以输出聚类检测结果或目标跟踪更新，具体取决于 <code class="literal">TargetReportFormat</code> 属性的设置。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>radarSensor = drivingRadarDataGenerator( <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SensorIndex'</span>, 1, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'TargetReportFormat'</span>, <span style="color:#A020F0">'Detections'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'UpdateRate'</span>, 10, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MountingLocation'</span>, [egoCar.Wheelbase+egoCar.FrontOverhang 0 0.2], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'FieldOfView'</span>, [20 5], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeLimits'</span>, [0 150], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'AzimuthResolution'</span>, 4, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeResolution'</span>, 2.5, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Profiles'</span>, actorProfiles(scenario))
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>radarSensor = 
+
+  drivingRadarDataGenerator with properties:
+
+             SensorIndex: 1
+              UpdateRate: 10
+
+        MountingLocation: [3.7000 0 0.2000]
+          MountingAngles: [0 0 0]
+
+             FieldOfView: [20 5]
+             RangeLimits: [0 150]
+         RangeRateLimits: [-100 100]
+
+    DetectionProbability: 0.9000
+          FalseAlarmRate: 1.0000e-06
+
+  Use get to show all properties
+
+</pre>
+</div>
+</div>
+</div>
+<p><font face="Microsoft YaHei"><b><i>仿真雷达检测</i></b></font></p>
+<p>通过推进场景的仿真时间来模拟雷达测量目标车辆的位置。雷达传感器根据自车坐标系中目标车辆的真实姿态（位置、速度和方向）生成检测结果。</p>
+<p>雷达被配置为以0.1秒间隔生成检测结果，这与典型的汽车雷达的更新率一致。然而，为了准确地模拟车辆的运动，场景仿真每0.01秒推进一次。传感器返回一个逻辑标志<span style="font-family: monospace;">isValidTime</span>，当雷达达到所需的更新间隔时为true，表示该仿真时间步长将生成检测结果。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create display for FCW scenario</span>
+[bep, figScene] = helperCreateSensorDemoDisplay(scenario, egoCar, radarSensor);
+
+metrics = struct;                 <span style="color:#228B22">% Initialize struct to collect scenario metrics</span>
+<span style="color:#0000FF">while</span> advance(scenario)           <span style="color:#228B22">% Update vehicle positions</span>
+    gTruth = targetPoses(egoCar); <span style="color:#228B22">% Get target positions in ego vehicle coordinates</span>
+
+    <span style="color:#228B22">% Generate time-stamped radar detections</span>
+    time = scenario.SimulationTime;
+    [dets, ~, isValidTime] = radarSensor(gTruth, time);
+
+    <span style="color:#0000FF">if</span> isValidTime
+        <span style="color:#228B22">% Update Bird's-Eye Plot with detections and road boundaries</span>
+        helperUpdateSensorDemoDisplay(bep, egoCar, radarSensor, dets);
+
+        <span style="color:#228B22">% Collect radar detections and ground truth for offline analysis</span>
+        metrics = helperCollectScenarioMetrics(metrics, gTruth, dets);
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Take a snapshot for the published example</span>
+    helperPublishSnapshot(figScene, time&gt;=9.1);
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38252" class="mediaobject"><p><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_01.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e38255">位置测量<span id="ModelRadarSensorDetectionsExample-11" class="anchor_target"></span></h3>
+<p>在FCW测试的持续时间内，目标车辆与自车的距离涵盖了很大的范围。通过将雷达测量的目标车辆的纵向和横向位置与车辆的真实位置进行比较，可以观察到雷达测量位置的准确性。</p>
+<p>使用 <code class="literal">helperPlotSensorDemoDetections</code> 函数绘制纵向和横向位置误差，即雷达报告的测量位置与目标车辆的真实位置之间的差异。目标车辆的真实参考位置是位于目标车辆后轴中心正下方地面上的点，距离车辆前保险杠1米处。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'position'</span>, <span style="color:#A020F0">'reverse range'</span>, [-6 6]);
+
+<span style="color:#228B22">% Show rear overhang of target vehicle</span>
+tgtCar = scenario.Actors(2);
+rearOverhang = tgtCar.RearOverhang;
+
+subplot(1,2,1);
+hold <span style="color:#A020F0">on</span>; plot(-rearOverhang*[1 1], ylim, <span style="color:#A020F0">'k'</span>); hold <span style="color:#A020F0">off</span>;
+legend(<span style="color:#A020F0">'Error'</span>, <span style="color:#A020F0">'2\sigma noise'</span>, <span style="color:#A020F0">'Rear overhang'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38267" class="mediaobject"><p><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_02.png"/></p>
+</div>
+</div>
+<p><b><i>纵向位置测量</i></b></p>
+<p>对于前向雷达配置，雷达的测距结果对应目标车辆的纵向位置。</p>
+<p>在左侧的前述图中，纵向位置误差显示雷达测量的纵向位置与目标的真实地面位置之间存在-1米的偏差。这个偏差表明雷达始终将目标测量为比地面真实位置报告的位置更近。雷达不仅将目标近似为空间中的单点，还对车辆的实际尺寸进行建模。检测结果沿着车辆的后侧生成，根据雷达在方位角、距离和（启用时）俯仰方面的分辨率。这个-1米的偏移可以解释为目标车辆的后悬挂，它定义了车辆后侧与车辆后轴之间的距离，而真实参考位置位于后轴上。</p>
+<p>雷达的模型具有2.5米的距离分辨率。然而，报告的 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_eq05304870507908037955.png" alt="$2\sigma$"/></span></span> 测量噪声在最近的点上仅为0.25米，并在最远的测试距离上略微增长至0.41米。实际的传感器精度远远小于雷达的距离分辨率。因为雷达使用Cramer-Rao下界对距离误差的信噪比（SNR）依赖关系进行建模，具有较大雷达反射截面（RCS）或靠近传感器的目标比较小或更远的目标具有更好的距离精度。</p>
+<p> 这种信噪比（SNR）对雷达测量噪声的依赖关系在雷达的每个测量维度上进行建模：方位角、俯仰角、距离和速度。</p>
+<p><b><i>横向位置测量</i></b></p>
+<p>对于前向雷达配置，与雷达的距离测量正交的维度（通常称为传感器的横向维度）对应于目标车辆的横向位置。</p>
+<p>前面图表中FCW测试中的横向位置误差显示出与目标的地面真实距离强烈相关。雷达报告的横向位置精度在近距离时可以小至0.03米，在目标远离雷达时可达2.6米。</p>
+<p>此外，当目标距离小于30米时，会出现多个检测。如前所述，目标车辆并非被建模为空间中的单个点，而是雷达模型将车辆的尺寸与雷达的分辨率进行比较。在这种情况下，雷达从目标车辆的后侧视图。当车辆的后侧跨越了雷达的多个方位分辨率单元时，雷达会从目标占据的每个分辨率单元生成检测。</p>
+<p>当FCW测试中的目标距离自车30米时，计算目标车辆在方位上跨越的角度范围。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Range from radar to target vehicle's rear side</span>
+radarRange = 30-(radarSensor.MountingLocation(1)+tgtCar.RearOverhang);
+
+<span style="color:#228B22">% Azimuth spanned by vehicle's rear side at 30 meters ground truth range</span>
+width = tgtCar.Width;
+azSpan = rad2deg(width/radarRange)
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>azSpan =
+
+    4.0764
+
+</pre>
+</div>
+</div>
+</div>
+<p>在地面真实距离为30米时，车辆的后侧开始跨越大于雷达方位分辨率4度的方位角。由于目标的后侧跨越的方位角超过了传感器的分辨率，车辆的后侧会生成3个解析点：一个来自后侧中心，一个来自后侧左边缘，一个来自后侧右边缘。</p>
+<h3 class="title" id="d124e38300">速度测量<span id="ModelRadarSensorDetectionsExample-17" class="anchor_target"></span></h3>
+<p>创建一个驾驶场景，包括两辆目标车辆（一辆前车和一辆超车车辆），以说明雷达在纵向和横向速度测量方面的准确性。前车放置在自车前方40米处，并以相同的速度行驶。超车车辆从左车道开始与自车并行，超过自车，并在前车后方的右车道进行并线。这个并线动作产生纵向和横向速度分量，使您能够比较传感器在这两个维度上的准确性。</p>
+<p>由于前车直接在雷达前方，它具有纯纵向速度分量。超车车辆具有具有纵向和横向速度分量的速度曲线。随着车辆超过自车并进入前车后方的右车道，这些分量会发生变化。将雷达测量的目标车辆的纵向和横向速度与它们的地面真实速度进行比较，可以说明雷达观测这两个速度分量的能力。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create passing scenario</span>
+leadDist = 40;  <span style="color:#228B22">% m</span>
+speed = 50;     <span style="color:#228B22">% kph</span>
+passSpeed = 70; <span style="color:#228B22">% kph</span>
+[scenario, egoCar] = helperCreateSensorDemoScenario(<span style="color:#A020F0">'Passing'</span>, leadDist, speed, passSpeed);
+</pre>
+</div>
+</div>
+</div>
+<p><b><i>雷达速度测量的配置</i></b></p>
+<p>雷达通过观察从每个目标返回的信号能量上的多普勒频率偏移来生成速度测量。相对于雷达，目标距离变化的速率直接从这些多普勒频率中得出。采用前面部分中使用的雷达传感器来测量位置，并将其配置为生成距离速率测量。这些测量具有0.5 m/s的分辨率，这是汽车雷达的典型分辨率。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Configure radar for range-rate measurements</span>
+release(radarSensor);
+radarSensor.HasRangeRate = true;
+radarSensor.RangeRateResolution = 0.5; <span style="color:#228B22">% m/s</span>
+
+<span style="color:#228B22">% Use actor profiles for the passing car scenario</span>
+radarSensor.Profiles = actorProfiles(scenario);
+</pre>
+</div>
+</div>
+</div>
+<p>使用 <code class="literal">helperRunSensorDemoScenario </code>函数来模拟自车和目标车辆的运动。该函数还会收集模拟的指标，就像之前在FCW驾驶场景中所做的那样。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>snapTime = 6; <span style="color:#228B22">% Simulation time to take snapshot for publishing</span>
+metrics = helperRunSensorDemoScenario(scenario, egoCar, radarSensor, snapTime);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38322" class="mediaobject"><p><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_03.png"/></p>
+</div>
+</div>
+<p>使用 <code class="literal">helperPlotSensorDemoDetections</code> 函数绘制雷达的纵向和横向速度误差，即雷达测量速度与目标车辆地面真实速度之间的差异。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'velocity'</span>, <span style="color:#A020F0">'time'</span>, [-25 25]);
+subplot(1,2,1);
+legend(<span style="color:#A020F0">'Lead car error'</span>, <span style="color:#A020F0">'Lead car 2\sigma noise'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Pass car error'</span>, <span style="color:#A020F0">'Pass car 2\sigma noise'</span>, <span style="color:#A020F0">'Location'</span>, <span style="color:#A020F0">'northwest'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38333" class="mediaobject"><p><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_04.png"/></p>
+</div>
+</div>
+<p><b><i>纵向速度测量</i></b></p>
+<p>对于前向雷达，纵向速度与雷达的距离速率测量密切相关。左侧的前述图表显示了通过车辆场景中雷达的纵向速度误差。由于雷达可以通过观察从两辆车接收到的信号能量中的多普勒频率偏移来准确测量纵向速度，因此两辆车的速度误差（以点表示）很小。然而，当通过车辆在3秒时进入雷达的视野时，通过车辆的 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_eq05304870507908037955.png" alt="$2\sigma$"/></span></span> 测量噪声（使用实线黄色线表示）最初较大。然后，噪声逐渐减小，直到通过车辆在7秒时合并到前车后面的右车道。当通过车辆超过自车时，通过车辆的纵向速度包括径向和非径向分量。雷达会扩大报告的 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_eq05304870507908037955.png" alt="$2\sigma$"/></span></span> 纵向速度噪声，以表示其无法观测通过车辆在超过自车时的非径向速度分量。</p>
+<p><b><i>横向速度测量</i></b></p>
+<p>对于前向雷达，测量到的横向速度对应于目标的非径向速度分量。右侧的前述图表显示了通过车辆的横向速度测量误差，以黄色点表示。在通过车辆在5秒和7秒之间进行车道变换时，雷达无法测量横向速度，因此产生了较大的误差。然而，雷达报告了一个较大的 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_eq05304870507908037955.png" alt="$2\sigma$"/></span></span> 横向速度噪声（以实线表示），以表明它无法观测到横向维度上的速度。</p>
+<h3 class="title" id="d124e38369">行人和车辆检测<span id="ModelRadarSensorDetectionsExample-26" class="anchor_target"></span></h3>
+<p>雷达不仅可以"看到"物体的物理尺寸（长度、宽度和高度），还对物体的电尺寸非常敏感。物体的电尺寸被称为雷达截面积（RCS），通常以分贝平方米（dBsm）为单位表示。物体的雷达截面积定义了它将从雷达接收到的电磁能量有效地反射回传感器的能力。物体的雷达截面积取决于许多属性，包括物体的大小、形状和所含材料的种类。物体的雷达截面积还取决于雷达的发射频率。对于车辆和其他金属物体来说，这个值可能很大。对于接近77 GHz的典型汽车雷达频率，一辆汽车的名义雷达截面积约为10平方米（10 dBsm）。然而，非金属物体通常具有更小的值。-8 dBsm是一个与行人相关的合理雷达截面积。这个值对应于一个仅有0.16平方米有效电尺寸。在ADAS或自动驾驶系统中，雷达必须能够对这两种物体进行检测。</p>
+<p><b><i>FCW驾驶场景中的行人和车辆</i></b></p>
+<p>重新审视之前的FCW场景，我们在停车的车辆旁边加上了一个站在人行道上的行人。在FCW测试的持续时间内，雷达到目标车辆和行人的距离跨越了一个很大的范围。通过比较雷达在测试范围内对测试车辆和行人检测所报告的信噪比（SNR），可以展示雷达的检测性能如何随着检测距离和物体类型的变化而改变。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create FCW test scenario</span>
+initialDist = 150;  <span style="color:#228B22">% m</span>
+finalDist = 1;      <span style="color:#228B22">% m</span>
+initialSpeed = 50;  <span style="color:#228B22">% kph</span>
+brakeAccel = 3;     <span style="color:#228B22">% m/s^2</span>
+withPedestrian = true;
+[scenario, egoCar] = helperCreateSensorDemoScenario(<span style="color:#A020F0">'FCW'</span>, initialDist, initialSpeed, brakeAccel, finalDist, withPedestrian);
+</pre>
+</div>
+</div>
+</div>
+<p><b><i>雷达的检测性能配置</i></b></p>
+<p>雷达的检测性能通常通过在特定距离上检测到一个雷达截面积为0 dBsm的参考目标的概率来确定。请创建一个长距离雷达，在100米的距离上以90%的检测概率检测到雷达截面积为0 dBsm的目标。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Configure radar's long-range detection performance</span>
+release(radarSensor);
+radarSensor.ReferenceRange = 100; <span style="color:#228B22">% m</span>
+radarSensor.ReferenceRCS = 0;     <span style="color:#228B22">% dBsm</span>
+radarSensor.DetectionProbability = 0.9;
+
+<span style="color:#228B22">% Use actor profiles for the passing car scenario</span>
+radarSensor.Profiles = actorProfiles(scenario);
+</pre>
+</div>
+</div>
+</div>
+<p>运行该场景以收集雷达检测和地面真实数据。将它们存储以供离线分析。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>snapTime = 8; <span style="color:#228B22">% Simulation time to take snapshot for publishing</span>
+metrics = helperRunSensorDemoScenario(scenario, egoCar, radarSensor, snapTime);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38395" class="mediaobject"><p><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_05.png"/></p>
+</div>
+</div>
+<p>绘制目标车辆和行人的检测信噪比（SNR）图。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'snr'</span>, <span style="color:#A020F0">'range'</span>, [0 160]);
+legend(<span style="color:#A020F0">'Vehicle'</span>, <span style="color:#A020F0">'Pedestrian'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38403" class="mediaobject"><p><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_06.png"/></p>
+</div>
+</div>
+<p>该图显示了物体雷达截面积（RCS）对雷达"看到"物体的能力的影响。红色表示静止测试车辆的检测结果，黄色表示行人的检测结果。</p>
+<p>测试车辆在测试范围内的最远距离都被检测到，但行人的检测在接近70米的距离变得不太一致。两个物体的检测范围的差异是由于测试车辆具有较大的雷达截面积 (10 dBsm) ，而行人的雷达截面积较小 (-8 dBsm)，这使得雷达能够在较远的距离上检测到车辆，而行人的检测距离较短。</p>
+<p>测试车辆也在测试范围内的最近距离被检测到，但雷达在接近20米的距离上停止生成对行人的检测。在这种情况下，目标车辆直接放置在雷达前方，但行人偏离了雷达的视线。在接近20米的距离上，行人已经不在雷达的视野范围内，无法被雷达检测到。</p>
+<p>重新审视这种情况，以说明中程汽车雷达的检测性能如何受到影响。建模一个中程雷达，用于检测具有0 dBsm雷达截面积的物体，在参考距离50米处，检测概率为90%。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Configure radar for a mid-range detection requirement</span>
+release(radarSensor);
+radarSensor.ReferenceRange = 50; <span style="color:#228B22">% m</span>
+radarSensor.ReferenceRCS = 0;    <span style="color:#228B22">% dBsm</span>
+radarSensor.DetectionProbability = 0.9;
+</pre>
+</div>
+</div>
+</div>
+<p>此外，为了提高对偏离雷达视线的近距离物体的检测能力，中程雷达的方位视场增加到90度。雷达的方位分辨率设置为10度，以更快地搜索这个较大的覆盖区域。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Increase radar's field of view in azimuth and elevation to 90 and 10 degrees respectively</span>
+radarSensor.FieldOfView = [90 10];
+
+<span style="color:#228B22">% Increase radar's azimuth resolution</span>
+radarSensor.AzimuthResolution = 10;
+</pre>
+</div>
+</div>
+</div>
+<p>使用中程雷达进行前向碰撞警告（FCW）测试，并绘制目标车辆和行人的检测信噪比（SNR）图。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Run simulation and collect detections and ground truth for offline analysis</span>
+metrics = helperRunSensorDemoScenario(scenario, egoCar, radarSensor);
+
+<span style="color:#228B22">% Plot SNR for vehicle and pedestrian detections</span>
+helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'snr'</span>, <span style="color:#A020F0">'range'</span>, [0 160]);
+legend(<span style="color:#A020F0">'Vehicle'</span>, <span style="color:#A020F0">'Pedestrian'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38420" class="mediaobject"><p><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_07.png"/></p>
+</div>
+</div>
+<p>对于中程雷达，目标车辆和行人的检测范围都受到限制，仅限于较短的距离。而使用长程雷达，目标车辆可以被检测到整个测试范围内，但在95米处车辆的检测变得不可靠。同样，行人的可靠检测范围仅限于35米。然而，中程雷达在方位上的扩展视场使得行人能够在距离传感器10米的地面真实距离上进行检测，这在覆盖范围上相较于长程雷达有了显著的改善。</p>
+<h3 class="title" id="d124e38424">密集目标的检测<span id="ModelRadarSensorDetectionsExample-37" class="anchor_target"></span></h3>
+<p>当多个目标占据雷达的分辨率单元时，这些密集目标将被报告为一个单一的检测。所报告的位置是每个贡献目标位置的质心。将多个目标合并为一个检测在长距离上是常见的，因为雷达的方位分辨率覆盖的区域随着距离传感器的增加而增大。</p>
+<p>创建一个场景，场景中有两辆摩托车并排行驶在自车前方。这个场景展示了雷达如何合并密集目标。这两辆摩托车之间相距1.8米，比自车快10公里/小时。</p>
+<p>在整个场景的过程中，摩托车与自车之间的距离逐渐增加。当摩托车靠近雷达时，它们占据不同的雷达分辨率单元。到了场景结束时，随着雷达与摩托车之间的距离增加，两辆摩托车占据相同的雷达分辨率单元并被合并。雷达的纵向和横向位置误差显示了在场景中发生这种过渡的时刻。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>duration = 8;         <span style="color:#228B22">% s</span>
+speedEgo = 50;        <span style="color:#228B22">% kph</span>
+speedMotorcycles = 60; <span style="color:#228B22">% kph</span>
+distMotorcycles = 25;  <span style="color:#228B22">% m</span>
+[scenario, egoCar] = helperCreateSensorDemoScenario(<span style="color:#A020F0">'Side-by-Side'</span>, duration, speedEgo, speedMotorcycles, distMotorcycles);
+
+<span style="color:#228B22">% Create forward-facing long-range automotive radar sensor mounted on ego vehicle's front bumper</span>
+radarSensor = drivingRadarDataGenerator(<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SensorIndex'</span>, 1, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'TargetReportFormat'</span>, <span style="color:#A020F0">'Detections'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MountingLocation'</span>, [egoCar.Wheelbase+egoCar.FrontOverhang 0 0.2], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Profiles'</span>, actorProfiles(scenario));
+
+<span style="color:#228B22">% Run simulation and collect detections and ground truth for offline analysis</span>
+snapTime = 5.6; <span style="color:#228B22">% Simulation time to take snapshot for publishing</span>
+metrics = helperRunSensorDemoScenario(scenario, egoCar, radarSensor, snapTime);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38434" class="mediaobject"><p><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_08.png"/></p>
+</div>
+</div>
+<p>绘制雷达的纵向和横向位置误差图表。通过分析每辆摩托车报告的位置误差，您可以确定雷达无法再将这两辆摩托车视为独立对象的范围。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'position'</span>, <span style="color:#A020F0">'range'</span>, [-3 3], true);
+subplot(1,2,2);
+legend(<span style="color:#A020F0">'Left error'</span>, <span style="color:#A020F0">'Right error'</span>, <span style="color:#A020F0">'Merged error'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38441" class="mediaobject"><p><img src="../../examples/driving/win64/ModelRadarSensorDetectionsExample_09.png"/></p>
+</div>
+</div>
+<p>从每辆摩托车的后部和内侧生成检测结果。红色的误差表示左侧摩托车的位置误差，黄色的误差表示右侧摩托车的位置误差，紫色的点表示两辆摩托车之间被合并的检测结果。这两辆摩托车之间相距1.8米。每辆摩托车的宽度为0.6米，长度为2.2米。摩托车的内侧仅相距1.2米。</p>
+<p><b><i>内侧检测结果</i></b></p>
+<p>检测结果是从每辆摩托车的内侧点生成的。检测从最近的边缘开始，在范围上按照雷达的范围分辨率（2.5米）和摩托车相对于雷达的位置进行采样。范围单元边界的位置产生的检测结果可以出现在摩托车内侧的中间或远边缘。还会生成从摩托车最近的边缘生成的检测结果。通过雷达的范围分辨率单元边界的移动，产生了在前面的图表左侧看到的纵向位置误差的3个区域。这3个区域所覆盖的纵向范围为2.2米，与摩托车的长度相对应。</p>
+<p>由于摩托车的内侧只相隔1.2米，这些采样点都位于一个共同的方位分辨率单元内，并被雷达合并。合并点的质心位于两辆摩托车的中间。合并检测结果的质心计算产生了一个横向偏差，其大小为0.9米，相当于两辆摩托车之间距离的一半。在右侧的横向位置误差图中，所有合并的检测结果（显示为紫色）都具有这个偏差。</p>
+<p><b><i>后侧检测结果</i></b></p>
+<p>从每辆摩托车的后侧生成的检测结果相互之间的距离比内侧的采样点（1.2米）更远，为1.8米。</p>
+<p>在场景开始时，摩托车与自车的地面真实距离为25米。在这个近距离下，来自后侧的检测结果位于不同的方位分辨率单元内，雷达不会将它们合并。这些独立的后侧检测结果在前述的纵向和横向位置误差图中以红色点（左侧摩托车）和黄色点（右侧摩托车）显示。对于这些未合并的检测结果，来自后侧的纵向位置误差会受到摩托车后悬挂部分的偏移（0.37米）的影响。而来自后侧的横向位置误差则不会显示任何偏差。这个结果与前向碰撞警告（FCW）场景中观察到的位置误差一致。</p>
+<h3 class="title" id="d124e38458">总结</h3>
+<p>这个例子展示了如何使用合成检测结果来建模汽车雷达的输出。具体而言，它介绍了 <code class="literal">drivingRadarDataGenerator</code> 模型的以下特点：</p>
+<div class="itemizedlist"><ul><li><p>在长距离上提供准确的纵向位置和速度测量，但在长距离上的横向精度有限。</p></li>
+<li><p>在近距离上从单个目标生成多个检测结果，但在长距离上将多个紧密间隔的目标的检测结果合并为单个检测结果。</p></li>
+<li><p>在长距离上能够检测到具有较大雷达反射截面的车辆和其他目标，但对于非金属物体（如行人）的检测性能有限</p></li>
+</ul>
+</div>
+</div>
+      <h2 id="d124e38476">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving Scenario
+            Designer</span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator-system-object.html"><span itemprop="name"><code class="sysobj">drivingRadarDataGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator-system-object.html"><span itemprop="name"><code class="sysobj">visionDetectionGenerator</code></span></a></span></li>
+</ul>
+      <h2 id="d124e38497">Related Topics</h2>
+<ul><li><a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a></li>
+<li><a href="model-vision-sensor-detections.html" class="a">Model Vision Sensor Detections</a></li>
+<li><a href="radar-ghost-multipath.html" class="a">Simulate Radar Ghosts Due to Multipath Return</a></li>
+<li><a href="multipath-radar-detection-and-tracking.html" class="a">Highway Vehicle Tracking with Multipath Radar Reflections</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

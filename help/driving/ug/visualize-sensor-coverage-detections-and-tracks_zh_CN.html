@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Visualize Sensor Coverage, Detections, and Tracks</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Visualize Sensor Coverage, Detections, and Tracks",
+          "description": "Configure and use a bird's-eye plot to display sensor coverage, detections, and tracking results around the ego vehicle.",
+          "thumbnailURL": "../../examples/driving/win64/VisualilzeSensorCoverageDetectionsTracksExample_04.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving.VisualilzeSensorCoverageDetectionsTracksExample",
+          "name": "VisualilzeSensorCoverageDetectionsTracksExample",
+          "url": "visualize-sensor-coverage-detections-and-tracks.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/VisualilzeSensorCoverageDetectionsTracksExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "VisualilzeSensorCoverageDetectionsTracksExample.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Configure and use a bird's-eye plot to display sensor coverage, detections, and tracking results around the ego vehicle."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/VisualilzeSensorCoverageDetectionsTracksExample_04.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Visualize Sensor Coverage, Detections, and Tracks</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e31311" class="intrnllnk">Overview</a></li>
+<li><a href="#d124e31340" class="intrnllnk">Defining Scene Limits and Sensor Coverage</a></li>
+<li><a href="#d124e31400" class="intrnllnk">Plotting Detections</a></li>
+<li><a href="#d124e31411" class="intrnllnk">Plotting Tracks and Most-Important Objects</a></li>
+<li><a href="#d124e31422" class="intrnllnk">Plotting the Lane Boundaries</a></li>
+<li><a href="#d124e31437" class="intrnllnk">Displaying a Scenario from a Recording File</a></li>
+<li><a href="#d124e31445" class="intrnllnk">Summary</a></li>
+<li><a href="#d124e31451" class="intrnllnk">Supporting Functions</a></li>
+<li><a href="#d124e31464" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e31488" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_5e511f44-0799-4bf8-b5d3-d72a8107f12f">可视化传感器覆盖范围、检测和跟踪</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/VisualilzeSensorCoverageDetectionsTracksExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-VisualilzeSensorCoverageDetectionsTracksExample"/>
+<meta itemprop="exampletitle" content="Visualize Sensor Coverage, Detections, and Tracks"/>
+</div>
+<span id="VisualilzeSensorCoverageDetectionsTracksExample" class="anchor_target"></span>
+
+<p class="shortdesc"><span style="font-family: &quot;Microsoft YaHei&quot;;">配置并使用鸟瞰图来显示自我车辆周围的传感器覆盖范围、检测和跟踪结果。</span></p>
+
+<div class="procedure"><h3 class="title" id="d124e31311">概述</h3>
+<p>在分析传感器覆盖范围、检测结果和跟踪结果时，将记录在车辆坐标系中的数据显示在围绕自车的二维地图上是非常重要的。可以使用 <code class="literal"><a href="../ref/birdseyeplot.html" data-docid="driving_ref#bvi0yqz-1" class="a"><code class="olink">birdsEyePlot</code></a></code> 来显示特定时间的这些信息的快照，或者流式传输数据并高效地更新显示。</p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例读取预先记录的传感器数据和跟踪结果。它包括以下内容：</span></p>
+<div class="itemizedlist"><ul><li><p>Lane information</p></li>
+<li><p>Vision objects</p></li>
+<li><p>Radar objects</p></li>
+<li><p>Positions, velocities, covariance matrices, and labels of the tracks</p></li>
+<li><p>Most important object</p></li>
+</ul>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">上述信息以每秒 20 次更新的高速率记录，但视觉检测以每秒 10 次更新记录。</span></p>
+<p>传感器配置文件定义了一个视觉传感器和一个雷达传感器的位置和覆盖区域，其中包括两种覆盖模式。这些覆盖区域将显示在鸟瞰图上。</p>
+<p>请注意，<code class="literal">birdsEyePlot</code> 对象建立了一个非常特定的车辆坐标系，其中X轴指向车辆前方，Y轴指向车辆左侧，Z轴指向地面的上方。坐标系的原点通常定义为后轴的中心，传感器的位置相对于原点进行定义。有关更多详细信息，请参阅 <a href="coordinate-systems.html" data-docid="driving_ug#bvgu_ya-2" class="a">Coordinate Systems in Automated Driving Toolbox</a>。</p>
+<h3 class="title" id="d124e31340">定义场景限制和传感器覆盖范围</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">配置鸟瞰图需要两个步骤。第一步，创建鸟瞰图，以设置上述坐标系，其中 x 轴向上，y 轴指向左侧。可以定义每个方向的轴限制。在这个前瞻性示例中，我们定义了自我车辆前方 90 米和每侧 35 米的场景。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create a bird's-eye plot and limit its axes</span>
+BEP = birdsEyePlot(<span style="color:#A020F0">'Xlimits'</span>, [0 90], <span style="color:#A020F0">'Ylimits'</span>, [-35 35]);
+</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在第二步中，创建鸟瞰绘图仪。鸟瞰图提供了以下各种绘图仪，每个绘图仪都配置为绘制特定的数据类型。它们包括：</span></p>
+<div class="itemizedlist"><ul><li><p>coverageAreaPlotter - 绘制传感器覆盖区域</p></li>
+<li><p>detectionPlotter    - 打印对象检测</p></li>
+<li><p>trackPlotter        - 绘制轨迹、轨迹不确定性和历史轨迹</p></li>
+<li><p>laneBoundaryPlotter - 绘制车道边界</p></li>
+<li><p>pathPlotter         - 绘制对象轨迹</p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create a coverageAreaPlotter for a vision sensor and two radar modes</span>
+cap(1) = coverageAreaPlotter(BEP,<span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'blue'</span>,<span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'blue'</span>);
+cap(2) = coverageAreaPlotter(BEP,<span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'red'</span>,<span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'red'</span>);
+cap(3) = coverageAreaPlotter(BEP,<span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'red'</span>,<span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'red'</span>);
+</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">加载传感器配置数据。传感器配置包括：</span></p>
+<div class="itemizedlist"><ul><li><p>传感器相对于轴原点 (X,Y) 的位置，以米为单位<br/></p></li>
+<li><p>传感器范围，以米为单位<br/></p></li>
+<li><p>传感器相对于 x 轴的偏航角，以度为单位<br/></p></li>
+<li><p>传感器视场 (FOV)，以度为单位<br/></p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load(<span style="color:#A020F0">'SensorConfigurationData.mat'</span>);
+<span style="color:#228B22">% Use the sensor configuration to plot the sensor coverage areas. Vision</span>
+<span style="color:#228B22">% sensor uses the shaded blue coverage area and radar modes are shaded in</span>
+<span style="color:#228B22">% red.</span>
+<span style="color:#0000FF">for</span> i = 1:3
+    plotCoverageArea(cap(i), [sensorParams(i).X, sensorParams(i).Y],<span style="color:#0000FF">...</span>
+        sensorParams(i).Range, sensorParams(i).YawAngle, sensorParams(i).FoV);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Add title</span>
+title(<span style="color:#A020F0">'Bird''s-Eye Plot'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e31374" class="mediaobject"><p><img src="../../examples/driving/win64/VisualilzeSensorCoverageDetectionsTracksExample_01.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">上面的显示屏显示了视觉传感器和两种雷达传感器模式的覆盖范围。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">视觉传感器位于汽车中央原点（后轴）前方3.30米处，射程为150米，视场为38度。</span></p>
+<p>雷达位于车辆中心前方3.38米的位置。雷达的长程模式具有174米的范围和20度的视场角，而中程模式具有60米的范围和90度的视场角。请注意，覆盖区域在自车前方90米和每侧35米处被截断。</p>
+<p>这个例子展示了一个向前看的场景；然而 ，你可以在自车周围定义 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/VisualilzeSensorCoverageDetectionsTracksExample_eq04205630029967935641.png" alt="$360^{\circ}$"/></span></span> 的覆盖范围。例如 ，一个覆盖车辆后方的传感器将以 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/VisualilzeSensorCoverageDetectionsTracksExample_eq10346168241279137799.png" alt="$180^{\circ}$"/> 的偏航角进行定向。</span></span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">接下来的几行读取记录的数据，为后续步骤做准备。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Load recorded data from a file</span>
+load(<span style="color:#A020F0">'BirdsEyePlotExampleData.mat'</span>, <span style="color:#A020F0">'dataToDisplay'</span>);
+
+<span style="color:#228B22">% Skip to the 125th time step, where there are 5 vision detections and</span>
+<span style="color:#228B22">% multiple radar objects and tracks.</span>
+timeStep = 125;
+
+<span style="color:#228B22">% Extract the various data from the recorded file for that time step</span>
+[visionObjectsPos, radarObjectsPos, laneBoundaries, trackPositions, <span style="color:#0000FF">...</span>
+    trackVelocities, trackCovariances, trackLabels, MIOlabel, MIOposition, <span style="color:#0000FF">...</span>
+    MIOvelocity] = readDataFrame(dataToDisplay(timeStep));
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e31400">绘制检测</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">接下来，创建绘图仪以显示记录的视觉和雷达检测</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% create a vision detection plotter put it in a struct for future use</span>
+bepPlotters.Vision = detectionPlotter(BEP, <span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'vision detection'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MarkerEdgeColor'</span>,<span style="color:#A020F0">'blue'</span>, <span style="color:#A020F0">'Marker'</span>,<span style="color:#A020F0">'^'</span>);
+
+<span style="color:#228B22">% Combine all radar detections into one entry and store it for later update</span>
+bepPlotters.Radar = detectionPlotter(BEP, <span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'radar detection'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MarkerEdgeColor'</span>,<span style="color:#A020F0">'red'</span>);
+
+<span style="color:#228B22">% Call the vision detections plotter</span>
+plotDetection(bepPlotters.Vision, visionObjectsPos);
+
+<span style="color:#228B22">% Repeat the above for radar detections</span>
+plotDetection(bepPlotters.Radar, radarObjectsPos);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e31408" class="mediaobject"><p><img src="../../examples/driving/win64/VisualilzeSensorCoverageDetectionsTracksExample_02.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e31411">绘制轨迹和最重要的对象</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">将轨迹添加到鸟瞰图时，我们会提供位置、速度和位置协方差信息。绘图仪负责显示轨迹历史记录轨迹，但由于这是单个帧，因此不会有历史记录。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create a track plotter that shows the last 10 track updates</span>
+bepPlotters.Track = trackPlotter(BEP, <span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'tracked object'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'HistoryDepth'</span>,10);
+
+<span style="color:#228B22">% Create a track plotter to plot the most important object</span>
+bepPlotters.MIO = trackPlotter(BEP, <span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'most important object'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MarkerFaceColor'</span>,<span style="color:#A020F0">'black'</span>);
+
+<span style="color:#228B22">% Call the track plotter to plot all the tracks</span>
+plotTrack(bepPlotters.Track, trackPositions, trackVelocities, trackCovariances, trackLabels);
+
+<span style="color:#228B22">% Repeat for the Most Important Object (MIO)</span>
+plotTrack(bepPlotters.MIO, MIOposition, MIOvelocity, MIOlabel);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e31419" class="mediaobject"><p><img src="../../examples/driving/win64/VisualilzeSensorCoverageDetectionsTracksExample_03.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e31422">绘制车道边界</h3>
+<p>绘制车道边界可以使用 <code class="literal"><a href="../ref/paraboliclaneboundary.html" data-docid="driving_ref#bvibtei-1" class="a"><code class="olink">parabolicLaneBoundary</code></a></code> 对象。要使用它，我们将车道边界保存为 parabolicLaneBoundary 对象，并调用绘图器进行绘制。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create a plotter for lane boundaries</span>
+bepPlotters.LaneBoundary = laneBoundaryPlotter(BEP, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'lane boundaries'</span>, <span style="color:#A020F0">'Color'</span>,[.9 .9 0]);
+
+<span style="color:#228B22">% Call the lane boundaries plotter</span>
+plotLaneBoundary(bepPlotters.LaneBoundary, laneBoundaries);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e31434" class="mediaobject"><p><img src="../../examples/driving/win64/VisualilzeSensorCoverageDetectionsTracksExample_04.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e31437">显示来自记录文件的场景</h3>
+<p>记录文件包含了时间相关的传感器检测、跟踪信息和车道边界。下面的代码展示了如何回放记录并将结果显示在上面配置的鸟瞰图上。</p>
+<p>注意：视觉检测每隔一帧提供一次。在这种情况下，显示缺少新的传感器检测是有益的。为了实现这一点，只需将一个空数组传递给适当的绘图器，以从显示中删除先前的检测结果。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Rewind to the beginning of the recording file</span>
+timeStep = 0;
+numSteps = numel(dataToDisplay); <span style="color:#228B22">% Number of steps in the scenario</span>
+
+<span style="color:#228B22">% Loop through the scenario as long as the bird's eye plot is open</span>
+<span style="color:#0000FF">while</span> timeStep &lt; numSteps &amp;&amp; isvalid(BEP.Parent)
+    <span style="color:#228B22">% Promote the timeStep</span>
+    timeStep = timeStep + 1;
+
+    <span style="color:#228B22">% Capture the current time for a realistic display rate</span>
+    tic;
+
+    <span style="color:#228B22">% Read the data for that time step</span>
+    [visionObjectsPos, radarObjectsPos, laneBoundaries, trackPositions, <span style="color:#0000FF">...</span>
+        trackVelocities, trackCovariances, trackLabels, MIOlabel, MIOposition, <span style="color:#0000FF">...</span>
+        MIOvelocity] = readDataFrame(dataToDisplay(timeStep));
+
+    <span style="color:#228B22">% Plot detections</span>
+    plotDetection(bepPlotters.Vision, visionObjectsPos);
+    plotDetection(bepPlotters.Radar, radarObjectsPos);
+
+    <span style="color:#228B22">% Plot tracks and MIO</span>
+    plotTrack(bepPlotters.Track, trackPositions, trackVelocities, trackCovariances, trackLabels);
+    plotTrack(bepPlotters.MIO, MIOposition, MIOvelocity, MIOlabel);
+
+    <span style="color:#228B22">% Plot lane boundaries</span>
+    plotLaneBoundary(bepPlotters.LaneBoundary, laneBoundaries);
+
+    <span style="color:#228B22">% The recorded data was obtained at a rate of 20 frames per second.</span>
+    <span style="color:#228B22">% Pause for 50 milliseconds for a more realistic display rate. You</span>
+    <span style="color:#228B22">% would not need this when you process data and form tracks in this</span>
+    <span style="color:#228B22">% loop.</span>
+    pause(0.05 - toc)
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e31445">总结</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例演示了如何配置和使用鸟瞰图对象以及与之关联的一些各种绘图仪。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">尝试使用轨道和最重要的对象绘图仪，或者将鸟瞰图与其他记录文件一起使用。</span></p>
+<h3 class="title" id="d124e31451">Supporting Functions<span id="VisualilzeSensorCoverageDetectionsTracksExample-12" class="anchor_target"></span></h3>
+<p><strong class="emphasis bold">readDataFrame</strong> - <span style="font-family: &quot;Microsoft YaHei&quot;;">从数据帧中提供的数据中提取单独的字段</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [visionObjectsPos, radarObjectsPos, laneBoundaries, trackPositions, <span style="color:#0000FF">...</span>
+    trackVelocities, trackCovariances, trackLabels, MIOlabel, MIOposition, <span style="color:#0000FF">...</span>
+    MIOvelocity] = readDataFrame(dataFrame)
+    visionObjectsPos    = dataFrame.visionObjectsPos;
+    radarObjectsPos     = dataFrame.radarObjectsPos;
+    laneBoundaries      = dataFrame.laneBoundaries;
+    trackPositions      = dataFrame.trackPositions;
+    trackVelocities     = dataFrame.trackVelocities;
+    trackCovariances    = dataFrame.trackCovariances;
+    trackLabels         = dataFrame.trackLabels;
+    MIOlabel            = dataFrame.MIOlabel;
+    MIOposition         = dataFrame.MIOposition;
+    MIOvelocity         = dataFrame.MIOvelocity;
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+      <h2 id="d124e31464">See Also</h2>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyeplot.html"><span itemprop="name"><code class="object">birdsEyePlot</code></span></a></span></li>
+</ul>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyeplot.plotcoveragearea.html"><span itemprop="name"><code class="function">plotCoverageArea</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyeplot.plotlaneboundary.html"><span itemprop="name"><code class="function">plotLaneBoundary</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyeplot.plottrack.html"><span itemprop="name"><code class="function">plotTrack</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyeplot.plotdetection.html"><span itemprop="name"><code class="function">plotDetection</code></span></a></span></li>
+</ul>
+      <h2 id="d124e31488">Related Topics</h2>
+<ul><li><a href="coordinate-systems.html" class="a">Coordinate Systems in Automated Driving Toolbox</a></li>
+<li><a href="visualize-sensor-data-and-tracks-in-birds-eye-scope.html" class="a">Visualize Sensor Data and Tracks in Bird's-Eye Scope</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

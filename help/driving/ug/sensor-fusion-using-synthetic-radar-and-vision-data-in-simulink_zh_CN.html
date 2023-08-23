@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Sensor Fusion Using Synthetic Radar and Vision Data in Simulink</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../detection-and-tracking.html",
+          "name": "Detection and Tracking"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../tracking-and-sensor-fusion.html",
+          "name": "Tracking and Sensor Fusion"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "tracking-and-sensor-fusion"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Sensor Fusion Using Synthetic Radar and Vision Data in Simulink",
+          "description": "Implement a synthetic data simulation for tracking and sensor fusion in Simulink with Automated Driving Toolbox.",
+          "thumbnailURL": "../../examples/driving/win64/SensorFusionUsingSyntheticRadarAndVisionDataExample_01.png",
+          "genre": "Model",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "Simulink"
+
+        },
+          "identifier": "driving.SensorFusionUsingSyntheticRadarAndVisionDataExample",
+          "name": "SensorFusionUsingSyntheticRadarAndVisionDataExample",
+          "url": "sensor-fusion-using-synthetic-radar-and-vision-data-in-simulink.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/SensorFusionUsingSyntheticRadarAndVisionDataExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "SensorFusionUsingSyntheticRadarAndVisionDataExample.m",
+        "DetectionsBus.png",
+        "SingleDetectionBus.png",
+        "SingleTrackBus.png",
+        "TracksBus.png",
+        "SyntheticDataSimulinkExample.slx",
+        "BirdsEyeScope.png",
+        "OpenLoop.mat",
+        "helperInitSimulinkDemoFilter.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Implement a synthetic data simulation for tracking and sensor fusion in Simulink with Automated Driving Toolbox."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/SensorFusionUsingSyntheticRadarAndVisionDataExample_01.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../detection-and-tracking.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Detection and Tracking</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../tracking-and-sensor-fusion.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Tracking and Sensor Fusion</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Sensor Fusion Using Synthetic Radar and Vision Data in Simulink</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e30270" class="intrnllnk">Introduction</a></li>
+<li><a href="#d124e30275" class="intrnllnk">Setup and Overview of the Model</a></li>
+<li><a href="#d124e30296" class="intrnllnk">Simulating Sensor Detections</a></li>
+<li><a href="#d124e30313" class="intrnllnk">Tracking and Sensor Fusion</a></li>
+<li><a href="#d124e30325" class="intrnllnk">Creating and Propagating Buses</a></li>
+<li><a href="#d124e30362" class="intrnllnk">Display</a></li>
+<li><a href="#d124e30391" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e30430" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_8ae0eb21-efca-4a6d-9a4a-0415a638c554">在 Simulink 中使用合成雷达和视觉数据的传感器融合</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">This example uses:</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('SL')">Simulink</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('driving/SensorFusionUsingSyntheticRadarAndVisionDataExample')" data-ex-genre="Model">Open Model</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-SensorFusionUsingSyntheticRadarAndVisionDataExample"/>
+<meta itemprop="exampletitle" content="Sensor Fusion Using Synthetic Radar and Vision Data in Simulink"/>
+</div>
+<span id="SensorFusionUsingSyntheticRadarAndVisionDataExample" class="anchor_target"></span>
+
+<p class="shortdesc"><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例展示了如何在 </span>Simulink® <span style="font-family: &quot;Microsoft YaHei&quot;;">中使用</span> Automated Driving Toolbox™<span style="font-family: &quot;Microsoft YaHei&quot;;">实现跟踪和传感器融合的合成数据模拟。它紧随</span> <a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" data-docid="driving_ug#mw_4b0a3201-1e7b-487f-961c-8f0ebf14df97" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a>  MATLAB® <span style="font-family: &quot;Microsoft YaHei&quot;;">示例。</span></p>
+
+<div class="procedure"><h3 class="title" id="d124e30270">介绍</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">仿真合成雷达和视觉检测提供了创建罕见和潜在危险事件并用它们测试车辆算法的能力。此示例涵盖了 Simulink 中的整个合成数据工作流。</span></p>
+<h3 class="title" id="d124e30275">模型的设置和概述</h3>
+<p>在运行这个例子之前，使用 <a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> 应用程序创建了与 <a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" data-docid="driving_ug#mw_4b0a3201-1e7b-487f-961c-8f0ebf14df97" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a> 中定义的相同场景。然后将该场景中的道路和参与者保存到名为 <code class="literal">OpenLoop.mat </code>的场景文件中。</p>
+<p><a href="../ref/scenarioreader.html" data-docid="driving_ref#mw_0abe0f52-f25a-4829-babb-d9bafe8fdbf3" class="a">Scenario Reader</a> 模块从保存的文件中读取参与者姿态数据。该模块将参与者的姿态从场景的世界坐标系转换为自车坐标系。参与者的姿态通过该模块生成的总线进行传输。</p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">传感器模拟子系统使用参与者姿势，生成合成雷达和视觉检测。模拟检测在多对象跟踪器块的输入处连接，其输出是已确认的轨迹列表。最后，</span>Bird's-Eye Scope <span style="font-family: &quot;Microsoft YaHei&quot;;">可视化参与者、视觉和雷达探测、确认的轨道和道路边界。以下部分介绍此模型的主要块。</span></p>
+<div class="informalfigure"><div id="d124e30293" class="mediaobject"><p><img src="../../examples/driving/win64/SensorFusionUsingSyntheticRadarAndVisionDataExample_01.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e30296">模拟传感器检测</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在此示例中，您模拟具有 6 个雷达传感器和 2 个视觉传感器的自我车辆，覆盖 360 度视野。传感器有一些重叠和一些覆盖差距。ego车辆在车辆的前部和后部都配备了远程雷达传感器和视觉传感器。车辆的每一侧都有两个短程雷达传感器，每个传感器覆盖90度。每侧一个传感器覆盖从车辆中间到后部。每侧的另一个传感器从车辆中间向前覆盖。</span></p>
+<p>当您打开传感器模拟子系统时，您可以看到两个 <a href="../ref/visiondetectiongenerator.html" data-docid="driving_ref#mw_2fa86dfd-52db-4f59-8781-7d954ae3e8dc" class="a">Vision Detection Generator</a> 模块，配置为从自车的前方和后方生成检测结果。视觉检测生成器的输出连接到一个 <a href="../ref/detectionconcatenation.html" data-docid="driving_ref#mw_d736c020-7eef-4c00-9248-9762e9746af5" class="a">Detection Concatenation</a> 模块。接下来，该子系统包含六个 <a href="../ref/drivingradardatagenerator.html" data-docid="driving_ref#mw_535e4736-f89b-4dc7-a609-b8c323c4ce32" class="a">Driving Radar Data Generator</a> 模块，配置如上文所述。雷达数据生成器的输出被配置为报告每个目标生成的检测结果的聚类质心。</p>
+<div class="informalfigure"><div id="d124e30310" class="mediaobject"><p><img src="../../examples/driving/win64/SensorFusionUsingSyntheticRadarAndVisionDataExample_02.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e30313">跟踪和传感器融合</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">来自视觉和雷达传感器的检测必须首先连接起来，形成</span> <a href="../ref/multiobjecttracker.html" data-docid="driving_ref#mw_1cb02a28-0c4b-491e-aa45-55747c487a25" class="a">Multi-Object Tracker</a> <span style="font-family: &quot;Microsoft YaHei&quot;;">模块的单个输入。串联是使用额外的检测串联块完成的。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">多对象跟踪器块负责融合来自所有检测的数据并跟踪自我车辆周围的对象。多目标跟踪器的配置参数与相应的 MATLAB 示例 </span><a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" data-docid="driving_ug#mw_4b0a3201-1e7b-487f-961c-8f0ebf14df97" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a> <span style="font-family: &quot;Microsoft YaHei&quot;;">中使用的参数相同。多对象跟踪器块的输出是已确认轨道的列表。</span></p>
+<h3 class="title" id="d124e30325">创建和传播总线</h3>
+<p>此示例中各个模块的输入和输出都是 <code class="literal"><a href="../../simulink/slref/simulink.bus.html" data-docid="simulink_ref#bvh6_eb-1" class="a"><code class="olink">Simulink.Bus</code></a><span role="cross_prod"> (Simulink)</span></code> 对象。为了简化模型的编译和总线的创建，所有的Vision Detection Generator、Driving Radar Data Generator、Multi-Object Tracker和Detection Concatenation模块都有一个属性，用于定义输出总线名称的来源。当设置为<span style="font-family: monospace;">'Auto'</span>时，总线会自动创建，并将其名称传递给将该总线作为输入的模块。当设置为 <code class="literal">'Property' </code>时，您可以定义输出总线的名称。以下图片显示了检测总线、单个检测总线、轨迹总线和单个轨迹总线。</p>
+<p></p>
+<div class="informalfigure"><div id="d124e30340" class="mediaobject"><p><img src="../../examples/driving/win64/xxDetectionsBus.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p></p>
+<div class="informalfigure"><div id="d124e30346" class="mediaobject"><p><img src="../../examples/driving/win64/xxSingleDetectionBus.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p></p>
+<div class="informalfigure"><div id="d124e30352" class="mediaobject"><p><img src="../../examples/driving/win64/xxTracksBus.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p></p>
+<div class="informalfigure"><div id="d124e30358" class="mediaobject"><p><img src="../../examples/driving/win64/xxSingleTrackBus.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<h3 class="title" id="d124e30362">显示</h3>
+<p><a href="../ref/birdseyescope-app.html" data-docid="driving_ref#mw_59742eb7-dce8-4938-9c2e-44d34c7b8891" class="a">Bird's-Eye Scope</a> 是一个模型级可视化工具，您可以从 <strong class="emphasis bold">Simulation</strong>工具栏中打开它。在模拟选项卡下的 <strong class="emphasis bold">Review Results </strong>中，点击 <strong class="emphasis bold">Bird's-Eye Scope</strong>。打开范围后，点击 <strong class="emphasis bold">Find Signals </strong>来设置信号。然后运行模拟以显示参与者、视觉和雷达检测、轨迹和道路边界。以下图片显示了该示例的鸟瞰图范围。</p>
+<p></p>
+<div class="informalfigure"><div id="d124e30384" class="mediaobject"><p><img src="../../examples/driving/win64/xxBirdsEyeScope.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+</div>
+      <h2 id="d124e30391">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving Scenario
+            Designer</span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/detectionconcatenation.html"><span itemprop="name"><span class="block">Detection
+            Concatenation</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/multiobjecttracker.html"><span itemprop="name"><span class="block">Multi-Object
+            Tracker</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator.html"><span itemprop="name"><span class="block">Driving Radar Data
+            Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator.html"><span itemprop="name"><span class="block">Vision Detection
+            Generator</span></span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span></li>
+</ul>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.roadboundaries.html"><span itemprop="name"><code class="function">roadBoundaries</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.record.html"><span itemprop="name"><code class="function">record</code></span></a></span></li>
+</ul>
+      <h2 id="d124e30430">Related Topics</h2>
+<ul><li><a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a></li>
+<li><a href="forward-collision-warning-using-sensor-fusion.html" class="a">Forward Collision Warning Using Sensor Fusion</a></li>
+<li><a href="adaptive-cruise-control-with-sensor-fusion.html" class="a">Adaptive Cruise Control with Sensor Fusion</a></li>
+<li><a href="code-generation-for-tracking-and-sensor-fusion.html" class="a">Code Generation for Tracking and Sensor Fusion</a></li>
+<li><a href="autonomous-emergency-braking-with-sensor-fusion.html" class="a">Autonomous Emergency Braking with Sensor Fusion</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

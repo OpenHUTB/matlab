@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Create Driving Scenario Interactively and Generate Synthetic Sensor Data</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../getting-started-with-automated-driving-toolbox.html",
+          "name": "Get Started with Automated Driving Toolbox"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../interactive-scenario-authoring.html",
+          "name": "Interactive Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "getting-started-with-automated-driving-toolbox",
+        "interactive-scenario-authoring",
+        "scenario-simulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex gs"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Use the Driving Scenario Designer app to create a driving scenario and generate sensor detections and point cloud data from the scenario."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../getting-started-with-automated-driving-toolbox.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Get Started with Automated Driving Toolbox</span></a></li>
+</ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li><a href="../scenario-simulation.html?s_tid=CRUX_lftnav">Scenario Simulation</a></li>
+<li><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav">Cuboid Scenario Simulation</a></li>
+<li><a href="../interactive-scenario-authoring.html?s_tid=CRUX_lftnav">Interactive Scenario Authoring</a></li>
+</ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li><a href="../scenario-simulation.html?s_tid=CRUX_lftnav">Scenario Simulation</a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Create Driving Scenario Interactively and Generate Synthetic Sensor Data</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_2d06fcb6-0cf1-4c16-b808-b4b4a165703d" class="intrnllnk">Create Driving Scenario</a></li>
+<li><a href="#mw_dc8c24c1-7b8c-4f1e-a4f7-0125fec71a8c" class="intrnllnk">Add a Road</a></li>
+<li><a href="#mw_8a39495f-5f20-4c86-af42-fc69b42cf03f" class="intrnllnk">Add Lanes</a></li>
+<li><a href="#mw_f67b8e61-c89d-46cd-be0d-371f728cf893" class="intrnllnk">Add Barriers</a></li>
+<li><a href="#mw_0cb532dd-aa03-4751-af14-854396ecd62b" class="intrnllnk">Add Vehicles</a><ul class="nav"><li><a href="#mw_f13b9102-f6db-4f8b-915b-344bf4c4aef8" class="intrnllnk">Add Ego Vehicle</a></li>
+<li><a href="#mw_81bc98e4-26aa-4f88-8c1c-4495a15daf56" class="intrnllnk">Add Second Car</a></li>
+</ul></li>
+<li><a href="#mw_7c0e7b9a-38cf-48b0-92ef-fccc68563597" class="intrnllnk">Add a Pedestrian</a></li>
+<li><a href="#mw_a027f568-8801-48a2-928f-c9a5c62a0d8f" class="intrnllnk">Add Sensors</a><ul class="nav"><li><a href="#mw_56b158f5-3265-4703-85c6-9870e9a6d5f9" class="intrnllnk">Add Camera</a></li>
+<li><a href="#mw_157a4e73-b8d3-4731-9b29-05691e6756ec" class="intrnllnk">Add Radars</a></li>
+<li><a href="#mw_693121ca-042b-49ec-b4e3-01b356cc1d2d" class="intrnllnk">Add Lidar</a></li>
+</ul></li>
+<li><a href="#mw_a7def6ed-a222-4e0f-9657-cdee4ae62960" class="intrnllnk">Generate Synthetic Sensor Data</a></li>
+<li><a href="#mw_741be56d-5c67-4aa4-9d1f-0058ae08c643" class="intrnllnk">Save Scenario</a></li>
+<li><a href="#d124e7022" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e7064" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=getting-started-with-automated-driving-toolbox&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_e49e404a-0301-4634-b5c2-c8a6da2db9f6">创建交互式驾驶场景并生成合成传感器数据</h2>
+<p>这个例子展示了如何使用 <strong class="app"><a href="../ref/drivingscenariodesigner-app.html">Driving Scenario Designer</a> </strong>应用程序创建驾驶场景，并从场景中生成视觉和雷达传感器的检测数据。您可以使用这些合成数据来测试您的控制器或传感器融合算法。</p>
+<p>这个例子展示了创建场景和生成合成传感器数据的整个工作流程。或者，您可以从预先构建的场景中生成传感器数据。请参阅<a href="prebuilt-driving-scenarios-in-driving-scenario-designer.html" class="a">Prebuilt Driving Scenarios in Driving Scenario Designer</a>。   </p>
+<section itemprop="content"><h3 class="title" id="mw_2d06fcb6-0cf1-4c16-b808-b4b4a165703d">创建驾驶场景</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要打开应用程序，请在 </span>MATLAB<sup>®</sup><span style="font-family: &quot;Microsoft YaHei&quot;;"> 命令提示符下输入 </span><span style="font-family: monospace;">drivingScenarioDesigner</span><span style="font-family: &quot;Microsoft YaHei&quot;;"> 。</span></p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_dc8c24c1-7b8c-4f1e-a4f7-0125fec71a8c">添加道路</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">将曲线道路添加到方案画布。在应用程序工具行程中，单击 </span><strong class="guibutton">Add Road</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。然后单击画布的一角，将道路延伸至对角，然后双击画布以创建道路。</span></p>
+<div class="informalfigure"><div id="d124e6659" class="mediaobject"><p><img src="dsd_straight_road.png" alt="Side-by-side images. In the first image, a dashed line extends from the bottom-right corner of the canvas to the top-left corner. In the second image, the dashed line is replaced by a straight road." height="397" width="795"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要制作道路曲线，请添加要围绕其弯曲</span><em class="firstterm" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">的道路中心</em><span style="font-family: &quot;Microsoft YaHei&quot;;"> 它。右键单击道路中间，然后选择</span><strong class="guibutton">Add Road Center</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。然后将添加的道路中心拖动到其中一个空角 帆布。</span></p>
+<div class="informalfigure"><div id="d124e6671" class="mediaobject"><p><img src="dsd_road_center.png" alt="Side-by-side road images. In the first image, the middle road center is being dragged down slightly. In the second image, the middle road center is being dragged down even more to form a curved road." height="398" width="795"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要进一步调整道路，您可以单击并拖动任何道路中心。要创建更复杂的曲线，添加更多的道路中心。</span></p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_8a39495f-5f20-4c86-af42-fc69b42cf03f">添加车道</h3>
+<p>默认情况下，道路是单车道且没有车道标线。为了使场景更加逼真，将道路转换为双车道高速公路。在左侧窗格中，点击 <strong class="guilabel">Roads </strong>选项卡，在 <strong class="guilabel">Lanes</strong> 部分展开。将 <strong class="guilabel">Number of lanes </strong>设置为<span style="font-family: monospace;">[1 1]</span>。应用程序会将 <strong class="guilabel">Lane Width </strong>参数设置为 <code class="userinput">3.6</code> 米，这是一个典型的高速公路车道宽度。</p>
+<div class="informalfigure"><div id="d124e6695" class="mediaobject"><p><img src="dsd_double_solid_lanes.png" alt="A curved road with a double-solid line indicating a divided highway." height="413" width="393"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">道路两侧的白色实心车道标记表示路肩。中间的黄色双实心车道标记表示道路是双向的路。要检查或修改这些车道，请从 </span><strong class="guilabel">Lane Marking</strong> <span style="font-family: &quot;Microsoft YaHei&quot;;">列表中， 选择其中一个车道并修改车道参数。</span></p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_f67b8e61-c89d-46cd-be0d-371f728cf893">添加障碍</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要沿弯曲道路边缘添加障碍，请使用应用程序工具行程或道路 上下文菜单。在应用程序工具行程中，单击添加 </span><strong class="guimenuitem">Add Actor</strong> &gt; <strong class="guimenuitem">Jersey Barrier</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。将光标移动到道路的右边缘，然后单击以添加障碍 沿着它。这也会打开左侧窗格中的 </span><strong class="guilabel">Barriers</strong> <span style="font-family: &quot;Microsoft YaHei&quot;;">选项卡。自 在屏障段之间添加 1m 的间隙更改</span><span class="guilabel" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">段</span><span class="guilabel" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">的值障碍选项卡中的</span><strong class="guilabel">Segment Gap (m)</strong><span style="font-family: &quot;Microsoft YaHei&quot;;"> 属性</span><strong class="guilabel" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;"></strong><span style="font-family: &quot;Microsoft YaHei&quot;;">为 1。</span></p>
+<div class="informalfigure"><div id="d124e6718" class="mediaobject"><p><img src="dsd_jerseybarrier.png" alt="A curved road with Jersey barrier along its right edge" height="453" width="400"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要使用道路上下文菜单在道路左边缘添加护栏障碍， 右键单击道路，然后选择添加 </span><strong class="guimenuitem">Add Guardrail</strong> &gt; <strong class="guimenuitem">Left edge</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。指定护栏的屏障段之间的 1m 间隙，使用 </span><span class="guilabel" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;"><strong class="guilabel" style="font-weight: bold; font-family: Arial;">Barriers</strong>选项卡中</span><span class="guilabel" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">的 </span><strong class="guilabel">Segment Gap (m)</strong> <span style="font-family: &quot;Microsoft YaHei&quot;;">属性。</span></p>
+<div class="informalfigure"><div id="d124e6733" class="mediaobject"><p><img src="dsd_guardrail.png" alt="A curved road with Jersey barrier along its right edge and a guardrail along its left edge" height="425" width="400"/></p>
+</div>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_0cb532dd-aa03-4751-af14-854396ecd62b">添加车辆</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">默认情况下，您添加到场景中的第一辆车是</span><em class="firstterm" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">自我 </em><span style="font-family: &quot;Microsoft YaHei&quot;;">车辆，这是驾驶场景中的主要车辆。自我载体包含检测车道标记、行人或其他车辆的传感器场景。添加自我车辆，然后为自我车辆添加第二辆车检测。</span></p>
+<section itemprop="content"><h4 class="title" id="mw_f13b9102-f6db-4f8b-915b-344bf4c4aef8">Add Ego Vehicle</h4>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要添加自我车辆，请右键单击道路的一端，然后选择</span> <strong class="guilabel">Add Car</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。要指定汽车的轨迹，请右键单击汽车，选择 </span><strong class="guilabel">Add Waypoints</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">，然后沿路添加</span><span class="guilabel" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">航点</span><span style="font-family: &quot;Microsoft YaHei&quot;;">汽车通过。添加沿路的最后一个航点后，按 </span><strong class="guilabel" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">Enter</strong><span style="font-family: &quot;Microsoft YaHei&quot;;"> 键。汽车沿第一个方向自动旋转 航点。为了在轨迹上获得更精确的精度，您可以调整航点。你也可以右键单击路径以添加新航点。</span></p>
+<div class="informalfigure"><div id="d124e6754" class="mediaobject"><p><img src="dsd_singlecar_waypoints.png" alt="A blue car with a trajectory that extends to the end of the lane. A triangle on the car points in the direction of the trajectory." height="423" width="400"/></p>
+</div>
+</div>
+<p>三角形表示车辆的姿态，原点位于车辆后轴的中心。</p>
+<p>调整车辆的速度。在左侧窗格中，点击 <strong class="guilabel">Actors</strong> 选项卡，将 <strong class="guilabel">Constant Speed </strong>设置为 <code class="userinput">15</code> m/s。为了更好地控制车辆的速度，可以在<strong class="guilabel">Waypoints, Speeds, Wait Times, </strong><span class="guilabel">和</span><strong class="guilabel"> Yaw</strong>表的 <strong class="guilabel">v (m/s)</strong> 列中设置航点之间的速度。</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_81bc98e4-26aa-4f88-8c1c-4495a15daf56">Add Second Car</h4>
+<p><font face="Microsoft YaHei">添加一个车辆，供自车的传感器检测。在应用程序的工具栏上，点击</font> <strong class="guilabel">Add Actor</strong> <font face="Microsoft YaHei">，然后选择</font> <strong class="guibutton">Car</strong><font face="Microsoft YaHei">。添加第二辆车，并设置航点，使其在与自车相反的车道上行驶，并位于道路的另一端。保持车辆的速度和其他设置不变。</font></p>
+<div class="informalfigure"><div id="d124e6780" class="mediaobject"><p><img src="dsd_dualcar_waypoints.png" alt="An orange car added to the opposite lane and opposite end of the road" height="423" width="400"/></p>
+</div>
+</div>
+</section>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_7c0e7b9a-38cf-48b0-92ef-fccc68563597">Add a Pedestrian</h3>
+<p>将一个行人添加到场景中，行人正在穿越马路。在道路中间放大，右键单击道路的一侧，然后单击<strong class="guilabel">Add Pedestrian</strong>。然后，为行人设置路径，在道路的另一侧添加一个路径点。</p>
+<div class="informalfigure"><div id="d124e6791" class="mediaobject"><p><img src="dsd_pedestrian_single.png" alt="A pedestrian added to the side of the road" height="344" width="400"/></p>
+</div>
+</div>
+<p>默认情况下，行人的颜色与车道标线的颜色非常接近。为了使行人更加显眼，从 <strong class="guilabel">Actors</strong> 选项卡中，单击行人对应的颜色补丁来修改其颜色。</p>
+<p>为了测试车辆和行人的速度，运行模拟。根据需要调整参与者的速度或其他属性，通过从 <strong class="guilabel">Actors </strong>选项卡的左窗格中选择参与者来进行调整。</p>
+<div class="informalfigure"><div id="d124e6804" class="mediaobject"><p><img src="dsd_actor_selection.png" alt="The &quot;Car (ego vehicle)&quot; option selected from the drop-down list" height="101" width="284"/></p>
+</div>
+</div>
+<p>例如，如果车辆与行人发生碰撞，在 <strong class="guilabel">Waypoints, Speeds, Wait Times, and Yaw</strong>表格的 <strong class="guilabel">v (m/s)</strong> 列中，调整车辆或行人的速度。或者，在表格的 <strong class="guilabel">wait (s)</strong> 列中，在行人穿过街道之前，为车辆设置等待时间。</p>
+<p>默认情况下，模拟在第一个参与者完成轨迹时结束。为了在所有参与者完成轨迹后才结束模拟，在应用程序工具栏上，首先单击 <strong class="guilabel">Settings</strong>。然后，将  <strong class="guilabel">Stop Condition </strong>设置为 <span style="font-family: monospace;">Last actor stops</span>。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_a027f568-8801-48a2-928f-c9a5c62a0d8f">Add Sensors</h3>
+<p>Add camera, radar, and lidar sensors to the ego vehicle. <span style="font-family: &quot;Microsoft YaHei&quot;;">使用这些传感器生成方案中的检测和点云数据。</span></p>
+<section itemprop="content"><h4 class="title" id="mw_56b158f5-3265-4703-85c6-9870e9a6d5f9">Add Camera</h4>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在应用程序工具行程中，单击添加 </span><strong class="guibutton">Add Camera</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。传感器画布显示放置传感器的标准位置。点击最前面的预定义传感器位置，用于将相机传感器添加到自我车辆的的前保险杠车辆。</span></p>
+<div class="informalfigure"><div id="d124e6834" class="mediaobject"><p><img src="dsd_add_camera.png" alt="The sensor canvas with a camera attached to the front bumper of the ego vehicle." height="374" width="386"/></p>
+</div>
+</div>
+<p>要更精确地放置传感器,可以禁用捕捉选项，在传感器画布的左下角，单击配置传感器画布按钮  <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_18_px"><img src="dsd_settings_button.png" alt="" height="18" width="18"/></span></span>.</p>
+<p>默认情况下，摄像头只能检测参与者而不是车道。要启用车道检测，在左窗格的 <strong class="guilabel">Sensors</strong>选项卡上，展开 <strong class="guilabel">Detection Parameters</strong> 部分，并将 <strong class="guilabel">Detection Type</strong> 设置为<span style="font-family: monospace;">Objects &amp; Lanes</span>。然后展开 <strong class="guilabel">Lane Settings </strong>部分，并根据需要更新设置。</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_157a4e73-b8d3-4731-9b29-05691e6756ec">Add Radars</h4>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">将雷达传感器捕捉到左前轮。右键单击预定义的传感器位置，然后选择 </span><strong class="guilabel">Add Radar</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。默认情况下， 添加到车轮上的传感器是短程传感器。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">将雷达传感器向汽车前部倾斜。将光标移到覆盖区域，然后单击并拖动角度标记。</span></p>
+<div class="informalfigure"><div id="d124e6866" class="mediaobject"><p><img src="dsd_sensor_angle.gif" alt="An animation of the radar sensor being rotated" height="383" width="400"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e6872" class="mediaobject"></div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在右前轮添加相同的雷达传感器。右键单击传感器 ，然后单击</span><strong class="guilabel">Copy</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。然后右键单击右前轮的预定义传感器位置，然后单击</span> <strong class="guilabel">Paste</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。复制的传感器的方向反映了传感器在对面轮子上的方向。</span></p>
+<div class="informalfigure"><div id="d124e6882" class="mediaobject"><p><img src="dsd_both_sensors.png" alt="The sensor canvas with both radar sensors tilted toward the front" height="373" width="389"/></p>
+</div>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_693121ca-042b-49ec-b4e3-01b356cc1d2d">Add Lidar</h4>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">将激光雷达传感器捕捉到车顶的中心。右键单击屋顶中心的预定义传感器位置，然后选择</span> <strong class="guilabel">Add Lidar</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。</span></p>
+<div class="informalfigure"><div id="d124e6893" class="mediaobject"><p><img src="dsd_add_lidar.png" alt="The sensor canvas with the lidar sensor added to the roof center" height="462" width="469"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">激光雷达传感器显示为黑色。车辆周围的灰色是传感器的覆盖区域。缩小以查看覆盖区域的完整视图不同的传感器。</span></p>
+<div class="informalfigure"><div id="d124e6899" class="mediaobject"><p><img src="dsd_sensor_coverages.png" alt="An zoomed-out view of the sensors. The lidar coverage area encircles the vehicle and the radar and camera coverage areas." height="462" width="469"/></p>
+</div>
+</div>
+</section>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_a7def6ed-a222-4e0f-9657-cdee4ae62960">生成合成传感器数据</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">若要从传感器生成数据，请单击</span> <strong class="guilabel">Run</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。作为场景运行，</span> <strong class="guilabel">Bird’s-Eye Plot</strong> <span style="font-family: &quot;Microsoft YaHei&quot;;">显示检测和点云数据。</span></p>
+<div class="informalfigure"><div id="d124e6913" class="mediaobject"><p><img src="dsd_bep_detections1.png" alt="A bird's-eye plot of the scenario" height="361" width="400"/></p>
+</div>
+</div>
+<p><strong class="guilabel">Ego-Centric View</strong> 从自我车辆的角度显示场景。   </p>
+<div class="informalfigure"><div id="d124e6922" class="mediaobject"><p><img src="dsd_ego_centric_meshes2.png" alt="An ego-centric view of the scenario" height="314" width="420"/></p>
+</div>
+</div>
+<p>因为您指定了激光雷达传感器，所以<strong class="guilabel">Ego-Centric View</strong> 和 <strong class="guilabel">Bird's-Eye Plot </strong>显示的是参与者的网格表示，而不是长方体表示。激光雷达传感器使用这些更详细的参与者表示来生成点云数据。<strong class="guilabel">Scenario Canvas</strong> 仍然只显示长方体表示。雷达和视觉传感器基于长方体表示进行检测。</p>
+<p>要关闭参与者网格、某些类型的检测或显示的其他方面，请使用应用程序工具栏下的 <strong class="guilabel">Display </strong>属性。</p>
+<p>默认情况下，场景在第一个参与者停止移动时结束。要按设定的时间运行场景，请在应用程序工具栏上单击 <strong class="guilabel">Settings </strong>并更改停止条件。</p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">接下来，导出传感器检测：</span></p>
+<div class="itemizedlist"><ul><li><p>若要将传感器数据导出到 MATLAB 工作区，请在应用工具行程中，选择 <strong class="guimenuitem">Export</strong> &gt; <strong class="guimenuitem">Export Sensor Data</strong>。命名工作空间变量，然后单击 <strong class="guibutton">OK</strong>。该应用程序 将传感器数据保存为包含传感器数据的结构，例如参与者姿势，对象检测，以及每个时间步的车道检测。</p></li>
+<li><p>要导出生成场景及其传感器数据的 MATLAB 函数，请选择<strong class="guimenuitem">Export</strong> &gt; <strong class="guimenuitem">Export MATLAB Function</strong>。<strong class="guimenuitem" _istranslated="1"></strong>此函数将传感器数据作为结构返回，将方案作为 <code class="object"><a href="../ref/drivingscenario.html">drivingScenario</a> </code>对象返回，并将传感器返回 模型作为系统对象。通过修改此函数，您可以创建 原始场景。有关此过程的示例，请参阅<a href="create-driving-scenario-variations-programmatically.html" class="a">Create Driving Scenario Variations Programmatically</a>。</p></li>
+</ul>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_741be56d-5c67-4aa4-9d1f-0058ae08c643">保存方案</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">生成检测后，单击</span> <strong class="guibutton">Save</strong> <span style="font-family: &quot;Microsoft YaHei&quot;;">以</span><span class="guibutton" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">保存</span><span style="font-family: &quot;Microsoft YaHei&quot;;">方案文件。您还可以将传感器型号另存为单独的文件并保存道路和参与者模型一起作为单独的方案文件。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">您可以从应用重新打开此方案文件。或者在 MATLAB 命令提示符下，您可以使用此语法。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>drivingScenarioDesigner(scenarioFileName)</pre>
+</div>
+</div>
+</div>
+您还可以使用导出的 <a href="../ref/drivingscenario.html"><code class="object">drivingScenario</code></a> 对象重新打开场景。在MATLAB命令提示符下，使用以下语法，其中 <code class="literal">scenario </code>是导出对象的名称。<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>drivingScenarioDesigner(scenario)</pre>
+</div>
+</div>
+</div>
+要重新打开传感器，请使用以下语法，其中 <code class="literal">sensors</code> 是一个传感器对象或这些对象的单元数组。<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>drivingScenarioDesigner(scenario,sensors)</pre>
+</div>
+</div>
+</div>
+如果您正在Simulink<sup>®</sup>中开发驾驶算法，您可以使用 <a href="../ref/scenarioreader.html"><span class="block">Scenario Reader</span></a> 模块将道路和参与者从场景文件或 <span style="font-family: monospace;">drivingScenario </span>对象读入到您的模型中。该模块不直接读取传感器数据。要将您在应用程序中创建的传感器添加到Simulink模型中，请选择 <strong class="guimenuitem">Export</strong> &gt; <strong class="guimenuitem">Export Simulink Model</strong>，生成包含您的场景和传感器的模型。在模型中，生成的 Scenario Reader 模块读取场景，生成的传感器模块定义传感器。<p></p>
+</section>
+        <h2 id="d124e7022">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving
+                    Scenario Designer</span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/scenarioreader.html"><span itemprop="name"><span class="block">Scenario
+                    Reader</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator.html"><span itemprop="name"><span class="block">Driving Radar
+                    Data Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator.html"><span itemprop="name"><span class="block">Vision
+                    Detection Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/lidarpointcloudgenerator.html"><span itemprop="name"><span class="block">Lidar Point
+                    Cloud Generator</span></span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator-system-object.html"><span itemprop="name"><code class="sysobj">drivingRadarDataGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator-system-object.html"><span itemprop="name"><code class="sysobj">visionDetectionGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/lidarpointcloudgenerator-system-object.html"><span itemprop="name"><code class="sysobj">lidarPointCloudGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/inssensor-system-object.html"><span itemprop="name"><code class="sysobj">insSensor</code></span></a></span></li>
+</ul>
+        <h2 id="d124e7064">Related Topics</h2>
+<ul><li><a href="keyboard-shortcuts-and-mouse-actions-for-driving-scenario-designer.html" class="a">Keyboard Shortcuts and Mouse Actions for Driving Scenario Designer</a></li>
+<li><a href="create-roads-with-multiple-lane-specifications-using-driving-scenario-designer.html" class="a">Create Roads with Multiple Lane Specifications Using Driving Scenario Designer</a></li>
+<li><a href="create-reverse-motion-driving-scenarios-interactively.html" class="a">Create Reverse Motion Driving Scenarios Interactively</a></li>
+<li><a href="prebuilt-driving-scenarios-in-driving-scenario-designer.html" class="a">Prebuilt Driving Scenarios in Driving Scenario Designer</a></li>
+<li><a href="create-driving-scenario-variations-programmatically.html" class="a">Create Driving Scenario Variations Programmatically</a></li>
+<li><a href="test-open-loop-adas-algorithm-using-driving-scenario.html" class="a">Test Open-Loop ADAS Algorithm Using Driving Scenario</a></li>
+<li><a href="test-closed-loop-adas-algorithm-using-driving-scenario.html" class="a">Test Closed-Loop ADAS Algorithm Using Driving Scenario</a></li>
+</ul>
+    </section>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

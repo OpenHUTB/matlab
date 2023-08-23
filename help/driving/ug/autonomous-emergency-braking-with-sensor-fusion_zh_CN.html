@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Autonomous Emergency Braking with Sensor Fusion</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../automated-driving-applications.html",
+          "name": "Applications"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../collision-avoidance-assistance.html",
+          "name": "Collision Avoidance Assistance"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../automated-driving-applications.html",
+          "name": "Applications"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "collision-avoidance-assistance",
+        "automated-driving-applications"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Autonomous Emergency Braking with Sensor Fusion",
+          "description": "Implement autonomous emergency braking with a sensor fusion algorithm.",
+          "thumbnailURL": "../../examples/driving/win64/AEB.png",
+          "genre": "Example",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "Simulink"
+
+        },
+          "identifier": "driving.AEBWithSensorFusionExample",
+          "name": "AEBWithSensorFusionExample",
+          "url": "autonomous-emergency-braking-with-sensor-fusion.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab: cd(setupExample('driving/AEBWithSensorFusionExample',pwd));edit('AEBWithSensorFusionExample.m'); helperDrivingProjectSetup('AutonomousEmergencyBraking.zip','workDir',pwd);"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "AEBWithSensorFusionExample.m",
+        "AEB.png",
+        "FCW.png",
+        "AEBDashboard.png",
+        "AEBWithSensorFusionExample.m",
+        "DrivingScenarioDesignerExample.png",
+        "aebBirdsEyeScope1.png",
+        "aebBirdsEyeScope2.png"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Implement autonomous emergency braking with a sensor fusion algorithm."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/AEB.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../automated-driving-applications.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Applications</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../collision-avoidance-assistance.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Collision Avoidance Assistance</span></a></li>
+</ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li><a href="../automated-driving-applications.html?s_tid=CRUX_lftnav">Applications</a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Autonomous Emergency Braking with Sensor Fusion</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e30493" class="intrnllnk">Introduction</a></li>
+<li><a href="#d124e30526" class="intrnllnk">Explore Test Bench Model</a></li>
+<li><a href="#d124e30707" class="intrnllnk">Model AEB Controller</a></li>
+<li><a href="#d124e30914" class="intrnllnk">Explore Metrics Assessment</a></li>
+<li><a href="#d124e30946" class="intrnllnk">Simulate AEB Model</a></li>
+<li><a href="#d124e31081" class="intrnllnk">Generate C++ Code</a></li>
+<li><a href="#d124e31098" class="intrnllnk">Explore Additional Scenarios</a></li>
+<li><a href="#d124e31208" class="intrnllnk">References</a></li>
+<li><a href="#d124e31227" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e31257" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=collision-avoidance-assistance&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_b60cf0e1-2485-4e0f-8f1f-8c3300484139">传感器融合的自动紧急制动系统</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">This example uses:</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('MP')">Model Predictive Control Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('OP')">Optimization Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('SL')">Simulink</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab: cd(setupExample('driving/AEBWithSensorFusionExample',pwd));edit('AEBWithSensorFusionExample.m'); helperDrivingProjectSetup('AutonomousEmergencyBraking.zip','workDir',pwd);" data-ex-genre="Example">Open Example</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-AEBWithSensorFusionExample"/>
+<meta itemprop="exampletitle" content="Autonomous Emergency Braking with Sensor Fusion"/>
+</div>
+<span id="AEBWithSensorFusionExample" class="anchor_target"></span>
+
+<p class="shortdesc"><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例演示如何使用传感器融合算法实现自动紧急制动 （AEB）</span></p>
+
+<div class="procedure"><h3 class="title" id="d124e30493">介绍</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">自动紧急制动是一种先进的主动安全系统，可帮助驾驶员避免或减轻与其他车辆的碰撞。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">自2014年以来，欧洲新车评估计划（Euro NCAP）®已将AEB城市和城际系统纳入其安全评级。Euro NCAP 继续推广 AEB 系统，以保护弱势道路使用者，如行人和骑自行车者。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">如今，AEB系统主要使用雷达和视觉传感器来识别潜在的碰撞伙伴，而不是自我车辆。这些系统通常需要多个传感器才能获得准确、可靠和强大的检测，同时最大限度地减少误报。为了组合来自各种传感器的数据，多传感器AEB系统使用传感器融合技术。此示例演示如何使用传感器融合算法实现 AEB。在此示例中，您：</span></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><strong class="emphasis bold">Explore the test bench model</strong> — 该模型包含传感器和环境、传感器融合和跟踪、决策逻辑、控制和车辆动力学。</p></li>
+<li><p><strong class="emphasis bold">Model the AEB Controller</strong> — 使用Simulink®和Stateflow®集成制动控制器用于制动控制，以及非线性模型预测控制器（NLMPC）用于加速和转向控制。</p></li>
+<li><p><strong class="emphasis bold">Simulate the test bench model</strong> — 您可以根据欧洲新车评估计划（Euro NCAP）的测试协议配置测试台模型的不同场景。</p></li>
+<li><p><strong class="emphasis bold">Generate C++ code</strong> — 生成C++代码并对传感器融合、决策逻辑和控制算法进行软件在环（SIL）模拟测试。</p></li>
+<li><p><strong class="emphasis bold">Explore additional scenarios</strong> — 这些场景测试系统在额外条件下的表现。</p></li>
+</ol>
+</div>
+<h3 class="title" id="d124e30526">Explore Test Bench Model<span id="AEBWithSensorFusionExample-2" class="anchor_target"></span></h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在此示例中，您使用系统级仿真测试台模型来探索AEB系统的控制器行为。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要浏览测试台模型，请打开项目示例文件的工作副本。MATLAB® 将文件复制到示例文件夹，以便您可以对其进行编辑。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>addpath(fullfile(matlabroot,<span style="color:#A020F0">"toolbox"</span>,<span style="color:#A020F0">"driving"</span>,<span style="color:#A020F0">"drivingdemos"</span>))
+helperDrivingProjectSetup(<span style="color:#A020F0">"AutonomousEmergencyBraking.zip"</span>,workDir=pwd);
+</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">若要减少命令窗口输出，请关闭模型预测控制器 （MPC） 更新消息。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mpcverbosity(<span style="color:#A020F0">"off"</span>);
+</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">打开系统级仿真测试台模型。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">"AEBTestBench"</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30541" class="mediaobject"><p><img src="../../examples/driving/win64/AEBWithSensorFusionExample_01.png"/></p>
+</div>
+</div>
+<p>打开此模型会运行 <code class="literal">helperSLAEBSetup </code>辅助函数，该函数使用基础工作区中的 <code class="literal">drivingScenario </code>对象初始化场景。它运行默认的测试场景 <span style="font-family: monospace;">scenario_25_AEB_PedestrianTurning_Nearside_10kph</span>，其中包含一个自车和一个行人。此设置函数还配置了控制器设计参数、车辆模型参数和Simulink总线信号，用于定义 <span style="font-family: monospace;">AEBTestBench </span>模型的输入和输出。</p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">测试台模型包含以下模块：</span></p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Sensors and Environment</code> — 指定用于仿真的道路、参与者、摄像机和雷达传感器的子系统</p></li>
+<li><p><code class="literal">Sensor Fusion and Tracking</code> — 将来自摄像头的车辆检测融合到来自雷达传感器的车辆检测的算法模型。</p></li>
+<li><p><code class="literal">AEB Decision Logic</code> — 指定横向和纵向决策逻辑的算法模型，该逻辑向控制器提供最重要的对象 （MIO） 相关信息和自我车辆参考路径信息。</p></li>
+<li><p><code class="literal">AEB Controller</code> — 指定转向角和加速度控制的算法模型。</p></li>
+<li><p><code class="literal">Vehicle Dynamics</code> — 指定自我车辆动态模型的子系统。</p></li>
+<li><p><code class="literal">Metrics Assessment</code> — 评估系统级行为的子系统。</p></li>
+</ul>
+</div>
+<p><code class="literal">Vehicle Dynamics</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">子系统使用自行车模型对自我车辆进行建模，并使用从</span> <code class="literal">AEB Controller</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">模型接收的命令更新其状态。有关子系统的更多详细信息，请参阅 </span><a href="highway-lane-following.html" data-docid="driving_ug#mw_574c4bc8-4369-4da6-a4d3-aa48e7e31f92" class="a">Highway Lane Following</a> <span style="font-family: &quot;Microsoft YaHei&quot;;">示例。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">要绘制合成传感器检测、跟踪对象和地面实况数据，请使用</span> <a href="../ref/birdseyescope-app.html" data-docid="driving_ref#mw_59742eb7-dce8-4938-9c2e-44d34c7b8891" class="a">Bird's-Eye Scope</a><span style="font-family: &quot;Microsoft YaHei&quot;;">。</span> <strong class="emphasis bold">Bird's-Eye Scope </strong><span style="font-family: &quot;Microsoft YaHei&quot;;">是一个模型级可视化工具，您可以从 Simulink 模型工具栏打开它。在</span> <strong class="emphasis bold">Simulation</strong> <span style="font-family: &quot;Microsoft YaHei&quot;;">选项卡上的</span> <strong class="emphasis bold">Review Results </strong><span style="font-family: &quot;Microsoft YaHei&quot;;">下，单击 </span><strong class="emphasis bold">Bird's-Eye Scope</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">。打开示波器后，单击</span> <strong class="emphasis bold">Update Signals</strong><span style="font-family: &quot;Microsoft YaHei&quot;;">以设置</span><span class="emphasis bold" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">信号</span><span style="font-family: &quot;Microsoft YaHei&quot;;">。仪表板面板显示这些自我车辆参数：速度、加速度、AEB 状态、前方碰撞警告 （FCW） 状态和安全状态。</span></p>
+<p><code class="literal">Sensors and Environment</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">子系统配置道路网络，定义目标参与者轨迹，并合成传感器。打开</span><code class="literal">Sensors and Environment</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">子系统。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">"AEBTestBench/Sensors and Environment"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30620" class="mediaobject"><p><img src="../../examples/driving/win64/AEBWithSensorFusionExample_02.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">子系统使用以下模块指定自我车辆的场景和传感器：</span></p>
+<div class="itemizedlist"><ul><li><p><span style="font-family: &quot;Microsoft YaHei&quot;;"><span style="font-family: Arial;"> </span><a href="../ref/scenarioreader.html" data-docid="driving_ref#mw_0abe0f52-f25a-4829-babb-d9bafe8fdbf3" class="a" style="font-family: Arial;">Scenario Reader</a><span style="font-family: Arial;"> </span>块从基本工作区读取</span><code class="literal">drivingScenario</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">对象，然后从该对象读取参与者数据。该块使用自我车辆信息进行闭环仿真，然后在自我车辆坐标中输出场景参与者的地面真实信息及其轨迹</span></p></li>
+</ul>
+</div>
+<div class="itemizedlist"><ul><li><p>驾驶雷达数据生成器模块从驾驶场景生成<a href="../ref/drivingradardatagenerator.html" data-docid="driving_ref#mw_535e4736-f89b-4dc7-a609-b8c323c4ce32" class="a">Driving Radar Data Generator</a>。</p></li>
+<li><p><a href="../ref/visiondetectiongenerator.html" data-docid="driving_ref#mw_2fa86dfd-52db-4f59-8781-7d954ae3e8dc" class="a">Vision Detection Generator</a> 模块从安装在自我车辆上的摄像头生成检测和测量。<br/></p></li>
+<li><p><code class="literal">Reference Path Info</code> 块为自我车辆导航提供了预定义的参考轨迹。块中的引用路径是使用帮助程序函数 <code class="literal">helperEgoRefPathCreator</code>创建的。</p></li>
+</ul>
+</div>
+<p><span style="font-family: monospace;">Sensor Fusion and Tracking</span><span style="font-family: &quot;Microsoft YaHei&quot;;">算法模型处理视觉和雷达检测，并生成轨道相对于自我车辆的位置和速度。打开</span> <code class="literal">AEBSensorFusion</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">算法模型。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">"AEBSensorFusion"</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30660" class="mediaobject"><p><img src="../../examples/driving/win64/AEBWithSensorFusionExample_03.png"/></p>
+</div>
+</div>
+<p><code class="literal">AEBSensorFusion</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">模型包含以下块：</span></p>
+<div class="itemizedlist"><ul><li><p>Detection Concatenation — 将视觉和雷达检测组合到单个输出总线上。</p></li>
+</ul>
+</div>
+<div class="itemizedlist"><ul><li><p>Multi-Object Tracker — 执行传感器融合并输出静止和移动物体的轨迹。这些轨迹在<span style="font-family: &quot;Microsoft YaHei&quot;;"><strong class="emphasis bold" style="font-family: Arial;">Prediction Time</strong>更新，由</span><code class="literal">Sensors and Environment</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">子系统中的 <span style="font-family: Arial;">Digital Clock </span>块指定。</span></p></li>
+</ul>
+</div>
+<p><code class="literal">AEBDecisionLogic</code><span style="font-family: &quot;Microsoft YaHei&quot;;">算法模型根据预定义的自我参考路径和轨迹指定横向和纵向决策。打开</span> <code class="literal">AEBDecisionLogic</code><span style="font-family: &quot;Microsoft YaHei&quot;;">算法模型。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">"AEBDecisionLogic"</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30688" class="mediaobject"><p><img src="../../examples/driving/win64/AEBWithSensorFusionExample_04.png"/></p>
+</div>
+</div>
+<p><code class="literal">AEB Decision Logic</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">算法模型包含以下块：</span></p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Ego Reference Path Generator</code> — 使用当前自车位置和来自<code class="literal">Sensors and Environment</code> 子系统的参考路径信息，估计自车的曲率、相对偏航角和横向偏差。该块还确定自车是否达到了目标。</p></li>
+</ul>
+</div>
+<div class="itemizedlist"><ul><li><p><code class="literal">Find Lead Car</code> — 找到领头车，即同一车道上自我车辆前面的 MIO。该块输出自我车辆和MIO之间的相对距离和相对速度。</p></li>
+</ul>
+</div>
+<h3 class="title" id="d124e30707">Model AEB Controller<span id="AEBWithSensorFusionExample-14" class="anchor_target"></span></h3>
+<p><code class="literal">AEBController</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">算法模型实现主算法来指定纵向和横向控制。打开</span> <code class="literal">AEBController</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">算法模型。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">"AEBController"</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30720" class="mediaobject"><p><img src="../../examples/driving/win64/AEBWithSensorFusionExample_05.png"/></p>
+</div>
+</div>
+<p><code class="literal">AEBController</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">模型包含以下子系统：</span></p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Controller Mode Selector</code> —激活 AEB 时松开车辆油门。</p></li>
+</ul>
+</div>
+<div class="itemizedlist"><ul><li><p><code class="literal">NLMPC Controller</code> — 读取自我纵向速度、曲率序列、相对偏航角和横向偏差，然后输出自我车辆的转向角和加速度。打开引用的 <code class="literal">NLMPC Controller </code>子系统。</p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">"AEBController/NLMPC Controller"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30742" class="mediaobject"><p><img src="../../examples/driving/win64/AEBWithSensorFusionExample_06.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例使用具有预测模型的非线性 MPC 控制器，该模型具有七个状态、三个输出变量和两个操作变量。</span></p>
+<p><strong class="emphasis bold">States</strong></p>
+<div class="itemizedlist"><ul><li><p>Lateral velocity</p></li>
+<li><p>Yaw rate</p></li>
+<li><p>Longitudinal velocity</p></li>
+<li><p>Longitudinal acceleration</p></li>
+<li><p>Lateral deviation</p></li>
+<li><p>Relative yaw angle</p></li>
+<li><p>Output disturbance of relative yaw angle</p></li>
+</ul>
+</div>
+<p><strong class="emphasis bold">Output Variables</strong></p>
+<div class="itemizedlist"><ul><li><p>Longitudinal velocity</p></li>
+<li><p>Lateral deviation</p></li>
+<li><p>Sum of the yaw angle and yaw angle output disturbance</p></li>
+</ul>
+</div>
+<p><strong class="emphasis bold">Manipulated Variables</strong></p>
+<div class="itemizedlist"><ul><li><p>Acceleration</p></li>
+<li><p>Steering</p></li>
+</ul>
+</div>
+<p>控制器将道路曲率和纵向速度的乘积建模为测量干扰。预测时域和控制时域由<span style="font-family: monospace;">helperSLAEBSetup </span>函数指定。非线性车辆模型的状态函数和其雅可比矩阵由 <code class="literal">helperNLMPCStateFcn</code> 函数和 <code class="literal">helperNLMPCStateJacFcn</code> 函数指定。NLMPC控制器的连续时间预测模型使用 <span style="font-family: monospace;">helperNLMPCOutputFcn </span>函数中定义的输出方程。在创建 <code class="literal">nlmpc</code> 对象时， <code class="literal">helperSLAEBSetup</code> 函数定义了操纵变量的约束和标准 MPC成本函数中的权重。在这个例子中，NLMPC控制器不支持自车的零初始速度。</p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在此示例中，扩展卡尔曼滤波器 （EKF） 提供七个状态的状态估计。EKF 的状态转换函数在</span> <code class="literal">helperEKFStateFcn</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">函数中定义，测量函数在</span> <code class="literal">helperEKFMeasFcn</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">函数中定义。有关设计非线性 MPC 控制器的更多详细信息，请参阅</span><span role="cross_prod" _mstmutation="1" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;"><span style="font-family: Arial;"> </span><a href="../../mpc/ug/lane-following-using-nonlinear-model-predictive-control.html" data-docid="mpc_ug#mw_48f7b8a0-1544-4d4f-89bd-74e53b7d6059" class="a" style="font-family: Arial;">Lane Following Using Nonlinear Model Predictive Control</a><span role="cross_prod" style="font-family: Arial;"> (Model Predictive Control Toolbox)</span>。</span></p>
+<p><code class="literal">Braking Controller</code> 子系统基于停车时间计算方法实现了前向碰撞警告（FCW）和自动紧急制动（AEB）控制算法。</p>
+<p>停止时间 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/AEBWithSensorFusionExample_eq09763620092684050174.png" alt="${\tau_{stop}}$"/></span></span> 指的是自车首次踩下 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/AEBWithSensorFusionExample_eq18224550408668926837.png" alt="$a_{brake}$"/> 开始到完全停止的时间</span></span>,。您可以使用以下方程来计算停车时间：</p>
+<p><span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/AEBWithSensorFusionExample_eq06091347271022851390.png" alt="$\tau_{stop}=v_{ego}/a_{brake}$"/></span></span>,</p>
+<p>其中 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/AEBWithSensorFusionExample_eq02807458265576848914.png" alt="$v_{ego}$"/></span></span> 是自车的速度。</p>
+<p>前向碰撞警告（FCW）系统会向驾驶员发出关于与前车即将发生碰撞的警报。预计驾驶员会对警报做出反应，并在延迟时间 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/AEBWithSensorFusionExample_eq07802168434204854226.png" alt="$\tau_{react}$"/></span></span>后踩下刹车。</p>
+<p></p>
+<div class="informalfigure"><div id="d124e30855" class="mediaobject"><p><img src="../../examples/driving/win64/xxFCW.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p><font face="Microsoft YaHei">自车在与前车碰撞之前的总行驶时间可以表示为：</font></p>
+<p><span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/AEBWithSensorFusionExample_eq03975303095432876405.png" alt="$$\tau_{FCW}=\tau_{react}+\tau_{stop}=\tau_{react}+v_{ego}/a_{driver}$$"/></span></span></p>
+<p>当与前车的时间到碰撞 (TTC) 小于 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/AEBWithSensorFusionExample_eq06787610598425673607.png" alt="$\tau_{FCW}$"/>时</span></span>, 前向碰撞警告（FCW）警报会被激活。</p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">如果驾驶员未能及时制动，例如由于分心，AEB系统将独立于驾驶员运行，以避免或减轻碰撞。AEB系统通常采用级联制动，包括多级部分制动，然后是完全制动[1]。</span></p>
+<p></p>
+<div class="informalfigure"><div id="d124e30879" class="mediaobject"><p><img src="../../examples/driving/win64/xxAEB.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">打开</span> <code class="literal">Braking Controller </code><span style="font-family: &quot;Microsoft YaHei&quot;;">子系统。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">"AEBController/Braking Controller"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30890" class="mediaobject"><p><img src="../../examples/driving/win64/AEBWithSensorFusionExample_07.png"/></p>
+</div>
+</div>
+<p><code class="literal">Braking Controller</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">子系统包含以下块：</span></p>
+<div class="itemizedlist"><ul><li><p><code class="literal">TTCCalculation</code> — 使用领先车辆的相对距离和速度计算 TTC。</p></li>
+<li><p><code class="literal">StoppingTimeCalculation</code> — 计算 FCW、第一级和二级部分制动 （PB） 以及完全制动 （FB） 的停止时间。</p></li>
+<li><p><code class="literal">AEBLogic</code> — 将 TTC 与计算的停止时间进行比较以确定 FCW 和 AEB 激活的状态机。</p></li>
+</ul>
+</div>
+<p><code class="literal">AEB Controller</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">输出确定是加速还是减速的转向角和加速命令。</span></p>
+<h3 class="title" id="d124e30914">Explore Metrics Assessment<span id="AEBWithSensorFusionExample-28" class="anchor_target"></span></h3>
+<p><code class="literal">Metrics Assessment</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">子系统使用方案中的实际情况信息启用系统级指标评估。打开 </span><code class="literal">Metrics Assessment</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">子系统。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">"AEBTestBench/Metrics Assessment"</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30927" class="mediaobject"><p><img src="../../examples/driving/win64/AEBWithSensorFusionExample_08.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在此示例中，您可以使用以下指标评估 AEB 系统：</span></p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Check Collision</code> — 验证自我车辆在模拟过程中的任何时候是否与目标参与者发生碰撞。</p></li>
+<li><p><code class="literal">Check Safety</code> — 验证自车在整个仿真过程中是否始终在规定的安全目标阈值<span style="font-family: monospace;">safetyGoal</span>内。使用 <span style="font-family: monospace;">helperAEBSetup </span>的后加载回调函数来定义 <span style="font-family: monospace;">safetyGoal</span>。</p></li>
+</ul>
+</div>
+<h3 class="title" id="d124e30946">Simulate AEB Model<span id="AEBWithSensorFusionExample-30" class="anchor_target"></span></h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">使用基于 Euro NCAP 测试协议的场景模拟测试台模型。Euro NCAP 提供一系列测试协议，用于测试 AEB 系统在车对车后方 </span>(CCR) [2] <span style="font-family: &quot;Microsoft YaHei&quot;;">和弱势道路使用者 </span> (VRU) [3] <span style="font-family: &quot;Microsoft YaHei&quot;;">场景中的性能。</span></p>
+<p>该示例使用这两种情景的闭环仿真，然后分析结果。</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">scenario_23_AEB_PedestrianChild_Nearside_50width</code></p></li>
+<li><p><code class="literal">scenario_25_AEB_PedestrianTurning_Nearside_10kph</code></p></li>
+</ul>
+</div>
+<p><strong class="emphasis bold">Simulate <code class="literal">scenario_23_AEB_PedestrianChild_Nearside_50width</code></strong></p>
+<p>为<code class="literal">scenario_23_AEB_PedestrianChild_Nearside_50width</code> 情景配置 <code class="literal">AEBTestBench</code>模型。在这个情景中，一个儿童行人从道路的右侧穿过到左侧。自车向前行驶，与儿童行人相撞。在碰撞时刻，行人距离自车宽度的50%处。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperSLAEBSetup(scenarioFcnName=<span style="color:#A020F0">"scenario_23_AEB_PedestrianChild_Nearside_50width"</span>);
+</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">测试台模型读取 </span><code class="literal">drivingScenario</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">对象并运行仿真。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">模拟模型 0.1 秒。</span></p>
+<p></p>
+<div class="informalfigure"><div id="d124e30978" class="mediaobject"><p><img src="../../examples/driving/win64/xxaebBirdsEyeScope1.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sim(<span style="color:#A020F0">"AEBTestBench"</span>,StopTime=<span style="color:#A020F0">"0.1"</span>); <span style="color:#228B22">% Simulate for 0.1 seconds</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold">Bird's-Eye Scope </strong><span style="font-family: &quot;Microsoft YaHei&quot;;">显示车辆和儿童行人的地面实况数据。它还显示雷达检测、视觉检测和多目标跟踪器跟踪的对象。在0.1秒的模拟时间内，摄像头和雷达传感器不会检测到儿童行人，因为其他车辆会阻碍他们的视线。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">模拟模型 2.8 秒。</span></p>
+<p></p>
+<div class="informalfigure"><div id="d124e30993" class="mediaobject"><p><img src="../../examples/driving/win64/xxaebBirdsEyeScope2.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sim(<span style="color:#A020F0">"AEBTestBench"</span>,StopTime=<span style="color:#A020F0">"2.8"</span>); <span style="color:#228B22">% Simulate for 2.8 seconds</span>
+</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">更新</span>bird's-eye scope<span style="font-family: &quot;Microsoft YaHei&quot;;">。请注意，传感器融合和跟踪算法将儿童行人检测为 MIO，并且 AEB 系统应用制动以避免碰撞。</span></p>
+<p></p>
+<div class="informalfigure"><div id="d124e31002" class="mediaobject"><p><img src="../../examples/driving/win64/xxAEBDashboard.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">仪表板显示，AEB系统应用级联制动器，在碰撞点之前停止自我车辆。AEB 指示器的颜色指定 AEB 激活的级别。</span></p>
+<div class="itemizedlist"><ul><li><p>Gray — AEB未激活。</p></li>
+<li><p>Yellow — 激活第一级部分制动器。</p></li>
+<li><p>Orange — 第二级部分制动器被激活。</p></li>
+<li><p>Red — 完全制动器被激活。</p></li>
+</ul>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">将场景模拟到最后。然后，使用帮助程序函数 </span><code class="literal">helperPlotAEBResults</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">绘制结果。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sim(<span style="color:#A020F0">"AEBTestBench"</span>); <span style="color:#228B22">% Simulate to end of scenario</span>
+
+helperPlotAEBResults(logsout,scenarioFcnName);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e31023" class="mediaobject"><p><img src="../../examples/driving/win64/AEBWithSensorFusionExample_09.png"/></p>
+</div>
+</div>
+<div class="itemizedlist"><ul><li><p><strong class="emphasis bold">TTC vs. Stopping Time</strong> — 分别比较 FCW、第一级部分制动器、第二阶段部分制动器和全制动器的碰撞时间和停止时间。</p></li>
+<li><p><strong class="emphasis bold">FCW and AEB Status</strong> — 根据第一个图的比较结果显示 <span class="emphasis bold" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">FCW 和 AEB 激活状态</span><span style="font-family: &quot;Microsoft YaHei&quot;;">。</span></p></li>
+<li><p><strong class="emphasis bold">Ego Car Acceleration</strong> —显示自我车辆的加速度。</p></li>
+<li><p><strong class="emphasis bold">Ego Car Yaw and Yaw Rate</strong> — 显示自我车辆的偏航和偏航速率。</p></li>
+<li><p><strong class="emphasis bold">Ego Car Velocity</strong> — 显示自我车辆的速度。</p></li>
+<li><p><strong class="emphasis bold">Headway</strong> — 显示自我车辆和 MIO 之间的前进。</p></li>
+</ul>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在前 2 秒内，自我车辆加速达到其指定速度。在2.3秒时，传感器首先检测到儿童行人。检测后，FCW 系统立即激活。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在2.4秒时，AEB系统施加部分制动的第一阶段，自我车辆开始减速。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">当自我车辆在 4.1 秒完全停止时，自我车辆和儿童行人之间的行距约为 2.1 米。在这种情况下，AEB 系统完全避免了冲突。</span></p>
+<p><strong class="emphasis bold">Simulate with <code class="literal">scenario_25_AEB_PedestrianTurning_Nearside_10kph</code></strong></p>
+<p>为<code class="literal">scenario_25_AEB_PedestrianTurning_Nearside_10kph</code> 情景配置<span style="font-family: monospace;">AEBTestBench </span>模型。在这个情景中，自车在一个十字路口向右转弯，并与从十字路口的对面穿过马路的成年行人相撞。在碰撞时刻，行人距离自车前部结构宽度的50%处。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperSLAEBSetup(scenarioFcnName=<span style="color:#A020F0">"scenario_25_AEB_PedestrianTurning_Nearside_10kph"</span>);
+</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">模拟模型并绘制结果。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sim(<span style="color:#A020F0">"AEBTestBench"</span>);
+
+helperPlotAEBResults(logsout,scenarioFcnName);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e31077" class="mediaobject"><p><img src="../../examples/driving/win64/AEBWithSensorFusionExample_10.png"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在最初的9.5秒内，自我车辆以其指定的速度行驶。在 9.5 秒时，传感器首先在自我车辆右转后检测十字路口的行人。尽管自我车辆和行人之间的距离很短，但由于自我车辆的低速度，AEB 系统仅应用第一个部分制动器。</span></p>
+<h3 class="title" id="d124e31081">Generate C++ Code<span id="AEBWithSensorFusionExample-48" class="anchor_target"></span></h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">如果您拥有 </span>Simulink Coder™<span style="font-family: &quot;Microsoft YaHei&quot;;"> 和 </span>Embedded Coder™<span style="font-family: &quot;Microsoft YaHei&quot;;">的许可证，则可以为算法模型（如嵌入式实时</span>(ERT)<span style="font-family: &quot;Microsoft YaHei&quot;;">目标的 AEB 传感器融合、AEB 决策逻辑和 AEB 控制器）生成可随时部署的代码。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">您可以使用软件在环模拟来验证编译C++代码的行为是否符合预期。要在 SIL 模式下模拟引用的模型，请输入以下命令。</span></p>
+<div class="code_responsive"><pre class="programlisting">set_param("AEBTestBench/Sensor Fusion and Tracking", ...
+                 SimulationMode="Software-in-the-loop (SIL)")
+set_param("AEBTestBench/AEB Decision Logic", ...
+                 SimulationMode="Software-in-the-loop (SIL)")
+set_param("AEBTestBench/AEB Controller", ...
+                SimulationMode="Software-in-the-loop (SIL)")</pre>
+</div>
+<p>When you run the <code class="literal">AEBTestBench</code> model, code is generated, compiled, and executed for the <code class="literal">AEBSensorFusion</code>, <code class="literal">AEBDecisionLogic</code> and <code class="literal">AEBController</code> models. This enables you to test the behavior of the compiled code through simulation.</p>
+<h3 class="title" id="d124e31098">Explore Additional Scenarios<span id="AEBWithSensorFusionExample-52" class="anchor_target"></span></h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在此示例中，您已经探索了</span><code class="literal">scenario_25_AEB_PedestrianTurning_Nearside_10kph</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">和</span><span style="font-family: monospace;">scenario_23_AEB_PedestrianChild_Nearside_50width</span><span style="font-family: &quot;Microsoft YaHei&quot;;">方案的系统行为。此示例提供了与模型兼容的其他方案：</span></p>
+<div class="itemizedlist"><ul><li><p><code class="literal">scenario_01_AEB_Bicyclist_Longitudinal_25width</code></p></li>
+<li><p><code class="literal">scenario_02_AEB_Bicyclist_Longitudinal_50width</code></p></li>
+<li><p><code class="literal">scenario_03_AEB_Bicyclist_Longitudinal_75width</code></p></li>
+<li><p><code class="literal">scenario_04_AEB_CCRb_2_initialGap_12m</code></p></li>
+<li><p><code class="literal">scenario_05_AEB_CCRb_2_initialGap_40m</code></p></li>
+<li><p><code class="literal">scenario_06_AEB_CCRb_6_initialGap_12m</code></p></li>
+<li><p><code class="literal">scenario_07_AEB_CCRb_6_initialGap_40m</code></p></li>
+<li><p><code class="literal">scenario_08_AEB_CCRm_50overlap</code></p></li>
+<li><p><code class="literal">scenario_09_AEB_CCRm__50overlap</code></p></li>
+<li><p><code class="literal">scenario_10_AEB_CCRm_75overlap</code></p></li>
+<li><p><code class="literal">scenario_11_AEB_CCRm__75overlap</code></p></li>
+<li><p><code class="literal">scenario_12_AEB_CCRm_100overlap</code></p></li>
+<li><p><code class="literal">scenario_13_AEB_CCRs_50overlap</code></p></li>
+<li><p><code class="literal">scenario_14_AEB_CCRs__50overlap</code></p></li>
+<li><p><code class="literal">scenario_15_AEB_CCRs_75overlap</code></p></li>
+<li><p><code class="literal">scenario_16_AEB_CCRs__75overlap</code></p></li>
+<li><p><code class="literal">scenario_17_AEB_CCRs_100overlap</code></p></li>
+<li><p><code class="literal">scenario_18_AEB_Pedestrian_Farside_50width</code></p></li>
+<li><p><code class="literal">scenario_19_AEB_Pedestrian_Longitudinal_25width</code></p></li>
+<li><p><code class="literal">scenario_20_AEB_Pedestrian_Longitudinal_50width</code></p></li>
+<li><p><code class="literal">scenario_21_AEB_Pedestrian_Nearside_25width</code></p></li>
+<li><p><code class="literal">scenario_22_AEB_Pedestrian_Nearside_75width</code></p></li>
+<li><p><code class="literal">scenario_23_AEB_PedestrianChild_Nearside_50width</code></p></li>
+<li><p><code class="literal">scenario_24_AEB_PedestrianTurning_Farside_10kph</code></p></li>
+<li><p><code class="literal">scenario_25_AEB_PedestrianTurning_Nearside_10kph</code> [Default]</p></li>
+<li><p><code class="literal">scenario_26_AEB_CCFtap_VUT_10kph_GVT_30kph</code></p></li>
+</ul>
+</div>
+<p><font face="Microsoft YaHei">这些情景是使用</font> <strong class="emphasis bold">Driving Scenario Designer</strong><font face="Microsoft YaHei">应用程序创建的，然后导出为情景文件。您可以使用</font><span style="font-family: monospace;">helperSLAEBSetup </span><font face="Microsoft YaHei">函数配置</font> <code class="literal">AEBTestBench</code> <font face="Microsoft YaHei">模型和工作空间，以模拟这些情景。例如，要为</font><span style="font-family: monospace;">scenario_01_AEB_Bicyclist_Longitudinal_25width</span><font face="Microsoft YaHei">情景配置仿真，请输入以下命令。</font></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperSLAEBSetup(scenarioFcnName=<span style="color:#A020F0">"scenario_01_AEB_Bicyclist_Longitudinal_25width"</span>);
+</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">完成此示例后，再次启用 MPC 更新消息。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mpcverbosity(<span style="color:#A020F0">"on"</span>);
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e31208">References<span id="AEBWithSensorFusionExample-56" class="anchor_target"></span></h3>
+<p>[1] Hulshof, Wesley, Iain Knight, Alix Edwards, Matthew Avery, and Colin Grover. "Autonomous Emergency Braking Test Results." In <span class="emphasis"><em>Proceedings of the 23rd International Technical Conference on the Enhanced Safety of Vehicles (ESV)</em></span> , Paper Number 13-0168. Seoul, Korea: ESV Conference, 2013.</p>
+<p>[2] European New Car Assessment Programme (Euro NCAP). <span class="emphasis"><em>Test Protocol – _AEB Systems</em></span> . Version 2.0.1. Euro NCAP, November, 2017.</p>
+<p>[3] European New Car Assessment Programme (Euro NCAP). <span class="emphasis"><em>Test Protocol – AEB VRU Systems</em></span>. Version 2.0.2. Euro NCAP, November, 2017.</p>
+</div>
+      <h2 id="d124e31227">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving Scenario
+            Designer</span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../vdynblks/ref/vehiclebody3dof.html"><span itemprop="name"><span class="block">Vehicle Body
+            3DOF</span></span></a> (Vehicle Dynamics Blockset)</span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator.html"><span itemprop="name"><span class="block">Driving Radar Data
+            Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator.html"><span itemprop="name"><span class="block">Vision Detection
+            Generator</span></span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyeplot.html"><span itemprop="name"><code class="object">birdsEyePlot</code></span></a></span></li>
+</ul>
+      <h2 id="d124e31257">Related Topics</h2>
+<ul><li><a href="autonomous-emergency-braking-with-vehicle-variants.html" class="a">Autonomous Emergency Braking with Vehicle Variants</a></li>
+<li><a href="autonomous-emergency-braking-with-roadrunner-scenario.html" class="a">Autonomous Emergency Braking with RoadRunner Scenario</a></li>
+<li><a href="automate-testing-for-autonomous-emergency-braking.html" class="a">Automate Testing for Autonomous Emergency Braking</a></li>
+<li><a href="automate-testing-for-scenario-variants-of-aeb-system.html" class="a">Automate Testing for Scenario Variants of AEB System</a></li>
+<li><a href="forward-collision-warning-using-sensor-fusion.html" class="a">Forward Collision Warning Using Sensor Fusion</a></li>
+<li><a href="adaptive-cruise-control-with-sensor-fusion.html" class="a">Adaptive Cruise Control with Sensor Fusion</a></li>
+<li><a href="sensor-fusion-using-synthetic-radar-and-vision-data-in-simulink.html" class="a">Sensor Fusion Using Synthetic Radar and Vision Data in Simulink</a></li>
+<li><a href="euro-ncap-driving-scenarios-in-driving-scenario-designer.html" class="a">Euro NCAP Driving Scenarios in Driving Scenario Designer</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
