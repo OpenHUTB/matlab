@@ -1,18 +1,15 @@
 classdef Add<driving.internal.scenarioApp.undoredo.Edit
 
     properties(SetAccess=protected)
-
-
-Inputs
+        Inputs
     end
+
 
     properties(Access=protected)
-
-
-
-Specification
+        Specification
     end
 
+    
     methods
         function this=Add(hDesigner,varargin)
             this.Application=hDesigner;

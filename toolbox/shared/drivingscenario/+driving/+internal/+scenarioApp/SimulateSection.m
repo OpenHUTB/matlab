@@ -1,26 +1,26 @@
 classdef SimulateSection<matlab.ui.internal.toolstrip.Section
 
-
-
     properties
         Repeat=false;
     end
 
-    properties(SetAccess=protected,Hidden)
-Application
-RunButton
-StepButton
-StepBackButton
-ResetButton
-RepeatCheck
+
+    properties(SetAccess=protected, Hidden)
+        Application
+        RunButton
+        StepButton
+        StepBackButton
+        ResetButton
+        RepeatCheck
     end
+
 
     properties(Access=protected)
         ResetEnabled=false;
         NumRoadsChangedListener;
         NumActorsChangedListener;
-StateChangedListener
-SampleChangedListener
+        StateChangedListener
+        SampleChangedListener
         ActorPropertyChangedListener;
     end
 
@@ -35,14 +35,14 @@ SampleChangedListener
             pathToIcon=hApplication.getPathToIcons;
 
             reset=Button(getString(message('driving:scenarioApp:GoToStartText')),...
-            Icon(fullfile(pathToIcon,'GoToStart24.png')));
+                Icon(fullfile(pathToIcon,'GoToStart24.png')));
             reset.Description=getString(message('driving:scenarioApp:ResetDescription'));
             reset.Tag='reset';
             reset.ButtonPushedFcn=hApplication.initCallback(@this.resetCallback);
             reset.Enabled=false;
             sharedIcons=fullfile(toolboxdir('shared'),'spcuilib','applications','+matlabshared','+application');
             stepbackward=Button(getString(message('driving:scenarioApp:StepBackwardText')),...
-            Icon(fullfile(sharedIcons,'StepBackward24.png')));
+                Icon(fullfile(sharedIcons,'StepBackward24.png')));
             stepbackward.Description=getString(message('driving:scenarioApp:StepBackwardDescription'));
             stepbackward.Tag='stepbackward';
             stepbackward.ButtonPushedFcn=hApplication.initCallback(@this.stepBackwardCallback);
@@ -53,7 +53,7 @@ SampleChangedListener
             play.ButtonPushedFcn=hApplication.initCallback(@this.playCallback);
 
             stepforward=Button(getString(message('driving:scenarioApp:StepForwardText')),...
-            Icon(fullfile(sharedIcons,'StepForward24.png')));
+                Icon(fullfile(sharedIcons,'StepForward24.png')));
             stepforward.Description=getString(message('driving:scenarioApp:StepForwardDescription'));
             stepforward.Tag='stepforward';
             stepforward.ButtonPushedFcn=hApplication.initCallback(@this.stepForwardCallback);
@@ -71,7 +71,7 @@ SampleChangedListener
             add(addColumn(this),reset);
             add(addColumn(this),stepbackward);
             add(addColumn(this,'Width',69,...
-            'HorizontalAlignment','center'),play);
+                'HorizontalAlignment','center'),play);
             add(addColumn(this),stepforward);
 
             column=addColumn(this);
@@ -134,7 +134,7 @@ SampleChangedListener
             else
 
                 focusOnComponent(hApplication.ScenarioView);
-drawnow
+                drawnow
                 play(player);
             end
         end
@@ -222,7 +222,7 @@ drawnow
 
             this.StepButton.Enabled=isStepEnabled&&~isInteracting;
             this.StepBackButton.Enabled=(player.IsPlaying||sample>1)&&...
-            ~isInteracting;
+                ~isInteracting;
             play.Enabled=isPlayEnabled&&~isInteracting;
             this.RepeatCheck.Enabled=isPlayEnabled;
         end

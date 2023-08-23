@@ -1,0 +1,1558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Programmatic Scenario Authoring</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleTopics",
+
+        "itemListElement":
+        [
+        "ug/scenario-generation-from-recorded-vehicle-data.html",
+        "ug/automatic-scenario-generation.html",
+        "ug/build-high-definition-road-scene-from-lane-detections-and-openstreetmap.html",
+        "ug/generate-scenario-from-recorded-actor-tracklist-and-gps-data.html",
+        "ug/scenario-variant-generation-for-testing-car-to-pedestrian-aeb-systems.html",
+        "ug/generate-scenario-from-recorded-gps-and-lidar-data.html",
+        "ug/automatic-scenario-variant-generation-for-testing-aeb-systems.html",
+        "ug/generate-lane-information-from-recorded-data.html",
+        "ug/create-driving-scenario-programmatically.html",
+        "ug/define-road-layouts.html",
+        "ug/simulate-vehicle-parking-maneuver-in-driving-scenario.html",
+        "ug/create-actor-and-vehicle-trajectories.html",
+        "ug/create-driving-scenario-variations-programmatically.html",
+        "ug/visualize-sensor-coverage-detections-and-tracks.html",
+        "ug/automate-control-of-intelligent-vehicles-by-using-stateflow-charts.html",
+        "ug/model-radar-sensor-detections.html",
+        "ug/radar-signal-simulation-and-processing-for-automated-driving.html",
+        "ug/radar-ghost-multipath.html",
+        "ug/model-vision-sensor-detections.html",
+        "../nav/ug/simulate-intertial-sensor-readings-from-a-driving-scenario.html"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ReferenceEntities",
+        
+        "itemListElement":
+        [ {
+          "@type": "ListItem",
+          "position": 1,
+            "item": {
+          "identifier": "object:drivingScenario",
+          "name": "drivingScenario"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 2,
+            "item": {
+          "identifier": "function:advance",
+          "name": "advance"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 3,
+            "item": {
+          "identifier": "method:drivingScenario.plot",
+          "name": "plot"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 4,
+            "item": {
+          "identifier": "function:record",
+          "name": "record"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 5,
+            "item": {
+          "identifier": "function:restart",
+          "name": "restart"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 6,
+            "item": {
+          "identifier": "function:updatePlots",
+          "name": "updatePlots"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 7,
+            "item": {
+          "identifier": "function:export",
+          "name": "export"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 8,
+            "item": {
+          "identifier": "function:actor",
+          "name": "actor"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 9,
+            "item": {
+          "identifier": "function:vehicle",
+          "name": "vehicle"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 10,
+            "item": {
+          "identifier": "function:trajectory",
+          "name": "trajectory"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 11,
+            "item": {
+          "identifier": "function:smoothTrajectory",
+          "name": "smoothTrajectory"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 12,
+            "item": {
+          "identifier": "function:state",
+          "name": "state"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 13,
+            "item": {
+          "identifier": "function:actorPoses",
+          "name": "actorPoses"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 14,
+            "item": {
+          "identifier": "function:actorProfiles",
+          "name": "actorProfiles"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 15,
+            "item": {
+          "identifier": "function:barrier",
+          "name": "barrier"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 16,
+            "item": {
+          "identifier": "function:chasePlot",
+          "name": "chasePlot"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 17,
+            "item": {
+          "identifier": "function:targetMeshes",
+          "name": "targetMeshes"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 18,
+            "item": {
+          "identifier": "function:targetOutlines",
+          "name": "targetOutlines"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 19,
+            "item": {
+          "identifier": "function:targetPoses",
+          "name": "targetPoses"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 20,
+            "item": {
+          "identifier": "function:driving.scenario.targetsToEgo",
+          "name": "driving.scenario.targetsToEgo"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 21,
+            "item": {
+          "identifier": "function:driving.scenario.targetsToScenario",
+          "name": "driving.scenario.targetsToScenario"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 22,
+            "item": {
+          "identifier": "function:road",
+          "name": "road"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 23,
+            "item": {
+          "identifier": "function:roadNetwork",
+          "name": "roadNetwork"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 24,
+            "item": {
+          "identifier": "function:roadBoundaries",
+          "name": "roadBoundaries"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 25,
+            "item": {
+          "identifier": "function:driving.scenario.roadBoundariesToEgo",
+          "name": "driving.scenario.roadBoundariesToEgo"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 26,
+            "item": {
+          "identifier": "function:roadMesh",
+          "name": "roadMesh"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 27,
+            "item": {
+          "identifier": "object:driving.scenario.RoadGroup",
+          "name": "driving.scenario.RoadGroup"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 28,
+            "item": {
+          "identifier": "function:roadGroup",
+          "name": "roadGroup"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 29,
+            "item": {
+          "identifier": "object:lanespec",
+          "name": "lanespec"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 30,
+            "item": {
+          "identifier": "function:laneType",
+          "name": "laneType"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 31,
+            "item": {
+          "identifier": "function:laneMarking",
+          "name": "laneMarking"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 32,
+            "item": {
+          "identifier": "function:laneMarkingVertices",
+          "name": "laneMarkingVertices"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 33,
+            "item": {
+          "identifier": "function:currentLane",
+          "name": "currentLane"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 34,
+            "item": {
+          "identifier": "function:laneBoundaries",
+          "name": "laneBoundaries"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 35,
+            "item": {
+          "identifier": "object:clothoidLaneBoundary",
+          "name": "clothoidLaneBoundary"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 36,
+            "item": {
+          "identifier": "function:computeBoundaryModel",
+          "name": "computeBoundaryModel"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 37,
+            "item": {
+          "identifier": "object:compositeLaneSpec",
+          "name": "compositeLaneSpec"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 38,
+            "item": {
+          "identifier": "object:laneSpecConnector",
+          "name": "laneSpecConnector"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 39,
+            "item": {
+          "identifier": "function:parkingLot",
+          "name": "parkingLot"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 40,
+            "item": {
+          "identifier": "object:parkingSpace",
+          "name": "parkingSpace"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 41,
+            "item": {
+          "identifier": "function:insertParkingSpaces",
+          "name": "insertParkingSpaces"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 42,
+            "item": {
+          "identifier": "function:parkingLaneMarkingVertices",
+          "name": "parkingLaneMarkingVertices"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 43,
+            "item": {
+          "identifier": "sysobj:drivingRadarDataGenerator",
+          "name": "drivingRadarDataGenerator"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 44,
+            "item": {
+          "identifier": "sysobj:visionDetectionGenerator",
+          "name": "visionDetectionGenerator"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 45,
+            "item": {
+          "identifier": "sysobj:lidarPointCloudGenerator",
+          "name": "lidarPointCloudGenerator"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 46,
+            "item": {
+          "identifier": "sysobj:insSensor",
+          "name": "insSensor"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 47,
+            "item": {
+          "identifier": "sysobj:ultrasonicDetectionGenerator",
+          "name": "ultrasonicDetectionGenerator"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 48,
+            "item": {
+          "identifier": "object:extendedObjectMesh",
+          "name": "extendedObjectMesh"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 49,
+            "item": {
+          "identifier": "function:translate",
+          "name": "translate"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 50,
+            "item": {
+          "identifier": "function:rotate",
+          "name": "rotate"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 51,
+            "item": {
+          "identifier": "function:scale",
+          "name": "scale"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 52,
+            "item": {
+          "identifier": "function:applyTransform",
+          "name": "applyTransform"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 53,
+            "item": {
+          "identifier": "function:join",
+          "name": "join"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 54,
+            "item": {
+          "identifier": "function:scaleToFit",
+          "name": "scaleToFit"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 55,
+            "item": {
+          "identifier": "function:show",
+          "name": "show"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 56,
+            "item": {
+          "identifier": "function:driving.scenario.bicycleMesh",
+          "name": "driving.scenario.bicycleMesh"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 57,
+            "item": {
+          "identifier": "function:driving.scenario.carMesh",
+          "name": "driving.scenario.carMesh"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 58,
+            "item": {
+          "identifier": "function:driving.scenario.pedestrianMesh",
+          "name": "driving.scenario.pedestrianMesh"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 59,
+            "item": {
+          "identifier": "function:driving.scenario.truckMesh",
+          "name": "driving.scenario.truckMesh"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 60,
+            "item": {
+          "identifier": "function:driving.scenario.jerseyBarrierMesh",
+          "name": "driving.scenario.jerseyBarrierMesh"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 61,
+            "item": {
+          "identifier": "function:driving.scenario.guardrailMesh",
+          "name": "driving.scenario.guardrailMesh"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 62,
+            "item": {
+          "identifier": "object:birdsEyePlot",
+          "name": "birdsEyePlot"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 63,
+            "item": {
+          "identifier": "function:coverageAreaPlotter",
+          "name": "coverageAreaPlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 64,
+            "item": {
+          "identifier": "function:detectionPlotter",
+          "name": "detectionPlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 65,
+            "item": {
+          "identifier": "function:trackPlotter",
+          "name": "trackPlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 66,
+            "item": {
+          "identifier": "function:laneBoundaryPlotter",
+          "name": "laneBoundaryPlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 67,
+            "item": {
+          "identifier": "function:laneMarkingPlotter",
+          "name": "laneMarkingPlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 68,
+            "item": {
+          "identifier": "function:meshPlotter",
+          "name": "meshPlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 69,
+            "item": {
+          "identifier": "function:pathPlotter",
+          "name": "pathPlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 70,
+            "item": {
+          "identifier": "function:pointCloudPlotter",
+          "name": "pointCloudPlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 71,
+            "item": {
+          "identifier": "function:outlinePlotter",
+          "name": "outlinePlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 72,
+            "item": {
+          "identifier": "function:rangeDetectionPlotter",
+          "name": "rangeDetectionPlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 73,
+            "item": {
+          "identifier": "function:plotCoverageArea",
+          "name": "plotCoverageArea"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 74,
+            "item": {
+          "identifier": "function:plotDetection",
+          "name": "plotDetection"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 75,
+            "item": {
+          "identifier": "function:plotLaneBoundary",
+          "name": "plotLaneBoundary"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 76,
+            "item": {
+          "identifier": "function:plotLaneMarking",
+          "name": "plotLaneMarking"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 77,
+            "item": {
+          "identifier": "function:plotParkingLaneMarking",
+          "name": "plotParkingLaneMarking"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 78,
+            "item": {
+          "identifier": "function:plotMesh",
+          "name": "plotMesh"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 79,
+            "item": {
+          "identifier": "function:plotOutline",
+          "name": "plotOutline"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 80,
+            "item": {
+          "identifier": "function:plotBarrierOutline",
+          "name": "plotBarrierOutline"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 81,
+            "item": {
+          "identifier": "function:plotPath",
+          "name": "plotPath"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 82,
+            "item": {
+          "identifier": "function:plotPointCloud",
+          "name": "plotPointCloud"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 83,
+            "item": {
+          "identifier": "function:plotRangeDetection",
+          "name": "plotRangeDetection"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 84,
+            "item": {
+          "identifier": "function:plotTrack",
+          "name": "plotTrack"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 85,
+            "item": {
+          "identifier": "function:findPlotter",
+          "name": "findPlotter"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 86,
+            "item": {
+          "identifier": "function:clearData",
+          "name": "clearData"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 87,
+            "item": {
+          "identifier": "function:clearPlotterData",
+          "name": "clearPlotterData"
+
+          }
+          } ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "UnlistedReferenceEntities",
+        
+        "itemListElement":
+        [ {
+          "@type": "ListItem",
+          "position": 1,
+            "item": {
+          "identifier": "function:path",
+          "name": "path"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 2,
+            "item": {
+          "identifier": "function:perturbations",
+          "name": "perturbations"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 3,
+            "item": {
+          "identifier": "function:perturb",
+          "name": "perturb"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 4,
+            "item": {
+          "identifier": "sysobj:radarDetectionGenerator",
+          "name": "radarDetectionGenerator"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 5,
+            "item": {
+          "identifier": "function:trajectory",
+          "name": "trajectory"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 6,
+            "item": {
+          "identifier": "method:parkingSpace.plot",
+          "name": "plot"
+
+          }
+          } ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="cat"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="cat"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Programmatically create driving scenarios by using a drivingScenario object"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../docset.xml";
+            product_help_location = "driving";
+            pagetype = "module";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+<style type="text/css">math { visibility: hidden; }</style>
+<link type="text/css" rel="stylesheet" href="../includes/shared/equationrenderer/release/index-css.css"/>
+<script type="text/javascript" src="../includes/shared/equationrenderer/release/bundle.index.js"></script>
+</head>
+<body id="responsive_offcanvas" class="no_animate offcanvas_active locked">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header" style=""></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1" disabled=""></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left active">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar" style="height: 497px; position: fixed; top: 52px;">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator active" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_product_ancestors"><li><a href="index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+</ul><div id="left_nav_categories"><div class="search_refine"><h3>Category</h3>
+<div id="nav_categories"><ul class="nav_toc"><li class="active"><a href="programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" class="corrected_url">Programmatic Scenario Authoring</a></li>
+<li><a href="interactive-scenario-authoring.html?s_tid=CRUX_lftnav" class="corrected_url">Interactive Scenario Authoring</a></li>
+<li><a href="scenario-import-and-export.html?s_tid=CRUX_lftnav" class="corrected_url">Scenario Import and Export</a></li>
+<li><a href="scenarios-in-simulink.html?s_tid=CRUX_lftnav" class="corrected_url">Scenarios in Simulink</a></li>
+</ul>
+</div>
+</div>
+</div></nav>
+</div></nav>
+<script src="../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container" style="padding-right: 0px;">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container affix" style="width: auto;"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content" style="width: auto;">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-category">
+<h1 class="r2022b" itemprop="content title">程序化场景创作</h1>
+<div class="doc_topic_desc" itemprop="content purpose">使用 <code class="object">drivingScenario</code> 对象以编程方式创建驾驶场景</div>
+<div class="start_here_container" id="starthere">
+<div id="start_here_content"><div itemprop="content">
+<p><a href="ref/drivingscenario.html"><code class="object">drivingScenario</code></a> 对象能够从 MATLAB<sup>®</sup> 命令行创作驾驶场景。使用此对象设计复杂的道路网络或停车场并指定参与者及其轨迹。然后，可以使用传感器模型从这些场景中生成合成数据，并在鸟瞰图中可视化这些数据。</p>
+<p><code class="object">drivingScenario</code> 对象的灵活接口能够创建场景的变体，以便在各种条件下快速测试驾驶算法。有关更多详细信息，请参阅 <a href="ug/create-driving-scenario-variations-programmatically.html" class="a">以编程方式创建驾驶场景变体</a>。</p>
+</div>
+</div>
+</div>
+<div class="doc_functionsgroup_container"><h2>函数</h2>
+<div class="expandableContent mwExpandToggle1" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">collapse all</a></p>
+<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true"><!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer" role="tab" id="expand_panel_heading_1" data-toggle="collapse" data-target="#expand_panel_body_1" aria-expanded="true" aria-controls="expand_panel_body_1"><h3 class="panel-title">驾驶场景</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="expand_panel_heading_1" aria-expanded="true" style=""><div class="panel-body"><!--Expander Content: START-->
+<h4 class="add_margin_0">场景</h4>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/drivingscenario.html"><code class="object">drivingScenario</code></a></td>
+<td class="description">创建驾驶场景</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.advance.html"><code class="function">advance</code></a></td>
+<td class="description">将驾驶场景仿真前进一步</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.plot.html"><code class="function">plot</code></a></td>
+<td class="description">绘制驾驶场景</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.record.html"><code class="function">record</code></a></td>
+<td class="description">运行驾驶场景并记录参与者状态</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.restart.html"><code class="function">restart</code></a></td>
+<td class="description">从头开始重新启动驾驶场景仿真</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.updateplots.html"><code class="function">updatePlots</code></a></td>
+<td class="description">更新驾驶场景图</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.export.html"><code class="function">export</code></a></td>
+<td class="description">将驾驶场景导出到 <span class="trademark entity">ASAM OpenDRIVE</span> 或 <span class="trademark entity">ASAM OpenSCENARIO</span> 文件</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 class="add_margin_0">参与者</h4>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/drivingscenario.actor.html"><code class="function">actor</code></a></td>
+<td class="description">将参与者添加到驾驶场景中</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.vehicle.html"><code class="function">vehicle</code></a></td>
+<td class="description">将车辆添加到驾驶场景中</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.trajectory.html"><code class="function">trajectory</code></a></td>
+<td class="description">在驾驶场景中创建参与者或车辆轨迹</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.smoothtrajectory.html"><code class="function">smoothTrajectory</code></a></td>
+<td class="description">在驾驶场景中创建平滑、限制加加速度的参与者轨迹</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.state.html"><code class="function">state</code></a></td>
+<td class="description">参与者的惯性的真实状态</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.actorposes.html"><code class="function">actorPoses</code></a></td>
+<td class="description">驾驶场景中参与者的位置、速度和方向</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.actorprofiles.html"><code class="function">actorProfiles</code></a></td>
+<td class="description">驾驶场景中参与者的物理和雷达特征</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.barrier.html"><code class="function">barrier</code></a></td>
+<td class="description">为驾驶场景添加障碍</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.chaseplot.html"><code class="function">chasePlot</code></a></td>
+<td class="description">以自我为中心的投射透视图</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.targetmeshes.html"><code class="function">targetMeshes</code></a></td>
+<td class="description">相对于特定参与者的网格顶点和面</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.targetoutlines.html"><code class="function">targetOutlines</code></a></td>
+<td class="description">参与者看到的目标轮廓</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.targetposes.html"><code class="function">targetPoses</code></a></td>
+<td class="description">相对于自我车辆的目标位置和方向</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/driving.scenario.targetstoego.html"><code class="function">driving.scenario.targetsToEgo</code></a></td>
+<td class="description">将目标姿势从场景转换为自我坐标</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/driving.scenario.targetstoscenario.html"><code class="function">driving.scenario.targetsToScenario</code></a></td>
+<td class="description">将目标姿势从自我坐标转换为场景坐标</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 class="add_margin_0">道路</h4>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/drivingscenario.road.html"><code class="function">road</code></a></td>
+<td class="description">将道路添加到驾驶场景或道路组</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.roadnetwork.html"><code class="function">roadNetwork</code></a></td>
+<td class="description">将路网添加到驾驶场景中</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.roadboundaries.html"><code class="function">roadBoundaries</code></a></td>
+<td class="description">获取道路边界</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/driving.scenario.roadboundariestoego.html"><code class="function">driving.scenario.roadBoundariesToEgo</code></a></td>
+<td class="description">将道路边界转换为自我车辆坐标</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/roadmesh.roadmesh.html"><code class="function">roadMesh</code></a></td>
+<td class="description">参与者附近道路的网格表示</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/driving.scenario.roadgroup.html"><code class="object">driving.scenario.RoadGroup</code></a></td>
+<td class="description">存储路口或交叉路口的规范</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.roadgroup.html"><code class="function">roadGroup</code></a></td>
+<td class="description">将路口或交叉路口添加到驾驶场景中</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 class="add_margin_0">车道</h4>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/lanespec.html"><code class="object">lanespec</code></a></td>
+<td class="description">创建道路车道规范</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/lanetype.html"><code class="function">laneType</code></a></td>
+<td class="description">创建道路车道类型对象</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/lanemarking.html"><code class="function">laneMarking</code></a></td>
+<td class="description">创建道路车道标记对象</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.lanemarkingvertices.html"><code class="function">laneMarkingVertices</code></a></td>
+<td class="description">驾驶场景中的车道标记顶点和面</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.currentlane.html"><code class="function">currentLane</code></a></td>
+<td class="description">获取参与者当前车道</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.laneboundaries.html"><code class="function">laneBoundaries</code></a></td>
+<td class="description">获取参与者车道的车道边界</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/clothoidlaneboundary.html"><code class="object">clothoidLaneBoundary</code></a></td>
+<td class="description">回旋形车道边界模型</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/clothoidlaneboundary.computeboundarymodel.html"><code class="function">computeBoundaryModel</code></a></td>
+<td class="description">从回旋车道边界模型计算车道边界点</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/compositelanespec.html"><code class="object">compositeLaneSpec</code></a></td>
+<td class="description">创建道路的多车道规格</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/lanespecconnector.html"><code class="object">laneSpecConnector</code></a></td>
+<td class="description">定义路段连接器规格</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 class="add_margin_0">停车场</h4>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/drivingscenario.parkinglot.html"><code class="function">parkingLot</code></a></td>
+<td class="description">将停车场添加到驾驶场景</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/parkingspace.html"><code class="object">parkingSpace</code></a></td>
+<td class="description">为停车场定义停车位</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.insertparkingspaces.html"><code class="function">insertParkingSpaces</code></a></td>
+<td class="description">将停车位插入停车场</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.parkinglanemarkingvertices.html"><code class="function">parkingLaneMarkingVertices</code></a></td>
+<td class="description">驾驶场景中的停车道标记顶点和面</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+<!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer" role="tab" id="expand_panel_heading_7" data-toggle="collapse" data-target="#expand_panel_body_7" aria-expanded="true" aria-controls="expand_panel_body_7"><h3 class="panel-title">传感器</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_7" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="expand_panel_heading_7" aria-expanded="true" style=""><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/drivingradardatagenerator-system-object.html"><code class="sysobj">drivingRadarDataGenerator</code></a></td>
+<td class="description">根据驾驶场景生成雷达传感器检测结果和轨迹</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/visiondetectiongenerator-system-object.html"><code class="sysobj">visionDetectionGenerator</code></a></td>
+<td class="description">生成驾驶场景的视觉检测结果</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/lidarpointcloudgenerator-system-object.html"><code class="sysobj">lidarPointCloudGenerator</code></a></td>
+<td class="description">生成驾驶场景的激光雷达点云数据</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/inssensor-system-object.html"><code class="sysobj">insSensor</code></a></td>
+<td class="description">惯性导航系统和 GNSS/GPS 仿真模型</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/ultrasonicdetectiongenerator-system-object.html"><code class="sysobj">ultrasonicDetectionGenerator</code></a></td>
+<td class="description">在驾驶场景中生成超声波距离检测结果</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+<!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer" role="tab" id="expand_panel_heading_8" data-toggle="collapse" data-target="#expand_panel_body_8" aria-expanded="true" aria-controls="expand_panel_body_8"><h3 class="panel-title">用于激光雷达仿真的网格</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_8" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="expand_panel_heading_8" aria-expanded="true" style=""><div class="panel-body"><!--Expander Content: START-->
+<h4 class="add_margin_0">网格创建</h4>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/extendedobjectmesh.html"><code class="object">extendedObjectMesh</code></a></td>
+<td class="description">扩展对象的网格表示</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/extendedobjectmesh.translate.html"><code class="function">translate</code></a></td>
+<td class="description">沿坐标轴平移网格</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/extendedobjectmesh.rotate.html"><code class="function">rotate</code></a></td>
+<td class="description">绕坐标轴旋转网格</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/extendedobjectmesh.scale.html"><code class="function">scale</code></a></td>
+<td class="description">在每个维度上缩放网格</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/extendedobjectmesh.applytransform.html"><code class="function">applyTransform</code></a></td>
+<td class="description">对网格顶点应用正向变换</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/extendedobjectmesh.join.html"><code class="function">join</code></a></td>
+<td class="description">连接两个对象网格</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/extendedobjectmesh.scaletofit.html"><code class="function">scaleToFit</code></a></td>
+<td class="description">自动缩放对象网格以匹配指定的长方体尺寸</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/extendedobjectmesh.show.html"><code class="function">show</code></a></td>
+<td class="description">将网格显示为当前轴上的面片</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 class="add_margin_0">预先构建的网格</h4>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/drivingscenario.driving.scenario.bicyclemesh.html"><code class="function">driving.scenario.bicycleMesh</code></a></td>
+<td class="description">自行车在驾驶场景中的网格表示</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.driving.scenario.carmesh.html"><code class="function">driving.scenario.carMesh</code></a></td>
+<td class="description">汽车在驾驶场景中的网格表示</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.driving.scenario.pedestrianmesh.html"><code class="function">driving.scenario.pedestrianMesh</code></a></td>
+<td class="description">驾驶场景中行人的网格表示</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/drivingscenario.driving.scenario.truckmesh.html"><code class="function">driving.scenario.truckMesh</code></a></td>
+<td class="description">驾驶场景中卡车的网格表示</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/driving.scenario.jerseybarriermesh.html"><code class="function">driving.scenario.jerseyBarrierMesh</code></a></td>
+<td class="description">驾驶场景中新泽西护栏的网格表示</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/driving.scenario.guardrailmesh.html"><code class="function">driving.scenario.guardrailMesh</code></a></td>
+<td class="description">驾驶场景中护栏的网格表示</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+<!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer" role="tab" id="expand_panel_heading_11" data-toggle="collapse" data-target="#expand_panel_body_11" aria-expanded="true" aria-controls="expand_panel_body_11"><h3 class="panel-title">鸟瞰图</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_11" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="expand_panel_heading_11" aria-expanded="true" style=""><div class="panel-body"><!--Expander Content: START-->
+<h4 class="add_margin_0">绘图仪创建</h4>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/birdseyeplot.html"><code class="object">birdsEyePlot</code></a></td>
+<td class="description">绘制车辆周围的检测结果、轨迹和传感器覆盖范围</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.coverageareaplotter.html"><code class="function">coverageAreaPlotter</code></a></td>
+<td class="description">鸟瞰图覆盖面积绘图仪</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.detectionplotter.html"><code class="function">detectionPlotter</code></a></td>
+<td class="description">鸟瞰图检测结果绘图仪</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.trackplotter.html"><code class="function">trackPlotter</code></a></td>
+<td class="description">鸟瞰图轨迹绘图仪</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.laneboundaryplotter.html"><code class="function">laneBoundaryPlotter</code></a></td>
+<td class="description">鸟瞰图车道边界绘图仪</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.lanemarkingplotter.html"><code class="function">laneMarkingPlotter</code></a></td>
+<td class="description">鸟瞰图车道标记绘图仪</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.meshplotter.html"><code class="function">meshPlotter</code></a></td>
+<td class="description">鸟瞰图网格绘图仪</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.pathplotter.html"><code class="function">pathPlotter</code></a></td>
+<td class="description">鸟瞰图路径绘图仪</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.pointcloudplotter.html"><code class="function">pointCloudPlotter</code></a></td>
+<td class="description">鸟瞰图点云绘图仪</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.outlineplotter.html"><code class="function">outlinePlotter</code></a></td>
+<td class="description">鸟瞰图轮廓绘图仪</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.rangedetectionplotter.html"><code class="function">rangeDetectionPlotter</code></a></td>
+<td class="description">鸟瞰图范围检测绘图仪</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 class="add_margin_0">绘图仪显示</h4>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/birdseyeplot.plotcoveragearea.html"><code class="function">plotCoverageArea</code></a></td>
+<td class="description">在鸟瞰图上显示传感器覆盖区域</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.plotdetection.html"><code class="function">plotDetection</code></a></td>
+<td class="description">在鸟瞰图上显示对象检测结果</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.plotlaneboundary.html"><code class="function">plotLaneBoundary</code></a></td>
+<td class="description">在鸟瞰图上显示车道边界</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.plotlanemarking.html"><code class="function">plotLaneMarking</code></a></td>
+<td class="description">在鸟瞰图上显示车道标记</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.plotparkinglanemarking.html"><code class="function">plotParkingLaneMarking</code></a></td>
+<td class="description">在鸟瞰图上显示停车道标记</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.plotmesh.html"><code class="function">plotMesh</code></a></td>
+<td class="description">在鸟瞰图上显示对象网格</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.plotoutline.html"><code class="function">plotOutline</code></a></td>
+<td class="description">在鸟瞰图上显示对象轮廓</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/plotbarrieroutline.html"><code class="function">plotBarrierOutline</code></a></td>
+<td class="description">在鸟瞰图上显示障碍物轮廓</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.plotpath.html"><code class="function">plotPath</code></a></td>
+<td class="description">在鸟瞰图上显示参与者路径</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.plotpointcloud.html"><code class="function">plotPointCloud</code></a></td>
+<td class="description">在鸟瞰图上显示生成的点云</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.plotrangedetection.html"><code class="function">plotRangeDetection</code></a></td>
+<td class="description">在鸟瞰图上显示范围检测</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.plottrack.html"><code class="function">plotTrack</code></a></td>
+<td class="description">在鸟瞰图上显示对象轨迹</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 class="add_margin_0">绘图仪实用程序</h4>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/birdseyeplot.findplotter.html"><code class="function">findPlotter</code></a></td>
+<td class="description">查找与鸟瞰图相关的绘图仪</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.cleardata.html"><code class="function">clearData</code></a></td>
+<td class="description">清除鸟瞰图特定绘图仪的数据</td>
+</tr>
+<tr><td class="term notranslate"><a href="ref/birdseyeplot.clearplotterdata.html"><code class="function">clearPlotterData</code></a></td>
+<td class="description">清除鸟瞰图数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+</div>
+</div>
+</div>
+<div class="examples_container"><h2>主题</h2>
+<div itemprop="content">
+<div class="doc_subgroup_container" itemprop="content">
+<h3>驾驶场景</h3>
+
+<ul class="list-unstyled"><li><strong><a href="ug/create-driving-scenario-programmatically.html" class="a">以编程方式创建驾驶场景</a></strong><br/>
+以编程方式为合成传感器数据和跟踪算法创建真实驾驶场景。
+</li>
+<li><strong><a href="ug/define-road-layouts.html" class="a">以编程方式定义道路布局</a></strong><br/>
+以编程方式创建道路交叉点并将这些交叉点组合起来以创建更复杂的道路网络。
+</li>
+<li><strong><a href="ug/simulate-vehicle-parking-maneuver-in-driving-scenario.html" class="a">仿真驾驶场景中的车辆停车操作</a></strong><br/>
+使用长方体驾驶场景模拟大型停车场中的停车操作并生成传感器检测。</li>
+<li><strong><a href="ug/create-actor-and-vehicle-trajectories.html" class="a">以编程方式创建参与者和车辆轨迹</a></strong><br/>
+以编程方式为驾驶场景创建参与者和车辆轨迹。
+</li>
+<li><strong><a href="ug/create-driving-scenario-variations-programmatically.html" class="a">以编程方式创建驾驶场景变体</a></strong><br/>编程方式创建使用<b>驾驶场景设计器</b>应用程序构建的驾驶场景变体。<br/></li>
+<li><strong><a href="ug/visualize-sensor-coverage-detections-and-tracks.html" class="a">可视化传感器覆盖范围、检测和跟踪结果</a></strong><br/>
+配置并使用鸟瞰图来显示自我车辆周围的传感器覆盖范围、检测和跟踪结果。
+</li>
+<li><strong><a href="ug/automate-control-of-intelligent-vehicles-by-using-stateflow-charts.html" class="a">使用 Stateflow 图自动控制智能车辆</a></strong><br/>
+使用由 Stateflow<sup>®</sup> 图定义的决策逻辑控制的智能车辆对高速公路场景进行建模。</li>
+</ul>
+</div>
+<div class="doc_subgroup_container" itemprop="content">
+<h3>传感器</h3>
+
+<ul class="list-unstyled"><li><strong><a href="ug/model-radar-sensor-detections.html" class="a">雷达传感器结果建模</a></strong><br/>
+针对各种驾驶场景，对汽车雷达传感器的输出进行建模和仿真。
+</li>
+<li><strong><a href="ug/radar-signal-simulation-and-processing-for-automated-driving.html" class="a">自动驾驶雷达信号仿真和处理</a></strong><br/>
+针对驾驶场景，对雷达的硬件、信号处理和传播环境进行建模。
+</li>
+<li><strong><a href="ug/radar-ghost-multipath.html" class="a">仿真由于多路径返回而产生的雷达鬼影</a></strong><br/>
+生成信号能量在返回雷达之前从另一个目标反射回来时出现的鬼影目标。
+</li>
+<li><strong><a href="ug/model-vision-sensor-detections.html" class="a">对视觉传感器检测结果进行建模</a></strong><br/>
+对各种驾驶场景下的汽车视觉传感器的输出进行建模和仿真。
+</li>
+<li><strong><a href="../nav/ug/simulate-intertial-sensor-readings-from-a-driving-scenario.html" class="a">仿真驾驶场景中的惯性传感器读数</a><span role="cross_prod"> （导航工具箱）</span></strong><br/>
+使用自动驾驶工具箱™中的驾驶场景生成工具从 IMU、GPS 和车轮编码器生成合成传感器数据。 
+</li>
+</ul>
+</div>
+</div>
+</div>
+<section class="example_short_list" id="featured_examples_container"><h2>特色示例</h2>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="ug/scenario-generation-from-recorded-vehicle-data.html"><div class="card_media" style="background-image:url(../examples/driving/win64/PlaybackScenarioExample_01.png);"><img alt="Scenario Generation from Recorded Vehicle Data" src="../examples/driving/win64/PlaybackScenarioExample_01.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>根据记录的车辆数据生成场景</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">根据记录的车辆数据自动生成虚拟驾驶场景。</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:openExample('driving/PlaybackScenarioExample')">打开实时脚本</a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="ug/automatic-scenario-generation.html"><div class="card_media" style="background-image:url(../examples/driving/win64/automatedscenarioAnimation.gif);"><img alt="Automatic Scenario Generation" src="../examples/driving/win64/automatedscenarioAnimation.gif"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>自动场景生成</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">使用 drivingScenario 对象自动生成场景。在此示例中将自动化。</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:openExample('driving/AutomatedScenarioGenerationExample')">打开实时脚本</a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="ug/build-high-definition-road-scene-from-lane-detections-and-openstreetmap.html"><div class="card_media" style="background-image:url(../examples/scenariobuilder/win64/thumnail_RRScene.png);"><img alt="Generate High Definition Scene from Lane Detections" src="../examples/scenariobuilder/win64/thumnail_RRScene.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>从车道检测生成高清场景</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">使用记录的车道检测、GPS 数据和
+                        OpenStreetMap<sup>®</sup> 数据生成高清道路场景。</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:openExample('scenariobuilder/BuildHighDefinitionRoadSceneFromOSMMapAndRecordedDataExample')">打开实时脚本</a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="ug/generate-scenario-from-recorded-actor-tracklist-and-gps-data.html"><div class="card_media" style="background-image:url(../examples/scenariobuilder/win64/Thumbnail_TListGPS.png);"><img alt="Generate Scenario from Actor Track List and GPS Data" src="../examples/scenariobuilder/win64/Thumbnail_TListGPS.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>从参与者轨迹列表和 GPS 数据生成场景</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">使用记录的参与者轨迹列表和 GPS 数据生成 ASAM OpenSCENARIO<sup>®</sup> v1.0 文件。</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:openExample('scenariobuilder/GenerateASAMOpenScenarioFromActorTracklistAndGPSDataExample')">打开实时脚本</a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="ug/scenario-variant-generation-for-testing-car-to-pedestrian-aeb-systems.html"><div class="card_media" style="background-image:url(../examples/variantgenerator/win64/AEBCollisionVariantsExample_02.png);"><img alt="Scenario Variant Generation for Testing Car to Pedestrian AEB Systems" src="../examples/variantgenerator/win64/AEBCollisionVariantsExample_02.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>用于测试汽车与行人 AEB 系统的场景变体生成</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">使用车对行人欧洲新车评估计划 (Euro NCAP) 测试场景生成场景变体来测试自动紧急制动 (AEB) 系统。  </p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:openExample('variantgenerator/AEBCollisionVariantsExample')">打开实时脚本</a></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer" style="width: auto;">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+<a class="btn btn_color_mediumgray" id="go-top" style="display: block;"><span class="icon-arrow-open-up icon_24"></span></a>
+</body>
+</html>

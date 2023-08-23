@@ -74,6 +74,7 @@ classdef Simulator<handle&matlab.mixin.Heterogeneous
         end
     end
 
+    
     methods(Abstract)
         run(this)  % 相当于点击图形界面的"运行"
         stop(this)

@@ -1,16 +1,19 @@
-% 游戏引擎查看器
+% 游戏引擎情景查看器
 classdef GamingEngineScenarioViewer<handle
+
     properties(Dependent)
-        Visible;
+        Visible;  % 驾驶场景设计器的图形界面是否可见
     end
+
 
     properties(Hidden, SetAccess=protected)
         Animator;
         Application;
         IsValid
         LastWarnings;
-        Offset=[0,0,0];
+        Offset=[0, 0, 0];
     end
+
 
     properties(Access=protected)
         SimulatorSampleChanged;
@@ -26,6 +29,7 @@ classdef GamingEngineScenarioViewer<handle
     events
         WindowClosed;
     end
+
 
     methods
         % 构建游戏引擎场景查看器
@@ -79,12 +83,14 @@ classdef GamingEngineScenarioViewer<handle
         end
     end
 
+
     methods(Hidden)
 
         % 看动画师是否打开
         function b=isOpen(this)
             b=isOpen(this.Animator);
         end
+        
 
         function b=isWindowOpen(this)
             b=isWindowOpen(this.Animator);
