@@ -1,15 +1,16 @@
 classdef VisionPropertySheet<driving.internal.scenarioApp.SensorPropertySheet
+
     properties
         ShowCameraSettings=false;
         ShowSensorLimits=false;
         ShowLaneSettings=false;
     end
 
+
     properties(Hidden)
 hLaneUpdateInterval
 hShowCameraSettings
 hCameraSettings
-
 
 hFocalLengthX
 hFocalLengthY
@@ -44,30 +45,31 @@ SensorLimitsLayout
         LaneSettingsLayout;
     end
 
+
     properties(Constant,Hidden)
         DetectionTypes={'objects','lanes&objects','lanes'};
     end
+
 
     methods
         function this=VisionPropertySheet(dlg)
             this@driving.internal.scenarioApp.SensorPropertySheet(dlg);
         end
 
+
         function label=getTypeLabel(~)
             label=getString(message('driving:scenarioApp:VisionTypeLabel'));
         end
 
+
         function update(this)
-
             update@driving.internal.scenarioApp.SensorPropertySheet(this);
-
             sensor=getSpecification(this);
             if isempty(sensor)
                 enable='off';
             else
                 enable=matlabshared.application.logicalToOnOff(this.Dialog.Enabled);
             end
-
             set(this.hDetectionType,'Enable',enable,...
             'String',{getString(message('driving:scenarioApp:DetectionTypeObjects')),...
             getString(message('driving:scenarioApp:DetectionTypeObjectsAndLanes')),...
@@ -106,15 +108,13 @@ SensorLimitsLayout
         end
     end
 
+
     methods(Hidden)
         function updateLayout(this)
             mainLayout=this.Layout;
             detectionLayout=this.DetectionLayout;
-
-
             nextRow=insertPanel(this,mainLayout,'CameraSettings',2);
             insertPanel(this,mainLayout,'DetectionParameters',nextRow+1);
-
             nextRow=insertPanel(this,detectionLayout,'SensorLimits',7);
             nextRow=insertPanel(this,detectionLayout,'LaneSettings',nextRow+1);
             insertPanel(this,detectionLayout,'AccuracyNoise',nextRow+1);
@@ -125,20 +125,15 @@ SensorLimitsLayout
         end
     end
 
+
     methods(Access=protected)
         function createWidgets(this)
-
             p=this.Panel;
             leftInset=5;
-
-
             this.hShowCameraSettings=createToggle(this,p,'ShowCameraSettings');
-
             props={'Visible','off','BorderType','none','AutoResizeChildren','off'};
-
             cameraSettings=uipanel(p,props{:},'Tag','CameraSettings');
             this.hCameraSettings=cameraSettings;
-
             focalXLabel=createLabelEditPair(this,cameraSettings,'FocalLengthX',@this.focalLengthCallback,...
             'TooltipString',getString(message('driving:scenarioApp:FocalLengthXDescription')));
             focalYLabel=createLabelEditPair(this,cameraSettings,'FocalLengthY',@this.focalLengthCallback,...
@@ -153,14 +148,12 @@ SensorLimitsLayout
             'TooltipString',getString(message('driving:scenarioApp:PrincipalPointYDescription')));
 
             layoutInputs={'VerticalGap',3,'HorizontalGap',3};
-
             layout=matlabshared.application.layout.GridBagLayout(cameraSettings,...
             layoutInputs{:},'HorizontalWeights',[0,1,0,1]);
             this.CameraLayout=layout;
 
             inset=layout.LabelOffset;
             labelProps={'Anchor','West','TopInset',inset,'MinimumHeight',20-inset};
-
             labelWidth1=layout.getMinimumWidth([focalXLabel,imageWLabel,ppXLabel]);
             labelWidth2=layout.getMinimumWidth([focalYLabel,imageHLabel,ppYLabel]);
             add(layout,focalXLabel,1,1,...
@@ -192,12 +185,9 @@ SensorLimitsLayout
             'Fill','Horizontal');
 
             layout.setLayoutHeight;
-
             this.hShowDetectionParameters=createToggle(this,p,'ShowDetectionParameters');
-
             detectionParameters=uipanel(p,props{:},'Tag','VisionDetectionParameters');
             this.hDetectionParameters=detectionParameters;
-
             hDetectionTypeLabel=createLabelEditPair(this,detectionParameters,'DetectionType',@this.detectionTypeCallback,'popupmenu');
             createLabelEditPair(this,detectionParameters,'DetectionProbability',...
             'TooltipString',getString(message('driving:scenarioApp:DetectionProbabilityDescription')));
@@ -208,11 +198,9 @@ SensorLimitsLayout
             createEditbox(this,detectionParameters,'MaxNumDetections');
             createLabelEditPair(this,detectionParameters,'DetectionCoordinates',@this.detectionCoordinatesCallback,'popupmenu',...
             'TooltipString',getString(message('driving:scenarioApp:DetectionCoordinatesDescription')));
-
             createToggle(this,detectionParameters,'ShowSensorLimits');
             sensorLimits=uipanel(detectionParameters,props{:},'Tag','SensorLimits');
             this.hSensorLimits=sensorLimits;
-
             hMaxSpeedLabel=createLabelEditPair(this,sensorLimits,'MaxSpeed',...
             'TooltipString',getString(message('driving:scenarioApp:MaxSpeedDescription')));
             createLabelEditPair(this,sensorLimits,'MaxRange',...
@@ -225,7 +213,6 @@ SensorLimitsLayout
             hMinObjectImageHeightLabel=createLabelEditPair(this,sensorLimits,...
             'MinObjectImageHeight',@this.minObjectSizeCallback,...
             'TooltipString',getString(message('driving:scenarioApp:MinObjectImageHeightDescription')));
-
             layout=matlabshared.application.layout.GridBagLayout(sensorLimits,...
             layoutInputs{:},'HorizontalWeights',[0,1]);
             this.SensorLimitsLayout=layout;
@@ -251,13 +238,9 @@ SensorLimitsLayout
             add(layout,this.hMinObjectImageHeight,5,2,...
             'Fill','Horizontal');
             layout.setLayoutHeight;
-
-
             this.hShowLaneSettings=createToggle(this,detectionParameters,'ShowLaneSettings');
-
             laneSettings=uipanel(detectionParameters,props{:},'Tag','VisionDetectionParameters');
             this.hLaneSettings=laneSettings;
-
             hLaneUpdateIntLabel=createLabelEditPair(this,laneSettings,'LaneUpdateInterval',...
             'TooltipString',getString(message('driving:scenarioApp:LaneUpdateIntervalDescription')));
             hMinLaneWidthLabel=createLabelEditPair(this,laneSettings,'MinLaneImageWidth',@this.minLaneImageSizeCallback,...
@@ -269,7 +252,6 @@ SensorLimitsLayout
             createCheckbox(this,laneSettings,'LimitLanes',@this.limitNumLanesCallback,...
             'TooltipString',getString(message('driving:scenarioApp:LimitLanesDescription')));
             createEditbox(this,laneSettings,'MaxNumLanes');
-
             layout=matlabshared.application.layout.GridBagLayout(laneSettings,...
             layoutInputs{:},'HorizontalWeights',[0,1]);
             this.LaneSettingsLayout=layout;
@@ -295,19 +277,15 @@ SensorLimitsLayout
             add(layout,this.hMaxNumLanes,5,2,...
             'Fill','Horizontal');
             layout.setLayoutHeight;
-
-
             this.hShowAccuracyNoise=createToggle(this,detectionParameters,'ShowAccuracyNoise');
             accuracyNoise=uipanel(detectionParameters,props{:},'Tag','VisionAccuracyNoise');
             this.hAccuracyNoise=accuracyNoise;
-
             hBoundingBoxLabel=createLabelEditPair(this,detectionParameters,'BoundingBoxAccuracy',...
             'TooltipString',getString(message('driving:scenarioApp:BoundingBoxAccuracyDescription')));
             hProcessNoiseLabel=createLabelEditPair(this,detectionParameters,'ProcessNoiseIntensity',...
             'TooltipString',getString(message('driving:scenarioApp:ProcessNoiseIntensityDescription')));
             createCheckbox(this,detectionParameters,'HasNoise',...
             'TooltipString',getString(message('driving:scenarioApp:HasNoiseDescription')));
-
             layout=matlabshared.application.layout.GridBagLayout(accuracyNoise,...
             layoutInputs{:},'HorizontalWeights',[0,1]);
             this.AccuracyNoiseLayout=layout;
@@ -326,15 +304,12 @@ SensorLimitsLayout
             [~,height]=getMinimumSize(layout);
             layout.setConstraints(accuracyNoise,'Fill','Both',...
             'MinimumHeight',height);
-
             layout=matlabshared.application.layout.GridBagLayout(detectionParameters,...
             layoutInputs{:},'HorizontalWeights',[0,1]);
             this.DetectionLayout=layout;
-
             limitDetectionsWidth=layout.getMinimumWidth(this.hLimitDetections)+20;
             labelWidth=max(layout.getMinimumWidth([hDetectionTypeLabel,this.hDetectionProbabilityLabel...
             ,falsePositivesLabel,this.hDetectionCoordinatesLabel]),limitDetectionsWidth);
-
             add(layout,hDetectionTypeLabel,1,1,...
             'MinimumWidth',labelWidth,...
             'Anchor','west',...
@@ -384,7 +359,6 @@ SensorLimitsLayout
             'LeftInset',2*leftInset,...
             'RightInset',-leftInset);
             layout.setLayoutHeight();
-
             layout=matlabshared.application.layout.GridBagLayout(p,...
             layoutInputs{:},'VerticalWeights',[0,1]);
             layout.add(this.hShowCameraSettings,1,1,...
@@ -396,6 +370,7 @@ SensorLimitsLayout
 
             updateLayout(this);
         end
+
 
         function limitNumLanesCallback(this,hcbo,~)
             dlg=this.Dialog;
@@ -411,24 +386,31 @@ SensorLimitsLayout
             setProperty(this,'MaxNumLanesSource',newValue);
         end
 
+
         function minLaneImageSizeCallback(this,~,~)
             setVectorProperty(this,'MinLaneImageSize','hMinLaneImageHeight','hMinLaneImageWidth');
         end
+
 
         function focalLengthCallback(this,~,~)
             setVectorProperty(this,'FocalLength','hFocalLengthX','hFocalLengthY');
         end
 
+
         function imageSizeCallback(this,~,~)
             setVectorProperty(this,'ImageSize','hImageHeight','hImageWidth');
         end
 
+
         function principalPointCallback(this,~,~)
             setVectorProperty(this,'PrincipalPoint','hPrincipalPointX','hPrincipalPointY');
         end
+
+
         function detectionTypeCallback(this,hItem,~)
             setProperty(this,'DetectionType',this.DetectionTypes{hItem.Value});
         end
+
 
         function minObjectSizeCallback(this,~,~)
             setVectorProperty(this,'MinObjectImageSize','hMinObjectImageHeight','hMinObjectImageWidth');

@@ -1,7 +1,7 @@
 classdef CuboidTo3DSimulation<matlab.System
 
-    % ä½¿ç”¨ Nontunable å¯é˜²æ­¢åœ¨å¯¹è±¡å¤„äºŽä½¿ç”¨ä¸­çŠ¶æ€æ—¶æ›´æ”¹è¯¥å±žæ€§å€¼ã€‚
-    % é»˜è®¤æƒ…å†µä¸‹ï¼Œæ‰€æœ‰å±žæ€§å‡å¯è°ƒã€‚
+    % Ê¹ÓÃ Nontunable ¿É·ÀÖ¹ÔÚ¶ÔÏó´¦ÓÚÊ¹ÓÃÖÐ×´Ì¬Ê±¸ü¸Ä¸ÃÊôÐÔÖµ¡£
+    % Ä¬ÈÏÇé¿öÏÂ£¬ËùÓÐÊôÐÔ¾ù¿Éµ÷¡£
     properties(Nontunable)
         SpecifyActorID (1,1) logical=false
         ActorIDToConvert (1,1) {mustBePositive,mustBeInteger}=1

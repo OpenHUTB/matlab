@@ -1,12 +1,9 @@
 classdef ScenarioCanvasPalette<driving.internal.scenarioApp.ScenarioPalette
 
-
-
-
-
     properties(Hidden)
 FitToViewButton
     end
+
 
     methods(Access=protected)
 
@@ -17,6 +14,7 @@ FitToViewButton
         end
 
     end
+
 
     methods(Static,Access=protected)
         function btn=createFitToViewBtn(tb,callback)

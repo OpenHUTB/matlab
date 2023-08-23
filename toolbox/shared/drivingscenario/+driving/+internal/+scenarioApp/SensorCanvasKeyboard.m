@@ -1,10 +1,9 @@
 classdef SensorCanvasKeyboard<matlabshared.application.ComponentKeyboard
+
     methods
         function escape(this)
             canvas=this.Component;
             if canvas.IsMoving||canvas.IsRotating
-
-
 
                 canvas.IsMoving=false;
                 canvas.IsRotating=false;
@@ -15,19 +14,17 @@ classdef SensorCanvasKeyboard<matlabshared.application.ComponentKeyboard
                 set(canvas.hCoverageAnchors(index),'XData',sensor.SensorLocation(1),'YData',sensor.SensorLocation(2));
             elseif canvas.IsCopying
 
-
                 canvas.IsCopying=false;
                 delete(canvas.hCoverageAreas(end));
                 delete(canvas.hCoverageAnchors(end));
                 canvas.hCoverageAreas(end)=[];
                 canvas.hCoverageAnchors(end)=[];
             elseif strcmp(canvas.InteractionMode,'add')
-
-
                 canvas.InteractionMode='move';
             end
             onMouseMove(canvas);
         end
+
 
         function delete_(this)
             canvas=this.Component;
@@ -36,8 +33,6 @@ classdef SensorCanvasKeyboard<matlabshared.application.ComponentKeyboard
                 return
             end
 
-
-
             if canvas.IsCopying
                 canvas.IsCopying=false;
                 delete(canvas.hCoverageAreas(end));
@@ -45,9 +40,6 @@ classdef SensorCanvasKeyboard<matlabshared.application.ComponentKeyboard
                 canvas.hCoverageAreas(end)=[];
                 canvas.hCoverageAnchors(end)=[];
             elseif any(strcmp(canvas.InteractionMode,{'move','none'}))
-
-
-
                 designer=canvas.Application;
                 hideRotateWidget(canvas);
                 index=getCurrentSensorIndex(designer);

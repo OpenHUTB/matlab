@@ -15,14 +15,17 @@ hAxesOrientationLabel
 hAxesOrientation
     end
 
+
     properties(Hidden,Dependent)
 StopCondition
 AxesOrientation
     end
 
+
     properties(Access=protected)
 NewScenarioListener
     end
+
 
     methods
         function this=SimulationSettingsDialog(varargin)
@@ -30,25 +33,26 @@ NewScenarioListener
             this.NewScenarioListener=event.listener(this.Application,'NewScenario',@this.onNewScenario);
         end
 
+
         function condition=get.StopCondition(this)
             condition=this.Application.Simulator.Player.StopCondition;
         end
 
+
         function orientation=get.AxesOrientation(this)
             orientation=this.Application.AxesOrientation;
         end
+
 
         function close(this)
             close@matlabshared.application.Dialog(this);
             clearAllMessages(this);
         end
 
+
         function refresh(this)
-
-
             app=this.Application;
             player=app.Simulator.Player;
-
             setPopupValue(this,'StopCondition');
             this.hSampleTime.String=app.SampleTime*1000;
             stopTime=player.StopTime;
@@ -71,17 +75,14 @@ NewScenarioListener
             if app.ShowAxesOrientation
                 setPopupValue(this,'AxesOrientation');
             end
-
             this.HasUnappliedChanges=false;
             update(this);
             clearAllMessages(this);
         end
 
+
         function update(this)
-
-
             update@matlabshared.application.Dialog(this);
-
             player=this.Application.Simulator.Player;
             if isStopped(player)
                 enab='on';
@@ -89,7 +90,6 @@ NewScenarioListener
                 enab='off';
             end
             set([this.hSampleTime,this.hSampleTimeLabel,this.hStopCondition,this.hStopConditionLabel],'Enable',enab);
-
             condition=getPopupValue(this,'StopCondition');
             hstoptime=this.hStopTime;
             if strcmp(condition,'time')
@@ -117,20 +117,21 @@ NewScenarioListener
         end
     end
 
+
     methods(Hidden)
 
         function onNewScenario(this,~,~)
             refresh(this);
         end
 
-        function stopTimeCallback(this,h,~)
 
+        function stopTimeCallback(this,h,~)
             h.UserData=h.String;
             genericCallback(this);
         end
 
-        function success=apply(this,~,~)
 
+        function success=apply(this,~,~)
             success=false;
             clearAllMessages(this);
 
@@ -138,8 +139,6 @@ NewScenarioListener
 
             app=this.Application;
             player=app.Simulator.Player;
-
-
             condition=getPopupValue(this,'StopCondition');
 
             hTime=this.hStopTime;
@@ -159,7 +158,6 @@ NewScenarioListener
                 customSeed=[];
             end
 
-
             err='';
             if isnan(stopTime)||stopTime<=0
                 err=getString(message('driving:scenarioApp:InvalidStopTime'));
@@ -172,15 +170,10 @@ NewScenarioListener
                 errorMessage(this,err,'');
                 return;
             end
-
             sensorSpecs=app.SensorSpecifications;
             applySampleTime=true;
             updateBEP=false;
             oldSeed=app.CustomSeed;
-
-
-
-
             if~isempty(sensorSpecs)&&~isstruct(sensorSpecs(1).Sensor)
                 updateBEP=~isequal(oldSeed,customSeed);
                 [updateIntervals,changed]=driving.internal.scenarioApp.SensorSpecification.fixUpdateIntervals(...
@@ -216,7 +209,6 @@ NewScenarioListener
                 resetNumSamples=true;
                 player.StopTime=stopTime;
             end
-
             if~isequal(app.CustomSeed,customSeed)
                 shouldDirty=true;
                 app.CustomSeed=customSeed;
@@ -237,18 +229,11 @@ NewScenarioListener
             end
             if~strcmp(newOrientation,app.AxesOrientation)
                 updateBEP=true;
-
-
-
-
                 edit=driving.internal.scenarioApp.undoredo.SetDesignerProperty(app,'AxesOrientation',newOrientation);
                 addEditNoApply(app,edit);
-
-
                 app.AxesOrientation=newOrientation;
                 update(app.RoadProperties);
                 update(app.ActorProperties);
-
                 sensorProps=app.SensorProperties;
                 if~isempty(sensorProps)
                     update(sensorProps);
@@ -265,19 +250,21 @@ NewScenarioListener
             success=true;
         end
 
+
         function name=getName(~)
             name=getString(message('driving:scenarioApp:SimulationSettingsTitle'));
         end
+
 
         function tag=getTag(~)
             tag='SimulationSettings';
         end
     end
 
+
     methods(Access=protected)
 
         function fig=createFigure(this)
-
             if ispc
                 width=250;
             else
@@ -285,16 +272,13 @@ NewScenarioListener
             end
             fig=createFigure@matlabshared.application.Dialog(this,...
             'Position',getCenterPosition(this.Application,[width,200]));
-
             showAxesOrientation=this.Application.ShowAxesOrientation;
 
             hpanel=this.hPanel;
             set(hpanel,'Tag','SimulationSettingsPanel',...
             'Title',getString(message('driving:scenarioApp:SimulationSettingsPanelTitle')));
-
             createLabelEditPair(this,hpanel,'SampleTime',@this.genericCallback,...
             'TooltipString',getString(message('driving:scenarioApp:SampleTimeDescription')));
-
             seedDesc=getString(message('driving:scenarioApp:UseCustomSeedDescription'));
             createLabelEditPair(this,hpanel,'StopCondition',@this.genericCallback,'popupmenu');
             setupPopup(this,'StopCondition','first','last','time');
@@ -311,7 +295,6 @@ NewScenarioListener
 
                 vw=[0,vw];
             end
-
             layout=matlabshared.application.layout.ScrollableGridBagLayout(hpanel,...
             'VerticalGap',3,...
             'HorizontalGap',3,...
