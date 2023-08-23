@@ -1,23 +1,7 @@
-
-
 function[grad,hess]=gradientHessian(qryPtMeanSubtracted,iCov,d1,d2,Jp,Hp)
 %#codegen
 
-
-
-
-
-
-
-
-
-
-
     coder.allowpcode('plain');
-
-
-
-
     qC=gpucoder.transpose(qryPtMeanSubtracted)*iCov;
     qCq=zeros(1,'like',qryPtMeanSubtracted);
 
@@ -26,11 +10,9 @@ function[grad,hess]=gradientHessian(qryPtMeanSubtracted,iCov,d1,d2,Jp,Hp)
         qCq=qCq+qC(i).*qryPtMeanSubtracted(i);
     end
 
-
     qCJ=qC*Jp;
     c=d1*d2*exp((-d2/2)*qCq);
     grad=c.*qCJ;
-
 
     JpT=gpucoder.transpose(Jp);
     JJ=JpT*iCov*Jp;
