@@ -3,62 +3,17 @@
 function[isFound,bestModelParams,bestInliers,bestInlierNum,bestmError]=...
     msac(inpLoc,params,referenceVector,maxAngularDist)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     coder.gpu.kernelfun;
     coder.inline('never');
     coder.allowpcode('plain');
 
-
     sampleSize=params.sampleSize;
     maxDist=params.maxDistance;
     maxSkipTrials=params.maxNumTrials*10;
     maxNumTrails=params.maxNumTrials;
     numPoints=numel(inpLoc)/3;
-
-
 
     if~coder.gpu.internal.isGpuEnabled
         outputType=class(inpLoc);
@@ -70,11 +25,6 @@ function[isFound,bestModelParams,bestInliers,bestInlierNum,bestmError]=...
             outputType='single';
         end
     end
-
-
-
-
-
     coder.extrinsic('vision.internal.testEstimateGeometricTransform');
     if(coder.target('MEX')&&vision.internal.testEstimateGeometricTransform)...
         ||coder.target('Rtw')
@@ -89,8 +39,6 @@ function[isFound,bestModelParams,bestInliers,bestInlierNum,bestmError]=...
     isValidModel=false(maxNumTrails,1);
     modelMat=zeros(maxNumTrails,4,'like',inpLoc);
     invalidModelCounter=uint32(1);
-
-
 
     coder.gpu.kernel;
     for trailIter=1:maxNumTrails
@@ -109,12 +57,8 @@ function[isFound,bestModelParams,bestInliers,bestInlierNum,bestmError]=...
                 inpLoc(pointIndices(3)),inpLoc(pointIndices(3)+numPoints),inpLoc(pointIndices(3)+2*numPoints)];
                 modelMat(trailIter,:)=fitPlaneGPUImpl(pointsMat);
                 if isempty(referenceVector)
-
-
                     isValidModel(trailIter)=checkPlaneGPUImpl(modelMat(trailIter,:));
                 else
-
-
                     isValidModel(trailIter)=checkPerpendicularPlaneGPUImpl(modelMat(trailIter,:),referenceVector,maxAngularDist);
                 end
             end
@@ -126,17 +70,11 @@ function[isFound,bestModelParams,bestInliers,bestInlierNum,bestmError]=...
             end
         end
     end
-
-
-
-
     distMat=coder.internal.inf(numPoints,maxNumTrails,outputType);
     coder.gpu.kernel;
     for iter=1:maxNumTrails
         coder.gpu.kernel;
         for ptIter=1:numPoints
-
-
             if isValidModel(iter)
                 distMat(ptIter,iter)=inpLoc(ptIter,:)*[modelMat(iter,1);...
                 modelMat(iter,2);modelMat(iter,3)];
@@ -152,7 +90,6 @@ function[isFound,bestModelParams,bestInliers,bestInlierNum,bestmError]=...
     mError=coder.nullcopy(zeros(maxNumTrails,1,outputType));
     checkMat=coder.nullcopy(zeros(numPoints,maxNumTrails));
 
-
     coder.gpu.kernel;
     for iter=1:maxNumTrails
         coder.gpu.kernel;
@@ -161,14 +98,10 @@ function[isFound,bestModelParams,bestInliers,bestInlierNum,bestmError]=...
                 checkMat(pIter,iter)=double(distMat(pIter,iter)>=threshold);
                 distMat(pIter,iter)=checkMat(pIter,iter)*threshold+...
                 ~checkMat(pIter,iter)*distMat(pIter,iter);
-
                 inlierPts(pIter,iter)=~checkMat(pIter,iter);
             end
         end
     end
-
-
-
 
     strideVal=numPoints/10;
     coder.gpu.kernel;
@@ -178,13 +111,10 @@ function[isFound,bestModelParams,bestInliers,bestInlierNum,bestmError]=...
 
             temIt=((iter-1)*strideVal)+pIter;
             tempIter=floor(temIt/numPoints)+1;
-
             tempCheck=isValidModel(tempIter)&&~checkMat(temIt);
-
             accDist(tempIter)=gpucoder.atomicAdd(accDist(tempIter),...
             (isValidModel(tempIter)*distMat(temIt)+...
             ~isValidModel(tempIter)*realmax(outputType)));
-
             mError(tempIter)=gpucoder.atomicAdd(mError(tempIter),...
             (tempCheck)*distMat(temIt));
 
@@ -193,18 +123,13 @@ function[isFound,bestModelParams,bestInliers,bestInlierNum,bestmError]=...
         end
     end
 
-
-
     [~,minIdx]=min(accDist);
-
 
     bestModelParams=modelMat(minIdx,:);
     bestInliers=inlierPts(:,minIdx);
     bestInlierNum=inlierNum(minIdx);
     bestmError=double(mError(minIdx)/double(bestInlierNum));
     bestmError=cast(bestmError,class(inpLoc));
-
-
 
     if isempty(referenceVector)
         isFound=checkPlaneGPUImpl(bestModelParams(:))&&...
@@ -236,11 +161,13 @@ function model=fitPlaneGPUImpl(points)
     end
 end
 
+
 function isValid=checkPlaneGPUImpl(modelMat)
 %#codegen
     isValid=(numel(modelMat)==4)&isfinite(modelMat(1))&...
     isfinite(modelMat(2))&isfinite(modelMat(3));
 end
+
 
 function isValid=checkPerpendicularPlaneGPUImpl(model,normAxis,threshold)
 %#codegen
