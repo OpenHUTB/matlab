@@ -1,42 +1,25 @@
-
-
-
 function[ptCloudA,ptCloudB,maxStepSize,outlierRatio,maxIterations,...
     tolerance,initTform]=parserGPUImpl(movingPoints,fixedmovingPoints,gridStep,varargin)
 %#codegen
-
-
-
-
     coder.gpu.internal.kernelfunImpl(false);
     coder.allowpcode('plain');
     coder.internal.prefer_const(varargin{:});
     coder.inline('never');
 
     validateattributes(gridStep,{'single','double'},{'real','scalar','nonnan','nonsparse','positive'});
-
-
     ptCloudA=double(removeInvalidPointsLocal(movingPoints));
     ptCloudB=double(removeInvalidPointsLocal(fixedmovingPoints));
-
 
     numPointsA=numel(ptCloudA)/3;
     numPointsB=numel(ptCloudB)/3;
     if numPointsA<3||numPointsB<3
         coder.internal.error('vision:pointcloud:notEnoughPoints');
     end
-
-
-
     t=computeMeanLocation(ptCloudB)-computeMeanLocation(ptCloudA);
-
-
     [maxStepSize,outlierRatio,maxIterations,tolerance,initialTransform]=...
     vision.internal.ndt.parseOptionsCodegen(true,t,varargin{:});
 
-
     if isa(initialTransform,'affine3d')
-
         initRigidTform=rigidtform3d(initialTransform.T');
         initTform=double(initRigidTform.A);
     else
@@ -51,14 +34,11 @@ end
 
 function meanLocation=computeMeanLocation(ptCloudLocations)
 %#codegen
-
     coder.gpu.internal.kernelfunImpl(false);
     numPoints=numel(ptCloudLocations)/3;
-
     tmpArrayX=coder.nullcopy(zeros(1,numPoints,'like',ptCloudLocations));
     tmpArrayY=coder.nullcopy(zeros(1,numPoints,'like',ptCloudLocations));
     tmpArrayZ=coder.nullcopy(zeros(1,numPoints,'like',ptCloudLocations));
-
 
     coder.gpu.kernel;
     for i=1:numPoints
@@ -77,24 +57,18 @@ end
 
 function validLocations=removeInvalidPointsLocal(ptCloudLocations)
 %#codegen
-
     coder.gpu.internal.kernelfunImpl(false);
 
     numPoints=numel(ptCloudLocations)/3;
     indices=vision.internal.codegen.gpu.PointCloudImpl.extractValidPoints(ptCloudLocations);
 
-
     outIdx=cumsum(indices);
-
-
-
 
     outLength=0;
     coder.gpu.kernel;
     for i=1:2
         outLength=outIdx(numPoints);
     end
-
     validLocations=coder.nullcopy(zeros(outLength,3,'like',ptCloudLocations));
     coder.gpu.kernel;
     for i=1:numPoints
