@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Simulate Radar Ghosts Due to Multipath Return</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Simulate Radar Ghosts Due to Multipath Return",
+          "description": "Generate ghost targets that occur when signal energy is reflected off another target before returning to the radar.",
+          "thumbnailURL": "../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving_radar.SimulatingRadarGhostsDueToMultipathExample",
+          "name": "SimulatingRadarGhostsDueToMultipathExample",
+          "url": "radar-ghost-multipath.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving_radar/SimulatingRadarGhostsDueToMultipathExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "SimulatingRadarGhostsDueToMultipathExample.mlx",
+        "2-Bounce-Multipath-Illustration.png",
+        "3-Bounce-Multipath-Illustration.png",
+        "helperPlotScenario.m",
+        "helperSetupBEP.m",
+        "helperSimpleHighwayScenarioDSD.m",
+        "ghostIQ.gif",
+        "helper3BounceGhostPaths.m",
+        "helperFigureName.m",
+        "helperFindPeaks2D.m",
+        "helperGroundBounceScenarioDSD.m",
+        "helperPlayStatAndIQMovie.m",
+        "helperPlotBeamformedRangeDoppler.m",
+        "helperPlotScenario3D.m",
+        "helperRadarChasePlot.m",
+        "helperRoadPoses.m",
+        "helperRoadProfiles.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Generate ghost targets that occur when signal energy is reflected off another target before returning to the radar."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_03.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Simulate Radar Ghosts Due to Multipath Return</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#SimulatingRadarGhostsDueToMultipathExample-1" class="intrnllnk">Motivation</a></li>
+<li><a href="#SimulatingRadarGhostsDueToMultipathExample-2" class="intrnllnk">Multipath Reflections</a></li>
+<li><a href="#SimulatingRadarGhostsDueToMultipathExample-7" class="intrnllnk">Ghost Tracks</a></li>
+<li><a href="#SimulatingRadarGhostsDueToMultipathExample-8" class="intrnllnk">Model IQ Signals</a></li>
+<li><a href="#SimulatingRadarGhostsDueToMultipathExample-12" class="intrnllnk">Multipath Ground Bounce</a></li>
+<li><a href="#SimulatingRadarGhostsDueToMultipathExample-13" class="intrnllnk">Summary</a></li>
+<li><a href="#d124e39577" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_dd9a9687-2d70-4628-b5d0-1549c859fda4">仿真由多径回波引起的雷达幽灵目标</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">此示例使用：</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('RA')">Radar Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('driving_radar/SimulatingRadarGhostsDueToMultipathExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving_radar-SimulatingRadarGhostsDueToMultipathExample"/>
+<meta itemprop="exampletitle" content="Simulate Radar Ghosts Due to Multipath Return"/>
+</div>
+<span id="SimulatingRadarGhostsDueToMultipathExample" class="anchor_target"></span><p class="shortdesc">这个例子展示了如何通过多径反射来模拟幽灵目标的检测和跟踪，其中信号能量在返回雷达之前被反射到另一个目标上。在这个例子中，您将使用统计雷达模型和生成IQ信号的收发器模型来模拟幽灵目标。</p>
+<div class="procedure"><h3 class="title" id="SimulatingRadarGhostsDueToMultipathExample-1">动机<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_0495D03E" class="anchor_target"></span></h3>
+<p>许多高速公路场景不仅涉及其他汽车，还包括障碍物和护栏。考虑使用 <a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> 应用程序创建的简单高速公路。有关如何建模障碍物的更多信息，请参阅 <a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" data-docid="driving_ug#mw_4b0a3201-1e7b-487f-961c-8f0ebf14df97" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a> 的示例。使用 Driving Scenario Designer 导出的 <code class="literal">helperSimpleHighwayScenarioDSD</code> 函数获取高速公路场景和自车的句柄。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Set random seed for reproducible results</span>
+rndState = rng(<span style="color:#A020F0">'default'</span>);
+
+<span style="color:#228B22">% Create scenario using helper</span>
+[scenario, egoVehicle] = helperSimpleHighwayScenarioDSD();</pre>
+</div>
+</div>
+</div>
+<p>要模拟前向汽车雷达生成的检测，请使用 <span style="font-family: monospace;">radarDataGenerator System object™</span>。使用77 GHz的中心频率，这是汽车雷达的典型频率。生成距离最多为150米的检测，并且径向速度最高为100 m/s。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Automotive radar system parameters</span>
+freq = 77e9; <span style="color:#228B22">% Hz</span>
+rgMax = 150; <span style="color:#228B22">% m</span>
+spMax = 100; <span style="color:#228B22">% m/s</span>
+rcs = 10;    <span style="color:#228B22">% dBsm</span>
+
+azRes = 4;   <span style="color:#228B22">% deg</span>
+rgRes = 2.5; <span style="color:#228B22">% m</span>
+rrRes = 0.5; <span style="color:#228B22">% m/s</span>
+
+<span style="color:#228B22">% Create a forward-looking automotive radar</span>
+rdg = radarDataGenerator(1, <span style="color:#A020F0">'No scanning'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'UpdateRate'</span>, 10, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MountingLocation'</span>, [3.4 0 0.2], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'CenterFrequency'</span>, freq, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'HasRangeRate'</span>, true, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'FieldOfView'</span>, [70 5], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeLimits'</span>, [0 rgMax], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeRateLimits'</span>, [-spMax spMax], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'HasRangeAmbiguities'</span>,true, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MaxUnambiguousRange'</span>, rgMax, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'HasRangeRateAmbiguities'</span>,true, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MaxUnambiguousRadialSpeed'</span>, spMax, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ReferenceRange'</span>, rgMax, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ReferenceRCS'</span>,rcs, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'AzimuthResolution'</span>,azRes, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeResolution'</span>,rgRes, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeRateResolution'</span>,rrRes, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'TargetReportFormat'</span>, <span style="color:#A020F0">'Detections'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Profiles'</span>,actorProfiles(scenario));
+
+<span style="color:#228B22">% Create bird's eye plot and detection plotter function</span>
+[~,detPlotterFcn] = helperSetupBEP(egoVehicle,rdg);
+title(<span style="color:#A020F0">'Free Space (no multipath)'</span>);
+
+<span style="color:#228B22">% Generate raw detections</span>
+time = scenario.SimulationTime;
+tposes = targetPoses(egoVehicle);
+[dets,~,config] = rdg(tposes,time);
+
+<span style="color:#228B22">% Plot detections</span>
+detPlotterFcn(dets,config);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39254" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_01.png" alt="{&quot;String&quot;:&quot;Figure Simulating Radar Ghosts due to Multipath BEP contains an axes object. The axes object with title Free Space (no multipath) contains 5 objects of type line, patch. These objects represent Road, Radar FoV, Radar detections.&quot;,&quot;Tex&quot;:&quot;Free Space (no multipath)&quot;,&quot;LaTex&quot;:[]}" width="560"/></p>
+</div>
+</div>
+<p>该图显示了检测沿着目标车辆以及沿着障碍物侧面的位置。然而，检测并不总是如此规则。对雷达工程师来说，一个可能带来相当大挑战的现象是多径回波。多径回波是指信号不仅直接传播到目标并返回雷达，还包括环境中物体的额外反射。</p>
+<h3 class="title" id="SimulatingRadarGhostsDueToMultipathExample-2">多路径反射<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_9436D134" class="anchor_target"></span></h3>
+<p>当雷达信号传播到目标时，它可以通过各种路径到达。除了从雷达直接到目标然后返回雷达的直接路径外，还存在其他可能的传播路径。路径的数量是无限的，但是随着每次反射，信号能量会减少。通常，使用考虑三次反射路径的传播模型来模拟这种现象。</p>
+<p>为了理解三次反射模型，首先考虑更简单的一次反射和两次反射路径，如图所示。</p>
+<div class="informalfigure"><div id="d124e39266" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_02.png" alt="2-Bounce-Multipath-Illustration.png" height="509" width="741"/></p>
+</div>
+</div>
+<h4 class="title" id="SimulatingRadarGhostsDueToMultipathExample-3">一次反射路径<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_AC9DF048" class="anchor_target"></span></h4>
+<p>一次反射路径从雷达 (1) 传播到目标 (2) ，然后从目标 (2) 反射回到雷达。这通常被称为直接路径或视线路径。</p>
+<h4 class="title" id="SimulatingRadarGhostsDueToMultipathExample-4">两次反射路径<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_A40A9ED3" class="anchor_target"></span></h4>
+<p>在这种情况下，有两条由两次反射组成的独特传播路径。</p>
+<p>第一条两次反射路径从雷达 (1) 传播到反射表面 (3)，然后传播到目标 (2)，最后返回到雷达 (1)。因为雷达接收到的信号来自真实目标的最后一次反射，它会在与真实目标相同的方向上生成幽灵检测。由于这种传播的路径长度较长，它在距离上比真实目标的检测出现得更远。</p>
+<p>第二条两次反射路径从雷达 (1) 传播到目标 (2)，然后传播到反射表面 (3)，最后返回到雷达 (1)。在这种情况下，幽灵检测出现在反射表面的另一侧，因为雷达在那个方向上接收到了反射信号。</p>
+<p>请注意，两条两次反射路径的路径长度相同。因此，这些路径的测量范围和速度范围也将相同。</p>
+<h4 class="title" id="SimulatingRadarGhostsDueToMultipathExample-5">三次反射路径<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_9E8716EC" class="anchor_target"></span></h4>
+<div class="informalfigure"><div id="d124e39288" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_03.png" alt="3-Bounce-Multipath-Illustration.png" height="498" width="484"/></p>
+</div>
+</div>
+<p>三次反射路径在屏障上反射两次。这条路径从未直接传播到目标或直接返回雷达。三次反射的幽灵检测出现在反射表面的另一侧，因为雷达在那个方向上接收到了反射信号。此外，它是三条反射路径中传播路径最长的，因此具有最长的测量范围。这条路径对应于屏障另一侧真实目标的镜像反射。</p>
+<h4 class="title" id="SimulatingRadarGhostsDueToMultipathExample-6">模拟幽灵目标检测<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_1AACA1B1" class="anchor_target"></span></h4>
+<p>将 <code class="literal">radarDataGenerator</code> 的 <code class="literal">HasGhosts</code> 属性设置为模拟这些三次反射路径生成的目标幽灵检测。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Enable ghost target model</span>
+release(rdg);
+rdg.HasGhosts = true;
+
+<span style="color:#228B22">% Generate raw detections</span>
+time = scenario.SimulationTime;
+tposes = targetPoses(egoVehicle);
+[dets,~,config] = rdg(tposes,time);
+
+<span style="color:#228B22">% Plot detections</span>
+detPlotterFcn(dets,config);
+title(<span style="color:#A020F0">'Simple Multipath Environment'</span>);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39306" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_04.png" alt="{&quot;String&quot;:&quot;Figure Simulating Radar Ghosts due to Multipath BEP contains an axes object. The axes object with title Simple Multipath Environment contains 8 objects of type line, patch. These objects represent Road, Radar FoV, Radar detections, 1^{st} 2-bounce ghosts, 2^{nd} 2-bounce ghosts, 3-bounce ghosts.&quot;,&quot;Tex&quot;:&quot;Simple Multipath Environment&quot;,&quot;LaTex&quot;:[]}" width="560"/></p>
+</div>
+</div>
+<p>这个图表重现了对三条传播路径的分析。第一条两次反射的幽灵目标位于目标方向上，距离稍长于直接路径的检测。第二条两次反射和三次反射的幽灵目标位于通过从屏障反射产生的目标镜像方向上。</p>
+<h3 class="title" id="SimulatingRadarGhostsDueToMultipathExample-7">幽灵轨迹<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_A00B9346" class="anchor_target"></span></h3>
+<p>由于幽灵目标检测的距离和速度与真实目标的距离和速度相似，它们具有与真实目标检测一致的运动学特性。对于配置为跟踪真实目标检测的跟踪器来说，这种真实目标和幽灵目标之间的运动学一致性导致在屏障的另一侧生成幽灵目标的轨迹。</p>
+<p>将 <code class="literal">radarDataGenerator</code> 的 <code class="literal">TargetReportFormat</code> 属性设置 <code class="literal">Tracks</code> ，以模拟在多径存在的情况下雷达生成的轨迹。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Output tracks instead of detections</span>
+release(rdg);
+rdg.TargetReportFormat = <span style="color:#A020F0">'Tracks'</span>;
+rdg.ConfirmationThreshold = [2 3];
+rdg.DeletionThreshold = [5 5];
+FilterInitializationFcn = <span style="color:#A020F0">'initcvekf'</span>; <span style="color:#228B22">% constant-velocity EKF</span>
+
+<span style="color:#228B22">% Create a new bird's eye plot to plot the tracks</span>
+[bep,trkPlotterFcn] = helperSetupBEP(egoVehicle,rdg);
+title(<span style="color:#A020F0">'Simple Multipath Environment'</span>);
+
+<span style="color:#228B22">% Run simulation</span>
+restart(scenario);
+scenario.StopTime = 7.5;
+<span style="color:#0000FF">while</span> advance(scenario)
+    time = scenario.SimulationTime;
+    tposes = targetPoses(egoVehicle);
+
+    <span style="color:#228B22">% Generate tracks</span>
+    [trks,~,config] = rdg(tposes,time);
+
+    <span style="color:#228B22">% Filter out tracks corresponding to static objects (e.g. barrier)</span>
+    dyntrks = helperKeepDynamicObjects(trks, egoVehicle);
+
+    <span style="color:#228B22">% Visualize dynamic tracks</span>
+    helperPlotScenario(bep,egoVehicle);
+    trkPlotterFcn(dyntrks,config);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39327" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_05.png" alt="{&quot;String&quot;:&quot;Figure Simulating Radar Ghosts due to Multipath BEP contains an axes object. The axes object with title Simple Multipath Environment contains 10 objects of type line, patch, text. These objects represent Road, Radar FoV, Radar tracks, Ghost tracks.&quot;,&quot;Tex&quot;:&quot;Simple Multipath Environment&quot;,&quot;LaTex&quot;:[]}" width="560"/></p>
+</div>
+</div>
+<p>这个图示使用方形标记显示了确认的轨迹位置。未绘制静态物体（例如栅栏）对应的轨迹。请注意，与前方车辆相关联的有多个轨迹。与前方车辆重叠的轨迹对应于真实检测和第一次反射的幽灵目标。位于护栏另一侧、偏离道路的轨迹对应于第二次反射和第三次反射的幽灵目标。</p>
+<p>轨迹的速度由指向远离轨迹位置的向量的长度和方向表示（由于相对于自车，它们很小）。幽灵目标检测可能会欺骗跟踪器，因为它们具有与真实目标相似的运动学特性。这些幽灵轨迹可能会给跟踪器增加额外的处理负荷，并且可能会通过目标轨迹来混淆控制决策，这可能会导致问题。</p>
+<h3 class="title" id="SimulatingRadarGhostsDueToMultipathExample-8">模型 IQ 信号</h3>
+<p>在之前的自由空间和多径仿真示例中，您使用了测量级雷达模型来生成检测和轨迹。现在，使用<code class="literal">radarTransceiver</code> System对象来生成时域IQ信号。直接从<code class="literal">radarDataGenerator</code>创建一个等效的 <code class="literal">radarTransceiver</code>。 </p>
+<p>统计雷达具有以下距离和距离速率（多普勒）参数，这些参数确定了 <code class="literal">radarTransceiver </code>使用的波形的约束条件。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rgMax = rdg.RangeLimits(2)       <span style="color:#228B22">% m</span></pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>rgMax = 150
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>spMax = rdg.RangeRateLimits(2)   <span style="color:#228B22">% m/s</span></pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>spMax = 100
+</pre>
+</div>
+</div>
+</div>
+<p>计算满足雷达的距离速率要求的脉冲重复频率（PRF）。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lambda = freq2wavelen(rdg.CenterFrequency);
+prf = 2*speed2dop(2*spMax,lambda);</pre>
+</div>
+</div>
+</div>
+<p>计算满足距离速率分辨率要求所需的脉冲数。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rrRes = rdg.RangeRateResolution</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>rrRes = 0.5000
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dopRes = 2*speed2dop(rrRes,lambda);
+numPulses = 2^nextpow2(prf/dopRes)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>numPulses = 512
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>prf = dopRes*numPulses</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>prf = 1.3150e+05
+</pre>
+</div>
+</div>
+</div>
+<p>确认与此PRF相对应的无模糊距离超出了最大距离限制。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rgUmb = time2range(1/prf)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>rgUmb = 1.1399e+03
+</pre>
+</div>
+</div>
+</div>
+<p>重新设置 <code class="literal">radarDataGenerator</code> 的一些属性，以便更好地与来自 <code class="literal">radarTransceiver </code>的IQ结果进行比较。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>release(rdg);
+
+<span style="color:#228B22">% Set the range and range-rate ambiguities according to desired PRF and</span>
+<span style="color:#228B22">% number of pulses</span>
+rdg.MaxUnambiguousRange = rgUmb;
+rdg.MaxUnambiguousRadialSpeed = spMax;
+
+<span style="color:#228B22">% Set the statistical radar to report clustered detections to compare to</span>
+<span style="color:#228B22">% the IQ video from the radar transceiver.</span>
+rdg.TargetReportFormat = <span style="color:#A020F0">'Clustered detections'</span>;
+rdg.DetectionCoordinates = <span style="color:#A020F0">'Body'</span>;</pre>
+</div>
+</div>
+</div>
+<p>直接从 <code class="literal">radarDataGenerator </code>构建等效的 <code class="literal">radarTransceiver</code>。默认情况下，<code class="literal">radarTransceiver</code> 使用单位增益的矩形天线模式，其方位和俯仰波束宽度等于<code class="literal">radarDataGenerator</code> 的方位和俯仰分辨率。为了模拟一个覆盖所需视场的发射模式的雷达，首先将 <code class="literal">radarDataGenerator</code> 的方位分辨率设置为视场大小。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>azRes = rdg.AzimuthResolution;
+rdg.AzimuthResolution = rdg.FieldOfView(1);
+
+<span style="color:#228B22">% Construct the radar transceiver from the radar data generator</span>
+rtxrx = radarTransceiver(rdg)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>rtxrx = 
+  radarTransceiver with properties:
+
+                Waveform: [1x1 phased.RectangularWaveform]
+             Transmitter: [1x1 phased.Transmitter]
+         TransmitAntenna: [1x1 phased.Radiator]
+          ReceiveAntenna: [1x1 phased.Collector]
+                Receiver: [1x1 phased.ReceiverPreamp]
+      MechanicalScanMode: 'None'
+      ElectronicScanMode: 'None'
+        MountingLocation: [3.4000 0 0.2000]
+          MountingAngles: [0 0 0]
+    NumRepetitionsSource: 'Property'
+          NumRepetitions: 512
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Restore the desired azimuth resolution for the statistical radar</span>
+rdg.AzimuthResolution = azRes;</pre>
+</div>
+</div>
+</div>
+<p>统计雷达模拟使用均匀线性阵列（ULA）来形成多个接收波束，以实现指定的方位分辨率。所需的元素数量由雷达的方位分辨率和波长确定，并可以使用 <code class="literal">beamwidth2ap</code> 函数找到。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numRxElmt = ceil(beamwidth2ap(rdg.AzimuthResolution,lambda,0.8859)/(lambda/2))</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>numRxElmt = 26
+</pre>
+</div>
+</div>
+</div>
+<p>将一个均匀线性阵列（ULA）连接到 <span style="font-family: monospace;">radarTransceiver </span>的接收天线上。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>elmt = rtxrx.ReceiveAntenna.Sensor;
+rxarray = phased.ULA(numRxElmt,lambda/2,<span style="color:#A020F0">'Element'</span>,elmt);
+rtxrx.ReceiveAntenna.Sensor = rxarray;</pre>
+</div>
+</div>
+</div>
+<h4 class="title" id="SimulatingRadarGhostsDueToMultipathExample-9">生成IQ样本<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_74B4C80A" class="anchor_target"></span></h4>
+<p>使用 <code class="literal">helper3BounceGhostPaths function</code> 计算来自多径场景中目标和传感器位置的三次反射路径。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>restart(scenario);
+tposes = targetPoses(egoVehicle);
+
+<span style="color:#228B22">% Generate 3-bounce propagation paths for the targets in the scenario</span>
+paths = helper3BounceGhostPaths(tposes,rdg);</pre>
+</div>
+</div>
+</div>
+<p>使用 <code class="literal">radarTransceiver</code> 生成雷达接收到的基带采样的IQ数据。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>time = scenario.SimulationTime; <span style="color:#228B22">% Current simulation time</span>
+Xcube = rtxrx(paths,time);      <span style="color:#228B22">% Generate IQ data for transceiver from the 3-bounce path model</span></pre>
+</div>
+</div>
+</div>
+<h4 class="title" id="SimulatingRadarGhostsDueToMultipathExample-10">距离和多普勒处理<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_FD137EE5" class="anchor_target"></span></h4>
+<p>接收到的数据立方体具有三个维度：快时间样本、接收天线元素和慢时间样本。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>size(Xcube)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×3</em></span>
+
+   456    26   512
+
+</pre>
+</div>
+</div>
+</div>
+<p>使用 <code class="literal">phased.RangeDopplerResponse</code> 系统对象对数据立方体的第一和第三维度进行距离和多普勒处理。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rngdopproc = phased.RangeDopplerResponse( <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeMethod'</span>,<span style="color:#A020F0">'Matched filter'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'DopplerOutput'</span>,<span style="color:#A020F0">'Speed'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'PropagationSpeed'</span>,rtxrx.ReceiveAntenna.PropagationSpeed, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'OperatingFrequency'</span>,rtxrx.ReceiveAntenna.OperatingFrequency, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SampleRate'</span>,rtxrx.Receiver.SampleRate);
+mfcoeff = getMatchedFilter(rtxrx.Waveform);
+[Xrngdop,rggrid,rrgrid] = rngdopproc(Xcube,mfcoeff);</pre>
+</div>
+</div>
+</div>
+<h4 class="title" id="SimulatingRadarGhostsDueToMultipathExample-11">波束成形<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_821C6288" class="anchor_target"></span></h4>
+<p>使用 <code class="literal">phased.PhaseShiftBeamformer</code> 系统对象，沿着数据立方体的第二个维度从接收天线阵列元素形成波束。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>azFov = rdg.FieldOfView(1);
+anggrid = -azFov/2:azFov/2;
+bmfwin = @(N)normmax(taylorwin(N,5,-60));
+beamformer = phased.PhaseShiftBeamformer( <span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'Direction'</span>,[anggrid;0*anggrid],<span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'SensorArray'</span>,rtxrx.ReceiveAntenna.Sensor, <span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'OperatingFrequency'</span>,rtxrx.ReceiveAntenna.OperatingFrequency);
+Xbfmrngdop = Xrngdop;
+[Nr,Ne,Nd] = size(Xbfmrngdop);
+Xbfmrngdop = permute(Xbfmrngdop,[1 3 2]); <span style="color:#228B22">% Nr x Nd x Ne</span>
+Xbfmrngdop = reshape(Xbfmrngdop,[],Ne);
+Xbfmrngdop = beamformer(Xbfmrngdop.*bmfwin(Ne)');
+Xbfmrngdop = reshape(Xbfmrngdop,Nr,Nd,[]); <span style="color:#228B22">% Nr x Nd x Nb</span>
+Xbfmrngdop = permute(Xbfmrngdop,[1 3 2]); <span style="color:#228B22">% Nr x Nb x Nd</span></pre>
+</div>
+</div>
+</div>
+<p>使用 <code class="literal">helperPlotBeamformedRangeDoppler</code> 函数绘制从波束成形、距离和多普勒处理后的数据立方体生成的距离-角度图。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotBeamformedRangeDoppler(Xbfmrngdop,rggrid,anggrid,rtxrx);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39470" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_06.png" alt="{&quot;String&quot;:&quot;Figure Beamformed, Range-Doppler contains an axes object. The axes object with title Beamformed, Range, and Doppler contains 2 objects of type surface, line. This object represents Local maxima.&quot;,&quot;Tex&quot;:&quot;Beamformed, Range, and Doppler&quot;,&quot;LaTex&quot;:[]}" width="560"/></p>
+</div>
+</div>
+<p>接收到的信号的局部最大值对应于目标车辆、护栏以及目标车辆在护栏另一侧的幽灵图像的位置。展示由<span style="font-family: monospace;">radarDataGenerator</span>生成的测量级别检测结果与等效<span style="font-family: monospace;">radarTransceiver</span>生成的距离-角度图中的峰值一致。</p>
+<p>使用 <code class="literal">helperPlayStatAndIQMovie</code> 函数，对比测量级别的检测结果和IQ处理后的视频，在整个场景的持续时间内进行比较。</p>
+<div class="code_responsive"><pre id="d124e39484" class="programlisting">helperPlayStatAndIQMovie(scenario,egoVehicle,rtxrx,rdg,rngdopproc,beamformer,bmfwin);
+</pre>
+</div>
+<div class="informalfigure"><div id="d124e39487" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_07.gif" alt="ghostIQ.gif" height="420" width="1120"/></p>
+</div>
+</div>
+<h3 class="title" id="SimulatingRadarGhostsDueToMultipathExample-12">多径地面反射<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_1FD77C48" class="anchor_target"></span></h3>
+<p>多径幽灵检测有时可以用于观察路上的物体，这些物体在雷达由于遮挡而无法被检测到。一个例子是通过路面的多径反射检测到被遮挡的车辆。使用 <code class="literal">helperGroundBounceScenarioDSD</code> 函数创建一个场景，其中与自车在同一车道上行驶的一辆速度较慢的车辆被直接在雷达前方的另一辆车辆遮挡。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[scenario, egoVehicle] = helperGroundBounceScenarioDSD;
+ax3d = helperRadarChasePlot(egoVehicle);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39503" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_08.png" alt="{&quot;String&quot;:&quot;&quot;,&quot;Tex&quot;:[],&quot;LaTex&quot;:[]}" width="560"/></p>
+</div>
+</div>
+<p>黄色的汽车被红色的汽车遮挡。蓝色自车前方的雷达与黄色汽车之间不存在直线视线。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>viewLoc = [scenario.Actors(2).Position(1)-10 -10];
+chasePlot(egoVehicle,<span style="color:#A020F0">'ViewLocation'</span>,viewLoc,<span style="color:#A020F0">'ViewHeight'</span>,0,<span style="color:#A020F0">'ViewYaw'</span>,40,<span style="color:#A020F0">'Parent'</span>,ax3d);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39511" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_09.png" alt="{&quot;String&quot;:&quot;&quot;,&quot;Tex&quot;:[],&quot;LaTex&quot;:[]}" width="560"/></p>
+</div>
+</div>
+<p>多径信号可以通过汽车底部和道路表面之间的空间传播。</p>
+<p>重复使用 <code class="literal">radarDataGenerator</code> 生成由于车辆和道路表面之间的多径效应而产生的幽灵目标检测。使用 <code class="literal">helperRoadProfiles</code> 和 <code class="literal">helperRoadPoses</code> 函数将道路表面包含在场景中的目标列表中，以便在道路表面和车辆之间实现多径效应。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>release(rdg);
+rdg.RangeRateResolution = 0.5;
+rdg.FieldOfView(2) = 10;
+rdg.TargetReportFormat = <span style="color:#A020F0">'Detections'</span>;
+
+tprofiles = actorProfiles(scenario);
+rdprofiles = helperRoadProfiles(scenario);
+rdg.Profiles = [tprofiles;rdprofiles];
+
+<span style="color:#228B22">% Create bird's eye plot and detection plotter function</span>
+[bep,detPlotterFcn] = helperSetupBEP(egoVehicle,rdg);
+[ax3d,detChasePlotterFcn] = helperRadarChasePlot(egoVehicle,rdg);
+camup(ax3d,[0 0 1]);
+pos = egoVehicle.Position+[-5 -5 0];
+campos(ax3d,pos);
+camtarget(ax3d,[15 0 0]);
+
+<span style="color:#228B22">% Generate clustered detections</span>
+time = scenario.SimulationTime;
+tposes = targetPoses(egoVehicle);
+rdposes = helperRoadPoses(egoVehicle);
+poses = [tposes rdposes];
+
+[dets,~,config] = rdg(poses,time);
+
+<span style="color:#228B22">% Plot detections</span>
+dyndets = helperKeepDynamicObjects(dets,egoVehicle);
+detPlotterFcn(dyndets,config);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39527" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_10.png" alt="{&quot;String&quot;:&quot;Figure Simulating Radar Ghosts due to Multipath BEP contains an axes object. The axes object contains 8 objects of type line, patch. These objects represent Road, Radar FoV, Radar detections, 1^{st} 2-bounce ghosts, 2^{nd} 2-bounce ghosts, 3-bounce ghosts.&quot;,&quot;Tex&quot;:[],&quot;LaTex&quot;:[]}" width="560"/></p>
+</div>
+</div>
+<p>由于红色汽车的底部和道路表面之间存在的三次反射路径，导致从被遮挡的汽车上的检测成为可能。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Find the 3-bounce detection from the occluded car</span>
+i3 = find(cellfun(@(d)d.ObjectAttributes{1}.BouncePathIndex,dyndets)==3);
+det3 = dyndets{i3};
+
+<span style="color:#228B22">% Plot the 3-bounce path between the radar and the occluded car</span>
+iBncTgt = find([poses.ActorID]==det3.ObjectAttributes{1}.BounceTargetIndex);
+iTgt = find([poses.ActorID]==det3.ObjectAttributes{1}.TargetIndex);
+pos = [rdg.MountingLocation;poses(iBncTgt).Position;poses(iTgt).Position]+egoVehicle.Position;
+hold(ax3d,<span style="color:#A020F0">'on'</span>);
+plot3(ax3d,pos(:,1),pos(:,2),pos(:,3),<span style="color:#A020F0">'r-*'</span>,<span style="color:#A020F0">'LineWidth'</span>,2);
+campos([-6 -15 2]); camtarget([17 0 0]);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39536" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_11.png" alt="{&quot;String&quot;:&quot;&quot;,&quot;Tex&quot;:[],&quot;LaTex&quot;:[]}" width="560"/></p>
+</div>
+</div>
+<p>这个图示将三次反射路径表示为红色线条。请注意，通过从红色汽车的底部下方经过，存在一个从雷达到被遮挡的黄色汽车之间的反射路径。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Show bounce path arriving at the occluded yellow car</span>
+campos([55 -10 3]); camtarget([35 0 0]);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e39544" class="mediaobject"><p><img src="../../examples/driving_radar/win64/SimulatingRadarGhostsDueToMultipathExample_12.png" alt="{&quot;String&quot;:&quot;&quot;,&quot;Tex&quot;:[],&quot;LaTex&quot;:[]}" width="560"/></p>
+</div>
+</div>
+<p>这个图示显示了三次反射路径在从道路表面反射后到达被遮挡的黄色汽车。</p>
+<h3 class="title" id="SimulatingRadarGhostsDueToMultipathExample-13">总结<span id="mw_rtc_SimulatingRadarGhostsDueToMultipathExample_H_9A35BE15" class="anchor_target"></span></h3>
+<p>在这个例子中，您了解到幽灵目标检测是由雷达和目标之间可能发生的多次反射引起的。使用了汽车雷达场景来突出一个常见情况，即在雷达的视野中存在防护栏时会生成幽灵目标。因此，有四条独特的反射路径可以产生这些幽灵检测。幽灵目标检测的运动学特性与真实目标的检测类似，因此这些幽灵目标可以创建幽灵轨迹，这可能会给跟踪器增加额外的处理负荷，并可能混淆使用这些轨迹的控制算法。<code class="literal">radarTransceiver</code> 可以用于生成更高保真度的IQ数据，适用于检测和跟踪算法的输入。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Restore random state</span>
+rng(rndState);</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold">Supporting Functions</strong></p>
+<p><strong class="emphasis bold"><code class="literal">helperKeepDynamicObjects</code></strong></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> dynrpts = helperKeepDynamicObjects(rpts,egoVehicle)
+<span style="color:#228B22">% Filter out target reports corresponding to static objects (e.g. guardrail)</span>
+<span style="color:#228B22">%</span>
+<span style="color:#228B22">% This is a helper function and may be removed or modified in a future</span>
+<span style="color:#228B22">% release.</span>
+
+dynrpts = rpts;
+<span style="color:#0000FF">if</span> ~isempty(rpts)
+    <span style="color:#0000FF">if</span> iscell(rpts)
+        vel = cell2mat(cellfun(@(d)d.Measurement(4:end),rpts(:)',<span style="color:#A020F0">'UniformOutput'</span>,false));
+    <span style="color:#0000FF">else</span>
+        vel = cell2mat(arrayfun(@(t)t.State(2:2:end),rpts(:)',<span style="color:#A020F0">'UniformOutput'</span>,false));
+    <span style="color:#0000FF">end</span>
+    vel = sign(vel(1,:)).*sqrt(sum(abs(vel(1:2,:)).^2,1));
+    egoVel = sign(egoVehicle.Velocity(1))*norm(egoVehicle.Velocity(1:2));
+    gndvel = vel+egoVel; <span style="color:#228B22">% detection speed relative to ground</span>
+    isStatic = gndvel &gt; -4 &amp; <span style="color:#0000FF">...</span><span style="color:#228B22"> greater than 4 m/s departing and,</span>
+        gndvel &lt; 8; <span style="color:#228B22">% less than 8 m/s closing speed</span>
+    dynrpts = rpts(~isStatic);
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">normmax</code></strong></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> y = normmax(x)
+<span style="color:#0000FF">if</span> all(abs(x(:))==0)
+    y = ones(size(x),<span style="color:#A020F0">'like'</span>,x);
+<span style="color:#0000FF">else</span>
+    y = x(:)/max(abs(x(:)));
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+</div>
+      
+      <h2 id="d124e39577">Related Topics</h2>
+<ul><li><a href="model-radar-sensor-detections.html" class="a">Model Radar Sensor Detections</a></li>
+<li><a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a></li>
+<li><a href="multipath-radar-detection-and-tracking.html" class="a">Highway Vehicle Tracking with Multipath Radar Reflections</a></li>
+</ul>
+      
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

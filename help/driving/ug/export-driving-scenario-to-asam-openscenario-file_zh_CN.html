@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Export Driving Scenario to ASAM OpenSCENARIO File</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../scenario-import-and-export.html",
+          "name": "Scenario Import and Export"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "scenario-import-and-export",
+        "scenario-simulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Export road network, actors, and trajectories in a driving scenario to an ASAM OpenSCENARIO file."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Import and Export</span></a></li>
+</ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li><a href="../scenario-simulation.html?s_tid=CRUX_lftnav">Scenario Simulation</a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Export Driving Scenario to ASAM OpenSCENARIO File</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_ccb9e38b-115a-4768-b029-c2c26c47c231" class="intrnllnk">Load Scenario File</a></li>
+<li><a href="#mw_17ecff33-d924-41b1-97dc-a49818aa461b" class="intrnllnk">Export to ASAM OpenSCENARIO</a></li>
+<li><a href="#mw_57c0645b-086d-4fd4-939a-cc6ca0afa62d" class="intrnllnk">ASAM OpenSCENARIO Representations</a><ul class="nav"><li><a href="#mw_9c2a7993-afc1-4074-afac-52a27887928a" class="intrnllnk">Name, Class, and Actor Properties</a></li>
+<li><a href="#mw_14dafc92-6fb9-4e8c-bb97-c8625af6d7d1" class="intrnllnk">Waypoints</a></li>
+<li><a href="#mw_f56cc974-f7b0-485b-95af-561f4a3632b3" class="intrnllnk">Speed</a></li>
+<li><a href="#mw_4351b58a-0e67-44e8-a942-d5d2d1d18aa4" class="intrnllnk">Wait Time</a></li>
+<li><a href="#mw_92f6263e-b486-47f3-b8ae-f59c0fe8c7ff" class="intrnllnk">Actor spawn and despawn</a></li>
+</ul></li>
+<li><a href="#mw_b3b269fa-dc8a-4233-8970-64cc23bdcb47" class="intrnllnk">Limitations</a></li>
+<li><a href="#d124e14134" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e14158" class="intrnllnk">Related Topics</a></li>
+<li><a href="#d124e14167" class="intrnllnk">External Websites</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_ed5b815c-df63-4a24-947f-4d36e8945bfa">将驾驶场景导出到 ASAM 开放场景文件</h2>
+<p>ASAM OpenSCENARIO<sup>®</sup>是一种开放的文件格式，用于描述驾驶场景的动态内容。使用 <strong class="app"><a href="../ref/drivingscenariodesigner-app.html">Driving Scenario Designer</a></strong> 应用程序，您可以将驾驶场景中的道路网络、参与者和轨迹导出为 ASAM OpenSCENARIO 文件。</p>
+<p>该应用程序支持将驾驶场景导出为 ASAM OpenSCENARIO 文件的1.0和1.1版本。</p>
+<p>要以编程方式将驾驶场景导出为 ASAM OpenSCENARIO 文件，请使用 <a href="../ref/drivingscenario.html"><code class="object">drivingScenario</code></a> 对象的 <a href="../ref/drivingscenario.export.html"><code class="function">export</code></a> 对象函数。</p>
+<section itemprop="content"><h3 class="title" id="mw_ccb9e38b-115a-4768-b029-c2c26c47c231">加载场景文件</h3>
+<p>要打开 <strong class="app">Driving Scenario Designer</strong> 应用程序，请在 MATLAB<sup>® </sup>命令提示符下输入以下命令：</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>drivingScenarioDesigner</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>要加载现有的场景文件，请在应用程序工具栏上选择 <strong class="guimenuitem">Open</strong> &gt; <strong class="guimenuitem">Scenario File</strong>。您选择的文件必须是具有<code class="literal">.mat</code>文件扩展名的有效驾驶场景会话文件。或者，您可以使用 <strong class="app"><a href="../ref/drivingscenariodesigner-app.html">Driving Scenario Designer</a></strong> 应用程序创建一个新的场景，然后将该场景导出为 ASAM OpenSCENARIO 文件。有关如何创建场景的信息，请参阅<a href="create-driving-scenario-interactively-and-generate-synthetic-detections.html" class="a">Create Driving Scenario Interactively and Generate Synthetic Sensor Data</a>。 </p>
+<p>导航到并打开这个驾驶场景，其中 <em class="replaceable"><code>matlabroot</code></em> 是您的MATLAB根文件夹。</p>
+<div class="code_responsive"><pre class="programlisting"><em class="replaceable">matlabroot</em>/examples/driving/data/CutInScenario.mat</pre>
+</div>
+<p><strong class="guilabel">Scenario Canvas</strong>窗格显示了场景，其中一个自车和一个目标车辆沿着预定义的轨迹在一条直路上行驶，目标车辆会切入自车车道。 </p>
+<div class="informalfigure"><div id="d124e13463" class="mediaobject"><p><img src="dsd-cut-in-scenario.png" alt="Example scenario where non-ego vehicle cuts into the ego lane." height="515" width="552"/></p>
+</div>
+</div>
+<p>这个场景包含以下 ASAM OpenSCENARIO 动作：</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">SpeedAction</code> — 自我车辆以初始速度15 m/s行驶，然后在到达指定航点时暂时停止。然后，自我车辆以10 m/s的速度行驶，直到场景结束。</p></li>
+<li><p><code class="literal">VisibilityAction</code> — 目标车辆在3秒后进入场景。</p></li>
+<li><p><code class="literal">FollowTrajectoryAction</code> — 车辆明确地按照指定的航点轨迹行驶。</p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>运行场景并观察两辆车的行为。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_17ecff33-d924-41b1-97dc-a49818aa461b"><span class="trademark entity">导出到 </span>ASAM OpenSCENARIO</h3>
+<p>要将场景中的道路网络、参与者和轨迹导出为 ASAM OpenSCENARIO 文件，请在应用程序工具栏上，选择 <strong class="guimenuitem">Export</strong> &gt; <strong class="guimenuitem">ASAM OpenSCENARIO File</strong>。 </p>
+<div class="informalfigure"><div id="d124e13501" class="mediaobject"><p><img src="export-menu-dsd.png" alt="Export menu for OpenSCENARIO in Driving Scenario Designer app" height="530" width="456"/></p>
+</div>
+</div>
+<p>应用程序将打开 ASAM OpenSCENARIO 导出对话框。</p>
+<div class="informalfigure"><div id="d124e13511" class="mediaobject"><p><img src="export-openscenario-window.png" alt="ASAM OpenSCENARIO Export dialog box" height="302" width="652"/></p>
+</div>
+</div>
+<p>在 <strong class="guilabel">OpenSCENARIO</strong> 选项卡上，指定以下选项：</p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">File Path</strong> — 使用 <code class="literal">.xosc</code> 或 <code class="literal">.xml</code> 文件扩展名为输出 ASAM OpenSCENARIO 文件指定名称和位置。默认情况下，应用程序将文件保存在当前工作目录中。要指定不同的文件位置，请单击 <strong class="guibutton">Browse</strong>。如果已存在具有指定名称的文件，则应用程序将覆盖现有文件。</p></li>
+<li><p><strong class="guilabel">File Version</strong> — 将输出文件的 ASAM OpenSCENARIO 版本指定为 <code class="guidropdown">Version 1.0</code> 或 <code class="guidropdown">Version 1.1</code>。</p><p><strong class="emphasis bold">Default</strong>: <code class="guidropdown">Version
+                            1.0</code></p></li>
+</ul>
+</div>
+<p>在 <strong class="guilabel">OpenDRIVE</strong> 选项卡上，使用以下选项指定关联的 ASAM OpenDRIVE<sup>®</sup> 文件的信息：</p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">File Version</strong> — 将输出文件的 ASAM OpenDRIVE 版本指定为<code class="guidropdown">Version 1.4</code>, <code class="guidropdown">Version 1.5 </code>或 <span style="font-family: monospace;">Version 1.6</span>。</p><p><strong class="emphasis bold">Default</strong>: <code class="guidropdown">Version
+                            1.4</code></p></li>
+<li><p><strong class="guilabel">Export Actors</strong> — 选择此参数将角色导出到ASAM OpenDRIVE文件中。</p><p><strong class="emphasis bold">Default</strong>: <code class="literal">on</code></p></li>
+</ul>
+</div>
+<p>一旦您指定了文件信息，请单击 <strong class="guibutton">Export</strong>。应用程序将创建一个ASAM OpenSCENARIO文件，该文件描述了场景中角色的动态行为，以及其他数据文件。每个数据文件包含有关特定场景元素（如车辆或行人）的信息。每个数据文件的名称都具有前缀 <em class="replaceable"><code>filename</code></em>_，其中 <em class="replaceable"><code>filename</code></em> 是使用 <strong class="guilabel">File Path</strong> 选项指定的名称。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>Data File</th>
+<th>Element of Scenario</th>
+</tr>
+</thead>
+<tbody><tr><td><em class="replaceable"><code>filename</code></em>_<code class="literal">OpenDRIVE.xodr</code></td>
+<td>场景中的道路网络和障碍</td>
+</tr>
+<tr><td><em class="replaceable"><code>filename</code></em>_<code class="literal">VehicleCatalog.xosc</code></td>
+<td>车辆的特性</td>
+</tr>
+<tr><td><em class="replaceable"><code>filename</code></em>_<code class="literal">PedestrianCatalog.xosc</code></td>
+<td>行人的属性</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>注意</strong></p>
+<p>该应用程序根据场景的内容导出数据文件。例如，如果场景不包含任何行人，则不会导出数据文件 <em class="replaceable"><code>filename</code></em>_<code class="literal">PedestrianCatalog.xosc</code>。</p>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_57c0645b-086d-4fd4-939a-cc6ca0afa62d">ASAM OpenSCENARIO表示</h3>
+<p>导出的文件以ASAM OpenSCENARIO格式包含驾驶场景角色及其参数的表示。</p>
+<section itemprop="content"><h4 class="title" id="mw_9c2a7993-afc1-4074-afac-52a27887928a">Name, Class, and Actor Properties</h4>
+<p>该应用程序将每个参与者的 <strong class="guilabel">Name</strong>, <strong class="guilabel">Class</strong>和 <strong class="guilabel">Actor Properties</strong> 导出到 <em class="replaceable"><code>filename</code></em>_<code class="literal">VehicleCatalog</code> 文件中的 <code class="literal">Vehicle</code> 元素中。</p>
+<div class="code_responsive"><pre class="programlisting">&lt;Vehicle name="Car1" vehicleCategory="car"&gt;
+  &lt;BoundingBox&gt;
+    &lt;Center x="1.35" y="0" z="0"/&gt;
+    &lt;Dimensions height="1.4" length="4.7" width="1.8"/&gt;
+  &lt;/BoundingBox&gt;
+  &lt;Performance maxAcceleration="5.36" maxDeceleration="6" maxSpeed="39"/&gt;
+  &lt;Axles&gt;
+    &lt;FrontAxle maxSteering="0.5" positionX="2.8" positionZ="0.1905" trackWidth="1.8" wheelDiameter="0.381"/&gt;
+    &lt;RearAxle maxSteering="0.5" positionX="0" positionZ="0.1905" trackWidth="1.8" wheelDiameter="0.381"/&gt;
+  &lt;/Axles&gt;
+  &lt;Properties/&gt;
+&lt;/Vehicle&gt;</pre>
+</div>
+<p></p>
+<p>ASAM OpenSCENARIO车辆包括没有等效参与者特性的参数。该表显示了导出的各种类型参与者的这些ASAM OpenSCENARIO参数的默认值。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"/>
+<col class="tcol2" width="25%"/>
+<col class="tcol3" width="25%"/>
+<col class="tcol4" width="25%"/>
+</colgroup>
+<thead><tr><th rowspan="2">Vehicle Parameter</th>
+<th colspan="3">Default Value in Exported
+                                    File</th>
+</tr>
+<tr><th>Car</th>
+<th>Truck</th>
+<th>Bicycle</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">maxAcceleration</code></td>
+<td>5.3645 m/s<sup>2</sup></td>
+<td>0.897 m/s<sup>2</sup></td>
+<td>0.231 m/s<sup>2</sup></td>
+</tr>
+<tr><td><code class="literal">maxDeceleration</code></td>
+<td>6 m/s<sup>2</sup></td>
+<td>0.474 m/s<sup>2</sup></td>
+<td>7 m/s<sup>2</sup></td>
+</tr>
+<tr><td><code class="literal">maxSpeed</code></td>
+<td>39 m/s</td>
+<td>30 m/s</td>
+<td>22 m/s</td>
+</tr>
+<tr><td><code class="literal">maxSteering</code></td>
+<td>0.5 rad</td>
+<td>0.5 rad</td>
+<td>0.61 rad</td>
+</tr>
+<tr><td><code class="literal">trackWidth</code></td>
+<td>Width of vehicle</td>
+<td>Width of vehicle</td>
+<td>0</td>
+</tr>
+<tr><td><code class="literal">wheelDiameter</code></td>
+<td>0.381 m</td>
+<td>0.5715 m</td>
+<td>0.571 m</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<p>该表描述了导出文件中的每个属性如何映射到应用程序中的参与者属性。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>Exported Attribute in ASAM OpenSCENARIO</th>
+<th>Conversion from Actor Properties</th>
+</tr>
+</thead>
+<tbody><tr><td>
+                                    <code class="literal">x</code>-coordinate of center of bounding
+                                    box</td>
+<td><code class="literal">x</code>-coordinate of actor
+                                        <code class="literal">Position</code> +
+                                        <strong class="guilabel">RearOverhang</strong> + 0.5 *
+                                        <strong class="guilabel">Length</strong></td>
+</tr>
+<tr><td><code class="literal">y</code>-coordinate of center of bounding
+                                    box</td>
+<td><code class="literal">y</code>-coordinate of actor
+                                        <code class="literal">Position</code></td>
+</tr>
+<tr><td><code class="literal">z</code>-coordinate of center of bounding
+                                    box</td>
+<td><code class="literal">z</code>-coordinate of actor
+                                        <code class="literal">Position</code></td>
+</tr>
+<tr><td><code class="literal">positionX</code> of front axle</td>
+<td><code class="literal">x</code>-coordinate of actor
+                                        <code class="literal">Position</code> +
+                                        <strong class="guilabel">FrontOverhang</strong> –
+                                        <strong class="guilabel">RearOverhang</strong> +
+                                        <strong class="guilabel">Length</strong></td>
+</tr>
+<tr><td><code class="literal">positionZ</code> of front axle</td>
+<td>0.5 * <code class="literal">wheelDiameter</code></td>
+</tr>
+<tr><td><code class="literal">positionX</code> of rear axle</td>
+<td><code class="literal">x</code>-coordinate of actor
+                                        <code class="literal">Position</code></td>
+</tr>
+<tr><td><code class="literal">positionZ</code> of rear axle</td>
+<td>0.5 * <code class="literal">wheelDiameter</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_14dafc92-6fb9-4e8c-bb97-c8625af6d7d1">航点</h4>
+<p>该应用程序将参与者的航点导出到输出 ASAM OpenSCENARIO 文件的 <code class="literal">Init</code> 部分中 <code class="literal">FollowTrajectoryAction</code> 的 <code class="literal">Trajectory</code> 元素中。 <code class="literal">Trajectory</code> 元素使用折线以世界位置格式定义了相关车辆的运动。将 <code class="literal">TrajectoryFollowingMode</code> 设置为 <code class="literal">position</code> 会强制参与者严格遵循指定的轨迹。导出的轨迹不包含时间维度。</p>
+<div class="code_responsive"><pre class="programlisting">&lt;PrivateAction&gt;
+  &lt;RoutingAction&gt;
+    &lt;FollowTrajectoryAction&gt;
+       &lt;Trajectory closed="false" name="Trajectory1"&gt;
+         &lt;Shape&gt;
+           &lt;Polyline&gt;
+             &lt;Vertex time="1"&gt;
+               &lt;Position&gt;
+                 &lt;WorldPosition h="0" p="0" r="0" x="5" y="0" z="0"/&gt;
+               &lt;/Position&gt;
+             &lt;/Vertex&gt;
+             &lt;Vertex time="2"&gt;
+               &lt;Position&gt;
+                 &lt;WorldPosition h="0" p="0" r="0" x="10" y="0" z="0"/&gt;
+               &lt;/Position&gt;
+             &lt;/Vertex&gt;
+           &lt;/Polyline&gt;
+         &lt;/Shape&gt;
+      &lt;/Trajectory&gt;
+      &lt;TimeReference/&gt;      
+      &lt;TrajectoryFollowingMode followingMode="position"/&gt;
+    &lt;/FollowTrajectoryAction&gt;
+  &lt;/RoutingAction&gt;
+&lt;/PrivateAction&gt;</pre>
+</div>
+<p></p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>注意</strong></p>
+<div class="itemizedlist"><ul><li><p>该应用程序在驾驶场景中指定的航点之间插值生成平滑的轨迹，以便在输出的ASAM OpenSCENARIO文件中为导出的参与者生成平滑的轨迹。</p></li>
+<li><p>该应用程序不支持将参与者的反向航点导出到ASAM OpenSCENARIO文件中。</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_f56cc974-f7b0-485b-95af-561f4a3632b3">速度</h4>
+<p>当场景中的车辆速度发生变化时，该应用程序将此信息导出到输出的ASAM OpenSCENARIO文件中的 <code class="literal">SpeedAction</code> 元素中。该应用程序通过将 <code class="literal">SpeedActionDynamics</code> 元素的 <code class="literal">dynamicsDimension</code> 和 <span style="font-family: monospace;">dynamicsShape </span>属性分别设置为 <code class="literal">rate</code> 和 <code class="literal">linear</code>，将速度变化导出为朝目标速度的恒定变化率。</p>
+<div class="code_responsive"><pre class="programlisting">&lt;PrivateAction&gt;
+  &lt;LongitudinalAction&gt;
+    &lt;SpeedAction&gt;
+      &lt;SpeedActionDynamics dynamicsDimension="rate" dynamicsShape="linear" value="5"/&gt;
+      &lt;SpeedActionTarget&gt;
+        &lt;AbsoluteTargetSpeed value="26"/&gt;
+      &lt;/SpeedActionTarget&gt;
+    &lt;/SpeedAction&gt;
+  &lt;/LongitudinalAction&gt;
+&lt;/PrivateAction&gt;</pre>
+</div>
+<p></p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_4351b58a-0e67-44e8-a942-d5d2d1d18aa4">等待时间</h4>
+<p>当驾驶场景中的参与者使用 <strong class="guilabel">wait (s)</strong> 参数时，该应用程序使用触发执行下一个 <code class="literal">SpeedAction </code>的 <code class="literal">condition</code> 元素的 <code class="literal">delay</code> 属性导出此信息。</p>
+<p>在此示例代码中，自我车辆在指定的航点停留 0.5 秒，然后继续向前行驶。事件 <code class="literal">DS_Event_Ego4</code> 指定自我车辆停在一个静止位置。代码使用 <code class="literal">DS_Cond5</code> 条件的 <code class="literal">delay</code> 属性表示等待时间信息，该条件在 <code class="literal">DS_Event_Ego4 </code>之后触发事件。因此，自我车辆在停下后等待 0.5 秒才开始再次移动。</p>
+<div class="code_responsive"><pre class="programlisting">&lt;Event name="DS_Event_Ego4" priority="overwrite"&gt;
+  &lt;Action name="DS_Action_Ego4"&gt;
+    &lt;PrivateAction&gt;
+      &lt;LongitudinalAction&gt;
+        &lt;SpeedAction&gt;
+          &lt;SpeedActionDynamics dynamicsDimension="rate" dynamicsShape="linear" value="-0.54932"/&gt;
+          &lt;SpeedActionTarget&gt;
+            &lt;AbsoluteTargetSpeed value="0"/&gt;
+          &lt;/SpeedActionTarget&gt;
+        &lt;/SpeedAction&gt;
+      &lt;/LongitudinalAction&gt;
+    &lt;/PrivateAction&gt;
+  &lt;/Action&gt;
+  &lt;StartTrigger&gt;
+    &lt;ConditionGroup&gt;
+      &lt;Condition conditionEdge="none" delay="0" name="DS_Cond4"&gt;
+        &lt;ByEntityCondition&gt;
+          &lt;TriggeringEntities triggeringEntitiesRule="any"&gt;
+            &lt;EntityRef entityRef="Ego"/&gt;
+          &lt;/TriggeringEntities&gt;
+          &lt;EntityCondition&gt;
+            &lt;ReachPositionCondition tolerance="2.0"&gt;
+              &lt;Position&gt;
+                &lt;WorldPosition x="57" y="0" z="0"/&gt;
+              &lt;/Position&gt;
+            &lt;/ReachPositionCondition&gt;
+          &lt;/EntityCondition&gt;
+        &lt;/ByEntityCondition&gt;
+      &lt;/Condition&gt;
+    &lt;/ConditionGroup&gt;
+  &lt;/StartTrigger&gt;
+&lt;/Event&gt;
+&lt;Event name="DS_Event_Ego5" priority="overwrite"&gt;
+  &lt;Action name="DS_Action_Ego5"&gt;
+    &lt;PrivateAction&gt;
+      &lt;LongitudinalAction&gt;
+        &lt;SpeedAction&gt;
+          &lt;SpeedActionDynamics dynamicsDimension="rate" dynamicsShape="linear" value="0.77556"/&gt;
+          &lt;SpeedActionTarget&gt;
+            &lt;AbsoluteTargetSpeed value="2.5926"/&gt;
+          &lt;/SpeedActionTarget&gt;
+        &lt;/SpeedAction&gt;
+      &lt;/LongitudinalAction&gt;
+    &lt;/PrivateAction&gt;
+  &lt;/Action&gt;
+  &lt;StartTrigger&gt;
+    &lt;ConditionGroup&gt;
+      &lt;Condition conditionEdge="none" delay="0.5" name="DS_Cond5"&gt;
+        &lt;ByValueCondition&gt;
+          &lt;StoryboardElementStateCondition state="completeState" storyboardElementRef="DS_Action_Ego4" storyboardElementType="action"/&gt;
+        &lt;/ByValueCondition&gt;
+      &lt;/Condition&gt;
+    &lt;/ConditionGroup&gt;
+  &lt;/StartTrigger&gt;
+&lt;/Event&gt;</pre>
+</div>
+<p></p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_92f6263e-b486-47f3-b8ae-f59c0fe8c7ff">参与者生成和消失</h4>
+<p>当您启用 <strong class="guilabel">Actor spawn and despawn</strong> 参数，并为 <strong class="guilabel">Entry Time (s)</strong> 和 <strong class="guilabel">Exit Time (s)</strong> 参数设置有效值时，该应用程序将使用<code class="literal">VisibilityAction</code> 元素导出此信息。</p>
+<div class="code_responsive"><pre class="programlisting">&lt;PrivateAction&gt;
+  &lt;VisibilityAction graphics="true" sensors="true" traffic="true"/&gt;
+&lt;/PrivateAction&gt;</pre>
+</div>
+</section>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_b3b269fa-dc8a-4233-8970-64cc23bdcb47">限制</h3>
+<p><strong class="app"><a href="../ref/drivingscenariodesigner-app.html">Driving Scenario Designer</a></strong> 应用程序不支持 ASAM OpenSCENARIO 规范的所有组件。以下表格显示了支持的元素和属性列表。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="100%"/>
+</colgroup>
+<thead><tr><th>支持的元素和属性</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">AbsoluteTargetSpeed</code></td>
+</tr>
+<tr><td><code class="literal">Act</code></td>
+</tr>
+<tr><td><code class="literal">Action</code></td>
+</tr>
+<tr><td><code class="literal">Actors</code></td>
+</tr>
+<tr><td><code class="literal">Axle</code></td>
+</tr>
+<tr><td><code class="literal">Axles</code></td>
+</tr>
+<tr><td><code class="literal">BoundingBox</code></td>
+</tr>
+<tr><td><code class="literal">ByEntityCondition</code></td>
+</tr>
+<tr><td><code class="literal">ByValueCondition</code></td>
+</tr>
+<tr><td><code class="literal">CatalogReference</code></td>
+</tr>
+<tr><td><code class="literal">Center</code></td>
+</tr>
+<tr><td><code class="literal">Clothoid</code></td>
+</tr>
+<tr><td><code class="literal">Condition</code></td>
+</tr>
+<tr><td><code class="literal">ConditionGroup</code></td>
+</tr>
+<tr><td><code class="literal">Dimensions</code></td>
+</tr>
+<tr><td><code class="literal">Directory</code></td>
+</tr>
+<tr><td><code class="literal">Entities</code></td>
+</tr>
+<tr><td><code class="literal">EntityCondition</code></td>
+</tr>
+<tr><td><code class="literal">EntityObject</code></td>
+</tr>
+<tr><td><code class="literal">EntityRef</code></td>
+</tr>
+<tr><td><code class="literal">Event</code></td>
+</tr>
+<tr><td><code class="literal">File</code></td>
+</tr>
+<tr><td><code class="literal">FileHeader</code></td>
+</tr>
+<tr><td><code class="literal">FollowTrajectoryAction</code></td>
+</tr>
+<tr><td><code class="literal">Init</code></td>
+</tr>
+<tr><td><code class="literal">LongitudinalAction</code></td>
+</tr>
+<tr><td><code class="literal">Maneuver</code></td>
+</tr>
+<tr><td><code class="literal">ManeuverGroup</code></td>
+</tr>
+<tr><td><code class="literal">MiscObject</code></td>
+</tr>
+<tr><td><code class="literal">OpenScenario</code></td>
+</tr>
+<tr><td><code class="literal">Pedestrian</code></td>
+</tr>
+<tr><td><code class="literal">Performance</code></td>
+</tr>
+<tr><td><code class="literal">Polyline</code></td>
+</tr>
+<tr><td><code class="literal">Position</code></td>
+</tr>
+<tr><td><code class="literal">Private</code></td>
+</tr>
+<tr><td><code class="literal">PrivateAction</code></td>
+</tr>
+<tr><td><code class="literal">ReachPositionCondition</code></td>
+</tr>
+<tr><td><code class="literal">RoadNetwork</code></td>
+</tr>
+<tr><td><code class="literal">Route</code></td>
+</tr>
+<tr><td><code class="literal">RoutingAction</code></td>
+</tr>
+<tr><td><code class="literal">ScenarioObject</code></td>
+</tr>
+<tr><td><code class="literal">Shape</code></td>
+</tr>
+<tr><td><code class="literal">SimulationTimeCondition</code></td>
+</tr>
+<tr><td><code class="literal">SpeedAction</code></td>
+</tr>
+<tr><td><code class="literal">SpeedActionTarget</code></td>
+</tr>
+<tr><td><code class="literal">Story</code></td>
+</tr>
+<tr><td><code class="literal">Storyboard</code></td>
+</tr>
+<tr><td><code class="literal">StoryboardElementStateCondition</code></td>
+</tr>
+<tr><td><code class="literal">TeleportAction</code></td>
+</tr>
+<tr><td><code class="literal">Trajectory</code></td>
+</tr>
+<tr><td><code class="literal">Trigger</code></td>
+</tr>
+<tr><td><code class="literal">TriggeringEntities</code></td>
+</tr>
+<tr><td><code class="literal">Vehicle</code></td>
+</tr>
+<tr><td><code class="literal">VehicleCatalogLocation</code></td>
+</tr>
+<tr><td><code class="literal">Vertex</code></td>
+</tr>
+<tr><td><code class="literal">VisibilityAction</code></td>
+</tr>
+<tr><td><code class="literal">Waypoint</code></td>
+</tr>
+<tr><td><code class="literal">WorldPosition</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+        <h2 id="d124e14134">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving
+                    Scenario Designer</span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span></li>
+</ul>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.export.html"><span itemprop="name"><code class="function">export</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.roadnetwork.html"><span itemprop="name"><code class="function">roadNetwork</code></span></a></span></li>
+</ul>
+        <h2 id="d124e14158">Related Topics</h2>
+<ul><li><a href="create-driving-scenario-interactively-and-generate-synthetic-detections.html" class="a">Create Driving Scenario Interactively and Generate Synthetic Sensor Data</a></li>
+<li><a href="import-opendrive-roads-into-driving-scenario.html" class="a">Import ASAM OpenDRIVE Roads into Driving Scenario</a></li>
+<li><a href="export-driving-scenario-to-opendrive-file.html" class="a">Export Driving Scenario to ASAM OpenDRIVE File</a></li>
+</ul>
+        <h2 id="d124e14167">External Websites</h2>
+<ul><li><a href="https://www.asam.net/standards/detail/openscenario/" target="_blank">ASAM
+                OpenSCENARIO</a></li>
+<li><a href="https://www.asam.net/standards/detail/opendrive/" target="_blank">ASAM
+                OpenDRIVE</a></li>
+</ul>
+    </section>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

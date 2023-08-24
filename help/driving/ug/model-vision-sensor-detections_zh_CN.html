@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Model Vision Sensor Detections</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Model Vision Sensor Detections",
+          "description": "Model and simulate the output of an automotive vision sensor for various driving scenarios.",
+          "thumbnailURL": "../../examples/driving/win64/ModelVisionSensorDetectionsExample_10.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving.ModelVisionSensorDetectionsExample",
+          "name": "ModelVisionSensorDetectionsExample",
+          "url": "model-vision-sensor-detections.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/ModelVisionSensorDetectionsExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ModelVisionSensorDetectionsExample.m",
+        "helperCollectScenarioMetrics.m",
+        "helperCreateSensorDemoDisplay.m",
+        "helperCreateSensorDemoScenario.m",
+        "helperPlotSensorDemoDetections.m",
+        "helperPublishSnapshot.m",
+        "helperRunSensorDemoScenario.m",
+        "helperUpdateSensorDemoDisplay.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Model and simulate the output of an automotive vision sensor for various driving scenarios."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/ModelVisionSensorDetectionsExample_10.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Model Vision Sensor Detections</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e38564" class="intrnllnk">Introduction</a></li>
+<li><a href="#d124e38573" class="intrnllnk">Vision Sensor Model</a></li>
+<li><a href="#d124e38636" class="intrnllnk">Position Measurements</a></li>
+<li><a href="#d124e38682" class="intrnllnk">Velocity Measurements and Target Occlusion</a></li>
+<li><a href="#d124e38761" class="intrnllnk">Longitudinal Position Bias from Target Elevation</a></li>
+<li><a href="#d124e38788" class="intrnllnk">Pedestrian and Vehicle Detection</a></li>
+<li><a href="#d124e38829" class="intrnllnk">Lane Boundary Measurements and Lane Occlusion</a></li>
+<li><a href="#d124e38868" class="intrnllnk">Summary</a></li>
+<li><a href="#d124e38888" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e38909" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_9650020b-8fbc-4f7a-9b08-bf4d5e1d35c0">模型视觉传感器检测</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/ModelVisionSensorDetectionsExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-ModelVisionSensorDetectionsExample"/>
+<meta itemprop="exampletitle" content="Model Vision Sensor Detections"/>
+</div>
+<span id="ModelVisionSensorDetectionsExample" class="anchor_target"></span>
+
+<p class="shortdesc">这个例子展示了如何对不同驾驶场景下的汽车视觉传感器输出进行建模和仿真。在边缘情况或无法使用传感器硬件时，生成合成的视觉检测结果对于测试和验证跟踪和传感器融合算法非常重要。该示例分析了前向碰撞警告(FCW)场景、超车场景和下坡行驶场景中视觉测量与车辆实际位置和速度之间的差异。</p>
+
+<p>在这个例子中，您可以通过编程方式生成视觉检测结果。您也可以使用 <a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> 应用程序生成检测结果。有关示例，请参阅 <a href="create-driving-scenario-interactively-and-generate-synthetic-detections.html" data-docid="driving_ug#mw_e49e404a-0301-4634-b5c2-c8a6da2db9f6" class="a">Create Driving Scenario Interactively and Generate Synthetic Sensor Data</a>。</p>
+
+<div class="procedure"><h3 class="title" id="d124e38564">介绍<span id="ModelVisionSensorDetectionsExample-1" class="anchor_target"></span></h3>
+<p>具备先进驾驶辅助系统 (ADAS) 功能或设计为完全自动驾驶的车辆通常依赖于多种类型的传感器。这些传感器包括声纳、雷达、激光雷达和视觉传感器。一个强大的解决方案包括传感器融合算法，将系统中包含的各种类型传感器的优势结合起来。有关多传感器ADAS系统中合成雷达和视觉数据的传感器融合的更多信息，请参阅 <a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" data-docid="driving_ug#mw_4b0a3201-1e7b-487f-961c-8f0ebf14df97" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a>。</p>
+<p>在使用合成检测结果进行跟踪和传感器融合算法的测试和验证时，了解生成的检测结果如何模拟传感器的独特性能特征非常重要。每种类型的汽车传感器都提供一组特定的优点和缺点，这些特点对于融合解决方案起到了贡献作用。该示例介绍了汽车视觉传感器的一些重要性能特征，并展示了如何使用合成检测结果对传感器性能进行建模。</p>
+<h3 class="title" id="d124e38573">视觉传感器模型<span id="ModelVisionSensorDetectionsExample-2" class="anchor_target"></span></h3>
+<p>该示例使用 <code class="literal">visionDetectionGenerator</code> 生成合成的视觉传感器检测结果。<code class="literal">visionDetectionGenerator</code> 模拟了汽车视觉传感器的以下性能特征：</p>
+<p><strong class="emphasis bold">Strengths</strong></p>
+<div class="itemizedlist"><ul><li><p>良好的横向位置和速度准确性</p></li>
+<li><p>每个目标报告一个检测结果</p></li>
+</ul>
+</div>
+<p><strong class="emphasis bold">Weaknesses</strong></p>
+<div class="itemizedlist"><ul><li><p>纵向位置和速度准确性较差</p></li>
+<li><p>无法检测被遮挡的目标</p></li>
+<li><p>对于高架目标存在纵向偏差</p></li>
+</ul>
+</div>
+<p><b><i>FCW驾驶场景</i></b></p>
+<p>创建一个前向碰撞警告 (FCW) 测试场景，用于说明如何使用汽车视觉传感器测量目标的位置。该场景包括一个移动的自车和一个静止的目标车辆，目标车辆放置在道路上方75米处。自车在刹车前具有50公里/小时的初始速度，然后施加恒定的减速度为3 m/s^2。车辆最终在距离目标车辆后保险杠1米处完全停下来。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng <span style="color:#A020F0">default</span>;
+initialDist = 75;  <span style="color:#228B22">% m</span>
+finalDist = 1;     <span style="color:#228B22">% m</span>
+initialSpeed = 50; <span style="color:#228B22">% kph</span>
+brakeAccel = 3;    <span style="color:#228B22">% m/s^2</span>
+[scenario, egoCar] = helperCreateSensorDemoScenario(<span style="color:#A020F0">'FCW'</span>, initialDist, initialSpeed, brakeAccel, finalDist);
+</pre>
+</div>
+</div>
+</div>
+<p><b><i>前向视觉传感器</i></b></p>
+<p>在自车的前挡风玻璃上安装一个前向视觉传感器，离地面1.1米。传感器向下倾斜1度，朝向道路，并每0.1秒生成一次测量结果。传感器的相机具有480x640像素的成像阵列和800像素的焦距。传感器可以以5个像素的精度在单个图像中定位物体，并具有最大探测范围为150米。<code class="literal">ActorProfiles</code> 属性指定了在仿真中由视觉传感器看到的车辆的物理尺寸。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>visionSensor = visionDetectionGenerator(<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SensorIndex'</span>, 1, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'UpdateInterval'</span>, 0.1, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SensorLocation'</span>, [0.75*egoCar.Wheelbase 0], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Height'</span>, 1.1, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Pitch'</span>, 1, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Intrinsics'</span>, cameraIntrinsics(800, [320 240], [480 640]), <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'BoundingBoxAccuracy'</span>, 5, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MaxRange'</span>, 150, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ActorProfiles'</span>, actorProfiles(scenario))
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>visionSensor = 
+
+  visionDetectionGenerator with properties:
+
+               SensorIndex: 1
+            UpdateInterval: 0.1000
+
+            SensorLocation: [2.1000 0]
+                    Height: 1.1000
+                       Yaw: 0
+                     Pitch: 1
+                      Roll: 0
+                Intrinsics: [1x1 cameraIntrinsics]
+
+            DetectorOutput: 'Objects only'
+               FieldOfView: [43.6028 33.3985]
+                  MaxRange: 150
+                  MaxSpeed: 100
+       MaxAllowedOcclusion: 0.5000
+        MinObjectImageSize: [15 15]
+
+      DetectionProbability: 0.9000
+    FalsePositivesPerImage: 0.1000
+
+  Use get to show all properties
+
+</pre>
+</div>
+</div>
+</div>
+<p><b><i>视觉检测的仿真</i></b></p>
+<p>通过推进场景的仿真时间，模拟视觉传感器测量目标车辆的位置。视觉传感器根据自车坐标系中的真实目标姿态（位置、速度和方向）生成检测结果。</p>
+<p>该视觉传感器配置为以0.1秒间隔生成检测结果，这与典型汽车视觉传感器的更新频率一致。然而，为了准确模拟车辆的运动，场景仿真每0.01秒推进一次。传感器返回一个逻辑标志位 <code class="literal">isValidTime</code>，当视觉传感器达到所需的更新间隔时，该标志位为true，表示该仿真时间步长将生成检测结果。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create display for FCW scenario</span>
+[bep, figScene] = helperCreateSensorDemoDisplay(scenario, egoCar, visionSensor);
+
+metrics = struct;                 <span style="color:#228B22">% Initialize struct to collect scenario metrics</span>
+<span style="color:#0000FF">while</span> advance(scenario)           <span style="color:#228B22">% Update vehicle positions</span>
+    gTruth = targetPoses(egoCar); <span style="color:#228B22">% Get target positions in ego vehicle coordinates</span>
+
+    <span style="color:#228B22">% Generate time-stamped vision detections</span>
+    time = scenario.SimulationTime;
+    [dets, ~, isValidTime] = visionSensor(gTruth, time);
+
+    <span style="color:#0000FF">if</span> isValidTime
+        <span style="color:#228B22">% Update Bird's-Eye Plot with detections and road boundaries</span>
+        helperUpdateSensorDemoDisplay(bep, egoCar, visionSensor, dets);
+
+        <span style="color:#228B22">% Collect vision detections and ground truth for offline analysis</span>
+        metrics = helperCollectScenarioMetrics(metrics, gTruth, dets);
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Take a snapshot for the published example</span>
+    helperPublishSnapshot(figScene, time&gt;=6);
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38633" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_01.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e38636">位置测量<span id="ModelVisionSensorDetectionsExample-11" class="anchor_target"></span></h3>
+<p>在FCW测试的过程中，目标车辆与自车之间的距离涵盖了一个很大的范围。通过将视觉传感器测量的目标车辆的纵向和横向位置与目标车辆的真实位置进行比较，您可以观察传感器测量位置的准确性。</p>
+<p>使用 <code class="literal">helperPlotSensorDemoDetections</code> 函数绘制纵向和横向位置误差，即视觉传感器报告的测量位置与目标车辆的真实位置之间的差异。目标车辆的真实位置基准是目标车辆后轴正下方地面上的点，该点位于车前保险杠前1米处。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'position'</span>, <span style="color:#A020F0">'reverse range'</span>, [-6 6]);
+
+<span style="color:#228B22">% Show rear overhang of target vehicle</span>
+tgtCar = scenario.Actors(2);
+rearOverhang = tgtCar.RearOverhang;
+
+subplot(1,2,1);
+hold <span style="color:#A020F0">on</span>; plot(-rearOverhang*[1 1], ylim, <span style="color:#A020F0">'k'</span>); hold <span style="color:#A020F0">off</span>;
+legend(<span style="color:#A020F0">'Error'</span>, <span style="color:#A020F0">'2\sigma noise'</span>, <span style="color:#A020F0">'Rear overhang'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38648" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_02.png"/></p>
+</div>
+</div>
+<p>视觉传感器将目标在相机图像中的位置转换为自车坐标系中的纵向和横向位置。传感器通过假设图像中检测到的点位于与自车相同高度的平坦道路上来进行这种转换。</p>
+<p><b><i>纵向位置测量</i></b></p>
+<p>对于前向视觉传感器配置，纵向位置测量主要是通过目标在相机图像中的垂直位置来得出的。</p>
+<p>物体在图像中的垂直位置与其离地面的高度强相关，但与其距离相机的距离弱相关。这种弱相关性导致单目视觉传感器的纵向位置误差在物体远离传感器时变大。上述图中左侧的纵向位置误差显示了当目标车辆远离传感器时，传感器的纵向误差如何迅速增加。当目标车辆与传感器的真实距离小于30米时，传感器的纵向 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_eq05304870507908037955.png" alt="$2\sigma$"/></span></span> 测量噪声小于1米，但在距离自车超过70米的范围内增长到超过5米。</p>
+<p>纵向位置误差还显示出视觉传感器测量的纵向位置与目标的真实地面位置之间存在-1米的偏差。-1米的偏差表明传感器一致地将目标测量为比目标车辆的真实位置更靠近自车。视觉传感器模型中，目标不是近似为空间中的一个点，而是对车辆的实际尺寸进行建模。在FCW场景中，视觉传感器从目标车辆的后侧观察。从这一侧生成的检测结果中的-1米偏差对应于车辆的后悬挂部分。车辆的后悬挂部分定义为车辆的后侧与其后轴之间的距离，而真实参考位置位于后轴处。</p>
+<p><b><i>横向位置测量</i></b></p>
+<p>对于前向视觉传感器配置，横向位置是通过目标在相机图像中的水平位置来确定的。</p>
+<p>与纵向位置不同，物体的横向位置与其在视觉传感器图像中的水平位置密切相关。这种强相关性产生了准确的横向位置测量结果，这些结果在目标与传感器的距离增加时不会迅速退化。在前面的图表中，右侧的横向位置误差随着距离的增加而缓慢增长。传感器报告的  <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_eq05304870507908037955.png" alt="$2\sigma$"/></span></span> 测量噪声在真实距离为70米时仍然保持在0.2米以下。</p>
+<h3 class="title" id="d124e38682">速度测量和目标遮挡<span id="ModelVisionSensorDetectionsExample-18" class="anchor_target"></span></h3>
+<p>创建一个驾驶场景，包括两辆目标车辆（前车和超车车辆），以展示视觉传感器纵向和横向速度测量的准确性。前车位于自车前方40米处，并以相同的速度行驶。超车车辆从左车道开始与自车并行，超过自车，并在前车后方合并到右车道。这个合并操作产生了纵向和横向速度分量，使您可以比较传感器在这两个维度上的准确性。</p>
+<p>由于前车直接位于传感器前方，它具有纯粹的纵向速度分量。超车车辆的速度分布包含纵向和横向速度分量。这些分量会随着车辆超过自车并进入右车道后而发生变化。将传感器测量的目标车辆的纵向和横向速度与它们的真实速度进行比较，可以展示视觉传感器观测这两个速度分量的能力。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create passing scenario</span>
+leadDist = 40;     <span style="color:#228B22">% m</span>
+speed = 50;        <span style="color:#228B22">% kph</span>
+passSpeed = 70;    <span style="color:#228B22">% kph</span>
+mergeFract = 0.55; <span style="color:#228B22">% Merge 55% into right lane</span>
+[scenario, egoCar] = helperCreateSensorDemoScenario(<span style="color:#A020F0">'Passing'</span>, leadDist, speed, passSpeed, mergeFract);
+</pre>
+</div>
+</div>
+</div>
+<p><b><i>视觉传感器速度测量的配置</i></b></p>
+<p>视觉传感器无法通过单个图像确定物体的速度。为了估计速度，视觉传感器会比较多个图像之间物体的运动情况。从多个图像中提取的目标位置会经过平滑滤波器的处理。除了估计速度，该滤波器还会产生平滑的位置估计值。为了调整滤波器应用的平滑程度，可以设置传感器的过程噪声强度。传感器的过程噪声应设置为与传感器需要检测的目标的最大加速度量级相当的值。</p>
+<p>将上一节中使用的视觉传感器配置为使用一个平滑滤波器生成位置和速度估计，该滤波器的过程噪声强度为5 m/s^2。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Configure vision sensor's noise intensity used by smoothing filter</span>
+release(visionSensor);
+visionSensor.ProcessNoiseIntensity = 5; <span style="color:#228B22">% m/s^2</span>
+
+<span style="color:#228B22">% Use actor profiles for the passing car scenario</span>
+visionSensor.ActorProfiles = actorProfiles(scenario);
+</pre>
+</div>
+</div>
+</div>
+<p>使用 <code class="literal">helperRunSensorDemoScenario</code> 函数来仿真自车和目标车辆的运动。该函数还会收集仿真的指标，就像之前在FCW驾驶场景中所做的那样。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>snapTime = 5.9; <span style="color:#228B22">% Simulation time to take snapshot for publishing</span>
+metrics = helperRunSensorDemoScenario(scenario, egoCar, visionSensor, snapTime);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38705" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_03.png"/></p>
+</div>
+</div>
+<p>使用 <code class="literal">helperPlotSensorDemoDetections</code> 函数绘制视觉传感器的纵向和横向速度误差，即传感器报告的测量速度与目标车辆的真实速度之间的差异。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'velocity'</span>, <span style="color:#A020F0">'time'</span>, [-25 25]);
+subplot(1,2,1);
+legend(<span style="color:#A020F0">'Lead car error'</span>, <span style="color:#A020F0">'Lead car 2\sigma noise'</span>, <span style="color:#A020F0">'Pass car error'</span>, <span style="color:#A020F0">'Pass car 2\sigma noise'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38716" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_04.png"/></p>
+</div>
+</div>
+<p><b><i>纵向速度测量</i></b></p>
+<p>前向视觉传感器通过比较传感器在更新间隔期间纵向位置测量的变化来测量纵向速度。由于传感器的纵向位置误差随着距离的增加而增加，所以纵向速度误差也会随着目标距离的增加而增加。</p>
+<p>在左侧的前一图中显示了通过车辆场景中的纵向速度误差。由于前车与视觉传感器保持恒定的距离，其误差（以红色点显示）在整个场景中显示为相同的 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_eq05304870507908037955.png" alt="$2\sigma$"/></span></span> 测量噪声。然而，通过车辆与传感器的距离并不是恒定的，而是随着车辆通过传感器并向前车移动而增加。通过车辆的纵向速度误差（以黄色点显示）在其首次进入传感器视野的2秒时较小。在这个场景中，通过车辆靠近视觉传感器。从2秒到6秒，通过车辆远离自车并接近前车。随着与传感器的距离增加，其纵向速度误差增加。一旦通过车辆并入右车道跟在前车后面，它与传感器保持恒定的距离，其 <span class="inlineequation"><span class="inlinemediaobject"><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_eq05304870507908037955.png" alt="$2\sigma$"/></span></span> 测量噪声保持不变。</p>
+<p><b><i>横向速度测量</i></b></p>
+<p>前向视觉传感器通过比较传感器更新间隔期间传感器的横向位置测量值的变化来测量横向速度。由于传感器的横向位置误差与目标与传感器的距离没有强相关性，因此横向速度误差也不会对目标距离显示出明显的依赖关系。</p>
+<p>通过车辆场景中的横向速度误差显示在右侧的图表中。整个场景中，前车（红色点）和超车车辆（黄色点）的测量噪声几乎相同。随着超车车辆远离传感器，所报告的横向速度误差几乎没有变化。</p>
+<p><b><i>部分遮挡目标的检测</i></b></p>
+<p>在前面的速度误差图中，前车（红色点）在场景的前6秒可靠地被检测到。超车车辆（黄色点）在2秒时首次进入相机的视野范围内被检测到。在此之后，两辆目标车辆都会生成检测结果，直到6秒。在6秒时，超车车辆并入右车道，并在自车和前车之间移动。在场景的剩余部分中，超车车辆部分遮挡了视觉传感器对前车的视野。前车的后侧被遮挡了55%，只有45%对传感器可见用于检测。这种被遮挡的视野使传感器无法在相机图像中找到前车并生成检测结果。</p>
+<p>视觉传感器提供可靠检测的能力强烈依赖于对其检测对象的无遮挡视野。在密集交通中，随着车辆之间的距离变化和车辆在车道间移动，场景中车辆的可见性会迅速变化。无法对被遮挡的目标保持检测的能力给处理视觉传感器检测结果的跟踪算法带来了挑战。</p>
+<p>使用一种能够检测到目标的视觉传感器重新运行超车车辆场景，即使目标的可见区域被遮挡了高达60%。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Configure vision sensor to support maximum occlusion of 60%</span>
+release(visionSensor);
+visionSensor.MaxAllowedOcclusion = 0.6;
+
+<span style="color:#228B22">% Run simulation and collect detections and ground truth for offline analysis</span>
+metrics = helperRunSensorDemoScenario(scenario, egoCar, visionSensor);
+
+<span style="color:#228B22">% Plot longitudinal and lateral velocity errors</span>
+helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'velocity'</span>, <span style="color:#A020F0">'time'</span>, [-25 25]);
+subplot(1,2,1);
+legend(<span style="color:#A020F0">'Lead car error'</span>, <span style="color:#A020F0">'Lead car 2\sigma noise'</span>, <span style="color:#A020F0">'Pass car error'</span>, <span style="color:#A020F0">'Pass car 2\sigma noise'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38757" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_05.png"/></p>
+</div>
+</div>
+<p>在前面的图中，显示了前车（红色点）和超车车辆（黄色点）的速度误差。与之前一样，观察到相同的误差性能，但现在在超车车辆在6秒后合并到前车后，对前车的检测仍然保持。通过调整最大允许的遮挡程度，可以模拟视觉传感器对目标遮挡的敏感性。</p>
+<h3 class="title" id="d124e38761">目标高度对纵向位置的偏差</h3>
+<p>目标在相机图像中的垂直位置与其在道路上的高度密切相关。由于单目视觉传感器通过对象在其相机图像中的垂直位置生成纵向位置测量，因此对于不同高度的目标，可能会产生较大的误差。当一个目标改变高度时，传感器错误地将相机图像中的垂直位移解释为目标纵向位置的变化。</p>
+<p>再次运行FCW场景，将一个静止的目标车辆放置在离自车初始位置低2米的位置。当自车靠近目标车辆时，自车下坡。随着自车下坡，目标车辆在相机图像中的垂直位置发生变化，导致传感器测量的纵向位置出现偏差。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create FCW hill descent scenario</span>
+initialDist = 75;  <span style="color:#228B22">% m</span>
+finalDist = 1;     <span style="color:#228B22">% m</span>
+initialSpeed = 50; <span style="color:#228B22">% kph</span>
+brakeAccel = 3;    <span style="color:#228B22">% m/s^2</span>
+[scenario, egoCar] = helperCreateSensorDemoScenario(<span style="color:#A020F0">'FCW'</span>, initialDist, initialSpeed, brakeAccel, finalDist, false, 2);
+
+<span style="color:#228B22">% Use actor profiles for the FCW hill descent scenario</span>
+release(visionSensor);
+visionSensor.ActorProfiles = actorProfiles(scenario);
+
+<span style="color:#228B22">% Run simulation and collect detections and ground truth for offline analysis</span>
+snapTime = 3; <span style="color:#228B22">% Simulation time to take snapshot for publishing</span>
+metrics = helperRunSensorDemoScenario(scenario, egoCar, visionSensor, snapTime, true);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38770" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_06.png"/></p>
+</div>
+</div>
+<p>绘制随着自车下坡而生成的目标车辆位置误差图。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'position'</span>, <span style="color:#A020F0">'reverse range'</span>, [-6 6;0 80]);
+subplot(1,2,1); xlim([-10 60]); ylim([0 80]);
+legend(<span style="color:#A020F0">'Error'</span>, <span style="color:#A020F0">'2\sigma noise'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38777" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_07.png"/></p>
+</div>
+</div>
+<p>前面的图表显示了下坡场景中的纵向位置误差（左侧）和横向位置误差（右侧）。请注意，在纵向位置误差图中，误差轴的限制已经增加，以适应目标相对于相机传感器的高度引起的较大偏差，因为自车下坡。</p>
+<p>自车在距离目标车辆75米处开始下坡。由于自车在下坡过程中向下倾斜，目标车辆在相机图像的顶部附近出现在一个较高的位置。随着自车下坡，目标车辆在相机图像中的位置从图像顶部移动并越过地平线。对于单目视觉传感器，位于相机图像地平线附近的目标被映射到离传感器非常远的位置（根据定义，地平线上的点位于无穷远处）。视觉传感器不会为出现在相机图像地平线上方的物体生成检测结果，因为这些点不对应道路表面上的位置。</p>
+<p>当车辆在图像中的位置远离地平线时，其纵向位置的大幅变化会导致传感器的平滑滤波器生成较大的纵向速度估计。传感器会拒绝速度超过其 <code class="literal">MaxSpeed</code> 属性的检测结果。目标车辆的高度变化所产生的这些较大纵向速度也会导致传感器在目标车辆靠近相机地平线时无法生成检测结果。</p>
+<p>当自车与目标车辆相距约40米时，目标车辆的图像位置已经越过地平线，并且传感器的速度估计满足其最大速度限制。在这个距离上，视觉传感器开始从目标车辆生成检测结果。目标位置在相机地平线附近与远离传感器的道路上的点之间的映射解释了当视觉传感器开始检测目标车辆时建模的大纵向误差。随着自车接近下坡的底部，目标位置在相机图像中远离地平线，纵向偏差继续减小。在自车下坡结束时，目标与自车处于相同的高度，只存在与目标车辆后悬挂部分对应的-1米的偏差。传感器的横向位置误差没有偏差，因为自车下坡时的俯仰角不会改变目标在相机图像中的水平位置。</p>
+<h3 class="title" id="d124e38788">行人和车辆检测<span id="ModelVisionSensorDetectionsExample-33" class="anchor_target"></span></h3>
+<p>视觉传感器在其相机图像中检测到对象的能力取决于对象在图像中占据的像素数量。当对象在图像中的大小较大（数百个像素）时，传感器可以轻松识别对象并生成检测结果。然而，当对象在图像中的大小较小（几十个像素）时，传感器可能无法找到它并且不会生成检测结果。对象在相机成像阵列上的投影大小是物体的实际大小和与相机的距离的函数。因此，当车辆与行人相比距离相机更远时，车辆和行人在相机图像中可能具有类似的大小。这意味着视觉传感器将在较长距离上检测到较大的对象（车辆），而较小的对象（行人）的检测范围较短。</p>
+<p>请再次运行FCW场景，将一个静止的汽车和一个行人放置在距传感器前方75米的位置。这个场景说明了传感器对这两个对象的检测范围的差异。自车、静止汽车和行人都被放置在相同的高度上。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create FCW test scenario</span>
+initialDist = 75;  <span style="color:#228B22">% m</span>
+finalDist = 1;     <span style="color:#228B22">% m</span>
+initialSpeed = 50; <span style="color:#228B22">% kph</span>
+brakeAccel = 3;    <span style="color:#228B22">% m/s^2</span>
+[scenario, egoCar] = helperCreateSensorDemoScenario(<span style="color:#A020F0">'FCW'</span>, initialDist, initialSpeed, brakeAccel, finalDist, true);
+
+<span style="color:#228B22">% Use actor profiles for the FCW hill descent scenario</span>
+release(visionSensor);
+visionSensor.ActorProfiles = actorProfiles(scenario);
+
+<span style="color:#228B22">% Run simulation and collect detections and ground truth for offline analysis</span>
+snapTime = 5; <span style="color:#228B22">% Simulation time to take snapshot for publishing</span>
+metrics = helperRunSensorDemoScenario(scenario, egoCar, visionSensor, snapTime);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38797" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_08.png"/></p>
+</div>
+</div>
+<p>绘制FCW场景中目标车辆和行人的位置误差图。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'position'</span>, <span style="color:#A020F0">'reverse range'</span>, [-6 6]);
+legend(<span style="color:#A020F0">'Car error'</span>,<span style="color:#A020F0">'Car 2\sigma noise'</span>, <span style="color:#A020F0">'Pedestrian error'</span>, <span style="color:#A020F0">'Pedestrian 2\sigma noise'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38804" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_09.png"/></p>
+</div>
+</div>
+<p>前面的图表显示了视觉传感器对目标车辆和行人的检测所产生的纵向位置误差（左侧）和横向位置误差（右侧）。目标车辆的检测误差（以红色显示）在这个测试中的最远距离（75米）内都有生成，但行人的误差（以黄色显示）直到自车距离达到约30米时才出现。这种检测范围的差异是由这两个对象的大小差异造成的。</p>
+<p>传感器在距离小于12米的范围内停止对行人的检测。在这个距离上，行人相对于相机光轴的偏移使行人超出了相机的水平视野范围。由于目标车辆直接位于相机前方，它在整个FCW测试中始终保持在相机图像的中心位置。</p>
+<p>一些视觉传感器可以检测到更小图像尺寸的物体，从而使传感器能够在更远的距离上检测到物体。在先前的场景中，传感器对行人的检测受限于行人的宽度（0.45米），这比汽车的宽度（1.8米）要窄得多。为了将传感器对行人的检测范围增加到40米，我们可以计算当行人距离为40米时，在相机图像中的宽度是多少。</p>
+<p>找到模拟行人的物理宽度</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>profiles = actorProfiles(scenario);
+pedWidth = profiles(3).Width
+
+<span style="color:#228B22">% Compute width of pedestrian in camera's image in pixels at 40 meters from ego vehicle</span>
+cameraRange = 40-visionSensor.SensorLocation(1);
+focalLength = visionSensor.Intrinsics.FocalLength(1);
+pedImageWidth = focalLength*pedWidth/cameraRange
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>pedWidth =
+
+    0.4500
+
+
+pedImageWidth =
+
+    9.4987
+
+</pre>
+</div>
+</div>
+</div>
+<p>在40米处，行人在相机图像中的宽度为9.5个像素。将视觉传感器的最小物体宽度设置为与40米处行人的宽度相匹配。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Configure sensor to detect pedestrians out to a range of 40 m.</span>
+release(visionSensor);
+visionSensor.MinObjectImageSize(2) = pedImageWidth
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>visionSensor = 
+
+  visionDetectionGenerator with properties:
+
+               SensorIndex: 1
+            UpdateInterval: 0.1000
+
+            SensorLocation: [2.1000 0]
+                    Height: 1.1000
+                       Yaw: 0
+                     Pitch: 1
+                      Roll: 0
+                Intrinsics: [1x1 cameraIntrinsics]
+
+            DetectorOutput: 'Objects only'
+               FieldOfView: [43.6028 33.3985]
+                  MaxRange: 150
+                  MaxSpeed: 100
+       MaxAllowedOcclusion: 0.6000
+        MinObjectImageSize: [15 9.4987]
+
+      DetectionProbability: 0.9000
+    FalsePositivesPerImage: 0.1000
+
+  Use get to show all properties
+
+</pre>
+</div>
+</div>
+</div>
+<p>重新运行该场景，并绘制位置误差图，以展示修订后的车辆和行人的检测范围。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Run simulation and collect detections and ground truth for offline</span>
+<span style="color:#228B22">% analysis.</span>
+metrics = helperRunSensorDemoScenario(scenario, egoCar, visionSensor);
+
+<span style="color:#228B22">% Plot position errors for the target vehicle and pedestrian.</span>
+helperPlotSensorDemoDetections(metrics, <span style="color:#A020F0">'position'</span>, <span style="color:#A020F0">'reverse range'</span>, [-6 6]);
+legend(<span style="color:#A020F0">'Car error'</span>,<span style="color:#A020F0">'Car 2\sigma noise'</span>, <span style="color:#A020F0">'Pedestrian error'</span>, <span style="color:#A020F0">'Pedestrian 2\sigma noise'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38825" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_10.png"/></p>
+</div>
+</div>
+<p>上述图表显示了一个配置为支持行人检测的视觉传感器的纵向位置误差（左侧）和横向位置误差（右侧）。车辆（以红色表示）仍然可以在最远的测试范围内被检测到，但现在行人的检测结果（以黄色表示）可以从传感器处延伸到40米的距离。</p>
+<h3 class="title" id="d124e38829">车道边界测量和车道遮挡情况<span id="ModelVisionSensorDetectionsExample-41" class="anchor_target"></span></h3>
+<p>视觉检测生成器还可以配置为检测车道。重新创建两车道行驶场景，包括前车和超车车辆，以展示视觉传感器车道边界测量的准确性。这个合并操作也用于模拟车道标线的遮挡情况。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create passing scenario</span>
+leadDist = 40;     <span style="color:#228B22">% m</span>
+speed = 50;        <span style="color:#228B22">% kph</span>
+passSpeed = 70;    <span style="color:#228B22">% kph</span>
+mergeFract = 0.55; <span style="color:#228B22">% Merge 55% into right lane</span>
+[scenario, egoCar] = helperCreateSensorDemoScenario(<span style="color:#A020F0">'Passing'</span>, leadDist, speed, passSpeed, mergeFract);
+</pre>
+</div>
+</div>
+</div>
+<p><b><i>视觉传感器车道边界测量的配置</i></b></p>
+<p>配置在前一节中使用的视觉传感器，并将其配置为使用平滑滤波器生成位置和速度估计，其过程噪声强度为5 m/s^2。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Configure vision sensor to detect both lanes and objects</span>
+release(visionSensor);
+visionSensor.DetectorOutput = <span style="color:#A020F0">'lanes and objects'</span>;
+
+<span style="color:#228B22">% Use actor profiles for the passing car scenario</span>
+visionSensor.ActorProfiles = actorProfiles(scenario);
+</pre>
+</div>
+</div>
+</div>
+<p>使用 <code class="literal">helperRunSensorDemoScenario</code> 来模拟自车和目标车辆的运动。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>snapTime = 5.9; <span style="color:#228B22">% Simulation time to take snapshot for publishing</span>
+helperRunSensorDemoScenario(scenario, egoCar, visionSensor, snapTime);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38850" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_11.png"/></p>
+</div>
+</div>
+<p>如上所示，当默认检测器面对未被遮挡的视野时，可以看到车道边界延伸到大约45米。您可以更改检测器的内参来观察其效果。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% show camera intrinsics.</span>
+visionSensor.Intrinsics
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  cameraIntrinsics with properties:
+
+             FocalLength: [800 800]
+          PrincipalPoint: [320 240]
+               ImageSize: [480 640]
+        RadialDistortion: [0 0]
+    TangentialDistortion: [0 0]
+                    Skew: 0
+                       K: [3x3 double]
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% increase the focal length and observe its effect.</span>
+release(visionSensor);
+visionSensor.Intrinsics = cameraIntrinsics([1200 1200],[320 240],[480 640])
+
+helperRunSensorDemoScenario(scenario, egoCar, visionSensor, snapTime);
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>visionSensor = 
+
+  visionDetectionGenerator with properties:
+
+               SensorIndex: 1
+            UpdateInterval: 0.1000
+
+            SensorLocation: [2.1000 0]
+                    Height: 1.1000
+                       Yaw: 0
+                     Pitch: 1
+                      Roll: 0
+                Intrinsics: [1x1 cameraIntrinsics]
+
+            DetectorOutput: 'Lanes and objects'
+               FieldOfView: [29.8628 22.6199]
+                  MaxRange: 150
+                  MaxSpeed: 100
+       MaxAllowedOcclusion: 0.6000
+        MinObjectImageSize: [15 9.4987]
+          MinLaneImageSize: [20 3]
+
+      DetectionProbability: 0.9000
+    FalsePositivesPerImage: 0.1000
+
+  Use get to show all properties
+
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e38864" class="mediaobject"><p><img src="../../examples/driving/win64/ModelVisionSensorDetectionsExample_12.png"/></p>
+</div>
+</div>
+<p>将焦距从800像素变为1200像素，无论是在x方向还是y方向上，都可以对摄像头进行变焦，使其能够检测到更远的距离。</p>
+<h3 class="title" id="d124e38868">总结<span id="ModelVisionSensorDetectionsExample-48" class="anchor_target"></span></h3>
+<p>这个例子展示了如何使用合成检测结果来建模汽车视觉传感器的输出。具体而言，它介绍了 <code class="literal">visionDetectionGenerator</code> 模型的功能：</p>
+<div class="itemizedlist"><ul><li><p>在长距离上提供准确的横向位置和速度测量，但在长距离上的纵向准确性有限</p></li>
+<li><p>根据目标的物理尺寸和场景中其他物体对目标的遮挡限制检测</p></li>
+<li><p>针对位于不同高度的目标，包括纵向偏差</p></li>
+<li><p>根据单目摄像机内参调整目标和车道检测。</p></li>
+</ul>
+</div>
+</div>
+      <h2 id="d124e38888">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving Scenario
+            Designer</span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator-system-object.html"><span itemprop="name"><code class="sysobj">visionDetectionGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator-system-object.html"><span itemprop="name"><code class="sysobj">drivingRadarDataGenerator</code></span></a></span></li>
+</ul>
+      <h2 id="d124e38909">Related Topics</h2>
+<ul><li><a href="sensor-fusion-using-synthetic-radar-and-vision-data.html" class="a">Sensor Fusion Using Synthetic Radar and Vision Data</a></li>
+<li><a href="model-radar-sensor-detections.html" class="a">Model Radar Sensor Detections</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

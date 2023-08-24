@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Sensor Fusion Using Synthetic Radar and Vision Data</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../detection-and-tracking.html",
+          "name": "Detection and Tracking"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../tracking-and-sensor-fusion.html",
+          "name": "Tracking and Sensor Fusion"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "tracking-and-sensor-fusion"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Sensor Fusion Using Synthetic Radar and Vision Data",
+          "description": "Generate a scenario, simulate sensor detections, and use sensor fusion to track simulated vehicles.",
+          "thumbnailURL": "../../examples/driving/win64/SensorFusionUsingSyntheticDataExample_04.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving.SensorFusionUsingSyntheticDataExample",
+          "name": "SensorFusionUsingSyntheticDataExample",
+          "url": "sensor-fusion-using-synthetic-radar-and-vision-data.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/SensorFusionUsingSyntheticDataExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "SensorFusionUsingSyntheticDataExample.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Generate a scenario, simulate sensor detections, and use sensor fusion to track simulated vehicles."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/SensorFusionUsingSyntheticDataExample_04.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../detection-and-tracking.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Detection and Tracking</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../tracking-and-sensor-fusion.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Tracking and Sensor Fusion</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Sensor Fusion Using Synthetic Radar and Vision Data</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e30046" class="intrnllnk">Generate the Scenario</a></li>
+<li><a href="#d124e30063" class="intrnllnk">Define Radar and Vision Sensors</a></li>
+<li><a href="#d124e30070" class="intrnllnk">Create a Tracker</a></li>
+<li><a href="#d124e30088" class="intrnllnk">Simulate the Scenario</a></li>
+<li><a href="#d124e30109" class="intrnllnk">Summary</a></li>
+<li><a href="#d124e30115" class="intrnllnk">Supporting Functions</a></li>
+<li><a href="#d124e30160" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e30202" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=tracking-and-sensor-fusion&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_4b0a3201-1e7b-487f-961c-8f0ebf14df97">使用合成雷达和视觉数据的传感器融合</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/SensorFusionUsingSyntheticDataExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-SensorFusionUsingSyntheticDataExample"/>
+<meta itemprop="exampletitle" content="Sensor Fusion Using Synthetic Radar and Vision Data"/>
+</div>
+<span id="SensorFusionUsingSyntheticDataExample" class="anchor_target"></span>
+
+<p class="shortdesc"><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例演示如何生成方案、模拟传感器检测以及使用传感器融合来跟踪模拟车辆。与传感器记录相比，使用场景生成和传感器仿真的主要好处是能够创建罕见和潜在的危险事件，并用它们测试车辆算法。</span></p>
+
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例涵盖用于生成合成数据的整个编程工作流。若要改为以交互方式生成合成数据，请使用 </span><a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> <span style="font-family: &quot;Microsoft YaHei&quot;;">应用。有关示例，请参阅</span> <a href="create-driving-scenario-interactively-and-generate-synthetic-detections.html" data-docid="driving_ug#mw_e49e404a-0301-4634-b5c2-c8a6da2db9f6" class="a">Create Driving Scenario Interactively and Generate Synthetic Sensor Data</a><span style="font-family: &quot;Microsoft YaHei&quot;;">。</span></p>
+
+<div class="procedure"><h3 class="title" id="d124e30046">生成方案</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">场景生成包括生成道路网络、定义在道路上移动的车辆以及移动车辆。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在此示例中，您将测试传感器融合跟踪从自我车辆左侧经过的车辆的能力。该场景模拟高速公路设置，其他车辆位于自我车辆的前后。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Define an empty scenario.</span>
+scenario = drivingScenario;
+scenario.SampleTime = 0.01;
+</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">增加一段500米的典型公路，两条车道。道路是使用一组点定义的，其中每个点定义三维空间中的道路中心。在道路的右边缘添加一个 </span>Jersey barrier<span style="font-family: &quot;Microsoft YaHei&quot;;">。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadCenters = [0 0; 50 0; 100 0; 250 20; 500 40];
+mainRoad = road(scenario, roadCenters, <span style="color:#A020F0">'lanes'</span>,lanespec(2));
+barrier(scenario,mainRoad);
+</pre>
+</div>
+</div>
+</div>
+<p>创建自我驾驶车辆及其周围的三辆汽车：一辆超越自我驾驶车辆并从左侧超车，一辆驶在自我驾驶车辆前方，一辆驶在自我驾驶车辆后方。所有车辆都按照道路路径点定义的轨迹行驶，使用 <code class="literal">trajectory</code> 驾驶策略。超车车辆将从右车道开始，切换到左车道超车，然后返回右车道。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create the ego vehicle that travels at 25 m/s along the road.  Place the</span>
+<span style="color:#228B22">% vehicle on the right lane by subtracting off half a lane width (1.8 m)</span>
+<span style="color:#228B22">% from the centerline of the road.</span>
+egoCar = vehicle(scenario, <span style="color:#A020F0">'ClassID'</span>, 1);
+trajectory(egoCar, roadCenters(2:end,:) - [0 1.8], 25); <span style="color:#228B22">% On right lane</span>
+
+<span style="color:#228B22">% Add a car in front of the ego vehicle</span>
+leadCar = vehicle(scenario, <span style="color:#A020F0">'ClassID'</span>, 1);
+trajectory(leadCar, [70 0; roadCenters(3:end,:)] - [0 1.8], 25); <span style="color:#228B22">% On right lane</span>
+
+<span style="color:#228B22">% Add a car that travels at 35 m/s along the road and passes the ego vehicle</span>
+passingCar = vehicle(scenario, <span style="color:#A020F0">'ClassID'</span>, 1);
+waypoints = [0 -1.8; 50 1.8; 100 1.8; 250 21.8; 400 32.2; 500 38.2];
+trajectory(passingCar, waypoints, 35);
+
+<span style="color:#228B22">% Add a car behind the ego vehicle</span>
+chaseCar = vehicle(scenario, <span style="color:#A020F0">'ClassID'</span>, 1);
+trajectory(chaseCar, [25 0; roadCenters(2:end,:)] - [0 1.8], 25); <span style="color:#228B22">% On right lane</span>
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e30063">定义雷达和视觉传感器</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在此示例中，您模拟具有 6 个雷达传感器和 2 个视觉传感器的自我车辆，覆盖 360 度视野。传感器有一些重叠和一些覆盖差距。ego车辆在车辆的前部和后部都配备了远程雷达传感器和视觉传感器。车辆的每一侧都有两个短程雷达传感器，每个传感器覆盖90度。每侧一个传感器覆盖从车辆中间到后部。每侧的另一个传感器从车辆中间向前覆盖。下一节中的图显示了覆盖范围。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sensors = cell(8,1);
+<span style="color:#228B22">% Front-facing long-range radar sensor at the center of the front bumper of the car.</span>
+sensors{1} = drivingRadarDataGenerator(<span style="color:#A020F0">'SensorIndex'</span>, 1, <span style="color:#A020F0">'RangeLimits'</span>, [0 174], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MountingLocation'</span>, [egoCar.Wheelbase + egoCar.FrontOverhang, 0, 0.2], <span style="color:#A020F0">'FieldOfView'</span>, [20, 5]);
+
+<span style="color:#228B22">% Rear-facing long-range radar sensor at the center of the rear bumper of the car.</span>
+sensors{2} = drivingRadarDataGenerator(<span style="color:#A020F0">'SensorIndex'</span>, 2, <span style="color:#A020F0">'MountingAngles'</span>, [180 0 0], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MountingLocation'</span>, [-egoCar.RearOverhang, 0, 0.2], <span style="color:#A020F0">'RangeLimits'</span>, [0 30], <span style="color:#A020F0">'FieldOfView'</span>, [20, 5]);
+
+<span style="color:#228B22">% Rear-left-facing short-range radar sensor at the left rear wheel well of the car.</span>
+sensors{3} = drivingRadarDataGenerator(<span style="color:#A020F0">'SensorIndex'</span>, 3, <span style="color:#A020F0">'MountingAngles'</span>, [120 0 0], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MountingLocation'</span>, [0, egoCar.Width/2, 0.2], <span style="color:#A020F0">'RangeLimits'</span>, [0 30], <span style="color:#A020F0">'ReferenceRange'</span>, 50, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'FieldOfView'</span>, [90, 5], <span style="color:#A020F0">'AzimuthResolution'</span>, 10, <span style="color:#A020F0">'RangeResolution'</span>, 1.25);
+
+<span style="color:#228B22">% Rear-right-facing short-range radar sensor at the right rear wheel well of the car.</span>
+sensors{4} = drivingRadarDataGenerator(<span style="color:#A020F0">'SensorIndex'</span>, 4, <span style="color:#A020F0">'MountingAngles'</span>, [-120 0 0], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MountingLocation'</span>, [0, -egoCar.Width/2, 0.2], <span style="color:#A020F0">'RangeLimits'</span>, [0 30], <span style="color:#A020F0">'ReferenceRange'</span>, 50, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'FieldOfView'</span>, [90, 5], <span style="color:#A020F0">'AzimuthResolution'</span>, 10, <span style="color:#A020F0">'RangeResolution'</span>, 1.25);
+
+<span style="color:#228B22">% Front-left-facing short-range radar sensor at the left front wheel well of the car.</span>
+sensors{5} = drivingRadarDataGenerator(<span style="color:#A020F0">'SensorIndex'</span>, 5, <span style="color:#A020F0">'MountingAngles'</span>, [60 0 0], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MountingLocation'</span>, [egoCar.Wheelbase, egoCar.Width/2, 0.2], <span style="color:#A020F0">'RangeLimits'</span>, [0 30], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ReferenceRange'</span>, 50, <span style="color:#A020F0">'FieldOfView'</span>, [90, 5], <span style="color:#A020F0">'AzimuthResolution'</span>, 10, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeResolution'</span>, 1.25);
+
+<span style="color:#228B22">% Front-right-facing short-range radar sensor at the right front wheel well of the car.</span>
+sensors{6} = drivingRadarDataGenerator(<span style="color:#A020F0">'SensorIndex'</span>, 6, <span style="color:#A020F0">'MountingAngles'</span>, [-60 0 0], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MountingLocation'</span>, [egoCar.Wheelbase, -egoCar.Width/2, 0.2], <span style="color:#A020F0">'RangeLimits'</span>, [0 30], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ReferenceRange'</span>, 50, <span style="color:#A020F0">'FieldOfView'</span>, [90, 5], <span style="color:#A020F0">'AzimuthResolution'</span>, 10, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'RangeResolution'</span>, 1.25);
+
+<span style="color:#228B22">% Front-facing camera located at front windshield.</span>
+sensors{7} = visionDetectionGenerator(<span style="color:#A020F0">'SensorIndex'</span>, 7, <span style="color:#A020F0">'FalsePositivesPerImage'</span>, 0.1, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SensorLocation'</span>, [0.75*egoCar.Wheelbase 0], <span style="color:#A020F0">'Height'</span>, 1.1);
+
+<span style="color:#228B22">% Rear-facing camera located at rear windshield.</span>
+sensors{8} = visionDetectionGenerator(<span style="color:#A020F0">'SensorIndex'</span>, 8, <span style="color:#A020F0">'FalsePositivesPerImage'</span>, 0.1, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SensorLocation'</span>, [0.2*egoCar.Wheelbase 0], <span style="color:#A020F0">'Height'</span>, 1.1, <span style="color:#A020F0">'Yaw'</span>, 180);
+
+<span style="color:#228B22">% Register actor profiles with the sensors.</span>
+profiles = actorProfiles(scenario);
+<span style="color:#0000FF">for</span> m = 1:numel(sensors)
+    <span style="color:#0000FF">if</span> isa(sensors{m},<span style="color:#A020F0">'drivingRadarDataGenerator'</span>)
+        sensors{m}.Profiles = profiles;
+    <span style="color:#0000FF">else</span>
+        sensors{m}.ActorProfiles = profiles;
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="d124e30070">创建跟踪链接</h3>
+<p>创建一个 <code class="literal"><a href="../ref/multiobjecttracker-system-object.html" data-docid="driving_ref#bvigrmf-1" class="a"><code class="olink">multiObjectTracker</code></a></code> ，用于跟踪接近自我驾驶车辆的车辆。该跟踪器使用 <code class="literal">initSimDemoFilter</code> 支持函数来初始化一个基于位置和速度的恒定速度线性卡尔曼滤波器。</p>
+<p>跟踪是在二维空间中进行的。虽然传感器返回的测量值是三维的，但是车辆的运动本身限制在水平平面上，所以没有必要跟踪高度。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tracker = multiObjectTracker(<span style="color:#A020F0">'FilterInitializationFcn'</span>, @initSimDemoFilter, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'AssignmentThreshold'</span>, 30, <span style="color:#A020F0">'ConfirmationThreshold'</span>, [4 5]);
+positionSelector = [1 0 0 0; 0 0 1 0]; <span style="color:#228B22">% Position selector</span>
+velocitySelector = [0 1 0 0; 0 0 0 1]; <span style="color:#228B22">% Velocity selector</span>
+
+<span style="color:#228B22">% Create the display and return a handle to the bird's-eye plot</span>
+BEP = createDemoDisplay(egoCar, sensors);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30085" class="mediaobject"><p><img src="../../examples/driving/win64/SensorFusionUsingSyntheticDataExample_01.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e30088">模拟场景</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">以下循环移动车辆，调用传感器模拟并执行跟踪。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">请注意，场景生成和传感器模拟可以有不同的时间步长。通过为方案和传感器指定不同的时间步长，可以将方案模拟与传感器模拟分离。这对于独立于传感器测量速率的高精度执行组件运动建模非常有用。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">另一个示例是传感器具有不同的更新速率。假设一个传感器每 20 毫秒提供一次更新，另一个传感器每 50 毫秒提供一次更新。您可以指定更新速率为 10 毫秒的方案，传感器将在正确的时间提供其更新。</span></p>
+<p>在这个例子中，场景生成的时间步长为0.01秒，而传感器每0.1秒进行一次检测。传感器返回一个逻辑标志，<span style="font-family: monospace;">isValidTime</span>，如果传感器生成了检测结果，则该标志为true。这个标志用于在有检测结果时调用跟踪器。</p>
+<p>另一个重要的注意事项是传感器可以模拟每个目标的多个检测结果，特别是当目标非常靠近雷达传感器时。因为跟踪器假设每个传感器只有一个目标的检测结果，所以在跟踪器处理之前，您必须对检测结果进行聚类。这可以通过将 <code class="literal">TargetReportFormat</code> 设置为 'Clustered detections' 来完成，这是默认设置。传感器模型还可以输出原始的检测数据，或者使用内部跟踪器进行跟踪更新。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>toSnap = true;
+<span style="color:#0000FF">while</span> advance(scenario) &amp;&amp; ishghandle(BEP.Parent)
+    <span style="color:#228B22">% Get the scenario time</span>
+    time = scenario.SimulationTime;
+
+    <span style="color:#228B22">% Get the position of the other vehicle in ego vehicle coordinates</span>
+    ta = targetPoses(egoCar);
+
+    <span style="color:#228B22">% Simulate the sensors</span>
+    detectionClusters = {};
+    isValidTime = false(1,8);
+    <span style="color:#0000FF">for</span> i = 1:8
+        [sensorDets,numValidDets,isValidTime(i)] = sensors{i}(ta, time);
+        <span style="color:#0000FF">if</span> numValidDets
+            <span style="color:#0000FF">for</span> j = 1:numValidDets
+                <span style="color:#228B22">% Vision detections do not report SNR. The tracker requires</span>
+                <span style="color:#228B22">% that they have the same object attributes as the radar</span>
+                <span style="color:#228B22">% detections. This adds the SNR object attribute to vision</span>
+                <span style="color:#228B22">% detections and sets it to a NaN.</span>
+                <span style="color:#0000FF">if</span> ~isfield(sensorDets{j}.ObjectAttributes{1}, <span style="color:#A020F0">'SNR'</span>)
+                    sensorDets{j}.ObjectAttributes{1}.SNR = NaN;
+                <span style="color:#0000FF">end</span>
+
+                <span style="color:#228B22">% Remove the Z-component of measured position and velocity</span>
+                <span style="color:#228B22">% from the Measurement and MeasurementNoise fields</span>
+                sensorDets{j}.Measurement = sensorDets{j}.Measurement([1 2 4 5]);
+                sensorDets{j}.MeasurementNoise = sensorDets{j}.MeasurementNoise([1 2 4 5],[1 2 4 5]);
+            <span style="color:#0000FF">end</span>
+            detectionClusters = [detectionClusters; sensorDets]; <span style="color:#228B22">%#ok&lt;AGROW&gt;</span>
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Update the tracker if there are new detections</span>
+    <span style="color:#0000FF">if</span> any(isValidTime)
+        <span style="color:#0000FF">if</span> isa(sensors{1},<span style="color:#A020F0">'drivingRadarDataGenerator'</span>)
+            vehicleLength = sensors{1}.Profiles.Length;
+        <span style="color:#0000FF">else</span>
+            vehicleLength = sensors{1}.ActorProfiles.Length;
+        <span style="color:#0000FF">end</span>
+        confirmedTracks = updateTracks(tracker, detectionClusters, time);
+
+        <span style="color:#228B22">% Update bird's-eye plot</span>
+        updateBEP(BEP, egoCar, detectionClusters, confirmedTracks, positionSelector, velocitySelector);
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Snap a figure for the document when the car passes the ego vehicle</span>
+    <span style="color:#0000FF">if</span> ta(1).Position(1) &gt; 0 &amp;&amp; toSnap
+        toSnap = false;
+        snapnow
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30106" class="mediaobject"><p><img src="../../examples/driving/win64/SensorFusionUsingSyntheticDataExample_02.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e30109">总结</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">此示例演示如何生成方案、模拟传感器检测，以及如何使用这些检测来跟踪自我车辆周围的移动车辆。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">您可以尝试修改方案道路，或者添加或删除车辆。您还可以尝试添加、删除或修改自我车辆上的传感器，或修改跟踪器参数。</span></p>
+<h3 class="title" id="d124e30115">Supporting Functions<span id="SensorFusionUsingSyntheticDataExample-8" class="anchor_target"></span></h3>
+<p><strong class="emphasis bold"><code class="literal">initSimDemoFilter</code></strong></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">此函数根据检测初始化等速过滤器。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> filter = initSimDemoFilter(detection)
+<span style="color:#228B22">% Use a 2-D constant velocity model to initialize a trackingKF filter.</span>
+<span style="color:#228B22">% The state vector is [x;vx;y;vy]</span>
+<span style="color:#228B22">% The detection measurement vector is [x;y;vx;vy]</span>
+<span style="color:#228B22">% As a result, the measurement model is H = [1 0 0 0; 0 0 1 0; 0 1 0 0; 0 0 0 1]</span>
+H = [1 0 0 0; 0 0 1 0; 0 1 0 0; 0 0 0 1];
+filter = trackingKF(<span style="color:#A020F0">'MotionModel'</span>, <span style="color:#A020F0">'2D Constant Velocity'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'State'</span>, H' * detection.Measurement, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MeasurementModel'</span>, H, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'StateCovariance'</span>, H' * detection.MeasurementNoise * H, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'MeasurementNoise'</span>, detection.MeasurementNoise);
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">createDemoDisplay</code></strong></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">此功能创建一个三面板显示：</span></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>显示屏左上角：跟随自我车辆的俯视图。</p></li>
+<li><p>显示屏的左下角：跟随自我车辆的追逐相机视图。<br/></p></li>
+<li><p><font _mstmutation="1" _msttexthash="61881001" _msthash="62">显示器的右半部分：</font> <code class="literal"><a href="../ref/birdseyeplot.html" data-docid="driving_ref#bvi0yqz-1" class="a"><code class="olink">birdsEyePlot</code></a></code>  <font _mstmutation="1" _msttexthash="61881001" _msthash="62">显示器。</font><br/></p></li>
+</ol>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> BEP = createDemoDisplay(egoCar, sensors)
+    <span style="color:#228B22">% Make a figure</span>
+    hFigure = figure(<span style="color:#A020F0">'Position'</span>, [0, 0, 1200, 640], <span style="color:#A020F0">'Name'</span>, <span style="color:#A020F0">'Sensor Fusion with Synthetic Data Example'</span>);
+    movegui(hFigure, [0 -1]); <span style="color:#228B22">% Moves the figure to the left and a little down from the top</span>
+
+    <span style="color:#228B22">% Add a car plot that follows the ego vehicle from behind</span>
+    hCarViewPanel = uipanel(hFigure, <span style="color:#A020F0">'Position'</span>, [0 0 0.5 0.5], <span style="color:#A020F0">'Title'</span>, <span style="color:#A020F0">'Chase Camera View'</span>);
+    hCarPlot = axes(hCarViewPanel);
+    chasePlot(egoCar, <span style="color:#A020F0">'Parent'</span>, hCarPlot);
+
+    <span style="color:#228B22">% Add a car plot that follows the ego vehicle from a top view</span>
+    hTopViewPanel = uipanel(hFigure, <span style="color:#A020F0">'Position'</span>, [0 0.5 0.5 0.5], <span style="color:#A020F0">'Title'</span>, <span style="color:#A020F0">'Top View'</span>);
+    hCarPlot = axes(hTopViewPanel);
+    chasePlot(egoCar, <span style="color:#A020F0">'Parent'</span>, hCarPlot, <span style="color:#A020F0">'ViewHeight'</span>, 130, <span style="color:#A020F0">'ViewLocation'</span>, [0 0], <span style="color:#A020F0">'ViewPitch'</span>, 90);
+
+    <span style="color:#228B22">% Add a panel for a bird's-eye plot</span>
+    hBEVPanel = uipanel(hFigure, <span style="color:#A020F0">'Position'</span>, [0.5 0 0.5 1], <span style="color:#A020F0">'Title'</span>, <span style="color:#A020F0">'Bird''s-Eye Plot'</span>);
+
+    <span style="color:#228B22">% Create bird's-eye plot for the ego vehicle and sensor coverage</span>
+    hBEVPlot = axes(hBEVPanel);
+    frontBackLim = 60;
+    BEP = birdsEyePlot(<span style="color:#A020F0">'Parent'</span>, hBEVPlot, <span style="color:#A020F0">'Xlimits'</span>, [-frontBackLim frontBackLim], <span style="color:#A020F0">'Ylimits'</span>, [-35 35]);
+
+    <span style="color:#228B22">% Plot the coverage areas for radars</span>
+    <span style="color:#0000FF">for</span> i = 1:6
+        cap = coverageAreaPlotter(BEP,<span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'red'</span>,<span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'red'</span>);
+        <span style="color:#0000FF">if</span> isa(sensors{i},<span style="color:#A020F0">'drivingRadarDataGenerator'</span>)
+            plotCoverageArea(cap, sensors{i}.MountingLocation(1:2),<span style="color:#0000FF">...</span>
+                sensors{i}.RangeLimits(2), sensors{i}.MountingAngles(1), sensors{i}.FieldOfView(1));
+        <span style="color:#0000FF">else</span>
+            plotCoverageArea(cap, sensors{i}.SensorLocation,<span style="color:#0000FF">...</span>
+                sensors{i}.MaxRange, sensors{i}.Yaw, sensors{i}.FieldOfView(1));
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Plot the coverage areas for vision sensors</span>
+    <span style="color:#0000FF">for</span> i = 7:8
+        cap = coverageAreaPlotter(BEP,<span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'blue'</span>,<span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'blue'</span>);
+        <span style="color:#0000FF">if</span> isa(sensors{i},<span style="color:#A020F0">'drivingRadarDataGenerator'</span>)
+            plotCoverageArea(cap, sensors{i}.MountingLocation(1:2),<span style="color:#0000FF">...</span>
+                sensors{i}.RangeLimits(2), sensors{i}.MountingAngles(1), 45);
+        <span style="color:#0000FF">else</span>
+            plotCoverageArea(cap, sensors{i}.SensorLocation,<span style="color:#0000FF">...</span>
+                sensors{i}.MaxRange, sensors{i}.Yaw, 45);
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Create a vision detection plotter put it in a struct for future use</span>
+    detectionPlotter(BEP, <span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'vision'</span>, <span style="color:#A020F0">'MarkerEdgeColor'</span>,<span style="color:#A020F0">'blue'</span>, <span style="color:#A020F0">'Marker'</span>,<span style="color:#A020F0">'^'</span>);
+
+    <span style="color:#228B22">% Combine all radar detections into one entry and store it for later update</span>
+    detectionPlotter(BEP, <span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'radar'</span>, <span style="color:#A020F0">'MarkerEdgeColor'</span>,<span style="color:#A020F0">'red'</span>);
+
+    <span style="color:#228B22">% Add road borders to plot</span>
+    laneMarkingPlotter(BEP, <span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'lane markings'</span>);
+
+    <span style="color:#228B22">% Add the tracks to the bird's-eye plot. Show last 10 track updates.</span>
+    trackPlotter(BEP, <span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'track'</span>, <span style="color:#A020F0">'HistoryDepth'</span>,10);
+
+    axis(BEP.Parent, <span style="color:#A020F0">'equal'</span>);
+    xlim(BEP.Parent, [-frontBackLim frontBackLim]);
+    ylim(BEP.Parent, [-40 40]);
+
+    <span style="color:#228B22">% Add an outline plotter for ground truth</span>
+    outlinePlotter(BEP, <span style="color:#A020F0">'Tag'</span>, <span style="color:#A020F0">'Ground truth'</span>);
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<p><strong class="emphasis bold"><code class="literal">updateBEP</code></strong></p>
+<p>This function updates the bird's-eye plot with road boundaries, detections, and tracks.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> updateBEP(BEP, egoCar, detections, confirmedTracks, psel, vsel)
+    <span style="color:#228B22">% Update road boundaries and their display</span>
+    [lmv, lmf] = laneMarkingVertices(egoCar);
+    plotLaneMarking(findPlotter(BEP,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'lane markings'</span>),lmv,lmf);
+
+    <span style="color:#228B22">% update ground truth data</span>
+    [position, yaw, length, width, originOffset, color] = targetOutlines(egoCar);
+    plotOutline(findPlotter(BEP,<span style="color:#A020F0">'Tag'</span>,<span style="color:#A020F0">'Ground truth'</span>), position, yaw, length, width, <span style="color:#A020F0">'OriginOffset'</span>, originOffset, <span style="color:#A020F0">'Color'</span>, color);
+
+    <span style="color:#228B22">% update barrier data</span>
+    [bPosition,bYaw,bLength,bWidth,bOriginOffset,bColor,numBarrierSegments] = targetOutlines(egoCar, <span style="color:#A020F0">'Barriers'</span>);
+    plotBarrierOutline(findPlotter(BEP,<span style="color:#A020F0">'Tag'</span>,<span style="color:#A020F0">'Ground truth'</span>),numBarrierSegments,bPosition,bYaw,bLength,bWidth,<span style="color:#0000FF">...</span>
+                       <span style="color:#A020F0">'OriginOffset'</span>,bOriginOffset,<span style="color:#A020F0">'Color'</span>,bColor);
+
+    <span style="color:#228B22">% Prepare and update detections display</span>
+    N = numel(detections);
+    detPos = zeros(N,2);
+    isRadar = true(N,1);
+    <span style="color:#0000FF">for</span> i = 1:N
+        detPos(i,:) = detections{i}.Measurement(1:2)';
+        <span style="color:#0000FF">if</span> detections{i}.SensorIndex &gt; 6 <span style="color:#228B22">% Vision detections</span>
+            isRadar(i) = false;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+    plotDetection(findPlotter(BEP,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'vision'</span>), detPos(~isRadar,:));
+    plotDetection(findPlotter(BEP,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'radar'</span>), detPos(isRadar,:));
+
+    <span style="color:#228B22">% Remove all object tracks that are unidentified by the vision detection</span>
+    <span style="color:#228B22">% generators before updating the tracks display. These have the ObjectClassID</span>
+    <span style="color:#228B22">% parameter value as 0 and include objects such as barriers.</span>
+    isNotBarrier = arrayfun(@(t)t.ObjectClassID,confirmedTracks)&gt;0;
+    confirmedTracks = confirmedTracks(isNotBarrier);
+
+    <span style="color:#228B22">% Prepare and update tracks display</span>
+    trackIDs = {confirmedTracks.TrackID};
+    labels = cellfun(@num2str, trackIDs, <span style="color:#A020F0">'UniformOutput'</span>, false);
+    [tracksPos, tracksCov] = getTrackPositions(confirmedTracks, psel);
+    tracksVel = getTrackVelocities(confirmedTracks, vsel);
+    plotTrack(findPlotter(BEP,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'track'</span>), tracksPos, tracksVel, tracksCov, labels);
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30150" class="mediaobject"><p><img src="../../examples/driving/win64/SensorFusionUsingSyntheticDataExample_03.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e30154" class="mediaobject"><p><img src="../../examples/driving/win64/SensorFusionUsingSyntheticDataExample_04.png"/></p>
+</div>
+</div>
+</div>
+      <h2 id="d124e30160">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving Scenario
+            Designer</span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyeplot.html"><span itemprop="name"><code class="object">birdsEyePlot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingradardatagenerator-system-object.html"><span itemprop="name"><code class="sysobj">drivingRadarDataGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visiondetectiongenerator-system-object.html"><span itemprop="name"><code class="sysobj">visionDetectionGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/multiobjecttracker-system-object.html"><span itemprop="name"><code class="sysobj">multiObjectTracker</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span></li>
+</ul>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.vehicle.html"><span itemprop="name"><code class="function">vehicle</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.trajectory.html"><span itemprop="name"><code class="function">trajectory</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.targetposes.html"><span itemprop="name"><code class="function">targetPoses</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/multiobjecttracker.updatetracks.html"><span itemprop="name"><code class="function">updateTracks</code></span></a></span></li>
+</ul>
+      <h2 id="d124e30202">Related Topics</h2>
+<ul><li><a href="sensor-fusion-using-synthetic-radar-and-vision-data-in-simulink.html" class="a">Sensor Fusion Using Synthetic Radar and Vision Data in Simulink</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

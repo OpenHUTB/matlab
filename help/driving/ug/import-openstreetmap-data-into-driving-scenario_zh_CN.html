@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Import OpenStreetMap Data into Driving Scenario</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../scenario-import-and-export.html",
+          "name": "Scenario Import and Export"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "scenario-import-and-export"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Import map data from an OpenStreetMap file into the Driving Scenario Designer app or a drivingScenario object."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Import and Export</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Import OpenStreetMap Data into Driving Scenario</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_a8f1c173-022f-40ea-8649-7b2690f28834" class="intrnllnk">Select OpenStreetMap File</a></li>
+<li><a href="#mw_129d1024-9d9e-41f2-af48-29d0c1c72000" class="intrnllnk">Select Roads to Import</a></li>
+<li><a href="#mw_22467636-b483-40d7-9041-0e2690180fb2" class="intrnllnk">Import Roads</a></li>
+<li><a href="#mw_61e63e5f-7f0d-4fda-8c8e-d4c0a846a25e" class="intrnllnk">Compare Imported Roads Against Map Data</a></li>
+<li><a href="#mw_98a059fd-7a80-4f43-8a2e-6db96ddd8862" class="intrnllnk">Save Scenario</a></li>
+<li><a href="#d124e11114" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e11141" class="intrnllnk">Related Topics</a></li>
+<li><a href="#d124e11152" class="intrnllnk">External Websites</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=scenario-import-and-export&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_004eff52-6c2e-4069-b83f-dcb2e7cc97be"><span id="osmImport" class="anchor_target"></span>将OpenStreetMap数据导入到驾驶场景中</h2>
+<p>OpenStreetMap<sup>®</sup> 是一个免费的开源网络地图服务，可以让您访问众包地图数据。使用 <strong class="app"><a href="../ref/drivingscenariodesigner-app.html">Driving Scenario Designer</a></strong> 应用程序，您可以从OpenStreetMap导入地图数据，并将其用于生成驾驶场景中的道路。</p>
+<p>本示例重点介绍在应用程序中导入地图数据的方法。或者，要将OpenStreetMap道路导入到 <a href="../ref/drivingscenario.html"><code class="object">drivingScenario</code></a> 对象中，请使用 <a href="../ref/drivingscenario.roadnetwork.html"><code class="function">roadNetwork</code></a> 函数。</p>
+<section itemprop="content"><h3 class="title" id="mw_a8f1c173-022f-40ea-8649-7b2690f28834">选择OpenStreetMap文件</h3>
+<p>要导入道路网络，首先必须选择包含该网络道路几何信息的OpenStreetMap文件。要从 <a href="https://www.openstreetmap.org/" target="_blank" style="font-family: monospace;">openstreetmap.org</a> 导出这些文件，请指定一个地图位置，手动调整该位置周围的区域，并将该区域的道路几何信息导出为扩展名为 <code class="literal">.osm </code>的OpenStreetMap文件。只有完全位于指定区域内的道路才会被导出。在本示例中，您将选择之前从该网站导出的OpenStreetMap文件。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>打开 <strong class="app">Driving Scenario Designer</strong> 应用程序。</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>drivingScenarioDesigner</pre>
+</div>
+</div>
+</div><p></p></li>
+<li><p>在应用程序的工具栏上，选择 <strong class="guimenuitem">Import</strong> ，然后选择 <strong class="guimenuitem">OpenStreetMap</strong>。</p></li>
+<li><p>在OpenStreetMap导入对话框中，浏览此文件，其中 <em class="replaceable" style="font-family: monospace;"><code>matlabroot </code></em>是您的MATLAB®文件夹的根目录：</p><div class="code_responsive"><pre class="programlisting"><em class="replaceable">matlabroot</em>/examples/driving/data/applehill.osm</pre>
+</div><p>该文件是从 <code class="literal"><a href="https://www.openstreetmap.org/" target="_blank">https://www.openstreetmap.org</a> </code>下载的，该网站提供全球范围内的众包地图数据。这些数据受到Open Data Commons Open Database License (ODbL)的许可，详情请参阅<a href="https://opendatacommons.org/licenses/odbl/" target="_blank" style="font-family: monospace;">https://opendatacommons.org/licenses/odbl/</a>。</p></li>
+</ol>
+</div>
+<p>对话框的 <strong class="guilabel">Select Roads</strong> 部分显示了MathWorks® Apple Hill校园的道路网络。灰色框表示从 <code class="literal">openstreetmap.org </code>选择的地图区域。灰色框的中心点是地理参考点。点击该点可以显示或隐藏坐标数据。当将道路导入到该应用程序时，该点将成为驾驶场景的原点。</p>
+<div class="informalfigure"><div id="d124e10905" class="mediaobject"><p><img src="osm2scenario_select_osm_file.png" alt="A map displaying the road network for the MathWorks Apple Hill campus. The geographic reference point has a latitude of 42.2997 degrees and a longitude of negative 71.3504 degrees." height="305" width="420"/></p>
+</div>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_129d1024-9d9e-41f2-af48-29d0c1c72000">选择要导入的道路</h3>
+<p>在“选择道路”对话框的 <strong class="guilabel">Select Roads </strong>部分，选择要导入到驾驶场景中的道路。可选择的道路以黑色显示。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><b>注意</b></p>
+<p>您选择的道路数量直接影响应用程序的性能。请选择您创建驾驶场景所需的最少道路。</p>
+</div>
+<p>由于这个道路网络很小，点击 <strong class="guilabel">Select All</strong> 以选择所有道路。所选道路将以蓝色显示。</p>
+<div class="informalfigure"><div id="d124e10926" class="mediaobject"><p><img src="osm2scenario_select_roads.png" alt="The road network for the MathWorks Apple Hill campus with all roads selected for import" height="305" width="420"/></p>
+</div>
+</div>
+<p></p>
+<p>以下是您可以选择道路导入的操作。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>Goal</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr><td>从该区域选择单个道路。</td>
+<td>单击单个道路以选择它们。</td>
+</tr>
+<tr><td>从该区域选择所有道路。</td>
+<td>单击 <strong class="guilabel">Select All</strong>。</td>
+</tr>
+<tr><td>从该区域选择所有道路，但排除其中的几条。</td>
+<td>单击 <strong class="guilabel">Select All</strong>，然后单击单个道路以取消选择。</td>
+</tr>
+<tr><td>从该区域选择道路的子集，例如选择该区域上半部分的所有道路。</td>
+<td><p>在地图显示的左上角，单击“选择道路”按钮。然后，绘制一个矩形框选中道路。</p>
+<div class="itemizedlist"><ul><li><p>要从此选择中取消选择一部分道路，请单击“取消选择道路”按钮。然后，绘制一个矩形框取消选择道路。</p></li>
+<li><p>要取消选择所有道路并重新开始，请单击 <strong class="guilabel">Deselect All</strong>。</p></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_22467636-b483-40d7-9041-0e2690180fb2">导入道路</h3>
+<p>在选择网络中的所有道路后，点击 <strong class="guilabel">Import</strong>。应用程序会暂停导入并将其中一条道路标记为红色。应用程序无法正确渲染该道路的几何形状，因此无法导入该道路。</p>
+<div class="informalfigure"><div id="d124e10997" class="mediaobject"><p><img src="osm2scenario_unable_to_compute_geometry.png" alt="The road network for the MathWorks Apple Hill campus with one of the roads highlighted in red." height="303" width="417"/></p>
+</div>
+</div>
+<p>点击 <strong class="guilabel">Continue </strong>以继续导入所有其他选定的道路。应用程序将导入道路并生成道路网络。</p>
+<div class="informalfigure"><div id="d124e11010" class="mediaobject"><p><img src="osm2scenario_imported_road_network.png" alt="The road network of the MathWorks Apple Hill campus in the Driving Scenario Designer app." height="545" width="555"/></p>
+</div>
+</div>
+<p>为了保持与地理地图显示的相同对齐，场景画布的<em class="varname">X</em>轴在底部，<em class="varname">Y</em>轴在左侧。在不从地图导入的驾驶场景中，<em class="varname">X</em>轴在左侧，<em class="varname">Y</em>轴在底部。这种对齐与 Automated Driving Toolbox™ 的世界坐标系一致。场景的原点对应于地理参考点。</p>
+<p>默认情况下，禁用道路交互。禁用道路交互可以防止意外修改网络，并通过隐藏道路中心来减少视觉杂乱。如果您想修改道路，在 <strong class="guilabel">Scenario Canvas </strong>的左下角，点击配置场景画布按钮。然后，选择 <strong class="guilabel">Enable road interactions</strong>。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_61e63e5f-7f0d-4fda-8c8e-d4c0a846a25e">比较导入的道路与地图数据</h3>
+<p>应用程序中生成的道路网络与OpenStreetMap道路网络不同。例如，检查道路网络的这一部分的差异。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>OpenStreetMap Road Network</th>
+<th>Imported Driving Scenario</th>
+</tr>
+</thead>
+<tbody><tr><td><div class="informalfigure"><div id="d124e11070" class="mediaobject"><p><img src="osm2scenario_lane_merge_osm.png" alt="Two one-way roads gradually taper into one lane" height="125" width="75"/></p>
+</div>
+</div>
+</td>
+<td><div class="informalfigure"><div id="d124e11076" class="mediaobject"><p><img src="osm2scenario_lane_merge_dsd.png" alt="Two single-lane roads, with no direction of travel indicated, abruptly transition into a two-lane road with bidirectional travel" height="126" width="75"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>导入场景中道路之间的过渡更加突然，因为应用程序不支持随着车道数量的变化逐渐变窄的车道。此外，由于应用程序不从OpenStreetMap导入车道级别的信息，生成的道路网络中的车道数量仅基于道路网络中指定的行驶方向，其中：</p>
+<div class="itemizedlist"><ul><li><p>所有单行道被导入为单车道道路。</p></li>
+<li><p>所有双行道被导入为双车道道路。</p></li>
+</ul>
+</div>
+<p>这些车道都具有相同的宽度，这可能会导致突然的过渡，如表中所示的示例。</p>
+<p>有关导入OpenStreetMap数据的限制的更多详细信息，请参阅 <strong class="app">Driving Scenario Designer</strong> 应用程序参考页面的 <a href="../ref/drivingscenariodesigner-app.html#mw_eb3ec534-c9f8-4fa6-b838-6f6efce608bc" class="a">Limitations</a> 部分。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_98a059fd-7a80-4f43-8a2e-6db96ddd8862">保存场景</h3>
+<p>保存场景文件。保存场景后，您无法将其他OpenStreetMap道路导入其中。相反，您必须创建一个新的场景并导入新的道路网络。</p>
+<p>现在，您可以向场景中添加参与者和传感器，为测试驾驶算法生成合成车道和物体检测，或将场景导入到Simulink<sup>®</sup>中。</p>
+</section>
+        <h2 id="d124e11114">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving
+                    Scenario Designer</span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/scenarioreader.html"><span itemprop="name"><span class="block">Scenario
+                    Reader</span></span></a></span></li>
+</ul>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span></li>
+</ul>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.roadnetwork.html"><span itemprop="name"><code class="function">roadNetwork</code></span></a></span></li>
+</ul>
+        <h2 id="d124e11141">Related Topics</h2>
+<ul><li><a href="coordinate-systems.html" class="a">Coordinate Systems in Automated Driving Toolbox</a></li>
+<li><a href="create-driving-scenario-interactively-and-generate-synthetic-detections.html" class="a">Create Driving Scenario Interactively and Generate Synthetic Sensor Data</a></li>
+<li><a href="import-here-hd-live-map-roads-into-driving-scenario.html" class="a">Import HERE HD Live Map Roads into Driving Scenario</a></li>
+<li><a href="import-zenrin-roads-into-driving-scenario.html" class="a">Import Zenrin Japan Map API 3.0 (Itsumo NAVI API 3.0) into Driving Scenario</a></li>
+</ul>
+        <h2 id="d124e11152">External Websites</h2>
+<ul><li><a href="https://www.openstreetmap.org/" target="_blank">openstreetmap.org</a></li>
+</ul>
+    </section>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

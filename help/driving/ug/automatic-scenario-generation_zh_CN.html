@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Automatic Scenario Generation</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Automatic Scenario Generation",
+          "description": "Automate scenario generation by using a drivingScenario object. In this example, you will automate:",
+          "thumbnailURL": "../../examples/driving/win64/automatedscenarioAnimation.gif",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "Simulink"
+
+        },
+          "identifier": "driving.AutomatedScenarioGenerationExample",
+          "name": "AutomatedScenarioGenerationExample",
+          "url": "automatic-scenario-generation.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/AutomatedScenarioGenerationExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "AutomatedScenarioGenerationExample.mlx",
+        "cActor.p",
+        "cAngle.p",
+        "cCollisionDetection.p",
+        "cDimVehicle.p",
+        "cDirectionOfTravel.p",
+        "cFOVSensor.p",
+        "cGeometry.p",
+        "cLane.p",
+        "cLaneMarking.p",
+        "cLaneType.p",
+        "cMarkingType.p",
+        "cMotionModel.p",
+        "cNode.p",
+        "cObject.p",
+        "cObjectType.p",
+        "cObstacles.p",
+        "cPath.p",
+        "cPose.p",
+        "cRoad.p",
+        "cRoadNetwork.p",
+        "cRoadSegment.p",
+        "cSafePolicyGenerator.p",
+        "cScenario.p",
+        "cSignType.p",
+        "cTrafficLight.p",
+        "cVector.p",
+        "cVehicle.p",
+        "cVehicleType.p",
+        "getDynRoadnetwork.p",
+        "helperCFSM.p",
+        "helperGenerateWaypoints.p",
+        "helperSamplePositions.p",
+        "helperWaypointsGen.p",
+        "mathUtils.p",
+        "roadUtils.p",
+        "simpleMotionModel.p",
+        "helperCFSMCleanUp.m",
+        "CollisionFreeSpeedManipulator.slx",
+        "AutomatedScenarioGenerationExample.mlx",
+        "helperOSMImport.m",
+        "helpergetCFSMScenario.m",
+        "automatedscenarioAnimation.gif"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to automate scenario generation by using a drivingScenario object."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/automatedscenarioAnimation.gif" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Automatic Scenario Generation</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#AutomatedScenarioGenerationExample-1" class="intrnllnk">Introduction</a></li>
+<li><a href="#AutomatedScenarioGenerationExample-2" class="intrnllnk">Import Road Network</a></li>
+<li><a href="#AutomatedScenarioGenerationExample-3" class="intrnllnk">Define Start and Goal Positions</a></li>
+<li><a href="#AutomatedScenarioGenerationExample-7" class="intrnllnk">Generate Vehicle Trajectories</a></li>
+<li><a href="#AutomatedScenarioGenerationExample-8" class="intrnllnk">Modify Speed Profile to Avoid Collision</a></li>
+<li><a href="#AutomatedScenarioGenerationExample-9" class="intrnllnk">Simulate and Visualize Generated Scenario</a></li>
+<li><a href="#AutomatedScenarioGenerationExample-10" class="intrnllnk">Tips To Avoid Collisions</a></li>
+<li><a href="#References" class="intrnllnk">References</a></li>
+<li><a href="#d124e50698" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e50713" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_ce45de5a-5dcd-46e6-9f75-7c8fef16873c">自动场景生成</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">This example uses:</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('SL')">Simulink</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('driving/AutomatedScenarioGenerationExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-AutomatedScenarioGenerationExample"/>
+<meta itemprop="exampletitle" content="Automatic Scenario Generation"/>
+</div>
+<span id="AutomatedScenarioGenerationExample" class="anchor_target"></span><p class="shortdesc"><font face="Microsoft YaHei">这个例子展示了如何使用</font> <code class="literal">drivingScenario </code><font face="Microsoft YaHei">对象来自动化场景生成。在这个例子中，您将自动化：</font></p>
+<div class="itemizedlist"><ul><li><p>通过定义车辆的起点和目标位置来定义场景中的车辆放置</p></li>
+<li><p>航点选择和轨迹生成，供车辆从起点位置移动到目标位置。<br/></p></li>
+<li><p>速度调整，使车辆加速或减速，以避免在同一车道上行驶的其他车辆之间发生碰撞。<br/></p></li>
+</ul>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">您可以使用此示例合成多个随机场景来测试驾驶算法。</span></p>
+<div class="procedure"><h3 class="title" id="AutomatedScenarioGenerationExample-1">介绍</h3>
+<p><a href="../ref/drivingscenario.html" data-docid="driving_ref#bvm8jbf" class="a"><code class="olink">drivingScenario</code></a> 对象和Automated Driving Toolbox™中的 <a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> 应用程序是生成合成驾驶场景的高效工具。您可以创建道路网络，或从OpenDRIVE®、HERE HD Live Map和OpenStreetMap®导入道路网络。然后，您可以将角色或车辆添加到道路网络中，并定义它们的轨迹以合成驾驶场景。生成轨迹所需的航点必须谨慎选择，以使车辆的轨迹位于道路网络内，并且车辆在沿着轨迹行驶时不会发生碰撞。定义这样的车辆位置和轨迹通常需要多次尝试，并且如果您有大型道路网络和许多车辆需要配置，这将耗费大量时间。</p>
+<p>这个例子提供了辅助函数，并演示了使用 <a href="../ref/drivingscenario.html" data-docid="driving_ref#bvm8jbf" class="a"><code class="olink">drivingScenario</code></a> 对象自动化车辆位置和轨迹生成的步骤。您还可以将生成的场景导出到 <a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> 应用程序中。该示例的其余部分演示了自动化场景生成所涉及的这些步骤。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><strong class="emphasis bold" _mstmutation="1" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">导入路网 </strong>- 使用辅助函数 <code class="literal">helperOSMimport </code>将 OpenStreetMap® 路网导入驾驶场景对象。</li>
+<li><p><strong class="emphasis bold" _mstmutation="1" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">定义起点和目标位置</strong><span style="font-family: &quot;Microsoft YaHei&quot;;"> </span>- 指定道路网络中的感兴趣区域 （ROI），以使用辅助程序功能 <code class="literal">helperSamplePositions </code>选择车辆的起点和目标位置。</p></li>
+<li><strong class="emphasis bold" _mstmutation="1" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">生成车辆轨迹 </strong>- 使用辅助函数 <code class="literal">helperGenerateWaypoints </code>和轨迹函数生成航点和<code class="olink"><a href="../ref/drivingscenario.trajectory.html" data-docid="driving_ref#mw_2ced67a1-4d99-400b-992e-d65fbfab63a3" class="a">trajectory</a>。</code></li>
+<li><p><strong class="emphasis bold" _mstmutation="1" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">修改速度配置文件以避免碰撞</strong><span style="font-family: &quot;Microsoft YaHei&quot;;"> </span>-  通过使用Simulink®模型<span style="font-family: monospace;">CollisionFreeSpeedManipulator </span>来修改场景中车辆的速度配置文件。该模型检查每辆车的速度配置文件，并防止它们在沿着轨迹行驶时相互碰撞。模型的输出是一个更新后的场景，其中车辆之间没有碰撞。您可以使用辅助函数 <span style="font-family: monospace;">helpergetCFSMScenario </span>将<span style="font-family: monospace;">CollisionFreeSpeedManipulator</span> Simulink模型的输出转换为驾驶场景对象。</p></li>
+<li><p><strong class="emphasis bold" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">模拟和可视化生成的场景 </strong>- 使用 <a href="../ref/drivingscenario.plot.html" data-docid="driving_ref#bvnhqac-1" class="a"><code class="olink">plot</code></a> 函数模拟和显示自动生成的方案。您还可以使用 <a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a>应用读取和模拟方案。</p></li>
+</ol>
+</div>
+<h3 class="title" id="AutomatedScenarioGenerationExample-2">导入路网</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">您可以从 </span> <a href="https://www.openstreetmap.org/" target="_blank">https://www.openstreetmap.org</a><span style="font-family: &quot;Microsoft YaHei&quot;;"> 下载道路网络，该网络提供对世界各地众包地图数据的访问。数据根据</span><a href="https://opendatacommons.org/licenses/odbl/" target="_blank">https://opendatacommons.org/licenses/odbl/</a><span style="font-family: &quot;Microsoft YaHei&quot;;">的开放数据共享开放数据库许可证（ODbL）进行许可。</span></p>
+<p>使用 <code class="literal">helperOSMImport</code> 函数指定边界框坐标来从 <a href="https://www.openstreetmap.org/" target="_blank"><code class="literal">openstreetmap.org</code></a> 导入MCity测试设施地图。该函数返回一个包含从导入的地图数据中的道路网络的驾驶场景对象。您还可以使用 <a href="../ref/drivingscenario.roadnetwork.html" data-docid="driving_ref#mw_0be454a9-f5f7-47a2-9a9e-9b638dbf4514" class="a"><code class="olink">roadNetwork</code></a> 函数从OpenDRIVE®、HERE HD Live Map或OpenStreetMap®文件中导入道路网络。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Import the road network of MCity</span>
+minLat =  42.2990;
+maxLat =  42.3027;
+minLon = -83.6996;
+maxLon = -83.6965;
+bbox = [minLat maxLat;minLon maxLon];
+scenario = helperOSMImport(bbox);
+<span style="color:#228B22">% Create another scenario object for plotting purposes</span>
+scenario_in = helperOSMImport(bbox);</pre>
+</div>
+</div>
+</div>
+<p>使用 <code class="literal">plot</code> 功能显示 MCity 路网.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+plot(scenario_in)
+title(<span style="color:#A020F0">'Imported Road Network'</span>)
+xlim([-50 190])
+ylim([-85 330])</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e50447" class="mediaobject"><p><img src="../../examples/driving/win64/AutomatedScenarioGenerationExample_01.png" alt="Figure contains an axes object. The axes object with title Imported Road Network contains 33 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<h3 class="title" id="AutomatedScenarioGenerationExample-3">定义起点和目标位置</h3>
+<p>要创建一个驾驶场景，您首先需要在道路网络上定义可以作为场景中车辆的起始和目标位置的特定点。使用 <code class="literal">helperSamplePositions</code>函数在道路网络中生成一组随机点。您可以使用 <code class="literal">helperSamplePositions </code>函数的这些名称-值对参数中的一个或多个来以不同的方式配置起始和目标位置。</p>
+<div class="itemizedlist"><ul><li><p>使用 '<code class="literal">Seed</code>' 来指定用于生成随机点的随机生成器设置。您可以从生成的集合中选择任意点作为起始和目标位置。</p></li>
+<li><p>使用 '<code class="literal">ROI</code>' 来指定道路网络中的一个或多个感兴趣区域（ROI），在其中您想要定义起始和目标位置。ROI可以是圆形、矩形或具有任意顶点数量的多边形区域。ROI的值是一个N×2矩阵，指定一个闭合区域的空间坐标。如果未指定此值，函数将在整个道路网络上生成随机点。</p></li>
+<li><p>使用 '<code class="literal">Lanes</code>' 来指定您想要定义起始和目标位置的车道。要选择单个车道，请将车道编号指定为标量值。对于多个车道， '<code class="literal">Lanes</code>' 的值必须是包含所需车道编号的向量。如果未指定此值，函数将随机选择车道。</p></li>
+<li><p>使用 '<code class="literal">LongitudinalDistance</code>' 来设置两个连续点之间的纵向距离。如果未指定此值，函数将在同一车道上的两个连续点之间至少保持5米的距离。这意味着在同一车道上放置的两个连续车辆之间的纵向距离至少为5米。</p></li>
+</ul>
+</div>
+<p>在模拟过程中，车辆从起始点生成，然后行驶到达目标点。</p>
+<h4 class="title" id="AutomatedScenarioGenerationExample-4">1. 选择起始位置</h4>
+<p>生成10个随机点作为潜在的起始位置。设置一个标志来设置随机数生成器。将 <code class="literal">setSeed </code>的值设置为1以指定随机数生成器的种子。使用 '<code class="literal">Seed</code>' 名称-值对参数将随机生成器设置作为输入传递给 <span style="font-family: monospace;">helperSamplePositions </span>函数。 </p>
+<p><code class="literal">helperSamplePositions</code> 函数输出导入的道路网络中随机选择点的三维空间坐标。该函数还输出相对于选定点的偏航角。相对于一个点获得的偏航角定义了放置在该点的车辆的方向。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numPoints = 10;
+setSeed = 1;
+<span style="color:#0000FF">if</span> setSeed == 1
+    seed = 2;
+    rng(seed);
+    s = rng;
+    [points,yaw] = helperSamplePositions(scenario,numPoints,<span style="color:#A020F0">'Seed'</span>,s);
+<span style="color:#0000FF">else</span>      
+    [points,yaw] = helperSamplePositions(scenario,numPoints);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p>将要放置在场景中的车辆数量指定为3。从生成的点集中选择任意三个点作为车辆的起始位置。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numVehicles = 3;
+startSet1 = [points(2,:);points(4,:);points(7,:)];
+yaw1 = [yaw(2);yaw(4);yaw(7)];</pre>
+</div>
+</div>
+</div>
+<p>使用 <a href="../ref/drivingscenario.vehicle.html" data-docid="driving_ref#bvnhnmh-1" class="a"><code class="olink">vehicle</code></a> 函数在选定的点上放置车辆。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">for</span> idx = 1 : numVehicles
+    vehicle(scenario,<span style="color:#A020F0">'Position'</span>,startSet1(idx,:),<span style="color:#A020F0">'Yaw'</span>,yaw1(idx),<span style="color:#A020F0">'ClassID'</span>,1);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p>通过定义ROI生成另一组点。计算坐标以指定一个圆形ROI。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xCor = 0;
+yCor = 0;
+radius = 50;
+theta = 0: pi/10: 2*pi;
+roiCircular(:,1) = xCor+radius*cos(theta);
+roiCircular(:,2) = yCor+radius*sin(theta);</pre>
+</div>
+</div>
+</div>
+<p>指定在ROI内生成的点的数量以及在ROI内放置的车辆的数量，均为3。将圆形ROI内的所有点选为车辆的起始位置。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numPoints = 3;
+numVehicles = numPoints;
+[startSet2,yaw2] = helperSamplePositions(scenario,numPoints,<span style="color:#A020F0">'ROI'</span>,roiCircular);
+<span style="color:#0000FF">for</span> idx = 1 : size(startSet2,1)
+    vehicle(scenario,<span style="color:#A020F0">'Position'</span>,startSet2(idx,:),<span style="color:#A020F0">'Yaw'</span>,yaw2(idx),<span style="color:#A020F0">'ClassID'</span>,1);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p>指定一个矩形ROI的坐标。将在ROI内生成的点的数量和在ROI内放置的车辆的数量都设置为3。将同一车道上两个连续点之间的纵向距离设置为30米。如果ROI不足以容纳指定数量的点以及指定的纵向距离，则 <code class="literal">helperSamplePositions</code> 函数将仅返回能够在ROI内容纳的点的数量。要获得所需数量的点，必须减小纵向距离或增加ROI的面积。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roiRectangular = [0 0;100 100];
+numPoints = 3;
+[startSet3,yaw3] = helperSamplePositions(scenario,numPoints,<span style="color:#A020F0">'ROI'</span>,roiRectangular,<span style="color:#A020F0">'LongitudinalDistance'</span>,30);</pre>
+</div>
+</div>
+</div>
+<p>使用 <a href="../ref/drivingscenario.vehicle.html" data-docid="driving_ref#bvnhnmh-1" class="a"><code class="olink">vehicle</code></a> 函数在选定的点上放置车辆。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">for</span> idx = 1 : size(startSet3,1)
+    vehicle(scenario,<span style="color:#A020F0">'Position'</span>,startSet3(idx,:),<span style="color:#A020F0">'Yaw'</span>,yaw3(idx),<span style="color:#A020F0">'ClassID'</span>,1);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p>绘制生成的样本点和ROI。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figScene = figure(<span style="color:#A020F0">'Name'</span>,<span style="color:#A020F0">'AutomaticScenarioGeneration'</span>);
+set(figScene,<span style="color:#A020F0">'Position'</span>,[0,0,900,500]);
+
+hPanel1 = uipanel(figScene,<span style="color:#A020F0">'Position'</span>,[0 0 0.5 1]);
+hPlot1 = axes(hPanel1);
+plot(scenario_in,<span style="color:#A020F0">'Parent'</span>,hPlot1);
+title(<span style="color:#A020F0">'Points for Selecting Start Positions'</span>)
+hold <span style="color:#A020F0">on</span>
+plot(points(:,1),points(:,2),<span style="color:#A020F0">'ro'</span>,<span style="color:#A020F0">'MarkerSize'</span>,5,<span style="color:#A020F0">'MarkerFaceColor'</span>,<span style="color:#A020F0">'r'</span>);
+
+plot(roiCircular(:,1),roiCircular(:,2),<span style="color:#A020F0">'LineWidth'</span>,1.2,<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'k'</span>)
+plot(startSet2(:,1),startSet2(:,2),<span style="color:#A020F0">'ko'</span>,<span style="color:#A020F0">'MarkerSize'</span>,5,<span style="color:#A020F0">'MarkerFaceColor'</span>,<span style="color:#A020F0">'k'</span>);
+
+plot([roiRectangular(1,1);roiRectangular(1,1);roiRectangular(2,1);roiRectangular(2,1);roiRectangular(1,1)],<span style="color:#0000FF">...</span>
+     [roiRectangular(1,2);roiRectangular(2,2);roiRectangular(2,2);roiRectangular(1,2);roiRectangular(1,2)],<span style="color:#0000FF">...</span>
+     <span style="color:#A020F0">'LineWidth'</span>,1.2,<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'b'</span>);
+plot(startSet3(:,1),startSet3(:,2),<span style="color:#A020F0">'bo'</span>,<span style="color:#A020F0">'MarkerSize'</span>,5,<span style="color:#A020F0">'MarkerFaceColor'</span>,<span style="color:#A020F0">'b'</span>);
+xlim([-50 190])
+ylim([-85 330])
+hold <span style="color:#A020F0">off</span></pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">显示场景中的起始位置和车辆。</span></p>
+<div class="itemizedlist"><ul><li><p>红色的 3 个起始位置是从整个场景中定义的 10 个随机点中选择的。</p></li>
+<li><p _msttexthash="183117129" _msthash="218">黑色的 3 个起始位置是从圆形 ROI 中定义的 3 个随机点中选择的。</p></li>
+<li><p>蓝色的 3 个起始位置是从矩形 ROI 中定义的 3 个随机点中选择的。</p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hPanel2 = uipanel(figScene,<span style="color:#A020F0">'Position'</span>,[0.5 0 0.5 1]);
+hPlot2 = axes(hPanel2);
+plot(scenario,<span style="color:#A020F0">'Parent'</span>,hPlot2);
+title(<span style="color:#A020F0">'Start Positions and Vehicle Placement'</span>)
+hold <span style="color:#A020F0">on</span>
+plot(startSet1(:,1),startSet1(:,2),<span style="color:#A020F0">'rs'</span>,<span style="color:#A020F0">'MarkerSize'</span>,15,<span style="color:#A020F0">'LineWidth'</span>,1.2);
+plot(startSet2(:,1),startSet2(:,2),<span style="color:#A020F0">'ks'</span>,<span style="color:#A020F0">'MarkerSize'</span>,15,<span style="color:#A020F0">'LineWidth'</span>,1.2);
+plot(startSet3(:,1),startSet3(:,2),<span style="color:#A020F0">'bs'</span>,<span style="color:#A020F0">'MarkerSize'</span>,15,<span style="color:#A020F0">'LineWidth'</span>,1.2);
+xlim([-50 190])
+ylim([-85 330])
+hold <span style="color:#A020F0">off</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e50543" class="mediaobject"><p><img src="../../examples/driving/win64/AutomatedScenarioGenerationExample_02.png" alt="Figure AutomaticScenarioGeneration contains 2 axes objects and other objects of type uipanel. Axes object 1 with title Points for Selecting Start Positions contains 38 objects of type patch, line. Axes object 2 with title Start Positions and Vehicle Placement contains 45 objects of type patch, line." width="800"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">将所有起始位置合并到单个矩阵中。起始位置的数量意味着驾驶场景中的车辆总数。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>startPositions = [startSet1;startSet2;startSet3];</pre>
+</div>
+</div>
+</div>
+<h4 class="title" id="AutomatedScenarioGenerationExample-5">2. 检查场景对象</h4>
+<p>显示场景对象并检查其属性。 <code class="literal">scenario </code>对象的 <code class="literal">Actors</code> 属性是一个1x9数组，存储了添加到驾驶场景中的9辆车辆的信息。通过使用点索引访问 <code class="literal">Actors</code> 属性中每个车辆的详细信息。显示驾驶场景中第一辆车辆的详细信息。 <code class="literal">Position</code> 属性包含车辆的起始位置。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>scenario = 
+  drivingScenario with properties:
+
+        SampleTime: 0.0100
+          StopTime: Inf
+    SimulationTime: 0
+         IsRunning: 1
+            Actors: [1×9 driving.scenario.Vehicle]
+          Barriers: [0×0 driving.scenario.Barrier]
+       ParkingLots: [0×0 driving.scenario.ParkingLot]
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario.Actors(1)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+  Vehicle with properties:
+
+         FrontOverhang: 0.9000
+          RearOverhang: 1
+             Wheelbase: 2.8000
+             EntryTime: 0
+              ExitTime: Inf
+               ActorID: 1
+               ClassID: 1
+                  Name: ""
+             PlotColor: [0 0.4470 0.7410]
+              Position: [130.7903 -12.2335 -2.0759e-04]
+              Velocity: [0 0 0]
+                   Yaw: 96.6114
+                 Pitch: 0
+                  Roll: 0
+       AngularVelocity: [0 0 0]
+                Length: 4.7000
+                 Width: 1.8000
+                Height: 1.4000
+                  Mesh: [1×1 extendedObjectMesh]
+            RCSPattern: [2×2 double]
+      RCSAzimuthAngles: [-180 180]
+    RCSElevationAngles: [-90 90]
+
+</pre>
+</div>
+</div>
+</div>
+<h4 class="title" id="AutomatedScenarioGenerationExample-6">3. 选择目标位置</h4>
+<p>使用<span style="font-family: monospace;">helperSamplePositions </span>函数生成场景中车辆的目标位置。目标位置的总数必须与起始位置的总数相同。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numGoalPositions = length(startPositions)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>numGoalPositions = 9
+</pre>
+</div>
+</div>
+</div>
+<p>指定一个多边形ROI的坐标，并在该多边形ROI内找到5个随机点。将这些点选为场景中前5辆车辆的目标位置。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roiPolygon = [-50  170;30  250;72 170;-50 170];
+numPoints1 = 5;
+goalSet1 = helperSamplePositions(scenario,numPoints1,<span style="color:#A020F0">'ROI'</span>,roiPolygon);</pre>
+</div>
+</div>
+</div>
+<p>以使它们都位于特定车道的方式生成剩余的目标位置。使用 '<code class="literal">Lanes</code>' 名称-值对参数指定目标位置的车道编号。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numPoints2 = 4;
+goalSet2 = helperSamplePositions(scenario,numPoints2,<span style="color:#A020F0">'Lanes'</span>,1);</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">显示场景和选定的目标位置。</span></p>
+<div class="itemizedlist"><ul><li><p>红色的 5 个点表示多边形 ROI 中定义的目标位置。<br/></p></li>
+<li><p>蓝色的 4 个点表示在整个场景中定义的目标位置。<br/></p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+plot(scenario); 
+title(<span style="color:#A020F0">'Goal Positions'</span>)
+hold <span style="color:#A020F0">on</span>
+plot(roiPolygon(:,1), roiPolygon(:,2),<span style="color:#A020F0">'LineWidth'</span>,1.2,<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'r'</span>)
+plot(goalSet1(:,1), goalSet1(:,2),<span style="color:#A020F0">'ro'</span>,<span style="color:#A020F0">'MarkerSize'</span>,5,<span style="color:#A020F0">'MarkerFaceColor'</span>,<span style="color:#A020F0">'r'</span>)
+plot(goalSet2(:,1),goalSet2(:,2),<span style="color:#A020F0">'bo'</span>,<span style="color:#A020F0">'MarkerSize'</span>,5,<span style="color:#A020F0">'MarkerFaceColor'</span>,<span style="color:#A020F0">'b'</span>)
+xlim([-50 190])
+ylim([-85 310])
+hold <span style="color:#A020F0">off</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e50600" class="mediaobject"><p><img src="../../examples/driving/win64/AutomatedScenarioGenerationExample_03.png" alt="Figure contains an axes object. The axes object with title Goal Positions contains 45 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">将所有目标位置合并到一个矩阵中。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>goalPositions = [goalSet1;goalSet2];</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">显示场景中每辆车的起始位置和目标位置。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vehicleNum = 1:length(startPositions);
+table(vehicleNum(:),startPositions,goalPositions,<span style="color:#A020F0">'VariableNames'</span>,{<span style="color:#A020F0">'Vehicle'</span>,<span style="color:#A020F0">'Start positions'</span>,<span style="color:#A020F0">'Goal positions'</span>})</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>9×3 table</em></span>
+    Vehicle               Start positions                          Goal positions            
+    _______    _____________________________________    _____________________________________
+
+       1        130.79        -12.233    -0.00020759     49.544         173.51      0.0009993
+       2        113.86        -44.576    -0.00076866     53.168         198.75     0.00070254
+       3        143.37          297.8       -0.00188     3.5187         187.51     0.00057965
+       4       -25.863         37.977     0.00020468     30.912         175.81     0.00087745
+       5         24.74        -28.221    -0.00031535    -3.3494         178.66     0.00055764
+       6       -29.047         -7.817    -0.00053606     108.15        -34.789    -0.00049719
+       7        26.393         62.042     0.00095438     118.42          192.5     0.00054377
+       8        73.989         42.717     0.00094018     110.09         248.17    -0.00032446
+       9        73.996         64.436      0.0011401      177.2         267.68     -0.0015615
+
+</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="AutomatedScenarioGenerationExample-7">生成车辆轨迹</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">使用</span> <code class="literal">helperGenerateWaypoints</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">函数计算连接起点和目标位置的航点。该函数返回一个结构数组，其中包含场景中每辆车的道路中心、计算的航点和偏航角。从 </span><code class="literal">scenario</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">对象中读取车辆信息，并为每辆车指定随机速度值。使用</span> <a href="../ref/drivingscenario.trajectory.html" data-docid="driving_ref#mw_2ced67a1-4d99-400b-992e-d65fbfab63a3" class="a"><code class="olink">trajectory</code></a> <span style="font-family: &quot;Microsoft YaHei&quot;;">函数，通过使用计算出的航点和随机速度值生成每个车辆的轨迹。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>info = helperGenerateWaypoints(scenario,startPositions,goalPositions);
+<span style="color:#0000FF">for</span> indx = 1:length(startPositions)
+    vehicleData = scenario.Actors(indx);
+    speed = randi([10,25],1,1);
+    waypts = info(indx).waypoints;
+    trajectory(vehicleData,waypts,speed);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">设置场景的停止时间。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario.StopTime = 50;</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">创建自定义图形并显示模拟驾驶场景。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close <span style="color:#A020F0">all</span>;
+figScene = figure;
+set(figScene,<span style="color:#A020F0">'Position'</span>,[0,0,600,600]);
+movegui(figScene,<span style="color:#A020F0">'center'</span>);
+hPanel = uipanel(figScene,<span style="color:#A020F0">'Position'</span>,[0 0 1 1]);
+hPlot = axes(hPanel);
+plot(scenario,<span style="color:#A020F0">'Parent'</span>,hPlot);
+title(<span style="color:#A020F0">'Generated Scenario'</span>)
+<span style="color:#228B22">% Run the simulation</span>
+<span style="color:#0000FF">while</span> advance(scenario)
+    pause(0.01)
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e50633" class="mediaobject"><p><img src="../../examples/driving/win64/AutomatedScenarioGenerationExample_04.png" alt="Figure contains an axes object and an object of type uipanel. The axes object with title Generated Scenario contains 42 objects of type patch, line." width="600"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">在生成的场景中，所有车辆都以特定速度沿其轨迹移动以到达其目标位置。您还可以观察两个Actor在沿其轨迹移动时之间的碰撞。在合成用于测试驾驶算法的方案时，方案中的车辆不会发生碰撞非常重要。为防止碰撞，您必须调整车辆的速度，使其在沿路径行驶时不会相互碰撞。</span></p>
+<h3 class="title" id="AutomatedScenarioGenerationExample-8">修改速度配置文件以避免碰撞</h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">使用 Simulink 模型</span> <code class="literal">CollisionFreeSpeedManipulator</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">校正车辆的速度，使其在沿轨迹移动时不会发生碰撞。该模型使用非线性时间缩放来反应性地加速或减速车辆，而不会改变其轨迹 [1]。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Open the Simulink system block</span>
+open_system(<span style="color:#A020F0">'CollisionFreeSpeedManipulator'</span>);
+
+<span style="color:#228B22">% Pass the scenario object as input</span>
+set_param(<span style="color:#A020F0">'CollisionFreeSpeedManipulator/VelocityUpdate'</span>,<span style="color:#0000FF">...</span>
+          <span style="color:#A020F0">'ScenarioName'</span>,<span style="color:#A020F0">'scenario'</span>)
+
+<span style="color:#228B22">% Run the simulation and log the output</span>
+out = sim(<span style="color:#A020F0">'CollisionFreeSpeedManipulator'</span>,<span style="color:#A020F0">'StopTime'</span>,<span style="color:#A020F0">'50'</span>);
+
+<span style="color:#228B22">% Clear all the temporary variables and close the Simulink block</span>
+bdclose</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="AutomatedScenarioGenerationExample-9"><strong class="emphasis bold" _istranslated="1" style="font-family: &quot;Microsoft YaHei&quot;;">模拟和可视化生成的场景</strong></h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">使用</span> <code class="literal">helpergetCFSMScenario</code> <span style="font-family: &quot;Microsoft YaHei&quot;;">函数将 Simulink 模型输出转换为驾驶场景对象。模拟并显示驾驶场景。您可以看到车辆沿指定轨迹行驶以到达其目标位置。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>newScenario = helpergetCFSMScenario(out,scenario);
+close <span style="color:#A020F0">all</span>;
+figScene = figure;
+set(figScene,<span style="color:#A020F0">'Position'</span>,[0,0,600,600]);
+movegui(figScene,<span style="color:#A020F0">'center'</span>);
+hPanel = uipanel(figScene,<span style="color:#A020F0">'Position'</span>,[0 0 1 1]);
+hPlot = axes(hPanel);
+plot(newScenario,<span style="color:#A020F0">'Parent'</span>,hPlot);
+title(<span style="color:#A020F0">'Updated Scenario'</span>)
+hold <span style="color:#A020F0">on</span>
+h1 = plot(goalPositions(:,1),goalPositions(:,2),<span style="color:#A020F0">'gs'</span>,<span style="color:#A020F0">'MarkerSize'</span>,15,<span style="color:#A020F0">'LineWidth'</span>,1.2);
+h2 = plot(startPositions(:,1),startPositions(:,2),<span style="color:#A020F0">'rs'</span>,<span style="color:#A020F0">'MarkerSize'</span>,15,<span style="color:#A020F0">'LineWidth'</span>,1.2);
+legend([h2 h1],{<span style="color:#A020F0">'Start Positions'</span>;<span style="color:#A020F0">'Goal Positions'</span>},<span style="color:#A020F0">'Location'</span>,<span style="color:#A020F0">'southoutside'</span>,<span style="color:#A020F0">'Orientation'</span>,<span style="color:#A020F0">'horizontal'</span>)
+hold <span style="color:#A020F0">off</span>
+<span style="color:#228B22">% Run the simulation</span>
+<span style="color:#0000FF">while</span> advance(newScenario)
+    pause(0.01)
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e50655" class="mediaobject"><p><img src="../../examples/driving/win64/AutomatedScenarioGenerationExample_05.png" alt="Figure contains an axes object and an object of type uipanel. The axes object with title Updated Scenario contains 44 objects of type patch, line. These objects represent Goal Positions, Start Positions." width="600"/></p>
+</div>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;;">您还可以将方案导出到</span> <a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> <span style="font-family: &quot;Microsoft YaHei&quot;;">应用并运行模拟。</span></p>
+<p><code class="literal">drivingScenarioDesigner(newScenario)</code></p>
+<div class="informalfigure"><div id="d124e50666" class="mediaobject"><p><img src="../../examples/driving/win64/AutomatedScenarioGenerationExample_06.png" alt="exportautomatedscenariotoDSD.png" height="549" width="823"/></p>
+</div>
+</div>
+<h3 class="title" id="AutomatedScenarioGenerationExample-10">避免碰撞的提示</h3>
+<p>Simulink模型 <code class="literal">CollisionFreeSpeedManipulator</code> 仅调整活动车辆的速度配置文件。一旦车辆到达目标位置并在场景中变为非活动状态，就不会考虑其进行碰撞检查。如果您想生成一个没有碰撞的驾驶场景，请选择起始位置和目标位置之间的距离较小且位于不同车道的点。如果有另一辆车的目标位置靠近非活动车辆，并且轨迹与非活动车辆的轨迹相同，则这两辆车之间将发生碰撞。同样，当两辆车在同一或不同车道上在道路交叉口附近接近时，也会发生碰撞。此外，如果两个或更多目标位置位于同一车道上，发生碰撞的可能性更大。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><span class="guiicon"><span class="inlinemediaobject"><img src="../../examples/driving/win64/AutomatedScenarioGenerationExample_07.gif" alt="collisioncase1.gif" height="194" width="191"/></span></span>               2.  <span class="guiicon"><span class="inlinemediaobject"><img src="../../examples/driving/win64/AutomatedScenarioGenerationExample_08.gif" alt="collisioncase2.gif" height="192" width="190"/></span></span></p></li>
+</ol>
+</div>
+</div>
+<div class="bibliography"><h2 id="References">References</h2>
+<div id="mw_81789748-2f7b-4bf5-9364-83589f35b118" class="bibliomixed"><p>[1] Singh, Arun Kumar, and K.
+        Madhava Krishna. “Reactive Collision Avoidance for Multiple Robots by Non Linear Time
+        Scaling.” In <em class="citetitle">52nd IEEE Conference on Decision and Control</em>, 952–58.
+        Firenze: IEEE, 2013. https://doi.org/10.1109/CDC.2013.6760005.</p>
+</div>
+</div>
+      <h2 id="d124e50698">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.roadnetwork.html"><span itemprop="name"><code class="function">roadNetwork</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.vehicle.html"><span itemprop="name"><code class="function">vehicle</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.plot.html"><span itemprop="name"><code class="function">plot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span></p>
+      <h2 id="d124e50713">Related Topics</h2>
+<ul><li><a href="create-driving-scenario-variations-programmatically.html" class="a" _msttexthash="59393698" _msthash="250">以编程方式创建驾驶方案变体</a><br/></li>
+<li><a href="scenario-generation-from-recorded-vehicle-data.html" class="a" _msttexthash="54496390" _msthash="251">从记录的车辆数据生成场景</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

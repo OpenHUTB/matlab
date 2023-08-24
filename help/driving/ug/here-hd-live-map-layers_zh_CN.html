@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>HERE HD Live Map Layers</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../localization-and-mapping.html",
+          "name": "Localization and Mapping"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../geographic-and-hd-maps.html",
+          "name": "Geographic and HD Maps"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "geographic-and-hd-maps"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The HERE HD Live Map web service provides tiled map layers containing detailed road, lane, and localization information."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../localization-and-mapping.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Localization and Mapping</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../geographic-and-hd-maps.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Geographic and HD Maps</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">HERE HD Live Map Layers</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_98338f47-870f-433d-a75e-db5223fb696f" class="intrnllnk">Road Centerline Model</a></li>
+<li><a href="#mw_0e03d919-522d-431c-93c4-4d7caaf3e8c8" class="intrnllnk">HD Lane Model</a></li>
+<li><a href="#mw_22744739-5bab-4b8d-945f-39488e29d4a0" class="intrnllnk">HD Localization Model</a></li>
+<li><a href="#d124e5537" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e5549" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=geographic-and-hd-maps&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_4b697ed4-ad52-4319-ace2-03999280b820">HERE HD Live Map图层</h2>
+<p>HERE HD Live Map <sup class="footnote"><a id="d124e5338" class="intrnllnk" href="#ftn.d124e5338">1</a></sup> (HERE HDLM)，是由HERE Technologies开发的基于云的Web服务，可以让您访问高精度、持续更新的地图数据。这些数据由瓦片地图图层组成，包含道路和车道的拓扑和几何信息、道路级和车道级属性，以及沿途发现的障碍物、标志和杆子等信息。这些数据存储在一系列与地理区域对应的地图目录中。</p>
+<p>要访问一组地图瓦片的图层数据，请使用 <a href="../ref/herehdlmreader.html"><code class="object">hereHDLMReader</code></a> 对象。有关 <code class="object">hereHDLMReader</code> 工作流程的信息，请参阅 <a href="read-and-visualize-here-hd-live-map-data.html" class="a">Read and Visualize HERE HD Live Map Data</a>。</p>
+<p>这些图层分为以下模型：</p>
+<div class="itemizedlist"><ul><li><p><a href="here-hd-live-map-layers.html#mw_98338f47-870f-433d-a75e-db5223fb696f" class="intrnllnk">Road Centerline Model</a> — 提供道路拓扑、形状几何和其他道路级属性</p></li>
+<li><p><a href="here-hd-live-map-layers.html#mw_0e03d919-522d-431c-93c4-4d7caaf3e8c8" class="intrnllnk">HD Lane Model</a> — 包含车道拓扑、高精度几何和车道级属性</p></li>
+<li><p><a href="here-hd-live-map-layers.html#mw_22744739-5bab-4b8d-945f-39488e29d4a0" class="intrnllnk">HD Localization Model</a> — 包括多个特征，如道路标志，以支持定位策略</p></li>
+</ul>
+</div>
+<div class="informalfigure"><div id="d124e5369" class="mediaobject"><p><img src="here_catalog_tile_layers_workflow08e5ed1a5c67c49244fd8deaced602f8.png" alt="Layers accessed from tiles of HERE HD Live Map catalog" height="464" width="521"/></p>
+</div>
+</div>
+<p>可用的图层因地理区域而异，因此并非每个地图瓦片都有所有图层可用。当您在 <code class="object">hereHDLMReader</code> 对象上调用 <code class="function">read</code> 函数并指定地图图层名称时，该函数将以对象形式返回图层数据。有关这些图层对象的更多信息，请参阅 <a href="../ref/herehdlmreader.read.html"><code class="function">read</code></a> 函数的参考页面。</p>
+<section itemprop="content"><h3 class="title" id="mw_98338f47-870f-433d-a75e-db5223fb696f">道路中心线模型</h3>
+<p>道路中心线模型表示道路网络的拓扑结构。它由对应于街道的链接和对应于交叉口和死胡同的节点组成。对于每个地图瓦片，该模型中的图层包含有关这些链接和节点的信息，例如道路网络的二维线几何、速度属性和路由属性。</p>
+<p>该图显示了 <code class="literal">TopologyGeometry</code> 图层的绘图，可视化了地图瓦片中节点和链接的二维线几何。</p>
+<div class="informalfigure"><div id="d124e5395" class="mediaobject"><p><img src="here_topologygeometry_plot.png" alt="TopologyGeometry layer with boundaries, nodes, and links" height="280" width="340"/></p>
+</div>
+</div>
+<p>以下是 <code class="object">hereHDLMReader</code> 对象可以读取的Road Centerline Model的地图图层。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>Road Centerline Model Layers</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">TopologyGeometry</code></td>
+<td><p>道路的拓扑和二维线几何。该图层还包含地图瓦片中链接（街道）和节点（交叉口和死胡同）的定义。</p>
+</td>
+</tr>
+<tr><td><code class="literal">RoutingAttributes</code></td>
+<td><p>与导航和条件相关的道路属性。这些属性以参数化方式映射到拓扑图层中的二维折线几何。 </p>
+</td>
+</tr>
+<tr><td><code class="literal">RoutingLaneAttributes</code></td>
+<td><p>核心导航车道属性和条件，例如道路上的车道数。这些值以参数化方式映射到道路链接上的二维折线。 </p>
+</td>
+</tr>
+<tr><td><code class="literal">SpeedAttributes</code></td>
+<td><p>与速度相关的道路属性，例如速度限制。这些属性被映射到拓扑图层的二维折线几何。</p>
+</td>
+</tr>
+<tr><td><code class="literal">AdasAttributes</code></td>
+<td><p>精确几何测量，例如道路的坡度、高程和曲率。使用这些数据开发高级驾驶辅助系统 (ADAS)。</p>
+</td>
+</tr>
+<tr><td><code class="literal">ExternalReferenceAttributes</code></td>
+<td><p>对其他HERE地图的外部链接、节点和拓扑的引用。</p>
+</td>
+</tr>
+<tr><td><code class="literal">LaneRoadReferences</code> (also part of HD Lane
+                            Model)</td>
+<td><p>道路和车道组的引用和范围信息。使用这些数据在Road Centerline Model和HD Lane Model之间进行位置转换。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_0e03d919-522d-431c-93c4-4d7caaf3e8c8">HD Lane模型</h3>
+<p>HD Lane模型表示车道组（即链接（街道）内的车道）的拓扑和几何结构。在该模型中，车道的形状通过2D和3D位置建模，并支持厘米级的准确性。该模型提供了几个车道属性，包括车道类型、行驶方向以及车道边界的颜色和样式。</p>
+<p>该图显示了 <code class="literal">LaneTopology</code> 图层对象的绘图，可视化了地图瓦片中车道组及其连接器的二维线几何。</p>
+<div class="informalfigure"><div id="d124e5461" class="mediaobject"><p><img src="here_lanetopology_plot.png" alt="LaneTopology layer with boundaries, lane group connectors, and lane groups" height="277" width="340"/></p>
+</div>
+</div>
+<p>以下是 <code class="object">hereHDLMReader</code> 对象可以读取的高清车道模型的地图图层。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>HD Lane Model Layers</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">LaneTopology</code></td>
+<td><p>HD Lane模型的拓扑，包括车道组、车道组连接器、车道和车道连接器的拓扑。该图层还包含车道模型的简化二维边界几何，用于确定地图瓦片的关联性和溢出。 </p>
+</td>
+</tr>
+<tr><td><code class="literal">LaneGeometryPolyline</code></td>
+<td><p>由一组连接成折线的三维点组成的三维车道几何。 </p>
+</td>
+</tr>
+<tr><td><code class="literal">LaneAttributes</code></td>
+<td><p>车道级别的属性，例如行驶方向和车道类型。</p>
+</td>
+</tr>
+<tr><td><code class="literal">LaneRoadReferences</code> (also part of Road Centerline
+                            Model)</td>
+<td><p>道路和车道组的引用和范围信息。用于在Road Centerline模型和HD Lane模型之间进行位置转换。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_22744739-5bab-4b8d-945f-39488e29d4a0">HD定位模型</h3>
+<p>HD定位模型包含了交通标志、障碍物和杆等数据，帮助自动驾驶车辆准确地确定其在道路网络中的位置。</p>
+<p>这个表格显示了 <code class="object">hereHDLMReader</code> 对象可以读取的HD Localization模型的地图图层。该阅读器不支持对该图层数据的可视化。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>HD Localization Model Layers</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">LocalizationBarrier</code></td>
+<td><p>道路上发现的护栏（如护栏和Jersey护栏）的位置、尺寸和属性</p>
+</td>
+</tr>
+<tr><td><code class="literal">LocalizationPole</code></td>
+<td><p>沿着道路或悬挂在道路上的交通信号灯杆和其他杆的位置、尺寸和属性</p>
+</td>
+</tr>
+<tr><td><code class="literal">LocalizationSign</code></td>
+<td><p>沿着道路上发现的交通标志面的位置、尺寸和属性</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+        <h2 id="d124e5537">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/herehdlmreader.html"><span itemprop="name"><code class="object">hereHDLMReader</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/driving.heremaps.lanetopology.plot.html"><span itemprop="name"><code class="function">plot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/herehdlmreader.read.html"><span itemprop="name"><code class="function">read</code></span></a></span></p>
+        <h2 id="d124e5549">Related Topics</h2>
+<ul><li><a href="read-and-visualize-here-hd-live-map-data.html" class="a">Read and Visualize HERE HD Live Map Data</a></li>
+<li><a href="use-here-hd-live-map-data-to-verify-lane-configurations.html" class="a">Use HERE HD Live Map Data to Verify Lane Configurations</a></li>
+<li><a href="localization-correction-using-traffic-sign-data-from-here-hd-maps.html" class="a">Localization Correction Using Traffic Sign Data from HERE HD Maps</a></li>
+</ul>
+    </section>
+<hr/>
+<p><sup><a id="ftn.d124e5338" class="intrnllnk" href="#d124e5338">1</a></sup> You need to enter into a separate agreement with <a href="https://www.here.com" target="_blank">HERE</a> in order to gain access to the HDLM services and to get the required
+        credentials (access_key_id and access_key_secret) for using the HERE Service.</p>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
