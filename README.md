@@ -71,7 +71,7 @@ end
 ### 覆盖本地的文件
 ```shell
 git fetch --all
-git reset --hard origin/master
+git reset --hard origin/master  # 将本地仓库的HEAD指针、工作目录和暂存区回滚到指定远程分支（origin/master）的状态
 ```
 
 # 计划
