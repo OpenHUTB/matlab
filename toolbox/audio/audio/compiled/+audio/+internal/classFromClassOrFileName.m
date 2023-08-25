@@ -1,21 +1,4 @@
 function[className,errid,cdto]=classFromClassOrFileName(classOrFileString)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     [className,errid,cdto,msgargs]=helper(classOrFileString);
 
     if~isempty(errid)&&nargout<2
@@ -24,6 +7,7 @@ function[className,errid,cdto]=classFromClassOrFileName(classOrFileString)
     end
 
 end
+
 
 function[className,errid,cdto,msgargs]=helper(classOrFileString)
 
@@ -36,24 +20,17 @@ function[className,errid,cdto,msgargs]=helper(classOrFileString)
         return
     end
 
-
     if exist(classOrFileString,'file')~=2
         errid='audio:plugin:ClassOrFileNotFound';
         msgargs={errid,classOrFileString};
         return
     end
-
-
-
-
     [~,name,ext]=fileparts(classOrFileString);
     if~regexp([name,ext],'^[a-z_A-Z]\w+\(\.[mp])?$')
         errid='audio:plugin:NotAClass';
         msgargs={errid};
         return
     end
-
-
     whichFromString=which(classOrFileString);
     if isempty(whichFromString)
         cdto=fileparts(classOrFileString);
@@ -61,7 +38,6 @@ function[className,errid,cdto,msgargs]=helper(classOrFileString)
         msgargs={errid,classOrFileString,cdto};
         return
     end
-
     className=extractClassNameFromFilePath(whichFromString);
 
 
