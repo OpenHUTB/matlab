@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>figure</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../graphics.html",
+          "name": "图形"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../formatting-and-annotation.html",
+          "name": "格式和注释"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../axes.html",
+          "name": "坐标区外观"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "axes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:figure"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="此 MATLAB 函数 使用默认属性值创建一个新的图窗窗口。生成的图窗为当前图窗。"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "matlab";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "_zh_CN";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../../includes/product/css/doc_center_zh_CN.css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">搜索帮助文档</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="搜索帮助文档" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">画布外导航菜单切换
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">文档主页</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">图形</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../formatting-and-annotation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">格式和注释</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../axes.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">坐标区外观</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas"><span class="refname">figure</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">本页内容</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e412223" class="intrnllnk">语法</a></li>
+<li><a href="#description" class="intrnllnk">说明</a></li>
+<li><a href="#bvjs6cb-5" class="intrnllnk">示例</a><ul class="nav"><li><a href="#mw_e279e63f-1641-4b14-a781-c5facd020190" class="intrnllnk">更改图窗大小</a></li>
+</ul><ul class="nav"><li><a href="#bvjs6el-1" class="intrnllnk">指定图窗标题</a></li>
+</ul><ul class="nav"><li><a href="#bvjs6ew-1" class="intrnllnk">同时使用多个图窗</a></li>
+</ul></li>
+<li><a href="#bvjs6cb-3" class="intrnllnk">输入参数</a><ul class="nav"><li><a href="#buich1u-1-f" class="intrnllnk">f</a></li>
+<li><a href="#buich1u-1-n" class="intrnllnk">n</a></li>
+</ul><ul class="nav"><li><a href="#namevaluepairs" class="intrnllnk">名称-值参数</a><ul class="nav"><li><a href="#buich1u-1_sep_shared-Name" class="intrnllnk">Name</a></li>
+<li><a href="#buich1u-1_sep_shared-Color" class="intrnllnk">Color</a></li>
+<li><a href="#buich1u-1_sep_shared-Position" class="intrnllnk">Position</a></li>
+<li><a href="#buich1u-1_sep_shared-Units" class="intrnllnk">Units</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#bvjs6fu-1" class="intrnllnk">详细信息</a><ul class="nav"><li><a href="#bvjs6fu-2" class="intrnllnk">当前图窗</a></li>
+</ul></li>
+<li><a href="#mw_da013e4c-4ddc-4ee7-bd82-972546f6e071" class="intrnllnk">提示</a></li>
+<li><a href="#buich1u-1_vh" class="intrnllnk">版本历史记录</a></li>
+<li><a href="#buich1u-1_seealso" class="intrnllnk">另请参阅</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>文档</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=axes&amp;s_tid=CRUX_topnav">示例</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=axes&amp;s_tid=CRUX_topnav">函数</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=axes&amp;s_tid=CRUX_topnav">App</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">资源<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>文档</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=axes&amp;s_tid=CRUX_topnav">示例</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=axes&amp;s_tid=CRUX_topnav">函数</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=axes&amp;s_tid=CRUX_topnav">App</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="zh-CN" data-language="zh_CN"><div id="pgtype-ref-function"><div class="function_ref"><!-- translationrelease="R2022a", translationstatus="Final" --><!--G11N.MSG.BEG previous_Final--><p><a href="figure.html?lang=en" rel="nofollow">本页翻译不是最新的。点击此处可查看最新英文版本。</a></p>
+<!--G11N.MSG.END previous_Final--><span id="buich1u-1" class="anchor_target"></span><h1 class="r2022a" itemprop="title"><span class="refname">figure</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">创建图窗窗口</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">全页折叠</a></div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e412223">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e412232" class="intrnllnk">figure</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e412242" class="intrnllnk">figure(Name,Value)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e412258" class="intrnllnk">f = figure(<span class="argument_placeholder">___</span>)</a></code></div>
+</div>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e412280" class="intrnllnk">figure(f)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e412296" class="intrnllnk">figure(n)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="bvjs6cb-2" class="anchor_target"></span><h2 id="description">说明</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><span id="bvjs6dt-1" class="anchor_target"></span>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e412232" itemprop="syntax"><code class="synopsis">figure</code></span> 使用默认属性值创建一个新的图窗窗口。生成的图窗为<a href="figure.html#bvjs6fu-2" class="intrnllnk">当前图窗</a>。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="figure.html#bvjs6el-1" class="intrnllnk">示例</a></p>
+<div class="code_responsive"><p><span id="d124e412242" itemprop="syntax"><code class="synopsis">figure(<a href="#namevaluepairarguments" class="intrnllnk"><code class="argument">Name,Value</code></a>)</code></span> 使用一个或多个名称-值对组参数修改图窗的属性。例如，<code class="literal">figure('Color','white')</code> 将背景色设置为白色。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="figure.html#bvjs6ew-1" class="intrnllnk">示例</a></p>
+<div class="code_responsive"><p><span id="d124e412258" itemprop="syntax"><code class="synopsis"><a href="#buich1u-1-f" class="intrnllnk"><code class="argument">f</code></a> = figure(<span class="argument_placeholder">___</span>)</code></span> 返回 <code class="literal">Figure</code> 对象。可使用 <code class="argument">f</code> 在创建图窗后查询或修改其属性。</p>
+</div>
+</div>
+</div>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><span id="bvjs6dz-1" class="anchor_target"></span>
+<div class="description_element"><p class="syntax_example"><a href="figure.html#bvjs6ew-1" class="intrnllnk">示例</a></p>
+<div class="code_responsive"><p><span id="d124e412280" itemprop="syntax"><code class="synopsis">figure(<a href="#buich1u-1-f" class="intrnllnk"><code class="argument">f</code></a>)</code></span> 将 <code class="argument">f</code> 指定的图窗作为当前图窗，并将其显示在其他所有图窗的上面。</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e412296" itemprop="syntax"><code class="synopsis">figure(<a href="#buich1u-1-n" class="intrnllnk"><code class="argument">n</code></a>)</code></span> 查找 <code class="argument">Number</code> 属性等于 <code class="argument">n</code> 的图窗，并将其作为当前图窗。如果不存在具有该属性值的图窗，MATLAB<sup>®</sup> 将创建一个新图窗并将其 <code class="argument">Number</code> 属性设置为 <code class="argument">n</code>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="bvjs6cb-5">示例</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">全部折叠</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_e279e63f-1641-4b14-a781-c5facd020190"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e279e63f-1641-4b14-a781-c5facd020190" data-target="#expand_panel_body_mw_e279e63f-1641-4b14-a781-c5facd020190" aria-controls="expand_panel_body_mw_e279e63f-1641-4b14-a781-c5facd020190" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_e279e63f-1641-4b14-a781-c5facd020190">更改图窗大小<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e279e63f-1641-4b14-a781-c5facd020190" aria-labelledby="expand_panel_heading_mw_e279e63f-1641-4b14-a781-c5facd020190" class="panel-collapse collapse in"><div class="panel-body"><div class="procedure"><p>创建一个默认图窗。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>f = figure;</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e413074" class="mediaobject"><p><img src="figure_size_1.png" alt="Figure window"/></p>
+</div>
+</div>
+<p>获取该图窗的位置、宽度和高度。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>f.Position</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   680   558   560   420</pre>
+</div>
+</div>
+</div>
+<p>这意味着图窗窗口位于主显示器左下角的右侧 680 像素和上方 558 像素处，宽 560 像素，高 420 像素。</p>
+<p>通过调整位置向量的第三个和第四个元素，将图窗宽度和高度减半。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>f.Position(3:4) = [280 210];</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e413090" class="mediaobject"><p><img src="figure_size_2.png" alt="Figure window with width and height halved"/></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_bvjs6el-1"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvjs6el-1" data-target="#expand_panel_body_bvjs6el-1" aria-controls="expand_panel_body_bvjs6el-1" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="bvjs6el-1">指定图窗标题<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvjs6el-1" aria-labelledby="expand_panel_heading_bvjs6el-1" class="panel-collapse collapse in"><div class="panel-body"><div class="procedure"><p>创建一个图窗并指定 <code class="argument">Name</code> 属性。默认情况下，生成的标题包含图窗编号。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure(<span style="color:#A020F0">'Name'</span>,<span style="color:#A020F0">'Measured Data'</span>);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e413105" class="mediaobject"><p><img src="figure_ref_numtitle.png" alt="Figure window with title &quot;Figure 1: Measured Data&quot;"/></p>
+</div>
+</div>
+<p>再次指定 <code class="argument">Name</code> 属性，但这次将 <code class="argument">NumberTitle</code> 属性设置为 <code class="literal">'off'</code>。生成的标题不包含图窗编号。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure(<span style="color:#A020F0">'Name'</span>,<span style="color:#A020F0">'Measured Data'</span>,<span style="color:#A020F0">'NumberTitle'</span>,<span style="color:#A020F0">'off'</span>);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e413121" class="mediaobject"><p><img src="figure_ref_numtitle_off.png" alt="Figure window with title &quot;Measured Data&quot;"/></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_bvjs6ew-1"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvjs6ew-1" data-target="#expand_panel_body_bvjs6ew-1" aria-controls="expand_panel_body_bvjs6ew-1" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="bvjs6ew-1">同时使用多个图窗<br/>
+</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvjs6ew-1" aria-labelledby="expand_panel_heading_bvjs6ew-1" class="panel-collapse collapse in"><div class="panel-body"><div class="procedure"><p>创建两个图窗，然后创建一个线图。默认情况下，<code class="function">plot</code> 命令的目标为当前图窗。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>f1 = figure;
+f2 = figure;
+plot([1 2 3],[2 4 6]);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e413136" class="mediaobject"><p><img src="figure_2figs_f2_top.png" alt="Two figure windows with titles &quot;Figure 1&quot; and &quot;Figure 2&quot;. Figure 2 is in the foreground and contains a plot with some data."/></p>
+</div>
+</div>
+<p>将当前图窗设置为 <code class="literal">f1</code>，使其成为下一个绘图的目标。然后创建一个散点图。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure(f1);
+scatter((1:20),rand(1,20));</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e413148" class="mediaobject"><p><img src="figure_2figs_f1_top.png" alt="Two figure windows. Figure 1 is in the foreground and contains a scatter plot with some data."/></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bvjs6cb-3">输入参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">全部折叠</a></p>
+<div class="panel-group" id="bvjs6cb-3_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="buich1u-1-f"><div role="tab" data-toggle="collapse" id="expand_panel_heading_buich1u-1-f" data-target="#expand_panel_body_buich1u-1-f" aria-controls="expand_panel_body_buich1u-1-f" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_f" class="anchor_target"></span><h3 class="panel-title" id="buich1u-1-f"><code itemprop="name">f</code> - <span itemprop="purpose">目标图窗</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">Figure</code> 对象</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_buich1u-1-f" aria-labelledby="expand_panel_heading_buich1u-1-f" class="panel-collapse collapse in"><div class="panel-body">
+<p>目标图窗，指定为 <code class="literal">Figure</code> 对象。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="buich1u-1-n"><div role="tab" data-toggle="collapse" id="expand_panel_heading_buich1u-1-n" data-target="#expand_panel_body_buich1u-1-n" aria-controls="expand_panel_body_buich1u-1-n" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_n" class="anchor_target"></span><h3 class="panel-title" id="buich1u-1-n"><code itemprop="name">n</code> - <span itemprop="purpose">目标图窗编号</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">整数标量值</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_buich1u-1-n" aria-labelledby="expand_panel_heading_buich1u-1-n" class="panel-collapse collapse in"><div class="panel-body">
+<p>目标图窗编号，指定为整数标量值。如果您指定此参数，MATLAB 将搜索 <a href="matlab.ui.figure-properties.html#shared-Number"><span class="property">Number</span></a> 属性等于 <code class="literal">n</code> 的现有图窗。如果不存在具有该属性值的图窗，MATLAB 将创建一个新图窗并将其 <code class="argument">Number</code> 属性设置为 <code class="literal">n</code>。默认情况下，<code class="argument">Number</code> 属性值显示在图窗的标题中。</p>
+<p class="datatypelist"><strong>数据类型： </strong><code itemprop="datatype">double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span id="namevaluepairarguments" class="anchor_target"></span><span id="bvjs6cb-1_1" class="anchor_target"></span><h3 id="namevaluepairs" class="bottom_ruled">名称-值参数</h3>
+<div class="namevaluecontainer"><p><span class="example_desc"><strong>示例： </strong><code class="literal">figure('Color','white')</code> 创建具有白色背景的图窗。</span></p>
+</div>
+<p>指定可选的、以逗号分隔的 <code class="argument">Name,Value</code> 对组参数。<code class="literal">Name</code> 为参数名称，<code class="literal">Value</code> 为对应的值。<code class="literal">Name</code> 必须放在单引号 (<code class="literal">' '</code>) 中。您可以指定多个名称-值对组参数，如 <code class="literal">Name1,Value1,...,NameN,ValueN</code>。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>注意</strong></p>
+<p>此处所列的属性只是一部分。有关完整列表，请参阅 <a href="matlab.ui.figure-properties.html"><span class="property">Figure 属性</span></a>。</p>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="d124e412408_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="buich1u-1_sep_shared-Name"><div role="tab" data-toggle="collapse" id="expand_panel_heading_buich1u-1_sep_shared-Name" data-target="#expand_panel_body_buich1u-1_sep_shared-Name" aria-controls="expand_panel_body_buich1u-1_sep_shared-Name" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Name" class="anchor_target"></span><h3 class="panel-title" id="buich1u-1_sep_shared-Name"><code itemprop="name">Name</code> - <span itemprop="purpose">名称</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">''</code></span> （默认） | <span itemprop="inputvalue">字符向量</span> | <span itemprop="inputvalue">字符串标量</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_buich1u-1_sep_shared-Name" aria-labelledby="expand_panel_heading_buich1u-1_sep_shared-Name" class="panel-collapse collapse in"><div class="panel-body">
+        <p>图窗的名称，指定为字符向量或字符串标量。</p>
+        <p class="description_valueexample"><strong>示例： </strong><code class="literal">figure('Name','Results')</code> 将图窗的名称设置为 <code class="literal">'Results'</code>。</p>
+        <p>默认情况下，名称为 <code class="literal">'Figure <span class="emphasis"><em>n</em></span>'</code>，其中 <code class="literal"><span class="emphasis"><em>n</em></span></code> 是整数。如果您指定 <code class="argument">Name</code> 属性，图窗的标题将变为 <code class="literal">'Figure <span class="emphasis"><em>n</em></span>: <span class="emphasis"><em>name</em></span>'</code>。如果您希望只显示 <code class="argument">Name</code> 值，请将 <a href="matlab.ui.figure-properties.html#buiwuyk-1-IntegerHandle"><code class="argument">IntegerHandle</code></a> 或 <a href="matlab.ui.figure-properties.html#buiwuyk-1-NumberTitle"><code class="argument">NumberTitle</code></a> 设置为 <code class="literal">'off'</code>。</p>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="buich1u-1_sep_shared-Color"><div role="tab" data-toggle="collapse" id="expand_panel_heading_buich1u-1_sep_shared-Color" data-target="#expand_panel_body_buich1u-1_sep_shared-Color" aria-controls="expand_panel_body_buich1u-1_sep_shared-Color" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Color" class="anchor_target"></span><h3 class="panel-title" id="buich1u-1_sep_shared-Color"><code itemprop="name">Color</code> - <span itemprop="purpose">背景色</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">RGB 三元组</span> | <span itemprop="inputvalue">十六进制颜色代码</span> | <span itemprop="inputvalue"><code class="literal">'r'</code></span> | <span itemprop="inputvalue"><code class="literal">'g'</code></span> | <span itemprop="inputvalue"><code class="literal">'b'</code></span> | ...</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_buich1u-1_sep_shared-Color" aria-labelledby="expand_panel_heading_buich1u-1_sep_shared-Color" class="panel-collapse collapse in"><div class="panel-body">
+<p>背景颜色，指定为 RGB 三元组、十六进制颜色代码、颜色名称或短名称。如果指定 <code class="literal">'none'</code>，背景色将在屏幕上显示为黑色，但如果您打印图窗，则会将图窗窗口视为透明而打印背景。</p>
+        <p>对于自定义颜色，请指定 RGB 三元组或十六进制颜色代码。</p>
+<div class="itemizedlist"><ul><li><p>RGB 三元组是包含三个元素的行向量，其元素分别指定颜色中红、绿、蓝分量的强度。强度值必须位于 <code class="literal">[0,1]</code> 范围内，例如 <code class="literal">[0.4 0.6 0.7]</code>。 </p></li>
+<li><p>十六进制颜色代码是字符向量或字符串标量，以井号 (<code class="literal">#</code>) 开头，后跟三个或六个十六进制数字，范围可以是 <code class="literal">0</code> 到 <code class="literal">F</code>。这些值不区分大小写。因此，颜色代码 <code class="literal">'#FF8800'</code> 与 <code class="literal">'#ff8800'</code>、<code class="literal">'#F80'</code> 与 <code class="literal">'#f80'</code> 是等效的。</p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>此外，还可以按名称指定一些常见的颜色。下表列出了命名颜色选项、等效 RGB 三元组和十六进制颜色代码。</p>
+        <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="15%"/>
+<col class="tcol2" width="15%"/>
+<col class="tcol3" width="20%"/>
+<col class="tcol4" width="20%"/>
+<col class="tcol5" width="30%"/>
+</colgroup>
+<thead><tr><th>颜色名称</th>
+<th>短名称</th>
+<th>RGB 三元组</th>
+<th>十六进制颜色代码</th>
+<th>外观</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">'red'</code></td>
+<td><code class="literal">'r'</code></td>
+<td><code class="literal">[1 0 0]</code></td>
+<td><code class="literal">'#FF0000'</code></td>
+<td><div class="informalfigure"><div id="d124e412559" class="mediaobject"><p><img src="hg_red.png" alt="Sample of the color red"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">'green'</code></td>
+<td><code class="literal">'g'</code></td>
+<td><code class="literal">[0 1 0]</code></td>
+<td><code class="literal">'#00FF00'</code></td>
+<td><div class="informalfigure"><div id="d124e412574" class="mediaobject"><p><img src="hg_green.png" alt="Sample of the color green"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">'blue'</code></td>
+<td><code class="literal">'b'</code></td>
+<td><code class="literal">[0 0 1]</code></td>
+<td><code class="literal">'#0000FF'</code></td>
+<td><div class="informalfigure"><div id="d124e412589" class="mediaobject"><p><img src="hg_blue.png" alt="Sample of the color blue"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">'cyan'</code> </td>
+<td><code class="literal">'c'</code></td>
+<td><code class="literal">[0 1 1]</code></td>
+<td><code class="literal">'#00FFFF'</code></td>
+<td><div class="informalfigure"><div id="d124e412605" class="mediaobject"><p><img src="hg_cyan.png" alt="Sample of the color cyan"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">'magenta'</code></td>
+<td><code class="literal">'m'</code></td>
+<td><code class="literal">[1 0 1]</code></td>
+<td><code class="literal">'#FF00FF'</code></td>
+<td><div class="informalfigure"><div id="d124e412620" class="mediaobject"><p><img src="hg_magenta.png" alt="Sample of the color magenta"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">'yellow'</code></td>
+<td><code class="literal">'y'</code></td>
+<td><code class="literal">[1 1 0]</code></td>
+<td><code class="literal">'#FFFF00'</code></td>
+<td><div class="informalfigure"><div id="d124e412635" class="mediaobject"><p><img src="hg_yellow.png" alt="Sample of the color yellow"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">'black'</code></td>
+<td><code class="literal">'k'</code></td>
+<td><code class="literal">[0 0 0]</code></td>
+<td><code class="literal">'#000000'</code></td>
+<td><div class="informalfigure"><div id="d124e412650" class="mediaobject"><p><img src="hg_black.png" alt="Sample of the color black"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">'white'</code></td>
+<td><code class="literal">'w'</code></td>
+<td><code class="literal">[1 1 1]</code></td>
+<td><code class="literal">'#FFFFFF'</code></td>
+<td><div class="informalfigure"><div id="d124e412665" class="mediaobject"><p><img src="hg_white.png" alt="Sample of the color white"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">'none'</code></td>
+<td>不适用</td>
+<td>不适用</td>
+<td>不适用</td>
+<td>无颜色</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>以下是 MATLAB 在许多类型的绘图中使用的默认颜色的 RGB 三元组和十六进制颜色代码。</p>
+                    
+            
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="35%"/>
+<col class="tcol2" width="35%"/>
+<col class="tcol3" width="30%"/>
+</colgroup>
+<thead><tr><th>RGB 三元组</th>
+<th>十六进制颜色代码</th>
+<th>外观</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">[0 0.4470 0.7410], [0 114 190]</code></td>
+<td><code class="literal">'#0072BD'</code></td>
+<td><div class="informalfigure"><div id="d124e412707" class="mediaobject"><p><img src="colororder1.png" alt="Sample of RGB triplet [0 0.4470 0.7410], which appears as dark blue"/> 宝蓝色</p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.8500 0.3250 0.0980], [218 83 25] </code></td>
+<td><code class="literal">'#D95319'</code></td>
+<td><div class="informalfigure"><div id="d124e412718" class="mediaobject"><p><img src="colororder2.png" alt="Sample of RGB triplet [0.8500 0.3250 0.0980], which appears as dark orange"/> 橙红色</p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.9290 0.6940 0.1250], [238, 117, 32]</code></td>
+<td><code class="literal">'#EDB120'</code></td>
+<td><div class="informalfigure"><div id="d124e412729" class="mediaobject"><p><img src="colororder3.png" alt="Sample of RGB triplet [0.9290 0.6940 0.1250], which appears as dark yellow"/> 深橙色</p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.4940 0.1840 0.5560], [126 47 142]</code></td>
+<td><code class="literal">'#7E2F8E'</code></td>
+<td><div class="informalfigure"><div id="d124e412740" class="mediaobject"><p><img src="colororder4.png" alt="Sample of RGB triplet [0.4940 0.1840 0.5560], which appears as dark purple"/> 暗紫色</p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.4660 0.6740 0.1880], [119, 173, 48] </code></td>
+<td><code class="literal">'#77AC30'</code></td>
+<td><div class="informalfigure"><div id="d124e412751" class="mediaobject"><p><img src="colororder5.png" alt="Sample of RGB triplet [0.4660 0.6740 0.1880], which appears as medium green"/> 草绿色</p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.3010 0.7450 0.9330], [77 191 239] </code></td>
+<td><code class="literal">'#4DBEEE'</code></td>
+<td><div class="informalfigure"><div id="d124e412762" class="mediaobject"><p><img src="colororder6.png" alt="Sample of RGB triplet [0.3010 0.7450 0.9330], which appears as light blue"/> 宝绿色</p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.6350 0.0780 0.1840], [163, 20, 47] </code></td>
+<td><code class="literal">'#A2142F'</code></td>
+<td><div class="informalfigure"><div id="d124e412773" class="mediaobject"><p><img src="colororder7.png" alt="Sample of RGB triplet [0.6350 0.0780 0.1840], which appears as dark red"/> 棕褐色</p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+        
+
+<p class="datatypelist"><strong>数据类型： </strong><code itemprop="datatype">double</code> | <code itemprop="datatype">char</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="buich1u-1_sep_shared-Position"><div role="tab" data-toggle="collapse" id="expand_panel_heading_buich1u-1_sep_shared-Position" data-target="#expand_panel_body_buich1u-1_sep_shared-Position" aria-controls="expand_panel_body_buich1u-1_sep_shared-Position" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Position" class="anchor_target"></span><h3 class="panel-title" id="buich1u-1_sep_shared-Position"><code itemprop="name">Position</code> - <span itemprop="purpose">可绘制区域的位置和大小</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">[left bottom width height]</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_buich1u-1_sep_shared-Position" aria-labelledby="expand_panel_heading_buich1u-1_sep_shared-Position" class="panel-collapse collapse in"><div class="panel-body">
+<p>可绘制区域的位置和大小，指定为 <code class="literal">[left bottom width height]</code> 形式的向量。此区域不包括图窗边框、标题栏、菜单栏和工具栏。</p>
+<p> 此表介绍 <code class="argument">Position</code> 向量中的每个元素。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"/>
+<col class="tcol2" width="67%"/>
+</colgroup>
+<thead><tr><th>元素</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">left</code></td>
+<td>从主画面左边缘到窗口的内部左边缘的距离。在具有多个监视器的系统上，此值可能为负数。<br/>
+<br/>
+如果图窗已停靠，则此值相对于 MATLAB 桌面中的“图窗”面板。</td>
+</tr>
+<tr><td><code class="literal">bottom</code></td>
+<td>从主画面下边缘到窗口的内部下边缘的距离。在具有多个监视器的系统上，此值可能为负数。<br/>
+<br/>
+如果图窗已停靠，则此值相对于 MATLAB 桌面中的“图窗”面板。</td>
+</tr>
+<tr><td><code class="literal">width</code></td>
+<td>figure 的左右内部边缘之间的距离。</td>
+</tr>
+<tr><td><code class="literal">height</code></td>
+<td>窗口的上下内部边缘之间的距离。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+所有测量值都采用 <a href="#buich1u-1_sep_shared-Units" class="intrnllnk"><code class="argument">Units</code></a> 属性指定的单位。</p>
+<p>图窗停靠时不能指定图窗的 <code class="argument">Position</code> 属性。</p>
+        <p>在 <span>MATLAB Online™</span> 中，<code class="argument">Position</code> 向量的 <code class="literal">bottom</code> 和 <code class="literal">left</code> 元素被忽略。</p>
+<p>要放置包括边框、标题栏、菜单栏和工具栏在内的整个窗口，请使用 <a href="matlab.ui.figure-properties.html#buiwuyk-1-OuterPosition"><code class="argument">OuterPosition</code></a> 属性。  </p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>注意</strong></p>
+<p>Windows<sup>®</sup> 操作系统会强制应用最小窗口宽度和最大窗口大小。如果您指定的图窗尺寸超出这些限制，将按照这些限制而不是指定的尺寸显示图窗。</p>
+</div>
+<p>
+  </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="buich1u-1_sep_shared-Units"><div role="tab" data-toggle="collapse" id="expand_panel_heading_buich1u-1_sep_shared-Units" data-target="#expand_panel_body_buich1u-1_sep_shared-Units" aria-controls="expand_panel_body_buich1u-1_sep_shared-Units" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Units" class="anchor_target"></span><h3 class="panel-title" id="buich1u-1_sep_shared-Units"><code itemprop="name">Units</code> - <span itemprop="purpose">测量单位</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">'pixels'</code></span> （默认） | <span itemprop="inputvalue"><code class="literal">'normalized'</code></span> | <span itemprop="inputvalue"><code class="literal">'inches'</code></span> | <span itemprop="inputvalue"><code class="literal">'centimeters'</code></span> | <span itemprop="inputvalue"><code class="literal">'points'</code></span> | <span itemprop="inputvalue"><code class="literal">'characters'</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_buich1u-1_sep_shared-Units" aria-labelledby="expand_panel_heading_buich1u-1_sep_shared-Units" class="panel-collapse collapse in"><div class="panel-body">
+<p>测量单位，指定为下表中的值之一。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>单位值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">'pixels'</code>（默认值）</td>
+<td><p>像素。</p>
+  <p>从 R2015b 开始，以像素为单位的距离不再依赖 Windows 和 <span>Macintosh</span> 系统上的系统分辨率： </p>
+<div class="itemizedlist"><ul><li><p>在 Windows 系统上，一个像素是 1/96 英寸。</p></li>
+<li><p>在 <span>Macintosh</span> 系统上，一个像素是 1/72 英寸。</p></li>
+</ul>
+</div>
+<p>
+在 Linux<sup>®</sup> 系统上，一个像素的大小由系统分辨率确定。</p>
+  </td>
+</tr>
+<tr><td><code class="literal">'normalized'</code></td>
+<td>这些单位依据父容器进行归一化。容器的左下角映射到 <code class="literal">(0,0)</code>，右上角映射到 <code class="literal">(1,1)</code>。</td>
+</tr>
+<tr><td><code class="literal">'inches'</code></td>
+<td>英寸。</td>
+</tr>
+<tr><td><code class="literal">'centimeters'</code></td>
+<td>厘米。</td>
+</tr>
+<tr><td><code class="literal">'points'</code></td>
+<td>磅。1 磅等于 1/72 英寸。</td>
+</tr>
+<tr><td><code class="literal">'characters'</code></td>
+<td><p>这些单位基于图形根对象的默认 uicontrol 字体：</p>
+<div class="itemizedlist"><ul><li><p>字符宽度 = 字母 <code class="literal">x</code> 的宽度。 </p></li>
+<li><p>字符高度 = 两个文本行的基线之间的距离。</p></li>
+</ul>
+</div>
+<p>要访问默认的 uicontrol 字体，请使用 <code class="literal">get(groot,'defaultuicontrolFontName')</code> 或 <code class="literal">set(groot,'defaultuicontrolFontName')</code>。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<p>MATLAB 从父对象的左下角测量所有单位。</p>
+<p>此属性会影响 <a href="#buich1u-1_sep_shared-Position" class="intrnllnk"><code class="argument">Position</code></a> 属性。如果更改 <code class="argument">Units</code> 属性，请考虑在完成计算后将其值还原为默认值，以免影响采用默认值的其他函数。</p>
+<p>指定 <code class="argument">Units</code> 和 <code class="argument">Position</code> 属性的顺序具有以下影响：</p>
+<div class="itemizedlist"><ul><li><p>如果您在 <code class="argument">Position</code> 属性之前指定 <code class="argument">Units</code>，则 MATLAB 会使用您指定的单位来设置 <code class="argument">Position</code>。</p></li>
+<li><p>如果您在 <code class="argument">Position</code> 属性之后指定 <code class="argument">Units</code> 属性，则 MATLAB 会使用默认的 <code class="argument">Units</code> 来设置 position。然后，MATLAB 将 <code class="argument">Position</code> 值转换为以您指定的单位表示的等价值。</p></li>
+</ul>
+</div>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="moreabout ref_sect"><h2 id="bvjs6fu-1">详细信息</h2>
+<div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true2">全部折叠</a></p>
+<div class="expand_collapse"><h3 class="expand_trigger" id="bvjs6fu-2" aria-expanded="true" data-toggle="collapse" data-target="#expand_body_bvjs6fu-2" aria-controls="expand_body_bvjs6fu-2"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>当前图窗</h3>
+<div id="expand_body_bvjs6fu-2" class="collapsible_content collapse in" aria-expanded="true"><p class="shortdesc">当前图窗是图形命令（如 <code class="function">axes</code> 和 <code class="function">colormap</code>）的目标。通常情况下，它是最后创建的或最后用鼠标点击的图窗。<a href="gcf.html"><code class="function">gcf</code></a> 命令返回当前图窗。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_da013e4c-4ddc-4ee7-bd82-972546f6e071">提示</h2>
+<div class="itemizedlist"><ul><li><p> 使用图形根对象为其他类型的对象设置根级别的默认值。例如，将以后所有图窗的默认颜色图设置为 <code class="literal">summer</code> 颜色图。</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(groot,<span style="color:#A020F0">'DefaultFigureColormap'</span>,summer)</pre>
+</div>
+</div>
+</div>要将属性恢复为其原始 MATLAB 默认值，请使用 <code class="literal">'remove'</code> 关键字。<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(groot,<span style="color:#A020F0">'DefaultFigureColormap'</span>,<span style="color:#A020F0">'remove'</span>)</pre>
+</div>
+</div>
+</div>有关设置默认值的详细信息，请参阅<a href="../creating_plots/default-property-values.html" class="a">默认属性值</a>。<p></p></li>
+</ul>
+</div>
+</div>
+<div class="ref_sect"><h2 id="buich1u-1_vh">版本历史记录</h2>
+<p><strong>在 R2006a 之前推出</strong></p>
+</div>
+<div class="ref_sect"><h2 id="buich1u-1_seealso">另请参阅</h2>
+<h3>函数</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="axes.html"><span itemprop="name"><code class="function">axes</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="gcf.html"><span itemprop="name"><code class="function">gcf</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="gca.html"><span itemprop="name"><code class="function">gca</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="clf.html"><span itemprop="name"><code class="function">clf</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="cla.html"><span itemprop="name"><code class="function">cla</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="shg.html"><span itemprop="name"><code class="function">shg</code></span></a></span></li>
+</ul>
+<h3>属性</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="matlab.ui.figure-properties.html"><span itemprop="name"><span class="property">Figure 属性</span></span></a></span></li>
+</ul>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">本页内容对您有帮助吗？</mw-rating-feedback-step><mw-rating-feedback-step step="1">能告诉我们您的评分理由吗？</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>感谢您的反馈！</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">使用条款</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">专利</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">商标</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">致谢</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
