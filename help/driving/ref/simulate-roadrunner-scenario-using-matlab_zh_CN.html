@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Simulate a RoadRunner Scenario Using MATLAB Functions</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../roadrunner-scenario-simulation.html",
+          "name": "RoadRunner Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scene-and-scenario-interaction.html",
+          "name": "Programmatic Scene and Scenario Management"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scene-and-scenario-interaction"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Simulate a RoadRunner Scenario Using MATLAB Functions",
+          "description": "Automate running and visualizing simulations with RoadRunner Scenario using MATLAB functions.",
+          "thumbnailURL": "../../examples/driving_roadrunner/win64/ConnectToRoadRunnerScenarioExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "driving_roadrunner.ConnectToRoadRunnerScenarioExample",
+          "name": "ConnectToRoadRunnerScenarioExample",
+          "url": "simulate-roadrunner-scenario-using-matlab.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving_roadrunner/ConnectToRoadRunnerScenarioExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ConnectToRoadRunnerScenarioExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Automate running and visualizing simulations with RoadRunner Scenario using MATLAB functions."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving_roadrunner/win64/ConnectToRoadRunnerScenarioExample_03.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../roadrunner-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">RoadRunner Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scene-and-scenario-interaction.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scene and Scenario Management</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Simulate a RoadRunner Scenario Using MATLAB Functions</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#ConnectToRoadRunnerScenarioExample-1" class="intrnllnk">Set Up Environment to Launch RoadRunner Scenario</a></li>
+<li><a href="#ConnectToRoadRunnerScenarioExample-2" class="intrnllnk">Open RoadRunner Scenario Session</a></li>
+<li><a href="#ConnectToRoadRunnerScenarioExample-3" class="intrnllnk">Simulate Scenario</a></li>
+<li><a href="#ConnectToRoadRunnerScenarioExample-4" class="intrnllnk">Plot Agent Velocities</a></li>
+<li><a href="#ConnectToRoadRunnerScenarioExample-5" class="intrnllnk">Plot Agent Velocities</a></li>
+<li><a href="#ConnectToRoadRunnerScenarioExample-6" class="intrnllnk">Close Scenario Session</a></li>
+<li><a href="#ConnectToRoadRunnerScenarioExample-7" class="intrnllnk">Further Exploration</a></li>
+<li><a href="#d124e53184" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e53209" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scene-and-scenario-interaction&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scene-and-scenario-interaction&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scene-and-scenario-interaction&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scene-and-scenario-interaction&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scene-and-scenario-interaction&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scene-and-scenario-interaction&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scene-and-scenario-interaction&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scene-and-scenario-interaction&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scene-and-scenario-interaction&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scene-and-scenario-interaction&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_873d5c62-b863-4dae-b821-2667bcf80c52">Simulate a RoadRunner Scenario Using MATLAB Functions</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">此示例使用:</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('RD')">RoadRunner</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('RN')">RoadRunner Scenario</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('driving_roadrunner/ConnectToRoadRunnerScenarioExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving_roadrunner-ConnectToRoadRunnerScenarioExample"/>
+<meta itemprop="exampletitle" content="Simulate a RoadRunner Scenario Using MATLAB Functions"/>
+</div>
+<span id="ConnectToRoadRunnerScenarioExample" class="anchor_target"></span><p class="shortdesc"><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">此示例演示如何使用 MATLAB 函数在 RoadRunner 场景中运行和可视化场景。您可以使用 MATLAB 函数以编程方式控制 RoadRunner 场景。可以执行的常见编程任务</span><span style="background-color: rgb(255, 255, 255); color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px;">包括：</span></p>
+<div class="itemizedlist" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);"><ul style="box-sizing: border-box; margin: 0px 0px 10px 18px; padding: 0px; list-style-position: initial; list-style-image: initial;"><li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="71129110" _msthash="61" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">打开并关闭 RoadRunner 场景应用程序。</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="79422148" _msthash="62" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">打开、关闭和保存场景、方案和项目。</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="23715302" _msthash="63" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">导入和导出方案。</p></li>
+</ul>
+</div>
+<div class="itemizedlist"><ul>
+</ul>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">RoadRunner 方案使您能够以交互方式设计和模拟方案中的代理。若要验证这些代理的行为，自动执行运行和分析方案模拟结果的过程通常很有帮助。在此示例中，您将学习如何使用自动驾驶工具箱®启动 RoadRunner 场景、配置和运行模拟，然后绘制模拟结果</span><br/></p>
+<p _msttexthash="66983527" _msthash="65" style="box-sizing: border-box; margin: 0px 0px 10px; padding: 0px; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">若要运行此示例，必须：</p>
+<div class="itemizedlist" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);"><ul style="box-sizing: border-box; margin: 0px 0px 10px 18px; padding: 0px; list-style-position: initial; list-style-image: initial;"><li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="62546978" _msthash="66" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">拥有自动驾驶工具箱®许可证。</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="72455292" _msthash="67" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">拥有RoadRunner许可证并安装产品。</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="90763114" _msthash="68" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">拥有 RoadRunner 场景许可证并安装产品。</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="50472942" _msthash="69" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">已创建 RoadRunner 项目文件夹。</p></li>
+</ul>
+</div>
+<div class="itemizedlist"><ul>
+</ul>
+</div>
+<div class="procedure"><h3 class="title" id="ConnectToRoadRunnerScenarioExample-1">设置环境以启动Roadrunner方案</h3>
+<p style="box-sizing: border-box; margin: 0px 0px 10px; padding: 0px; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);"><font _mstmutation="1" _msttexthash="1637151048" _msthash="71" style="box-sizing: border-box;">要使用 MATLAB 函数以编程方式控制 RoadRunner 场景，请使用该对象。默认情况下，从您正在使用的平台（Windows® 或 Linux®）的默认安装文件夹中打开 RoadRunner。以下是按平台划分的默认安装位置：</font></p>
+<div class="itemizedlist" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);"><ul style="box-sizing: border-box; margin: 0px 0px 10px 18px; padding: 0px; list-style-position: initial; list-style-image: initial;"><li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="16979547" _msthash="72" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">Windows – C：\Program Files\RoadRunner <span class="emphasis" _istranslated="1" style="box-sizing: border-box;"><em _istranslated="1" style="box-sizing: border-box;">R20NNx</em></span>\bin\win64</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="14453387" _msthash="73" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">Linux， Ubuntu® – /usr/local/RoadRunner_<span class="emphasis" _istranslated="1" style="box-sizing: border-box;"><em _istranslated="1" style="box-sizing: border-box;">R20NNx</em></span>/bin/glnxa64</p></li>
+</ul>
+</div>
+<p _msttexthash="61752834" _msthash="74" style="box-sizing: border-box; margin: 0px 0px 10px; padding: 0px; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);"><span class="emphasis" _istranslated="1" style="box-sizing: border-box;"><em _istranslated="1" style="box-sizing: border-box;"><code class="literal" _istranslated="1" style="box-sizing: border-box; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; padding: 0px; color: inherit; background-color: transparent; border-radius: 0px;">R20NNx</code></em></span> 是您正在使用的 MATLAB 版本。</p>
+<p style="box-sizing: border-box; margin: 0px 0px 10px; padding: 0px; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);"><font _mstmutation="1" _msttexthash="576368351" _msthash="75" style="box-sizing: border-box;">如果您的 RoadRunner 场景安装位于与默认位置不同的位置，请使用 MATLAB API 自定义 RoadRunner 场景安装文件夹的默认值。</font></p>
+<h3 class="title" id="ConnectToRoadRunnerScenarioExample-2">打开RoadRunner Scenario</h3>
+<span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">您可以使用该函数创建对象并启动 RoadRunner 方案会话。该函数需要一个参数来指定 RoadRunner 项目的位置。RoadRunner 项目文件夹通常包含以下子文件夹：</span><code class="literal">Assets</code>, <code class="literal">Exports</code>, <code class="literal">Project</code>, <code class="literal">Scenarios</code>, <code class="literal">Scenes</code>.</div>
+<div class="procedure"><br/></div>
+<div class="procedure"><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">通过指定创建项目的位置，使用roadrunner函数在RoadRunner中打开项目。此示例假定 RoadRunner 安装在其在 Windows 中的默认位置。</span><br/><p><font _mstmutation="1" _msttexthash="1166940684" _msthash="79" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">指定现有项目的路径。例如，此代码显示位于 </font><code class="literal" style="box-sizing: border-box; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 14px; padding: 0px; color: rgb(33, 33, 33); background-color: rgb(255, 255, 255); border-radius: 0px;">C:\RR\MyProject</code><code class="literal" style="box-sizing: border-box; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 14px; padding: 0px; color: rgb(33, 33, 33); background-color: rgb(255, 255, 255); border-radius: 0px;">roadrunner</code><code class="literal" style="box-sizing: border-box; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 14px; padding: 0px; color: rgb(33, 33, 33); background-color: rgb(255, 255, 255); border-radius: 0px;">rrApp</code><font _mstmutation="1" _msttexthash="1166940684" _msthash="79" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">上的项目的路径。该函数返回一个对象，该对象提供用于执行基本工作流任务（如打开、关闭和保存场景和项目）的函数。</font></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rrProj = <span style="color:#A020F0">"C:\RR\MyProject"</span>;
+rrApp = roadrunner(rrProj,InstallationFolder=<span style="color:#A020F0">"C:\Program Files\RoadRunner R2022b\bin\win64"</span>);</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">使用openScenario函数，通过指定rrApp对象和要打开的特定场景文件名，打开RoadRunner Scenario中的现有场景。例如，打开TrajectoryCutIn场景文件，该场景是RoadRunner项目中默认包含的一个场景。该函数通过MATLAB在RoadRunner Scenario应用程序中打开所需的场景。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>openScenario(rrApp,<span style="color:#A020F0">"TrajectoryCutIn.rrscenario"</span>);</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="ConnectToRoadRunnerScenarioExample-3">模拟场景</h3>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">在将场景加载到RoadRunner Scenario后，可以使用createSimulation函数创建一个仿真对象，以实现仿真任务的自动化。仿真对象使您能够以编程方式与场景仿真进行交互。</span><br/></p>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">将rrApp对象指定为createSimulation函数的输入参数。该函数将创建一个名为rrSim的仿真对象。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rrSim = createSimulation(rrApp);</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Connection status: 1
+Connected to RoadRunner Scenario server on localhost:59151, with client id {1c6fd5fc-736d-4cd9-9d60-84bc96444b95} </pre>
+</div>
+</div>
+</div>
+<span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">使用set函数，并将rrSim对象、要设置的变量名和该变量的值作为输入参数，将仿真时间设置为最大10秒。</span><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>maxSimulationTimeSec = 10;set(rrSim,<span style="color:#A020F0">'MaxSimulationTime'</span>,maxSimulationTimeSec);</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">要启用仿真结果记录功能，使用set函数，并指定rrSim对象、要设置的变量名以及该变量的值为'on'。这将激活记录功能，使您能够在以后检索和绘制仿真结果。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(rrSim,<span style="color:#A020F0">"Logging"</span>,<span style="color:#A020F0">"on"</span>);</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">启动仿真。使用while循环来监视仿真的状态，并等待仿真完成。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(rrSim,<span style="color:#A020F0">"SimulationCommand"</span>,<span style="color:#A020F0">"Start"</span>);
+<span style="color:#0000FF">while</span> strcmp(get(rrSim,<span style="color:#A020F0">"SimulationStatus"</span>),<span style="color:#A020F0">"Running"</span>)
+    pause(1);
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="ConnectToRoadRunnerScenarioExample-4">绘制车辆代理速度</h3>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">在这个部分，您可以从仿真中获取演员的记录速度，并将它们的大小绘制成与仿真时间的关系图。</span><br/></p>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">获取场景的记录结果。使用get函数，并将rrSim对象和"SimulationLog"作为输入参数。该函数将返回rrLog中的仿真日志，其中包含有关场景仿真的信息。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rrLog = get(rrSim,<span style="color:#A020F0">"SimulationLog"</span>);</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">TrajectoryCutIn场景包含两个演员。红色轿车的Actor ID设置为1，白色轿车的Actor ID设置为2。从仿真日志中获取这些演员的速度记录，以及相应的仿真时间。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>velocityAgent1 = get(rrLog,<span style="color:#A020F0">'Velocity'</span>,<span style="color:#A020F0">'ActorID'</span>,1);
+velocityAgent2 = get(rrLog,<span style="color:#A020F0">'Velocity'</span>,<span style="color:#A020F0">'ActorID'</span>,2);
+time = [velocityAgent1.Time];</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">该函数将红色轿车和白色轿车的速度作为向量返回，并分别存储在变量</span><code node="[object Object]" style="background-color: rgb(247, 247, 247); white-space: pre-wrap; padding: 0px; font-family: Consolas, monaco, monospace; font-size: 18px;">velMagAgent1</code><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">和</span><code node="[object Object]" style="background-color: rgb(247, 247, 247); white-space: pre-wrap; padding: 0px; font-family: Consolas, monaco, monospace; font-size: 18px;">velMagAgent2</code><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">中。通过使用</span><code node="[object Object]" style="background-color: rgb(247, 247, 247); white-space: pre-wrap; padding: 0px; font-family: Consolas, monaco, monospace; font-size: 18px;">norm</code><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">函数计算每个演员的速度大小。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>velMagAgent1 = arrayfun(@(x) norm(x.Velocity,2),velocityAgent1);
+velMagAgent2 = arrayfun(@(x) norm(x.Velocity,2),velocityAgent2);</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">使用plot函数将代理的速度与仿真时间关联起来，并对图表、x轴和y轴进行标注。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+hold <span style="color:#A020F0">on</span>
+plot(time,velMagAgent1,<span style="color:#A020F0">"r"</span>)
+plot(time,velMagAgent2,<span style="color:#A020F0">"b"</span>)
+grid <span style="color:#A020F0">on</span>
+title(<span style="color:#A020F0">"Agent Velocities from RoadRunner Scenario"</span>)
+ylabel(<span style="color:#A020F0">"Velocity (m/sec)"</span>)
+xlabel(<span style="color:#A020F0">"Time (sec)"</span>)
+legend(<span style="color:#A020F0">"Actor ID = 1"</span>,<span style="color:#A020F0">"Actor ID = 2"</span>)</pre>
+<pre><br/></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e53123" class="mediaobject"><p><img src="../../examples/driving_roadrunner/win64/ConnectToRoadRunnerScenarioExample_01.png" alt="Figure contains an axes object. The axes object with title Agent Velocities from RoadRunner Scenario contains 2 objects of type line. These objects represent Actor ID = 1, Actor ID = 2." width="421"/></p>
+</div>
+</div>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">注意到演员的速度与它们在RoadRunner Scenario的逻辑编辑器中的规格相对应。</span><br/></p>
+<h3 class="title" id="ConnectToRoadRunnerScenarioExample-5">绘制代理速度</h3>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">绘制RoadRunner场景中的车道，并在地图上叠加车辆的位置。</span><br/></p>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">通过使用</span><code node="[object Object]" style="background-color: rgb(247, 247, 247); white-space: pre-wrap; padding: 0px; font-family: Consolas, monaco, monospace; font-size: 18px;">getMap</code><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">函数从RoadRunner获取HD Map规格。请注意，该函数返回一个结构，其中一个字段包含有关车道的信息。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hdMap = getMap(rrSim);
+lanes = hdMap.map.lanes;</pre>
+</div>
+</div>
+</div>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">使用for循环遍历每个车道规格，并绘制车道坐标。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+hold <span style="color:#A020F0">on</span>
+<span style="color:#0000FF">for</span> i = 1:numel(lanes)
+    control_points = lanes(i).geometry.values;
+    x_coordinates = arrayfun(@(cp) cp.x,control_points);
+    y_coordinates = arrayfun(@(cp) cp.y,control_points);
+    plot(x_coordinates, y_coordinates, <span style="color:#A020F0">'black'</span>);
+<span style="color:#0000FF">end</span>
+axis <span style="color:#A020F0">equal</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e53149" class="mediaobject"><p><img src="../../examples/driving_roadrunner/win64/ConnectToRoadRunnerScenarioExample_02.png" alt="Figure contains an axes object. The axes object contains 391 objects of type line." width="421"/></p>
+</div>
+</div>
+<p><span style="font-family: -apple-system, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; font-size: 18px; background-color: rgb(247, 247, 247);">提取车辆的位置并将其绘制在车道上。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>poseActor1 = rrLog.get(<span style="color:#A020F0">'Pose'</span>,<span style="color:#A020F0">'ActorID'</span>,1);
+positionActor1_x = arrayfun(@(x) x.Pose(1,4),poseActor1);
+positionActor1_y = arrayfun(@(x) x.Pose(2,4),poseActor1);
+plot(positionActor1_x,positionActor1_y,<span style="color:#A020F0">"r"</span>,<span style="color:#A020F0">"LineWidth"</span>,2)
+
+poseActor2 = rrLog.get(<span style="color:#A020F0">'Pose'</span>,<span style="color:#A020F0">'ActorID'</span>,2);
+positionActor2_x = arrayfun(@(x) x.Pose(1,4),poseActor2);
+positionActor2_y = arrayfun(@(x) x.Pose(2,4),poseActor2);
+plot(positionActor2_x,positionActor2_y,<span style="color:#A020F0">"b"</span>,<span style="color:#A020F0">"LineWidth"</span>,2)
+
+title(<span style="color:#A020F0">"Agent Positions from RoadRunner Scenario"</span>)
+ylabel(<span style="color:#A020F0">"Y (m)"</span>)
+xlabel(<span style="color:#A020F0">"X (m)"</span>)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e53159" class="mediaobject"><p><img src="../../examples/driving_roadrunner/win64/ConnectToRoadRunnerScenarioExample_03.png" alt="Figure contains an axes object. The axes object with title Agent Positions from RoadRunner Scenario contains 393 objects of type line." width="421"/></p>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure(gcf)</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="ConnectToRoadRunnerScenarioExample-6">关闭方案会话</h3>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">停止与 RoadRunner 场景交互，请关闭模拟。然后关闭应用程序。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close(rrApp)</pre>
+</div>
+</div>
+</div>
+<p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: rgb(255, 255, 255);">关闭打开的图形。</span><br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close <span style="color:#A020F0">all</span></pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="ConnectToRoadRunnerScenarioExample-7">进一步探索</h3>
+<p _msttexthash="593697715" _msthash="106" style="box-sizing: border-box; margin: 0px 0px 10px; padding: 0px; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);">在此示例中，您了解了使用 MATLAB 以编程方式连接到 RoadRunner 场景的基本功能。要进一步扩展此脚本，您可以：</p>
+<div class="itemizedlist" style="box-sizing: border-box; font-size: 14px; color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; background-color: rgb(255, 255, 255);"><ul style="box-sizing: border-box; margin: 0px 0px 10px 18px; padding: 0px; list-style-position: initial; list-style-image: initial;"><li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="68558568" _msthash="107" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">改变场景中的场景和车辆参与者。</p></li>
+<li style="box-sizing: border-box; padding: 0px; margin: 0px 0px 5px; background: 0px center; list-style: disc;"><p _msttexthash="635057124" _msthash="108" style="box-sizing: border-box; margin: 0px 0px 5px; padding: 0px;">开发 MATLAB 和 Simulink 行为，发布参与者行为，在 RoadRunner 场景模拟中模拟行为，以及控制模拟和访问模拟参数。</p></li>
+</ul>
+</div>
+<div class="itemizedlist"><ul>
+</ul>
+</div>
+</div>
+        
+        <h2 id="d124e53184">参见</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/roadrunner.html"><span itemprop="name"><code class="function">roadrunner</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/roadrunner.openscenario.html"><span itemprop="name"><code class="function">openScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/roadrunner.createsimulation.html"><span itemprop="name"><code class="function">createSimulation</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulink.scenariolog.html"><span itemprop="name"><code class="object">Simulink.ScenarioLog</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulink.scenariosimulation.set.html"><span itemprop="name"><code class="function">set</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/roadrunner.close.html"><span itemprop="name"><code class="function">close</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../matlab/ref/settings.html"><span itemprop="name"><code class="function">settings</code></span></a></span></p>
+        <h2 id="d124e53209">相关主题</h2>
+<ul><li><a href="../../roadrunner-scenario/ug/roadrunner-scenario-fundamentals.html#mw_b999aa15-5179-41a5-be56-b6f1cdaa6ba5" class="a">Design and Simulate Scenarios</a><span role="cross_prod"> (RoadRunner Scenario)</span></li>
+<li><a href="overview-of-co-simulating-roadrunner-with-matlab-and-simulink.html" class="a">Overview of Simulating RoadRunner Scenarios with MATLAB and Simulink</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
