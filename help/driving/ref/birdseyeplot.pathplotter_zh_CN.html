@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>pathPlotter</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:pathPlotter"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:birdsEyePlot.pathPlotter"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:driving.birdsEyePlot.PathPlotter.pathPlotter"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function creates a PathPlotter object that configures the display of actor paths on a bird's-eye plot."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">pathPlotter</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_d60053a9-ab67-42e9-9bdc-332e82e6931d" class="intrnllnk">Syntax</a></li>
+<li><a href="#description" class="intrnllnk">Description</a></li>
+<li><a href="#mw_1b40e93b-c0fe-44a7-a32f-d0c984256a6e" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_0a0cefa1-a7ef-4500-92f0-7579730e6630" class="intrnllnk">Plot Path of Ego Vehicle</a></li>
+</ul></li>
+<li><a href="#mw_24e497be-669f-4bb3-aee9-a25ee5e365c1" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="intrnllnk">bep</a></li>
+</ul><ul class="nav"><li><a href="#namevaluepairs" class="intrnllnk">Name-Value Arguments</a><ul class="nav"><li><a href="#bvl2sxu-1_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" class="intrnllnk">DisplayName</a></li>
+<li><a href="#mw_8f64422f-230b-428a-b81e-5cc1594a7bf2" class="intrnllnk">Color</a></li>
+<li><a href="#mw_558fffff-45f7-4452-93bb-b5bdb5cbaa63" class="intrnllnk">LineStyle</a></li>
+<li><a href="#bvl2sxu-1_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" class="intrnllnk">Tag</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mw_9ef7616b-971e-4bd0-b9e4-d4d9f0df339d" class="intrnllnk">Output Arguments</a><ul class="nav"><li><a href="#mw_ae0689c9-5e8f-4862-a6e8-6a6b40eb7eff" class="intrnllnk">pPlotter</a></li>
+</ul></li>
+<li><a href="#bvl2sxu-1_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#bvl2sxu-1_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="bvl2sxu-1" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">pathPlotter</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">用于鸟瞰图的路径绘制器</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<span id="mw_d60053a9-ab67-42e9-9bdc-332e82e6931d" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_d60053a9-ab67-42e9-9bdc-332e82e6931d">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e77918" class="intrnllnk">pPlotter = pathPlotter(bep)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e77949" class="intrnllnk">pPlotter = pathPlotter(bep,Name,Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="mw_19ab4655-72d2-4403-9e55-96d570e58ff1" class="anchor_target"></span><h2 id="description">描述</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><span id="bvl2sxu-1.mw_93798e6f-5ecf-425e-bd1a-631e0827fc14" class="anchor_target"></span>
+      <div class="description_element"><p class="syntax_example"><a href="birdseyeplot.pathplotter.html#mw_0a0cefa1-a7ef-4500-92f0-7579730e6630" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e77918" itemprop="syntax"><code class="synopsis"><a href="#mw_ae0689c9-5e8f-4862-a6e8-6a6b40eb7eff" class="intrnllnk"><code class="argument">pPlotter</code></a> = pathPlotter(<a href="#bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="intrnllnk"><code class="argument">bep</code></a>)</code></span>
+创建一个 <code class="object">PathPlotter</code> 对象，用于在鸟瞰图上配置参与者路径的显示。<code class="object">PathPlotter</code> 对象存储在输入的 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象（<code class="argument">bep</code>）的 <code class="property">Plotters</code> 属性中。要显示路径，请使用 <a href="birdseyeplot.plotpath.html"><code class="function">plotPath</code></a> 函数。</p>
+</div>
+</div>
+      <div class="description_element"><div class="code_responsive"><p><span id="d124e77949" itemprop="syntax"><code class="synopsis"><a href="#mw_ae0689c9-5e8f-4862-a6e8-6a6b40eb7eff" class="intrnllnk"><code class="argument">pPlotter</code></a> = pathPlotter(<a href="#bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="intrnllnk"><code class="argument">bep</code></a>,<a href="#namevaluepairarguments" class="intrnllnk"><code class="argument">Name,Value</code></a>)</code></span>
+使用一个或多个 <code class="argument">Name,Value</code> 对参数来设置属性。例如，<code class="literal">pathPlotter(bep,'DisplayName','Actor paths')</code> 设置在鸟瞰图图例中显示的名称。</p>
+</div>
+</div>
+    </div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="mw_1b40e93b-c0fe-44a7-a32f-d0c984256a6e">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_0a0cefa1-a7ef-4500-92f0-7579730e6630"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_0a0cefa1-a7ef-4500-92f0-7579730e6630" data-target="#expand_panel_body_mw_0a0cefa1-a7ef-4500-92f0-7579730e6630" aria-controls="expand_panel_body_mw_0a0cefa1-a7ef-4500-92f0-7579730e6630" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_0a0cefa1-a7ef-4500-92f0-7579730e6630">绘制自车路径<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_0a0cefa1-a7ef-4500-92f0-7579730e6630" aria-labelledby="expand_panel_heading_mw_0a0cefa1-a7ef-4500-92f0-7579730e6630" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/PlotThePathOfAnEgoVehicleExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Plot Path of Ego Vehicle",
+          "description": "Create a 3-meter-wide lane.",
+          "thumbnailURL": "../../examples/driving/win64/PlotThePathOfAnEgoVehicleExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "birdseyeplot.pathplotter.html"
+
+        },
+          "identifier": "driving.PlotThePathOfAnEgoVehicleExample",
+          "name": "PlotThePathOfAnEgoVehicleExample",
+          "url": "birdseyeplot.pathplotter.html#mw_0a0cefa1-a7ef-4500-92f0-7579730e6630"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/PlotThePathOfAnEgoVehicleExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "PlotThePathOfAnEgoVehicleExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">创建一个宽度为3米的车道。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lb = parabolicLaneBoundary([-0.001,0.01,1.5]);
+rb = parabolicLaneBoundary([-0.001,0.01,-1.5]);</pre>
+</div>
+</div>
+</div>
+<p>手动计算沿着 <em>x</em> 轴从 0 到 30 米的车道边界模型。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xWorld = (0:30)';
+yLeft = computeBoundaryModel(lb,xWorld);
+yRight = computeBoundaryModel(rb,xWorld);</pre>
+</div>
+</div>
+</div>
+<p>创建一个鸟瞰图和车道边界绘图器。在鸟瞰图上显示车道信息。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bep = birdsEyePlot(<span style="color:#A020F0">'XLimits'</span>,[0 30],<span style="color:#A020F0">'YLimits'</span>,[-5 5]);
+lanePlotter = laneBoundaryPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Lane boundaries'</span>);
+plotLaneBoundary(lanePlotter,{[xWorld,yLeft],[xWorld,yRight]});</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e77996" class="mediaobject"><p><img src="../../examples/driving/win64/PlotThePathOfAnEgoVehicleExample_01.png" alt="Figure contains an axes object. The axes object contains an object of type line. This object represents Lane boundaries." width="560"/></p>
+</div>
+</div>
+<p>创建一个路径绘图器。创建并显示一辆自车沿着车道中心行驶的路径。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>yCenter = (yLeft + yRight)/2;
+egoPathPlotter = pathPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Ego vehicle path'</span>);
+plotPath(egoPathPlotter,{[xWorld,yCenter]});</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e78004" class="mediaobject"><p><img src="../../examples/driving/win64/PlotThePathOfAnEgoVehicleExample_02.png" alt="Figure contains an axes object. The axes object contains 2 objects of type line. These objects represent Lane boundaries, Ego vehicle path." width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-PlotThePathOfAnEgoVehicleExample"/>
+<meta itemprop="exampletitle" content="Plot Path of Ego Vehicle"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_24e497be-669f-4bb3-aee9-a25ee5e365c1">输入参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_24e497be-669f-4bb3-aee9-a25ee5e365c1_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" data-target="#expand_panel_body_bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" aria-controls="expand_panel_body_bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_bep" class="anchor_target"></span><h3 class="panel-title" id="bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286"><code itemprop="name">bep</code> — <span itemprop="purpose">Bird’s-eye plot</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">birdsEyePlot</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" aria-labelledby="expand_panel_heading_bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="panel-collapse collapse in"><div class="panel-body"><p>Bird’s-eye plot, specified as a <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> object.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span id="namevaluepairarguments" class="anchor_target"></span><span id="mw_fc1f68ab-6ac9-4c75-9a6a-09cf8388479d" class="anchor_target"></span><h3 id="namevaluepairs" class="bottom_ruled">Name-Value Arguments</h3>
+<div class="namevaluecontainer"><p class="neqvpair_boilerplate">将可选的参数对指定为 <code class="argument">Name1=Value1,...,NameN=ValueN</code>，其中 <code class="literal">Name</code> 是参数名称，<span style="font-family: monospace;">Value</span>是相应的值。Name-value参数必须出现在其他参数之后，但对参数对的顺序没有要求。</p>
+<p class="nvpaircompat_boilerplate"><i>在R2021a之前，使用逗号将每个名称和值分隔开，并用引号将</i> <code class="literal">Name</code> <i>括起来。</i></p>
+<p><span class="example_desc"><strong>Example: </strong><code class="literal">pathPlotter('Color','red')</code> 将路径的颜色设置为红色。</span></p>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_193f837c-34b0-4cef-aa62-b824ed779fd9_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvl2sxu-1_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvl2sxu-1_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" data-target="#expand_panel_body_bvl2sxu-1_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" aria-controls="expand_panel_body_bvl2sxu-1_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_DisplayName" class="anchor_target"></span><h3 class="panel-title" id="bvl2sxu-1_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576"><code itemprop="name">DisplayName</code> — <span itemprop="purpose">Plotter name to display in legend</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">''</code></span> (default) | <span itemprop="inputvalue">character vector</span> | <span itemprop="inputvalue">string scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvl2sxu-1_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" aria-labelledby="expand_panel_heading_bvl2sxu-1_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" class="panel-collapse collapse in"><div class="panel-body">
+        <p>要在图例中显示的绘图器名称，指定为由 <code class="literal">'DisplayName'</code> 和字符向量或字符串标量组成的逗号分隔对。如果您不指定名称，则鸟瞰图不会为绘图器显示图例条目。</p>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_8f64422f-230b-428a-b81e-5cc1594a7bf2"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8f64422f-230b-428a-b81e-5cc1594a7bf2" data-target="#expand_panel_body_mw_8f64422f-230b-428a-b81e-5cc1594a7bf2" aria-controls="expand_panel_body_mw_8f64422f-230b-428a-b81e-5cc1594a7bf2" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Color" class="anchor_target"></span><h3 class="panel-title" id="mw_8f64422f-230b-428a-b81e-5cc1594a7bf2"><code itemprop="name">Color</code> — <span itemprop="purpose">Path color</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[0 0 0]</code> (black)</span> (default) | <span itemprop="inputvalue">RGB triplet </span> | <span itemprop="inputvalue">hexadecimal color code</span> | <span itemprop="inputvalue">color name</span> | <span itemprop="inputvalue">short color name</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8f64422f-230b-428a-b81e-5cc1594a7bf2" aria-labelledby="expand_panel_heading_mw_8f64422f-230b-428a-b81e-5cc1594a7bf2" class="panel-collapse collapse in"><div class="panel-body">
+            <p>路径颜色，指定为由 <code class="literal">'Color'</code> 和 RGB 三元组、十六进制颜色代码、颜色名称或短颜色名称组成的逗号分隔对。</p>
+            <p>对于自定义颜色，可以指定一个RGB三元组或一个十六进制颜色代码。</p>
+<div class="itemizedlist"><ul><li><p>RGB三元组是一个包含三个元素的行向量，这些元素指定颜色的红色、绿色和蓝色分量的强度。强度必须在 <code class="literal">[0,1] </code>范围内，例如，<span style="font-family: monospace;">[0.4 0.6 0.7]</span>。 </p></li>
+<li><p>十六进制颜色代码是以井号 (<code class="literal">#</code>) 开头的字符向量或字符串标量，后跟三个或六个十六进制数字，范围从 <code class="literal">0</code> 到 <code class="literal">F</code>。这些值不区分大小写。因此，颜色代码<code class="literal">"#FF8800"</code>, <code class="literal">"#ff8800"</code>, <code class="literal">"#F80" </code>和 <code class="literal">"#f80"</code> 是等效的。</p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>另外，您可以通过名称指定一些常见的颜色。下表列出了命名颜色选项、对应的RGB三元组和十六进制颜色代码。</p>
+            <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="15%"/>
+<col class="tcol2" width="15%"/>
+<col class="tcol3" width="20%"/>
+<col class="tcol4" width="20%"/>
+<col class="tcol5" width="30%"/>
+</colgroup>
+<thead><tr><th>Color Name</th>
+<th>Short Name</th>
+<th>RGB Triplet</th>
+<th>Hexadecimal Color Code</th>
+<th>Appearance</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">"red"</code></td>
+<td><code class="literal">"r"</code></td>
+<td><code class="literal">[1 0 0]</code></td>
+<td><code class="literal">"#FF0000"</code></td>
+<td><div class="informalfigure"><div id="d124e78170" class="mediaobject"><p><img src="hg_red.png" alt="Sample of the color red" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"green"</code></td>
+<td><code class="literal">"g"</code></td>
+<td><code class="literal">[0 1 0]</code></td>
+<td><code class="literal">"#00FF00"</code></td>
+<td><div class="informalfigure"><div id="d124e78185" class="mediaobject"><p><img src="hg_green.png" alt="Sample of the color green" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"blue"</code></td>
+<td><code class="literal">"b"</code></td>
+<td><code class="literal">[0 0 1]</code></td>
+<td><code class="literal">"#0000FF"</code></td>
+<td><div class="informalfigure"><div id="d124e78200" class="mediaobject"><p><img src="hg_blue.png" alt="Sample of the color blue" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"cyan"</code>
+                                                  </td>
+<td><code class="literal">"c"</code></td>
+<td><code class="literal">[0 1 1]</code></td>
+<td><code class="literal">"#00FFFF"</code></td>
+<td><div class="informalfigure"><div id="d124e78216" class="mediaobject"><p><img src="hg_cyan.png" alt="Sample of the color cyan" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"magenta"</code></td>
+<td><code class="literal">"m"</code></td>
+<td><code class="literal">[1 0 1]</code></td>
+<td><code class="literal">"#FF00FF"</code></td>
+<td><div class="informalfigure"><div id="d124e78231" class="mediaobject"><p><img src="hg_magenta.png" alt="Sample of the color magenta" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"yellow"</code></td>
+<td><code class="literal">"y"</code></td>
+<td><code class="literal">[1 1 0]</code></td>
+<td><code class="literal">"#FFFF00"</code></td>
+<td><div class="informalfigure"><div id="d124e78246" class="mediaobject"><p><img src="hg_yellow.png" alt="Sample of the color yellow" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"black"</code></td>
+<td><code class="literal">"k"</code></td>
+<td><code class="literal">[0 0 0]</code></td>
+<td><code class="literal">"#000000"</code></td>
+<td><div class="informalfigure"><div id="d124e78261" class="mediaobject"><p><img src="hg_black.png" alt="Sample of the color black" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"white"</code></td>
+<td><code class="literal">"w"</code></td>
+<td><code class="literal">[1 1 1]</code></td>
+<td><code class="literal">"#FFFFFF"</code></td>
+<td><div class="informalfigure"><div id="d124e78276" class="mediaobject"><p><img src="hg_white.png" alt="Sample of the color white" height="28" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"none"</code></td>
+<td>Not applicable</td>
+<td>Not applicable</td>
+<td>Not applicable</td>
+<td>No color</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>以下是 MATLAB<sup>®</sup> 在许多类型的图表中使用的默认颜色的RGB三元组和十六进制颜色代码。</p>
+                    <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="35%"/>
+<col class="tcol2" width="35%"/>
+<col class="tcol3" width="30%"/>
+</colgroup>
+<thead><tr><th>RGB Triplet</th>
+<th>Hexadecimal Color Code</th>
+<th>Appearance</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">[0 0.4470 0.7410]</code></td>
+<td><code class="literal">"#0072BD"</code></td>
+<td><div class="informalfigure"><div id="d124e78319" class="mediaobject"><p><img src="colororder1.png" alt="Sample of RGB triplet [0 0.4470 0.7410], which appears as dark blue" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.8500 0.3250 0.0980]</code></td>
+<td><code class="literal">"#D95319"</code></td>
+<td><div class="informalfigure"><div id="d124e78330" class="mediaobject"><p><img src="colororder2.png" alt="Sample of RGB triplet [0.8500 0.3250 0.0980], which appears as dark orange" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.9290 0.6940 0.1250]</code></td>
+<td><code class="literal">"#EDB120"</code></td>
+<td><div class="informalfigure"><div id="d124e78341" class="mediaobject"><p><img src="colororder3.png" alt="Sample of RGB triplet [0.9290 0.6940 0.1250], which appears as dark yellow" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.4940 0.1840 0.5560]</code></td>
+<td><code class="literal">"#7E2F8E"</code></td>
+<td><div class="informalfigure"><div id="d124e78352" class="mediaobject"><p><img src="colororder4.png" alt="Sample of RGB triplet [0.4940 0.1840 0.5560], which appears as dark purple" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.4660 0.6740 0.1880]</code></td>
+<td><code class="literal">"#77AC30"</code></td>
+<td><div class="informalfigure"><div id="d124e78363" class="mediaobject"><p><img src="colororder5.png" alt="Sample of RGB triplet [0.4660 0.6740 0.1880], which appears as medium green" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.3010 0.7450 0.9330]</code></td>
+<td><code class="literal">"#4DBEEE"</code></td>
+<td><div class="informalfigure"><div id="d124e78374" class="mediaobject"><p><img src="colororder6.png" alt="Sample of RGB triplet [0.3010 0.7450 0.9330], which appears as light blue" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.6350 0.0780 0.1840]</code></td>
+<td><code class="literal">"#A2142F"</code></td>
+<td><div class="informalfigure"><div id="d124e78385" class="mediaobject"><p><img src="colororder7.png" alt="Sample of RGB triplet [0.6350 0.0780 0.1840], which appears as dark red" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_558fffff-45f7-4452-93bb-b5bdb5cbaa63"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_558fffff-45f7-4452-93bb-b5bdb5cbaa63" data-target="#expand_panel_body_mw_558fffff-45f7-4452-93bb-b5bdb5cbaa63" aria-controls="expand_panel_body_mw_558fffff-45f7-4452-93bb-b5bdb5cbaa63" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_LineStyle" class="anchor_target"></span><h3 class="panel-title" id="mw_558fffff-45f7-4452-93bb-b5bdb5cbaa63"><code itemprop="name">LineStyle</code> — <span itemprop="purpose">Path line style</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">':'</code>
+            </span> (default) | <span itemprop="inputvalue"><code class="literal">'-'</code></span> | <span itemprop="inputvalue"><code class="literal">'--'</code></span> | <span itemprop="inputvalue"><code class="literal">'-.'</code></span> | <span itemprop="inputvalue"><code class="literal">'none'</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_558fffff-45f7-4452-93bb-b5bdb5cbaa63" aria-labelledby="expand_panel_heading_mw_558fffff-45f7-4452-93bb-b5bdb5cbaa63" class="panel-collapse collapse in"><div class="panel-body">
+            <p>路径线条样式，指定为逗号分隔的一对，包括<span style="font-family: monospace;">'LineStyle'</span>和该表中列出的选项之一。
+                </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"/>
+<col class="tcol2" width="33%"/>
+<col class="tcol3" width="33%"/>
+</colgroup>
+<thead><tr><th>Line Style</th>
+<th>Description</th>
+<th>Resulting Line</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">"-"</code></td>
+<td>Solid line</td>
+<td><p></p>
+<div class="informalfigure"><div id="d124e78448" class="mediaobject"><p><img src="linestyle_solid.png" alt="Sample of solid line" height="20" width="70"/></p>
+</div>
+</div>
+<p></p>
+</td>
+</tr>
+<tr><td><code class="literal">"--"</code></td>
+<td>Dashed line</td>
+<td><p></p>
+<div class="informalfigure"><div id="d124e78460" class="mediaobject"><p><img src="linestyle_dashed.png" alt="Sample of dashed line" height="20" width="70"/></p>
+</div>
+</div>
+<p></p>
+</td>
+</tr>
+<tr><td><code class="literal">":"</code></td>
+<td>Dotted line</td>
+<td><p></p>
+<div class="informalfigure"><div id="d124e78472" class="mediaobject"><p><img src="linestyle_dotted.png" alt="Sample of dotted line" height="20" width="70"/></p>
+</div>
+</div>
+<p></p>
+</td>
+</tr>
+<tr><td><code class="literal">"-."</code></td>
+<td>Dash-dotted line</td>
+<td><p></p>
+<div class="informalfigure"><div id="d124e78484" class="mediaobject"><p><img src="linestyle_dashdotted.png" alt="Sample of dash-dotted line, with alternating dashes and dots" height="20" width="70"/></p>
+</div>
+</div>
+<p></p>
+</td>
+</tr>
+<tr><td><code class="literal">"none"</code></td>
+<td>No line</td>
+<td>No line</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvl2sxu-1_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvl2sxu-1_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" data-target="#expand_panel_body_bvl2sxu-1_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" aria-controls="expand_panel_body_bvl2sxu-1_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Tag" class="anchor_target"></span><h3 class="panel-title" id="bvl2sxu-1_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0"><code itemprop="name">Tag</code> — <span itemprop="purpose">Tag associated with plotter object</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">'Plotter<em class="replaceable"><code>N</code></em>'</code></span> (default) | <span itemprop="inputvalue">character vector</span> | <span itemprop="inputvalue">string scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvl2sxu-1_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" aria-labelledby="expand_panel_heading_bvl2sxu-1_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" class="panel-collapse collapse in"><div class="panel-body">
+        <p>与绘图对象关联的标签，指定为逗号分隔的一对，包括 <code class="literal">'Tag'</code> 和字符向量或字符串标量。默认值为 <code class="literal">'Plotter<em class="replaceable"><code>N</code></em>'</code>，其中 <em class="replaceable"><code>N</code></em> 是与输入 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象关联的第 <em class="replaceable"><code>N</code></em> 个绘图对象的整数对应的值。 </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_9ef7616b-971e-4bd0-b9e4-d4d9f0df339d">输出参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_9ef7616b-971e-4bd0-b9e4-d4d9f0df339d_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ae0689c9-5e8f-4862-a6e8-6a6b40eb7eff" data-target="#expand_panel_body_mw_ae0689c9-5e8f-4862-a6e8-6a6b40eb7eff" aria-controls="expand_panel_body_mw_ae0689c9-5e8f-4862-a6e8-6a6b40eb7eff" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_pPlotter" class="anchor_target"></span><h3 class="panel-title" id="mw_ae0689c9-5e8f-4862-a6e8-6a6b40eb7eff"><code class="name">pPlotter</code> — Path plotter<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="object">PathPlotter</code> object</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_ae0689c9-5e8f-4862-a6e8-6a6b40eb7eff" aria-labelledby="expand_panel_heading_mw_ae0689c9-5e8f-4862-a6e8-6a6b40eb7eff" class="panel-collapse collapse in"><div class="panel-body">
+          <p>路径绘图器作为 <code class="object">PathPlotter</code> 对象返回。您可以通过更改其属性值来修改此对象。属性名称对应于 <code class="function">pathPlotter</code> 函数的名称-值对参数。</p>
+          <p><code class="argument">pPlotter</code> 存储在输入的 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象（<a href="#bvl2sxu-1_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="intrnllnk"><code class="argument">bep</code></a>）的 <code class="property">Plotters</code> 属性中。要绘制路径，请使用 <a href="birdseyeplot.plotpath.html"><code class="function">plotPath</code></a> 函数。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bvl2sxu-1_vh">Version History</h2>
+<p><strong>Introduced in R2017a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="bvl2sxu-1_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.html"><span itemprop="name"><code class="object">birdsEyePlot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.plotpath.html"><span itemprop="name"><code class="function">plotPath</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.findplotter.html"><span itemprop="name"><code class="function">findPlotter</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.cleardata.html"><span itemprop="name"><code class="function">clearData</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.clearplotterdata.html"><span itemprop="name"><code class="function">clearPlotterData</code></span></a></span></p>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

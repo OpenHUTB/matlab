@@ -1,0 +1,1847 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Bicycle Model</title>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="block:Bicycle Model"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="blk"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/block"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The Bicycle Model block implements a rigid two-axle single track vehicle body model to calculate longitudinal, lateral, and yaw motion."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">Bicycle Model</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#bvgi4zm" class="intrnllnk">Description</a></li>
+<li><a href="#d124e8174" class="intrnllnk">Ports</a><ul class="nav"><li><a href="#d124e8176" class="intrnllnk">Input</a><ul class="nav"><li><a href="#d124e8180" class="intrnllnk">WhlAngF</a></li>
+<li><a href="#d124e8198" class="intrnllnk">FxF</a></li>
+<li><a href="#d124e8227" class="intrnllnk">FxR</a></li>
+<li><a href="#d124e8256" class="intrnllnk">xdotin</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#d124e8281" class="intrnllnk">Output</a><ul class="nav"><li><a href="#d124e8285" class="intrnllnk">Info</a></li>
+<li><a href="#d124e10542" class="intrnllnk">xdot</a></li>
+<li><a href="#d124e10563" class="intrnllnk">ydot</a></li>
+<li><a href="#d124e10584" class="intrnllnk">psi</a></li>
+<li><a href="#d124e10605" class="intrnllnk">r</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#d124e10628" class="intrnllnk">Parameters</a><ul class="nav"><li><a href="#d124e10630" class="intrnllnk">Longitudinal</a><ul class="nav"><li><a href="#d124e10632" class="intrnllnk">Number of wheels on front axle, NF</a></li>
+<li><a href="#d124e10657" class="intrnllnk">Number of wheels on rear axle, NR</a></li>
+<li><a href="#d124e10682" class="intrnllnk">Vehicle mass, m</a></li>
+<li><a href="#d124e10705" class="intrnllnk">Longitudinal distance from center of mass to front axle, a</a></li>
+<li><a href="#d124e10728" class="intrnllnk">Longitudinal distance from center of mass to rear axle, b</a></li>
+<li><a href="#d124e10751" class="intrnllnk">Vertical distance from center of mass to axle plane, h</a></li>
+<li><a href="#mw_aca7c9fd-b211-46a8-82c9-6d518f2d6e06" class="intrnllnk">Longitudinal distance from center of mass to hitch, dh</a></li>
+<li><a href="#mw_9b316e55-9cdc-4322-b5ab-7a21d448d274" class="intrnllnk">Vertical distance from hitch to axle plane, hh</a></li>
+<li><a href="#d124e10851" class="intrnllnk">Initial inertial frame longitudinal position, X_o</a></li>
+<li><a href="#d124e10874" class="intrnllnk">Initial longitudinal velocity, xdot_o</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#d124e10918" class="intrnllnk">Lateral</a><ul class="nav"><li><a href="#d124e10920" class="intrnllnk">Front tire corner stiffness, Cy_f</a></li>
+<li><a href="#d124e10975" class="intrnllnk">Rear tire corner stiffness, Cy_r</a></li>
+<li><a href="#d124e11030" class="intrnllnk">Initial inertial frame lateral displacement, Y_o</a></li>
+<li><a href="#d124e11053" class="intrnllnk">Initial lateral velocity, ydot_o</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#d124e11076" class="intrnllnk">Yaw</a><ul class="nav"><li><a href="#d124e11078" class="intrnllnk">Yaw polar inertia, Izz</a></li>
+<li><a href="#d124e11098" class="intrnllnk">Initial yaw angle, psi_o</a></li>
+<li><a href="#d124e11121" class="intrnllnk">Initial yaw rate, r_o</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#d124e11144" class="intrnllnk">Aerodynamic</a><ul class="nav"><li><a href="#d124e11146" class="intrnllnk">Longitudinal drag area, Af</a></li>
+<li><a href="#d124e11173" class="intrnllnk">Longitudinal drag coefficient, Cd</a></li>
+<li><a href="#d124e11198" class="intrnllnk">Longitudinal lift coefficient, Cl</a></li>
+<li><a href="#d124e11223" class="intrnllnk">Longitudinal drag pitch moment, Cpm</a></li>
+<li><a href="#d124e11248" class="intrnllnk">Relative wind angle vector, beta_w</a></li>
+<li><a href="#d124e11273" class="intrnllnk">Side force coefficient vector, Cs</a></li>
+<li><a href="#d124e11298" class="intrnllnk">Yaw moment coefficient vector, Cym</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#d124e11323" class="intrnllnk">Environment</a><ul class="nav"><li><a href="#d124e11325" class="intrnllnk">Absolute air pressure, Pabs</a></li>
+<li><a href="#d124e11353" class="intrnllnk">Air temperature, Tair</a></li>
+<li><a href="#d124e11386" class="intrnllnk">Gravitational acceleration, g</a></li>
+<li><a href="#d124e11410" class="intrnllnk">Nominal friction scaling factor, mu </a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#d124e11463" class="intrnllnk">Simulation</a><ul class="nav"><li><a href="#d124e11465" class="intrnllnk">Longitudinal velocity tolerance, xdot_tol</a></li>
+<li><a href="#d124e11485" class="intrnllnk">Nominal normal force, Fznom</a></li>
+<li><a href="#mw_3eb8744b-e294-4987-82eb-e6300e82aad4" class="intrnllnk">Geometric longitudinal offset from axle plane, longOff</a></li>
+<li><a href="#mw_bef2c7e9-1696-487b-ae83-4b93a149f5cb" class="intrnllnk">Geometric lateral offset from center plane, latOff </a></li>
+<li><a href="#mw_1d732a76-81ef-4116-b220-f103638ab40a" class="intrnllnk">Geometric vertical offset from axle plane, vertOff</a></li>
+<li><a href="#mw_cea625ae-3440-45d7-82d2-77dfa23401fa" class="intrnllnk">Wrap Euler angles, wrapAng</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#References" class="intrnllnk">References</a></li>
+<li><a href="#mw_9569b0a8-23c5-4aaf-ba41-e3ebe9ef7971_vh" class="intrnllnk">Version History</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="block_ref"><span id="mw_9569b0a8-23c5-4aaf-ba41-e3ebe9ef7971" class="anchor_target"></span><span id="vbbicycle" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">Bicycle Model</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">实现一个单轨迹的3自由度刚体车辆模型，用于计算纵向、横向和偏航运动</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div id="bvgi4zm_div" class="refsect1 description"><h2 id="bvgi4zm">描述</h2>
+<p>Bicycle Model 模块实现了一个刚性的双轴单轨迹车辆模型，用于计算纵向、横向和偏航运动。该模块考虑了车体质量、空气阻力以及由于加速度和转向而导致的轴之间的重量分配。有两种类型的 Bicycle Model 模块。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="41%" align="left"/>
+<col class="tcol2" width="59%" align="left"/>
+</colgroup>
+<thead><tr><th>Block</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody><tr><td><p><span class="block">Bicycle Model - Velocity
+                                    Input</span><span class="guiicon"><span class="inlinemediaobject"><img src="bicycle_velocity.png" height="189" width="226"/></span></span></p>
+</td>
+<td><p>
+                                </p>
+<div class="itemizedlist"><ul><li><p>该模块假设外部纵向速度是准稳态的，因此纵向加速度近似为零。</p></li>
+<li><p>由于运动是准稳态的，该模块仅通过使用轮胎滑移角和线性侧向刚度来计算横向力。</p></li>
+</ul>
+</div>
+<p>
+
+                            </p>
+</td>
+</tr>
+<tr><td><p><span class="block">Bicycle Model - Force
+                                    Input</span><span class="guiicon"><span class="inlinemediaobject"><img src="bicycle_force.png" height="186" width="229"/></span></span></p>
+</td>
+<td><p>
+                                </p>
+<div class="itemizedlist"><ul><li><p>该模块使用外部纵向力来加速或制动车辆。</p></li>
+<li><p>该模块通过使用轮胎滑移角和线性侧向刚度来计算横向力。</p></li>
+</ul>
+</div>
+<p>
+
+                            </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>为了计算前轴和后轴上的法向力，该模块使用刚体车辆运动、悬挂系统力和风阻力。该模块解析刚体车身框架上的力和力矩分量。</p>
+</div>
+<div class="ref_sect"><h2 id="d124e8174">Ports</h2>
+</div>
+<div class="ref_sect"><h3 id="d124e8176">Input</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="d124e8176_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e8180" data-target="#expand_panel_body_d124e8180" aria-controls="expand_panel_body_d124e8180" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e8180"><code class="name">WhlAngF</code> — Wheel angle<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e8180" aria-labelledby="expand_panel_heading_d124e8180" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Front wheel angle, in rad.</p>
+                    </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e8198" data-target="#expand_panel_body_d124e8198" aria-controls="expand_panel_body_d124e8198" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e8198"><code class="name">FxF</code> — Force Input: Total longitudinal force on the front axle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e8198" aria-labelledby="expand_panel_heading_d124e8198" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Longitudinal force on the front axle,
+                                    <em class="varname">Fx<sub>F</sub></em>, along
+                            vehicle-fixed <code class="literal">x</code>-axis, in N.</p>
+                        <p><span class="block">Bicycle Model - Force Input</span> block input port.</p>
+                    </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e8227" data-target="#expand_panel_body_d124e8227" aria-controls="expand_panel_body_d124e8227" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e8227"><code class="name">FxR</code> — Force Input: Total longitudinal force on the rear axle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e8227" aria-labelledby="expand_panel_heading_d124e8227" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Longitudinal force on the rear axle,
+                                    <em class="varname">Fx<sub>R</sub></em>, along
+                            vehicle-fixed <code class="literal">x</code>-axis, in N.</p>
+                        <p><span class="block">Bicycle Model - Force Input</span> block input port.</p>
+                    </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e8256" data-target="#expand_panel_body_d124e8256" aria-controls="expand_panel_body_d124e8256" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e8256"><code class="name">xdotin</code> — Velocity Input: Longitudinal velocity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e8256" aria-labelledby="expand_panel_heading_d124e8256" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Vehicle CG velocity along vehicle-fixed <span class="emphasis"><em>x</em></span>-axis,
+                            in m/s.</p>
+                        <p><span class="block">Bicycle Model - Velocity Input</span> block input port.</p>
+                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h3 id="d124e8281">Output</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="d124e8281_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e8285" data-target="#expand_panel_body_d124e8285" aria-controls="expand_panel_body_d124e8285" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e8285"><code class="name">Info</code> — Bus signal<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc">bus</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e8285" aria-labelledby="expand_panel_heading_d124e8285" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Bus signal containing these block values.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="13.15%"/>
+<col class="tcol2" width="11.67%"/>
+<col class="tcol3" width="11.67%"/>
+<col class="tcol4" width="11.30%"/>
+<col class="tcol5" width="2.55%"/>
+<col class="tcol6" width="2.55%"/>
+<col class="tcol7" width="25.47%"/>
+<col class="tcol8" width="10.82%"/>
+<col class="tcol9" width="10.82%"/>
+</colgroup>
+<thead><tr><th colspan="6">Signal</th>
+<th>Description</th>
+<th>Value</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody><tr><td rowspan="33"><code class="literal">InertFrm</code></td>
+<td rowspan="9"><code class="literal">Cg</code></td>
+<td rowspan="3"><code class="literal">Disp</code></td>
+<td colspan="3"><code class="literal">X</code></td>
+<td>Vehicle CG displacement along the earth-fixed
+                                                  <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Y</code></td>
+<td>Vehicle CG displacement along the earth-fixed
+                                                  <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td><p>m</p>
+</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Z</code></td>
+<td>Vehicle CG displacement along the earth-fixed
+                                                  <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Vel</code></td>
+<td colspan="3"><code class="literal">Xdot</code></td>
+<td>Vehicle CG velocity along the earth-fixed
+                                                  <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td><p>m/s</p>
+</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Ydot</code></td>
+<td>Vehicle CG velocity along the earth-fixed
+                                                  <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Zdot</code></td>
+<td>Vehicle CG velocity along the earth-fixed
+                                                  <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Ang</code></td>
+<td colspan="3"><code class="literal">phi</code></td>
+<td>Rotation of the vehicle-fixed frame about the
+                                                earth-fixed <span class="emphasis"><em>X</em></span>-axis
+                                                (roll)</td>
+<td><code class="literal">0</code></td>
+<td>rad</td>
+</tr>
+<tr><td colspan="3"><code class="literal">theta</code></td>
+<td>Rotation of the vehicle-fixed frame about the
+                                                earth-fixed <span class="emphasis"><em>Y</em></span>-axis
+                                                (pitch)</td>
+<td><code class="literal">0</code></td>
+<td>rad</td>
+</tr>
+<tr><td colspan="3"><code class="literal">psi</code></td>
+<td>Rotation of the vehicle-fixed frame about the
+                                                earth-fixed <span class="emphasis"><em>Z</em></span>-axis
+                                                (yaw)</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+<tr><td rowspan="6"><code class="literal">FrntAxl</code></td>
+<td rowspan="3"><code class="literal">Disp</code></td>
+<td colspan="3"><code class="literal">X</code></td>
+<td>Front wheel displacement along the earth-fixed
+                                                  <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Y</code></td>
+<td>Front wheel displacement along the earth-fixed
+                                                  <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Z</code></td>
+<td>Front wheel displacement along the earth-fixed
+                                                  <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Vel</code></td>
+<td colspan="3"><code class="literal">Xdot</code></td>
+<td>Front wheel velocity along the earth-fixed
+                                                  <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Ydot</code></td>
+<td>Front wheel velocity along the earth-fixed
+                                                  <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Zdot</code></td>
+<td>Front wheel velocity along the earth-fixed
+                                                  <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s</td>
+</tr>
+<tr><td rowspan="6"><code class="literal">RearAxl</code></td>
+<td rowspan="3"><code class="literal">Disp</code></td>
+<td colspan="3"><code class="literal">X</code></td>
+<td>Rear wheel displacement along the earth-fixed
+                                                  <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Y</code></td>
+<td>Rear wheel displacement along the earth-fixed
+                                                  <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Z</code></td>
+<td>Rear wheel displacement along the earth-fixed
+                                                  <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Vel</code></td>
+<td colspan="3"><code class="literal">Xdot</code></td>
+<td>Rear wheel velocity along the earth-fixed
+                                                  <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Ydot</code></td>
+<td>Rear wheel velocity along the earth-fixed
+                                                  <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Zdot</code></td>
+<td>Rear wheel velocity along the earth-fixed
+                                                  <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s</td>
+</tr>
+<tr><td rowspan="6"><code class="literal">Hitch</code></td>
+<td rowspan="3"><code class="literal">Disp</code></td>
+<td colspan="3"><code class="literal">X</code></td>
+<td>Hitch offset from axle plane along the
+                                                earth-fixed <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Y</code></td>
+<td>Hitch offset from center plane along the
+                                                earth-fixed <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Z</code></td>
+<td>Hitch offset from axle plane along the
+                                                earth-fixed <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Vel</code></td>
+<td colspan="3"><code class="literal">Xdot</code></td>
+<td>Hitch offset velocity from axle plane along the
+                                                earth-fixed <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Ydot</code></td>
+<td>Hitch offset velocity from center plane along the
+                                                earth-fixed <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Zdot</code></td>
+<td>Hitch offset velocity from axle plane along the
+                                                earth-fixed <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td rowspan="6"><code class="literal">Geom</code></td>
+<td rowspan="3"><code class="literal">Disp</code></td>
+<td colspan="3"><code class="literal">X</code></td>
+<td>Vehicle chassis offset from axle plane along the
+                                                earth-fixed <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Y</code></td>
+<td>Vehicle chassis offset from center plane along
+                                                the earth-fixed <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Z</code></td>
+<td>Vehicle chassis offset from axle plane along the
+                                                earth-fixed <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Vel</code></td>
+<td colspan="3"><code class="literal">Xdot</code></td>
+<td>Vehicle chassis offset velocity along the
+                                                earth-fixed <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Ydot</code></td>
+<td>Vehicle chassis offset velocity along the
+                                                earth-fixed <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Zdot</code></td>
+<td>Vehicle chassis offset velocity along the
+                                                earth-fixed <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td rowspan="88"><code class="literal">BdyFrm</code></td>
+<td rowspan="17"><code class="literal">Cg</code></td>
+<td rowspan="3"><code class="literal">Vel</code></td>
+<td colspan="3"><code class="literal">xdot</code></td>
+<td>Vehicle CG velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">ydot</code></td>
+<td>Vehicle CG velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">zdot</code></td>
+<td>Vehicle CG velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s</td>
+</tr>
+<tr><td><code class="literal">Ang</code></td>
+<td colspan="3"><code class="literal">Beta</code></td>
+<td><p>Body slip angle,
+                                                  <em class="varname">β</em></p>
+<p>
+                                                  </p>
+<div id="d124e8942" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-17px" display="block"><mrow><mi>β</mi><mo>=</mo><mfrac><mrow><msub><mi>V</mi><mi>y</mi></msub></mrow><mrow><msub><mi>V</mi><mi>x</mi></msub></mrow></mfrac></mrow></math></p>
+</div>
+</div>
+<p>
+                                                </p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">AngVel</code></td>
+<td colspan="3"><code class="literal">p</code></td>
+<td>Vehicle angular velocity about the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis (roll rate)</td>
+<td><code class="literal">0</code></td>
+<td>rad/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">q</code></td>
+<td>Vehicle angular velocity about the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis (pitch rate)</td>
+<td><code class="literal">0</code></td>
+<td>rad/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">r</code></td>
+<td>Vehicle angular velocity about the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis (yaw rate)</td>
+<td><p>Computed</p>
+</td>
+<td>rad/s</td>
+</tr>
+<tr><td rowspan="6"><code class="literal">Acc</code></td>
+<td colspan="3"><code class="literal">ax</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>gn</td>
+</tr>
+<tr><td colspan="3"><code class="literal">ay</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>gn</td>
+</tr>
+<tr><td colspan="3"><code class="literal">az</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>gn</td>
+</tr>
+<tr><td colspan="3"><code class="literal">xddot</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s^2</td>
+</tr>
+<tr><td colspan="3"><code class="literal">yddot</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s^2</td>
+</tr>
+<tr><td colspan="3"><code class="literal">zddot</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s^2</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">AngAcc</code></td>
+<td colspan="3"><code class="literal">pdot</code></td>
+<td>Vehicle angular acceleration about the
+                                                vehicle-fixed <span class="emphasis"><em>x</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>rad/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">qdot</code></td>
+<td>Vehicle angular acceleration about the
+                                                vehicle-fixed <span class="emphasis"><em>y</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>rad/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">rdot</code></td>
+<td>Vehicle angular acceleration about the
+                                                vehicle-fixed <span class="emphasis"><em>z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>rad/s</td>
+</tr>
+<tr><td><code class="literal">DCM</code></td>
+<td colspan="4"><p>Direction
+                                                  cosine matrix</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+<tr><td rowspan="27"><code class="literal">Forces</code></td>
+<td rowspan="3"><code class="literal">Body</code></td>
+<td colspan="3"><code class="literal">Fx</code></td>
+<td>Net force on vehicle CG along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fy</code></td>
+<td>Net force on vehicle CG along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fz</code></td>
+<td>Net force on vehicle CG along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>N</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Ext</code></td>
+<td colspan="3"><code class="literal">Fx</code></td>
+<td>External force on vehicle CG along the
+                                                vehicle-fixed <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fy</code></td>
+<td>External force on vehicle CG along the
+                                                vehicle-fixed <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fz</code></td>
+<td>External force on vehicle CG along the
+                                                vehicle-fixed <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>N</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Hitch</code></td>
+<td colspan="3"><code class="literal">Fx</code></td>
+<td><p>Hitch force applied to body at the hitch
+                                                  location along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</p>
+</td>
+<td><p>Input</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fy</code></td>
+<td><p>Hitch force applied to body at the hitch
+                                                  location along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</p>
+</td>
+<td><p>Input</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fz</code></td>
+<td><p>Hitch force applied to body at the hitch
+                                                  location along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</p>
+</td>
+<td><p>Input</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">FrntAxl</code></td>
+<td colspan="3"><code class="literal">Fx</code></td>
+<td><p>Longitudinal force on front wheel, along
+                                                  the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fy</code></td>
+<td><p>Lateral force on front wheel along the
+                                                  vehicle-fixed
+                                                <span class="emphasis"><em>y</em></span>-axis</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fz</code></td>
+<td><p>Normal force on front wheel, along the
+                                                  vehicle-fixed
+                                                <span class="emphasis"><em>z</em></span>-axis</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">RearAxl</code></td>
+<td colspan="3"><code class="literal">Fx</code></td>
+<td><p>Longitudinal force on rear wheel, along the
+                                                  vehicle-fixed
+                                                <span class="emphasis"><em>x</em></span>-axis</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fy</code></td>
+<td><p>Lateral force on rear wheel along the
+                                                  vehicle-fixed
+                                                <span class="emphasis"><em>y</em></span>-axis</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fz</code></td>
+<td><p>Normal force on rear wheel, along the
+                                                  vehicle-fixed
+                                                <span class="emphasis"><em>z</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td rowspan="6"><code class="literal">Tires</code></td>
+<td rowspan="3"><code class="literal">FrntTire</code></td>
+<td colspan="2"><code class="literal">Fx</code></td>
+<td><p>Front tire force, along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td colspan="2"><code class="literal">Fy</code></td>
+<td><p>Front tire force, along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td colspan="2"><code class="literal">Fz</code></td>
+<td><p>Front tire force, along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">RearTire</code></td>
+<td colspan="2"><code class="literal">Fx</code><code class="literal">Fx</code></td>
+<td><p>Rear tire force, along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td colspan="2"><code class="literal">Fy</code></td>
+<td><p>Rear tire force, along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td colspan="2"><code class="literal">Fz</code></td>
+<td><p>Rear tire force, along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Drag</code></td>
+<td colspan="3"><code class="literal">Fx</code></td>
+<td>Drag force on vehicle CG along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fy</code></td>
+<td>Drag force on vehicle CG along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fz</code></td>
+<td>Drag force on vehicle CG along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Grvty</code></td>
+<td colspan="3"><code class="literal">Fx</code></td>
+<td>Gravity force on vehicle CG along the
+                                                vehicle-fixed <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fy</code></td>
+<td>Gravity force on vehicle CG along the
+                                                vehicle-fixed <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Fz</code></td>
+<td>Gravity force on vehicle CG along the
+                                                vehicle-fixed <span class="emphasis"><em>z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N</td>
+</tr>
+<tr><td rowspan="12"><code class="literal">Moments</code></td>
+<td rowspan="3"><code class="literal">Body</code></td>
+<td colspan="3"><code class="literal">Mx</code></td>
+<td>Body moment on vehicle CG about the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>N·m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">My</code></td>
+<td>Body moment on vehicle CG about the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N·m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Mz</code></td>
+<td>Body moment on vehicle CG about the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>N·m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Drag</code></td>
+<td colspan="3"><code class="literal">Mx</code></td>
+<td>Drag moment on vehicle CG about the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>N·m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">My</code></td>
+<td>Drag moment on vehicle CG about the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N·m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Mz</code></td>
+<td>Drag moment on vehicle CG about the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>N·m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Ext</code></td>
+<td colspan="3"><code class="literal">Mx</code></td>
+<td>External moment on vehicle CG about the
+                                                vehicle-fixed <span class="emphasis"><em>x</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>N·m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">My</code></td>
+<td>External moment on vehicle CG about the
+                                                vehicle-fixed <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N·m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Mz</code></td>
+<td>External moment on vehicle CG about the
+                                                vehicle-fixed <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>N·m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Hitch</code></td>
+<td colspan="3"><code class="literal">Mx</code></td>
+<td>Hitch moment at the hitch location about
+                                                vehicle-fixed <span class="emphasis"><em>x</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>N·m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">My</code></td>
+<td>Hitch moment at the hitch location about
+                                                vehicle-fixed <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>N·m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Mz</code></td>
+<td>Hitch moment at the hitch location about
+                                                vehicle-fixed <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>N·m</td>
+</tr>
+<tr><td rowspan="8"><code class="literal">FrntAxl</code></td>
+<td rowspan="3"><code class="literal">Disp</code></td>
+<td colspan="3"><code class="literal">x</code></td>
+<td>Front wheel displacement along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">y</code></td>
+<td>Front wheel displacement along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td>Computed</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">z</code></td>
+<td>Front wheel displacement along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Vel</code></td>
+<td colspan="3"><code class="literal">xdot</code></td>
+<td>Front wheel velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">ydot</code></td>
+<td>Front wheel velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">zdot</code></td>
+<td>Front wheel velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s</td>
+</tr>
+<tr><td rowspan="2"><code class="literal">Steer</code></td>
+<td colspan="3"><code class="literal">WhlAngFL</code></td>
+<td><p>Front left wheel steering
+                                                angle</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+<tr><td colspan="3"><code class="literal">WhlAngFR</code></td>
+<td><p>Front right wheel steering
+                                                angle</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+<tr><td rowspan="8"><code class="literal">RearAxl</code></td>
+<td rowspan="3"><code class="literal">Disp</code></td>
+<td colspan="3"><code class="literal">x</code></td>
+<td>Rear wheel displacement along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">y</code></td>
+<td>Rear wheel displacement along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td>Computed</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">z</code></td>
+<td>Rear wheel displacement along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Vel</code></td>
+<td colspan="3"><code class="literal">xdot</code></td>
+<td>Rear wheel velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">ydot</code></td>
+<td>Rear wheel velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">zdot</code></td>
+<td>Rear wheel velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s</td>
+</tr>
+<tr><td rowspan="2"><code class="literal">Steer</code></td>
+<td colspan="3"><code class="literal">WhlAngRL</code></td>
+<td><p>Rear left wheel steering
+                                                angle</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+<tr><td colspan="3"><code class="literal">WhlAngRR</code></td>
+<td><p>Rear right wheel steering
+                                                angle</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+<tr><td rowspan="6"><code class="literal">Hitch</code></td>
+<td rowspan="3" colspan="2"><code class="literal">Disp</code></td>
+<td colspan="2"><code class="literal">x</code></td>
+<td>Hitch offset from axle plane along the
+                                                vehicle-fixed <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Input</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="2"><code class="literal">y</code></td>
+<td>Hitch offset from center plane along the
+                                                vehicle-fixed <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Input</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="2"><code class="literal">z</code></td>
+<td>Hitch offset from axle plane along the
+                                                earth-fixed <span class="emphasis"><em>z</em></span>-axis</td>
+<td><p>Input</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td rowspan="3" colspan="2"><code class="literal">Vel</code></td>
+<td colspan="2"><code class="literal">xdot</code></td>
+<td>Hitch offset velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="2"><code class="literal">ydot</code></td>
+<td>Hitch offset velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="2"><code class="literal">zdot</code></td>
+<td>Hitch offset velocity along the vehicle-fixed
+                                                  <span class="emphasis"><em>z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Pwr</code></td>
+<td colspan="4"><code class="literal">Ext</code></td>
+<td>Applied external power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td colspan="4"><code class="literal">Hitch</code></td>
+<td>Power loss due to hitch</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td colspan="4"><code class="literal">Drag</code></td>
+<td>Power loss due to drag</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td rowspan="7"><code class="literal">Geom</code></td>
+<td rowspan="3" colspan="2"><code class="literal">Disp</code></td>
+<td colspan="2"><code class="literal">x</code></td>
+<td>Vehicle chassis offset from axle plane along the
+                                                vehicle-fixed <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Input</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="2"><code class="literal">y</code></td>
+<td>Vehicle chassis offset from center plane along
+                                                the vehicle-fixed
+                                                <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Input</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="2"><code class="literal">z</code></td>
+<td>Vehicle chassis offset from axle plane along the
+                                                earth-fixed <span class="emphasis"><em>z</em></span>-axis</td>
+<td><p>Input</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td rowspan="3" colspan="2"><code class="literal">Vel</code></td>
+<td colspan="2"><code class="literal">xdot</code></td>
+<td>Vehicle chassis offset velocity along the
+                                                vehicle-fixed <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="2"><code class="literal">ydot</code></td>
+<td>Vehicle chassis offset velocity along the
+                                                vehicle-fixed <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="2"><code class="literal">zdot</code></td>
+<td>Vehicle chassis offset velocity along the
+                                                vehicle-fixed <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="2"><code class="literal">Ang</code></td>
+<td colspan="2"><code class="literal">Beta</code></td>
+<td><p>Body slip angle,
+                                                  <em class="varname">β</em></p>
+<p>
+                                                  </p>
+<div id="d124e10335" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-17px" display="block"><mrow><mi>β</mi><mo>=</mo><mfrac><mrow><msub><mi>V</mi><mi>y</mi></msub></mrow><mrow><msub><mi>V</mi><mi>x</mi></msub></mrow></mfrac></mrow></math></p>
+</div>
+</div>
+<p>
+                                                </p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="11%"/>
+<col class="tcol2" width="17%"/>
+<col class="tcol3" width="21%"/>
+<col class="tcol4" width="15%"/>
+<col class="tcol5" width="22%"/>
+<col class="tcol6" width="7%"/>
+<col class="tcol7" width="7%"/>
+</colgroup>
+<thead><tr><th colspan="3">Signal</th>
+<th colspan="2">Description</th>
+<th>Value</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody><tr><td rowspan="14"><code class="literal">PwrInfo</code></td>
+<td rowspan="7"><code class="literal">PwrTrnsfrd</code></td>
+<td><code class="literal">PwrFxExt</code></td>
+<td colspan="2">Externally applied
+                                                longitudinal force power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrFyExt</code></td>
+<td colspan="2">Externally applied
+                                                lateral force power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrMzExt</code></td>
+<td colspan="2">Externally applied roll
+                                                moment power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrFwFx</code></td>
+<td colspan="2">Longitudinal force
+                                                applied at the front axle power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrFwFy</code></td>
+<td colspan="2">Lateral force applied at
+                                                the front axle power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrFwRx</code></td>
+<td colspan="2">Longitudinal force
+                                                applied at the rear axle power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrFwRy</code></td>
+<td colspan="2">Lateral force applied at
+                                                the rear axle power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">PwrNotTrnsfrd</code></td>
+<td><code class="literal">PwrFxDrag</code></td>
+<td colspan="2">Longitudinal drag force
+                                                power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrFyDrag</code></td>
+<td colspan="2">Lateral drag force
+                                                power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrMzDrag</code></td>
+<td colspan="2">Drag pitch moment
+                                                power</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td rowspan="4"><code class="literal">PwrStored</code></td>
+<td><code class="literal">PwrStoredGrvty</code></td>
+<td colspan="2">Rate change in
+                                                gravitational potential energy</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrStoredxdot</code></td>
+<td colspan="2">Rate of change of
+                                                longitudinal kinetic energy</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrStoredydot</code></td>
+<td colspan="2">Rate of change of
+                                                lateral kinetic energy</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+<tr><td><code class="literal">PwrStoredr</code></td>
+<td colspan="2">Rate of change of
+                                                rotational yaw kinetic energy</td>
+<td><p>Computed</p>
+</td>
+<td>W</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+                    </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10542" data-target="#expand_panel_body_d124e10542" aria-controls="expand_panel_body_d124e10542" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e10542"><code class="name">xdot</code> — Vehicle body longitudinal velocity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10542" aria-labelledby="expand_panel_heading_d124e10542" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Vehicle CG velocity along vehicle-fixed <code class="literal">x</code>-axis, in
+                            m/s.</p>
+                    </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10563" data-target="#expand_panel_body_d124e10563" aria-controls="expand_panel_body_d124e10563" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e10563"><code class="name">ydot</code> — Vehicle body lateral velocity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10563" aria-labelledby="expand_panel_heading_d124e10563" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Vehicle CG velocity along vehicle-fixed <code class="literal">y</code>-axis, in
+                            m/s.</p>
+                    </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10584" data-target="#expand_panel_body_d124e10584" aria-controls="expand_panel_body_d124e10584" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e10584"><code class="name">psi</code> — Yaw<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10584" aria-labelledby="expand_panel_heading_d124e10584" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Rotation of the vehicle-fixed frame about earth-fixed
+                            <code class="literal">Z</code>-axis (yaw), in rad..</p>
+                    </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10605" data-target="#expand_panel_body_d124e10605" aria-controls="expand_panel_body_d124e10605" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e10605"><code class="name">r</code> — Yaw rate<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10605" aria-labelledby="expand_panel_heading_d124e10605" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Vehicle angular velocity, <code class="literal">r</code>, about the
+                            vehicle-fixed <code class="literal">z</code>-axis (yaw rate), in rad/s.</p>
+                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e10628">参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="d124e10628_panel-group" role="tablist" aria-multiselectable="true"><strong class="mw-doc-parametersgrp" id="d124e10630">Longitudinal</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10632" data-target="#expand_panel_body_d124e10632" aria-controls="expand_panel_body_d124e10632" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_NumberofwheelsonfrontaxleNF" class="anchor_target"></span><h3 class="panel-title" id="d124e10632"><code class="name">Number of wheels on front axle, NF</code> — Front wheel count<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">2</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10632" aria-labelledby="expand_panel_heading_d124e10632" class="panel-collapse collapse"><div class="panel-body">
+            <p>Number of wheels on front axle, <em class="varname">N<sub>F</sub></em>. The
+                value is dimensionless.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10657" data-target="#expand_panel_body_d124e10657" aria-controls="expand_panel_body_d124e10657" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_NumberofwheelsonrearaxleNR" class="anchor_target"></span><h3 class="panel-title" id="d124e10657"><code class="name">Number of wheels on rear axle, NR</code> — Rear wheel count<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">2</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10657" aria-labelledby="expand_panel_heading_d124e10657" class="panel-collapse collapse"><div class="panel-body">
+            <p>Number of wheels on rear axle, <em class="varname">N<sub>R</sub></em>. The
+                value is dimensionless.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10682" data-target="#expand_panel_body_d124e10682" aria-controls="expand_panel_body_d124e10682" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Vehiclemassm" class="anchor_target"></span><h3 class="panel-title" id="d124e10682"><code class="name">Vehicle mass, m</code> — Vehicle mass<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">2000</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10682" aria-labelledby="expand_panel_heading_d124e10682" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vehicle mass, <em class="varname">m</em>, in kg.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10705" data-target="#expand_panel_body_d124e10705" aria-controls="expand_panel_body_d124e10705" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Longitudinaldistancefromcenterofmasstofrontaxlea" class="anchor_target"></span><h3 class="panel-title" id="d124e10705"><code class="name">Longitudinal distance from center of mass to front axle, a</code> — Front axle distance<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1.4</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10705" aria-labelledby="expand_panel_heading_d124e10705" class="panel-collapse collapse"><div class="panel-body">
+            <p>Horizontal distance <em class="varname">a</em> from the vehicle CG to the front wheel
+                axle, in m.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10728" data-target="#expand_panel_body_d124e10728" aria-controls="expand_panel_body_d124e10728" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Longitudinaldistancefromcenterofmasstorearaxleb" class="anchor_target"></span><h3 class="panel-title" id="d124e10728"><code class="name">Longitudinal distance from center of mass to rear axle, b</code> — Rear axle distance<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1.6</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10728" aria-labelledby="expand_panel_heading_d124e10728" class="panel-collapse collapse"><div class="panel-body">
+            <p>Horizontal distance <em class="varname">b</em> from the vehicle CG to the rear wheel
+                axle, in m.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10751" data-target="#expand_panel_body_d124e10751" aria-controls="expand_panel_body_d124e10751" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Verticaldistancefromcenterofmasstoaxleplaneh" class="anchor_target"></span><h3 class="panel-title" id="d124e10751"><code class="name">Vertical distance from center of mass to axle plane, h</code> — Height<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.35</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10751" aria-labelledby="expand_panel_heading_d124e10751" class="panel-collapse collapse"><div class="panel-body">
+            <p>Height of vehicle CG above the axles, <em class="varname">h</em>, in m.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_aca7c9fd-b211-46a8-82c9-6d518f2d6e06" data-target="#expand_panel_body_mw_aca7c9fd-b211-46a8-82c9-6d518f2d6e06" aria-controls="expand_panel_body_mw_aca7c9fd-b211-46a8-82c9-6d518f2d6e06" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Longitudinaldistancefromcenterofmasstohitchdh" class="anchor_target"></span><h3 class="panel-title" id="mw_aca7c9fd-b211-46a8-82c9-6d518f2d6e06"><code class="name">Longitudinal distance from center of mass to hitch, dh</code> — Distance from CM to hitch<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_aca7c9fd-b211-46a8-82c9-6d518f2d6e06" aria-labelledby="expand_panel_heading_mw_aca7c9fd-b211-46a8-82c9-6d518f2d6e06" class="panel-collapse collapse"><div class="panel-body">
+            <p>Longitudinal distance from center of mass to hitch, <em class="varname">dh</em>, in
+                m.</p>
+            
+                <h4 class="descriptionsect">Dependencies</h4>
+                <p>To enable this parameter, on the <strong class="guilabel">Input signals</strong> pane,
+                    select <strong class="guilabel">Hitch forces</strong> or <strong class="guilabel">Hitch
+                    moments</strong>.</p>
+            
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9b316e55-9cdc-4322-b5ab-7a21d448d274" data-target="#expand_panel_body_mw_9b316e55-9cdc-4322-b5ab-7a21d448d274" aria-controls="expand_panel_body_mw_9b316e55-9cdc-4322-b5ab-7a21d448d274" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Verticaldistancefromhitchtoaxleplanehh" class="anchor_target"></span><h3 class="panel-title" id="mw_9b316e55-9cdc-4322-b5ab-7a21d448d274"><code class="name">Vertical distance from hitch to axle plane, hh</code> — Distance from hitch to axle plane<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.2</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9b316e55-9cdc-4322-b5ab-7a21d448d274" aria-labelledby="expand_panel_heading_mw_9b316e55-9cdc-4322-b5ab-7a21d448d274" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vertical distance from hitch to axle plane, <em class="varname">hh</em>, in m.</p>
+            
+                <h4 class="descriptionsect">Dependencies</h4>
+                <p>To enable this parameter, on the <strong class="guilabel">Input signals</strong> pane,
+                    select <strong class="guilabel">Hitch forces</strong> or <strong class="guilabel">Hitch
+                    moments</strong>.</p>
+            
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10851" data-target="#expand_panel_body_d124e10851" aria-controls="expand_panel_body_d124e10851" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialinertialframelongitudinalpositionX_o" class="anchor_target"></span><h3 class="panel-title" id="d124e10851"><code class="name">Initial inertial frame longitudinal position, X_o</code> — Position<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10851" aria-labelledby="expand_panel_heading_d124e10851" class="panel-collapse collapse"><div class="panel-body">
+            <p>Initial vehicle CG displacement along earth-fixed <span class="emphasis"><em>X</em></span>-axis, in
+                m.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10874" data-target="#expand_panel_body_d124e10874" aria-controls="expand_panel_body_d124e10874" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Initiallongitudinalvelocityxdot_o" class="anchor_target"></span><h3 class="panel-title" id="d124e10874"><code class="name">Initial longitudinal velocity, xdot_o</code> — Velocity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10874" aria-labelledby="expand_panel_heading_d124e10874" class="panel-collapse collapse"><div class="panel-body">
+            <p>Initial vehicle CG velocity along vehicle-fixed <span class="emphasis"><em>x</em></span>-axis, in
+                m/s.</p>
+            
+                <h4 class="descriptionsect">Dependencies</h4>
+                <p>For the <span class="block">Vehicle Body 3DOF Single Track</span> or <span class="block">Vehicle Body
+                        3DOF Dual Track</span> blocks, to enable this parameter, set <strong class="guilabel">Axle
+                        forces</strong> to one of these options:</p>
+<div class="itemizedlist"><ul><li><p><code class="guidropdown">External longitudinal forces</code></p></li>
+<li><p><code class="guidropdown">External forces</code></p></li>
+</ul>
+</div>
+<p>
+</p>
+            
+        </div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="d124e10918">Lateral</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10920" data-target="#expand_panel_body_d124e10920" aria-controls="expand_panel_body_d124e10920" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_FronttirecornerstiffnessCy_f" class="anchor_target"></span><h3 class="panel-title" id="d124e10920"><code class="name">Front tire corner stiffness, Cy_f</code> — Stiffness<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">12e3</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10920" aria-labelledby="expand_panel_heading_d124e10920" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front tire corner stiffness, <em class="varname">Cy<sub>f</sub></em>, in
+                N/rad.</p>
+            
+    <h4 class="descriptionsect">Dependencies</h4>
+    <p>For the <span class="block">Vehicle Body 3DOF Single Track</span> or <span class="block">Vehicle Body 3DOF Dual
+            Track</span> blocks, to enable this parameter:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Set <strong class="guilabel">Axle forces</strong> to one of these options:</p>
+<div class="itemizedlist"><ul><li><p><code class="guidropdown">External longitudinal velocity</code></p></li>
+<li><p><code class="guidropdown">External longitudinal forces</code></p></li>
+</ul>
+</div><p>
+</p></li>
+<li><p>Clear <strong class="guilabel">Mapped corner stiffness</strong>.</p></li>
+</ol>
+</div>
+<p>
+</p>
+
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e10975" data-target="#expand_panel_body_d124e10975" aria-controls="expand_panel_body_d124e10975" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_ReartirecornerstiffnessCy_r" class="anchor_target"></span><h3 class="panel-title" id="d124e10975"><code class="name">Rear tire corner stiffness, Cy_r</code> — Stiffness<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">11e3</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e10975" aria-labelledby="expand_panel_heading_d124e10975" class="panel-collapse collapse"><div class="panel-body">
+            <p>Rear tire corner stiffness, <em class="varname">Cy<sub>r</sub></em>, in
+                N/rad.</p>
+            
+    <h4 class="descriptionsect">Dependencies</h4>
+    <p>For the <span class="block">Vehicle Body 3DOF Single Track</span> or <span class="block">Vehicle Body 3DOF Dual
+            Track</span> blocks, to enable this parameter:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Set <strong class="guilabel">Axle forces</strong> to one of these options:</p>
+<div class="itemizedlist"><ul><li><p><code class="guidropdown">External longitudinal velocity</code></p></li>
+<li><p><code class="guidropdown">External longitudinal forces</code></p></li>
+</ul>
+</div><p>
+</p></li>
+<li><p>Clear <strong class="guilabel">Mapped corner stiffness</strong>.</p></li>
+</ol>
+</div>
+<p>
+</p>
+
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11030" data-target="#expand_panel_body_d124e11030" aria-controls="expand_panel_body_d124e11030" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialinertialframelateraldisplacementY_o" class="anchor_target"></span><h3 class="panel-title" id="d124e11030"><code class="name">Initial inertial frame lateral displacement, Y_o</code> — Position<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11030" aria-labelledby="expand_panel_heading_d124e11030" class="panel-collapse collapse"><div class="panel-body">
+            <p>Initial vehicle CG displacement along earth-fixed <span class="emphasis"><em>Y</em></span>-axis, in
+                m.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11053" data-target="#expand_panel_body_d124e11053" aria-controls="expand_panel_body_d124e11053" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Initiallateralvelocityydot_o" class="anchor_target"></span><h3 class="panel-title" id="d124e11053"><code class="name">Initial lateral velocity, ydot_o</code> — Velocity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11053" aria-labelledby="expand_panel_heading_d124e11053" class="panel-collapse collapse"><div class="panel-body">
+            <p>Initial vehicle CG velocity along vehicle-fixed <span class="emphasis"><em>y</em></span>-axis, in
+                m/s.</p>
+        </div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="d124e11076">Yaw</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11078" data-target="#expand_panel_body_d124e11078" aria-controls="expand_panel_body_d124e11078" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_YawpolarinertiaIzz" class="anchor_target"></span><h3 class="panel-title" id="d124e11078"><code class="name">Yaw polar inertia, Izz</code> — Inertia<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">4000</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11078" aria-labelledby="expand_panel_heading_d124e11078" class="panel-collapse collapse"><div class="panel-body">
+            <p>Yaw polar inertia, in kg*m^2.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11098" data-target="#expand_panel_body_d124e11098" aria-controls="expand_panel_body_d124e11098" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Initialyawanglepsi_o" class="anchor_target"></span><h3 class="panel-title" id="d124e11098"><code class="name">Initial yaw angle, psi_o</code> — Psi rotation<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11098" aria-labelledby="expand_panel_heading_d124e11098" class="panel-collapse collapse"><div class="panel-body">
+            <p>Rotation of the vehicle-fixed frame about earth-fixed <span class="emphasis"><em>Z</em></span>-axis
+                (yaw), in rad.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11121" data-target="#expand_panel_body_d124e11121" aria-controls="expand_panel_body_d124e11121" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Initialyawrater_o" class="anchor_target"></span><h3 class="panel-title" id="d124e11121"><code class="name">Initial yaw rate, r_o</code> — Yaw rate<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11121" aria-labelledby="expand_panel_heading_d124e11121" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vehicle angular velocity about the vehicle-fixed <span class="emphasis"><em>z</em></span>-axis (yaw
+                rate), in rad/s.</p>
+        </div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="d124e11144">Aerodynamic</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11146" data-target="#expand_panel_body_d124e11146" aria-controls="expand_panel_body_d124e11146" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_LongitudinaldragareaAf" class="anchor_target"></span><h3 class="panel-title" id="d124e11146"><code class="name">Longitudinal drag area, Af</code> — Effective vehicle cross-sectional area<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">2</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11146" aria-labelledby="expand_panel_heading_d124e11146" class="panel-collapse collapse"><div class="panel-body">
+            <p>Effective vehicle cross-sectional area,
+                    <em class="varname">A<sub>f</sub></em>, to calculate the aerodynamic drag
+                force on the vehicle, in m<sup>2</sup>.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11173" data-target="#expand_panel_body_d124e11173" aria-controls="expand_panel_body_d124e11173" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_LongitudinaldragcoefficientCd" class="anchor_target"></span><h3 class="panel-title" id="d124e11173"><code class="name">Longitudinal drag coefficient, Cd</code> — Air drag coefficient<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">.3</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11173" aria-labelledby="expand_panel_heading_d124e11173" class="panel-collapse collapse"><div class="panel-body">
+            <p>Air drag coefficient, <em class="varname">C<sub>d</sub></em>. The value is
+                dimensionless.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11198" data-target="#expand_panel_body_d124e11198" aria-controls="expand_panel_body_d124e11198" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_LongitudinalliftcoefficientCl" class="anchor_target"></span><h3 class="panel-title" id="d124e11198"><code class="name">Longitudinal lift coefficient, Cl</code> — Air lift coefficient<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">.1</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11198" aria-labelledby="expand_panel_heading_d124e11198" class="panel-collapse collapse"><div class="panel-body">
+            <p>Air lift coefficient, <em class="varname">C<sub>l</sub></em>. The value is
+                dimensionless.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11223" data-target="#expand_panel_body_d124e11223" aria-controls="expand_panel_body_d124e11223" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_LongitudinaldragpitchmomentCpm" class="anchor_target"></span><h3 class="panel-title" id="d124e11223"><code class="name">Longitudinal drag pitch moment, Cpm</code> — Pitch drag<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">.1</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11223" aria-labelledby="expand_panel_heading_d124e11223" class="panel-collapse collapse"><div class="panel-body">
+            <p>Longitudinal drag pitch moment coefficient,
+                    <em class="varname">C<sub>pm</sub></em>. The value is
+                dimensionless.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11248" data-target="#expand_panel_body_d124e11248" aria-controls="expand_panel_body_d124e11248" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Relativewindanglevectorbeta_w" class="anchor_target"></span><h3 class="panel-title" id="d124e11248"><code class="name">Relative wind angle vector, beta_w</code> — Wind angle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0:0.01:0.3]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11248" aria-labelledby="expand_panel_heading_d124e11248" class="panel-collapse collapse"><div class="panel-body">
+            <p>Relative wind angle vector, <em class="varname">β<sub>w</sub></em>, in
+                rad.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11273" data-target="#expand_panel_body_d124e11273" aria-controls="expand_panel_body_d124e11273" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_SideforcecoefficientvectorCs" class="anchor_target"></span><h3 class="panel-title" id="d124e11273"><code class="name">Side force coefficient vector, Cs</code> — Side force coefficient <br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0:0.03:0.9]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11273" aria-labelledby="expand_panel_heading_d124e11273" class="panel-collapse collapse"><div class="panel-body">
+            <p>Side force coefficient vector coefficient,
+                    <em class="varname">C<sub>s</sub></em>. The value is dimensionless.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11298" data-target="#expand_panel_body_d124e11298" aria-controls="expand_panel_body_d124e11298" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_YawmomentcoefficientvectorCym" class="anchor_target"></span><h3 class="panel-title" id="d124e11298"><code class="name">Yaw moment coefficient vector, Cym</code> — Yaw moment drag<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0:0.01:0.3]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11298" aria-labelledby="expand_panel_heading_d124e11298" class="panel-collapse collapse"><div class="panel-body">
+            <p>Yaw moment coefficient vector coefficient,
+                    <em class="varname">C<sub>ym</sub></em>. The value is
+                dimensionless.</p>
+        </div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="d124e11323">Environment</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11325" data-target="#expand_panel_body_d124e11325" aria-controls="expand_panel_body_d124e11325" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_AbsoluteairpressurePabs" class="anchor_target"></span><h3 class="panel-title" id="d124e11325"><code class="name">Absolute air pressure, Pabs</code> — Pressure<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">101325</code> (default) | <code class="literal">scalar</code> | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11325" aria-labelledby="expand_panel_heading_d124e11325" class="panel-collapse collapse"><div class="panel-body">
+            <p>Environmental absolute pressure, <em class="varname">P<sub>abs</sub></em>,
+                in Pa.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11353" data-target="#expand_panel_body_d124e11353" aria-controls="expand_panel_body_d124e11353" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_AirtemperatureTair" class="anchor_target"></span><h3 class="panel-title" id="d124e11353"><code class="name">Air temperature, Tair</code> — Temperature<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">273</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11353" aria-labelledby="expand_panel_heading_d124e11353" class="panel-collapse collapse"><div class="panel-body">
+            <p>Environmental absolute temperature, <em class="varname">T</em>, in K.</p>
+            
+                <h4 class="descriptionsect">Dependencies</h4>
+                <p>To enable this parameter, clear <strong class="guilabel">Air temperature</strong>.</p>
+            
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11386" data-target="#expand_panel_body_d124e11386" aria-controls="expand_panel_body_d124e11386" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Gravitationalaccelerationg" class="anchor_target"></span><h3 class="panel-title" id="d124e11386"><code class="name">Gravitational acceleration, g</code> — Gravity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">9.81</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11386" aria-labelledby="expand_panel_heading_d124e11386" class="panel-collapse collapse"><div class="panel-body">
+            <p>Gravitational acceleration, <em class="varname">g</em>, in m/s^2.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11410" data-target="#expand_panel_body_d124e11410" aria-controls="expand_panel_body_d124e11410" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Nominalfrictionscalingfactormu" class="anchor_target"></span><h3 class="panel-title" id="d124e11410"><code class="name">Nominal friction scaling factor, mu </code> — Friction scale factor<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11410" aria-labelledby="expand_panel_heading_d124e11410" class="panel-collapse collapse"><div class="panel-body">
+            <p>Nominal friction scale factor, <em class="varname">μ</em>. The value is
+                dimensionless.</p>
+            
+                <h4 class="descriptionsect">Dependencies</h4>
+                <p>For the <span class="block">Vehicle Body 3DOF Single Track</span> or <span class="block">Vehicle Body
+                        3DOF Dual Track</span> blocks, to enable this parameter:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p> Set <strong class="guilabel">Axle forces</strong> to one of these options:</p>
+<div class="itemizedlist"><ul><li><p><code class="guidropdown">External longitudinal
+                                                velocity</code></p></li>
+<li><p><code class="guidropdown">External longitudinal
+                                                forces</code></p></li>
+</ul>
+</div><p>
+</p></li>
+<li><p>Clear <strong class="guilabel">External Friction</strong>.</p></li>
+</ol>
+</div>
+<p>
+</p>
+            
+        </div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="d124e11463">Simulation</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11465" data-target="#expand_panel_body_d124e11465" aria-controls="expand_panel_body_d124e11465" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Longitudinalvelocitytolerancexdot_tol" class="anchor_target"></span><h3 class="panel-title" id="d124e11465"><code class="name">Longitudinal velocity tolerance, xdot_tol</code> — Tolerance<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">.01</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11465" aria-labelledby="expand_panel_heading_d124e11465" class="panel-collapse collapse"><div class="panel-body">
+            <p>Longitudinal velocity tolerance, in m/s.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e11485" data-target="#expand_panel_body_d124e11485" aria-controls="expand_panel_body_d124e11485" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_NominalnormalforceFznom" class="anchor_target"></span><h3 class="panel-title" id="d124e11485"><code class="name">Nominal normal force, Fznom</code> — Normal force<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">5000</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e11485" aria-labelledby="expand_panel_heading_d124e11485" class="panel-collapse collapse"><div class="panel-body">
+            <p>Nominal normal force, in N.</p>
+            
+                <h4 class="descriptionsect">Dependencies</h4>
+                <p>For the <span class="block">Vehicle Body 3DOF Single Track</span> or <span class="block">Vehicle Body
+                        3DOF Dual Track</span> blocks, to enable this parameter, set <strong class="guilabel">Axle
+                        forces</strong> to one of these options:</p>
+<div class="itemizedlist"><ul><li><p><code class="guidropdown">External longitudinal velocity</code></p></li>
+<li><p><code class="guidropdown">External longitudinal forces</code></p></li>
+</ul>
+</div>
+<p>
+</p>
+            
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3eb8744b-e294-4987-82eb-e6300e82aad4" data-target="#expand_panel_body_mw_3eb8744b-e294-4987-82eb-e6300e82aad4" aria-controls="expand_panel_body_mw_3eb8744b-e294-4987-82eb-e6300e82aad4" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_GeometriclongitudinaloffsetfromaxleplanelongOff" class="anchor_target"></span><h3 class="panel-title" id="mw_3eb8744b-e294-4987-82eb-e6300e82aad4"><code class="name">Geometric longitudinal offset from axle plane, longOff</code> — Longitudinal offset<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_3eb8744b-e294-4987-82eb-e6300e82aad4" aria-labelledby="expand_panel_heading_mw_3eb8744b-e294-4987-82eb-e6300e82aad4" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vehicle chassis offset from axle plane along body-fixed
+                <span class="emphasis"><em>x</em></span>-axis, in m. When you use the 3D visualization engine,
+                consider using the offset to locate the chassis independent of the vehicle
+                CG.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_bef2c7e9-1696-487b-ae83-4b93a149f5cb" data-target="#expand_panel_body_mw_bef2c7e9-1696-487b-ae83-4b93a149f5cb" aria-controls="expand_panel_body_mw_bef2c7e9-1696-487b-ae83-4b93a149f5cb" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_GeometriclateraloffsetfromcenterplanelatOff" class="anchor_target"></span><h3 class="panel-title" id="mw_bef2c7e9-1696-487b-ae83-4b93a149f5cb"><code class="name">Geometric lateral offset from center plane, latOff </code> — Lateral offset<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_bef2c7e9-1696-487b-ae83-4b93a149f5cb" aria-labelledby="expand_panel_heading_mw_bef2c7e9-1696-487b-ae83-4b93a149f5cb" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vehicle chassis offset from center plane along body-fixed
+                <span class="emphasis"><em>y</em></span>-axis, in m. When you use the 3D visualization engine,
+                consider using the offset to locate the chassis independent of the vehicle
+                CG.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1d732a76-81ef-4116-b220-f103638ab40a" data-target="#expand_panel_body_mw_1d732a76-81ef-4116-b220-f103638ab40a" aria-controls="expand_panel_body_mw_1d732a76-81ef-4116-b220-f103638ab40a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_GeometricverticaloffsetfromaxleplanevertOff" class="anchor_target"></span><h3 class="panel-title" id="mw_1d732a76-81ef-4116-b220-f103638ab40a"><code class="name">Geometric vertical offset from axle plane, vertOff</code> — Vertical offset<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_1d732a76-81ef-4116-b220-f103638ab40a" aria-labelledby="expand_panel_heading_mw_1d732a76-81ef-4116-b220-f103638ab40a" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vehicle chassis offset from axle plane along body-fixed
+                <span class="emphasis"><em>z</em></span>-axis, in m. When you use the 3D visualization engine,
+                consider using the offset to locate the chassis independent of the vehicle
+                CG.</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_cea625ae-3440-45d7-82d2-77dfa23401fa" data-target="#expand_panel_body_mw_cea625ae-3440-45d7-82d2-77dfa23401fa" aria-controls="expand_panel_body_mw_cea625ae-3440-45d7-82d2-77dfa23401fa" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_WrapEulerangleswrapAng" class="anchor_target"></span><h3 class="panel-title" id="mw_cea625ae-3440-45d7-82d2-77dfa23401fa"><code class="name">Wrap Euler angles, wrapAng</code> — Selection<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_cea625ae-3440-45d7-82d2-77dfa23401fa" aria-labelledby="expand_panel_heading_mw_cea625ae-3440-45d7-82d2-77dfa23401fa" class="panel-collapse collapse"><div class="panel-body">
+            <p>Wrap the Euler angles to the interval <code class="literal">[-pi, pi]</code>. For vehicle
+                maneuvers that might undergo vehicle yaw rotations that are outside of the interval,
+                consider deselecting the parameter if you want to:</p>
+<div class="itemizedlist"><ul><li><p>Track the total vehicle yaw rotation.</p></li>
+<li><p>Avoid discontinuities in the vehicle state estimators.</p></li>
+</ul>
+</div>
+<p>
+</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bibliography"><h2 id="References">References</h2>
+<div id="d124e11628" class="bibliomixed"><p>[1] Gillespie, Thomas. <em class="citetitle">Fundamentals of Vehicle Dynamics</em>. Warrendale, PA: Society of Automotive Engineers (SAE), 1992.</p>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_9569b0a8-23c5-4aaf-ba41-e3ebe9ef7971_vh">Version History</h2>
+<p><strong>Introduced in R2018a</strong></p>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
