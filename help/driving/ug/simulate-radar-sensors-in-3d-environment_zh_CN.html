@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Simulate Vision and Radar Sensors in Unreal Engine Environment</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../unreal-engine-scenario-simulation.html",
+          "name": "Unreal Engine Scenario Simulation"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "unreal-engine-scenario-simulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Simulate Vision and Radar Sensors in Unreal Engine Environment",
+          "description": "Implement a synthetic data simulation for tracking and sensor fusion using Simulink and the Unreal Engine simulation environment.",
+          "thumbnailURL": "../../examples/driving/win64/SimulateRadarSensorsIn3DEnvironmentExample_01.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "Simulink"
+
+        },
+          "identifier": "driving.SimulateRadarSensorsIn3DEnvironmentExample",
+          "name": "SimulateRadarSensorsIn3DEnvironmentExample",
+          "url": "simulate-radar-sensors-in-3d-environment.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/SimulateRadarSensorsIn3DEnvironmentExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "SimulateRadarSensorsIn3DEnvironmentExample.m",
+        "SimulateSensorsIn3DEnvironmentModel.slx",
+        "SimulateSensorsIn3DEnvironment_BirdsEyeScope.png",
+        "SimulateSensorsIn3DEnvironment_ProbRadarConfigDialog.png",
+        "SimulateSensorsIn3DEnvironment_Sim3DDisplay.png",
+        "helperCreateVehicleTrajectories.m",
+        "helperInitSimulinkDemoFilter.m",
+        "curved_road.mat"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Implement a synthetic data simulation for tracking and sensor fusion using Simulink and the Unreal Engine simulation environment."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/SimulateRadarSensorsIn3DEnvironmentExample_01.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../unreal-engine-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Simulation</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Simulate Vision and Radar Sensors in Unreal Engine Environment</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e47398" class="intrnllnk">Introduction</a></li>
+<li><a href="#d124e47403" class="intrnllnk">Setup and Overview of Model</a></li>
+<li><a href="#d124e47440" class="intrnllnk">Simulating Sensor Detections</a></li>
+<li><a href="#d124e47474" class="intrnllnk">Tracking and Sensor Fusion</a></li>
+<li><a href="#d124e47484" class="intrnllnk">Display</a></li>
+<li><a href="#d124e47509" class="intrnllnk">Summary</a></li>
+<li><a href="#d124e47519" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e47553" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_493efbb0-3171-4bcf-99bf-bf56db5f94c0">在虚幻引擎环境中模拟视觉和雷达传感器</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">此示例使用：</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('SL')">Simulink</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('driving/SimulateRadarSensorsIn3DEnvironmentExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-SimulateRadarSensorsIn3DEnvironmentExample"/>
+<meta itemprop="exampletitle" content="Simulate Vision and Radar Sensors in Unreal Engine Environment"/>
+</div>
+<span id="SimulateRadarSensorsIn3DEnvironmentExample" class="anchor_target"></span>
+
+<p class="shortdesc">此示例展示了如何在Simulink®中使用Epic Games®的Unreal Engine®仿真环境实现跟踪和传感器融合的合成数据模拟。它紧密地遵循 <a href="sensor-fusion-using-synthetic-radar-and-vision-data-in-simulink.html" data-docid="driving_ug#mw_8ae0eb21-efca-4a6d-9a4a-0415a638c554" class="a">Sensor Fusion Using Synthetic Radar and Vision Data in Simulink</a> 示例。</p>
+
+<div class="procedure"><h3 class="title" id="d124e47398">介绍<span id="SimulateRadarSensorsIn3DEnvironmentExample-1" class="anchor_target"></span></h3>
+<p>Automated Driving Toolbox™提供了用于创建、仿真和可视化虚拟驾驶场景的工具。通过这些场景，您可以模拟罕见和潜在危险的事件，从场景中生成合成雷达和视觉检测，并使用这些合成检测来测试车辆算法。该示例涵盖了在Simulink中使用3D仿真环境进行整个合成数据工作流程的内容。</p>
+<h3 class="title" id="d124e47403">模型设置和概述<span id="SimulateRadarSensorsIn3DEnvironmentExample-2" class="anchor_target"></span></h3>
+<p>在运行此示例之前，通过以下步骤创建了场景中的道路、参与者和轨迹：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>从 <a href="define-road-layouts.html" data-docid="driving_ug#mw_bdf810cf-9986-48fa-9e34-793c2f7d4a2d" class="a">Define Road Layouts Programmatically</a> 3D场景中提取道路的中心位置，使用 <a href="select-waypoints-for-3d-simulation.html" data-docid="driving_ug#mw_f780d508-aca7-46bb-b440-40ec9e6ff0af" class="a">Select Waypoints for Unreal Engine Simulation</a> 中介绍的技术。</p></li>
+<li><p>在 <a href="../ref/drivingscenariodesigner-app.html" data-docid="driving_ref#mw_07e6310f-b9c9-4f4c-b2f9-51e31d407766" class="a">Driving Scenario Designer</a> 中创建一条道路，将提取的位置作为道路中心值。</p></li>
+<li><p>在道路上定义多辆移动车辆，其轨迹与 <a href="sensor-fusion-using-synthetic-radar-and-vision-data-in-simulink.html" data-docid="driving_ug#mw_8ae0eb21-efca-4a6d-9a4a-0415a638c554" class="a">Sensor Fusion Using Synthetic Radar and Vision Data in Simulink</a> 中定义的场景类似。</p></li>
+<li><p>从 Driving Scenario Designer 中保存场景文件 curved_road.mat，并使用Scenario Reader块将其加载到模型中。</p></li>
+<li><p>从Scenario Reader块输出车辆的姿态，并将其转换为世界坐标。使用Cuboid to 3D Simulation块将其转换为3D车辆块所需的X、Y和偏航角。</p></li>
+</ol>
+</div>
+<p>模型中的 <a href="../ref/simulation3dvehiclewithgroundfollowing.html" data-docid="driving_ref#mw_32cd8e72-2d69-4c3e-98b0-5b918db383a4" class="a">Simulation 3D Vehicle with Ground Following</a> 块使用Scenario Reader块提供的参与者姿态，在仿真的每个时间步中定义自车、前车和其他车辆的位置。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close;
+<span style="color:#0000FF">if</span> ~ispc
+    error([<span style="color:#A020F0">'3D Simulation is supported only on Microsoft'</span>, char(174), <span style="color:#A020F0">' Windows'</span>, char(174), <span style="color:#A020F0">'.'</span>]);
+<span style="color:#0000FF">end</span>
+
+open_system(<span style="color:#A020F0">'SimulateSensorsIn3DEnvironmentModel'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e47437" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateRadarSensorsIn3DEnvironmentExample_01.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e47440">模拟传感器检测<span id="SimulateRadarSensorsIn3DEnvironmentExample-5" class="anchor_target"></span></h3>
+<p>在这个示例中，您模拟了一个自车，它的前保险杠上有一个视觉传感器，以及覆盖全方位视野的六个雷达传感器。自车装备有前后两个远程雷达。车辆的每一侧都有两个短程雷达，每个雷达覆盖90度。每一侧的一个雷达从车辆中间向后覆盖，另一个雷达从车辆中间向前覆盖。</p>
+<p>Ego Sensors子系统包含一个 <a href="../ref/simulation3dvisiondetectiongenerator.html" data-docid="driving_ref#mw_e07bfe36-17d0-4326-b961-8c7c2aa0fc71" class="a">Simulation 3D Vision Detection Generator</a> 块和六个 <a href="../ref/simulation3dprobabilisticradar.html" data-docid="driving_ref#mw_a657f4e8-85c3-41ea-8d9c-1146805720f0" class="a">Simulation 3D Probabilistic Radar</a> 块，用于建模先前描述的传感器。雷达块的输出使用 <a href="../ref/detectionconcatenation.html" data-docid="driving_ref#mw_d736c020-7eef-4c00-9248-9762e9746af5" class="a">Detection Concatenation</a> 块进行连接。在顶层模型中，雷达输出与视觉输出连接在一起，形成一个要由多目标跟踪器块融合的检测流。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open_system(<span style="color:#A020F0">'SimulateSensorsIn3DEnvironmentModel/Ego Sensors'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e47458" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateRadarSensorsIn3DEnvironmentExample_02.png"/></p>
+</div>
+</div>
+<p>概率雷达不仅可以"看到"参与者的物理尺寸（例如长度、宽度和高度），还对参与者的电学尺寸敏感。参与者的电学尺寸被称为雷达散射截面 (RCS)。在仿真中，使用 <a href="../ref/simulation3dprobabilisticradarconfiguration.html" data-docid="driving_ref#mw_875dee8d-fc18-4f3d-8eab-bace559a0d66" class="a">Simulation 3D Probabilistic Radar Configuration</a> 块定义了车辆的RCS模式。</p>
+<p></p>
+<div class="informalfigure"><div id="d124e47469" class="mediaobject"><p><img src="../../examples/driving/win64/xxSimulateSensorsIn3DEnvironment_ProbRadarConfigDialog.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p>使用该块来为仿真中的所有参与者定义雷达散射截面（RCS）模式。如果某个参与者没有指定RCS模式，将使用默认的RCS值。</p>
+<h3 class="title" id="d124e47474">跟踪和传感器融合<span id="SimulateRadarSensorsIn3DEnvironmentExample-9" class="anchor_target"></span></h3>
+<p>在将自动驾驶汽车的雷达套件生成的检测结果进行融合之前，会使用一个辅助的检测聚类块对其进行预处理。然后，使用 <a href="../ref/multiobjecttracker.html" data-docid="driving_ref#mw_1cb02a28-0c4b-491e-aa45-55747c487a25" class="a">Multi-Object Tracker</a> 块进行融合。多目标跟踪器的配置参数与Simulink示例中的 <a href="sensor-fusion-using-synthetic-radar-and-vision-data-in-simulink.html" data-docid="driving_ug#mw_8ae0eb21-efca-4a6d-9a4a-0415a638c554" class="a">Sensor Fusion Using Synthetic Radar and Vision Data in Simulink</a> 相同。多目标跟踪器块的输出是一组确认的轨迹。</p>
+<h3 class="title" id="d124e47484">显示工具<span id="SimulateRadarSensorsIn3DEnvironmentExample-10" class="anchor_target"></span></h3>
+<p><a href="../ref/birdseyescope-app.html" data-docid="driving_ref#mw_59742eb7-dce8-4938-9c2e-44d34c7b8891" class="a">Bird's-Eye Scope</a> 是Simulink中的一个模型级可视化工具，可以从Simulink工具栏中打开。打开鸟瞰图后，点击 <strong class="emphasis bold">Find Signals</strong> 来设置信号。然后运行仿真以显示自动驾驶汽车、雷达和视觉检测以及轨迹。以下图片显示了该示例中鸟瞰图的显示结果。</p>
+<p></p>
+<div class="informalfigure"><div id="d124e47497" class="mediaobject"><p><img src="../../examples/driving/win64/xxSimulateSensorsIn3DEnvironment_BirdsEyeScope.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p>当仿真开始时，需要几秒钟来初始化虚幻引擎仿真环境，特别是在首次运行时。一旦初始化完成，仿真环境将在一个单独的窗口中打开。以下图片是仿真窗口的快照，对应于之前显示的鸟瞰图的快照。</p>
+<p></p>
+<div class="informalfigure"><div id="d124e47504" class="mediaobject"><p><img src="../../examples/driving/win64/xxSimulateSensorsIn3DEnvironment_Sim3DDisplay.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p>仿真车辆显示在仿真窗口中。仿真生成的检测和轨迹只出现在Bird's-Eye Scope中。</p>
+<h3 class="title" id="d124e47509">总结<span id="SimulateRadarSensorsIn3DEnvironmentExample-13" class="anchor_target"></span></h3>
+<p>在这个例子中，你学习了如何从3D场景中提取道路中心，以便在Driving Scenario Designer应用程序中使用。你还学习了如何从道路段落中导出车辆轨迹，以在Simulink中的3D仿真环境中使用。然后，你学习了如何在Unreal Engine环境中配置概率相机模型和多个概率雷达模型，以及如何使用多目标跟踪器融合围绕自车周围的多个传感器的检测。跟踪器生成的确认轨迹可以用于控制算法，如自适应巡航控制（ACC）或前向碰撞警告（FCW）。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close_system(<span style="color:#A020F0">'SimulateSensorsIn3DEnvironmentModel'</span>);
+</pre>
+</div>
+</div>
+</div>
+</div>
+      <h2 id="d124e47519">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/birdseyescope-app.html"><span itemprop="name">Bird's-Eye Scope</span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving Scenario
+            Designer</span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
+            Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvehiclewithgroundfollowing.html"><span itemprop="name"><span class="block">Simulation 3D Vehicle
+            with Ground Following</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dprobabilisticradar.html"><span itemprop="name"><span class="block">Simulation 3D
+            Probabilistic Radar</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dprobabilisticradarconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
+            Probabilistic Radar Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/detectionconcatenation.html"><span itemprop="name"><span class="block">Detection
+            Concatenation</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/multiobjecttracker.html"><span itemprop="name"><span class="block">Multi-Object
+            Tracker</span></span></a></span></li>
+</ul>
+      <h2 id="d124e47553">Related Topics</h2>
+<ul><li><a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">Visualize Sensor Data from Unreal Engine Simulation Environment</a></li>
+<li><a href="sensor-fusion-using-synthetic-radar-and-vision-data-in-simulink.html" class="a">Sensor Fusion Using Synthetic Radar and Vision Data in Simulink</a></li>
+</ul>
+      
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

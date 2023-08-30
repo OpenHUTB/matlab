@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Create Reverse Motion Driving Scenarios Interactively</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../interactive-scenario-authoring.html",
+          "name": "Interactive Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "interactive-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Create driving scenarios in which vehicles drive in reverse by using the Driving Scenario Designer app."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../interactive-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Interactive Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Create Reverse Motion Driving Scenarios Interactively</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_56daa144-c501-41a6-9b56-9c0fdf517a9e" class="intrnllnk">Three-Point Turn Scenario</a></li>
+<li><a href="#mw_2389f908-e6e2-4a43-b3d0-e1e20478a78a" class="intrnllnk">Add Road</a></li>
+<li><a href="#mw_b9eb5979-092d-4151-b66e-67d2a96434f1" class="intrnllnk">Add Vehicle</a></li>
+<li><a href="#mw_f17fc8c5-5680-4f45-bc8e-62904153cb7d" class="intrnllnk">Add Trajectory</a></li>
+<li><a href="#mw_50302d1a-265d-4843-acf9-b7578965aea5" class="intrnllnk">Run Simulation</a></li>
+<li><a href="#mw_f9042889-6775-46ec-a03c-2ac59e7d7a9a" class="intrnllnk">Adjust Trajectory Using Specified Yaw Values</a></li>
+<li><a href="#d124e9025" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e9034" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=interactive-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_8dc737d1-620c-49a7-a1c7-ab236cad05f1">交互式创建反向行驶场景</h2>
+<p>这个示例演示了如何使用 <strong class="app"><a href="../ref/drivingscenariodesigner-app.html">Driving Scenario Designer</a></strong> 应用程序创建一个反向行驶的驾驶场景。在这个示例中，您可以指定一个车辆完成一个三点转弯。</p>
+<section itemprop="content"><h3 class="title" id="mw_56daa144-c501-41a6-9b56-9c0fdf517a9e">三点转弯场景</h3>
+<p><i>三点转弯</i>是一种基本的驾驶操作，用于在道路上改变行驶方向。三点转弯包括以下几个步骤：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>向前行驶并向道路的对侧转向。</p></li>
+<li><p>在倒车时向原来的一侧转向。</p></li>
+<li><p>向前行驶，朝着对侧完成方向的改变。</p></li>
+</ol>
+</div>
+<p>
+</p>
+<div class="informalfigure"><div id="d124e8859" class="mediaobject"><p><img src="dsd_three_point_turn_diagram.png" alt="A three-point turn" height="360" width="146"/></p>
+</div>
+</div>
+<p>您可以使用反向行驶来设计更复杂的场景，以测试自动驾驶算法。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_2389f908-e6e2-4a43-b3d0-e1e20478a78a">Add Road</h3>
+<p>打开 <strong class="app"><a href="../ref/drivingscenariodesigner-app.html">Driving Scenario Designer</a></strong> 应用程序。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>drivingScenarioDesigner</pre>
+</div>
+</div>
+</div>
+<p>在场景中添加一条直路。右键单击 <strong class="guilabel">Scenario Canvas</strong> 窗格，然后选择 <strong class="guimenuitem">Add Road</strong>。将道路延伸到画布的顶部，使其长度约为50米。双击以将道路添加到画布中。</p>
+<div class="informalfigure"><div id="d124e8880" class="mediaobject"><p><img src="dsd_three_point_turn_add_road.png" alt="A road that is approximately 50 meters long." height="420" width="423"/></p>
+</div>
+</div>
+<p>扩展道路的宽度，以留出足够的空间让车辆完成三点转弯。在左侧窗格的 <strong class="guilabel">Roads</strong> 选项卡上，将 <strong class="guilabel">Width (m)</strong> 从 <code class="userinput">6</code> 增加到 <code class="userinput">8</code>。</p>
+<div class="informalfigure"><div id="d124e8895" class="mediaobject"><p><img src="dsd_three_point_turn_widen_road.png" alt="A road expanded to 8 meters" height="418" width="423"/></p>
+</div>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_b9eb5979-092d-4151-b66e-67d2a96434f1">Add Vehicle</h3>
+<p>在道路上添加一辆车辆。右键单击道路的右下角，然后选择 <strong class="guimenuitem">Add Car</strong>。放大车辆和道路的前半部分，这是车辆执行三点转弯的区域。</p>
+<div class="informalfigure"><div id="d124e8906" class="mediaobject"><p><img src="dsd_three_point_turn_add_car.png" alt="A vehicle on the road and zoomed in to the first half of the road." height="380" width="180"/></p>
+</div>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_f17fc8c5-5680-4f45-bc8e-62904153cb7d">Add Trajectory</h3>
+<p>指定车辆完成三点转弯的轨迹。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>右键单击车辆，然后选择 <strong class="guimenuitem">Add Forward Waypoints</strong>。指针将显示在画布上的 (<em class="varname">x</em>,<em class="varname">y</em>) 位置和汽车行驶的运动方向，您可以在指定路标点时查看。</p><div class="informalfigure"><div id="d124e8924" class="mediaobject"><p class="listimage"><img src="dsd_three_point_turn_trajectory_start.png" alt="A vehicle set to specify forward motion waypoints." height="362" width="242"/></p>
+</div>
+</div></li>
+<li><p>指定三点转弯的第一段。单击以添加向左转向道路左侧的路标点。</p><div class="informalfigure"><div id="d124e8931" class="mediaobject"><p class="listimage"><img src="dsd_three_point_turn_point1.png" alt="The trajectory for the first point of the three-point turn." height="362" width="242"/></p>
+</div>
+</div></li>
+<li><p>指定三点转弯的第二段。按下 <strong class="keycap">Ctrl+R</strong> 切换到指定反向路标点。然后，单击以添加向右转向道路右侧的路标点。</p><div class="informalfigure"><div id="d124e8941" class="mediaobject"><p class="listimage"><img src="dsd_three_point_turn_point2.png" alt="The trajectory with the second point of the three-point turn added." height="362" width="242"/></p>
+</div>
+</div></li>
+<li><p>指定三点转弯的第三段。按下 <strong class="keycap">Ctrl+F</strong> 切换回指定前向路标点。然后，单击以添加向左转向道路左侧的路标点，与第一个指定的路标点相邻。</p><div class="informalfigure"><div id="d124e8951" class="mediaobject"><p class="listimage"><img src="dsd_three_point_turn_point3.png" alt="The trajectory with the third point of the three-point turn added." height="362" width="242"/></p>
+</div>
+</div></li>
+<li><p>按 <strong class="keycap">Enter</strong> 键将路标点提交到画布上。</p><div class="informalfigure"><div id="d124e8961" class="mediaobject"><p class="listimage"><img src="dsd_three_point_turn_trajectory_end.png" alt="The three-point turn trajectory committed to the canvas" height="360" width="240"/></p>
+</div>
+</div></li>
+</ol>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_50302d1a-265d-4843-acf9-b7578965aea5">运行仿真</h3>
+<p>运行仿真。要查看汽车行驶的方向，在应用程序工具栏上选择 <strong class="guimenuitem">Display</strong> &gt; <strong class="guimenuitem">Show actor pose indicator during simulation</strong>。</p>
+<p>在仿真运行时，车辆在三点转弯的每个点之间会短暂停止。在轨迹中在前进和倒车之间切换时，应用程序会自动将切换发生的路标点上的 <strong class="keycap">v (m/s)</strong> 值设置为 <code class="userinput">0</code>。</p>
+<div class="informalfigure"><div id="d124e8981" class="mediaobject"><p><img src="dsd_three_point_turn_simulation.gif" alt="An animation of the three-point turn." height="450" width="300"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e8987" class="mediaobject"></div>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_f9042889-6775-46ec-a03c-2ac59e7d7a9a">使用指定的偏航角调整轨迹</h3>
+<p>为了对轨迹进行微调，可以为车辆在特定路标点达到特定偏航角度。例如，当车辆开始倒车时，您希望车辆与起始位置形成一个正好90度的角度。</p>
+<div class="informalfigure"><div id="d124e8994" class="mediaobject"><p><img src="dsd_three_point_turn_90_degree_angle.png" alt="A vehicle at a 90-degree angle." height="360" width="160"/></p>
+</div>
+</div>
+<p>首先，通过将指针移动到车辆开始倒车的路标点上，确定该路标点的ID。然后，在左侧窗格的 <strong class="guilabel">Waypoints, Speeds, Wait Times, and Yaw</strong> 表格中，将相应行的 <strong class="guilabel">yaw (deg)</strong> 值设置为 <code class="userinput">90</code>。例如，如果车辆在路标点5开始倒车，则更新 <strong class="guilabel">yaw (deg)</strong> 列的第五行。</p>
+<div class="informalfigure"><div id="d124e9009" class="mediaobject"><p><img src="dsd_three_point_turn_90_degree_waypoint.png" alt="A tooltip displays over the fifth waypoint in the trajectory that says &quot;Car: Waypoint 5&quot;. The fifth row of the &quot;yaw (deg&quot;) column displays a value of 90.l" height="360" width="328"/></p>
+</div>
+</div>
+<p>在模拟过程中，车辆现在与起始位置形成一个正好90度的角度。要清除先前设置的偏航角值，右键单击一个路标点，然后选择 <strong class="guilabel">Restore Default Yaw</strong>。您还可以通过右键单击车辆并选择 <strong class="guilabel">Restore Default Yaws </strong>来清除所有设置的偏航角值。</p>
+<p>要使用预先构建的具有指定偏航角值的倒车和转弯的场景，请参阅 <a href="euro-ncap-driving-scenarios-in-driving-scenario-designer.html" class="a">Euro NCAP Driving Scenarios in Driving Scenario Designer</a> 中的预先构建的自动紧急制动 (AEB) 场景。</p>
+</section>
+        <h2 id="d124e9025">See Also</h2>
+<h3>Apps</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/drivingscenariodesigner-app.html"><span itemprop="name">Driving
+                    Scenario Designer</span></a></span></li>
+</ul>
+        <h2 id="d124e9034">Related Topics</h2>
+<ul><li><a href="euro-ncap-driving-scenarios-in-driving-scenario-designer.html" class="a">Euro NCAP Driving Scenarios in Driving Scenario Designer</a></li>
+<li><a href="create-actor-and-vehicle-trajectories.html" class="a">Create Actor and Vehicle Trajectories Programmatically</a></li>
+</ul>
+        
+    </section>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
