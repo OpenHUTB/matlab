@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>laneMarkingPlotter</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:laneMarkingPlotter"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:birdsEyePlot.laneMarkingPlotter"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:driving.birdsEyePlot.LaneMarkingPlotter.laneMarkingPlotter"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function creates a LaneMarkingPlotter object that configures the display of lane markings on a bird's-eye plot."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">laneMarkingPlotter</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_5f2db0a4-2b0b-42f0-bc2e-a0798213e414" class="intrnllnk">Syntax</a></li>
+<li><a href="#description" class="intrnllnk">Description</a></li>
+<li><a href="#mw_6248fea8-9c96-409b-8df0-b8f1dc3939d1" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_4d65096f-0dd6-43d5-8e11-9f05b22e313b" class="intrnllnk">Generate Object and Lane Boundary Detections</a></li>
+</ul></li>
+<li><a href="#mw_4a796e52-3ef1-4c95-9c59-16bd652e735e" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="intrnllnk">bep</a></li>
+</ul><ul class="nav"><li><a href="#namevaluepairs" class="intrnllnk">Name-Value Arguments</a><ul class="nav"><li><a href="#mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" class="intrnllnk">DisplayName</a></li>
+<li><a href="#mw_4a520320-5f3a-4d10-9c1f-d4e93b0246f5" class="intrnllnk">FaceColor</a></li>
+<li><a href="#mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" class="intrnllnk">Tag</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mw_ca6c27e0-9b9b-4d8b-8b75-3c1ef4728bc6" class="intrnllnk">Output Arguments</a><ul class="nav"><li><a href="#mw_e73ab371-bf1d-4828-8b05-b1a98dfa5c2c" class="intrnllnk">lmPlotter</a></li>
+</ul></li>
+<li><a href="#mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">laneMarkingPlotter</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">用于鸟瞰图的车道标线绘制器</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<span id="mw_5f2db0a4-2b0b-42f0-bc2e-a0798213e414" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_5f2db0a4-2b0b-42f0-bc2e-a0798213e414">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e76797" class="intrnllnk">lmPlotter = laneMarkingPlotter(bep)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e76828" class="intrnllnk">lmPlotter = laneMarkingPlotter(bep,Name,Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="mw_a9aea2a2-314a-4857-971e-afec9ab8f627" class="anchor_target"></span><h2 id="description">描述</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><span id="mw_372d3fbc-7996-4fdd-b7c1-2547ac2f9610" class="anchor_target"></span>
+      <div class="description_element"><p class="syntax_example"><a href="birdseyeplot.lanemarkingplotter.html#mw_4d65096f-0dd6-43d5-8e11-9f05b22e313b" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e76797" itemprop="syntax"><code class="synopsis"><a href="#mw_e73ab371-bf1d-4828-8b05-b1a98dfa5c2c" class="intrnllnk"><code class="argument">lmPlotter</code></a> = laneMarkingPlotter(<a href="#mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="intrnllnk"><code class="argument">bep</code></a>)</code></span>
+创建一个 <code class="object">LaneMarkingPlotter</code> 对象，用于配置在鸟瞰图上显示车道标线。 <code class="object">LaneMarkingPlotter</code> 对象存储在输入的 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象（ <code class="argument">bep</code>）的 <code class="property">Plotters</code> 属性中。要显示车道标线，请使用 <a href="birdseyeplot.plotlanemarking.html"><code class="function">plotLaneMarking</code></a> 函数。</p>
+</div>
+</div>
+      <div class="description_element"><div class="code_responsive"><p><span id="d124e76828" itemprop="syntax"><code class="synopsis"><a href="#mw_e73ab371-bf1d-4828-8b05-b1a98dfa5c2c" class="intrnllnk"><code class="argument">lmPlotter</code></a> = laneMarkingPlotter(<a href="#mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="intrnllnk"><code class="argument">bep</code></a>,<a href="#namevaluepairarguments" class="intrnllnk"><code class="argument">Name,Value</code></a>)</code></span>
+使用一个或多个 <code class="argument">Name,Value</code> 对参数设置属性。例如，<code class="literal">laneMarkingPlotter(bep,'DisplayName','Lane markings')</code>  设置在鸟瞰图图例中显示的名称。</p>
+</div>
+</div>
+    </div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="mw_6248fea8-9c96-409b-8df0-b8f1dc3939d1">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_4d65096f-0dd6-43d5-8e11-9f05b22e313b"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4d65096f-0dd6-43d5-8e11-9f05b22e313b" data-target="#expand_panel_body_mw_4d65096f-0dd6-43d5-8e11-9f05b22e313b" aria-controls="expand_panel_body_mw_4d65096f-0dd6-43d5-8e11-9f05b22e313b" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_4d65096f-0dd6-43d5-8e11-9f05b22e313b">生成对象和车道边界检测<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4d65096f-0dd6-43d5-8e11-9f05b22e313b" aria-labelledby="expand_panel_heading_mw_4d65096f-0dd6-43d5-8e11-9f05b22e313b" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/GenerateObjectAndLaneBoundaryDetectionsExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Generate Object and Lane Boundary Detections",
+          "description": "Create a driving scenario containing an ego vehicle and a target vehicle traveling along a three-lane road. Detect the lane boundaries by using a vision detection generator.",
+          "thumbnailURL": "../../examples/driving/win64/GenerateObjectAndLaneBoundaryDetectionsExample_03.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "birdseyeplot.lanemarkingplotter.html"
+
+        },
+          "identifier": "driving.GenerateObjectAndLaneBoundaryDetectionsExample",
+          "name": "GenerateObjectAndLaneBoundaryDetectionsExample",
+          "url": "birdseyeplot.lanemarkingplotter.html#mw_4d65096f-0dd6-43d5-8e11-9f05b22e313b"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/GenerateObjectAndLaneBoundaryDetectionsExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "GenerateObjectAndLaneBoundaryDetectionsExample.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<div class="procedure"><p class="shortdesc">创建一个驾驶场景，其中包含一辆自车和一辆目标车辆沿着一条三车道道路行驶。通过使用视觉检测生成器来检测车道边界。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+</pre>
+</div>
+</div>
+</div>
+<p>通过使用车道规格来创建一条三车道道路。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadCenters = [0 0 0; 60 0 0; 120 30 0];
+lspc = lanespec(3);
+road(scenario,roadCenters,<span style="color:#A020F0">'Lanes'</span>,lspc);
+</pre>
+</div>
+</div>
+</div>
+<p>指定自车以30 m/s的速度行驶在中间车道上。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>egovehicle = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+egopath = [1.5 0 0; 60 0 0; 111 25 0];
+egospeed = 30;
+smoothTrajectory(egovehicle,egopath,egospeed);
+</pre>
+</div>
+</div>
+</div>
+<p>指定目标车辆以40 m/s的速度在自车前方行驶，并在接近自车时变换车道。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>targetcar = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+targetpath = [8 2; 60 -3.2; 120 33];
+targetspeed = 40;
+smoothTrajectory(targetcar,targetpath,targetspeed);
+</pre>
+</div>
+</div>
+</div>
+<p>在自车后方显示一个追踪图，以三维视角展示场景。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>chasePlot(egovehicle)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e76889" class="mediaobject"><p><img src="../../examples/driving/win64/GenerateObjectAndLaneBoundaryDetectionsExample_01.png"/></p>
+</div>
+</div>
+<p>创建一个视觉检测生成器，用于检测车道和物体。传感器的俯仰角向下倾斜一度。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>visionSensor = visionDetectionGenerator(<span style="color:#A020F0">'Pitch'</span>,1.0);
+visionSensor.DetectorOutput = <span style="color:#A020F0">'Lanes and objects'</span>;
+visionSensor.ActorProfiles = actorProfiles(scenario);
+</pre>
+</div>
+</div>
+</div>
+<p>运行仿真。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>创建鸟瞰图以及相关的绘图器。</p></li>
+<li><p>显示传感器的覆盖范围。</p></li>
+<li><p>显示车道标线。</p></li>
+<li><p>获取道路上目标的真实位姿。</p></li>
+<li><p>获取最多60米前方的理想车道边界点。</p></li>
+<li><p>根据理想目标位姿和车道边界生成检测结果。</p></li>
+<li><p>显示目标的轮廓。</p></li>
+<li><p>在物体检测有效时显示物体检测结果。</p></li>
+<li><p>在车道检测有效时显示车道边界。</p></li>
+</ol>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bep = birdsEyePlot(<span style="color:#A020F0">'XLim'</span>,[0 60],<span style="color:#A020F0">'YLim'</span>,[-35 35]);
+caPlotter = coverageAreaPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Coverage area'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'blue'</span>);
+detPlotter = detectionPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Object detections'</span>);
+lmPlotter = laneMarkingPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Lane markings'</span>);
+lbPlotter = laneBoundaryPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Lane boundary detections'</span>,<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'red'</span>);
+olPlotter = outlinePlotter(bep);
+plotCoverageArea(caPlotter,visionSensor.SensorLocation,<span style="color:#0000FF">...</span>
+    visionSensor.MaxRange,visionSensor.Yaw, <span style="color:#0000FF">...</span>
+    visionSensor.FieldOfView(1));
+<span style="color:#0000FF">while</span> advance(scenario)
+    [lmv,lmf] = laneMarkingVertices(egovehicle);
+    plotLaneMarking(lmPlotter,lmv,lmf)
+    tgtpose = targetPoses(egovehicle);
+    lookaheadDistance = 0:0.5:60;
+    lb = laneBoundaries(egovehicle,<span style="color:#A020F0">'XDistance'</span>,lookaheadDistance,<span style="color:#A020F0">'LocationType'</span>,<span style="color:#A020F0">'inner'</span>);
+    [obdets,nobdets,obValid,lb_dets,nlb_dets,lbValid] = <span style="color:#0000FF">...</span>
+        visionSensor(tgtpose,lb,scenario.SimulationTime);
+    [objposition,objyaw,objlength,objwidth,objoriginOffset,color] = targetOutlines(egovehicle);
+    plotOutline(olPlotter,objposition,objyaw,objlength,objwidth, <span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'OriginOffset'</span>,objoriginOffset,<span style="color:#A020F0">'Color'</span>,color)
+    <span style="color:#0000FF">if</span> obValid
+        detPos = cellfun(@(d)d.Measurement(1:2),obdets,<span style="color:#A020F0">'UniformOutput'</span>,false);
+        detPos = vertcat(zeros(0,2),cell2mat(detPos')');
+        plotDetection(detPlotter,detPos)
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">if</span> lbValid
+        plotLaneBoundary(lbPlotter,vertcat(lb_dets.LaneBoundaries))
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e76919" class="mediaobject"><p><img src="../../examples/driving/win64/GenerateObjectAndLaneBoundaryDetectionsExample_02.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e76923" class="mediaobject"><p><img src="../../examples/driving/win64/GenerateObjectAndLaneBoundaryDetectionsExample_03.png"/></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-GenerateObjectAndLaneBoundaryDetectionsExample"/>
+<meta itemprop="exampletitle" content="Generate Object and Lane Boundary Detections"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_4a796e52-3ef1-4c95-9c59-16bd652e735e">输入参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_4a796e52-3ef1-4c95-9c59-16bd652e735e_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" data-target="#expand_panel_body_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" aria-controls="expand_panel_body_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_bep" class="anchor_target"></span><h3 class="panel-title" id="mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286"><code itemprop="name">bep</code> — <span itemprop="purpose">Bird’s-eye plot</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">birdsEyePlot</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" aria-labelledby="expand_panel_heading_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="panel-collapse collapse in"><div class="panel-body"><p>鸟瞰图，指定为 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span id="namevaluepairarguments" class="anchor_target"></span><span id="mw_a43247de-1fda-4d67-a7ad-2544d5d2815d" class="anchor_target"></span><h3 id="namevaluepairs" class="bottom_ruled">Name-Value Arguments</h3>
+<div class="namevaluecontainer"><p class="neqvpair_boilerplate">将可选的参数对指定为 <code class="argument">Name1=Value1,...,NameN=ValueN</code>，其中 <code class="literal">Name</code> 是参数名称，<code class="literal">Value</code> 是相应的值。Name-Value参数必须在其他参数之后出现，但是对于参数对的顺序没有要求。
+    </p>
+<p class="nvpaircompat_boilerplate"><i>在R2021a之前，使用逗号将每个名称和值分隔开，并将</i> <code class="literal">Name</code> <i>用引号括起来。</i></p>
+<p><span class="example_desc"><strong>Example: </strong><code class="literal">laneBoundaryPlotter('Color','red')</code> 将车道标线的颜色设置为红色。</span></p>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_bac726ce-6a1f-4037-817a-17cb048313bf_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" data-target="#expand_panel_body_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" aria-controls="expand_panel_body_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_DisplayName" class="anchor_target"></span><h3 class="panel-title" id="mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576"><code itemprop="name">DisplayName</code> — <span itemprop="purpose">Plotter name to display in legend</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">''</code></span> (default) | <span itemprop="inputvalue">character vector</span> | <span itemprop="inputvalue">string scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" aria-labelledby="expand_panel_heading_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_6e541790-b00f-4218-91b9-29cedb0b5576" class="panel-collapse collapse in"><div class="panel-body">
+        <p>要在图例中显示的绘图器名称，指定为由<code class="literal">'DisplayName'</code> 和字符向量或字符串标量组成的逗号分隔的参数对。如果您不指定名称，鸟瞰图不会为该绘图器显示图例条目。</p>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_4a520320-5f3a-4d10-9c1f-d4e93b0246f5"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4a520320-5f3a-4d10-9c1f-d4e93b0246f5" data-target="#expand_panel_body_mw_4a520320-5f3a-4d10-9c1f-d4e93b0246f5" aria-controls="expand_panel_body_mw_4a520320-5f3a-4d10-9c1f-d4e93b0246f5" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_FaceColor" class="anchor_target"></span><h3 class="panel-title" id="mw_4a520320-5f3a-4d10-9c1f-d4e93b0246f5"><code itemprop="name">FaceColor</code> — <span itemprop="purpose">Face color of lane marking patches</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[0.6 0.6 0.6]</code> (gray)</span> (default) | <span itemprop="inputvalue">RGB triplet</span> | <span itemprop="inputvalue">color name</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4a520320-5f3a-4d10-9c1f-d4e93b0246f5" aria-labelledby="expand_panel_heading_mw_4a520320-5f3a-4d10-9c1f-d4e93b0246f5" class="panel-collapse collapse in"><div class="panel-body">
+            <p>车道标线填充的面颜色，指定为由 <code class="literal">'FaceColor'</code> 和 RGB 三元组或表中列出的颜色名称之一组成的逗号分隔的参数对。</p>
+            <p>对于自定义颜色，请指定一个RGB三元组。RGB三元组是一个包含三个元素的行向量，其元素指定颜色的红色、绿色和蓝色分量的强度。强度必须在[0, 1]范围内；例如，[0.4 0.6 0.7]。或者，您可以通过名称指定一些常见的颜色。下表列出了命名颜色选项及其对应的RGB三元组值。</p>
+            <p>
+              
+              </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="23%"/>
+<col class="tcol2" width="31%"/>
+<col class="tcol3" width="46%"/>
+</colgroup>
+<thead><tr><th>Color Name</th>
+<th>RGB Triplet</th>
+<th>Appearance</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">'red'</code></td>
+<td><code class="literal">[1 0 0]</code></td>
+<td>
+                        <div class="informalfigure"><div id="d124e77046" class="mediaobject"><p><img src="hg_red.png" alt="Sample of the color red" height="27" width="159"/></p>
+</div>
+</div>
+                      </td>
+</tr>
+<tr><td><code class="literal">'green'</code></td>
+<td><code class="literal">[0 1 0]</code></td>
+<td>
+                        <div class="informalfigure"><div id="d124e77059" class="mediaobject"><p><img src="hg_green.png" alt="Sample of the color green" height="27" width="159"/></p>
+</div>
+</div>
+                      </td>
+</tr>
+<tr><td><code class="literal">'blue'</code></td>
+<td><code class="literal">[0 0 1]</code></td>
+<td>
+                        <div class="informalfigure"><div id="d124e77072" class="mediaobject"><p><img src="hg_blue.png" alt="Sample of the color blue" height="27" width="159"/></p>
+</div>
+</div>
+                      </td>
+</tr>
+<tr><td><code class="literal">'cyan'</code>
+                      </td>
+<td><code class="literal">[0 1 1]</code></td>
+<td>
+                        <div class="informalfigure"><div id="d124e77086" class="mediaobject"><p><img src="hg_cyan.png" alt="Sample of the color cyan" height="27" width="159"/></p>
+</div>
+</div>
+                      </td>
+</tr>
+<tr><td><code class="literal">'magenta'</code></td>
+<td><code class="literal">[1 0 1]</code></td>
+<td>
+                        <div class="informalfigure"><div id="d124e77099" class="mediaobject"><p><img src="hg_magenta.png" alt="Sample of the color magenta" height="27" width="159"/></p>
+</div>
+</div>
+                      </td>
+</tr>
+<tr><td><code class="literal">'yellow'</code></td>
+<td><code class="literal">[1 1 0]</code></td>
+<td>
+                        <div class="informalfigure"><div id="d124e77112" class="mediaobject"><p><img src="hg_yellow.png" alt="Sample of the color yellow" height="27" width="159"/></p>
+</div>
+</div>
+                      </td>
+</tr>
+<tr><td><code class="literal">'black'</code></td>
+<td><code class="literal">[0 0 0]</code></td>
+<td>
+                        <div class="informalfigure"><div id="d124e77125" class="mediaobject"><p><img src="hg_black.png" alt="Sample of the color black" height="27" width="160"/></p>
+</div>
+</div>
+                      </td>
+</tr>
+<tr><td><code class="literal">'white'</code></td>
+<td><code class="literal">[1 1 1]</code></td>
+<td>
+                        <div class="informalfigure"><div id="d124e77138" class="mediaobject"><p><img src="hg_white.png" alt="Sample of the color white" height="28" width="160"/></p>
+</div>
+</div>
+                      </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+
+            </p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" data-target="#expand_panel_body_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" aria-controls="expand_panel_body_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Tag" class="anchor_target"></span><h3 class="panel-title" id="mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0"><code itemprop="name">Tag</code> — <span itemprop="purpose">Tag associated with plotter object</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">'Plotter<em class="replaceable"><code>N</code></em>'</code></span> (default) | <span itemprop="inputvalue">character vector</span> | <span itemprop="inputvalue">string scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" aria-labelledby="expand_panel_heading_mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_3b6f891a-cfc7-4647-aefd-8dad03d89fc0" class="panel-collapse collapse in"><div class="panel-body">
+        <p>与绘图器对象关联的标签，指定为由 <code class="literal">'Tag'</code>和字符向量或字符串标量组成的逗号分隔的参数对。默认值为<span style="font-family: monospace;">'Plotter</span><em class="replaceable" style="font-family: monospace;"><code>N</code></em><span style="font-family: monospace;">'</span>，其中 <em class="replaceable"><code>N</code></em> 是对应于输入 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象的第 <em class="replaceable"><code>N</code></em> 个绘图器的整数。 </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_ca6c27e0-9b9b-4d8b-8b75-3c1ef4728bc6">输出参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_ca6c27e0-9b9b-4d8b-8b75-3c1ef4728bc6_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e73ab371-bf1d-4828-8b05-b1a98dfa5c2c" data-target="#expand_panel_body_mw_e73ab371-bf1d-4828-8b05-b1a98dfa5c2c" aria-controls="expand_panel_body_mw_e73ab371-bf1d-4828-8b05-b1a98dfa5c2c" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_lmPlotter" class="anchor_target"></span><h3 class="panel-title" id="mw_e73ab371-bf1d-4828-8b05-b1a98dfa5c2c"><code class="name">lmPlotter</code> — Lane marking plotter<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="object">LaneMarkingPlotter</code> object</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e73ab371-bf1d-4828-8b05-b1a98dfa5c2c" aria-labelledby="expand_panel_heading_mw_e73ab371-bf1d-4828-8b05-b1a98dfa5c2c" class="panel-collapse collapse in"><div class="panel-body">
+          <p>车道标线绘图器，返回为 <code class="object">LaneMarkingPlotter</code> 对象。您可以通过更改其属性值来修改此对象。属性名称对应于 <code class="function">laneMarkingPlotter </code>函数的名称-值对参数。</p>
+          <p><code class="argument">lmPlotter</code> 存储在输入的 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象（<a href="#mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_sep_mw_bce2616f-6b2b-46fe-a2d8-ddc27aad2286" class="intrnllnk"><code class="argument">bep</code></a>）的 <code class="property">Plotters</code> 属性中。要绘制车道标线，请使用 <a href="birdseyeplot.plotlanemarking.html"><code class="function">plotLaneMarking</code></a> 函数。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_vh">Version History</h2>
+<p><strong>Introduced in R2018a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_362ec3bb-1fb5-4eca-bbbe-44a0a596d2d7_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.html"><span itemprop="name"><code class="object">birdsEyePlot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.plotlanemarking.html"><span itemprop="name"><code class="function">plotLaneMarking</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.plotparkinglanemarking.html"><span itemprop="name"><code class="function">plotParkingLaneMarking</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.findplotter.html"><span itemprop="name"><code class="function">findPlotter</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.cleardata.html"><span itemprop="name"><code class="function">clearData</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.clearplotterdata.html"><span itemprop="name"><code class="function">clearPlotterData</code></span></a></span></p>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

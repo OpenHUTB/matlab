@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>birdsEyePlot</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:birdsEyePlot"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:birdsEyePlot"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:birdsEyePlot"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The birdsEyePlot object displays a bird's-eye plot of a 2-D driving scenario in the immediate vicinity of an ego vehicle."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas">birdsEyePlot</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e72767" class="intrnllnk">Description</a></li>
+<li><a href="#d124e72902" class="intrnllnk">Creation</a><ul class="nav"><li><a href="#mw_7f21b866-c3a8-4314-8cec-36a2e996a3cf" class="intrnllnk">Description</a></li>
+</ul></li>
+<li><a href="#mw_a986f6d4-e23c-49a8-a4a7-29fc7a536adc" class="intrnllnk">Properties</a><ul class="nav"><li><a href="#mw_8541a020-2404-4af8-a9f4-03f90620851c" class="intrnllnk">Parent</a></li>
+<li><a href="#mw_7e856fe2-261a-4979-8144-4415013c94ac" class="intrnllnk">Plotters</a></li>
+<li><a href="#mw_674d18a3-2623-4432-a5cc-fe2e65a9a7e8" class="intrnllnk">XLimits</a></li>
+<li><a href="#mw_8ae4c4ce-c4f6-49a7-91d3-353612aaecad" class="intrnllnk">YLimits</a></li>
+</ul></li>
+<li><a href="#d124e73090" class="intrnllnk">Object Functions</a><ul class="nav"><li><a href="#mw_d8c176d5-2f8d-42de-a632-14d7f87e21fe" class="intrnllnk">Plotter Creation</a></li>
+<li><a href="#mw_5a7be41a-8371-4f7a-a336-652a4e8c6a45" class="intrnllnk">Plotter Display</a></li>
+<li><a href="#d124e73163" class="intrnllnk">Plotter Utilities</a></li>
+</ul></li>
+<li><a href="#d124e73180" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_496640cc-1b9d-4d3f-ad37-d9dd97e06afb" class="intrnllnk">Create and Display a Bird's-Eye Plot</a></li>
+</ul><ul class="nav"><li><a href="#mw_79d80d17-2fb3-4de9-bdc1-d1d170143a21" class="intrnllnk">Create Bird's-Eye Plot with Coverage Area and Detection Plotters</a></li>
+</ul></li>
+<li><a href="#d124e73177" class="intrnllnk">Limitations</a></li>
+<li><a href="#mw_19c59fb8-0653-4d17-8aae-22a0f2dc4089" class="intrnllnk">More About</a><ul class="nav"><li><a href="#mw_6e05b991-0eb8-4deb-b247-1e95232a7067" class="intrnllnk">Vehicle Coordinate System</a></li>
+</ul></li>
+<li><a href="#bvi0yqz-1_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#bvi0yqz-1_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="object_ref"><span id="bvi0yqz-1" class="anchor_target"></span><span id="birdsEyePlot" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title">birdsEyePlot</h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">绘制车辆周围的检测、轨迹和传感器覆盖范围</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div class="refsummary" itemprop="content"><h2 id="d124e72767">描述</h2>
+        <div class="shortsummary"><p><code class="object">birdsEyePlot</code> 对象显示了一个鸟瞰图，展示了自车附近的二维驾驶场景。您可以将此图与能够检测物体和车道的传感器一起使用。 </p>
+</div>
+        <p>要在鸟瞰图上显示驾驶场景的各个方面，可以执行以下操作：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>创建一个 <code class="object">birdsEyePlot</code> 对象。</p></li>
+<li><p>为您想要绘制的驾驶场景方面创建绘图器。</p></li>
+<li><p>使用相应的绘图器和它们的绘图函数将这些方面显示在鸟瞰图上。</p></li>
+</ol>
+</div>
+<p>这个表格显示了根据您想要绘制的驾驶场景方面所使用的绘图函数。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"/>
+<col class="tcol2" width="33%"/>
+<col class="tcol3" width="33%"/>
+</colgroup>
+<thead><tr><th>Driving Scenario Aspect to Plot</th>
+<th>Plotter Creation Function</th>
+<th>Plotter Display Function</th>
+</tr>
+</thead>
+<tbody><tr><td>Sensor coverage areas</td>
+<td><a href="birdseyeplot.coverageareaplotter.html"><code class="function">coverageAreaPlotter</code></a></td>
+<td><a href="birdseyeplot.plotcoveragearea.html"><code class="function">plotCoverageArea</code></a></td>
+</tr>
+<tr><td>Sensor detections</td>
+<td><a href="birdseyeplot.detectionplotter.html"><code class="function">detectionPlotter</code></a>,
+                                    <a href="birdseyeplot.rangedetectionplotter.html"><code class="function">rangeDetectionPlotter</code></a></td>
+<td><a href="birdseyeplot.plotdetection.html"><code class="function">plotDetection</code></a>,
+                                    <a href="birdseyeplot.plotrangedetection.html"><code class="function">plotRangeDetection</code></a></td>
+</tr>
+<tr><td>Lane boundaries</td>
+<td><a href="birdseyeplot.laneboundaryplotter.html"><code class="function">laneBoundaryPlotter</code></a></td>
+<td><a href="birdseyeplot.plotlaneboundary.html"><code class="function">plotLaneBoundary</code></a></td>
+</tr>
+<tr><td>Lane markings</td>
+<td><a href="birdseyeplot.lanemarkingplotter.html"><code class="function">laneMarkingPlotter</code></a></td>
+<td><a href="birdseyeplot.plotlanemarking.html"><code class="function">plotLaneMarking</code></a>, <a href="birdseyeplot.plotparkinglanemarking.html"><code class="function">plotParkingLaneMarking</code></a></td>
+</tr>
+<tr><td>Object meshes</td>
+<td><a href="birdseyeplot.meshplotter.html"><code class="function">meshPlotter</code></a></td>
+<td><a href="birdseyeplot.plotmesh.html"><code class="function">plotMesh</code></a></td>
+</tr>
+<tr><td>Object outlines</td>
+<td><a href="birdseyeplot.outlineplotter.html"><code class="function">outlinePlotter</code></a></td>
+<td><a href="birdseyeplot.plotoutline.html"><code class="function">plotOutline</code></a>, <a href="plotbarrieroutline.html"><code class="function">plotBarrierOutline</code></a></td>
+</tr>
+<tr><td>Ego vehicle path</td>
+<td><a href="birdseyeplot.pathplotter.html"><code class="function">pathPlotter</code></a></td>
+<td><a href="birdseyeplot.plotpath.html"><code class="function">plotPath</code></a></td>
+</tr>
+<tr><td>Point cloud</td>
+<td><a href="birdseyeplot.pointcloudplotter.html"><code class="function">pointCloudPlotter</code></a></td>
+<td><a href="birdseyeplot.plotpointcloud.html"><code class="function">plotPointCloud</code></a></td>
+</tr>
+<tr><td>Object tracking results</td>
+<td><a href="birdseyeplot.trackplotter.html"><code class="function">trackPlotter</code></a></td>
+<td><a href="birdseyeplot.plottrack.html"><code class="function">plotTrack</code></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+        <p>要了解如何配置和使用鸟瞰图的示例，请参阅 <a href="../ug/visualize-sensor-coverage-detections-and-tracks.html" class="a">Visualize Sensor Coverage, Detections, and Tracks</a>。</p>
+    </div>
+<div id="d124e72902_div" class="ref_sect createobject"><h2 id="d124e72902">Creation</h2>
+<span id="mw_c40482d0-8829-46d4-8e9c-a5304797761c" class="anchor_target"></span><div class="ref_sect"><h3 id="mw_c40482d0-8829-46d4-8e9c-a5304797761c">语法</h3>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e72911" class="intrnllnk">bep = birdsEyePlot</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e72921" class="intrnllnk">bep = birdsEyePlot(Name,Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="mw_7f21b866-c3a8-4314-8cec-36a2e996a3cf_div" class="refsect2 description"><h3 id="mw_7f21b866-c3a8-4314-8cec-36a2e996a3cf">描述</h3>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><div class="code_responsive"><p><span id="d124e72911" itemprop="syntax"><code class="synopsis"><code class="argument">bep</code> = birdsEyePlot</code></span> 在一个新的图形窗口中创建一个鸟瞰图。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="birdseyeplot.html#mw_496640cc-1b9d-4d3f-ad37-d9dd97e06afb" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e72921" itemprop="syntax"><code class="synopsis"><code class="argument">bep</code> = birdsEyePlot(<code class="argument">Name,Value</code>)</code></span>
+使用一个或多个 <code class="argument">Name,Value</code> 键值对参数设置 <a href="birdseyeplot.html#mw_a986f6d4-e23c-49a8-a4a7-29fc7a536adc" class="intrnllnk">properties</a> 。例如，<code class="literal">birdsEyePlot('XLimits',[0 60],'YLimits',[-20 20])</code> 显示了车辆前方 60 米范围内以及车辆两侧 20 米范围内的区域。请将每个属性名称用引号括起来。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_a986f6d4-e23c-49a8-a4a7-29fc7a536adc">Properties</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_a986f6d4-e23c-49a8-a4a7-29fc7a536adc_panel-group" role="tablist" aria-multiselectable="true"><div itemscope="" class="ref_sect" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntityGroup" itemprop="refentitygroup">
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_8541a020-2404-4af8-a9f4-03f90620851c"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8541a020-2404-4af8-a9f4-03f90620851c" data-target="#expand_panel_body_mw_8541a020-2404-4af8-a9f4-03f90620851c" aria-controls="expand_panel_body_mw_8541a020-2404-4af8-a9f4-03f90620851c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Parent" class="anchor_target"></span><h3 class="panel-title" id="mw_8541a020-2404-4af8-a9f4-03f90620851c"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:birdsEyePlot.Parent"/><code itemprop="name" id="propname_Parent">Parent</code></span> — <span itemprop="purpose">Axes on which to plot</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">axes handle</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8541a020-2404-4af8-a9f4-03f90620851c" aria-labelledby="expand_panel_heading_mw_8541a020-2404-4af8-a9f4-03f90620851c" class="panel-collapse collapse"><div class="panel-body">
+                    <p>要绘制的坐标轴，可以指定为一个坐标轴句柄。默认情况下，<code class="object">birdsEyePlot</code> 对象使用当前的坐标轴句柄，该句柄由 <a href="../../matlab/ref/gca.html"><code class="function">gca</code></a> 函数返回。</p>
+                </div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_7e856fe2-261a-4979-8144-4415013c94ac"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7e856fe2-261a-4979-8144-4415013c94ac" data-target="#expand_panel_body_mw_7e856fe2-261a-4979-8144-4415013c94ac" aria-controls="expand_panel_body_mw_7e856fe2-261a-4979-8144-4415013c94ac" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Plotters" class="anchor_target"></span><h3 class="panel-title" id="mw_7e856fe2-261a-4979-8144-4415013c94ac"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:birdsEyePlot.Plotters"/><code itemprop="name" id="propname_Plotters">Plotters</code></span> — <span itemprop="purpose">Plotters created for bird's-eye plot</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">array of plotter objects</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_7e856fe2-261a-4979-8144-4415013c94ac" aria-labelledby="expand_panel_heading_mw_7e856fe2-261a-4979-8144-4415013c94ac" class="panel-collapse collapse"><div class="panel-body">
+                    <p>为鸟瞰图创建的绘图器，指定为绘图器对象的数组。</p>
+                </div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_674d18a3-2623-4432-a5cc-fe2e65a9a7e8"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_674d18a3-2623-4432-a5cc-fe2e65a9a7e8" data-target="#expand_panel_body_mw_674d18a3-2623-4432-a5cc-fe2e65a9a7e8" aria-controls="expand_panel_body_mw_674d18a3-2623-4432-a5cc-fe2e65a9a7e8" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_XLimits" class="anchor_target"></span><h3 class="panel-title" id="mw_674d18a3-2623-4432-a5cc-fe2e65a9a7e8"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:birdsEyePlot.XLimits"/><code itemprop="name" id="propname_XLimits">XLimits</code></span> — <span itemprop="purpose"><em class="varname">X</em>-axis range</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">real-valued vector of the form
+                            [<em class="varname">X</em><sub>min</sub>
+                        <em class="varname">X</em><sub>max</sub>]</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_674d18a3-2623-4432-a5cc-fe2e65a9a7e8" aria-labelledby="expand_panel_heading_mw_674d18a3-2623-4432-a5cc-fe2e65a9a7e8" class="panel-collapse collapse"><div class="panel-body">
+                    <p>鸟瞰图的<em class="varname">X</em>轴范围，以车辆坐标表示，指定为形式为 [<em class="varname">X</em><sub>min</sub><em class="varname">X</em><sub>max</sub>]的实数向量。单位为米。如果您不指定 <code class="property">XLimits</code>，则图形将使用父坐标轴的默认值。</p>
+                    <p><em class="varname">X</em>轴是垂直的，并且在自车的前进方向上为正方向。原点位于自车后轴的中心位置。</p>
+                    <div class="informalfigure"><div id="d124e73024" class="mediaobject"><p><img src="birdseyeplot_xlimits.png" alt="Empty bird's-eye plot with Xmin and Xmax labeled on vertical X-axis" height="473" width="405"/></p>
+</div>
+</div>
+                    <p>有关鸟瞰图中使用的坐标系的更多详细信息，请参阅 <a href="birdseyeplot.html#mw_6e05b991-0eb8-4deb-b247-1e95232a7067" class="intrnllnk">Vehicle Coordinate System</a>。</p>
+                </div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_8ae4c4ce-c4f6-49a7-91d3-353612aaecad"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8ae4c4ce-c4f6-49a7-91d3-353612aaecad" data-target="#expand_panel_body_mw_8ae4c4ce-c4f6-49a7-91d3-353612aaecad" aria-controls="expand_panel_body_mw_8ae4c4ce-c4f6-49a7-91d3-353612aaecad" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_YLimits" class="anchor_target"></span><h3 class="panel-title" id="mw_8ae4c4ce-c4f6-49a7-91d3-353612aaecad"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:birdsEyePlot.YLimits"/><code itemprop="name" id="propname_YLimits">YLimits</code></span> — <span itemprop="purpose"><em class="varname">Y</em>-axis range</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">real-valued vector of the form
+                            [<em class="varname">Y</em><sub>min</sub>
+                        <em class="varname">Y</em><sub>max</sub>]</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8ae4c4ce-c4f6-49a7-91d3-353612aaecad" aria-labelledby="expand_panel_heading_mw_8ae4c4ce-c4f6-49a7-91d3-353612aaecad" class="panel-collapse collapse"><div class="panel-body">
+                    <p>鸟瞰图的<em class="varname">Y</em>轴范围，以车辆坐标表示，指定为形式为 [<em class="varname">Y</em><sub>min</sub><em class="varname">Y</em><sub>max</sub>] 的实数向量。单位为米。如果您不指定 <code class="property">YLimits</code>，则图形将使用父坐标轴的默认值。</p>
+                    <p><em class="varname">Y</em>轴水平运行，并且在面向前方时，自车的左侧为正方向。原点位于自车后轴的中心位置。</p>
+                    <div class="informalfigure"><div id="d124e73076" class="mediaobject"><p><img src="birdseyeplot_ylimits.png" alt="Empty bird's-eye plot with Ymin and Ymax labeled on horizontal Y-axis" height="533" width="468"/></p>
+</div>
+</div>
+                    <p>有关在 <code class="object">birdsEyePlot</code> 对象中使用的坐标系的更多详细信息，请参阅 <a href="birdseyeplot.html#mw_6e05b991-0eb8-4deb-b247-1e95232a7067" class="intrnllnk">Vehicle Coordinate System</a>。</p>
+                </div>
+</div>
+</div>
+</div>
+        </div>
+</div>
+</div>
+</div>
+<div id="d124e73090_div" class="refsect1 objectfunctions"><h2 id="d124e73090">对象函数</h2>
+<div class="doc_classesgroup_container expandableContent"><div class="expandableContent mwExpandToggle1" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true"><!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_mw_d8c176d5-2f8d-42de-a632-14d7f87e21fe" data-toggle="collapse" data-target="#expand_panel_body_mw_d8c176d5-2f8d-42de-a632-14d7f87e21fe" aria-expanded="false" aria-controls="expand_panel_body_mw_d8c176d5-2f8d-42de-a632-14d7f87e21fe"><h3 class="panel-title" id="mw_d8c176d5-2f8d-42de-a632-14d7f87e21fe">Plotter Creation</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_mw_d8c176d5-2f8d-42de-a632-14d7f87e21fe" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_mw_d8c176d5-2f8d-42de-a632-14d7f87e21fe"><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="birdseyeplot.coverageareaplotter.html"><code class="function">coverageAreaPlotter</code></a></td>
+<td class="description">Coverage area plotter for bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.detectionplotter.html"><code class="function">detectionPlotter</code></a></td>
+<td class="description">Detection plotter for bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.laneboundaryplotter.html"><code class="function">laneBoundaryPlotter</code></a></td>
+<td class="description">Lane boundary plotter for bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.lanemarkingplotter.html"><code class="function">laneMarkingPlotter</code></a></td>
+<td class="description">Lane marking plotter for bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.meshplotter.html"><code class="function">meshPlotter</code></a></td>
+<td class="description">Mesh plotter for bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.outlineplotter.html"><code class="function">outlinePlotter</code></a></td>
+<td class="description">Outline plotter for bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.pathplotter.html"><code class="function">pathPlotter</code></a></td>
+<td class="description">Path plotter for bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.pointcloudplotter.html"><code class="function">pointCloudPlotter</code></a></td>
+<td class="description">Point cloud plotter for bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.trackplotter.html"><code class="function">trackPlotter</code></a></td>
+<td class="description">Track plotter for bird's-eye plot</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+<!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_mw_5a7be41a-8371-4f7a-a336-652a4e8c6a45" data-toggle="collapse" data-target="#expand_panel_body_mw_5a7be41a-8371-4f7a-a336-652a4e8c6a45" aria-expanded="false" aria-controls="expand_panel_body_mw_5a7be41a-8371-4f7a-a336-652a4e8c6a45"><h3 class="panel-title" id="mw_5a7be41a-8371-4f7a-a336-652a4e8c6a45">Plotter Display</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_mw_5a7be41a-8371-4f7a-a336-652a4e8c6a45" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_mw_5a7be41a-8371-4f7a-a336-652a4e8c6a45"><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="birdseyeplot.plotcoveragearea.html"><code class="function">plotCoverageArea</code></a></td>
+<td class="description">Display sensor coverage area on bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.plotdetection.html"><code class="function">plotDetection</code></a></td>
+<td class="description">Display object detections on bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.plotlaneboundary.html"><code class="function">plotLaneBoundary</code></a></td>
+<td class="description">Display lane boundaries on bird’s-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.plotlanemarking.html"><code class="function">plotLaneMarking</code></a></td>
+<td class="description">Display lane markings on bird’s-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.plotparkinglanemarking.html"><code class="function">plotParkingLaneMarking</code></a></td>
+<td class="description">Display parking lane markings on bird’s-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.plotmesh.html"><code class="function">plotMesh</code></a></td>
+<td class="description">Display object meshes on bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.plotoutline.html"><code class="function">plotOutline</code></a></td>
+<td class="description">Display object outlines on bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.plotpath.html"><code class="function">plotPath</code></a></td>
+<td class="description">Display actor paths on bird’s-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.plotpointcloud.html"><code class="function">plotPointCloud</code></a></td>
+<td class="description">Display generated point cloud on bird's-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.plottrack.html"><code class="function">plotTrack</code></a></td>
+<td class="description">Display object tracks on bird's-eye plot</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+<!--Expander Element: START-->
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e73163" data-toggle="collapse" data-target="#expand_panel_body_d124e73163" aria-expanded="false" aria-controls="expand_panel_body_d124e73163"><h3 class="panel-title" id="d124e73163">Plotter Utilities</h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div id="expand_panel_body_d124e73163" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e73163"><div class="panel-body"><!--Expander Content: START-->
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="birdseyeplot.cleardata.html"><code class="function">clearData</code></a></td>
+<td class="description">Clear data from specific plotter of bird’s-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.clearplotterdata.html"><code class="function">clearPlotterData</code></a></td>
+<td class="description">Clear data from bird’s-eye plot</td>
+</tr>
+<tr><td class="term notranslate"><a href="birdseyeplot.findplotter.html"><code class="function">findPlotter</code></a></td>
+<td class="description">Find plotters associated with bird’s-eye plot</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--Expander Element: END-->
+</div>
+</div>
+</div>
+</div>
+<div class="examples"><h2 id="d124e73180">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_496640cc-1b9d-4d3f-ad37-d9dd97e06afb"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_496640cc-1b9d-4d3f-ad37-d9dd97e06afb" data-target="#expand_panel_body_mw_496640cc-1b9d-4d3f-ad37-d9dd97e06afb" aria-controls="expand_panel_body_mw_496640cc-1b9d-4d3f-ad37-d9dd97e06afb" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_496640cc-1b9d-4d3f-ad37-d9dd97e06afb">创建并显示鸟瞰图<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_496640cc-1b9d-4d3f-ad37-d9dd97e06afb" aria-labelledby="expand_panel_heading_mw_496640cc-1b9d-4d3f-ad37-d9dd97e06afb" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/CreateABirdsEyePlotExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create and Display a Bird's-Eye Plot",
+          "description": "Create a bird's-eye plot with an x-axis range from 0 to 90 meters and a y-axis range from –35 to 35 meters.",
+          "thumbnailURL": "../../examples/driving/win64/CreateABirdsEyePlotExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "birdseyeplot.html"
+
+        },
+          "identifier": "driving.CreateABirdsEyePlotExample",
+          "name": "CreateABirdsEyePlotExample",
+          "url": "birdseyeplot.html#mw_496640cc-1b9d-4d3f-ad37-d9dd97e06afb"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/CreateABirdsEyePlotExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateABirdsEyePlotExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">创建一个鸟瞰图，其中X轴的范围从0到90米，Y轴的范围从-35到35米。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bep = birdsEyePlot(<span style="color:#A020F0">'XLim'</span>,[0 90],<span style="color:#A020F0">'YLim'</span>,[-35 35]);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e73208" class="mediaobject"><p><img src="../../examples/driving/win64/CreateABirdsEyePlotExample_01.png" alt="Figure contains an axes object. The axes object is empty." width="560"/></p>
+</div>
+</div>
+<p>显示一个覆盖范围，其视场角为35度，范围为60米。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>caPlotter = coverageAreaPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Radar coverage area'</span>);
+mountPosition = [1 0];
+range = 60;
+orientation = 0;
+fieldOfView = 35;
+plotCoverageArea(caPlotter,mountPosition,range,orientation,fieldOfView);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e73216" class="mediaobject"><p><img src="../../examples/driving/win64/CreateABirdsEyePlotExample_02.png" alt="Figure contains an axes object. The axes object contains an object of type patch. This object represents Radar coverage area." width="560"/></p>
+</div>
+</div>
+<p>显示雷达检测结果，坐标分别为 (30, –5), (50, –10) 和 (40, 7).。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>radarPlotter = detectionPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Radar detections'</span>);
+plotDetection(radarPlotter,[30 -5; 50 -10; 40 7]);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e73224" class="mediaobject"><p><img src="../../examples/driving/win64/CreateABirdsEyePlotExample_03.png" alt="Figure contains an axes object. The axes object contains 2 objects of type patch, line. These objects represent Radar coverage area, Radar detections." width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-CreateABirdsEyePlotExample"/>
+<meta itemprop="exampletitle" content="Create and Display a Bird'sEye Plot"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_79d80d17-2fb3-4de9-bdc1-d1d170143a21"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_79d80d17-2fb3-4de9-bdc1-d1d170143a21" data-target="#expand_panel_body_mw_79d80d17-2fb3-4de9-bdc1-d1d170143a21" aria-controls="expand_panel_body_mw_79d80d17-2fb3-4de9-bdc1-d1d170143a21" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_79d80d17-2fb3-4de9-bdc1-d1d170143a21">创建一个带有覆盖范围和检测点的鸟瞰图<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_79d80d17-2fb3-4de9-bdc1-d1d170143a21" aria-labelledby="expand_panel_heading_mw_79d80d17-2fb3-4de9-bdc1-d1d170143a21" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/CreateABirdsEyePlotWithCoverageAreaAndDetectionPlottersExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create Bird's-Eye Plot with Coverage Area and Detection Plotters",
+          "description": "Create a bird's-eye plot with an x-axis range of 0 to 90 meters and a y-axis range from –35 to 35 meters. Configure the plot to include a radar coverage area plotter and a detection plotter. Set the display names of these plotters.",
+          "thumbnailURL": "../../examples/driving/win64/CreateABirdsEyePlotWithCoverageAreaAndDetectionPlottersExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "birdseyeplot.html"
+
+        },
+          "identifier": "driving.CreateABirdsEyePlotWithCoverageAreaAndDetectionPlottersExample",
+          "name": "CreateABirdsEyePlotWithCoverageAreaAndDetectionPlottersExample",
+          "url": "birdseyeplot.html#mw_79d80d17-2fb3-4de9-bdc1-d1d170143a21"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/CreateABirdsEyePlotWithCoverageAreaAndDetectionPlottersExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateABirdsEyePlotWithCoverageAreaAndDetectionPlottersExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">创建一个鸟瞰图，其中X轴范围为0到90米，Y轴范围为-35到35米。配置绘图以包括雷达覆盖范围和检测点绘图器。设置这些绘图器的显示名称。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bep = birdsEyePlot(<span style="color:#A020F0">'XLim'</span>,[0 90],<span style="color:#A020F0">'YLim'</span>,[-35 35]);
+coverageAreaPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Radar coverage area'</span>);
+detectionPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Radar detections'</span>);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e73256" class="mediaobject"><p><img src="../../examples/driving/win64/CreateABirdsEyePlotWithCoverageAreaAndDetectionPlottersExample_01.png" alt="Figure contains an axes object. The axes object contains 2 objects of type patch, line. These objects represent Radar coverage area, Radar detections." width="560"/></p>
+</div>
+</div>
+<p>使用 <code class="literal">findPlotter</code> 通过它们的显示名称来定位这些绘图器。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>caPlotter = findPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Radar coverage area'</span>);
+radarPlotter = findPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Radar detections'</span>);</pre>
+</div>
+</div>
+</div>
+<p>绘制覆盖范围和检测到的物体。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plotCoverageArea(caPlotter,[1 0],30,0,35);
+plotDetection(radarPlotter,[30 5; 30 -10; 30 15]);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e73270" class="mediaobject"><p><img src="../../examples/driving/win64/CreateABirdsEyePlotWithCoverageAreaAndDetectionPlottersExample_02.png" alt="Figure contains an axes object. The axes object contains 2 objects of type patch, line. These objects represent Radar coverage area, Radar detections." width="560"/></p>
+</div>
+</div>
+<p>清除绘图中的数据。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clearPlotterData(bep);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e73278" class="mediaobject"><p><img src="../../examples/driving/win64/CreateABirdsEyePlotWithCoverageAreaAndDetectionPlottersExample_03.png" alt="Figure contains an axes object. The axes object contains 2 objects of type patch, line. These objects represent Radar coverage area, Radar detections." width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-CreateABirdsEyePlotWithCoverageAreaAndDetectionPlottersExample"/>
+<meta itemprop="exampletitle" content="Create Bird'sEye Plot with Coverage Area and Detection Plotters"/>
+</div>
+</div>
+</div>
+<div id="d124e73177_div" class="refsect1 limitations"><h2 id="d124e73177">限制</h2>
+<p>在鸟瞰图中，无法使用矩形缩放功能，即通过绘制矩形来放大图形的某个部分。</p>
+</div>
+<div class="moreabout ref_sect"><h2 id="mw_19c59fb8-0653-4d17-8aae-22a0f2dc4089">更多关于</h2>
+<div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink">expand all</a></p>
+<div class="expand_collapse"><h3 class="expand_trigger collapsed" id="mw_6e05b991-0eb8-4deb-b247-1e95232a7067" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_mw_6e05b991-0eb8-4deb-b247-1e95232a7067" aria-controls="expand_body_mw_6e05b991-0eb8-4deb-b247-1e95232a7067"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>Vehicle Coordinate System</h3>
+<div id="expand_body_mw_6e05b991-0eb8-4deb-b247-1e95232a7067" class="collapsible_content collapse" aria-expanded="false"><p class="shortdesc"><code class="object">birdsEyePlot</code> 使用车辆坐标系 (<em class="varname">X</em><sub>V</sub>, <em class="varname">Y</em><sub>V</sub>)，其中： </p>
+<div class="itemizedlist"><ul><li><p><em class="varname">X</em><sub>V </sub>轴从自车向前指向。</p></li>
+<li><p><em class="varname">Y</em><sub>V </sub>轴指向左侧，以面向前方时的视角为参考。</p></li>
+</ul>
+</div>
+<p class="shortdesc">原点位于自车的旋转中心。该点位于道路表面，在自车后轴的中心下方。</p>
+<div class="informalfigure"><div id="d124e73314" class="mediaobject"><p><img src="adst_vehicle_coordinates_2d_flipped.png" alt="Vehicle with origin and axes labeled" height="358" width="173"/></p>
+</div>
+</div>
+<p>有关车辆坐标系的更多详细信息，请参阅 <a href="../ug/coordinate-systems.html" class="a">Coordinate Systems in Automated Driving Toolbox</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bvi0yqz-1_vh">Version History</h2>
+<p><strong>Introduced in R2017a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="bvi0yqz-1_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyescope-app.html"><span itemprop="name">Bird's-Eye
+                Scope</span></a></span></p>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/visualize-sensor-coverage-detections-and-tracks.html" class="a">Visualize Sensor Coverage, Detections, and Tracks</a></li>
+<li><a href="../ug/coordinate-systems.html" class="a">Coordinate Systems in Automated Driving Toolbox</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

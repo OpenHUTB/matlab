@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>clothoidLaneBoundary</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:clothoidLaneBoundary"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:clothoidLaneBoundary"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:clothoidLaneBoundary"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="A clothoidLaneBoundary object contains information about a clothoid-shaped lane boundary model."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas">clothoidLaneBoundary</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e122046" class="intrnllnk">Description</a></li>
+<li><a href="#d124e122056" class="intrnllnk">Creation</a><ul class="nav"><li><a href="#d124e122060" class="intrnllnk">Description</a></li>
+</ul></li>
+<li><a href="#d124e122089" class="intrnllnk">Properties</a><ul class="nav"><li><a href="#d124e122093" class="intrnllnk">Curvature</a></li>
+<li><a href="#d124e122123" class="intrnllnk">CurvatureDerivative</a></li>
+<li><a href="#d124e122153" class="intrnllnk">CurveLength</a></li>
+<li><a href="#d124e122183" class="intrnllnk">HeadingAngle</a></li>
+<li><a href="#d124e122213" class="intrnllnk">LateralOffset</a></li>
+<li><a href="#d124e122250" class="intrnllnk">BoundaryType</a></li>
+<li><a href="#d124e122388" class="intrnllnk">Strength</a></li>
+<li><a href="#d124e122423" class="intrnllnk">XExtent</a></li>
+<li><a href="#d124e122474" class="intrnllnk">Width</a></li>
+</ul></li>
+<li><a href="#d124e122504" class="intrnllnk">Object Functions</a></li>
+<li><a href="#d124e122511" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_e466e37a-53ce-4c5b-bb01-c271c39e771d" class="intrnllnk">Create Clothoid Lane Boundaries</a></li>
+</ul></li>
+<li><a href="#mw_9f9a2b20-612d-43d4-b163-e95ac5633e26_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_9f9a2b20-612d-43d4-b163-e95ac5633e26_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="object_ref"><span id="mw_9f9a2b20-612d-43d4-b163-e95ac5633e26" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title">clothoidLaneBoundary</h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">布洛伊德形状的车道边界模型</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div class="refsummary" itemprop="content"><h2 id="d124e122046">描述</h2>
+        <div class="shortsummary"><p>一个 <code class="object">clothoidLaneBoundary</code> 对象包含有关布洛伊德形状车道边界模型的信息。<i>布洛伊德</i>曲线是一种曲线类型，其曲率的变化率与距离成线性关系。</p>
+</div>
+    </div>
+<div id="d124e122056_div" class="ref_sect createobject"><h2 id="d124e122056">创建</h2>
+<div class="ref_sect"><h3 id="d124e122058">语法</h3>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e122065" class="intrnllnk">bdry = clothoidLaneBoundary</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e122077" class="intrnllnk">bdry = clothoidLaneBoundary(Name,Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="d124e122060_div" class="refsect2 description"><h3 id="d124e122060">描述</h3>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><div class="code_responsive"><p><span id="d124e122065" itemprop="syntax"><code class="synopsis"><code class="argument">bdry</code> = clothoidLaneBoundary</code></span> 创建一个带有默认属性值的布洛伊德车道边界模型，命名为 <span style="font-family: monospace;">bdry</span>。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="clothoidlaneboundary.html#mw_e466e37a-53ce-4c5b-bb01-c271c39e771d" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e122077" itemprop="syntax"><code class="synopsis"><code class="argument">bdry</code> = clothoidLaneBoundary(Name,Value)</code></span>
+使用一个或多个名称-值对设置属性。例如，<code class="literal">clothoidLaneBoundary('BoundaryType','Solid')</code> 创建一个具有实心车道边界的布洛伊德车道边界模型。请将每个属性名称用引号括起来。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e122089">属性</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="d124e122089_panel-group" role="tablist" aria-multiselectable="true"><div itemscope="" class="ref_sect" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntityGroup" itemprop="refentitygroup">
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e122093"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e122093" data-target="#expand_panel_body_d124e122093" aria-controls="expand_panel_body_d124e122093" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Curvature" class="anchor_target"></span><h3 class="panel-title" id="d124e122093"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:clothoidLaneBoundary.Curvature"/><code itemprop="name" id="propname_Curvature">Curvature</code></span> — <span itemprop="purpose">Lane boundary curvature</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e122093" aria-labelledby="expand_panel_heading_d124e122093" class="panel-collapse collapse"><div class="panel-body">
+                    <p>车道边界曲率，指定为实数标量。该属性表示车道边界方向相对于距离的变化率。单位为度每米。</p>
+                    <p class="description_valueexample"><strong>Example: </strong><code class="literal remove_text_wrapping">-1.0</code></p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>single</code> | <code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e122123"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e122123" data-target="#expand_panel_body_d124e122123" aria-controls="expand_panel_body_d124e122123" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_CurvatureDerivative" class="anchor_target"></span><h3 class="panel-title" id="d124e122123"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:clothoidLaneBoundary.CurvatureDerivative"/><code itemprop="name" id="propname_CurvatureDerivative">CurvatureDerivative</code></span> — <span itemprop="purpose">Derivative of lane boundary curvature</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e122123" aria-labelledby="expand_panel_heading_d124e122123" class="panel-collapse collapse"><div class="panel-body">
+                    <p>车道边界曲率的导数，指定为实数标量。该属性表示车道曲率相对于距离的变化率。单位为度每平方米。</p>
+                    <p class="description_valueexample"><strong>Example: </strong><code class="literal remove_text_wrapping">-0.01</code></p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>single</code> | <code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e122153"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e122153" data-target="#expand_panel_body_d124e122153" aria-controls="expand_panel_body_d124e122153" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_CurveLength" class="anchor_target"></span><h3 class="panel-title" id="d124e122153"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:clothoidLaneBoundary.CurveLength"/><code itemprop="name" id="propname_CurveLength">CurveLength</code></span> — <span itemprop="purpose">Length of lane boundary along road</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">nonnegative real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e122153" aria-labelledby="expand_panel_heading_d124e122153" class="panel-collapse collapse"><div class="panel-body">
+                    <p>车道边界沿道路的长度，指定为非负实数标量。单位为米。</p>
+                    <p class="description_valueexample"><strong>Example: </strong><code class="literal">25</code></p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>single</code> | <code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e122183"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e122183" data-target="#expand_panel_body_d124e122183" aria-controls="expand_panel_body_d124e122183" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_HeadingAngle" class="anchor_target"></span><h3 class="panel-title" id="d124e122183"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:clothoidLaneBoundary.HeadingAngle"/><code itemprop="name" id="propname_HeadingAngle">HeadingAngle</code></span> — <span itemprop="purpose">Initial lane boundary heading</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e122183" aria-labelledby="expand_panel_heading_d124e122183" class="panel-collapse collapse"><div class="panel-body">
+                    <p>初始车道边界航向，指定为实数标量。车道边界的航向角是相对于自车的航向角而言的。单位为度。</p>
+                    <p class="description_valueexample"><strong>Example: </strong><code class="literal">10</code></p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>single</code> | <code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e122213"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e122213" data-target="#expand_panel_body_d124e122213" aria-controls="expand_panel_body_d124e122213" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_LateralOffset" class="anchor_target"></span><h3 class="panel-title" id="d124e122213"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:clothoidLaneBoundary.LateralOffset"/><code itemprop="name" id="propname_LateralOffset">LateralOffset</code></span> — <span itemprop="purpose">Lateral offset of ego vehicle position from lane boundary</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e122213" aria-labelledby="expand_panel_heading_d124e122213" class="panel-collapse collapse"><div class="panel-body">
+                    <p>自车位置相对于车道边界的横向偏移量，指定为实数标量。自车左侧车道边界的偏移量为正值，自车右侧车道边界的偏移量为负值。单位为米。在这张图像中，自车距离左车道边界的偏移量为1.5米，距离右车道边界的偏移量为2.1米。 </p>
+<div class="informalfigure"><div id="d124e122232" class="mediaobject"><p><img src="lateral_offset.png" alt="Ego vehicle in a driving lane" height="341" width="405"/></p>
+</div>
+</div>
+<p></p>
+                    <p class="description_valueexample"><strong>Example: </strong><code class="literal remove_text_wrapping">-1.2</code></p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>single</code> | <code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e122250"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e122250" data-target="#expand_panel_body_d124e122250" aria-controls="expand_panel_body_d124e122250" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_BoundaryType" class="anchor_target"></span><h3 class="panel-title" id="d124e122250"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:clothoidLaneBoundary.BoundaryType"/><code itemprop="name" id="propname_BoundaryType">BoundaryType</code></span> — <span itemprop="purpose">Type of lane boundary marking</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">'Unmarked'</code></span> (default) | <span itemprop="inputvalue"><code class="literal">'Solid' </code></span> | <span itemprop="inputvalue"><code class="literal">'Dashed'</code></span> | <span itemprop="inputvalue"><code class="literal">'DoubleSolid'</code></span> | <span itemprop="inputvalue"><code class="literal">'DoubleDashed'</code></span> | <span itemprop="inputvalue"><code class="literal">'SolidDashed'</code></span> | <span itemprop="inputvalue"><code class="literal">'DashedSolid'</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e122250" aria-labelledby="expand_panel_heading_d124e122250" class="panel-collapse collapse"><div class="panel-body">
+                    <p>车道边界标记的类型，指定为以下值之一。</p>
+                    <p>
+    </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="14%"/>
+<col class="tcol2" width="14%"/>
+<col class="tcol3" width="14%"/>
+<col class="tcol4" width="14%"/>
+<col class="tcol5" width="14%"/>
+<col class="tcol6" width="14%"/>
+<col class="tcol7" width="14%"/>
+</colgroup>
+<thead><tr><th><code class="literal">'Unmarked' </code></th>
+<th><code class="literal">'Solid'</code></th>
+<th><code class="literal">'Dashed'</code></th>
+<th><code class="literal">'DoubleSolid'</code></th>
+<th><code class="literal">'DoubleDashed'</code></th>
+<th><code class="literal">'SolidDashed'</code></th>
+<th><code class="literal">'DashedSolid'</code></th>
+</tr>
+</thead>
+<tbody><tr><td><p>No lane marking</p>
+</td>
+<td><p>Solid line</p>
+</td>
+<td><p>Dashed line</p>
+</td>
+<td><p>Two solid lines</p>
+</td>
+<td><p>Two dashed lines</p>
+</td>
+<td><p>Solid line on left, dashed line on right</p>
+</td>
+<td><p>Dashed line on left, solid line on right</p>
+</td>
+</tr>
+<tr><td>
+                        <div class="informalfigure"><div id="d124e122332" class="mediaobject"><p><img src="unmarked_marker.png" alt="Sample of an unmarked lane" height="323" width="73"/></p>
+</div>
+</div>
+                    </td>
+<td>
+                        <div class="informalfigure"><div id="d124e122340" class="mediaobject"><p><img src="solid_marker.png" alt="Sample of a solid lane marking" height="323" width="73"/></p>
+</div>
+</div>
+                    </td>
+<td>
+                        <div class="informalfigure"><div id="d124e122348" class="mediaobject"><p><img src="dashed_marker.png" alt="Sample of a dashed lane marking" height="323" width="73"/></p>
+</div>
+</div>
+                    </td>
+<td>
+                        <div class="informalfigure"><div id="d124e122356" class="mediaobject"><p><img src="double_solid_marker.png" alt="Sample of a double-solid lane marking" height="323" width="73"/></p>
+</div>
+</div>
+                    </td>
+<td>
+                        <div class="informalfigure"><div id="d124e122364" class="mediaobject"><p><img src="double_dashed_marker.png" alt="Sample of a double-dashed lane marking" height="323" width="73"/></p>
+</div>
+</div>
+                    </td>
+<td>
+                        <div class="informalfigure"><div id="d124e122372" class="mediaobject"><p><img src="dashed_solid_marker.png" alt="Sample of a solid-dashed lane marking" height="323" width="73"/></p>
+</div>
+</div>
+                    </td>
+<td>
+                        <div class="informalfigure"><div id="d124e122380" class="mediaobject"><p><img src="solid_dashed_marker.png" alt="Sample of a dashed-solid lane marking" height="323" width="73"/></p>
+</div>
+</div>
+                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+                </div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e122388"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e122388" data-target="#expand_panel_body_d124e122388" aria-controls="expand_panel_body_d124e122388" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Strength" class="anchor_target"></span><h3 class="panel-title" id="d124e122388"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:clothoidLaneBoundary.Strength"/><code itemprop="name" id="propname_Strength">Strength</code></span> — <span itemprop="purpose">Visibility of lane boundary marking</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">1</code></span> (default) | <span itemprop="inputvalue">real scalar in the range [0, 1]</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e122388" aria-labelledby="expand_panel_heading_d124e122388" class="panel-collapse collapse"><div class="panel-body">
+                    <p>车道标线的可见性，指定为范围在[0, 1]内的实数标量。值为 <code class="literal">0</code> 表示标线不可见。值为 <code class="literal">1</code> 表示标线完全可见。对于双车道标线，两条线使用相同的可见性强度。</p>
+                    <p class="description_valueexample"><strong>Example: </strong><code class="literal">0.9</code></p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>single</code> | <code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e122423"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e122423" data-target="#expand_panel_body_d124e122423" aria-controls="expand_panel_body_d124e122423" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_XExtent" class="anchor_target"></span><h3 class="panel-title" id="d124e122423"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:clothoidLaneBoundary.XExtent"/><code itemprop="name" id="propname_XExtent">XExtent</code></span> — <span itemprop="purpose">Extent of lane boundary marking along <em class="varname">X</em>-axis</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">[0 Inf]</code></span> (default) | <span itemprop="inputvalue">real-valued vector of the form
+                            [<em class="varname">X</em><sub>min</sub>
+                        <em class="varname">X</em><sub>max</sub>]</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e122423" aria-labelledby="expand_panel_heading_d124e122423" class="panel-collapse collapse"><div class="panel-body">
+                    <p>车道标线沿<em class="varname">X</em>轴的范围，指定为形式为 [<em class="varname">X</em><sub>min</sub> <em class="varname">X</em><sub>max</sub>] 的实值向量。单位为米。<em class="varname">X</em>轴垂直向上，并且在自车的前进方向上为正方向。</p>
+                    <p class="description_valueexample"><strong>Example: </strong><code class="literal">[0 100]</code></p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>single</code> | <code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e122474"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e122474" data-target="#expand_panel_body_d124e122474" aria-controls="expand_panel_body_d124e122474" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Width" class="anchor_target"></span><h3 class="panel-title" id="d124e122474"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:clothoidLaneBoundary.Width"/><code itemprop="name" id="propname_Width">Width</code></span> — <span itemprop="purpose">Width of lane boundary marking</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">nonnegative real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e122474" aria-labelledby="expand_panel_heading_d124e122474" class="panel-collapse collapse"><div class="panel-body">
+                    <p>车道标线的宽度，指定为非负实数标量。对于双车道标线，该值适用于每条车道标线的宽度以及这些标线之间的距离。单位为米。</p>
+                    <p class="description_valueexample"><strong>Example: </strong><code class="literal">0.15</code></p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>single</code> | <code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+        </div>
+</div>
+</div>
+</div>
+<div id="d124e122504_div" class="refsect1 objectfunctions"><h2 id="d124e122504">对象函数</h2>
+<div class="doc_classesgroup_container"><div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="clothoidlaneboundary.computeboundarymodel.html"><code class="function">computeBoundaryModel</code></a></td>
+<td class="description">从布洛伊德车道边界模型计算车道边界点</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="examples"><h2 id="d124e122511">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_e466e37a-53ce-4c5b-bb01-c271c39e771d"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e466e37a-53ce-4c5b-bb01-c271c39e771d" data-target="#expand_panel_body_mw_e466e37a-53ce-4c5b-bb01-c271c39e771d" aria-controls="expand_panel_body_mw_e466e37a-53ce-4c5b-bb01-c271c39e771d" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_e466e37a-53ce-4c5b-bb01-c271c39e771d">创建布洛伊德车道边界<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e466e37a-53ce-4c5b-bb01-c271c39e771d" aria-labelledby="expand_panel_heading_mw_e466e37a-53ce-4c5b-bb01-c271c39e771d" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/CreateClothoidBoundariesExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create Clothoid Lane Boundaries",
+          "description": "Create clothoid curves to represent left and right lane boundaries. Then, plot the curves.",
+          "thumbnailURL": "../../examples/driving/win64/CreateClothoidBoundariesExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "clothoidlaneboundary.html"
+
+        },
+          "identifier": "driving.CreateClothoidBoundariesExample",
+          "name": "CreateClothoidBoundariesExample",
+          "url": "clothoidlaneboundary.html#mw_e466e37a-53ce-4c5b-bb01-c271c39e771d"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/CreateClothoidBoundariesExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateClothoidBoundariesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">创建用于表示左侧和右侧车道边界的布洛伊德曲线，并绘制这些曲线。</p>
+<p>创建左侧车道边界。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lb = clothoidLaneBoundary(<span style="color:#A020F0">'BoundaryType'</span>,<span style="color:#A020F0">'Solid'</span>, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Strength'</span>,1,<span style="color:#A020F0">'Width'</span>,0.2,<span style="color:#A020F0">'CurveLength'</span>,40, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Curvature'</span>,-0.8,<span style="color:#A020F0">'LateralOffset'</span>,2,<span style="color:#A020F0">'HeadingAngle'</span>,10);</pre>
+</div>
+</div>
+</div>
+<p>创建几乎相同属性的右侧车道边界。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rb = lb;
+rb.LateralOffset = -2;</pre>
+</div>
+</div>
+</div>
+<p>创建一个鸟瞰图绘图。然后，创建车道边界绘图器并绘制边界。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bep = birdsEyePlot(<span style="color:#A020F0">'XLimits'</span>,[0 50],<span style="color:#A020F0">'YLimits'</span>,[-10 10]);
+lbPlotter = laneBoundaryPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Left-lane boundary'</span>,<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'r'</span>);
+rbPlotter = laneBoundaryPlotter(bep,<span style="color:#A020F0">'DisplayName'</span>,<span style="color:#A020F0">'Right-lane boundary'</span>,<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'g'</span>);
+plotLaneBoundary(lbPlotter,lb)
+plotLaneBoundary(rbPlotter,rb);
+grid
+hold <span style="color:#A020F0">on</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e122542" class="mediaobject"><p><img src="../../examples/driving/win64/CreateClothoidBoundariesExample_01.png" alt="Figure contains an axes object. The axes object contains 2 objects of type line. These objects represent Left-lane boundary, Right-lane boundary." width="560"/></p>
+</div>
+</div>
+<p>绘制沿着边界的选定点的坐标。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = 0:5:50;
+yl = computeBoundaryModel(lb,x);
+yr = computeBoundaryModel(rb,x);
+plot(x,yl,<span style="color:#A020F0">'ro'</span>)
+plot(x,yr,<span style="color:#A020F0">'go'</span>)
+hold <span style="color:#A020F0">off</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e122550" class="mediaobject"><p><img src="../../examples/driving/win64/CreateClothoidBoundariesExample_02.png" alt="Figure contains an axes object. The axes object contains 4 objects of type line. These objects represent Left-lane boundary, Right-lane boundary." width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-CreateClothoidBoundariesExample"/>
+<meta itemprop="exampletitle" content="Create Clothoid Lane Boundaries"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_9f9a2b20-612d-43d4-b163-e95ac5633e26_vh">Version History</h2>
+<p><strong>Introduced in R2018a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_9f9a2b20-612d-43d4-b163-e95ac5633e26_seealso">See Also</h2>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="lanespec.html"><span itemprop="name"><code class="object">lanespec</code></span></a></span></li>
+</ul>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.plotlaneboundary.html"><span itemprop="name"><code class="function">plotLaneBoundary</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.laneboundaryplotter.html"><span itemprop="name"><code class="function">laneBoundaryPlotter</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.laneboundaries.html"><span itemprop="name"><code class="function">laneBoundaries</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="lanemarking.html"><span itemprop="name"><code class="function">laneMarking</code></span></a></span></li>
+</ul>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>plotMesh</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:plotMesh"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:birdsEyePlot.plotMesh"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:driving.birdsEyePlot.MeshPlotter.plotMesh"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function displays meshes composed of the specified vertices and faces on a bird's-eye plot."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">plotMesh</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_6622dde3-5c3c-422c-89d1-685da9f82057" class="intrnllnk">Syntax</a></li>
+<li><a href="#description" class="intrnllnk">Description</a></li>
+<li><a href="#mw_d57d917c-16e4-46f8-a090-42c4da0a6c7e" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_489811cb-5eca-44aa-8bd2-d1fd09ff62cf" class="intrnllnk">Display Actor Meshes in Driving Scenario</a></li>
+</ul></li>
+<li><a href="#mw_97cf5258-0ac1-4f44-bc61-08a834ab07bf" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#mw_285c7e2d-cbf9-4d2d-9e81-a5b42a2cf92d" class="intrnllnk">mPlotter</a></li>
+<li><a href="#mw_bfbfca29-1473-4533-b9de-068fb27140a4" class="intrnllnk">vertices</a></li>
+<li><a href="#mw_597b62db-ad48-4698-87ab-ba613e25e2c8" class="intrnllnk">faces</a></li>
+<li><a href="#mw_3ae3e97d-5af1-489b-a1c3-ee5366285eb4" class="intrnllnk">colors</a></li>
+</ul></li>
+<li><a href="#mw_321fc02d-fa1e-46db-884d-d6f1668a0297" class="intrnllnk">More About</a><ul class="nav"><li><a href="#mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796_sep_mw_4517832f-25ee-457b-95c2-4e2455750d00" class="intrnllnk">Meshes</a></li>
+</ul></li>
+<li><a href="#mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">plotMesh</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">在鸟瞰图上显示对象的网格</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<span id="mw_6622dde3-5c3c-422c-89d1-685da9f82057" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_6622dde3-5c3c-422c-89d1-685da9f82057">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e80612" class="intrnllnk">plotMesh(mPlotter,vertices,faces)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e80658" class="intrnllnk">plotMesh(mPlotter,vertices,faces,'Color',colors)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="mw_d9669919-8c06-4a84-a87b-a8ac9a616155" class="anchor_target"></span><h2 id="description">描述</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><div class="code_responsive"><p><span id="d124e80612" itemprop="syntax"><code class="synopsis">plotMesh(<a href="#mw_285c7e2d-cbf9-4d2d-9e81-a5b42a2cf92d" class="intrnllnk"><code class="argument">mPlotter</code></a>,<a href="#mw_bfbfca29-1473-4533-b9de-068fb27140a4" class="intrnllnk"><code class="argument">vertices</code></a>,<a href="#mw_597b62db-ad48-4698-87ab-ba613e25e2c8" class="intrnllnk"><code class="argument">faces</code></a>)</code></span>
+在鸟瞰图上显示由指定的顶点和面组成的 <a href="birdseyeplot.plotmesh.html#mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796_sep_mw_4517832f-25ee-457b-95c2-4e2455750d00" class="intrnllnk">meshes</a>。要获取驾驶场景中对象的网格顶点和面，请使用 <a href="drivingscenario.targetmeshes.html"><code class="function">targetMeshes</code></a> 函数。网格绘图器 <code class="argument">mPlotter</code>与 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象相关联，并配置网格的显示。</p>
+<p>鸟瞰图根据 <code class="object">Axes</code> 对象的默认颜色顺序为每个参与者分配不同的颜色。有关更多详细信息，请参阅 <code class="object">Axes</code> 对象的 <code class="property"><a href="../../matlab/ref/matlab.graphics.axis.axes-properties.html#budumk7_sep_shared-ColorOrder">ColorOrder</a></code> 属性。</p>
+<p>要移除与网格绘图器 <span style="font-family: monospace;">mPlotter</span> 关联的所有网格，调用 <a href="birdseyeplot.cleardata.html"><code class="function">clearData</code></a> 函数并将 <code class="argument">mPlotter</code> 指定为输入参数。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="birdseyeplot.plotmesh.html#mw_489811cb-5eca-44aa-8bd2-d1fd09ff62cf" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e80658" itemprop="syntax"><code class="synopsis">plotMesh(<a href="#mw_285c7e2d-cbf9-4d2d-9e81-a5b42a2cf92d" class="intrnllnk"><code class="argument">mPlotter</code></a>,<a href="#mw_bfbfca29-1473-4533-b9de-068fb27140a4" class="intrnllnk"><code class="argument">vertices</code></a>,<a href="#mw_597b62db-ad48-4698-87ab-ba613e25e2c8" class="intrnllnk"><code class="argument">faces</code></a>,'Color',<a href="#mw_3ae3e97d-5af1-489b-a1c3-ee5366285eb4" class="intrnllnk"><code class="argument">colors</code></a>)</code></span> 指定网格的颜色。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="mw_d57d917c-16e4-46f8-a090-42c4da0a6c7e">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_489811cb-5eca-44aa-8bd2-d1fd09ff62cf"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_489811cb-5eca-44aa-8bd2-d1fd09ff62cf" data-target="#expand_panel_body_mw_489811cb-5eca-44aa-8bd2-d1fd09ff62cf" aria-controls="expand_panel_body_mw_489811cb-5eca-44aa-8bd2-d1fd09ff62cf" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_489811cb-5eca-44aa-8bd2-d1fd09ff62cf">在驾驶场景中显示参与者网格<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_489811cb-5eca-44aa-8bd2-d1fd09ff62cf" aria-labelledby="expand_panel_heading_mw_489811cb-5eca-44aa-8bd2-d1fd09ff62cf" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/DisplayActorMeshesInDrivingScenarioExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Display Actor Meshes in Driving Scenario",
+          "description": "Display actors in a driving scenario by using their mesh representations instead of their cuboid representations.",
+          "thumbnailURL": "../../examples/driving/win64/DisplayActorMeshesInDrivingScenarioExample_03.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "birdseyeplot.plotmesh.html"
+
+        },
+          "identifier": "driving.DisplayActorMeshesInDrivingScenarioExample",
+          "name": "DisplayActorMeshesInDrivingScenarioExample",
+          "url": "birdseyeplot.plotmesh.html#mw_489811cb-5eca-44aa-8bd2-d1fd09ff62cf"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/DisplayActorMeshesInDrivingScenarioExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "DisplayActorMeshesInDrivingScenarioExample.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+
+<p class="shortdesc">通过使用参与者的网格表示而不是其长方体表示，在驾驶场景中显示参与者。</p>
+
+<div class="procedure"><p>创建一个驾驶场景，并向场景中添加一条25米的直路。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadcenters = [0 0 0; 25 0 0];
+road(scenario,roadcenters);
+</pre>
+</div>
+</div>
+</div>
+<p>向场景中添加一个行人和一辆车辆。使用预构建的网格来指定参与者的网格尺寸。</p>
+<div class="itemizedlist"><ul><li><p>将行人的网格指定为 <code class="literal">driving.scenario.pedestrianMesh</code> 对象。</p></li>
+<li><p>将车辆的网格指定为 <code class="literal">driving.scenario.carMesh</code> 对象。</p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = actor(scenario,<span style="color:#A020F0">'ClassID'</span>,4, <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'Length'</span>,0.2,<span style="color:#A020F0">'Width'</span>,0.4, <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'Height'</span>,1.7,<span style="color:#A020F0">'Mesh'</span>,driving.scenario.pedestrianMesh);
+
+v = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1, <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'Mesh'</span>,driving.scenario.carMesh);
+</pre>
+</div>
+</div>
+</div>
+<p>为行人和车辆添加轨迹。</p>
+<div class="itemizedlist"><ul><li><p>指定行人以每秒1米的速度穿过道路。</p></li>
+<li><p>指定车辆以每秒10米的速度沿着道路行驶。</p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>waypointsP = [15 -3 0; 15 3 0];
+speedP = 1;
+smoothTrajectory(p,waypointsP,speedP);
+
+wayPointsV = [v.RearOverhang 0 0; (25 - v.Length + v.RearOverhang) 0 0];
+speedV = 10;
+smoothTrajectory(v,wayPointsV,speedV)
+</pre>
+</div>
+</div>
+</div>
+<p>为车辆添加一个以车辆为中心的视角的情节。打开网格的显示。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>chasePlot(v,<span style="color:#A020F0">'Meshes'</span>,<span style="color:#A020F0">'on'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e80738" class="mediaobject"><p><img src="../../examples/driving/win64/DisplayActorMeshesInDrivingScenarioExample_01.png"/></p>
+</div>
+</div>
+<p>创建一个鸟瞰图情节，用于显示网格。同时创建一个网格绘制器和车道边界绘制器。然后运行仿真循环。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>获取车辆所在道路的道路边界。</p></li>
+<li><p>获取参与者网格的网格顶点、面和颜色，相对于车辆的位置。</p></li>
+<li><p>在鸟瞰图上绘制道路边界和参与者网格。</p></li>
+<li><p>暂停场景，以便给绘图留出更新时间。追踪情节在推进场景时会更新。</p></li>
+</ol>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bep = birdsEyePlot(<span style="color:#A020F0">'XLim'</span>,[-25 25],<span style="color:#A020F0">'YLim'</span>,[-10 10]);
+mPlotter = meshPlotter(bep);
+lbPlotter = laneBoundaryPlotter(bep);
+legend(<span style="color:#A020F0">'off'</span>)
+
+<span style="color:#0000FF">while</span> advance(scenario)
+
+   rb = roadBoundaries(v);
+
+   [vertices,faces,colors] = targetMeshes(v);
+
+   plotLaneBoundary(lbPlotter,rb)
+   plotMesh(mPlotter,vertices,faces,<span style="color:#A020F0">'Color'</span>,colors)
+
+   pause(0.01)
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e80755" class="mediaobject"><p><img src="../../examples/driving/win64/DisplayActorMeshesInDrivingScenarioExample_02.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e80759" class="mediaobject"><p><img src="../../examples/driving/win64/DisplayActorMeshesInDrivingScenarioExample_03.png"/></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-DisplayActorMeshesInDrivingScenarioExample"/>
+<meta itemprop="exampletitle" content="Display Actor Meshes in Driving Scenario"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_97cf5258-0ac1-4f44-bc61-08a834ab07bf">输入参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_97cf5258-0ac1-4f44-bc61-08a834ab07bf_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_285c7e2d-cbf9-4d2d-9e81-a5b42a2cf92d"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_285c7e2d-cbf9-4d2d-9e81-a5b42a2cf92d" data-target="#expand_panel_body_mw_285c7e2d-cbf9-4d2d-9e81-a5b42a2cf92d" aria-controls="expand_panel_body_mw_285c7e2d-cbf9-4d2d-9e81-a5b42a2cf92d" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_mPlotter" class="anchor_target"></span><h3 class="panel-title" id="mw_285c7e2d-cbf9-4d2d-9e81-a5b42a2cf92d"><code itemprop="name">mPlotter</code> — <span itemprop="purpose">Mesh plotter</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">MeshPlotter</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_285c7e2d-cbf9-4d2d-9e81-a5b42a2cf92d" aria-labelledby="expand_panel_heading_mw_285c7e2d-cbf9-4d2d-9e81-a5b42a2cf92d" class="panel-collapse collapse in"><div class="panel-body">
+          <p>网格绘制器，指定为 <code class="object">MeshPlotter</code> 对象。该对象存储在 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象的 <code class="property">Plotters</code> 属性中，用于配置鸟瞰图中网格的显示。要创建此对象，请使用 <a href="birdseyeplot.meshplotter.html"><code class="function">meshPlotter</code></a> 函数。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_bfbfca29-1473-4533-b9de-068fb27140a4"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_bfbfca29-1473-4533-b9de-068fb27140a4" data-target="#expand_panel_body_mw_bfbfca29-1473-4533-b9de-068fb27140a4" aria-controls="expand_panel_body_mw_bfbfca29-1473-4533-b9de-068fb27140a4" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_vertices" class="anchor_target"></span><h3 class="panel-title" id="mw_bfbfca29-1473-4533-b9de-068fb27140a4"><code itemprop="name">vertices</code> — <span itemprop="purpose">Mesh vertices of each actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><em class="varname">N</em>-element cell array</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_bfbfca29-1473-4533-b9de-068fb27140a4" aria-labelledby="expand_panel_heading_mw_bfbfca29-1473-4533-b9de-068fb27140a4" class="panel-collapse collapse in"><div class="panel-body">
+          <p>每个参与者的网格顶点，指定为一个<em class="varname">N</em>元素的cell数组，其中<em class="varname">N</em>是参与者的数量。</p>
+          <p><code class="argument">vertices</code> 中的每个元素必须是一个<em class="varname">V</em>×3的实值矩阵，其中包含一个参与者的顶点，其中：</p>
+          <div class="itemizedlist"><ul><li><p><em class="varname">V</em> 是顶点的数量。</p></li>
+<li><p>每行定义了一个顶点的三维 (<em class="varname">x</em>,<em class="varname">y</em>,<em class="varname">z</em>) 位置。当您使用 <a href="drivingscenario.targetmeshes.html"><code class="function">targetMeshes</code></a> 函数获取网格顶点时，顶点位置是相对于输入到该函数的演员的位置的。单位为米。</p></li>
+</ul>
+</div>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_597b62db-ad48-4698-87ab-ba613e25e2c8"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_597b62db-ad48-4698-87ab-ba613e25e2c8" data-target="#expand_panel_body_mw_597b62db-ad48-4698-87ab-ba613e25e2c8" aria-controls="expand_panel_body_mw_597b62db-ad48-4698-87ab-ba613e25e2c8" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_faces" class="anchor_target"></span><h3 class="panel-title" id="mw_597b62db-ad48-4698-87ab-ba613e25e2c8"><code itemprop="name">faces</code> — <span itemprop="purpose">Mesh faces of each actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><em class="varname">N</em>-element cell array</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_597b62db-ad48-4698-87ab-ba613e25e2c8" aria-labelledby="expand_panel_heading_mw_597b62db-ad48-4698-87ab-ba613e25e2c8" class="panel-collapse collapse in"><div class="panel-body">
+          <p>每个参与者的网格面，以<em class="varname">N</em>个元素的单元数组形式指定，其中<em class="varname">N</em>是参与者的数量。</p>
+          <p><code class="argument">faces</code> 中的每个元素必须是一个<em class="varname">Fx</em>3的整数值矩阵，其中包含一个参与者的面，其中：</p>
+          <div class="itemizedlist"><ul><li><p><em class="varname">F</em> 是面的数量。</p></li>
+<li><p>每一行定义了构成面的顶点ID的三角形。顶点ID对应于 <code class="argument"><a href="#mw_bfbfca29-1473-4533-b9de-068fb27140a4" class="intrnllnk">vertices</a> </code>中的行号。</p></li>
+</ul>
+</div>
+          <p>假设第 <span style="font-family: monospace;">i</span> 个元素的第一个 <code class="argument">faces</code> 具有以下顶点ID。</p>
+          <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>faces{i}(1,:)</pre>
+</div>
+</div>
+</div>
+          <div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+     1     2     3</pre>
+</div>
+</div>
+</div>
+          <p>在 <code class="argument">vertices</code> 的第 <code class="literal">i</code> 个元素中，第1、2和3行包含构成该面的顶点的 (<em class="varname">x</em>, <em class="varname">y</em>, <em class="varname">z</em>) 位置。</p>
+          <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vertices{i}(1:3,:)</pre>
+</div>
+</div>
+</div>
+          <div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    3.7000    0.9000    0.8574
+    3.7000   -0.9000    0.8574
+    3.7000   -0.9000    0.3149</pre>
+</div>
+</div>
+</div>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_3ae3e97d-5af1-489b-a1c3-ee5366285eb4"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3ae3e97d-5af1-489b-a1c3-ee5366285eb4" data-target="#expand_panel_body_mw_3ae3e97d-5af1-489b-a1c3-ee5366285eb4" aria-controls="expand_panel_body_mw_3ae3e97d-5af1-489b-a1c3-ee5366285eb4" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_colors" class="anchor_target"></span><h3 class="panel-title" id="mw_3ae3e97d-5af1-489b-a1c3-ee5366285eb4"><code itemprop="name">colors</code> — <span itemprop="purpose">Color of mesh faces for each actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><em class="varname">N</em>-by-3 matrix of RGB triplets</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_3ae3e97d-5af1-489b-a1c3-ee5366285eb4" aria-labelledby="expand_panel_heading_mw_3ae3e97d-5af1-489b-a1c3-ee5366285eb4" class="panel-collapse collapse in"><div class="panel-body">
+          <p>每个参与者的网格面的颜色，指定为一个<em class="varname">N</em>x3的RGB三元组矩阵。<em class="varname">N</em>是参与者的数量，等于 <a href="#mw_bfbfca29-1473-4533-b9de-068fb27140a4" class="intrnllnk"><code class="argument">vertices</code></a> 和 <code class="argument"><a href="#mw_597b62db-ad48-4698-87ab-ba613e25e2c8" class="intrnllnk">faces</a> </code>的元素数量。</p>
+          <p>第 <span style="font-family: monospace;">i</span> 行的 <code class="argument">colors</code> 是第 <span style="font-family: monospace;">i</span> 个元素的 <span style="font-family: monospace;">faces</span> 的RGB颜色值。该函数将相同的颜色应用于参与者的所有网格面。</p>
+          <p>RGB三元组是一个包含三个元素的行向量，这些元素指定颜色的红色、绿色和蓝色分量的强度。强度必须在[0, 1]的范围内。例如，<span style="font-family: monospace;">[0.4 0.6 0.7]</span>。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="moreabout ref_sect"><h2 id="mw_321fc02d-fa1e-46db-884d-d6f1668a0297">关于更多</h2>
+<div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true2">collapse all</a></p>
+<div class="expand_collapse"><span id="mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796.mw_4517832f-25ee-457b-95c2-4e2455750d00" class="anchor_target"></span><h3 class="expand_trigger" id="mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796_sep_mw_4517832f-25ee-457b-95c2-4e2455750d00" aria-expanded="true" data-toggle="collapse" data-target="#expand_body_mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796_sep_mw_4517832f-25ee-457b-95c2-4e2455750d00" aria-controls="expand_body_mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796_sep_mw_4517832f-25ee-457b-95c2-4e2455750d00"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>Meshes</h3>
+<div id="expand_body_mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796_sep_mw_4517832f-25ee-457b-95c2-4e2455750d00" class="collapsible_content collapse in" aria-expanded="true"><p class="shortdesc">In driving scenarios, a <em class="firstterm">mesh</em> is a triangle-based 3-D
+                                representation of an object. Mesh representations of objects are
+                                more detailed than the default cuboid (box-shaped) representations
+                                of objects. Meshes are useful for generating synthetic point cloud
+                                data from a driving scenario.</p>
+<p class="shortdesc">This table shows the difference between a cuboid
+                                representation and a mesh representation of a vehicle in a driving
+                                scenario.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>Cuboid</th>
+<th>Mesh</th>
+</tr>
+</thead>
+<tbody><tr><td><div class="informalfigure"><div id="d124e80989" class="mediaobject"><p><img src="cuboid_representation.png" alt="A vehicle represented as a cube." height="105" width="123"/></p>
+</div>
+</div>
+</td>
+<td><div class="informalfigure"><div id="d124e80995" class="mediaobject"><p><img src="mesh_representation.png" alt="A vehicle represented as a mesh." height="105" width="123"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796_vh">Version History</h2>
+<p><strong>Introduced in R2020b</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_dcdc8df9-8d7a-4ddf-b045-baf265c60796_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.meshplotter.html"><span itemprop="name"><code class="function">meshPlotter</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.html"><span itemprop="name"><code class="object">birdsEyePlot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.targetmeshes.html"><span itemprop="name"><code class="function">targetMeshes</code></span></a></span></p>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

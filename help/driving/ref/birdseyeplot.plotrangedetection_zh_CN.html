@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>plotRangeDetection</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:plotRangeDetection"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:birdsEyePlot.plotRangeDetection"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function displays object detections on a bird's-eye-plot from a list of ranges, azimuthal fields of view, sensor mounting locations, and angles."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">plotRangeDetection</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_a40737d0-670f-4dee-b6fe-ba05378c72c4" class="intrnllnk">Syntax</a></li>
+<li><a href="#description" class="intrnllnk">Description</a></li>
+<li><a href="#mw_12c0a835-d512-44e7-9195-8b82d0100b73" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_ebb9ec71-c4d9-4d40-9fb4-4bf4216e1958" class="intrnllnk">Generate Ultrasonic Detections of Multiple Vehicles</a></li>
+</ul></li>
+<li><a href="#mw_60cc58e0-0c67-48a4-9aae-0aa5966d4bed" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#mw_c03703b7-2297-4b65-b50e-a35ed288c132" class="intrnllnk">rangeDetPlotter</a></li>
+<li><a href="#mw_74a01812-0a47-436a-9430-30d3799fc918" class="intrnllnk">ranges</a></li>
+<li><a href="#mw_d8f231c8-5dc3-4f8c-b4a2-93a7e83afe7c" class="intrnllnk">fovs</a></li>
+<li><a href="#mw_4e2b1185-51ee-42b1-8b4d-47472b045009" class="intrnllnk">locations</a></li>
+<li><a href="#mw_21c74800-9289-48ff-9de3-8f6c146c8538" class="intrnllnk">angles</a></li>
+<li><a href="#mw_baf27a87-a4eb-4fcb-bd44-ce75a94efafc" class="intrnllnk">labels</a></li>
+</ul></li>
+<li><a href="#mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">plotRangeDetection</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">在鸟瞰图上显示范围检测结果</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<div class="function_icons"><ul class="list-unstyled"></ul>
+</div>
+<span id="mw_a40737d0-670f-4dee-b6fe-ba05378c72c4" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_a40737d0-670f-4dee-b6fe-ba05378c72c4">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e82565" class="intrnllnk">plotRangeDetection(rangeDetPlotter,ranges,fovs,locations,angles)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e82608" class="intrnllnk">plotRangeDetection(rangeDetPlotter,ranges,<span class="argument_placeholder">___</span>,labels)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="mw_3f45ab8e-b35d-48fe-bdde-e4e85122c39a" class="anchor_target"></span><h2 id="description">描述</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="birdseyeplot.plotrangedetection.html#mw_ebb9ec71-c4d9-4d40-9fb4-4bf4216e1958" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e82565" itemprop="syntax"><code class="synopsis">plotRangeDetection(<a href="#mw_c03703b7-2297-4b65-b50e-a35ed288c132" class="intrnllnk"><code class="argument">rangeDetPlotter</code></a>,<a href="#mw_74a01812-0a47-436a-9430-30d3799fc918" class="intrnllnk"><code class="argument">ranges</code></a>,<a href="#mw_d8f231c8-5dc3-4f8c-b4a2-93a7e83afe7c" class="intrnllnk"><code class="argument">fovs</code></a>,<a href="#mw_4e2b1185-51ee-42b1-8b4d-47472b045009" class="intrnllnk"><code class="argument">locations</code></a>,<a href="#mw_21c74800-9289-48ff-9de3-8f6c146c8538" class="intrnllnk"><code class="argument">angles</code></a>)</code></span>
+从一组距离、方位视场、传感器安装位置和角度列表中，在鸟瞰图上显示物体检测结果。<code class="function">plotRangeDetection</code> 函数将每个物体检测显示为一个弧，其半径对应于相应的距离值，弧长与传感器的方位视场成比例。传感器的安装位置和角度确定了弧的中心位置。</p>
+<p>范围检测绘图器<span style="font-family: monospace;">rangeDetPlotter</span>关联到 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象，并配置了指定检测结果的显示方式。</p>
+<p>要删除与检测绘图器<span style="font-family: monospace;">rangeDetPlotter</span>相关联的所有检测结果，请调用 <a href="birdseyeplot.cleardata.html"><code class="function">clearData</code></a> 函数并将 <code class="argument">rangeDetPlotter</code> 指定为输入参数。</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e82608" itemprop="syntax"><code class="synopsis">plotRangeDetection(<a href="#mw_c03703b7-2297-4b65-b50e-a35ed288c132" class="intrnllnk"><code class="argument">rangeDetPlotter</code></a>,<a href="#mw_74a01812-0a47-436a-9430-30d3799fc918" class="intrnllnk"><code class="argument">ranges</code></a>,<span class="argument_placeholder">___</span>,<a href="#mw_baf27a87-a4eb-4fcb-bd44-ce75a94efafc" class="intrnllnk"><code class="argument">labels</code></a>)</code></span> 在鸟瞰图上显示检测结果及其标签，除了之前的语法中的所有输入参数外。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="mw_12c0a835-d512-44e7-9195-8b82d0100b73">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_ebb9ec71-c4d9-4d40-9fb4-4bf4216e1958"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ebb9ec71-c4d9-4d40-9fb4-4bf4216e1958" data-target="#expand_panel_body_mw_ebb9ec71-c4d9-4d40-9fb4-4bf4216e1958" aria-controls="expand_panel_body_mw_ebb9ec71-c4d9-4d40-9fb4-4bf4216e1958" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_ebb9ec71-c4d9-4d40-9fb4-4bf4216e1958">生成多辆车辆的超声波检测结果<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_ebb9ec71-c4d9-4d40-9fb4-4bf4216e1958" aria-labelledby="expand_panel_heading_mw_ebb9ec71-c4d9-4d40-9fb4-4bf4216e1958" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/GenerateUltrasonicDetectionsOfMultipleVehiclesExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Generate Ultrasonic Detections of Multiple Vehicles",
+          "description": "Use a simulated ultrasonic sensor to generate detections for multiple vehicles in a driving scenario.",
+          "thumbnailURL": "../../examples/driving/win64/GenerateUltrasonicDetectionsOfMultipleVehiclesExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "birdseyeplot.plotrangedetection.html"
+
+        },
+          "identifier": "driving.GenerateUltrasonicDetectionsOfMultipleVehiclesExample",
+          "name": "GenerateUltrasonicDetectionsOfMultipleVehiclesExample",
+          "url": "birdseyeplot.plotrangedetection.html#mw_ebb9ec71-c4d9-4d40-9fb4-4bf4216e1958"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/GenerateUltrasonicDetectionsOfMultipleVehiclesExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "GenerateUltrasonicDetectionsOfMultipleVehiclesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">使用模拟超声波传感器在驾驶场景中生成多辆车辆的检测结果。 </p>
+<div class="procedure"><span id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb.GenerateUltrasonicDetectionsOfMultipleVehiclesExample-1" class="anchor_target"></span><p class="title" id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb_sep_GenerateUltrasonicDetectionsOfMultipleVehiclesExample-1"><b>创建驾驶场景</b></p>
+<p>创建一个包含三车道道路的驾驶场景，使用车道规格进行定义。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadCenters = [-120 30 0;-60 0 0;0 0 0; 60 0 0; 120 30 0];
+lspc = lanespec(3);
+road(scenario,roadCenters,Lanes=lspc);</pre>
+</div>
+</div>
+</div>
+<p>创建一个以30 m/s的速度在中间车道行驶的自车。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>egovehicle = vehicle(scenario,ClassID=1);
+egopath = [1.5 0 0; 60 0 0; 111 25 0];
+egospeed = 30;
+smoothTrajectory(egovehicle,egopath,egospeed);</pre>
+</div>
+</div>
+</div>
+<p>添加一个目标车辆，在右车道上以30.5 m/s的速度在自车前方行驶，并在靠近自车时变道。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ftargetcar = vehicle(scenario,ClassID=1);
+ftargetpath = [8 2; 60 -3.2; 120 33];
+ftargetspeed = 30.5;
+smoothTrajectory(ftargetcar,ftargetpath,ftargetspeed);</pre>
+</div>
+</div>
+</div>
+<p>添加第二辆目标车辆，以32m/s的速度在左车道上行驶。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ltargetcar = vehicle(scenario,ClassID=1);
+ltargetpath = [-5.0 3.5 0; 60 3.5 0; 111 28.5 0];
+ltargetspeed = 32;
+smoothTrajectory(ltargetcar,ltargetpath,ltargetspeed);</pre>
+</div>
+</div>
+</div>
+<p>以自车后方的视角显示一个追踪图，以便以三维视图查看场景。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>chasePlot(egovehicle)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e82661" class="mediaobject"><p><img src="../../examples/driving/win64/GenerateUltrasonicDetectionsOfMultipleVehiclesExample_01.png" width="560"/></p>
+</div>
+</div>
+<span id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb.GenerateUltrasonicDetectionsOfMultipleVehiclesExample-2" class="anchor_target"></span><p class="title" id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb_sep_GenerateUltrasonicDetectionsOfMultipleVehiclesExample-2"><b>创建超声波传感器</b></p>
+<p>在自车前部创建一个安装了超声波传感器的传感器。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>frontUltrasonic = ultrasonicDetectionGenerator(1,FieldOfView=[70 35]);
+frontUltrasonic.Profiles = actorProfiles(scenario);</pre>
+</div>
+</div>
+</div>
+<p>在自车左侧创建一个安装了超声波传感器的第二个传感器。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>leftUltrasonic = ultrasonicDetectionGenerator(2,MountingLocation=[0.5 1 0.2],MountingAngles=[90 0 0],FieldOfView=[70 35]);
+leftUltrasonic.Profiles = actorProfiles(scenario);</pre>
+</div>
+</div>
+</div>
+<span id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb.GenerateUltrasonicDetectionsOfMultipleVehiclesExample-3" class="anchor_target"></span><p class="title" id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb_sep_GenerateUltrasonicDetectionsOfMultipleVehiclesExample-3"><b>创建鸟瞰图</b></p>
+<p>创建一个鸟瞰图，用于可视化传感器数据。添加用于可视化超声波覆盖区域、检测结果和目标点的绘图器。使用 <code class="literal">rangeDetectionPlotter</code> 对象将超声波检测结果可视化为弧线，使用 <code class="literal">detectionPlotter</code> 对象将目标上最近的点可视化为标记。添加绘图器以显示车道标线和车辆轮廓。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create bird's eye plot</span>
+bep = birdsEyePlot(XLim=[-20 20],YLim=[-12 12]);
+
+<span style="color:#228B22">% Plotters for Coverage areas of two ultrasonic sensors</span>
+fcaPlotter = coverageAreaPlotter(bep,DisplayName=<span style="color:#A020F0">"Front Ultrasonic field of view"</span>);
+plotCoverageArea(fcaPlotter,frontUltrasonic.MountingLocation(1:2), <span style="color:#0000FF">...</span>
+  frontUltrasonic.DetectionRange(3),frontUltrasonic.MountingAngles(1),frontUltrasonic.FieldOfView(1));
+
+lcaPlotter = coverageAreaPlotter(bep,DisplayName=<span style="color:#A020F0">"Left Ultrasonic field of view"</span>,FaceColor=<span style="color:#A020F0">"y"</span>);
+plotCoverageArea(lcaPlotter,leftUltrasonic.MountingLocation(1:2), <span style="color:#0000FF">...</span>
+  leftUltrasonic.DetectionRange(3),leftUltrasonic.MountingAngles(1),leftUltrasonic.FieldOfView(1));
+
+<span style="color:#228B22">% Range Detection Plotters for Ultrasonic Detections</span>
+frdPlotter = rangeDetectionPlotter(bep,DisplayName=<span style="color:#A020F0">"Front Ultrasonic Ranges"</span>);
+lrdPlotter = rangeDetectionPlotter(bep,DisplayName=<span style="color:#A020F0">"Left Ultrasonic Ranges"</span>,LineStyle=<span style="color:#A020F0">":"</span>);
+
+<span style="color:#228B22">% Detection plotters for closest points on targets</span>
+fdetPlotter = detectionPlotter(bep,DisplayName=<span style="color:#A020F0">"Point-On-Target (Front Ultrasonic)"</span>,MarkerFaceColor=<span style="color:#A020F0">"r"</span>);
+ldetPlotter = detectionPlotter(bep,DisplayName=<span style="color:#A020F0">"Point-On-Target (Rear Ultrasonic)"</span>,MarkerFaceColor=<span style="color:#A020F0">"k"</span>);
+
+<span style="color:#228B22">% Plotters for vehicle and target outlines, lane markings</span>
+olPlotter = outlinePlotter(bep);
+lmPlotter = laneMarkingPlotter(bep,DisplayName=<span style="color:#A020F0">"Lane markings"</span>);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e82683" class="mediaobject"><p><img src="../../examples/driving/win64/GenerateUltrasonicDetectionsOfMultipleVehiclesExample_02.png" alt="Figure contains an axes object. The axes object contains 8 objects of type patch, line. These objects represent Front Ultrasonic field of view, Left Ultrasonic field of view, Front Ultrasonic Ranges, Left Ultrasonic Ranges, Point-On-Target (Front Ultrasonic), Point-On-Target (Rear Ultrasonic), Lane markings." width="560"/></p>
+</div>
+</div>
+<span id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb.GenerateUltrasonicDetectionsOfMultipleVehiclesExample-4" class="anchor_target"></span><p class="title" id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb_sep_GenerateUltrasonicDetectionsOfMultipleVehiclesExample-4"><b>运行仿真并生成检测结果</b></p>
+<p>运行场景仿真。在每个时间步中：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>获取目标的真实姿态，并为两个超声波传感器生成检测结果。</p></li>
+<li><p>获取并显示目标轮廓和车道标线。</p></li>
+<li><p>当存在有效的检测结果时，显示检测结果以及超声波传感器生成的相应目标上的点。</p></li>
+</ol>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">while</span> advance(scenario)
+
+    tgtpose = targetPoses(egovehicle);
+
+    [fobdets,fisValid] = frontUltrasonic(tgtpose,scenario.SimulationTime);
+    [lobdets,lisValid] = leftUltrasonic(tgtpose,scenario.SimulationTime);
+
+    [objposition,objyaw,objlength,objwidth,objoriginOffset,color] = targetOutlines(egovehicle);
+    plotOutline(olPlotter,objposition,objyaw,objlength,objwidth, <span style="color:#0000FF">...</span>
+        OriginOffset=objoriginOffset,Color=color)
+
+    [lmv,lmf] = laneMarkingVertices(egovehicle);
+    plotLaneMarking(lmPlotter,lmv,lmf)
+
+    <span style="color:#0000FF">if</span> ~isempty(fobdets) &amp;&amp; fisValid
+        franges = fobdets{1}.Measurement;
+        plotRangeDetection(frdPlotter,franges,frontUltrasonic.FieldOfView(1),frontUltrasonic.MountingLocation,frontUltrasonic.MountingAngles)
+        plotDetection(fdetPlotter,fobdets{1}.ObjectAttributes{1}.PointOnTarget(1:2)')
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">if</span> ~isempty(lobdets) &amp;&amp; lisValid
+        lranges = lobdets{1}.Measurement;
+        plotRangeDetection(lrdPlotter,lranges,leftUltrasonic.FieldOfView(1),leftUltrasonic.MountingLocation,leftUltrasonic.MountingAngles)
+        plotDetection(ldetPlotter,lobdets{1}.ObjectAttributes{1}.PointOnTarget(1:2)')
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e82700" class="mediaobject"><p><img src="../../examples/driving/win64/GenerateUltrasonicDetectionsOfMultipleVehiclesExample_03.png" alt="Figure contains an axes object. The axes object contains 8 objects of type patch, line. These objects represent Front Ultrasonic field of view, Left Ultrasonic field of view, Front Ultrasonic Ranges, Left Ultrasonic Ranges, Point-On-Target (Front Ultrasonic), Point-On-Target (Rear Ultrasonic), Lane markings." width="560"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e82705" class="mediaobject"><p><img src="../../examples/driving/win64/GenerateUltrasonicDetectionsOfMultipleVehiclesExample_04.png" width="560"/></p>
+</div>
+</div>
+<p> </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-GenerateUltrasonicDetectionsOfMultipleVehiclesExample"/>
+<meta itemprop="exampletitle" content="Generate Ultrasonic Detections of Multiple Vehicles"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_60cc58e0-0c67-48a4-9aae-0aa5966d4bed">输入参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_60cc58e0-0c67-48a4-9aae-0aa5966d4bed_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_c03703b7-2297-4b65-b50e-a35ed288c132"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c03703b7-2297-4b65-b50e-a35ed288c132" data-target="#expand_panel_body_mw_c03703b7-2297-4b65-b50e-a35ed288c132" aria-controls="expand_panel_body_mw_c03703b7-2297-4b65-b50e-a35ed288c132" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_rangeDetPlotter" class="anchor_target"></span><h3 class="panel-title" id="mw_c03703b7-2297-4b65-b50e-a35ed288c132"><code itemprop="name">rangeDetPlotter</code> — <span itemprop="purpose">Range detection plotter</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">rangeDetectionPlotter</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c03703b7-2297-4b65-b50e-a35ed288c132" aria-labelledby="expand_panel_heading_mw_c03703b7-2297-4b65-b50e-a35ed288c132" class="panel-collapse collapse in"><div class="panel-body">
+          <p>Range detection plotter, 是一个 <code class="object">rangeDetectionPlotter</code> 对象，用于绘制范围检测结果。该对象存储在 <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> 对象的 <code class="property">Plotters</code> 属性中，并配置在鸟瞰图中显示指定的检测结果。要创建此对象，请使用 <a href="birdseyeplot.rangedetectionplotter.html"><code class="function">rangeDetectionPlotter</code></a> 函数。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_74a01812-0a47-436a-9430-30d3799fc918"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_74a01812-0a47-436a-9430-30d3799fc918" data-target="#expand_panel_body_mw_74a01812-0a47-436a-9430-30d3799fc918" aria-controls="expand_panel_body_mw_74a01812-0a47-436a-9430-30d3799fc918" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_ranges" class="anchor_target"></span><h3 class="panel-title" id="mw_74a01812-0a47-436a-9430-30d3799fc918"><code itemprop="name">ranges</code> — <span itemprop="purpose">Range values of detected objects</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">1-by-<em class="varname">M</em> real-valued vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_74a01812-0a47-436a-9430-30d3799fc918" aria-labelledby="expand_panel_heading_mw_74a01812-0a47-436a-9430-30d3799fc918" class="panel-collapse collapse in"><div class="panel-body">
+          <p>检测到的对象的范围值，指定为一个大小为1×<em class="varname">M</em>的实数向量。这里的<em class="varname">M</em>是检测到的对象的数量。每个范围值表示传感器到检测到的对象在车辆坐标系中的距离。范围值被绘制为弧形，其半径为相应的范围值，弧长与传感器的方位视场角值成比例。单位为米。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_d8f231c8-5dc3-4f8c-b4a2-93a7e83afe7c"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_d8f231c8-5dc3-4f8c-b4a2-93a7e83afe7c" data-target="#expand_panel_body_mw_d8f231c8-5dc3-4f8c-b4a2-93a7e83afe7c" aria-controls="expand_panel_body_mw_d8f231c8-5dc3-4f8c-b4a2-93a7e83afe7c" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_fovs" class="anchor_target"></span><h3 class="panel-title" id="mw_d8f231c8-5dc3-4f8c-b4a2-93a7e83afe7c"><code itemprop="name">fovs</code> — <span itemprop="purpose">Azimuthal fields of view of sensors</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">360</code></span> (default) | <span itemprop="inputvalue">1-by-<em class="varname">M</em> real-valued vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_d8f231c8-5dc3-4f8c-b4a2-93a7e83afe7c" aria-labelledby="expand_panel_heading_mw_d8f231c8-5dc3-4f8c-b4a2-93a7e83afe7c" class="panel-collapse collapse in"><div class="panel-body">
+          <p>传感器的方位视场角，指定为一个大小为1×<em class="varname">M</em>的实数向量。每个元素表示测量对应 <code class="argument"><a href="#mw_74a01812-0a47-436a-9430-30d3799fc918" class="intrnllnk">ranges</a></code> 值的传感器的方位视场角。单位为度。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_4e2b1185-51ee-42b1-8b4d-47472b045009"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4e2b1185-51ee-42b1-8b4d-47472b045009" data-target="#expand_panel_body_mw_4e2b1185-51ee-42b1-8b4d-47472b045009" aria-controls="expand_panel_body_mw_4e2b1185-51ee-42b1-8b4d-47472b045009" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_locations" class="anchor_target"></span><h3 class="panel-title" id="mw_4e2b1185-51ee-42b1-8b4d-47472b045009"><code itemprop="name">locations</code> — <span itemprop="purpose">Mounting locations of sensors</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[0 0 0]</code></span> (default) | <span itemprop="inputvalue"><em class="varname">M</em>-by-3 real-valued matrix</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4e2b1185-51ee-42b1-8b4d-47472b045009" aria-labelledby="expand_panel_heading_mw_4e2b1185-51ee-42b1-8b4d-47472b045009" class="panel-collapse collapse in"><div class="panel-body">
+          <p>传感器的安装位置，指定为一个大小为<em class="varname">M</em>×3的实数矩阵。每一行表示测量对应 <a href="#mw_74a01812-0a47-436a-9430-30d3799fc918" class="intrnllnk"><code class="argument">ranges</code></a>值的传感器的安装位置，形式为 [<em class="varname">x</em> <em class="varname">y</em> <em class="varname">z</em>]。单位为米。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_21c74800-9289-48ff-9de3-8f6c146c8538"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_21c74800-9289-48ff-9de3-8f6c146c8538" data-target="#expand_panel_body_mw_21c74800-9289-48ff-9de3-8f6c146c8538" aria-controls="expand_panel_body_mw_21c74800-9289-48ff-9de3-8f6c146c8538" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_angles" class="anchor_target"></span><h3 class="panel-title" id="mw_21c74800-9289-48ff-9de3-8f6c146c8538"><code itemprop="name">angles</code> — <span itemprop="purpose">Mounting angles of sensors</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[0 0 0]</code></span> (default) | <span itemprop="inputvalue"><em class="varname">M</em>-by-3 real-valued matrix</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_21c74800-9289-48ff-9de3-8f6c146c8538" aria-labelledby="expand_panel_heading_mw_21c74800-9289-48ff-9de3-8f6c146c8538" class="panel-collapse collapse in"><div class="panel-body">
+          <p>传感器的安装角度，指定为一个大小为M×3的实数矩阵。每一行表示测量对应 <a href="#mw_74a01812-0a47-436a-9430-30d3799fc918" class="intrnllnk"><code class="argument">ranges</code></a>值的传感器的安装角度，形式为 [<em class="varname">z</em><sub>yaw</sub> <em class="varname">y</em><sub>pitch</sub> <em class="varname">x</em><sub>roll</sub>] 。单位为度。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_baf27a87-a4eb-4fcb-bd44-ce75a94efafc"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_baf27a87-a4eb-4fcb-bd44-ce75a94efafc" data-target="#expand_panel_body_mw_baf27a87-a4eb-4fcb-bd44-ce75a94efafc" aria-controls="expand_panel_body_mw_baf27a87-a4eb-4fcb-bd44-ce75a94efafc" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_labels" class="anchor_target"></span><h3 class="panel-title" id="mw_baf27a87-a4eb-4fcb-bd44-ce75a94efafc"><code itemprop="name">labels</code> — <span itemprop="purpose">Detection labels</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><em class="varname">M</em>-element string array</span> | <span itemprop="inputvalue"><em class="varname">M</em>-element cell array of character vectors</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_baf27a87-a4eb-4fcb-bd44-ce75a94efafc" aria-labelledby="expand_panel_heading_mw_baf27a87-a4eb-4fcb-bd44-ce75a94efafc" class="panel-collapse collapse in"><div class="panel-body">
+          <p>检测标签，指定为大小为<em class="varname">M</em>的字符串数组或<em class="varname">M</em>个元素的字符向量的单元数组。<em class="varname">M</em>是检测到的对象的数量。这些标签对应于 <a href="#mw_74a01812-0a47-436a-9430-30d3799fc918" class="intrnllnk"><code class="argument">ranges</code></a> 向量中的位置。默认情况下，检测结果没有标签。要删除与检测绘图器关联的所有注释和标签，请使用 <a href="birdseyeplot.cleardata.html"><code class="function">clearData</code></a> 函数。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb_vh">Version History</h2>
+<p><strong>Introduced in R2022a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_976e6543-9c5e-4f9b-ad7a-9d00f03407eb_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.rangedetectionplotter.html"><span itemprop="name"><code class="function">rangeDetectionPlotter</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="ultrasonicdetectiongenerator-system-object.html"><span itemprop="name"><code class="sysobj">ultrasonicDetectionGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="birdseyeplot.html"><span itemprop="name"><code class="object">birdsEyePlot</code></span></a></span></p>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

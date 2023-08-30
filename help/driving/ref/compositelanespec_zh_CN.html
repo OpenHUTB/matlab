@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>compositeLaneSpec</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:compositeLaneSpec"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:compositeLaneSpec"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:compositeLaneSpec"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The compositeLaneSpec object combines an array of lanespec objects to create a road with multiple road segments that have different lane specifications."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas">compositeLaneSpec</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e116833" class="intrnllnk">Description</a></li>
+<li><a href="#mw_37068dc7-ccd1-4ab6-8eb5-138bd1bcfd16" class="intrnllnk">Creation</a><ul class="nav"><li><a href="#mw_1659469b-8f5f-43b2-a433-0b23248a7e44" class="intrnllnk">Description</a></li>
+</ul></li>
+<li><a href="#mw_fa2e8f70-819a-4494-bcc0-529ef1b4a9cd" class="intrnllnk">Properties</a><ul class="nav"><li><a href="#mw_67d24aa6-7a8e-4fa6-89d2-8a53c66ca9b8" class="intrnllnk">LaneSpecification</a></li>
+<li><a href="#mw_7b2653ad-c1c3-4216-9b84-51008d698e76" class="intrnllnk">SegmentRange</a></li>
+<li><a href="#mw_14a22a91-9c9e-404e-923a-e59c5b77e029" class="intrnllnk">Connector</a></li>
+</ul></li>
+<li><a href="#mw_aaab61fe-5f44-403c-a432-d5f2cc2928f5" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_8227c2c1-6acf-4340-ad5e-6045e8674863" class="intrnllnk">Drop Right Lane from Two-Way Road</a></li>
+</ul><ul class="nav"><li><a href="#mw_efb6c06b-8e05-4e72-ba84-a3ed4decdbdd" class="intrnllnk">Add Lane to One-Way Road</a></li>
+</ul><ul class="nav"><li><a href="#mw_e72b2e10-0476-4645-a54b-3d6659e1f6d6" class="intrnllnk">Vary Lane Width Along Curve</a></li>
+</ul></li>
+<li><a href="#mw_b963f024-077f-4f46-b09a-3e34bb515ff0" class="intrnllnk">Limitations</a></li>
+<li><a href="#mw_577780dd-7964-4035-ba10-d41717b50150" class="intrnllnk">More About</a><ul class="nav"><li><a href="#mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_5dec0b7e-55ed-4f4e-82b4-768690f4d838" class="intrnllnk">Draw Direction of Road and Numbering of Lanes</a></li>
+</ul><ul class="nav"><li><a href="#mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_e3429c70-d292-47fb-be97-cc5f3cb7695b" class="intrnllnk">Composite Lane Specification</a></li>
+</ul><ul class="nav"><li><a href="#mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_dd6b0e88-4958-4489-9cb6-14471ab69d20" class="intrnllnk">Lane Specifications</a></li>
+</ul></li>
+<li><a href="#mw_2a633d1a-c757-4484-adf8-b4650cafa435_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_2a633d1a-c757-4484-adf8-b4650cafa435_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="object_ref"><span id="mw_2a633d1a-c757-4484-adf8-b4650cafa435" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title">compositeLaneSpec</h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">为道路创建多个车道规格</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div class="refsummary" itemprop="content"><h2 id="d124e116833">描述</h2>
+    <div class="shortsummary"><p><code class="object">compositeLaneSpec</code> 对象将一组 <a href="lanespec.html"><code class="object">lanespec</code></a> 对象组合在一起，以创建具有不同车道规格的多个道路段的道路。</p>
+</div>
+  </div>
+<div id="mw_37068dc7-ccd1-4ab6-8eb5-138bd1bcfd16_div" class="ref_sect createobject"><h2 id="mw_37068dc7-ccd1-4ab6-8eb5-138bd1bcfd16">创建</h2>
+<p>要定义复合车道规格，请按照以下步骤进行操作：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>创建一个 <a href="lanespec.html"><code class="object">lanespec</code></a> 对象的数组。<code class="object">lanespec</code> 对象的数量定义了道路中的道路段数。每个 <code class="object">lanespec</code> 对象包含一个道路段的车道规格。</p></li>
+<li><p>创建一个复合车道规格对象 <code class="object">compositeLaneSpec</code>，使用以下语法之一将车道规格组合在一起。默认情况下，函数假设每个道路段的范围相等。</p></li>
+<li><p>若要为每个道路段设置不同的范围，请使用 <code class="object">compositeLaneSpec</code> 对象的 <code class="property">SegmentRange</code> 属性。 </p></li>
+<li><p>若要定义两个道路段之间的连接，请使用 <code class="object">compositeLanespec</code> 对象的 <code class="property">Connector</code> 属性。</p></li>
+<li><p>使用 <a href="drivingscenario.road.html"><code class="function">road</code></a> 函数将 <code class="object">compositeLaneSpec</code> 对象添加到驾驶场景中。</p></li>
+</ol>
+</div>
+<p>
+</p>
+<span id="mw_3c39a130-90ea-4b70-a155-036276c76c02" class="anchor_target"></span><div class="ref_sect"><h3 id="mw_3c39a130-90ea-4b70-a155-036276c76c02">语法</h3>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e116892" class="intrnllnk">clspec = compositeLaneSpec(lsArray)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e116920" class="intrnllnk">clspec = compositeLaneSpec(lsArray,Name,Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="mw_1659469b-8f5f-43b2-a433-0b23248a7e44_div" class="refsect2 description"><h3 id="mw_1659469b-8f5f-43b2-a433-0b23248a7e44">描述</h3>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="compositelanespec.html#mw_8227c2c1-6acf-4340-ad5e-6045e8674863" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e116892" itemprop="syntax"><code class="synopsis"><code class="argument">clspec</code> = compositeLaneSpec(<code class="argument">lsArray</code>)</code></span>
+使用车道规格对象数组 <code class="argument">lsArray</code> 创建一个道路的复合车道规格。</p>
+<p>例如，创建一个复合车道规格对象 <span style="font-family: monospace;">compositeLaneSpec</span>，将两个道路段的车道规格组合在一起。其中一个道路段有两个车道，另一个道路段有三个车道。</p>
+<div class="code_responsive"><pre class="programlisting">lsArray = [lanespec(2) lanespec(3)];
+clspec = compositeLaneSpec(lsArray);</pre>
+</div>
+对于道路的车道和道路段的编号顺序取决于道路的方向。有关更多详细信息，请参阅 <a href="compositelanespec.html#mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_5dec0b7e-55ed-4f4e-82b4-768690f4d838" class="intrnllnk">Draw Direction of Road and Numbering of Lanes</a> 和 <a href="compositelanespec.html#mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_e3429c70-d292-47fb-be97-cc5f3cb7695b" class="intrnllnk">Composite Lane Specification</a>。<p></p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="compositelanespec.html#mw_efb6c06b-8e05-4e72-ba84-a3ed4decdbdd" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e116920" itemprop="syntax"><code class="synopsis"><code class="argument">clspec</code> = compositeLaneSpec(<code class="argument">lsArray</code>,<code class="argument">Name,Value</code>)</code></span>
+使用一个或多个名称-值参数设置属性。例如，<code class="literal">'SegmentRange',[0.6 0.4]</code> 指定了两个道路段的归一化范围分别为 <code class="literal">0.6</code> 和 <code class="literal">0.4</code>。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_fa2e8f70-819a-4494-bcc0-529ef1b4a9cd">属性</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_fa2e8f70-819a-4494-bcc0-529ef1b4a9cd_panel-group" role="tablist" aria-multiselectable="true"><div itemscope="" class="ref_sect" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntityGroup" itemprop="refentitygroup">
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_67d24aa6-7a8e-4fa6-89d2-8a53c66ca9b8"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_67d24aa6-7a8e-4fa6-89d2-8a53c66ca9b8" data-target="#expand_panel_body_mw_67d24aa6-7a8e-4fa6-89d2-8a53c66ca9b8" aria-controls="expand_panel_body_mw_67d24aa6-7a8e-4fa6-89d2-8a53c66ca9b8" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_LaneSpecification" class="anchor_target"></span><h3 class="panel-title" id="mw_67d24aa6-7a8e-4fa6-89d2-8a53c66ca9b8"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:compositeLaneSpec.LaneSpecification"/><code itemprop="name" id="propname_LaneSpecification">LaneSpecification</code></span> — <span itemprop="purpose">Lane specifications of road segments</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">1-by-<em class="varname">N</em> array of <code class="literal">lanespec</code> objects</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_67d24aa6-7a8e-4fa6-89d2-8a53c66ca9b8" aria-labelledby="expand_panel_heading_mw_67d24aa6-7a8e-4fa6-89d2-8a53c66ca9b8" class="panel-collapse collapse"><div class="panel-body"><p>该属性是只读的。</p>
+          <p>道路段的车道规格，以1x<em class="varname">N</em>的 <a href="lanespec.html"><code class="object">lanespec</code></a> 对象数组形式指定。<em class="varname">N</em>是车道规格的数量。要创建具有多个车道规格的道路，您必须指定至少两个 <code class="object">lanespec</code> 对象。每个 <code class="object">lanespec</code> 对象代表一个独立的道路段。因此，<code class="object">lanespec</code> 对象的数量定义了道路中的道路段数量。</p>
+          <p>您必须在创建对象时使用 <code class="argument">lsArray</code> 输入参数来设置此属性。要创建车道规格对象，请使用 <a href="lanespec.html"><code class="function">lanespec</code></a> 函数。</p>
+          <p class="description_valueexample"><strong>Example: </strong><code class="literal">[lanespec(2) lanespec(3)]</code> 定义了一个具有两个道路段的道路的车道规格。第一个道路段有两个车道，第二个道路段有三个车道。</p>
+        </div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_7b2653ad-c1c3-4216-9b84-51008d698e76"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7b2653ad-c1c3-4216-9b84-51008d698e76" data-target="#expand_panel_body_mw_7b2653ad-c1c3-4216-9b84-51008d698e76" aria-controls="expand_panel_body_mw_7b2653ad-c1c3-4216-9b84-51008d698e76" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_SegmentRange" class="anchor_target"></span><h3 class="panel-title" id="mw_7b2653ad-c1c3-4216-9b84-51008d698e76"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:compositeLaneSpec.SegmentRange"/><code itemprop="name" id="propname_SegmentRange">SegmentRange</code></span> — <span itemprop="purpose">Range of each road segment</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue"><em class="varname">N</em>-element numeric vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_7b2653ad-c1c3-4216-9b84-51008d698e76" aria-labelledby="expand_panel_heading_mw_7b2653ad-c1c3-4216-9b84-51008d698e76" class="panel-collapse collapse"><div class="panel-body">
+          <p>每个道路段的范围，以具有标准化值的<em class="varname">N</em>元数值向量表示，范围为 (0, 1)。<em class="varname">N</em>是 <code class="property">LaneSpecification</code> 属性中的 <code class="object">lanespec</code> 对象数量。向量的元素之和必须等于 <code class="literal">1</code>。</p>
+          <p>每个道路段的默认范围值是 1/<em class="varname">N</em>。例如，如果 <code class="property">LaneSpecification</code> 属性定义了两个道路段的车道规格，则每个道路段的默认范围值为 <code class="literal">1/2</code>，即 <code class="literal">SegmentRange = [0.5 0.5]</code>。</p>
+          <p class="description_valueexample"><strong>Example: </strong><code class="literal">[0.4 0.3 0.3]</code></p>
+        <p class="datatypelist"><strong>Data Types: </strong><code>single</code> | <code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_14a22a91-9c9e-404e-923a-e59c5b77e029"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_14a22a91-9c9e-404e-923a-e59c5b77e029" data-target="#expand_panel_body_mw_14a22a91-9c9e-404e-923a-e59c5b77e029" aria-controls="expand_panel_body_mw_14a22a91-9c9e-404e-923a-e59c5b77e029" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Connector" class="anchor_target"></span><h3 class="panel-title" id="mw_14a22a91-9c9e-404e-923a-e59c5b77e029"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:compositeLaneSpec.Connector"/><code itemprop="name" id="propname_Connector">Connector</code></span> — <span itemprop="purpose">Road segment connectors</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue"><code class="literal">laneSpecConnector</code> object</span> | <span itemprop="inputvalue">1-by-<em class="varname">M</em> array of <code class="literal">laneSpecConnector</code>
+            objects</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_14a22a91-9c9e-404e-923a-e59c5b77e029" aria-labelledby="expand_panel_heading_mw_14a22a91-9c9e-404e-923a-e59c5b77e029" class="panel-collapse collapse"><div class="panel-body">
+          <p>道路段连接器，指定为 <a href="lanespecconnector.html"><code class="object">laneSpecConnector</code></a> 对象或1xM的 <code class="object">laneSpecConnector</code> 对象数组。<em class="varname">M</em> 是道路段连接器的数量。对于具有<em class="varname">N</em>个段的道路，<em class="varname">M</em> = <em class="varname">N</em> – 1。当指定为单个对象时，相同的规格适用于道路的所有<em class="varname">M</em>个连接器。</p>
+          <p><code class="object">laneSpecConnector</code> 对象指定了连接一对道路段的属性。您可以将这些属性作为名称-值参数指定给 <code class="object">laneSpecConnector</code> 创建函数。</p>
+<div class="itemizedlist"><ul><li><p><code class="argument">TaperShape</code> — 将连接两个道路段的锥度形状指定为<code class="literal">'Linear'</code> 或 <code class="literal">'None'</code>。当您希望在道路段之间增加或减少车道时进行阶跃变化时，指定为 <code class="literal">'None'</code>。<code class="argument">TaperShape</code> 的默认值为 <code class="literal">'Linear'</code>。</p></li>
+<li><p><code class="argument">TaperLength</code> — 指定锥度的长度，单位为米。<code class="argument">TaperLength</code> 的默认值为 <code class="literal">241</code> 米或包含锥度的道路段长度的 <code class="literal">75</code> ％中较小的值。</p></li>
+<li><p><code class="argument">Position</code> — 指定从哪一侧的道路添加或删除车道。您可以将连接器位置指定为 <code class="literal">'Right'</code>, <code class="literal">'Left'</code> 或 <code class="literal">'Both'</code>。</p></li>
+</ul>
+</div>
+<p>
+</p>
+          <p class="description_valueexample"><strong>Example: </strong><code class="literal">[laneSpecConnector('Position','Left')
+              laneSpecConnector('TaperLength',20)]</code></p>
+          <div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>注意</strong></p>
+<div class="itemizedlist"><ul><li><p>锥度是在配对中较低编号的道路段的一部分。有关对道路段进行编号的顺序的更多信息，请参阅 <a href="compositelanespec.html#mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_e3429c70-d292-47fb-be97-cc5f3cb7695b" class="intrnllnk">Composite Lane Specification</a>。</p></li>
+<li><p>道路段连接器规格必须符合车道规格和段范围值。否则，该函数将使用有效值重置连接器规格。例如，如果您指定的 <code class="argument">TaperLength</code> 大于相应道路段的长度，该函数将使用相应道路段长度的 <code class="literal">75</code> %来重置锥度长度。</p></li>
+</ul>
+</div>
+</div>
+        </div>
+</div>
+</div>
+</div>
+    </div>
+</div>
+</div>
+</div>
+<div class="examples"><h2 id="mw_aaab61fe-5f44-403c-a432-d5f2cc2928f5">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_8227c2c1-6acf-4340-ad5e-6045e8674863"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8227c2c1-6acf-4340-ad5e-6045e8674863" data-target="#expand_panel_body_mw_8227c2c1-6acf-4340-ad5e-6045e8674863" aria-controls="expand_panel_body_mw_8227c2c1-6acf-4340-ad5e-6045e8674863" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_8227c2c1-6acf-4340-ad5e-6045e8674863">从双向道路中去除右侧车道<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8227c2c1-6acf-4340-ad5e-6045e8674863" aria-labelledby="expand_panel_heading_mw_8227c2c1-6acf-4340-ad5e-6045e8674863" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/DropRightLaneFromTwoWayRoadExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Drop Right Lane from Two-Way Road",
+          "description": "Create a driving scenario with merging traffic. The road in the driving scenario has two lane specifications and the traffic merges to the left as the right lane ends.",
+          "thumbnailURL": "../../examples/driving/win64/DropRightLaneFromTwoWayRoadExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "compositelanespec.html"
+
+        },
+          "identifier": "driving.DropRightLaneFromTwoWayRoadExample",
+          "name": "DropRightLaneFromTwoWayRoadExample",
+          "url": "compositelanespec.html#mw_8227c2c1-6acf-4340-ad5e-6045e8674863"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/DropRightLaneFromTwoWayRoadExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "DropRightLaneFromTwoWayRoadExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">创建一个具有合并交通的驾驶场景。驾驶场景中的道路具有两个车道规格，并且交通在右侧车道结束时向左合并。</p>
+<div class="procedure"><span id="DropRightLaneFromTwoWayRoadExample-1" class="anchor_target"></span><p class="title" id="DropRightLaneFromTwoWayRoadExample-1"><b>创建具有两个车道规格的道路</b></p>
+<p>创建一个驾驶场景。指定道路中心以从底部到顶部的绘制方向。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario(<span style="color:#A020F0">'StopTime'</span>,5);
+roadCenters = [0 20; 100 20];</pre>
+</div>
+</div>
+</div>
+<p>为一对双向道路段定义车道规格。第一个道路段有五条车道，第二个道路段有四条车道。请注意，第二个车道规格中的最右边车道被删除。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ls1 = lanespec([2 3],<span style="color:#A020F0">'Width'</span>,4);
+ls2 = lanespec([2 2],<span style="color:#A020F0">'Width'</span>,4);
+lsArray = [ls1 ls2];</pre>
+</div>
+</div>
+</div>
+<p>创建一个复合车道规格对象，并将道路添加到驾驶场景中。复合车道规格对象确定了车道从 <code class="literal">lsArray</code> 输入参数中的哪个位置开始减少。该对象默认为线性锥度形状，锥度长度为第一个道路段长度的75%。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clspec = compositeLaneSpec(lsArray);
+road(scenario,roadCenters,<span style="color:#A020F0">'Lanes'</span>,clspec);</pre>
+</div>
+</div>
+</div>
+<p>绘制驾驶场景。场景按照道路的绘制方向，从底部到顶部呈现道路段。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figMark = figure;
+set(figMark,<span style="color:#A020F0">'Position'</span>,[0 0 600 600])
+hPlot = axes(figMark);
+plot(scenario,<span style="color:#A020F0">'Parent'</span>,hPlot)
+title(<span style="color:#A020F0">'Two-way Road Dropping Rightmost Lane'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e117469" class="mediaobject"><p><img src="../../examples/driving/win64/DropRightLaneFromTwoWayRoadExample_01.png" alt="Figure contains an axes object. The axes object with title Two-way Road Dropping Rightmost Lane contains 3 objects of type patch, line." width="600"/></p>
+</div>
+</div>
+<span id="DropRightLaneFromTwoWayRoadExample-2" class="anchor_target"></span><p class="title" id="DropRightLaneFromTwoWayRoadExample-2"><b>仿真车辆变道</b></p>
+<p>在场景中添加一个自车。指定航点和一个恒定的速度值，以设置自车沿着中间前进车道的轨迹。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>egoVehicle = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1,<span style="color:#A020F0">'Position'</span>,[2 16 0]);
+waypoints = [2 16; 20 16; 95 16];
+speed = 30;
+smoothTrajectory(egoVehicle,waypoints,speed)</pre>
+</div>
+</div>
+</div>
+<p>在场景中添加另一辆车辆。设置该车辆的轨迹，使其在最右车道行驶，然后在车道结束之前合并到左侧车道。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>car = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1,<span style="color:#A020F0">'Position'</span>,[2 12 0]);
+waypoints = [2 12; 12 12; 30 14; 42 16; 58 16; 85 16];
+speed = 20;
+smoothTrajectory(car,waypoints,speed)</pre>
+</div>
+</div>
+</div>
+<p>创建一个自定义的图形窗口并绘制场景。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close <span style="color:#A020F0">all</span>
+figScene = figure;
+set(figScene,<span style="color:#A020F0">'Position'</span>,[0 0 600 600])
+hPanel = uipanel(figScene);
+hPlot = axes(hPanel);
+plot(scenario,<span style="color:#A020F0">'Waypoints'</span>,<span style="color:#A020F0">'on'</span>,<span style="color:#A020F0">'Parent'</span>,hPlot)
+title(<span style="color:#A020F0">'Merge Left as Right Lane Ends'</span>)
+
+<span style="color:#0000FF">while</span> advance(scenario)
+    pause(0.01)
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e117485" class="mediaobject"><p><img src="../../examples/driving/win64/DropRightLaneFromTwoWayRoadExample_02.png" alt="{&quot;String&quot;:&quot;Figure contains an axes object and an object of type uipanel. The axes object with title Merge Left as Right Lane Ends contains 9 objects of type patch, line.&quot;,&quot;Tex&quot;:&quot;Merge Left as Right Lane Ends&quot;,&quot;LaTex&quot;:[]}" width="600"/></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-DropRightLaneFromTwoWayRoadExample"/>
+<meta itemprop="exampletitle" content="Drop Right Lane from TwoWay Road"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_efb6c06b-8e05-4e72-ba84-a3ed4decdbdd"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_efb6c06b-8e05-4e72-ba84-a3ed4decdbdd" data-target="#expand_panel_body_mw_efb6c06b-8e05-4e72-ba84-a3ed4decdbdd" aria-controls="expand_panel_body_mw_efb6c06b-8e05-4e72-ba84-a3ed4decdbdd" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_efb6c06b-8e05-4e72-ba84-a3ed4decdbdd">在单行道上添加车道<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_efb6c06b-8e05-4e72-ba84-a3ed4decdbdd" aria-labelledby="expand_panel_heading_mw_efb6c06b-8e05-4e72-ba84-a3ed4decdbdd" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/AddLaneToOneWayRoadExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Add Lane to One-Way Road",
+          "description": "Create a road with multiple lane specifications and add one lane to the left of a one-way road.",
+          "thumbnailURL": "../../examples/driving/win64/AddLaneToOneWayRoadExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "compositelanespec.html"
+
+        },
+          "identifier": "driving.AddLaneToOneWayRoadExample",
+          "name": "AddLaneToOneWayRoadExample",
+          "url": "compositelanespec.html#mw_efb6c06b-8e05-4e72-ba84-a3ed4decdbdd"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/AddLaneToOneWayRoadExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "AddLaneToOneWayRoadExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">创建一个具有多个车道规格的道路，并在单行道的左侧添加一个车道。</p>
+<p>创建一个驾驶场景。指定 100 米直道路的道路中心，绘制方向从左到右。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadCenters = [20 100; 20 0];</pre>
+</div>
+</div>
+</div>
+<p>为两个单行道段定义一个车道规格的数组。第一个道路段有两个车道，第二个道路段有三个车道。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lsArray = [lanespec(2) lanespec(3)];</pre>
+</div>
+</div>
+</div>
+<p>定义一个道路段连接器对象。为了在第二个道路段的左侧添加第三条车道，指定位置属性。指定一个小于第一个道路段长度的锥度长度。由于默认情况下，总道路长度为100米，将在指定的道路段之间平均分配，所以两个道路段的长度都为50米。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lc = laneSpecConnector(<span style="color:#A020F0">'Position'</span>,<span style="color:#A020F0">'Left'</span>,<span style="color:#A020F0">'TaperLength'</span>,30);</pre>
+</div>
+</div>
+</div>
+<p>创建一个复合车道规格对象。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clspec = compositeLaneSpec(lsArray,<span style="color:#A020F0">'Connector'</span>,lc);</pre>
+</div>
+</div>
+</div>
+<p>在驾驶场景中添加一条道路并显示道路。场景按照道路的绘制方向，从左到右渲染道路段。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>road(scenario,roadCenters,<span style="color:#A020F0">'Lanes'</span>,clspec);
+plot(scenario)
+title(<span style="color:#A020F0">'Road with Multiple Lane Specifications'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e117526" class="mediaobject"><p><img src="../../examples/driving/win64/AddLaneToOneWayRoadExample_01.png" alt="Figure contains an axes object. The axes object with title Road with Multiple Lane Specifications contains 3 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-AddLaneToOneWayRoadExample"/>
+<meta itemprop="exampletitle" content="Add Lane to OneWay Road"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_e72b2e10-0476-4645-a54b-3d6659e1f6d6"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e72b2e10-0476-4645-a54b-3d6659e1f6d6" data-target="#expand_panel_body_mw_e72b2e10-0476-4645-a54b-3d6659e1f6d6" aria-controls="expand_panel_body_mw_e72b2e10-0476-4645-a54b-3d6659e1f6d6" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_e72b2e10-0476-4645-a54b-3d6659e1f6d6">在曲线上变化车道宽度<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e72b2e10-0476-4645-a54b-3d6659e1f6d6" aria-labelledby="expand_panel_heading_mw_e72b2e10-0476-4645-a54b-3d6659e1f6d6" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/VaryLaneWidthAlongCurveExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Vary Lane Width Along Curve",
+          "description": "Create an empty driving scenario. Specify the road centers for a curved road.",
+          "thumbnailURL": "../../examples/driving/win64/VaryLaneWidthAlongCurveExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "compositelanespec.html"
+
+        },
+          "identifier": "driving.VaryLaneWidthAlongCurveExample",
+          "name": "VaryLaneWidthAlongCurveExample",
+          "url": "compositelanespec.html#mw_e72b2e10-0476-4645-a54b-3d6659e1f6d6"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/VaryLaneWidthAlongCurveExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "VaryLaneWidthAlongCurveExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">创建一个空的驾驶场景。指定曲线道路的道路中心。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+roadCenters = [-20 22; 0 22; 18.8 15.8; 22 0; 22 -20];</pre>
+</div>
+</div>
+</div>
+<p>为三个双向道路段定义车道规格。请注意，所有的道路段都有相同数量的车道。然而，第二个道路段的车道宽度较大（4.6米），以便在曲线上拓宽道路。其他两个道路段的车道宽度为默认值3.6米。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lsArray = [lanespec([1 1]) lanespec([1 1],<span style="color:#A020F0">'Width'</span>,4.6) lanespec([1 1])];</pre>
+</div>
+</div>
+</div>
+<p>为每个道路段定义标准化长度。请注意，标准化长度的总和为 <code class="literal">1</code>，并且向量的长度与车道规格对象的数量相匹配。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>range = [0.25 0.65 0.1];</pre>
+</div>
+</div>
+</div>
+<p>创建一个道路段连接器对象。由于相同的规格适用于三个道路段的两个连接器，只需创建一个 <code class="literal">laneSpecConnector</code> 对象。由于既不增加也不减少车道，不需要定义道路段连接器的位置属性。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lc = laneSpecConnector(<span style="color:#A020F0">'TaperLength'</span>,14);</pre>
+</div>
+</div>
+</div>
+<p>创建一个复合车道规格对象，并将道路添加到驾驶场景中。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clspec = compositeLaneSpec(lsArray,<span style="color:#A020F0">'Connector'</span>,lc,<span style="color:#A020F0">'SegmentRange'</span>,range);
+road(scenario,roadCenters,<span style="color:#A020F0">'Lanes'</span>,clspec);</pre>
+</div>
+</div>
+</div>
+<p>绘制驾驶场景。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario,<span style="color:#A020F0">'RoadCenters'</span>,<span style="color:#A020F0">'on'</span>)
+title(<span style="color:#A020F0">'Lane Widening Along a Curve'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e117576" class="mediaobject"><p><img src="../../examples/driving/win64/VaryLaneWidthAlongCurveExample_01.png" alt="Figure contains an axes object. The axes object with title Lane Widening Along a Curve contains 4 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-VaryLaneWidthAlongCurveExample"/>
+<meta itemprop="exampletitle" content="Vary Lane Width Along Curve"/>
+</div>
+</div>
+</div>
+<div id="mw_b963f024-077f-4f46-b09a-3e34bb515ff0_div" class="refsect1 limitations"><h2 id="mw_b963f024-077f-4f46-b09a-3e34bb515ff0">限制</h2>
+<div class="itemizedlist"><ul><li><p>在从一个道路段过渡到另一个道路段时，车道标线的间距是不一致的。</p></li>
+</ul>
+</div>
+</div>
+<div class="moreabout ref_sect"><h2 id="mw_577780dd-7964-4035-ba10-d41717b50150">更多关于</h2>
+<div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink">expand all</a></p>
+<div class="expand_collapse"><span id="mw_2a633d1a-c757-4484-adf8-b4650cafa435.mw_5dec0b7e-55ed-4f4e-82b4-768690f4d838" class="anchor_target"></span><h3 class="expand_trigger collapsed" id="mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_5dec0b7e-55ed-4f4e-82b4-768690f4d838" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_5dec0b7e-55ed-4f4e-82b4-768690f4d838" aria-controls="expand_body_mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_5dec0b7e-55ed-4f4e-82b4-768690f4d838"><span class="icon-arrow-open-down"></span>绘制道路的行驶方向和车道编号</h3>
+<div id="expand_body_mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_5dec0b7e-55ed-4f4e-82b4-768690f4d838" class="collapsible_content collapse" aria-expanded="false"><p>通过使用 <a href="drivingscenario.road.html"><code class="function">road</code></a> 函数来创建道路，需要将道路中心点指定为矩阵输入。该函数创建一条有向线路，沿着道路中心点遍历，从矩阵的第一行坐标开始，到矩阵的最后一行坐标结束。矩阵的前两行坐标指定了道路的绘制方向。这些坐标对应于连续的前两个道路中心点。绘制方向是道路在场景图中呈现的方向。</p>
+<p>通过使用 <strong class="app"><a href="drivingscenariodesigner-app.html">Driving Scenario Designer</a></strong> 应用程序创建道路时，可以通过指定 <strong class="guilabel">Road Centers</strong> 参数或在 <strong class="guilabel">Scenario Canvas </strong>上进行交互式绘制来实现。详细示例，请参阅 <a href="drivingscenariodesigner-app.html#mw_15f38297-af84-47cf-b403-aaa1649de262" class="a">Create a Driving Scenario</a>。在这种情况下，绘制方向是道路在 <strong class="guilabel">Scenario Canvas</strong> 上呈现的方向。</p>
+<p class="shortdesc">
+      </p>
+<div class="itemizedlist"><ul><li><p>对于绘制方向自上而下的道路，前两个连续道路中心点的<em class="varname">x</em>坐标之差是正数。</p></li>
+<li><p>对于绘制方向自下而上的道路，前两个连续道路中心点的<em class="varname">x</em>坐标之差是负数。</p></li>
+</ul>
+</div>
+<p>
+
+      </p>
+<div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" align="left" width="50%"/>
+<col class="tcol2" align="left" width="50%"/>
+</colgroup>
+<tbody><tr><td>
+                <div class="informalfigure"><div id="d124e117203" class="mediaobject"><p><img src="road_tb.png" alt="Road with top-to-bottom draw direction" height="409" width="395"/></p>
+</div>
+</div>
+              </td>
+<td>
+                <div class="informalfigure"><div id="d124e117211" class="mediaobject"><p><img src="road_bt.png" alt="Road with bottom-to-top draw direction" height="409" width="395"/></p>
+</div>
+</div>
+              </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+
+      </p>
+<div class="itemizedlist"><ul><li><p>对于绘制方向从左到右的道路，前两个连续道路中心点的<em class="varname">y</em>坐标之差是正数。</p></li>
+<li><p>对于绘制方向从右到左的道路，前两个连续道路中心点的<em class="varname">y</em>坐标之差是负数。</p></li>
+</ul>
+</div>
+<p>
+
+      </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<tbody><tr><td>
+                <div class="informalfigure"><div id="d124e117236" class="mediaobject"><p><img src="road_lr.png" alt="Road with left-to-right draw direction" height="409" width="395"/></p>
+</div>
+</div>
+              </td>
+<td>
+                <div class="informalfigure"><div id="d124e117244" class="mediaobject"><p><img src="road_rl.png" alt="Road with right-to-left draw direction" height="409" width="395"/></p>
+</div>
+</div>
+              </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+
+    </p>
+<div id="mw_2a633d1a-c757-4484-adf8-b4650cafa435.mw_2e5b4f20-e34c-4c5f-a99e-3b9a86ca19f3_div" class="refsect3"><strong class="refsect3" id="mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_2e5b4f20-e34c-4c5f-a99e-3b9a86ca19f3">编号车道</strong><p>车道必须从左到右进行编号，其中道路的左边缘是相对于道路的绘制方向定义的。对于单行道，默认情况下，道路的左边缘是一条实心黄线，表示道路在横向方向（与绘制方向垂直的方向）的结束。对于双行道，默认情况下，两侧边缘都用实心白线标记。</p>
+<p>例如，这些图示展示了绘制方向自上而下的单行道和双行道中车道的编号方式。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<tbody><tr><td><strong class="emphasis bold">Numbering Lanes in a One-Way Road</strong></td>
+<td><strong class="emphasis bold">Numbering Lanes in a Two-Way Road</strong></td>
+</tr>
+<tr><td><p>对于单行道，将车道数量指定为正整数。如果将整数值设置为 <code class="literal">3</code>，则该道路有三条在同一方向行驶的车道。车道的编号从道路的左边缘开始。</p>
+<p>分别用<strong class="guilabel">1</strong>, <strong class="guilabel">2</strong>, <strong class="guilabel">3</strong> 表示道路的第一、第二和第三条车道。</p>
+<div class="informalfigure"><div id="d124e117278" class="mediaobject"><p><img src="numbering_1way_roads.png" alt="Lane numbers in one-way road" height="409" width="395"/></p>
+</div>
+</div>
+</td>
+<td><p>对于双向道路，可以将车道数量指定为由两个正整数组成的向量。如果将向量设置为[<code class="literal">1</code> <code class="literal">2</code>]，则该道路有三条车道：两条向同一方向行驶的车道和一条向相反方向行驶的车道。由于绘制方向的原因，该道路有一条左车道和两条右车道。车道从道路的左边缘开始编号。</p>
+<p><strong class="guilabel">1L</strong> 表示道路上唯一的左侧车道。<strong class="guilabel">1R</strong> 和 <strong class="guilabel">2R</strong> 分别表示道路上的第一和第二右侧车道。</p>
+<div class="informalfigure"><div id="d124e117297" class="mediaobject"><p><img src="numbering_2way_roads.png" alt="Lane numbers in two-way road" height="409" width="395"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>车道规格按照车道编号的顺序应用。</p>
+</div>
+</div>
+</div>
+<div class="expand_collapse"><span id="mw_2a633d1a-c757-4484-adf8-b4650cafa435.mw_e3429c70-d292-47fb-be97-cc5f3cb7695b" class="anchor_target"></span><h3 class="expand_trigger collapsed" id="mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_e3429c70-d292-47fb-be97-cc5f3cb7695b" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_e3429c70-d292-47fb-be97-cc5f3cb7695b" aria-controls="expand_body_mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_e3429c70-d292-47fb-be97-cc5f3cb7695b"><span class="icon-arrow-open-down"></span>复合车道规格</h3>
+<div id="expand_body_mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_e3429c70-d292-47fb-be97-cc5f3cb7695b" class="collapsible_content collapse" aria-expanded="false"><p class="shortdesc"><i>复合车道规格</i>由一个包含两个或更多车道规格的数组组成，用于描述单个道路。每个车道规格定义了一个道路段，即具有独立几何属性、规范化范围和渐变的道路部分。</p>
+<p class="shortdesc">每个道路段都是一个有向段，朝着最终的道路中心移动，第一个段从第一个道路中心开始，第二个段从第一个段结束的地方开始，依此类推。每个道路段的范围是一个规范化距离，指定了道路总长度的比例。当一个道路段增加或减少车道时，前一个段会沿着指定的距离逐渐变窄，以适应车道数量的变化。</p>
+<p class="shortdesc">当使用复合车道规格渲染道路时，道路段按照道路的绘制方向进行绘制。例如，考虑一个单行道，有两个道路段，每个道路段的默认规范化范围为0.5。第一个道路段包含四个车道，第二个道路段只包含两个车道。第一个段从四个车道逐渐变窄到两个车道，当它接近道路的中点，即第二个段的起点时，每一侧都减少一个车道。以下示意图展示了道路段的绘制方向以及渐变如何应用于道路，分别针对从左到右和从右到左的绘制方向。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<tbody><tr><td>
+                                <div class="informalfigure"><div id="d124e117321" class="mediaobject"><p><img src="road_segments_lr.png" alt="Road segments within a left-to-right road" height="453" width="447"/></p>
+</div>
+</div>
+                            </td>
+<td>
+                                <div class="informalfigure"><div id="d124e117329" class="mediaobject"><p><img src="road_segments_rl.png" alt="Road segments within a right-to-left road" height="453" width="447"/></p>
+</div>
+</div>
+                            </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<p class="shortdesc">有关车道的几何属性的详细信息，请参阅 <a href="lanemarking.html#mw_7bc98306-273d-49f2-acc1-ed3c3172719e_sep_mw_dd6b0e88-4958-4489-9cb6-14471ab69d20" class="a">Lane Specifications</a>。</p>
+</div>
+</div>
+<div class="expand_collapse"><span id="mw_2a633d1a-c757-4484-adf8-b4650cafa435.mw_dd6b0e88-4958-4489-9cb6-14471ab69d20" class="anchor_target"></span><h3 class="expand_trigger collapsed" id="mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_dd6b0e88-4958-4489-9cb6-14471ab69d20" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_dd6b0e88-4958-4489-9cb6-14471ab69d20" aria-controls="expand_body_mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_dd6b0e88-4958-4489-9cb6-14471ab69d20"><span class="icon-arrow-open-down"></span>车道规格</h3>
+<div id="expand_body_mw_2a633d1a-c757-4484-adf8-b4650cafa435_sep_mw_dd6b0e88-4958-4489-9cb6-14471ab69d20" class="collapsible_content collapse" aria-expanded="false"><p class="shortdesc">这个图示展示了道路、车道和车道标线的组成部分和几何属性。</p>
+<div class="informalfigure"><div id="d124e117343" class="mediaobject"><p><img src="lane_marking_properties.png" alt="Geometric properties of roads, lanes, and lane markings" height="811" width="1088"/></p>
+</div>
+</div>
+<p>车道规格对象（<code class="object">lanespec</code>）定义了道路车道。</p>
+<div class="itemizedlist"><ul><li><p><code class="property">NumLanes</code> 属性指定车道的数量。在创建该对象时，您必须指定车道的数量。 </p></li>
+<li><p><code class="property">Width</code> 属性指定每条车道的宽度。</p></li>
+<li><p><code class="property">Marking</code> 属性包含道路上每个车道标线的规格。<code class="property">Marking</code> 是一个车道标线对象的数组，每个对象对应一条车道。要创建这些对象，请使用 <code class="function">laneMarking</code> 函数。车道标线的规格包括：</p>
+<div class="itemizedlist"><ul><li><p><code class="property">Type</code> — 车道标线的类型 (实线、虚线等)</p></li>
+<li><p><code class="property">Width</code> — 车道标线的宽度</p></li>
+<li><p><code class="property">Color</code> — 车道标线的颜色</p></li>
+<li><p><code class="property">Strength</code> — 车道标线颜色的饱和度值</p></li>
+<li><p><code class="property">Length</code> — 对于虚线车道，每个虚线的长度</p></li>
+<li><p><code class="property">Space</code> — 对于虚线车道，虚线之间的间距</p></li>
+<li><p><code class="property">SegmentRange</code> — 对于复合车道标线，每个标记段的归一化长度</p></li>
+</ul>
+</div><p>
+</p></li>
+<li><p><code class="property">Type</code> 属性包含道路上每条车道的车道类型规格。<code class="property">Type</code> 可以是一个均质的车道类型对象，也可以是一个异质的车道类型数组。</p>
+<div class="itemizedlist"><ul><li><p>均质的车道类型对象包含道路上所有车道的车道类型规格。</p></li>
+<li><p>异质的车道类型数组包含车道类型对象的数组，每个对象对应一条车道。</p></li>
+</ul>
+</div><p>要创建这些对象，请使用 <a href="lanetype.html"><code class="function">laneType</code></a> 函数。车道类型规格包括：</p>
+<div class="itemizedlist"><ul><li><p><code class="property">Type</code> — 车道类型 (行驶车道、边界车道等)</p></li>
+<li><p><code class="property">Color</code> — 车道颜色</p></li>
+<li><p><code class="property">Strength</code> — 车道颜色的强度</p></li>
+</ul>
+</div><p>
+</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_2a633d1a-c757-4484-adf8-b4650cafa435_vh">Version History</h2>
+<p><strong>Introduced in R2021a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_2a633d1a-c757-4484-adf8-b4650cafa435_seealso">See Also</h2>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="lanespecconnector.html"><span itemprop="name"><code class="object">laneSpecConnector</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="lanespec.html"><span itemprop="name"><code class="object">lanespec</code></span></a></span></li>
+</ul>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.road.html"><span itemprop="name"><code class="function">road</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.roadnetwork.html"><span itemprop="name"><code class="function">roadNetwork</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.roadgroup.html"><span itemprop="name"><code class="function">roadGroup</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="lanemarking.html"><span itemprop="name"><code class="function">laneMarking</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="lanetype.html"><span itemprop="name"><code class="function">laneType</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.vehicle.html"><span itemprop="name"><code class="function">vehicle</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.actor.html"><span itemprop="name"><code class="function">actor</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.smoothtrajectory.html"><span itemprop="name"><code class="function">smoothTrajectory</code></span></a></span></li>
+</ul>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/create-roads-with-multiple-lane-specifications-using-driving-scenario-designer.html" class="a">Create Roads with Multiple Lane Specifications Using Driving Scenario Designer</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
