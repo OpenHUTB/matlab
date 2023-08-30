@@ -5,10 +5,10 @@ classdef ScenarioPlayer<handle
         Repeat=false;
         PauseAtSample='end'
 
-
         StopCondition='first';
         StopTime=10;
     end
+
 
     properties(SetAccess=protected)
         IsPlaying=false;
@@ -17,14 +17,17 @@ classdef ScenarioPlayer<handle
         NumSamples=NaN;
     end
 
+
     properties(Access=protected)
         Timer;
     end
 
+
     events(NotifyAccess=protected,ListenAccess=public)
-StateChanged
-SampleChanged
+        StateChanged
+        SampleChanged
     end
+
 
     methods
         function this=ScenarioPlayer(scenario)
@@ -43,6 +46,7 @@ SampleChanged
             end
         end
 
+
         function delete(this)
             t=this.Timer;
             if~isempty(t)&&isvalid(t)
@@ -53,6 +57,7 @@ SampleChanged
             end
         end
 
+
         function stopTime=getStopTime(this)
             if strcmp(this.StopCondition,'time')
                 stopTime=this.StopTime;
@@ -61,9 +66,8 @@ SampleChanged
             end
         end
 
+
         function set.Scenario(this,newScenario)
-
-
             stop(this);
             this.Scenario=newScenario;
 
@@ -73,12 +77,13 @@ SampleChanged
             notify(this,'SampleChanged');
         end
 
-        function clearNumSamples(this)
 
+        function clearNumSamples(this)
             setupScenario(this);
             this.CurrentSample=1;
             notify(this,'StateChanged');
         end
+
 
         function stepForward(this)
             pause(this);
@@ -89,10 +94,7 @@ SampleChanged
                 sample=sample+1;
             end
 
-
-
             setCurrentSample(this,sample);
-
 
             notify(this,'StateChanged');
         end
@@ -108,17 +110,15 @@ SampleChanged
 
             setCurrentSample(this,newSample);
 
-
             notify(this,'StateChanged');
         end
+
 
         function isRunning=setCurrentSample(this,newSample)
             this.CurrentSample=newSample;
             scenario=this.Scenario;
 
-
             newTime=(newSample-1)*scenario.SampleTime;
-
 
             isRunning=move(scenario.Actors,newTime);
 
@@ -127,7 +127,6 @@ SampleChanged
             elseif strcmp(this.StopCondition,'first')
                 isRunning=all(isRunning);
             else
-
                 isRunning=any(isRunning(~arrayfun(@(e)isa(e.MotionStrategy,'driving.scenario.Stationary'),scenario.Actors)));
             end
 
@@ -139,32 +138,26 @@ SampleChanged
                 this.IsPaused=~(newSample==1||newSample==this.NumSamples);
             end
 
-
             notify(this,'SampleChanged');
         end
 
+
         function play(this)
-
-
             if this.IsPlaying
                 return;
             end
             t=this.Timer;
             if isempty(t)||~isvalid(t)
-
-
                 t=timer(...
-                'Tag','ScenarioPlayerSimulationStep',...
-                'ExecutionMode','fixedSpacing',...
-                'TimerFcn',@this.timerTick,...
-                'StopFcn',@this.stopFcn,...
-                'BusyMode','queue',...
-                'Period',0.01,...
-                'ObjectVisibility','off');
+                    'Tag','ScenarioPlayerSimulationStep',...
+                    'ExecutionMode','fixedSpacing',...
+                    'TimerFcn',@this.timerTick,...
+                    'StopFcn',@this.stopFcn,...
+                    'BusyMode','queue',...
+                    'Period',0.01,...
+                    'ObjectVisibility','off');
                 this.Timer=t;
             end
-
-
 
             if this.IsPaused
                 this.IsPaused=false;
@@ -179,6 +172,7 @@ SampleChanged
             end
         end
 
+
         function pause(this)
             this.IsPlaying=false;
             this.IsPaused=true;
@@ -186,15 +180,18 @@ SampleChanged
             stopTimer(this);
         end
 
+
         function stop(this)
             this.IsPlaying=false;
             this.IsPaused=false;
             stopTimer(this);
         end
 
+
         function b=isStopped(this)
             b=~(this.IsPlaying||this.IsPaused&&this.CurrentSample~=1);
         end
+
 
         function reset(this)
             setupScenario(this);
@@ -202,16 +199,17 @@ SampleChanged
             notify(this,'StateChanged');
         end
 
+
         function samples=getNumSamples(this)
-
-
             samples=this.NumSamples;
         end
+
 
         function time=getCurrentTime(this)
             time=this.Scenario.SampleTime*(this.CurrentSample-1);
         end
     end
+
 
     methods(Access=protected)
 
@@ -224,6 +222,7 @@ SampleChanged
             end
         end
 
+
         function stopTimer(this)
             t=this.Timer;
             if isempty(t)||~isvalid(t)||strcmp(t.Running,'off')
@@ -232,12 +231,13 @@ SampleChanged
             stop(t);
         end
 
+
         function stopFcn(this,varargin)
             notify(this,'StateChanged');
         end
 
-        function timerTick(this,varargin)
 
+        function timerTick(this,varargin)
             sample=this.CurrentSample;
 
             if sample==this.NumSamples
@@ -246,37 +246,24 @@ SampleChanged
                 sample=sample+1;
             end
 
-
             isRunning=setCurrentSample(this,sample)&&sample~=this.NumSamples;
-
-
-
 
             if sample==1
                 notify(this,'StateChanged');
             end
             if sample>=getPauseAtSample(this)
                 pause(this);
-            elseif~isRunning
-
-
-
-
+            elseif ~isRunning
                 if sample~=this.NumSamples
                     this.NumSamples=sample;
                 end
 
-
-
-
                 if~this.Repeat
-
-
-
                     stop(this);
                 end
             end
         end
+
 
         function sample=getPauseAtSample(this)
             sample=this.PauseAtSample;
@@ -284,7 +271,6 @@ SampleChanged
                 sample=Inf;
             end
         end
+        
     end
 end
-
-

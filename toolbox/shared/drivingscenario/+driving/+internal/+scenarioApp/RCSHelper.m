@@ -1,10 +1,10 @@
 classdef RCSHelper<handle
 
-
     properties
-        CurrentAzimuthLength=2;
-        CurrentElevationLength=2;
+        CurrentAzimuthLength = 2;
+        CurrentElevationLength = 2;
     end
+
 
     properties(Constant,Hidden)
         Instance=driving.internal.scenarioApp.RCSHelper;
@@ -14,15 +14,18 @@ classdef RCSHelper<handle
         ImportDialog;
     end
 
+
     methods(Access=protected)
         function this=RCSHelper
         end
     end
 
+
     methods
         function dlgName=getImportDialogName(~)
             dlgName=getString(message('driving:scenarioApp:ImportRCSTitle'));
         end
+
 
         function labels=getImportDialogLabels(~)
             labels={...
@@ -31,6 +34,7 @@ classdef RCSHelper<handle
             getString(message('driving:scenarioApp:RCSPatternLabel')),...
             };
         end
+
 
         function validVariables=validateImportVariables(this,index,variables,otherSelections)
             dataTypes={variables.class};
@@ -64,30 +68,25 @@ classdef RCSHelper<handle
         end
     end
 
+
     methods(Static)
         function[azimValue,patternValue]=parseAzimuth(azimString,patternValue)
-
             azimValue=parseVector(azimString);
             if isempty(azimValue)||any(azimValue>180)||any(azimValue<-180)
                 error(message('driving:scenarioApp:BadRCSAzimuthAngles'));
             end
-
             patternValue=driving.internal.scenarioApp.RCSHelper.resizePattern(patternValue,numel(azimValue),[]);
         end
 
         function[elevValue,patternValue]=parseElevation(elevString,patternValue)
-
             elevValue=parseVector(elevString);
             if isempty(elevValue)||any(elevValue>90)||any(elevValue<-90)
                 error(message('driving:scenarioApp:BadRCSElevationAngles'));
             end
-
-
             patternValue=driving.internal.scenarioApp.RCSHelper.resizePattern(patternValue,[],numel(elevValue));
         end
 
         function[pattern,wasResized]=resizePattern(pattern,azLength,elLength)
-
             wasResized=false;
             if~isempty(azLength)
                 nCols=size(pattern,2);
@@ -99,7 +98,6 @@ classdef RCSHelper<handle
                     wasResized=true;
                 end
             end
-
 
             if~isempty(elLength)
                 nRows=size(pattern,1);
@@ -113,9 +111,8 @@ classdef RCSHelper<handle
             end
         end
 
+
         function updateWidgets(azimWidget,elevWidget,patternWidget,spec,enab)
-
-
             set(azimWidget,'Enable',enab,...
             'String',mat2str(spec.RCSAzimuthAngles));
             set(elevWidget,'Enable',enab,...
@@ -140,9 +137,8 @@ classdef RCSHelper<handle
     end
 end
 
+
 function vector=parseVector(string)
-
-
     string=strrep(strrep(strrep(string,'[',''),']',''),',',' ');
     if contains(string,';')
         vector=[];

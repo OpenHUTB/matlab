@@ -21,7 +21,9 @@ doc('select-waypoints-for-3d-simulation')
 翻译`matlab`不自带的文档，包括[`Raodrunner`](https://ww2.mathworks.cn/help/roadrunner/index.html) 和[`Roadrunner Scenario`](https://ww2.mathworks.cn/help/roadrunner-scenario/index.html) 工具箱的文档。
 
 ## 名词中英对照表
-| 英文         | 中文 |
-|------------|----|
-| Simulation | 仿真 |
+| 英文         | 中文  |
+|------------|-----|
+| Simulation | 仿真  |
 | Actor      | 参与者 |
+| Scene      | 布景  |
+| Scenario   | 场景  |

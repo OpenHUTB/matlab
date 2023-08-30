@@ -14,6 +14,7 @@ classdef ScenarioCanvasKeyboard<matlabshared.application.ComponentKeyboard
             end
         end
 
+
         function control_a(this)
             canvas=this.Component;
             if strcmp(canvas.InteractionMode,'none')
@@ -25,10 +26,10 @@ classdef ScenarioCanvasKeyboard<matlabshared.application.ComponentKeyboard
             end
         end
 
+
         function control_r(this)
             canvas=this.Component;
             if strcmp(canvas.InteractionMode,'addActorWaypoints')
-
                 setReverseMotion(canvas.Application.ActorProperties,1);
                 tooltip=getCursorText(canvas);
                 tooltip=tooltip+" "+getString(message('driving:scenarioApp:ReverseTooltip'));
@@ -39,6 +40,7 @@ classdef ScenarioCanvasKeyboard<matlabshared.application.ComponentKeyboard
                 return;
             end
         end
+
 
         function control_f(this)
             canvas=this.Component;
@@ -54,6 +56,7 @@ classdef ScenarioCanvasKeyboard<matlabshared.application.ComponentKeyboard
             end
         end
 
+
         function enter(this)
             canvas=this.Component;
             commitRoadEdgeBarrier(canvas);
@@ -65,18 +68,24 @@ classdef ScenarioCanvasKeyboard<matlabshared.application.ComponentKeyboard
             enter(this);
         end
 
+
         function equal(this)
             canvas=this.Component;
             if~contains(canvas.InteractionMode,"drag")
                 zoomIn(canvas);
             end
         end
+
+
         function plus(this)
             equal(this);
         end
+
+
         function add(this)
             equal(this);
         end
+
 
         function hyphen(this)
             canvas=this.Component;
@@ -84,12 +93,17 @@ classdef ScenarioCanvasKeyboard<matlabshared.application.ComponentKeyboard
                 zoomOut(canvas);
             end
         end
+
+
         function minus(this)
             hyphen(this);
         end
+
+
         function subtract(this)
             hyphen(this);
         end
+
 
         function delete_(this)
             canvas=this.Component;
@@ -115,70 +129,87 @@ classdef ScenarioCanvasKeyboard<matlabshared.application.ComponentKeyboard
             end
         end
 
+
         function leftarrow(this)
             arrowKeyHelper(this,'leftarrow');
         end
+
 
         function rightarrow(this)
             arrowKeyHelper(this,'rightarrow');
         end
 
+
         function uparrow(this)
             arrowKeyHelper(this,'uparrow');
         end
+
 
         function downarrow(this)
             arrowKeyHelper(this,'downarrow');
         end
 
+
         function control_leftarrow(this)
             arrowKeyHelper(this,'leftarrow',{'control'})
         end
+
 
         function control_rightarrow(this)
             arrowKeyHelper(this,'rightarrow',{'control'})
         end
 
+
         function control_uparrow(this)
             arrowKeyHelper(this,'uparrow',{'control'})
         end
+
 
         function control_downarrow(this)
             arrowKeyHelper(this,'downarrow',{'control'})
         end
 
+
         function alt_control_leftarrow(this)
             arrowKeyHelper(this,'leftarrow',{'alt','control'})
         end
+
 
         function alt_control_rightarrow(this)
             arrowKeyHelper(this,'rightarrow',{'alt','control'})
         end
 
+
         function alt_control_uparrow(this)
             arrowKeyHelper(this,'uparrow',{'alt','control'})
         end
+
 
         function alt_control_downarrow(this)
             arrowKeyHelper(this,'downarrow',{'alt','control'})
         end
 
+
         function alt_leftarrow(this)
             arrowKeyHelper(this,'leftarrow',{'alt'});
         end
+
 
         function alt_rightarrow(this)
             arrowKeyHelper(this,'rightarrow',{'alt'});
         end
 
+
         function alt_uparrow(this)
             arrowKeyHelper(this,'uparrow',{'alt'});
         end
+
 
         function alt_downarrow(this)
             arrowKeyHelper(this,'downarrow',{'alt'});
         end
     end
+
 
     methods(Access=protected)
         function arrowKeyHelper(this,key,mods)
@@ -206,7 +237,6 @@ classdef ScenarioCanvasKeyboard<matlabshared.application.ComponentKeyboard
             end
             app=canvas.Application;
             pref=driving.internal.scenarioApp.Preferences.Instance;
-
             isRotate=any(strcmp(mods,'alt'));
             isActor=isa(spec,'driving.internal.scenarioApp.ActorSpecification');
 

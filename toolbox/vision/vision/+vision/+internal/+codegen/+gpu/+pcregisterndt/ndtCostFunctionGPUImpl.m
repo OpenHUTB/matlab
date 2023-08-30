@@ -1,29 +1,9 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function[scoreSumDouble,gradientSumDouble,hessianSumDouble]=...
     ndtCostFunctionGPUImpl(inpPoseArray,ndtArgsStruct)
 %#codegen
-
-
-
-
     coder.gpu.internal.kernelfunImpl(false);
     coder.allowpcode('plain');
     coder.inline('never');
-
 
     qryPoints=ndtArgsStruct.ps;
     fixedVoxelMeans=ndtArgsStruct.mvals;
@@ -34,13 +14,7 @@ function[scoreSumDouble,gradientSumDouble,hessianSumDouble]=...
 
     numQryPoints=numel(qryPoints)/3;
     numRefPoints=numel(fixedVoxelMeans)/3;
-
-
     [R,Ja,Ha]=vision.internal.codegen.gpu.pcregisterndt.computeJaHa(inpPoseArray);
-
-
-
-
     qryPointsTransformedMat=coder.nullcopy(qryPoints);
     coder.gpu.kernel;
     for ptIter=1:numQryPoints
@@ -49,11 +23,9 @@ function[scoreSumDouble,gradientSumDouble,hessianSumDouble]=...
         [inpPoseArray(1);inpPoseArray(2);inpPoseArray(3)];
     end
 
-
     [nghbrsIdxMat,numNgbrsMat]=...
     vision.internal.codegen.gpu.pcregisterndt.multiQueryRadiusSearch(...
     fixedVoxelMeans,qryPointsTransformedMat,voxelSize);
-
 
     [scoreSum,gradientSum,hessianSum]=...
     vision.internal.codegen.gpu.pcregisterndt.computeSGH(qryPoints,qryPointsTransformedMat,...

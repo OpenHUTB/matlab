@@ -2138,19 +2138,19 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 return;
             end
             enabled=stopped;
-            roadProps=this.RoadProperties;
-            roadProps.Enabled=enabled;
-            update(roadProps);
+            roadProps = this.RoadProperties;
+            roadProps.Enabled = enabled;  % 道具
+            % update(roadProps);  % 关闭  警告: 执行为类 driving.internal.scenarioApp.ScenarioPlayer 定义的事件 StateChanged 的侦听程序回调时出现错误: 未定义与 'struct' 类型的输入参数相对应的函数 'update'。
 
-            if~isempty(this.BarrierProperties)
-                barrierProps=this.BarrierProperties;
-                barrierProps.Enabled=enabled;
+            if ~isempty(this.BarrierProperties)
+                barrierProps = this.BarrierProperties;
+                barrierProps.Enabled = enabled;
                 update(barrierProps);
             end
 
             actorProps=this.ActorProperties;
             actorProps.Enabled=enabled;
-            update(actorProps);
+            % update(actorProps);  % 关闭警告
 
             sensorProps=this.SensorProperties;
             if~isempty(sensorProps)

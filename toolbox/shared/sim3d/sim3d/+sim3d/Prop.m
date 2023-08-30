@@ -1,25 +1,20 @@
 classdef Prop<handle
+
     properties(SetAccess='private',GetAccess='public')
-
         ObjectType;
-
         ActorIdentifier;
-
         ActorTag;
     end
 
+
     properties(SetAccess='public',GetAccess='public')
-
         Mesh;
-
         Translation;
-
         Rotation;
-
         Scale;
-
         ActorID;
     end
+
 
     properties(Access=private)
         Reader=[];
@@ -27,9 +22,11 @@ classdef Prop<handle
         CreateActor=[];
     end
 
+
     properties(Access=private,Constant=true)
         NumberOfParts=1;
     end
+
 
     methods
         function self=Prop(actorName,objectType,varargin)
@@ -95,7 +92,6 @@ classdef Prop<handle
 
 
         function delete(self)
-
             if~isempty(self.Reader)
                 self.Reader.delete();
                 self.Reader=[];
@@ -112,9 +108,9 @@ classdef Prop<handle
 
     end
 
+
     methods(Access=private,Static=true,Hidden=true)
         function r=parseInputs(varargin)
-
             defaultParams=struct(...
             'Mesh','MeshText',...
             'Translation',[0,0,0],...
@@ -132,5 +128,6 @@ classdef Prop<handle
             parser.parse(varargin{:});
             r=parser.Results;
         end
+        
     end
 end

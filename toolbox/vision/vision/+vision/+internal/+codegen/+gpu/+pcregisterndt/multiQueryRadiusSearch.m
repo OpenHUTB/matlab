@@ -1,31 +1,10 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function[nghbrsIdx,numNgbrs]=multiQueryRadiusSearch(meanCoordinates,queryPoints,radius)
 %#codegen
-
-
-
-
     coder.gpu.internal.kernelfunImpl(false);
     coder.allowpcode('plain');
 
-
     numRefPoints=size(meanCoordinates,1);
     numQryPoints=size(queryPoints,1);
-
-
     nghbrsIdx=coder.nullcopy(zeros(numRefPoints,numQryPoints,'uint32'));
     numNgbrs=zeros(numQryPoints,1,'uint32');
 

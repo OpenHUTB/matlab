@@ -1,33 +1,14 @@
 
-
 function[rotationMatrix,translationVector]=eulerAngleToRotationMatrix(inpPoseMat,type)
 %#codegen
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     coder.gpu.internal.kernelfunImpl(false);
     coder.allowpcode('plain');
 
-
     poseMat=cast(inpPoseMat,type);
-
 
     thetaX=poseMat(4);
     thetaY=poseMat(5);
     thetaZ=poseMat(6);
-
 
     cx=cos(thetaX);sx=sin(thetaX);
     cy=cos(thetaY);sy=sin(thetaY);

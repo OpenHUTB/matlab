@@ -1,6 +1,5 @@
 classdef LaneSpecificationSelector<matlab.mixin.SetGet
 
-
     properties
         LaneSpecification lanespec
         Selection(1,1)struct=getDefaultSelection()
@@ -16,7 +15,6 @@ Visible
         Units char{mustBeMember(Units,{'pixels','normalized'})}
     end
 
-
     properties(SetAccess=protected,Hidden)
 Panel
 Axes
@@ -27,15 +25,14 @@ LaneMarkingsPatch
 SelectionLine
     end
 
+
     events
-
-
 SelectionChanged
     end
 
+
     methods
         function this=LaneSpecificationSelector(varargin)
-
             panel=matlab.ui.container.Panel(...
             'BorderType','none',...
             'DeleteFcn',@this.onPanelDeleted,...
@@ -47,11 +44,6 @@ SelectionChanged
             if isempty(this.Parent)
                 this.Parent=figure('HandleVisibility','off','MenuBar','none');
             end
-
-
-
-
-
             axesInputs=matlabshared.application.structToPVPairs(this.Axes);
             this.Axes=axes('Parent',panel,...
             'Color',[0,0,0],...
@@ -63,32 +55,25 @@ SelectionChanged
             'LineWidth',3,...
             'LineStyle',':',...
             'HitTest','off');
-
             xlabel(this.Axes,getString(message('driving:scenarioApp:BirdsEyeYLabel')));
 
             updateLanes(this);
             updateSelection(this);
         end
 
+
         function set.LaneSpecification(this,newSpec)
-
-
-
             this.LaneSpecification=newSpec;
             updateLanes(this);
             if validateSelection(this,this.Selection)%#ok<*MCSUP>
-
-
                 updateSelection(this);
             else
-
-
                 this.Selection=getDefaultSelection();
             end
         end
 
-        function set.Selection(this,newSelection)
 
+        function set.Selection(this,newSelection)
             if this.validateSelection(newSelection)
                 this.Selection=newSelection;
 

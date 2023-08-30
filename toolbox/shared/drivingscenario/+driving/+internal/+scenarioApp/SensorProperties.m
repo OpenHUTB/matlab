@@ -1,14 +1,11 @@
 classdef SensorProperties<driving.internal.scenarioApp.Properties&driving.internal.scenarioApp.HasPropertySheets
 
-
-
-
     properties
         ShowSensorPlacement=false;
     end
 
-    properties(Hidden)
 
+    properties(Hidden)
 hName
 hEnabled
 hUpdateInterval
@@ -28,22 +25,25 @@ hRoll
 PlacementLayout
     end
 
+
     methods
         function this=SensorProperties(varargin)
             this@driving.internal.scenarioApp.Properties(varargin{:});
             update(this);
         end
 
+
         function name=getName(~)
             name=getString(message('driving:scenarioApp:SensorPropertiesTitle'));
         end
+
 
         function tag=getTag(~)
             tag='Sensors';
         end
 
-        function update(this)
 
+        function update(this)
             clearAllMessages(this);
 
             designer=this.Application;
@@ -51,7 +51,6 @@ PlacementLayout
 
             if isempty(allSensors)
                 sensor=[];
-
 
                 fig=this.Figure;
                 set(findall(fig,'style','popupmenu'),...
@@ -86,20 +85,16 @@ PlacementLayout
                 else
                     enable='off';
                 end
-
                 set(this.hSpecificationIndex,...
                 'String',allNames,...
                 'Value',this.SpecificationIndex,...
                 'Enable','on');
-
                 simpleProps={'Name','Enabled','UpdateInterval',...
                 'Height','Roll','Pitch','Yaw'};
                 xyProps={'SensorLocation'};
                 setupWidgets(this,sensor,simpleProps)
                 setupWidgets(this,sensor,xyProps,{'X','Y'});
-
                 set([this.hName,this.hDelete,this.hShowSensorPlacement],'Enable',enable);
-
                 set(this.hUpdateInterval,'Enable',matlabshared.application.logicalToOnOff(this.Enabled&&sensor.hasUpdateInterval));
                 if~sensor.hasUpdateInterval
                     set(this.hUpdateInterval,'String','');
@@ -110,18 +105,19 @@ PlacementLayout
                     set(orientationWidgets,'String','');
                 end
             end
-
             update@driving.internal.scenarioApp.HasPropertySheets(this,sensor);
             set(this.hType,'String',getTypeLabel(this.CurrentPropertySheet));
             update(this.Layout,'force');
         end
     end
 
+
     methods(Hidden)
 
         function row=getFirstLabelRow(~)
             row=[];
         end
+
 
         function spec=getCurrentSpecification(this)
             allSpecs=this.Application.SensorSpecifications;
@@ -133,6 +129,7 @@ PlacementLayout
             end
         end
 
+
         function row=getPropertySheetRow(this)
             if this.ShowSensorPlacement
                 row=7;
@@ -141,9 +138,11 @@ PlacementLayout
             end
         end
 
+
         function c=getDefaultPropertySheet(~)
             c='driving.internal.scenarioApp.VisionPropertySheet';
         end
+
 
         function onKeyPress(this,~,ev)
             if strcmp(ev.Key,'delete')
@@ -151,16 +150,17 @@ PlacementLayout
             end
         end
 
+
         function updateLayout(this)
             layout=this.Layout;
 
             nextRow=6;
             nextRow=insertPanel(this,layout,'SensorPlacement',nextRow);
-
             layout.VerticalWeights=[zeros(1,nextRow),1];
 
             clean(layout);
         end
+
 
         function edit=createEdit(this,varargin)
             hApp=this.Application;
@@ -170,31 +170,25 @@ PlacementLayout
         end
     end
 
+
     methods(Access=protected)
 
         function event=getIndexEventName(~)
             event='CurrentSensorChanged';
         end
 
+
         function fig=createFigure(this,varargin)
             fig=createFigure@driving.internal.scenarioApp.Properties(this,varargin{:});
-
             icons=getIcon(this.Application);
-
             createEditbox(this,fig,'SpecificationIndex',[],'popupmenu');
             createCheckbox(this,fig,'Enabled',...
             'TooltipString',getString(message('driving:scenarioApp:SensorEnabledDescription')));
-
             nameLabel=createLabelEditPair(this,fig,'Name',@this.nameCallback);
-
             updateLabel=createLabelEditPair(this,fig,'UpdateInterval',...
             'TooltipString',getString(message('driving:scenarioApp:UpdateIntervalDescription')));
-
             this.hType=createLabel(this,fig,'Type');
-
-
             createToggle(this,fig,'ShowSensorPlacement');
-
             sensorPlacement=uipanel(fig,'Tag','SensorPlacement',...
             'Units','pixels','BorderType','none','AutoResizeChildren','off');
             this.hSensorPlacement=sensorPlacement;
@@ -206,7 +200,6 @@ PlacementLayout
             yawLabel=createLabelEditPair(this,sensorPlacement,'Yaw');
 
             layoutInputs={'VerticalGap',3,'HorizontalGap',3};
-
             layout=matlabshared.application.layout.GridBagLayout(sensorPlacement,...
             layoutInputs{:},'HorizontalWeights',[0,1,0,1,0,1]);
             this.PlacementLayout=layout;
@@ -215,7 +208,6 @@ PlacementLayout
 
             inset=layout.LabelOffset;
             labelProps={'Anchor','West','TopInset',inset,'MinimumHeight',20-inset};
-
             labelWidth1=layout.getMinimumWidth([xLabel,rollLabel]);
             labelWidth2=layout.getMinimumWidth([yLabel,pitchLabel]);
             labelWidth3=layout.getMinimumWidth([zLabel,yawLabel]);
@@ -247,22 +239,18 @@ PlacementLayout
             add(layout,this.hYaw,2,6,...
             'Fill','Horizontal');
             layout.setLayoutHeight;
-
             createPushButton(this,fig,'Delete',@this.deleteCallback,...
             'Interruptible','off',...
             'BusyAction','cancel',...
             'TooltipString',getString(message('driving:scenarioApp:DeleteSensorDescription')),...
             'CData',icons.delete16);
-
             layout=matlabshared.application.layout.ScrollableGridBagLayout(fig,...
             'HorizontalGap',3,...
             'VerticalGap',3,...
             'HorizontalWeights',[0,1],...
             'VerticalWeights',[0,0,0,0,0,0,1]);
             this.Layout=layout;
-
             labelWidth=layout.getMinimumWidth([nameLabel,updateLabel]);
-
             add(layout,this.hSpecificationIndex,1,[1,2],...
             'Fill','Horizontal');
             add(layout,this.hEnabled,1,3,...
@@ -278,7 +266,6 @@ PlacementLayout
             add(layout,this.hType,4,1,...
             labelProps{:},...
             'Fill','Horizontal');
-
             add(layout,this.hShowSensorPlacement,5,[1,3],...
             'Anchor','West',...
             'MinimumWidth',layout.getMinimumWidth(this.hShowSensorPlacement)+20);
@@ -292,14 +279,17 @@ PlacementLayout
             update(layout,'force');
         end
 
+
         function currentSensorCallback(this,hList,~)
             this.SpecificationIndex=hList.Value;
             update(this);omfg
         end
 
+
         function locationCallback(this,~,~)
             setVectorProperty(this,'SensorLocation','hSensorLocationX','hSensorLocationY');
         end
+
 
         function nameCallback(this,hName,~)
             newName=hName.String;
@@ -312,10 +302,9 @@ PlacementLayout
             setProperty(this,'Name',newName);
         end
 
+
         function deleteCallback(this,~,~)
             hApp=this.Application;
-
-
             if this.SpecificationIndex>numel(hApp.SensorSpecifications)
                 return;
             end
@@ -330,10 +319,10 @@ PlacementLayout
             setDirty(hApp);
         end
 
+
         function updateScenario(this)
             updateForSensors(this.Application);
         end
-
         function[id,str]=validateDoubleProperty(this,name,value)
             try
                 switch name
@@ -352,8 +341,6 @@ PlacementLayout
                     ,'MinObjectImageSize','MaxAllowedOcclusion','MaxSpeed'...
                     ,'BoundingBoxAccuracy','ProcessNoiseIntensity'}
                     if name=="Height"&&this.Application.SensorSpecifications(this.SpecificationIndex).Type=="ins"
-
-
                         validateattributes(value,{'double','single'},{'real','finite'},'','Height');
                     else
                         eval(['visionDetectionGenerator.check',name,'(value)']);
@@ -366,7 +353,6 @@ PlacementLayout
                     ,'RangeRateResolution','RangeRateBiasFraction'...
                     }
                     eval(['radarDetectionGenerator.check',name,'(value)']);
-
                     sspec=this.Application.SensorSpecifications(this.SpecificationIndex);
                     if sspec.Type=="ultrasonic"
                         if name=="MaxRange"

@@ -286,6 +286,7 @@ classdef GamingEngineScenarioAnimator < handle
             b = r >= 0;
         end
         
+        
         function finishSetup(this)
             reader = this.CommandReader;
             if ~isempty(reader) && isvalid(reader)
@@ -293,6 +294,7 @@ classdef GamingEngineScenarioAnimator < handle
             end
         end
         
+
         function deleteActors(this)
             actors = this.ActorsMap;
             if ~isempty(actors)
@@ -308,6 +310,7 @@ classdef GamingEngineScenarioAnimator < handle
         end
     end
     
+
     methods (Static)
         function assetTypes = getAssetTypes(isVehicle)
             % Don't just use sim3d.auto.VehicleTypes because we don't want this
@@ -320,6 +323,7 @@ classdef GamingEngineScenarioAnimator < handle
                 assetTypes = {'Bicyclist', 'MalePedestrian', 'FemalePedestrian', 'Barrier', 'Cuboid'};
             end
         end
+
         
         function dims = getAssetDimensions(type)
             switch type
@@ -392,6 +396,7 @@ classdef GamingEngineScenarioAnimator < handle
             end
         end
     end
+
     
     methods (Access = protected)
         
@@ -449,12 +454,14 @@ classdef GamingEngineScenarioAnimator < handle
             this.CommandReader = reader;
             this.CommandWriter = writer;
         end
+
         
         function ueRotation = computePedRotation(~,dsdRotation)
             % 3dSimYaw = -(dsdYaw + pi/2)
             ueRotation = dsdRotation;
             ueRotation(1, 3) = dsdRotation(1, 3) - pi / 2;
         end
+
         
         function Rotation = turnWheels(this,Rotation,Speed)
             % r = r + dr
@@ -462,6 +469,7 @@ classdef GamingEngineScenarioAnimator < handle
                 Rotation(2:5,1) = Rotation(2:5,1) - Speed * this.SampleTime / 0.375;
             end
         end
+
         
         function w = addRoadsAndLanes(this)
             % Set up warnings cell array.
@@ -477,6 +485,7 @@ classdef GamingEngineScenarioAnimator < handle
             end
             w = getWarningStrings(warnings, 'driving:scenarioApp:GamingEngineRoadError');
         end
+
         
         function setActorClassIDs(this)
             this.ActorClassIDs = ones(1,this.NumActors);
@@ -485,11 +494,13 @@ classdef GamingEngineScenarioAnimator < handle
                 this.ActorClassIDs(idx) = actorProfiles(idx).ClassID;
             end
         end
+
         
         function actorType = getActorTypeFromClassID(this,classID)
             classSpecs = this.ClassSpecifications;
             actorType = getProperty(classSpecs, classID, 'AssetType');
         end
+
                
         function w = addActors(this)
             factory = this.AssetFactory;
@@ -541,6 +552,7 @@ classdef GamingEngineScenarioAnimator < handle
                 w{end + 1} = getString(message('driving:scenarioApp:ActorSpawningIn3DDisplay'));
             end
         end
+
         
         function updateActorTrajectories(this)
             scenario = this.Scenario;
@@ -556,6 +568,7 @@ classdef GamingEngineScenarioAnimator < handle
             end
             this.Scenario.Actors = actors;
         end
+
     end
 end
 

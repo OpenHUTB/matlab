@@ -1,11 +1,10 @@
 classdef RoadAdder<driving.internal.scenarioApp.Adder
 
-
-
     methods
         function this=RoadAdder(hApplication)
             this.Application=hApplication;
         end
+
 
         function addViaWaypoints(this,spec)
             hApp=this.Application;
@@ -21,11 +20,10 @@ classdef RoadAdder<driving.internal.scenarioApp.Adder
                 spec.Name=getUniqueName(this,spec.Name);
             end
             hScenario.addRoadCenters(spec);
-
-
             setStatus(hApp,getString(message('driving:scenarioApp:AddRoadCentersMessage')));
         end
     end
+
 
     methods(Access=protected)
         function specs=getCurrentSpecifications(this)

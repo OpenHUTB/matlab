@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Simulink.ScenarioLog</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../roadrunner-scenario-simulation.html",
+          "name": "RoadRunner Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../roadrunner-scenario-cosimulation.html",
+          "name": "Simulate RoadRunner Scenarios with MATLAB and Simulink"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "roadrunner-scenario-cosimulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:Simulink.ScenarioLog"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:Simulink.ScenarioLog"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="blk"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="A Simulink.ScenarioLog object stores scenario simulation outcomes at all time steps of a simulation."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../roadrunner-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">RoadRunner Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../roadrunner-scenario-cosimulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Simulate RoadRunner Scenarios with MATLAB and Simulink</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas">Simulink.ScenarioLog</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e224734" class="intrnllnk">Description</a></li>
+<li><a href="#mw_d218ad6e-2631-440a-be83-14e6cb89af8d" class="intrnllnk">Creation</a></li>
+<li><a href="#mw_a713ca9b-fda6-4dff-84e1-25cea6a1c26f" class="intrnllnk">Object Functions</a></li>
+<li><a href="#mw_58af1216-5564-4be6-9df1-e490decbcb95" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_1d3b2050-64e9-4afc-a43c-89b28d628a5f" class="intrnllnk">Get Simulation Log</a></li>
+</ul><ul class="nav"><li><a href="#mw_e3195be3-3035-4efa-8b81-be3f728515f0" class="intrnllnk">Get Actor Pose at First and Last Time Step</a></li>
+</ul></li>
+<li><a href="#mw_50468fc4-7424-4b37-9652-974bb367a4e6_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_50468fc4-7424-4b37-9652-974bb367a4e6_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=roadrunner-scenario-cosimulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="object_ref"><span id="mw_50468fc4-7424-4b37-9652-974bb367a4e6" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title">Simulink.ScenarioLog</h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">查看任意时间步的场景仿真结果</p>
+</div>
+</div>
+<div class="function_icons"><ul class="list-unstyled"></ul>
+</div>
+<div class="refsummary" itemprop="content"><h2 id="d124e224734">描述</h2>
+    <div class="shortsummary"><p><code class="literal">Simulink.ScenarioLog</code> 对象存储仿真所有时间步骤的场景仿真结果。使用 <code class="literal">Simulink.ScenarioLog</code>
+      对象可以： </p>
+</div>
+    <div class="itemizedlist"><ul><li><p>在任何时间步骤查看参与者信息，例如运行时属性和操作。</p></li>
+<li><p>查看任意时间步的仿真信息。<br/></p></li>
+<li><p>查看仿真过程中报告的诊断信息。<br/></p></li>
+<li><p>在任意时间步查看用户定义的操作参数的值。</p></li>
+</ul>
+</div>
+  </div>
+<div id="mw_d218ad6e-2631-440a-be83-14e6cb89af8d_div" class="ref_sect createobject"><h2 id="mw_d218ad6e-2631-440a-be83-14e6cb89af8d">创建</h2>
+<p>使用 <code class="literal">Simulink.ScenarioLog</code> 对象的 <a href="simulink.scenariosimulation.get.html"><code class="method">get</code></a> 函数检索代表仿真日志的
+        <a href="simulink.scenariosimulation.html"><code class="object">Simulink.ScenarioSimulation</code></a> 对象。仅当使用 <span style="font-family: monospace;">Simulink.ScenarioSimulation</span> 对象的 <a href="simulink.scenariosimulation.set.html"><code class="method">set</code></a> 函数启用了日志记录时，才能获取仿真的日志。只有在仿真停止播放后才能获取仿真日志。</p>
+</div>
+<div id="mw_a713ca9b-fda6-4dff-84e1-25cea6a1c26f_div" class="refsect1 objectfunctions"><h2 id="mw_a713ca9b-fda6-4dff-84e1-25cea6a1c26f">对象函数</h2>
+<div class="doc_classesgroup_container"><div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="simulink.scenariolog.get.html"><code class="method">get</code></a></td>
+<td class="description">获取记录场景的仿真数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<h2 id="mw_58af1216-5564-4be6-9df1-e490decbcb95">示例</h2>
+<div id="mw_1d3b2050-64e9-4afc-a43c-89b28d628a5f_div" class="refsect2"><h3 id="mw_1d3b2050-64e9-4afc-a43c-89b28d628a5f">获取仿真日志</h3>
+<p>创建一个 <code class="literal">Simulink.ScenarioSimulation</code>
+        对象 <span style="font-family: monospace;">Sim。</span></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rrApp = roadrunner(<span style="color:#A020F0">'C:\RoadRunnerProject'</span>);
+openScenario(rrApp,<span style="color:#A020F0">'TrajectoryCutIn'</span>);
+Sim = createSimulation(rrApp);</pre>
+</div>
+</div>
+</div>
+<p>启用仿真日志记录。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(Sim,<span style="color:#A020F0">'Logging'</span>,<span style="color:#A020F0">'On'</span>);</pre>
+</div>
+</div>
+</div>
+<p>开始仿真。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(Sim,<span style="color:#A020F0">'SimulationCommand'</span>, <span style="color:#A020F0">'Start'</span>);</pre>
+</div>
+</div>
+</div>
+<p>仿真停止播放后获取仿真日志。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>simLog = get(Sim, <span style="color:#A020F0">'SimulationLog'</span>);</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_e3195be3-3035-4efa-8b81-be3f728515f0_div" class="refsect2"><h3 id="mw_e3195be3-3035-4efa-8b81-be3f728515f0">获取第一个和最后一个时间步参与者的姿态</h3>
+        <p class="shortdesc">从仿真日志中获取所有参与者的 ID。</p>
+      <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>actorIDs = get(simLog, <span style="color:#A020F0">'ActorIDs'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>actorIDs =
+
+     1     2     3</pre>
+</div>
+</div>
+</div>
+<p>在仿真运行的所有时间步骤中获取 ID 为 1 的仿真的姿态。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>poseActor1 = get(simLog,<span style="color:#A020F0">'Pose'</span>,<span style="color:#A020F0">'ActorID'</span>,1)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>poseActor1 = 
+
+  1×887 struct array with fields:
+
+    Time
+    Pose</pre>
+</div>
+</div>
+</div>
+<p>在仿真运行的第一个时间步获取参与者 ID 为 1 的姿态。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>poseActor1FirstTimeStep = poseActor1(1)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>poseActor1FirstTimeStep = 
+
+  struct with fields:
+
+    Time: 0
+    Pose: [4×4 double]</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>poseActor1FirstTimeStep.Pose</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    0.9515    0.3077   -0.0008    7.8466
+   -0.3077    0.9515   -0.0026 -133.5547
+         0    0.0027    1.0000   -5.5290
+         0         0         0    1.0000</pre>
+</div>
+</div>
+</div>
+<p>在仿真运行的最后一个时间步获取 ID 为 1 的参与者的姿态。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>poseActor1LastTimeStep = poseActor1(887)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>poseActor1LastTimeStep = 
+
+  struct with fields:
+
+    Time: 17.7200
+    Pose: [4×4 double]</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>poseActor1LastTimeStep.Pose</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    0.9515    0.3077   -0.0008    7.8466
+   -0.3077    0.9515   -0.0026  167.9377
+         0    0.0027    1.0000   -5.5290
+         0         0         0    1.0000</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_50468fc4-7424-4b37-9652-974bb367a4e6_vh">版本历史</h2>
+<p><strong>Introduced in R2022a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_50468fc4-7424-4b37-9652-974bb367a4e6_seealso">也可以查看</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="roadrunner.html"><span itemprop="name"><code class="function">roadrunner</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="roadrunner.openscenario.html"><span itemprop="name"><code class="function">openScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="roadrunner.createsimulation.html"><span itemprop="name"><code class="function">createSimulation</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulink.scenariosimulation.html"><span itemprop="name"><code class="object">Simulink.ScenarioSimulation</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulink.actorsimulation.html"><span itemprop="name"><code class="object">Simulink.ActorSimulation</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulink.actormodel.html"><span itemprop="name"><code class="object">Simulink.ActorModel</code></span></a></span></p>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

@@ -1,11 +1,9 @@
 classdef Subscriber<handle
 
-
     properties
-topic
+        topic
         Reader=[]
         Listener=[]
-
     end
 
     properties(Constant=true)
@@ -18,7 +16,6 @@ topic
 
     methods
         function delete(self)
-
             self.Reader.listener();
             self.Listener=[];
             self.Reader=[];
@@ -48,17 +45,22 @@ topic
                 self.Listener=listener;
             end
         end
+
+
         function result=has_message(self)
             result=self.hasMessage();
         end
+
 
         function message=take(self)
             message=self.receive();
         end
 
+
         function result=hasMessage(self)
             result=self.Reader.has_message();
         end
+
 
         function message=receive(self,varargin)
             narginchk(1,2);
@@ -81,6 +83,7 @@ topic
             end
         end
 
+        
         function addListener(listener)
             self.Reader.listener(listener);
         end

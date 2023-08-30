@@ -66,6 +66,13 @@ arguments
 end
 ```
 
+## 维护
+
+### 覆盖本地的文件
+```shell
+git fetch --all
+git reset --hard origin/master  # 将本地仓库的HEAD指针、工作目录和暂存区回滚到指定远程分支（origin/master）的状态
+```
 
 # 计划
 
@@ -76,7 +83,11 @@ end
 虚拟机中测试环境搭建；
 
 
-# 更新
+# 参考
+## 工具
+[颜色命名器](https://products.aspose.app/svg/zh/color-names) 
+
+## 更新
 [新版本所加的特性](https://ww2.mathworks.cn/help/driving/release-notes.html)
 
 2023a新增加的例子

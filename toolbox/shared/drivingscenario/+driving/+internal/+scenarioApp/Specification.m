@@ -4,6 +4,7 @@ classdef Specification<handle&matlab.mixin.Heterogeneous&matlab.mixin.Copyable
         Name='';
     end
 
+
     methods
 
         function this=Specification(varargin)
@@ -12,10 +13,12 @@ classdef Specification<handle&matlab.mixin.Heterogeneous&matlab.mixin.Copyable
             end
         end
 
+
         function variableName=getMatlabVariableName(this)
             variableName=matlab.lang.makeValidName(this.Name);
             variableName(1)=lower(variableName(1));
         end
+
 
         function printName=getMatlabPrintName(this)
             printName=string(this.Name);
@@ -24,10 +27,13 @@ classdef Specification<handle&matlab.mixin.Heterogeneous&matlab.mixin.Copyable
         end
     end
 
+
     methods(Sealed)
         function b=eq(varargin)
             b=eq@handle(varargin{:});
         end
+
+
         function out=findobj(varargin)
             out=findobj@handle(varargin{:});
         end

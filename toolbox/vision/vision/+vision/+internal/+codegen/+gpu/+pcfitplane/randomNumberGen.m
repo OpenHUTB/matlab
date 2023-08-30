@@ -1,29 +1,10 @@
 function outputArr=randomNumberGen(inpRange,numSamples)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
-
-
-
-
 
     coder.gpu.kernelfun;
     coder.inline('always');
     coder.allowpcode('plain');
-
     generatorStruct=coder.const(feval('rng'));
     randomNumberSeed=coder.const(generatorStruct.Seed);
     randomNumberType=coder.const(generatorStruct.Type);
@@ -32,12 +13,11 @@ function outputArr=randomNumberGen(inpRange,numSamples)
 
 end
 
+
 function outArray=randiGpuImpl(inpRange,inpNumPoints,randomNumberSeed,randomNumberType)
 %#codegen
     coder.gpu.kernelfun;
-
     outArray=coder.nullcopy(zeros(1,inpNumPoints,'uint32'));
-
 
     coder.cinclude('curand.h');
     if~coder.target('MEX')
@@ -47,8 +27,6 @@ function outArray=randiGpuImpl(inpRange,inpNumPoints,randomNumberSeed,randomNumb
             coder.updateBuildInfo('addLinkFlags','curand.lib');
         end
     end
-
-
     randGen=coder.opaque('curandGenerator_t','0');
     if strcmp(randomNumberType,'twister')
         rngType=coder.opaque('curandRngType_t','CURAND_RNG_PSEUDO_MT19937');
@@ -60,11 +38,7 @@ function outArray=randiGpuImpl(inpRange,inpNumPoints,randomNumberSeed,randomNumb
         rngType=coder.opaque('curandRngType_t','CURAND_RNG_PSEUDO_PHILOX4_32_10');
     end
     coder.ceval('curandCreateGenerator',coder.ref(randGen),rngType);
-
-
-
     coder.ceval('curandSetPseudoRandomGeneratorSeed',randGen,randomNumberSeed);
-
     coder.ceval('curandGenerate',randGen,coder.ref(outArray,'gpu'),inpNumPoints);
     coder.ceval('curandDestroyGenerator',randGen);
 

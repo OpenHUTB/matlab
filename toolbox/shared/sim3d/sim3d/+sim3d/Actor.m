@@ -1,10 +1,10 @@
 classdef Actor < sim3d.AbstractActor
 
     properties ( Hidden )
-        Material( 1, 1 )sim3d.internal.MaterialAttributes;
-        Physical( 1, 1 )sim3d.internal.PhysicalAttributes;
-        DynamicMesh( 1, 1 )sim3d.internal.DynamicMeshAttributes;
-        Selected( 1, 1 )logical = false;
+        Material (1, 1) sim3d.internal.MaterialAttributes;
+        Physical (1, 1) sim3d.internal.PhysicalAttributes;
+        DynamicMesh (1, 1) sim3d.internal.DynamicMeshAttributes;
+        Selected (1, 1) logical=false;
         UpdateImpl = [];
         OutputImpl = [];
     end
@@ -17,6 +17,10 @@ classdef Actor < sim3d.AbstractActor
     end
 
 
+    % 逻辑值，默认值为 false
+    % 如果设置为 false，属性值将存储在对象中。
+    % 如果为 true，属性值不存储在对象中。
+    % set 和 get 函数无法通过使用属性名称对对象进行索引来访问属性。
     properties (Dependent)
         %% 网格属性
         Faces;                  % 每个三角形的顶点
@@ -26,34 +30,35 @@ classdef Actor < sim3d.AbstractActor
         VertexColors;
 
         %% 材质属性
-        Color;
-        Transparency;
-        Shininess;
-        Metallic;
-        Flat;
-        Tessellation;
-        VertexBlend;
-        Shadows;
-        Texture;
-        TextureMapping;
-        TextureTransform;
+        Color;                  % 参与者的基色
+        Transparency;           % 参与者的透明度，指定为 (0,1) 范围内的实正数，其中 0 表示不透明对象，1 表示完全透明对象。
+        Shininess;              % 参与者的光泽度，指定为 (0,1) 范围内的实数正数，其中 0 表示不发光的对象，1 表示完全有光泽的对象。
+        Metallic;               % 参与者的金属外观，指定为 (0,1) 范围内的实正数，其中 0 表示塑料表面，1 表示金属表面。
+        Flat;                   % 参与者的平面着色因子，指定为 (0,1) 范围内的实正数，其中 0 表示光滑表面，1 表示多面表面。
+        Tessellation;           % 参与者的细分因子，指定为 (0,8) 范围内的实正整数。使用此属性指定自动几何细化的系数。当使用纹理置换贴图时，此属性非常有用。
+        VertexBlend;            % 顶点的颜色混合系数，指定为 (0,1) 范围内的正实数。这个值可以大一些，可以达到发光颜色的效果。
+        Shadows;                % 参与者阴影
+        Texture;                % 参与者形状的源文件，指定为字符数组。支持的文件类型包括 JPEG、PNG、BMP 和 TGA。文件路径应该是绝对路径。
+        TextureMapping;         % 应用于参与者纹理的纹理映射参数，指定为正实数向量。用 TextureMapping 定义纹理混合、位移、凹凸因子和粗糙度。
+        TextureTransform;       % 应用于参与者的纹理变换，指定为正实数标量。使用 TextureTransform 定义纹理位置、速度、比例和角度。
 
-        LinearVelocity;
-        AngularVelocity;
-        Mass;
-        CenterOfMass;
-        Gravity;
-        Physics;
-        Collisions;
-        LocationLocked;
-        RotationLocked
+        %% 物理属性
+        LinearVelocity;         % 局部坐标中参与者的线速度，指定为正实数向量，以米每秒为单位。
+        AngularVelocity;        % 局部坐标中参与者的角速度，指定为正实数向量，以弧度每秒为单位。
+        Mass;                   % 参与者的质量，指定为正实数标量，以千克为单位。
+        CenterOfMass;           % sim3d.Actor 对象物体的质心 ，指定为正实数向量。使用此属性可将重心从局部坐标系的原点移动。
+        Gravity;                % 对参与者施加重力，如果没有施加重力，则指定为 0 (false) ，如果施加重力，则指定为 1 (true)。
+        Physics;                % 参与者对物理作用力的反应，指定为 0 (false) 或 1 (true)。如果 Physics 启用，则参与者独立于其父级参与者对象移动，但与其子级对象一起移动，除非子对象也启用 Physics。
+        Collisions;             % 对象碰撞，如果没有碰撞，则指定为 0 (false)，如果对象将发生碰撞，则指定为 1 (true)。
+        LocationLocked;         % 静止平移运动，指定为 0 (false) 或 1 (true)。如果启用此属性，参与者将固定在适当的位置。如果参与者定义了非零线速度，它就会与其他对象交互，就像它自己移动一样。可以使用此属性对带式输送机进行建模。
+        RotationLocked          % 静止旋转运动，指定为 0 (false) 或 1 (true)。如果启用此属性，则 sim3d.Actor 对象将固定在合适的位置。如果参与者定义了一个非零角速度，它就会与其他对象交互，就像它自己移动一样。可以使用此属性对圆形传送带（转盘）进行建模。
     end
 
 
     properties (Dependent, Hidden)
-        Inertia( 1, 3 )double;
-        Force( 1, 3 )double;
-        Torque( 1, 3 )double;
+        Inertia (1, 3) double;
+        Force (1, 3) double;
+        Torque (1, 3) double;
         ContinuousMovement( 1, 1 )logical;
         Friction( 1, 1 )double
         Restitution( 1, 1 )double;
@@ -64,6 +69,14 @@ classdef Actor < sim3d.AbstractActor
         Refraction( 1, 1 )double;
         Hidden( 1, 1 )logical;
         ConstantAttributes( 1, 1 )logical;
+
+        %% R2023a引入
+        RequestMaterial     (1, 1) logical;
+        RequestDynamicMesh  (1, 1) logical;
+        RequestPhysical     (1, 1) logical;
+        WorldTranslation    (1, 3) double{mustBeFinite};
+        WorldRotation       (1, 3) double{mustBeFinite };
+        WorldScale          (1, 3) double{mustBeFinite};
     end
 
 
@@ -156,58 +169,57 @@ classdef Actor < sim3d.AbstractActor
         end
 
 
-        function translation = getTranslation( self )
-            [ translation, ~, ~ ] = self.readTransform(  );
+        function translation = getTranslation(self)
+            [ translation, ~, ~ ] = self.readTransform();
             if ~isempty( translation )
-                self.Transform.setTranslation( translation );
+                self.Transform.setTranslation(translation);
             else
-                translation = self.Transform.getTranslation(  );
+                translation = self.Transform.getTranslation();
             end
         end
 
 
-        function rotation = getRotation( self )
-            [ ~, rotation, ~ ] = self.readTransform(  );
+        function rotation = getRotation(self)
+            [ ~, rotation, ~ ] = self.readTransform();
             if ~isempty( rotation )
-                self.Transform.setRotation( rotation );
+                self.Transform.setRotation(rotation);
             else
-                rotation = self.Transform.getRotation(  );
+                rotation = self.Transform.getRotation();
             end
         end
 
 
-        function scale = getScale( self )
-            [ ~, ~, scale ] = self.readTransform(  );
-            if ~isempty( scale )
-                self.Transform.setScale( scale );
+        function scale = getScale(self)
+            [ ~, ~, scale ] = self.readTransform();
+            if ~isempty(scale)
+                self.Transform.setScale(scale);
             else
-                scale = self.Transform.getScale(  );
+                scale = self.Transform.getScale();
             end
         end
 
 
-        function [ translation, rotation, scale ] = readTransform( self )
+        function [ translation, rotation, scale ] = readTransform(self)
 
-            if ~isempty( self.TransformReader )
-                [ translation, rotation, scale ] = self.TransformReader.read(  );
+            if ~isempty(self.TransformReader)
+                [ translation, rotation, scale ] = self.TransformReader.read();
             else
-                translation = [  ];
-                rotation = [  ];
-                scale = [  ];
+                translation = [];
+                rotation = [];
+                scale = [];
             end
         end
 
 
-        function rotateAround( objs, Axis, Angle, Incremental )
+        function rotateAround(objs, Axis, Angle, Incremental)
             arguments
-                objs( 1, : )sim3d.Actor
-                Axis( 1, 3 )double
-                Angle( 1, 1 )double
-                Incremental( 1, 1 )logical = true
+                objs (1, :) sim3d.Actor
+                Axis (1, 3) double
+                Angle (1, 1) double
+                Incremental (1, 1)logical = true
             end
 
             for obj = objs
-
                 Axis = sim3d.utils.Math.posToUnreal( Axis, 'vrml' );
                 Ra = sim3d.utils.Math.mat2unr( sim3d.utils.Math.rotAA( Axis, Angle ) );
                 if Incremental
@@ -799,6 +811,11 @@ classdef Actor < sim3d.AbstractActor
         
         function set.ConstantAttributes(self, constantAttributes)
             self.Physical.ConstantAttributes = constantAttributes;
+        end
+
+
+        function worldTranslation = get.WorldTranslation( self )
+            worldTranslation = self.Physical.WorldTranslation;
         end
 
         
