@@ -6,7 +6,7 @@
 <meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title>Choose a Sensor for Unreal Engine Simulation</title>
+<title>How Unreal Engine Simulation for Automated Driving Works</title>
 <script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
       {
       "@context": "http://schema.org",
@@ -65,7 +65,7 @@
 <meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
 
-<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Decide which camera, lidar, or radar sensors to use during simulation with the Unreal Engine."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Learn about the co-simulation framework between Simulink and the Unreal Engine and how block execution order affects simulation."/>
 <script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
 <link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
 <link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
@@ -140,10 +140,11 @@
 <li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
 <li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../unreal-engine-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Simulation</span></a></li>
 </ul><ul class="nav_scrollspy nav">
-<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Choose a Sensor for Unreal Engine Simulation</a></li>
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">How Unreal Engine Simulation for Automated Driving Works</a></li>
 <li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
-<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e15448" class="intrnllnk">See Also</a></li>
-<li><a href="#d124e15463" class="intrnllnk">Related Topics</a></li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_bae069b6-b642-4aaf-a33a-84e805c76b11" class="intrnllnk">Communication with 3D Simulation Environment</a></li>
+<li><a href="#mw_a02d2ce7-796c-491f-aeda-5f8082811e29" class="intrnllnk">Block Execution Order</a></li>
+<li><a href="#d124e14836" class="intrnllnk">Related Topics</a></li>
 </ul>
 </nav>
 </div></nav>
@@ -187,158 +188,45 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
 <section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
-<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_e5cbbf2f-6c7e-404f-9d9b-2ee74d80b9f1">为虚幻引擎模拟选择传感器<br/></h2>
-<p>在自动驾驶工具箱™中，您可以从虚拟环境中获取高保真传感器数据。此环境是使用Epic Games®的虚幻引擎®渲染的。<br/></p>
-<p>下表汇总了在此环境中可以模拟的传感器模块。</p>
-<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"/>
-<col class="tcol2" width="12%"/>
-<col class="tcol3" width="51%"/>
-<col class="tcol4" width="18%"/>
-</colgroup>
-<thead><tr><th>传感器模块</th>
-<th>描述</th>
-<th>可视化</th>
-<th>例</th>
-</tr>
-</thead>
-<tbody><tr><td rowspan="3"><p><a href="../ref/simulation3dcamera.html"><span class="block">模拟3D相机</span></a></p>
-</td>
-<td rowspan="3">
-                        <div class="itemizedlist"><ul><li><p>带有基于理想针孔相机的镜头的相机。请参阅什么是相机校准？<br/></p></li>
-<li><p>包括图像大小、焦距、失真和偏斜的参数</p></li>
-<li><p>包括输出地面实况以进行深度估计和语义分割的选项</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用“视频查看器”或“到视频显示”块显示相机图像。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15256" class="mediaobject"><p><img src="sim3d_camera_sample_output.png" alt="Sample camera visualization" height="288" width="385"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="design-of-lane-marker-detector-in-3d-simulation-environment.html" class="a">使用虚幻引擎模拟环境设计车道标记检测器</a>
-                        </p>
-</td>
-</tr>
-<tr><td><p>使用视频查看器或到视频显示块显示深度图。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15278" class="mediaobject"><p><img src="sim3d_depth_sample_output.png" alt="Sample depth visualization" height="210" width="382"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="visualize-depth-semantic-segmentation-3d-simulation.html" class="a">使用虚幻引擎模拟进行深度和语义分割可视化</a>
-                        </p>
-</td>
-</tr>
-<tr><td><p>使用视频查看器或到视频显示块显示语义分割映射。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15300" class="mediaobject"><p><img src="sim3d_semanticseg_sample_output.png" alt="Sample semantic segmentation visualization" height="213" width="381"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="visualize-depth-semantic-segmentation-3d-simulation.html" class="a">使用虚幻引擎模拟进行深度和语义分割可视化</a>
-                        </p>
-</td>
-</tr>
-<tr><td><p><a href="../ref/simulation3dfisheyecamera.html"><span class="block">模拟3D鱼眼相机</span></a></p>
-</td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>可以使用Scaramuzza相机模型描述的鱼眼相机。 请参阅 <a href="../../vision/ug/fisheye-calibration-basics.html" class="a">鱼眼校准基础知识</a></p></li>
-<li><p>包括失真中心、图像大小和映射系数的参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用“视频查看器”或“到视频显示”块显示相机图像。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15334" class="mediaobject"><p><img src="sim3d_fisheye_sample_output.png" alt="Sample fisheye camera visualization" height="208" width="370"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><a href="simulate-a-simple-driving-scenario-and-sensor-in-3d-environment.html" class="a">在虚幻引擎环境中模拟简单的驾驶场景和传感器</a></td>
-</tr>
-<tr><td rowspan="2"><p><a href="../ref/simulation3dlidar.html"><span class="block">模拟3D激光雷达</span></a></p>
-</td>
-<td rowspan="2"><p>
-                            </p>
-<div class="itemizedlist"><ul><li><p>扫描激光雷达传感器型号</p></li>
-<li><p>包括检测范围、分辨率和视场参数</p></li>
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_095866f9-a746-468b-82f1-bce8878efe1d">用于自动驾驶的虚幻引擎模拟的工作原理<br/></h2>
+<p>自动驾驶工具箱™提供了一个协同仿真框架，您可以使用该框架在 Simulink® 中对驾驶算法进行建模，并在虚拟仿真环境中可视化其性能。此环境使用Epic Games®的虚幻引擎®。<br/></p>
+<p>了解此模拟环境的工作原理可以帮助您解决问题并自定义模型。</p>
+<section itemprop="content"><h3 class="title" id="mw_bae069b6-b642-4aaf-a33a-84e805c76b11">与 3D 模拟环境通信</h3>
+<p>当您使用自动驾驶工具箱运行算法时，Simulink 会在可视化引擎中协同模拟算法。</p>
+<p>在 Simulink 环境中，自动驾驶工具箱：</p>
+<div class="itemizedlist"><ul><li><p>配置可视化环境，特别是光线追踪、摄像机场景捕获和初始对象位置</p></li>
+<li><p>使用模拟环境反馈确定对象的下一个位置</p></li>
 </ul>
 </div>
 <p>
 
-                        </p>
-</td>
-<td><p>通过在 MATLAB 功能块中使用 pcplayer 显示点云数据。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15363" class="mediaobject"><p><img src="sim3d_lidar_sample_output.png" alt="Sample pcplayer point cloud visualization" height="204" width="349"/></p>
+        </p>
+<p>该图总结了 Simulink 与可视化引擎之间的通信。</p>
+<div class="informalfigure"><div id="d124e14754" class="mediaobject"><p><img src="vdbs_visualization.png" alt="Communication between Simulink and the visualization engine" height="137" width="669"/></p>
 </div>
 </div>
-<p></p>
-</td>
-<td><a href="design-lidar-slam-algorithm-using-3d-simulation-environment.html" class="a">使用虚幻引擎模拟环境设计激光雷达SLAM算法</a></td>
-</tr>
-<tr><td><p>使用鸟瞰镜显示激光雷达覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15379" class="mediaobject"><p><img src="sim3d_bes_lidar_detections.png" alt="Sample Bird's-Eye Scope point cloud visualization" height="295" width="343"/></p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_a02d2ce7-796c-491f-aeda-5f8082811e29">区块执行顺序</h3>
+<p>在模拟过程中，虚幻引擎模拟块遵循特定的执行顺序：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>具有地面跟随模块的模拟 3D 车辆初始化车辆，并将其 X、Y 和偏航信号数据发送到模拟 3D 场景配置块。<br/></p></li>
+<li><p>仿真 3D 场景配置模块接收车辆数据并将其发送到传感器模块。<br/></p></li>
+<li><p>传感器模块接收车辆数据，并使用它来准确定位和可视化车辆。</p></li>
+</ol>
+</div>
+<p>块的优先级属性控制此执行顺序。要访问任何块的此属性，请右键单击该块，选择属性，然后单击常规选项卡。默认情况下，具有地面跟随模块的模拟 3D 车辆的优先级为 -1，模拟 3D 场景配置块的优先级为 0，传感器模块的优先级为 1。<br/></p>
+<p>该图显示了此执行顺序。</p>
+<div class="informalfigure"><div id="d124e14813" class="mediaobject"><p><img src="sim3d_execution_order.png" alt="Execution order for Unreal Engine simulation blocks" height="394" width="741"/></p>
 </div>
 </div>
-<p></p>
-</td>
-<td><a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">可视化虚幻引擎模拟环境中的传感器数据</a></td>
-</tr>
-<tr><td><p><a href="../ref/simulation3dprobabilisticradar.html"><span class="block">仿真三维概率雷达</span></a></p>
-</td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>返回检测列表的概率雷达模型</p></li>
-<li><p> 包括雷达精度、雷达偏置、检测概率和检测报告的参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用鸟瞰镜显示雷达覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15405" class="mediaobject"><p><img src="sim3d_bes_radar_detections.png" alt="Sample Bird's-Eye Scope radar visualization" height="295" width="343"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="simulate-radar-sensors-in-3d-environment.html" class="a">在虚幻引擎环境中模拟视觉和雷达传感器</a>
-                        </p>
-<p>
-                            <a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">可视化虚幻引擎模拟环境中的传感器数据</a>
-                        </p>
-</td>
-</tr>
-<tr><td><a href="../ref/simulation3dvisiondetectiongenerator.html"><span class="block">仿真 3D 视觉检测生成器</span></a></td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>返回对象和车道边界检测列表的相机模型</p></li>
-<li><p> 包括检测精度、测量噪声和相机固有参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用鸟瞰镜显示视觉覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15437" class="mediaobject"><p><img src="sim3d_bes_vision_detections.png" alt="Sample Bird's-Eye Scope vision visualization" height="387" width="421"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="simulate-radar-sensors-in-3d-environment.html" class="a">在虚幻引擎环境中模拟视觉和雷达传感器</a>
-                        </p>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-        <h2 id="d124e15448">See Also</h2>
-<h3>Blocks</h3>
-<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Scene Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvehiclewithgroundfollowing.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Vehicle with Ground Following</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dprobabilisticradarconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Probabilistic Radar Configuration</span></span></a></span></li>
-</ul>
-        <h2 id="d124e15463">Related Topics</h2>
+<p>如果传感器未检测到场景中的车辆，则可能是虚幻引擎模拟块的执行顺序不正确。尝试更新执行顺序并再次模拟。有关执行顺序的更多详细信息，请参阅控制和显示执行顺序 （Simulink）。<br/></p>
+<p>还要确保所有 3D 仿真模块都位于同一个子系统中。即使块具有正确的优先级设置，如果它们位于不同的子系统中，它们仍可能无序执行。<br/></p>
+</section>
+        
+        <h2 id="d124e14836">相关主题</h2>
 <ul><li><a href="3d-simulation-for-automated-driving.html" class="a">Unreal Engine Simulation for Automated Driving</a></li>
+<li><a href="3d-visualization-engine-requirements.html" class="a">Unreal Engine Simulation Environment Requirements and Limitations</a></li>
+<li><a href="choose-a-sensor-for-3d-simulation.html" class="a">Choose a Sensor for Unreal Engine Simulation</a></li>
+<li><a href="coordinate-systems-for-3d-simulation-in-automated-driving-toolbox.html" class="a">Coordinate Systems for Unreal Engine Simulation in Automated Driving Toolbox</a></li>
 </ul>
         
     </section>
