@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Simulate Simple Driving Scenario and Sensor in Unreal Engine Environment</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../unreal-engine-scenario-simulation.html",
+          "name": "Unreal Engine Scenario Simulation"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "unreal-engine-scenario-simulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Simulate Simple Driving Scenario and Sensor in Unreal Engine Environment",
+          "description": "Learn the basics of configuring and simulating scenes, vehicles, and sensors in a virtual environment rendered using the Unreal Engine from Epic Games.",
+          "thumbnailURL": "../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_05.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "Simulink"
+
+        },
+          "identifier": "driving.SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample",
+          "name": "SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample",
+          "url": "simulate-a-simple-driving-scenario-and-sensor-in-3d-environment.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample.mlx",
+        "SimpleScenarioAndSensorModel3DSimulation.slx",
+        "helperShowSceneImage.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Learn the basics of configuring and simulating scenes, vehicles, and sensors in a virtual environment rendered using the Unreal Engine from Epic Games."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_05.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../unreal-engine-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Simulation</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Simulate Simple Driving Scenario and Sensor in Unreal Engine Environment</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-1" class="intrnllnk">Model Overview</a></li>
+<li><a href="#SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-2" class="intrnllnk">Inspect Scene</a></li>
+<li><a href="#SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-3" class="intrnllnk">Inspect Vehicles</a></li>
+<li><a href="#SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-4" class="intrnllnk">Inspect Non-Vehicle Actors</a></li>
+<li><a href="#SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-5" class="intrnllnk">Inspect Sensor</a></li>
+<li><a href="#SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-6" class="intrnllnk">Simulate Model</a></li>
+<li><a href="#d124e15746" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e15771" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_84f3846e-9919-41d6-9d5e-d193ef8d3698">在虚幻引擎环境中模拟简单的驾驶场景和传感器</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">此示例使用：</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">自动驾驶工具箱</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('VP')">计算机视觉工具箱</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('SL')">Simulink</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('driving/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample')" data-ex-genre="Live Script">打开实时脚本</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample"/>
+<meta itemprop="exampletitle" content="Simulate Simple Driving Scenario and Sensor in Unreal Engine Environment"/>
+</div>
+<span id="SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample" class="anchor_target"></span><p class="shortdesc">自动驾驶工具箱™提供了用于在使用Epic Games®虚幻引擎®的模拟环境中可视化传感器的模块。此模型在预构建的场景中模拟简单的驾驶场景，并使用鱼眼摄像头传感器从场景中捕获数据。使用此模型了解配置和模拟场景、车辆和传感器的基础知识。有关虚幻引擎模拟环境的更多背景知识，请参阅 <a href="3d-simulation-for-automated-driving.html" data-docid="driving_ug#mw_42c90379-c193-4951-8d24-147d66570b10" class="a">用于自动驾驶的虚幻引擎模拟</a>。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>addpath(genpath(fullfile(matlabroot,<span style="color:#A020F0">'examples'</span>,<span style="color:#A020F0">'driving'</span>)))</pre>
+</div>
+</div>
+</div>
+<div class="procedure"><h3 class="title" id="SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-1">模型概述</h3>
+<p>该模型由以下主要组件组成：</p>
+<div class="itemizedlist"><ul><li><p>场景 — 模拟 3D 场景配置块配置您在其中模拟的场景。</p></li>
+<li><p>车辆 — 两个带有地面跟随模块的模拟 3D 车辆配置场景中的车辆并指定其轨迹。</p></li>
+<li><p>非车辆演员 — <a href="../ref/simulation3dpedestrian.html" data-docid="driving_ref#mw_7524936f-3bf9-434b-9016-95ec531e403d" class="a">模拟 3D 行人</a> and <a href="../ref/simulation3dbicyclist.html" data-docid="driving_ref#mw_18af1129-b4e8-49cc-ae29-0c2974acec7b" class="a">模拟 3D 自行车</a> 块配置行人和骑自行车的人，并分别指定其轨迹。</p></li>
+<li><p>传感器 — 模拟 3D 鱼眼相机配置用于捕获模拟数据的鱼眼镜头相机的安装位置和参数。视频查看器模块可视化此传感器的模拟输出。</p></li>
+</ul>
+</div>
+<div class="informalfigure"><div id="d124e15535" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_01.png" height="506" width="1000"/></p>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>model = <span style="color:#A020F0">'SimpleScenarioAndSensorModel3DSimulation'</span>;
+open_system(model)</pre>
+</div>
+</div>
+</div>
+<h3 class="title" id="SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-2">检查场景</h3>
+<p>在模拟 3D 场景配置块中，场景名称参数确定进行模拟的场景。此模型使用大型停车场场景，但您可以在多个预构建场景中进行选择。要浏览场景，可以打开与 3D 场景对应的 2D 图像。<br/></p>
+<div class="code_responsive"><pre id="d124e15549" class="programlisting">data = load(<span style="color:#A020F0">'sim3d_SpatialReferences.mat'</span>);
+spatialRef = data.spatialReference.LargeParkingLot;
+figure; imshow(<span style="color:#A020F0">'sim3d_LargeParkingLot.jpg'</span>,spatialRef)
+set(gca,<span style="color:#A020F0">'YDir'</span>,<span style="color:#A020F0">'normal'</span>)
+</pre>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sceneName = <span style="color:#A020F0">'LargeParkingLot'</span>;
+[sceneImage, sceneRef] = helperGetSceneImage(sceneName);
+
+hScene = figure;
+helperShowSceneImage(sceneImage, sceneRef)
+title(sceneName)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e15554" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_02.png" alt="Figure contains an axes object. The axes object with title LargeParkingLot contains an object of type image." width="862"/></p>
+</div>
+</div>
+<p>要了解如何探索其他场景，请参阅相应的场景参考页面。</p>
+<p>这个块的场景视图参数决定了虚幻引擎窗口显示场景的视图。在此块中，场景视图设置为EgoVehicle，这是本场景中ego车辆(带有传感器的车辆)的名称。在模拟过程中，虚幻引擎窗口从ego车辆后面显示场景。你也可以改变其他车辆的场景视图。要从场景的根(场景原点)显示场景，选择root。<br/></p>
+<p>块的Weather选项卡控制太阳位置和场景天气。这个场景被设置在中午，阴天有小雨。<br/></p>
+<h3 class="title" id="SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-3">检查车辆</h3>
+<p>具有地面跟随块的模拟3D车辆在场景中建模。 </p>
+<div class="itemizedlist"><ul><li><p>Ego车辆块车辆包含鱼眼相机传感器。这辆车是一辆红色的掀背车。</p></li>
+<li><p>目标车辆模块是传感器从中捕获数据的车辆。这辆车被设计成绿色SUV。</p></li>
+</ul>
+</div>
+<p>在模拟过程中，两辆车在停车场直线行驶50米。目标车辆在自我车辆正前方10米处。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xlabel(<span style="color:#A020F0">'X (m)'</span>)
+ylabel(<span style="color:#A020F0">'Y (m)'</span>)
+
+xyOffset = 3;
+
+x = 45 - xyOffset;
+y = 0 - xyOffset;
+w = 3;
+h = 6;
+distAhead = 10;
+distTraveled = 50;
+
+egoStart = rectangle(<span style="color:#A020F0">'Position'</span>,[x y w h],<span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'r'</span>);
+targetStart = rectangle(<span style="color:#A020F0">'Position'</span>,[x y+distAhead w h],<span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'g'</span>);
+
+egoEnd = rectangle(<span style="color:#A020F0">'Position'</span>,[x y+distTraveled w h],<span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'r'</span>);
+targetEnd = rectangle(<span style="color:#A020F0">'Position'</span>,[x y+distTraveled+distAhead w h],<span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'g'</span>);
+
+
+xTextOffset = 30;
+startText = text(x-xTextOffset, y+distAhead, <span style="color:#A020F0">'Starting Positions'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'black'</span>,<span style="color:#A020F0">'BackgroundColor'</span>,<span style="color:#A020F0">'White'</span>);
+
+endText = text(x-xTextOffset, y+distTraveled+distAhead, <span style="color:#A020F0">'Ending Positions'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'black'</span>,<span style="color:#A020F0">'BackgroundColor'</span>,<span style="color:#A020F0">'White'</span>);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e15588" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_03.png" alt="Figure contains an axes object. The axes object with title LargeParkingLot contains 7 objects of type image, rectangle, text." width="862"/></p>
+</div>
+</div>
+<p>X, Y和偏航输入端口控制这些飞行器的轨迹。X和Y是场景的世界坐标，单位是米。偏航是飞行器的方向角，以度为单位。<br/></p>
+<p>自我车辆从(45,0)到(45,50)的位置行驶，方向从原点逆时针90度。为了对这个位置建模，输入端口值如下:</p>
+<div class="itemizedlist"><ul><li><p><b>X是45的常数。</b><br/></p></li>
+<li><p><b>Y是模拟时间的倍数。一个数字时钟块每0.1秒输出模拟时间，持续5秒，这是模拟的停止时间。然后将这些模拟时间乘以10，得到Y值为[0 1 2 3…]50]，或1米，最多50米。</b><br/></p></li>
+<li><p><b>偏航是一个90的常量。</b><br/></p></li>
+</ul>
+</div>
+<p>目标车辆与自我车辆具有相同的X和偏航值。目标车辆的Y值总是比自我车辆的Y值多10米。<br/></p>
+<p>在两种车辆中，初始位置[X, Y, Z] (m)和初始旋转[Roll, Pitch, Yaw] (deg)参数反映了仿真开始时车辆的初始[X, Y, Z]和[Yaw, Pitch, Roll]值。<br/></p>
+<p>为了创建更逼真的轨迹，您可以交互式地从场景中获取路点，并将这些路点指定为具有地面跟随块的模拟3D车辆的输入。请参阅虚幻引擎模拟的选择路径点。<br/></p>
+<p>两辆车也有可选的灯光控制输入端口启用。这个端口允许您指定一个逻辑向量，指定是否打开前灯、刹车灯、倒车灯或转向信号灯。两辆车在矢量的第二个位置都有一个1，这打开了它们的低光束前灯。有关启用和控制车辆灯的更多详细信息，请参阅模拟3D车辆与地面跟随块参考页面。<br/></p>
+<h3 class="title" id="SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-4">检查非车辆参与者</h3>
+<p>仿真3D行人模块和仿真3D自行车模块分别对行人和自行车进行建模。行人在(40,27.7)处静止，朝向移动的车辆。打开仿真3D行人块参数，更改行人的类型，缩放其大小，并更改名称。您可以指定行人的类型为男性、女性或儿童。 </p>
+<p>骑自行车的人从(50,0)处出发，跟随左侧两辆行驶的车辆直线行驶。打开Simulation 3D Bicyclist块参数，缩放其大小并更改名称。  </p>
+<h3 class="title" id="SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-5">检查传感器</h3>
+<p>仿真3D鱼眼相机模块对场景中使用的传感器进行建模。打开这个块并检查它的参数。</p>
+<div class="itemizedlist"><ul><li><p>“安装”选项卡包含确定传感器安装位置的参数。鱼眼相机传感器安装在ego车辆车顶的中心。<br/></p></li>
+<li><p>参数选项卡包含鱼眼相机的固有相机参数。这些参数都被设置为默认值，除了Mapping coefficients参数。在这个参数中，第二个系数从0减小到-0.0005来模拟镜头畸变。<br/></p></li>
+<li><p>Ground Truth选项卡包含一个参数，用于以米和弧度为单位输出传感器的位置和方向。在这个模型中，块输出这些值，这样您就可以看到它们在模拟过程中是如何变化的。<br/></p></li>
+</ul>
+</div>
+<p>该块输出从模拟中捕获的图像。在模拟过程中，Video Viewer块显示这些图像。</p>
+<h3 class="title" id="SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample-6">模拟模型</h3>
+<p>模拟模型。当模拟开始时，可视化引擎可能需要几秒钟的时间来初始化，特别是当您第一次运行它时。AutoVrtlEnv窗口显示3D环境中的场景视图。<br/></p>
+<div class="informalfigure"><div id="d124e15720" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_04.png" height="769" width="1300"/></p>
+</div>
+</div>
+<p>视频查看器块显示鱼眼相机的输出。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sim(model);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e15727" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_05.png" alt="{&quot;String&quot;:&quot;Figure Video Viewer contains an axes object and other objects of type uiflowcontainer, uimenu, uitoolbar. The axes object contains an object of type image.&quot;,&quot;Tex&quot;:[],&quot;LaTex&quot;:[]}" width="530"/></p>
+</div>
+</div>
+<p>要在模拟过程中改变场景的视图，请使用数字键盘上的数字1-9。</p>
+<div class="informalfigure"><div id="d124e15733" class="mediaobject"><p><img src="../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_06.png" height="491" width="422"/></p>
+</div>
+</div>
+<p>要鸟瞰现场，请按0。</p>
+<p>在对模型进行仿真后，尝试修改相机的固有参数，观察对仿真的影响。您还可以更改传感器块的类型。例如，尝试用3D模拟相机块替换3D模拟鱼眼相机。有关可用传感器块的详细信息，请参见为虚幻引擎仿真选择传感器。<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rmpath(genpath(fullfile(matlabroot,<span style="color:#A020F0">'examples'</span>,<span style="color:#A020F0">'driving'</span>)));</pre>
+</div>
+</div>
+</div>
+</div>
+        <h2 id="d124e15746">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
+                Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvehiclewithgroundfollowing.html"><span itemprop="name"><span class="block">Simulation 3D
+                Vehicle with Ground Following</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dcamera.html"><span itemprop="name"><span class="block">Simulation 3D
+                Camera</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dfisheyecamera.html"><span itemprop="name"><span class="block">Simulation 3D
+                Fisheye Camera</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dprobabilisticradar.html"><span itemprop="name"><span class="block">Simulation 3D
+                Probabilistic Radar</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dlidar.html"><span itemprop="name"><span class="block">Simulation 3D
+                Lidar</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvisiondetectiongenerator.html"><span itemprop="name"><span class="block">Simulation 3D
+                Vision Detection Generator</span></span></a></span></p>
+        <h2 id="d124e15771">Related Topics</h2>
+<ul><li><a href="3d-simulation-for-automated-driving.html" class="a">Unreal Engine Simulation for Automated Driving</a></li>
+<li><a href="3d-visualization-engine-requirements.html" class="a">Unreal Engine Simulation Environment Requirements and Limitations</a></li>
+<li><a href="how-3d-simulation-for-automated-driving-works.html" class="a">How Unreal Engine Simulation for Automated Driving Works</a></li>
+<li><a href="coordinate-systems.html" class="a">Coordinate Systems in Automated Driving Toolbox</a></li>
+<li><a href="select-waypoints-for-3d-simulation.html" class="a">Select Waypoints for Unreal Engine Simulation</a></li>
+<li><a href="design-of-lane-marker-detector-in-3d-simulation-environment.html" class="a">Design Lane Marker Detector Using Unreal Engine Simulation Environment</a></li>
+</ul>
+    </section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
