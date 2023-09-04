@@ -6,7 +6,7 @@
 <meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title>Choose a Sensor for Unreal Engine Simulation</title>
+<title>Depth and Semantic Segmentation Visualization Using Unreal Engine Simulation</title>
 <script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
       {
       "@context": "http://schema.org",
@@ -58,6 +58,53 @@
         "itemListOrder": "http://schema.org/ItemListOrderAscending"
         }
         </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Depth and Semantic Segmentation Visualization Using Unreal Engine Simulation",
+          "description": "Visualize depth and semantic segmentation data captured from a camera sensor in the Unreal Engine simulation environment.",
+          "thumbnailURL": "../../examples/driving/win64/Sim3DCitySceneSemanticSegmentationDisplay.png",
+          "genre": "Model",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "Simulink"
+
+        },
+          "identifier": "driving.VisualizeDepthAndSemanticSegmentationDataExample",
+          "name": "VisualizeDepthAndSemanticSegmentationDataExample",
+          "url": "visualize-depth-semantic-segmentation-3d-simulation.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/VisualizeDepthAndSemanticSegmentationDataExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "VisualizeDepthAndSemanticSegmentationDataExample.m",
+        "DepthSemanticSegmentation.slx",
+        "smoothedPoses.mat",
+        "Sim3DCitySceneCameraDisplay.png",
+        "Sim3DCitySceneDepthDisplay.png",
+        "Sim3DCitySceneSemanticSegmentationDisplay.png",
+        "Sim3DCitySceneUnrealEngineDisplay.png",
+        "sim3dColormap.png",
+        "sim3dColormap.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
 <link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 
@@ -65,7 +112,8 @@
 <meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
 
-<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Decide which camera, lidar, or radar sensors to use during simulation with the Unreal Engine."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Visualize depth and semantic segmentation data captured from a camera sensor in the Unreal Engine simulation environment."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/driving/win64/Sim3DCitySceneSemanticSegmentationDisplay.png" itemprop="thumbnailUrl"/>
 <script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
 <link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
 <link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
@@ -140,10 +188,14 @@
 <li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
 <li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../unreal-engine-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Simulation</span></a></li>
 </ul><ul class="nav_scrollspy nav">
-<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Choose a Sensor for Unreal Engine Simulation</a></li>
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Depth and Semantic Segmentation Visualization Using Unreal Engine Simulation</a></li>
 <li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
-<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e15448" class="intrnllnk">See Also</a></li>
-<li><a href="#d124e15463" class="intrnllnk">Related Topics</a></li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e15845" class="intrnllnk">Model Setup</a></li>
+<li><a href="#d124e15879" class="intrnllnk">Depth Visualization</a></li>
+<li><a href="#d124e15889" class="intrnllnk">Semantic Segmentation Visualization</a></li>
+<li><a href="#d124e15933" class="intrnllnk">Model Simulation</a></li>
+<li><a href="#d124e15982" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e15994" class="intrnllnk">Related Topics</a></li>
 </ul>
 </nav>
 </div></nav>
@@ -187,162 +239,123 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
 <section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
-<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_e5cbbf2f-6c7e-404f-9d9b-2ee74d80b9f1">为虚幻引擎模拟选择传感器<br/></h2>
-<p>在自动驾驶工具箱™中，您可以从虚拟环境中获取高保真传感器数据。此环境是使用Epic Games®的虚幻引擎®渲染的。<br/></p>
-<p>下表汇总了在此环境中可以模拟的传感器模块。</p>
-<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"/>
-<col class="tcol2" width="12%"/>
-<col class="tcol3" width="51%"/>
-<col class="tcol4" width="18%"/>
-</colgroup>
-<thead><tr><th>传感器模块</th>
-<th>描述</th>
-<th>可视化</th>
-<th>例</th>
-</tr>
-</thead>
-<tbody><tr><td rowspan="3"><p><a href="../ref/simulation3dcamera.html"><span class="block">模拟3D相机</span></a></p>
-</td>
-<td rowspan="3">
-                        <div class="itemizedlist"><ul><li><p>带有基于理想针孔相机的镜头的相机。请参阅什么是相机校准？<br/></p></li>
-<li><p>包括图像大小、焦距、失真和偏斜的参数</p></li>
-<li><p>包括输出地面实况以进行深度估计和语义分割的选项</p></li>
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_99833610-a135-4e7c-8b9d-522c0e2c10e6">深度和语义分割可视化使用虚幻引擎仿真</h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">这个例子使用:</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">自动驾驶工具箱</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('IP')">图像处理工具箱</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('SL')">Simulink</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('VP')">计算机视觉工具箱</a></li>
 </ul>
-</div>
-                    </td>
-<td><p>使用“视频查看器”或“到视频显示”块显示相机图像。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15256" class="mediaobject"><p><img src="sim3d_camera_sample_output.png" alt="Sample camera visualization" height="288" width="385"/></p>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('driving/VisualizeDepthAndSemanticSegmentationDataExample')" data-ex-genre="Model">Open Model</a></div>
 </div>
 </div>
-<p></p>
-</td>
-<td><p>
-                            <a href="design-of-lane-marker-detector-in-3d-simulation-environment.html" class="a">使用虚幻引擎模拟环境设计车道标记检测器</a>
-                        </p>
-</td>
-</tr>
-<tr><td><p>使用视频查看器或到视频显示块显示深度图。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15278" class="mediaobject"><p><img src="sim3d_depth_sample_output.png" alt="Sample depth visualization" height="210" width="382"/></p>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-VisualizeDepthAndSemanticSegmentationDataExample"/>
+<meta itemprop="exampletitle" content="Depth and Semantic Segmentation Visualization Using Unreal Engine Simulation"/>
 </div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="visualize-depth-semantic-segmentation-3d-simulation.html" class="a">使用虚幻引擎模拟进行深度和语义分割可视化</a>
-                        </p>
-</td>
-</tr>
-<tr><td><p>使用视频查看器或到视频显示块显示语义分割映射。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15300" class="mediaobject"><p><img src="sim3d_semanticseg_sample_output.png" alt="Sample semantic segmentation visualization" height="213" width="381"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="visualize-depth-semantic-segmentation-3d-simulation.html" class="a">使用虚幻引擎模拟进行深度和语义分割可视化</a>
-                        </p>
-</td>
-</tr>
-<tr><td><p><a href="../ref/simulation3dfisheyecamera.html"><span class="block">模拟3D鱼眼相机</span></a></p>
-</td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>可以使用Scaramuzza相机模型描述的鱼眼相机。 请参阅 <a href="../../vision/ug/fisheye-calibration-basics.html" class="a">鱼眼校准基础知识</a></p></li>
-<li><p>包括失真中心、图像大小和映射系数的参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用“视频查看器”或“到视频显示”块显示相机图像。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15334" class="mediaobject"><p><img src="sim3d_fisheye_sample_output.png" alt="Sample fisheye camera visualization" height="208" width="370"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><a href="simulate-a-simple-driving-scenario-and-sensor-in-3d-environment.html" class="a">在虚幻引擎环境中模拟简单的驾驶场景和传感器</a></td>
-</tr>
-<tr><td rowspan="2"><p><a href="../ref/simulation3dlidar.html"><span class="block">模拟3D激光雷达</span></a></p>
-</td>
-<td rowspan="2"><p>
-                            </p>
-<div class="itemizedlist"><ul><li><p>扫描激光雷达传感器型号</p></li>
-<li><p>包括检测范围、分辨率和视场参数</p></li>
-</ul>
-</div>
-<p>
+<span id="VisualizeDepthAndSemanticSegmentationDataExample" class="anchor_target"></span>
 
-                        </p>
-</td>
-<td><p>通过在 MATLAB 功能块中使用 pcplayer 显示点云数据。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15363" class="mediaobject"><p><img src="sim3d_lidar_sample_output.png" alt="Sample pcplayer point cloud visualization" height="204" width="349"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><a href="design-lidar-slam-algorithm-using-3d-simulation-environment.html" class="a">使用虚幻引擎模拟环境设计激光雷达SLAM算法</a></td>
-</tr>
-<tr><td><p>使用鸟瞰镜显示激光雷达覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15379" class="mediaobject"><p><img src="sim3d_bes_lidar_detections.png" alt="Sample Bird's-Eye Scope point cloud visualization" height="295" width="343"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">可视化虚幻引擎模拟环境中的传感器数据</a></td>
-</tr>
-<tr><td><p><a href="../ref/simulation3dprobabilisticradar.html"><span class="block">仿真三维概率雷达</span></a></p>
-</td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>返回检测列表的概率雷达模型</p></li>
-<li><p> 包括雷达精度、雷达偏置、检测概率和检测报告的参数</p></li>
+<p class="shortdesc">这个例子展示了如何在模拟环境中可视化从相机传感器捕获的深度和语义分割数据。这个环境是使用Epic Games®的虚幻引擎®渲染的。</p>
+
+<p>您可以使用深度可视化来验证传感器的深度估计算法。您可以使用语义分割可视化来分析用于从虚幻引擎环境中生成合成语义分割数据的分类方案。</p>
+
+<div class="procedure"><h3 class="title" id="d124e15845">模型设置<span id="VisualizeDepthAndSemanticSegmentationDataExample-1" class="anchor_target"></span></h3>
+<p>本例中使用的模型模拟了在城市场景中行驶的车辆。</p>
+<div class="itemizedlist"><ul><li><p>模拟3D场景配置块设置模拟与美国城市街区场景。<br/></p></li>
+<li><p>模拟3D车辆与地面跟随块指定车辆的行驶路线。组成这条路线的路点姿势是使用虚幻引擎仿真示例中选择路点所描述的技术获得的。<br/></p></li>
+<li><p>安装在车辆后视镜上的模拟3D摄像头块从行驶路线中捕获数据。该块通过使用To Video Display块输出相机、深度和语义分割显示。<br/></p></li>
 </ul>
 </div>
-                    </td>
-<td><p>使用鸟瞰镜显示雷达覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15405" class="mediaobject"><p><img src="sim3d_bes_radar_detections.png" alt="Sample Bird's-Eye Scope radar visualization" height="295" width="343"/></p>
+<p>加载包含航路点姿态的mat文件。添加时间戳的姿势，然后打开模型。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">smoothedPoses.mat</span>;
+
+refPosesX   = [linspace(0,20,1000)', smoothedPoses(:,1)];
+refPosesY   = [linspace(0,20,1000)', smoothedPoses(:,2)];
+refPosesYaw = [linspace(0,20,1000)', smoothedPoses(:,3)];
+
+open_system(<span style="color:#A020F0">'DepthSemanticSegmentation.slx'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e15876" class="mediaobject"><p><img src="../../examples/driving/win64/VisualizeDepthAndSemanticSegmentationDataExample_01.png"/></p>
+</div>
+</div>
+<h3 class="title" id="d124e15879">深度可视化<span id="VisualizeDepthAndSemanticSegmentationDataExample-2" class="anchor_target"></span></h3>
+<p>深度图是相机传感器输出的灰度表示。这些地图以灰度显示相机图像，较亮的像素表示距离传感器较远的物体。您可以使用深度图来验证传感器的深度估计算法。</p>
+<p>Simulation 3D Camera块的Depth端口输出深度图，范围为0到1000米。在这个模型中，为了获得更好的能见度，饱和度块将深度输出饱和到最大150米。然后，增益块将深度图缩放到[0,1]范围，以便to Video Display块可以将深度图以灰度形式可视化。<br/></p>
+<h3 class="title" id="d124e15889">语义分割可视化<span id="VisualizeDepthAndSemanticSegmentationDataExample-3" class="anchor_target"></span></h3>
+<p><i>语义分割描述了将图像的每个像素与类标签(如道路、建筑物或交通标志)相关联的过程。在3D仿真环境中，根据标签分类方案生成合成语义分割数据。然后，您可以使用这些标签来训练用于自动驾驶应用的神经网络，例如道路分割。通过可视化语义分割数据，您可以验证您的分类方案。</i><br/></p>
+<p>仿真3D相机块的标签端口为输出相机图像中的每个像素输出一组标签。每个标签对应一个对象类。例如，在块使用的默认分类方案中，1对应建筑物。标签为0表示未知类的对象，显示为黑色。标签id的完整列表及其对应对象描述，请参见仿真3D摄像机块参考页面的标签端口说明。<br/></p>
+<p>MATLAB函数块使用label2rgb函数将标签转换为RGB三元组矩阵以进行可视化。颜色图基于CamVid数据集中使用的颜色，如使用深度学习的语义分割示例所示。颜色被映射到默认3D模拟场景中使用的预定义标签id。辅助函数sim3dColormap定义了颜色映射。检查这些颜色图值。<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>open <span style="color:#A020F0">sim3dColormap.m</span>
+</pre>
+</div>
 </div>
 </div>
 <p></p>
-</td>
-<td><p>
-                            <a href="simulate-radar-sensors-in-3d-environment.html" class="a">在虚幻引擎环境中模拟视觉和雷达传感器</a>
-                        </p>
+<div class="informalfigure"><div id="d124e15929" class="mediaobject"><p><img src="../../examples/driving/win64/xxsim3dColormap.png"/></p>
+</div>
+</div>
 <p>
-                            <a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">可视化虚幻引擎模拟环境中的传感器数据</a>
-                        </p>
-</td>
-</tr>
-<tr><td><a href="../ref/simulation3dvisiondetectiongenerator.html"><span class="block">仿真 3D 视觉检测生成器</span></a></td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>返回对象和车道边界检测列表的相机模型</p></li>
-<li><p> 包括检测精度、测量噪声和相机固有参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用鸟瞰镜显示视觉覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15437" class="mediaobject"><p><img src="sim3d_bes_vision_detections.png" alt="Sample Bird's-Eye Scope vision visualization" height="387" width="421"/></p>
+ </p>
+<h3 class="title" id="d124e15933">模型仿真<span id="VisualizeDepthAndSemanticSegmentationDataExample-5" class="anchor_target"></span></h3>
+<p>运行模型。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sim(<span style="color:#A020F0">'DepthSemanticSegmentation.slx'</span>);<font face="Arial"><span style="white-space: normal;">
+</span></font></pre>
 </div>
 </div>
+</div>
+<p>当模拟开始时，可视化引擎可能需要几秒钟的时间来初始化，特别是当您第一次运行它时。AutoVrtlEnv窗口显示车辆后方的场景。在这个场景中，车辆在城市周围行驶了几个街区。因为这个例子主要是为了说明目的，车辆并不总是遵循交通的方向或变化的交通灯的模式。<br/></p>
 <p></p>
-</td>
-<td><p>
-                            <a href="simulate-radar-sensors-in-3d-environment.html" class="a">在虚幻引擎环境中模拟视觉和雷达传感器</a>
-                        </p>
-</td>
-</tr>
-</tbody>
-</table>
+<div class="informalfigure"><div id="d124e15946" class="mediaobject"><p><img src="../../examples/driving/win64/xxSim3DCitySceneUnrealEngineDisplay.png"/></p>
 </div>
-        <h2 id="d124e15448">See Also</h2>
-<h3>Blocks</h3>
-<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Scene Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvehiclewithgroundfollowing.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Vehicle with Ground Following</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dprobabilisticradarconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Probabilistic Radar Configuration</span></span></a></span></li>
-</ul>
-        <h2 id="d124e15463">Related Topics</h2>
-<ul><li><a href="3d-simulation-for-automated-driving.html" class="a">Unreal Engine Simulation for Automated Driving</a></li>
+</div>
+<p>
+ </p>
+<p>相机显示、深度显示和语义分割显示块显示来自相机传感器的输出。</p>
+<p></p>
+<div class="informalfigure"><div id="d124e15953" class="mediaobject"><p><img src="../../examples/driving/win64/xxSim3DCitySceneCameraDisplay.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p></p>
+<div class="informalfigure"><div id="d124e15959" class="mediaobject"><p><img src="../../examples/driving/win64/xxSim3DCitySceneDepthDisplay.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p></p>
+<div class="informalfigure"><div id="d124e15965" class="mediaobject"><p><img src="../../examples/driving/win64/xxSim3DCitySceneSemanticSegmentationDisplay.png"/></p>
+</div>
+</div>
+<p>
+ </p>
+<p>要更改输出深度数据的可视化范围，请尝试更新饱和度和增益块中的值。</p>
+<p>要更改语义分割颜色，请尝试修改sim3dColormap函数中定义的颜色值。或者，在sim3dlabel2rgb MATLAB Function块中，尝试用您自己的颜色映射或预定义的颜色映射替换输入颜色映射。看到colormap。<br/></p>
+</div>
+        <h2 id="d124e15982">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dcamera.html"><span itemprop="name"><span class="block">Simulation 3D
+                Camera</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
+                Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvehiclewithgroundfollowing.html"><span itemprop="name"><span class="block">Simulation 3D
+                Vehicle with Ground Following</span></span></a></span></p>
+        <h2 id="d124e15994">Related Topics</h2>
+<ul><li><a href="simulate-a-simple-driving-scenario-and-sensor-in-3d-environment.html" class="a">Simulate Simple Driving Scenario and Sensor in Unreal Engine Environment</a></li>
+<li><a href="select-waypoints-for-3d-simulation.html" class="a">Select Waypoints for Unreal Engine Simulation</a></li>
+<li><a href="../../vision/ug/semantic-segmentation-using-deep-learning.html" class="a">Semantic Segmentation Using Deep Learning</a></li>
+<li><a href="../../deeplearning/ug/train-deep-learning-semantic-segmentation-network-using-3d-simulation-data.html" class="a">Train Deep Learning Semantic Segmentation Network Using 3-D Simulation Data</a><span role="cross_prod"> (Deep Learning Toolbox)</span></li>
 </ul>
         
     </section>
     </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
 <div class="clearfix"></div>
 <div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
 <script>loadSurveyHidden();</script>
