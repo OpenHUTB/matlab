@@ -62,7 +62,7 @@ latex_exe_dir = fullfile(latex_dir, 'bin', 'windows'); % latex 2023
 rep_dir = fullfile(fileparts(matlabroot), 'dong');
 
 % 工作空间（仓库所置的路径）
-work_dir = fullfile("C:", "workspace");
+work_dir = fullfile("D:", "work", "workspace");
 if ~exist(work_dir, 'dir'); clear("work_dir"); end
 
 hutb_rep = "https://github.com/OpenHUTB/utils";

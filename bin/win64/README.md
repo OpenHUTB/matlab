@@ -2495,8 +2495,10 @@ m3i_mi.dll
 m_dispatcher.dll                                            
 m_interpreter.dll                                           
 m_ir.dll                                                    
-m_lxe.dll                                                   
-m_parser.dll                                                
+m_lxe.dll   
+
+m_parser.dll  p文件解扰的处理函数
+
 mametrics.dll                                               
 mariadb                                                     
 markup.dll                                                  
@@ -2755,8 +2757,10 @@ msvcp140_atomic_wait.dll
 msvcp140_codecvt_ids.dll                                    
 msvcr110.dll                                                
 msvcr120.dll                                                
-mtasks.dll                                                  
-mtok.dll                                                    
+mtasks.dll
+
+mtok.dll  预编译和解析的代码（被Matlab解析的代码片段），将这些片段重新转换为代码文本。(m token 源文件中的标记符)
+
 mu.ico                                                      
 multibody_unit_service                                      
 multimedia.dll                                              

@@ -6,7 +6,7 @@
 <meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title>Choose a Sensor for Unreal Engine Simulation</title>
+<title>Coordinate Systems for Unreal Engine Simulation in Automated Driving Toolbox</title>
 <script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
       {
       "@context": "http://schema.org",
@@ -65,7 +65,7 @@
 <meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
 
-<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Decide which camera, lidar, or radar sensors to use during simulation with the Unreal Engine."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Understand the world and vehicle coordinate systems when simulating in the Unreal Engine environment."/>
 <script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
 <link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
 <link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
@@ -140,10 +140,17 @@
 <li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
 <li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../unreal-engine-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Simulation</span></a></li>
 </ul><ul class="nav_scrollspy nav">
-<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Choose a Sensor for Unreal Engine Simulation</a></li>
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Coordinate Systems for Unreal Engine Simulation in Automated Driving Toolbox</a></li>
 <li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
-<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e15448" class="intrnllnk">See Also</a></li>
-<li><a href="#d124e15463" class="intrnllnk">Related Topics</a></li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_88def173-347a-40db-8933-ed4945ac0a6d" class="intrnllnk">World Coordinate System</a><ul class="nav"><li><a href="#mw_ddf5fa80-9a4e-4196-bb59-608324aadf5f" class="intrnllnk">Placing Vehicles in a Scene</a></li>
+<li><a href="#mw_ef653a45-a8b3-45a1-aa69-41240bef061c" class="intrnllnk">Difference from Unreal Editor World Coordinates</a></li>
+</ul></li>
+<li><a href="#mw_ed87aad8-6621-4a7c-8535-97efb80ff786" class="intrnllnk">Vehicle Coordinate System</a><ul class="nav"><li><a href="#mw_7fe500f6-c348-4820-b6bf-d60c9a78a1bf" class="intrnllnk">Mounting Sensors on a Vehicle</a></li>
+<li><a href="#mw_c0cc9aae-6185-4986-9619-33dae454e445" class="intrnllnk">Difference from Cuboid Vehicle Origin</a></li>
+<li><a href="#mw_3228ffb7-88fb-4007-b595-905b5f949de2" class="intrnllnk">Difference from Unreal Editor Vehicle Coordinates</a></li>
+</ul></li>
+<li><a href="#d124e15167" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e15176" class="intrnllnk">Related Topics</a></li>
 </ul>
 </nav>
 </div></nav>
@@ -187,158 +194,107 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
 <section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
-<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_e5cbbf2f-6c7e-404f-9d9b-2ee74d80b9f1">为虚幻引擎模拟选择传感器<br/></h2>
-<p>在自动驾驶工具箱™中，您可以从虚拟环境中获取高保真传感器数据。此环境是使用Epic Games®的虚幻引擎®渲染的。<br/></p>
-<p>下表汇总了在此环境中可以模拟的传感器模块。</p>
-<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"/>
-<col class="tcol2" width="12%"/>
-<col class="tcol3" width="51%"/>
-<col class="tcol4" width="18%"/>
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_04808e95-7f37-4439-8d8c-8a5638120a9f">自动驾驶工具箱中虚幻引擎模拟的坐标系<br/></h2>
+<p>自动驾驶工具箱™使你能够在使用Epic Games®虚幻引擎®的虚拟环境中模拟驾驶算法。通常，此环境中使用的坐标系遵循自动驾驶工具箱中的坐标系中所述的约定。但是，在此环境中进行仿真时，了解坐标系的特定差异和实现细节非常重要。<br/></p>
+<section itemprop="content"><h3 class="title" id="mw_88def173-347a-40db-8933-ed4945ac0a6d">世界坐标系</h3>
+<p>与其他自动驾驶工具箱功能一样，仿真环境使用 ISO 8855 中定义的右手笛卡尔世界坐标系。虚拟城市场景的以下 2D 顶视图图像显示了场景的 X 和 Y 坐标。<br/></p>
+<div class="informalfigure"><div id="d124e14891" class="mediaobject"><p><img src="drivingsim3d_scene_mcity.png" alt="Virtual MCity scene" height="678" width="680"/></p>
+</div>
+</div>
+<p>在此坐标系中，当向 X 轴的正方向看时，正 Y 轴指向左。正 Z 轴从地面向上指向。当分别朝 Z、Y 和 X 轴的正方向观察时，偏航角、俯仰角和横滚角是顺时针正的。如果从 2D 自上而下的视角查看场景，则偏航角为逆时针正，因为您是在 Z 轴的负方向上查看场景。<br/></p>
+<section itemprop="content"><h4 class="title" id="mw_ddf5fa80-9a4e-4196-bb59-608324aadf5f">在场景中放置车辆</h4>
+<p>车辆放置在场景的世界坐标系中。该图显示了在具有地面跟随模块的模拟 3D 车辆中指定 X、Y 和偏航端口如何确定它们在场景中的位置。<br/></p>
+<div class="informalfigure"><div id="d124e14926" class="mediaobject"><p><img src="sim3d_vehicles_in_world.png" alt="A red car and green car modeled in Simulink and visualized in the Virtual MCity scene. The red car is at position (0, 0) and has a yaw of 0 degrees. The green car is at position (100, -50) and has a yaw of 90 degrees." height="401" width="955"/></p>
+</div>
+</div>
+<p>地面的仰角和倾斜角决定了车辆的 Z 轴、横滚角和俯仰角。<br/></p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_ef653a45-a8b3-45a1-aa69-41240bef061c">与虚幻编辑器世界坐标的区别<br/></h4>
+<p>虚幻®编辑器使用左手世界笛卡尔坐标系，其中正Y轴指向右侧。如果要从虚幻编辑器坐标系转换为3D环境的坐标系，则必须翻转Y轴和俯仰角的符号。两个坐标系中的 X 轴、Z 轴、横滚角和偏航角相同。<br/></p>
+</section>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_ed87aad8-6621-4a7c-8535-97efb80ff786">车辆坐标系</h3>
+<p>车辆坐标系基于世界坐标系。在此坐标系中：</p>
+<div class="itemizedlist"><ul><li><p>X 轴从车辆指向前方。<br/></p></li>
+<li><p>Y 轴指向车辆左侧。<br/></p></li>
+<li><p>Z 轴从地面向上指向。<br/></p></li>
+<li><p>横滚、俯仰和偏航分别在向前看 X、Y 和 Z 轴时顺时针正向。与世界坐标系一样，当从上到下查看车辆时，偏航角是逆时针正的。<br/></p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>车辆原点在地面上，在车辆的几何中心。在此图中，蓝点表示车辆原点。</p>
+<div class="informalfigure"><div id="d124e14988" class="mediaobject"><p><img src="musclecar_overview.jpg" alt="Muscle car from various views and the geometric center labeled" height="534" width="1310"/></p>
+</div>
+</div>
+<section itemprop="content"><h4 class="title" id="mw_7fe500f6-c348-4820-b6bf-d60c9a78a1bf">在车辆上安装传感器</h4>
+<p>将传感器块（如模拟 3D 相机模块）添加到模型时，可以将传感器安装到预定义的车辆位置，例如根中心的前保险杠。这些安装位置位于车辆坐标系中。指定与这些位置的偏移时，将从安装位置的原点偏移，而不是从车辆原点偏移。<br/></p>
+<p>这些方程定义了具有位置（X、Y、Z）和方向（横滚、俯仰、偏航）的传感器的车辆坐标：<br/></p>
+<div class="itemizedlist"><ul><li><p>(<em class="varname">X</em>, <em class="varname">Y</em>, <em class="varname">Z</em>) =
+                                (<em class="varname">X</em><sub>mount</sub> +
+                                <em class="varname">X</em><sub>offset</sub>,
+                                <em class="varname">Y</em><sub>mount</sub> +
+                                <em class="varname">Y</em><sub>offset</sub>,
+                                <em class="varname">Z</em><sub>mount</sub> +
+                                <em class="varname">Z</em><sub>offset</sub>)</p></li>
+<li><p>(<em class="varname">Roll</em>, <em class="varname">Pitch</em>,
+                                <em class="varname">Yaw</em>) =
+                                (<em class="varname">Roll</em><sub>mount</sub> +
+                                <em class="varname">Roll</em><sub>offset</sub>,
+                                <em class="varname">Pitch</em><sub>mount</sub> +
+                                <em class="varname">Pitch</em><sub>offset</sub>,
+                                <em class="varname">Yaw</em><sub>mount</sub> +
+                                <em class="varname">Yaw</em><sub>offset</sub>)</p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>“安装”变量是指相对于车辆原点的预定义安装位置。您可以在传感器模块的安装位置参数中定义这些安装位置。<br/></p>
+<p>“偏移”变量是指这些安装位置的偏移量。您可以在传感器模块的相对平移 [X， Y， Z] （m） 和相对旋转 [横滚、俯仰、偏航] （度） 参数中定义这些偏移。<br/></p>
+<p>例如，考虑安装在后保险杠位置的传感器。相对于车辆原点，传感器的方向为 （0， 0， 180）。换句话说，当从上往下看车辆时，传感器的偏航角逆时针旋转180度。<br/></p>
+<div class="informalfigure"><div id="d124e15088" class="mediaobject"><p><img src="sim3d_mount_coords_no_offset.png" alt="Vehicle with sensor rotated 180 degrees counterclockwise from the vehicle origin" height="241" width="110"/></p>
+</div>
+</div>
+<p>要将传感器进一步指向右侧 90 度，您需要将相对旋转 [横滚、俯仰、偏航]（度）参数设置为 [0，0，90]。换句话说，传感器相对于车辆原点逆时针旋转 270 度，但相对于预定义后保险杠位置的原点仅逆时针旋转 90 度。<br/></p>
+<div class="informalfigure"><div id="d124e15099" class="mediaobject"><p><img src="sim3d_mount_coords_with_offset.png" alt="Vehicle with sensor rotated 270 degrees counterclockwise from the vehicle origin" height="193" width="155"/></p>
+</div>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_c0cc9aae-6185-4986-9619-33dae454e445">与长方体车辆起源的区别</h4>
+<p>在长方体模拟环境中，如长方体场景模拟中所述，原点位于地面上，位于车辆后轴中心下方。<br/></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
 </colgroup>
-<thead><tr><th>传感器模块</th>
-<th>描述</th>
-<th>可视化</th>
-<th>例</th>
+<thead><tr><th>长方体车辆起源</th>
+<th>3D 模拟车辆起源</th>
 </tr>
 </thead>
-<tbody><tr><td rowspan="3"><p><a href="../ref/simulation3dcamera.html"><span class="block">模拟3D相机</span></a></p>
+<tbody><tr><td><div class="informalfigure"><div id="d124e15123" class="mediaobject"><p><img src="cuboid_vehicle_origin.png" alt="Cuboid vehicle in blue with origin at the center of the rear axle" height="231" width="132"/></p>
+</div>
+</div>
 </td>
-<td rowspan="3">
-                        <div class="itemizedlist"><ul><li><p>带有基于理想针孔相机的镜头的相机。请参阅什么是相机校准？<br/></p></li>
-<li><p>包括图像大小、焦距、失真和偏斜的参数</p></li>
-<li><p>包括输出地面实况以进行深度估计和语义分割的选项</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用“视频查看器”或“到视频显示”块显示相机图像。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15256" class="mediaobject"><p><img src="sim3d_camera_sample_output.png" alt="Sample camera visualization" height="288" width="385"/></p>
+<td><div class="informalfigure"><div id="d124e15129" class="mediaobject"><p><img src="sim3d_vehicle_origin.png" alt="3D simulation vehicle in red with origin at the geometric center of the vehicle" height="241" width="115"/></p>
 </div>
 </div>
-<p></p>
-</td>
-<td><p>
-                            <a href="design-of-lane-marker-detector-in-3d-simulation-environment.html" class="a">使用虚幻引擎模拟环境设计车道标记检测器</a>
-                        </p>
-</td>
-</tr>
-<tr><td><p>使用视频查看器或到视频显示块显示深度图。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15278" class="mediaobject"><p><img src="sim3d_depth_sample_output.png" alt="Sample depth visualization" height="210" width="382"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="visualize-depth-semantic-segmentation-3d-simulation.html" class="a">使用虚幻引擎模拟进行深度和语义分割可视化</a>
-                        </p>
-</td>
-</tr>
-<tr><td><p>使用视频查看器或到视频显示块显示语义分割映射。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15300" class="mediaobject"><p><img src="sim3d_semanticseg_sample_output.png" alt="Sample semantic segmentation visualization" height="213" width="381"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="visualize-depth-semantic-segmentation-3d-simulation.html" class="a">使用虚幻引擎模拟进行深度和语义分割可视化</a>
-                        </p>
-</td>
-</tr>
-<tr><td><p><a href="../ref/simulation3dfisheyecamera.html"><span class="block">模拟3D鱼眼相机</span></a></p>
-</td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>可以使用Scaramuzza相机模型描述的鱼眼相机。 请参阅 <a href="../../vision/ug/fisheye-calibration-basics.html" class="a">鱼眼校准基础知识</a></p></li>
-<li><p>包括失真中心、图像大小和映射系数的参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用“视频查看器”或“到视频显示”块显示相机图像。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15334" class="mediaobject"><p><img src="sim3d_fisheye_sample_output.png" alt="Sample fisheye camera visualization" height="208" width="370"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><a href="simulate-a-simple-driving-scenario-and-sensor-in-3d-environment.html" class="a">在虚幻引擎环境中模拟简单的驾驶场景和传感器</a></td>
-</tr>
-<tr><td rowspan="2"><p><a href="../ref/simulation3dlidar.html"><span class="block">模拟3D激光雷达</span></a></p>
-</td>
-<td rowspan="2"><p>
-                            </p>
-<div class="itemizedlist"><ul><li><p>扫描激光雷达传感器型号</p></li>
-<li><p>包括检测范围、分辨率和视场参数</p></li>
-</ul>
-</div>
-<p>
-
-                        </p>
-</td>
-<td><p>通过在 MATLAB 功能块中使用 pcplayer 显示点云数据。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15363" class="mediaobject"><p><img src="sim3d_lidar_sample_output.png" alt="Sample pcplayer point cloud visualization" height="204" width="349"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><a href="design-lidar-slam-algorithm-using-3d-simulation-environment.html" class="a">使用虚幻引擎模拟环境设计激光雷达SLAM算法</a></td>
-</tr>
-<tr><td><p>使用鸟瞰镜显示激光雷达覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15379" class="mediaobject"><p><img src="sim3d_bes_lidar_detections.png" alt="Sample Bird's-Eye Scope point cloud visualization" height="295" width="343"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">可视化虚幻引擎模拟环境中的传感器数据</a></td>
-</tr>
-<tr><td><p><a href="../ref/simulation3dprobabilisticradar.html"><span class="block">仿真三维概率雷达</span></a></p>
-</td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>返回检测列表的概率雷达模型</p></li>
-<li><p> 包括雷达精度、雷达偏置、检测概率和检测报告的参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用鸟瞰镜显示雷达覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15405" class="mediaobject"><p><img src="sim3d_bes_radar_detections.png" alt="Sample Bird's-Eye Scope radar visualization" height="295" width="343"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="simulate-radar-sensors-in-3d-environment.html" class="a">在虚幻引擎环境中模拟视觉和雷达传感器</a>
-                        </p>
-<p>
-                            <a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">可视化虚幻引擎模拟环境中的传感器数据</a>
-                        </p>
-</td>
-</tr>
-<tr><td><a href="../ref/simulation3dvisiondetectiongenerator.html"><span class="block">仿真 3D 视觉检测生成器</span></a></td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>返回对象和车道边界检测列表的相机模型</p></li>
-<li><p> 包括检测精度、测量噪声和相机固有参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用鸟瞰镜显示视觉覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15437" class="mediaobject"><p><img src="sim3d_bes_vision_detections.png" alt="Sample Bird's-Eye Scope vision visualization" height="387" width="421"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="simulate-radar-sensors-in-3d-environment.html" class="a">在虚幻引擎环境中模拟视觉和雷达传感器</a>
-                        </p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-        <h2 id="d124e15448">See Also</h2>
-<h3>Blocks</h3>
-<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Scene Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvehiclewithgroundfollowing.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Vehicle with Ground Following</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dprobabilisticradarconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Probabilistic Radar Configuration</span></span></a></span></li>
-</ul>
-        <h2 id="d124e15463">Related Topics</h2>
-<ul><li><a href="3d-simulation-for-automated-driving.html" class="a">Unreal Engine Simulation for Automated Driving</a></li>
+<p>如果要在坐标系之间转换传感器位置，则需要使用长方体转 3D 模拟块来考虑原点上的这种差异。有关使用此块的示例模型，请参阅高速公路车道跟随。<br/></p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_3228ffb7-88fb-4007-b595-905b5f949de2">与虚幻编辑器车辆坐标的区别<br/></h4>
+<p>虚幻编辑器使用左手笛卡尔车辆坐标系，其中正Y轴指向右侧。如果要从虚幻编辑器坐标系转换为虚幻引擎环境的坐标系，则必须翻转Y轴和俯仰角的符号。两个坐标系中的 X 轴、Z 轴、横滚角和偏航角相同。<br/></p>
+</section>
+</section>
+        <h2 id="d124e15167">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvehiclewithgroundfollowing.html"><span itemprop="name"><span class="block">Simulation 3D
+                Vehicle with Ground Following</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/cuboidto3dsimulation.html"><span itemprop="name"><span class="block">Cuboid To 3D
+                Simulation</span></span></a></span></p>
+        <h2 id="d124e15176">Related Topics</h2>
+<ul><li><a href="how-3d-simulation-for-automated-driving-works.html" class="a">How Unreal Engine Simulation for Automated Driving Works</a></li>
+<li><a href="coordinate-systems.html" class="a">Coordinate Systems in Automated Driving Toolbox</a></li>
+<li><a href="../../vdynblks/ug/coordinate-systems-in-vehicle-dynamics-blockset.html" class="a">Coordinate Systems in Vehicle Dynamics Blockset</a><span role="cross_prod"> (Vehicle Dynamics Blockset)</span></li>
 </ul>
         
     </section>

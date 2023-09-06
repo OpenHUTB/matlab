@@ -6,7 +6,7 @@
 <meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title>Choose a Sensor for Unreal Engine Simulation</title>
+<title>Unreal Engine Simulation for Automated Driving</title>
 <script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
       {
       "@context": "http://schema.org",
@@ -65,7 +65,7 @@
 <meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
 <meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
 
-<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Decide which camera, lidar, or radar sensors to use during simulation with the Unreal Engine."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Learn how to model driving algorithms in Simulink and visualize their performance in a virtual environment using the Unreal Engine from Epic Games."/>
 <script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
 <link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
 <link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
@@ -140,10 +140,18 @@
 <li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
 <li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../unreal-engine-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Simulation</span></a></li>
 </ul><ul class="nav_scrollspy nav">
-<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Choose a Sensor for Unreal Engine Simulation</a></li>
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Unreal Engine Simulation for Automated Driving</a></li>
 <li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
-<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e15448" class="intrnllnk">See Also</a></li>
-<li><a href="#d124e15463" class="intrnllnk">Related Topics</a></li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_1eb66648-24b6-4641-a0a3-fd46066c17a8" class="intrnllnk">Unreal Engine Simulation Blocks</a><ul class="nav"><li><a href="#mw_b675e3a5-eeba-46dc-b21d-f6943de661ca" class="intrnllnk">Scenes</a></li>
+<li><a href="#mw_d999ec01-98a4-431b-8516-20aae8db9cac" class="intrnllnk">Vehicles</a></li>
+<li><a href="#mw_4a5b6c98-79d4-4d61-8d3f-3c269e780878" class="intrnllnk">Sensors</a></li>
+</ul></li>
+<li><a href="#mw_81d9f472-7641-4143-a445-ddecef850c7d" class="intrnllnk">Algorithm Testing and Visualization</a><ul class="nav"><li><a href="#mw_01a34612-08d4-4369-a789-a5949d80d510" class="intrnllnk">Path Planning and Vehicle Control</a></li>
+<li><a href="#mw_c30fca12-6e0a-4ed3-bd92-9fa3f0b495d8" class="intrnllnk">Perception</a></li>
+<li><a href="#mw_17e94aa8-c1ff-447b-a659-886e6486499f" class="intrnllnk">Localization</a></li>
+<li><a href="#mw_d004f477-5a42-4b1a-b442-029491a2c195" class="intrnllnk">Closed-Loop Systems</a></li>
+</ul></li>
+<li><a href="#d124e14504" class="intrnllnk">Related Topics</a></li>
 </ul>
 </nav>
 </div></nav>
@@ -187,158 +195,150 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
 <section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
-<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_e5cbbf2f-6c7e-404f-9d9b-2ee74d80b9f1">为虚幻引擎模拟选择传感器<br/></h2>
-<p>在自动驾驶工具箱™中，您可以从虚拟环境中获取高保真传感器数据。此环境是使用Epic Games®的虚幻引擎®渲染的。<br/></p>
-<p>下表汇总了在此环境中可以模拟的传感器模块。</p>
-<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"/>
-<col class="tcol2" width="12%"/>
-<col class="tcol3" width="51%"/>
-<col class="tcol4" width="18%"/>
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_42c90379-c193-4951-8d24-147d66570b10">用于自动驾驶的虚幻引擎模拟<br/></h2>
+<p>自动驾驶工具箱™提供了一个协同仿真框架，可在 Simulink® 中对驾驶算法进行建模，并在虚拟仿真环境中可视化其性能。此环境使用Epic Games®的虚幻引擎®。<br/></p>
+<div class="informalfigure"><div id="d124e14213" class="mediaobject"><p><img src="sim3d_cosimulation.png" alt="Simulink model and corresponding Unreal Engine simulation" height="174" width="631"/></p>
+</div>
+</div>
+<p>与仿真环境相关的 Simulink 模块可在<b>自动驾驶工具箱</b>&gt;<b>仿真 3D </b>模块库中找到。这些块提供了以下功能：<br/></p>
+<div class="itemizedlist"><ul><li><p>在模拟环境中配置场景。</p></li>
+<li><p>在这些场景中放置和移动车辆。</p></li>
+<li><p>在车辆上设置摄像头、雷达和激光雷达传感器。</p></li>
+<li><p>根据车辆周围的环境模拟传感器输出。</p></li>
+<li><p>获取语义分割和深度信息的地面实况数据。</p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>该仿真工具通常用于在开发、测试和验证自动驾驶算法性能时补充真实数据。结合车辆模型，您可以使用这些模块执行逼真的闭环仿真，涵盖从感知到控制的整个自动驾驶堆栈。</p>
+<p><br/></p>
+<section itemprop="content"><h3 class="title" id="mw_1eb66648-24b6-4641-a0a3-fd46066c17a8"><span style="font-size: 18.72px;">虚幻引擎模拟块</span><br/></h3>
+<p>要访问<b>自动驾驶工具箱</b>&gt;<b>仿真 3D </b>库，请在 MATLAB® 命令提示符下输入 drivingsim3d。<br/></p>
+<section itemprop="content"><h4 class="title" id="mw_b675e3a5-eeba-46dc-b21d-f6943de661ca">场景</h4>
+<p>要将模型配置为与仿真环境协同仿真，请向模型添加模拟 3D 场景配置块。使用此块，您可以从一组预构建的场景中进行选择，您可以在其中测试和可视化您的驾驶算法。您还可以使用此块来控制场景中的太阳位置和天气状况。下图来自虚拟城市场景。<br/></p>
+<div class="informalfigure"><div id="d124e14271" class="mediaobject"><p><img src="virtualmcity_overview.png" alt="Virtual MCity scene" height="325" width="495"/></p>
+</div>
+</div>
+<p>The toolbox includes these scenes.<br/></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
 </colgroup>
-<thead><tr><th>传感器模块</th>
+<thead><tr><th>场景</th>
 <th>描述</th>
-<th>可视化</th>
-<th>例</th>
 </tr>
 </thead>
-<tbody><tr><td rowspan="3"><p><a href="../ref/simulation3dcamera.html"><span class="block">模拟3D相机</span></a></p>
-</td>
-<td rowspan="3">
-                        <div class="itemizedlist"><ul><li><p>带有基于理想针孔相机的镜头的相机。请参阅什么是相机校准？<br/></p></li>
-<li><p>包括图像大小、焦距、失真和偏斜的参数</p></li>
-<li><p>包括输出地面实况以进行深度估计和语义分割的选项</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用“视频查看器”或“到视频显示”块显示相机图像。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15256" class="mediaobject"><p><img src="sim3d_camera_sample_output.png" alt="Sample camera visualization" height="288" width="385"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="design-of-lane-marker-detector-in-3d-simulation-environment.html" class="a">使用虚幻引擎模拟环境设计车道标记检测器</a>
-                        </p>
+<tbody><tr><td>直路<br/></td>
+<td><p>直路段<br/></p>
 </td>
 </tr>
-<tr><td><p>使用视频查看器或到视频显示块显示深度图。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15278" class="mediaobject"><p><img src="sim3d_depth_sample_output.png" alt="Sample depth visualization" height="210" width="382"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="visualize-depth-semantic-segmentation-3d-simulation.html" class="a">使用虚幻引擎模拟进行深度和语义分割可视化</a>
-                        </p>
+<tr><td>弯曲的道路<br/></td>
+<td><p>弯曲的环形道路</p>
 </td>
 </tr>
-<tr><td><p>使用视频查看器或到视频显示块显示语义分割映射。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15300" class="mediaobject"><p><img src="sim3d_semanticseg_sample_output.png" alt="Sample semantic segmentation visualization" height="213" width="381"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="visualize-depth-semantic-segmentation-3d-simulation.html" class="a">使用虚幻引擎模拟进行深度和语义分割可视化</a>
-                        </p>
+<tr><td><a href="../ref/parkinglot.html"><span class="scene">停车场</span></a></td>
+<td><p>空的停车场</p>
 </td>
 </tr>
-<tr><td><p><a href="../ref/simulation3dfisheyecamera.html"><span class="block">模拟3D鱼眼相机</span></a></p>
-</td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>可以使用Scaramuzza相机模型描述的鱼眼相机。 请参阅 <a href="../../vision/ug/fisheye-calibration-basics.html" class="a">鱼眼校准基础知识</a></p></li>
-<li><p>包括失真中心、图像大小和映射系数的参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用“视频查看器”或“到视频显示”块显示相机图像。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15334" class="mediaobject"><p><img src="sim3d_fisheye_sample_output.png" alt="Sample fisheye camera visualization" height="208" width="370"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><a href="simulate-a-simple-driving-scenario-and-sensor-in-3d-environment.html" class="a">在虚幻引擎环境中模拟简单的驾驶场景和传感器</a></td>
-</tr>
-<tr><td rowspan="2"><p><a href="../ref/simulation3dlidar.html"><span class="block">模拟3D激光雷达</span></a></p>
-</td>
-<td rowspan="2"><p>
-                            </p>
-<div class="itemizedlist"><ul><li><p>扫描激光雷达传感器型号</p></li>
-<li><p>包括检测范围、分辨率和视场参数</p></li>
-</ul>
-</div>
-<p>
-
-                        </p>
-</td>
-<td><p>通过在 MATLAB 功能块中使用 pcplayer 显示点云数据。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15363" class="mediaobject"><p><img src="sim3d_lidar_sample_output.png" alt="Sample pcplayer point cloud visualization" height="204" width="349"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><a href="design-lidar-slam-algorithm-using-3d-simulation-environment.html" class="a">使用虚幻引擎模拟环境设计激光雷达SLAM算法</a></td>
-</tr>
-<tr><td><p>使用鸟瞰镜显示激光雷达覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15379" class="mediaobject"><p><img src="sim3d_bes_lidar_detections.png" alt="Sample Bird's-Eye Scope point cloud visualization" height="295" width="343"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">可视化虚幻引擎模拟环境中的传感器数据</a></td>
-</tr>
-<tr><td><p><a href="../ref/simulation3dprobabilisticradar.html"><span class="block">仿真三维概率雷达</span></a></p>
-</td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>返回检测列表的概率雷达模型</p></li>
-<li><p> 包括雷达精度、雷达偏置、检测概率和检测报告的参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用鸟瞰镜显示雷达覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15405" class="mediaobject"><p><img src="sim3d_bes_radar_detections.png" alt="Sample Bird's-Eye Scope radar visualization" height="295" width="343"/></p>
-</div>
-</div>
-<p></p>
-</td>
-<td><p>
-                            <a href="simulate-radar-sensors-in-3d-environment.html" class="a">在虚幻引擎环境中模拟视觉和雷达传感器</a>
-                        </p>
-<p>
-                            <a href="visualize-3d-simulation-sensor-coverages-and-detections.html" class="a">可视化虚幻引擎模拟环境中的传感器数据</a>
-                        </p>
+<tr><td><a href="../ref/doublelanechange.html"><span class="scene">双车道变换</span></a></td>
+<td><p>带有桶和交通标志的笔直道路，用于执行双车道变换操作</p>
 </td>
 </tr>
-<tr><td><a href="../ref/simulation3dvisiondetectiongenerator.html"><span class="block">仿真 3D 视觉检测生成器</span></a></td>
-<td>
-                        <div class="itemizedlist"><ul><li><p>返回对象和车道边界检测列表的相机模型</p></li>
-<li><p> 包括检测精度、测量噪声和相机固有参数</p></li>
-</ul>
-</div>
-                    </td>
-<td><p>使用鸟瞰镜显示视觉覆盖区域和检测。示例可视化：<br/></p>
-<div class="informalfigure"><div id="d124e15437" class="mediaobject"><p><img src="sim3d_bes_vision_detections.png" alt="Sample Bird's-Eye Scope vision visualization" height="387" width="421"/></p>
-</div>
-</div>
-<p></p>
+<tr><td><a href="../ref/opensurface.html"><span class="scene">开放表面</span></a></td>
+<td><p>平坦的黑色路面，没有道路物体</p>
 </td>
-<td><p>
-                            <a href="simulate-radar-sensors-in-3d-environment.html" class="a">在虚幻引擎环境中模拟视觉和雷达传感器</a>
-                        </p>
+</tr>
+<tr><td><a href="../ref/uscityblock.html"><span class="scene">美国城市街区</span></a></td>
+<td><p>有十字路口、障碍物和交通信号灯的城市街区</p>
+</td>
+</tr>
+<tr><td><a href="../ref/ushighway.html"><span class="scene">美国高速公路</span></a></td>
+<td><p>带有锥体、障碍物、交通信号灯和交通标志的高速公路</p>
+</td>
+</tr>
+<tr><td><a href="../ref/largeparkinglot.html"><span class="scene">大型停车场</span></a></td>
+<td><p>停车场停放汽车、锥体、路缘石和交通标志</p>
+</td>
+</tr>
+<tr><td><a href="../ref/virtualmcity.html"><span class="scene">虚拟城市</span></a></td>
+<td><p>代表密歇根大学试验场的城市环境（参见Mcity测试设施）;包括锥体、障碍物、动物、交通信号灯和交通标志<br/></p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-        <h2 id="d124e15448">See Also</h2>
-<h3>Blocks</h3>
-<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Scene Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvehiclewithgroundfollowing.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Vehicle with Ground Following</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dprobabilisticradarconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
-                    Probabilistic Radar Configuration</span></span></a></span></li>
+<p>如果你有虚幻引擎4项目的自动驾驶工具箱界面支持包，那么你可以修改这些场景或创建新场景。有关更多详细信息，请参阅为自动驾驶自定义虚幻引擎场景。<br/></p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_d999ec01-98a4-431b-8516-20aae8db9cac">车辆</h4>
+<p>要在场景中定义虚拟车辆，请将具有地面跟随功能的模拟 3D 车辆模块添加到模型中。使用此块，您可以通过提供定义其在每个时间步长的位置和方向的 X、Y 和偏航值来控制车辆的移动。车辆自动沿地面移动。<br/></p>
+<p>您还可以指定车辆的颜色和类型。工具箱包括以下车辆类型：</p>
+<div class="itemizedlist"><ul><li><p><strong class="tool"><a href="../ref/boxtruck.html">箱式卡车</a></strong></p></li>
+<li><p><strong class="tool"><a href="../ref/hatchback.html">车型</a></strong></p></li>
+<li><p><strong class="tool"><a href="../ref/musclecar.html">肌肉车</a></strong></p></li>
+<li><p><strong class="tool"><a href="../ref/sedan.html">轿车</a></strong></p></li>
+<li><p><strong class="tool"><a href="../ref/smallpickuptruck.html">小型皮卡</a></strong></p></li>
+<li><p><strong class="tool"><a href="../ref/sportutilityvehicle.html">运动型多功能车</a></strong></p></li>
 </ul>
-        <h2 id="d124e15463">Related Topics</h2>
-<ul><li><a href="3d-simulation-for-automated-driving.html" class="a">Unreal Engine Simulation for Automated Driving</a></li>
+</div>
+<p>
+</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_4a5b6c98-79d4-4d61-8d3f-3c269e780878">传感器</h4>
+<p>您可以定义虚拟传感器并将其安装在车辆的不同位置。该工具箱包括这些传感器建模和配置模块。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>块</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr><td><a href="../ref/simulation3dcamera.html"><span class="block">模拟3D相机</span></a></td>
+<td>带镜头的相机型号。包括图像大小、焦距、失真和歪斜的参数。</td>
+</tr>
+<tr><td><a href="../ref/simulation3dfisheyecamera.html"><span class="block">模拟3D鱼眼相机</span></a></td>
+<td>可以使用Scaramuzza相机模型描述的鱼眼相机。包括失真中心、图像大小和映射系数的参数。</td>
+</tr>
+<tr><td><a href="../ref/simulation3dlidar.html"><span class="block">模拟3D激光雷达</span></a></td>
+<td>扫描激光雷达传感器模型。包括检测范围、分辨率和视场的参数。</td>
+</tr>
+<tr><td><a href="../ref/simulation3dprobabilisticradar.html"><span class="block">仿真三维概率雷达</span></a></td>
+<td>返回检测列表的概率雷达模型。包括雷达精度、雷达偏置、检测概率和检测报告的参数。它不会在电磁波传播水平上模拟雷达。</td>
+</tr>
+<tr><td><a href="../ref/simulation3dprobabilisticradarconfiguration.html"><span class="block">仿真三维概率雷达配置</span></a></td>
+<td>为模型中的仿真三维概率雷达模块检测到的所有参与者配置雷达特征。<br/></td>
+</tr>
+<tr><td><a href="../ref/simulation3dvisiondetectiongenerator.html"><span class="block">仿真 3D 视觉检测生成器</span></a></td>
+<td>返回对象和车道边界检测列表的相机模型。包括用于建模检测精度、测量噪声和相机内在的参数。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>有关选择传感器的更多详细信息，请参阅 <a href="choose-a-sensor-for-3d-simulation.html" class="a">虚幻引擎模拟选择传感器。</a></p>
+</section>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_81d9f472-7641-4143-a445-ddecef850c7d">算法测试和可视化</h3>
+<p>自动驾驶工具箱仿真模块提供了用于测试和可视化路径规划、车辆控制和感知算法的工具。</p>
+<section itemprop="content"><h4 class="title" id="mw_01a34612-08d4-4369-a789-a5949d80d510">路径规划和车辆控制</h4>
+<p>你可以使用虚幻引擎模拟环境在预构建场景中可视化车辆的运动。此环境为您提供了一种分析路径规划和车辆控制算法性能的方法。在 Simulink 中设计这些算法后，您可以使用 drivingsim3d 库在其中一个预构建场景中可视化车辆运动。<br/></p>
+<p>对于路径规划和车辆控制算法可视化的示例，请参阅<a href="visualize-automated-parking-valet-using-3d-simulation.html" class="a">使用虚幻引擎模拟可视化自动泊车代客泊车服务</a>。</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_c30fca12-6e0a-4ed3-bd92-9fa3f0b495d8">知觉</h4>
+<p>自动驾驶工具箱提供了多个模块，用于详细的摄像头、雷达和激光雷达传感器建模。通过将这些传感器安装在虚拟环境中的车辆上，您可以生成合成传感器数据或传感器检测，以根据感知算法测试传感器模型的性能。有关生成雷达检测的示例，请参阅<a href="simulate-radar-sensors-in-3d-environment.html" class="a">在虚幻引擎环境中模拟视觉和雷达传感器</a>。</p>
+<p>您还可以输出和可视化真实数据，以验证深度估计算法并训练语义分割网络。有关示例，请参阅 <font color="#0000ee"><u>使用虚幻引擎模拟进行深度和语义分割可视化。</u></font></p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_17e94aa8-c1ff-447b-a659-886e6486499f">地方化</h4>
+<p>开发定位算法并评估其在不同条件下的性能是一项具有挑战性的任务。最大的挑战之一是获得地面真相。虽然您可以使用昂贵的高精度惯性导航系统 （INS） 捕获地面真相，但虚拟仿真是一种经济高效的替代方案。使用仿真可以在各种场景和传感器配置下进行测试。它还支持快速开发迭代，并提供精确的地面事实。有关使用虚幻引擎模拟环境中的合成激光雷达数据开发和评估激光雷达定位算法的示例，请参阅 <a href="lidar-localization-with-unreal-engine-simulation.html" class="a">使用虚幻引擎模拟进行激光雷达定位</a>。</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_d004f477-5a42-4b1a-b442-029491a2c195">闭环系统</h4>
+<p>在模拟环境中设计和测试感知系统后，您可以使用此系统来驱动实际驾驶车辆的控制系统。在这种情况下，车辆不是手动设置轨迹，而是使用感知系统自行驱动。通过将感知和控制结合到3D仿真环境中的闭环系统中，您可以开发和测试更复杂的算法，例如车道保持辅助和自适应巡航控制。</p>
+<p>有关虚幻引擎环境中闭环系统的示例，请参阅， <a href="highway-lane-following.html" class="a">高速公路车道跟随</a>。</p>
+</section>
+</section>
+        
+        <h2 id="d124e14504">相关主题</h2>
+<ul><li><a href="3d-visualization-engine-requirements.html" class="a">Unreal Engine Simulation Environment Requirements and Limitations</a></li>
+<li><a href="simulate-a-simple-driving-scenario-and-sensor-in-3d-environment.html" class="a">Simulate Simple Driving Scenario and Sensor in Unreal Engine Environment</a></li>
+<li><a href="coordinate-systems-for-3d-simulation-in-automated-driving-toolbox.html" class="a">Coordinate Systems for Unreal Engine Simulation in Automated Driving Toolbox</a></li>
+<li><a href="customize-3d-scenes-for-automated-driving.html" class="a">Customize Unreal Engine Scenes for Automated Driving</a></li>
 </ul>
         
     </section>
