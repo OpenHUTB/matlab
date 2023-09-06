@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>state</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:state"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:drivingScenario.state"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:driving.scenario.Actor.state"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:driving.scenario.Vehicle.state"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function returns the inertial ground-truth state of an actor."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">state</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_dfb1d668-c658-4824-96fd-959833edff41" class="intrnllnk">Syntax</a></li>
+<li><a href="#description" class="intrnllnk">Description</a></li>
+<li><a href="#mw_d521a548-d9ce-4f3d-a105-26894eeaa52d" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_c90b514b-9c62-415f-94a2-b5ae2dd89132" class="intrnllnk">Generate INS Measurements from Driving Scenario</a></li>
+</ul></li>
+<li><a href="#mw_e49165a6-47a0-4e00-ac57-72449860619c" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_sep_shared-ac" class="intrnllnk">ac</a></li>
+</ul></li>
+<li><a href="#mw_24187fd0-3b59-4ffd-91a8-0c1354efba1c" class="intrnllnk">Output Arguments</a><ul class="nav"><li><a href="#mw_2b5116eb-1472-4eeb-aa22-7d6277c4af0a" class="intrnllnk">gTruth</a></li>
+</ul></li>
+<li><a href="#mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="mw_1c04ccf2-5519-474a-b779-116d4dc8ca78" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">state</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">参与者的惯性真实状态</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<span id="mw_dfb1d668-c658-4824-96fd-959833edff41" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_dfb1d668-c658-4824-96fd-959833edff41">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e104848" class="intrnllnk">gTruth = state(ac)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="mw_abf5f7a5-38ba-4a72-b29e-549b2a08fad1" class="anchor_target"></span><h2 id="description">描述</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="drivingscenario.state.html#mw_c90b514b-9c62-415f-94a2-b5ae2dd89132" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e104848" itemprop="syntax"><code class="synopsis"><a href="#mw_2b5116eb-1472-4eeb-aa22-7d6277c4af0a" class="intrnllnk"><code class="argument">gTruth</code></a> = state(<a href="#mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_sep_shared-ac" class="intrnllnk"><code class="argument">ac</code></a>)</code></span>
+返回参与者的惯性真实状态。将此数据用作 <a href="inssensor-system-object.html"><code class="sysobj">insSensor</code></a> System 对象的输入真实地面数据。</p>
+<p>此函数仅支持由 <a href="drivingscenario.smoothtrajectory.html"><code class="function">smoothTrajectory</code></a> 函数创建的轨迹的参与者。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="mw_d521a548-d9ce-4f3d-a105-26894eeaa52d">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_c90b514b-9c62-415f-94a2-b5ae2dd89132"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c90b514b-9c62-415f-94a2-b5ae2dd89132" data-target="#expand_panel_body_mw_c90b514b-9c62-415f-94a2-b5ae2dd89132" aria-controls="expand_panel_body_mw_c90b514b-9c62-415f-94a2-b5ae2dd89132" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_c90b514b-9c62-415f-94a2-b5ae2dd89132">从驾驶场景生成惯导测量数据<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c90b514b-9c62-415f-94a2-b5ae2dd89132" aria-labelledby="expand_panel_heading_mw_c90b514b-9c62-415f-94a2-b5ae2dd89132" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('shared_ins/GenerateINSMeasurementsFromDrivingScenarioExample')" data-ex-genre="Script">Open Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Generate INS Measurements from Driving Scenario",
+          "description": "Generate measurements from an INS sensor that is mounted to a vehicle in a driving scenario. Plot the INS measurements against the ground truth state of the vehicle and visualize the velocity and acceleration profile of the vehicle.",
+          "thumbnailURL": "../../examples/shared_ins/win64/GenerateINSMeasurementsFromDrivingScenarioExample_08.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.state.html"
+
+        },
+          "identifier": "shared_ins.GenerateINSMeasurementsFromDrivingScenarioExample",
+          "name": "GenerateINSMeasurementsFromDrivingScenarioExample",
+          "url": "drivingscenario.state.html#mw_c90b514b-9c62-415f-94a2-b5ae2dd89132"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('shared_ins/GenerateINSMeasurementsFromDrivingScenarioExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "GenerateINSMeasurementsFromDrivingScenarioExample.m",
+        "ahroute.mat"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+
+<p class="shortdesc">在驾驶场景中，从安装在车辆上的惯导传感器生成测量数据。将惯导测量数据与车辆的真实状态进行绘图，并可视化车辆的速度和加速度曲线。</p>
+
+<div class="procedure"><span id="d124e104907" class="anchor_target"></span><p class="title" id="d124e104907"><b>创建驾驶场景<span id="GenerateINSMeasurementsFromDrivingScenarioExample-1" class="anchor_target"></span></b></p>
+<p>加载位于马萨诸塞州纳蒂克的MathWorks®苹果山校园的驾驶路线的地理数据。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data = load(<span style="color:#A020F0">'ahroute.mat'</span>);
+latIn = data.latitude;
+lonIn = data.longitude;
+</pre>
+</div>
+</div>
+</div>
+<p>将驾驶路线的纬度和经度坐标转换为笛卡尔坐标。将原点设置为驾驶路线中的第一个坐标点。为简单起见，假设路线的海拔高度为0。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>alt = 0;
+origin = [latIn(1),lonIn(1),alt];
+[xEast,yNorth,zUp] = latlon2local(latIn,lonIn,alt,origin);
+</pre>
+</div>
+</div>
+</div>
+<p>创建一个驾驶场景。将转换后的路线的原点设置为地理参考点。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario(<span style="color:#A020F0">'GeoReference'</span>,origin);
+</pre>
+</div>
+</div>
+</div>
+<p>根据路线的笛卡尔坐标创建一条道路。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadCenters = [xEast,yNorth,zUp];
+road(scenario,roadCenters);
+</pre>
+</div>
+</div>
+</div>
+<p>创建一个沿着道路中心线行驶的车辆。车辆的速度在每秒4到5米之间（9到11英里每小时），在道路弯曲处减速。为了创建车辆的轨迹，使用 <code class="literal">smoothTrajectory</code> 函数。计算得到的轨迹最小化抖动，并避免加速度的不连续性，这是建模惯导传感器的要求。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>egoVehicle = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+egoPath = roadCenters;
+egoSpeed = [5 5 5 4 4 4 5 4 4 4 4 5 5 5 5 5];
+smoothTrajectory(egoVehicle,egoPath,egoSpeed);
+</pre>
+</div>
+</div>
+</div>
+<p>绘制场景，并显示从自车后方的三维视图。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario)
+chasePlot(egoVehicle)
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e104934" class="mediaobject"><p><img src="../../examples/shared_ins/win64/GenerateINSMeasurementsFromDrivingScenarioExample_01.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e104938" class="mediaobject"><p><img src="../../examples/shared_ins/win64/GenerateINSMeasurementsFromDrivingScenarioExample_02.png"/></p>
+</div>
+</div>
+<span id="d124e104941" class="anchor_target"></span><p class="title" id="d124e104941"><b>创建惯性导航系统</b><b>（INS）</b><b>传感器。</b></p>
+<p>创建一个接受仿真时间输入的惯性导航系统（INS）传感器。通过将速度和精度测量的标准差分别设置为0.1和0.05，将噪声引入传感器测量中。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>INS = insSensor(<span style="color:#A020F0">'TimeInput'</span>,true, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'VelocityAccuracy'</span>,0.1, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'AccelerationAccuracy'</span>,0.05);
+</pre>
+</div>
+</div>
+</div>
+<span id="d124e104948" class="anchor_target"></span><p class="title" id="d124e104948"><b>可视化惯性导航系统（INS）的测量数据。</b></p>
+<p>初始化地理播放器，用于显示惯性导航系统（INS）的测量数据和车辆的真实位置。配置播放器以显示最近的10个位置，并将缩放级别设置为17。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>zoomLevel = 17;
+player = geoplayer(latIn(1),lonIn(1),zoomLevel, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'HistoryDepth'</span>,10,<span style="color:#A020F0">'HistoryStyle'</span>,<span style="color:#A020F0">'line'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e104956" class="mediaobject"><p><img src="../../examples/shared_ins/win64/GenerateINSMeasurementsFromDrivingScenarioExample_03.png"/></p>
+</div>
+</div>
+<p>在仿真期间为仿真时间、速度测量和加速度测量预先分配空间。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numWaypoints = length(latIn);
+times = zeros(numWaypoints,1);
+gTruthVelocities = zeros(numWaypoints,1);
+gTruthAccelerations = zeros(numWaypoints,1);
+sensorVelocities = zeros(numWaypoints,1);
+sensorAccelerations = zeros(numWaypoints,1);
+</pre>
+</div>
+</div>
+</div>
+<p>进行场景仿真。在仿真循环中，获取自车的真实状态和惯性导航系统（INS）的测量数据。将这些读数转换为地理坐标，并在每个路点上，在地理播放器上可视化真实状态和INS读数。同时捕获速度和加速度数据，以绘制速度和加速度曲线。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nextWaypoint = 2;
+<span style="color:#0000FF">while</span> advance(scenario)
+
+    <span style="color:#228B22">% Obtain ground truth state of ego vehicle.</span>
+    gTruth = state(egoVehicle);
+
+    <span style="color:#228B22">% Obtain INS sensor measurement.</span>
+    measurement = INS(gTruth,scenario.SimulationTime);
+
+    <span style="color:#228B22">% Convert readings to geographic coordinates.</span>
+    [latOut,lonOut] = local2latlon(measurement.Position(1), <span style="color:#0000FF">...</span>
+                                   measurement.Position(2), <span style="color:#0000FF">...</span>
+                                   measurement.Position(3),origin);
+
+    <span style="color:#228B22">% Plot differences between ground truth locations and locations reported by sensor.</span>
+    reachedWaypoint = sum(abs(roadCenters(nextWaypoint,:) - gTruth.Position)) &lt; 1;
+    <span style="color:#0000FF">if</span> reachedWaypoint
+        plotPosition(player,latIn(nextWaypoint),lonIn(nextWaypoint),<span style="color:#A020F0">'TrackID'</span>,1)
+        plotPosition(player,latOut,lonOut,<span style="color:#A020F0">'TrackID'</span>,2,<span style="color:#A020F0">'Label'</span>,<span style="color:#A020F0">'INS'</span>)
+
+        <span style="color:#228B22">% Capture simulation times, velocities, and accelerations.</span>
+        times(nextWaypoint,1) = scenario.SimulationTime;
+        gTruthVelocities(nextWaypoint,1) = gTruth.Velocity(2);
+        gTruthAccelerations(nextWaypoint,1) = gTruth.Acceleration(2);
+        sensorVelocities(nextWaypoint,1) = measurement.Velocity(2);
+        sensorAccelerations(nextWaypoint,1) = measurement.Acceleration(2);
+
+        nextWaypoint = nextWaypoint + 1;
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">if</span> nextWaypoint &gt; numWaypoints
+        <span style="color:#0000FF">break</span>
+    <span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e104966" class="mediaobject"><p><img src="../../examples/shared_ins/win64/GenerateINSMeasurementsFromDrivingScenarioExample_04.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e104970" class="mediaobject"><p><img src="../../examples/shared_ins/win64/GenerateINSMeasurementsFromDrivingScenarioExample_05.png"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e104974" class="mediaobject"><p><img src="../../examples/shared_ins/win64/GenerateINSMeasurementsFromDrivingScenarioExample_06.png"/></p>
+</div>
+</div>
+<span id="d124e104977" class="anchor_target"></span><p class="title" id="d124e104977"><b>绘制速度曲线</b></p>
+<p>将车辆的真实纵向速度随时间变化与由惯导传感器捕获的速度测量进行对比。</p>
+<p>从时间向量和速度向量中删除零值。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>times(times == 0) = [];
+gTruthVelocities(gTruthVelocities == 0) = [];
+sensorVelocities(sensorVelocities == 0) = [];
+
+figure
+hold <span style="color:#A020F0">on</span>
+plot(times,gTruthVelocities)
+plot(times,sensorVelocities)
+title(<span style="color:#A020F0">'Longitudinal Velocity Profile'</span>)
+xlabel(<span style="color:#A020F0">'Time (s)'</span>)
+ylabel(<span style="color:#A020F0">'Velocity (m/s)'</span>)
+legend(<span style="color:#A020F0">'Ground truth'</span>,<span style="color:#A020F0">'INS'</span>)
+hold <span style="color:#A020F0">off</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e104986" class="mediaobject"><p><img src="../../examples/shared_ins/win64/GenerateINSMeasurementsFromDrivingScenarioExample_07.png"/></p>
+</div>
+</div>
+<span id="d124e104989" class="anchor_target"></span><p class="title" id="d124e104989"><b>绘制加速度曲线</b></p>
+<p>将车辆的真实纵向加速度随时间变化与由惯导传感器捕获的加速度测量进行对比。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>gTruthAccelerations(gTruthAccelerations == 0) = [];
+sensorAccelerations(sensorAccelerations == 0) = [];
+
+figure
+hold <span style="color:#A020F0">on</span>
+plot(times,gTruthAccelerations)
+plot(times,sensorAccelerations)
+title(<span style="color:#A020F0">'Longitudinal Acceleration Profile'</span>)
+xlabel(<span style="color:#A020F0">'Time (s)'</span>)
+ylabel(<span style="color:#A020F0">'Acceleration (m/s^2)'</span>)
+legend(<span style="color:#A020F0">'Ground truth'</span>,<span style="color:#A020F0">'INS'</span>)
+hold <span style="color:#A020F0">off</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e104997" class="mediaobject"><p><img src="../../examples/shared_ins/win64/GenerateINSMeasurementsFromDrivingScenarioExample_08.png"/></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="shared_ins-GenerateINSMeasurementsFromDrivingScenarioExample"/>
+<meta itemprop="exampletitle" content="Generate INS Measurements from Driving Scenario"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_e49165a6-47a0-4e00-ac57-72449860619c">输入参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_e49165a6-47a0-4e00-ac57-72449860619c_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_sep_shared-ac"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_sep_shared-ac" data-target="#expand_panel_body_mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_sep_shared-ac" aria-controls="expand_panel_body_mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_sep_shared-ac" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_ac" class="anchor_target"></span><h3 class="panel-title" id="mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_sep_shared-ac"><code itemprop="name">ac</code> — <span itemprop="purpose">Actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">Actor</code> object</span> | <span itemprop="inputvalue"><code class="object">Vehicle</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_sep_shared-ac" aria-labelledby="expand_panel_heading_mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_sep_shared-ac" class="panel-collapse collapse in"><div class="panel-body">
+    <p>参与者是属于 <a href="drivingscenario.html"><code class="object">drivingScenario</code></a> 对象的一个对象，可以是 <code class="object">Actor</code> 或 <span style="font-family: monospace;">Vehicle</span> 对象。要创建这些对象，请分别使用 <a href="drivingscenario.actor.html"><code class="function">actor</code></a> 和 <a href="drivingscenario.vehicle.html"><code class="function">vehicle</code></a> 函数。</p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_24187fd0-3b59-4ffd-91a8-0c1354efba1c">输出参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_24187fd0-3b59-4ffd-91a8-0c1354efba1c_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_2b5116eb-1472-4eeb-aa22-7d6277c4af0a" data-target="#expand_panel_body_mw_2b5116eb-1472-4eeb-aa22-7d6277c4af0a" aria-controls="expand_panel_body_mw_2b5116eb-1472-4eeb-aa22-7d6277c4af0a" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_gTruth" class="anchor_target"></span><h3 class="panel-title" id="mw_2b5116eb-1472-4eeb-aa22-7d6277c4af0a"><code class="name">gTruth</code> — 惯性地面真实状态<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">structure</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_2b5116eb-1472-4eeb-aa22-7d6277c4af0a" aria-labelledby="expand_panel_heading_mw_2b5116eb-1472-4eeb-aa22-7d6277c4af0a" class="panel-collapse collapse in"><div class="panel-body">
+          <p>以本地笛卡尔坐标系返回的参与者的惯性真实状态，以包含以下字段的结构体形式返回：</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">'Position'</code></td>
+<td><p>位置，以米为单位，指定为实数、有限的<em class="varname">N</em>×3矩阵，其中包含[<em class="varname">x</em> <em class="varname">y</em> <em class="varname">z</em>]向量。<em class="varname">N</em>是当前帧中的样本数。</p>
+</td>
+</tr>
+<tr><td><code class="literal">'Velocity'</code></td>
+<td><p>速度(<em class="varname">v</em>)，以米每秒为单位，指定为实数、有限的<em class="varname">N</em>×3矩阵，其中包含[<em class="varname">v</em><sub>x</sub> <em class="varname">v</em><sub>y</sub> <em class="varname">v</em><sub>z</sub>]向量。<em class="varname">N</em>是当前帧中的样本数。</p>
+</td>
+</tr>
+<tr><td><code class="literal">'Orientation'</code></td>
+<td><p>相对于本地笛卡尔坐标系的方向，指定为以下选项之一：</p>
+<div class="itemizedlist"><ul><li><p><em class="varname">N</em>个元素的 <code class="object"><a href="quaternion.html">quaternion</a>(四元数)</code>对象的列向量</p></li>
+<li><p>3×3×<em class="varname">N</em>的旋转矩阵数组</p></li>
+<li><p><em class="varname">N</em>×3的[<em class="varname">x</em><sub>roll</sub> <em class="varname">y</em><sub>pitch</sub><em class="varname">z</em><sub>yaw</sub>]角度（以度为单位）的矩阵</p></li>
+</ul>
+</div>
+<p>每个四元数或旋转矩阵都是从本地笛卡尔坐标系到当前传感器体坐标系的帧旋转。<em class="varname">N</em>是当前帧中的样本数。</p>
+</td>
+</tr>
+<tr><td><code class="literal">'Acceleration'</code></td>
+<td><p>加速度(<em class="varname">a</em>)，以米每秒平方为单位，指定为实数、有限的<em class="varname">N</em>×3矩阵，其中包含 [<em class="varname">a</em><sub>x</sub> <em class="varname">a</em><sub>y</sub> <em class="varname">a</em><sub>z</sub>] 向量。<em class="varname">N</em>是当前帧中的样本数。</p>
+</td>
+</tr>
+<tr><td><code class="literal">'AngularVelocity'</code></td>
+<td><p>角速度(<em class="varname">ω</em>)，以每秒平方度为单位，指定为实数、有限的<em class="varname">N</em>×3矩阵，其中包含 [<em class="varname">ω</em><sub>x</sub> <em class="varname">ω</em><sub>y</sub> <em class="varname">ω</em><sub>z</sub>] 向量。<em class="varname">N</em>是当前帧中的样本数。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+          <p>返回的字段值的类型为<span style="font-family: monospace;">double</span>。</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_vh">版本历史</h2>
+<p><b>在R2021a中引入</b></p>
+</div>
+<div class="ref_sect"><h2 id="mw_1c04ccf2-5519-474a-b779-116d4dc8ca78_seealso">参见</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="inssensor-system-object.html"><span itemprop="name"><code class="object">insSensor</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.actor.html"><span itemprop="name"><code class="function">actor</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.vehicle.html"><span itemprop="name"><code class="function">vehicle</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.smoothtrajectory.html"><span itemprop="name"><code class="function">smoothTrajectory</code></span></a></span></p>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

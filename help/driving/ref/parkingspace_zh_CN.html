@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>parkingSpace</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:parkingSpace"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:parkingSpace"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="parkingSpace objects define the parking spaces to add to parking lots in a driving scenario."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/livecontrolpopover.js"></script>
+
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas">parkingSpace</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e125633" class="intrnllnk">Description</a></li>
+<li><a href="#mw_8c4d2081-dbbb-4514-8e03-e91e534fee62" class="intrnllnk">Creation</a><ul class="nav"><li><a href="#mw_481904b5-ea55-4f62-8e1a-d0888139a4af" class="intrnllnk">Description</a></li>
+</ul></li>
+<li><a href="#mw_b802e195-e2b7-443c-a955-b3fc91df9969" class="intrnllnk">Properties</a><ul class="nav"><li><a href="#mw_e2498e7a-0e81-44b7-a971-e860bf72d468" class="intrnllnk">Type</a></li>
+<li><a href="#mw_4fe19f66-62d1-44a3-820e-e1b225e34a41" class="intrnllnk">Width</a></li>
+<li><a href="#mw_d51d0bd0-9527-4dde-b78a-3fc0b1611af5" class="intrnllnk">Length</a></li>
+<li><a href="#mw_1c072abe-10e0-4436-b858-4d36670843e4" class="intrnllnk">Angle</a></li>
+<li><a href="#mw_e83ea57d-c1ca-4645-b403-2c94ca28804e" class="intrnllnk">MarkingColor</a></li>
+<li><a href="#mw_c3040337-6732-4df5-a05f-cb2d6cc74a8e" class="intrnllnk">MarkingWidth</a></li>
+<li><a href="#mw_8b19b5dc-b2a1-4956-94c7-43eda08bc470" class="intrnllnk">MarkingStrength</a></li>
+</ul></li>
+<li><a href="#mw_4db33d9a-287a-43bd-a803-60225f1c44cb" class="intrnllnk">Object Functions</a></li>
+<li><a href="#mw_8bdcae50-aa7d-406d-b79d-08dc1bcdc24b" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_33e21289-3c9a-40d9-9e0f-603d28cd20b4" class="intrnllnk">Create Parking Lot Containing Multiple Space Types</a></li>
+</ul><ul class="nav"><li><a href="#mw_379a9f1e-4d69-43dd-8834-1037576c7ebe" class="intrnllnk">Create Parking Lot Using Predefined Layout</a></li>
+</ul></li>
+<li><a href="#mw_232a708e-684e-4b04-8c03-54a9b26a15a4_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_232a708e-684e-4b04-8c03-54a9b26a15a4_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="object_ref"><span id="mw_232a708e-684e-4b04-8c03-54a9b26a15a4" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title">parkingSpace</h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">定义停车场的停车位</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div class="refsummary" itemprop="content"><h2 id="d124e125633">描述</h2>
+    <div class="shortsummary"><p><code class="object">parkingSpace</code> 对象定义了在驾驶场景中要添加到停车场的停车位。您可以定义停车位的尺寸和角度，停车位的类型，停车车道标记的颜色，宽度和强度。要在将停车位添加到停车场之前将其可视化，请使用 <a href="parkingspace.plot.html"><code class="function">plot</code></a> 函数。要用创建的停车位填充停车场，请使用 <a href="drivingscenario.parkinglot.html"><code class="function">parkingLot</code></a> 或 <a href="drivingscenario.insertparkingspaces.html"><code class="function">insertParkingSpaces</code></a> 函数。</p>
+</div>
+  </div>
+<div id="mw_8c4d2081-dbbb-4514-8e03-e91e534fee62_div" class="ref_sect createobject"><h2 id="mw_8c4d2081-dbbb-4514-8e03-e91e534fee62">创建</h2>
+<span id="mw_287a6b7d-f8be-4073-aa0c-683e03d1f6a1" class="anchor_target"></span><div class="ref_sect"><h3 id="mw_287a6b7d-f8be-4073-aa0c-683e03d1f6a1">语法</h3>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e125657" class="intrnllnk">space = parkingSpace</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e125668" class="intrnllnk">space = parkingSpace(Name=Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="mw_481904b5-ea55-4f62-8e1a-d0888139a4af_div" class="refsect2 description"><h3 id="mw_481904b5-ea55-4f62-8e1a-d0888139a4af">描述</h3>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="parkingspace.html#mw_33e21289-3c9a-40d9-9e0f-603d28cd20b4" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e125657" itemprop="syntax"><code class="synopsis">space = parkingSpace</code></span> 创建一个直线停车位，宽度为2.6米，长度为5.5米，带有白色车道标线。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="parkingspace.html#mw_379a9f1e-4d69-43dd-8834-1037576c7ebe" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e125668" itemprop="syntax"><code class="synopsis">space = parkingSpace(<code class="argument">Name=Value</code>)</code></span> 使用名称-值参数设置属性。例如， <code class="literal">space = parkingSpace(Type="Accessible",Width=3,Angle=60)</code> 创建一个3米宽、60度角的无障碍停车位。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_b802e195-e2b7-443c-a955-b3fc91df9969">属性</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_b802e195-e2b7-443c-a955-b3fc91df9969_panel-group" role="tablist" aria-multiselectable="true"><div itemscope="" class="ref_sect" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntityGroup" itemprop="refentitygroup">
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_e2498e7a-0e81-44b7-a971-e860bf72d468"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e2498e7a-0e81-44b7-a971-e860bf72d468" data-target="#expand_panel_body_mw_e2498e7a-0e81-44b7-a971-e860bf72d468" aria-controls="expand_panel_body_mw_e2498e7a-0e81-44b7-a971-e860bf72d468" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Type" class="anchor_target"></span><h3 class="panel-title" id="mw_e2498e7a-0e81-44b7-a971-e860bf72d468"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:parkingSpace.Type"/><code itemprop="name" id="propname_Type">Type</code></span> — <span itemprop="purpose">停车位类型</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">"Parking"</code></span> (default) | <span itemprop="inputvalue"><code class="literal">"NoParking"</code></span> | <span itemprop="inputvalue"><code class="literal">"Accessible"</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e2498e7a-0e81-44b7-a971-e860bf72d468" aria-labelledby="expand_panel_heading_mw_e2498e7a-0e81-44b7-a971-e860bf72d468" class="panel-collapse collapse"><div class="panel-body">
+          <p>停车位类型，指定为“可停车”、“不可停车”或“无障碍”。此表显示了每种类型的默认停车位。</p>
+          <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"/>
+<col class="tcol2" width="33%"/>
+<col class="tcol3" width="33%"/>
+</colgroup>
+<thead><tr><th><code class="literal">"Parking"</code></th>
+<th><code class="literal">"NoParking"</code></th>
+<th><code class="literal">"Accessible"</code></th>
+</tr>
+</thead>
+<tbody><tr><td>
+                    <div class="informalfigure"><div id="d124e125732" class="mediaobject"><p><img src="space-parking.png" alt="Parking space with white lane markings" height="249" width="135"/></p>
+</div>
+</div>
+                  </td>
+<td>
+                    <div class="informalfigure"><div id="d124e125740" class="mediaobject"><p><img src="space-no-parking.png" alt="No-parking zone with yellow lane markings" height="249" width="135"/></p>
+</div>
+</div>
+                  </td>
+<td>
+                    <div class="informalfigure"><div id="d124e125748" class="mediaobject"><p><img src="space-accessible.png" alt="Accessible parking space with blue lane markings and an accessible parking symbol" height="249" width="135"/></p>
+</div>
+</div>
+                  </td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_4fe19f66-62d1-44a3-820e-e1b225e34a41"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4fe19f66-62d1-44a3-820e-e1b225e34a41" data-target="#expand_panel_body_mw_4fe19f66-62d1-44a3-820e-e1b225e34a41" aria-controls="expand_panel_body_mw_4fe19f66-62d1-44a3-820e-e1b225e34a41" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Width" class="anchor_target"></span><h3 class="panel-title" id="mw_4fe19f66-62d1-44a3-820e-e1b225e34a41"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:parkingSpace.Width"/><code itemprop="name" id="propname_Width">Width</code></span> — <span itemprop="purpose">停车位宽度(米)</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">2.6</code></span> (default) | <span itemprop="inputvalue">real scalar in range [0.5, 100]</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4fe19f66-62d1-44a3-820e-e1b225e34a41" aria-labelledby="expand_panel_heading_mw_4fe19f66-62d1-44a3-820e-e1b225e34a41" class="panel-collapse collapse"><div class="panel-body">
+          <p>停车位的宽度，以米为单位，指定为在范围[0.5, 100]内的实数标量。</p>
+          <p class="description_valueexample"><strong>Example: </strong><code class="literal">3.6</code></p>
+        </div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_d51d0bd0-9527-4dde-b78a-3fc0b1611af5"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_d51d0bd0-9527-4dde-b78a-3fc0b1611af5" data-target="#expand_panel_body_mw_d51d0bd0-9527-4dde-b78a-3fc0b1611af5" aria-controls="expand_panel_body_mw_d51d0bd0-9527-4dde-b78a-3fc0b1611af5" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Length" class="anchor_target"></span><h3 class="panel-title" id="mw_d51d0bd0-9527-4dde-b78a-3fc0b1611af5"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:parkingSpace.Length"/><code itemprop="name" id="propname_Length">Length</code></span> — <span itemprop="purpose">停车位长度(米)</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">5.5</code></span> (default) | <span itemprop="inputvalue">real scalar in range [0.5, 100]</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_d51d0bd0-9527-4dde-b78a-3fc0b1611af5" aria-labelledby="expand_panel_heading_mw_d51d0bd0-9527-4dde-b78a-3fc0b1611af5" class="panel-collapse collapse"><div class="panel-body">
+          <p>停车位的长度，以米为单位，指定为在范围[0.5, 100]内的实数标量。</p>
+          <p class="description_valueexample"><strong>Example: </strong><code class="literal">7.0</code></p>
+        </div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_1c072abe-10e0-4436-b858-4d36670843e4"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1c072abe-10e0-4436-b858-4d36670843e4" data-target="#expand_panel_body_mw_1c072abe-10e0-4436-b858-4d36670843e4" aria-controls="expand_panel_body_mw_1c072abe-10e0-4436-b858-4d36670843e4" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Angle" class="anchor_target"></span><h3 class="panel-title" id="mw_1c072abe-10e0-4436-b858-4d36670843e4"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:parkingSpace.Angle"/><code itemprop="name" id="propname_Angle">Angle</code></span> — <span itemprop="purpose">停车位的角度（度）</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">90</code></span> (default) | <span itemprop="inputvalue">real scalar in range [20, 160]</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_1c072abe-10e0-4436-b858-4d36670843e4" aria-labelledby="expand_panel_heading_mw_1c072abe-10e0-4436-b858-4d36670843e4" class="panel-collapse collapse"><div class="panel-body">
+          <p>停车位的角度，以度为单位，以实标量表示，范围为[20,160]。<code class="argument">Angle</code> 按顺时针方向从车位的上边缘到左边缘测量。此表显示了样本 <code class="argument">Angle</code> 值及其相应的图。</p>
+          <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"/>
+<col class="tcol2" width="33%"/>
+<col class="tcol3" width="33%"/>
+</colgroup>
+<thead><tr><th><code class="literal">Angle=60</code></th>
+<th><code class="literal">Angle=90</code></th>
+<th><code class="literal">Angle=120</code></th>
+</tr>
+</thead>
+<tbody><tr><td>
+                    <div class="informalfigure"><div id="d124e125843" class="mediaobject"><p><img src="space-parking-angle-60.png" alt="Parking space angled to the left at 60 degrees" height="301" width="313"/></p>
+</div>
+</div>
+                  </td>
+<td>
+                    <div class="informalfigure"><div id="d124e125851" class="mediaobject"><p><img src="space-parking-angle-90.png" alt="Straight parking space at a 90-degree angle" height="302" width="195"/></p>
+</div>
+</div>
+                  </td>
+<td>
+                    <div class="informalfigure"><div id="d124e125859" class="mediaobject"><p><img src="space-parking-angle-120.png" alt="Parking space angled to the right at 120 degrees" height="301" width="313"/></p>
+</div>
+</div>
+                  </td>
+</tr>
+</tbody>
+</table>
+</div>
+          <p class="description_valueexample"><strong>Example: </strong><code class="literal">45</code></p>
+        </div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_e83ea57d-c1ca-4645-b403-2c94ca28804e"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e83ea57d-c1ca-4645-b403-2c94ca28804e" data-target="#expand_panel_body_mw_e83ea57d-c1ca-4645-b403-2c94ca28804e" aria-controls="expand_panel_body_mw_e83ea57d-c1ca-4645-b403-2c94ca28804e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_MarkingColor" class="anchor_target"></span><h3 class="panel-title" id="mw_e83ea57d-c1ca-4645-b403-2c94ca28804e"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:parkingSpace.MarkingColor"/><code itemprop="name" id="propname_MarkingColor">MarkingColor</code></span> — <span itemprop="purpose">停车位车道标线的颜色</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">RGB triplet</span> | <span itemprop="inputvalue">hexadecimal color code</span> | <span itemprop="inputvalue">color name</span> | <span itemprop="inputvalue">short color name</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e83ea57d-c1ca-4645-b403-2c94ca28804e" aria-labelledby="expand_panel_heading_mw_e83ea57d-c1ca-4645-b403-2c94ca28804e" class="panel-collapse collapse"><div class="panel-body">
+          <p>停车位车道标线的颜色，可以指定为RGB三元组、十六进制颜色代码、颜色名称或简短颜色名称。同一种颜色适用于该停车位的所有标线。</p>
+          <p>对于自定义颜色，请指定一个RGB三元组或十六进制颜色代码。</p>
+<div class="itemizedlist"><ul><li><p>RGB三元组是一个包含三个元素的行向量，这些元素指定颜色的红色、绿色和蓝色分量的强度。强度必须在<span style="font-family: monospace;">[0,1]</span>范围内，例如，<code class="literal">[0.4 0.6 0.7]</code>。 </p></li>
+<li><p>十六进制颜色代码是以井号 (<code class="literal">#</code>) 开头，后跟三个或六个十六进制数字的字符向量或字符串标量。这些数字的范围可以从 <code class="literal">0</code> 到 <code class="literal">F</code>。这些代码对大小写不敏感。因此，颜色代码 <code class="literal">"#FF8800"</code>, <code class="literal">"#ff8800"</code>, <code class="literal">"#F80" </code>和 <code class="literal">"#f80"</code> 是等效的。</p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>或者，您可以通过名称指定一些常见的颜色。下表列出了命名的颜色选项、相应的RGB三元组和十六进制颜色代码。</p>
+          <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="15%"/>
+<col class="tcol2" width="15%"/>
+<col class="tcol3" width="20%"/>
+<col class="tcol4" width="20%"/>
+<col class="tcol5" width="30%"/>
+</colgroup>
+<thead><tr><th>Color Name</th>
+<th>Short Name</th>
+<th>RGB Triplet</th>
+<th>Hexadecimal Color Code</th>
+<th>Appearance</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">"red"</code></td>
+<td><code class="literal">"r"</code></td>
+<td><code class="literal">[1 0 0]</code></td>
+<td><code class="literal">"#FF0000"</code></td>
+<td>
+                    <div class="informalfigure"><div id="d124e125955" class="mediaobject"><p><img src="hg_red.png" alt="Sample of the color red" height="27" width="159"/></p>
+</div>
+</div>
+                  </td>
+</tr>
+<tr><td><code class="literal">"green"</code></td>
+<td><code class="literal">"g"</code></td>
+<td><code class="literal">[0 1 0]</code></td>
+<td><code class="literal">"#00FF00"</code></td>
+<td>
+                    <div class="informalfigure"><div id="d124e125972" class="mediaobject"><p><img src="hg_green.png" alt="Sample of the color green" height="27" width="159"/></p>
+</div>
+</div>
+                  </td>
+</tr>
+<tr><td><code class="literal">"blue"</code></td>
+<td><code class="literal">"b"</code></td>
+<td><code class="literal">[0.5234 0.7695 0.8516]</code></td>
+<td><code class="literal">"#85C4D9"</code></td>
+<td>
+                    <div class="informalfigure"><div id="d124e125989" class="mediaobject"><p><img src="hg_blue_lanes.png" alt="Sample of the color blue" height="27" width="159"/></p>
+</div>
+</div>
+                  </td>
+</tr>
+<tr><td><code class="literal">"cyan"</code>
+                  </td>
+<td><code class="literal">"c"</code></td>
+<td><code class="literal">[0 1 1]</code></td>
+<td><code class="literal">"#00FFFF"</code></td>
+<td>
+                    <div class="informalfigure"><div id="d124e126007" class="mediaobject"><p><img src="hg_cyan.png" alt="Sample of the color cyan" height="27" width="159"/></p>
+</div>
+</div>
+                  </td>
+</tr>
+<tr><td><code class="literal">"magenta"</code></td>
+<td><code class="literal">"m"</code></td>
+<td><code class="literal">[1 0 1]</code></td>
+<td><code class="literal">"#FF00FF"</code></td>
+<td>
+                    <div class="informalfigure"><div id="d124e126024" class="mediaobject"><p><img src="hg_magenta.png" alt="Sample of the color magenta" height="27" width="159"/></p>
+</div>
+</div>
+                  </td>
+</tr>
+<tr><td><code class="literal">"yellow"</code></td>
+<td><code class="literal">"y"</code></td>
+<td><code class="literal">[0.98 0.86 0.36]</code></td>
+<td><code class="literal">"#FADB5C"</code></td>
+<td>
+                    <div class="informalfigure"><div id="d124e126041" class="mediaobject"><p><img src="hg_yellow_lanes.png" alt="Sample of the color yellow" height="27" width="159"/></p>
+</div>
+</div>
+                  </td>
+</tr>
+<tr><td><code class="literal">"black"</code></td>
+<td><code class="literal">"k"</code></td>
+<td><code class="literal">[0 0 0]</code></td>
+<td><code class="literal">"#000000"</code></td>
+<td>
+                    <div class="informalfigure"><div id="d124e126058" class="mediaobject"><p><img src="hg_black.png" alt="Sample of the color black" height="27" width="160"/></p>
+</div>
+</div>
+                  </td>
+</tr>
+<tr><td><code class="literal">"white"</code></td>
+<td><code class="literal">"w"</code></td>
+<td><code class="literal">[1 1 1]</code></td>
+<td><code class="literal">"#FFFFFF"</code></td>
+<td>
+                    <div class="informalfigure"><div id="d124e126075" class="mediaobject"><p><img src="hg_white.png" alt="Sample of the color white" height="28" width="160"/></p>
+</div>
+</div>
+                  </td>
+</tr>
+</tbody>
+</table>
+</div>
+          <p>默认的标线颜色取决于由 <span style="font-family: monospace;">Type</span> 指定的停车位类型。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th><code class="literal">Type</code></th>
+<th><code class="literal">MarkingColor</code> Default</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">"Parking"</code></td>
+<td><code class="literal">[1 1 1]</code> (white)</td>
+</tr>
+<tr><td><code class="literal">"NoParking"</code></td>
+<td><code class="literal">[0.98 0.86 0.36]</code> (yellow)</td>
+</tr>
+<tr><td><code class="literal">"Accessible"</code></td>
+<td><code class="literal">[0.5234 0.7695 0.8516]</code> (blue)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+          <p class="description_valueexample"><strong>Example: </strong><code class="literal">[0.8 0.8 0.8]</code></p>
+        </div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_c3040337-6732-4df5-a05f-cb2d6cc74a8e"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c3040337-6732-4df5-a05f-cb2d6cc74a8e" data-target="#expand_panel_body_mw_c3040337-6732-4df5-a05f-cb2d6cc74a8e" aria-controls="expand_panel_body_mw_c3040337-6732-4df5-a05f-cb2d6cc74a8e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_MarkingWidth" class="anchor_target"></span><h3 class="panel-title" id="mw_c3040337-6732-4df5-a05f-cb2d6cc74a8e"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:parkingSpace.MarkingWidth"/><code itemprop="name" id="propname_MarkingWidth">MarkingWidth</code></span> — <span itemprop="purpose">停车位车道标线的宽度（米）</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0.15</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c3040337-6732-4df5-a05f-cb2d6cc74a8e" aria-labelledby="expand_panel_heading_mw_c3040337-6732-4df5-a05f-cb2d6cc74a8e" class="panel-collapse collapse"><div class="panel-body">
+          <p>停车位车道标线的宽度，以米为单位，指定为正实数标量。同一宽度适用于该停车位的所有标线。</p>
+          <p>标线宽度（<span style="font-family: monospace;">MarkingWidth</span>）必须小于或等于由宽度（<span style="font-family: monospace;">Width</span>）指定的停车位宽度。</p>
+          <p class="description_valueexample"><strong>Example: </strong><code class="literal">0.2</code></p>
+        </div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_8b19b5dc-b2a1-4956-94c7-43eda08bc470"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8b19b5dc-b2a1-4956-94c7-43eda08bc470" data-target="#expand_panel_body_mw_8b19b5dc-b2a1-4956-94c7-43eda08bc470" aria-controls="expand_panel_body_mw_8b19b5dc-b2a1-4956-94c7-43eda08bc470" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_MarkingStrength" class="anchor_target"></span><h3 class="panel-title" id="mw_8b19b5dc-b2a1-4956-94c7-43eda08bc470"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:parkingSpace.MarkingStrength"/><code itemprop="name" id="propname_MarkingStrength">MarkingStrength</code></span> — <span itemprop="purpose">停车位车道标线颜色的饱和度强度</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">1</code></span> (default) | <span itemprop="inputvalue">real scalar in range [0, 1]</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8b19b5dc-b2a1-4956-94c7-43eda08bc470" aria-labelledby="expand_panel_heading_mw_8b19b5dc-b2a1-4956-94c7-43eda08bc470" class="panel-collapse collapse"><div class="panel-body">
+          <p>停车位车道标线颜色的饱和度强度，以实数标量表示，取值范围为[0, 1]。值为 <code class="literal">0</code> 表示标线颜色完全不饱和，即标线颜色与地面颜色相同。值 <code class="literal">1</code> 表示标线颜色完全饱和。</p>
+          <p class="description_valueexample"><strong>Example: </strong><code class="literal">0.75</code></p>
+        </div>
+</div>
+</div>
+</div>
+    </div>
+</div>
+</div>
+</div>
+<div id="mw_4db33d9a-287a-43bd-a803-60225f1c44cb_div" class="refsect1 objectfunctions"><h2 id="mw_4db33d9a-287a-43bd-a803-60225f1c44cb">对象函数</h2>
+<div class="doc_classesgroup_container"><div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="parkingspace.plot.html"><code class="function">plot</code></a></td>
+<td class="description">绘制停车位</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="examples"><h2 id="mw_8bdcae50-aa7d-406d-b79d-08dc1bcdc24b">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_33e21289-3c9a-40d9-9e0f-603d28cd20b4"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_33e21289-3c9a-40d9-9e0f-603d28cd20b4" data-target="#expand_panel_body_mw_33e21289-3c9a-40d9-9e0f-603d28cd20b4" aria-controls="expand_panel_body_mw_33e21289-3c9a-40d9-9e0f-603d28cd20b4" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_33e21289-3c9a-40d9-9e0f-603d28cd20b4">创建包含多种停车位类型的停车场<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_33e21289-3c9a-40d9-9e0f-603d28cd20b4" aria-labelledby="expand_panel_heading_mw_33e21289-3c9a-40d9-9e0f-603d28cd20b4" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/CreateParkingLotContainingMultipleSpaceTypesExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create Parking Lot Containing Multiple Space Types",
+          "description": "Create a parking lot that contains a mixture of parking spaces, no-parking areas, and accessible spaces.",
+          "thumbnailURL": "../../examples/driving/win64/CreateParkingLotContainingMultipleSpaceTypesExample_06.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "parkingspace.html"
+
+        },
+          "identifier": "driving.CreateParkingLotContainingMultipleSpaceTypesExample",
+          "name": "CreateParkingLotContainingMultipleSpaceTypesExample",
+          "url": "parkingspace.html#mw_33e21289-3c9a-40d9-9e0f-603d28cd20b4"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/CreateParkingLotContainingMultipleSpaceTypesExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateParkingLotContainingMultipleSpaceTypesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">创建一个包含停车位、禁停区域和无障碍停车位混合的停车场。</p>
+<p>定义在停车场中使用的停车位。使用默认设置。绘制该停车位。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>space = parkingSpace;
+plot(space,Origin=<span style="color:#A020F0">"off"</span>)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e126205" class="mediaobject"><p><img src="../../examples/driving/win64/CreateParkingLotContainingMultipleSpaceTypesExample_01.png" alt="Figure contains an axes object. The axes object with title Parking Space contains an object of type patch." width="560"/></p>
+</div>
+</div>
+<p>定义在停车场中使用的禁停区域。指定白色的颜色和宽度，宽度比默认停车位的宽度小一米。绘制该区域。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>noSpace = parkingSpace(Type=<span style="color:#A020F0">"NoParking"</span>,Width=(space.Width - 1),MarkingColor=<span style="color:#A020F0">"White"</span>);
+plot(noSpace,Origin=<span style="color:#A020F0">"off"</span>)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e126213" class="mediaobject"><p><img src="../../examples/driving/win64/CreateParkingLotContainingMultipleSpaceTypesExample_02.png" alt="Figure contains an axes object. The axes object with title No Parking contains an object of type patch." width="560"/></p>
+</div>
+</div>
+<p>定义在停车场中使用的无障碍停车位。指定宽度，宽度比默认停车位的宽度大一米。绘制该停车位。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>accessibleSpace = parkingSpace(Type=<span style="color:#A020F0">"Accessible"</span>,Width=(space.Width + 1));
+plot(accessibleSpace,Origin=<span style="color:#A020F0">"off"</span>)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e126221" class="mediaobject"><p><img src="../../examples/driving/win64/CreateParkingLotContainingMultipleSpaceTypesExample_03.png" alt="Figure contains an axes object. The axes object with title Accessible Parking Space contains 4 objects of type patch." width="560"/></p>
+</div>
+</div>
+<p>创建一个包含非矩形布局的停车场的驾驶场景。绘制停车场，并显示可以添加停车位的边缘编号。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+vertices = [0 0; 32 -10.5; 32 -50.5; 25 -57.5; 0 -57.5];
+lot = parkingLot(scenario,vertices);
+plot(scenario,ParkingLotEdges=<span style="color:#A020F0">"on"</span>)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e126230" class="mediaobject"><p><img src="../../examples/driving/win64/CreateParkingLotContainingMultipleSpaceTypesExample_04.png" alt="Figure contains an axes object. The axes object contains 7 objects of type patch, line, text." width="560"/></p>
+</div>
+</div>
+<p>在停车场的前三条边上插入默认停车位。为了避免停车位重叠，对这些插入进行以下调整：</p>
+<div class="itemizedlist"><ul><li><p>在边缘1上，只插入10个停车位。</p></li>
+<li><p>在边缘2上，将停车位从边缘的第一个顶点向后偏移5米。</p></li>
+<li><p>在边缘3上，将停车位从边缘的第一个顶点向后偏移3米。</p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numSpaces = 10;
+insertParkingSpaces(lot,space,numSpaces,Edge=1)
+insertParkingSpaces(lot,space,Edge=2,Offset=5)
+insertParkingSpaces(lot,space,Edge=3,Offset=3)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e126245" class="mediaobject"><p><img src="../../examples/driving/win64/CreateParkingLotContainingMultipleSpaceTypesExample_05.png" alt="Figure contains an axes object. The axes object contains 23 objects of type text, patch, line." width="560"/></p>
+</div>
+</div>
+<p>在停车场的中心位置，插入一个 2×10 的停车位网格，其中包含8列默认停车位，1列非停车区和1列无障碍停车位。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>insertParkingSpaces(lot,[space noSpace accessibleSpace],[8 1 1],Position=[12 -18],Rows=2)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e126253" class="mediaobject"><p><img src="../../examples/driving/win64/CreateParkingLotContainingMultipleSpaceTypesExample_06.png" alt="Figure contains an axes object. The axes object contains 28 objects of type text, patch, line." width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-CreateParkingLotContainingMultipleSpaceTypesExample"/>
+<meta itemprop="exampletitle" content="Create Parking Lot Containing Multiple Space Types"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_379a9f1e-4d69-43dd-8834-1037576c7ebe"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_379a9f1e-4d69-43dd-8834-1037576c7ebe" data-target="#expand_panel_body_mw_379a9f1e-4d69-43dd-8834-1037576c7ebe" aria-controls="expand_panel_body_mw_379a9f1e-4d69-43dd-8834-1037576c7ebe" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_379a9f1e-4d69-43dd-8834-1037576c7ebe">使用预定义的布局创建停车场<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_379a9f1e-4d69-43dd-8834-1037576c7ebe" aria-labelledby="expand_panel_heading_mw_379a9f1e-4d69-43dd-8834-1037576c7ebe" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/CreateParkingLotUsingPredefinedLayoutExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create Parking Lot Using Predefined Layout",
+          "description": "Explore the various parking lots that you can create by using predefined layouts as well as the options for configuring those layouts.",
+          "thumbnailURL": "../../examples/driving/win64/CreateParkingLotUsingPredefinedLayoutExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "parkingspace.html"
+
+        },
+          "identifier": "driving.CreateParkingLotUsingPredefinedLayoutExample",
+          "name": "CreateParkingLotUsingPredefinedLayoutExample",
+          "url": "parkingspace.html#mw_379a9f1e-4d69-43dd-8834-1037576c7ebe"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/CreateParkingLotUsingPredefinedLayoutExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateParkingLotUsingPredefinedLayoutExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">通过使用预定义的布局以及配置这些布局的选项，您可以创建各种不同的停车场。</p>
+<p>定义用于填充停车场的停车位。修改停车位的宽度、长度或角度，以及车道标线的宽度和强度。绘制停车位。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>width = <span class="live_control_container"><img tabindex="-1" alt="" src="../../examples/driving/win64/CreateParkingLotUsingPredefinedLayoutExample_03.png"/><span data-examplename="openExample('driving/CreateParkingLotUsingPredefinedLayoutExample')" tabindex="0" data-controlvalue="2.6" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-html="true" class="popover_trigger add_cursor_pointer live_control_equivalent_value">2.6</span></span>; <span style="color:#228B22">% m</span>
+length = <span class="live_control_container"><img tabindex="-1" alt="" src="../../examples/driving/win64/CreateParkingLotUsingPredefinedLayoutExample_04.png"/><span data-examplename="openExample('driving/CreateParkingLotUsingPredefinedLayoutExample')" tabindex="0" data-controlvalue="5.5" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-html="true" class="popover_trigger add_cursor_pointer live_control_equivalent_value">5.5</span></span>; <span style="color:#228B22">% m</span>
+angle = <span class="live_control_container"><img tabindex="-1" alt="" src="../../examples/driving/win64/CreateParkingLotUsingPredefinedLayoutExample_05.png"/><span data-examplename="openExample('driving/CreateParkingLotUsingPredefinedLayoutExample')" tabindex="0" data-controlvalue="90" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-html="true" class="popover_trigger add_cursor_pointer live_control_equivalent_value">90</span></span>; <span style="color:#228B22">% deg</span>
+markingWidth = <span class="live_control_container"><img tabindex="-1" alt="" src="../../examples/driving/win64/CreateParkingLotUsingPredefinedLayoutExample_06.png"/><span data-examplename="openExample('driving/CreateParkingLotUsingPredefinedLayoutExample')" tabindex="0" data-controlvalue="0.15" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-html="true" class="popover_trigger add_cursor_pointer live_control_equivalent_value">0.15</span></span>;
+markingStrength = <span class="live_control_container"><img tabindex="-1" alt="" src="../../examples/driving/win64/CreateParkingLotUsingPredefinedLayoutExample_07.png"/><span data-examplename="openExample('driving/CreateParkingLotUsingPredefinedLayoutExample')" tabindex="0" data-controlvalue="1" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-html="true" class="popover_trigger add_cursor_pointer live_control_equivalent_value">1</span></span>;
+
+space = parkingSpace(Width=width, <span style="color:#0000FF">...</span>
+                    Length=length, <span style="color:#0000FF">...</span>
+                    Angle=angle, <span style="color:#0000FF">...</span>
+                    MarkingWidth=markingWidth, <span style="color:#0000FF">...</span>
+                    MarkingStrength=markingStrength);
+plot(space)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e126307" class="mediaobject"><p><img src="../../examples/driving/win64/CreateParkingLotUsingPredefinedLayoutExample_01.png" alt="Figure contains an axes object. The axes object with title Parking Space contains 2 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<p><span style="background-color: rgb(255, 255, 255); color: rgb(42, 43, 46); font-family: &quot;PingFang SC&quot;, &quot;Segoe UI&quot;, Arial, &quot;Microsoft YaHei&quot;, 微软雅黑, 宋体, &quot;Malgun Gothic&quot;, sans-serif; font-size: 14px;">创建一个包含 50×50米停车场的驾驶场景。指定预定义的停车场布局和最小行驶车道宽度。在给定最小车道宽度约束的情况下，生成的停车场填满尽可能多的适合布局的停车位。修改车位、布局类型、车道宽度，观察对停车场的影响。例如:</span></p>
+<div class="itemizedlist"><ul><li><p>当你增加停车位的大小或最小车道宽度时，停车场中间的停车位网格数量就会减少。</p></li>
+<li><p>如果您选择了 <code class="literal">HorizontalWithEdges</code> 或 <code class="literal">VerticalWithEdges</code> 布局，其中一侧的停车位数量会比其他侧少。这一侧包含一个宽度为 <code class="literal">DrivingLaneWidth</code> 的驾驶车道，用于车辆进入停车场。</p></li>
+</ul>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+vertices = [0 0; 50 0; 50 -50; 0 -50];
+parkingLayout = <span class="live_control_container"><img tabindex="-1" alt="" src="../../examples/driving/win64/CreateParkingLotUsingPredefinedLayoutExample_08.png"/><span data-examplename="openExample('driving/CreateParkingLotUsingPredefinedLayoutExample')" tabindex="0" data-controlvalue="&quot;Vertical&quot;" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-html="true" class="popover_trigger add_cursor_pointer live_control_equivalent_value">"Vertical"</span></span>;
+drivingLaneWidth = <span class="live_control_container"><img tabindex="-1" alt="" src="../../examples/driving/win64/CreateParkingLotUsingPredefinedLayoutExample_09.png"/><span data-examplename="openExample('driving/CreateParkingLotUsingPredefinedLayoutExample')" tabindex="0" data-controlvalue="2.6" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-html="true" class="popover_trigger add_cursor_pointer live_control_equivalent_value">2.6</span></span>; <span style="color:#228B22">% m</span>
+
+parkingLot(scenario,vertices, <span style="color:#0000FF">...</span>
+    ParkingSpace=space, <span style="color:#0000FF">...</span>
+    ParkingLayout=parkingLayout, <span style="color:#0000FF">...</span>
+    DrivingLaneWidth=drivingLaneWidth);
+
+plot(scenario)</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e126337" class="mediaobject"><p><img src="../../examples/driving/win64/CreateParkingLotUsingPredefinedLayoutExample_02.png" alt="Figure contains an axes object. The axes object contains 3 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-CreateParkingLotUsingPredefinedLayoutExample"/>
+<meta itemprop="exampletitle" content="Create Parking Lot Using Predefined Layout"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_232a708e-684e-4b04-8c03-54a9b26a15a4_vh">版本历史</h2>
+<p><strong>在R2021b中引入</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_232a708e-684e-4b04-8c03-54a9b26a15a4_seealso">参见</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.insertparkingspaces.html"><span itemprop="name"><code class="function">insertParkingSpaces</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.parkinglot.html"><span itemprop="name"><code class="function">parkingLot</code></span></a></span></p>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/simulate-vehicle-parking-maneuver-in-driving-scenario.html" class="a">Simulate Vehicle Parking Maneuver in Driving Scenario</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>record</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:record"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:drivingScenario.record"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function returns a recording, rec, of the states of actors in a driving scenario simulation, scenario."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">record</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e100470" class="intrnllnk">Syntax</a></li>
+<li><a href="#description" class="intrnllnk">Description</a></li>
+<li><a href="#d124e100493" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_504e7264-7e9f-410c-99d7-8b7cb4493782" class="intrnllnk">Record Actor Poses from Driving Scenario</a></li>
+</ul></li>
+<li><a href="#bvni9_q-3" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#bvni9_q-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="intrnllnk">scenario</a></li>
+</ul></li>
+<li><a href="#bvni9_q-4" class="intrnllnk">Output Arguments</a><ul class="nav"><li><a href="#bvni9_q-1-rec" class="intrnllnk">rec</a></li>
+</ul></li>
+<li><a href="#bvni9_q-1_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#bvni9_q-1_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="bvni9_q-1" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">record</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">运行驾驶场景并记录参与者状态</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e100470">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e100477" class="intrnllnk">rec = record(scenario)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="bvni9_q-2" class="anchor_target"></span><h2 id="description">描述</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="drivingscenario.record.html#mw_504e7264-7e9f-410c-99d7-8b7cb4493782" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e100477" itemprop="syntax"><code class="synopsis"><a href="#bvni9_q-1-rec" class="intrnllnk"><code class="argument">rec</code></a> = record(<a href="#bvni9_q-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="intrnllnk"><code class="argument">scenario</code></a>)</code></span>
+返回一个记录了驾驶场景 <span style="font-family: monospace;">scenario</span> 仿真中参与者状态的记录 <span style="font-family: monospace;">rec</span>。要记录一个场景，您必须定义至少一个参与者的轨迹。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="d124e100493">例子</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_504e7264-7e9f-410c-99d7-8b7cb4493782"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_504e7264-7e9f-410c-99d7-8b7cb4493782" data-target="#expand_panel_body_mw_504e7264-7e9f-410c-99d7-8b7cb4493782" aria-controls="expand_panel_body_mw_504e7264-7e9f-410c-99d7-8b7cb4493782" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_504e7264-7e9f-410c-99d7-8b7cb4493782"><span style="font-size: 18.72px;">从驾驶场景中记录参与者的位置姿态</span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_504e7264-7e9f-410c-99d7-8b7cb4493782" aria-labelledby="expand_panel_heading_mw_504e7264-7e9f-410c-99d7-8b7cb4493782" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/RecordActorPosesFromDrivingScenarioExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Record Actor Poses from Driving Scenario",
+          "description": "Create a driving scenario in which one car passes a stationary car on a two-lane road.",
+          "thumbnailURL": "../../examples/driving/win64/RecordActorPosesFromDrivingScenarioExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.record.html"
+
+        },
+          "identifier": "driving.RecordActorPosesFromDrivingScenarioExample",
+          "name": "RecordActorPosesFromDrivingScenarioExample",
+          "url": "drivingscenario.record.html#mw_504e7264-7e9f-410c-99d7-8b7cb4493782"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/RecordActorPosesFromDrivingScenarioExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "RecordActorPosesFromDrivingScenarioExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">创建一个驾驶场景，其中一辆汽车在一条双车道的道路上超越一辆静止的汽车。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+road(scenario,[0 0; 10 0; 53 -20],<span style="color:#A020F0">'lanes'</span>,lanespec(2));
+plot(scenario,<span style="color:#A020F0">'Waypoints'</span>,<span style="color:#A020F0">'on'</span>);
+stationaryCar = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1,<span style="color:#A020F0">'Position'</span>,[25 -5.5 0],<span style="color:#A020F0">'Yaw'</span>,-22);
+
+passingCar = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+waypoints = [1 -1.5; 16.36 -2.5; 17.35 -2.765; <span style="color:#0000FF">...</span>
+            23.83 -2.01; 24.9 -2.4; 50.5 -16.7];
+speed = 15; <span style="color:#228B22">% m/s</span>
+smoothTrajectory(passingCar,waypoints,speed);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e100517" class="mediaobject"><p><img src="../../examples/driving/win64/RecordActorPosesFromDrivingScenarioExample_01.png" alt="Figure contains an axes object. The axes object contains 7 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<p>记录驾驶场景仿真。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rec = record(scenario);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e100525" class="mediaobject"><p><img src="../../examples/driving/win64/RecordActorPosesFromDrivingScenarioExample_02.png" alt="Figure contains an axes object. The axes object contains 7 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<p>比较仿真开始和结束时超车汽车的记录姿态。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rec(1).ActorPoses(2)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>struct with fields:</em></span>
+            ActorID: 2
+           Position: [1 -1.5000 0]
+           Velocity: [14.9816 0.7423 0]
+               Roll: 0
+              Pitch: 0
+                Yaw: 2.8367
+    AngularVelocity: [0 0 1.2537e-05]
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rec(end).ActorPoses(2)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>struct with fields:</em></span>
+            ActorID: 2
+           Position: [50.4717 -16.6823 0]
+           Velocity: [12.7171 -7.9546 0]
+               Roll: 0
+              Pitch: 0
+                Yaw: -32.0261
+    AngularVelocity: [0 0 -0.0099]
+
+</pre>
+</div>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-RecordActorPosesFromDrivingScenarioExample"/>
+<meta itemprop="exampletitle" content="Record Actor Poses from Driving Scenario"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bvni9_q-3">输入参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="bvni9_q-3_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="bvni9_q-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvni9_q-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" data-target="#expand_panel_body_bvni9_q-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" aria-controls="expand_panel_body_bvni9_q-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_scenario" class="anchor_target"></span><h3 class="panel-title" id="bvni9_q-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33"><code itemprop="name">scenario</code> — <span itemprop="purpose">Driving scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">drivingScenario</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvni9_q-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" aria-labelledby="expand_panel_heading_bvni9_q-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="panel-collapse collapse in"><div class="panel-body">
+        <p>驾驶场景，指定为 <a href="drivingscenario.html"><code class="object">drivingScenario</code></a> 对象。</p>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bvni9_q-4">输出参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="bvni9_q-4_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvni9_q-1-rec" data-target="#expand_panel_body_bvni9_q-1-rec" aria-controls="expand_panel_body_bvni9_q-1-rec" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_rec" class="anchor_target"></span><h3 class="panel-title" id="bvni9_q-1-rec"><code class="name">rec</code> — 在仿真过程中记录参与者状态<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><em class="varname">M</em>-by-1 vector of structures</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvni9_q-1-rec" aria-labelledby="expand_panel_heading_bvni9_q-1-rec" class="panel-collapse collapse in"><div class="panel-body">
+                    <p>在仿真过程中记录的参与者状态，以 <em class="varname">M</em>×1 的结构向量形式返回。<em class="varname">M</em>是模拟中的时间步数。每个结构对应一个模拟时间步。</p>
+                    <p><code class="argument">rec</code> 结构具有以下字段：</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"/>
+<col class="tcol2" width="33%"/>
+<col class="tcol3" width="33%"/>
+</colgroup>
+<thead><tr><th>Field</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">SimulationTime</code></td>
+<td>每个时间步的仿真时间</td>
+<td>实数标量</td>
+</tr>
+<tr><td><code class="literal">ActorPoses</code></td>
+<td>场景坐标系中的参与者姿态</td>
+<td><code class="literal">ActorPoses</code> 结构的 <em class="varname">N</em>×1 向量，其中 <em class="varname">N</em> 是参与者的数量，包括车辆。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+                    <p>每个 <span style="font-family: monospace;">ActorPoses</span> 结构具有以下字段。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">ActorID</code></td>
+<td><p>场景定义的参与者标识符，指定为正整数。</p>
+</td>
+</tr>
+<tr><td><code class="literal">Position</code></td>
+<td><p>参与者的位置，指定为实值向量，形式为 [<em class="varname">x</em> <em class="varname">y</em> <em class="varname">z</em>]。单位为米。</p>
+</td>
+</tr>
+<tr><td><code class="literal">Velocity</code></td>
+<td><p>参与者在 <em class="varname">x</em>、<em class="varname">y</em> 和 <em class="varname">z</em> 方向上的速度(<em class="varname">v</em>)，指定为实值向量，形式为 [<em class="varname">v</em><sub><em class="varname">x</em></sub> <em class="varname">v</em><sub><em class="varname">y</em></sub> <em class="varname">v</em><sub><em class="varname">z</em></sub>]。单位为米每秒。</p>
+</td>
+</tr>
+<tr><td><code class="literal">Roll</code></td>
+<td><p>参与者的滚转角度，指定为实值标量。单位为度。</p>
+</td>
+</tr>
+<tr><td><code class="literal">Pitch</code></td>
+<td><p>参与者的俯仰角度，指定为实值标量。单位为度。</p>
+</td>
+</tr>
+<tr><td><code class="literal">Yaw</code></td>
+<td><p>参与者的偏航角度，指定为实值标量。单位为度。</p>
+</td>
+</tr>
+<tr><td><code class="literal">AngularVelocity</code></td>
+<td><p>参与者在 <em class="varname">x</em>、<em class="varname">y</em> 和 <em class="varname">z</em> 方向上的角速度(<em class="varname">ω</em>)，指定为实值向量，形式为[<em class="varname">ω</em><sub><em class="varname">x</em></sub><em class="varname">ω</em><sub><em class="varname">y</em></sub> <em class="varname">ω</em><sub><em class="varname">z</em></sub>]。单位为度每秒。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+                    <p>要查看这些结构字段的完整定义，请参阅 <a href="drivingscenario.actor.html"><code class="function">actor</code></a> 和 <a href="drivingscenario.vehicle.html"><code class="function">vehicle</code></a> 函数。</p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>struct</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bvni9_q-1_vh">版本历史</h2>
+<p><b>引入于 R2017a</b></p>
+</div>
+<div class="ref_sect"><h2 id="bvni9_q-1_seealso">参见</h2>
+<h3>Objects</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span></li>
+</ul>
+<h3>Functions</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.restart.html"><span itemprop="name"><code class="function">restart</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.vehicle.html"><span itemprop="name"><code class="function">vehicle</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.actor.html"><span itemprop="name"><code class="function">actor</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.advance.html"><span itemprop="name"><code class="function">advance</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.actorposes.html"><span itemprop="name"><code class="function">actorPoses</code></span></a></span></li>
+</ul>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/create-driving-scenario-programmatically.html" class="a">Create Driving Scenario Programmatically</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
