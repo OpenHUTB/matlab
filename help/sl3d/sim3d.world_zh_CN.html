@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>sim3d.World</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "index.html",
+          "name": "Simulink 3D Animation"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "scenario-simulation.html",
+          "name": "Unreal Engine Scenario Applications"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "scenario-simulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:sim3d.World"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:sim3d.World"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Use the sim3d.World object to create and define virtual reality worlds and run the cosimulation using Unreal Engine."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../docset.xml";
+            product_help_location = "sl3d";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+<style type="text/css">math { visibility: hidden; }</style>
+<link type="text/css" rel="stylesheet" href="../includes/shared/equationrenderer/release/index-css.css"/>
+<script type="text/javascript" src="../includes/shared/equationrenderer/release/bundle.index.js"></script>
+<style type="text/css">math { visibility: hidden; }</style>
+<link type="text/css" rel="stylesheet" href="../includes/shared/equationrenderer/release/index-css.css"/>
+<script type="text/javascript" src="../includes/shared/equationrenderer/release/bundle.index.js"></script>
+</head>
+<body id="responsive_offcanvas" class="no_animate offcanvas_active locked">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header" style=""></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1" disabled=""></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left active">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar" style="height: 564px; position: fixed; top: 52px;">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator active" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../overview/reporting-and-database-access.html" itemprop="url"><span itemprop="title">Reporting and Database Access</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="index.html?s_tid=CRUX_lftnav">Simulink 3D Animation</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Applications</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas">sim3d.World</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class=""><a href="#d124e45799" class="intrnllnk">Description</a></li>
+<li class="active"><a href="#mw_83ce08c3-023c-47e8-8573-990ec631c4d3" class="intrnllnk">Creation</a><ul class="nav"><li class=""><a href="#mw_b712279c-e5a4-49fc-b5f9-02956c07f091" class="intrnllnk">Description</a></li>
+</ul><ul class="nav"><li class="active"><a href="#mw_b962df40-cd0a-4971-9ade-b42939fb5fce" class="intrnllnk">Input Arguments</a><ul class="nav"><li class="active"><a href="#mw_a7d516c4-8fa4-474e-abfa-009a61e0c446" class="intrnllnk">Name-Value Arguments</a></li>
+</ul></li>
+</ul></li>
+<li class=""><a href="#mw_a7231cb6-4b98-46d3-a086-939205131236" class="intrnllnk">Properties</a><ul class="nav"><li class=""><a href="#mw_ea197fb3-1fa6-46a5-8cf8-cf631da36a24" class="intrnllnk">'Name'</a></li>
+<li class=""><a href="#mw_97224437-6a0f-4122-8601-c7979c44f20e" class="intrnllnk">Actors</a></li>
+<li class=""><a href="#mw_6c1e5df9-56c0-4ae0-b4ed-04d82f9a251d" class="intrnllnk">UserData</a></li>
+<li class=""><a href="#mw_d4e9ad6c-2b53-479c-a59f-8c4f779591a3" class="intrnllnk">Viewports</a></li>
+</ul></li>
+<li class=""><a href="#mw_d3f6b9f3-43f6-4bee-88df-cc9fca9fc441" class="intrnllnk">Object Functions</a></li>
+<li><a href="#mw_3b1f1903-1382-46da-a702-693baac2ba64_vh" class="intrnllnk">Version History</a></li>
+<li class=""><a href="#mw_3b1f1903-1382-46da-a702-693baac2ba64_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container" style="padding-right: 0px;">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container affix" style="width: auto;"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="examples.html?category=scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="referencelist.html?type=block&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="examples.html?category=scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="referencelist.html?type=block&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content" style="width: auto;">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="object_ref"><span id="mw_3b1f1903-1382-46da-a702-693baac2ba64" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title">sim3d.World</h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">用于在虚幻引擎查看器中定义虚拟现实世界的对象</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div class="function_icons"><ul class="list-unstyled"></ul>
+</div>
+<div class="refsummary" itemprop="content"><h2 id="d124e45799">描述</h2>
+    <div class="shortsummary"><p>使用该 <code class="literal">sim3d.World</code> 对象创建和定义虚拟现实世界，并使用 Unreal Engine<sup>®</sup>运行协同仿真。</p>
+</div>
+    <div class="itemizedlist"><ul><li><p>在世界中添加或删除自定义参与者。仅显示添加到世界对象的参与者。</p></li>
+<li><p>存储虚拟现实场景、<a href="sim3d.actor.html"><code class="class">sim3d.Actor</code></a> 根对象以及场景中所有参与者的层次结构。</p></li>
+<li><p>（可选）通过指定自定义函数来控制仿真逻辑。输出函数将数据传递到虚幻引擎以更改引擎中参与者的属性。</p></li>
+<li><p>控制 MATLAB<sup>®</sup> 和虚幻引擎之间的协同仿真。</p></li>
+<li><p>定义虚拟世界全局坐标系。</p></li>
+<li><p>控制场景环境设置。</p></li>
+<li><p>控制虚拟世界的时序。</p></li>
+</ul>
+</div>
+  </div>
+<div id="mw_83ce08c3-023c-47e8-8573-990ec631c4d3_div" class="ref_sect createobject"><h2 id="mw_83ce08c3-023c-47e8-8573-990ec631c4d3">创建</h2>
+<span id="mw_5d9f49f5-1f1f-43e4-a62b-d85aeb494b13" class="anchor_target"></span><div class="ref_sect"><h3 id="mw_5d9f49f5-1f1f-43e4-a62b-d85aeb494b13">语法</h3>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e45849" class="intrnllnk">world = sim3d.World()</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e45860" class="intrnllnk">world = sim3d.World('Name',name)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e45875" class="intrnllnk">world = sim3d.World('RenderOffScreen',true)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e45890" class="intrnllnk">world = sim3d.World('Setup',@setupFcn)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e45904" class="intrnllnk">world = sim3d.World('Update',@updateFcn)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e45921" class="intrnllnk">world = sim3d.World('Output',@outputFcn)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e45941" class="intrnllnk">world = sim3d.World('Release',@releaseFcn)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="mw_b712279c-e5a4-49fc-b5f9-02956c07f091_div" class="refsect2 description"><h3 id="mw_b712279c-e5a4-49fc-b5f9-02956c07f091">描述</h3>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><div class="code_responsive"><p><span id="d124e45849" itemprop="syntax"><code class="synopsis"><code class="argument">world</code> = sim3d.World()</code></span> 在新窗口中使用默认名称启动默认的虚幻引擎可执行文件。</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e45860" itemprop="syntax"><code class="synopsis"><code class="argument">world</code> = sim3d.World(<code class="argument">'Name'</code>,<code class="argument">name</code>)</code></span>
+          在新窗口中使用指定的名称启动虚幻引擎可执行文件。</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e45875" itemprop="syntax"><code class="synopsis"><code class="argument">world</code> = sim3d.World(<a href="#mw_8a0ec82e-de88-4442-b465-b37402e5e752" class="intrnllnk"><code class="argument">'RenderOffScreen'</code></a>,<code class="argument">true</code>)</code></span>
+          在后台运行虚幻引擎可执行文件的同时运行协同仿真。</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e45890" itemprop="syntax"><code class="synopsis"><code class="argument">world</code> = sim3d.World(<a href="#mw_d8941938-b0f0-43d6-98af-b30632b0f538" class="intrnllnk"><code class="argument">'Setup'</code></a>,<code class="argument">@setupFcn</code>)</code></span> 通过在设置之前执行 <code class="argument">@setupFcn</code> 来修改协同仿真，此自定义函数可用于导入仿真运行时所需的附加数据。</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e45904" itemprop="syntax"><code class="synopsis"><code class="argument">world</code> = sim3d.World(<a href="#mw_8d139174-aabd-4c9f-a904-1c401afbce83" class="intrnllnk"><code class="argument">'Update'</code></a>,<code class="argument">@updateFcn</code>)</code></span> 通过在每个仿真步骤执行 <code class="argument">@updateFcn</code> 来修改协同仿真，该自定义函数可用于从虚幻引擎读取数据。</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e45921" itemprop="syntax"><code class="synopsis"><code class="argument">world</code> = sim3d.World(<a href="#mw_fece7686-9846-4c14-8cf8-a70867bdd2db" class="intrnllnk"><code class="argument">'Output'</code></a>,<code class="argument">@outputFcn</code>)</code></span>
+          通过在每个仿真步骤执行 <code class="argument">@outputFcn</code> 来修改协同仿真。此自定义函数可用于将有关指定 <a href="sim3d.actor.html"><code class="class">sim3d.Actor</code></a> 对象的数据发送到虚幻引擎。</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e45941" itemprop="syntax"><code class="synopsis"><code class="argument">world</code> = sim3d.World(<a href="#mw_8bf2b17c-90b7-4166-b001-4680268f7e5c" class="intrnllnk"><code class="argument">'Release'</code></a>,<code class="argument">@releaseFcn</code>)</code></span>
+          通过在每个仿真步骤执行 <code class="argument">@releaseFcn</code> 来修改协同仿真。此功能可用于删除在设置过程中可能导入的其他数据。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h3 id="mw_b962df40-cd0a-4971-9ade-b42939fb5fce">输入参数</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_b962df40-cd0a-4971-9ade-b42939fb5fce_panel-group" role="tablist" aria-multiselectable="true"><span id="namevaluepairarguments" class="anchor_target"></span><strong class="refsect3" id="mw_a7d516c4-8fa4-474e-abfa-009a61e0c446">名-值参数对</strong><p class="neqvpair_boilerplate">将可选参数对指定为
+      <code class="argument">Name1=Value1,...,NameN=ValueN</code>，其中 <code class="literal">Name</code> 是参数名称，<code class="literal">Value</code> 是相应的值。名-值参数对必须出现在其他参数之后，但参数对的顺序并不重要。</p>
+<p><span class="example_desc"><strong>示例： </strong><code class="literal">World = sim3d.World('Name',world1)</code></span></p>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_08aa55c3-750d-4913-93e8-3b9a991aefbe_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_239b2953-a207-45e8-b29f-31127adfb5b6"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_239b2953-a207-45e8-b29f-31127adfb5b6" data-target="#expand_panel_body_mw_239b2953-a207-45e8-b29f-31127adfb5b6" aria-controls="expand_panel_body_mw_239b2953-a207-45e8-b29f-31127adfb5b6" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Name" class="anchor_target"></span><h3 class="panel-title" id="mw_239b2953-a207-45e8-b29f-31127adfb5b6"><code itemprop="name">Name</code> — 世界的名称<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">string</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_239b2953-a207-45e8-b29f-31127adfb5b6" aria-labelledby="expand_panel_heading_mw_239b2953-a207-45e8-b29f-31127adfb5b6" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body">
+              <p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px;">世界的名称，指定为字符串。</span><span style="color: rgb(0, 0, 0); font-size: medium;"></span><br/></p>
+            </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_faca5c79-9192-4790-8c81-b277a186c93f"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_faca5c79-9192-4790-8c81-b277a186c93f" data-target="#expand_panel_body_mw_faca5c79-9192-4790-8c81-b277a186c93f" aria-controls="expand_panel_body_mw_faca5c79-9192-4790-8c81-b277a186c93f" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_ExecutablePath" class="anchor_target"></span><h3 class="panel-title" id="mw_faca5c79-9192-4790-8c81-b277a186c93f"><code itemprop="name">ExecutablePath</code> — 指向可执行文件的路径<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">string</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_faca5c79-9192-4790-8c81-b277a186c93f" aria-labelledby="expand_panel_heading_mw_faca5c79-9192-4790-8c81-b277a186c93f" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body"><span style="color: rgb(0, 0, 0); font-size: medium;"></span><p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: transparent;">运行</span><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: transparent;">世界的可执行文件路径，指定为字符串。</span></p>
+            </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_7b616cbd-0d44-4474-9665-514bbb002bf1"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7b616cbd-0d44-4474-9665-514bbb002bf1" data-target="#expand_panel_body_mw_7b616cbd-0d44-4474-9665-514bbb002bf1" aria-controls="expand_panel_body_mw_7b616cbd-0d44-4474-9665-514bbb002bf1" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Map" class="anchor_target"></span><h3 class="panel-title" id="mw_7b616cbd-0d44-4474-9665-514bbb002bf1"><code itemprop="name">Map</code> — 指向虚幻引擎地图的路径<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">string</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_7b616cbd-0d44-4474-9665-514bbb002bf1" aria-labelledby="expand_panel_heading_mw_7b616cbd-0d44-4474-9665-514bbb002bf1" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body">
+              <p>运行可执行文件时加载的虚幻引擎映射的路径，指定为字符串。</p>
+            </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_8a0ec82e-de88-4442-b465-b37402e5e752"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8a0ec82e-de88-4442-b465-b37402e5e752" data-target="#expand_panel_body_mw_8a0ec82e-de88-4442-b465-b37402e5e752" aria-controls="expand_panel_body_mw_8a0ec82e-de88-4442-b465-b37402e5e752" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_RenderOffScreen" class="anchor_target"></span><h3 class="panel-title" id="mw_8a0ec82e-de88-4442-b465-b37402e5e752"><code itemprop="name">RenderOffScreen</code> — 在后台运行模拟的选项</h3>
+<h3 class="panel-title" id="mw_8a0ec82e-de88-4442-b465-b37402e5e752"> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">0</code> (<code class="literal">false</code>)</span> | <span itemprop="inputvalue"><code class="literal">1</code> (<code class="literal">true</code>)</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8a0ec82e-de88-4442-b465-b37402e5e752" aria-labelledby="expand_panel_heading_mw_8a0ec82e-de88-4442-b465-b37402e5e752" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body"><span style="color: rgb(0, 0, 0); font-size: medium;"></span><p><code class="literal"><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: transparent;">在后台运行仿真的选项，指定为 </span>0</code>(<code class="literal">false</code>) 或 <code class="literal">1</code>(<code class="literal">true</code>)。</p>
+            </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_8d139174-aabd-4c9f-a904-1c401afbce83"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8d139174-aabd-4c9f-a904-1c401afbce83" data-target="#expand_panel_body_mw_8d139174-aabd-4c9f-a904-1c401afbce83" aria-controls="expand_panel_body_mw_8d139174-aabd-4c9f-a904-1c401afbce83" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Update" class="anchor_target"></span><h3 class="panel-title" id="mw_8d139174-aabd-4c9f-a904-1c401afbce83"><code itemprop="name">Update</code> — 自定义更新函数<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">用户自定义函数的句柄</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8d139174-aabd-4c9f-a904-1c401afbce83" aria-labelledby="expand_panel_heading_mw_8d139174-aabd-4c9f-a904-1c401afbce83" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body"><span style="color: rgb(0, 0, 0); font-size: medium;"></span><p><span style="color: rgb(33, 33, 33); font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica; font-size: 14px; background-color: transparent;">自定义更新函数，用于从虚幻引擎读取有关指定参与者的数据，指定为用户定义函数的句柄。</span></p>
+            </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_fece7686-9846-4c14-8cf8-a70867bdd2db"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_fece7686-9846-4c14-8cf8-a70867bdd2db" data-target="#expand_panel_body_mw_fece7686-9846-4c14-8cf8-a70867bdd2db" aria-controls="expand_panel_body_mw_fece7686-9846-4c14-8cf8-a70867bdd2db" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Output" class="anchor_target"></span><h3 class="panel-title" id="mw_fece7686-9846-4c14-8cf8-a70867bdd2db"><code itemprop="name">Output</code> — 自定义输出函数<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">用户自定义函数的句柄</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_fece7686-9846-4c14-8cf8-a70867bdd2db" aria-labelledby="expand_panel_heading_mw_fece7686-9846-4c14-8cf8-a70867bdd2db" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body">
+              <p>自定义输出函数，将指定参与者的变换和颜色等信息返回到虚幻引擎，指定为用户定义函数的句柄。这使得虚幻引擎能够控制仿真。</p>
+            </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_d8941938-b0f0-43d6-98af-b30632b0f538"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_d8941938-b0f0-43d6-98af-b30632b0f538" data-target="#expand_panel_body_mw_d8941938-b0f0-43d6-98af-b30632b0f538" aria-controls="expand_panel_body_mw_d8941938-b0f0-43d6-98af-b30632b0f538" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Setup" class="anchor_target"></span><h3 class="panel-title" id="mw_d8941938-b0f0-43d6-98af-b30632b0f538"><code itemprop="name">Setup</code> — 定制的设置函数<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">用户自定义函数的句柄</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_d8941938-b0f0-43d6-98af-b30632b0f538" aria-labelledby="expand_panel_heading_mw_d8941938-b0f0-43d6-98af-b30632b0f538" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;"><div class="panel-body">
+              <p>在设置过程中读取并运行其他命令的自定义函数，指定为用户定义函数的句柄。这可用于加载仿真所需的数据。</p>
+            </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_8bf2b17c-90b7-4166-b001-4680268f7e5c"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8bf2b17c-90b7-4166-b001-4680268f7e5c" data-target="#expand_panel_body_mw_8bf2b17c-90b7-4166-b001-4680268f7e5c" aria-controls="expand_panel_body_mw_8bf2b17c-90b7-4166-b001-4680268f7e5c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Release" class="anchor_target"></span><h3 class="panel-title" id="mw_8bf2b17c-90b7-4166-b001-4680268f7e5c"><code itemprop="name">Release</code> — 定制的释放函数<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">用户自定义函数的句柄</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8bf2b17c-90b7-4166-b001-4680268f7e5c" aria-labelledby="expand_panel_heading_mw_8bf2b17c-90b7-4166-b001-4680268f7e5c" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;"><div class="panel-body">
+              <p>自定义释放函数，在仿真结束后运行附加命令，指定为用户定义函数的句柄。此设置可用于删除为设置导入的其他数据。</p>
+            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_a7231cb6-4b98-46d3-a086-939205131236">属性</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">collapse all</a></p>
+<div class="panel-group" id="mw_a7231cb6-4b98-46d3-a086-939205131236_panel-group" role="tablist" aria-multiselectable="true"><div itemscope="" class="ref_sect" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntityGroup" itemprop="refentitygroup">
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_ea197fb3-1fa6-46a5-8cf8-cf631da36a24"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ea197fb3-1fa6-46a5-8cf8-cf631da36a24" data-target="#expand_panel_body_mw_ea197fb3-1fa6-46a5-8cf8-cf631da36a24" aria-controls="expand_panel_body_mw_ea197fb3-1fa6-46a5-8cf8-cf631da36a24" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="prop_Name" class="anchor_target"></span><h3 class="panel-title" id="mw_ea197fb3-1fa6-46a5-8cf8-cf631da36a24"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.World.'Name'"/><code itemprop="name" id="propname_'Name'">'Name'</code></span> — 世界名称<br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">string</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_ea197fb3-1fa6-46a5-8cf8-cf631da36a24" aria-labelledby="expand_panel_heading_mw_ea197fb3-1fa6-46a5-8cf8-cf631da36a24" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body">
+          <p>世界的名称，指定为字符串。</p>
+        </div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_97224437-6a0f-4122-8601-c7979c44f20e"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_97224437-6a0f-4122-8601-c7979c44f20e" data-target="#expand_panel_body_mw_97224437-6a0f-4122-8601-c7979c44f20e" aria-controls="expand_panel_body_mw_97224437-6a0f-4122-8601-c7979c44f20e" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="prop_Actors" class="anchor_target"></span><h3 class="panel-title" id="mw_97224437-6a0f-4122-8601-c7979c44f20e"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.World.Actors"/><code itemprop="name" id="propname_Actors">Actors</code></span> — 世界中的所有参与者<br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">structure</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_97224437-6a0f-4122-8601-c7979c44f20e" aria-labelledby="expand_panel_heading_mw_97224437-6a0f-4122-8601-c7979c44f20e" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body">
+          <p>世界中的所有参与者的结构体，其字段为参与者的名字。</p>
+        </div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_6c1e5df9-56c0-4ae0-b4ed-04d82f9a251d"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6c1e5df9-56c0-4ae0-b4ed-04d82f9a251d" data-target="#expand_panel_body_mw_6c1e5df9-56c0-4ae0-b4ed-04d82f9a251d" aria-controls="expand_panel_body_mw_6c1e5df9-56c0-4ae0-b4ed-04d82f9a251d" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="prop_UserData" class="anchor_target"></span><h3 class="panel-title" id="mw_6c1e5df9-56c0-4ae0-b4ed-04d82f9a251d"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.World.UserData"/><code itemprop="name" id="propname_UserData">UserData</code></span> — 用户指定的数据<br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">structure</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_6c1e5df9-56c0-4ae0-b4ed-04d82f9a251d" aria-labelledby="expand_panel_heading_mw_6c1e5df9-56c0-4ae0-b4ed-04d82f9a251d" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body">
+          <p>用户指定的在仿真运行时可能需要的数据，指定为结构。</p>
+          <p>需要定制的 <code class="argument">Update</code>, <code class="argument">Output</code>, <code class="argument">Setup </code>和 <code class="argument">Release</code> 函数来使用 <code class="argument" style="color: rgb(64, 64, 64); font-size: 13px; background-color: rgb(255, 255, 255);">UserData</code><span style="background-color: transparent;"> 存储数据。</span><code class="argument" style="color: rgb(64, 64, 64); font-size: 13px;">UserData</code><span style="background-color: transparent;"> </span><span style="background-color: transparent; font-size: 13px;">确保所有这些功能都可以访问相同的数据。</span></p>
+        </div>
+</div>
+</div>
+</div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_d4e9ad6c-2b53-479c-a59f-8c4f779591a3"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_d4e9ad6c-2b53-479c-a59f-8c4f779591a3" data-target="#expand_panel_body_mw_d4e9ad6c-2b53-479c-a59f-8c4f779591a3" aria-controls="expand_panel_body_mw_d4e9ad6c-2b53-479c-a59f-8c4f779591a3" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="prop_Viewports" class="anchor_target"></span><h3 class="panel-title" id="mw_d4e9ad6c-2b53-479c-a59f-8c4f779591a3"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:sim3d.World.Viewports"/><code itemprop="name" id="propname_Viewports">Viewports</code></span> — 主相机的视角<br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue">empty struct</span> (默认) | <span itemprop="inputvalue">struct</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_d4e9ad6c-2b53-479c-a59f-8c4f779591a3" aria-labelledby="expand_panel_heading_mw_d4e9ad6c-2b53-479c-a59f-8c4f779591a3" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body">
+          <p>主摄像机的视角，定义为包含单个场的结构，<code class="literal">Main</code>. <code class="literal">Main</code> 包含一个具有这些属性的 <a href="sim3d.sensors.maincamera.html"><code class="class">sim3d.sensors.MainCamera</code></a> 对象：</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Parent</code> – 参与者对象的父对象</p></li>
+<li><p><code class="literal">Children</code> – 参与者对象的子对象</p></li>
+<li><p><code class="literal">ParentWorld</code> – 父世界的句柄</p></li>
+<li><p><code class="literal">SensorIdentifier</code> – 主相机的唯一 ID，数据类型为 <code class="literal">uint32。</code></p></li>
+<li><p><code class="literal">Translation</code> – 主摄像头相对于父车辆的平移，以米为单位。</p></li>
+<li><p><code class="literal">Rotation</code> – 传感器相对于父车辆的旋转，以弧度为单位。</p></li>
+</ul>
+</div>
+<p>
+</p>
+        </div>
+</div>
+</div>
+</div>
+    </div>
+</div>
+</div>
+</div>
+<div id="mw_d3f6b9f3-43f6-4bee-88df-cc9fca9fc441_div" class="refsect1 objectfunctions"><h2 id="mw_d3f6b9f3-43f6-4bee-88df-cc9fca9fc441">对象的函数</h2>
+<div class="doc_classesgroup_container"><div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="sim3d.world.createviewport.html"><code class="function">createViewport</code></a></td>
+<td class="description">为世界创建视口</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.world.add.html"><code class="function">add</code></a></td>
+<td class="description">将参与者添加到虚拟现实世界</td>
+</tr>
+<tr><td class="term notranslate"><a href="sim3d.world.run.html"><code class="function">run</code></a></td>
+<td class="description">在虚拟现实世界中运行协同仿真</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_3b1f1903-1382-46da-a702-693baac2ba64_vh">Version History</h2>
+<p><strong>Introduced in R2022b</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_3b1f1903-1382-46da-a702-693baac2ba64_seealso">See Also</h2>
+<h3>Classes</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="sim3d.actor.html"><span itemprop="name"><code class="class">sim3d.Actor</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="sim3d.sensors.idealcamera.html"><span itemprop="name"><code class="class">sim3d.sensors.IdealCamera</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="sim3d.sensors.maincamera.html"><span itemprop="name"><code class="class">sim3d.sensors.MainCamera</code></span></a></span></li>
+</ul>
+<h3>Blocks</h3>
+<ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dactortransformget.html"><span itemprop="name"><span class="block">Simulation 3D Actor Transform
+          Get</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dactortransformset.html"><span itemprop="name"><span class="block">Simulation 3D Actor Transform
+          Set</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dcameraget.html"><span itemprop="name"><span class="block">Simulation 3D Camera
+          Get</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
+          Configuration</span></span></a></span></li>
+</ul>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer" style="width: auto;">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+<a class="btn btn_color_mediumgray" id="go-top" style="display: block;"><span class="icon-arrow-open-up icon_24"></span></a>
+<a class="btn btn_color_mediumgray" id="go-top"><span class="icon-arrow-open-up icon_24"></span></a>
+</body>
+</html>

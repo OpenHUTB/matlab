@@ -1,7 +1,8 @@
+% 对象创建和定义虚拟现实世界，并使用 Unreal Engine®运行协同仿真。
 classdef World < handle
 
     properties(Constant = true, Hidden = true)
-        Undefined( 1, : )string = "<none>"
+        Undefined(1, :)string = "<none>"
         MaxActorLimit = 10000;
     end
 
@@ -11,19 +12,19 @@ classdef World < handle
     end
 
 
-    properties ( Access = public, Hidden = true )
-        ExecutablePath
-        Map( 1, 1 )string
+    properties (Access = public, Hidden = true)
+        ExecutablePath      % 指向可执行文件的路径
+        Map(1, 1) string
         ExecCmds( 1, : )string = "r.DefaultFeature.MotionBlur 0"
         RenderOffScreenFlag( 1, : )string = ""
         CommandLineArgs( 1, : )string = ""
         SampleTime = 1 / 60
-        CommandReader = [  ]
-        CommandWriter = [  ]
-        SetupImpl = [  ]
-        UpdateImpl = [  ]
-        OutputImpl = [  ]
-        ReleaseImpl = [  ]
+        CommandReader = []
+        CommandWriter = []
+        SetupImpl = []
+        UpdateImpl = []
+        OutputImpl = []
+        ReleaseImpl = []
         Root( 1, 1 )sim3d.internal.RootObject;
         StepTimer;
         RateLimiter = [ 0, 0 ];
@@ -62,14 +63,14 @@ classdef World < handle
             % addOptional 将可选的位置参数添加到输入解析器模式中
             parser.addOptional("CommandLineArgs", "", @isstring);  % 提供命令行参数
             parser.addParameter("OverrideExecCmds", false, @islogical)
-            parser.addParameter("RenderOffScreen", false, @islogical);
+            parser.addParameter("RenderOffScreen", false, @islogical);  % 在后台运行仿真的选项，指定为 0(false) 或 1(true)。
             parser.addParameter("Setup", []);
-            parser.addParameter("Output", []);
-            parser.addParameter("Update", []);
+            parser.addParameter("Output", []);  % 通过在每个仿真步骤执行 @outputFcn 来修改协同仿真。此自定义函数可用于将有关指定 sim3d.Actor 对象的数据发送到虚幻引擎。.
+            parser.addParameter("Update", []);  % 自定义更新函数，用于从虚幻引擎读取有关指定参与者的数据，指定为用户定义函数的句柄。
             parser.addParameter("Release", []);
             parser.addParameter("Name", sim3d.World.generateWorldName(), @isstring);
 
-            parser.parse( varargin{ : } );
+            parser.parse(varargin{ : });
 
             self.Name = parser.Results.Name;
             self.ExecutablePath = parser.Results.ExecutablePath;
@@ -79,10 +80,10 @@ classdef World < handle
             self.UpdateImpl = parser.Results.Update;
             self.OutputImpl = parser.Results.Output;
             self.ReleaseImpl = parser.Results.Release;
-            self.Root = sim3d.internal.RootObject(  );
+            self.Root = sim3d.internal.RootObject();
             self.Root.ParentWorld = self;
 
-            if ( self.Map == "/Game/Maps/EmptyScene" )
+            if (self.Map == "/Game/Maps/EmptyScene")
                 sim3d.World.validateLicense();
             end
 
@@ -95,21 +96,22 @@ classdef World < handle
             if parser.Results.RenderOffScreen
                 self.RenderOffScreenFlag = "-RenderOffScreen";
             end
-            self.Textures.reset(  );
+            self.Textures.reset();
 
-            sim3d.World.addWorld( self.Name, self );
+            sim3d.World.addWorld(self.Name, self);
         end
 
-        function delete( self )
-            if ( ~isempty( self.StepTimer ) )
-                self.endSim(  );
+
+        function delete(self)
+            if (~isempty(self.StepTimer))
+                self.endSim();
             end
             self.Root.generateUniqueActorID( 1 );
             sim3d.World.removeWorld( self.Name );
         end
 
-        function actor = add( self, actor, parent )
 
+        function actor = add( self, actor, parent )
             if nargin == 2
                 parent = self.Root;
             elseif nargin > 3 || nargin < 2
@@ -141,11 +143,11 @@ classdef World < handle
             elseif length( fieldnames( self.Actors ) ) > 1200
                 self.updateTimeout(  );
             end
-            self.start(  );
-            self.reset(  );
-            if isinf( simulationTime )
+            self.start();
+            self.reset();
+            if isinf(simulationTime)
                 self.StepTimer = timer('Period', sampleTime, 'ExecutionMode', 'fixedRate', 'TimerFcn', @self.onTimerEvent );
-                self.StepTimer.start(  );
+                self.StepTimer.start();
             else
                 currentTime = 0;
                 stepIndex = 0;
@@ -193,7 +195,7 @@ classdef World < handle
     end
 
 
-    methods ( Access = public, Hidden = true )
+    methods (Access = public, Hidden = true)
         function setup(self, sampleTime)
             % R36
             % self sim3d.World
@@ -266,8 +268,8 @@ classdef World < handle
             self.CommandReader.read(  );
             self.Root.update(  );
         
-            if ~isempty( self.UpdateImpl )
-                self.UpdateImpl( self )
+            if ~isempty(self.UpdateImpl)
+                self.UpdateImpl(self)
             end
         end
 
@@ -377,7 +379,7 @@ classdef World < handle
             atMock = isa( self, 'MockWorld' );
         end
 
-        function updateTimeout( self ) %#ok
+        function updateTimeout(self)
             self.CommandReadTimeout = length( fieldnames( self.Actors ) ) * 0.1;
         end
 

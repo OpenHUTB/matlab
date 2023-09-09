@@ -312,6 +312,7 @@ classdef GamingEngineScenarioAnimator < handle
     
 
     methods (Static)
+
         function assetTypes = getAssetTypes(isVehicle)
             % Don't just use sim3d.auto.VehicleTypes because we don't want this
             % to auto-update, we need to update code here and in DSD for
@@ -424,7 +425,21 @@ classdef GamingEngineScenarioAnimator < handle
             this.CommandReader.read();
         end
         
+
+        % 设置读取和写入虚幻场景的命令
         function setupCommandReaderAndWriter(this)
+            function updateImpl(World)
+                disp('hello')
+                World.UserData.Step = World.UserData.Step + 1;  % 每仿真一次，步数就加1
+                actorFields = fields(world.Actors);
+                actorPresent = strcmp(actorFields, 'Box2');
+                if any(actorPresent) && (World.UserData.Step == 500)  % 当仿真到 500 步时就删除参与者
+                    actorIndex=(find(actorPresent));
+                    actorToDelete = actorFields{actorIndex};
+                    World.remove(actorToDelete);
+                end
+            end
+
             % 开始工程
             exe_path = sim3d.engine.Env.AutomotiveExe();
             % 不从字符数组转成字符串数据，matlab\toolbox\shared\sim3d\sim3d\+sim3d\World.p的检查会报错：
@@ -441,7 +456,8 @@ classdef GamingEngineScenarioAnimator < handle
                 World = sim3d.World(exe_path, ...
                     "/Game/Maps/EmptyGrass4k4k", ...
                     ExecCmds, ...
-                    "CommandLineArgs", ExecCmds);
+                    "CommandLineArgs", ExecCmds, ...
+                    'Update', @updateImpl);  % 'Update', @updateImpl
             else
                 World = sim3d.World(exe_path, "/Game/Maps/EmptyGrass4k4k"); % EmptyGrass4k4k or BlackLake
             end
@@ -453,6 +469,7 @@ classdef GamingEngineScenarioAnimator < handle
             writer.setSampleTime(this.SampleTime);
             this.CommandReader = reader;
             this.CommandWriter = writer;
+
         end
 
         
