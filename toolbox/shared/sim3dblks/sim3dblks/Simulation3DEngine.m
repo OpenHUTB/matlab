@@ -17,64 +17,25 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
     end
 
     properties(Nontunable)
-
-
-
         ProjectName(1,:)char=sim3d.World.Undefined
-
-
-
-
         OpenDRIVEName(1,:)char=sim3d.World.Undefined
 
-
-
-
         SceneDesc(1,:)char=''
-
-
-
-
         ProjectFormat(1,:)char=getString(message('shared_sim3dblks:sim3dblkConfig:DefaultScenes'))
-
-
-
-
         SampleTime(1,1)double{mustBeGreaterThanOrEqual(SampleTime,0.01)}=Simulation3DEngine.DEFAULT_SAMPLE_TIME;
     end
 
     properties
-
-
-
-
-
-
-
-
-
-
-
         WeatherConfigParas(1,6)single=[40,90,10,0,0,1]
 
     end
 
     properties(Nontunable)
 
-
-
         EnableWindow(1,1)logical=true
 
-
-
-
         EnableWeather(1,1)logical=false
-
-
-
         EnableRemoteAccess(1,1)logical=false
-
-
 
         EnableOpenDRIVE(1,1)logical=false
     end
@@ -338,7 +299,6 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                 self.StopEventListenerHandle=s.StopEventListenerHandle;
                 self.EngineTimer=s.EngineTimer;
             end
-
 
             loadObjectImpl@matlab.System(self,s,wasInUse);
         end
