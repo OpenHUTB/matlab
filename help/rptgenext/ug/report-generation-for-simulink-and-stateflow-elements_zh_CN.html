@@ -1,0 +1,388 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create Report Generators for Simulink and Stateflow Elements</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Simulink Report Generator"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../getting-started-with-simulink-report-generator.html",
+          "name": "Get Started with Simulink Report Generator"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "getting-started-with-simulink-report-generator"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con gs">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Use predefined Simulink and Stateflow element finders and reporters that reduce coding time and complexity."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "rptgenext";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/reporting-and-database-access.html" itemprop="url"><span itemprop="title">Reporting and Database Access</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Simulink Report Generator</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../getting-started-with-simulink-report-generator.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Get Started with Simulink
+            Report Generator</span></a></li></ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Create Report Generators for Simulink and Stateflow Elements</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_1a31048a-f7a1-4956-9c99-d98ac03f5f33" class="intrnllnk">Simulink Report API Classes</a><ul class="nav"><li><a href="#mw_5a8b4c61-654d-4ec2-aa39-491266face95" class="intrnllnk">Finder and Result Classes</a></li><li><a href="#mw_d4e08c7b-cc4c-4b3f-be4d-262ef7861471" class="intrnllnk">Reporter Classes</a></li></ul></li><li><a href="#mw_cd475c30-c1ca-4e1b-b0a0-6e75f1cbe854" class="intrnllnk">Find and Report on Blocks in a Model</a></li><li><a href="#mw_b8e98477-fabf-4dd9-a0ae-817e3c722faa" class="intrnllnk">Use Specific Finders and Reporters for Different Block Types</a></li><li><a href="#mw_c1dbe45f-78c0-48c5-b67a-f4b84a93d359" class="intrnllnk">Find and Report on Stateflow Elements</a></li><li><a href="#d124e1301" class="intrnllnk">See Also</a></li><li><a href="#d124e1307" class="intrnllnk">Related Topics</a></li></ul>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=getting-started-with-simulink-report-generator&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=getting-started-with-simulink-report-generator&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_reportgen" class="crux_resource"><a href="../referencelist.html?type=reportgen&amp;category=getting-started-with-simulink-report-generator&amp;s_tid=CRUX_topnav">Report Components</a></li></ul></div></nav></div><div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=getting-started-with-simulink-report-generator&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=getting-started-with-simulink-report-generator&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_reportgen" class="crux_resource"><a href="../referencelist.html?type=reportgen&amp;category=getting-started-with-simulink-report-generator&amp;s_tid=CRUX_topnav">Report Components</a></li></ul></div></div></div><div class="col-xs-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_b4128562-3492-4653-89e0-e2f039a2bc34">Create Report Generators for Simulink and Stateflow Elements</h2><p>Finders and reporters reduce the amount of time and complexity required to write code
+            to find and report on Simulink<sup>&#x00AE;</sup> model elements, such as diagrams and blocks, and on Stateflow<sup>&#x00AE;</sup> charts and transitions, etc. The <span class="entity">Simulink
+            Report Generator&#x2122;</span> Report API is a layer on top of the DOM API. Its finders and reporters are
+            based on the Simulink and Stateflow find base class. You specify the container in which to find specific
+            elements, such as blocks in a subsystem or states in a chart. Finder objects return
+            their results in a corresponding array of finder result objects.</p><p>The Simulink Report API also includes reporter classes, which return an image of the
+            container. This image is the top level of a model. </p><p>
+            </p>
+<div class="informalfigure"><div id="d124e703" class="mediaobject"><p><img src="gsexample_ch1.png" height="333" width="638"></p></div></div><p>
+        </p><p>Every result object returned by a finder has an associated reporter object, which
+            reports on those results. The reporter object holds the content and formats the content,
+            such as tables of properties and data plots. You add the reporter objects to your
+            reports. Use the MATLAB<sup>&#x00AE;</sup> Report API reporters to define common report elements. See <a href="../../rptgen/ug/what-is-a-reporter.html" class="a">What Are Reporters?</a> for
+            information.</p><p>All finders and reporters have these features:</p><div class="itemizedlist"><ul><li><p>Default behaviors and values</p></li><li><p>Allow overriding and customizing their output</p></li></ul></div><p>All finders have <code class="method">find</code>, <code class="method">hasNext</code>, and
+                <code class="method">next</code> methods. The <code class="method">find</code> method finds and returns in
+            an array of result objects all elements for each found element of the specified type.
+            The <code class="method">hasNext</code> and <code class="method">next</code> methods find and return one
+            element at a time and are used to iterate over a list of results. The
+                <code class="method">hasNext</code> method checks whether the container has at least one of the
+            element of the specified type. If the container has one or more of the elements, then
+            the <code class="method">hasNext</code> method queues it for the <code class="method">next</code> method to
+            find and return as a result object.</p><p>All reporters have predefined templates. The template for each reporter defines its
+            formatting, layout, and content holes. You do not need to change the template or specify
+            any formats, layouts, or holes unless you want a customized report. You can customize
+            your report by copying and editing its default template or by using a new template.
+            Editing a copy of the default template gives you a starting point and structure to
+            follow to customize your template. Using a new template lets you completely define your
+            template starting with a blank file. To change the order of the report content, reorder
+            the holes in the template. Finders do not use templates. Another way to customize a
+            reporter class is by subclassing it. </p><p>The default reporter templates for each output type are in a template library, which
+            is at
+            <div class="code_responsive"><pre class="programlisting">matlab\toolbox\shared\slreportgen\rpt\rpt\+slreportgen\
+    +report\@&lt;reporter&gt;\resources\templates\&lt;output&gt;</pre></div>For
+            example, the path to the default template for the <code class="class">DiagramReporter</code> for PDF
+            output is
+            <div class="code_responsive"><pre class="programlisting">matlab\toolbox\shared\slreportgen\rpt\rpt\+slreportgen\
+    +report\@DiagramReporter\resources\templates\pdf\default.pdftx</pre></div>For
+            a detailed example of editing a template, see the "Customize a Report API Template"
+            section of <a href="../../rptgen/ug/what-is-a-reporter.html" class="a">What Are Reporters?</a></p><section itemprop="content"><h3 class="title" id="mw_1a31048a-f7a1-4956-9c99-d98ac03f5f33">Simulink Report API Classes</h3><p>The Simulink Report API provides these finder, result, and reporter classes. To use
+                these classes in a report generator program, you must create a container of type
+                    <code class="class">slreportgen.report.Report</code> to hold the report.</p><section itemprop="content"><h4 class="title" id="mw_5a8b4c61-654d-4ec2-aa39-491266face95">Finder and Result Classes</h4><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Report API Class</th><th>Description</th></tr></thead><tbody><tr><td><a href="slreportgen.finder.annotationfinder-class.html"><code class="class">slreportgen.finder.AnnotationFinder</code></a></td><td>Finds Simulink block diagram annotations.</td></tr><tr><td><a href="slreportgen.finder.blockfinder-class.html"><code class="class">slreportgen.finder.BlockFinder</code></a></td><td>Finds blocks in a Simulink block diagram.</td></tr><tr><td><a href="slreportgen.finder.blockresult-class.html"><code class="class">slreportgen.finder.BlockResult</code></a></td><td>Contains a block found by a <code class="class">BlockFinder</code>
+                                    object.</td></tr><tr><td><a href="slreportgen.finder.chartdiagramfinder-class.html"><code class="class">slreportgen.finder.ChartDiagramFinder</code></a></td><td>Finds Stateflow charts in a model.</td></tr><tr><td><a href="slreportgen.finder.datadictionaryfinder-class.html"><code class="class">slreportgen.finder.DataDictionaryFinder</code></a></td><td>Finds Simulink data dictionaries.</td></tr><tr><td><a href="slreportgen.finder.datadictionaryresult-class.html"><code class="class">slreportgen.finder.DataDictionaryResult</code></a></td><td>Contains a data dictionary found by a
+                                        <code class="class">DataDictionary</code> object.</td></tr><tr><td><a href="slreportgen.finder.diagramelementfinder-class.html"><code class="class">slreportgen.finder.DiagramElementFinder</code></a></td><td>Finds elements of a Simulink block diagram or Stateflow chart.</td></tr><tr><td><a href="slreportgen.finder.diagramelementresult-class.html"><code class="class">slreportgen.finder.DiagramElementResult</code></a></td><td>Contains a diagram element found by a
+                                        <code class="class">DiagramElementFinder</code> object.</td></tr><tr><td><a href="slreportgen.finder.diagramfinder-class.html"><code class="class">slreportgen.finder.DiagramFinder</code></a></td><td>Finds block diagrams and charts in a Simulink model.</td></tr><tr><td><a href="slreportgen.finder.diagramresult-class.html"><code class="class">slreportgen.finder.DiagramResult</code></a></td><td>Contains a diagram found by a <code class="class">DiagramFinder</code>
+                                    object.</td></tr><tr><td><a href="slreportgen.finder.modelvariablefinder-class.html"><code class="class">slreportgen.finder.ModelVariableFinder</code></a></td><td>Finds variables used by a Simulink model.</td></tr><tr><td><a href="slreportgen.finder.modelvariableresult-class.html"><code class="class">slreportgen.finder.ModelVariableResult</code></a></td><td>Contains a model variable found by a
+                                        <code class="class">ModelVariableFinder</code> object.</td></tr><tr><td><a href="slreportgen.finder.signalfinder-class.html"><code class="class">slreportgen.finder.SignalFinder</code></a></td><td>Finds signals used by a model or block.</td></tr><tr><td><a href="slreportgen.finder.signalresult-class.html"><code class="class">slreportgen.finder.SignalResult</code></a></td><td>Contains a signal found by a <code class="class">SignalFinder</code>
+                                    object.</td></tr><tr><td><a href="slreportgen.finder.statefinder-class.html"><code class="class">slreportgen.finder.StateFinder</code></a></td><td>Finds states in a Stateflow chart.</td></tr><tr><td><a href="slreportgen.finder.stateflowdiagramelementfinder-class.html"><code class="class">slreportgen.finder.StateflowDiagramElementFinder</code></a></td><td>Finds elements of a Stateflow chart.</td></tr><tr><td><a href="slreportgen.finder.systemdiagramfinder-class.html"><code class="class">slreportgen.finder.SystemDiagramFinder</code></a></td><td>Finds system block diagrams in a Simulink model.</td></tr></tbody></table></div></section><section itemprop="content"><h4 class="title" id="mw_d4e08c7b-cc4c-4b3f-be4d-262ef7861471">Reporter Classes</h4><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Report API Class</th><th>Description</th></tr></thead><tbody><tr><td><a href="slreportgen.report.bus-class.html"><code class="class">slreportgen.report.Bus</code></a></td><td>Reports on buses selected or created by Simulink blocks.</td></tr><tr><td><a href="slreportgen.report.busobject-class.html"><code class="class">slreportgen.report.BusObject</code></a></td><td>Reports on <a href="../../simulink/slref/simulink.bus.html"><code class="class">Simulink.Bus</code></a>
+                                    objects use by a model.</td></tr><tr><td><a href="slreportgen.report.cfunction-class.html"><code class="class">slreportgen.report.CFunction</code></a></td><td>Reports on a <span class="block">C Function</span> block.</td></tr><tr><td><a href="slreportgen.report.datadictionary-class.html"><code class="class">slreportgen.report.DataDictionary</code></a></td><td>Reports on a Simulink data dictionary.</td></tr><tr><td><a href="slreportgen.report.diagram-class.html"><code class="class">slreportgen.report.Diagram</code></a></td><td>Creates a snapshot of a Simulink block diagram or a Stateflow chart.</td></tr><tr><td><a href="slreportgen.report.docblock-class.html"><code class="class">slreportgen.report.DocBlock</code></a></td><td><p>Reports on a Simulink
+                                        <span class="block">DocBlock</span>.</p></td></tr><tr><td><a href="slreportgen.report.elementdiagram-class.html"><code class="class">slreportgen.report.ElementDiagram</code></a></td><td>Reports on an element diagram snapshot and caption </td></tr><tr><td><a href="slreportgen.report.executionorder-class.html"><code class="class">slreportgen.report.ExecutionOrder</code></a></td><td>Reports on the tasks of a model or nonvirtual subsystem and
+                                    the blocks in each task, sorted by execution order.</td></tr><tr><td><a href="slreportgen.report.lookuptable-class.html"><code class="class">slreportgen.report.LookupTable</code></a></td><td>Reports on breakpoints and output points of a Simulink lookup table block.</td></tr><tr><td><a href="slreportgen.report.matlabfunction-class.html"><code class="class">slreportgen.report.MATLABFunction</code></a></td><td><p>Reports on a <code class="class">MATLAB Function</code> block or a
+                                            Stateflow
+                                        MATLAB function.</p></td></tr><tr><td><a href="slreportgen.report.modelconfiguration-class.html"><code class="class">slreportgen.report.ModelConfiguration</code></a></td><td>Reports on the active configuration set of a model.</td></tr><tr><td><a href="slreportgen.report.modelvariable-class.html"><code class="class">slreportgen.report.ModelVariable</code></a></td><td>Reports on a model variable.</td></tr><tr><td><a href="slreportgen.report.notes-class.html"><code class="class">slreportgen.report.Notes</code></a></td><td>Reports on Simulink or Stateflow diagram notes.</td></tr><tr><td><a href="slreportgen.report.signal-class.html"><code class="class">slreportgen.report.Signal</code></a></td><td>Reports on a signal.</td></tr><tr><td><a href="slreportgen.report.simulinkobjectproperties-class.html"><code class="class">slreportgen.report.SimulinkObjectProperties</code></a></td><td>Creates a table of the properties of a Simulink object.</td></tr><tr><td><a href="slreportgen.report.stateflowobjectproperties-class.html"><code class="class">slreportgen.report.StateflowObjectProperties</code></a></td><td>Creates a table of the properties of a Stateflow object.</td></tr><tr><td><a href="slreportgen.report.systemhierarchy-class.html"><code class="class">slreportgen.report.SystemHierarchy</code></a></td><td>Creates a nested list of the subsystems of a Simulink model or subsystem.</td></tr><tr><td><a href="slreportgen.report.systemio-class.html"><code class="class">slreportgen.report.SystemIO</code></a></td><td>Reports on Simulink system input and output signals.</td></tr><tr><td><a href="slreportgen.report.testsequence-class.html"><code class="class">slreportgen.report.TestSequence</code></a></td><td><p>Reports on a Simulink
+                                        <span class="block">Test Sequence</span> block.</p></td></tr><tr><td><a href="slreportgen.report.truthtable-class.html"><code class="class">slreportgen.report.TruthTable</code></a></td><td>Reports on a Simulink truth table block or a Stateflow truth table object.</td></tr></tbody></table></div></section></section><section itemprop="content"><h3 class="title" id="mw_cd475c30-c1ca-4e1b-b0a0-6e75f1cbe854">Find and Report on Blocks in a Model</h3><p>This example shows how to find and report on all Simulink blocks in the <code class="literal">slrgex_vdp</code> model using the
+                    <code class="class">BlockFinder</code> class. The resulting HTML report includes default
+                information and uses default formatting for each block.</p><div class="procedure"><ol type="1"><li><p>Import the Report API package, which let you use class names without
+                        including their package names. For example, you can use
+                            <code class="class">BlockFinder</code> instead of
+                            <code class="class">slreportgen.finder.BlockFinder</code>. In addition to importing
+                        the Simulink Report API base classes, import the MATLAB Report API base
+                        class. A typical report includes a title page, table of contents, chapters,
+                        and sections, which you include as reporter classes in the MATLAB Report API.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">slreportgen.finder.*</span>
+import <span style="color:#A020F0">slreportgen.report.*</span>
+import <span style="color:#A020F0">mlreportgen.report.*</span></pre></div></div></div></li><li><p>Load the <code class="literal">slrgex_vdp</code> model.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>model_name = <span style="color:#A020F0">'slrgex_vdp'</span>;
+load_system(model_name)</pre></div></div></div></li><li><p>Create the container object to hold the report and open the report. In
+                        this case, the output report is saved in zipped
+                            <code class="literal">slrgex_vdp_model.htmx</code> HTML report. You can use any
+                        output name you want. If you run the report generator more than once using
+                        the same output file name, the output file is overwritten. To use
+                            Simulink Report API finders and reporters in your report generator
+                        program, you must use the fully qualified name to create the container
+                        object. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rpt = slreportgen.report.Report(<span style="color:#A020F0">'slrgex_vdp_model'</span>,<span style="color:#A020F0">'html'</span>);
+open(rpt)</pre></div></div></div></li><li><p>Add a chapter and specify its title.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ch = Chapter(<span style="color:#A020F0">'Blocks in slrgex_vdp model'</span>);</pre></div></div></div></li><li><p>Use the <code class="class">BlockFinder</code> class to create a finder. In this case,
+                        the <code class="class">BlockFinder</code> finds all the blocks in the model. Use the
+                            <code class="method">find</code> method to find the blocks specified by the
+                        finder.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>finder = BlockFinder(model_name); 
+results = find(finder);
+</pre></div></div></div></li><li><p>Loop through the results of the find method and create a section for each
+                        block, and add the block property table to the section. Then, add each
+                        section to the chapter. After all blocks have been added, add the chapter to
+                        the report. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">for</span> result = results
+     sect = Section(<span style="color:#A020F0">'Title'</span>,result.Name);
+     append(sect,result)
+     append(ch,sect)
+<span style="color:#0000FF">end</span>
+append(rpt,ch);</pre></div></div></div></li><li><p>Close the report and model, and view the report.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close(rpt);
+close_system(model_name);
+rptview(rpt);</pre></div></div></div></li></ol></div><p>The full program is</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">slreportgen.finder.*</span>
+import <span style="color:#A020F0">slreportgen.report.*</span>
+import <span style="color:#A020F0">mlreportgen.report.*</span>
+
+model_name = <span style="color:#A020F0">'slrgex_vdp'</span>;
+load_system(model_name);
+
+rpt = slreportgen.report.Report(<span style="color:#A020F0">'slrgex_vdp_model'</span>,<span style="color:#A020F0">'html'</span>);
+open(rpt)
+
+ch = Chapter(<span style="color:#A020F0">'Blocks in slrgex_vdp model'</span>);
+finder = BlockFinder(model_name); 
+results = find(finder);
+<span style="color:#0000FF">for</span> result = results
+     sect = Section(<span style="color:#A020F0">'Title'</span>,result.Name);
+     append(sect,result)
+     append(ch,sect);
+<span style="color:#0000FF">end</span>
+append(rpt,ch);
+
+close(rpt)
+close_system(model_name)
+rptview(rpt)</pre></div></div></div><p>The chapter heading and the section headings and property tables of the first two
+                blocks of the resulting report are shown.</p><p>
+                </p>
+<div class="informalfigure"><div id="d124e1192" class="mediaobject"><p><img src="finders_topic_ex11913d91a8de2b00b3e78f1ad966be14e.png" height="766" width="1527"></p></div></div><p>
+            </p></section><section itemprop="content"><h3 class="title" id="mw_b8e98477-fabf-4dd9-a0ae-817e3c722faa">Use Specific Finders and Reporters for Different Block Types</h3><p>Create a PDF report generator that finds all blocks in the
+                    <code class="literal">slrgex_radar_eml</code> model. </p><p>To find all blocks, use the <code class="class">BlockFinder</code>. The <code class="literal">if</code>
+                statement shows how to test for <span class="block">MATLAB Function</span> blocks. Use the
+                    <code class="class">MATLABFunction</code> reporter to report <span class="block">MATLAB Function</span>
+                block details. The <code class="literal">else</code> statement shows how blocks other than
+                    <span class="block">MATLAB Function</span> blocks use the <code class="class">BlockFinder</code>
+                <code class="method">find</code> method results.</p><div class="code_responsive"><pre class="programlisting">blkfinder = BlockFinder(model_name);
+blks = find(blkfinder);
+
+if slreportgen.utils.isMATLABFunction(blks(i).Object)
+     rptr = MATLABFunction(blks(i).Object);
+     sec = Section(blks(i).Name);
+     append(sec,rptr)
+     append(ch,sec)
+
+else
+     sec = Section(blks(i).Name);
+     append(sec,blks(i)) 
+     append(ch,sec)</pre></div><div class="code_responsive"><pre class="programlisting">blkfinder = BlockFinder(model_name);
+blks = find(blkfinder);
+</pre></div><p>The full program is</p><div class="code_responsive"><pre class="programlisting">import slreportgen.report.*
+import slreportgen.finder.*
+import mlreportgen.report.*
+
+model_name = 'slrgex_radar_eml';
+load_system(model_name)
+
+rpt = slreportgen.report.Report('radar','pdf');
+open(rpt)
+
+blkfinder = BlockFinder(model_name);
+blks = find(blkfinder);
+ch = Chapter('Blocks in slrgex_radar_eml Model');
+
+for i=1:length(blks)
+   if slreportgen.utils.isMATLABFunction(blks(i).Object)
+      rptr = MATLABFunction(blks(i).Object);
+      sec = Section(blks(i).Name);
+      append(sec,rptr)
+      append(ch,sec)
+   else
+      sec = Section(blks(i).Name);
+      append(sec,blks(i)) 
+      append(ch,sec)
+   end
+end
+append(rpt,ch)
+
+close(rpt)
+close_system(model_name)
+rptview(rpt)</pre></div><p>An example of the information reported for a <span class="block">MATLAB Function</span> block
+                by the <code class="class">MATLABFunction</code> reporter is:</p><p>
+                </p>
+<div class="informalfigure"><div id="d124e1236" class="mediaobject"><p><img src="finders_topic_ex2a.png" height="536" width="523"></p></div></div><p>
+            </p><p>An example of the information reported by the <code class="literal">find</code> method of
+                the <code class="class">BlockFinder</code> is:</p><p>
+                </p>
+<div class="informalfigure"><div id="d124e1249" class="mediaobject"><p><img src="finders_topic_ex2b.png" height="512" width="515"></p></div></div><p>
+            </p></section><section itemprop="content"><h3 class="title" id="mw_c1dbe45f-78c0-48c5-b67a-f4b84a93d359">Find and Report on Stateflow Elements</h3><p>This example describes how to find and report on Stateflow states, transitions, and junctions. It reports on the
+                    <code class="literal">control_logic</code> chart of the
+                    <code class="literal">slrgex_fuelsys_fuel_rate_control</code> model.</p><p>This portion of the code uses a <code class="class">StateFinder</code> object and its
+                    <code class="method">find</code> method to find and report on states in the chart. It loops
+                through the array of found states and adds each one to the chapter.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>stFinder = StateFinder(subsys);
+states = find(stFinder);
+<span style="color:#0000FF">for</span> state = states
+   append(chapter,state)
+<span style="color:#0000FF">end</span>
+append(rpt,chapter)</pre></div></div></div><p>
+                </p>
+<div class="informalfigure"><div id="d124e1275" class="mediaobject"><p><img src="finders_topic_ex3a.png" height="468" width="509"></p></div></div><p>
+            </p><p>To report on the transitions, use a <code class="class">StateflowDiagramElementFinder</code>
+                object and its <code class="method">find</code> method. To show the property table with a
+                narrower width than the default, customize the output. First, obtain the reporter
+                for the result. To set the width, use the <code class="property">TableWidth</code> property
+                of the reporter. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>chapter = Chapter(<span style="color:#A020F0">"Title"</span>,<span style="color:#A020F0">"Transitions"</span>);
+trFinder = StateflowDiagramElementFinder<span style="color:#0000FF">...</span>
+   (<span style="color:#A020F0">"Container"</span>,subsys,<span style="color:#A020F0">"Types"</span>,<span style="color:#A020F0">"transition"</span>);
+transitions = find(trFinder);
+<span style="color:#0000FF">for</span> transition = transitions
+   rptr = transition.getReporter;
+   rptr.PropertyTable.TableWidth = <span style="color:#A020F0">"3in"</span>; 
+   append(chapter,rptr)
+<span style="color:#0000FF">end</span>
+append(rpt,chapter)</pre></div></div></div><p>
+                </p>
+<div class="informalfigure"><div id="d124e1292" class="mediaobject"><p><img src="finders_topic_ex3b68f481bc31a31f22533d546546754a31.png" height="438" width="487"></p></div></div><p>
+            </p><p>The complete program is</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">mlreportgen.report.*</span>
+import <span style="color:#A020F0">slreportgen.report.*</span>
+import <span style="color:#A020F0">slreportgen.finder.*</span>
+
+model_name = <span style="color:#A020F0">"slrgex_fuelsys_fuel_rate_control"</span>;
+load_system(model_name);
+subsys = <span style="color:#A020F0">"slrgex_fuelsys_fuel_rate_control/control_logic"</span>;
+
+rpt = slreportgen.report.Report(<span style="color:#A020F0">"output"</span>,<span style="color:#A020F0">"pdf"</span>);
+open(rpt)
+
+tp = TitlePage(<span style="color:#A020F0">"Title"</span>,<span style="color:#0000FF">...</span>
+   <span style="color:#A020F0">"Control Logic Chart of slrgex_fuelsys_fuel_rate_control"</span>);
+append(rpt,tp)
+append(rpt,TableOfContents);
+   
+chapter = Chapter(<span style="color:#A020F0">"Title"</span>,<span style="color:#A020F0">"States"</span>);
+stFinder = StateFinder(subsys);
+states = find(stFinder);
+<span style="color:#0000FF">for</span> state = states
+   append(chapter,state)
+<span style="color:#0000FF">end</span>
+append(rpt,chapter)
+
+chapter = Chapter(<span style="color:#A020F0">"Title"</span>,<span style="color:#A020F0">"Transitions"</span>);
+trFinder = StateflowDiagramElementFinder<span style="color:#0000FF">...</span>
+   (<span style="color:#A020F0">"Container"</span>,subsys,<span style="color:#A020F0">"Types"</span>,<span style="color:#A020F0">"transition"</span>);
+transitions = find(trFinder);
+<span style="color:#0000FF">for</span> transition = transitions
+   rptr = transition.getReporter;
+   rptr.PropertyTable.TableWidth = <span style="color:#A020F0">"3in"</span>; 
+   append(chapter,rptr)
+<span style="color:#0000FF">end</span>
+append(rpt,chapter)
+
+close(rpt)
+close_system(model_name)
+rptview(rpt)
+</pre></div></div></div></section>
+            <h2 id="d124e1301">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="slreportgen.report.report-class.html"><span itemprop="name"><code class="class">slreportgen.report.Report</code></span></a></span></p>
+            <h2 id="d124e1307">Related Topics</h2><ul><li><a href="relationship-between-simulink-report-generator-and-matlab-report-generator.html" class="a">Relationship Between Simulink Report Generator and MATLAB Report Generator</a></li><li><a href="../../rptgen/ug/what-is-a-reporter.html" class="a">What Are Reporters?</a></li><li><a href="../../rptgen/report-templates.html" class="a">Templates</a></li></ul>
+        </section>
+    </div><div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></section>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

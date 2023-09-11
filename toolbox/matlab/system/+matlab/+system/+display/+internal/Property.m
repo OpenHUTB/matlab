@@ -1,8 +1,5 @@
 classdef(Hidden)Property<handle&matlab.mixin.Heterogeneous
 
-
-
-
     properties(SetAccess=protected)
         Name;
     end
@@ -19,15 +16,15 @@ classdef(Hidden)Property<handle&matlab.mixin.Heterogeneous
         ClassStringSet;
         StaticRange;
         StringSetValues;
-LocalizedStringSetValues
-StringSetMessageIdentifiers
-EnumerationMembers
+        LocalizedStringSetValues
+        StringSetMessageIdentifiers
+        EnumerationMembers
         PropertyPortPair;
         CustomPresenter;
         CustomPresenterPropertyGroupsArgument;
-WidgetType
-Row
-IsEditableEnumeration
+        WidgetType
+        Row
+        IsEditableEnumeration
     end
 
     properties(Hidden,SetAccess={?matlab.system.display.internal.Property,?matlab.system.display.PropertyGroup})
@@ -136,7 +133,7 @@ IsEditableEnumeration
         function set.WidgetType(obj,v)
             if~isempty(v)
                 validateattributes(v,{'matlab.system.display.internal.WidgetType'},...
-                {},'','WidgetType');
+                    {},'','WidgetType');
             end
             obj.WidgetType=v;
         end
@@ -144,7 +141,7 @@ IsEditableEnumeration
         function set.Row(obj,v)
             if~isempty(v)
                 validateattributes(v,{'matlab.system.display.internal.Row'},...
-                {},'','Row');
+                    {},'','Row');
             end
             obj.Row=v;
         end
@@ -355,8 +352,8 @@ IsEditableEnumeration
                 elseif isSystemMetaProp&&(metaProp.ScalarLogical||metaProp.Logical)
                     obj.IsLogical=true;
                 elseif metaProp.HasDefault&&...
-                    (ischar(metaProp.DefaultValue)||isstring(metaProp.DefaultValue))&&...
-                    isempty(obj.IsStringLiteral)
+                        (ischar(metaProp.DefaultValue)||isstring(metaProp.DefaultValue))&&...
+                        isempty(obj.IsStringLiteral)
                     obj.IsStringLiteral=true;
                 end
             end
@@ -525,7 +522,7 @@ IsEditableEnumeration
 
 
             if obj.IsStringSet||obj.IsStringLiteral...
-                ||(obj.IsEnumeration&&(ischar(txt)||isStringScalar(txt)))
+                    ||(obj.IsEnumeration&&(ischar(txt)||isStringScalar(txt)))
                 expression=eval(expression);
             end
             obj.addDialogValue(expression,builder);
@@ -636,7 +633,7 @@ IsEditableEnumeration
 
 
                             if isequaln(evalValue,actValue)&&...
-                                isequal(class(evalValue),class(actValue))
+                                    isequal(class(evalValue),class(actValue))
                                 return;
                             end
                         end
@@ -662,7 +659,7 @@ IsEditableEnumeration
                                     strValue=tree2str(nc.Parent.Parent.Right);
                                     evalValue=eval(strValue);
                                     if isequaln(evalValue,actValue)&&...
-                                        isequal(class(evalValue),class(actValue))
+                                            isequal(class(evalValue),class(actValue))
                                         return;
                                     end
                                 end
@@ -683,7 +680,7 @@ IsEditableEnumeration
                                     strValue=tree2str(nc.Parent.Parent.Right);
                                     evalValue=eval(strValue);
                                     if isequaln(evalValue,actValue)&&...
-                                        isequal(class(evalValue),class(actValue))
+                                            isequal(class(evalValue),class(actValue))
                                         return;
                                     end
                                 end
@@ -706,7 +703,7 @@ IsEditableEnumeration
                                     strValue=tree2str(nc.Parent.Right);
                                     evalValue=eval(strValue);
                                     if isequaln(evalValue,actValue)&&...
-                                        isequal(class(evalValue),class(actValue))
+                                            isequal(class(evalValue),class(actValue))
                                         return;
                                     end
                                 end
@@ -718,7 +715,7 @@ IsEditableEnumeration
                     evalVal1=eval(strValue);
                     evalVal2=eval(strValue);
                     if~isequaln(evalVal1,evalVal2)&&...
-                        isequal(class(evalValue),class(actValue))
+                            isequal(class(evalValue),class(actValue))
                         isParsed=true;
                     end
 
@@ -748,21 +745,21 @@ IsEditableEnumeration
 end
 
 function flag=isRestrictedToBuiltinType(metaProperty)
-    validation=metaProperty.Validation;
+validation=metaProperty.Validation;
 
-    flag=~isempty(validation);
+flag=~isempty(validation);
 
-    if~flag
-        return
-    end
+if~flag
+    return
+end
 
-    validationClass=validation.Class;
-    flag=~isempty(validationClass);
+validationClass=validation.Class;
+flag=~isempty(validationClass);
 
-    if~flag
-        return
-    end
+if~flag
+    return
+end
 
-    flag=any(strcmp(validationClass.Name,...
+flag=any(strcmp(validationClass.Name,...
     {'double','float','single','int8','uint8','int16','uint16','int32','uint32','int64','uint64'}));
 end

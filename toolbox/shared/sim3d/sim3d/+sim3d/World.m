@@ -232,13 +232,13 @@ classdef World < handle
         end
 
         function reset( self )
-            status = sim3d.engine.Engine.getState(  );
+            status = sim3d.engine.Engine.getState();
             if status == sim3d.engine.EngineCommands.RUN || status == sim3d.engine.EngineCommands.INITIALIZE
                 error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
             end
         
             self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.INITIALIZE ) );
-            self.CommandWriter.write(  );
+            self.CommandWriter.write();
             self.CommandReader.read(  );
             sim3d.engine.Engine.setState( sim3d.engine.EngineCommands.RUN );
             self.State = sim3d.engine.EngineCommands.RUN;

@@ -1,22 +1,9 @@
 function varargout=desktop(option)
 
+mlock;
 
-
-
-
-
-
-
-
-
-
-
-
-
-    mlock;
-
-    if nargin>0
-        switch option
+if nargin>0
+    switch option
         case '-inuse'
             if isJSDModeOn()
                 varargout{1}=isJSDRunning();
@@ -27,10 +14,10 @@ function varargout=desktop(option)
             startupDesktop(false);
         otherwise
             error(message('MATLAB:desktop:FirstArgInvalid'));
-        end
-    else
-        startupDesktop(true);
     end
+else
+    startupDesktop(true);
+end
 
     function startupDesktop(restorePreviousConfig)
         if isJSDModeOn()
