@@ -240,37 +240,26 @@
 <p>三维仿真场景配置模块实现了使用虚幻引擎®渲染的三维仿真环境。 自动驾驶工具箱<span>™
       </span>
        将三维仿真环境与 Simulink<sup>®</sup> 集成，可以查询车辆周围的世界并虚拟测试感知、控制和规划算法。使用此模块，还可以控制太阳的位置和场景的天气条件。有关更多详细信息，请参阅 <a href="simulation3dsceneconfiguration.html#mw_95ae0313-1899-43fc-86f0-8b5f769639b5" class="intrnllnk">太阳位置和天气</a>。</p>
-<p>You can simulate from a set of prebuilt scenes or from your own custom scenes. Scene
-      customization requires the <span><span class="entity">Automated Driving Toolbox Interface for Unreal Engine 4 Projects</span></span> support package. For more details, see <a href="../ug/customize-3d-scenes-for-automated-driving.html" class="a">Customize Unreal Engine Scenes for Automated Driving</a>.</p>
-<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p>
-<p>The <span class="block">Simulation 3D Scene Configuration</span> block must execute after blocks
-        that send data to the 3D environment and before blocks that receive data from the 3D
-        environment. To verify the execution order of such blocks, right-click the blocks and select
-          <strong class="guilabel">Properties</strong>. Then, on the <strong class="guilabel">General</strong> tab, confirm
-        these <strong class="guilabel">Priority</strong> settings:</p>
-<div class="itemizedlist"><ul><li><p>For blocks that send data to the 3D environment, such as <span class="block">Simulation 3D
-              Vehicle with Ground Following</span> blocks, <strong class="guilabel">Priority</strong> must be
-            set to <code class="userinput">-1</code>. That way, these blocks prepare their data before the
-            3D environment receives it.</p></li>
-<li><p>For the <span class="block">Simulation 3D Scene Configuration</span> block in your model,
-              <strong class="guilabel">Priority</strong> must be set to <code class="userinput">0</code>.</p></li>
-<li><p>For blocks that receive data from the 3D environment, such as <span class="block">Simulation 3D Camera</span> blocks,
-              <strong class="guilabel">Priority</strong> must be set to <code class="userinput">1</code>. That way, the
-            3D environment can prepare the data before these blocks receive it.</p></li>
+<p>可以从一组预构建的场景或自己的自定义场景进行仿真。场景自定义需要适用于虚幻引擎 4 项目的自动驾驶工具箱接口支持包。有关更多详细信息，请参阅 <a href="../ug/customize-3d-scenes-for-automated-driving.html" class="a">Customize Unreal Engine Scenes for Automated Driving</a>.</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>笔记</strong></p>
+<p><span class="block">Simulation 3D Scene Configuration</span> 模块必须在向三维环境<b>发送</b>数据的模块之后以及从三维环境<b>接收</b>数据的模块之前执行。要验证这个模块的执行顺序，请右键单击这些模块并选择 “<b>属性</b>”。然后，在“<b>常规</b>”选项卡上，确认以下“<b>优先级</b>”设置：</p>
+<div class="itemizedlist"><ul><li><p>对于将数据发送到三维环境的模块，例如 <span class="block">Simulation 3D
+              Vehicle with Ground Following</span> 模块，“<b>优先级</b>”必须设置为 <code class="userinput">-1</code> 。这样，这些模块就会在三维环境接收数据之前准备好数据。</p></li>
+<li><p>对于模型中的 <span class="block">Simulation 3D Scene Configuration</span> 模块，"优先级”必须设置为 <code class="userinput">0</code>。</p></li>
+<li><p>对于从三维环境接收数据的模块（例如 <span class="block">Simulation 3D Camera</span> 模块）“优先级”必须设置为 <code class="userinput">1</code>。这样，三维环境就可以在这些模块接收数据之前准备好数据。</p></li>
 </ul>
 </div>
-<p>For more information about execution order, see <a href="../ug/how-3d-simulation-for-automated-driving-works.html" class="a">How Unreal Engine Simulation for Automated Driving Works</a>.</p>
+<p>有关执行顺序的更多信息，请参阅 <a href="../ug/how-3d-simulation-for-automated-driving-works.html" class="a">How Unreal Engine Simulation for Automated Driving Works</a>。</p>
 </div>
 </div>
-<div class="ref_sect"><h2 id="mw_949507ba-9aa7-4a1b-97f6-b771e7949439">Parameters</h2>
+<div class="ref_sect"><h2 id="mw_949507ba-9aa7-4a1b-97f6-b771e7949439">参数</h2>
 <div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
 <div class="panel-group" id="mw_949507ba-9aa7-4a1b-97f6-b771e7949439_panel-group" role="tablist" aria-multiselectable="true"><div id="mw_15b0ebd5-14ea-4b68-9a65-d7f70d4c46e0_div" class="refsect2"><h3 id="mw_15b0ebd5-14ea-4b68-9a65-d7f70d4c46e0">Scene</h3>
-<strong class="mw-doc-parametersgrp" id="mw_20f47d7f-0b69-4a7e-a358-f61707c532fd">Scene Selection</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8815c807-083e-4f1f-8410-d5372a58ad67" data-target="#expand_panel_body_mw_8815c807-083e-4f1f-8410-d5372a58ad67" aria-controls="expand_panel_body_mw_8815c807-083e-4f1f-8410-d5372a58ad67" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Scenesource" class="anchor_target"></span><span id="Scene_source_" class="anchor_target"></span><h3 class="panel-title" id="mw_8815c807-083e-4f1f-8410-d5372a58ad67"><code class="name">Scene source</code> — Source of scene<br/>
-<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Default Scenes</code> (default) | <code class="guidropdown">Unreal Executable</code> | <code class="guidropdown">Unreal Editor</code></span></span></h3>
+<strong class="mw-doc-parametersgrp" id="mw_20f47d7f-0b69-4a7e-a358-f61707c532fd">场景选择</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8815c807-083e-4f1f-8410-d5372a58ad67" data-target="#expand_panel_body_mw_8815c807-083e-4f1f-8410-d5372a58ad67" aria-controls="expand_panel_body_mw_8815c807-083e-4f1f-8410-d5372a58ad67" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Scenesource" class="anchor_target"></span><span id="Scene_source_" class="anchor_target"></span><h3 class="panel-title" id="mw_8815c807-083e-4f1f-8410-d5372a58ad67"><code class="name">Scene source</code> — 源场景<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Default Scenes</code> (默认) | <code class="guidropdown">Unreal Executable</code> | <code class="guidropdown">Unreal Editor</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_8815c807-083e-4f1f-8410-d5372a58ad67" aria-labelledby="expand_panel_heading_mw_8815c807-083e-4f1f-8410-d5372a58ad67" class="panel-collapse collapse"><div class="panel-body">
-            <p>Source of the scene in which to simulate, specified as one of the options in the
-              table.</p>
+            <p>要仿真的源场景，指定为表中的选项之一。</p>
             <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
 <col class="tcol2" width="50%"/>
 </colgroup>
@@ -642,47 +631,46 @@ This lag enables improved visualization of overall
 </div>
 </div>
 </div>
-<div id="mw_19e2eee0-20ed-40a2-bb94-522d2ecaa6c8_div" class="refsect2"><h3 id="mw_19e2eee0-20ed-40a2-bb94-522d2ecaa6c8">Weather</h3>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a63bc9e9-4ee4-41e2-9721-92470ac1d72f" data-target="#expand_panel_body_mw_a63bc9e9-4ee4-41e2-9721-92470ac1d72f" aria-controls="expand_panel_body_mw_a63bc9e9-4ee4-41e2-9721-92470ac1d72f" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Overridesceneweather" class="anchor_target"></span><span id="Overrride_scene_weather" class="anchor_target"></span><h3 class="panel-title" id="mw_a63bc9e9-4ee4-41e2-9721-92470ac1d72f"><code class="name">Override scene weather</code> — Control the scene weather and sun position<br/>
-<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<div id="mw_19e2eee0-20ed-40a2-bb94-522d2ecaa6c8_div" class="refsect2"><h3 id="mw_19e2eee0-20ed-40a2-bb94-522d2ecaa6c8">天气</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a63bc9e9-4ee4-41e2-9721-92470ac1d72f" data-target="#expand_panel_body_mw_a63bc9e9-4ee4-41e2-9721-92470ac1d72f" aria-controls="expand_panel_body_mw_a63bc9e9-4ee4-41e2-9721-92470ac1d72f" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Overridesceneweather" class="anchor_target"></span><span id="Overrride_scene_weather" class="anchor_target"></span><h3 class="panel-title" id="mw_a63bc9e9-4ee4-41e2-9721-92470ac1d72f"><code class="name">Override scene weather</code> — 控制场景天气和太阳位置<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (默认) | <code class="literal">on</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_a63bc9e9-4ee4-41e2-9721-92470ac1d72f" aria-labelledby="expand_panel_heading_mw_a63bc9e9-4ee4-41e2-9721-92470ac1d72f" class="panel-collapse collapse"><div class="panel-body">
-            <p>Select whether to control the scene weather and sun position during simulation.
-              Use the enabled parameters to change the sun position, clouds, fog, and rain.</p>
-            <p>This table summarizes sun position settings for specific times of day.</p>
+            <p>选择是否在仿真过程中控制场景天气和太阳位置。使用启用的参数更改太阳位置、云、雾和雨。</p>
+            <p>该表总结了一天中特定时间的太阳位置设置。</p>
 <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"/>
 <col class="tcol2" width="23%"/>
 <col class="tcol3" width="59%"/>
 </colgroup>
-<thead><tr><th>Time of Day</th>
-<th>Settings</th>
-<th>Unreal Editor Environment</th>
+<thead><tr><th>一天中的时间</th>
+<th>设置</th>
+<th>虚幻编辑器环境</th>
 </tr>
 </thead>
-<tbody><tr><td><p>Midnight</p>
+<tbody><tr><td><p>半夜</p>
 </td>
-<td><p><strong class="guilabel">Sun altitude</strong>: -90</p>
-<p><strong class="guilabel">Sun azimuth</strong>: 180</p>
+<td><p><strong class="guilabel">太阳高度角</strong>: -90</p>
+<p><strong class="guilabel">太阳方位角</strong>: 180</p>
 </td>
 <td><div class="informalfigure"><div id="d124e29670" class="mediaobject"><p><img src="sun_midnight.png" alt="Road at midnight" height="200" width="285"/></p>
 </div>
 </div>
 </td>
 </tr>
-<tr><td><p>Sunrise in the north</p>
+<tr><td><p>在北边的日出</p>
 </td>
-<td><p><strong class="guilabel">Sun altitude</strong>: 0</p>
-<p><strong class="guilabel">Sun azimuth</strong>: 180</p>
+<td><p><strong class="guilabel">太阳高度角</strong>: 0</p>
+<p><strong class="guilabel">太阳方位角</strong>: 180</p>
 </td>
 <td><div class="informalfigure"><div id="d124e29686" class="mediaobject"><p><img src="sun_sunrise.png" alt="Road at sunrise" height="200" width="285"/></p>
 </div>
 </div>
 </td>
 </tr>
-<tr><td><p>Noon</p>
+<tr><td><p>中午</p>
 </td>
-<td><p><strong class="guilabel">Sun altitude</strong>: 90</p>
-<p><strong class="guilabel">Sun azimuth</strong>: 180</p>
+<td><p><strong class="guilabel">太阳高度角</strong>: 90</p>
+<p><strong class="guilabel">太阳方位角</strong>: 180</p>
 </td>
 <td><div class="informalfigure"><div id="d124e29702" class="mediaobject"><p><img src="sun_noon.png" alt="Road at noon" height="200" width="285"/></p>
 </div>
@@ -694,28 +682,28 @@ This lag enables improved visualization of overall
 </div>
 <p>
 </p>
-            <p>This table summarizes settings for specific cloud conditions.</p>
+            <p>此表总结了特定云条件的设置。</p>
 <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"/>
 <col class="tcol2" width="23%"/>
 <col class="tcol3" width="59%"/>
 </colgroup>
-<thead><tr><th>Cloud Condition</th>
-<th>Settings</th>
-<th>Unreal Editor Environment</th>
+<thead><tr><th>云状况</th>
+<th>设置</th>
+<th>虚幻编辑器环境</th>
 </tr>
 </thead>
-<tbody><tr><td><p>Clear</p>
+<tbody><tr><td><p>清澈</p>
 </td>
-<td><p><strong class="guilabel">Cloud opacity</strong>: 0</p>
+<td><p><strong class="guilabel">云不透明度</strong>: 0</p>
 </td>
 <td><div class="informalfigure"><div id="d124e29734" class="mediaobject"><p><img src="cloud_clear.png" alt="Road with clear skies" height="200" width="286"/></p>
 </div>
 </div>
 </td>
 </tr>
-<tr><td><p>Heavy</p>
+<tr><td><p>浓云</p>
 </td>
-<td><p><strong class="guilabel">Cloud opacity</strong>: 85</p>
+<td><p><strong class="guilabel">云不透明度</strong>: 85</p>
 </td>
 <td><div class="informalfigure"><div id="d124e29747" class="mediaobject"><p><img src="cloud_heavy.png" alt="Road with cloudy skies" height="200" width="285"/></p>
 </div>
@@ -727,28 +715,28 @@ This lag enables improved visualization of overall
 </div>
 <p>
 </p>
-            <p>This table summarizes settings for specific fog conditions.</p>
+            <p>该表总结了特定雾条件的设置。</p>
 <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"/>
 <col class="tcol2" width="23%"/>
 <col class="tcol3" width="59%"/>
 </colgroup>
-<thead><tr><th>Fog Condition</th>
-<th>Settings</th>
-<th>Unreal Editor Environment</th>
+<thead><tr><th>雾状况</th>
+<th>设置</th>
+<th>虚幻编辑器环境</th>
 </tr>
 </thead>
-<tbody><tr><td><p>None</p>
+<tbody><tr><td><p>无</p>
 </td>
-<td><p><strong class="guilabel">Fog density</strong>: 0</p>
+<td><p><strong class="guilabel">雾密度</strong>: 0</p>
 </td>
 <td><div class="informalfigure"><div id="d124e29779" class="mediaobject"><p><img src="fog_light.png" alt="Road with no fog" height="178" width="279"/></p>
 </div>
 </div>
 </td>
 </tr>
-<tr><td><p>Heavy</p>
+<tr><td><p>浓雾</p>
 </td>
-<td><p><strong class="guilabel">Fog density</strong>: 100</p>
+<td><p><strong class="guilabel">雾密度</strong>: 100</p>
 </td>
 <td><div class="informalfigure"><div id="d124e29792" class="mediaobject"><p><img src="fog_heavy.png" alt="Road with heavy fog" height="199" width="277"/></p>
 </div>
@@ -760,30 +748,30 @@ This lag enables improved visualization of overall
 </div>
 <p>
 </p>
-            <p>This table summarizes settings for specific rain conditions.</p>
+            <p>该表总结了特定降雨条件的设置。</p>
 <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"/>
 <col class="tcol2" width="23%"/>
 <col class="tcol3" width="59%"/>
 </colgroup>
-<thead><tr><th>Rain Condition</th>
-<th>Settings</th>
-<th>Unreal Editor Environment</th>
+<thead><tr><th>雨况</th>
+<th>设置</th>
+<th>虚幻编辑器环境</th>
 </tr>
 </thead>
-<tbody><tr><td><p>Light</p>
+<tbody><tr><td><p>小雨</p>
 </td>
-<td><p><strong class="guilabel">Cloud opacity</strong>: 10</p>
-<p><strong class="guilabel">Rain density</strong>: 25</p>
+<td><p><strong class="guilabel">云不透明度</strong>: 10</p>
+<p><strong class="guilabel">降雨密度</strong>: 25</p>
 </td>
 <td><div class="informalfigure"><div id="d124e29827" class="mediaobject"><p><img src="rain_light.png" alt="City scene with light rain" height="200" width="285"/></p>
 </div>
 </div>
 </td>
 </tr>
-<tr><td><p>Heavy</p>
+<tr><td><p>大雨</p>
 </td>
-<td><p><strong class="guilabel">Cloud opacity</strong>: 10</p>
-<p><strong class="guilabel">Rain density</strong>: 80</p>
+<td><p><strong class="guilabel">云不透明度</strong>: 10</p>
+<p><strong class="guilabel">降雨密度</strong>: 80</p>
 </td>
 <td><div class="informalfigure"><div id="d124e29843" class="mediaobject"><p><img src="rain_heavy.png" alt="City scene with heavy rain" height="200" width="285"/></p>
 </div>
@@ -799,43 +787,35 @@ This lag enables improved visualization of overall
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_df058cba-4180-49b9-8f68-439479bf5dac" data-target="#expand_panel_body_mw_df058cba-4180-49b9-8f68-439479bf5dac" aria-controls="expand_panel_body_mw_df058cba-4180-49b9-8f68-439479bf5dac" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sunaltitude" class="anchor_target"></span><span id="Sun_altitude_________deg___panel" class="anchor_target"></span><h3 class="panel-title" id="mw_df058cba-4180-49b9-8f68-439479bf5dac"><code class="name">Sun altitude</code> —  Altitude angle between sun and horizon<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">40</code> (default) |  any value between <code class="literal remove_text_wrapping">-90</code> and <code class="literal">90</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_df058cba-4180-49b9-8f68-439479bf5dac" data-target="#expand_panel_body_mw_df058cba-4180-49b9-8f68-439479bf5dac" aria-controls="expand_panel_body_mw_df058cba-4180-49b9-8f68-439479bf5dac" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sunaltitude" class="anchor_target"></span><span id="Sun_altitude_________deg___panel" class="anchor_target"></span><h3 class="panel-title" id="mw_df058cba-4180-49b9-8f68-439479bf5dac"><code class="name">Sun altitude</code> —  太阳与地平线之间的高度角<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">40</code> (默认) |  <code class="literal remove_text_wrapping">-90</code> and <code class="literal">90 </code></span></span>之间的任意值</h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_df058cba-4180-49b9-8f68-439479bf5dac" aria-labelledby="expand_panel_heading_mw_df058cba-4180-49b9-8f68-439479bf5dac" class="panel-collapse collapse"><div class="panel-body">
-            <p>Altitude angle in a vertical plane between the sun's rays and the horizontal
-              projection of the rays, in deg.</p>
+            <p>太阳光线与光线水平投影之间垂直平面上的高度角，以度为单位。</p>
 <div class="informalfigure"><div id="d124e29877" class="mediaobject"><p><img src="sun_position.png" alt="Diagram of sun altitude angle (vertical arrow) and sun azimuth angle (horizontal arrow)" height="230" width="393"/></p>
 </div>
 </div>
 <p></p>
-            <p>Use the <strong class="guilabel">Sun altitude</strong> and <strong class="guilabel">Sun azimuth</strong>
-              parameters to control the time of day in the scene. For example, to specify sunrise in
-              the north, set <strong class="guilabel">Sun altitude</strong> to 0 deg and <strong class="guilabel">Sun
-                azimuth</strong> to 180 deg.</p>
+            <p>使用<b>太阳高度角</b>和<b>太阳方位角</b>参数来控制场景中一天中的时间。例如，要指定北方日出，请将<b>太阳高度角</b>设置为 0 度，将<b>太阳方位角</b>设置为 180 度。</p>
             
-    <h4 class="descriptionsect">Dependencies</h4>
-    <p>To enable this parameter, select <strong class="guilabel">Override scene weather</strong>.</p>
+    <h4 class="descriptionsect">依赖</h4>
+    <p>要启用此参数，请选择 <strong class="guilabel">Override scene weather</strong>。</p>
 
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_dc2bcd9d-a701-4068-bad1-62a19d5abfc7" data-target="#expand_panel_body_mw_dc2bcd9d-a701-4068-bad1-62a19d5abfc7" aria-controls="expand_panel_body_mw_dc2bcd9d-a701-4068-bad1-62a19d5abfc7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sunazimuth" class="anchor_target"></span><span id="Sun_azimuth_________deg___panel" class="anchor_target"></span><h3 class="panel-title" id="mw_dc2bcd9d-a701-4068-bad1-62a19d5abfc7"><code class="name">Sun azimuth</code> — Azimuth angle from south to horizontal projection of the sun ray<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">90</code> (default) |  any value between <code class="literal">0</code> and <code class="literal">360</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_dc2bcd9d-a701-4068-bad1-62a19d5abfc7" data-target="#expand_panel_body_mw_dc2bcd9d-a701-4068-bad1-62a19d5abfc7" aria-controls="expand_panel_body_mw_dc2bcd9d-a701-4068-bad1-62a19d5abfc7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sunazimuth" class="anchor_target"></span><span id="Sun_azimuth_________deg___panel" class="anchor_target"></span><h3 class="panel-title" id="mw_dc2bcd9d-a701-4068-bad1-62a19d5abfc7"><code class="name">Sun azimuth</code> — 太阳光线从南到水平投影的方位角<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">90</code> (默认) | <code class="literal">0</code> 到 <code class="literal">360 </code></span></span>之间的任意值</h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_dc2bcd9d-a701-4068-bad1-62a19d5abfc7" aria-labelledby="expand_panel_heading_mw_dc2bcd9d-a701-4068-bad1-62a19d5abfc7" class="panel-collapse collapse"><div class="panel-body">
-            <p>Azimuth angle in the horizontal plane measured from the south to the horizontal
-              projection of the sun rays, in deg. </p>
+            <p>水平面上从南到太阳光线水平投影的方位角，单位为度。 </p>
 <div class="informalfigure"><div id="d124e29930" class="mediaobject"><p><img src="sun_position.png" alt="Diagram of sun altitude angle (vertical arrow) and sun azimuth angle (horizontal arrow" height="230" width="393"/></p>
 </div>
 </div>
 <p></p>
-            <p>Use the <strong class="guilabel">Sun altitude</strong> and <strong class="guilabel">Sun azimuth</strong>
-              parameters to control the time of day in the scene. For example, to specify sunrise in
-              the north, set <strong class="guilabel">Sun altitude</strong> to 0 deg and <strong class="guilabel">Sun
-                azimuth</strong> to 180 deg.</p>
+            <p>使用<b>太阳高度角</b>和<b>太阳方位角</b>参数来控制场景中一天中的时间。例如，要指定北方日出，请将<b>太阳高度角</b>设置为 0 度，将<b>太阳方位角</b>设置为 180 度。</p>
             
-    <h4 class="descriptionsect">Dependencies</h4>
-    <p>To enable this parameter, select <strong class="guilabel">Override scene weather</strong>.</p>
+    <h4 class="descriptionsect">依赖</h4>
+    <p>要启用此参数，请选择 <strong class="guilabel">Override scene weather</strong>。</p>
 
           </div>
 </div>
@@ -844,52 +824,46 @@ This lag enables improved visualization of overall
 <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_948d6ae0-7915-4ff7-9b1d-c3a7826b006b" data-target="#expand_panel_body_mw_948d6ae0-7915-4ff7-9b1d-c3a7826b006b" aria-controls="expand_panel_body_mw_948d6ae0-7915-4ff7-9b1d-c3a7826b006b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Cloudopacity" class="anchor_target"></span><span id="Cloud_opacity___________panel" class="anchor_target"></span><h3 class="panel-title" id="mw_948d6ae0-7915-4ff7-9b1d-c3a7826b006b"><code class="name">Cloud opacity</code> — 虚幻编辑器云不透明度全局参与者目标值<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">10</code> (默认) | <code class="literal">0</code> 和 <code class="literal">100 </code></span></span>之间的任意值</h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_948d6ae0-7915-4ff7-9b1d-c3a7826b006b" aria-labelledby="expand_panel_heading_mw_948d6ae0-7915-4ff7-9b1d-c3a7826b006b" class="panel-collapse collapse"><div class="panel-body">
-            <p>Parameter that corresponds to the Unreal Editor <strong class="guilabel">Cloud Opacity</strong> global actor target value, in
-              percent. Zero is a cloudless scene.</p>
+            <p>与虚幻编辑器云不透明度全局参与者目标值相对应的参数（以百分比为单位）。零是万里无云的场景。<br/></p>
             <div class="informalfigure"><div id="d124e29994" class="mediaobject"><p><img src="cloud_ue.png" alt="Cloud Opacity and Cloud Speed settings in Unreal Editor" height="243" width="341"/></p>
 </div>
 </div>
-            <p>Use the <strong class="guilabel">Cloud opacity</strong> and <strong class="guilabel">Cloud speed</strong>
-              parameters to control clouds in the scene. </p>
+            <p>使用<b>云不透明度</b>和<b>云速度</b>参数来控制场景中的云。</p>
             
-    <h4 class="descriptionsect">Dependencies</h4>
-    <p>To enable this parameter, select <strong class="guilabel">Override scene weather</strong>.</p>
+    <h4 class="descriptionsect">依赖</h4>
+    <p>要启用此参数，请选择 <strong class="guilabel">Override scene weather</strong>。</p>
 
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3efe1a9f-0ec5-4b50-b2eb-7c4019ef2354" data-target="#expand_panel_body_mw_3efe1a9f-0ec5-4b50-b2eb-7c4019ef2354" aria-controls="expand_panel_body_mw_3efe1a9f-0ec5-4b50-b2eb-7c4019ef2354" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Cloudspeed" class="anchor_target"></span><span id="Cloud_speed______________panel" class="anchor_target"></span><h3 class="panel-title" id="mw_3efe1a9f-0ec5-4b50-b2eb-7c4019ef2354"><code class="name">Cloud speed</code> — Unreal Editor Cloud Speed global actor target value<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (default) |  any value between <code class="literal remove_text_wrapping">-100</code> and <code class="literal">100</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3efe1a9f-0ec5-4b50-b2eb-7c4019ef2354" data-target="#expand_panel_body_mw_3efe1a9f-0ec5-4b50-b2eb-7c4019ef2354" aria-controls="expand_panel_body_mw_3efe1a9f-0ec5-4b50-b2eb-7c4019ef2354" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Cloudspeed" class="anchor_target"></span><span id="Cloud_speed______________panel" class="anchor_target"></span><h3 class="panel-title" id="mw_3efe1a9f-0ec5-4b50-b2eb-7c4019ef2354"><code class="name">Cloud speed</code> — 虚幻编辑器云速度全局参与者目标值<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (默认) | <code class="literal remove_text_wrapping">-100</code> 到 <code class="literal">100 </code></span></span>之间的任意值</h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_3efe1a9f-0ec5-4b50-b2eb-7c4019ef2354" aria-labelledby="expand_panel_heading_mw_3efe1a9f-0ec5-4b50-b2eb-7c4019ef2354" class="panel-collapse collapse"><div class="panel-body">
-            <p>Parameter that corresponds to the Unreal Editor <strong class="guilabel">Cloud Speed</strong> global actor target value. The
-              clouds move from west to east for positive values and east to west for negative
-              values.</p>
+            <p>与虚幻编辑器 <b>Cloud Speed </b>全局参与者目标值相对应的参数。云从西向东移动表示正值，从东向西移动表示负值。</p>
             <div class="informalfigure"><div id="d124e30056" class="mediaobject"><p><img src="cloud_ue.png" alt="Cloud Opacity and Cloud Speed settings in Unreal Editor" height="243" width="341"/></p>
 </div>
 </div>
-            <p>Use the <strong class="guilabel">Cloud opacity</strong> and <strong class="guilabel">Cloud speed</strong>
-              parameters to control clouds in the scene. </p>
+            <p>使用<b>云不透明度</b>和<b>云速度</b>参数来控制场景中的云。</p>
             
-    <h4 class="descriptionsect">Dependencies</h4>
-    <p>To enable this parameter, select <strong class="guilabel">Override scene weather</strong>.</p>
+    <h4 class="descriptionsect">依赖</h4>
+    <p>要启用此参数，请选择 <strong class="guilabel">Override scene weather</strong>。</p>
 
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ac2d25dd-f3ce-4a34-957f-31fc454787cc" data-target="#expand_panel_body_mw_ac2d25dd-f3ce-4a34-957f-31fc454787cc" aria-controls="expand_panel_body_mw_ac2d25dd-f3ce-4a34-957f-31fc454787cc" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Fogdensity" class="anchor_target"></span><span id="Fog_density___________panel" class="anchor_target"></span><h3 class="panel-title" id="mw_ac2d25dd-f3ce-4a34-957f-31fc454787cc"><code class="name">Fog density</code> — Unreal Editor Set Fog Density and Set Start Distance target values<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) |  any value between <code class="literal">0</code> and <code class="literal">100</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ac2d25dd-f3ce-4a34-957f-31fc454787cc" data-target="#expand_panel_body_mw_ac2d25dd-f3ce-4a34-957f-31fc454787cc" aria-controls="expand_panel_body_mw_ac2d25dd-f3ce-4a34-957f-31fc454787cc" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Fogdensity" class="anchor_target"></span><span id="Fog_density___________panel" class="anchor_target"></span><h3 class="panel-title" id="mw_ac2d25dd-f3ce-4a34-957f-31fc454787cc"><code class="name">Fog density</code> — 虚幻编辑器设置雾密度和设置起始距离目标值<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (默认) | <code class="literal">0</code> 至 <code class="literal">100 </code></span></span>之间的任意值</h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_ac2d25dd-f3ce-4a34-957f-31fc454787cc" aria-labelledby="expand_panel_heading_mw_ac2d25dd-f3ce-4a34-957f-31fc454787cc" class="panel-collapse collapse"><div class="panel-body">
-            <p>Parameter that corresponds to the Unreal Editor <strong class="guilabel">Set Fog Density</strong> and <strong class="guilabel">Set Start
-                Distance</strong> target values, in percent.</p>
+            <p>与虚幻编辑器设置雾密度和设置起始距离目标值相对应的参数（以百分比为单位）。<br/></p>
 <div class="informalfigure"><div id="d124e30121" class="mediaobject"><p><img src="fog_ue.png" alt="Set Fog Density setting in Unreal Editor" height="157" width="579"/></p>
 </div>
 </div>
 <p></p>
             
-    <h4 class="descriptionsect">Dependencies</h4>
-    <p>To enable this parameter, select <strong class="guilabel">Override scene weather</strong>.</p>
+    <h4 class="descriptionsect">依赖</h4>
+    <p>要启用此参数，请选择 <strong class="guilabel">Override scene weather</strong>。</p>
 
           </div>
 </div>
@@ -1192,6 +1166,8 @@ This lag enables improved visualization of overall
 <div class="clearfix"></div>
 <div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
 <script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
 <div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
 </div>
 <link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
