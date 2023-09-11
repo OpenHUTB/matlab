@@ -1,6 +1,5 @@
 classdef Simulation3DActorRayTraceWrite<Simulation3DActor&...
-Simulation3DHandleMap
-
+        Simulation3DHandleMap
 
     methods(Access=protected)
         function icon=getIconImpl(~)
@@ -10,32 +9,36 @@ Simulation3DHandleMap
 
 
     properties
-TraceStart
-TraceEnd
+        TraceStart
+        TraceEnd
     end
+
 
     properties(Nontunable)
         ActorTag='SimulinkVehicle1';
         NumberOfRays=1;
     end
 
+
     properties(DiscreteState)
     end
+
 
     properties(Access=private)
         Writer=[];
         ModelName=[];
     end
+    
 
     methods(Access=protected)
         function setupImpl(self)
             setupImpl@Simulation3DActor(self);
             if coder.target('MATLAB')
                 self.Writer=sim3d.io.ActorRayTraceWriter(self.ActorTag,...
-                uint32(self.NumberOfRays));
+                    uint32(self.NumberOfRays));
                 if~isempty(self.Writer)
                     self.Writer.write(single(self.TraceStart),...
-                    single(self.TraceEnd));
+                        single(self.TraceEnd));
                 end
                 self.ModelName=['Simulation3DActorRayTraceWrite/',self.ActorTag];
                 if self.loadflag
@@ -75,7 +78,7 @@ TraceEnd
             if coder.target('MATLAB')
                 if~isempty(self.Writer)
                     self.Writer.write(single(self.TraceStart),...
-                    single(self.TraceEnd));
+                        single(self.TraceEnd));
                 end
             end
         end

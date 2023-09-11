@@ -1,9 +1,5 @@
 function fullpath=resolvePath(fname)
 
-
-
-
-
     try
         fullpath=builtin('_canonicalizepath',fname);
     catch
@@ -11,7 +7,6 @@ function fullpath=resolvePath(fname)
         if isempty(fp)
             error(message('comparisons:mldesktop:FileNotFound',fname))
         else
-
             try
                 fullpath=builtin('_canonicalizepath',fp);
             catch

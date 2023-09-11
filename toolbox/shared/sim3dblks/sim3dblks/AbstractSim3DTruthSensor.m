@@ -1,6 +1,6 @@
 classdef(Hidden)AbstractSim3DTruthSensor<...
-    matlabshared.tracking.internal.SimulinkBusUtilities&...
-Simulation3DHandleMap
+        matlabshared.tracking.internal.SimulinkBusUtilities&...
+        Simulation3DHandleMap
 
     properties(Nontunable)
         SensorIdentifier(1,1)uint32{mustBeLessThanOrEqual(SensorIdentifier,65535)}=uint32(1);
@@ -32,7 +32,7 @@ Simulation3DHandleMap
     end
 
     properties(Access=protected,Nontunable)
-cRandStream
+        cRandStream
         pSim3DSensor=[];
         NumberOfRays=[];
     end
@@ -46,13 +46,13 @@ cRandStream
 
     properties(Access=private)
         pUseRandSeed=false
-pRandState
+        pRandState
         ModelName=[];
     end
 
 
     properties(Access={?driving.internal.AbstractDetectionGenerator,?matlab.unittest.TestCase})
-pRandomDrawFunc
+        pRandomDrawFunc
     end
 
 
@@ -88,8 +88,8 @@ pRandomDrawFunc
 
         function set.InitialSeed(obj,val)
             validateattributes(val,{'double'},{'scalar','nonnegative','<',2^32,...
-            'finite','nonnan','nonempty'},class(obj),...
-            'InitialSeed');
+                'finite','nonnan','nonempty'},class(obj),...
+                'InitialSeed');
             obj.InitialSeed=val;
         end
     end
@@ -244,7 +244,7 @@ pRandomDrawFunc
         function flag=isInactivePropertyImpl(obj,prop)
             flag=isInactivePropertyImpl@matlabshared.tracking.internal.SimulinkBusUtilities(obj,prop);
             if strcmp(obj.MaxNumDetectionsSource,'Auto')&&...
-                strcmp(prop,'MaxNumDetections')
+                    strcmp(prop,'MaxNumDetections')
                 flag=true;
             end
 
@@ -274,22 +274,22 @@ pRandomDrawFunc
         function groups=getPropertyGroupsImpl
             slBusSection=getPropertyGroupsImpl@matlabshared.tracking.internal.SimulinkBusUtilities;
             pMaxNumDetectionsSource=matlab.system.display.internal.Property(...
-            'MaxNumDetectionsSource',...
-            'IsGraphical',false,...
-            'UseClassDefault',false,...
-            'Default','Property',...
-            'StringSetValues',{'Property'});
+                'MaxNumDetectionsSource',...
+                'IsGraphical',false,...
+                'UseClassDefault',false,...
+                'Default','Property',...
+                'StringSetValues',{'Property'});
             numDetList={pMaxNumDetectionsSource,'MaxNumDetections','DetectionCoordinates'};
             numDetSection=matlabshared.tracking.internal.getDisplaySection('driving',...
-            'abstractDetectionGenerator','DetectionReporting',numDetList);
+                'abstractDetectionGenerator','DetectionReporting',numDetList);
 
             portsSection=slBusSection;
             pUsedSeed=matlab.system.display.internal.Property(...
-            'UsedSeed','IsGraphical',false,'UseClassDefault',false,...
-            'Default','driving.internal.SimulinkUtilities.seedManager(gcb)');
+                'UsedSeed','IsGraphical',false,'UseClassDefault',false,...
+                'Default','driving.internal.SimulinkUtilities.seedManager(gcb)');
             randList={'InitialSeedSource','InitialSeed',pUsedSeed};
             randSection=matlabshared.tracking.internal.getDisplaySection('driving',...
-            'abstractDetectionGenerator','RandomNumberGeneratorSettings',randList);
+                'abstractDetectionGenerator','RandomNumberGeneratorSettings',randList);
             groups=[numDetSection,portsSection,randSection];
         end
 
@@ -498,9 +498,9 @@ pRandomDrawFunc
                 detEgo=zeros(3,numDet);
             end
             isoPose=AbstractSim3DTruthSensor.unreal2iso(...
-            struct(...
-            'rotation',obj.Rotation,...
-            'translation',obj.Translation));
+                struct(...
+                'rotation',obj.Rotation,...
+                'translation',obj.Translation));
             Rsen2ego=driving.internal.rotChildToParent(isoPose.rotation(1),isoPose.rotation(2),isoPose.rotation(3));
             posEgo=bsxfun(@plus,Rsen2ego*detCart(1:3,:),isoPose.translation');
             detEgo(1:3,:)=posEgo;
@@ -536,8 +536,8 @@ pRandomDrawFunc
             Atinv=inv(A');
 
             Hf=[...
-            Atinv,Atinv*Rf;...
-            Q*Atinv,A+Q*Atinv*Rf];%#ok<MINV> % (eqn 38)
+                Atinv,Atinv*Rf;...
+                Q*Atinv,A+Q*Atinv*Rf];%#ok<MINV> % (eqn 38)
 
             numDims=size(A,1);
             if coder.target('MATLAB')
@@ -586,22 +586,22 @@ pRandomDrawFunc
                 orient=eye(3);
             else
                 switch obj.DetectionCoordinates
-                case 'Sensor Cartesian'
-                    frame=drivingCoordinateFrameType.Rectangular;
-                case 'Sensor spherical'
-                    frame=drivingCoordinateFrameType.Spherical;
+                    case 'Sensor Cartesian'
+                        frame=drivingCoordinateFrameType.Rectangular;
+                    case 'Sensor spherical'
+                        frame=drivingCoordinateFrameType.Spherical;
                 end
                 isoPose=AbstractSim3DTruthSensor.unreal2iso(...
-                struct('rotation',obj.Rotation,...
-                'translation',obj.Translation));
+                    struct('rotation',obj.Rotation,...
+                    'translation',obj.Translation));
                 orgPos=isoPose.translation(:);
                 orient=driving.internal.rotChildToParent(isoPose.rotation(1),isoPose.rotation(2),isoPose.rotation(3));
             end
 
             measParams0=struct(...
-            'Frame',frame,...
-            'OriginPosition',orgPos,...
-            'Orientation',orient);
+                'Frame',frame,...
+                'OriginPosition',orgPos,...
+                'Orientation',orient);
             flds=fieldnames(addMeasParams);
             for m=1:numel(flds)
                 thisFld=flds{m};
@@ -613,10 +613,10 @@ pRandomDrawFunc
             for m=1:numDet
                 objAttrib=assembleAttributes(obj,attribs,m);
                 detections{m}=objectDetection(time,dets(1:lenMeas,m),...
-                'SensorIndex',double(obj.SensorIdentifier),...
-                'MeasurementNoise',covmats(1:lenMeas,1:lenMeas,m),...
-                'MeasurementParameters',measParams,...
-                'ObjectAttributes',objAttrib);
+                    'SensorIndex',double(obj.SensorIdentifier),...
+                    'MeasurementNoise',covmats(1:lenMeas,1:lenMeas,m),...
+                    'MeasurementParameters',measParams,...
+                    'ObjectAttributes',objAttrib);
             end
         end
 
@@ -708,7 +708,7 @@ pRandomDrawFunc
             objClass=get_param(resolvedBlkPath,'System');
             sysObj=feval(objClass);
             if~(isa(sysObj,'driving.internal.AbstractDetectionGenerator')||...
-                isa(sysObj,'AbstractSim3DTruthSensor'))
+                    isa(sysObj,'AbstractSim3DTruthSensor'))
                 error(message('driving:abstractDetectionGenerator:methodNotSupported','lastInitialSeed'));
             end
             seed=driving.internal.SimulinkUtilities.seedManager(blkPath,true);
@@ -723,22 +723,22 @@ pRandomDrawFunc
                 thisField=fieldNames{m};
                 cond=~any(strcmp(thisField,validFields));
                 coder.internal.errorIf(cond,'driving:abstractDetectionGenerator:unrecogizedFields',...
-                nameStruct,thisField);
+                    nameStruct,thisField);
             end
         end
 
 
         function checkTranslation(translation)
             validateattributes(translation,...
-            {'double','single'},{'row','numel',3,'real','finite'},...
-            mfilename,'Translation');
+                {'double','single'},{'row','numel',3,'real','finite'},...
+                mfilename,'Translation');
         end
 
 
         function checkRotation(rotation)
             validateattributes(rotation,...
-            {'double','single'},{'row','numel',3,'real','finite'},...
-            mfilename,'Rotation');
+                {'double','single'},{'row','numel',3,'real','finite'},...
+                mfilename,'Rotation');
         end
 
 
@@ -747,8 +747,8 @@ pRandomDrawFunc
                 return
             end
             validateattributes(updateInterval,...
-            {'double','single'},{'scalar','real','finite','positive'},...
-            mfilename,'UpdateInterval');
+                {'double','single'},{'scalar','real','finite','positive'},...
+                mfilename,'UpdateInterval');
         end
     end
 
@@ -790,7 +790,7 @@ pRandomDrawFunc
 
         function detUberStruct=sendToBus(obj,dets,numDets,isValidTime)
             fldNames={'Time','Measurement','MeasurementNoise','SensorIndex',...
-            'ObjectClassID','ObjectAttributes','MeasurementParameters'};
+                'ObjectClassID','ObjectAttributes','MeasurementParameters'};
 
             oneDet=struct;
             for iFld=1:numel(fldNames)
@@ -831,20 +831,20 @@ pRandomDrawFunc
 
 
     methods(Static,Access=protected)
-        
 
-function[roll,pitch,yaw]=rotmat2rpy(rotmat)
 
-...
-...
-...
-...
-...
-...
-...
-...
-...
-            roll=atan2d(rotmat(3,2),rotmat(3,3));
+        function[roll,pitch,yaw]=rotmat2rpy(rotmat)
+
+            ...
+                ...
+                ...
+                ...
+                ...
+                ...
+                ...
+                ...
+                ...
+                roll=atan2d(rotmat(3,2),rotmat(3,3));
             pitch=atan2d(-rotmat(3,1),sqrt(sum(rotmat(1:2,1).^2)));
             yaw=atan2d(rotmat(2,1),rotmat(1,1));
 
@@ -862,9 +862,9 @@ function[roll,pitch,yaw]=rotmat2rpy(rotmat)
 
         function V=SphereToCart(Az,El,R)
             [X,Y,Z]=sph2cart(...
-            deg2rad(Az),...
-            deg2rad(El),...
-            R);
+                deg2rad(Az),...
+                deg2rad(El),...
+                R);
 
             X=X(:);
             Y=Y(:);
@@ -883,47 +883,47 @@ end
 
 
 function val=indexLastDim(x,m)
-    if isvector(x)
-        val=x(m);
-    else
-        shift=ndims(x)-1;
-        tmp=shiftdim(x,shift);
-        val=shiftdim(tmp(m,:),1);
-    end
+if isvector(x)
+    val=x(m);
+else
+    shift=ndims(x)-1;
+    tmp=shiftdim(x,shift);
+    val=shiftdim(tmp(m,:),1);
+end
 end
 
 
 function[cond,invalidIdx]=findFirstInvalid(s,fld,testFcn)
 
-    cond=false;
-    invalidIdx=0;
-    for idx=1:numel(s)
-        invalidIdx=idx;
-        cond=testFcn(s(idx).(fld));
-        if cond
-            break;
-        end
+cond=false;
+invalidIdx=0;
+for idx=1:numel(s)
+    invalidIdx=idx;
+    cond=testFcn(s(idx).(fld));
+    if cond
+        break;
     end
+end
 end
 
 
 function out=nullify(in)
-    out=in;
-    flds=fieldnames(in);
-    for m=1:numel(flds)
-        thisFld=flds{m};
-        for n=1:numel(in)
-            thisVal=in(n).(thisFld);
-            if isstruct(thisVal)
-                nullVal=nullify(thisVal);
+out=in;
+flds=fieldnames(in);
+for m=1:numel(flds)
+    thisFld=flds{m};
+    for n=1:numel(in)
+        thisVal=in(n).(thisFld);
+        if isstruct(thisVal)
+            nullVal=nullify(thisVal);
+        else
+            if isenum(thisVal)
+                nullVal=thisVal;
             else
-                if isenum(thisVal)
-                    nullVal=thisVal;
-                else
-                    nullVal=zeros(size(thisVal),'like',thisVal);
-                end
+                nullVal=zeros(size(thisVal),'like',thisVal);
             end
-            out(n).(thisFld)=nullVal;
         end
+        out(n).(thisFld)=nullVal;
     end
+end
 end

@@ -29,49 +29,19 @@ function sim3dblkssharedhelp(fileStr)
     helpview(mapfile_location,doc_tag);
 end
 
+
 function help_file=getblock_help_file(blk,varargin)
     if nargin>1
         fileStr=varargin{1};
     else
-
-
         fileStr=get_param(blk,'MaskType');
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     help_file=help_name(fileStr);
 end
 
+
 function filename=help_name(x)
-
-
-
-
-
-
-
     if isempty(x)
         x='default';
     end

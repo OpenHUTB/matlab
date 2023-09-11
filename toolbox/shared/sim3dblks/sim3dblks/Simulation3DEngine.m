@@ -1,6 +1,5 @@
 classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
-Simulation3DHandleMap
-
+        Simulation3DHandleMap
 
     methods(Access=protected)
         function icon=getIconImpl(~)
@@ -82,8 +81,8 @@ Simulation3DHandleMap
 
     properties(Hidden,Constant)
         ProjectFormatSet=matlab.system.internal.MessageCatalogSet({'shared_sim3dblks:sim3dblkConfig:DefaultScenes',...
-        'shared_sim3dblks:sim3dblkConfig:UnrealExecutable',...
-        'shared_sim3dblks:sim3dblkConfig:UnrealEditor'});
+            'shared_sim3dblks:sim3dblkConfig:UnrealExecutable',...
+            'shared_sim3dblks:sim3dblkConfig:UnrealEditor'});
         WeatherActorName='weatherconfig';
     end
 
@@ -148,7 +147,7 @@ Simulation3DHandleMap
                     while(true)
                         if(DefStreamer==DefHttp)
                             warning(['Http port and streamer port are initialised with same port number values. '...
-                            ,'Auto-incrementing the http port']);
+                                ,'Auto-incrementing the http port']);
                             DefHttp=DefHttp+1;
                         end
 
@@ -176,9 +175,9 @@ Simulation3DHandleMap
                         ipv4address=ipv4address(2);
                         IPaddress=strtrim(string(ipv4address));
                         fprintf(['To view the simulation on the web on the current or another device on the same network, start a '...
-                        ,'web browser and navigate to: '...
-                        ,'<a href = "http://%s:%s">http://%s:%s</a> \n'],...
-                        IPaddress,string(self.HttpPort),IPaddress,string(self.HttpPort));
+                            ,'web browser and navigate to: '...
+                            ,'<a href = "http://%s:%s">http://%s:%s</a> \n'],...
+                            IPaddress,string(self.HttpPort),IPaddress,string(self.HttpPort));
                         disp('In the browser window, click on start button, followed by play button icon to visualize the simulation.');
                         cmdLineArgs=strcat("-PixelStreamingIP=localhost -PixelStreamingPort=",string(self.StreamerPort));
                         serverFile=strcat(path,'cirrus.js');
@@ -189,46 +188,46 @@ Simulation3DHandleMap
                 end
 
                 self.MessageToSim3DVDG=struct(...
-                'ProjectFormat',[],...
-                'MatFile',[],...
-                'EnableOpenDRIVEFile',[],...
-                'OpenDRIVEFile',[]);
+                    'ProjectFormat',[],...
+                    'MatFile',[],...
+                    'EnableOpenDRIVEFile',[],...
+                    'OpenDRIVEFile',[]);
 
                 if strcmp(self.ProjectFormat,getString(message('shared_sim3dblks:sim3dblkConfig:DefaultScenes')))
                     switch(self.SceneDesc)
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:StraightRoad'))
-                        sceneName='/Game/Maps/HwStrght';
-                        self.MessageToSim3DVDG.MatFile=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios','Simulation3D','StraightRoad.mat');
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:CurvedRoad'))
-                        sceneName='/Game/Maps/HwCurve';
-                        self.MessageToSim3DVDG.MatFile=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios','Simulation3D','CurvedRoad.mat');
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:ParkingLot'))
-                        sceneName='/Game/Maps/SimpleLot';
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:DoubleLaneChange'))
-                        sceneName='/Game/Maps/DblLnChng';
-                        self.MessageToSim3DVDG.MatFile=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios','Simulation3D','DoubleLaneChange.mat');
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:OpenSurface'))
-                        sceneName='/Game/Maps/BlackLake';
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:USCityBlock'))
-                        self.MessageToSim3DVDG.MatFile=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios','Simulation3D','USCityBlock.mat');
-                        sceneName='/Game/Maps/USCityBlock';
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:USHighway'))
-                        sceneName='/Game/Maps/USHighway';
-                        self.MessageToSim3DVDG.MatFile=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios','Simulation3D','USHighway.mat');
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:VirtualMcity'))
-                        sceneName='/Game/Maps/VirtualMCity';
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:LargeParkingLot'))
-                        sceneName='/Game/Maps/LargeParkingLot';
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:Airport'))
-                        sceneName='/MathWorksAerospaceContent/Maps/Airport';
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:Geospatial'))
-                        sceneName='/MathWorksGeoSpatial/Maps/GeoSpatialMap';
-                    case getString(message('shared_sim3dblks:sim3dblkConfig:EmptyScene'))
-                        sceneName='/Game/Maps/EmptyScene';
-                    case 'Suburban scene'
-                        sceneName='/MathWorksUAVContent/Maps/Suburban';
-                    otherwise
-                        sceneName='';
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:StraightRoad'))
+                            sceneName='/Game/Maps/HwStrght';
+                            self.MessageToSim3DVDG.MatFile=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios','Simulation3D','StraightRoad.mat');
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:CurvedRoad'))
+                            sceneName='/Game/Maps/HwCurve';
+                            self.MessageToSim3DVDG.MatFile=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios','Simulation3D','CurvedRoad.mat');
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:ParkingLot'))
+                            sceneName='/Game/Maps/SimpleLot';
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:DoubleLaneChange'))
+                            sceneName='/Game/Maps/DblLnChng';
+                            self.MessageToSim3DVDG.MatFile=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios','Simulation3D','DoubleLaneChange.mat');
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:OpenSurface'))
+                            sceneName='/Game/Maps/BlackLake';
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:USCityBlock'))
+                            self.MessageToSim3DVDG.MatFile=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios','Simulation3D','USCityBlock.mat');
+                            sceneName='/Game/Maps/USCityBlock';
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:USHighway'))
+                            sceneName='/Game/Maps/USHighway';
+                            self.MessageToSim3DVDG.MatFile=fullfile(matlabroot,'toolbox','shared','drivingscenario','PrebuiltScenarios','Simulation3D','USHighway.mat');
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:VirtualMcity'))
+                            sceneName='/Game/Maps/VirtualMCity';
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:LargeParkingLot'))
+                            sceneName='/Game/Maps/LargeParkingLot';
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:Airport'))
+                            sceneName='/MathWorksAerospaceContent/Maps/Airport';
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:Geospatial'))
+                            sceneName='/MathWorksGeoSpatial/Maps/GeoSpatialMap';
+                        case getString(message('shared_sim3dblks:sim3dblkConfig:EmptyScene'))
+                            sceneName='/Game/Maps/EmptyScene';
+                        case 'Suburban scene'
+                            sceneName='/MathWorksUAVContent/Maps/Suburban';
+                        otherwise
+                            sceneName='';
                     end
                     if self.EnableRemoteAccess&&self.HttpPort<self.MaxHttpPort
                         self.Project=sim3d.World(string(self.ProjectName),string(sceneName),'CommandLineArgs',cmdLineArgs,'RenderOffScreen',~self.EnableWindow,'Name',string(bdroot));
@@ -251,17 +250,17 @@ Simulation3DHandleMap
                     self.Project=sim3d.World(sim3d.World.Undefined,'Name',string(bdroot));
                     arch=computer('arch');
                     switch arch
-                    case 'win64'
-                        unrealProc=System.Diagnostics.Process.GetProcessesByName('UE4Editor');
-                        status=unrealProc.Length>0;
-                    case 'glnxa64'
-                        [~,cmdout]=system("ps -fww");
-                        status=contains(cmdout,'UE4Editor');
-                    otherwise
-                        notSupportedPlatformException=MException('sim3D:Engine:setup:PlatformException',...
-                        ['3D simulation engine interface is not supported on the ',...
-                        computer('arch'),' platform.']);
-                        throw(notSupportedPlatformException);
+                        case 'win64'
+                            unrealProc=System.Diagnostics.Process.GetProcessesByName('UE4Editor');
+                            status=unrealProc.Length>0;
+                        case 'glnxa64'
+                            [~,cmdout]=system("ps -fww");
+                            status=contains(cmdout,'UE4Editor');
+                        otherwise
+                            notSupportedPlatformException=MException('sim3D:Engine:setup:PlatformException',...
+                                ['3D simulation engine interface is not supported on the ',...
+                                computer('arch'),' platform.']);
+                            throw(notSupportedPlatformException);
                     end
 
                     if~status
@@ -280,8 +279,8 @@ Simulation3DHandleMap
                 self.ContinueEventListenerHandle=addListener(modelHandle,'ContinueEvent',@self.onContinueEvent);
                 self.StopEventListenerHandle=addListener(modelHandle,'StopEvent',@self.onStopEvent);
                 self.EngineTimer=timer('Period',2,...
-                'ExecutionMode','fixedRate',...
-                'TimerFcn',@self.onTimerEvent);
+                    'ExecutionMode','fixedRate',...
+                    'TimerFcn',@self.onTimerEvent);
 
 
                 if self.EnableWeather
@@ -518,16 +517,16 @@ Simulation3DHandleMap
                         processIDs=unique(str2double(regexp(cmdout,'(?<=LISTENING[^0-9]*)[0-9]*','match')));
                         arch=computer('arch');
                         switch arch
-                        case 'win64'
-                            for pid=1:length(processIDs)
-                                cmdToKill=sprintf('taskkill /f /PID %d',processIDs(pid));
-                                [~,~]=system(cmdToKill);
-                            end
-                        case 'glnxa64'
-                            for pid=1:length(processIDs)
-                                cmdToKill=sprintf('kill -9 %d',processIDs(pid));
-                                [~,~]=system(cmdToKill);
-                            end
+                            case 'win64'
+                                for pid=1:length(processIDs)
+                                    cmdToKill=sprintf('taskkill /f /PID %d',processIDs(pid));
+                                    [~,~]=system(cmdToKill);
+                                end
+                            case 'glnxa64'
+                                for pid=1:length(processIDs)
+                                    cmdToKill=sprintf('kill -9 %d',processIDs(pid));
+                                    [~,~]=system(cmdToKill);
+                                end
                         end
                     end
                 end
@@ -544,41 +543,41 @@ Simulation3DHandleMap
         function sim3DEngineCommand=simulinkStatus2Sim3DEngineCommand(~)
             simulationStatus=get_param(bdroot,'SimulationStatus');
             switch(simulationStatus)
-            case 'stopped'
-            case 'terminating'
-                sim3DEngineCommand=int32(sim3d.engine.EngineCommands.STOP);
-            case 'initializing'
-                sim3DEngineCommand=int32(sim3d.engine.EngineCommands.INITIALIZE);
-            case 'running'
-                sim3DEngineCommand=int32(sim3d.engine.EngineCommands.RUN);
-            case 'paused'
-                sim3DEngineCommand=int32(sim3d.engine.EngineCommands.PAUSE);
-            otherwise
+                case 'stopped'
+                case 'terminating'
+                    sim3DEngineCommand=int32(sim3d.engine.EngineCommands.STOP);
+                case 'initializing'
+                    sim3DEngineCommand=int32(sim3d.engine.EngineCommands.INITIALIZE);
+                case 'running'
+                    sim3DEngineCommand=int32(sim3d.engine.EngineCommands.RUN);
+                case 'paused'
+                    sim3DEngineCommand=int32(sim3d.engine.EngineCommands.PAUSE);
+                otherwise
 
-                sim3DEngineCommand=int32(sim3d.engine.EngineCommands.NOP);
+                    sim3DEngineCommand=int32(sim3d.engine.EngineCommands.NOP);
             end
         end
 
         function simulinkCommand=sim3DEngineStatus2SimulinkCommand(~,sim3DEngineStatus)
             simulationStatus=get_param(bdroot,'SimulationStatus');
             switch(sim3DEngineStatus)
-            case int32(sim3d.engine.EngineCommands.STOP)
-                simulinkCommand='stop';
-            case int32(sim3d.engine.EngineCommands.INITIALIZE)
-                simulinkCommand='start';
-            case int32(sim3d.engine.EngineCommands.RUN)
-                switch(simulationStatus)
-                case 'stopped'
+                case int32(sim3d.engine.EngineCommands.STOP)
+                    simulinkCommand='stop';
+                case int32(sim3d.engine.EngineCommands.INITIALIZE)
                     simulinkCommand='start';
-                case 'paused'
-                    simulinkCommand='continue';
+                case int32(sim3d.engine.EngineCommands.RUN)
+                    switch(simulationStatus)
+                        case 'stopped'
+                            simulinkCommand='start';
+                        case 'paused'
+                            simulinkCommand='continue';
+                        otherwise
+                            simulinkCommand=[];
+                    end
+                case int32(sim3d.engine.EngineCommands.PAUSE)
+                    simulinkCommand='pause';
                 otherwise
                     simulinkCommand=[];
-                end
-            case int32(sim3d.engine.EngineCommands.PAUSE)
-                simulinkCommand='pause';
-            otherwise
-                simulinkCommand=[];
             end
         end
 
@@ -611,16 +610,16 @@ Simulation3DHandleMap
     methods(Static,Access=protected)
         function header=getHeaderImpl
             header=matlab.system.display.Header(...
-            'Title','3D Simulation Setup');
+                'Title','3D Simulation Setup');
         end
 
         function groups=getPropertyGroupsImpl
             projectSelectionParams=matlab.system.display.Section(...
-            'Title','Project Selection',...
-            'PropertyList',{'ProjectName','SceneDesc','OpenDRIVEName','EnableOpenDRIVE','ProjectFormat','EnableWeather','WeatherConfigParas','EnableWindow','EnableRemoteAccess'});
+                'Title','Project Selection',...
+                'PropertyList',{'ProjectName','SceneDesc','OpenDRIVEName','EnableOpenDRIVE','ProjectFormat','EnableWeather','WeatherConfigParas','EnableWindow','EnableRemoteAccess'});
             params=matlab.system.display.Section(...
-            'Title','',...
-            'PropertyList',{'SampleTime'});
+                'Title','',...
+                'PropertyList',{'SampleTime'});
             groups=[projectSelectionParams,params];
         end
 
@@ -738,8 +737,8 @@ Simulation3DHandleMap
 
 
             sim3dEngine=find_system(bdroot(block),'LookUnderMasks','on',...
-            'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
-            'FollowLinks','on','ReferenceBlock',libraryBlock);
+                'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
+                'FollowLinks','on','ReferenceBlock',libraryBlock);
 
             missingBlock=libraryBlock;
 

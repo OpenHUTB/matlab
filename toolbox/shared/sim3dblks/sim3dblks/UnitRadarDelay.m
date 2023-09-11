@@ -1,9 +1,8 @@
 classdef UnitRadarDelay<...
-    matlabshared.tracking.internal.SimulinkBusUtilities
-%#codegen
+        matlabshared.tracking.internal.SimulinkBusUtilities
+    %#codegen
 
     properties(Nontunable)
-
         NumUnitDelay(1,1){mustBeNonnegative,mustBeReal,mustBeFinite,mustBeInteger}=1
     end
 
@@ -12,8 +11,8 @@ classdef UnitRadarDelay<...
     end
 
     properties(Access=private)
-pLastVal
-pCntSteps
+        pLastVal
+        pCntSteps
         pLastTime=0
     end
 
@@ -156,11 +155,11 @@ pCntSteps
 
             header=matlab.system.display.Header(mfilename("class"));
             header.Text=sprintf(['This class is for internal use and may be removed or modified in the future.\n',...
-            '\n',...
-            'Delay the detections on the input by the specified number of unit delays. The time ',...
-            'stamps of the delayed output are updated to the current simulation time.\n',...
-            '\n',...
-            'This is an internal class, no error checking is performed']);
+                '\n',...
+                'Delay the detections on the input by the specified number of unit delays. The time ',...
+                'stamps of the delayed output are updated to the current simulation time.\n',...
+                '\n',...
+                'This is an internal class, no error checking is performed']);
         end
 
         function group=getPropertyGroupsImpl
@@ -170,11 +169,8 @@ pCntSteps
     end
 end
 
+
 function out=nullify(in)
-
-
-
-
     out=in;
     flds=fieldnames(in);
     for m=1:numel(flds)

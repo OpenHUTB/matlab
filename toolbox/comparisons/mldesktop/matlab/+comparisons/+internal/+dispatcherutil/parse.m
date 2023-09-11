@@ -1,8 +1,5 @@
 function parse(funcName,filename1,filename2)
 
-
-
-
     try
         parser=getParser(funcName);
         parser.parse(filename1,filename2);
