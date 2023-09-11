@@ -52,9 +52,6 @@ function licStatus=sim3dblkssharedeval(licType)
             licStatus=-1;
         end
 
-
-
-
     else
         for idx=1:length(licOrder)
             if licOrder(idx)==0&&builtin('license','test','Aerospace_Toolbox')
