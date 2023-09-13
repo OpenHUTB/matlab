@@ -15,9 +15,9 @@ classdef World < handle
     properties (Access = public, Hidden = true)
         ExecutablePath      % 指向可执行文件的路径
         Map(1, 1) string
-        ExecCmds( 1, : )string = "r.DefaultFeature.MotionBlur 0"
-        RenderOffScreenFlag( 1, : )string = ""
-        CommandLineArgs( 1, : )string = ""
+        ExecCmds(1, :)string = "r.DefaultFeature.MotionBlur 0"
+        RenderOffScreenFlag(1, :)string = ""
+        CommandLineArgs(1, :)string = ""
         SampleTime = 1 / 60
         CommandReader = []
         CommandWriter = []
@@ -25,17 +25,20 @@ classdef World < handle
         UpdateImpl = []
         OutputImpl = []
         ReleaseImpl = []
-        Root( 1, 1 )sim3d.internal.RootObject;
+        Root(1, 1)sim3d.internal.RootObject;
         StepTimer;
-        RateLimiter = [ 0, 0 ];
+        RateLimiter = [0, 0];
     end
 
 
-    properties ( Access = public )
-        Name
-        Actors = struct();
+    % 可以从实例变量中访问到的属性
+    properties (Access = public)
+        Name        % 世界的名称，指定为字符串。
+        Actors = struct();      % 世界中的所有参与者的结构体，其字段为参与者的名字。
         % world.UserData.Step = 0;
         % 将用户数据结构初始化为零。在更新函数中，将使用此结构从世界中删除参与者之前插入延迟。
+        % % 用户指定的在仿真运行时可能需要的数据，指定为结构。
+        % 需要定制的 Update, Output, Setup 和 Release 函数来使用 UserData 存储数据。UserData 确保所有这些功能都可以访问相同的数据。
         UserData
         Viewports = struct();
     end
@@ -58,11 +61,11 @@ classdef World < handle
             % 格式：(名字, 默认值, 验证函数)
             parser.addOptional("ExecutablePath", sim3d.engine.Env.AutomotiveExe(), @(x)isstring(x) || isempty(x) );
             parser.addOptional("Map", "/Game/Maps/EmptyScene", @isstring);
-            % addParameter 在输入解析器模式中添加可选的名称-值对组参数
-            parser.addParameter("ExecCmds", "", @isstring );        % 可执行命令的全部字符串？（可选）
-            % addOptional 将可选的位置参数添加到输入解析器模式中
+            % addParameter 在输入解析器模式中添加可选的 名-值对 参数
+            parser.addParameter("ExecCmds", "", @isstring);        % 可执行命令的全部字符串？（可选）
+            % addOptional 将可选的位置参数(直接输入到这个位置，该参数没有名称）添加到输入解析器模式中
             parser.addOptional("CommandLineArgs", "", @isstring);  % 提供命令行参数
-            parser.addParameter("OverrideExecCmds", false, @islogical)
+            parser.addParameter("OverrideExecCmds", false, @islogical);
             parser.addParameter("RenderOffScreen", false, @islogical);  % 在后台运行仿真的选项，指定为 0(false) 或 1(true)。
             parser.addParameter("Setup", []);
             parser.addParameter("Output", []);  % 通过在每个仿真步骤执行 @outputFcn 来修改协同仿真。此自定义函数可用于将有关指定 sim3d.Actor 对象的数据发送到虚幻引擎。.
@@ -70,7 +73,7 @@ classdef World < handle
             parser.addParameter("Release", []);
             parser.addParameter("Name", sim3d.World.generateWorldName(), @isstring);
 
-            parser.parse(varargin{ : });
+            parser.parse(varargin{:});  % 对输入varargin进行解析
 
             self.Name = parser.Results.Name;
             self.ExecutablePath = parser.Results.ExecutablePath;
@@ -120,7 +123,7 @@ classdef World < handle
 
             actor.Parent = parent;
             actor.ParentWorld = self;
-            self.add2ActorBuffer( actor.getTag(  ) );
+            self.add2ActorBuffer(actor.getTag());
         end
 
         
@@ -223,13 +226,15 @@ classdef World < handle
             self.emptyActorBuffer();
         end
 
-        function start( self )
-            status = sim3d.engine.Engine.getState(  );
+        % 打开虚幻引擎（黑色）界面
+        function start(self)
+            status = sim3d.engine.Engine.getState();
             if status == sim3d.engine.EngineCommands.RUN
-                error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
+                error(message("shared_sim3d:sim3dWorld:SimulationSessionSingleton"));
             end
-            sim3d.engine.Engine.startSimulation( self.asCommand(  ) );
+            sim3d.engine.Engine.startSimulation(self.asCommand());
         end
+
 
         function reset( self )
             status = sim3d.engine.Engine.getState();
@@ -298,25 +303,25 @@ classdef World < handle
         end
 
         function command = asCommand( self )
-            if strcmp( self.ExecutablePath, sim3d.World.Undefined ) || isempty( self.ExecutablePath )
+            if strcmp(self.ExecutablePath, sim3d.World.Undefined ) || isempty( self.ExecutablePath)
                 command = sim3d.World.Undefined;
                 return
             end
         
             command.FileName = self.ExecutablePath;
             command.Arguments = "";
-            if ( ~strcmp( self.Map, "" ) )
-                command.Arguments = command.Arguments.append(  ...
-                    strcat( self.Map, " " ) ...
+            if (~strcmp( self.Map, ""))
+                command.Arguments = command.Arguments.append(...
+                    strcat(self.Map, " ") ...
                     );
             end
             command.Arguments = command.Arguments.append(  ...
-                strcat( "-nosound", " " ),  ...
-                strcat( "-ExecCmds=", """", strjoin( self.ExecCmds, ";" ), """", " " ) ...
+                strcat("-nosound", " " ),  ...
+                strcat("-ExecCmds=", """", strjoin(self.ExecCmds, ";"), """", " ") ...
                 );
-            if ( ~strcmp( self.CommandLineArgs, "" ) )
-                command.Arguments = command.Arguments.append(  ...
-                    strcat( self.CommandLineArgs, " " ) ...
+            if (~strcmp(self.CommandLineArgs, ""))
+                command.Arguments = command.Arguments.append(...
+                    strcat(self.CommandLineArgs, " ") ...
                     );
             end
             if ( ~strcmp( self.RenderOffScreenFlag, "" ) )
@@ -325,7 +330,7 @@ classdef World < handle
                     );
             end
             command.Arguments = command.Arguments.append(  ...
-                strcat( "-pakdir=", """", fullfile( userpath, "sim3d_project", string( sprintf( 'R%s', version( '-release' ) ) ), "WindowsNoEditor", "AutoVrtlEnv", "Content", "Paks" ), """" ) ...
+                strcat( "-pakdir=", """", fullfile(userpath, "sim3d_project", string(sprintf( 'R%s', version( '-release' ) ) ), "WindowsNoEditor", "AutoVrtlEnv", "Content", "Paks" ), """" ) ...
                 );
         end
 

@@ -1,21 +1,23 @@
 classdef CommandReader<handle
 
     properties
-        Reader=[]
-        Timeout(1,1)int32=120000
+        Reader = []
+        % 读取虚幻引擎的超时时间（毫秒为单位，默认为120秒）
+        Timeout(1,1)int32 = 120000
     end
 
 
     properties(Constant=true)
-        Topic='Simulation3DEngineStatus'
-        LeaseDuration=10000
+        Topic = 'Simulation3DEngineStatus'
+        LeaseDuration = 10000
     end
 
 
     methods
 
-        function self=CommandReader()
-            self.Reader=sim3d.io.Subscriber(sim3d.io.CommandReader.Topic,'LeaseDuration',sim3d.io.CommandReader.LeaseDuration);
+        function self = CommandReader()
+            self.Reader = sim3d.io.Subscriber(sim3d.io.CommandReader.Topic, ...
+                'LeaseDuration', sim3d.io.CommandReader.LeaseDuration);
         end
 
 
@@ -24,8 +26,9 @@ classdef CommandReader<handle
                 self.Reader.delete();
             end
         end
+        
 
-        function[status,errorCode]=read(self,varargin)
+        function[status,errorCode] = read(self,varargin)
             narginchk(1,2);
             if nargin>1
                 errorMessage=varargin{1};
@@ -33,21 +36,21 @@ classdef CommandReader<handle
                 errorMessage=true;
             end
             if~isempty(self.Reader)
-                errorCode=sim3d.engine.EngineReturnCode.OK;
-                status=self.Reader.receive(self.Timeout);
+                errorCode = sim3d.engine.EngineReturnCode.OK;
+                status = self.Reader.receive(self.Timeout);
                 if isempty(status)
                     if self.Reader.Listener.IsPublisherDisconnected
-                        errorCode=sim3d.engine.EngineReturnCode.Precondition_Not_Met;
+                        errorCode = sim3d.engine.EngineReturnCode.Precondition_Not_Met;
                         if errorMessage
-                            exception=MException('sim3d:CommandReader:CommandReader:ReadError',...
-                            '3D Simulation engine was terminated by the user (error code: %d).',errorCode);
+                            exception = MException('sim3d:CommandReader:CommandReader:ReadError',...
+                                '3D Simulation engine was terminated by the user (error code: %d).',errorCode);
                             throw(exception);
                         end
                     else
-                        errorCode=sim3d.engine.EngineReturnCode.Timeout;
+                        errorCode = sim3d.engine.EngineReturnCode.Timeout;
                         if errorMessage
-                            exception=MException('sim3d:CommandReader:CommandReader:ReadError',...
-                            '3D Simulation engine interface read error');
+                            exception = MException('sim3d:CommandReader:CommandReader:ReadError',...
+                                '3D Simulation engine interface read error');
                             throw(exception);
                         end
                     end
@@ -56,8 +59,9 @@ classdef CommandReader<handle
         end
 
 
+        % 设置读取虚幻引擎的超时时间，timeout单位为秒
         function setTimeout(self,timeout)
-            self.Timeout=1000*timeout;
+            self.Timeout = 1000 * timeout;
         end
 
     end

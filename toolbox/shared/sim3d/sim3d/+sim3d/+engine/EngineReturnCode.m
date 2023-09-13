@@ -1,9 +1,10 @@
+% 从虚幻引擎返回的状态吗
 classdef(Hidden)EngineReturnCode
 
     properties(Constant=true)
         No_Subscriber=-2
         No_Data=-1
-        OK=0
+        OK=0  % 成功（进行初始化）
         Error=1
         Unsupported=2
         Bad_Parameter=3

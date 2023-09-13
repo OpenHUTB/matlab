@@ -263,32 +263,24 @@
             <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
 <col class="tcol2" width="50%"/>
 </colgroup>
-<thead><tr><th>Option</th>
-<th>Description</th>
+<thead><tr><th>选项</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody><tr><td><code class="guidropdown">Default Scenes</code></td>
-<td><p>Simulate in one of the default, prebuilt scenes specified in the
-                          <strong class="guilabel">Scene name</strong> parameter.</p>
+<td><p>在 <strong class="guilabel">Scene name </strong>参数中指定的默认预构建场景之一中进行仿真。</p>
 </td>
 </tr>
 <tr><td><code class="guidropdown">Unreal Executable</code></td>
-<td><p>Simulate in a scene that is part of an Unreal Engine executable file. Specify the executable file in the
-                          <strong class="guilabel">Project name</strong> parameter. Specify the scene in the
-                          <strong class="guilabel">Scene</strong> parameter.</p>
-<p>Select this option to
-                        simulate in custom scenes that have been packaged into an executable for
-                        faster simulation.</p>
+<td><p>在作为虚幻引擎可执行文件一部分的场景中进行仿真。在 <strong class="guilabel">Project name</strong> 参数中指定可执行文件 。在
+                          <strong class="guilabel">Scene</strong> 参数中指定场景。</p>
+<p>选择此选项可在已打包到可执行文件中的自定义场景中进行仿真，以加快仿真速度。</p>
 </td>
 </tr>
 <tr><td><code class="guidropdown">Unreal Editor</code></td>
-<td><p>Simulate in a scene that is part of an Unreal Engine project (<code class="literal">.uproject</code>) file and is open in the
-                          Unreal<sup>®</sup> Editor. Specify the project file in the
-                          <strong class="guilabel">Project</strong> parameter. </p>
-<p>Select this option
-                        when developing custom scenes. By clicking <strong class="guilabel">Open Unreal
-                          Editor</strong>, you can co-simulate within Simulink and the Unreal Editor and modify your scenes based on the simulation
-                        results.</p>
+<td><p>在作为虚幻引擎项目 (<code class="literal">.uproject</code>) 文件一部分并在虚幻编辑器中打开的场景中进行仿真。在 <strong class="guilabel">Project</strong> 参数中指定项目文件。 </p>
+<p>开发自定义场景时选择此选项。通过单击 <strong class="guilabel">Open Unreal
+                          Editor</strong>，可以在 Simulink 和虚幻编辑器中进行联合仿真，并根据仿真结果修改场景。</p>
 </td>
 </tr>
 </tbody>
@@ -326,37 +318,31 @@
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3afd4044-aad1-4e7d-a3e4-8fb77e46c300" data-target="#expand_panel_body_mw_3afd4044-aad1-4e7d-a3e4-8fb77e46c300" aria-controls="expand_panel_body_mw_3afd4044-aad1-4e7d-a3e4-8fb77e46c300" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Projectname" class="anchor_target"></span><span id="File_name__" class="anchor_target"></span><h3 class="panel-title" id="mw_3afd4044-aad1-4e7d-a3e4-8fb77e46c300"><code class="name">Project name</code> — Name of Unreal Engine executable file<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">VehicleSimulation.exe</code> (default) | valid executable file name</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3afd4044-aad1-4e7d-a3e4-8fb77e46c300" data-target="#expand_panel_body_mw_3afd4044-aad1-4e7d-a3e4-8fb77e46c300" aria-controls="expand_panel_body_mw_3afd4044-aad1-4e7d-a3e4-8fb77e46c300" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Projectname" class="anchor_target"></span><span id="File_name__" class="anchor_target"></span><h3 class="panel-title" id="mw_3afd4044-aad1-4e7d-a3e4-8fb77e46c300"><code class="name">Project name</code> — 虚幻引擎可执行文件的名称<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">VehicleSimulation.exe</code> (默认) | 有效的可执行文件名</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_3afd4044-aad1-4e7d-a3e4-8fb77e46c300" aria-labelledby="expand_panel_heading_mw_3afd4044-aad1-4e7d-a3e4-8fb77e46c300" class="panel-collapse collapse"><div class="panel-body">
-            <p>Name of the Unreal Engine executable file, specified as a valid executable project file name. You
-              can either browse for the file or specify the full path to the project file, using
-              backslashes. To specify a scene from this file to simulate in, use the
-                <strong class="guilabel">Scene</strong> parameter.</p>
-            <p>By default, <strong class="guibutton">Project name</strong> is set to
-                <code class="literal">VehicleSimulation.exe</code>, which is on the MATLAB<sup>®</sup> search path.</p>
-            <p class="description_valueexample"><strong>Example: </strong><code class="literal">C:\Local\WindowsNoEditor\AutoVrtlEnv.exe</code></p>
+            <p>虚幻引擎可执行文件的名称，指定为有效的可执行项目文件名。可以浏览文件或使用反斜杠指定项目文件的完整路径。要指定此文件中的场景进行仿真，请使用
+                <strong class="guilabel">Scene</strong> 参数。</p>
+            <p>默认情况下，<strong class="guibutton">Project name</strong> 设置为 <code class="literal">VehicleSimulation.exe</code>，它位于 MATLAB<sup>®</sup> 搜索路径上。</p>
+            <p class="description_valueexample"><strong>示例：</strong><code class="literal">C:\Local\WindowsNoEditor\AutoVrtlEnv.exe</code></p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, set <strong class="guilabel">Scene source</strong> to
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请将 <strong class="guilabel">Scene source</strong> 设置为
                   <code class="guidropdown">Unreal Executable</code>.</p>
             
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b99c6cc8-db9b-4eb4-a487-da9924224bc9" data-target="#expand_panel_body_mw_b99c6cc8-db9b-4eb4-a487-da9924224bc9" aria-controls="expand_panel_body_mw_b99c6cc8-db9b-4eb4-a487-da9924224bc9" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_SelectASAMOpenDRIVEfile" class="anchor_target"></span><h3 class="panel-title" id="mw_b99c6cc8-db9b-4eb4-a487-da9924224bc9"><code class="name">Select ASAM OpenDRIVE file</code> — Specify an ASAM OpenDRIVE file<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b99c6cc8-db9b-4eb4-a487-da9924224bc9" data-target="#expand_panel_body_mw_b99c6cc8-db9b-4eb4-a487-da9924224bc9" aria-controls="expand_panel_body_mw_b99c6cc8-db9b-4eb4-a487-da9924224bc9" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_SelectASAMOpenDRIVEfile" class="anchor_target"></span><h3 class="panel-title" id="mw_b99c6cc8-db9b-4eb4-a487-da9924224bc9"><code class="name">Select ASAM OpenDRIVE file</code> — 指定 ASAM OpenDRIVE 文件<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (默认) | <code class="literal">on</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_b99c6cc8-db9b-4eb4-a487-da9924224bc9" aria-labelledby="expand_panel_heading_mw_b99c6cc8-db9b-4eb4-a487-da9924224bc9" class="panel-collapse collapse"><div class="panel-body">
-            <p>Specify an ASAM OpenDRIVE<sup>®</sup> file. Select the  block parameter
-                <strong class="guilabel">Select ASAM OpenDRIVE file</strong> to specify an ASAM OpenDRIVE file. You will need an ASAM OpenDRIVE file if you want to perform any lane detection applications with custom
-              scenes using the <a href="simulation3dvisiondetectiongenerator.html"><span class="block">Simulation 3D
-                Vision Detection Generator</span></a> block.</p>
+            <p>指定 ASAM OpenDRIVE<sup>®</sup> 文件。选择模块参数 <strong class="guilabel">Select ASAM OpenDRIVE file</strong> 以指定 ASAM OpenDRIVE 文件。如果想要使用 <a href="simulation3dvisiondetectiongenerator.html"><span class="block">Simulation 3D
+                Vision Detection Generator</span></a> 模块执行具有自定义场景的任何车道检测应用程序，将需要 ASAM OpenDRIVE 文件。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>This parameter is available when you set <code class="argument">Scene Source</code> is
-                set to either <code class="guidropdown">Unreal Executable</code> or <code class="guidropdown">Unreal
-                  Engine</code>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>当设置 <code class="argument">Scene Source</code> 为 <code class="guidropdown">Unreal Executable</code> 或者 <code class="guidropdown">Unreal
+                  Engine </code>时（即不是默认场景），该参数才是有效的。</p>
             
           <p class="datatypelist"><strong>Data Types: </strong><code>Boolean</code></p>
 </div>
@@ -1166,6 +1152,8 @@ This lag enables improved visualization of overall
 <div class="clearfix"></div>
 <div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
 <script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
 <div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
 </div>
 <div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>

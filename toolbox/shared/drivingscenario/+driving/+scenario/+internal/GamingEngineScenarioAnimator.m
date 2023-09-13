@@ -3,7 +3,7 @@ classdef GamingEngineScenarioAnimator < handle
 % 查看器模块的原型，这个在Simulink中的ScenarioReader中使用
     
     properties
-        SampleTime = single(1/60);
+        SampleTime = single(1/60);  % 采样时间
         % Contains fields
         % {
         % Roads: {

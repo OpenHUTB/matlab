@@ -5,6 +5,7 @@ classdef Subscriber<handle
         Reader=[]
         Listener=[]
     end
+    
 
     properties(Constant=true)
         QueueDepth=1
@@ -14,6 +15,7 @@ classdef Subscriber<handle
         Liveliness=false
     end
 
+
     methods
         function delete(self)
             self.Reader.listener();
@@ -21,6 +23,7 @@ classdef Subscriber<handle
             self.Reader=[];
         end
 
+        
         function self=Subscriber(topic,varargin)
             parser=inputParser;
             parser.addParameter('Domain',num2str(uint32(feature('getpid'))));

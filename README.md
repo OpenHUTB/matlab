@@ -58,7 +58,8 @@ userpath
 
 
 ## 解码经验
-脚本中出现`R36`表示声明函数参数验证，比如（`matlab\toolbox\shared\sim3d\sim3d\+sim3d\World.m`中的`setup()`）：
+1. 脚本中出现`R36`表示声明函数参数验证
+比如（`matlab\toolbox\shared\sim3d\sim3d\+sim3d\World.m`中的`setup()`）：
 ```shell
 arguments
     self sim3d.World
@@ -66,9 +67,14 @@ arguments
 end
 ```
 
-simulink模块选中后，通过“模块”菜单中的“查看封装”，再查看“代码”选项卡可以看到代码（其中的函数调用`matlab\toolbox\shared\sim3dblks\sim3dblks`中的脚本。
+2. simulink模块选中后，通过“模块”菜单中的“查看封装”，再查看“代码”选项卡可以看到代码（其中的函数调用`matlab\toolbox\shared\sim3dblks\sim3dblks`中的脚本。
 并且通过“模块”菜单中的“查看基础封装”中的“查看基础封装内部”，可以查看模块内部的连接信息。
 
+3. 内置函数：比如查看`sort`函数（`toolbox\matlab\datafun\sort.m`）
+```shell
+edit sort
+```
+对应源代码位于：`toolbox/matlab/datatypes/categorical/@categorical/sort.m`
 
 ## 维护
 

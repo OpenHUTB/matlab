@@ -1,10 +1,11 @@
+% Win64平台的虚幻引擎类
 classdef EngineWin64<sim3d.engine.EngineInterface
 
     methods
 
         function self=EngineWin64()
-            self.EngineLastError=sim3d.engine.EngineReturnCode.OK;
-            setenv(sim3d.engine.EngineInterface.environmentVariableMatlabRoot,matlabroot);
+            self.EngineLastError = sim3d.engine.EngineReturnCode.OK;  % 构建完虚幻引擎类将其状态设置为成功
+            setenv(sim3d.engine.EngineInterface.environmentVariableMatlabRoot, matlabroot);
         end
 
 
@@ -13,13 +14,13 @@ classdef EngineWin64<sim3d.engine.EngineInterface
         end
 
 
-        function retcode=startProject(self,command)
-            retcode=sim3d.engine.EngineReturnCode.Error;
-            game=sim3d.engine.EngineWin64.makeProcess(command.FileName,command.Arguments);
-            status=game.Start();
+        function retcode = startProject(self,command)
+            retcode = sim3d.engine.EngineReturnCode.Error;
+            game = sim3d.engine.EngineWin64.makeProcess(command.FileName,command.Arguments);
+            status = game.Start();
 
-            if status==1
-                retcode=self.checkRunning(game);
+            if status == 1
+                retcode = self.checkRunning(game);
             end
         end
     end

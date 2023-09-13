@@ -17,7 +17,6 @@ classdef EngineInterface<handle
 
     methods(Abstract)
         retcode=startProject(self,project)
-
     end
 
 
@@ -66,13 +65,14 @@ classdef EngineInterface<handle
         end
 
 
-        function startSimulation(self,project)
-            if~isempty(project)&&~strcmp(project,sim3d.World.Undefined)
-                retcode=self.startProject(project);
-                if retcode==sim3d.engine.EngineReturnCode.Timeout
+        % 开始仿真（弹出黑色虚幻引擎界面）
+        function startSimulation(self, project)
+            if ~isempty(project) && ~strcmp(project,sim3d.World.Undefined)
+                retcode = self.startProject(project);
+                if retcode == sim3d.engine.EngineReturnCode.Timeout
                     error(message('shared_sim3d:sim3dEngine:StartTimeoutError'));
-                elseif retcode==sim3d.engine.EngineReturnCode.OK
-                    self.EngineLastError=StartSimulation3DInterface(self.EnginePid);
+                elseif retcode == sim3d.engine.EngineReturnCode.OK
+                    self.EngineLastError = StartSimulation3DInterface(self.EnginePid);  % built-in
                 else
                     error(message('shared_sim3d:sim3dEngine:StartError'));
                 end
