@@ -1,8 +1,5 @@
 classdef JSProjectService < handle
 
-
-
-
 events 
 OpenProject
 CloseProject
