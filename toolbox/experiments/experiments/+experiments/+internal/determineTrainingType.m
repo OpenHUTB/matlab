@@ -1,8 +1,5 @@
 function trainingType=determineTrainingType(mockTraining,varargin)
 
-
-
-
     trainingType='classification';
     if~isempty(mockTraining)
         return;
@@ -12,7 +9,6 @@ function trainingType=determineTrainingType(mockTraining,varargin)
         factory=nnet.internal.cnn.trainNetwork.DLTComponentFactory();
         inputParser=factory.createInputParser();
         [layersOrGraph,~,~,~]=inputParser.parseInputArguments(varargin{:});
-
 
         isaDAG=isa(layersOrGraph,'nnet.cnn.LayerGraph');
         [internalLayers,~]=nnet.internal.cnn.layer.util.inferParameters(layersOrGraph,"internal");
