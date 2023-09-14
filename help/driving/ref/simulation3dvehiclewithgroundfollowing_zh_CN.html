@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Simulation 3D Vehicle with Ground Following</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../unreal-engine-scenario-simulation.html",
+          "name": "Unreal Engine Scenario Simulation"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "unreal-engine-scenario-simulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="block:Simulation 3D Vehicle with Ground Following"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="blk"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/block"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The Simulation 3D Vehicle with Ground Following block implements a vehicle with four wheels in a 3D simulation environment."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../unreal-engine-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Simulation</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">Simulation 3D Vehicle with Ground Following</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e30615" class="intrnllnk">Description</a></li>
+<li><a href="#mw_3fd263d2-6f7c-47df-a15a-90751cc664bc" class="intrnllnk">Limitations</a></li>
+<li><a href="#d124e30732" class="intrnllnk">Ports</a><ul class="nav"><li><a href="#d124e30734" class="intrnllnk">Input</a><ul class="nav"><li><a href="#mw_e31a253c-9d84-4989-a68a-b5cd7dc52f25" class="intrnllnk">X</a></li>
+</ul><ul class="nav"><li><a href="#mw_fdcba65f-a327-438a-83e7-372aaf40cd13" class="intrnllnk">Y</a></li>
+</ul><ul class="nav"><li><a href="#mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" class="intrnllnk">Yaw</a></li>
+</ul><ul class="nav"><li><a href="#mw_71618224-a6c6-4089-8a38-d423b38d9c70" class="intrnllnk">Light controls</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_f8361cd9-232e-4cfa-a3b0-47e550030236" class="intrnllnk">Output</a><ul class="nav"><li><a href="#mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" class="intrnllnk">Location</a></li>
+<li><a href="#mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" class="intrnllnk">Orientation</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mw_47534357-734f-4b28-a310-9ada77ec91fe" class="intrnllnk">Parameters</a><ul class="nav"><li><a href="#mw_1688c2cf-532a-4fe2-ad3b-b3d35bffabca" class="intrnllnk">Vehicle Parameters</a><ul class="nav"><li><a href="#mw_c7d711f5-5f14-4853-9907-8abf77c4334c" class="intrnllnk">Type</a></li>
+<li><a href="#mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" class="intrnllnk">Path to custom mesh</a></li>
+<li><a href="#mw_428a6193-0922-4555-bcca-256d69248b6a" class="intrnllnk">Track width in custom mesh (m)</a></li>
+<li><a href="#mw_6ceb1d99-db64-4fb6-9eca-58553f20c582" class="intrnllnk">Wheel base in custom mesh (m)</a></li>
+<li><a href="#mw_1597bbc7-f541-4b53-8843-d2205a040b2c" class="intrnllnk">Wheel radius in custom mesh (m)</a></li>
+<li><a href="#mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="intrnllnk">Color</a></li>
+<li><a href="#mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" class="intrnllnk">Initial position [X, Y, Z] (m)</a></li>
+<li><a href="#mw_a6e241db-759b-4e59-9c38-bc65a59f9048" class="intrnllnk">Initial rotation [Roll, Pitch, Yaw] (deg)</a></li>
+<li><a href="#mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" class="intrnllnk">Name</a></li>
+<li><a href="#mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" class="intrnllnk">Sample time</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_1584aaf2-47ad-42eb-97fc-0022c233f585" class="intrnllnk">Light Controls</a><ul class="nav"><li><a href="#mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" class="intrnllnk">Enable light controls</a></li>
+</ul><ul class="nav"><li><a href="#mw_4d634566-c800-49d8-a55d-393f0b181db6" class="intrnllnk">Headlights</a></li>
+</ul><ul class="nav"><li><a href="#mw_3d8feaf6-bbbb-42da-b660-5a38966a0e31" class="intrnllnk">Brake Lights</a></li>
+</ul><ul class="nav"><li><a href="#mw_393a162f-15c0-43b6-ae0f-49f2e5d15f0d" class="intrnllnk">Reverse Lights</a></li>
+</ul><ul class="nav"><li><a href="#mw_8dc35f56-6e63-46c7-9a34-d71cec95106b" class="intrnllnk">Turn Signal Lights</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_0e058486-dade-4764-a0da-9ea7f1d4bbf1" class="intrnllnk">Ground Truth</a><ul class="nav"><li><a href="#mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" class="intrnllnk">Output location (m) and orientation (rad)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#examples" class="intrnllnk">Model Examples</a></li>
+<li><a href="#mw_814b0d0b-3a0c-48f6-b58a-f6a815ef607f" class="intrnllnk">More About</a><ul class="nav"><li><a href="#mw_7372a6f4-c778-439a-950d-447365156279" class="intrnllnk">Import Custom Meshes</a></li>
+</ul><ul class="nav"><li><a href="#mw_f5b592d1-caf4-45d8-892a-8724c0c96469" class="intrnllnk">Control Vehicle Lights</a></li>
+</ul></li>
+<li><a href="#References" class="intrnllnk">References</a></li>
+<li><a href="#mw_32cd8e72-2d69-4c3e-98b0-5b918db383a4_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_32cd8e72-2d69-4c3e-98b0-5b918db383a4_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="block_ref"><span id="mw_32cd8e72-2d69-4c3e-98b0-5b918db383a4" class="anchor_target"></span><span id="sim3dvehiclefollowing" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">Simulation 3D Vehicle with Ground Following</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">在三维环境中实现跟随地面的车辆</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div itemprop="content" class="ref_sect"><div class="row"><div class="col-xs-12 col-sm-9 col-md-10"><ul class="list-unstyled library_path_container"><li><strong>Library:</strong></li>
+<li><p class="library_path">
+      Automated Driving Toolbox / 
+      Simulation 3D
+   </p><p class="library_path">
+      Vehicle Dynamics Blockset / 
+      Vehicle Scenarios / 
+      Sim3D / 
+      Sim3D Vehicle / 
+      Components
+   </p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="function_icons"><ul class="list-unstyled"><li class="add_cursor_pointer" data-toggle="modal" data-target="#image_zoom_modal" data-title="Simulation 3D Vehicle with Ground Following block" data-src="sim3d_veh_grnd_following.png"><img itemprop="thumbnailUrl" src="sim3d_veh_grnd_following.png" alt="Simulation 3D Vehicle with Ground Following block" height="129" width="219"/><span class="icon-zoomin add_font_color_white add_background_color_mediumgray function_icon_zoom"></span></li>
+</ul>
+</div>
+<div class="modal fade" id="image_zoom_modal" tabindex="-1" role="dialog" aria-labelledby="modal-title"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="modal-title remove_border" id="modal-title"></h2>
+</div>
+<div class="modal-body"><img src="sim3d_veh_grnd_following.png" id="image_zoom" class="center-block"/></div>
+</div>
+</div>
+</div>
+<script>
+      $('#image_zoom_modal').on('show.bs.modal', function (event) {
+      var modal_trigger = $(event.relatedTarget)
+      var image_src = modal_trigger.data('src');
+      var image_title = modal_trigger.data('title');
+      $('#image_zoom').attr('src', image_src);
+      if (image_title) {
+        $('#modal-title').text(image_title);
+      } else { 
+        $('#modal-title').hide;  
+      } 
+      })
+    </script>
+<div id="d124e30615_div" class="refsect1 description"><h2 id="d124e30615">描述</h2>
+<p><span class="block">Simulation 3D Vehicle with Ground Following</span> 模块实现在三维仿真环境中实现了四轮车辆。该环境使用虚幻引擎<sup>®</sup>进行渲染。 该模块使用车辆的输入 (<span class="emphasis"><em>X</em></span>, <span class="emphasis"><em>Y</em></span>)
+      位置和偏航角来调整车辆的仰角、滚动角和俯仰角，使其跟随地面地形。该模块车辆速度和航向，并调整每个车轮的转向角度和旋转。将此模块用于自动驾驶应用。</p>
+<p>要使用此模块，请确保模型中存在“Simulation 3D Scene Configuration”模块。如果将 Simulation 3D Vehicle with Ground Following 模块的采样时间 <strong class="guilabel">Sample time</strong> 参数设置为 -1，则该模块将继承在 <span class="block">Simulation 3D Scene
+        Configuration</span> 模块中指定的采样时间。</p>
+<p>该模块的输入使用 SAE J670 <a href="simulation3dvehiclewithgroundfollowing.html#mw_54c42baf-8911-42be-854f-dba0f8a6cc0e" class="intrnllnk">[1]</a> 和 ISO 8855 <a href="simulation3dvehiclewithgroundfollowing.html#mw_1a0ec313-b630-4169-96a5-014bfb518191" class="intrnllnk">[2]</a> 中定义的车辆 <span class="emphasis"><em>Z</em></span>-轴向上右手(right-handed, RH) 笛卡尔坐标系。坐标系是惯性坐标系，最初与车辆几何中心对齐：</p>
+<div class="itemizedlist"><ul><li><p><span class="emphasis"><em>X</em></span>-轴沿着车辆的纵向轴线并指向前方。</p></li>
+<li><p><span class="emphasis"><em>Y</em></span>-轴沿着车辆的横轴并指向左侧。</p></li>
+<li><p><span class="emphasis"><em>Z</em></span>-轴指向上方。</p></li>
+</ul>
+</div>
+<p>当从Z轴、 Y 轴和 X 轴的正方向看时，Z 轴、Y轴和X轴 的偏航角、俯仰角和滚动角分别在顺时针方向上为正。车辆放置在场景的世界坐标系中。有关更多详细信息，请参阅 <a href="../ug/coordinate-systems-for-3d-simulation-in-automated-driving-toolbox.html" class="a">Coordinate Systems for Unreal Engine Simulation in Automated Driving Toolbox</a>。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>笔记</strong></p>
+<p><span class="block">Simulation 3D Vehicle with Ground
+          Following</span> 模块必须在 <span class="block">Simulation 3D Scene
+          Configuration</span> 模块之前执行。这样，<span class="block">Simulation 3D Vehicle with Ground
+          Following</span> 模块会在虚幻引擎三维可视化环境接收信号数据之前准备好信号数据。要检查模块执行顺序，请右键单击块并选择“<b>属性</b>”。在 “常规”选项卡上，确认以下“<b>优先级</b>”设置： </p>
+<div class="itemizedlist"><ul><li><p><span class="block">Simulation 3D Scene Configuration</span> — <code class="literal">0</code></p></li>
+<li><p><span class="block">Simulation 3D Vehicle with Ground Following</span> —
+              <code class="literal remove_text_wrapping">-1</code></p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>有关执行顺序的更多信息，请参阅 <a href="../ug/how-3d-simulation-for-automated-driving-works.html" class="a">虚幻引擎自动驾驶仿真的工作原理</a>。</p>
+</div>
+<p>可以配置 <span class="block">Simulation 3D Vehicle with Ground Following</span> 模块以 <a href="simulation3dvehiclewithgroundfollowing.html#mw_7372a6f4-c778-439a-950d-447365156279" class="intrnllnk">导入自定义网格</a> 和 <a href="simulation3dvehiclewithgroundfollowing.html#mw_f5b592d1-caf4-45d8-892a-8724c0c96469" class="intrnllnk">控制车辆灯光</a>。</p>
+</div>
+<div id="mw_3fd263d2-6f7c-47df-a15a-90751cc664bc_div" class="refsect1 limitations"><h2 id="mw_3fd263d2-6f7c-47df-a15a-90751cc664bc">局限性</h2>
+<div class="itemizedlist"><ul><li><p><strong class="app"><a href="birdseyescope-app.html">鸟瞰视野</a></strong> 无法从
+            <span class="block">Simulation 3D Scene Configuration</span> 模块中找到真实信号，例如道路、车道和参与者。</p></li>
+</ul>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e30732">Ports</h2>
+</div>
+<div class="ref_sect"><h3 id="d124e30734">输入</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="d124e30734_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e31a253c-9d84-4989-a68a-b5cd7dc52f25" data-target="#expand_panel_body_mw_e31a253c-9d84-4989-a68a-b5cd7dc52f25" aria-controls="expand_panel_body_mw_e31a253c-9d84-4989-a68a-b5cd7dc52f25" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_e31a253c-9d84-4989-a68a-b5cd7dc52f25"><code class="name">X</code> — 车辆纵向位置<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc">标量</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e31a253c-9d84-4989-a68a-b5cd7dc52f25" aria-labelledby="expand_panel_heading_mw_e31a253c-9d84-4989-a68a-b5cd7dc52f25" class="panel-collapse collapse"><div class="panel-body">
+            <p>车辆沿场景 <span class="emphasis"><em>X</em></span>-轴的纵向位置。<strong class="guilabel">X</strong> 位于惯性 <span><span class="emphasis"><em>Z</em></span>-</span>向上坐标系中。单位为米。</p>
+            <p><strong class="guilabel">初始位置 [X, Y, Z] (米)</strong> 的 <span class="emphasis"><em>X</em></span> 值必须与仿真开始时该端口的值匹配。</p>
+            <p>要沿整个车辆路径指定
+                <strong class="guilabel">X</strong> 端口的多个位置，首先在MATLAB<sup>®</sup>中定义 <span class="emphasis"><em>X</em></span> 路点的时间序列。然后，使用 <a href="../../simulink/slref/fromworkspace.html"><span class="block">From Workspace</span></a><span role="cross_prod"> (Simulink)</span> 模块将这些路点提供给 <strong class="guilabel">X</strong>。要了解如何选择和指定路点，请参阅
+<a href="../ug/select-waypoints-for-3d-simulation.html" class="a">为虚幻引擎仿真选择路点</a> 示例。</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_fdcba65f-a327-438a-83e7-372aaf40cd13" data-target="#expand_panel_body_mw_fdcba65f-a327-438a-83e7-372aaf40cd13" aria-controls="expand_panel_body_mw_fdcba65f-a327-438a-83e7-372aaf40cd13" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_fdcba65f-a327-438a-83e7-372aaf40cd13"><code class="name">Y</code> — 车辆横向位置<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_fdcba65f-a327-438a-83e7-372aaf40cd13" aria-labelledby="expand_panel_heading_mw_fdcba65f-a327-438a-83e7-372aaf40cd13" class="panel-collapse collapse"><div class="panel-body">
+            <p>Lateral position of the vehicle along the <span class="emphasis"><em>Y</em></span>-axis of the scene.
+                <strong class="guilabel">Y</strong> is in the inertial <span><span class="emphasis"><em>Z</em></span>-up</span> coordinate system. Units are in
+              meters.</p>
+            <p>The <span class="emphasis"><em>Y</em></span> value of the <strong class="guilabel">Initial
+                position [X, Y, Z] (m)</strong> parameter must match the value of this port at the
+              start of simulation.</p>
+            <p>To specify multiple positions at port
+                <strong class="guilabel">Y</strong> along an entire vehicle path, first define a time series of
+                <span class="emphasis"><em>Y</em></span> waypoints in MATLAB. Then, feed these waypoints to <strong class="guilabel">Y</strong> by using a <a href="../../simulink/slref/fromworkspace.html"><span class="block">From Workspace</span></a><span role="cross_prod"> (Simulink)</span> block. To learn how to select and specify waypoints, see the
+                <a href="../ug/select-waypoints-for-3d-simulation.html" class="a">Select Waypoints for Unreal Engine Simulation</a>
+              example.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" data-target="#expand_panel_body_mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" aria-controls="expand_panel_body_mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_a30fd3ee-9c12-446d-bdd3-f834f8384659"><code class="name">Yaw</code> — 车辆的偏航方向角<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">标量</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" aria-labelledby="expand_panel_heading_mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" class="panel-collapse collapse"><div class="panel-body">
+            <p>Yaw orientation angle of the vehicle along the <span class="emphasis"><em>Z</em></span>-axis of the
+              scene. <strong class="guilabel">Yaw</strong> is in the <span><span class="emphasis"><em>Z</em></span>-up</span> coordinate system. <span>Units are in degrees</span>.</p>
+            <p>The yaw value of the <strong class="guilabel">Initial rotation [Roll,
+                Pitch, Yaw] (deg)</strong> parameter must match the value of this port at the
+              start of simulation.</p>
+            <p>To specify multiple orientation angles at port
+                <strong class="guilabel">Yaw</strong> along an entire vehicle path, first define a time series of
+              yaw waypoints in MATLAB. Then, feed these waypoints to <strong class="guilabel">Yaw</strong> by using a
+                <a href="../../simulink/slref/fromworkspace.html"><span class="block">From Workspace</span></a><span role="cross_prod"> (Simulink)</span> block. To learn how to
+              select and specify waypoints, see the <a href="../ug/select-waypoints-for-3d-simulation.html" class="a">Select Waypoints for Unreal Engine Simulation</a>
+              example.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_71618224-a6c6-4089-8a38-d423b38d9c70" data-target="#expand_panel_body_mw_71618224-a6c6-4089-8a38-d423b38d9c70" aria-controls="expand_panel_body_mw_71618224-a6c6-4089-8a38-d423b38d9c70" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_71618224-a6c6-4089-8a38-d423b38d9c70"><code class="name">Light controls</code> — 车灯的打开或关闭<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1×6 向量</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_71618224-a6c6-4089-8a38-d423b38d9c70" aria-labelledby="expand_panel_heading_mw_71618224-a6c6-4089-8a38-d423b38d9c70" class="panel-collapse collapse"><div class="panel-body"><p>光控制输入信号，指定为 1×6 布尔向量. 。矢量的每个元素都会打开或关闭特定的车灯，如此表中所示。值为 1 则灯亮；值为 0 则关闭灯</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="41%"/>
+<col class="tcol2" width="59%"/>
+</colgroup>
+<thead><tr><th>向量元素</th>
+<th>车灯</th>
+</tr>
+</thead>
+<tbody><tr><td><p>(1,1)</p>
+</td>
+<td><p>头灯远光灯</p>
+</td>
+</tr>
+<tr><td><p>(1,2)</p>
+</td>
+<td><p>头灯近光灯</p>
+</td>
+</tr>
+<tr><td><p>(1,3)</p>
+</td>
+<td><p>刹车</p>
+</td>
+</tr>
+<tr><td><p>(1,4)</p>
+</td>
+<td><p>倒车</p>
+</td>
+</tr>
+<tr><td><p>(1,5)</p>
+</td>
+<td><p>左转信号</p>
+</td>
+</tr>
+<tr><td><p>(1,6)</p>
+</td>
+<td><p>右转信号</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<h4 class="descriptionsect">依赖</h4>
+<p>要创建此端口，请在灯光控制（<strong class="guilabel">Light Controls）</strong>选项卡上选择启用灯光控制（<strong class="guilabel">Enable light controls）</strong>。</p>
+<p class="datatypelist"><strong>数据类型: </strong><code>Boolean</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h3 id="mw_f8361cd9-232e-4cfa-a3b0-47e550030236">输出</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_f8361cd9-232e-4cfa-a3b0-47e550030236_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" data-target="#expand_panel_body_mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" aria-controls="expand_panel_body_mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_3bb123c0-daf4-4d03-a787-1a671806dbd4"><code class="name">Location</code> — 车辆位置<br/><span class="add_font_color_general remove_bold"><span class="example_desc">1×3 的实值向量</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" aria-labelledby="expand_panel_heading_mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" class="panel-collapse collapse"><div class="panel-body">
+            <p>(<span class="emphasis"><em>X</em></span>, <span class="emphasis"><em>Y</em></span>, <span class="emphasis"><em>Z</em></span>) location of the
+              vehicle in the scene, returned as a real-valued 1-by-3 vector. This location is based
+              on the vehicle origin, which is on the ground, at the geometric center of the vehicle.
+                <strong class="guilabel">Location</strong> values are in the inertial <span class="emphasis"><em>Z</em></span>-up
+              world coordinate system. Units are in meters.</p>
+            
+              <h4 class="descriptionsect">依赖</h4>
+              <p>To enable this port, on the <strong class="guilabel">Ground Truth</strong> tab, select
+                  <strong class="guilabel">Output location (m) and orientation (rad)</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" data-target="#expand_panel_body_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" aria-controls="expand_panel_body_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_7a4c058e-cdda-4217-88e4-7fab7d375b18"><code class="name">Orientation</code> — 车辆的朝向<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">real-valued 1-by-3 vector</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" aria-labelledby="expand_panel_heading_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" class="panel-collapse collapse"><div class="panel-body">
+            <p>Yaw, pitch, and roll orientation angles of the vehicle about the
+                <span class="emphasis"><em>Z</em></span>-axis, <span class="emphasis"><em>Y</em></span>-axis, and
+              <span class="emphasis"><em>X</em></span>-axes of the scene, respectively, returned as a real-valued
+              1-by-3 vector. This orientation is based on the vehicle origin, which is on the
+              ground, at the geometric center of the vehicle. <strong class="guilabel">Orientation</strong>
+              values are in the inertial <span class="emphasis"><em>Z</em></span>-up coordinate system. Units are in
+              radians.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this port, on the <strong class="guilabel">Ground Truth</strong> tab, select
+                  <strong class="guilabel">Output location (m) and orientation (rad)</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_47534357-734f-4b28-a310-9ada77ec91fe">参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_47534357-734f-4b28-a310-9ada77ec91fe_panel-group" role="tablist" aria-multiselectable="true"><div id="mw_1688c2cf-532a-4fe2-ad3b-b3d35bffabca_div" class="refsect2"><h3 id="mw_1688c2cf-532a-4fe2-ad3b-b3d35bffabca">车辆参数</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c7d711f5-5f14-4853-9907-8abf77c4334c" data-target="#expand_panel_body_mw_c7d711f5-5f14-4853-9907-8abf77c4334c" aria-controls="expand_panel_body_mw_c7d711f5-5f14-4853-9907-8abf77c4334c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Type" class="anchor_target"></span><span id="Type_" class="anchor_target"></span><h3 class="panel-title" id="mw_c7d711f5-5f14-4853-9907-8abf77c4334c"><code class="name">Type</code> — 车辆类型<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Muscle car</code> (默认) | <code class="guidropdown">Sedan</code> | <code class="guidropdown">Sport utility vehicle</code> | <code class="guidropdown">Small pickup truck</code> | <code class="guidropdown">Hatchback</code> | <code class="guidropdown">Box truck</code> | <code class="guidropdown">Custom</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c7d711f5-5f14-4853-9907-8abf77c4334c" aria-labelledby="expand_panel_heading_mw_c7d711f5-5f14-4853-9907-8abf77c4334c" class="panel-collapse collapse"><div class="panel-body"><p>选择车辆类型。要获取每种车辆类型的尺寸，请参阅以下参考页：</p>
+<div class="itemizedlist"><ul><li><p><code class="guidropdown">肌肉车</code> — <strong class="tool"><a href="musclecar.html">Muscle Car</a></strong></p></li>
+<li><p><code class="guidropdown">轿车</code> — <strong class="tool"><a href="sedan.html">Sedan</a></strong></p></li>
+<li><p><code class="guidropdown">越野车</code> — <strong class="tool"><a href="sportutilityvehicle.html">Sport Utility Vehicle</a></strong></p></li>
+<li><p><code class="guidropdown">小型皮卡车</code> — <strong class="tool"><a href="smallpickuptruck.html">Small Pickup Truck</a></strong></p></li>
+<li><p><code class="guidropdown">掀背车</code> — <strong class="tool"><a href="hatchback.html">Hatchback</a></strong></p></li>
+<li><p><code class="guidropdown">箱式卡车</code> —<strong class="tool"><a href="boxtruck.html">Box Truck</a></strong>
+                    </p></li>
+</ul>
+</div>
+        
+    <h4 class="descriptionsect">依赖</h4>
+    <p>选择 <code class="guidropdown">Custom</code> 启用参数，允许为车辆导入自定义网格。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" data-target="#expand_panel_body_mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" aria-controls="expand_panel_body_mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Pathtocustommesh" class="anchor_target"></span><span id="Path_to_custom_mesh" class="anchor_target"></span><h3 class="panel-title" id="mw_c892bcf5-42c7-495d-a983-a165d4dd79e6"><code class="name">Path to custom mesh</code> — 自定义网格的路径<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">/MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar</code> (默认) | 有效路径</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" aria-labelledby="expand_panel_heading_mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" class="panel-collapse collapse"><div class="panel-body">
+            <p>自定义网格的路径。</p>
+            <p>要创建自定义车辆网格体，请参阅 <a href="../ug/prepare-custom-vehicle-mesh-for-the-unreal-editor.html" class="a">为虚幻编辑器准备自定义车辆网格体</a>。</p>
+            <p class="description_valueexample"><strong>示例: </strong><code class="literal">/MathWorksSimulation/Vehicles/Muscle/Meshes/SK_Sedan.SK_Sedan</code></p>
+            
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请将类型（<strong class="guilabel">Type）</strong>设置为 <code class="guidropdown">Custom</code>。</p>
+            
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_428a6193-0922-4555-bcca-256d69248b6a" data-target="#expand_panel_body_mw_428a6193-0922-4555-bcca-256d69248b6a" aria-controls="expand_panel_body_mw_428a6193-0922-4555-bcca-256d69248b6a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Trackwidthincustommeshm" class="anchor_target"></span><span id="Track_width_in_custom_mesh_" class="anchor_target"></span><h3 class="panel-title" id="mw_428a6193-0922-4555-bcca-256d69248b6a"><code class="name">自定义网格中的轮距(米)</code> — 轮距<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1.9</code> (默认) | 标量</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_428a6193-0922-4555-bcca-256d69248b6a" aria-labelledby="expand_panel_heading_mw_428a6193-0922-4555-bcca-256d69248b6a" class="panel-collapse collapse"><div class="panel-body">
+            <p>自定义网格中的轮距，以米为单位。</p>
+            
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请将类型（<strong class="guilabel">Type）</strong>设置为 <code class="guidropdown">Custom</code>。</p>
+            
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6ceb1d99-db64-4fb6-9eca-58553f20c582" data-target="#expand_panel_body_mw_6ceb1d99-db64-4fb6-9eca-58553f20c582" aria-controls="expand_panel_body_mw_6ceb1d99-db64-4fb6-9eca-58553f20c582" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Wheelbaseincustommeshm" class="anchor_target"></span><span id="Wheel_base_in_custom_mesh_" class="anchor_target"></span><h3 class="panel-title" id="mw_6ceb1d99-db64-4fb6-9eca-58553f20c582"><code class="name">自定义网格中的轴距(米)</code> — 轴距<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">3</code> (默认) | 标量</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_6ceb1d99-db64-4fb6-9eca-58553f20c582" aria-labelledby="expand_panel_heading_mw_6ceb1d99-db64-4fb6-9eca-58553f20c582" class="panel-collapse collapse"><div class="panel-body">
+            <p>自定义网格中的轴距，以米为单位。</p>
+            
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请将类型（<strong class="guilabel">Type</strong><span class="guilabel">）</span>设置为 <code class="guidropdown">Custom</code>。</p>
+            
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" data-target="#expand_panel_body_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" aria-controls="expand_panel_body_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Wheelradiusincustommeshm" class="anchor_target"></span><span id="Wheel_radius_in_custom_mesh_" class="anchor_target"></span><h3 class="panel-title" id="mw_1597bbc7-f541-4b53-8843-d2205a040b2c"><code class="name">Wheel radius in custom mesh (m)</code> — Wheel radius<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.35</code> (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" aria-labelledby="expand_panel_heading_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" class="panel-collapse collapse"><div class="panel-body">
+            <p>Wheel radius in custom mesh, in m.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, set <strong class="guilabel">Type</strong> to
+                  <code class="guidropdown">Custom</code>.</p>
+            
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" data-target="#expand_panel_body_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-controls="expand_panel_body_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Color" class="anchor_target"></span><span id="Color_" class="anchor_target"></span><h3 class="panel-title" id="mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c"><code class="name">Color</code> — Color of vehicle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Red</code> (default) | <code class="guidropdown">Orange</code> | <code class="guidropdown">Yellow</code> | <code class="guidropdown">Green</code> | <code class="guidropdown">Blue</code> | <code class="guidropdown">Black</code> | <code class="guidropdown">White</code> | <code class="guidropdown">Silver</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-labelledby="expand_panel_heading_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-collapse collapse"><div class="panel-body"><p>Select the color of the vehicle.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" data-target="#expand_panel_body_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" aria-controls="expand_panel_body_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialpositionXYZm" class="anchor_target"></span><span id="Initial_position__X__Y__Z___m__" class="anchor_target"></span><h3 class="panel-title" id="mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674"><code class="name">Initial position [X, Y, Z] (m)</code> — Initial vehicle position<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0, 0, 0]</code> (default) | real-valued 1-by-3 vector</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" aria-labelledby="expand_panel_heading_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" class="panel-collapse collapse"><div class="panel-body">
+            <p>Initial vehicle position along the <span class="emphasis"><em>X</em></span>-axis,
+                <span class="emphasis"><em>Y</em></span>-axis, and <span class="emphasis"><em>Z</em></span>-axis of the scene. This
+              position is in the inertial <span class="emphasis"><em>Z</em></span>-up coordinate system. Units are in
+              meters.</p>
+            <p>Set the <span class="emphasis"><em>X</em></span> and <span class="emphasis"><em>Y</em></span> values of this parameter
+              to match the <strong class="guilabel">X</strong> and <strong class="guilabel">Y</strong> input port values at
+              the start of simulation.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" data-target="#expand_panel_body_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" aria-controls="expand_panel_body_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialrotationRollPitchYawdeg" class="anchor_target"></span><span id="Initial_rotation__Roll__Pitch__Yaw___deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_a6e241db-759b-4e59-9c38-bc65a59f9048"><code class="name">Initial rotation [Roll, Pitch, Yaw] (deg)</code> — Initial angle of vehicle rotation<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0, 0, 0]</code> (default) | real-valued 1-by-3 vector</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" aria-labelledby="expand_panel_heading_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" class="panel-collapse collapse"><div class="panel-body">
+            <p>Initial angle of vehicle rotation. The angle of rotation is defined by the roll,
+              pitch, and yaw of the vehicle. Units are in degrees.</p>
+            <p>Set the yaw value of this parameter to match the <strong class="guilabel">Yaw</strong> input
+              port value at the start of simulation.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" data-target="#expand_panel_body_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" aria-controls="expand_panel_body_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Name" class="anchor_target"></span><span id="Name_" class="anchor_target"></span><h3 class="panel-title" id="mw_e2a9da7e-539b-4199-9f01-741a7930bf2e"><code class="name">Name</code> — Name of vehicle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">SimulinkVehicle1</code> (default) | vehicle name</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" aria-labelledby="expand_panel_heading_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" class="panel-collapse collapse"><div class="panel-body">
+            <p>Name of vehicle. By default, when you use the block in your model, the block sets
+              the <strong class="guilabel">Name</strong> parameter to
+                  <code class="literal">SimulinkVehicle<em class="replaceable"><code>X</code></em></code>. The value of
+                  <code class="literal"><em class="replaceable"><code>X</code></em></code> depends on the number of
+                <span class="block">Simulation 3D Vehicle with Ground Following</span> blocks that you have in
+              your model.</p>
+            <p>The vehicle name appears as a selection in the <strong class="guilabel">Parent name</strong>
+              parameter of any Automated Driving Toolbox™ Simulation 3D sensor blocks within the same model as the vehicle. With
+              the <strong class="guilabel">Parent name</strong> parameter, you can select the vehicle on which to
+              mount the sensor.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" data-target="#expand_panel_body_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" aria-controls="expand_panel_body_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sampletime" class="anchor_target"></span><span id="Sample_time_" class="anchor_target"></span><h3 class="panel-title" id="mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39"><code class="name">Sample time</code> — Sample time<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal remove_text_wrapping">-1</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" aria-labelledby="expand_panel_heading_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" class="panel-collapse collapse"><div class="panel-body">
+            <p>Sample time, <em class="varname">T<sub>s</sub></em>, in seconds. The
+              graphics frame rate is the inverse of the sample time.</p>
+            <p>If you set the sample time to <code class="literal remove_text_wrapping">-1</code>, the block uses the sample
+              time specified in the <span class="block">Simulation 3D Scene Configuration</span> block.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_1584aaf2-47ad-42eb-97fc-0022c233f585_div" class="refsect2"><h3 id="mw_1584aaf2-47ad-42eb-97fc-0022c233f585">Light Controls</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" data-target="#expand_panel_body_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" aria-controls="expand_panel_body_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Enablelightcontrols" class="anchor_target"></span><span id="Enable_light_controls_" class="anchor_target"></span><h3 class="panel-title" id="mw_be39dd38-07a7-4c13-97ac-95014c66d5d5"><code class="name">Enable light controls</code> — Control vehicle lights<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" aria-labelledby="expand_panel_heading_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" class="panel-collapse collapse"><div class="panel-body">
+            <p>Select whether to control the vehicle headlights. Use the enabled parameters to
+              set the light parameters, including headlight intensity.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>Selecting this parameter:</p>
+<div class="itemizedlist"><ul><li><p>Creates the input port <code class="literal">Light controls</code></p></li>
+<li><p>Enables these light parameters.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="36%"/>
+<col class="tcol2" width="64%"/>
+</colgroup>
+<thead><tr><th>Lights</th>
+<th>Light Parameters</th>
+</tr>
+</thead>
+<tbody><tr><td><strong class="guilabel">Headlights</strong></td>
+<td><p>
+                                  </p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Headlight color</strong></p></li>
+<li><p><strong class="guilabel">High beam intensity</strong></p></li>
+<li><p><strong class="guilabel">Low beam intensity</strong></p></li>
+<li><p><strong class="guilabel">High beam cone half angle</strong></p></li>
+<li><p><strong class="guilabel">Low beam cone half angle</strong></p></li>
+<li><p><strong class="guilabel">Left headlight beam
+                                        orientation</strong></p></li>
+<li><p><strong class="guilabel">Right headlight beam
+                                        orientation</strong></p></li>
+</ul>
+</div>
+<p>
+
+                                </p>
+</td>
+</tr>
+<tr><td><strong class="guilabel">Brake lights</strong></td>
+<td><p><strong class="guilabel">Brake light intensity</strong></p>
+</td>
+</tr>
+<tr><td><strong class="guilabel">Reverse lights</strong></td>
+<td><p><strong class="guilabel">Reverse light
+                                intensity</strong></p>
+</td>
+</tr>
+<tr><td><strong class="guilabel">Turn signal lights</strong></td>
+<td><p>
+                                  </p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Turn signal light intensity</strong></p></li>
+<li><p><strong class="guilabel">Period</strong></p></li>
+<li><p><strong class="guilabel">Pulse width</strong></p></li>
+</ul>
+</div>
+<p>
+
+                                </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p></li>
+</ul>
+</div>
+<p>
+</p>
+            
+          </div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_4d634566-c800-49d8-a55d-393f0b181db6">Headlights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_2475de44-3d61-4674-97c3-533c559f87ae" data-target="#expand_panel_body_mw_2475de44-3d61-4674-97c3-533c559f87ae" aria-controls="expand_panel_body_mw_2475de44-3d61-4674-97c3-533c559f87ae" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_HeadlightcolorRGB" class="anchor_target"></span><span id="Headlight_color__R_G_B__" class="anchor_target"></span><h3 class="panel-title" id="mw_2475de44-3d61-4674-97c3-533c559f87ae"><code class="name">Headlight color [R,G,B]</code> — Headlight color<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[1,1,1]</code> (default) | 1-by-3 array of RGB triplet values</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_2475de44-3d61-4674-97c3-533c559f87ae" aria-labelledby="expand_panel_heading_mw_2475de44-3d61-4674-97c3-533c559f87ae" class="panel-collapse collapse"><div class="panel-body">
+            <p>Headlight color, specified as a normalized 1-by-3 array of RGB triplet
+              values.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>int8</code> | <code>uint8</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e4925973-8648-44f8-a002-ec51451e42e1" data-target="#expand_panel_body_mw_e4925973-8648-44f8-a002-ec51451e42e1" aria-controls="expand_panel_body_mw_e4925973-8648-44f8-a002-ec51451e42e1" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Highbeamintensitycd" class="anchor_target"></span><span id="High_beam_intensity__cd__" class="anchor_target"></span><h3 class="panel-title" id="mw_e4925973-8648-44f8-a002-ec51451e42e1"><code class="name">High beam intensity (cd)</code> — High beam intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">100000</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e4925973-8648-44f8-a002-ec51451e42e1" aria-labelledby="expand_panel_heading_mw_e4925973-8648-44f8-a002-ec51451e42e1" class="panel-collapse collapse"><div class="panel-body">
+            <p>High beam intensity, in cd.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" data-target="#expand_panel_body_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" aria-controls="expand_panel_body_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Lowbeamintensitycd" class="anchor_target"></span><span id="Low_beam_intensity__cd__" class="anchor_target"></span><h3 class="panel-title" id="mw_54bad9b2-8be6-439a-adcc-c012ff0347cf"><code class="name">Low beam intensity (cd)</code> — Low beam intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">60000</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" aria-labelledby="expand_panel_heading_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" class="panel-collapse collapse"><div class="panel-body">
+            <p>Low beam intensity, in cd.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" data-target="#expand_panel_body_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" aria-controls="expand_panel_body_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Highbeamconehalfangledeg" class="anchor_target"></span><span id="High_beam_cone_half_angle__deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee"><code class="name">High beam cone half angle (deg)</code> — High beam cone half angle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">70</code> (default) | positive scalar less than or equal to 90</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" aria-labelledby="expand_panel_heading_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" class="panel-collapse collapse"><div class="panel-body">
+            <p>High beam cone half angle, in deg.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" data-target="#expand_panel_body_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" aria-controls="expand_panel_body_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Lowbeamconehalfangledeg" class="anchor_target"></span><span id="Low_beam_cone_half_angle__deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7"><code class="name">Low beam cone half angle (deg)</code> — Low beam cone half angle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">70</code> (default) | positive scalar less than or equal to 90</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" aria-labelledby="expand_panel_heading_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" class="panel-collapse collapse"><div class="panel-body">
+            <p>Low beam cone half angle, in deg.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" data-target="#expand_panel_body_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" aria-controls="expand_panel_body_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_LeftheadlightbeamorientationPitchYawdeg" class="anchor_target"></span><span id="Left_headlight_beam_orientation__Pitch__Yaw___deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_d3a17a76-dd26-489e-93ee-7c9c03a09729"><code class="name">Left headlight beam orientation [Pitch, Yaw] (deg)</code> — Left headlight beam orientation [Pitch, Yaw] (deg)<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0,0]</code> (default) | 1-by-2 array with values between -180 and 180</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" aria-labelledby="expand_panel_heading_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" class="panel-collapse collapse"><div class="panel-body">
+            <p>Pitch and yaw orientation of the left headlight beam orientation in the
+                <span class="emphasis"><em>Z</em></span>-up coordinate system, specified as a 1-by-2 array, in deg.
+              The first element of the array, <code class="literal">[1,1]</code>, is the pitch angle. The
+              second element of the array, <code class="literal">[1,2]</code> is the yaw angle.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" data-target="#expand_panel_body_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" aria-controls="expand_panel_body_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_RightheadlightbeamorientationPitchYawdeg" class="anchor_target"></span><span id="Right_headlight_beam_orientation__Pitch__Yaw___deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7"><code class="name">Right headlight beam orientation [Pitch, Yaw] (deg)</code> — Right headlight beam orientation<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0,0]</code> (default) | 1-by-2 array with values between -180 and 180</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" aria-labelledby="expand_panel_heading_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" class="panel-collapse collapse"><div class="panel-body">
+            <p>Pitch and yaw orientation of the right headlight beam orientation in the
+                <span class="emphasis"><em>Z</em></span>-up coordinate system, specified as a 1-by-2 array, in deg.
+              The first element of the array, <code class="literal">[1,1]</code>, is the pitch angle. The
+              second element of the array, <code class="literal">[1,2]</code> is the yaw angle.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          </div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_3d8feaf6-bbbb-42da-b660-5a38966a0e31">Brake Lights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" data-target="#expand_panel_body_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" aria-controls="expand_panel_body_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Brakelightintensitycdm2" class="anchor_target"></span><span id="Brake_light_intensity__cd_m_2__" class="anchor_target"></span><h3 class="panel-title" id="mw_b172bb3a-4797-43b5-b144-fbf0e730451f"><code class="name">Brake light intensity (cd/m^2)</code> — Intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" aria-labelledby="expand_panel_heading_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" class="panel-collapse collapse"><div class="panel-body">
+            <p>Brake light intensity, in cd/m^2.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_393a162f-15c0-43b6-ae0f-49f2e5d15f0d">Reverse Lights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" data-target="#expand_panel_body_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" aria-controls="expand_panel_body_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Reverselightintensitycdm2" class="anchor_target"></span><span id="Reverse_light_intensity__cd_m_2__" class="anchor_target"></span><h3 class="panel-title" id="mw_c29fd866-9dea-476a-923c-9ffc68dd8a19"><code class="name">Reverse light intensity (cd/m^2)</code> — Intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" aria-labelledby="expand_panel_heading_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" class="panel-collapse collapse"><div class="panel-body">
+            <p>Reverse light intensity, in cd/m^2.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_8dc35f56-6e63-46c7-9a34-d71cec95106b">Turn Signal Lights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" data-target="#expand_panel_body_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" aria-controls="expand_panel_body_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Turnsignallightintensitycdm2" class="anchor_target"></span><span id="Turn_signal_light_intensity__cd_m_2__" class="anchor_target"></span><h3 class="panel-title" id="mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a"><code class="name">Turn signal light intensity (cd/m^2)</code> — Intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" aria-labelledby="expand_panel_heading_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" class="panel-collapse collapse"><div class="panel-body">
+            <p>Turn signal light intensity, in cd/m^2.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_385935a1-da43-4976-a25f-281b51e49f05" data-target="#expand_panel_body_mw_385935a1-da43-4976-a25f-281b51e49f05" aria-controls="expand_panel_body_mw_385935a1-da43-4976-a25f-281b51e49f05" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Periods" class="anchor_target"></span><span id="Period__s__" class="anchor_target"></span><h3 class="panel-title" id="mw_385935a1-da43-4976-a25f-281b51e49f05"><code class="name">Period (s)</code> — Turn signal light period<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_385935a1-da43-4976-a25f-281b51e49f05" aria-labelledby="expand_panel_heading_mw_385935a1-da43-4976-a25f-281b51e49f05" class="panel-collapse collapse"><div class="panel-body">
+            <p>Turn signal light period, in s.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" data-target="#expand_panel_body_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" aria-controls="expand_panel_body_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Pulsewidthofperiod" class="anchor_target"></span><span id="Pulse_width____of_period__" class="anchor_target"></span><h3 class="panel-title" id="mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12"><code class="name">Pulse width (% of period)</code> — Pulse width<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">50</code> (default) | positive scalar less than 100</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" aria-labelledby="expand_panel_heading_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" class="panel-collapse collapse"><div class="panel-body">
+            <p>Turn signal light pulse width, as a percent of the period.</p>
+            
+              <h4 class="descriptionsect">Dependencies</h4>
+              <p>To enable this parameter, select <strong class="guilabel">Enable light
+                controls</strong>.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_0e058486-dade-4764-a0da-9ea7f1d4bbf1_div" class="refsect2"><h3 id="mw_0e058486-dade-4764-a0da-9ea7f1d4bbf1">Ground Truth</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" data-target="#expand_panel_body_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" aria-controls="expand_panel_body_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Outputlocationmandorientationrad" class="anchor_target"></span><span id="Output_location__m__and_orientation__rad_" class="anchor_target"></span><h3 class="panel-title" id="mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef"><code class="name">Output location (m) and orientation (rad)</code> — Output location and orientation of vehicle<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" aria-labelledby="expand_panel_heading_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" class="panel-collapse collapse"><div class="panel-body">
+            <p>Select this parameter to output the location and orientation of the vehicle at the
+                <strong class="guilabel">Location</strong> and <strong class="guilabel">Orientation</strong> ports,
+              respectively.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="examples">Model Examples</h2>
+<section class="example_short_list"><div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../ug/simulate-a-simple-driving-scenario-and-sensor-in-3d-environment.html"><div class="card_media" style="background-image:url(../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_05.png);"><img alt="Simulate Simple Driving Scenario and Sensor in Unreal Engine Environment" src="../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_05.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Simulate Simple Driving Scenario and Sensor in Unreal Engine Environment</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Learn the basics of configuring and simulating scenes, vehicles, and sensors in a
+                virtual environment rendered using the Unreal Engine from Epic Games.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:openExample('driving/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample')">Open Live Script</a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../ug/select-waypoints-for-3d-simulation.html"><div class="card_media" style="background-image:url(../../examples/shared_vision_driving/win64/SelectWaypointsFor3DSimulationExample_04.png);"><img alt="Select Waypoints for Unreal Engine Simulation" src="../../examples/shared_vision_driving/win64/SelectWaypointsFor3DSimulationExample_04.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Select Waypoints for Unreal Engine Simulation</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Select waypoints from a scene and visualize the path of a vehicle following these
+          waypoints in the Unreal Engine simulation environment.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:openExample('shared_vision_driving/SelectWaypointsFor3DSimulationExample')">Open Live Script</a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../ug/visualize-3d-simulation-sensor-coverages-and-detections.html"><div class="card_media" style="background-image:url(../../examples/driving/win64/Visualize3DSimulationSensorsBirdsEyeScope.png);"><img alt="Visualize Sensor Data from Unreal Engine Simulation Environment" src="../../examples/driving/win64/Visualize3DSimulationSensorsBirdsEyeScope.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Visualize Sensor Data from Unreal Engine Simulation Environment</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Visualize sensor coverage areas and detections obtained from high-fidelity radar
+                and lidar sensors in the Unreal Engine simulation environment.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:openExample('driving/Visualize3DSimulationSensorCoveragesAndDetectionsExample')">Open Script</a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../ug/visualize-automated-parking-valet-using-3d-simulation.html"><div class="card_media" style="background-image:url(../../examples/shared_vision_driving/win64/parkingWithUnreal.PNG);"><img alt="Visualize Automated Parking Valet Using Unreal Engine Simulation" src="../../examples/shared_vision_driving/win64/parkingWithUnreal.PNG"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Visualize Automated Parking Valet Using Unreal Engine Simulation</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Visualize vehicle motion in Unreal Engine using a parking valet system constructed in Simulink<sup>®</sup>.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:openExample('shared_vision_driving/VisualizeAutomatedParkingValetUsing3DSimulationExample')">Open Live Script</a></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="clearfix"></div>
+<div class="moreabout ref_sect"><h2 id="mw_814b0d0b-3a0c-48f6-b58a-f6a815ef607f">More About</h2>
+<div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink">expand all</a></p>
+<div class="expand_collapse"><h3 class="expand_trigger collapsed" id="mw_7372a6f4-c778-439a-950d-447365156279" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_mw_7372a6f4-c778-439a-950d-447365156279" aria-controls="expand_body_mw_7372a6f4-c778-439a-950d-447365156279"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>Import Custom Meshes</h3>
+<div id="expand_body_mw_7372a6f4-c778-439a-950d-447365156279" class="collapsible_content collapse" aria-expanded="false"><p>To import custom meshes for defining custom vehicles, follow these steps:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Install the <span class="entity">Automated Driving Toolbox Interface for Unreal Engine 4 Projects</span> support package. See <a href="../ug/install-and-configure-support-package-for-customizing-scenes.html" class="a">Install Support Package for Customizing Scenes</a>.</p></li>
+<li><p>On the block <strong class="guilabel">Parameters</strong> tab, set <strong class="guilabel">Type</strong> to
+                <code class="guidropdown">Custom</code>.</p></li>
+<li><p>In the <strong class="guilabel">Path to custom mesh</strong> field, enter the path to the
+              vehicle mesh in the Unreal Engine project. For example, enter
+                <code class="literal">/MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar</code>.</p><p>To create a custom vehicle mesh, see <a href="../ug/prepare-custom-vehicle-mesh-for-the-unreal-editor.html" class="a">Prepare Custom Vehicle Mesh for the Unreal Editor</a>.</p></li>
+<li><p>Use the vehicle dimensions in the custom mesh to enter the dimensions in the
+              corresponding block parameter fields.</p></li>
+</ol>
+</div>
+<p>
+</p>
+</div>
+</div>
+<div class="expand_collapse"><h3 class="expand_trigger collapsed" id="mw_f5b592d1-caf4-45d8-892a-8724c0c96469" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_mw_f5b592d1-caf4-45d8-892a-8724c0c96469" aria-controls="expand_body_mw_f5b592d1-caf4-45d8-892a-8724c0c96469"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>Control Vehicle Lights</h3>
+<div id="expand_body_mw_f5b592d1-caf4-45d8-892a-8724c0c96469" class="collapsible_content collapse" aria-expanded="false"><p>To control the lights of vehicles in a scene, follow these steps:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Install the <span class="entity">Automated Driving Toolbox Interface for Unreal Engine 4 Projects</span> support package. See <a href="../ug/install-and-configure-support-package-for-customizing-scenes.html" class="a">Install Support Package for Customizing Scenes</a>.</p></li>
+<li><p>On the block <strong class="guilabel">Light Controls</strong> tab, select <strong class="guilabel">Enable
+                light controls</strong>.</p></li>
+<li><p>Use the enabled parameters to specify the vehicle light for:</p>
+<div class="itemizedlist"><ul><li><p>Headlights</p></li>
+<li><p>Brake lights</p></li>
+<li><p>Reverse lights</p></li>
+<li><p>Turn signal lights</p></li>
+</ul>
+</div><p>
+</p></li>
+<li><p>Connect Boolean light control signals to the <code class="literal">Signal lights</code>
+              input port.</p></li>
+</ol>
+</div>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bibliography"><h2 id="References">References</h2>
+<div id="mw_54c42baf-8911-42be-854f-dba0f8a6cc0e" class="bibliomixed"><p>[1] Vehicle Dynamics Standards
+      Committee. <em class="citetitle">Vehicle Dynamics Terminology</em>. SAE J670. Warrendale, PA:
+      Society of Automotive Engineers, 2008.</p>
+</div>
+<div id="mw_1a0ec313-b630-4169-96a5-014bfb518191" class="bibliomixed"><p>[2] Technical Committee.
+        <em class="citetitle">Road vehicles — Vehicle dynamics and road-holding ability —
+        Vocabulary</em>. ISO 8855:2011. Geneva, Switzerland: International Organization for
+      Standardization, 2011.</p>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_32cd8e72-2d69-4c3e-98b0-5b918db383a4_vh">Version History</h2>
+<p><strong>Introduced in R2019b</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_32cd8e72-2d69-4c3e-98b0-5b918db383a4_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dprobabilisticradar.html"><span itemprop="name"><span class="block">Simulation 3D Probabilistic Radar</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dvisiondetectiongenerator.html"><span itemprop="name"><span class="block">Simulation 3D Vision Detection Generator</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dlidar.html"><span itemprop="name"><span class="block">Simulation 3D Lidar</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dfisheyecamera.html"><span itemprop="name"><span class="block">Simulation 3D Fisheye Camera</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dcamera.html"><span itemprop="name"><span class="block">Simulation 3D Camera</span></span></a></span></p>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/how-3d-simulation-for-automated-driving-works.html" class="a">How Unreal Engine Simulation for Automated Driving Works</a></li>
+<li><a href="../ug/coordinate-systems-for-3d-simulation-in-automated-driving-toolbox.html" class="a">Coordinate Systems for Unreal Engine Simulation in Automated Driving Toolbox</a></li>
+<li><a href="../ug/perception-based-parking-spot-detection-using-unreal-engine-simulation.html" class="a">Perception-Based Parking Spot Detection Using Unreal Engine Simulation</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

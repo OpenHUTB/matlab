@@ -45,7 +45,8 @@ catch exc
 end
 
 % 清除工作区
-clear
+% clear
+dbclear if error
 
 % Defer echo until startup is complete
 try

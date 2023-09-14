@@ -410,40 +410,29 @@ This
 </div>
 </div>
 </div>
-<strong class="mw-doc-parametersgrp" id="mw_b93b9b4e-0e8b-4421-a78b-0a1a6e775153">Scene Parameters</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7d3907b1-e7d6-4e02-86dc-78711936bf64" data-target="#expand_panel_body_mw_7d3907b1-e7d6-4e02-86dc-78711936bf64" aria-controls="expand_panel_body_mw_7d3907b1-e7d6-4e02-86dc-78711936bf64" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sceneview" class="anchor_target"></span><span id="Scene_view_" class="anchor_target"></span><h3 class="panel-title" id="mw_7d3907b1-e7d6-4e02-86dc-78711936bf64"><code class="name">Scene view</code> — Configure placement of virtual camera that displays scene<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">Scene Origin</code> | vehicle name</span></span></h3>
+<strong class="mw-doc-parametersgrp" id="mw_b93b9b4e-0e8b-4421-a78b-0a1a6e775153">静态场景参数</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7d3907b1-e7d6-4e02-86dc-78711936bf64" data-target="#expand_panel_body_mw_7d3907b1-e7d6-4e02-86dc-78711936bf64" aria-controls="expand_panel_body_mw_7d3907b1-e7d6-4e02-86dc-78711936bf64" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sceneview" class="anchor_target"></span><span id="Scene_view_" class="anchor_target"></span><h3 class="panel-title" id="mw_7d3907b1-e7d6-4e02-86dc-78711936bf64"><code class="name">Scene view</code> — 配置显示场景的虚拟摄像机位置<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">Scene Origin</code> | 车辆名称</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_7d3907b1-e7d6-4e02-86dc-78711936bf64" aria-labelledby="expand_panel_heading_mw_7d3907b1-e7d6-4e02-86dc-78711936bf64" class="panel-collapse collapse"><div class="panel-body">
-            <p>Configure the placement of the virtual camera that displays the scene during simulation.</p>
-<div class="itemizedlist"><ul><li><p>If your model contains no <a href="simulation3dvehiclewithgroundfollowing.html"><span class="block">Simulation 3D Vehicle with Ground Following</span></a>
-                    blocks, then during simulation, you view the scene from a camera positioned at
-                    the scene origin.</p></li>
-<li><p>If your model contains at least one vehicle block, then by default, you view
-                    the scene from behind the first vehicle that was placed in your model. To change
-                    the view to a different vehicle, set <strong class="guilabel">Scene view</strong> to the name
-                    of that vehicle. The <strong class="guilabel">Scene view</strong> parameter list is populated
-                    with all the <strong class="guilabel">Name</strong> parameter values of the vehicle blocks
-                    contained in your model.</p></li>
+            <p>配置仿真期间显示场景的虚拟相机位置。</p>
+<div class="itemizedlist"><ul><li><p>如果模型不包含 <a href="simulation3dvehiclewithgroundfollowing.html"><span class="block">Simulation 3D Vehicle with Ground Following</span></a>
+                    模块，则在仿真过程中，可以从位于场景原点的摄像机查看场景。</p></li>
+<li><p>如果模型至少包含一个车辆模块，则默认情况下，会从模型中放置的第一辆车后面查看场景。要将视图更改为其他车辆，请将场景视图(<b>Scene View</b>)设置为该车辆的名称。场景视图(<b>Scene View)</b>参数列表中填充了模型中包含的车辆块的所有 <b>Name </b>参数值。</p></li>
 </ul>
 </div>
-<p>
-If you add a <span class="block">Simulation 3D Scene Configuration</span> block to
-              your model before adding any vehicle blocks, the virtual camera remains positioned at
-              the scene. To reposition the camera to follow a vehicle, update this parameter.</p>
-            <p>When <strong class="guilabel">Scene view</strong> is set to a vehicle name, during simulation,
-              you can change the location of the camera around the vehicle.</p>
-            <p>To smoothly change the camera views, use these key
-        commands.</p>
+<p>如果在添加任何车辆块之前向模型添加“Simulation 3D Scene Configuration”模块，则虚拟摄像机将保持位于场景中。要重新定位摄像机以跟随车辆，请更新此参数。</p>
+            <p>当场景视图(<b>Scene View</b>)设置为车辆名称时，在仿真过程中，可以更改摄像机在车辆周围的位置。</p>
+            <p>要顺利更改摄像机视图，请使用这些键盘命令。</p>
 <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="10%" align="left"/>
 <col class="tcol2" width="16%" align="left"/>
 <col class="tcol3" width="73%" align="left"/>
 </colgroup>
-<thead><tr><th>Key</th>
-<th colspan="2">Camera View</th>
+<thead><tr><th>键</th>
+<th colspan="2">相机视角</th>
 </tr>
 </thead>
 <tbody><tr><td><p>1</p>
 </td>
-<td><p>Back left</p>
+<td><p>左后</p>
 </td>
 <td rowspan="10"><p>
                             </p>
@@ -461,74 +450,74 @@ If you add a <span class="block">Simulation 3D Scene Configuration</span> block 
 </tr>
 <tr><td><p>2</p>
 </td>
-<td><p>Back</p>
+<td><p>后</p>
 </td>
 </tr>
 <tr><td><p>3</p>
 </td>
-<td><p>Back right</p>
+<td><p>右后</p>
 </td>
 </tr>
 <tr><td><p>4</p>
 </td>
-<td><p>Left</p>
+<td><p>左</p>
 </td>
 </tr>
 <tr><td><p>5</p>
 </td>
-<td><p>Internal</p>
+<td><p>内部</p>
 </td>
 </tr>
 <tr><td><p>6</p>
 </td>
-<td><p>Right</p>
+<td><p>右</p>
 </td>
 </tr>
 <tr><td><p>7</p>
 </td>
-<td><p>Front left</p>
+<td><p>左前</p>
 </td>
 </tr>
 <tr><td><p>8</p>
 </td>
-<td><p>Front</p>
+<td><p>正面</p>
 </td>
 </tr>
 <tr><td><p>9</p>
 </td>
-<td><p>Front right</p>
+<td><p>右前</p>
 </td>
 </tr>
 <tr><td><p>0</p>
 </td>
-<td><p>Overhead</p>
+<td><p>头顶</p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>
- For additional camera controls, use these key commands.</p>
+ 对于其他相机控制，请使用这些键盘命令。</p>
 <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="26%" align="left"/>
 <col class="tcol2" width="74%" align="left"/>
 </colgroup>
-<thead><tr><th>Key</th>
-<th>Camera Control</th>
+<thead><tr><th>键</th>
+<th>相机控制</th>
 </tr>
 </thead>
 <tbody><tr><td><strong class="emphasis bold">Tab</strong></td>
-<td><p>Cycle the view between all vehicles in the scene.</p>
-<p><a href="#" onclick="return toggleexpander('d124e29446_block','d124e29446_expandable_text');"><img style="border:0;" id="d124e29446_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e29446_block','d124e29446_expandable_text');">View Animated GIF</a></p>
+<td><p>在场景中的所有车辆之间进行视图循环。</p>
+<p><a href="#" onclick="return toggleexpander('d124e29446_block','d124e29446_expandable_text');"><img style="border:0;" id="d124e29446_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e29446_block','d124e29446_expandable_text');">查看 GIF 动画</a></p>
 <div class="expander" style="display:none; padding-left:4px;" id="d124e29446_block"><div class="informalfigure"><div id="d124e29451" class="mediaobject"><p><img src="tabcamera.gif" alt="Animated gif of cycling views between all vehicles in scene" height="224" width="400"/></p>
 </div>
 </div>
 </div>
 </td>
 </tr>
-<tr><td><p>Mouse scroll wheel</p>
+<tr><td><p>鼠标滚轮</p>
 </td>
-<td><p>Control the camera distance from the vehicle.</p>
-<p><a href="#" onclick="return toggleexpander('d124e29461_block','d124e29461_expandable_text');"><img style="border:0;" id="d124e29461_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e29461_block','d124e29461_expandable_text');">View Animated GIF</a></p>
+<td><p>控制摄像头与车辆的距离。</p>
+<p><a href="#" onclick="return toggleexpander('d124e29461_block','d124e29461_expandable_text');"><img style="border:0;" id="d124e29461_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e29461_block','d124e29461_expandable_text');">查看GIF 动画</a></p>
 <div class="expander" style="display:none; padding-left:4px;" id="d124e29461_block"><div class="informalfigure"><div id="d124e29466" class="mediaobject"><p><img src="scrollcamera.gif" alt="Animated gif of camera distance control" height="224" width="400"/></p>
 </div>
 </div>
@@ -537,18 +526,14 @@ If you add a <span class="block">Simulation 3D Scene Configuration</span> block 
 </tr>
 <tr><td><p><strong class="emphasis bold">L</strong></p>
 </td>
-<td><p>Toggle a camera lag effect on or off. When you enable the lag
-                            effect, the camera view includes:</p>
-<div class="itemizedlist"><ul><li><p>Position lag, based on the vehicle translational
-                                        acceleration</p></li>
-<li><p>Rotation lag, based on the vehicle rotational
-                                        velocity</p></li>
+<td><p>打开或关闭相机滞后效果。启用滞后效果时，摄像机视图包括：</p>
+<div class="itemizedlist"><ul><li><p>基于车辆平移加速度的位置滞后</p></li>
+<li><p>基于车辆旋转速度的旋转滞后</p></li>
 </ul>
 </div>
 <p>
-This lag enables improved visualization of overall
-                            vehicle acceleration and rotation.</p>
-<p><a href="#" onclick="return toggleexpander('d124e29485_block','d124e29485_expandable_text');"><img style="border:0;" id="d124e29485_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e29485_block','d124e29485_expandable_text');">View Animated GIF</a></p>
+这种滞后可以改善整体车辆加速度和旋转的可视化。</p>
+<p><a href="#" onclick="return toggleexpander('d124e29485_block','d124e29485_expandable_text');"><img style="border:0;" id="d124e29485_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e29485_block','d124e29485_expandable_text');">查看 GIF 动画</a></p>
 <div class="expander" style="display:none; padding-left:4px;" id="d124e29485_block"><div class="informalfigure"><div id="d124e29490" class="mediaobject"><p><img src="lageffectcamera.gif" alt="Animated gif of camera lag effect" height="224" width="400"/></p>
 </div>
 </div>
@@ -556,11 +541,8 @@ This lag enables improved visualization of overall
 </td>
 </tr>
 <tr><td><strong class="emphasis bold">F</strong></td>
-<td><p>Toggle the free camera mode on or off. When you enable the free
-                            camera mode, you can use the mouse to change the pitch and yaw of the
-                            camera. This mode enables you to orbit the camera around the
-                            vehicle.</p>
-<p><a href="#" onclick="return toggleexpander('d124e29501_block','d124e29501_expandable_text');"><img style="border:0;" id="d124e29501_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e29501_block','d124e29501_expandable_text');">View Animated GIF</a></p>
+<td><p>打开或关闭相机自由模式。当启用相机自由模式时，可以使用鼠标来更改相机的俯仰和偏航。此模式能够使摄像机围绕车辆旋转。</p>
+<p><a href="#" onclick="return toggleexpander('d124e29501_block','d124e29501_expandable_text');"><img style="border:0;" id="d124e29501_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e29501_block','d124e29501_expandable_text');">查看 GIF 动画</a></p>
 <div class="expander" style="display:none; padding-left:4px;" id="d124e29501_block"><div class="informalfigure"><div id="d124e29506" class="mediaobject"><p><img src="freecamera.gif" alt="Animated gif of free camera mode" height="224" width="400"/></p>
 </div>
 </div>
@@ -1152,6 +1134,8 @@ This lag enables improved visualization of overall
 <div class="clearfix"></div>
 <div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
 <script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
 <div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
 </div>
 <div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>

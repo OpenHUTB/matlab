@@ -93,7 +93,7 @@ classdef World < handle
             if parser.Results.OverrideExecCmds
                 self.ExecCmds = parser.Results.ExecCmds;
             else
-                self.ExecCmds = [ self.ExecCmds, parser.Results.ExecCmds ];
+                self.ExecCmds = [self.ExecCmds, parser.Results.ExecCmds];
             end
 
             if parser.Results.RenderOffScreen
@@ -168,10 +168,10 @@ classdef World < handle
 
         function remove(self, object)
             if nargin == 1
-                self.Root.remove(  );
+                self.Root.remove();
             elseif nargin == 2
                 tag = '';
-                if isa( object, 'sim3d.AbstractActor' )
+                if isa(object, 'sim3d.AbstractActor')
                     tag = object.getTag(  );
                 elseif isa( object, 'char' )
                     tag = object;

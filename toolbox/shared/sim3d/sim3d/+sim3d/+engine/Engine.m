@@ -169,14 +169,14 @@ classdef Engine < handle
 
         function setWarmUpSteps(warmUpSteps)
             arguments
-                warmUpSteps( 1, 1 )uint32
+                warmUpSteps(1, 1)uint32
             end
             setpref( 'Simulation3D', 'warmUpSteps', warmUpSteps );
         end
 
 
         function httpPort = getHttpPort()
-            if ispref( 'Simulation3D', 'httpPort' )
+            if ispref('Simulation3D', 'httpPort')
                 httpPort = getpref( 'Simulation3D', 'httpPort' );
             else
                 httpPort = sim3d.engine.Engine.DefHttp;
@@ -194,7 +194,7 @@ classdef Engine < handle
 
         function streamerPort = getStreamerPort()
             if ispref( 'Simulation3D', 'streamerPort' )
-                streamerPort = getpref( 'Simulation3D', 'streamerPort' );
+                streamerPort = getpref('Simulation3D', 'streamerPort');
             else
                 streamerPort = sim3d.engine.Engine.DefStreamer;
             end

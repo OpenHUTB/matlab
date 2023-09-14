@@ -252,11 +252,11 @@ classdef GamingEngineScenarioViewer<handle
 end
 
 
-function b=isPropChanged(changedProps,props)
+function b = isPropChanged(changedProps,props)
 
-if ischar(changedProps)
-    changedProps={changedProps};
-end
-b=any(cellfun(@(c)any(strcmp(c,props)),changedProps));
+    if ischar(changedProps)
+        changedProps={changedProps};
+    end
+    b = any(cellfun(@(c)any(strcmp(c,props)),changedProps));
 
 end

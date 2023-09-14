@@ -1,12 +1,14 @@
 classdef Map
+
     properties(Constant=true,Access=private,Hidden=true)
         baseUrl='https://ssd.mathworks.com/supportfiles/R2022a/';
-        pakDestPath=fullfile(userpath,'sim3d_project',['R',version('-release')],'WindowsNoEditor/AutoVrtlEnv/Content/Paks/');
+        pakDestPath = fullfile(userpath,'sim3d_project',['R',version('-release')],'WindowsNoEditor/AutoVrtlEnv/Content/Paks/');
         csvFileName='Maps';
         csvFileExtension='.xlsx';
     end
 
-    methods(Static=true,Access=public)
+
+    methods(Static=true, Access=public)
         function download(map)
             pakFile=sim3d.utils.internal.ScenesMapping.getPakFile(map);
             if(~isempty(pakFile))
@@ -200,7 +202,8 @@ classdef Map
 
         function local()
             try
-                csvlocal=readtable(fullfile(sim3d.maps.Map.pakDestPath,[sim3d.maps.Map.csvFileName,sim3d.maps.Map.csvFileExtension]));
+                csvlocal=readtable(fullfile(sim3d.maps.Map.pakDestPath, ...
+                    [sim3d.maps.Map.csvFileName,sim3d.maps.Map.csvFileExtension]));
                 cols=width(csvlocal);
                 for i=1:cols
                     csvlocal.(i)=string(csvlocal.(i));
@@ -216,6 +219,7 @@ classdef Map
                 fprintf("\nNo maps found\n")
             end
         end
+
     end
 end
 
