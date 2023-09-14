@@ -1,8 +1,8 @@
 %% 将修改的文件和原始maltab程序进行合并
-% 将`matlab_2022b_win_run.zip`解压
 
-% deploy('D:\matlab')
-% deploy('D:\ssd\matlab_2022b_win_run.zip')
+% deploy()  % 使用正在运行的matlab进行部署
+% deploy('D:\matlab')  % 参数为解压后的matlab主路径
+% deploy('D:\ssd\matlab_2022b_win_run.zip')  % 参数为压缩包的绝对路径
 function deploy(varargin)
 
 if numel(varargin) < 1
