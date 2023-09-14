@@ -1,8 +1,4 @@
 function fileInfo=getSubTreeInfo(this,prj,filePath)
-
-
-
-
     fileInfo=[];
 
     parentPath=fileparts(filePath);
