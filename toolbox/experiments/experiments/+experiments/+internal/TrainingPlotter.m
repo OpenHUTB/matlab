@@ -1,9 +1,5 @@
 classdef TrainingPlotter < nnet.internal.cnn.ui.TrainingPlotter
 
-
-
-
-
 properties ( Access = private, Transient )
 Label
 Axes
@@ -179,6 +175,4 @@ end
 end 
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp4DZVDj.p.
-% Please follow local copyright laws when handling this file.
 
