@@ -1,14 +1,5 @@
 classdef BasicFittingManager<handle
 
-
-
-
-
-
-
-
-
-
     properties(Access={?tbasicfit,?tBasicFittingManager,?tBasicFitDialog})
 
 ParentFigure
@@ -21,15 +12,10 @@ ParentFigure
 
 
         function this=BasicFittingManager(parentFigure)
-
-
             if~isempty(basicfitdatastat('bfitFindProp',parentFigure,'Basic_Fit_GUI_Object'))&&...
                 ~isempty(parentFigure.Basic_Fit_GUI_Object)
                 this=parentFigure.Basic_Fit_GUI_Object;
                 if isvalid(parentFigure)&&this.isBasicFitDialogClosed()
-
-
-
 
                     this.initFitData();
                 end
@@ -37,8 +23,6 @@ ParentFigure
 
             else
                 this.ParentFigure=parentFigure;
-
-
                 this.BasicFitDialog=datamanager.basicfit.BasicFitDialog(this,this.ParentFigure);
                 if isvalid(parentFigure)
                     this.initFitData();
@@ -48,19 +32,15 @@ ParentFigure
 
 
         function delete(this)
-
             delete(this.BasicFitDialog);
         end
 
 
 
         function closeBasicFit(this)
-
-
             if isvalid(this)
                 basicfitdatastat('bfitcleanup',this.ParentFigure,1);
             end
-
 
             this.delete();
         end
@@ -78,9 +58,6 @@ ParentFigure
         end
 
 
-
-
-
         function changeData(this,dataObjs,dispNames,~,~,selectedFits,viewState,...
             evaluatedData,~,~,~,results)
             this.BasicFitDialog.updateView(dataObjs,dispNames,selectedFits,viewState,evaluatedData,results);
@@ -93,11 +70,8 @@ ParentFigure
 
 
         function openHelpPage()
-
             basicfitdatastat("bfithelp","bf");
         end
-
-
 
 
         function numericResults=getFitResults(viewState)
@@ -111,10 +85,6 @@ ParentFigure
 
         function showEquationCallback(doShowEquation,sigDigits,currentObject,fitIndex)
 
-
-
-
-
             guistate=getappdata(currentObject,'Basic_Fit_Results_State');
             guistate.showEquations(fitIndex+1)=doShowEquation;
             setappdata(currentObject,'Basic_Fit_Results_State',guistate);
@@ -125,11 +95,6 @@ ParentFigure
 
 
         function showRMSECallback(doShowRMSESquare,sigDigits,currentObject,fitIndex)
-
-
-
-
-
             guistate=getappdata(currentObject,'Basic_Fit_Results_State');
             guistate.showRMSE(fitIndex+1)=doShowRMSESquare;
             setappdata(currentObject,'Basic_Fit_Results_State',guistate);
@@ -139,11 +104,6 @@ ParentFigure
 
 
         function showR2Callback(doShowRSquare,sigDigits,currentObject,fitIndex)
-
-
-
-
-
             guistate=getappdata(currentObject,'Basic_Fit_Results_State');
             guistate.showR2(fitIndex+1)=doShowRSquare;
             setappdata(currentObject,'Basic_Fit_Results_State',guistate);
@@ -190,9 +150,6 @@ ParentFigure
         end
 
 
-
-
-
         function dropDownSelectionChanged(this,selectedObject)
             [~,selectedFits,viewState,evaluatedData,xData,yData,~,results]=basicfitdatastat('bfitupdate',this.ParentFigure,selectedObject,1);
 
@@ -207,8 +164,6 @@ ParentFigure
                 this.BasicFitDialog.updateTabularView(table(xData,yData));
             end
         end
-
-
 
 
         function normalizeXData(this,isNormalized,currentObject)
