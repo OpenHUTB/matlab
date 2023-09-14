@@ -1,8 +1,5 @@
 classdef ExpInputList<handle
 
-
-
-
     properties(Access=private)
         InputList={};
         ExecMode='Sequential';
