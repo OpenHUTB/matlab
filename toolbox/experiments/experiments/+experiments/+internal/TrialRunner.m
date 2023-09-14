@@ -1,8 +1,5 @@
 classdef TrialRunner<experiments.internal.AbstractTrialRunner
 
-
-
-
     properties
 setupFcn
 input
