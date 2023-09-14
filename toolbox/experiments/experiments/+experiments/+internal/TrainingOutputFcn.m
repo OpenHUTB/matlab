@@ -1,8 +1,5 @@
 classdef TrainingOutputFcn<handle
 
-
-
-
     properties(Access=private)
 clientDataQueue
 dataHandlerFcn
