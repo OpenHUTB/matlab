@@ -1,8 +1,5 @@
 classdef(Sealed)Feature<experiments.internal.JSServiceFeature
 
-
-
-
     properties(SetAccess={?experiments.internal.JSServiceFeature})
         mockTrainNetwork function_handle{mustBeScalarOrEmpty}=function_handle.empty;
         mockStopExperiment(1,1)logical=false;
