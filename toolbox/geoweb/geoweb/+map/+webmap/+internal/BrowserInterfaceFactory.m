@@ -1,35 +1,5 @@
 classdef BrowserInterfaceFactory
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     enumeration
 browser
 webwindow
