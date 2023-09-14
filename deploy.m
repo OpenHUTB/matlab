@@ -1,19 +1,28 @@
 %% 将修改的文件和原始maltab程序进行合并
 % 将`matlab_2022b_win_run.zip`解压
-cur_dir = pwd;
 
-% matlab_2022b_win_run.zip所在的目录
-zip_dir = 'D:\buffer';
-zip_path = fullfile(zip_dir, "matlab_2022b_win_run.zip");
+% deploy('D:\matlab')
+% deploy('D:\ssd\matlab_2022b_win_run.zip')
+function deploy(varargin)
 
-% 解压到和zip文件同一文件夹内
-unzip(zip_path, zip_dir);
+if numel(varargin) < 1
+    raw_matlab_dir = matlabroot;
+else
+    raw_matlab_dir = varargin{1};
+end
 
-raw_matlab_dir = fullfile(zip_dir, 'matlab_2022b');
+cur_dir = fileparts(mfilename('fullpath'));
+
+if isfile(raw_matlab_dir)
+    % 解压到和zip文件同一文件夹内
+    unzip(zip_path, zip_dir);
+
+    raw_matlab_dir = fullfile(zip_dir, 'matlab_2022b');
+end
 
 
 %% 将原始Matlab文件拷贝到仓库，存在同名文件则跳过
-addpath(genpath('utils'));
+addpath(genpath(fullfile(cur_dir, 'utils')));
 
 all_files = RangTraversal(raw_matlab_dir);
 
@@ -34,6 +43,8 @@ for i = 1 : numel(all_files)
         
         copyfile(cur_file, fileparts(obj_file));
     end
+end
+
 end
 
 
