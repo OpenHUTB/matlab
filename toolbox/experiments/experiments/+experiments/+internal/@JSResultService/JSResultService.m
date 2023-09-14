@@ -1,8 +1,5 @@
 classdef JSResultService < handle
 
-
-
-
 properties 
 resultInfo
 resultsDir
