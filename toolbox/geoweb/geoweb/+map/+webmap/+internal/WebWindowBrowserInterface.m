@@ -1,41 +1,5 @@
 classdef WebWindowBrowserInterface<map.webmap.internal.BrowserInterface
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
 
         function hweb=web(browserIfc,url)
