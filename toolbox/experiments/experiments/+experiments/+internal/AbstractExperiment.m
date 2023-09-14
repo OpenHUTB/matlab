@@ -1,8 +1,4 @@
 classdef(Abstract)AbstractExperiment<handle
-
-
-
-
     properties(Abstract,SetAccess=private)
         SourceTemplate(1,1)string
 HyperTable
