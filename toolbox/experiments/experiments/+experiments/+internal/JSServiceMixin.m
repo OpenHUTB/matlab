@@ -1,8 +1,5 @@
 classdef ( Abstract )JSServiceMixin < handle
 
-
-
-
 properties ( Constant, Abstract )
 feature( 1, 1 ){ isaJSServiceFeature }
 end 
