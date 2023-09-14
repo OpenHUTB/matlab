@@ -1,10 +1,5 @@
 classdef ROCCurve<matlab.ui.componentcontainer.ComponentContainer
 
-
-
-
-
-
     properties
 
 parentPanel
