@@ -1,16 +1,5 @@
 function T = groupSingularValues( X, k )
 
-
-
-
-
-
-
-
-
-
-
-
 R36
 X{ mustBeVector }
 k
@@ -27,10 +16,6 @@ n = size( Y, 1 );
 m = ceil( sqrt( 2 * n ) );
 Z = zeros( m - 1, 3, 'like', Y );
 
-
-
-
-
 N = zeros( 1, 2 * m - 1 );
 N( 1:m ) = 1;
 n = m;
@@ -44,9 +29,6 @@ j = k - ( i - 1 ) * ( m - i / 2 ) + i;
 
 Z( s, : ) = [ R( i ), R( j ), v ];
 
-
-
-
 I1 = 1:( i - 1 );I2 = ( i + 1 ):( j - 1 );I3 = ( j + 1 ):m;
 I = [ I1 .* ( m - ( I1 + 1 ) / 2 ) - m + i, i * ( m - ( i + 1 ) / 2 ) - m + I2, i * ( m - ( i + 1 ) / 2 ) - m + I3 ];
 J = [ I1 .* ( m - ( I1 + 1 ) / 2 ) - m + j, I2 .* ( m - ( I2 + 1 ) / 2 ) - m + j, j * ( m - ( j + 1 ) / 2 ) - m + I3 ];
@@ -55,7 +37,6 @@ Y( I ) = max( Y( I ), Y( J ) );
 
 J = [ J, i * ( m - ( i + 1 ) / 2 ) - m + j ];%#ok<AGROW>
 Y( J ) = [  ];
-
 
 m = m - 1;
 N( n + s ) = N( R( i ) ) + N( R( j ) );
@@ -66,6 +47,7 @@ end
 Z( :, [ 1, 2 ] ) = sort( Z( :, [ 1, 2 ] ), 2 );
 end 
 
+
 function T = distanceCluster( Z, k )
 
 crit = Z( :, 3 );
@@ -74,18 +56,15 @@ T = labeltree( Z, conn );
 
 end 
 
-function conn = checkcut( X, cutoff, crit )
 
+function conn = checkcut( X, cutoff, crit )
 
 n = size( X, 1 ) + 1;
 conn = ( crit <= cutoff );
 
-
-
 todo = conn & ( X( :, 1 ) > n | X( :, 2 ) > n );
 while ( any( todo ) )
 rows = find( todo );
-
 
 cdone = true( length( rows ), 2 );
 for j = 1:2
@@ -98,10 +77,10 @@ conn( rows( t ) ) = conn( rows( t ) ) & conn( child );
 end 
 end 
 
-
 todo( rows( cdone( :, 1 ) & cdone( :, 2 ) ) ) = 0;
 end 
 end 
+
 
 function T = labeltree( X, conn )
 
@@ -109,12 +88,9 @@ n = size( X, 1 );
 nleaves = n + 1;
 T = ones( n + 1, 1 );
 
-
 todo = true( n, 1 );
 
-
 clustlist = reshape( 1:2 * n, n, 2 );
-
 
 while ( any( todo ) )
 
@@ -124,12 +100,10 @@ if isempty( rows ), break ;end
 for j = 1:2
 children = X( rows, j );
 
-
 leaf = ( children <= nleaves );
 if any( leaf )
 T( children( leaf ) ) = clustlist( rows( leaf ), j );
 end 
-
 
 joint = ~leaf;
 joint( joint ) = conn( children( joint ) - nleaves );
@@ -142,14 +116,10 @@ conn( childnum ) = 0;
 end 
 end 
 
-
 todo( rows ) = 0;
 end 
-
 
 [ ~, ~, T ] = unique( T );
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmppSuYOg.p.
-% Please follow local copyright laws when handling this file.
 
