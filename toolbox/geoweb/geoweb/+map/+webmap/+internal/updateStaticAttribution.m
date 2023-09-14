@@ -1,13 +1,5 @@
 function config=updateStaticAttribution(config,lineWidthInChars)
 
-
-
-
-
-
-
-
-
     for k=1:length(config)
         url=config(k).ServerURL;
         if contains(url,"/tile/")
