@@ -1,96 +1,27 @@
 classdef OpenLayersScript<map.webmap.internal.WebMapScript
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private,Hidden=true)
 
-
-
-
 ApiFilename
-
-
-
-
 
 BaseLayerIndex
     end
 
     properties(Access=private)
-
-
-
         InitializingMap=false
     end
 
     methods
 
         function script=OpenLayersScript(varargin)
-
-
-
-
-
-
-
-
             script=script@map.webmap.internal.WebMapScript(varargin{:});
-
-
             script.ScriptBase='OpenLayers';
             script.ApiVersion='2.12';
             script.ApiLibrary=...
             ['http://dev.openlayers.org/releases/OpenLayers-',script.ApiVersion,'/lib/OpenLayers.js'];
             script.ApiProvider='OpenLayers';
             script.ZoomLevel=0;
-
-
             assignLayerConfigurationProperties(script);
-
 
             script.BaseLayerIndex=0;
         end
@@ -99,14 +30,6 @@ BaseLayerIndex
     methods(Access='protected')
 
         function js=createTiledMapServiceMapScript(script,layers,projCodes)
-
-
-
-
-
-
-
-
 
 
             layersInit='var layers = [];';
