@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 classdef(CaseInsensitiveProperties=true,Hidden=true)select<handle
     properties
         ScribeLayer=[];
@@ -65,28 +56,8 @@ classdef(CaseInsensitiveProperties=true,Hidden=true)select<handle
         end
 
         function position=translateToContainer(hObj,position)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             position=matlab.ui.internal.FigurePointToLocal.translateFigurePointToLocal(hObj,position);
         end
-
-
 
 
         function ind_intersection_test=inpolygon(pixelLocations,points)
@@ -95,7 +66,6 @@ classdef(CaseInsensitiveProperties=true,Hidden=true)select<handle
                 ind_intersection_test=[];
                 return
             end
-
 
             if size(pixelLocations,2)==4&&pixelLocations(1,1)==pixelLocations(1,4)&&...
                 pixelLocations(1,2)==pixelLocations(1,3)&&...
@@ -106,9 +76,6 @@ classdef(CaseInsensitiveProperties=true,Hidden=true)select<handle
                 ind_intersection_test=find(I);
                 return
             end
-
-
-
             [~,I]=unique(pixelLocations','rows');
             pixelLocations=pixelLocations(:,sort(I));
             numVertices=size(pixelLocations,2);
@@ -119,15 +86,9 @@ classdef(CaseInsensitiveProperties=true,Hidden=true)select<handle
 
                     continue
                 end
-
-
-
                 polyLocation=pixelLocations-points(:,k)*ones(1,numVertices);
 
-
                 vert_with_nonpositive_y=polyLocation(2,:)<=0;
-
-
                 is_line_segment_spanning_x=abs(diff([vert_with_nonpositive_y,vert_with_nonpositive_y(1)]));
                 is_line_segment_spanning_x=is_line_segment_spanning_x|...
                 ([polyLocation(2,2:end),polyLocation(2,1)]==0);
@@ -138,14 +99,8 @@ classdef(CaseInsensitiveProperties=true,Hidden=true)select<handle
                     endPts=polyLocation(:,[2:end,1]);
                     cross_product_test=-startPts(1,:).*(endPts(2,:)-startPts(2,:))>-startPts(2,:).*(endPts(1,:)-startPts(1,:));
                     crossing_test=(cross_product_test==vert_with_nonpositive_y)&is_line_segment_spanning_x;
-
-
                     ind_intersection_test(k)=~(mod(sum(crossing_test),2)==0);
                 end
-
-
-
-
                 if~ind_intersection_test(k)
                     I=find(~(polyLocation(1,:)|...
                     [polyLocation(1,2:end),polyLocation(1,1)]));
@@ -205,9 +160,6 @@ classdef(CaseInsensitiveProperties=true,Hidden=true)select<handle
 
             if isprop(this,'ZData')
                 zdata=get(this,'ZData');
-
-
-
                 if~isempty(zdata)&&~isvector(zdata)
                     if isvector(xdata)
                         xdata=repmat(xdata(:)',[size(zdata,1),1]);
@@ -225,8 +177,6 @@ classdef(CaseInsensitiveProperties=true,Hidden=true)select<handle
                 ydata=ydata(:);
                 xdata=xdata(:);
             end
-
-
 
             if isempty(zdata)||isvector(zdata)
                 I=any(this.BrushData>0,1);
@@ -246,8 +196,6 @@ classdef(CaseInsensitiveProperties=true,Hidden=true)select<handle
                     end
                 end
 
-
-
             else
                 I=this.BrushData>0;
                 Icols=any(I,1);
@@ -265,7 +213,6 @@ classdef(CaseInsensitiveProperties=true,Hidden=true)select<handle
 
 
         function clearBrushing(ax)
-
             fig=handle(ancestor(ax,'figure'));
             brushMgr=datamanager.BrushManager.getInstance();
             if isprop(fig,'LinkPlot')&&fig.LinkPlot
