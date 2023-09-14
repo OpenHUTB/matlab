@@ -1,8 +1,4 @@
 classdef Experiment
-
-
-
-
     properties(Constant,Access=protected,Transient)
         CurrentVersion_=3;
     end
