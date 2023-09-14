@@ -1,8 +1,4 @@
 function moreResultsDialog=expandedResultsDialog(fitname,fitIndex,currentObject,fig)
-
-
-
-
     equation=getappdata(currentObject,'Basic_Fit_Equation');
     coefficients=getappdata(currentObject,'Basic_Fit_Coefficients');
     rmse=getappdata(currentObject,'Basic_Fit_RMSE');
@@ -45,7 +41,6 @@ function moreResultsDialog=expandedResultsDialog(fitname,fitIndex,currentObject,
     mainGrid.Layout.Row=1;
     mainGrid.Layout.Column=1;
 
-
     u1=uilabel(mainGrid,...
     'Text',[getString(message('MATLAB:datamanager:basicfit:Equation')),':']);
     u1.Layout.Row=1;
@@ -58,12 +53,10 @@ function moreResultsDialog=expandedResultsDialog(fitname,fitIndex,currentObject,
     uit1.Layout.Row=1;
     uit1.Layout.Column=2;
 
-
     u2=uilabel(mainGrid,...
     'Text',[getString(message('MATLAB:datamanager:basicfit:Coefficients')),':']);
     u2.Layout.Row=2;
     u2.Layout.Column=1;
-
 
     uit2=uitextarea(mainGrid,...
     'Editable','off',...
@@ -71,12 +64,10 @@ function moreResultsDialog=expandedResultsDialog(fitname,fitIndex,currentObject,
     uit2.Layout.Row=2;
     uit2.Layout.Column=2;
 
-
     u4=uilabel(mainGrid,...
     'Text',['R',sprintf(strrep('\u00B2','\u','\x')),':']);
     u4.Layout.Row=3;
     u4.Layout.Column=1;
-
 
     uit4=uitextarea(mainGrid,...
     'Editable','off',...
@@ -84,19 +75,16 @@ function moreResultsDialog=expandedResultsDialog(fitname,fitIndex,currentObject,
     uit4.Layout.Row=3;
     uit4.Layout.Column=2;
 
-
     u3=uilabel(mainGrid,...
     'Text',[getString(message('MATLAB:datamanager:basicfit:NormOfResidualsLabel')),':']);
     u3.Layout.Row=4;
     u3.Layout.Column=1;
-
 
     uit3=uitextarea(mainGrid,...
     'Editable','off',...
     'Value',{rmse});
     uit3.Layout.Row=4;
     uit3.Layout.Column=2;
-
     subGrid=uigridlayout(uiGrid1,'Padding',[0,0,0,0]);
     subGrid.ColumnWidth={'1x','fit'};
     subGrid.RowHeight={'fit'};
@@ -104,7 +92,6 @@ function moreResultsDialog=expandedResultsDialog(fitname,fitIndex,currentObject,
     subGrid.ColumnSpacing=5;
     subGrid.Layout.Row=2;
     subGrid.Layout.Column=1;
-
 
     ubt=uibutton(subGrid,'push',...
     'Text',getString(message('MATLAB:datamanager:basicfit:ExportToWorkspace')),...
@@ -114,7 +101,6 @@ function moreResultsDialog=expandedResultsDialog(fitname,fitIndex,currentObject,
 
     exportDialog=[];
     moreResultsDialog.Visible='on';
-
     addlistener(moreResultsDialog,'ObjectBeingDestroyed',@(e,d)deleteExportDialog());
 
     function showExportResultsDialog()
