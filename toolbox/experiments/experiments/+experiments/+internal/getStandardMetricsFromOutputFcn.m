@@ -1,11 +1,5 @@
 function metrics=getStandardMetricsFromOutputFcn(info,trainingType,usesValidation)
 
-
-
-
-
-
-
     if strcmp(trainingType,'classification')
         trainingAccuracyOrRMSE=info.TrainingAccuracy;
     else
