@@ -1,22 +1,11 @@
 classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.world.Group
 
-
-
-
-
-
-
-
-
-
-
     properties(AffectsObject,SetObservable=true,SetAccess='public',GetAccess='public',Hidden=true)
 
         BrushData;
     end
 
     properties(SetObservable=true,SetAccess='public',GetAccess='public',Hidden=true)
-
 
         BrushColorIndex;
     end
@@ -27,13 +16,10 @@ classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.worl
     end
 
 
-
     methods
         function hObj=HistBrushing(varargin)
 
-
             hObj.doSetup;
-
 
             if~isempty(varargin)
                 set(hObj,varargin{:});
@@ -56,7 +42,6 @@ classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.worl
 
     methods(Access='private')
         function doSetup(hObj)
-
             addDependencyConsumed(hObj,'none');
 
             hObj.Internal=true;
@@ -65,18 +50,10 @@ classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.worl
     end
     methods(Access='public')
         function doUpdate(hObj,updateState)
-
-
-
-
             if~isempty(hObj.BrushFaceHandles)
                 delete(hObj.BrushFaceHandles);
                 hObj.BrushFaceHandles=[];
             end
-
-
-
-
             isLinear=isprop(updateState.DataSpace,'YScale')&&strcmpi(updateState.DataSpace.YScale,'linear');
 
             brushData=hObj.BrushData;
@@ -85,31 +62,18 @@ classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.worl
                 hObj.BrushColorIndex==0;
                 return
             end
-
-
-
             brushStyleMap=matlab.graphics.chart.primitive.brushingUtils.getBrushStyleMap(hObj);
-
-
             brushColor=matlab.graphics.chart.primitive.brushingUtils.getBrushingColor(hObj.BrushColorIndex,brushStyleMap);
             if isempty(brushColor)
                 return
             end
-
-
             brushFaceHandle=matlab.graphics.primitive.world.TriangleStrip;
             brushFaceHandle.ColorBinding='object';
             hObj.addNode(brushFaceHandle);
             brushFaceHandle.HitTest='on';
             addlistener(brushFaceHandle,'Hit',@(es,ed)matlab.graphics.chart.primitive.brushingUtils.addBrushContextMenuCallback(hObj,ed));
 
-
-
-
-
-
             [vData,baseValue]=brushing.HistBrushing.histBarCameraCoords(hObj.Parent);
-
             binHeights=hObj.Parent.YData(2,:);
             posBinHeights=binHeights>0;
             binHeights=binHeights(posBinHeights);
@@ -117,9 +81,6 @@ classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.worl
             vBrushData=vData;
             vBrushData(2,:)=baseValue+(vData(2,:)-baseValue).*...
             reshape([binBrushRatios;binBrushRatios],[1,2*length(binBrushRatios)]);
-
-
-
             vData=baseValue*ones([3,size(vBrushData,2)*3],'single');
             vData(1,1:6:end)=vBrushData(1,1:2:end);
             vData(1,2:6:end)=vBrushData(1,1:2:end);
@@ -132,9 +93,6 @@ classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.worl
             vData(2,6:6:end)=vBrushData(2,1:2:end);
             brushFaceHandle.VertexData=vData;
             brushFaceHandle.StripData=[];
-
-
-
             colorData=matlab.graphics.chart.primitive.brushingUtils.transformBrushColorToTrueColor(...
             brushColor,updateState);
             brushFaceHandle.ColorData=colorData.Data;
@@ -144,10 +102,6 @@ classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.worl
 
 
     methods(Access='public',Static=true)
-
-
-
-
 
         function[topEdges,baseValue]=histBarCameraCoords(h)
             vdata=h.Face.VertexData;
@@ -161,17 +115,7 @@ classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.worl
             if isempty(vdata)
                 return
             end
-
-
             istriangle=isa(h.Face,'matlab.graphics.primitive.world.TriangleStrip');
-
-
-
-
-
-
-
-
 
             for k=1:(3+~istriangle):floor(size(vdata,2))
                 if istriangle
@@ -201,9 +145,6 @@ classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.worl
             if isempty(topEdgesLeft)
                 return
             end
-
-
-
             [~,I]=sort(topEdgesLeft(2,:),'descend');
             topEdgesLeft=topEdgesLeft(:,I);
             topEdgesRight=topEdgesRight(:,I);
@@ -211,14 +152,8 @@ classdef(ConstructOnLoad=true,Sealed)HistBrushing<matlab.graphics.primitive.worl
             topEdgesLeft=topEdgesLeft(:,I);
             topEdgesRight=topEdgesRight(:,I);
 
-
-
             topEdges=[topEdgesLeft(:,1),topEdgesRight(:,1)];
             for k=2:size(topEdgesLeft,2)
-
-
-
-
 
                 if topEdgesLeft(1,k)>=topEdges(1,end)
                     topEdges=[topEdges,topEdgesLeft(:,k),topEdgesRight(:,k)];%#ok<AGROW>
