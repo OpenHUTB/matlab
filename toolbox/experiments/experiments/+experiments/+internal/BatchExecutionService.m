@@ -1,8 +1,6 @@
 classdef BatchExecutionService < handle
 
 
-
-
 methods 
 function runInfo = execSubmitBatchJob( this, expDef, clusterName, poolSizeStr, mode )
 R36
