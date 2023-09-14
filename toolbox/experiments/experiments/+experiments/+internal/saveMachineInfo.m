@@ -1,8 +1,5 @@
 function[cpuinfo,gpuinfo]=saveMachineInfo(isWorker)
 
-
-
-
     warnState=warning('query','all');
     warning('off','MATLAB:structOnObject');
     cleanupObj=onCleanup(@()warning(warnState));
