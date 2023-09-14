@@ -1,8 +1,5 @@
 classdef(Sealed,ConstructOnLoad)JSServiceFeatureUpdate<event.EventData
 
-
-
-
     properties(SetAccess=immutable)
 Update
 Previous
