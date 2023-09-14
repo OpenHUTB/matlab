@@ -1,8 +1,5 @@
 function filePath = fixupPath( root, filePath )
 
-
-
-
 R36
 root{ mustBeMember( root, { 'matlab', 'project' } ) }
 filePath( 1, : )char
