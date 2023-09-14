@@ -1,8 +1,5 @@
 classdef(ConstructOnLoad)ExpMgrEventData<event.EventData
 
-
-
-
     properties
 data
     end
