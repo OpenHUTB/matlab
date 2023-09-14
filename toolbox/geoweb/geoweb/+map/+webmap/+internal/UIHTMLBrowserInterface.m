@@ -1,68 +1,18 @@
 classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Constant,Hidden)
         DefaultSize=[750,550]
     end
 
     properties(Access=?tUIHTMLBrowserInterface)
 
-
-
-
         Figure matlab.ui.Figure=matlab.ui.Figure.empty
-
-
-
-
 
         HTMLController matlab.ui.control.HTML=matlab.ui.control.HTML.empty
     end
 
     methods
         function hweb=web(browserIfc,url)
-
-
-
-
-
-
-
             channelID=browserIfc.ChannelID;
             ifc=map.webmap.internal.WebMapMessageInterface(channelID);
             browserIfc.WebMapMessageInterface=ifc;
@@ -74,33 +24,16 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
 
         function delete(browserIfc)
-
-
-
-
-
             deleteFigure(browserIfc)
         end
 
 
         function close(browserIfc)
-
-
-
-
-
-
-
             deleteFigure(browserIfc)
         end
 
 
         function makeActive(browserIfc)
-
-
-
-
-
             if~isempty(browserIfc)&&isvalid(browserIfc)
                 channelID=browserIfc.ChannelID;
                 map.webmap.Canvas.saveActiveBrowserName(channelID);
@@ -110,10 +43,6 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
         function setBrowserName(browserIfc,browserName)
 
-
-
-
-
             hfig=browserIfc.Figure;
             if~isempty(hfig)&&isvalid(hfig)
                 hfig.Name=browserName;
@@ -122,17 +51,10 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
 
         function setCallback(browserIfc)%#ok<MANU>
-
-
         end
 
 
         function tf=isValidBrowser(browserIfc)
-
-
-
-
-
             if~isempty(browserIfc)&&isvalid(browserIfc)
                 hfig=browserIfc.Figure;
                 hweb=browserIfc.Browser;
@@ -145,12 +67,6 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
 
         function tf=isBrowserEnabled(browserIfc)
-
-
-
-
-
-
             tf=isValidBrowser(browserIfc)...
             &&~isempty(browserIfc.WebMapMessageInterface)...
             &&isvalid(browserIfc.WebMapMessageInterface)...
@@ -159,10 +75,6 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
 
         function setCurrentLocation(browserIfc,url)
-
-
-
-
 
             if isValidBrowser(browserIfc)
                 html=browserIfc.HTMLController;
@@ -175,11 +87,6 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
         function cdata=snapshot(browserIfc,~)
 
-
-
-
-
-
             try
                 hfig=browserIfc.Figure;
                 cdata=matlab.ui.internal.FigureImageCaptureService.captureImage(hfig);
@@ -191,11 +98,6 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
     methods(Hidden)
         function deleteFigure(browserIfc)
-
-
-
-
-
             if~isempty(browserIfc)
                 hfig=browserIfc.Figure;
                 if~isempty(hfig)&&isvalid(hfig)
@@ -207,12 +109,6 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
 
         function closeBrowser(browserIfc)
-
-
-
-
-
-
             if~isempty(browserIfc)&&isvalid(browserIfc)
                 name=browserIfc.ChannelID;
                 wm=map.webmap.internal.getActiveWebMapCanvas(name);
@@ -231,21 +127,6 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
     methods(Access=private)
         function webwindow=openWebmap(browserIfc,url)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             pos=getCenterPosition(browserIfc.DefaultSize);
             uif=uifigure(...
             'Internal',true,...
@@ -257,11 +138,6 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
             'DeleteFcn',@(~,~)closeBrowser(browserIfc));
             browserIfc.Figure=uif;
 
-
-
-
-
-
             h=matlab.ui.control.HTML(...
             'Parent',uif,...
             'Position',[1,1,pos(3),pos(4)],...
@@ -272,16 +148,11 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
 
             uif.Visible='on';
-
-
             figURL=matlab.ui.internal.FigureServices.getFigureURL(uif);
-
-
 
             wmgr=matlab.internal.webwindowmanager.instance;
             w=wmgr.windowList;
             webwindow=findobj(w,'URL',figURL);
-
 
 
             if isprop(webwindow,'FocusGained')
@@ -294,8 +165,6 @@ classdef UIHTMLBrowserInterface<map.webmap.internal.BrowserInterface
 
         function resizeWebmap(browserIfc,src)
 
-
-
             pos=src.Position;
             html=browserIfc.HTMLController;
             html.Position=[1,1,pos(3),pos(4)];
@@ -306,19 +175,12 @@ end
 
 function pos=getCenterPosition(windowSize)
 
-
-
-
-
-
-
     originalUnits=get(groot,"units");
     if~matches(originalUnits,"pixels")
         set(groot,"units","pixels");
 
         cleanObj=onCleanup(@()set(groot,"units",originalUnits));
     end
-
 
     screenSize=get(groot,'ScreenSize');
     posX=(screenSize(3)-windowSize(1))/2;
