@@ -1,15 +1,5 @@
 function wm=getActiveWebMapCanvas(name)
 
-
-
-
-
-
-
-
-
-
-
     if nargin==0
         wm=findHandleFromAppdata;
     else
