@@ -1,10 +1,6 @@
 classdef ColormapEditor<handle
 
 
-
-
-
-
     properties(Access={?datamanager.colormapeditor.ColormapEditorController,...
         ?tcolormapeditor,...
         ?tColormapEditorController,...
