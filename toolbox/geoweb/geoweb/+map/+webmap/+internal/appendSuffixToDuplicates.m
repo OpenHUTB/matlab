@@ -1,37 +1,4 @@
 function names=appendSuffixToDuplicates(names,suffix)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     names=convertCharsToStrings(names);
     suffix=convertCharsToStrings(suffix);
 
@@ -48,7 +15,6 @@ function names=appendSuffixToDuplicates(names,suffix)
         specifiedNames=names(~index);
 
         if~isempty(specifiedNames)
-
 
             uniqueSpecifiedNames=unique(replace(lower(specifiedNames),' ',''));
             names_lower=replace(lower(names),' ','');
