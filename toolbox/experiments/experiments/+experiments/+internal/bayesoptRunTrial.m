@@ -1,8 +1,5 @@
 function[bayesObj,constraintViolation,trialId]=bayesoptRunTrial(dataQueue,optVars)
 
-
-
-
     replyQueue=parallel.pool.PollableDataQueue;
     paramStruct=table2struct(optVars);
     send(dataQueue,{'createTrialRunnerForBayesopt',paramStruct,replyQueue});

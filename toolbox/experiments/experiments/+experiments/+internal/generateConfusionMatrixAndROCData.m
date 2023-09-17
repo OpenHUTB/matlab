@@ -1,20 +1,5 @@
 function[matrixData,truePredictedLabels,xArray,yArray,tArray,aucArray,errorLabelConfusionMatrix,errorLabelROCCurve]=generateConfusionMatrixAndROCData(trainedModel,X,T,trainingType,errorFromSdk)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     matrixData=[];
     truePredictedLabels=[];
     xArray=[];
@@ -22,10 +7,6 @@ function[matrixData,truePredictedLabels,xArray,yArray,tArray,aucArray,errorLabel
     tArray=[];
     aucArray=[];
     if(isempty(X)||isempty(T))
-
-
-
-
         if(isempty(errorFromSdk))
             errorLabelConfusionMatrix='experiments:results:ConfusionMatrixLabelNoData';
             errorLabelROCCurve='experiments:results:ROCCurveLabelNoData';

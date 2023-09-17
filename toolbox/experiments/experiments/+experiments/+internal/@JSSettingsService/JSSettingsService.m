@@ -1,8 +1,5 @@
 classdef JSSettingsService<handle
 
-
-
-
     methods
 
         function settingsSaveRecentProjects(~,recentHistoryList)

@@ -1,8 +1,4 @@
 classdef MultiplexedDataQueue<handle
-
-
-
-
     properties(GetAccess=private,SetAccess=immutable)
 dataQueue
 id

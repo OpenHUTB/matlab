@@ -1,8 +1,5 @@
 function report = getErrorReportWithCallStack( ME, options )
 
-
-
-
 R36
 ME( 1, 1 )MException
 options.ProjectPath( 1, : )char = ''
@@ -32,6 +29,5 @@ report = report + causeReport;
 end 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpe6z_HT.p.
-% Please follow local copyright laws when handling this file.
+
 

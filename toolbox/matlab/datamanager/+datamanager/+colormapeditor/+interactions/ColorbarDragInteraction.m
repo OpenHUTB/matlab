@@ -1,14 +1,6 @@
 classdef ColorbarDragInteraction<matlab.graphics.interaction.graphicscontrol.InteractionObjects.InteractionBase&...
     matlab.graphics.interaction.graphicscontrol.InteractionObjects.DragInteractionBase
 
-
-
-
-
-
-
-
-
     properties
 InitialColormap
 InitialCMapName
@@ -146,9 +138,6 @@ CurrentFigure
                     ix=ix+ixinc;
                 end
             end
-
-
-
             this.ColorEditorApp.updateUIOnDrag(this.CUSTOM_COLORMAP,newmap);
         end
     end

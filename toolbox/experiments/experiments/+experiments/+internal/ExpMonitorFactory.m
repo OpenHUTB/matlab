@@ -1,8 +1,5 @@
 classdef ExpMonitorFactory<experiments.internal.MonitorFactory
 
-
-
-
     methods
         function model=createMonitorModel(~)
             model=experiment.shared.model.MonitorModel();

@@ -1,8 +1,5 @@
 classdef ImportDataHandler<handle
 
-
-
-
     properties(SetAccess=private)
         Data={};
     end

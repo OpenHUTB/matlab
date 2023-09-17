@@ -1,8 +1,5 @@
 function[YPredicted,labels,scores,errorLabelConfusionMatrix,errorLabelROCCurve]=generateInputsForConfusionMatrix(trainedModel,data,responseName,trainingType)
 
-
-
-
     YPredicted=[];
     labels=[];
     errorLabelConfusionMatrix=[];
@@ -69,10 +66,6 @@ function[YPredicted,labels,scores,errorLabelConfusionMatrix,errorLabelROCCurve]=
             labels=[labels{:}];
         end
     catch
-
-
-
-
         errorLabelConfusionMatrix='experiments:results:ConfusionMatrixLabelNoData';
         errorLabelROCCurve='experiments:results:ROCCurveLabelNoData';
     end

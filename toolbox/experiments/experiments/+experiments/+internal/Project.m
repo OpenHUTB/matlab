@@ -1,8 +1,5 @@
 classdef Project<handle
 
-
-
-
     properties(Access=private)
 projImpl
     end

@@ -1,41 +1,5 @@
 classdef ExternalBrowserInterface<map.webmap.internal.BrowserInterface
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
 
         function hweb=web(browserIfc,url)

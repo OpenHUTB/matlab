@@ -1,8 +1,5 @@
 classdef ExpInput<handle
 
-
-
-
     properties(Access=private)
         name=''
         values=[];
@@ -27,8 +24,6 @@ classdef ExpInput<handle
         end
 
         function addValue(this,v)
-
-
 
             if iscellstr(v)
                 v=string(v);

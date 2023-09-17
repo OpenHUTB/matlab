@@ -1,8 +1,6 @@
 classdef BayesOptInput<handle
 
 
-
-
     properties(Access=private)
         name=''
         type=''

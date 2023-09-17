@@ -1,8 +1,5 @@
 classdef JSExecutionService < handle
 
-
-
-
 properties ( Access = { ?matlab.mock.TestCase } )
 isExpRunning = false;
 stopAndCancel = false;

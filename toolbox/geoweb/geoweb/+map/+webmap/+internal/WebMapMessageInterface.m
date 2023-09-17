@@ -1,44 +1,11 @@
 classdef WebMapMessageInterface<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=private)
-
-
-
 
         ChannelID char
     end
 
     properties(Access=private)
-
-
-
 
         Initialized=false
     end
@@ -60,22 +27,11 @@ classdef WebMapMessageInterface<handle
     methods
         function wmmifc=WebMapMessageInterface(channelID)
 
-
-
-
-
-
-
             wmmifc.ChannelID=channelID;
         end
 
 
         function initialize(wmmifc)
-
-
-
-
-
             if~wmmifc.Initialized
                 data=struct('channelID',wmmifc.ChannelID);
                 message.publish([wmmifc.ResponseChannelID,'/setChannelID'],data)
@@ -85,24 +41,6 @@ classdef WebMapMessageInterface<handle
 
 
         function hweb=loadWebPage(wmmifc,webFcnHandle)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             response=[];
             channel=message.subscribe(...
             requestChannel(wmmifc,'WebMapLoaded'),...
@@ -130,16 +68,6 @@ classdef WebMapMessageInterface<handle
 
 
         function setMapCenter(wmmifc,centerLat,centerLon,zoomLevel)
-
-
-
-
-
-
-
-
-
-
             if nargin==3
                 zoomLevel=getZoomLevel(wmmifc);
             end

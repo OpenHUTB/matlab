@@ -9,9 +9,6 @@ classdef View < experiments.internal.JSServiceMixin ...
  & experiments.internal.JSAnnotationsService ...
  & experiments.internal.BatchExecutionService
 
-
-
-
 properties ( Constant )
 feature = experiments.internal.Feature(  );
 end 

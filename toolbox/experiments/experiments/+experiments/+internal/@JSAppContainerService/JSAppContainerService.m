@@ -1,8 +1,5 @@
 classdef JSAppContainerService<handle
 
-
-
-
     properties(SetAccess=private)
 appContainer
 visualizationPanel

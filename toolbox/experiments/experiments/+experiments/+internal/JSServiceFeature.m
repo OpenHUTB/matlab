@@ -1,10 +1,5 @@
 classdef(Abstract)JSServiceFeature<handle&matlab.mixin.internal.Scalar
 
-
-
-
-
-
     properties(SetAccess=private)
         log(1,1)logical=false;
         debug(1,1)logical=false;
@@ -37,15 +32,6 @@ FeatureUpdate
         end
 
         function previous=set(self,varargin)
-
-
-
-
-
-
-
-
-
 
             mc=metaclass(self);
             p=inputParser();

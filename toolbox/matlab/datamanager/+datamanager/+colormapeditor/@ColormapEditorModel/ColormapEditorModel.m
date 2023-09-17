@@ -1,9 +1,6 @@
 classdef ColormapEditorModel<handle
 
 
-
-
-
     properties(Access={?datamanager.colormapeditor.ColormapEditor,?tColormapEditor})
 ColormapData
         Colorspace string{mustBeMember(Colorspace,["RGB","HSV"])}

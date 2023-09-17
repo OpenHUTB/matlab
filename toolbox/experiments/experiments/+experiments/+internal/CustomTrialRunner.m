@@ -1,8 +1,6 @@
 classdef CustomTrialRunner < experiments.internal.AbstractTrialRunner
 
 
-
-
 properties 
 trainingFcn
 

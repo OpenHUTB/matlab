@@ -1,33 +1,12 @@
 classdef PolygonOverlay<map.webmap.internal.KMLOverlay
-
-
-
-
-
-
     properties(Access='private',Transient)
-
-
-
-
 
 LineFeature
     end
 
     methods
         function overlay=PolygonOverlay(canvas,varargin)
-
-
-
-
-
-
-
-
-
             overlay=overlay@map.webmap.internal.KMLOverlay(canvas,varargin{:});
-
-
             overlay.OverlayType='Polygon';
             overlay.FeatureType='Polygon';
             overlay.BaseFilename='polygon';
@@ -45,10 +24,6 @@ LineFeature
     methods(Access='protected')
 
         function feature=validateFeature(overlay,feature)
-
-
-
-
 
             if isgeotable(feature)
                 [feature,modifiedVarnames]=geotable2geoshape(feature);
@@ -68,69 +43,31 @@ LineFeature
 
 
         function index=clipFeature(overlay)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             p=overlay.Feature;
             n=length(p);
 
-
             index=false(1,n);
-
-
-
-
 
             clat=cell(1,n);
             clon=clat;
             calt=clat;
-
-
 
             lineFeature=p;
             lineFeature.Geometry='line';
             clinelat=clat;
             clinelon=clon;
             clinealt=clat;
-
-
             altitudeName=determineAltitudeName(overlay);
-
-
             latlim=overlay.LatitudeLimits;
             lonlim=overlay.LongitudeLimits;
-
-
             usingWebMercator=~usingGeographicCoordinateReferenceSystem(overlay);
             if usingWebMercator
                 latlim=adjustLatitudeLimits(double(p.Latitude),latlim);
             end
 
             for k=1:n
-
                 polylat=double(p(k).Latitude);
                 polylon=double(p(k).Longitude);
-
-
-
-
                 [lat,lon]=maptrimp(polylat,polylon,latlim,lonlim);
 
                 if isempty(lat)||isempty(lon)
@@ -142,15 +79,7 @@ LineFeature
                         lat(end)=[];
                         lon(end)=[];
                     end
-
-
-
                     [lat,lon]=closeNearlyClosedRings(lat,lon);
-
-
-
-
-
 
                     clat{k}=lat(:)';
                     clon{k}=lon(:)';
@@ -159,16 +88,8 @@ LineFeature
                     calt{k}=alt;
                 end
 
-
-
-
                 if~index(k)
                     [lat,lon]=maptriml(polylat,polylon,latlim,lonlim);
-
-
-
-
-
 
                     clinelat{k}=lat(:)';
                     clinelon{k}=lon(:)';
@@ -177,10 +98,6 @@ LineFeature
                     clinealt{k}=alt;
                 end
             end
-
-
-
-
 
             p.(altitudeName)=calt;
             p.Latitude=clat;
@@ -203,53 +120,22 @@ LineFeature
 
         function addFeature(overlay)
 
-
-
-
-
-
-
-
-
-
-
             if~isscalar(overlay.Feature)
                 sortFeature(overlay);
             end
-
-
-
-
-
-
             overlay.KMLDocument.UseMultipartName=false;
-
 
 
             document=overlay.KMLDocument;
 
-
-
             edgeLineProps=struct;
 
-
-
             emptyValue={' '};
-
-
-
             needsEdgeLine=hasPolygonEdgeProperties(overlay);
             if needsEdgeLine
 
-
-
-
-
-
-
                 edgeProperties={'EdgeColor','LineWidth','EdgeAlpha'};
                 lineProperties={'Color','Width','Alpha'};
-
 
 
                 for k=1:length(lineProperties)
@@ -259,22 +145,14 @@ LineFeature
                     document.(polyprop)=emptyValue;
                 end
 
-
-
                 if isequal(edgeLineProps.Color,emptyValue)
                     edgeLineProps.Color={'none'};
                 end
 
-
-
             end
-
-
 
             document.EdgeColor={'none'};
             addFeature(document,overlay.Feature);
-
-
 
 
             if needsEdgeLine
@@ -304,11 +182,7 @@ LineFeature
         function tf=hasPolygonEdgeProperties(overlay)
 
 
-
-
             defaultValue={' '};
-
-
 
             edgeProperties={'EdgeColor','LineWidth','EdgeAlpha'};
             tf=false;
@@ -324,21 +198,11 @@ LineFeature
 
 
         function sortFeature(overlay)
-
-
-
-
             A=geopolyarea(overlay);
-
-
 
             [~,index]=sort(A,2,'descend');
             overlay.Feature=overlay.Feature(index);
             overlay.LineFeature=overlay.LineFeature(index);
-
-
-
-
 
             document=overlay.KMLDocument;
             names=properties(document);
@@ -356,9 +220,6 @@ LineFeature
 
 
         function feature=removeFeatures(overlay,feature,index)
-
-
-
             names=properties(overlay.KMLDocument);
             numberOfFeatures=length(feature);
             for k=1:length(names)
@@ -377,19 +238,7 @@ LineFeature
     methods(Access='private')
 
         function A=geopolyarea(overlay)
-
-
-
-
-
-
-
-
-
-
             usingGCS=usingGeographicCoordinateReferenceSystem(overlay);
-
-
             A=zeros(1,length(overlay.Feature));
             for k=1:length(overlay.Feature)
                 lat=overlay.Feature(k).Latitude;
@@ -400,13 +249,6 @@ LineFeature
                 else
                     [x,y]=map.geodesy.internal.webmercfwd(lat,lon);
                 end
-
-
-
-
-
-
-
                 [first,last]=internal.map.findFirstLastNonNan(x);
                 sumpart=0;
                 for n=1:length(first)
@@ -428,9 +270,6 @@ end
 
 
 function[x,y]=closeNearlyClosedRings(x,y)
-
-
-
 
     x=x(:);
     y=y(:);
@@ -472,8 +311,6 @@ end
 
 function latlim=adjustLatitudeLimits(lat,latlim)
 
-
-
     minlat=min(lat(:));
     if minlat<latlim(1)
         latlim(1)=mean([minlat,-90]);
@@ -489,14 +326,10 @@ end
 
 function[S,modifiedVarnames]=geotable2geoshape(GT)
 
-
     shape=GT.Shape;
     if~isa(shape,'geopolyshape')
         error(message('map:validate:expectedGeoPolyTable'))
     end
-
-
-
     GT(hasNoCoordinateData(GT.Shape),:)=[];
 
 
@@ -510,10 +343,6 @@ end
 
 
 function S=convertOtherDatatypes(S,T,TS)
-
-
-
-
 
     fS=fieldnames(S);
     fTS=fieldnames(TS);

@@ -1,11 +1,5 @@
 classdef ColormapEditorController<handle
 
-
-
-
-
-
-
     properties
 ParentFigure
         ColormapEditor datamanager.colormapeditor.ColormapEditor
@@ -17,7 +11,6 @@ ParentFigure
             this.ParentFigure=hFig;
             this.ColormapEditor=datamanager.colormapeditor.ColormapEditor(this.ParentFigure);
         end
-
 
 
 

@@ -1,8 +1,5 @@
 classdef validator
 
-
-
-
     methods(Static)
         function TF=validateInfo(emInterface,val,infoName)
             TF=true;

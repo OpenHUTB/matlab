@@ -1,64 +1,23 @@
 classdef Canvas<handle
 
-
-
-
-
-
     properties(Access=public,Hidden,Dependent)
-
-
-
-
-
-
-
 
 BaseLayer
 
-
-
-
-
 BaseLayerName
-
-
-
-
 
 WrapAround
 
-
-
-
-
 CenterPoint
-
-
-
-
 
 ZoomLevel
 
-
-
-
-
-
-
 LatitudeLimits
-
-
-
-
-
 
 LongitudeLimits
     end
 
     properties(GetAccess=public,SetAccess=private,Hidden)
-
-
         UsingConnectorBrowserInterface=false
     end
 
@@ -71,58 +30,26 @@ Script
 
     properties(Access=private,Transient)
 
-
-
 Browser
-
-
-
 
 BrowserInterface
 
-
-
-
-
 BaseInstallFolder
-
-
-
-
 
 InstallFolderCreated
 
-
-
-
 WebMapId
-
-
-
 
 Overlay
 
-
-
-
-
         NumberOfVisibleOverlays=0
 
-
-
-
-
         RemoveOverlayIndex=logical([])
-
-
-
 
         TotalNumberOfOverlays=0
     end
 
     properties(Access='private',Dependent)
-
-
 
 BrowserIsEnabled
     end
@@ -143,38 +70,9 @@ pScript
 
     methods(Hidden)
         function h=Canvas(varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             h.WebMapId=newWebMapId(h.AppDataIdName);
 
-
             if nargin>0
-
                 index=cellfun(@(x)isa(x,'map.webmap.internal.BrowserInterface'),varargin);
                 if any(index)
                     browserIfc=varargin(index);
@@ -223,16 +121,7 @@ pScript
 
     methods
         function delete(h)
-
-
-
-
-
-
-
-
             if~isempty(h)&&~isempty(findprop(h,'Browser'))
-
 
                 if~isempty(h.Overlay)
                     for k=length(h.Overlay):-1:1
@@ -242,7 +131,6 @@ pScript
                         end
                     end
                 end
-
 
                 rmappdata(h);
 
@@ -270,7 +158,6 @@ pScript
                 rminstall(h);
             end
 
-
             webMapIdStr=sprintf('%d',h.WebMapId);
             webMapName=sprintf('%s %s','Web Map',webMapIdStr);
             script.MapName=webMapName;
@@ -285,7 +172,6 @@ pScript
             script.HTMLFilename=[basename,'.html'];
             script.ScriptFilename=[basename,'.js'];
             script.DeployAddon=['deployroot',webMapIdStr];
-
 
             isPublishing=script.PublishingActiveWebMap;
             if~isPublishing
@@ -399,14 +285,10 @@ pScript
 
         function tf=get.BrowserIsEnabled(h)
 
-
-
             tf=h.pBrowserIsEnabled;
             if tf
                 validBrowser=isValidBrowser(h.BrowserInterface);
                 if~validBrowser
-
-
                     pause(.5)
                 end
             end
@@ -416,43 +298,26 @@ pScript
     methods(Access=public,Hidden=true)
 
         function varargout=web(h)
-
-
-
-
-
             try
                 h.Browser=web(h.Script,h.BrowserInterface);
             catch e
                 throwAsCaller(e);
             end
 
-
             h.BrowserIsEnabled=true;
-
 
             if nargout==1
                 varargout{1}=h.Browser;
             end
 
-
             setappdata(h);
-
-
-
             setCallback(h.BrowserInterface);
         end
 
 
 
         function hmarker=addMarkerOverlay(h,varargin)
-
-
-
             hmarker=map.webmap.MarkerOverlay(h,varargin{:});
-
-
-
             numberOfOverlays=h.NumberOfVisibleOverlays+1;
             hmarker.OverlayNumber=numberOfOverlays;
             h.TotalNumberOfOverlays=h.TotalNumberOfOverlays+1;
@@ -474,13 +339,7 @@ pScript
 
 
         function hline=addLineOverlay(h,varargin)
-
-
-
             hline=map.webmap.LineOverlay(h,varargin{:});
-
-
-
             numberOfOverlays=h.NumberOfVisibleOverlays+1;
             hline.OverlayNumber=numberOfOverlays;
             h.TotalNumberOfOverlays=h.TotalNumberOfOverlays+1;
@@ -506,9 +365,6 @@ pScript
 
 
             hpoly=map.webmap.PolygonOverlay(h,varargin{:});
-
-
-
             numberOfOverlays=h.NumberOfVisibleOverlays+1;
             hpoly.OverlayNumber=numberOfOverlays;
             h.TotalNumberOfOverlays=h.TotalNumberOfOverlays+1;
@@ -546,9 +402,6 @@ pScript
                 classes={'map.webmap.MarkerOverlay','map.webmap.LineOverlay','map.webmap.PolygonOverlay'};
                 validateattributes(overlay,classes,{'scalar'},mfilename);
 
-
-
-
                 for k=1:length(h.Overlay)
                     if isequal(overlay,h.Overlay{k})
                         removeOverlay(overlay,k)
@@ -564,14 +417,8 @@ pScript
 
         function setLimits(h,latlim,lonlim)
 
-
-
-
-
-
             h.LatitudeLimits=latlim;
             h.LongitudeLimits=lonlim;
-
             latlim=h.Script.LatitudeLimits;
             lonlim=h.Script.LongitudeLimits;
             appendSetLimitsScript(h.Script,latlim,lonlim);
@@ -580,19 +427,12 @@ pScript
 
 
         function[latlim,lonlim]=getLimits(h)
-
-
-
-
-
-
             [latlim,lonlim]=getWebMapLimits(h.Script);
         end
 
 
 
         function print(h)
-
 
             if h.BrowserIsEnabled
 
@@ -608,15 +448,8 @@ pScript
 
         function makeActive(h)
 
-
-
-
             if h.BrowserIsEnabled
-
-
                 makeActive(h.BrowserInterface)
-
-
                 name=lower(h.Script.MapName);
                 name(isspace(name))=[];
                 map.webmap.Canvas.saveActiveBrowserName(name)
@@ -633,17 +466,10 @@ pScript
     methods(Access='private')
 
         function setappdata(h)
-
-
-
             appdata=getappdata(0,h.AppDataName);
-
 
             name=lower(h.Script.MapName);
             name(isspace(name))=[];
-
-
-
 
             if isempty(appdata)
                 webMapData=containers.Map(name,h);
@@ -659,16 +485,10 @@ pScript
 
 
         function rmappdata(h)
-
-
-
             appdata=getappdata(0,h.AppDataName);
-
 
             name=lower(h.Script.MapName);
             name=strrep(name,' ','');
-
-
 
             if isa(appdata,'containers.Map')&&isvalid(appdata)...
                 &&~isempty(appdata)
@@ -697,9 +517,7 @@ pScript
 
         function rminstall(h)
 
-
             if exist(h.Script.InstallFolder,'dir')
-
                 installFolder=h.Script.InstallFolder;
                 delete(h.Script);
                 try
@@ -708,7 +526,6 @@ pScript
                         d=dir(installFolder);
                         names={d.name};
                         if isequal(names,{'.','..'})
-
 
                             rmdir(installFolder)
                             rmdir(h.BaseInstallFolder)
@@ -722,11 +539,6 @@ pScript
 
 
         function updateOverlayProperties(h,hoverlay,numberOfOverlays)
-
-
-
-
-
             h.NumberOfVisibleOverlays=numberOfOverlays;
             h.RemoveOverlayIndex(end+1)=false;
 
@@ -742,15 +554,11 @@ pScript
         end
 
         function setLimitsUsingAutoFit(h)
-
-
             overlays=h.Overlay(~h.RemoveOverlayIndex);
             latlim=[];
             lonlim=[];
             lonlim360=[];
             buffer=.005;
-
-
 
             for k=1:length(overlays)
                 overlay=overlays{k};
@@ -763,8 +571,6 @@ pScript
                 lonlim360=...
                 [min([lon360,lonlim360]),max([lon360,lonlim360])];
             end
-
-
             if~isempty(latlim)&&~isempty(lonlim)
                 [latlim,lonlim]=bufgeoquad(latlim,lonlim,buffer,buffer);
 
@@ -781,10 +587,6 @@ end
 
 
 function webMapId=newWebMapId(appDataIdName)
-
-
-
-
 
     webMapId=getappdata(0,appDataIdName);
 

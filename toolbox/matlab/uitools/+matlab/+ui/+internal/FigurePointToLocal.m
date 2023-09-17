@@ -2,22 +2,6 @@ classdef(Abstract,Sealed)FigurePointToLocal
     methods(Static)
         function localPoint=translateFigurePointToLocal(local,figurePoint)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             localPoint=figurePoint;
             hPanel=ancestor(local,'matlab.ui.internal.mixin.CanvasHostMixin','node');
             hFig=ancestor(local,'figure');

@@ -1,17 +1,5 @@
 classdef BrowserInterfaceEnvironmentManager<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties
 
         BrowserInterfaceFactory map.webmap.internal.BrowserInterfaceFactory

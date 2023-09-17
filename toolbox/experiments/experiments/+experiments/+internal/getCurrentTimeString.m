@@ -1,9 +1,5 @@
 
 function timestr=getCurrentTimeString(~)
-
-
-
-
     time=datetime('now','TimeZone','local');
     offset=tzoffset(time);
     offsetStr=char(offset);

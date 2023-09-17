@@ -1,8 +1,4 @@
 classdef ResultInfo<handle
-
-
-
-
     properties(Constant,Access=protected,Transient)
         CurrentVersion_=1;
     end

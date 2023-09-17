@@ -1,41 +1,5 @@
 classdef ConnectorWebWindowBrowserInterface<map.webmap.internal.WebWindowBrowserInterface
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
         function hweb=web(browserIfc,url)
             channelID=browserIfc.ChannelID;

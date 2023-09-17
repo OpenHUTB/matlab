@@ -1,8 +1,5 @@
 classdef JSEditorService<handle
 
-
-
-
     methods
 
         function editorEditFunction(this,functionName)

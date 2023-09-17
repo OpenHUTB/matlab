@@ -1,8 +1,5 @@
 function workerName=getWorkerName()
 
-
-
-
     workerName='';
 
     worker=getCurrentWorker;

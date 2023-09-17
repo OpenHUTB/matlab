@@ -1,8 +1,6 @@
 classdef JSMiscService<handle
 
 
-
-
     methods
         function utilOpenEMHelp(~)
             helpview('deeplearning','exp-mgr-app-ref');

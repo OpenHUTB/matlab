@@ -1,8 +1,5 @@
 classdef JSAnnotationsService<handle
 
-
-
-
     methods
 
         function annotationsSave(this,runID,annotations)

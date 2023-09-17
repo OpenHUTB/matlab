@@ -1,10 +1,5 @@
 function metrics=getStandardMetricsFromTrainingInfo(trInfo,trainingType,usesValidation)
 
-
-
-
-
-
     if strcmp(trainingType,'classification')
         trainingAccuracyOrRMSE=trInfo.TrainingAccuracy(trInfo.OutputNetworkIteration);
     else

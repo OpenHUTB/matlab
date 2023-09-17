@@ -1,24 +1,8 @@
 classdef LineOverlay<map.webmap.internal.KMLOverlay
-
-
-
-
-
-
     methods
         function overlay=LineOverlay(canvas,varargin)
-
-
-
-
-
-
-
-
-
             overlay=overlay@map.webmap.internal.KMLOverlay(...
             canvas,varargin{:});
-
 
             overlay.OverlayType='Line';
             overlay.FeatureType='Line';
@@ -28,9 +12,6 @@ classdef LineOverlay<map.webmap.internal.KMLOverlay
             else
                 overlay.KMLParseType='line';
             end
-
-
-
             overlay.ParameterNames=[overlay.ParameterNames,{'LineWidth','Width','Alpha'}];
         end
     end
@@ -38,12 +19,6 @@ classdef LineOverlay<map.webmap.internal.KMLOverlay
     methods(Access='protected')
 
         function feature=validateFeature(overlay,feature)
-
-
-
-
-
-
 
             if isgeotable(feature)
                 [feature,modifiedVarnames]=geotable2geoshape(feature);
@@ -67,20 +42,6 @@ classdef LineOverlay<map.webmap.internal.KMLOverlay
 
 
         function index=clipFeature(overlay)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             p=overlay.Feature;
             n=length(p);
             index=false(1,n);
@@ -103,9 +64,6 @@ classdef LineOverlay<map.webmap.internal.KMLOverlay
                     lon(end)=[];
                 end
 
-
-
-
                 clat{k}=lat(:)';
                 clon{k}=lon(:)';
                 alt=zeros(1,length(lat));
@@ -115,19 +73,12 @@ classdef LineOverlay<map.webmap.internal.KMLOverlay
                     index(k)=true;
                 end
             end
-
-
-
-
-
             altitudeName=determineAltitudeName(overlay);
             p.(altitudeName)=calt;
             p.Latitude=clat;
             p.Longitude=clon;
 
-
             p(index)=[];
-
 
             overlay.Feature=p;
         end
@@ -135,13 +86,6 @@ classdef LineOverlay<map.webmap.internal.KMLOverlay
 
 
         function addFeature(overlay)
-
-
-
-
-
-
-
             overlay.KMLDocument.UseMultipartName=false;
             addFeature(overlay.KMLDocument,overlay.Feature);
         end
@@ -161,12 +105,8 @@ function[S,modifiedVarnames]=geotable2geoshape(GT)
     if~(any(class(shape)==["geopointshape","geolineshape","geopolyshape"]))
         error(message('map:validate:expectedHomogeneousTable'))
     end
-
-
-
     GT(hasNoCoordinateData(GT.Shape),:)=[];
     shape=GT.Shape;
-
 
     T=geotable2table(GT,["Latitude","Longitude"]);
 
@@ -188,10 +128,6 @@ end
 
 
 function S=convertOtherDatatypes(S,T,TS)
-
-
-
-
 
     fS=fieldnames(S);
     fTS=fieldnames(TS);

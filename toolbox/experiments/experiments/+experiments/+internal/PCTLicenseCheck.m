@@ -1,11 +1,6 @@
 function PCTLicenseCheck()
 
-
-
-
     import experiments.internal.ExperimentException
-
-
     [~,result]=matlab.internal.parallel.canUseParallelPool;
     if~result.IsInstalled
         throw(ExperimentException(message('experiments:manager:NoParallelInstalled',...

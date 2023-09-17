@@ -1,16 +1,9 @@
 function[xArray,yArray,tArray,aucArray]=computeROCMetrics(labels,scores,truePredictedLabels,showROCCurve)
 
-
-
-
     xArray=[];
     yArray=[];
     tArray=[];
     aucArray=[];
-
-
-
-
 
     if showROCCurve
         nElements=numel(truePredictedLabels);

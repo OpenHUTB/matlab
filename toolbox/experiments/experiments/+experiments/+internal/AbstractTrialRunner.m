@@ -1,8 +1,5 @@
 classdef(Abstract)AbstractTrialRunner<handle
 
-
-
-
     properties
 dataQueue
 stopDataQueue
@@ -38,10 +35,7 @@ isParallel
             end
 
 
-
             if isempty(this.stopDataQueue)
-
-
 
                 this.stopDataQueue=parallel.pool.PollableDataQueue;
             end

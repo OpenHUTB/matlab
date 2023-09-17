@@ -1,11 +1,5 @@
 classdef BasicFitDialog<handle
 
-
-
-
-
-
-
     properties(Access={?datamanager.basicfit.BasicFittingManager,?tbasicfit,?tBasicFittingManager,?tBasicFitDialog})
         BasicFitFigure matlab.ui.Figure
         TypesOfFitPanel matlab.ui.container.internal.AccordionPanel

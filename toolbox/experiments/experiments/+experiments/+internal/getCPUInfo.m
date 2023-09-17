@@ -1,18 +1,5 @@
 function info=getCPUInfo()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     if isunix
         if ismac
             info=cpuInfoMac();

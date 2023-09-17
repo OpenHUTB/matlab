@@ -1,11 +1,5 @@
 classdef KMLOverlay<handle
 
-
-
-
-
-
-
     properties(Access='public',Hidden,Transient)
 
 
@@ -13,164 +7,67 @@ classdef KMLOverlay<handle
 
 Canvas
 
-
-
-
-
-
         AutoFit=true
 
-
-
-
-
         OverlayNumber=1
-
-
-
-
 
         KMLFileNumber=0
     end
 
     properties(GetAccess='public',SetAccess='protected',Hidden,Transient)
 
-
-
-
-
 Feature
     end
 
     properties(Access='public',Dependent,Hidden)
 
-
-
-
 OverlayName
-
-
-
 
 FeatureName
     end
 
     properties(Access='protected')
-
-
-
-
-
         ModifiedVariableNames=struct.empty
     end
 
     properties(Access='protected',Dependent)
 
-
-
-
-
 Color
-
-
-
-
 
 Filename
 
-
-
-
-
 InstallFilename
-
-
-
-
-
 
 LatitudeLimits
     end
 
     properties(Access='protected',Constant)
-
-
-
-
-
         LongitudeLimits=[-180,180]
     end
 
     properties(Access='protected',Transient)
 
-
-
-
-
         BaseFilename='overlay'
-
-
-
 
 Script
 
-
-
-
 KMLDocument
 
-
-
-
-
         KMLParseType='any'
-
-
-
-
-
-
         ParameterNames={'AutoFit','FeatureName','OverlayName',...
         'Description','Color'};
 
-
-
-
-
         OverlayType=''
-
-
-
-
 
 OverlayScript
 
-
-
-
-
         FeatureType='KML'
-
-
-
-
 
         FeatureVariableName='P'
 
-
-
-
-
 NumberOfFeatures
 
-
-
-
         DefaultColor=[0,0,0]
-
-
-
-
         UsingConnectorBrowserInterface=false
 
 
@@ -187,49 +84,24 @@ pFilename
     properties(Access='private',Transient)
 
 
-
-
-
 KMLNameValuePairs
     end
 
     methods
         function overlay=KMLOverlay(canvas,varargin)
 
-
-
-
-
-
-
-
-
             overlay.Canvas=canvas;
             overlay.Script=canvas.Script;
-
-
             overlay.KMLDocument=map.internal.KMLDocument;
-
-
             [options,inputs]=parseOverlayOptions(varargin);
 
-
             setOverlayProperties(overlay,options);
-
-
-
-
             overlay.KMLNameValuePairs=inputs;
-
-
             overlay.UsingConnectorBrowserInterface=...
             canvas.UsingConnectorBrowserInterface;
         end
 
         function delete(overlay)
-
-
-
             if~isempty(overlay)&&~isempty(overlay.Script)...
                 &&exist(overlay.InstallFilename,'file')
                 try
