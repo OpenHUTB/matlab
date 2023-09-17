@@ -27,7 +27,7 @@ addpath(genpath(fullfile(cur_dir, 'utils')));
 all_files = RangTraversal(raw_matlab_dir);
 
 for i = 1 : numel(all_files)
-    cur_file = all_files{i};
+    cur_file = all_files{end};
 
     % 获得相对matlab主目录的后缀目录
     split_strs = split(cur_file, 'matlab_2022b');
