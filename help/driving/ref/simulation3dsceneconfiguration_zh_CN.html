@@ -376,27 +376,19 @@
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1ac25a0f-ee92-44f0-b220-d9ccbe5b04bd" data-target="#expand_panel_body_mw_1ac25a0f-ee92-44f0-b220-d9ccbe5b04bd" aria-controls="expand_panel_body_mw_1ac25a0f-ee92-44f0-b220-d9ccbe5b04bd" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Project" class="anchor_target"></span><span id="Project_" class="anchor_target"></span><h3 class="panel-title" id="mw_1ac25a0f-ee92-44f0-b220-d9ccbe5b04bd"><code class="name">Project</code> — Name of Unreal Engine project file<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">valid project file name</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1ac25a0f-ee92-44f0-b220-d9ccbe5b04bd" data-target="#expand_panel_body_mw_1ac25a0f-ee92-44f0-b220-d9ccbe5b04bd" aria-controls="expand_panel_body_mw_1ac25a0f-ee92-44f0-b220-d9ccbe5b04bd" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Project" class="anchor_target"></span><span id="Project_" class="anchor_target"></span><h3 class="panel-title" id="mw_1ac25a0f-ee92-44f0-b220-d9ccbe5b04bd"><code class="name">Project</code> — 虚幻引擎项目文件的名称<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">有效的项目文件名</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_1ac25a0f-ee92-44f0-b220-d9ccbe5b04bd" aria-labelledby="expand_panel_heading_mw_1ac25a0f-ee92-44f0-b220-d9ccbe5b04bd" class="panel-collapse collapse"><div class="panel-body">
-            <p>Name of the Unreal Engine project file, specified as a valid project file name. You can either
-              browse for the file or specify the full path to the file, using backslashes. The file
-              must contain no spaces. To simulate scenes from this project in the Unreal Editor, click <strong class="guilabel">Open Unreal Editor</strong>. If you have an
-                Unreal Editor session open already, then this button is disabled.</p>
-            <p>To run the simulation, in Simulink, click <strong class="guibutton">Run</strong>. Before you click <strong class="guibutton">Play</strong> in
-    the Unreal Editor, wait until the Diagnostic Viewer window displays this confirmation
-    message:</p>
+            <p>虚幻引擎项目文件的名称，指定为有效的项目文件名。可以浏览文件或使用反斜杠指定文件的完整路径。该文件不得包含空格。要在虚幻编辑器中模拟此项目的场景，请单击 <strong class="guilabel">Open Unreal Editor</strong>。如果已经打开了虚幻编辑器会话，则该按钮将被禁用。</p>
+            <p>要运行仿真，请在 Simulink 中单击 <strong class="guibutton">Run</strong>。在虚幻编辑器中单击 <strong class="guibutton">Play</strong> 之前，请等待 Diagnostic Viewer window 窗口显示以下确认消息：</p>
 <div class="code_responsive"><pre class="programlisting">In the Simulation 3D Scene Configuration block, you set the scene source to 'Unreal Editor'.
 In Unreal Editor, select 'Play' to view the scene.</pre>
 </div>
-This
-    message confirms that Simulink has instantiated the scene actors, including the vehicles and cameras, in the
-        Unreal Engine 3D environment. If you click <strong class="guibutton">Play</strong> before the Diagnostic
-    Viewer window displays this confirmation message, Simulink might not instantiate the actors in the Unreal Editor.<p></p>
+此消息确认 Simulink 已在虚幻引擎三维环境中实例化场景参与者，包括车辆和摄像机。如果在诊断查看器窗口显示此确认消息之前单击 <strong class="guibutton">Play</strong> ，Simulink 可能不会在虚幻编辑器中实例化参与者。<p></p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, set <strong class="guilabel">Scene source</strong> to
-                  <code class="guidropdown">Unreal Editor</code>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请将场景源 <strong class="guilabel">Scene source</strong> 设置为
+                  <code class="guidropdown">Unreal Editor</code>。</p>
             
           </div>
 </div>
@@ -550,41 +542,32 @@ This
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_432b2313-1b9f-4364-a41c-a10ce535ce65" data-target="#expand_panel_body_mw_432b2313-1b9f-4364-a41c-a10ce535ce65" aria-controls="expand_panel_body_mw_432b2313-1b9f-4364-a41c-a10ce535ce65" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sampletime" class="anchor_target"></span><span id="Sample_time_" class="anchor_target"></span><h3 class="panel-title" id="mw_432b2313-1b9f-4364-a41c-a10ce535ce65"><code class="name">Sample time</code> — Sample time of visualization engine<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1/60</code> (default) | scalar greater than or equal to 0.01</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_432b2313-1b9f-4364-a41c-a10ce535ce65" data-target="#expand_panel_body_mw_432b2313-1b9f-4364-a41c-a10ce535ce65" aria-controls="expand_panel_body_mw_432b2313-1b9f-4364-a41c-a10ce535ce65" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sampletime" class="anchor_target"></span><span id="Sample_time_" class="anchor_target"></span><h3 class="panel-title" id="mw_432b2313-1b9f-4364-a41c-a10ce535ce65"><code class="name">Sample time</code> — 可视化引擎的采样时间</h3>
+<h3 class="panel-title" id="mw_432b2313-1b9f-4364-a41c-a10ce535ce65"> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1/60</code> (默认) | 标量大于或等于 0.01</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_mw_432b2313-1b9f-4364-a41c-a10ce535ce65" aria-labelledby="expand_panel_heading_mw_432b2313-1b9f-4364-a41c-a10ce535ce65" class="panel-collapse collapse"><div class="panel-body">
-            <p>Sample time, <em class="varname">T<sub>s</sub></em>, of the visualization
-              engine, specified as a scalar greater than or equal to 0.01. Units are in
-              seconds.</p>
-            <p>The graphics frame rate of the visualization engine is the inverse of the sample
-              time. For example, if <strong class="guilabel bold">Sample time</strong> is
-                <code class="userinput">1/60</code>, then the visualization engine solver tries to achieve a
-              frame rate of 60 frames per second. However, the real-time graphics frame rate is
-              often lower due to factors such as graphics card performance and model
-              complexity.</p>
-            <p>By default, blocks that receive data from the visualization engine, such as <span class="block">Simulation 3D Camera</span> blocks, inherit this sample rate.</p>
+<div role="tabpanel" id="expand_panel_body_mw_432b2313-1b9f-4364-a41c-a10ce535ce65" aria-labelledby="expand_panel_heading_mw_432b2313-1b9f-4364-a41c-a10ce535ce65" class="panel-collapse collapse"><div class="panel-body"><p>可视化引擎的采样时间 <em class="varname">T<sub>s</sub></em>，指定为大于或等于 0.01 的标量。单位为秒。</p>
+            <p>可视化引擎的图形帧速率是采样时间的倒数。例如，如果采样时间 <strong class="guilabel bold">Sample time</strong> 为 <code class="userinput">1/60</code>，则可视化引擎解算器会尝试实现每秒 60 帧的帧速率。但由于显卡性能、模型复杂度等因素，实时图形帧率往往较低。</p>
+            <p>默认情况下，从可视化引擎接收数据的模块（例如 <span class="block">Simulation 3D Camera</span> 模块）继承此采样率。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6da3e52b-6ac7-4a4e-b364-ed6fbcf63827" data-target="#expand_panel_body_mw_6da3e52b-6ac7-4a4e-b364-ed6fbcf63827" aria-controls="expand_panel_body_mw_6da3e52b-6ac7-4a4e-b364-ed6fbcf63827" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Display3Dsimulationwindow" class="anchor_target"></span><span id="Display_3D_simulation_window" class="anchor_target"></span><h3 class="panel-title" id="mw_6da3e52b-6ac7-4a4e-b364-ed6fbcf63827"><code class="name">Display 3D simulation window</code> — Unreal Engine visualization<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">on</code> (default) | <code class="literal">off</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6da3e52b-6ac7-4a4e-b364-ed6fbcf63827" data-target="#expand_panel_body_mw_6da3e52b-6ac7-4a4e-b364-ed6fbcf63827" aria-controls="expand_panel_body_mw_6da3e52b-6ac7-4a4e-b364-ed6fbcf63827" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Display3Dsimulationwindow" class="anchor_target"></span><span id="Display_3D_simulation_window" class="anchor_target"></span><h3 class="panel-title" id="mw_6da3e52b-6ac7-4a4e-b364-ed6fbcf63827"><code class="name">Display 3D simulation window</code> — 虚幻引擎可视化<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">on</code> (默认) | <code class="literal">off</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_6da3e52b-6ac7-4a4e-b364-ed6fbcf63827" aria-labelledby="expand_panel_heading_mw_6da3e52b-6ac7-4a4e-b364-ed6fbcf63827" class="panel-collapse collapse"><div class="panel-body">
-            <p>Select whether to run simulations in the 3D visualization environment without
-              visualizing the results, that is, in <em class="firstterm">headless mode</em>.</p>
-            <p>Consider running in headless mode in these cases:</p>
-<div class="itemizedlist"><ul><li><p>You want to run multiple 3D simulations in parallel to test models in
-                    different Unreal Engine scenarios.</p></li>
-<li><p>You want to capture sensor data to analyze in MATLAB but do not need to watch the visualization.</p></li>
+            <p>选择是否在三维可视化环境中运行仿真而不可视化结果，即在 <em class="firstterm">headless </em>模式下。</p>
+            <p>在这些情况下，请考虑在无头模式下运行：</p>
+<div class="itemizedlist"><ul><li><p>想要并行运行多个三维模拟，以在不同的虚幻引擎场景中测试模型。</p></li>
+<li><p>想要捕获传感器数据以在 MATLAB 中进行分析，但不需要观看可视化效果。</p></li>
 </ul>
 </div>
 <p>
 </p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, set <strong class="guilabel">Scene source</strong> to
-                  <code class="guidropdown">Default Scenes</code> or <code class="guidropdown">Unreal
-                  Executable</code>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请将场景源 <strong class="guilabel">Scene source</strong> 设置为
+                  <code class="guidropdown">Default Scenes</code> 或者 <code class="guidropdown">Unreal
+                  Executable</code>。</p>
             
           </div>
 </div>
@@ -840,8 +823,8 @@ This
 <p></p>
             <p>使用 <strong class="guilabel">云不透明度</strong> 和 <strong class="guilabel">雨密度</strong> 参数来控制场景中的降雨。</p>
             
-    <h4 class="descriptionsect">Dependencies</h4>
-    <p>To enable this parameter, select <strong class="guilabel">Override scene weather</strong>.</p>
+    <h4 class="descriptionsect">依赖</h4>
+    <p>要启用此参数，选择 <strong class="guilabel">Override scene weather</strong>。</p>
 
           </div>
 </div>

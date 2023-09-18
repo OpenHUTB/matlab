@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Prepare Custom Vehicle Mesh for the Unreal Editor</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../unreal-engine-scenario-simulation.html",
+          "name": "Unreal Engine Scenario Simulation"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "unreal-engine-scenario-simulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Create custom vehicle mesh for the Simulation 3D Vehicle with Ground Following block."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../unreal-engine-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Simulation</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Prepare Custom Vehicle Mesh for the Unreal Editor</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_e57e2443-5e06-4a0d-9fa3-8db6925c765b" class="intrnllnk">Step 1: Setup Bone Hierarchy</a></li>
+<li><a href="#mw_586b5b03-9408-4c6d-98f4-c12db57449ba" class="intrnllnk">Step 2: Assign Materials</a></li>
+<li><a href="#mw_27816aff-79af-47ca-bd56-16ca95cfc029" class="intrnllnk">Step 3: Export Mesh and Armature</a></li>
+<li><a href="#mw_c3bd46db-414e-4301-8bed-447e51f8b102" class="intrnllnk">Step 4: Import Mesh to Unreal Editor</a></li>
+<li><a href="#mw_b8fd77a9-0d0d-452b-8a72-18eb49d7941b" class="intrnllnk">Step 5: Set Block Parameters</a></li>
+<li><a href="#d124e20086" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_a3057a44-71ad-4d69-bb01-76fb1af58ba8">为虚幻编辑器准备自定义车辆网格<br/></h2>
+<p>此示例展示如何创建与 <span><span class="entity">Automated Driving Toolbox™ Interface for Unreal Engine<sup>®</sup> 4 Projects</span></span>
+         支持包中的项目兼容的车辆网格。可以在 
+        <span><span class="block">Simulation 3D Vehicle with Ground Following</span> </span>模块中指定网格，以便在运行仿真时在虚幻编辑器中可视化车辆。</p>
+<p>开始之前，请安装适用于虚幻引擎 4 项目的 <span class="entity">Automated Driving Toolbox Interface for Unreal Engine 4 Projects</span> 支持包。请参阅 <a href="install-and-configure-support-package-for-customizing-scenes.html" class="a">Install Support Package for Customizing Scenes</a>。</p>
+<p>要创建兼容的自定义车辆网格，请按照以下工作流程步骤操作。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="4%" align="left"/>
+<col class="tcol2" width="23%" align="left"/>
+<col class="tcol3" width="73%" align="left"/>
+</colgroup>
+<thead><tr><th colspan="2"><p>步骤</p>
+</th>
+<th><p>描述</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td colspan="2"><p><a href="prepare-custom-vehicle-mesh-for-the-unreal-editor.html#mw_e57e2443-5e06-4a0d-9fa3-8db6925c765b" class="intrnllnk">第 1 步：设置骨骼层次结构</a></p>
+</td>
+<td><p>在三维创建环境中，设置车辆网格骨骼层次结构并指定零件名称。</p>
+</td>
+</tr>
+<tr><td colspan="2"><a href="prepare-custom-vehicle-mesh-for-the-unreal-editor.html#mw_586b5b03-9408-4c6d-98f4-c12db57449ba" class="intrnllnk">第 2 步：分配材料</a></td>
+<td><p>（可选）将材料分配给车辆零件。</p>
+</td>
+</tr>
+<tr><td colspan="2"><a href="prepare-custom-vehicle-mesh-for-the-unreal-editor.html#mw_27816aff-79af-47ca-bd56-16ca95cfc029" class="intrnllnk">第 3 步：导出网格和骨架</a></td>
+<td><p>将车辆网格和骨架导出为 .<code class="literal">fbx</code>
+                                文件格式。</p>
+</td>
+</tr>
+<tr><td colspan="2"><a href="prepare-custom-vehicle-mesh-for-the-unreal-editor.html#mw_c3bd46db-414e-4301-8bed-447e51f8b102" class="intrnllnk">第 4 步：将网格导入虚幻编辑器</a></td>
+<td><p>将车辆网格导入到虚幻编辑器中</p>
+</td>
+</tr>
+<tr><td colspan="2"><a href="prepare-custom-vehicle-mesh-for-the-unreal-editor.html#mw_b8fd77a9-0d0d-452b-8a72-18eb49d7941b" class="intrnllnk">第 5 步：设置模块参数</a></td>
+<td><p>使用 
+                                <span><span class="block">Simulation 3D Vehicle with
+                                        Ground Following</span> block</span> 模块参数</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p>
+<p>为了创建网格，本示例使用三维创建软件 Blender<sup>®</sup> 2.80 版本。</p>
+</div>
+<section itemprop="content"><h3 class="title" id="mw_e57e2443-5e06-4a0d-9fa3-8db6925c765b">第 1 步：设置骨骼层次结构</h3>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>将车辆网格导入三维建模工具，例如 Blender，使用 <a href="https://github.com/gildor2/UEViewer">Umodel </a>将 AutoVrtlEnv\Content\Environment\Vehicles\Muscle\Meshes\SK_MuscleCar.uasset 解包，导出成 .gltf 格式。</p></li>
+<li><p>为了确保该网格与
+                        
+                    <span><span class="entity">Automated Driving Toolbox Interface for Unreal Engine 4 Projects</span></span> 支持包界面中的动画组件兼容，请对网格中的车辆部件使用此命名约定。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>车辆零件</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody><tr><td><p>底盘</p>
+</td>
+<td><p>VehicleBody</p>
+</td>
+</tr>
+<tr><td><p>左前轮</p>
+</td>
+<td><p>Wheel_FL</p>
+</td>
+</tr>
+<tr><td><p>右前轮</p>
+</td>
+<td><p>Wheel_FR</p>
+</td>
+</tr>
+<tr><td><p>左后轮</p>
+</td>
+<td><p>Wheel_RL</p>
+</td>
+</tr>
+<tr><td><p>右后轮</p>
+</td>
+<td><p>Wheel_RR</p>
+</td>
+</tr>
+<tr><td><p>方向盘</p>
+</td>
+<td><p>Wheel_Steering</p>
+</td>
+</tr>
+<tr><td><p>左前灯</p>
+</td>
+<td><p>Lights_Headlight_Left</p>
+</td>
+</tr>
+<tr><td><p>右前灯</p>
+</td>
+<td><p>Lights_Headlight_Right</p>
+</td>
+</tr>
+<tr><td><p>左侧指示灯</p>
+</td>
+<td><p>Indicator_L</p>
+</td>
+</tr>
+<tr><td><p>右侧指示灯</p>
+</td>
+<td><p>Indicator_R</p>
+</td>
+</tr>
+<tr><td><p>车牌号</p>
+</td>
+<td><p>Vehicle_Plate</p>
+</td>
+</tr>
+<tr><td><p>刹车灯</p>
+</td>
+<td><p>Lights_Brake</p>
+</td>
+</tr>
+<tr><td><p>倒车灯</p>
+</td>
+<td><p>Lights_Reverse</p>
+</td>
+</tr>
+<tr><td><p>左前制动钳</p>
+</td>
+<td><p>BrakeCaliper_FL</p>
+</td>
+</tr>
+<tr><td><p>右前制动钳</p>
+</td>
+<td><p>BrakeCaliper_FR</p>
+</td>
+</tr>
+<tr><td><p>左后制动钳</p>
+</td>
+<td><p>BrakeCaliper_RL</p>
+</td>
+</tr>
+<tr><td><p>右后制动钳</p>
+</td>
+<td><p>BrakeCaliper_RR</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p></li>
+<li><p>设置车身对象， <strong class="guilabel">VehicleBody</strong> 作为车轮对象和其他车辆对象的父对象。</p></li>
+</ol>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_586b5b03-9408-4c6d-98f4-c12db57449ba">第 2 步：分配材料</h3>
+<p>（可选）将材料槽分配给车辆零件。在此示例中，网格使用一种材料用于底盘，另一种材料用于四个轮子。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>创建材料槽并将其分配给车辆底盘。确认第一个车辆槽位对应车身。</p></li>
+<li><p>创建材料槽并将其分配给轮子。</p></li>
+</ol>
+</div>
+<p>
+</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_27816aff-79af-47ca-bd56-16ca95cfc029">第 3 步：导出网格和骨架</h3>
+<p>将网格和骨架导出到 .<code class="literal">fbx</code> 文件格式。例如，在 Blender 中：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在 <strong class="guilabel">Object Types</strong> 窗格中，选择 <strong class="guilabel">Armature</strong> 和 <strong class="guilabel">Mesh</strong>。</p></li>
+<li><p>在 <strong class="guilabel">Transform</strong> 窗格中，设置：</p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">缩放（Scale）</strong>至 1.00</p></li>
+<li><p><strong class="guilabel">缩放应用（Apply Scalings）</strong>到 <code class="guidropdown">All
+                                        Local</code></p></li>
+<li><p><strong class="guilabel">Forward</strong> to <code class="guidropdown">X
+                                        Forward</code></p></li>
+<li><p><strong class="guilabel">Up</strong> to <code class="guidropdown">Z
+                                    Up</code></p></li>
+</ul>
+</div><p>
+选择 <strong class="guilabel">Apply Unit</strong>。</p></li>
+<li><p>在几何图形 <strong class="guilabel">Geometry</strong> 窗格上：</p>
+<div class="itemizedlist"><ul><li><p>将平滑（<strong class="guilabel">Smoothing</strong>）设置为 <code class="guidropdown">Face</code></p></li>
+<li><p>选择 <strong class="guilabel">Apply Modifiers</strong></p></li>
+</ul>
+</div><p>
+</p></li>
+<li><p>在 <strong class="guilabel">Armature</strong> 窗格上，设置：</p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Primary Bone Axis</strong> 设置为 <code class="guidropdown">X
+                                        Axis</code></p></li>
+<li><p><strong class="guilabel">Secondary Bone Axis</strong> 设置为 <code class="guidropdown">Z
+                                        Axis</code></p></li>
+</ul>
+</div><p>
+选择 <strong class="guilabel">Export FBX</strong>。</p></li>
+</ol>
+</div>
+<p>
+</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_c3bd46db-414e-4301-8bed-447e51f8b102">第 4 步：将网格导入虚幻编辑器</h3>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在虚幻编辑器中打开虚幻引擎项目
+                    <code class="literal">AutoVrtlEnv.uproject。</code></p></li>
+<li><p>在编辑器中，将 FBX<sup>®</sup> 文件导入为骨架网格物体。将骨架（<strong class="guilabel">Skeleton</strong>）分配给 <code class="guidropdown">SK_PassengenerVehicle_Skeleton</code> 资产。</p><div id="d124e20055" class="mediaobject"><p class="listimage"><img src="ue_fbx_import.png" alt="FBX Import Options with Mesh and Skeleton" height="348" width="516"/></p>
+</div></li>
+</ol>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_b8fd77a9-0d0d-452b-8a72-18eb49d7941b">第 5 步：设置模块参数</h3>
+<p>在 Simulink<sup>®</sup> 模型中，设置这些 
+            <span><span class="block">Simulation 3D Vehicle with Ground
+                    Following</span></span> 模块参数：</p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Type</strong> 设置为 <code class="guidropdown">Custom</code>.</p></li>
+<li><p><strong class="guilabel">Path</strong> 设置为包含导入网格的虚幻引擎工程路径。</p></li>
+</ul>
+</div>
+<p>
+</p>
+</section>
+        <h2 id="d124e20086">也可以看看</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
+                Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvehiclewithgroundfollowing.html"><span itemprop="name"><span class="block">Simulation 3D
+                Vehicle with Ground Following</span></span></a></span></p>
+    </section>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

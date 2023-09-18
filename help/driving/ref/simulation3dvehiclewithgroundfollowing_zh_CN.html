@@ -224,7 +224,7 @@
 <div class="col-xs-12">
 
 <div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
-<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="block_ref"><span id="mw_32cd8e72-2d69-4c3e-98b0-5b918db383a4" class="anchor_target"></span><span id="sim3dvehiclefollowing" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">Simulation 3D Vehicle with Ground Following</span></h1>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="block_ref"><span id="mw_32cd8e72-2d69-4c3e-98b0-5b918db383a4" class="anchor_target"></span><span id="sim3dvehiclefollowing" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><a href="https://ww2.mathworks.cn/help/releases/R2022b/driving/ref/simulation3dvehiclewithgroundfollowing.html">Simulation 3D Vehicle with Ground Following</a><br/></h1>
 <div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">在三维环境中实现跟随地面的车辆</p>
 <div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
 </div>
@@ -320,17 +320,12 @@
 <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_fdcba65f-a327-438a-83e7-372aaf40cd13" data-target="#expand_panel_body_mw_fdcba65f-a327-438a-83e7-372aaf40cd13" aria-controls="expand_panel_body_mw_fdcba65f-a327-438a-83e7-372aaf40cd13" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_fdcba65f-a327-438a-83e7-372aaf40cd13"><code class="name">Y</code> — 车辆横向位置<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">scalar</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_fdcba65f-a327-438a-83e7-372aaf40cd13" aria-labelledby="expand_panel_heading_mw_fdcba65f-a327-438a-83e7-372aaf40cd13" class="panel-collapse collapse"><div class="panel-body">
-            <p>Lateral position of the vehicle along the <span class="emphasis"><em>Y</em></span>-axis of the scene.
-                <strong class="guilabel">Y</strong> is in the inertial <span><span class="emphasis"><em>Z</em></span>-up</span> coordinate system. Units are in
-              meters.</p>
-            <p>The <span class="emphasis"><em>Y</em></span> value of the <strong class="guilabel">Initial
-                position [X, Y, Z] (m)</strong> parameter must match the value of this port at the
-              start of simulation.</p>
-            <p>To specify multiple positions at port
-                <strong class="guilabel">Y</strong> along an entire vehicle path, first define a time series of
-                <span class="emphasis"><em>Y</em></span> waypoints in MATLAB. Then, feed these waypoints to <strong class="guilabel">Y</strong> by using a <a href="../../simulink/slref/fromworkspace.html"><span class="block">From Workspace</span></a><span role="cross_prod"> (Simulink)</span> block. To learn how to select and specify waypoints, see the
-                <a href="../ug/select-waypoints-for-3d-simulation.html" class="a">Select Waypoints for Unreal Engine Simulation</a>
-              example.</p>
+            <p>车辆沿场景 <span class="emphasis"><em>Y</em></span>-轴的横向位置。<strong class="guilabel">Y</strong> 位于惯性 <span><span class="emphasis"><em>Z</em></span>-</span>向上坐标系中。单位为米。</p>
+            <p>初始位置 <strong class="guilabel">Initial
+                position [X, Y, Z] (m)</strong> 参数的 <span class="emphasis"><em>Y</em></span> 值必须与仿真开始时该端口的值匹配。</p>
+            <p>要沿整个车辆路径指定端口
+                <strong class="guilabel">Y</strong> 的多个位置，首先在 MATLAB 中定义 <span class="emphasis"><em>Y</em></span> 路点的时间序列。然后，使用 <a href="../../simulink/slref/fromworkspace.html"><span class="block">From Workspace</span></a><span role="cross_prod"> (Simulink)</span> 模块将这些路点提供给 <em>Y</em>。要了解如何选择和指定路点，请参阅 <a href="../ug/select-waypoints-for-3d-simulation.html" class="a">Select Waypoints for Unreal Engine Simulation</a>
+              示例。</p>
           </div>
 </div>
 </div>
@@ -338,17 +333,12 @@
 <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" data-target="#expand_panel_body_mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" aria-controls="expand_panel_body_mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_a30fd3ee-9c12-446d-bdd3-f834f8384659"><code class="name">Yaw</code> — 车辆的偏航方向角<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" aria-labelledby="expand_panel_heading_mw_a30fd3ee-9c12-446d-bdd3-f834f8384659" class="panel-collapse collapse"><div class="panel-body">
-            <p>Yaw orientation angle of the vehicle along the <span class="emphasis"><em>Z</em></span>-axis of the
-              scene. <strong class="guilabel">Yaw</strong> is in the <span><span class="emphasis"><em>Z</em></span>-up</span> coordinate system. <span>Units are in degrees</span>.</p>
-            <p>The yaw value of the <strong class="guilabel">Initial rotation [Roll,
-                Pitch, Yaw] (deg)</strong> parameter must match the value of this port at the
-              start of simulation.</p>
-            <p>To specify multiple orientation angles at port
-                <strong class="guilabel">Yaw</strong> along an entire vehicle path, first define a time series of
-              yaw waypoints in MATLAB. Then, feed these waypoints to <strong class="guilabel">Yaw</strong> by using a
-                <a href="../../simulink/slref/fromworkspace.html"><span class="block">From Workspace</span></a><span role="cross_prod"> (Simulink)</span> block. To learn how to
-              select and specify waypoints, see the <a href="../ug/select-waypoints-for-3d-simulation.html" class="a">Select Waypoints for Unreal Engine Simulation</a>
-              example.</p>
+            <p>车辆沿场景 <span class="emphasis"><em>Z</em></span>-轴的偏航方向角。偏航角 <strong class="guilabel">Yaw</strong> 位于 <span><span class="emphasis"><em>Z</em></span>-</span>向上坐标系中。单位为度。</p>
+            <p>初始旋转 <strong class="guilabel">Initial rotation [Roll,
+                Pitch, Yaw] (deg)</strong> 参数的偏航值必须与仿真开始时该端口的值匹配。</p>
+            <p>要沿整个车辆路径在偏航端口指定多个方位角
+                <strong class="guilabel">Yaw</strong> 首先在 MATLAB 中定义偏航航路点的时间序列。然后，使用 <a href="../../simulink/slref/fromworkspace.html"><span class="block">From Workspace</span></a><span role="cross_prod"> (Simulink)</span> 模块将这些路径点提供给。要了解如何选择和指定路点，请参阅 <a href="../ug/select-waypoints-for-3d-simulation.html" class="a">Select Waypoints for Unreal Engine Simulation</a>
+              示例。</p>
           </div>
 </div>
 </div>
@@ -413,37 +403,30 @@
 <div class="panel-group" id="mw_f8361cd9-232e-4cfa-a3b0-47e550030236_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" data-target="#expand_panel_body_mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" aria-controls="expand_panel_body_mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_3bb123c0-daf4-4d03-a787-1a671806dbd4"><code class="name">Location</code> — 车辆位置<br/><span class="add_font_color_general remove_bold"><span class="example_desc">1×3 的实值向量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" aria-labelledby="expand_panel_heading_mw_3bb123c0-daf4-4d03-a787-1a671806dbd4" class="panel-collapse collapse"><div class="panel-body">
-            <p>(<span class="emphasis"><em>X</em></span>, <span class="emphasis"><em>Y</em></span>, <span class="emphasis"><em>Z</em></span>) location of the
-              vehicle in the scene, returned as a real-valued 1-by-3 vector. This location is based
-              on the vehicle origin, which is on the ground, at the geometric center of the vehicle.
-                <strong class="guilabel">Location</strong> values are in the inertial <span class="emphasis"><em>Z</em></span>-up
-              world coordinate system. Units are in meters.</p>
+            <p>车辆在场景中的位置 (<span class="emphasis"><em>X</em></span>, <span class="emphasis"><em>Y</em></span>, <span class="emphasis"><em>Z</em></span>) ，以实值 1×3 向量形式返回。该位置基于车辆原点，该原点位于地面上车辆的几何中心。  位置值 <strong class="guilabel">Location</strong> 位于惯性 <span class="emphasis"><em>Z</em></span>-向上世界坐标系中。单位为米。</p>
             
               <h4 class="descriptionsect">依赖</h4>
-              <p>To enable this port, on the <strong class="guilabel">Ground Truth</strong> tab, select
-                  <strong class="guilabel">Output location (m) and orientation (rad)</strong>.</p>
+              <p>要启用此端口，请在 <strong class="guilabel">Ground Truth</strong> 选项卡上选择输出位置 <strong class="guilabel">Output location (m) </strong><span class="guilabel">和</span><strong class="guilabel"> orientation (rad)</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><strong>数据类型: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" data-target="#expand_panel_body_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" aria-controls="expand_panel_body_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_7a4c058e-cdda-4217-88e4-7fab7d375b18"><code class="name">Orientation</code> — 车辆的朝向<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">real-valued 1-by-3 vector</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" data-target="#expand_panel_body_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" aria-controls="expand_panel_body_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_7a4c058e-cdda-4217-88e4-7fab7d375b18"><code class="name">Orientation</code> — 车辆的朝向<br/><span class="add_font_color_general remove_bold"><span class="example_desc">1×3 实值向量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" aria-labelledby="expand_panel_heading_mw_7a4c058e-cdda-4217-88e4-7fab7d375b18" class="panel-collapse collapse"><div class="panel-body">
-            <p>Yaw, pitch, and roll orientation angles of the vehicle about the
-                <span class="emphasis"><em>Z</em></span>-axis, <span class="emphasis"><em>Y</em></span>-axis, and
-              <span class="emphasis"><em>X</em></span>-axes of the scene, respectively, returned as a real-valued
-              1-by-3 vector. This orientation is based on the vehicle origin, which is on the
-              ground, at the geometric center of the vehicle. <strong class="guilabel">Orientation</strong>
-              values are in the inertial <span class="emphasis"><em>Z</em></span>-up coordinate system. Units are in
-              radians.</p>
+            <p>车辆分别围绕场景的
+                <span class="emphasis"><em>Z</em></span>-轴、<span class="emphasis"><em>Y</em></span>-轴、和
+              <span class="emphasis"><em>X</em></span>-轴的偏航、俯仰和滚转方向角，返回为
+              1×3 的实值向量形式返回。该方向基于车辆原点，该原点位于地面上车辆的几何中心。朝向 <strong class="guilabel">Orientation</strong>
+              值位于惯性 <span class="emphasis"><em>Z</em></span>-向上坐标系中。单位为弧度。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this port, on the <strong class="guilabel">Ground Truth</strong> tab, select
-                  <strong class="guilabel">Output location (m) and orientation (rad)</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此端口，请在 <strong class="guilabel">Ground Truth</strong> 选项卡上选择输出位置
+                  <strong class="guilabel">Output location (m) </strong><span class="guilabel">和</span><strong class="guilabel"> orientation (rad)</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><strong>数据类型: </strong><code>double</code></p>
 </div>
 </div>
 </div>
@@ -477,7 +460,7 @@
 <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" data-target="#expand_panel_body_mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" aria-controls="expand_panel_body_mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Pathtocustommesh" class="anchor_target"></span><span id="Path_to_custom_mesh" class="anchor_target"></span><h3 class="panel-title" id="mw_c892bcf5-42c7-495d-a983-a165d4dd79e6"><code class="name">Path to custom mesh</code> — 自定义网格的路径<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">/MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar</code> (默认) | 有效路径</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" aria-labelledby="expand_panel_heading_mw_c892bcf5-42c7-495d-a983-a165d4dd79e6" class="panel-collapse collapse"><div class="panel-body">
-            <p>自定义网格的路径。</p>
+            <p>自定义网格的路径（位于AutoVrtlEnv\Content\Environment\Vehicles\Muscle\Meshes\SK_MuscleCar.uasset）。</p>
             <p>要创建自定义车辆网格体，请参阅 <a href="../ug/prepare-custom-vehicle-mesh-for-the-unreal-editor.html" class="a">为虚幻编辑器准备自定义车辆网格体</a>。</p>
             <p class="description_valueexample"><strong>示例: </strong><code class="literal">/MathWorksSimulation/Vehicles/Muscle/Meshes/SK_Sedan.SK_Sedan</code></p>
             
@@ -512,112 +495,95 @@
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" data-target="#expand_panel_body_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" aria-controls="expand_panel_body_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Wheelradiusincustommeshm" class="anchor_target"></span><span id="Wheel_radius_in_custom_mesh_" class="anchor_target"></span><h3 class="panel-title" id="mw_1597bbc7-f541-4b53-8843-d2205a040b2c"><code class="name">Wheel radius in custom mesh (m)</code> — Wheel radius<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.35</code> (default) | scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" data-target="#expand_panel_body_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" aria-controls="expand_panel_body_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Wheelradiusincustommeshm" class="anchor_target"></span><span id="Wheel_radius_in_custom_mesh_" class="anchor_target"></span><h3 class="panel-title" id="mw_1597bbc7-f541-4b53-8843-d2205a040b2c"><code class="name">Wheel radius in custom mesh (m)</code> — 车轮半径<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.35</code> (默认) | 标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" aria-labelledby="expand_panel_heading_mw_1597bbc7-f541-4b53-8843-d2205a040b2c" class="panel-collapse collapse"><div class="panel-body">
-            <p>Wheel radius in custom mesh, in m.</p>
+            <p>自定义网格中的轮子半径，以米为单位。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, set <strong class="guilabel">Type</strong> to
-                  <code class="guidropdown">Custom</code>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请将类型 <strong class="guilabel">Type</strong> 设置为
+                  <code class="guidropdown">Custom</code>。</p>
             
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" data-target="#expand_panel_body_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-controls="expand_panel_body_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Color" class="anchor_target"></span><span id="Color_" class="anchor_target"></span><h3 class="panel-title" id="mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c"><code class="name">Color</code> — Color of vehicle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Red</code> (default) | <code class="guidropdown">Orange</code> | <code class="guidropdown">Yellow</code> | <code class="guidropdown">Green</code> | <code class="guidropdown">Blue</code> | <code class="guidropdown">Black</code> | <code class="guidropdown">White</code> | <code class="guidropdown">Silver</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" data-target="#expand_panel_body_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-controls="expand_panel_body_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Color" class="anchor_target"></span><span id="Color_" class="anchor_target"></span><h3 class="panel-title" id="mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c"><code class="name">Color</code> — 车辆颜色<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Red</code> (默认) | <code class="guidropdown">Orange</code> | <code class="guidropdown">Yellow</code> | <code class="guidropdown">Green</code> | <code class="guidropdown">Blue</code> | <code class="guidropdown">Black</code> | <code class="guidropdown">White</code> | <code class="guidropdown">Silver</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-labelledby="expand_panel_heading_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-collapse collapse"><div class="panel-body"><p>Select the color of the vehicle.</p>
+<div role="tabpanel" id="expand_panel_body_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-labelledby="expand_panel_heading_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-collapse collapse"><div class="panel-body"><p>选择车辆的颜色。</p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" data-target="#expand_panel_body_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" aria-controls="expand_panel_body_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialpositionXYZm" class="anchor_target"></span><span id="Initial_position__X__Y__Z___m__" class="anchor_target"></span><h3 class="panel-title" id="mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674"><code class="name">Initial position [X, Y, Z] (m)</code> — Initial vehicle position<br/>
-<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0, 0, 0]</code> (default) | real-valued 1-by-3 vector</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" data-target="#expand_panel_body_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" aria-controls="expand_panel_body_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialpositionXYZm" class="anchor_target"></span><span id="Initial_position__X__Y__Z___m__" class="anchor_target"></span><h3 class="panel-title" id="mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674"><code class="name">Initial position [X, Y, Z] (m)</code> — 初始的车辆位置<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0, 0, 0]</code> (默认) | 1×3 的实值向量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" aria-labelledby="expand_panel_heading_mw_38d9dce2-9b3a-4028-9ae9-ecc2ea8e8674" class="panel-collapse collapse"><div class="panel-body">
-            <p>Initial vehicle position along the <span class="emphasis"><em>X</em></span>-axis,
-                <span class="emphasis"><em>Y</em></span>-axis, and <span class="emphasis"><em>Z</em></span>-axis of the scene. This
-              position is in the inertial <span class="emphasis"><em>Z</em></span>-up coordinate system. Units are in
-              meters.</p>
-            <p>Set the <span class="emphasis"><em>X</em></span> and <span class="emphasis"><em>Y</em></span> values of this parameter
-              to match the <strong class="guilabel">X</strong> and <strong class="guilabel">Y</strong> input port values at
-              the start of simulation.</p>
+            <p>沿场景的 <span class="emphasis"><em>X</em></span>-轴、<span class="emphasis"><em>Y</em></span>-轴、和 <span class="emphasis"><em>Z</em></span>-轴的初始车辆位置。该位置位于惯性 <span class="emphasis"><em>Z</em></span>-向上坐标系中。单位为米。</p>
+            <p>设置该参数的 <span class="emphasis"><em>X</em></span> 和 <span class="emphasis"><em>Y</em></span> 值以匹配仿真开始时的 <strong class="guilabel">X</strong> 和 <strong class="guilabel">Y</strong> 输入端口值。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" data-target="#expand_panel_body_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" aria-controls="expand_panel_body_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialrotationRollPitchYawdeg" class="anchor_target"></span><span id="Initial_rotation__Roll__Pitch__Yaw___deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_a6e241db-759b-4e59-9c38-bc65a59f9048"><code class="name">Initial rotation [Roll, Pitch, Yaw] (deg)</code> — Initial angle of vehicle rotation<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0, 0, 0]</code> (default) | real-valued 1-by-3 vector</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" data-target="#expand_panel_body_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" aria-controls="expand_panel_body_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialrotationRollPitchYawdeg" class="anchor_target"></span><span id="Initial_rotation__Roll__Pitch__Yaw___deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_a6e241db-759b-4e59-9c38-bc65a59f9048"><code class="name">Initial rotation [Roll, Pitch, Yaw] (deg)</code> — 车辆旋转的初始角度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0, 0, 0]</code> (默认) | 1×3 的实值向量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" aria-labelledby="expand_panel_heading_mw_a6e241db-759b-4e59-9c38-bc65a59f9048" class="panel-collapse collapse"><div class="panel-body">
-            <p>Initial angle of vehicle rotation. The angle of rotation is defined by the roll,
-              pitch, and yaw of the vehicle. Units are in degrees.</p>
-            <p>Set the yaw value of this parameter to match the <strong class="guilabel">Yaw</strong> input
-              port value at the start of simulation.</p>
+            <p>车辆旋转的初始角度。旋转角度由车辆的横滚、俯仰和偏航定义。单位为度。</p>
+            <p>设置该参数的偏航值以匹配模拟开始时的偏航 <strong class="guilabel">Yaw</strong> 输入端口值。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" data-target="#expand_panel_body_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" aria-controls="expand_panel_body_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Name" class="anchor_target"></span><span id="Name_" class="anchor_target"></span><h3 class="panel-title" id="mw_e2a9da7e-539b-4199-9f01-741a7930bf2e"><code class="name">Name</code> — Name of vehicle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">SimulinkVehicle1</code> (default) | vehicle name</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" data-target="#expand_panel_body_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" aria-controls="expand_panel_body_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Name" class="anchor_target"></span><span id="Name_" class="anchor_target"></span><h3 class="panel-title" id="mw_e2a9da7e-539b-4199-9f01-741a7930bf2e"><code class="name">Name</code> — 车辆名称<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">SimulinkVehicle1</code> (默认) | 车辆名称</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" aria-labelledby="expand_panel_heading_mw_e2a9da7e-539b-4199-9f01-741a7930bf2e" class="panel-collapse collapse"><div class="panel-body">
-            <p>Name of vehicle. By default, when you use the block in your model, the block sets
-              the <strong class="guilabel">Name</strong> parameter to
-                  <code class="literal">SimulinkVehicle<em class="replaceable"><code>X</code></em></code>. The value of
-                  <code class="literal"><em class="replaceable"><code>X</code></em></code> depends on the number of
-                <span class="block">Simulation 3D Vehicle with Ground Following</span> blocks that you have in
-              your model.</p>
-            <p>The vehicle name appears as a selection in the <strong class="guilabel">Parent name</strong>
-              parameter of any Automated Driving Toolbox™ Simulation 3D sensor blocks within the same model as the vehicle. With
-              the <strong class="guilabel">Parent name</strong> parameter, you can select the vehicle on which to
-              mount the sensor.</p>
+            <p>车辆名称。默认情况下，在模型中使用该模块时，该模块会将 <strong class="guilabel">Name</strong> 参数设置为
+                  <code class="literal">SimulinkVehicle<em class="replaceable"><code>X</code></em></code>. <code class="literal"><em class="replaceable"><code>X</code></em></code> 的值取决于模型中
+                <span class="block">Simulation 3D Vehicle with Ground Following</span> 的数量 。</p>
+            <p>车辆名称显示为与车辆同一模型内任何自动驾驶工具箱™ 三维Simulation the <strong class="guilabel">Parent name</strong>
+              传感器块的父级名称 <strong class="guilabel">Parent name</strong> 参数中的选项。通过父名称参数，可以选择要安装传感器的车辆。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" data-target="#expand_panel_body_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" aria-controls="expand_panel_body_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sampletime" class="anchor_target"></span><span id="Sample_time_" class="anchor_target"></span><h3 class="panel-title" id="mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39"><code class="name">Sample time</code> — Sample time<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal remove_text_wrapping">-1</code> (default) | positive scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" data-target="#expand_panel_body_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" aria-controls="expand_panel_body_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sampletime" class="anchor_target"></span><span id="Sample_time_" class="anchor_target"></span><h3 class="panel-title" id="mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39"><code class="name">Sample time</code> — 采样时间<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal remove_text_wrapping">-1</code> (默认) | 正标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" aria-labelledby="expand_panel_heading_mw_5b2088d8-11ed-4578-b4b3-f2a4ff0dea39" class="panel-collapse collapse"><div class="panel-body">
-            <p>Sample time, <em class="varname">T<sub>s</sub></em>, in seconds. The
-              graphics frame rate is the inverse of the sample time.</p>
-            <p>If you set the sample time to <code class="literal remove_text_wrapping">-1</code>, the block uses the sample
-              time specified in the <span class="block">Simulation 3D Scene Configuration</span> block.</p>
+            <p>采样时间 <em class="varname">T<sub>s</sub></em>, 以秒为单位。图形帧速率是采样时间的倒数。</p>
+            <p>如果将采样时间设置为 <code class="literal remove_text_wrapping">-1</code>，则该模块将使用在 <span class="block">Simulation 3D Scene Configuration</span> 模块中指定的采样时间。</p>
           </div>
 </div>
 </div>
 </div>
 </div>
-<div id="mw_1584aaf2-47ad-42eb-97fc-0022c233f585_div" class="refsect2"><h3 id="mw_1584aaf2-47ad-42eb-97fc-0022c233f585">Light Controls</h3>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" data-target="#expand_panel_body_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" aria-controls="expand_panel_body_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Enablelightcontrols" class="anchor_target"></span><span id="Enable_light_controls_" class="anchor_target"></span><h3 class="panel-title" id="mw_be39dd38-07a7-4c13-97ac-95014c66d5d5"><code class="name">Enable light controls</code> — Control vehicle lights<br/>
-<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<div id="mw_1584aaf2-47ad-42eb-97fc-0022c233f585_div" class="refsect2"><h3 id="mw_1584aaf2-47ad-42eb-97fc-0022c233f585">灯光控制</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" data-target="#expand_panel_body_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" aria-controls="expand_panel_body_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Enablelightcontrols" class="anchor_target"></span><span id="Enable_light_controls_" class="anchor_target"></span><h3 class="panel-title" id="mw_be39dd38-07a7-4c13-97ac-95014c66d5d5"><code class="name">Enable light controls</code> — 控制车灯<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (默认) | <code class="literal">on</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" aria-labelledby="expand_panel_heading_mw_be39dd38-07a7-4c13-97ac-95014c66d5d5" class="panel-collapse collapse"><div class="panel-body">
-            <p>Select whether to control the vehicle headlights. Use the enabled parameters to
-              set the light parameters, including headlight intensity.</p>
+            <p>选择是否控制车辆前灯。使用启用的参数设置灯光参数，包括前灯强度。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>Selecting this parameter:</p>
-<div class="itemizedlist"><ul><li><p>Creates the input port <code class="literal">Light controls</code></p></li>
-<li><p>Enables these light parameters.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>选择该参数：</p>
+<div class="itemizedlist"><ul><li><p>创建输入端口 <code class="literal">Light controls</code></p></li>
+<li><p>启用这些灯光参数。</p>
 <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="36%"/>
 <col class="tcol2" width="64%"/>
 </colgroup>
-<thead><tr><th>Lights</th>
-<th>Light Parameters</th>
+<thead><tr><th>灯</th>
+<th>灯光参数</th>
 </tr>
 </thead>
-<tbody><tr><td><strong class="guilabel">Headlights</strong></td>
+<tbody><tr><td><strong class="guilabel">车头灯</strong></td>
 <td><p>
                                   </p>
-<div class="itemizedlist"><ul><li><p><strong class="guilabel">Headlight color</strong></p></li>
-<li><p><strong class="guilabel">High beam intensity</strong></p></li>
-<li><p><strong class="guilabel">Low beam intensity</strong></p></li>
-<li><p><strong class="guilabel">High beam cone half angle</strong></p></li>
-<li><p><strong class="guilabel">Low beam cone half angle</strong></p></li>
-<li><p><strong class="guilabel">Left headlight beam
-                                        orientation</strong></p></li>
-<li><p><strong class="guilabel">Right headlight beam
-                                        orientation</strong></p></li>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">车头灯颜色</strong></p></li>
+<li><p><strong class="guilabel">远光灯强度</strong></p></li>
+<li><p><strong class="guilabel">近光灯强度</strong></p></li>
+<li><p><strong class="guilabel">远光灯锥半角</strong></p></li>
+<li><p><strong class="guilabel">近光灯锥半角</strong></p></li>
+<li><p><strong class="guilabel">左车头灯光束方向</strong></p></li>
+<li><p><strong class="guilabel">左车头灯光束方向</strong></p></li>
 </ul>
 </div>
 <p>
@@ -625,21 +591,25 @@
                                 </p>
 </td>
 </tr>
-<tr><td><strong class="guilabel">Brake lights</strong></td>
-<td><p><strong class="guilabel">Brake light intensity</strong></p>
+<tr><td><strong class="guilabel">刹车灯</strong></td>
+<td><p><strong class="guilabel">刹车灯强度</strong></p>
 </td>
 </tr>
-<tr><td><strong class="guilabel">Reverse lights</strong></td>
-<td><p><strong class="guilabel">Reverse light
-                                intensity</strong></p>
+<tr><td><strong class="guilabel">倒车灯</strong></td>
+<td><p><strong class="guilabel">倒车灯强度</strong></p>
 </td>
 </tr>
-<tr><td><strong class="guilabel">Turn signal lights</strong></td>
+<tr><td><strong class="guilabel">转向信号灯</strong></td>
 <td><p>
                                   </p>
-<div class="itemizedlist"><ul><li><p><strong class="guilabel">Turn signal light intensity</strong></p></li>
-<li><p><strong class="guilabel">Period</strong></p></li>
-<li><p><strong class="guilabel">Pulse width</strong></p></li>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">转向信号灯强度</strong></p></li>
+<li><p><strong class="guilabel">周期</strong></p></li>
+<li><table border="0" cellspacing="0" cellpadding="0" class="op_dict_table" style="border: 0px; border-collapse: collapse; border-spacing: 0px; font-family: Arial, sans-serif; font-size: 13px; background-color: rgb(255, 255, 255);"><tbody><tr><td class="op_dict3_englishtxt c-color-t" style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; line-height: 21px; color: rgb(34, 34, 34);"><div class="op_dict3_title_box1" style="display: flex; align-items: center; margin-bottom: 7px;"><div class="op_dict3_title" style="font-family: PingFangSC-Medium; font-size: 20px; color: rgb(51, 51, 51); line-height: 20px; margin-right: 3px;">脉冲宽度</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table></li>
 </ul>
 </div>
 <p>
@@ -660,189 +630,181 @@
 </div>
 </div>
 </div>
-<strong class="mw-doc-parametersgrp" id="mw_4d634566-c800-49d8-a55d-393f0b181db6">Headlights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_2475de44-3d61-4674-97c3-533c559f87ae" data-target="#expand_panel_body_mw_2475de44-3d61-4674-97c3-533c559f87ae" aria-controls="expand_panel_body_mw_2475de44-3d61-4674-97c3-533c559f87ae" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_HeadlightcolorRGB" class="anchor_target"></span><span id="Headlight_color__R_G_B__" class="anchor_target"></span><h3 class="panel-title" id="mw_2475de44-3d61-4674-97c3-533c559f87ae"><code class="name">Headlight color [R,G,B]</code> — Headlight color<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[1,1,1]</code> (default) | 1-by-3 array of RGB triplet values</span></span></h3>
+<strong class="mw-doc-parametersgrp" id="mw_4d634566-c800-49d8-a55d-393f0b181db6">车头灯</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_2475de44-3d61-4674-97c3-533c559f87ae" data-target="#expand_panel_body_mw_2475de44-3d61-4674-97c3-533c559f87ae" aria-controls="expand_panel_body_mw_2475de44-3d61-4674-97c3-533c559f87ae" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_HeadlightcolorRGB" class="anchor_target"></span><span id="Headlight_color__R_G_B__" class="anchor_target"></span><h3 class="panel-title" id="mw_2475de44-3d61-4674-97c3-533c559f87ae"><code class="name">Headlight color [R,G,B]</code> — 头灯颜色<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[1,1,1]</code> (默认) | RGB 三元组值 的 1×3 数组</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_2475de44-3d61-4674-97c3-533c559f87ae" aria-labelledby="expand_panel_heading_mw_2475de44-3d61-4674-97c3-533c559f87ae" class="panel-collapse collapse"><div class="panel-body">
-            <p>Headlight color, specified as a normalized 1-by-3 array of RGB triplet
-              values.</p>
+            <p>车头灯颜色，指定为 RGB 三元组值的标准化 1×3 数组。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>int8</code> | <code>uint8</code></p>
+          <p class="datatypelist"><strong>数据类型: </strong><code>int8</code> | <code>uint8</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e4925973-8648-44f8-a002-ec51451e42e1" data-target="#expand_panel_body_mw_e4925973-8648-44f8-a002-ec51451e42e1" aria-controls="expand_panel_body_mw_e4925973-8648-44f8-a002-ec51451e42e1" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Highbeamintensitycd" class="anchor_target"></span><span id="High_beam_intensity__cd__" class="anchor_target"></span><h3 class="panel-title" id="mw_e4925973-8648-44f8-a002-ec51451e42e1"><code class="name">High beam intensity (cd)</code> — High beam intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">100000</code> (default) | positive scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e4925973-8648-44f8-a002-ec51451e42e1" data-target="#expand_panel_body_mw_e4925973-8648-44f8-a002-ec51451e42e1" aria-controls="expand_panel_body_mw_e4925973-8648-44f8-a002-ec51451e42e1" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Highbeamintensitycd" class="anchor_target"></span><span id="High_beam_intensity__cd__" class="anchor_target"></span><h3 class="panel-title" id="mw_e4925973-8648-44f8-a002-ec51451e42e1"><code class="name">High beam intensity (cd，<a href="https://mp.weixin.qq.com/s?__biz=MzU5MjUzNjQxNg==&amp;mid=2247496049&amp;idx=4&amp;sn=6695492032b7f71161dea05aa632f2ab&amp;chksm=fe1c877ec96b0e6899111b172229d61199c452fc187a03b5f455fc4cfa5b3075225d3e1f31e6&amp;scene=27">坎德拉</a>candela)</code> — 远光灯强度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">100000</code> (默认) | 正标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_e4925973-8648-44f8-a002-ec51451e42e1" aria-labelledby="expand_panel_heading_mw_e4925973-8648-44f8-a002-ec51451e42e1" class="panel-collapse collapse"><div class="panel-body">
-            <p>High beam intensity, in cd.</p>
+            <p>远光灯强度，以 cd 为单位。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><strong>数据类型: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" data-target="#expand_panel_body_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" aria-controls="expand_panel_body_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Lowbeamintensitycd" class="anchor_target"></span><span id="Low_beam_intensity__cd__" class="anchor_target"></span><h3 class="panel-title" id="mw_54bad9b2-8be6-439a-adcc-c012ff0347cf"><code class="name">Low beam intensity (cd)</code> — Low beam intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">60000</code> (default) | positive scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" data-target="#expand_panel_body_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" aria-controls="expand_panel_body_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Lowbeamintensitycd" class="anchor_target"></span><span id="Low_beam_intensity__cd__" class="anchor_target"></span><h3 class="panel-title" id="mw_54bad9b2-8be6-439a-adcc-c012ff0347cf"><code class="name">Low beam intensity (cd)</code> — 近光灯强度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">60000</code> (默认) | 正标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" aria-labelledby="expand_panel_heading_mw_54bad9b2-8be6-439a-adcc-c012ff0347cf" class="panel-collapse collapse"><div class="panel-body">
-            <p>Low beam intensity, in cd.</p>
+            <p>近光灯强度，以 cd 为单位。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><strong>数据类型: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" data-target="#expand_panel_body_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" aria-controls="expand_panel_body_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Highbeamconehalfangledeg" class="anchor_target"></span><span id="High_beam_cone_half_angle__deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee"><code class="name">High beam cone half angle (deg)</code> — High beam cone half angle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">70</code> (default) | positive scalar less than or equal to 90</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" data-target="#expand_panel_body_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" aria-controls="expand_panel_body_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Highbeamconehalfangledeg" class="anchor_target"></span><span id="High_beam_cone_half_angle__deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee"><code class="name">High beam cone half angle (deg)</code> — 远光灯锥半角<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">70</code> (默认) | 小于或等于 90 的正标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" aria-labelledby="expand_panel_heading_mw_b3c54bc6-0a21-4fcf-a34a-b8cb254b14ee" class="panel-collapse collapse"><div class="panel-body">
-            <p>High beam cone half angle, in deg.</p>
+            <p>远光灯锥半角，单位为度。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><strong>数据类型: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" data-target="#expand_panel_body_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" aria-controls="expand_panel_body_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Lowbeamconehalfangledeg" class="anchor_target"></span><span id="Low_beam_cone_half_angle__deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7"><code class="name">Low beam cone half angle (deg)</code> — Low beam cone half angle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">70</code> (default) | positive scalar less than or equal to 90</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" data-target="#expand_panel_body_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" aria-controls="expand_panel_body_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Lowbeamconehalfangledeg" class="anchor_target"></span><span id="Low_beam_cone_half_angle__deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7"><code class="name">Low beam cone half angle (deg)</code> — 近光灯锥半角<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">70</code> (默认) | 小于或等于 90 的正标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" aria-labelledby="expand_panel_heading_mw_9aa68432-72f9-4a88-a6b0-5a42e9aac8b7" class="panel-collapse collapse"><div class="panel-body">
-            <p>Low beam cone half angle, in deg.</p>
+            <p>近光灯锥半角，单位为度。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
           <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" data-target="#expand_panel_body_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" aria-controls="expand_panel_body_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_LeftheadlightbeamorientationPitchYawdeg" class="anchor_target"></span><span id="Left_headlight_beam_orientation__Pitch__Yaw___deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_d3a17a76-dd26-489e-93ee-7c9c03a09729"><code class="name">Left headlight beam orientation [Pitch, Yaw] (deg)</code> — Left headlight beam orientation [Pitch, Yaw] (deg)<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0,0]</code> (default) | 1-by-2 array with values between -180 and 180</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" data-target="#expand_panel_body_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" aria-controls="expand_panel_body_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_LeftheadlightbeamorientationPitchYawdeg" class="anchor_target"></span><span id="Left_headlight_beam_orientation__Pitch__Yaw___deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_d3a17a76-dd26-489e-93ee-7c9c03a09729"><code class="name">Left headlight beam orientation [Pitch, Yaw] (deg)</code> — 左前照灯光束方向 [俯仰、偏航]（度）<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0,0]</code> (默认) | 值介于 -180 到 180 之间的 1×2 数组</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" aria-labelledby="expand_panel_heading_mw_d3a17a76-dd26-489e-93ee-7c9c03a09729" class="panel-collapse collapse"><div class="panel-body">
-            <p>Pitch and yaw orientation of the left headlight beam orientation in the
-                <span class="emphasis"><em>Z</em></span>-up coordinate system, specified as a 1-by-2 array, in deg.
-              The first element of the array, <code class="literal">[1,1]</code>, is the pitch angle. The
-              second element of the array, <code class="literal">[1,2]</code> is the yaw angle.</p>
+            <p><span class="emphasis"><em>Z</em></span>-向上坐标系中左前照灯光束方向的俯仰和偏航方向 ，指定为 1×2 数组，以度为单位。数组的第一个元素 <code class="literal">[1,1]</code>是俯仰角。数组的第二个元素 <code class="literal">[1,2]</code> 是偏航角。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><b>数据类型</b><strong>: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" data-target="#expand_panel_body_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" aria-controls="expand_panel_body_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_RightheadlightbeamorientationPitchYawdeg" class="anchor_target"></span><span id="Right_headlight_beam_orientation__Pitch__Yaw___deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7"><code class="name">Right headlight beam orientation [Pitch, Yaw] (deg)</code> — Right headlight beam orientation<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0,0]</code> (default) | 1-by-2 array with values between -180 and 180</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" data-target="#expand_panel_body_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" aria-controls="expand_panel_body_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_RightheadlightbeamorientationPitchYawdeg" class="anchor_target"></span><span id="Right_headlight_beam_orientation__Pitch__Yaw___deg__" class="anchor_target"></span><h3 class="panel-title" id="mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7"><code class="name">Right headlight beam orientation [Pitch, Yaw] (deg)</code> — 右前照灯光束方向<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0,0]</code> (默认) | 值介于 -180 到 180 之间的 1×2 数组</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" aria-labelledby="expand_panel_heading_mw_dca7816e-cdf4-43ce-b47c-7b0a1cc356a7" class="panel-collapse collapse"><div class="panel-body">
-            <p>Pitch and yaw orientation of the right headlight beam orientation in the
-                <span class="emphasis"><em>Z</em></span>-up coordinate system, specified as a 1-by-2 array, in deg.
-              The first element of the array, <code class="literal">[1,1]</code>, is the pitch angle. The
-              second element of the array, <code class="literal">[1,2]</code> is the yaw angle.</p>
+            <p><span class="emphasis"><em>Z</em></span>-向上坐标系中右前照灯光束方向的俯仰和偏航方向 ，指定为 1×2 数组，以度为单位。数组的第一个元素 <code class="literal">[1,1]</code>是俯仰角。数组的第二个元素 <code class="literal">[1,2]</code> 是偏航角。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
           </div>
 </div>
 </div>
 </div>
-<strong class="mw-doc-parametersgrp" id="mw_3d8feaf6-bbbb-42da-b660-5a38966a0e31">Brake Lights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" data-target="#expand_panel_body_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" aria-controls="expand_panel_body_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Brakelightintensitycdm2" class="anchor_target"></span><span id="Brake_light_intensity__cd_m_2__" class="anchor_target"></span><h3 class="panel-title" id="mw_b172bb3a-4797-43b5-b144-fbf0e730451f"><code class="name">Brake light intensity (cd/m^2)</code> — Intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (default) | positive scalar</span></span></h3>
+<strong class="mw-doc-parametersgrp" id="mw_3d8feaf6-bbbb-42da-b660-5a38966a0e31">刹车灯</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" data-target="#expand_panel_body_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" aria-controls="expand_panel_body_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Brakelightintensitycdm2" class="anchor_target"></span><span id="Brake_light_intensity__cd_m_2__" class="anchor_target"></span><h3 class="panel-title" id="mw_b172bb3a-4797-43b5-b144-fbf0e730451f"><code class="name">Brake light intensity (cd/m^2)</code> — 强度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (默认) | 正标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" aria-labelledby="expand_panel_heading_mw_b172bb3a-4797-43b5-b144-fbf0e730451f" class="panel-collapse collapse"><div class="panel-body">
-            <p>Brake light intensity, in cd/m^2.</p>
+            <p>制动灯强度，单位为 cd/m^2。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><b>数据类型</b><strong>: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
-<strong class="mw-doc-parametersgrp" id="mw_393a162f-15c0-43b6-ae0f-49f2e5d15f0d">Reverse Lights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" data-target="#expand_panel_body_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" aria-controls="expand_panel_body_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Reverselightintensitycdm2" class="anchor_target"></span><span id="Reverse_light_intensity__cd_m_2__" class="anchor_target"></span><h3 class="panel-title" id="mw_c29fd866-9dea-476a-923c-9ffc68dd8a19"><code class="name">Reverse light intensity (cd/m^2)</code> — Intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (default) | positive scalar</span></span></h3>
+<strong class="mw-doc-parametersgrp" id="mw_393a162f-15c0-43b6-ae0f-49f2e5d15f0d">倒车灯</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" data-target="#expand_panel_body_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" aria-controls="expand_panel_body_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Reverselightintensitycdm2" class="anchor_target"></span><span id="Reverse_light_intensity__cd_m_2__" class="anchor_target"></span><h3 class="panel-title" id="mw_c29fd866-9dea-476a-923c-9ffc68dd8a19"><code class="name">Reverse light intensity (cd/m^2)</code> — 强度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (默认) | 正标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" aria-labelledby="expand_panel_heading_mw_c29fd866-9dea-476a-923c-9ffc68dd8a19" class="panel-collapse collapse"><div class="panel-body">
-            <p>Reverse light intensity, in cd/m^2.</p>
+            <p>倒车灯强度，单位为 cd/m^2.</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><strong>数据类型: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
-<strong class="mw-doc-parametersgrp" id="mw_8dc35f56-6e63-46c7-9a34-d71cec95106b">Turn Signal Lights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" data-target="#expand_panel_body_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" aria-controls="expand_panel_body_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Turnsignallightintensitycdm2" class="anchor_target"></span><span id="Turn_signal_light_intensity__cd_m_2__" class="anchor_target"></span><h3 class="panel-title" id="mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a"><code class="name">Turn signal light intensity (cd/m^2)</code> — Intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (default) | positive scalar</span></span></h3>
+<strong class="mw-doc-parametersgrp" id="mw_8dc35f56-6e63-46c7-9a34-d71cec95106b">转向信号灯</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" data-target="#expand_panel_body_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" aria-controls="expand_panel_body_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Turnsignallightintensitycdm2" class="anchor_target"></span><span id="Turn_signal_light_intensity__cd_m_2__" class="anchor_target"></span><h3 class="panel-title" id="mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a"><code class="name">Turn signal light intensity (cd/m^2)</code> — 强度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (默认) | 正标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" aria-labelledby="expand_panel_heading_mw_97cc47c0-2ff5-4cc4-91d9-18328854b69a" class="panel-collapse collapse"><div class="panel-body">
-            <p>Turn signal light intensity, in cd/m^2.</p>
+            <p>转向信号灯强度，单位为 cd/m^2.</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><strong>数据类型: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_385935a1-da43-4976-a25f-281b51e49f05" data-target="#expand_panel_body_mw_385935a1-da43-4976-a25f-281b51e49f05" aria-controls="expand_panel_body_mw_385935a1-da43-4976-a25f-281b51e49f05" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Periods" class="anchor_target"></span><span id="Period__s__" class="anchor_target"></span><h3 class="panel-title" id="mw_385935a1-da43-4976-a25f-281b51e49f05"><code class="name">Period (s)</code> — Turn signal light period<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (default) | positive scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_385935a1-da43-4976-a25f-281b51e49f05" data-target="#expand_panel_body_mw_385935a1-da43-4976-a25f-281b51e49f05" aria-controls="expand_panel_body_mw_385935a1-da43-4976-a25f-281b51e49f05" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Periods" class="anchor_target"></span><span id="Period__s__" class="anchor_target"></span><h3 class="panel-title" id="mw_385935a1-da43-4976-a25f-281b51e49f05"><code class="name">Period (s)</code> — 转向信号灯周期<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (默认) | 正标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_385935a1-da43-4976-a25f-281b51e49f05" aria-labelledby="expand_panel_heading_mw_385935a1-da43-4976-a25f-281b51e49f05" class="panel-collapse collapse"><div class="panel-body">
-            <p>Turn signal light period, in s.</p>
+            <p>转向信号灯周期，单位秒（s）。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><strong>数据类型: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" data-target="#expand_panel_body_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" aria-controls="expand_panel_body_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Pulsewidthofperiod" class="anchor_target"></span><span id="Pulse_width____of_period__" class="anchor_target"></span><h3 class="panel-title" id="mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12"><code class="name">Pulse width (% of period)</code> — Pulse width<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">50</code> (default) | positive scalar less than 100</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" data-target="#expand_panel_body_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" aria-controls="expand_panel_body_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Pulsewidthofperiod" class="anchor_target"></span><span id="Pulse_width____of_period__" class="anchor_target"></span><h3 class="panel-title" id="mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12"><code class="name">Pulse width (% of period)</code> — 脉冲宽度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">50</code> (默认) | 小于 100 的正标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" aria-labelledby="expand_panel_heading_mw_951c5f8f-b0aa-4c91-aaf1-d180f4fe5f12" class="panel-collapse collapse"><div class="panel-body">
-            <p>Turn signal light pulse width, as a percent of the period.</p>
+            <p>转向信号灯脉冲宽度，以周期的百分比表示。</p>
             
-              <h4 class="descriptionsect">Dependencies</h4>
-              <p>To enable this parameter, select <strong class="guilabel">Enable light
-                controls</strong>.</p>
+              <h4 class="descriptionsect">依赖</h4>
+              <p>要启用此参数，请选择启用灯光控制 <strong class="guilabel">Enable light
+                controls</strong>。</p>
             
-          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+          <p class="datatypelist"><strong>数据类型: </strong><code>double</code></p>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="mw_0e058486-dade-4764-a0da-9ea7f1d4bbf1_div" class="refsect2"><h3 id="mw_0e058486-dade-4764-a0da-9ea7f1d4bbf1">Ground Truth</h3>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" data-target="#expand_panel_body_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" aria-controls="expand_panel_body_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Outputlocationmandorientationrad" class="anchor_target"></span><span id="Output_location__m__and_orientation__rad_" class="anchor_target"></span><h3 class="panel-title" id="mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef"><code class="name">Output location (m) and orientation (rad)</code> — Output location and orientation of vehicle<br/>
-<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<div id="mw_0e058486-dade-4764-a0da-9ea7f1d4bbf1_div" class="refsect2"><h3 id="mw_0e058486-dade-4764-a0da-9ea7f1d4bbf1">真值</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" data-target="#expand_panel_body_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" aria-controls="expand_panel_body_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Outputlocationmandorientationrad" class="anchor_target"></span><span id="Output_location__m__and_orientation__rad_" class="anchor_target"></span><h3 class="panel-title" id="mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef"><code class="name">Output location (m) and orientation (rad)</code> — 输出车辆的位置和方向<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (默认) | <code class="literal">on</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" aria-labelledby="expand_panel_heading_mw_4fa52235-a3d3-40f5-ae59-95702bdbe2ef" class="panel-collapse collapse"><div class="panel-body">
-            <p>Select this parameter to output the location and orientation of the vehicle at the
-                <strong class="guilabel">Location</strong> and <strong class="guilabel">Orientation</strong> ports,
-              respectively.</p>
+            <p>选择此参数可分别在
+                <strong class="guilabel">Location</strong> 和 <strong class="guilabel">Orientation</strong> 端口输出车辆的位置和方向 。</p>
           </div>
 </div>
 </div>
@@ -851,7 +813,7 @@
 </div>
 </div>
 </div>
-<div class="ref_sect"><h2 id="examples">Model Examples</h2>
+<div class="ref_sect"><h2 id="examples">模型示例</h2>
 <section class="example_short_list"><div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../ug/simulate-a-simple-driving-scenario-and-sensor-in-3d-environment.html"><div class="card_media" style="background-image:url(../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_05.png);"><img alt="Simulate Simple Driving Scenario and Sensor in Unreal Engine Environment" src="../../examples/driving/win64/SimulateASimpleDrivingScenarioAndSensorIn3DEnvironmentExample_05.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Simulate Simple Driving Scenario and Sensor in Unreal Engine Environment</h3>
 </div>
 <div class="panel-body" style="overflow:hidden;"><p class="card_description">Learn the basics of configuring and simulating scenes, vehicles, and sensors in a
@@ -898,18 +860,16 @@
 </section>
 </div>
 <div class="clearfix"></div>
-<div class="moreabout ref_sect"><h2 id="mw_814b0d0b-3a0c-48f6-b58a-f6a815ef607f">More About</h2>
+<div class="moreabout ref_sect"><h2 id="mw_814b0d0b-3a0c-48f6-b58a-f6a815ef607f">更多</h2>
 <div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink">expand all</a></p>
-<div class="expand_collapse"><h3 class="expand_trigger collapsed" id="mw_7372a6f4-c778-439a-950d-447365156279" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_mw_7372a6f4-c778-439a-950d-447365156279" aria-controls="expand_body_mw_7372a6f4-c778-439a-950d-447365156279"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>Import Custom Meshes</h3>
-<div id="expand_body_mw_7372a6f4-c778-439a-950d-447365156279" class="collapsible_content collapse" aria-expanded="false"><p>To import custom meshes for defining custom vehicles, follow these steps:</p>
-<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Install the <span class="entity">Automated Driving Toolbox Interface for Unreal Engine 4 Projects</span> support package. See <a href="../ug/install-and-configure-support-package-for-customizing-scenes.html" class="a">Install Support Package for Customizing Scenes</a>.</p></li>
-<li><p>On the block <strong class="guilabel">Parameters</strong> tab, set <strong class="guilabel">Type</strong> to
-                <code class="guidropdown">Custom</code>.</p></li>
-<li><p>In the <strong class="guilabel">Path to custom mesh</strong> field, enter the path to the
-              vehicle mesh in the Unreal Engine project. For example, enter
-                <code class="literal">/MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar</code>.</p><p>To create a custom vehicle mesh, see <a href="../ug/prepare-custom-vehicle-mesh-for-the-unreal-editor.html" class="a">Prepare Custom Vehicle Mesh for the Unreal Editor</a>.</p></li>
-<li><p>Use the vehicle dimensions in the custom mesh to enter the dimensions in the
-              corresponding block parameter fields.</p></li>
+<div class="expand_collapse"><h3 class="expand_trigger collapsed" id="mw_7372a6f4-c778-439a-950d-447365156279" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_mw_7372a6f4-c778-439a-950d-447365156279" aria-controls="expand_body_mw_7372a6f4-c778-439a-950d-447365156279"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>导入自定义网格</h3>
+<div id="expand_body_mw_7372a6f4-c778-439a-950d-447365156279" class="collapsible_content collapse" aria-expanded="false"><p>要导入自定义网格来定义自定义车辆，请按照下列步骤操作：</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>安装适用于虚幻引擎 4 项目的自动驾驶工具箱接口支持包。请参阅 <a href="../ug/install-and-configure-support-package-for-customizing-scenes.html" class="a">Install Support Package for Customizing Scenes</a>.</p></li>
+<li><p>在模块参数 <strong class="guilabel">Parameters</strong> 选项卡上，将类型 <strong class="guilabel">Type</strong> 设置为
+                <code class="guidropdown">Custom</code>。</p></li>
+<li><p>在 <strong class="guilabel">Path to custom mesh</strong> 字段中，输入虚幻引擎项目中车辆网格物体的路径。例如，输入
+                <code class="literal">/MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar</code>。</p><p>要创建自定义车辆网格体，请参阅 <a href="../ug/prepare-custom-vehicle-mesh-for-the-unreal-editor.html" class="a">为虚幻编辑器准备自定义车辆网格</a>。</p></li>
+<li><p>使用自定义网格中的车辆尺寸在相应的块参数字段中输入尺寸。</p></li>
 </ol>
 </div>
 <p>
@@ -968,6 +928,12 @@
 <div class="clearfix"></div>
 <div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
 <script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
 <div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
 </div>
 <link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
