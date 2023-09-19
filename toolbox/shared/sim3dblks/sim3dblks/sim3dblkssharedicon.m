@@ -1,5 +1,5 @@
+% simlink 3D blocks shared icon
 function[varargout]=sim3dblkssharedicon(varargin)
-
     if nargin<2
         error(message('shared_sim3dblks:sim3dsharederrAutoIcon:invalidUsage'));
     end

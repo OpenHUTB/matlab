@@ -1,10 +1,9 @@
 % 三维仿真模块的配置信息
 function[varargout] = sim3dblksconfig(varargin)
-
     varargout{1}={};
 
-    block=varargin{1};
-    Context=varargin{2};
+    block = varargin{1};
+    Context = varargin{2};
     switch Context
     case 'Initialization'
         Initialization(block);
@@ -42,7 +41,7 @@ function[varargout] = sim3dblksconfig(varargin)
         ProjPathCallback(block);
     case 'SetProjName'
         SetProjName(block);
-    case 'SetEnableWeather'
+    case 'SetEnableWeather'  % 是否启用天气配置
         SetEnableWeather(block);
     case 'SetEnableRemoteAccess'
         SetEnableRemoteAccess(block);
@@ -246,7 +245,7 @@ end
 
 
 function BrowseCallback(block)
-    [fileName,pathName,~] = uigetfile({'*.exe';'*.*'},'Pick a Unreal Engine Executable Project');
+    [fileName,pathName,~] = uigetfile({'*.exe';'*.*'}, 'Pick a Unreal Engine Executable Project');
     if fileName ~= 0
         set_param(block, 'ProjectName',fullfile(pathName,fileName));
     end
@@ -310,18 +309,18 @@ function SetScnPath(block)
     scenePath = maskObj.getParameter('ScenePath');  % 可执行场景文件的绝对路径
     SrcSelection=get_param(block,'ProjectFormat');
 
-    if strcmp(SrcSelection,getString(message('shared_sim3dblks:sim3dblkConfig:UnrealExecutable')))
-        set_param([block,'/Simulation 3D Engine'],'SceneDesc',scenePath.Value);
+    if strcmp(SrcSelection, getString(message('shared_sim3dblks:sim3dblkConfig:UnrealExecutable')))
+        set_param([block,'/Simulation 3D Engine'], 'SceneDesc',scenePath.Value);
     end
-
 end
 
 
+% 使用虚幻编辑器进行联合仿真的回调函数
 function OpenUECallback(block)
     maskObj=get_param(block,'MaskObject');
-    projPath=maskObj.getParameter('UEProjPath');
+    projPath = maskObj.getParameter('UEProjPath');
     opueBtn=maskObj.getDialogControl('openUEButton');
-    projectPath=projPath.Value;
+    projectPath = projPath.Value;
 
     if CheckUprojectAssociationAndSignalAbort()
         return;
@@ -339,8 +338,8 @@ function OpenUECallback(block)
         );
         if strcmp(answer,getString(message('shared_sim3dblks:sim3dblkConfig:popup_yes')))
             opueBtn.Enabled='on';
-            editor=sim3d.engine.Editor(projectPath);
-            status=editor.open();
+            editor = sim3d.engine.Editor(projectPath);
+            status = editor.open();
         end
     else
         opueBtn.Enabled='on';
@@ -350,17 +349,19 @@ function OpenUECallback(block)
     end
 end
 
+
+% 项目路径(.project)处理
 function ProjPathCallback(block)
-    SrcSelection=get_param(block,'ProjectFormat');
+    SrcSelection = get_param(block, 'ProjectFormat');
 
-    if strcmp(SrcSelection,getString(message('shared_sim3dblks:sim3dblkConfig:UnrealEditor')))
+    if strcmp(SrcSelection, getString(message('shared_sim3dblks:sim3dblkConfig:UnrealEditor')))
 
-        maskObj=get_param(block,'MaskObject');
+        maskObj = get_param(block, 'MaskObject');
         opueBtn=maskObj.getDialogControl('openUEButton');
         ueproj=maskObj.getParameter('UEProjPath');
 
-        expression='([a-zA-Z0-9\s_\\.\-\(\):])+(.uproject)$';
-        FoundMatch=regexp(ueproj.Value,expression,'once');
+        expression = '([a-zA-Z0-9\s_\\.\-\(\):])+(.uproject)$';
+        FoundMatch = regexp(ueproj.Value,expression,'once');
 
         if isempty(FoundMatch)
             opueBtn.Enabled='off';
@@ -370,15 +371,12 @@ function ProjPathCallback(block)
     end
 end
 
-function configureMount(block)
 
+function configureMount(block)
     cameraAtSceneOrigin=strcmp(get_param(block,"vehTag"),"Scene Origin");
     simulationStatus=get_param(bdroot,'SimulationStatus');
     if~strcmp(simulationStatus,'running')
         if cameraAtSceneOrigin
-
-
-
             set_param(string(block)+"/"+"Simulation 3D Main Camera","Translation","[-6, 0 , 2]");
             set_param(string(block)+"/"+"Simulation 3D Main Camera","Rotation","[0, -15, 0]");
         else
@@ -387,21 +385,24 @@ function configureMount(block)
     end
 end
 
+
+% 启用天气设置的处理
 function SetEnableWeather(block)
-    maskObj=get_param(block,'MaskObject');
-    enWeather=maskObj.getParameter('EnableWeather');
-    pWeather=maskObj.getDialogControl('WeatherParas');
-    simulationStatus=get_param(bdroot,'SimulationStatus');
-    if~strcmp(simulationStatus,'running')
-        if strcmp(enWeather.Value,'on')
-            pWeather.Enabled='on';
+    maskObj = get_param(block,'MaskObject');
+    enWeather = maskObj.getParameter('EnableWeather');
+    pWeather = maskObj.getDialogControl('WeatherParas');
+    simulationStatus = get_param(bdroot,'SimulationStatus');
+    if~strcmp(simulationStatus, 'running')
+        if strcmp(enWeather.Value, 'on')
+            pWeather.Enabled = 'on';
         else
             pWeather.Enabled='off';
         end
     end
     SetSelectWeather(block);
-    set_param([block,'/Simulation 3D Engine'],'EnableWeather',enWeather.Value);
+    set_param([block,'/Simulation 3D Engine'], 'EnableWeather', enWeather.Value);
 end
+
 
 function SetSelectWeather(block)
     maskObj=get_param(block,'MaskObject');
@@ -455,6 +456,7 @@ function abort=CheckUprojectAssociationAndSignalAbort()
     end
 end
 
+
 function AuthenticationManagerCallback(~)
     AuthManager=sim3d.geospatial.AuthManager();
     action=questdlg('Select action',...
@@ -490,8 +492,8 @@ function AuthenticationManagerCallback(~)
             AuthManager.removeToken(userInput{1});
         end
     end
-
 end
+
 
 function AdvancedSunConfigCallback(block)
     maskObj=get_param(block,'MaskObject');
@@ -506,6 +508,7 @@ function AdvancedSunConfigCallback(block)
     end
 end
 
+
 function DaylightSavingsTimeCallback(block)
     maskObj=get_param(block,'MaskObject');
     useDST=maskObj.getParameter('UseDaylightSavingTime');
@@ -516,6 +519,7 @@ function DaylightSavingsTimeCallback(block)
         dstConfigPanel.Enabled='off';
     end
 end
+
 
 function SetEnableGeospatial(block)
     simulationStatus=get_param(bdroot,'SimulationStatus');
@@ -554,6 +558,7 @@ function SetEnableGeospatial(block)
     end
 end
 
+
 function MapStyleCallback(block)
     maskObj=get_param(block,'MaskObject');
     mapStyleOuter=maskObj.getParameter('MapStyle');
@@ -569,3 +574,4 @@ function MapStyleCallback(block)
     end
     set_param(innerBlock,'MapStyle',num2str(mapStyleInnerValue));
 end
+

@@ -1,4 +1,4 @@
-function licStatus=sim3dblkssharedeval(licType)
+function licStatus = sim3dblkssharedeval(licType)
 
     switch licType
     case '0'

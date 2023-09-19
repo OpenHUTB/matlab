@@ -347,7 +347,7 @@
 <div class="ref_sect"><h3 id="mw_7650a580-56ab-45bb-9ba0-3884d0eeaab5">输入</h3>
 <div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
 <div class="panel-group" id="mw_7650a580-56ab-45bb-9ba0-3884d0eeaab5_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5a999fcf-9908-4561-bf4f-20e70090d1e0" data-target="#expand_panel_body_mw_5a999fcf-9908-4561-bf4f-20e70090d1e0" aria-controls="expand_panel_body_mw_5a999fcf-9908-4561-bf4f-20e70090d1e0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="cuboidTo3DSimulationActors" class="anchor_target"></span><h3 class="panel-title" id="mw_5a999fcf-9908-4561-bf4f-20e70090d1e0"><code class="name">Actor</code> — 世界坐标系中立方体参与者姿势<br/>
-<span class="add_font_color_general remove_bold"><span class="example_desc">包含</span></span>MATLAB<sup>®</sup> 结构 Simulink<sup>®</sup> 总线</h3>
+<span class="add_font_color_general remove_bold"><span class="example_desc" style="font-weight: normal;">包含</span></span><span style="font-weight: normal;">MATLAB<sup>®</sup> 结构 Simulink<sup>®</sup> 总线</span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_5a999fcf-9908-4561-bf4f-20e70090d1e0" aria-labelledby="expand_panel_heading_mw_5a999fcf-9908-4561-bf4f-20e70090d1e0" class="panel-collapse collapse"><div class="panel-body">
             <p>长方体参与者在世界坐标中的姿势，指定为包含 MATLAB 结构体的 Simulink 总线。</p>
@@ -403,100 +403,77 @@
 </div>
             
             
-              <h4 class="descriptionsect">Multiple-Pose Structure</h4>
-              <p>To specify multiple actor poses, the structure must contain these fields.</p>
+              <h4 class="descriptionsect">多姿态结构</h4>
+              <p>要指定多个参与者姿态，该结构必须包含这些字段。</p>
               <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"/>
 <col class="tcol2" width="33%"/>
 <col class="tcol3" width="33%"/>
 </colgroup>
-<thead><tr><th>Field</th>
-<th>Description</th>
-<th>Type</th>
+<thead><tr><th>字段</th>
+<th>描述</th>
+<th>类型</th>
 </tr>
 </thead>
 <tbody><tr><td><code class="literal">NumActors</code></td>
-<td>Number of actors</td>
-<td>Nonnegative integer</td>
+<td>参与者数目</td>
+<td>非负整数</td>
 </tr>
 <tr><td><code class="literal">Time</code></td>
-<td>Current simulation time</td>
-<td>Real-valued scalar</td>
+<td>当前仿真时间</td>
+<td>实值标量</td>
 </tr>
 <tr><td><code class="literal">Actors</code></td>
-<td>Actor poses</td>
-<td><code class="literal">NumActors</code>-length array of actor pose structures</td>
+<td>参与者姿态</td>
+<td>参与者姿态结构<code class="literal">NumActors</code>-长度的数组</td>
 </tr>
 </tbody>
 </table>
 </div>
-              <p>Each actor pose structure in <code class="literal">Actors</code> must have these
-                fields.</p>
+              <p><code class="literal">Actors</code> 中每个参与者的姿态结构都必须有这些字段。</p>
               <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
 <col class="tcol2" width="50%"/>
 </colgroup>
-<thead><tr><th>Field</th>
-<th>Description</th>
+<thead><tr><th>字段</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody><tr><td><code class="literal">ActorID</code></td>
-<td><p>Scenario-defined actor identifier, specified as
-                                                  a positive integer.</p>
+<td><p>由场景所定义的参与者标识符，指定为正整数。</p>
 </td>
 </tr>
 <tr><td><code class="literal">Position</code></td>
-<td><p>Position of actor, specified as a real-valued
-                                                  vector of the form [<em class="varname">x</em>
-                                                  <em class="varname">y</em>
-                                                  <em class="varname">z</em>]. Units are in
-                                                  meters.</p>
+<td><p>参与者的位置，指定为 [<i>x</i> <i>y</i> <i>z</i>]形式的实值向量。单位为米。<br/></p>
 </td>
 </tr>
 <tr><td><code class="literal">Velocity</code></td>
-<td><p>Velocity (<em class="varname">v</em>) of actor in the
-                                                  <em class="varname">x</em>- <em class="varname">y</em>-, and
-                                                  <em class="varname">z</em>-directions, specified as a
-                                                  real-valued vector of the form
-                                                  [<em class="varname">v</em><sub><em class="varname">x</em></sub>
+<td><p>参与者在<i>x</i>、<i>y</i>和 <i>z</i>方向上的速度 (<em class="varname">v</em>) ，指定为 [<em class="varname">v</em><sub><em class="varname">x</em></sub>
                                                   <em class="varname">v</em><sub><em class="varname">y</em></sub>
-                                                  <em class="varname">v</em><sub><em class="varname">z</em></sub>].
-                                                  Units are in meters per second.</p>
+                                                  <em class="varname">v</em><sub><em class="varname">z</em></sub>]形式的实值向量。单位为米每秒。</p>
 </td>
 </tr>
 <tr><td><code class="literal">Roll</code></td>
-<td><p>Roll angle of actor, specified as a real-valued
-                                                  scalar. Units are in degrees.</p>
+<td><p>参与者的横滚角，指定为实值标量。单位为度。</p>
 </td>
 </tr>
 <tr><td><code class="literal">Pitch</code></td>
-<td><p>Pitch angle of actor, specified as a
-                                                  real-valued scalar. Units are in
-                                                  degrees.</p>
+<td><p>参与者的俯仰角，指定为实值标量。单位为度。</p>
 </td>
 </tr>
 <tr><td><code class="literal">Yaw</code></td>
-<td><p>Yaw angle of actor, specified as a real-valued
-                                                  scalar. Units are in degrees.</p>
+<td><p>参与者的偏航角，指定为实值标量。单位为度。</p>
 </td>
 </tr>
 <tr><td><code class="literal">AngularVelocity</code></td>
-<td><p>Angular velocity (<em class="varname">ω</em>) of
-                                                  actor in the <em class="varname">x</em>-,
-                                                  <em class="varname">y</em>-, and
-                                                  <em class="varname">z</em>-directions, specified as a
-                                                  real-valued vector of the form
-                                                  [<em class="varname">ω</em><sub><em class="varname">x</em></sub>
+<td><p>参与者在<i>x</i>、 <i>y</i>和 <i>z</i>方向上的角速度 (<em class="varname">ω</em>) ，指定为 [<em class="varname">ω</em><sub><em class="varname">x</em></sub>
                                                   <em class="varname">ω</em><sub><em class="varname">y</em></sub>
-                                                  <em class="varname">ω</em><sub><em class="varname">z</em></sub>].
-                                                  Units are in degrees per second.</p>
+                                                  <em class="varname">ω</em><sub><em class="varname">z</em></sub>] 形式的实值向量。单位为度每秒。</p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-              <p>The block converts only one pose from the <code class="literal">Actors</code> array. To
-                specify which pose to convert, select <strong class="guilabel">Specify Actor ID</strong>, and
-                then specify the <code class="literal">ActorID</code> of the actor by using the
-                  <strong class="guilabel">ActorID used for conversion</strong> parameter.</p>
+              <p>该模块仅转换 <code class="literal">Actors</code> 数组中的一个姿态。指定要转换的姿势，请选择 <strong class="guilabel">Specify Actor ID</strong>,，然后 <code class="literal">ActorID</code> 使用
+                  <strong class="guilabel">ActorID used for conversion</strong> 参数的指定参与者 ID。</p>
             
           </div>
 </div>
@@ -505,51 +482,38 @@
 </div>
 </div>
 </div>
-<div class="ref_sect"><h3 id="mw_3c916e4a-6147-4cb2-bf92-72aa86658b29">Output</h3>
+<div class="ref_sect"><h3 id="mw_3c916e4a-6147-4cb2-bf92-72aa86658b29">输出</h3>
 <div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
-<div class="panel-group" id="mw_3c916e4a-6147-4cb2-bf92-72aa86658b29_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a4257e30-e7ee-4384-8a09-43c3b1311c93" data-target="#expand_panel_body_mw_a4257e30-e7ee-4384-8a09-43c3b1311c93" aria-controls="expand_panel_body_mw_a4257e30-e7ee-4384-8a09-43c3b1311c93" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_a4257e30-e7ee-4384-8a09-43c3b1311c93"><code class="name">X</code> — Longitudinal position of actor in 3D simulation coordinates<br/>
-<span class="add_font_color_general remove_bold"><span class="example_desc">numeric scalar</span></span></h3>
+<div class="panel-group" id="mw_3c916e4a-6147-4cb2-bf92-72aa86658b29_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a4257e30-e7ee-4384-8a09-43c3b1311c93" data-target="#expand_panel_body_mw_a4257e30-e7ee-4384-8a09-43c3b1311c93" aria-controls="expand_panel_body_mw_a4257e30-e7ee-4384-8a09-43c3b1311c93" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_a4257e30-e7ee-4384-8a09-43c3b1311c93"><code class="name">X</code> — 三维仿真坐标中参与者的纵向位置<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc">数值标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_a4257e30-e7ee-4384-8a09-43c3b1311c93" aria-labelledby="expand_panel_heading_mw_a4257e30-e7ee-4384-8a09-43c3b1311c93" class="panel-collapse collapse"><div class="panel-body">
-            <p>Longitudinal position of the actor in 3D simulation coordinates, returned as a
-              numeric scalar. Units are in meters. </p>
-            <p>In this coordinate system, when looking in the positive direction of the
-                <em class="varname">X</em>-axis, the positive <em class="varname">Y</em>-axis points left, and
-              the <em class="varname">Z</em>-axis points up.</p>
-            <p>To specify the <em class="varname">X</em>-position of a vehicle in the 3D simulation
-              environment, connect this port to the <strong class="guilabel">X</strong> input port of a <a href="simulation3dvehiclewithgroundfollowing.html"><span class="block">Simulation 3D
-                Vehicle with Ground Following</span></a> block.</p>
+            <p>三维仿真坐标中参与者的纵向位置，以数值标量形式返回。单位为米。 </p>
+            <p>在此坐标系中，从<i>X</i>轴正方向看时（顺着坐标轴的方向看），<i>Y</i>轴正向指向左，<i>Z</i>轴指向上。<br/></p>
+            <p>要在三维仿真环境中指定车辆的<i>X</i>位置，请将此端口连接到 <a href="simulation3dvehiclewithgroundfollowing.html"><span class="block">Simulation 3D
+                Vehicle with Ground Following</span></a> 的X输入端口。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_54f71e37-bbc8-4b6a-929e-6a3690197a2e" data-target="#expand_panel_body_mw_54f71e37-bbc8-4b6a-929e-6a3690197a2e" aria-controls="expand_panel_body_mw_54f71e37-bbc8-4b6a-929e-6a3690197a2e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_54f71e37-bbc8-4b6a-929e-6a3690197a2e"><code class="name">Y</code> — Lateral position of actor in 3D simulation  coordinates<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">numeric scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_54f71e37-bbc8-4b6a-929e-6a3690197a2e" data-target="#expand_panel_body_mw_54f71e37-bbc8-4b6a-929e-6a3690197a2e" aria-controls="expand_panel_body_mw_54f71e37-bbc8-4b6a-929e-6a3690197a2e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_54f71e37-bbc8-4b6a-929e-6a3690197a2e"><code class="name">Y</code> — 三维仿真坐标中参与者的横向位置<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">数值标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_54f71e37-bbc8-4b6a-929e-6a3690197a2e" aria-labelledby="expand_panel_heading_mw_54f71e37-bbc8-4b6a-929e-6a3690197a2e" class="panel-collapse collapse"><div class="panel-body">
-            <p>Lateral position of the actor in 3D simulation coordinates, returned as a numeric
-              scalar. Units are in meters.</p>
-            <p>In this coordinate system, when looking in the positive direction of the
-                <em class="varname">X</em>-axis, the positive <em class="varname">Y</em>-axis points left, and
-              the <em class="varname">Z</em>-axis points up.</p>
-            <p>To specify the <em class="varname">Y</em>-position of a vehicle in the 3D simulation
-              environment, connect this port to the <strong class="guilabel">Y</strong> input port of a <a href="simulation3dvehiclewithgroundfollowing.html"><span class="block">Simulation 3D
-                Vehicle with Ground Following</span></a> block.</p>
+            <p>三维仿真坐标中参与者的横向位置，以数值标量形式返回。单位为米。</p>
+            <p>在此坐标系中，从X轴正方向看时 ，Y轴正向指向左，Z轴指向上。<br/></p>
+            <p>要在三维仿真环境中指定车辆的Y位置，请将此端口连接到 <a href="simulation3dvehiclewithgroundfollowing.html"><span class="block">Simulation 3D
+                Vehicle with Ground Following</span></a> 的Y输入端口。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_97196a38-d016-4145-baab-05e6063f0c7a" data-target="#expand_panel_body_mw_97196a38-d016-4145-baab-05e6063f0c7a" aria-controls="expand_panel_body_mw_97196a38-d016-4145-baab-05e6063f0c7a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_97196a38-d016-4145-baab-05e6063f0c7a"><code class="name">Yaw</code> — Yaw orientation angle of actor in 3D simulation coordinates<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">numeric scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_97196a38-d016-4145-baab-05e6063f0c7a" data-target="#expand_panel_body_mw_97196a38-d016-4145-baab-05e6063f0c7a" aria-controls="expand_panel_body_mw_97196a38-d016-4145-baab-05e6063f0c7a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_97196a38-d016-4145-baab-05e6063f0c7a"><code class="name">Yaw</code> — 三维仿真坐标中参与者的偏航方向角<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">数值标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_97196a38-d016-4145-baab-05e6063f0c7a" aria-labelledby="expand_panel_heading_mw_97196a38-d016-4145-baab-05e6063f0c7a" class="panel-collapse collapse"><div class="panel-body">
-            <p>Yaw orientation angle of the actor about the <em class="varname">Z</em>-axis in 3D
-              simulation coordinates, returned as a numeric scalar. Units are in degrees.</p>
-            <p>In this coordinate system, when looking in the positive direction of the
-                <em class="varname">Z</em>-axis, yaw is clockwise-positive. However, if you view the
-              simulation from a 2D top-down perspective, then yaw is counterclockwise-positive,
-              because you are viewing the scene along the negative <em class="varname">Z</em>-axis.</p>
-            <p>To specify the yaw orientation angle of a vehicle in the 3D simulation
-              environment, connect this port to the <strong class="guilabel">Yaw</strong> input port of a <a href="simulation3dvehiclewithgroundfollowing.html"><span class="block">Simulation 3D
-                Vehicle with Ground Following</span></a> block.</p>
+            <p>三维仿真坐标中参与者围绕Z轴的偏航方向角，以数值标量形式返回。单位为度。<br/></p>
+            <p>在该坐标系中，当从Z轴正方向看时 ，偏航为顺时针正。但是，如果从二维自上而下的角度查看仿真，则偏航为逆时针正，因为正在沿着负Z轴查看场景。<br/></p>
+            <p>要在三维仿真环境中指定车辆的偏航方向角，请将此端口连接到 <a href="simulation3dvehiclewithgroundfollowing.html"><span class="block">Simulation 3D
+                Vehicle with Ground Following</span></a> 的偏航输入端口。</p>
           </div>
 </div>
 </div>
@@ -557,45 +521,36 @@
 </div>
 </div>
 </div>
-<div class="ref_sect"><h2 id="mw_fae6ac6c-6ddf-4ca7-a6e9-c2351ae7424b">Parameters</h2>
+<div class="ref_sect"><h2 id="mw_fae6ac6c-6ddf-4ca7-a6e9-c2351ae7424b">参数</h2>
 <div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
-<div class="panel-group" id="mw_fae6ac6c-6ddf-4ca7-a6e9-c2351ae7424b_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1fdfc5f1-d05a-4c35-a256-cd6af35b386b" data-target="#expand_panel_body_mw_1fdfc5f1-d05a-4c35-a256-cd6af35b386b" aria-controls="expand_panel_body_mw_1fdfc5f1-d05a-4c35-a256-cd6af35b386b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_SpecifyActorID" class="anchor_target"></span><span id="SpecifyActorID" class="anchor_target"></span><h3 class="panel-title" id="mw_1fdfc5f1-d05a-4c35-a256-cd6af35b386b"><code class="name">Specify Actor ID</code> — Enable ID specification of cuboid actor<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<div class="panel-group" id="mw_fae6ac6c-6ddf-4ca7-a6e9-c2351ae7424b_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1fdfc5f1-d05a-4c35-a256-cd6af35b386b" data-target="#expand_panel_body_mw_1fdfc5f1-d05a-4c35-a256-cd6af35b386b" aria-controls="expand_panel_body_mw_1fdfc5f1-d05a-4c35-a256-cd6af35b386b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_SpecifyActorID" class="anchor_target"></span><span id="SpecifyActorID" class="anchor_target"></span><h3 class="panel-title" id="mw_1fdfc5f1-d05a-4c35-a256-cd6af35b386b"><code class="name">Specify Actor ID</code> — 启用长方体参与者的 ID 规范<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (默认) | <code class="literal">on</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_1fdfc5f1-d05a-4c35-a256-cd6af35b386b" aria-labelledby="expand_panel_heading_mw_1fdfc5f1-d05a-4c35-a256-cd6af35b386b" class="panel-collapse collapse"><div class="panel-body">
-          <p> Select this parameter to enable the <strong class="guilabel">ActorID used for
-              conversion</strong> parameter, where you can specify the <code class="literal">ActorID</code>
-            of the cuboid actor pose to convert to 3D simulation coordinates.</p>
-          <p>If you clear this parameter, then the block converts the first actor pose in the
-            input <strong class="guilabel">Actor</strong> bus.</p>
+          <p> 选择此参数可启用 <strong class="guilabel">ActorID used for
+              conversion</strong> parameter，可以指定长方体参与者姿态的  <code class="literal">ActorID</code> 来转换三维仿真坐标。</p>
+          <p>如果清除此参数，则该模块转换输入 <strong class="guilabel">Actor</strong> 总线中的第一个参与者姿态。</p>
         </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf" data-target="#expand_panel_body_mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf" aria-controls="expand_panel_body_mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_ActorIDusedforconversion" class="anchor_target"></span><span id="ActorIDToConvert" class="anchor_target"></span><h3 class="panel-title" id="mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf"><code class="name">ActorID used for conversion</code> — <code class="literal">ActorID</code> value of cuboid actor<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (default) | positive integer</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf" data-target="#expand_panel_body_mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf" aria-controls="expand_panel_body_mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_ActorIDusedforconversion" class="anchor_target"></span><span id="ActorIDToConvert" class="anchor_target"></span><h3 class="panel-title" id="mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf"><code class="name">ActorID used for conversion</code> —长方体参与者的 <code class="literal">ActorID</code> 值</h3>
+<h3 class="panel-title" id="mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf"> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (默认) | 正整数</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf" aria-labelledby="expand_panel_heading_mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf" class="panel-collapse collapse"><div class="panel-body">
-          <p>
-            <code class="literal">ActorID</code> value of the cuboid actor to convert to 3D simulation
-            coordinates, specified as a positive integer. This parameter must be a valid
-              <code class="literal">ActorID</code> from the input <strong class="guilabel">Actor </strong> bus.</p>
+<div role="tabpanel" id="expand_panel_body_mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf" aria-labelledby="expand_panel_heading_mw_1f9f405a-18c9-4f45-89aa-c4ece94e28bf" class="panel-collapse collapse"><div class="panel-body"><p>用于转换三维仿真坐标的长方体参与者 <code class="literal">ActorID</code> 值，指定为正整数。该参数必须是从输入 <strong class="guilabel">Actor </strong><span class="guilabel">总线而来的有效</span> <code class="literal">ActorID</code>。</p>
           
-            <h4 class="descriptionsect">Dependencies</h4>
-            <p>To enable this parameter, select <strong class="guilabel">Specify Actor ID</strong>.</p>
+            <h4 class="descriptionsect">依赖</h4>
+            <p>要启用此参数，请选择 <strong class="guilabel">Specify Actor ID</strong>。</p>
           
         </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_da39544a-b88f-41dc-a641-9457988cebe9_sep_shared-Simulateusing_interpexec" data-target="#expand_panel_body_mw_da39544a-b88f-41dc-a641-9457988cebe9_sep_shared-Simulateusing_interpexec" aria-controls="expand_panel_body_mw_da39544a-b88f-41dc-a641-9457988cebe9_sep_shared-Simulateusing_interpexec" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Simulateusing" class="anchor_target"></span><span id="SimulateUsing" class="anchor_target"></span><h3 class="panel-title" id="mw_da39544a-b88f-41dc-a641-9457988cebe9_sep_shared-Simulateusing_interpexec"><code class="name">Simulate using</code> — Type of simulation to run<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Interpreted execution</code> (default) | <code class="guidropdown">Code generation</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_da39544a-b88f-41dc-a641-9457988cebe9_sep_shared-Simulateusing_interpexec" data-target="#expand_panel_body_mw_da39544a-b88f-41dc-a641-9457988cebe9_sep_shared-Simulateusing_interpexec" aria-controls="expand_panel_body_mw_da39544a-b88f-41dc-a641-9457988cebe9_sep_shared-Simulateusing_interpexec" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Simulateusing" class="anchor_target"></span><span id="SimulateUsing" class="anchor_target"></span><h3 class="panel-title" id="mw_da39544a-b88f-41dc-a641-9457988cebe9_sep_shared-Simulateusing_interpexec"><code class="name">Simulate using</code> — 要运行的仿真类型<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Interpreted execution</code> (默认) | <code class="guidropdown">Code generation</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_da39544a-b88f-41dc-a641-9457988cebe9_sep_shared-Simulateusing_interpexec" aria-labelledby="expand_panel_heading_mw_da39544a-b88f-41dc-a641-9457988cebe9_sep_shared-Simulateusing_interpexec" class="panel-collapse collapse"><div class="panel-body">
-        <div class="itemizedlist"><ul><li><p><code class="guidropdown">Interpreted execution</code> — Simulate the model using the
-            MATLAB interpreter. This option shortens startup time. In <code class="guidropdown">Interpreted
-            execution</code> mode, you can debug the source code of the block.</p></li>
-<li><p><code class="guidropdown">Code generation</code> — Simulate the model using generated C/C++
-        code. The first time you run a simulation, Simulink generates C/C++ code for the block. The C code is reused for subsequent
-        simulations as long as the model does not change. This option requires additional startup
-        time.</p></li>
+        <div class="itemizedlist"><ul><li><p><code class="guidropdown">Interpreted execution</code> — 使用 MATLAB 解释器对模型进行仿真。此选项可缩短启动时间。在 <code class="guidropdown">Interpreted
+            execution</code> 模式下，可以调试模块的源代码。</p></li>
+<li><p><code class="guidropdown">Code generation</code> — 使用生成的 C/C++ 代码仿真模型。第一次运行仿真时，Simulink 会为该模块生成 C/C++ 代码。只要模型不改变，C 代码就可以重复用于后续仿真。此选项需要额外的启动时间。</p></li>
 </ul>
 </div>
     </div>
@@ -605,7 +560,7 @@
 </div>
 </div>
 </div>
-<div class="ref_sect"><h2 id="examples">Model Examples</h2>
+<div class="ref_sect"><h2 id="examples">模型示例</h2>
 <section class="example_short_list"><div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../ug/visualize-3d-simulation-sensor-coverages-and-detections.html"><div class="card_media" style="background-image:url(../../examples/driving/win64/Visualize3DSimulationSensorsBirdsEyeScope.png);"><img alt="Visualize Sensor Data from Unreal Engine Simulation Environment" src="../../examples/driving/win64/Visualize3DSimulationSensorsBirdsEyeScope.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Visualize Sensor Data from Unreal Engine Simulation Environment</h3>
 </div>
 <div class="panel-body" style="overflow:hidden;"><p class="card_description">Visualize sensor coverage areas and detections obtained from high-fidelity radar

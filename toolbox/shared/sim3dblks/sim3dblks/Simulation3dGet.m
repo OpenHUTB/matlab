@@ -1,17 +1,14 @@
-classdef(StrictDefaults)Simulation3dGet<Simulation3DActor&...
+classdef(StrictDefaults) Simulation3dGet<Simulation3DActor&...
 Simulation3DHandleMap
 
-
     properties(Nontunable)
-
-
         TopicName char='mySignal'
-
 
         DataType char='uint8'
 
         MessageSize(1,2)uint32{mustBePositive}=[1,1];
     end
+
 
     properties(Hidden,Constant)
         DataTypeSet=matlab.system.StringSet({'double','single','int8','uint8','int16','uint16','int32','uint32','boolean'});
@@ -26,6 +23,7 @@ Simulation3DHandleMap
         ModelName=[];
     end
 
+    
     methods(Access=protected)
 
         function setupImpl(self)
@@ -62,8 +60,8 @@ Simulation3DHandleMap
             end
         end
 
-        function readMessage=stepImpl(self)
 
+        function readMessage=stepImpl(self)
             if isempty(self.Reader)
                 readMessage=[];
             else
@@ -93,12 +91,10 @@ Simulation3DHandleMap
                     throw(noDataType);
                 end
 
-
                 if result==0&&~isempty(readMessage)
                     readMessage=reshape(readMessage,[self.MessageSize(1),self.MessageSize(2)]);
                     self.Buffer=readMessage;
                 elseif result==13&&~isempty(readMessage)
-
                     error(message('shared_sim3dblks:sim3dblkMessageGET:blkPrm_WR_MsgSize'));
                 else
                     readMessage=self.Buffer;
@@ -107,8 +103,8 @@ Simulation3DHandleMap
             end
         end
 
-        function releaseImpl(self)
 
+        function releaseImpl(self)
             releaseImpl@Simulation3DActor(self);
 
             switch(self.DataType)

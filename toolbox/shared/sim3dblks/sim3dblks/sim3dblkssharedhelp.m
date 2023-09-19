@@ -1,12 +1,10 @@
+% simlink 3D blocks shared help
 function sim3dblkssharedhelp(fileStr)
-
     narginchk(0,1);
 
     if nargin<1
-
-        doc_tag=getblock_help_file(gcb);
+        doc_tag = getblock_help_file(gcb);
     else
-
         doc_tag=getblock_help_file(gcb,fileStr);
     end
 
@@ -32,9 +30,9 @@ end
 
 function help_file=getblock_help_file(blk,varargin)
     if nargin>1
-        fileStr=varargin{1};
+        fileStr = varargin{1};
     else
-        fileStr=get_param(blk,'MaskType');
+        fileStr = get_param(blk,'MaskType');
     end
 
     help_file=help_name(fileStr);

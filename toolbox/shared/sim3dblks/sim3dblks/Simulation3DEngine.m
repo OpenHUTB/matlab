@@ -7,9 +7,11 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
         end
     end
 
+
     properties(Constant=true,Access=private)
         COMMAND_READ_TIMEOUT=int32(240)
     end
+
 
     properties(Constant=true,Access=public)
         MIN_SAMPLE_TIME=0.01
@@ -20,18 +22,18 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
         ProjectName(1,:)char=sim3d.World.Undefined
         OpenDRIVEName(1,:)char=sim3d.World.Undefined
 
-        SceneDesc(1,:)char=''
-        ProjectFormat(1,:)char=getString(message('shared_sim3dblks:sim3dblkConfig:DefaultScenes'))
+        SceneDesc(1,:) char=''
+        ProjectFormat(1,:)char = getString(message('shared_sim3dblks:sim3dblkConfig:DefaultScenes'))
         SampleTime(1,1)double{mustBeGreaterThanOrEqual(SampleTime,0.01)}=Simulation3DEngine.DEFAULT_SAMPLE_TIME;
     end
 
+
     properties
         WeatherConfigParas(1,6)single=[40,90,10,0,0,1]
-
     end
 
-    properties(Nontunable)
 
+    properties(Nontunable)  % 仅当属性的 Nontunable 特性为 false（默认值）时，该属性才可调。
         EnableWindow(1,1)logical=true
 
         EnableWeather(1,1)logical=false
@@ -40,12 +42,14 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
         EnableOpenDRIVE(1,1)logical=false
     end
 
-    properties(Hidden,Constant)
+
+    properties(Hidden, Constant)
         ProjectFormatSet=matlab.system.internal.MessageCatalogSet({'shared_sim3dblks:sim3dblkConfig:DefaultScenes',...
             'shared_sim3dblks:sim3dblkConfig:UnrealExecutable',...
             'shared_sim3dblks:sim3dblkConfig:UnrealEditor'});
         WeatherActorName='weatherconfig';
     end
+
 
     properties(Access=private)
         Reader=[]
@@ -65,6 +69,7 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
         MaxHttpPort=9999;
         MessageToSim3DVDG;
     end
+
 
     methods(Access=protected)
         function sts=getSampleTimeImpl(self)
@@ -243,7 +248,6 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                     'ExecutionMode','fixedRate',...
                     'TimerFcn',@self.onTimerEvent);
 
-
                 if self.EnableWeather
                     self.WeatherConfigWriter=sim3d.utils.WeatherConfiguration(self.WeatherActorName,self.WeatherConfigParas,false);
                 else
@@ -261,6 +265,7 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                 end
             end
         end
+
 
         function loadObjectImpl(self,s,wasInUse)
             self.ProjectName=s.ProjectName;
@@ -289,7 +294,6 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                 self.StopEventListenerHandle=self.Sim3dSetGetHandle([ModelName,'/StopEventListenerHandle']);
                 self.EngineTimer=self.Sim3dSetGetHandle([ModelName,'/EngineTimer']);
             else
-
                 self.Reader=s.Reader;
                 self.Writer=s.Writer;
                 self.WeatherConfigWriter=s.WeatherConfigWriter;
@@ -299,9 +303,9 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                 self.StopEventListenerHandle=s.StopEventListenerHandle;
                 self.EngineTimer=s.EngineTimer;
             end
-
             loadObjectImpl@matlab.System(self,s,wasInUse);
         end
+
 
         function s=saveObjectImpl(self)
             s=saveObjectImpl@matlab.System(self);
@@ -371,6 +375,7 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
             end
         end
 
+
         function[state,sampleTime]=stepImpl(self)
             state=sim3d.engine.EngineCommands.NOP;
             sampleTime=single(-1);
@@ -397,6 +402,7 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
             end
         end
 
+
         function releaseImpl(self)
             simulationStatus=get_param(bdroot,'SimulationStatus');
             if coder.target('MATLAB')
@@ -407,11 +413,8 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                         self.Writer.setState(int32(sim3d.engine.EngineCommands.STOP));
                         try
                             self.Writer.write();
-
-
                             pause(0.5);
                         catch
-
                         end
                         self.Writer.delete();
                         self.Writer=[];
@@ -470,7 +473,6 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                     end
                 end
                 if self.EnableRemoteAccess
-
                     cmd=strcat("netstat -ano | grep ",string(self.StreamerPort));
                     [~,cmdout]=system(cmd);
                     if(~isempty(cmdout))
@@ -493,6 +495,7 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
             end
         end
 
+
         function writeCommand(self)
             if~isempty(self.Writer)
                 self.Writer.setState(self.simulinkStatus2Sim3DEngineCommand());
@@ -500,7 +503,8 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
             end
         end
 
-        function sim3DEngineCommand=simulinkStatus2Sim3DEngineCommand(~)
+
+        function sim3DEngineCommand = simulinkStatus2Sim3DEngineCommand(~)
             simulationStatus=get_param(bdroot,'SimulationStatus');
             switch(simulationStatus)
                 case 'stopped'
@@ -513,10 +517,10 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                 case 'paused'
                     sim3DEngineCommand=int32(sim3d.engine.EngineCommands.PAUSE);
                 otherwise
-
                     sim3DEngineCommand=int32(sim3d.engine.EngineCommands.NOP);
             end
         end
+
 
         function simulinkCommand=sim3DEngineStatus2SimulinkCommand(~,sim3DEngineStatus)
             simulationStatus=get_param(bdroot,'SimulationStatus');
@@ -541,24 +545,29 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
             end
         end
 
+
         function num=getNumOutputsImpl(~)
             num=2;
         end
 
+
         function[sz1,sz2]=getOutputSizeImpl(~)
-            sz1=[1,1];
-            sz2=[1,1];
+            sz1=[1, 1];
+            sz2=[1, 1];
         end
+
 
         function[fz1,fz2]=isOutputFixedSizeImpl(~)
             fz1=true;
             fz2=true;
         end
 
+
         function[dt1,dt2]=getOutputDataTypeImpl(~)
             dt1='int32';
             dt2='single';
         end
+
 
         function[cp1,cp2]=isOutputComplexImpl(~)
             cp1=false;
@@ -567,11 +576,13 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
 
     end
 
+
     methods(Static,Access=protected)
         function header=getHeaderImpl
             header=matlab.system.display.Header(...
                 'Title','3D Simulation Setup');
         end
+
 
         function groups=getPropertyGroupsImpl
             projectSelectionParams=matlab.system.display.Section(...
@@ -583,10 +594,12 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
             groups=[projectSelectionParams,params];
         end
 
+
         function simMode=getSimulateUsingImpl
             simMode='Interpreted execution';
         end
     end
+
 
     methods(Hidden)
         function onStartEvent(~,~,~)
@@ -598,11 +611,9 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                 try
                     self.Writer.write();
                 catch
-
                 end
             end
             if~isempty(self.Reader)
-
                 self.Reader.setTimeout(int32(0));
             end
             if~isempty(self.EngineTimer)&&strcmp(self.EngineTimer.Running,'off')
@@ -610,10 +621,12 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
             end
         end
 
+
         function onContinueEvent(self,src,eventData)%#ok
             self.Reader.setTimeout(Simulation3DEngine.COMMAND_READ_TIMEOUT);
             stop(self.EngineTimer);
         end
+
 
         function onStopEvent(self,~,~)
             simulationStatus=get_param(bdroot,'SimulationStatus');
@@ -622,14 +635,10 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                     self.Writer.setState(int32(sim3d.engine.EngineCommands.PAUSE));
                     try
                         self.Writer.write();
-
-
                         pause(0.5);
                     catch
-
                     end
                 end
-
                 self.Reader.setTimeout(int32(0));
                 start(self.EngineTimer);
             else
@@ -637,17 +646,16 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
             end
         end
 
+
         function onTimerEvent(self,src,eventData)%#ok
             if~isempty(self.Reader)
                 [status,result]=self.Reader.read(false);
                 if result==sim3d.engine.EngineReturnCode.OK
-
                     simulationCommand=self.sim3DEngineStatus2SimulinkCommand(status.state);
                     if~isempty(simulationCommand)
                         set_param(bdroot,'SimulationCommand',simulationCommand),
                     end
                 elseif result==sim3d.engine.EngineReturnCode.Precondition_Not_Met
-
                     set_param(bdroot,'SimulationCommand','stop'),
                     if strcmp(get_param(bdroot,'FastRestart'),'on')
                         set_param(bdroot,'FastRestart','off');
@@ -657,8 +665,9 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
         end
     end
 
-    methods(Static,Hidden)
-        function sampleTime=getEngineSampleTime(varargin)
+
+    methods(Static, Hidden)
+        function sampleTime = getEngineSampleTime(varargin)
             sampleTime=[];
             userSpecifiedSampleTime=varargin{1};
             if nargin>1
@@ -692,9 +701,9 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
             end
         end
 
-        function sim3dEngine=getEngineBlocks(block)
-            libraryBlock='sim3dlib/Simulation 3D Scene Configuration';
 
+        function sim3dEngine = getEngineBlocks(block)
+            libraryBlock='sim3dlib/Simulation 3D Scene Configuration';
 
             sim3dEngine=find_system(bdroot(block),'LookUnderMasks','on',...
                 'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...

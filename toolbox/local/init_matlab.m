@@ -76,10 +76,10 @@ clear history_mac mac_record_infos
 % cd(rep_dir);  % 进入自己的代码仓库
 
 % 进入当前打开文件所在的目录（命令启动报错：输入参数的数目不足）
-% tmp = matlab.desktop.editor.getActive;
-% if exist(fileparts(tmp.Filename), 'dir')
-%     cd(fileparts(tmp.Filename));
-% end
+tmp = matlab.desktop.editor.getActive;
+if exist(fileparts(tmp.Filename), 'dir')
+    cd(fileparts(tmp.Filename));
+end
 %% 
 % 设置环境变量
 
