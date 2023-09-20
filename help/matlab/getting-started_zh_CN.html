@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Microsoft .NET 快速入门</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "external-language-interfaces.html",
+          "name": "外部语言接口"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "using-net-libraries-in-matlab.html",
+          "name": "将 .NET 与 MATLAB 结合使用"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ReferenceEntities",
+        
+        "itemListElement":
+        [ {
+          "@type": "ListItem",
+          "position": 1,
+            "item": {
+          "identifier": "function:NET.addAssembly",
+          "name": "NET.addAssembly"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 2,
+            "item": {
+          "identifier": "function:NET.isNETSupported",
+          "name": "NET.isNETSupported"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 3,
+            "item": {
+          "identifier": "package:NET",
+          "name": "NET"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 4,
+            "item": {
+          "identifier": "function:enableNETfromNetworkDrive",
+          "name": "enableNETfromNetworkDrive"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 5,
+            "item": {
+          "identifier": "class:NET.Assembly",
+          "name": "NET.Assembly"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 6,
+            "item": {
+          "identifier": "object:NET.NetException",
+          "name": "NET.NetException"
+
+          }
+          } ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="cat"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="cat"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="有助于您迅速地在 MATLAB 中开始使用 .NET 的示例和概念"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../docset.xml";
+            product_help_location = "matlab";
+            pagetype = "module";
+            doccentertype = "product";
+            langcode = "_zh_CN";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../includes/product/css/doc_center_zh_CN.css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+<style type="text/css">math { visibility: hidden; }</style>
+<link type="text/css" rel="stylesheet" href="../includes/shared/equationrenderer/release/index-css.css"/>
+<script type="text/javascript" src="../includes/shared/equationrenderer/release/bundle.index.js"></script>
+<style type="text/css">math { visibility: hidden; }</style>
+<link type="text/css" rel="stylesheet" href="../includes/shared/equationrenderer/release/index-css.css"/>
+<script type="text/javascript" src="../includes/shared/equationrenderer/release/bundle.index.js"></script>
+</head>
+<body id="responsive_offcanvas" class="no_animate offcanvas_active">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header" style=""></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../documentation-center.html">帮助中心</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">搜索帮助文档</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="搜索帮助文档" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1" disabled=""></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left active">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar" style="height: 402px; position: absolute;">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator active" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">画布外导航菜单切换
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">文档主页</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_product_ancestors"><li><a href="index.html?s_tid=CRUX_lftnav">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">外部语言接口</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="using-net-libraries-in-matlab.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">将 .NET 与 MATLAB 结合使用</span></a></li>
+</ul><div id="left_nav_categories"><div class="search_refine"><h3>类别</h3>
+<div id="nav_categories"><ul class="nav_toc"><li class="active"><a href="getting-started.html?s_tid=CRUX_lftnav" class="corrected_url">Microsoft .NET 快速入门</a></li>
+<li><a href="net-types.html?s_tid=CRUX_lftnav" class="corrected_url">MATLAB 中的 .NET 数据类型</a></li>
+<li><a href="properties.html?s_tid=CRUX_lftnav" class="corrected_url">MATLAB 中的 .NET 属性</a></li>
+<li><a href="methods.html?s_tid=CRUX_lftnav" class="corrected_url">MATLAB 中的 .NET 方法</a></li>
+<li><a href="events-and-delegates.html?s_tid=CRUX_lftnav" class="corrected_url">MATLAB 中的 .NET 事件和委托</a></li>
+<li><a href="enumerations.html?s_tid=CRUX_lftnav" class="corrected_url">MATLAB 中的 .NET 枚举</a></li>
+<li><a href="generic-classes.html?s_tid=CRUX_lftnav" class="corrected_url">MATLAB 中的 .NET 泛型类</a></li>
+</ul>
+</div>
+</div>
+</div></nav>
+</div></nav>
+<script src="../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container" style="padding-right: 0px;">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container affix-top" style="width: auto;"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>文档</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="examples.html?category=getting-started&amp;s_tid=CRUX_topnav">示例</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=getting-started&amp;s_tid=CRUX_topnav">函数</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=getting-started&amp;s_tid=CRUX_topnav">App</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">资源<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>文档</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="examples.html?category=getting-started&amp;s_tid=CRUX_topnav">示例</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=getting-started&amp;s_tid=CRUX_topnav">函数</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=getting-started&amp;s_tid=CRUX_topnav">App</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content" style="width: auto;">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="zh-CN" data-language="zh_CN"><div id="pgtype-category"><!-- translationrelease="R2022a", translationstatus="Final" --><!--G11N.MSG.BEG previous_Final--><p><a href="getting-started.html?lang=en" rel="nofollow">本页翻译不是最新的。点击此处可查看最新英文版本。</a></p>
+<!--G11N.MSG.END previous_Final--><h1 class="r2022a" itemprop="content title"><span class="trademark">Microsoft</span> .NET 快速入门</h1>
+<div class="doc_topic_desc" itemprop="content purpose">有助于您迅速地在 MATLAB<sup>®</sup> 中开始使用 .NET 的示例和概念</div>
+<div class="start_here_container" id="starthere">
+<div id="start_here_content"><div itemprop="content">
+
+        <p>.NET 接口允许您将 .NET 程序集引入 MATLAB 环境中，从这些程序集中包含的类来构造对象，以及对这些对象调用方法。</p>
+        
+            
+<p class="shortdesc">MATLAB 仅在 Microsoft<sup>®</sup>
+Windows<sup>®</sup> 平台上支持加载为
+<span>Microsoft .NET Framework</span> 编译的库。有关与 MATLAB 兼容的 .NET 版本的信息，请参阅<a href="https://www.mathworks.com/support/requirements/language-interfaces.html" target="_blank">其他语言的 MATLAB 接口</a>。 </p>
+        
+
+        <p>要确定系统是否具有支持的版本，请使用 <a href="ref/net.isnetsupported.html"><code class="function">NET.isNETSupported</code></a> 函数。.NET 相关的文档请参考<a href="https://learn.microsoft.com/en-us/dotnet/api/?view=net-7.0">链接</a>。</p>
+      </div>
+</div>
+</div>
+<div class="doc_functionsgroup_container"><h2>函数</h2>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term"><a href="ref/net.addassembly.html"><code class="function">NET.addAssembly</code></a></td>
+<td class="description">将 .NET 程序集添加至 <span class="trademark">MATLAB</span></td>
+</tr>
+<tr><td class="term"><a href="ref/net.isnetsupported.html"><code class="function">NET.isNETSupported</code></a></td>
+<td class="description">检查支持的 <span><span class="trademark">Microsoft</span> .NET Framework</span></td>
+</tr>
+<tr><td class="term"><a href="ref/net-package.html"><code class="function">NET</code></a></td>
+<td class="description"><span class="trademark">MATLAB</span> .NET 接口函数摘要</td>
+</tr>
+<tr><td class="term"><a href="ref/enablenetfromnetworkdrive.html"><code class="function">enableNETfromNetworkDrive</code></a></td>
+<td class="description">（将删除）支持从网络驱动器访问 .NET 命令</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc_classesgroup_container"><h2>类</h2>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term"><a href="ref/net.assembly-class.html"><code class="class">NET.Assembly</code></a></td>
+<td class="description">.NET 程序集成员</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc_objectgroup_container"><h2>对象</h2>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term"><a href="ref/net.netexception.html"><code class="object">NET.NetException</code></a></td>
+<td class="description">捕获 .NET 异常的错误信息</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="examples_container"><h2>主题</h2>
+<div itemprop="content">
+<ul class="list-unstyled"><li><strong><a href="matlab_external/system-requirements-for-using-matlab-interface-to-net.html" class="a" hreflang="en">System Requirements for Using MATLAB Interface to .NET</a></strong><br/><p>Using a supported version of .NET.</p></li>
+<li><strong><a href="matlab_external/access-a-simple-net-class.html" class="a" hreflang="en">Access a Simple .NET Class</a></strong><br/><p>This example shows how to access .NET functionality already installed on your
+                    system.</p></li>
+<li><strong><a href="matlab_external/load-a-global-net-assembly.html" class="a" hreflang="en">Load a Global .NET Assembly</a></strong><br/><p>This example shows you how to make .NET classes visible to MATLAB.</p></li>
+<li><strong><a href="matlab_external/work-with-microsoft-excel-spreadsheets-using-net.html" class="a" hreflang="en">Work with Microsoft Excel Spreadsheets Using .NET</a></strong><br/><p>This example for <span class="entity">Microsoft .NET Framework</span> uses the
+                        <code class="literal">Microsoft.Office.Interop.Excel.ApplicationClass</code> class to
+                    create a spreadsheet, copy MATLAB data to it, and then close it.</p></li>
+<li><strong><a href="matlab_external/work-with-microsoft-word-documents-using-net.html" class="a" hreflang="en">Work with Microsoft Word Documents Using .NET</a></strong><br/><p>This example for <span class="entity">Microsoft .NET Framework</span> uses the
+                        <code class="literal">Microsoft.Office.Interop.Word.ApplicationClass</code> class to
+                    create a Word document.</p></li>
+<li><strong><a href="matlab_external/building-a-net-application-for-matlab-examples.html" class="a" hreflang="en">Build a .NET Application for MATLAB Examples</a></strong><br/><p>Basic information for building the .NET examples included with MATLAB.</p></li>
+<li><strong><a href="matlab_external/simplify-net-class-names.html" class="a" hreflang="en">Simplify .NET Class Names</a></strong><br/><p>Use the MATLAB
+                    <code class="function">import</code> function to refer to .NET class names.</p></li>
+<li><strong><a href="matlab_external/use-import-in-matlab-functions.html" class="a">在 MATLAB 函数中使用 import</a></strong><br/><p><code class="function">NET.addAssembly</code> 和 <code class="function">import</code> 函数的使用规范。</p></li>
+<li><strong><a href="matlab_external/nested-classes.html" class="a" hreflang="en">Use .NET Nested Classes</a></strong><br/><p>Using reflection to instantiate a nested class.</p></li>
+<li><strong><a href="matlab_external/handle-net-exceptions.html" class="a" hreflang="en">Handle .NET Exceptions</a></strong><br/><p>MATLAB catches exceptions thrown by .NET and converts them into a
+                        <code class="object">NET.NetException</code> object.</p></li>
+<li><strong><a href="matlab_external/an-assembly-is-a-library-of-net-classes.html" class="a" hreflang="en">程序集是一个 .NET 类库</a></strong><br/><p><b>程序集</b>是类型和资源的集合，旨在协同工作并形成 .NET 应用程序中的逻辑功能单元。</p></li>
+<li><strong><a href="matlab_external/using-net-from-matlab-an-overview.html" class="a" hreflang="en">从 MATLAB 中使用 .NET</a></strong><br/><p>如何从 MATLAB 中使用 .NET 受益。</p></li>
+<li><strong><a href="matlab_external/using-a-net-object.html" class="a" hreflang="en">使用 .NET 对象</a></strong><br/><p>如何创建 .NET 对象。</p></li>
+<li><a href="matlab_external/net-terminology.html" class="a" hreflang="en" style=""><b>.NET 术语</b></a><br/><p>了解命名空间以及引用和值类型。</p></li>
+</ul>
+</div>
+</div>
+<div class="doc_troubleshootgroup_container"><h2 class="remove_border">疑难解答</h2>
+<div itemprop="content">
+<p class="add_margin_0"><strong><a href="matlab_external/troubleshooting-security-policy-settings-from-a-network-drive.html" class="a" hreflang="en">Troubleshooting Security Policy Settings from Network Drives</a></strong></p>
+<p>For MATLAB releases R2012b or earlier, call the
+                        <code class="literal">enableNETfromNetworkDrive</code> function to create a
+                        MATLAB security policy entry.</p>
+<p class="add_margin_0"><strong><a href="matlab_external/limitations-to-net-support.html" class="a" hreflang="en">Limitations to .NET Support</a></strong></p>
+<p>.NET features not supported in MATLAB.</p>
+<p class="add_margin_0"><strong><a href="matlab_external/limitations-to-support-of-net-arrays.html" class="a" hreflang="en">Limitations to Support of .NET Arrays</a></strong></p>
+<p>.NET features not supported in MATLAB.</p>
+<p class="add_margin_0"><strong><a href="matlab_external/limitations-to-support-of-net-methods.html" class="a" hreflang="en">Limitations to Support of .NET Methods</a></strong></p>
+<p>.NET features not supported in MATLAB.</p>
+<p class="add_margin_0"><strong><a href="matlab_external/limitations-to-support-of-net-events.html" class="a" hreflang="en">Limitations to Support of .NET Events</a></strong></p>
+<p>.NET features not supported in MATLAB.</p>
+<p class="add_margin_0"><strong><a href="matlab_external/limitations-to-support-of-net-delegates.html" class="a" hreflang="en">Limitations to Support of .NET Delegates</a></strong></p>
+<p>.NET features not supported in MATLAB.</p>
+<p class="add_margin_0"><strong><a href="matlab_external/limitations-to-net-enumerations.html" class="a" hreflang="en">Limitations to Support of .NET Enumerations</a></strong></p>
+<p>.NET features not supported in MATLAB.</p>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">本页内容对您有帮助吗？</mw-rating-feedback-step><mw-rating-feedback-step step="1">能告诉我们您的评分理由吗？</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>感谢您的反馈！</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">本页内容对您有帮助吗？</mw-rating-feedback-step><mw-rating-feedback-step step="1">能告诉我们您的评分理由吗？</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>感谢您的反馈！</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer" style="width: auto;">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">使用条款</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">专利</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">商标</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">致谢</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+<a class="btn btn_color_mediumgray" id="go-top" style="display: none;"><span class="icon-arrow-open-up icon_24"></span></a>
+<a class="btn btn_color_mediumgray" id="go-top"><span class="icon-arrow-open-up icon_24"></span></a>
+</body>
+</html>

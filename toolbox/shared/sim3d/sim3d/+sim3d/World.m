@@ -302,18 +302,20 @@ classdef World < handle
             sim3d.engine.Engine.stop(  );
         end
 
-        function command = asCommand( self )
-            if strcmp(self.ExecutablePath, sim3d.World.Undefined ) || isempty( self.ExecutablePath)
+        
+        % 设置exe执行时的启动参数
+        function command = asCommand(self)
+            if strcmp(self.ExecutablePath, sim3d.World.Undefined) || isempty(self.ExecutablePath)
                 command = sim3d.World.Undefined;
                 return
             end
         
-            command.FileName = self.ExecutablePath;
+            command.FileName = self.ExecutablePath;  % 虚幻引擎exe的路径
             command.Arguments = "";
-            if (~strcmp( self.Map, ""))
+            if (~strcmp(self.Map, ""))
                 command.Arguments = command.Arguments.append(...
                     strcat(self.Map, " ") ...
-                    );
+                 );
             end
             command.Arguments = command.Arguments.append(  ...
                 strcat("-nosound", " " ),  ...
@@ -324,7 +326,7 @@ classdef World < handle
                     strcat(self.CommandLineArgs, " ") ...
                     );
             end
-            if ( ~strcmp( self.RenderOffScreenFlag, "" ) )
+            if (~strcmp( self.RenderOffScreenFlag, "" ) )
                 command.Arguments = command.Arguments.append(  ...
                     strcat( self.RenderOffScreenFlag, " " ) ...
                     );
@@ -332,6 +334,8 @@ classdef World < handle
             command.Arguments = command.Arguments.append(  ...
                 strcat( "-pakdir=", """", fullfile(userpath, "sim3d_project", string(sprintf( 'R%s', version( '-release' ) ) ), "WindowsNoEditor", "AutoVrtlEnv", "Content", "Paks" ), """" ) ...
                 );
+            % 添加像素流转发参数
+            command.Arguments = command.Arguments.append(" -AudioMixer -PixelStreamingIP=localhost -PixelStreamingPort=8888");
         end
 
 
