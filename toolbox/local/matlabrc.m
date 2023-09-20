@@ -38,8 +38,6 @@ try
 
     warning off MATLAB:class:DynPropDuplicatesMethod
 
-    % 禁用p文件过时的警告（用于p文件破解时的调试）
-    warning('off', 'MATLAB:pfileOlderThanMfile')
 catch exc
     warning(message('MATLAB:matlabrc:DisableWarnings', exc.identifier, exc.message));
 end

@@ -12,7 +12,13 @@
 
 clear;
 dbclear if error
+
+% 禁用p文件过时的警告（用于p文件破解时的调试）
+warning('off', 'MATLAB:pfileOlderThanMfile')
+
 % clc;  % 会清除matlab的启动警告
+
+
 %% 
 % 根据MAC地址判断是否是第一次在机器上启动
 

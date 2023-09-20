@@ -3,7 +3,7 @@ classdef World < handle
 
     properties(Constant = true, Hidden = true)
         Undefined(1, :)string = "<none>"
-        MaxActorLimit = 10000;
+        MaxActorLimit = 10000;  % 仿真世界中最优有一万个参与者
     end
 
 
@@ -101,6 +101,9 @@ classdef World < handle
             end
             self.Textures.reset();
 
+            % 添加默认的像素流转发
+            % self.ExecCmds = [self.ExecCmds, " -AudioMixer -PixelStreamingIP=localhost -PixelStreamingPort=8888"];
+
             sim3d.World.addWorld(self.Name, self);
         end
 
@@ -114,7 +117,7 @@ classdef World < handle
         end
 
 
-        function actor = add( self, actor, parent )
+        function actor = add(self, actor, parent)
             if nargin == 2
                 parent = self.Root;
             elseif nargin > 3 || nargin < 2
@@ -144,7 +147,7 @@ classdef World < handle
             if length( fieldnames( self.Actors ) ) > sim3d.World.MaxActorLimit
                 error( message( "shared_sim3d:sim3dWorld:MaxActorLimitExceeded", sim3d.World.MaxActorLimit ) );
             elseif length( fieldnames( self.Actors ) ) > 1200
-                self.updateTimeout(  );
+                self.updateTimeout();
             end
             self.start();
             self.reset();
@@ -250,13 +253,13 @@ classdef World < handle
         end
 
 
-        function updateNewActorsInWorld( self )
+        function updateNewActorsInWorld(self)
             for n = 1:length( self.NewActorBuffer )
                 newactor = self.Actors.( self.NewActorBuffer{ n } );
-                newactor.setup(  );
-                newactor.reset(  );
+                newactor.setup();
+                newactor.reset();
             end
-            self.emptyActorBuffer(  );
+            self.emptyActorBuffer();
         end
 
 
@@ -265,41 +268,41 @@ classdef World < handle
             if ~isempty( self.OutputImpl )
                 self.OutputImpl( self );
             end
-            self.updateNewActorsInWorld(  );
-            self.Root.output(  );
-            self.updateNewActorsInWorld(  );
+            self.updateNewActorsInWorld();
+            self.Root.output();
+            self.updateNewActorsInWorld();
             self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.RUN ) );
-            self.CommandWriter.write(  );
-            self.CommandReader.read(  );
-            self.Root.update(  );
+            self.CommandWriter.write();
+            self.CommandReader.read();
+            self.Root.update();
         
             if ~isempty(self.UpdateImpl)
                 self.UpdateImpl(self)
             end
         end
 
-        function stop( self )
+        function stop(self)
             self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.STOP ) );
-            self.CommandWriter.write(  );
+            self.CommandWriter.write();
             if self.State == sim3d.engine.EngineCommands.RUN
-                sim3d.engine.Engine.setState( sim3d.engine.EngineCommands.STOP );
+                sim3d.engine.Engine.setState( sim3d.engine.EngineCommands.STOP);
                 self.State = sim3d.engine.EngineCommands.STOP;
             end
         end
 
 
-        function release( self )
-            if ~isempty( self.ReleaseImpl )
-                self.ReleaseImpl( self );
+        function release(self)
+            if ~isempty(self.ReleaseImpl)
+                self.ReleaseImpl(self);
             end
-            if ~isempty( self.CommandWriter )
-                self.CommandWriter.delete(  );
+            if ~isempty(self.CommandWriter)
+                self.CommandWriter.delete();
             end
-            if ~isempty( self.CommandReader )
-                self.CommandReader.delete(  );
+            if ~isempty(self.CommandReader)
+                self.CommandReader.delete();
             end
-            self.Root.delete(  );
-            sim3d.engine.Engine.stop(  );
+            self.Root.delete();
+            sim3d.engine.Engine.stop();
         end
 
         
@@ -311,25 +314,30 @@ classdef World < handle
             end
         
             command.FileName = self.ExecutablePath;  % 虚幻引擎exe的路径
+
             command.Arguments = "";
-            if (~strcmp(self.Map, ""))
+
+            if (~strcmp(self.Map, ""))  % 存在地图，比如：比如：/Game/Maps/EmptyGrass4k4k
                 command.Arguments = command.Arguments.append(...
                     strcat(self.Map, " ") ...
                  );
             end
+
+            % self.ExecCmds = "r.DefaultFeature.MotionBlur 0"    ""
             command.Arguments = command.Arguments.append(  ...
                 strcat("-nosound", " " ),  ...
                 strcat("-ExecCmds=", """", strjoin(self.ExecCmds, ";"), """", " ") ...
-                );
+                    );
+
             if (~strcmp(self.CommandLineArgs, ""))
                 command.Arguments = command.Arguments.append(...
                     strcat(self.CommandLineArgs, " ") ...
-                    );
+                );
             end
             if (~strcmp( self.RenderOffScreenFlag, "" ) )
                 command.Arguments = command.Arguments.append(  ...
-                    strcat( self.RenderOffScreenFlag, " " ) ...
-                    );
+                    strcat(self.RenderOffScreenFlag, " " ) ...
+                );
             end
             command.Arguments = command.Arguments.append(  ...
                 strcat( "-pakdir=", """", fullfile(userpath, "sim3d_project", string(sprintf( 'R%s', version( '-release' ) ) ), "WindowsNoEditor", "AutoVrtlEnv", "Content", "Paks" ), """" ) ...
@@ -343,13 +351,13 @@ classdef World < handle
             self.NewActorBuffer{ end  + 1 } = actorName;
         end
         
-        function emptyActorBuffer( self )
-            self.NewActorBuffer = [  ];
+        function emptyActorBuffer(self)
+            self.NewActorBuffer = [];
         end
         
         
-        function cleanupTextures( self )
-            self.Textures.reset(  );
+        function cleanupTextures(self)
+            self.Textures.reset();
         end
         
         function textureName = addTexture( self, varargin )

@@ -7,7 +7,7 @@ classdef Engine < handle
 
 
     properties (Constant = true, Access = private)
-        NumberOfWarmUpSteps(1, 1)uint32 = 1
+        NumberOfWarmUpSteps(1, 1) uint32 = 1
         DefHttp = 7070;
         DefStreamer = 8888;  % 定义（define）像素流服务的端口
     end

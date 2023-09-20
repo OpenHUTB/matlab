@@ -10,8 +10,8 @@ classdef EngineInterface<handle
 
 
     properties(Constant)
-        environmentVariableMatlabPID='mw_matlab_pid_for_unreal';
-        environmentVariableMatlabRoot="MATLABROOT";
+        environmentVariableMatlabPID = 'mw_matlab_pid_for_unreal';
+        environmentVariableMatlabRoot = "MATLABROOT";
     end
 
 
@@ -36,11 +36,11 @@ classdef EngineInterface<handle
 
 
         function start(self)
-            if~self.IsRunning
-                LogSimulation3DInterfaceTraffic(sim3d.engine.Engine.getDebugLevel()>0);
-                setenv(sim3d.engine.EngineInterface.environmentVariableMatlabPID,num2str(self.EnginePid));
-                self.EngineLastError=StartSimulation3DInterface(self.EnginePid);
-                self.IsRunning=self.EngineLastError==sim3d.engine.EngineReturnCode.OK;
+            if ~self.IsRunning
+                LogSimulation3DInterfaceTraffic(sim3d.engine.Engine.getDebugLevel() > 0);
+                setenv(sim3d.engine.EngineInterface.environmentVariableMatlabPID, num2str(self.EnginePid));
+                self.EngineLastError = StartSimulation3DInterface(self.EnginePid);
+                self.IsRunning = self.EngineLastError==sim3d.engine.EngineReturnCode.OK;
             end
         end
 
@@ -80,7 +80,7 @@ classdef EngineInterface<handle
             else
                 disp('In the Simulation 3D Scene Configuration block, you set the scene source to ''Unreal Editor''.');
                 disp('In Unreal Editor, select ''Play'' to view the scene.');
-                self.EngineLastError=StartSimulation3DInterface(self.EnginePid);
+                self.EngineLastError = StartSimulation3DInterface(self.EnginePid);
                 timeout=self.ReadyTimeoutEditor_sec;
             end
             self.checkReturnCode();
