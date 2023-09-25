@@ -66,7 +66,7 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
         LastWeatherConfigParas=[40,90,10,0,0,1];
         StreamerPort;
         HttpPort;
-        MaxHttpPort=9999;
+        MaxHttpPort = 9999;
         MessageToSim3DVDG;
     end
 
@@ -200,7 +200,6 @@ classdef(StrictDefaults)Simulation3DEngine<matlab.System&...
                     else
                         self.Project=sim3d.World(string(self.ProjectName),string(sceneName),'RenderOffScreen',~self.EnableWindow,'Name',string(bdroot));
                     end
-
                 elseif strcmp(self.ProjectFormat,getString(message('shared_sim3dblks:sim3dblkConfig:UnrealExecutable')))
                     self.MessageToSim3DVDG.EnableOpenDRIVEFile=self.EnableOpenDRIVE;
                     self.MessageToSim3DVDG.OpenDRIVEFile=self.OpenDRIVEName;

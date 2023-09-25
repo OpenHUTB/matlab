@@ -112,8 +112,8 @@ classdef World < handle
             if (~isempty(self.StepTimer))
                 self.endSim();
             end
-            self.Root.generateUniqueActorID( 1 );
-            sim3d.World.removeWorld( self.Name );
+            self.Root.generateUniqueActorID(1);
+            sim3d.World.removeWorld(self.Name);
         end
 
 
@@ -140,10 +140,10 @@ classdef World < handle
                 simulationTime(1, 1) single{ mustBePositive } = inf;
             end
 
-            if ~isinf( simulationTime )
+            if ~isinf(simulationTime)
                 cleanup = onCleanup(@self.endSim);
             end
-            this.setup( sampleTime );
+            this.setup(sampleTime);
             if length( fieldnames( self.Actors ) ) > sim3d.World.MaxActorLimit
                 error( message( "shared_sim3d:sim3dWorld:MaxActorLimitExceeded", sim3d.World.MaxActorLimit ) );
             elseif length( fieldnames( self.Actors ) ) > 1200
@@ -192,7 +192,7 @@ classdef World < handle
         % 函数创建一个带有单个字段 Main 的视口，其中包含一个 sim3d.sensors.MainCamera 对象。
         function viewport = createViewport(self)
             cameraProperties = sim3d.sensors.MainCamera.getMainCameraProperties();
-            cameraTransform = sim3d.utils.Transform( [  - 6, 0, 2 ], [ 0, 0, 0 ] );
+            cameraTransform = sim3d.utils.Transform( [- 6, 0, 2 ], [ 0, 0, 0 ] );
             viewport = sim3d.sensors.MainCamera( 1, 'Scene Origin', cameraProperties, cameraTransform );
             self.add( viewport );
             self.Viewports.Main = viewport;
@@ -488,12 +488,10 @@ classdef World < handle
         end
 
 
-        function world = buildWorldFromModel( modelName )
-    
+        function world = buildWorldFromModel(modelName)
             world = sim3d.World.getWorld( modelName );
             if ~isempty( world )
                 if ~isvalid( world )
-    
                     sim3d.World.removeWorld( modelName );
                     world = sim3d.World( 'Name', modelName );
                 end
@@ -516,11 +514,11 @@ classdef World < handle
         end
 
 
-        function actor = createBlockActors( block, world )
+        function actor = createBlockActors(block, world)
             maskObj = get_param( block, 'MaskObject' );
-            actorPrm = maskObj.getParameter( 'ActorName' );
+            actorPrm = maskObj.getParameter('ActorName');
             actorName = actorPrm.Value;
-            parentPrm = maskObj.getParameter( 'ParentName' );
+            parentPrm = maskObj.getParameter('ParentName');
             parentName = parentPrm.Value;
             translationPrm = maskObj.getParameter( 'Translation' );
             translation = eval( translationPrm.Value );

@@ -22,11 +22,10 @@ classdef UnitRadarDelay<...
             y=x;
         end
 
+
         function[out,argsToBus]=defaultOutput(obj)
             out=struct.empty();
             argsToBus={};
-
-
 
             busIn=propagatedInputBus(obj,1);
             if isempty(busIn)
@@ -40,7 +39,6 @@ classdef UnitRadarDelay<...
             out=st;
         end
     end
-
 
 
     methods(Access=private)
@@ -61,7 +59,6 @@ classdef UnitRadarDelay<...
         function y=stepImpl(obj,x)
             y=push(obj,x);
 
-
             sts=getSampleTime(obj);
             currTime=obj.pLastTime+cast(sts.SampleTime,'like',obj.pLastTime);
             for m=1:y.NumDetections
@@ -80,8 +77,8 @@ classdef UnitRadarDelay<...
             obj.pLastTime=currTime;
         end
 
-        function setupImpl(obj,x)
 
+        function setupImpl(obj,x)
             if obj.NumUnitDelay>0
                 obj.pLastVal=repmat(nullify(x),obj.NumUnitDelay,1);
             end
@@ -95,25 +92,18 @@ classdef UnitRadarDelay<...
         end
 
         function loadObjectImpl(obj,s,wasLocked)
-
-
-
             if wasLocked
                 obj.pLastVal=s.pLastVal;
                 obj.pCntSteps=s.pCntSteps;
                 obj.pLastTime=s.pLastTime;
             end
 
-
             loadObjectImpl@matlab.System(obj,s,wasLocked);
         end
 
+
         function s=saveObjectImpl(obj)
-
-
-
             s=saveObjectImpl@matlab.System(obj);
-
 
             if isLocked(obj)
                 s.pLastVal=obj.pLastVal;
@@ -122,15 +112,12 @@ classdef UnitRadarDelay<...
             end
         end
 
+
         function icon=getIconImpl(obj)
-
             icon=sprintf('Delay %i\nunit steps',obj.NumUnitDelay);
-
-
-
-
         end
     end
+
 
     methods(Static,Access=protected)
     end
@@ -163,7 +150,6 @@ classdef UnitRadarDelay<...
         end
 
         function group=getPropertyGroupsImpl
-
             group=matlab.system.display.Section(mfilename("class"));
         end
     end

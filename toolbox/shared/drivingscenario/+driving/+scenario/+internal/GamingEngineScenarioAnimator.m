@@ -469,18 +469,17 @@ classdef GamingEngineScenarioAnimator < handle
             writer.setSampleTime(this.SampleTime);
             this.CommandReader = reader;
             this.CommandWriter = writer;
-
         end
 
         
-        function ueRotation = computePedRotation(~,dsdRotation)
+        function ueRotation = computePedRotation(~, dsdRotation)
             % 3dSimYaw = -(dsdYaw + pi/2)
             ueRotation = dsdRotation;
             ueRotation(1, 3) = dsdRotation(1, 3) - pi / 2;
         end
 
         
-        function Rotation = turnWheels(this,Rotation,Speed)
+        function Rotation = turnWheels(this, Rotation, Speed)
             % r = r + dr
             if size(Rotation, 1) > 1
                 Rotation(2:5,1) = Rotation(2:5,1) - Speed * this.SampleTime / 0.375;

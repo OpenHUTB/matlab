@@ -87,8 +87,10 @@ matlabinstaller.jar
 mde.jar                                    
 metadata_core.jar                          
 metadata_serializer.jar                    
-mladdonpackaging.jar                       
-mlservices.jar                             
+mladdonpackaging.jar
+
+mlservices.jar  包含显示帮助文档函数
+
 mltbx_installer.jar                        
 mlwebservices.jar                          
 mlwidgets.jar                              
