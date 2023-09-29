@@ -1,5 +1,4 @@
 function[varargout]=sim3dblkstrailer(varargin)
-
     varargout{1}={};
 
     Block=varargin{1};

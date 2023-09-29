@@ -1,6 +1,6 @@
 ﻿
 # 反编译
-jad反编译命令：
+先解压，然后执行`jad`反编译命令：
 ```shell
 jad -o -r -dD:\buffer\jar\out -sjava D:\buffer\jar\org\**\*.class
 ```

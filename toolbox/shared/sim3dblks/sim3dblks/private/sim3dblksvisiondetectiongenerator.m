@@ -53,8 +53,8 @@ function Initialization(Block)
     if str2double(sensorId)>0
         set_param(Block+"/Vision Detection Generator","SensorIndex",sensorId);
     end
-
 end
+
 
 function InitVehTagList(block)
     maskObj=get_param(block,'MaskObject');
@@ -63,11 +63,11 @@ function InitVehTagList(block)
     vehTag.TypeOptions=eval(vehTagList.Value);
 end
 
+
 function IconInfo=DrawCommands(Block)
 
     AliasNames={};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
-
 
     IconInfo.ImageName='sim3d_vision_detection.png';
     [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
@@ -75,12 +75,11 @@ function IconInfo=DrawCommands(Block)
     IconInfo.position(1)=max(0,IconInfo.position(1)-25);
 end
 
+
 function SetSampleTime(block)
     if bdIsLibrary(bdroot(block))
         return
     end
-
-
 
     modelStatus=get_param(bdroot(block),'SimulationStatus');
     if~strcmp(modelStatus,"updating")&&~strcmp(modelStatus,"initializing")
@@ -95,6 +94,7 @@ function SetSampleTime(block)
         set_param(block,'checkedSampleTime',SampleTime);
     end
 end
+
 
 function SetSubsystemIntrinsics(block)
     template="driving.internal.cameraIntrinsics('FocalLength',%s,'PrincipalPoint',%s,'ImageSize',%s,'RadialDistortion',%s,'TangentialDistortion',%s,'Skew',%s)";
@@ -112,9 +112,6 @@ end
 
 
 function setTransform(block)
-
-
-
     transform=BlockTransform(block);
 
     set_param(block,'mountPoint',mat2str(transform.translation));
@@ -128,6 +125,7 @@ function setTransform(block)
     set_param(vdg,"Yaw",mat2str(transform.rotation(3)));
 end
 
+
 function configureLanesAndObjectsOutports(block)
     outputType=lower(get_param(block,"DetectorOutput"));
 
@@ -135,7 +133,6 @@ function configureLanesAndObjectsOutports(block)
     'simulink/Sinks/Terminator','Lane Detections Terminator';...
     'simulink/Sinks/Out1','Lane Detections'...
     };
-
 
     if~contains(outputType,"lanes")
         autoblksreplaceblock(block,lanesOutportOptions,1);
@@ -150,13 +147,13 @@ function configureLanesAndObjectsOutports(block)
     'simulink/Sinks/Out1','Object Detections'...
     };
 
-
     if~contains(outputType,"objects")
         autoblksreplaceblock(block,objectsOutportOptions,1);
     else
         autoblksreplaceblock(block,objectsOutportOptions,2);
     end
 end
+
 
 function configureTruthOutports(block)
     configureOptionalOutport(block,'actorTruthOutportEnabled',...
@@ -174,6 +171,7 @@ function configureTruthOutports(block)
     );
 end
 
+
 function checkSensorHeightAtModelInit(block)
     status=get_param(bdroot,"SimulationStatus");
     if~strcmp(status,"initializing")&&~strcmp(status,"updating")
@@ -184,6 +182,7 @@ function checkSensorHeightAtModelInit(block)
     autoblksgetmaskparms(block,{'mountPoint'},true);
     assert(mountPoint(3)>=MIN_SENSOR_HEIGHT,message('shared_sim3dblks:sim3dblkVisDetect:blkErr_sensorTooLow'));
 end
+
 
 function busNameSourceToggle(block)
     autoblksenableparameters(block,{'BusName','BusName2'});

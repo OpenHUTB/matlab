@@ -32,11 +32,11 @@ function ActorControlEnabled(Block)
     MaskObject=get_param(Block,'MaskObject');
     ActorControlEnabled=MaskObject.getParameter('ActorControl');
     TranslationInportOptions={'simulink/Sources/Ground','Translation Ground';...
-    'simulink/Sources/In1','Translation'};
+        'simulink/Sources/In1','Translation'};
     RotationInportOptions={'simulink/Sources/Ground','Rotation Ground';...
-    'simulink/Sources/In1','Rotation'};
+        'simulink/Sources/In1','Rotation'};
     ScaleInportOptions={'simulink/Sources/Ground','Scale Ground';...
-    'simulink/Sources/In1','Scale'};
+        'simulink/Sources/In1','Scale'};
 
     if strcmp(ActorControlEnabled.Value,'off')
         autoblksreplaceblock(Block,TranslationInportOptions,1);
@@ -121,9 +121,9 @@ end
 function EnableOutportTransformPort(Block)
     OutputTransformEnabled=get_param(Block,'Parameter15');
     LocationOuportOptions={'simulink/Sinks/Terminator','Location Terminator';...
-    'simulink/Sinks/Out1','Location'};
+        'simulink/Sinks/Out1','Location'};
     OrientationOuportOptions={'simulink/Sinks/Terminator','Orientation Terminator';...
-    'simulink/Sinks/Out1','Orientation'};
+        'simulink/Sinks/Out1','Orientation'};
     if strcmp(OutputTransformEnabled,'off')
         autoblksreplaceblock(Block,LocationOuportOptions,1);
         autoblksreplaceblock(Block,OrientationOuportOptions,1);
@@ -137,7 +137,7 @@ end
 function EnableOutportCollisionPort(Block)
     OutputCollisionEnabled=get_param(Block,'Parameter16');
     CollisionOutportOptions={'simulink/Sinks/Terminator','Collision Terminator';...
-    'simulink/Sinks/Out1','Collision_Flag'};
+        'simulink/Sinks/Out1','Collision_Flag'};
 
     if strcmp(OutputCollisionEnabled,'off')
         autoblksreplaceblock(Block,CollisionOutportOptions,1);

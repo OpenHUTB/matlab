@@ -28,5 +28,4 @@ function Initialization(Block)
     set_param([Block,'/Simulation 3D Tractor'],'ActorTag',vehName.Value);
     ParamList={'SampleTime',[1,1],{'st',0};};
     autoblkscheckparams(Block,ParamList);
-
 end

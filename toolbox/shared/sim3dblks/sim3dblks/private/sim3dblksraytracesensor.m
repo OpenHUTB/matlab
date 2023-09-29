@@ -25,7 +25,6 @@ end
 
 
 function Initialization(Block)
-
     blkMask=Simulink.Mask.get(Block);
     sim3d.utils.internal.SensorCallback.addSensorTag(Block);
     MaskObj=get_param(Block,'MaskObject');
@@ -33,7 +32,7 @@ function Initialization(Block)
     set_param([Block,'/Simulation 3D Ray Tracer'],'VehicleIdentifier',vehTag.Value);
 
     ParamList={'SampleTime',[1,1],{'st',0};...
-    'NumberOfBounces',[1,1],{'gte',0};};
+        'NumberOfBounces',[1,1],{'gte',0};};
 
     InportNames={'Hit locations','Hit normals','Hit distances','Surface ids','Is valid hit'};
     FoundNames=get_param(find_system(Block,'LookUnderMasks','all','SearchDepth',1,'FollowLinks','on','BlockType','Outport'),'Name');

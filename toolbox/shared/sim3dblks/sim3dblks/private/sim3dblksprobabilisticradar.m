@@ -53,10 +53,10 @@ end
 
 
 function IconInfo=DrawCommands(Block)
-    AliasNames={};
-    IconInfo=autoblksgetportlabels(Block,AliasNames);
-    IconInfo.ImageName='sim3dprobradar.png';
-    [IconInfo.image,IconInfo.position]=...
-    iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
-    IconInfo.position(1)=max(0,IconInfo.position(1)-10);
+    AliasNames = {};
+    IconInfo = autoblksgetportlabels(Block,AliasNames);
+    IconInfo.ImageName = 'sim3dprobradar.png';
+    [IconInfo.image,IconInfo.position] = ...
+        iconImageUpdate(IconInfo.ImageName,1,20,40,'white');
+    IconInfo.position(1) = max(0,IconInfo.position(1)-10);
 end

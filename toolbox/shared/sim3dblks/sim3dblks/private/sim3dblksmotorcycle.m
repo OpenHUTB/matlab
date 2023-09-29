@@ -1,5 +1,4 @@
 function[varargout]=sim3dblksmotorcycle(varargin)
-
     varargout{1}={};
 
     Block=varargin{1};

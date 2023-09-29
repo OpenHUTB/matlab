@@ -250,11 +250,8 @@ function y=uncell(x)
     end
 end
 
+
 function out=nullify(in)
-
-
-
-
     out=in;
     flds=fieldnames(in);
     for m=1:numel(flds)

@@ -28,7 +28,7 @@ function Initialization(Block)
     sim3d.utils.internal.SensorCallback.addSensorTag(Block);
     MaskObj=get_param(Block,'MaskObject');
     vehTag=MaskObj.getParameter('vehTag');
-    set_param([Block,'/Simulation 3D Semantic Segmentation'],'VehicleIdentifier',vehTag.Value);
+    set_param([Block,'/Simulation 3D Semantic Segmentation'],'VehicleIdentifier', vehTag.Value);
 
     checkSensorParameters(Block);
     SetMountLocation(Block,"Simulation 3D Semantic Segmentation");

@@ -36,6 +36,7 @@ Simulation3DHandleMap
             self.Sensor.reset();
         end
 
+
         function[hasObject,hasRange,distance]=stepImpl(self)
             if~coder.target('MATLAB')
                 return
@@ -73,11 +74,13 @@ Simulation3DHandleMap
             fz3=true;
         end
 
+
         function[sz1,sz2,sz3]=getOutputSizeImpl(~)
             sz1=[1,1];
             sz2=[1,1];
             sz3=[1,1];
         end
+
 
         function[dt1,dt2,dt3]=getOutputDataTypeImpl(~)
             dt1='logical';
@@ -85,11 +88,13 @@ Simulation3DHandleMap
             dt3='single';
         end
 
+
         function[cp1,cp2,cp3]=isOutputComplexImpl(~)
             cp1=false;
             cp2=false;
             cp3=false;
         end
+        
 
         function[pn1,pn2,pn3]=getOutputNamesImpl(~)
             pn1='Has object';
