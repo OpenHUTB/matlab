@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Create Web-Based Tool Using RESTful API, JSON, and JavaScript</title>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Try an example of creating a web-based bond pricing tool using RESTful API, JSON, and embedded JavaScript."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "compiler_sdk";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/application-deployment.html" itemprop="url"><span itemprop="title">Application Deployment</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">MATLAB Compiler SDK</a>
+</li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Create Web-Based Tool Using RESTful API, JSON, and JavaScript</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#bu62r19" class="intrnllnk">Step 1: Write MATLAB Code</a></li>
+<li><a href="#bu62r4h" class="intrnllnk">Step 2: Create a Deployable Archive with the Production Server Compiler App</a></li>
+<li><a href="#bu62r5j" class="intrnllnk">Step 3: Place the Deployable Archive on a Server</a></li>
+<li><a href="#bu7s9ia" class="intrnllnk">Step 4: Enable Cross-Origin Resource Sharing (CORS) on the Server</a></li>
+<li><a href="#bu62r6c" class="intrnllnk">Step 5: Write JavaScript Code using the RESTful API and JSON</a></li>
+<li><a href="#bu62r84" class="intrnllnk">Step 6: Embed JavaScript within HTML Code</a></li>
+<li><a href="#bu7s99f" class="intrnllnk">Step 7: Run Example</a></li>
+<li><a href="#d124e4234" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="bu62rtc">使用 RESTful API、JSON 和 JavaScript 创建基于 Web 的工具</h2>
+<p>此示例演示如何创建一个 Web 应用程序，通过简单的公式计算债券的价格。它使用 <span class="entity">MATLAB<sup>®</sup>
+            Production Server™</span>
+            <a href="restful-api.html" class="a">RESTful API</a> 和 <a href="json-representation-of-matlab-data-types.html" class="a">MATLAB 数据类型的 JSON 表示</a> 来描述使用 MATLAB Production Server 的端到端工作流程。您可以通过在 Web 界面中输入以下已知值来运行此示例：</p>
+<div class="itemizedlist"><ul><li><p>面值 (或债券到期时的价值) — <code class="literal">M</code></p></li>
+<li><p>优惠券支付 — <code class="literal">C</code></p></li>
+<li><p>付款次数 — <code class="literal">N</code></p></li>
+<li><p>利率 — <code class="literal">i</code></p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>应用程序根据以下等式计算价格 (<code class="literal">P</code>)：</p>
+<div class="code_responsive"><pre class="programlisting">P = C * ( (1 - (1 + i)^-N) / i ) + M * (1 + i)^-N</pre>
+</div>
+使用 Web 应用程序中的滑块为不同的债券定价。<p></p>
+<ul><li><p><a class="intrnllnk" href="#bu62r19">第 1 步：编写 MATLAB 代码</a></p></li>
+<li><p><a class="intrnllnk" href="#bu62r4h">步骤 2：使用生产服务器编译器应用程序创建可部署的存档</a></p></li>
+<li><p><a class="intrnllnk" href="#bu62r5j">步骤 3：将可部署存档放置在服务器上</a></p></li>
+<li><p><a class="intrnllnk" href="#bu7s9ia">步骤 4：在服务器上启用跨域资源共享（Cross-Origin Resource Sharing, CORS）</a></p></li>
+<li><p><a class="intrnllnk" href="#bu62r6c">第 5 步：使用 RESTful API 和 JSON 编写 JavaScript 代码</a></p></li>
+<li><p><a class="intrnllnk" href="#bu62r84">第 6 步：在 HTML 代码中嵌入 JavaScript</a></p></li>
+<li><p><a class="intrnllnk" href="#bu7s99f">第 7 步：运行示例</a></p></li>
+</ul>
+<section itemprop="content"><h3 class="title" id="bu62r19">第 1 步：编写 MATLAB 代码</h3>
+<p>在 MATLAB 中编写以下代码来对债券进行定价。使用文件名 <code class="literal">pricecalc.m </code>保存代码。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> price = pricecalc(face_value, coupon_payment,<span style="color:#0000FF">...</span>
+                           interest_rate, num_payments)
+    M = face_value;
+    C = coupon_payment;
+    N = num_payments;
+    i = interest_rate;
+    
+    price = C * ( (1 - (1 + i)^-N) / i ) + M * (1 + i)^-N;</pre>
+</div>
+</div>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="bu62r4h">步骤 2：使用 Production Server Compiler                 App 创建可部署的存档</h3>
+<p>要为此示例创建可部署存档：</p>
+<div class="procedure"><ol type="1"><li><p>在“应用程序”（<strong class="guilabel">Apps</strong>）选项卡上，选择 Production Server
+                        Compiler App。</p></li>
+<li><p>在”应用程序类型（<strong class="guilabel">Application Type</strong>）列表中，选择“可部署归档”（<strong class="guilabel">Deployable Archive</strong>）。</p></li>
+<li><p>在导出函数（<strong class="guilabel">Exported Functions</strong>）字段中，添加 <code class="literal">pricecalc.m</code>。</p></li>
+<li><p>在归档信息（<strong class="guilabel">Archive information</strong>）下，将 <code class="literal">pricecalc</code> 更改为 <code class="userinput">BondTools</code>。</p></li>
+<li><p>单击“打包”（<strong class="guibutton">Package</strong>）。</p></li>
+</ol>
+</div>
+<p>生成的可部署存档 <code class="literal">BondTools.ctf</code> 位于 <code class="literal">for_redistribution</code> 项目的文件夹中。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="bu62r5j">步骤 3：将可部署存档放置在服务器上</h3>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>如果需要，请从 <a href="https://www.mathworks.com/products/compiler/matlab-runtime.html" target="_blank">https://www.mathworks.com/products/compiler/mcr</a>. 下载 MATLAB Runtime。请参阅 <a href="../../mps/qs/download-and-install-the-matlab-compiler-runtime-mcr.html" class="a">Supported MATLAB Runtime Versions for MATLAB Production Server</a><span role="cross_prod"> (MATLAB Production Server)</span> 获取更多信息。</p></li>
+<li><p>使用 <code class="literal">mps-new </code>创建服务器。有关详细信息，请参阅 <a href="../../mps/server/creating-a-server.html" class="a">Create Server Instance Using Command Line</a><span role="cross_prod"> (MATLAB Production Server)</span>。如果您尚未设置服务器环境，请参阅
+                            <a href="../../mps/server/mpssetup.html" class="a"><code class="literal">mps-setup</code></a><span role="cross_prod"> (MATLAB Production Server)。注意：需要使用最新更新的MCR（比如MATLAB_Runtime_R2022b_Update_6_win64），mps-new D:\project\mps_instances\demo</span></p></li>
+<li><p>如果您尚未这样做，请通过编辑服务器配置文件 <code class="literal">main_config</code> 并指定 <code class="literal remove_text_wrapping">--mcr-root</code>。有关详细信息，请参阅 <a href="../../mps/server/customize-the-configuration-file.html" class="a">Configure Server Using Configuration File</a><span role="cross_prod"> (MATLAB Production Server)。</span></p></li>
+<li><p>使用 <a href="../../mps/server/starting-and-stopping.html" class="a"><code class="literal">mps-start</code></a><span role="cross_prod"> 启动服务器(MATLAB Production Server)，并使用</span> <a href="../../mps/server/verify-server-status.html" class="a"><code class="literal">mps-status</code></a><span role="cross_prod"> (MATLAB Production Server) 验证它正在运行：mps-start -f -C D:\project\mps_instances\demo</span></p></li>
+<li><p>将文件 <code class="literal">BondTools.ctf</code> 复制到服务器上的托管文件夹 <code class="literal">auto_deploy</code> 中。</p></li>
+</ol>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="bu7s9ia">步骤 4：在服务器上启用跨域资源共享（Cross-Origin Resource Sharing, CORS)</h3>
+<p>通过编辑服务器配置文件 <code class="literal">main_config</code>（位于实例的config目录下）并指定可以向服务器发出请求的域源列表，启用跨域资源共享。例如，将 <code class="literal">cors-allowed-origins</code> 选项设置为 <code class="literal remove_text_wrapping">--cors-allowed-origins *</code> 允许来自任何域的请求访问服务器。有关详细信息，请参阅 <a href="../../mps/server/corsallowedorigins.html" class="a"><code class="olink">cors-allowed-origins</code></a><span role="cross_prod"> (MATLAB Production Server)</span> 和 <a href="../../mps/server/customize-the-configuration-file.html" class="a">Configure Server Using Configuration File</a><span role="cross_prod"> (MATLAB Production Server)</span>。</p>
+</section>
+<section itemprop="content"><h3 class="title" id="bu62r6c">第 5 步：使用 RESTful API 和 JSON 编写JavaScript代码<br/></h3>
+<p>使用 <a href="restful-api.html" class="a">RESTful API</a> 和 <a href="json-representation-of-matlab-data-types.html" class="a">JSON Representation of
+                        MATLAB 数据类型的 JSON 表示</a> 作为指导，编写以下 JavaScript<sup>®</sup> 代码。将此代码保存为名为 <code class="literal">calculatePrice.js</code>.的 JavaScript 脚本。</p>
+<p><strong class="emphasis bold">代码：</strong></p>
+<p><a href="#" onclick="return toggleexpander('d124e4167_block','d124e4167_expandable_text');"><img style="border:0;" id="d124e4167_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e4167_block','d124e4167_expandable_text');">calculatePrice.js</a></p>
+<div class="expander" style="display:none; padding-left:4px;" id="d124e4167_block"><div class="code_responsive"><pre class="programlisting">//calculatePrice.js : JavaScript code to calculate the price of a bond.
+        function calculatePrice() 
+        {
+            var cp = parseFloat(document.getElementById('coupon_payment_value').value);
+            var np = parseFloat(document.getElementById('num_payments_value').value);
+            var ir = parseFloat(document.getElementById('interest_rate_value').value);
+            var vm = parseFloat(document.getElementById('facevalue_value').value);
+
+            // A new XMLHttpRequest object
+            var request = new XMLHttpRequest();
+            //Use MPS RESTful API to specify URL
+            var url = "http://localhost:9910/BondTools/pricecalc";
+            
+            //Use MPS RESTful API to specify params using JSON
+            var params = { "nargout":1,
+                           "rhs": [vm, cp, ir, np] };
+
+            document.getElementById("request").innerHTML = "URL: " + url + "&lt;br&gt;"
+                    + "Method: POST &lt;br&gt;" + "Data:" + JSON.stringify(params);
+
+            request.open("POST", url);
+
+            //Use MPS RESTful API to set Content-Type
+            request.setRequestHeader("Content-Type", "application/json");
+
+            request.onload = function()
+            {   //Use MPS RESTful API to check HTTP Status
+                if (request.status == 200) 
+                {
+                    // Deserialization: Converting text back into JSON object
+                    // Response from server is deserialized 
+                    var result = JSON.parse(request.responseText);
+					
+                    //Use MPS RESTful API to retrieve response in "lhs"
+                    if('lhs' in result)
+                    {  document.getElementById("error").innerHTML = "" ;
+                       document.getElementById("price_of_bond_value").innerHTML = "Bond Price: " + result.lhs[0].mwdata; }
+                    else { document.getElementById("error").innerHTML = "Error: " + result.error.message; }
+                }
+                else { document.getElementById("error").innerHTML = "Error:" + request.statusText; }
+                document.getElementById("response").innerHTML = "Status: " + request.status + "&lt;br&gt;"
+                        + "Status message: " + request.statusText + "&lt;br&gt;" +
+                        "Response text: " + request.responseText;
+            }
+            //Serialization: Converting JSON object to text prior to sending request
+            request.send(JSON.stringify(params)); 
+        }
+
+        //Get value from slider element of "document" using its ID and update the value field
+        //The "document" interface represent any web page loaded in the browser and
+        //serves as an entry point into the web page's content.
+        function printValue(sliderID, valueID) {
+            var x = document.getElementById(valueID);
+            var y = document.getElementById(sliderID);
+            x.value = y.value;
+        }
+        //Execute JavaScript and calculate price of bond when slider is moved
+        function updatePrice(sliderID, valueID) {
+            printValue(sliderID, valueID);
+            calculatePrice();
+        }
+</pre>
+</div>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="bu62r84">第 6 步：在 HTML 代码中嵌入 JavaScript<br/></h3>
+<p>使用以下语法将上一步中的 JavaScript 嵌入到以下 HTML 代码中：</p>
+<p><code class="literal">&lt;script src="calculatePrice.js"
+                    type="text/javascript"&gt;&lt;/script&gt;</code></p>
+<p>将此代码保存为名为 <code class="literal">bptool.html </code>的 HTML 文件中。</p>
+<p><strong class="emphasis bold">代码：</strong></p>
+<p><a href="#" onclick="return toggleexpander('d124e4193_block','d124e4193_expandable_text');"><img style="border:0;" id="d124e4193_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e4193_block','d124e4193_expandable_text');">bptool.html</a></p>
+<div class="expander" style="display:none; padding-left:4px;" id="d124e4193_block"><div class="code_responsive"><pre class="programlisting">&lt;!DOCTYPE html&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head lang="en"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Bond Pricing Tool&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Embed the JavaScript code here by referencing calculatePrice.js --&gt;
+    &lt;script src="calculatePrice.js" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        //Helper Code: Execute JavaScript immediately after the page has been loaded
+        window.onload = function() {
+            printValue('coupon_payment_slider', 'coupon_payment_value');
+            printValue('num_payments_slider', 'num_payments_value');
+            printValue('interest_rate_slider', 'interest_rate_value');
+            printValue('facevalue_slider', 'facevalue_value');
+            calculatePrice();
+        }
+    &lt;/script&gt;
+    &lt;h1&gt;&lt;a&gt;Bond Pricing Tool&lt;/a&gt;&lt;/h1&gt;
+    &lt;h2&gt;&lt;/h2&gt;
+    This example shows an application that calculates a bond price from a simple formula.&lt;p&gt;
+    You run this example by entering the following known values into a simple graphical interface:&lt;p&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Face Value (or value of bond at maturity) - M&lt;/li&gt;
+        &lt;li&gt;Coupon payment - C&lt;/li&gt;
+        &lt;li&gt;Number of payments - N&lt;/li&gt;
+        &lt;li&gt;Interest rate - i&lt;/li&gt;
+      &lt;/ul&gt;
+      The application calculates price (P) based on the following equation:&lt;p&gt;
+      P = C * ( (1 - (1 + i)^-N) / i ) + M * (1 + i)^-N&lt;p&gt;
+      &lt;hr&gt;
+      &lt;h3&gt;M: Face Value &lt;/h3&gt;
+      &lt;input id="facevalue_value" type="number" maxlength="4" oninput="updatePrice('facevalue_value', 'facevalue_slider')"/&gt;
+      &lt;input type="range" id="facevalue_slider" value="0" min="0" max="10000" onchange="updatePrice('facevalue_slider', 'facevalue_value')"/&gt;
+
+      &lt;h3&gt;C: Coupon Payment &lt;/h3&gt;
+      &lt;input id="coupon_payment_value" type="number" maxlength="4" oninput="updatePrice('coupon_payment_value', 'coupon_payment_slider')" /&gt;
+      &lt;input type="range" id="coupon_payment_slider" value="0" min="0" max="1000" onchange="updatePrice('coupon_payment_slider', 'coupon_payment_value')"/&gt;
+            
+      &lt;h3&gt;N: Number of payments  &lt;/h3&gt;
+      &lt;input id="num_payments_value" type="number" maxlength="4" oninput="updatePrice('num_payments_value', 'num_payments_slider')"/&gt;
+      &lt;input type="range" id="num_payments_slider" value="0" min="0" max="1000" onchange="updatePrice('num_payments_slider', 'num_payments_value')"/&gt;
+      
+      &lt;h3&gt;i: Interest rate &lt;/h3&gt;
+      &lt;input id="interest_rate_value" type="number" maxlength="4" step="0.01" oninput="updatePrice('interest_rate_value', 'interest_rate_slider')"/&gt;
+      &lt;input type="range" id="interest_rate_slider" value="0" min="0" max="1" step="0.01" onchange="updatePrice('interest_rate_slider', 'interest_rate_value')"/&gt;
+
+    &lt;h2&gt;BOND PRICE&lt;/h2&gt;
+    &lt;p id="price_of_bond_value" style="font-weight: bold"&gt;
+    &lt;p id="error" style="color:red"&gt;
+
+    &lt;hr&gt;
+    &lt;h3&gt;Request to MPS Server&lt;/h3&gt;
+    &lt;p id="request"&gt;
+    
+    &lt;h3&gt;Response from MPS Server&lt;/h3&gt;
+    &lt;p id="response"&gt;
+    &lt;hr&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+</div>
+</section>
+<section itemprop="content"><h3 class="title" id="bu7s99f">第 7 步：运行示例</h3>
+<p>确认已部署 MATLAB 函数的服务器正在运行。在 Web 浏览器中打开 HTML 文件
+                    <code class="literal">bptool.html</code> 。因为尚未输入任何值，默认债券价格是 <code class="literal">NaN</code>。尝试使用以下值来为债券定价：</p>
+<div class="itemizedlist"><ul><li><p>Face Value = $1000</p></li>
+<li><p>Coupon Payment = $100</p></li>
+<li><p>Number of payments = 5</p></li>
+<li><p>Interest rate = 0.08 <span class="emphasis"><em>(Corresponds to 8%)</em></span></p></li>
+</ul>
+</div>
+<p>
+由此产生的债券价格为 $1079.85 美元。</p>
+<p>使用工具中的滑块为不同的债券定价。改变利率会导致债券价格发生最显着的变化。</p>
+<div class="informalfigure"><div id="d124e4226" class="mediaobject"><p><img src="bondpricingtoolrestfuljson.png" alt="View of the bond pricing tool. There are fields that contain values for a bond at maturity, coupon payment, number of payments, interest rate, and the calculated bond price. The bottom section displays HTTP status codes, messages, and payloads for the HTTP request and response." height="1009" width="639"/></p>
+</div>
+</div>
+</section>
+            
+            <h2 id="d124e4234">Related Topics</h2>
+<ul><li><a href="../../mps/restfuljson/troubleshooting-restful-api-errors.html" class="a">Troubleshooting RESTful API Errors</a><span role="cross_prod"> (MATLAB Production Server)</span></li>
+</ul>
+            
+        </section>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="MATLAB:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="MATLAB:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="MATLAB:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="MATLAB:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
