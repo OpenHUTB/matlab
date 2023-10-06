@@ -1,8 +1,5 @@
 classdef(Abstract)RefactoringHandler<handle&matlab.mixin.Heterogeneous
 
-
-
-
     properties(Abstract,SetAccess=immutable)
 
         Types(:,1)cell;
@@ -11,12 +8,6 @@ classdef(Abstract)RefactoringHandler<handle&matlab.mixin.Heterogeneous
     end
 
     methods
-
-
-
-
-
-
         refactor(this,dependency,newPath);
 
     end
