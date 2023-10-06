@@ -1,8 +1,5 @@
 function restore=edit(node)
 
-
-
-
     restore=@()[];
     handlers=dependencies.internal.Registry.Instance.NodeHandlers';
     for handler=handlers
