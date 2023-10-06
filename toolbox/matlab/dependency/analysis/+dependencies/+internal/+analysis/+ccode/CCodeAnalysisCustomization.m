@@ -1,8 +1,5 @@
 classdef CCodeAnalysisCustomization<dependencies.internal.engine.AnalysisCustomization
 
-
-
-
     properties(Constant)
         Key="AnalyzeCCode";
         Name=string(message("MATLAB:dependency:analysis:AnalyzeCCode"));
