@@ -1,8 +1,6 @@
 classdef(Abstract)GenericRegistry<handle
 
 
-
-
     methods(Access=protected)
         function result=register(this,type)
             class=metaclass(this);
