@@ -1,8 +1,5 @@
 classdef CodeFileHandler<dependencies.internal.action.DependencyHandler
 
-
-
-
     properties(Constant)
         Types=["MATLABFile","MATLABFileLine","CSource"]
     end
