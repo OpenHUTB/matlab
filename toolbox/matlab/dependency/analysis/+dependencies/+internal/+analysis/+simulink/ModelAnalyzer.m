@@ -1,9 +1,4 @@
 classdef(Abstract)ModelAnalyzer<handle&matlab.mixin.Heterogeneous
-
-
-
-
-
     properties(GetAccess=public,SetAccess=immutable)
 
         Queries(1,1)dependencies.internal.analysis.simulink.QueryTable;
