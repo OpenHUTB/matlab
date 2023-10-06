@@ -1,8 +1,4 @@
 classdef(Abstract)FunctionAnalyzer<handle&matlab.mixin.Heterogeneous
-
-
-
-
     properties(Abstract,SetAccess=immutable)
 
         Functions(1,:)string;
