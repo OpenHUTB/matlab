@@ -1,8 +1,5 @@
 classdef ExternalToolboxAnalysisCustomization<dependencies.internal.engine.AnalysisCustomization
 
-
-
-
     properties(Constant)
         Key="AnalyzeExternalToolboxes";
         Name=string(message("MATLAB:dependency:analysis:AnalyzeExternalToolboxes"));
