@@ -1,26 +1,5 @@
 function graph = analyze( input, options )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 R36
 input;
 options.Include( 1, : )string = string.empty;
