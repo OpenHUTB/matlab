@@ -1,8 +1,4 @@
 classdef QueryTable<handle&matlab.mixin.CustomDisplay
-
-
-
-
     properties(GetAccess=public,SetAccess=private)
         Query=Simulink.loadsave.Query.empty;
         Type={};
