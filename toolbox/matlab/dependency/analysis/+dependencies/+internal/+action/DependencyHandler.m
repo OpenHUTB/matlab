@@ -1,8 +1,5 @@
 classdef(Abstract)DependencyHandler<handle&matlab.mixin.Heterogeneous
 
-
-
-
     properties(Abstract,Constant)
 
         Types(1,:)string;
@@ -10,21 +7,9 @@ classdef(Abstract)DependencyHandler<handle&matlab.mixin.Heterogeneous
 
     methods
 
-
-
-
-
-
-
         function unhilite=openDownstream(this,dependency)%#ok<INUSD>
             unhilite=@()[];
         end
-
-
-
-
-
-
 
 
         function unhilite=openUpstream(this,dependency)%#ok<INUSD>
