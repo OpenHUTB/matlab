@@ -1,10 +1,5 @@
 classdef FormatStringBuilder<mlreportgen.rpt2api.exprstr.StringBuilder
 
-
-
-
-
-
     methods
         function obj=FormatStringBuilder()
 
@@ -12,8 +7,6 @@ classdef FormatStringBuilder<mlreportgen.rpt2api.exprstr.StringBuilder
         end
 
         function build(obj,char)
-
-
 
             switch char
             case{"%","\",'"'}
