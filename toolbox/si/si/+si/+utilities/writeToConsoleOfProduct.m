@@ -1,9 +1,5 @@
 function writeToConsoleOfProduct(product,log)
 
-
-
-
-
     import si.utilities.*
     product=validatestring(product,["parallelLinkDesigner","serialLinkDesigner",...
     "siViewer"]);
