@@ -1,10 +1,5 @@
 function[command,args,classpath]=launchCommand(product)
 
-
-
-
-
-
     product=validatestring(product,["parallelLinkDesigner",...
     "serialLinkDesigner",...
     "siViewer",...
