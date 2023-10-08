@@ -1,52 +1,5 @@
 classdef Parser<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties
 
         ExprStr char=''
@@ -64,8 +17,6 @@ BuilderStack
     methods
         function obj=Parser(exprStr)
 
-
-
             import mlreportgen.rpt2api.*
             import mlreportgen.rpt2api.exprstr.*
             import mlreportgen.utils.*
@@ -80,14 +31,7 @@ BuilderStack
 
         function parse(obj)
 
-
-
-
-
-
             import mlreportgen.rpt2api.exprstr.*
-
-
 
             if~contains(obj.ExprStr,regexpPattern("%<.*>|%<<.*>>")|newline)
                 obj.FormatString=strrep(obj.ExprStr,'"','""');
@@ -95,34 +39,14 @@ BuilderStack
             end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             nChars=numel(obj.ExprStr);
             i=1;
             while i<=nChars
 
-
-
                 switch obj.ExprStr(i)
-
-
 
                 case '%'
                     if isStartTag(obj,i)
-
 
                         b=top(obj.BuilderStack);
                         b.Str=[b.Str,'%s'];
