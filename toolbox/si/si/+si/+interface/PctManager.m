@@ -1,11 +1,5 @@
 classdef PctManager<handle
 
-
-
-
-
-
-
     properties(SetAccess=private)
 simJob
 cluster
