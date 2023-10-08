@@ -1,8 +1,3 @@
-
-
-
-
-
 classdef(Abstract)BaseExtractor<matlab.mixin.Heterogeneous
     properties(SetAccess=protected)
 Identifier
