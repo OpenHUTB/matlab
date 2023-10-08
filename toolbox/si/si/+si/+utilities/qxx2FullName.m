@@ -1,9 +1,5 @@
 function fullName=qxx2FullName(product)
 
-
-
-
-
     import si.utilities.*
     validateattributes(product,{'char','string'},{'nonempty'})
     product=string(product).lower;
