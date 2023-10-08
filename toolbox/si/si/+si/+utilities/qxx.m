@@ -1,11 +1,5 @@
 function proc=qxx(product,filesAndOptions)
 
-
-
-
-
-
-
     validateattributes(product,{'char','string'},{'nonempty'})
     product=validatestring(product,["parallelLinkDesigner","serialLinkDesigner",...
     "siViewer"]);
