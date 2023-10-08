@@ -1,8 +1,3 @@
-
-
-
-
-
 classdef DatasetStructValueExtractor<MultiSim.internal.DatasetExtractor
 
     properties(SetAccess=private)
