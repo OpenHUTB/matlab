@@ -1,15 +1,5 @@
 function kitInfo = kitOpen( kitName, projectName, options )
 
-
-
-
-
-
-
-
-
-
-
 R36
 kitName( 1, : ){ mustBeText } = '';
 projectName( 1, : ){ mustBeText } = '';
