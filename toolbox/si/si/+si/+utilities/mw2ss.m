@@ -1,10 +1,5 @@
 function ssName=mw2ss(mwName)
 
-
-
-
-
-
     switch string(mwName).lower
     case "parallellinkdesigner"
         ssName="qsi";
