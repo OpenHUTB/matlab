@@ -1,8 +1,5 @@
 function ok=consoleInit(product)
 
-
-
-
     import si.utilities.*
     if~strcmpi(product,'siViewer')
         runningApps=findConsole(product);
