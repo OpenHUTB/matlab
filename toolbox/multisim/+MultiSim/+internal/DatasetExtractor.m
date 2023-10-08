@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 classdef DatasetExtractor<MultiSim.internal.BaseExtractor
 
     properties(SetAccess=private)
