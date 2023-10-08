@@ -1,9 +1,3 @@
-
-
-
-
-
-
 classdef ArrayExtractor<MultiSim.internal.BaseExtractor
 
     properties(SetAccess=private)
