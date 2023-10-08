@@ -1,11 +1,6 @@
 function retVal=ssr2xls(ssrFileName)
 
 
-
-
-
-
-
     import si.utilities.*
     [cmd,args,classpath]=launchCommand("ssr2xls");
     setenv("CLASSPATH",classpath)
