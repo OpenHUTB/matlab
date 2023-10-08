@@ -1,10 +1,5 @@
 function writeToProcess(process,cmd)
 
-
-
-
-
-
     if~process.isAlive
         oldWarnState=warning('off','backtrace');
         warning("Process is not active.")
