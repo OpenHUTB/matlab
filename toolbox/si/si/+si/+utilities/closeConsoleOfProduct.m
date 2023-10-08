@@ -1,9 +1,5 @@
 function closeConsoleOfProduct(product,force,fromQxx)
 
-
-
-
-
     import si.utilities.*
     if nargin<2
         force=false;
