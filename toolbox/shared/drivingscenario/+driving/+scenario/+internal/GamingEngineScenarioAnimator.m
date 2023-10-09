@@ -260,7 +260,7 @@ classdef GamingEngineScenarioAnimator < handle
             w = [w; this.addActors()];
             this.setupCommandReaderAndWriter();  % 打开虚幻引擎黑色界面（无内容）
 
-            this.initAndStartGame();  % 在虚幻引擎界面中显示内容（不用运行这句话，等一等前一行代码也可以显示）
+            this.initAndStartGame();  %  在虚幻引擎界面中显示内容（不用运行这句话，等一等前一行代码也可以显示）
             this.initPositionForAllActors();
             if this.Stopped
                 sim3d.engine.Engine.start();
@@ -447,14 +447,23 @@ classdef GamingEngineScenarioAnimator < handle
             if ~isstring(exe_path)
                 exe_path = string(exe_path);
             end
-            % 区分是否需要像素流转发
+            % 区分是否需要像素流转发,以及判断是否是现有场景以及EmptyGrass4k4k场景判断。
             if ispref("Simulation3D", "ExecCmds")
                 ExecCmds = getpref("Simulation3D", "ExecCmds");
+                if ispref('Simulation3D', 'scene_path')
+                    scene_path = getpref('Simulation3D', 'scene_path');
+                else
+                    scene_path = "/Game/Maps/EmptyGrass4k4k";
+                end
+                if ~isstring(scene_path)
+                    scene_path = string(scene_path);
+                end
+                
                 if ~isstring(ExecCmds)
                     ExecCmds = string(ExecCmds);
                 end
                 World = sim3d.World(exe_path, ...
-                    "/Game/Maps/EmptyGrass4k4k", ...
+                    scene_path, ...
                     ExecCmds, ...
                     "CommandLineArgs", ExecCmds, ...
                     'Update', @updateImpl);  % 'Update', @updateImpl
