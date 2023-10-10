@@ -1,7 +1,3 @@
-
-
-
-
 classdef SurrogateSolver<handle
 
     properties(Hidden,Constant)
