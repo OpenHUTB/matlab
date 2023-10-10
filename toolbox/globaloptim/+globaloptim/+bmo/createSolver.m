@@ -1,8 +1,5 @@
 function self=createSolver(self,expensive,lb,ub,intcon,Aineq,bineq,Aeq,beq,options)
 
-
-
-
     self.state.startTime=tic;
 
     expensiveModel_response={'Fval','Ineq','Stop'};
@@ -40,12 +37,9 @@ function self=createSolver(self,expensive,lb,ub,intcon,Aineq,bineq,Aeq,beq,optio
     input.bineq=bineq;
     input.Aeq=Aeq;
     input.beq=beq;
-
-
     [input,self.state.msg]=globaloptim.bmo.verifybounds(input,options);
 
     nvars=numel(ub);
-
     opts=globaloptim.bmo.parseSurrogateopt(options,nvars);
     self=self.copyOptions(opts);
     self.options=opts;
@@ -54,35 +48,24 @@ function self=createSolver(self,expensive,lb,ub,intcon,Aineq,bineq,Aeq,beq,optio
     self.info.mLinIneq=size(Aineq,1);
     self.info.mLinEq=size(Aeq,1);
 
-
     if~isempty(self.state.msg)
-
-
         self.state.exitflag=self.EFLAG_LINEAR_INFEAS;
         return;
     end
-
 
     self.expensive=expensive;
     self.modelMgr=globaloptim.bmo.ModelManager(self.expensive,self.options,...
     self.options.Verbosity);
 
-
-
     options=self.options;
-
-
     options.solver='surrogate-single-obj';
     options.setup=true;
 
     options.boundsVerified=true;
-
     self.solverRef=globaloptim.bmo.solver(options);
     if~isfield(self.solverRef,'id')
         error(message('globaloptim:surrogateopt:SurrogateSolverInitFailed.'));
     end
-
-
     self.trialRequest=struct('id',self.solverRef.id,'request',true,...
     'trial',[]);
     self.statusRequest=struct('id',self.solverRef.id,'request',true,...
@@ -95,12 +78,9 @@ function self=createSolver(self,expensive,lb,ub,intcon,Aineq,bineq,Aeq,beq,optio
         'save',true);
     end
 
-
     input.id=self.solverRef.id;
     input.setup=true;
     self.info.nInt=numel(unique(intcon));
-
-
 
     if isfield(self.options,'CheapConstraint')
         input.constrfun=options.CheapConstraint;
@@ -112,15 +92,10 @@ function self=createSolver(self,expensive,lb,ub,intcon,Aineq,bineq,Aeq,beq,optio
     else
         input.objfun=[];
     end
-
-
-
     input=checkInitialPoints(self.varName,nvars,options,input,expensive,...
     expensiveModel_response,cheapModel_response);
-
     self.solverRef=globaloptim.bmo.solver(input);
     self.solverStatus=globaloptim.bmo.solver(self.statusRequest);
-
     if~isempty(self.solverStatus.exitflag)
         self.state.exitflag=self.solverStatus.exitflag;
         self.results.(self.varName)=self.solverStatus.(self.varName);
@@ -160,7 +135,6 @@ function input=checkInitialPoints(varName,nvars,options,input,expensive,...
         if~isempty(input.(varName))&&...
             ~isempty(setdiff(fieldnames(initialPoints),{varName}))
 
-
             response='X';
             fname=expensiveModel_response{1};
             if ismember(fname,expensive.response)
@@ -171,7 +145,6 @@ function input=checkInitialPoints(varName,nvars,options,input,expensive,...
             else
                 fval_expensive_in=true;
             end
-
             fname=expensiveModel_response{2};
             if ismember(fname,expensive.response)
                 ineq_expensive_in=isfield(initialPoints,fname)&&...
@@ -227,7 +200,6 @@ function input=checkInitialPoints(varName,nvars,options,input,expensive,...
             error(message('globaloptim:surrogateopt:InitPointNumColsInconsistent',nvars));
         end
     end
-
     if~(~xor(input.expensiveobj,isempty(input.objfun)))
         error(message('globaloptim:surrogateopt:NoObjectiveFunction'))
     end
