@@ -1,9 +1,4 @@
 function cand=trialPoints(adaptiveSamplerHandle,nPoints,xc,Xin,method,evalCount,trialData)
-
-
-
-
-
     solverData=adaptiveSamplerHandle.Data;
     problem=adaptiveSamplerHandle.problem;
     minDelta=solverData.sigmaMin*problem.range;
@@ -57,8 +52,6 @@ function cand=trialPoints(adaptiveSamplerHandle,nPoints,xc,Xin,method,evalCount,
 
     if~isempty(cand)
 
-
-
         cand=uniquetol(cand,1e-10,'ByRows',true);
     end
 end
@@ -76,7 +69,6 @@ function cand=randomSamples(nPoints,x0,delta0,problem,...
     vartype=problem.vartype;
 
     if nnz(vartype)>0
-
         pert(:,vartype)=sign(randn(nPoints,nnz(vartype))).*...
         rand(nPoints,nnz(vartype)).*...
         delta0(vartype)';
@@ -88,9 +80,6 @@ function cand=randomSamples(nPoints,x0,delta0,problem,...
 
     if options.doDycors
         pert=randn(nPoints,n).*delta0';
-
-
-
 
         temp1=evalCount+1;
         temp2=options.MaxFunctionEvaluations;
@@ -107,12 +96,11 @@ function cand=randomSamples(nPoints,x0,delta0,problem,...
         pert=pert.*non_neg;
     end
 
-
     cand=x0+pert;
-
     cand=globaloptim.bmo.boundAndRound(cand,problem,trialData,options);
 
 end
+
 
 function cand=gpsCandidates(nPoints,Xin,delta0,minDelta,problem,...
     options,trialData)
@@ -138,13 +126,11 @@ function cand=gpsCandidates(nPoints,Xin,delta0,minDelta,problem,...
     row1=1;
     row2=1;
 
-
     for jj=1:size(Xin,1)
         x0=Xin(jj,:);
         delta=delta0;
 
         for kk=1:nDelta
-
 
             delta_next=delta/2.0;
             delta_next(vartype)=ceil(delta_next(vartype));
@@ -157,8 +143,6 @@ function cand=gpsCandidates(nPoints,Xin,delta0,minDelta,problem,...
 
             D=delta_next.*Idirs;
             Points=x0+[-sum(D,2),sum(D,2),D,-D]';
-
-
             feas=areTrialsBoundFeasible(Points,lb,ub);
             if~any(feas)
                 continue;
@@ -180,17 +164,13 @@ function cand=gpsCandidates(nPoints,Xin,delta0,minDelta,problem,...
         end
     end
 
-
     cand(all(isnan(cand),2),:)=[];
-
-
     cand=globaloptim.bmo.boundAndRound(cand,problem,trialData,options);
 
 end
 
 
 function cand=linearFeasibleCandidates(nPoints,Xin,adaptiveSamplerHandle,trialData,method)
-
 
 
     n=size(Xin,2);
@@ -207,8 +187,6 @@ function cand=linearFeasibleCandidates(nPoints,Xin,adaptiveSamplerHandle,trialDa
 
         BasisType='coordinates';
     end
-
-
     options=adaptiveSamplerHandle.options;
     solverData=adaptiveSamplerHandle.Data;
     minDelta=solverData.sigmaMin*problem.range;
@@ -235,8 +213,6 @@ function cand=linearFeasibleCandidates(nPoints,Xin,adaptiveSamplerHandle,trialDa
 
     for jj=1:size(Xin,1)
         X0=Xin(jj,:)';
-
-
         [adaptiveSamplerHandle.PollPointGenerator,AllDirs]=...
         adaptiveSamplerHandle.PollPointGenerator.generateCoreDirections(...
         struct('x',X0,'meshsize',delta0),problem);
@@ -293,50 +269,10 @@ function cand=orthomadsCandidates(nPoints,Xin,delta0,minDelta,problem,...
     options,useQuasi,trialData)
 
     if~useQuasi||true
-
-
-
         cand=orthoQRCandidates(nPoints,Xin,delta0,minDelta,problem,...
         options,trialData);
         return;
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
 
 
@@ -373,7 +309,6 @@ function cand=orthoQRCandidates(nPoints,Xin,delta0,minDelta,problem,...
 
         for kk=1:nDelta
 
-
             delta_next=delta/2.0;
             delta_next(vartype)=ceil(delta_next(vartype));
 
@@ -386,8 +321,6 @@ function cand=orthoQRCandidates(nPoints,Xin,delta0,minDelta,problem,...
             D=delta_next.*Q;
             Points=x0+[-sum(D,2),sum(D,2),D,-D]';
             Points=globaloptim.bmo.boundAndRound(Points,problem,trialData,options);
-
-
             feas=areTrialsBoundFeasible(Points,lb,ub);
             if~any(feas)
                 continue;
@@ -409,20 +342,16 @@ function cand=orthoQRCandidates(nPoints,Xin,delta0,minDelta,problem,...
         end
     end
 
-
     cand(all(isnan(cand),2),:)=[];
-
-
 
 end
 
-function feas=areTrialsBoundFeasible(X,lb,ub)
 
+function feas=areTrialsBoundFeasible(X,lb,ub)
 
     argub=isfinite(ub);
     arglb=isfinite(lb);
     maxconstraint=zeros(size(X,1),1);
-
 
     if~isempty(argub)&&any(argub)
         maxconstraint=max(max(bsxfun(@minus,X(:,argub),ub(argub)'),[],2),maxconstraint);
@@ -443,21 +372,12 @@ function AllTrials=findFeasiblePoints(AllDirs,X0,meshsize,problem,trialData,opti
 
     fullStep=AllDirs.*meshsize;
 
-
-
-
-
-
-
-
-
     if~isempty(problem.beq)
         maxconstraint=max(abs(problem.Aeq*fullStep),[],1);
         fullStep=fullStep(:,maxconstraint<=options.LinearConstraintTolerance);
     end
 
     if~isempty(fullStep)
-
         AllTrials=globaloptim.internal.directions.ratioTest(X0(:).',fullStep.',...
         problem.Aineq,problem.bineq,problem.lb,problem.ub,...
         options.LinearConstraintTolerance);
