@@ -1,8 +1,4 @@
 classdef ConnectorInstance<systemcomposer.analysis.Instance
-
-
-
-
     properties(SetAccess=private,Dependent)
 Ports
 Specification
