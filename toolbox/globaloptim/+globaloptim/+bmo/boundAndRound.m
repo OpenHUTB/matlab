@@ -1,14 +1,5 @@
 function cand=boundAndRound(cand,problem,oldCand,options)
 
-
-
-
-
-
-
-
-
-
     intVarIdx=problem.vartype(:);
     intcon=problem.intcon;
     lb=problem.lb;
@@ -58,8 +49,6 @@ function cand=boundAndRound(cand,problem,oldCand,options)
         Aeq=sparse(0,numVars);
     end
 
-
-
     objR=zeros(1,nnz(~logicalForIntegers));
     AineqR=Aineq(:,~logicalForIntegers);
     AeqR=Aeq(:,~logicalForIntegers);
@@ -68,31 +57,6 @@ function cand=boundAndRound(cand,problem,oldCand,options)
     haveContinuousVariables=nnz(~logicalForIntegers)>0;
 
     optionsLP=options.optionsLP;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     objARA=[zeros(numVars,1);ones(numVars,1)];
     AeqARA=[sparse(Aeq),sparse(size(Aeq,1),numVars)];
@@ -110,8 +74,6 @@ function cand=boundAndRound(cand,problem,oldCand,options)
     for i=infeasibleCandidates'
         canNotFindFeasible=false;
         if isempty(intcon)
-
-
             bineqARA=[bineq;-cand(i,:)';cand(i,:)'];
             [x,~,exitflag]=options.LPalg.runNoChecks(objARA,AineqARA,bineqARA,AeqARA,beq,lbARA,ubARA);
             if~isempty(x)&&exitflag>0
@@ -157,8 +119,6 @@ function cand=boundAndRound(cand,problem,oldCand,options)
             if(~continuousFeasible(i)&&~integerFeasible(i))||canNotFindFeasible
 
                 bineqARA=[bineq;-cand(i,:)';cand(i,:)'];
-
-
                 [x,~,exitflag]=options.MILPalg.runNoChecks(...
                 objARA,intcon,AineqARA,bineqARA,AeqARA,beq,lbARA,ubARA,[]);
                 if~isempty(x)&&exitflag>0
@@ -169,12 +129,7 @@ function cand=boundAndRound(cand,problem,oldCand,options)
             end
         end
     end
-
-
-
-
     feasibleCandidatesLogical=continuousFeasible&integerFeasible;
-
 
     if nnz(feasibleCandidatesLogical)>1&&nnz(~feasibleCandidatesLogical)>0
         feasibleCandidates=find(feasibleCandidatesLogical);
@@ -203,9 +158,7 @@ function cand=boundAndRound(cand,problem,oldCand,options)
         end
     end
 
-
     cand(~continuousFeasible|~integerFeasible,:)=[];
-
 
     remove_duplicates();
 
@@ -214,11 +167,7 @@ function cand=boundAndRound(cand,problem,oldCand,options)
         [~,IA]=uniquetol(cand,1e-10,'ByRows',true);
         cand=cand(sort(IA),:);
 
-
         if~isempty(oldCand)
-
-
-
             [~,IA]=uniquetol([cand;oldCand],1e-10,'ByRows',true,...
             'OutputAllIndices',true);
             dups=[];
