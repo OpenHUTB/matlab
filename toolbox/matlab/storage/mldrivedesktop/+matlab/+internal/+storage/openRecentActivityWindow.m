@@ -1,19 +1,5 @@
 function windowOpened=openRecentActivityWindow(baseWindowUrl,cert)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     persistent existingWindowHandle;
     mlock;
 
