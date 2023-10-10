@@ -1,33 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef Dialog<oslc.internal.BaseService
-
-
 
     properties(Dependent)
         dialog;
