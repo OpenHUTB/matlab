@@ -1,31 +1,5 @@
 classdef rptgen_sf_csf_obj_snap<mlreportgen.rpt2api.ComponentConverter&slreportgen.rpt2api.rptgen_sl_csl_graphic_snap
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
 
         function obj=rptgen_sf_csf_obj_snap(component,rptFileConverter)
