@@ -1,31 +1,5 @@
 classdef rptgen_sf_csf_obj_filter<mlreportgen.rpt2api.ComponentConverter
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private,Constant)
         SupportedContexts=["csf_chart_loop",...
         "csf_obj_loop",...
