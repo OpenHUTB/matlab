@@ -1,17 +1,5 @@
 function solution=surrogateNLPsolver(x0,lb,ub,Aineq,bineq,Aeq,beq)
 
-
-
-
-
-
-
-
-
-
-
-
-
     persistent minlp_options surrogates constraintFcn objectiveFcn nlp_solver nlp_options...
     intcon node_options nobj_expensive mineq_expensive objSurrogate constrSurrogates
 
@@ -26,9 +14,6 @@ munlock
             return
         end
 
-
-
-
         nobj_expensive=x0;
         mineq_expensive=lb;
         surrogates=ub;
@@ -38,12 +23,8 @@ munlock
         if~isempty(intcon)
             intcon=intcon+1;
         end
-
         NodeNLPSolver=minlp_options.NodeNLPSolver;
-
         nlp_options=minlp_options.NodeNLPSolverOptions;
-
-
 
         if nobj_expensive>0
             objSurrogate=@(x)surrogates(x,'Fval');
@@ -51,7 +32,6 @@ munlock
         else
             objectiveFcn=@no_objective;
         end
-
 
         if mineq_expensive>0
             constrSurrogates=@(x)surrogates(x,'Ineq');
@@ -65,8 +45,6 @@ munlock
         else
             hessianFcn=[];
         end
-
-
         NodeNLPSolver=lower(NodeNLPSolver);
 
         ConstraintTolerance=min(minlp_options.LinearConstraintTolerance,...
@@ -145,8 +123,6 @@ mlock
 
     t=tic;
     solution=nlp_solver(x0(:)',lb(:)',ub(:)',Aineq,bineq,Aeq,beq);
-
-
     if~isempty(solution.x)&&solution.exitflag~=1&&...
         solution.exitflag~=-2
         solution.exitflag=2;
@@ -160,9 +136,7 @@ mlock
     solution.time_elapsed=toc(t);
 
 
-
     function[cineq,ceq,cineqgrad,ceqgrad]=nonlinconstr(x)
-
         [cineq,cineqgrad]=constrSurrogates(x);
         cineqgrad=squeeze(cineqgrad);
         if numel(cineq)==1
@@ -227,12 +201,11 @@ function solution=multi_start_run(objectiveFcn,x0,Aineq,bineq,...
 
     solution=struct('x',x,'fval',fval,'exitflag',exitflag);
 
-
 end
+
 
 function solution=fmincon_run(objectiveFcn,x0,Aineq,bineq,Aeq,beq,lb,ub,...
     constraintFcn,nlp_options)
-
     [x,fval,exitflag,output]=fmincon(objectiveFcn,x0,Aineq,bineq,Aeq,beq,lb,ub,...
     constraintFcn,nlp_options);
 
@@ -245,24 +218,24 @@ function solution=fmincon_run(objectiveFcn,x0,Aineq,bineq,Aeq,beq,lb,ub,...
     end
 end
 
+
 function solution=ga_run(objectiveFcn,nvar,Aineq,bineq,Aeq,beq,lb,ub,...
     constraintFcn,nlp_options)
-
     [x,fval,exitflag]=ga(objectiveFcn,nvar,Aineq,bineq,Aeq,beq,lb,ub,...
     constraintFcn,[],nlp_options);
-
     solution=struct('x',x,'fval',fval,'exitflag',exitflag);
 end
 
+
 function solution=patternsearch_run(objectiveFcn,x0,Aineq,bineq,Aeq,beq,lb,ub,...
     constraintFcn,nlp_options)
-
     [x,fval,exitflag]=patternsearch(objectiveFcn,x0,Aineq,bineq,Aeq,beq,lb,ub,...
     constraintFcn,nlp_options);
 
     solution=struct('x',x,'fval',fval,'exitflag',exitflag);
 
 end
+
 
 function solution=node_heuristics(solution,objectiveFcn,...
     Aineq,bineq,Aeq,beq,lb,ub,intcon,constraintFcn,...
@@ -282,7 +255,6 @@ function solution=node_heuristics(solution,objectiveFcn,...
         return;
     end
 
-
     if node_options.RoundingHeurisics
         x_integer=globaloptim.bmo.boundAndRound(solution.x,problem,[],minlp_options);
         if~isempty(x_integer)
@@ -295,6 +267,7 @@ function solution=node_heuristics(solution,objectiveFcn,...
             end
         end
     end
+
 
     function integerFeasible=checkIntegerFeasible(trials)
         intVarIdx=problem.vartype;
