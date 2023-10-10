@@ -1,9 +1,5 @@
 function[config,wantedId]=resolveForProject(projName,wantedConfigUri)
 
-
-
-
-
     slashPos=find(wantedConfigUri=='/');
     if isempty(slashPos)
         wantedId=wantedConfigUri;
