@@ -1,10 +1,5 @@
 classdef RdfUtil<handle
 
-
-
-
-
-
     properties(Access=private)
 isValid
 resource
