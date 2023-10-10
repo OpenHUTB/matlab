@@ -1,110 +1,26 @@
 classdef ReportState<mlreportgen.rpt2api.ReportState
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties
-
-
-
 
         CurrentModelHandle=[];
 
-
-
-
-
         CurrentModelOptions=[];
-
-
-
-
-
 
         CurrentModelReportedSystems=[];
 
-
-
-
-
-
         CurrentSystem=[];
-
-
-
-
-
 
         CurrentChart=[];
 
-
-
-
-
-
         CurrentBlock=[];
-
-
-
-
-
 
         CurrentSignal=[];
 
-
-
-
-
-
         CurrentAnnotation=[];
-
-
-
-
-
 
         CurrentModelVariable=[];
 
-
-
-
-
-
         CurrentStateflowObject=[];
-
-
-
-
-
 
         CurrentState=[];
 
@@ -118,12 +34,9 @@ classdef ReportState<mlreportgen.rpt2api.ReportState
     methods
         function obj=ReportState()
 
-
             obj=obj@mlreportgen.rpt2api.ReportState();
 
-
             obj.PreRunCurrentSystem=get_param(0,'CurrentSystem');
-
 
 
             obj.PreRunOpenModels=find_system(0,"SearchDepth",1,"type","block_diagram");
@@ -131,10 +44,7 @@ classdef ReportState<mlreportgen.rpt2api.ReportState
 
         function cleanup(this)
 
-
-
             cleanup@mlreportgen.rpt2api.ReportState(this);
-
 
             if~isempty(this.PreRunCurrentSystem)
                 set_param(0,'CurrentSystem',this.PreRunCurrentSystem);
