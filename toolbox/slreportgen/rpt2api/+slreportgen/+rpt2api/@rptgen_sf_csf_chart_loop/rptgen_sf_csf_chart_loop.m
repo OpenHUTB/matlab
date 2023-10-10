@@ -1,31 +1,5 @@
 classdef rptgen_sf_csf_chart_loop<mlreportgen.rpt2api.LoopComponentConverter
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private)
         Context="";
     end
