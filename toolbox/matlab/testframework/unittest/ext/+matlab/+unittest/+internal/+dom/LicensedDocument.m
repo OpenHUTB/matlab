@@ -1,11 +1,5 @@
 classdef(Sealed)LicensedDocument<mlreportgen.dom.LockedDocument
 
-
-
-
-
-
-
     properties(Hidden,Constant)
         TemplateRootFolder=fullfile(fileparts(which(...
         'matlab.unittest.internal.dom.LicensedDocument')),'templates');
@@ -42,21 +36,6 @@ end
 
 
 function key=getLicenseKey()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     key='E2BRoMC1AQVTDOGOIbnO/qTem6qn+/JuaG9Hut1zbtPbh+qFZuVEI8Hxx2UmwqQlczOkYoWiXUsdstySsSKDLnlVwpd5f2Nw9086cO0Aoh1TJm+UZduTkmnfOrR7/f9FdJifCS4hjR+elM2WFaQ2xHeY/CbKNoCGuuWg8pX1Ma9UfZ6TCGL3XmwrcAsJ8G7NviXelLKNb4rZ+4DJoMPoV7FLqqMHSy1Tqi/pwfhTT6/KHhrCZzAidoijFDDa+Pw4jplwn3FmyVnlfACz6tl/LFC1VI4EmpaHi/ksqRmZznbmJNk9SkP9d90shOvJAOjAhXCyKolm3FoGiO0rdxKnADci7lVC79m6WLUcybEZNV+IR+kdLk4tf6dMgw==';
 end
