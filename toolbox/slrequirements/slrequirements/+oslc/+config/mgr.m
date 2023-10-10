@@ -1,13 +1,5 @@
 function varargout=mgr(method,varargin)
 
-
-
-
-
-
-
-
-
     persistent streams baselines changesets name2id timestamp project
     if isempty(timestamp)
         streams=containers.Map('KeyType','char','ValueType','any');
