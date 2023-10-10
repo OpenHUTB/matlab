@@ -1,14 +1,6 @@
 function count=countLinks(varargin)
 
-
-
-
-
-
-
     conf=varargin{1};
-
-
 
     if isstruct(conf)
         conf=conf.id;
