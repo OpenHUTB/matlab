@@ -1,8 +1,5 @@
 function MLPath=comserver_internal(action,nv)
 
-
-
-
     identity=System.Security.Principal.WindowsIdentity.GetCurrent();
     principal=System.Security.Principal.WindowsPrincipal(identity);
     isadmin=principal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator);
