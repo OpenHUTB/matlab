@@ -1,25 +1,6 @@
 classdef RptFileConverter<mlreportgen.rpt2api.RptFileConverter
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private)
         SimulinkHelperFunctions=[];
     end
@@ -32,13 +13,6 @@ classdef RptFileConverter<mlreportgen.rpt2api.RptFileConverter
         end
 
         function registerSimulinkHelperFunction(this,functionName)
-
-
-
-
-
-
-
 
             helperFile=strcat("t",functionName,".txt");
             if isempty(this.HelperFunctions)||~any(endsWith(this.HelperFunctions,filesep+helperFile))
