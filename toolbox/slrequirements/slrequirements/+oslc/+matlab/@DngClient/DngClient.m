@@ -1,9 +1,5 @@
 classdef(Sealed)DngClient<slreq.rest.AuthClient
 
-
-
-
-
     properties(Access=private)
 
 
