@@ -1,10 +1,6 @@
 classdef CollectionsMgr<handle
 
 
-
-
-
-
     properties(Access=private)
 collectionsData
 projData
