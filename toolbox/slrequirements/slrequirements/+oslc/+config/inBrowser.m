@@ -1,10 +1,5 @@
 function result=inBrowser(changeset,localconf,component,globalconf)%#ok<INUSL> 
 
-
-
-
-
-
     persistent lastReportedContext
 
     if nargin>0
