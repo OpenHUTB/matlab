@@ -1,31 +1,5 @@
 classdef rptgen_sf_csf_auto_table<mlreportgen.rpt2api.ComponentConverter&slreportgen.rpt2api.rptgen_sl_rpt_auto_table
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=protected)
         autoTableObjectType="rptSlAutoTableObjectType";
         autoTableHeaderName="rptSlAutoTableName";
