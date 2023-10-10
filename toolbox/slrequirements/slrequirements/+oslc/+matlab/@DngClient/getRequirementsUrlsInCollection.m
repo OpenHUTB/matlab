@@ -31,16 +31,6 @@ end
 function urls=getMemberUrls(this,rdf)
     urls={};
 
-
-
-
-
-
-
-
-
-
-
     if contains(rdf,'RequirementCollection rdf:about=')
         matchUrl=regexp(rdf,'RequirementCollection rdf:about="([^"]+)"','tokens');
         if~isempty(matchUrl)
