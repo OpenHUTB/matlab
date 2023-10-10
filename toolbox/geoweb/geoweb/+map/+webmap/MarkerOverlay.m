@@ -1,22 +1,10 @@
 classdef MarkerOverlay<map.webmap.internal.KMLOverlay
-
-
-
-
-
-
-
     properties(Access='private',Transient)
-
-
 
 IconFilename
     end
 
     properties(Access='private',Dependent)
-
-
-
 
 Alpha
     end
@@ -24,18 +12,8 @@ Alpha
 
     methods
         function overlay=MarkerOverlay(canvas,varargin)
-
-
-
-
-
-
-
-
-
             overlay=overlay@map.webmap.internal.KMLOverlay(...
             canvas,varargin{:});
-
 
             overlay.OverlayType='Marker';
             overlay.FeatureType='Point';
@@ -46,8 +24,6 @@ Alpha
                 overlay.KMLParseType='point';
             end
 
-
-
             overlay.ParameterNames=[...
             overlay.ParameterNames,{'Icon','IconScale','Alpha'}];
 
@@ -57,10 +33,6 @@ Alpha
         end
 
         function alpha=get.Alpha(overlay)
-
-
-
-
             alpha=cell2mat(overlay.KMLDocument.Alpha);
             if ischar(alpha)
 
@@ -71,11 +43,6 @@ Alpha
 
 
         function delete(overlay)
-
-
-
-
-
             delete@map.webmap.internal.KMLOverlay(overlay);
             icons=overlay.IconFilename;
             for k=1:length(icons)
@@ -89,31 +56,15 @@ Alpha
     methods(Access='protected')
 
         function setKMLProperties(overlay,options)
-
-
-
-
-
-
-
-
             setKMLProperties@map.webmap.internal.KMLOverlay(overlay,options);
-
-
-
-
             overlay.KMLDocument.UseMultipartName=false;
 
 
             if~isempty(overlay.Script)
                 if isEmptyKMLProperty(overlay,'Icon')
 
-
                     updateIcon(overlay)
                 else
-
-
-
                     copyIcon(overlay);
                 end
             end
@@ -122,10 +73,6 @@ Alpha
 
 
         function feature=validateFeature(overlay,feature)
-
-
-
-
 
             if isgeotable(feature)
                 latlim=overlay.LatitudeLimits;
@@ -142,31 +89,12 @@ Alpha
 
 
         function index=clipFeature(overlay)
-
-
-
-
-
-
-
-
-
-
-
-
             p=overlay.Feature;
             if isa(p,'geoshape')
-
-
                 index=false(1,length(p));
             else
-
-
                 p.Latitude=double(p.Latitude);
                 p.Longitude=double(p.Longitude);
-
-
-
 
                 lat=p.Latitude;
                 lon=p.Longitude;
@@ -191,23 +119,13 @@ Alpha
     methods(Access='private')
 
         function updateIcon(overlay)
-
-
-
-
-
             installDir=overlay.Script.InstallFolder;
             iconColors=overlay.Color;
             alphaValues=overlay.Alpha;
 
-
-
-
-
             n=overlay.NumberOfFeatures;
             useTempname=overlay.UsingConnectorBrowserInterface;
             if isscalar(iconColors)&&isscalar(alphaValues)
-
 
                 iconColor=iconColors{1};
                 alpha=alphaValues(1);
@@ -240,30 +158,9 @@ Alpha
         end
 
         function copyIcon(overlay)
-
-
-
-
-
-
-
-
-
-
-
             folder=overlay.Script.InstallFolder;
             icon=overlay.KMLDocument.Icon;
             alphaValues=overlay.Alpha;
-
-
-
-
-
-
-
-
-
-
 
             ext='.png';
             base='icon';
@@ -288,28 +185,16 @@ end
 
 
 function[filename,fullFilename]=createPushpinIcon(color,alpha,installDir,useTempname)
-
-
-
-
-
-
-
     pushpin=fullfile(toolboxdir('geoweb'),...
     'geoweb','scripts','OpenLayers','pushpin.png');
 
-
     [X,~,mask]=imread(pushpin);
 
-
     mask=alpha*mask;
-
 
     r=X(:,:,1);
     g=X(:,:,2);
     b=X(:,:,3);
-
-
     color=map.internal.colorSpecToRGB(color);
     r(r>0)=color(1)*255;
     g(g>0)=color(2)*255;
@@ -332,13 +217,10 @@ end
 
 function[filename,fullFilename]=uniquefile(folder,base,ext,useTempname)
 
-
-
     basename=[base,'1'];
     filename=[basename,ext];
     d=dir(folder);
     names={d.name};
-
 
     k=1;
     while any(contains(names,basename))
@@ -356,11 +238,7 @@ function[filename,fullFilename]=uniquefile(folder,base,ext,useTempname)
 end
 
 
-
 function[RGB,mask]=imiconread(filename,alpha)
-
-
-
 
     try
         [X,cmap,mask]=imread(filename);
@@ -394,9 +272,6 @@ function[RGB,mask]=imiconread(filename,alpha)
         error(message('map:webmap:unexpectedImageType',filename));
     end
 
-
-
-
     if isempty(mask)
         [m,n,~]=size(RGB);
         mask=ones(m,n,'like',RGB);
@@ -405,7 +280,6 @@ function[RGB,mask]=imiconread(filename,alpha)
         end
     end
 
-
     mask=alpha*mask;
 end
 
@@ -413,28 +287,20 @@ end
 
 function[S,modifiedVarnames]=geotable2DynamicVector(GT,latlim)
 
-
-
     shape=GT.Shape;
     if~isa(shape,'geopointshape')
         error(message('map:validate:expectedGeoPointTable'))
     end
 
-
     if any(ismultipoint(shape),"all")
         GT.Shape=clipShape(shape,latlim);
     end
-
-
     hasNoCoordinates=(GT.Shape.NumPoints==0);
     GT(hasNoCoordinates(:),:)=[];
     shape=GT.Shape;
 
-
     T=geotable2table(GT,["Latitude","Longitude"]);
     [TS,modifiedVarnames]=map.internal.tableToStuctAndModifiedNames(T);
-
-
     TS=convertContainedStringsToChars(TS);
 
     geometry=lower(shape.Geometry);
@@ -452,11 +318,6 @@ end
 
 
 function S=convertOtherDatatypes(S,T,TS)
-
-
-
-
-
     fS=fieldnames(S);
     fTS=fieldnames(TS);
     fDiff=setdiff(fTS,fS);
@@ -474,10 +335,8 @@ function shape=clipShape(shape,latlim)
         lat=shape(k).Latitude;
         lon=shape(k).Longitude;
 
-
         index1=lat>latlim(2);
         index2=lat<latlim(1);
-
 
         index=~(index1|index2);
         if~all(index)
