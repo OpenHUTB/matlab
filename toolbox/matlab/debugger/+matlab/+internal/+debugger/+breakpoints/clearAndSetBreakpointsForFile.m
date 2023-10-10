@@ -13,11 +13,7 @@ function errorResult=clearAndSetBreakpointsForFile(filename,requestedBreakpoints
     requestedBreakpoints=mls.internal.fromJSON(requestedBreakpoints);
 
 
-
-
     drawnow;
-
-
 
     try
         quietlySetBreakpoints(requestedBreakpoints);
