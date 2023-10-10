@@ -1,7 +1,5 @@
 classdef(Hidden=true)InstanceProperties<systemcomposer.arch.Properties
 
-
-
     methods(Hidden)
         function value=getCustomPropertyValue(~,propObj)
             value=propObj.getAsMxArray;
