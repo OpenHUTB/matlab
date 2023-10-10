@@ -72,6 +72,4 @@ v = systemcomposer.internal.analysis.AnalysisService.viewInstance( instanceModel
 end 
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp3JNDke.p.
-% Please follow local copyright laws when handling this file.
 
