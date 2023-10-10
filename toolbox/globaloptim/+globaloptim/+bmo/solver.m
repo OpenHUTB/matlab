@@ -1,153 +1,5 @@
 function output=solver(input)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     persistent optsolvers internal_caller
 
     output=struct('message','Input OK','messageID','','id','','retcode',0);
@@ -157,8 +9,6 @@ function output=solver(input)
         output.message=getString(message(output.messageID));
         return
     end
-
-
 
     if isfield(input,'clearall')
         optsolvers=[];
@@ -170,31 +20,19 @@ function output=solver(input)
         return
     end
 
-
-
-
-
     if isempty(internal_caller)
         internal_caller=internalCaller();
     end
 
-
     if~isfield(input,'id')
-
         index=length(optsolvers)+1;
     else
-
         [index,output]=getSolverIndex(input.id,{optsolvers.id},output);
-
 
         if isempty(index)
             index=length(optsolvers)+1;
         end
     end
-
-
-
-
 
     if isfield(input,'clear')&&...
         index<=length(optsolvers)&&...
@@ -207,7 +45,6 @@ munlock
 
         return;
     end
-
 
     if~internal_caller
         try
@@ -227,6 +64,7 @@ munlock
 mlock
     end
 
+
     function run()
         if isfield(input,'setup')
             if index>length(optsolvers)&&~isempty(optsolvers)
@@ -242,11 +80,9 @@ mlock
         end
 
         if isfield(input,'request')
-
             output=processRequest(optsolvers(index),input);
 
         elseif isfield(input,'update')
-
             output=processUpdates(optsolvers(index),input);
 
         end
@@ -257,7 +93,6 @@ end
 
 
 function output=processSetup(solver,input,output)
-
 
     output=solver.setup(input,output);
     output.message=sprintf('%s\nSetup OK',output.message);
@@ -301,7 +136,6 @@ function[solver,output]=solverFactory(input,output)
     end
 
     if~isfield(input,'id')
-
         [solver,output]=createSolverInstance(input,output);
     else
         output.id=input.id;
@@ -309,8 +143,6 @@ function[solver,output]=solverFactory(input,output)
         if~isfield(input,'saveloc')
             output.message='saveloc is expected when restoring/discarding. ';
         end
-
-
         file_loc=savedSolverLocation(input);
         if isfield(input,'restore')
             [solver,output]=restoreSolverFromFile(file_loc,output);
@@ -345,6 +177,7 @@ function[index,output]=getSolverIndex(id,allIds,output)
         output.message,char(id));
     end
 end
+
 
 function TF=internalCaller()
 
