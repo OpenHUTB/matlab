@@ -1,17 +1,8 @@
 function result=getAllForProject(projName)
 
-
-
-
-
-
-
-
     result.knownStreams=cell(0,4);
     result.knownBaselines=cell(0,4);
     result.knownChangesets=cell(0,4);
-
-
     currentName=oslc.Project.currentProject();
 
     if nargin==0||isempty(projName)
