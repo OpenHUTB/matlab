@@ -1,10 +1,4 @@
 function rdf=getItemRdfById(this,id)
-
-
-
-
-
-
     queryBase=this.getReqQueryCapability();
     dcterms=oslc.matlab.Constants.DC;
     namespace=['oslc.prefix=dcterms=',urlencode(['<',dcterms,'>'])];
