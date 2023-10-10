@@ -1,7 +1,3 @@
-
-
-
-
 classdef Constants
 
     properties(Constant)
