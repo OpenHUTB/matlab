@@ -1,8 +1,5 @@
 classdef FigureView < handle
 
-
-
-
 properties ( GetAccess = public, SetAccess = immutable )
 Root
 Title
