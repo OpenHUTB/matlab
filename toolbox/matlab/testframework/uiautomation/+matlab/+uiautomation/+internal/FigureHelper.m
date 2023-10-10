@@ -3,9 +3,6 @@ classdef FigureHelper<...
     matlab.ui.internal.componentframework.services.optional.ViewReadyInterface
 
 
-
-
-
     methods(Static)
 
         function flush(component)
@@ -18,10 +15,6 @@ classdef FigureHelper<...
             end
 
             pollForViewReady(fig);
-
-
-
-
 
             refresh(fig);
             drawnow;
