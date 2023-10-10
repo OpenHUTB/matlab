@@ -1,8 +1,5 @@
 classdef GraphmlDiffGUIProvider<comparisons.internal.DiffGUIProvider
 
-
-
-
     methods
 
         function bool=canHandle(obj,first,second,options)
