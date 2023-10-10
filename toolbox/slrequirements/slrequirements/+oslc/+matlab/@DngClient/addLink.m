@@ -1,15 +1,5 @@
 function result=addLink(this,resourceURL,linkUrl,linkLabel,linkType)
 
-
-
-
-
-
-
-
-
-
-
     linkUrl=escapeAmpersand(linkUrl);
 
 
