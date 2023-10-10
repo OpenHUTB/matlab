@@ -1,13 +1,7 @@
 function varargout=updateLinkTargets(oldId,newId,srcInfo)
 
-
-
-
-
     reportCount='';
     mapCount=containers.Map('KeyType','char','ValueType','double');
-
-
 
 
     oldId=strrep(oldId,'/','%2F');
