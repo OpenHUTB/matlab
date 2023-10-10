@@ -1,11 +1,6 @@
 function x=roundingHeuristic(xTest,intcon,A,b,Aeq,beq,lb,ub,ConstraintTolerance,IntegerTolerance)
 
-
-
-
-
     x=[];
-
     fractionalIntegersLogical=abs(round(xTest(intcon))-xTest(intcon))>IntegerTolerance;
     fractionalIntegers=intcon(fractionalIntegersLogical);
 
@@ -78,6 +73,7 @@ function x=roundingHeuristic(xTest,intcon,A,b,Aeq,beq,lb,ub,ConstraintTolerance,
     if isFeasible(xTest,A,b,Aeq,beq,lb,ub,ConstraintTolerance)
         x=xTest;
     end
+
 
     function feasible=isFeasible(xTest,A,b,Aeq,beq,lb,ub,ConstraintTolerance)
         feasible=max([0;norm(Aeq*xTest-beq,inf);(lb-xTest);(xTest-ub);(A*xTest-b)])<=ConstraintTolerance;
