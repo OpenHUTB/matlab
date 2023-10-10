@@ -1,8 +1,4 @@
 classdef PortInstance<systemcomposer.analysis.Instance
-
-
-
-
     properties(SetAccess=private,Dependent)
 Specification
 Parent
