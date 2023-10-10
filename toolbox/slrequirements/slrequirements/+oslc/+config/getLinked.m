@@ -1,15 +1,4 @@
 function result=getLinked(srcInfo)
-
-
-
-
-
-
-
-
-
-
-
     streams=containers.Map('KeyType','char','ValueType','double');
     changesets=containers.Map('KeyType','char','ValueType','double');
     baselines=containers.Map('KeyType','char','ValueType','double');
