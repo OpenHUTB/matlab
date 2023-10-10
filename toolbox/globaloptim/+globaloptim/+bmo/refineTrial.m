@@ -1,15 +1,7 @@
 function[xout,fval,eflag]=refineTrial(surrogates,x0,problem,samplingRadius,options)
-
-
-
-
-
-
-
     fval=[];
     xout=[];
     eflag=[];
-
     if~verify_surrogate_x0(problem,surrogates,x0)
 
         if options.Verbosity>=3
@@ -27,10 +19,6 @@ function[xout,fval,eflag]=refineTrial(surrogates,x0,problem,samplingRadius,optio
 
 
     globaloptim.bmo.surrogateNLPsolver;
-
-
-
-
     globaloptim.bmo.surrogateNLPsolver(problem.nobj_expensive,...
     problem.mineq_expensive,surrogates,options,...
     problem.intcon,struct('RoundingHeurisics',true));
@@ -41,7 +29,6 @@ function[xout,fval,eflag]=refineTrial(surrogates,x0,problem,samplingRadius,optio
 
     if isempty(problem.intcon)
         try
-
             solution=globaloptim.bmo.surrogateNLPsolver(x0,problem.lb,problem.ub,...
             problem.Aineq,problem.bineq,problem.Aeq,problem.beq);
 
@@ -61,23 +48,20 @@ function[xout,fval,eflag]=refineTrial(surrogates,x0,problem,samplingRadius,optio
         [xout,eflag]=solveSurrogateBB(x0,problem,options);
     end
 
-
     globaloptim.bmo.surrogateNLPsolver;
 
 end
 
-function[xout,eflag]=solveSurrogateBB(x0,problem,options)
 
+function[xout,eflag]=solveSurrogateBB(x0,problem,options)
 
     input.ProbData=problem;
     input.ProbData.x0=x0;
     input.ProbData.fixedID=find(problem.fixedID)-1;
-
     input.NodeOptions=options.NodeOptions;
     input.TreeSearchOptions=options.TreeSearchOptions;
 
     try
-
         solution=globaloptim.internal.mexfiles.mx_SurrogateMINLP(input);
         if~isempty(solution.x)
             xout=reshape(solution.x,size(x0));
@@ -96,10 +80,8 @@ function[xout,eflag]=solveSurrogateBB(x0,problem,options)
 
 end
 
+
 function TF=verify_surrogate_x0(problem,surrogates,x0)
-
-
-
 
     TF=true;
     if problem.nobj_expensive>0
