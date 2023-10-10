@@ -1,70 +1,5 @@
 classdef RptgenSL_CForm<slreportgen.rpt2api.RptgenSL_CReport
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
 
         function obj=RptgenSL_CForm(component,rptFileConverter)
@@ -86,20 +21,10 @@ classdef RptgenSL_CForm<slreportgen.rpt2api.RptgenSL_CReport
 
                 fwrite(this.FID,"% Fill holes in the form"+newline);
 
-
-
-
-
                 fprintf(this.FID,'while ~strcmp(rptObj.Document.CurrentHoleId,"#end#")\n');
                 fprintf(this.FID,"switch rptObj.Document.CurrentHoleId\n");
 
-
-
                 writeConvertedChildren@mlreportgen.rpt2api.RptgenML_CReport(this);
-
-
-
-
                 fprintf(this.FID,"end\n");
                 fprintf(this.FID,"moveToNextHole(rptObj.Document);\n");
                 fprintf(this.FID,"end\n\n");
