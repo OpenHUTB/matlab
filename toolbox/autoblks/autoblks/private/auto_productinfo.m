@@ -1,20 +1,6 @@
 function info=auto_productinfo
 
-
-
-
-
-
-
-
-
-
-
-
     persistent INFO;
-
-
-
 
     if isempty(INFO)
         INFO=lReadProductInfo;
@@ -23,14 +9,8 @@ function info=auto_productinfo
     info=INFO;
 end
 
+
 function info=lReadProductInfo
-
-
-
-
-
-
     info=ver('autoblks');
-
 end
 
