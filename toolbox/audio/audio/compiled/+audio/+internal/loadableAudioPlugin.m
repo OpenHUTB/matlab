@@ -1,7 +1,3 @@
-
-
-
-
 classdef loadableAudioPlugin<handle&dynamicprops&matlab.mixin.SetGet
 
     properties(Access=protected)
