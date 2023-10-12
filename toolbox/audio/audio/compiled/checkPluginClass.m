@@ -1,8 +1,6 @@
 function[api,params]=checkPluginClass(className,~)
 
 
-
-
     if~exist(className,'class')
         error(message('audio:plugin:NotAClass'));
     end
