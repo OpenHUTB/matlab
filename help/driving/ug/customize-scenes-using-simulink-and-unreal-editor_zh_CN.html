@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Customize Scenes Using Simulink and Unreal Editor</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../unreal-engine-scenario-simulation.html",
+          "name": "Unreal Engine Scenario Simulation"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "unreal-engine-scenario-simulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Run simulation models in the Unreal Editor."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../unreal-engine-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Simulation</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Customize Scenes Using Simulink and Unreal Editor</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_ed3bf789-f7a9-4eb5-87c2-76f86ab8b342" class="intrnllnk">Open Unreal Editor from Simulink</a></li>
+<li><a href="#mw_bbd01c58-e04a-4fd5-9693-a4a23b9b0323" class="intrnllnk">Reparent Actor Blueprint</a></li>
+<li><a href="#mw_9760bcb1-0db3-4189-ae15-a4a02256fe68" class="intrnllnk">Create or Modify Scenes in Unreal Editor</a><ul class="nav"><li><a href="#mw_c7e520c1-eb8b-4ca7-a1a6-8ffd24111cc4" class="intrnllnk">Open Scene</a></li>
+<li><a href="#mw_faa58e65-aa0e-43ab-a0ad-efbf992a64ab" class="intrnllnk">Create New Scene</a></li>
+<li><a href="#mw_d467b839-77a7-4bd8-b972-24a87d3ff655" class="intrnllnk">Specify Vehicle Trajectories</a></li>
+<li><a href="#mw_4d585d3a-a84c-448c-b7ba-a5d8c082b965" class="intrnllnk">Add Assets to Scene</a></li>
+<li><a href="#mw_0a682499-a575-42ad-bd33-401747de2b89" class="intrnllnk">Use AutoVrtlEnv Project Lighting in Custom Scene</a></li>
+</ul></li>
+<li><a href="#mw_1aa2c2d3-6144-45f2-9ba5-2f5876da412d" class="intrnllnk">Run Simulation</a></li>
+<li><a href="#d124e17863" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e17869" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_0ed3a74f-d504-4bca-aa1b-c961aecf8a8c">使用 Simulink 和虚幻编辑器自定义场景<br/></h2>
+<div class="topic_progress_container pull-left remove_margin_0"><div class="topic_progress_desc"><a href="customize-3d-scenes-for-automated-driving.html"><strong>Step 3 of 4 in Customize Unreal Engine Scenes for Automated Driving</strong></a></div>
+<div class="topic_progress_indicator"><ul><li><a href="install-and-configure-support-package-for-customizing-scenes.html"></a></li>
+<li><a href="migrate-projects-developed-using-prior-support-packages.html"></a></li>
+<li><a href="customize-scenes-using-simulink-and-unreal-editor.html" class="active"></a></li>
+<li><a href="package-custom-scenes-into-executable.html"></a></li>
+</ul>
+</div>
+</div>
+<div class="clearfix"></div>
+<p>如安装自定义场景支持包中所述，在安装虚幻引擎®4项目支持包的自动驾驶工具箱™界面后，您可以同时从虚幻®编辑器和Simulink®在自定义场景中进行模拟。通过使用此联合仿真框架，您可以将车辆和传感器添加到Simulink模型中，然后在自定义场景中运行此仿真。<br/></p>
+<p>要使用使用先前版本的支持包开发的项目，首先要将项目迁移到与当前支持的虚幻引擎版本兼容。请参阅使用先前支持包开发的迁移项目。<br/></p>
+<section itemprop="content"><h3 class="title" id="mw_ed3bf789-f7a9-4eb5-87c2-76f86ab8b342"><span style="font-size: 18.72px;">从Simulink打开虚幻编辑器</span><br/></h3>
+<p>如果从MATLAB®或Simulink外部打开虚幻编辑器，则Simulink无法与编辑器建立连接。要建立此连接，必须从Simulink模型打开项目。<br/></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>打开一个配置为在虚幻引擎环境中进行模拟的Simulink模型。至少，模型必须包含仿真3D场景配置块。例如，打开一个简单的模型，模拟车辆在笔直的高速公路上行驶。该模型在“使用虚幻引擎仿真环境设计车道标志检测器”实例中得到应用。<br/></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>openExample(<span style="color:#A020F0">'driving/VisualPerceptionIn3DSimulationExample'</span>)
+open_system(<span style="color:#A020F0">'straightRoadSim3D'</span>)</pre>
+</div>
+</div>
+</div><div class="informalfigure"><div id="d124e17190" class="mediaobject"><p class="listimage"><img src="sim3d_straight_road_model.png" alt="Simulink model named Straight Road Scene" height="311" width="515"/></p>
+</div>
+</div></li>
+<li><p>在该模型的仿真3D场景配置块中，将场景源参数设置为虚幻编辑器。<br/></p></li>
+<li><p>在Project参数中，浏览包含要自定义的场景的项目文件。<br/></p><p>例如，这个示例路径指定了AutoVrtlEnv项目，该项目与虚幻引擎4项目支持包的自动驾驶工具箱接口一起安装。<br/></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C:\Local\AutoVrtlEnv\AutoVrtlEnv.uproject</pre>
+</div>
+</div>
+</div>这个示例路径指定了一个自定义项目。<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Z:\UnrealProjects\myProject\myProject.uproject</pre>
+</div>
+</div>
+</div><p></p></li>
+<li><p><strong class="guilabel">点击Open Unreal Editor</strong>. 虚幻编辑器打开并加载项目中的场景。</p></li>
+</ol>
+</div>
+<p>第一次从Simulink打开虚幻编辑器时，您可能会被要求重建UE4Editor DLL文件或AutoVrtlEnv模块。单击Yes以重新生成这些文件或模块。编辑器还会提示有新的插件可用。单击Manage Plugins并验证是否安装了MathWorks Interface插件。这个插件是MathWorksSimulation.uplugin，是从MATLAB支持包中复制过来的插件文件。<br/></p>
+<p>关于名称为“_BuiltData”的文件的消息表示缺少相关级别的照明数据。在发布可执行文件之前，重建关卡照明。<br/></p>
+<p>如果您收到需要重新构建照明的警告，请从编辑器窗口上方的工具栏中选择Build &gt; Build lighting Only。编辑器在您第一次打开场景或向场景添加新元素时发出此警告。要使用自动驾驶工具箱中安装的AutoVrtlEnv照明，请参阅在自定义场景中使用AutoVrtlEnv项目照明。<br/></p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_bbd01c58-e04a-4fd5-9693-a4a23b9b0323">父角色蓝图</h3>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><b>注意</b></p>
+<p>如果您正在使用AutoVtrlEnv或RRScene项目中的场景，它是虚幻引擎4项目支持包的自动驾驶工具箱接口的一部分，请跳过本节。但是，如果您基于此项目中的场景之一创建新场景，则必须完成此部分。<br/></p>
+</div>
+<p>当你第一次从Simulink中打开一个自定义场景时，你需要将这个项目与自动驾驶工具箱中使用的Sim3dLevelScriptActor关卡蓝图关联或重新定义。关卡蓝图控制对象一旦放置在虚幻引擎环境中如何与之交互。如果项目没有重新定义，Simulink将在模拟开始时返回一个错误。您必须分别表示自定义项目中的每个场景。<br/></p>
+<p>要绘制关卡蓝图，请遵循以下步骤:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在虚幻编辑器工具栏中，选择 <strong class="guimenuitem">Blueprints</strong> &gt; <strong class="guimenuitem">Open Level Blueprint。</strong></p></li>
+<li><p>关卡蓝图窗口中，选择 <strong class="guimenuitem">File</strong> &gt; <strong class="guimenuitem">Reparent Blueprint</strong>。</p></li>
+<li><p>点击Sim3dLevelScriptActor蓝图。如果你没有看到Sim3dLevelScriptActor蓝图列表，使用以下步骤检查你是否已经安装并启用了MathWorksSimulation插件:<br/></p><div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>在虚幻编辑器工具栏中，选择 <strong class="guimenuitem">Settings</strong> &gt; <strong class="guimenuitem">Plugins</strong>。</p></li>
+<li><p>在Plugins窗口中，确认已安装的窗口中列出了MathWorks Interface插件。如果插件尚未启用，请选中enabled复选框。<br/></p><p>如果在此窗口中没有看到MathWorks接口插件，请重复安装自定义场景支持包下的步骤，并从Simulink重新打开编辑器。<br/></p></li>
+<li><p>关闭编辑器并从Simulink重新打开它。</p></li>
+</ol>
+</div></li>
+<li><p>关闭关卡蓝图窗口。</p></li>
+</ol>
+</div>
+<p>
+</p>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_9760bcb1-0db3-4189-ae15-a4a02256fe68">在虚幻编辑器<span style="font-size: 18.72px;">创建或修改场景</span><br/></h3>
+<p> 从Simulink中打开编辑器后，您可以修改项目中的场景或创建新场景。</p>
+<section itemprop="content"><h4 class="title" id="mw_c7e520c1-eb8b-4ca7-a1a6-8ffd24111cc4">打开场景</h4>
+<p>在虚幻编辑器中，项目中的场景被称为关卡。关卡有多种类型，场景也有关卡类型的地图。<br/></p>
+<div class="itemizedlist"><ul><li><p>从AutoVrtlEnv.uproject或RRScene.uproject文件打开预构建场景，在编辑器窗口下方的Content Browser窗格中，导航到Content &gt; Maps文件夹。然后，选择与你想要修改的场景相对应的地图。<br/></p><p>这个表格显示了在虚幻编辑器中出现的AutoVrtlEnv项目中的地图名称。它还显示了它们对应的场景名称，因为它们出现在模拟3D场景配置块的场景名称参数中。<br/></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th>虚幻编辑器地图</th>
+<th>自动驾驶工具箱场景<br/></th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">HwCurve</code></td>
+<td><a href="../ref/curvedroad.html"><span class="scene">Curved Road</span></a></td>
+</tr>
+<tr><td><code class="literal">DblLnChng</code></td>
+<td><a href="../ref/doublelanechange.html"><span class="scene">Double Lane Change</span></a></td>
+</tr>
+<tr><td><code class="literal">BlackLake</code></td>
+<td><a href="../ref/opensurface.html"><span class="scene">Open Surface</span></a></td>
+</tr>
+<tr><td><code class="literal">LargeParkingLot</code></td>
+<td><a href="../ref/largeparkinglot.html"><span class="scene">Large Parking Lot</span></a></td>
+</tr>
+<tr><td><code class="literal">SimpleLot</code></td>
+<td><a href="../ref/parkinglot.html"><span class="scene">Parking Lot</span></a></td>
+</tr>
+<tr><td><code class="literal">HwStrght</code></td>
+<td><a href="../ref/straightroad.html"><span class="scene">Straight Road</span></a></td>
+</tr>
+<tr><td><code class="literal">USCityBlock</code></td>
+<td><a href="../ref/uscityblock.html"><span class="scene">US City Block</span></a></td>
+</tr>
+<tr><td><code class="literal">USHighway</code></td>
+<td><a href="../ref/ushighway.html"><span class="scene">US Highway</span></a></td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><b>注意</b></p>
+<p> <code class="literal">AutoVrtlEnv.uproject</code> 不包含 <a href="../ref/virtualmcity.html"><span class="scene">Virtual Mcity</span></a> 场景。</p>
+</div><p>
+</p><p>RRScene项目只包含一个场景:RRHighway。此场景用于公路车道跟随RoadRunner场景示例，并且不能从模拟3D场景配置块的场景名称参数中选择。<br/></p></li>
+<li><p>要在您自己的项目中打开场景，请在Content Browser窗格中导航到包含场景的文件夹。<br/></p></li>
+</ul>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_faa58e65-aa0e-43ab-a0ad-efbf992a64ab">创建新场景</h4>
+<p>要在项目中创建一个新场景，从编辑器的左上角菜单中选择File &gt; new Level。<br/></p>
+<p>或者，您可以从现有场景创建一个新场景。这项技术是有用的，例如，如果你想使用AutoVtrlEnv项目中的一个预构建场景作为创建自己的场景的起点。要将当前打开的场景的版本保存到项目中，从编辑器的左上角菜单中选择File &gt; save Current As。新场景被保存到与现有场景相同的位置。<br/></p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_d467b839-77a7-4bd8-b972-24a87d3ff655">指定车辆轨迹</h4>
+<p>在你的场景中，你可以指定场景中的车辆可以遵循的轨迹路径点。</p>
+<div class="itemizedlist"><ul><li><p>如果你的场景是基于AutoVrtlEnv项目中的一个预构建场景，那么使用虚幻引擎仿真示例中选择路径点所描述的过程来指定路径点。这个例子展示了如何在预构建场景的2d自上而下的地图上交互式地绘制路径点。<br/></p></li>
+<li><p>如果您的场景不是基于预构建的场景，那么在使用虚幻引擎模拟示例的选择路径点之前，您必须首先生成您的场景的地图。参见创建虚幻引擎场景的自上而下的地图。<br/></p></li>
+</ul>
+</div>
+<p>
+</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_4d585d3a-a84c-448c-b7ba-a5d8c082b965">向场景添加资源</h4>
+<p>在虚幻编辑器中，场景中的元素被称为资产。要将资源添加到场景中，您可以在底部的Content Browser窗格中浏览或搜索它们，并将它们拖到编辑器窗口中。<br/></p>
+<p>在AutoVrtlEnv项目中向场景添加资源时，您可以从与驾驶相关的资源库中进行选择。这些资源被构建为静态网格，并以前缀SM_开始。在Content Browser窗格中搜索这些对象。<br/></p>
+<p>例如，在AutoVrtlEnv项目中为场景添加一个停止标志。<br/></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在编辑器底部的Content Browser窗格中，导航到Content文件夹。<br/></p></li>
+<li><p>在搜索栏中搜索“SM_StopSign”。将停止标志从Content Browser拖到编辑窗口中。然后，您可以在编辑窗口或右边的Details窗格的Transform部分中更改停止标志的位置。<br/></p></li>
+</ol>
+</div>
+<p>
+
+            </p>
+<p>如果你想覆盖默认天气或在场景中使用增强的雾条件，添加Exponential Height Fog。<br/></p>
+<div class="informalfigure"><div id="d124e17598" class="mediaobject"><p><img src="ue_exp_fog.png" alt="Exponential Height Fog actor selection" height="131" width="255"/></p>
+</div>
+</div>
+<p></p>
+<p>虚幻编辑器使用左z向上坐标系统，其中y轴指向右。自动驾驶工具箱使用右手z向上坐标系，其中y轴指向左边。当在场景中定位物体时，请记住这个坐标系的差异。在这两个坐标系中，y轴的正负号和俯仰角值是颠倒的。<br/></p>
+<p>有关修改场景和添加资产的更多信息，请参阅虚幻引擎4文档。<br/></p>
+<p>要将资产从AutoVrtlEnv项目迁移到您自己的项目文件中，请参阅虚幻引擎文档。<br/></p>
+<p>要从场景中获得语义分割数据，必须将模板id应用于添加到场景中的对象。有关详细信息，请参阅将标签应用于虚幻场景元素以进行语义分割和对象检测。<br/></p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_0a682499-a575-42ad-bd33-401747de2b89">在自定义场景中使用AutoVrtlEnv项目照明<br/></h4>
+<p>要使用自动驾驶工具箱中的AutoVrtlEnv项目附带安装的照明，请遵循以下步骤。<br/></p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><strong class="guilabel">在World Settings选项卡</strong>, 清除 <strong class="guilabel">Force
+                                No Precomputed Lighting</strong>.</p>
+<div class="informalfigure"><div id="d124e17658" class="mediaobject"><p class="listimage"><img src="ue_sp_noprecompute.png" alt="Force No Precomputed Lighting option" height="303" width="318"/></p>
+</div>
+</div><p></p></li>
+<li><p> 在 <strong class="guilabel">Build</strong>下，选择<strong class="guimenuitem">Lighting Quality</strong> &gt; <strong class="guimenuitem">Production</strong>，以生产质量重建地图。重建大型地图需要时间。</p>
+<div class="informalfigure"><div id="d124e17672" class="mediaobject"><p class="listimage"><img src="ue_sp_lightquality.png" alt="Lighting Quality menu with Production selected" height="189" width="389"/></p>
+</div>
+</div><p></p></li>
+</ol>
+</div>
+<p>
+</p>
+</section>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_1aa2c2d3-6144-45f2-9ba5-2f5876da412d">运行仿真</h3>
+<p>通过运行测试模拟，验证Simulink模型和虚幻编辑器已配置为共同模拟。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在Simulink模型中，单击Run。<br/></p><p>因为场景的源是在虚幻编辑器中打开的项目，所以模拟不会开始。相反，您必须从编辑器启动模拟。</p></li>
+<li><p>验证Simulink中的“诊断查看器”窗口是否显示此消息:</p><p><code class="errortext">In the Simulation 3D Scene Configuration block, you set the scene
+                        source to 'Unreal Editor'. In Unreal Editor, select 'Play' to view the
+                        scene.</code></p><p>此消息确认Simulink已经在虚幻引擎环境中实例化了车辆和其他对象。 </p></li>
+<li><p>在虚幻编辑器中，点击播放。模拟在虚幻编辑器中当前打开的场景中运行。<br/></p>
+<div class="itemizedlist"><ul><li><p> 如果您的Simulink模型包含车辆，这些车辆将通过在编辑器中打开的场景驾驶。</p></li>
+<li><p>如果您的Simulink模型包括传感器，这些传感器从编辑器中打开的场景中捕获数据。</p></li>
+</ul>
+</div><p>
+</p></li>
+</ol>
+</div>
+<p>为了在模拟过程中控制场景的视图，在模拟3D场景配置模块中，从场景视图参数中选择车辆名称。要在模拟运行时更改场景视图，请使用编辑器中的数字键盘。该表显示了显示场景的相机的位置，相对于在场景视图参数中选择的车辆。<br/></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="10%" align="left"/>
+<col class="tcol2" width="11%" align="left"/>
+<col class="tcol3" width="79%" align="left"/>
+</colgroup>
+<thead><tr><th>Key</th>
+<th colspan="2">Camera View</th>
+</tr>
+</thead>
+<tbody><tr><td><p>1</p>
+</td>
+<td><p>Back left</p>
+</td>
+<td rowspan="10">
+                                <div class="informalfigure"><div id="d124e17769" class="mediaobject"><p><img src="camera.png" alt="Camera views with number keys 1-9" height="246" width="211"/></p>
+</div>
+</div>
+                            </td>
+</tr>
+<tr><td><p>2</p>
+</td>
+<td><p>Back</p>
+</td>
+</tr>
+<tr><td><p>3</p>
+</td>
+<td><p>Back right</p>
+</td>
+</tr>
+<tr><td><p>4</p>
+</td>
+<td><p>Left</p>
+</td>
+</tr>
+<tr><td><p>5</p>
+</td>
+<td><p>Internal</p>
+</td>
+</tr>
+<tr><td><p>6</p>
+</td>
+<td><p>Right</p>
+</td>
+</tr>
+<tr><td><p>7</p>
+</td>
+<td><p>Front left</p>
+</td>
+</tr>
+<tr><td><p>8</p>
+</td>
+<td><p>Front</p>
+</td>
+</tr>
+<tr><td><p>9</p>
+</td>
+<td><p>Front right</p>
+</td>
+</tr>
+<tr><td><p>0</p>
+</td>
+<td><p>Overhead</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<p>要重新启动模拟，请单击Simulink模型中的Run，等待直到Diagnostic Viewer显示确认消息，然后单击编辑器中的Play。如果在模型中开始模拟之前单击Play，则Simulink和虚幻编辑器之间的连接未建立，编辑器将显示一个空场景。<br/></p>
+<p>如果您正在共同模拟自定义项目，要启用数字键盘，请将DefaultInput.ini文件从支持包安装文件夹复制到自定义项目文件夹中。例如，从以下路径复制DefaultInput.ini:<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C:\ProgramData\MATLAB\SupportPackages\&lt;MATLABRelease&gt;\toolbox\shared\sim3dprojects\driving\AutoVrtlEnv\Config</pre>
+<pre>到:</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C:\&lt;yourproject&gt;.project\Config<font face="Arial"><span style="white-space: normal;">
+</span></font></pre>
+</div>
+</div>
+</div>
+<p>在根据模拟结果调整自定义场景后，您可以将场景打包到可执行文件中。有关详细信息，请参阅将自定义场景打包为可执行文件。<br/></p>
+</section>
+        <h2 id="d124e17863">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
+                Configuration</span></span></a></span></p>
+        <h2 id="d124e17869">Related Topics</h2>
+<ul><li><a href="apply-labels-to-unreal-scene-elements-for-semantic-segmentation-and-object-detection.html" class="a">Apply Labels to Unreal Scene Elements for Semantic Segmentation and Object Detection</a></li>
+<li><a href="create-top-down-map-of-unreal-engine-scene.html" class="a">Create Top-Down Map of Unreal Engine Scene</a></li>
+<li><a href="place-cameras-on-actors-in-the-unreal-editor.html" class="a">Place Cameras on Actors in the Unreal Editor</a></li>
+<li><a href="select-waypoints-for-3d-simulation.html" class="a">Select Waypoints for Unreal Engine Simulation</a></li>
+</ul>
+        
+    </section>
+    </div>
+<div class="topic_progress_container"><div class="topic_progress_desc"><a href="customize-3d-scenes-for-automated-driving.html"><strong>Customize Unreal Engine Scenes for Automated Driving</strong></a></div>
+<div class="topic_progress_indicator"><ul><li><a href="install-and-configure-support-package-for-customizing-scenes.html"></a></li>
+<li><a href="migrate-projects-developed-using-prior-support-packages.html"></a></li>
+<li><a href="customize-scenes-using-simulink-and-unreal-editor.html" class="active"></a></li>
+<li><a href="package-custom-scenes-into-executable.html"></a></li>
+</ul>
+</div>
+<div class="topic_progress_nav"><a href="package-custom-scenes-into-executable.html">Next <span class="icon-arrow-open-right"></span></a></div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
