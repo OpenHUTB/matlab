@@ -1,26 +1,6 @@
 classdef audioPluginSource<audioPlugin
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     methods
@@ -28,9 +8,6 @@ classdef audioPluginSource<audioPlugin
             coder.allowpcode('plain');
         end
     end
-
-
-
 
 
     properties(Access=private)
