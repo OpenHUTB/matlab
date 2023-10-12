@@ -1,8 +1,5 @@
 classdef ReplacementConfig < matlab.mixin.SetGetExactNames & handle
 
-
-
-
 properties 
 LibraryNameToAddSubsystemsTo
 IgnoredClones
@@ -26,6 +23,7 @@ obj.IgnoredClones = ignoredClones;
 obj.SubsystemReferenceFileNames = [  ];
 end 
 
+
 function set.LibraryNameToAddSubsystemsTo( obj, libraryNameToAddSubsystemsTo )
 try 
 if ~ischar( libraryNameToAddSubsystemsTo )
@@ -38,7 +36,7 @@ DAStudio.error( 'sl_pir_cpp:creator:IllegalName1_lib' );
 end 
 obj.LibraryNameToAddSubsystemsTo = libraryNameToAddSubsystemsTo;
 catch exception
-exception.throwAsCaller(  );
+exception.throwAsCaller();
 return ;
 end 
 end 
@@ -46,7 +44,7 @@ end
 
 function set.IgnoredClones( obj, ignoredClones )
 try 
-obj.IgnoredClones = {  };
+obj.IgnoredClones = {};
 if ~isempty( ignoredClones )
 if isa( ignoredClones, 'char' )
 ignoredClones = { ignoredClones };
@@ -63,13 +61,10 @@ end
 end 
 end 
 catch exception
-exception.throwAsCaller(  );
+exception.throwAsCaller();
 return ;
 end 
 end 
-
-
-
 
 
 function obj = addCloneToIgnoreList( obj, cloneName )
@@ -93,7 +88,7 @@ updatedIgnoredClones = setdiff( obj.IgnoredClones, ignoredCloneName );
 obj.IgnoredClones = updatedIgnoredClones;
 end 
 catch exception
-exception.throwAsCaller(  );
+exception.throwAsCaller();
 return ;
 end 
 end 
@@ -110,13 +105,12 @@ DAStudio.error( 'sl_pir_cpp:creator:IllegalInputForStruct' );
 end 
 end 
 catch exception
-exception.throwAsCaller(  );
+exception.throwAsCaller();
 return ;
 end 
 end 
 end 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp8zCk1E.p.
-% Please follow local copyright laws when handling this file.
+
 
