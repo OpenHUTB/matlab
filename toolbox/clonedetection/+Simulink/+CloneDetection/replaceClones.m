@@ -2,10 +2,6 @@
 function cloneReplacementResults = replaceClones( cloneResults,  ...
 libraryNameToAddSubsystemsTo, ignoredClones )
 
-
-
-
-
 R36
 cloneResults
 libraryNameToAddSubsystemsTo = 'newLibraryFile'
@@ -93,6 +89,5 @@ return ;
 end 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpLseccd.p.
-% Please follow local copyright laws when handling this file.
+
 
