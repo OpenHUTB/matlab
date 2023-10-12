@@ -198,7 +198,7 @@
 </div>
 </div>
 <div class="clearfix"></div>
-<p>完成自定义场景修改后，可以将包含该场景的项目文件打包为可执行文件。然后，可以基于该可执行文件配置“Simulation 3D Scene Configuration”模块进行仿真。可执行文件可以提高模拟性能，并且不需要打开虚幻编辑器来进行场景仿真。而不是场景使用安装在自动驾驶工具箱™中的虚幻引擎来运行。</p>
+<p>当完成修改自定义场景后，可以将包含该场景的项目文件打包为可执行文件。然后，可以基于该可执行文件,配置“Simulation 3D Scene Configuration”模块进行仿真。可执行文件可以提高模拟性能，并且不需要打开虚幻编辑器来进行场景仿真。相反，<span style="background-color: rgb(247, 247, 248); color: rgb(55, 65, 81); font-family: Söhne, ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, Ubuntu, Cantarell, &quot;Noto Sans&quot;, sans-serif, &quot;Helvetica Neue&quot;, Arial, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; white-space: pre-wrap;">相反，场景通过使用已安装的 Automated Driving Toolbox随附的 Unreal Engine运行。</span></p>
 <section itemprop="content"><h3 class="title" id="mw_88623449-6a42-4cb3-8273-6cb7a7d9f3ac">使用虚幻编辑器将场景打包为可执行文件</h3>
 <p>在将自定义场景打包成可执行文件之前，请确保插件是：</p>
 <div class="itemizedlist"><ul><li><p>位于虚幻引擎安装位置，例如：<code class="literal">C:\Program Files\Epic
@@ -241,13 +241,13 @@
 </table>
 </div></li>
 <li><p>指定项目中要打包到可执行文件中的场景。</p>
-<div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>在<b>打包版本中要包含的地图列表</b>选项中，单击<b>添加元素</b>按钮 <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="sim3d_unreal_editor_plus_icon.png" alt="" height="16" width="15"/>。</span></span></p></li>
-<li><p>指定要包含到可执行文件中的场景路径。默认情况下，虚幻编辑器将地图保存到 <code class="literal">/Game/Maps</code> 文件夹中。例如，如果 <code class="literal">/Game/Maps</code> 文件夹中有一个要包含到可执行文件中名为 <code class="literal">myScene</code> 的场，请输入 <code class="literal">/Game/Maps/EmptyGrass4k4k</code>。</p></li>
+<div class="orderedlist"><ol style="list-style: lower-alpha;"><li>在“打包版本中要包括的地图列表”选项中，单击<b>添加元素</b>按钮 <span class="guiicon"><img src="sim3d_unreal_editor_plus_icon.png" alt="" height="16" width="15"/>。</span></li>
+<li><p>指定要包含到可执行文件中的场景路径。默认情况下，虚幻编辑器将地图保存到 <code class="literal">/Game/Maps</code> 文件夹中。例如，如果 <code class="literal">/Game/Maps</code> 文件夹中有一个要包含到可执行文件中名为 <code class="literal">myScene</code> 的场景，你想包含在可执行文件中，输入 <code class="literal">/Game/Maps/</code> <code class="literal">myScene</code> 。如果不指定打包地图，则默认打包ue显示的地图（项目设置-&gt;打包-&gt;地图和模式-&gt;游戏默认地图）。</p></li>
 <li><p>根据需要添加或删除其他场景。</p></li>
 </ol>
 </div><p>
 </p></li>
-<li><p>指定要包含在可执行文件中所需资产目录。这些目录位于 <code class="literal">MathWorksSimulation</code> 插件中。</p><p>在<b>要烘培的额外资产目录</b>中，单击“添加元素”按钮 <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="sim3d_unreal_editor_plus_icon.png" alt="" height="16" width="15"/></span></span> 添加元素并指定这些目录：</p>
+<li><p>指定要包含在可执行文件中所需资产目录。这些目录位于 <code class="literal">MathWorksSimulation</code> 插件中。</p><p>在“<b>要烘培的额外资产目录”</b>中，单击“添加元素”按钮 <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="sim3d_unreal_editor_plus_icon.png" alt="" height="16" width="15"/></span></span> 添加元素并指定这些目录：</p>
 <div class="itemizedlist"><ul><li><p><code class="literal">/MathWorksSimulation/Characters</code></p></li>
 <li><p><code class="literal">/MathWorksAutomotiveContent/VehiclesCommon</code></p></li>
 <li><p><code class="literal">/MathWorksAutomotiveContent/Vehicles</code></p></li>
@@ -256,27 +256,14 @@
 </div><p>
 </p></li>
 <li><p>重建场景中的光照。如果不重建光照，则可执行文件中光源的阴影将不正确，并且在仿真期间会显示有关重建光照的警告。在虚幻编辑器工具栏中，选择“<b>构建</b>”&gt;“<b>仅构建光照</b>”。</p></li>
-<li><p>（可选）如果计划使用 <a href="../ref/simulation3dcamera.html"><span class="block">Simulation 3D Camera</span></a> 模块从场景中获取语义分割数据，请启用模板 ID 的渲染。在左窗格的“<b>引擎</b>”部分，单击“<b>渲染</b>”。Then, in the main window, in the
-                            <strong class="guilabel">Postprocessing</strong> section, set <strong class="guilabel">Custom
-                            Depth-Stencil Pass</strong> to <code class="guidropdown">Enabled with
-                            Stencil</code>. For more details on applying stencil IDs for
-                        semantic segmentation, see <a href="apply-labels-to-unreal-scene-elements-for-semantic-segmentation-and-object-detection.html" class="a">Apply Labels to Unreal Scene Elements for Semantic Segmentation and Object Detection</a>。</p></li>
+<li><p>(可选)如果您计划通过使用Simulation 3D Camera块从场景中获取语义分割数据，请启用渲染模板id。在左侧窗格的“引擎”部分中，单击“渲染”。然后，在主窗口的后处理部分，将“自定义深度-模具通道”设置为“以模具启用”。有关为语义分割应用模板id的更多详细信息，请参阅为语义分割和对象检测应用标签到虚幻场景元素。<br/></p></li>
 <li><p>（可选）在主菜单中选择 <b>编辑</b>（Edit） &gt; <b>编辑器偏好</b>（Editor Preferences...）。在<b>关卡编辑器</b>（Level Editor） &gt; <b>播放</b>（Play） 中找到 <b>额外启动参数</b>（Additional Launch Parameters） 设置，并将其值设为 -AudioMixer -PixelStreamingIP=localhost -PixelStreamingPort=8888。</p></li>
 <li><p>关闭<b>项目设置</b>窗口。</p></li>
-<li><p>在编辑器的左上角菜单中，选择<b>文件</b> &gt; <b>打包项目</b> &gt; <b>Windows (64-bit)</b>。选择保存可执行文件的本地文件夹，例如项目文件的根目录（例如：<code class="literal">C:/Local/myProject</code>）。</p><div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p>
-<p>Packaging a project into an executable can take several minutes. The
-                            more scenes that you include in the executable, the longer the packaging
-                            takes.</p>
-</div><p>Once packaging is complete, the folder where you saved the package
-                        contains a <code class="literal">WindowsNoEditor</code> folder that includes the
-                        executable file. This file has the same name as the project file.</p><div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p>
-<p>If you repackage a project into the same folder, the new executable
-                            folder overwrites the old one.</p>
-</div><p>Suppose you package a scene that is from the
-                            <code class="literal">myProject.uproject</code> file and save the executable to
-                        the <code class="literal">C:/Local/myProject</code> folder. The editor creates a file
-                        named <code class="literal">myProject.exe</code> with this
-                        path:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C:/Local/myProject/WindowsNoEditor/myProject.exe</pre>
+<li><p>在编辑器的左上角菜单中，选择<b>文件</b> &gt; <b>打包项目</b> &gt; <b>Windows (64-bit)</b>。选择保存可执行文件的本地文件夹，例如项目文件的根目录（例如：<code class="literal">C:/Local/myProject</code>）。</p><div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><b>注意</b></p>
+<p>将项目打包成可执行文件可能需要几分钟的时间。在可执行文件中包含的场景越多，打包所需的时间就越长。</p>
+</div><p>打包完成后，保存包的文件夹包含一个WindowsNoEditor文件夹，其中包含可执行文件。该文件与项目文件具有相同的名称。<br/></p><div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><b>注意</b></p>
+<p>如果将一个项目重新打包到同一个文件夹中，新的可执行文件夹将覆盖旧的文件夹。</p>
+</div><p>假设您打包了一个来自myProject的场景。uproject文件并将可执行文件保存到C:/Local/myProject文件夹。编辑器创建一个名为myProject.exe的文件，路径如下:<br/></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C:/Local/myProject/WindowsNoEditor/myProject.exe</pre>
 </div>
 </div>
 </div><p></p></li>
@@ -285,44 +272,32 @@
 <p>
 </p>
 </section>
-<section itemprop="content"><h3 class="title" id="mw_48bf80dc-70a1-42fe-8267-229a305cfa5b">Simulate Scene from Executable in <span class="trademark entity">Simulink</span></h3>
-<div class="orderedlist"><ol style="list-style: decimal;"><li><p>In the <a href="../ref/simulation3dsceneconfiguration.html"><span class="block">Simulation
-                        3D Scene Configuration</span></a> block of your Simulink model, set the <strong class="guilabel">Scene source</strong> parameter to
-                        <code class="guidropdown">Unreal Executable</code>.</p></li>
-<li><p>Set the <strong class="guilabel">File name</strong> parameter to the name of your
-                        Unreal Editor executable file. You can either browse for the file or
-                    specify the full path to the file by using backslashes. For example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C:\Local\myProject\WindowsNoEditor\myProject.exe</pre>
+<section itemprop="content"><h3 class="title" id="mw_48bf80dc-70a1-42fe-8267-229a305cfa5b"><span style="font-size: 18.72px;">在Simulink中用可执行文件场景仿真</span><br/></h3>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><span class="block">在你的Simulink模型的<a href="../ref/simulation3dsceneconfiguration.html">Simulation
+                        3D Scene Configuration</a></span> 块中, 设置<strong class="guilabel">Scene source参数为</strong><code class="guidropdown">Unreal Executable</code>.</p></li>
+<li><p><strong class="guilabel">设置Project name参数。</strong> 例如：</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C:\Local\myProject\WindowsNoEditor\myProject.exe</pre>
 </div>
 </div>
 </div></li>
-<li><p>Set the <strong class="guilabel">Scene</strong> parameter to the name of a scene from
-                    within the executable file. For example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre> /Game/Maps/myScene</pre>
+<li><p><strong class="guilabel">设置Scene</strong> 参数。例如：</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre> /Game/Maps/myScene</pre>
 </div>
 </div>
 </div></li>
-<li><p>Run the simulation. The model simulates in the custom scene that you
-                    created.</p></li>
+<li><p>运行模拟。模型在您创建的自定义场景中进行模拟。</p></li>
 </ol>
 </div>
-<p>If you are simulating a scene from a project that is not based on the
-                <code class="literal">AutoVtrlEnv</code> project, then the scene simulates in full screen
-            mode. To use the same window size as the default scenes, copy the
-                <code class="literal">DefaultGameUserSettings.ini</code> file from the support package
-            installation folder to your custom project folder. For example, copy
-                <code class="literal">DefaultGameUserSettings.ini</code> from:</p>
-<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C:\ProgramData\MATLAB\SupportPackages\&lt;MATLABrelease&gt;\toolbox\shared\sim3dprojects\driving\AutoVrtlEnv\Config
+<p>如果你正在模拟一个不基于AutoVtrlEnv项目的项目中的场景，那么场景将在全屏模式下模拟。要使用与默认场景相同的窗口大小，请将DefaultGameUserSettings.ini文件从支持包安装文件夹复制到自定义项目文件夹中。例如，从以下路径复制DefaultGameUserSettings.ini:<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>matlab下C:\ProgramData\MATLAB\SupportPackages\&lt;MATLABrelease&gt;\toolbox\shared\sim3dprojects\spkg\project\AutoVrtlEnv\Config</pre>
+<pre>到:</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>项目下C:\&lt;yourproject&gt;.project\Config
 </pre>
 </div>
 </div>
 </div>
-<p>to:</p>
-<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C:\&lt;yourproject&gt;.project\Config
-</pre>
-</div>
-</div>
-</div>
-<p>Then, package scenes from the project into an executable again and retry the
-            simulation.</p>
+<p>然后，再次将项目中的场景打包到可执行文件中，并重试模拟。</p>
 </section>
         <h2 id="d124e18207">See Also</h2>
 <p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
