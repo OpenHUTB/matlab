@@ -1,7 +1,4 @@
 function midiSyncControl(cid,val)
-
-
-
     assert(isa(cid,'double')&&isreal(cid));
     assert(isa(val,'double')&&isreal(val));
 
