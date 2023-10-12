@@ -1,158 +1,27 @@
 classdef(StrictDefaults)audioPlayerRecorder<matlab.System
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#function maudioToAudioDevice maudioFromAudioDevice
 
 %#codegen
     properties(Nontunable)
 
-
-
-
-
         Device=dsp.internal.getAudioIODriversAndDevices('defaultFullDuplexDevice');
-
 
 
         SampleRate=44100;
 
 
-
-
         BitDepth='16-bit integer';
-
-
-
-
 
 
         PlayerChannelMapping=[];
 
 
-
-
-
-
-
         RecorderChannelMapping=1;
 
 
-
-
-
         BufferSize=1024;
-
-
-
-
-
-
-
-
-
-
-
 
         SupportVariableSize(1,1)logical=false;
     end
