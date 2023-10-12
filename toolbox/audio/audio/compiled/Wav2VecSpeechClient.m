@@ -1,14 +1,6 @@
 classdef Wav2VecSpeechClient < handle
 
 
-
-
-
-
-
-
-
-
 properties ( SetAccess = immutable, GetAccess = public )
 Segmentation
 TimeStamps
@@ -212,11 +204,6 @@ Y = pagemtimes( params.fc.Weights, X ) + params.fc.Bias( : );
 function X = encoderBlock( X, params )
 
 
-
-
-
-
-
 xa = multiheadAttention( X, params.multiheadAttention );
 
 
@@ -329,10 +316,9 @@ end
 
 function Z = customGELU( x )
 
-
-
 Z = 0.5 * x .* ( 1 + tanh( sqrt( 2 / pi ) * ( x + 0.044715 * ( x .^ 3 ) ) ) );
 end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpDR8r7J.p.
-% Please follow local copyright laws when handling this file.
+
+
+
 
