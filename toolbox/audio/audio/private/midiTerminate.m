@@ -1,7 +1,5 @@
 function terminated=midiTerminate
 
-
-
 %#codegen
     coder.allowpcode('plain');
 
