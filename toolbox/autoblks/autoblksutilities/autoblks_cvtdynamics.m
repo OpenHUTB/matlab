@@ -4,10 +4,6 @@ function[wdot_pri,wdot_sec,vdot_b,tau_pri_BoP,tau_sec_BoP,LockedState,NewPriSlip
 %#codegen
     coder.allowpcode('plain')
 
-
-
-
-
     if PriSlipDir~=0&&PriVelMatch
         PriSlipDir=0;
     end
@@ -25,11 +21,6 @@ function[wdot_pri,wdot_sec,vdot_b,tau_pri_BoP,tau_sec_BoP,LockedState,NewPriSlip
         SecSlipDir=sign(DeltaSecVel);
     end
 
-
-
-
-
-
     if PriSlipDir~=0&&SecSlipDir~=0
         LockedState=0;
     elseif PriSlipDir==0&&SecSlipDir==0
@@ -39,8 +30,6 @@ function[wdot_pri,wdot_sec,vdot_b,tau_pri_BoP,tau_sec_BoP,LockedState,NewPriSlip
     else
         LockedState=2;
     end
-
-
 
     switch LockedState
     case 0
