@@ -1,7 +1,5 @@
 classdef autoblksGearNumType<Simulink.IntEnumType
 
-
-
     enumeration
         Park(-3)
         Reverse2(-2)
