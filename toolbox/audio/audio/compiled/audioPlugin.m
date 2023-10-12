@@ -1,25 +1,6 @@
 classdef audioPlugin<audio.internal.mixin.ParameterTunable
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     methods
@@ -31,9 +12,6 @@ classdef audioPlugin<audio.internal.mixin.ParameterTunable
             end
         end
     end
-
-
-
 
 
 
