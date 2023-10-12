@@ -1,9 +1,5 @@
 function[fromNormFcn,fromPropFcn]=getPluginMappingRules(param)
 
-
-
-
-
     switch param.Law
     case 'lin'
         fromNormFcn=@(x)fromNormPow(x,1,param.Min,param.Max);
