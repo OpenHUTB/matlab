@@ -1,100 +1,6 @@
 classdef audioPluginConfig
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 properties 
 DeepLearningConfig{ validateDLConfig( DeepLearningConfig ) } = [  ];
 CodeReplacementLibrary{ validateCRLConfig( CodeReplacementLibrary ) } = '';
@@ -112,9 +18,8 @@ end
 end 
 end 
 
+
 function validateDLConfig( dlcfg )
-
-
 
 
 import matlab.internal.lang.capability.Capability;
@@ -141,9 +46,8 @@ end
 end 
 end 
 
+
 function validateCRLConfig( crl )
-
-
 
 
 isValidCRL = false;
@@ -204,6 +108,4 @@ end
 
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpX2RwP3.p.
-% Please follow local copyright laws when handling this file.
 
