@@ -1,11 +1,5 @@
 function ok=audioutil
 
-
-
-
-
-
-
     persistent isInstalled;
     if isempty(isInstalled)
         isInstalled=~isempty(ver('audio'));
