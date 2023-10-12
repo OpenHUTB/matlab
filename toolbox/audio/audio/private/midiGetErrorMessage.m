@@ -1,7 +1,5 @@
 function msg=midiGetErrorMessage(err)
 
-
-
     assert(nargin==1);
     assert(isa(err,'double'));
     assert(isscalar(err));
@@ -20,6 +18,7 @@ function msg=midiGetErrorMessage(err)
         coder.ceval('getErrorMessageCpp',int32(err),coder.wref(msg));
     end
 end
+
 
 function str=stripZeros(str)
     str=str(1:find([str,char(0)]==0,1)-1);
