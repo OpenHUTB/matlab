@@ -1,8 +1,5 @@
 function varargout=feature(varargin)
 
-
-
-
     if nargin==0
         if nargout>0
             error(message('audio:plugin:TooManyOutputs'));
