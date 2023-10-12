@@ -1,8 +1,5 @@
 classdef autoblksEngFlwSystemClass<handle
 
-
-
-
     properties(SetAccess=private)
         SystemHdl;
 RefBlkInfo
