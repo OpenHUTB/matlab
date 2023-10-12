@@ -1,8 +1,5 @@
 function cloneResults = findClones( modelNameFullPath, cloneDetectionSettings )
 
-
-
-
 R36
 modelNameFullPath = ''
 cloneDetectionSettings = ''
@@ -66,6 +63,4 @@ exception.throwAsCaller(  );
 end 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpZYYKVO.p.
-% Please follow local copyright laws when handling this file.
 
