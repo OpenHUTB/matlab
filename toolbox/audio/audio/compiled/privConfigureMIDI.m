@@ -1,9 +1,5 @@
 function varargout=privConfigureMIDI(varargin)
 
-
-
-
-
     narginchk(1,5);
 
     [varargin{:}]=convertStringsToChars(varargin{:});
@@ -12,27 +8,16 @@ function varargout=privConfigureMIDI(varargin)
 
     if ischar(arg1)&&strcmp(arg1,'disconnect')
 
-
-
         narginchk(1,2);
         ObjectUnderTest=parse_disconnect_args(varargin{2:end});
         disconnect(ObjectUnderTest.getMIDIInterface);
     elseif ischar(arg1)&&strcmp(arg1,'getConnections')
-
-
 
         narginchk(2,2);
         ObjectUnderTest=varargin{2};
         MIDIInterface.checkObjectValidity(ObjectUnderTest);
         varargout{1}=getConnections(ObjectUnderTest.getMIDIInterface);
     else
-
-
-
-
-
-
-
         [ObjectUnderTest,Property,ControlNumber,DeviceName,EnableCodeGeneration]=parse_config_args(varargin{:});
         if isa(ObjectUnderTest,'audioPlugin')
             checkPluginClass(class(ObjectUnderTest));
@@ -41,6 +26,7 @@ function varargout=privConfigureMIDI(varargin)
     end
 
 end
+
 
 function[OBJ,Property,ControlNumber,DeviceName,EnableCodeGeneration]=parse_config_args(varargin)
     parser=inputParser;
@@ -84,6 +70,7 @@ function[OBJ,Property,ControlNumber,DeviceName,EnableCodeGeneration]=parse_confi
     DeviceName=parser.Results.DeviceName;
     EnableCodeGeneration=parser.Results.EnableCodeGeneration;
 end
+
 
 function OBJ=parse_disconnect_args(varargin)
     parser=inputParser;
