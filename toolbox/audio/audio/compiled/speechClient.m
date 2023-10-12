@@ -1,37 +1,5 @@
 function clientObj=speechClient(apiName,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(1,Inf);
     apiName=validatestring(apiName,["Google","IBM","Microsoft","wav2vec2.0"],"speechClient","apiName");
 
