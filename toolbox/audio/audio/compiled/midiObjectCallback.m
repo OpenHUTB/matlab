@@ -1,9 +1,5 @@
 function midiObjectCallback(midiHandle,obj,paramName,func,interface)
 
-
-
-
-
     if skipSync(interface)
         return;
     end
