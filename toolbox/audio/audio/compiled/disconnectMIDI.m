@@ -1,21 +1,6 @@
 function disconnectMIDI(arg)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(1,1);
-
 
     import matlab.internal.lang.capability.Capability;
     Capability.require(Capability.LocalClient);
