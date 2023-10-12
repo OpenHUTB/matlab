@@ -1,14 +1,10 @@
 function[cid,err]=midiOpenControl(control,initval,channel,sync,device)
 
-
-
     assert(isa(control,'double')&&isscalar(control)&&isreal(control));
     assert(-1<=control&&control<=127);
 
 
     assert(isa(initval,'double')&&isscalar(initval)&&isreal(initval));
-
-
 
     assert(isa(channel,'double')&&isscalar(channel)&&isreal(channel));
     assert(0<=channel&&channel<=16);
@@ -23,9 +19,6 @@ function[cid,err]=midiOpenControl(control,initval,channel,sync,device)
 
         [cid,err]=midimexif('midiOpenControl',control,initval,channel,sync,device);
     else
-
-
-
         coder.ceval('mexLock');
         cid=coder.nullcopy(0);
         err=coder.nullcopy(0);
