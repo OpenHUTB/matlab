@@ -1,7 +1,5 @@
 function device=midiGetDefaultInputDevice
 
-
-
 %#codegen
     coder.allowpcode('plain');
 
