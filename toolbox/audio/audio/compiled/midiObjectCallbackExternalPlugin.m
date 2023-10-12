@@ -1,9 +1,5 @@
 function midiObjectCallbackExternalPlugin(midiHandle,obj,param,interface)
 
-
-
-
-
     if skipSync(interface)
         return;
     end
