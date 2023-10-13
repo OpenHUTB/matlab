@@ -1,9 +1,5 @@
 function htmlOut = bindiff( source1, source2, report_id, detailed, width )
 
-
-
-
-
 R36
 
 source1{ mustBeTextScalar }
