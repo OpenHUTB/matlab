@@ -1,9 +1,5 @@
 classdef(Sealed=true)Class<classdiagram.app.core.domain.PackageElement
 
-
-
-
-
     properties(Constant)
         ConstantType="Class";
     end
