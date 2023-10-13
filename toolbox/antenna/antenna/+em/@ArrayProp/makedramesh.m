@@ -1,9 +1,5 @@
 function[Mesh,Parts]=makedramesh(obj,Mi)
 
-
-
-
-
     if isa(obj,'linearArray')||isa(obj,'circularArray')
         numiter=obj.NumElements;
     elseif isa(obj,'rectangularArray')
