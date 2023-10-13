@@ -1,16 +1,5 @@
 classdef wire<em.wire.WirePart
 
-
-
-
-
-
-
-
-
-
-
-
     properties
         Length=em.wire.wire.DefaultLength
     end
