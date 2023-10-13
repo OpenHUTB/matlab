@@ -1,7 +1,5 @@
 classdef Package<classdiagram.app.core.domain.BaseObject
 
-
-
     properties(Constant)
         ConstantType="Package";
     end
