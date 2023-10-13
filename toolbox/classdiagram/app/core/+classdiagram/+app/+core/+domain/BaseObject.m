@@ -1,7 +1,5 @@
 classdef(Abstract)BaseObject<handle
 
-
-
     properties(Access=protected)
         Uuid;
         ObjectID;
