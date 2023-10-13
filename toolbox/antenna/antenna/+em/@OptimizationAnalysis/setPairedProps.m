@@ -1,12 +1,6 @@
 function setPairedProps( obj, nameObjectCell )
 
-
-
-
-
-
-
-R36
+arguments
 obj( 1, 1 ){ mustBeNonempty }
 nameObjectCell( 1, : )cell{ mustBeNonempty, mustSatisfy( nameObjectCell ) }
 end 
@@ -36,6 +30,4 @@ end
 end 
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpFIIHsV.p.
-% Please follow local copyright laws when handling this file.
 

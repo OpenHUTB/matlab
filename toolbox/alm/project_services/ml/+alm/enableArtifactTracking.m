@@ -1,13 +1,9 @@
 function prevState = enableArtifactTracking( prjFolder, newState )
 
-
-
-
-R36
+arguments
 prjFolder{ mustBeFolder }
 newState{ islogical }
 end 
-
 
 if alm.internal.project.isJsEnabled(  )
 ps = alm.internal.ProjectService.get( prjFolder );
@@ -19,6 +15,5 @@ com.mathworks.toolbox.alm.project_services.ProjectServicesEnvironmentCustomizati
 end 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp0uOQjL.p.
-% Please follow local copyright laws when handling this file.
+
 

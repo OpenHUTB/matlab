@@ -1,15 +1,10 @@
 
-
-
-
-
-
 function dlgstruct = getPreferencesDlg( m3iRoot, nameValueArgs )
 
-R36
-m3iRoot( 1, 1 )Simulink.metamodel.arplatform.common.AUTOSAR
-nameValueArgs.IsDlgForInterfaceEditor logical = false;
-end 
+arguments
+    m3iRoot( 1, 1 )Simulink.metamodel.arplatform.common.AUTOSAR
+    nameValueArgs.IsDlgForInterfaceEditor logical = false;
+end
 
 import autosar.mm.util.XmlOptionsAdapter;
 
@@ -20,11 +15,11 @@ xmlOptionRows = autosar.ui.utils.XmlOptionsRow.empty(  );
 
 [ isSharedDictionary, dictFullName ] = autosar.dictionary.Utils.isSharedM3IModel( m3iRoot.rootModel );
 if isSharedDictionary
-m3iModelContext = autosar.api.internal.M3IModelContext.createContext( dictFullName );
-else 
-m3iModelContext = autosar.api.internal.M3IModelContext.createContext(  ...
-autosar.mm.observer.ObserversDispatcher.findModelFromMetaModel( m3iRoot.rootModel ) );
-end 
+    m3iModelContext = autosar.api.internal.M3IModelContext.createContext( dictFullName );
+else
+    m3iModelContext = autosar.api.internal.M3IModelContext.createContext(  ...
+        autosar.mm.observer.ObserversDispatcher.findModelFromMetaModel( m3iRoot.rootModel ) );
+end
 
 spacer1.Name = 'Spacer';
 spacer1.Type = 'text';
@@ -45,17 +40,17 @@ xmlOptionsSourceCombo.HideName = true;
 xmlOptionsSourceCombo.Type = 'combobox';
 xmlOptionsSourceCombo.Tag = 'XmlOptionsSource';
 xmlOptionsSourceCombo.Entries = {  ...
-DAStudio.message( 'autosarstandard:ui:uiXmlOptionsSourceComboInlinedValue' ),  ...
-DAStudio.message( 'autosarstandard:ui:uiXmlOptionsSourceComboInheritValue' ) };
+    DAStudio.message( 'autosarstandard:ui:uiXmlOptionsSourceComboInlinedValue' ),  ...
+    DAStudio.message( 'autosarstandard:ui:uiXmlOptionsSourceComboInheritValue' ) };
 xmlOptionsSourceCombo.Enabled = true;
 xmlOptionsSourceVal = XmlOptionsAdapter.get( m3iRoot, 'XmlOptionsSource' );
 if strcmp( xmlOptionsSourceVal, char( autosar.mm.util.XmlOptionsSourceEnum.Inlined ) )
-xmlOptionsSourceCombo.Value = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsSourceComboInlinedValue' );
-else 
-assert( strcmp( xmlOptionsSourceVal, char( autosar.mm.util.XmlOptionsSourceEnum.Inherit ) ),  ...
-'Unexpected value for XmlOptionsSource: %s', xmlOptionsSourceVal );
-xmlOptionsSourceCombo.Value = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsSourceComboInheritValue' );
-end 
+    xmlOptionsSourceCombo.Value = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsSourceComboInlinedValue' );
+else
+    assert( strcmp( xmlOptionsSourceVal, char( autosar.mm.util.XmlOptionsSourceEnum.Inherit ) ),  ...
+        'Unexpected value for XmlOptionsSource: %s', xmlOptionsSourceVal );
+    xmlOptionsSourceCombo.Value = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsSourceComboInheritValue' );
+end
 xmlOptionsSourceCombo.Editable = 0;
 xmlOptionsSourceCombo.ColSpan = [ columnOffset + 1, 15 ];
 xmlOptionsSourceCombo.MatlabMethod = 'autosar.ui.utils.xmlOptionsSourceChangedCallback';
@@ -66,43 +61,43 @@ xmlOptionsSourceCombo.MatlabArgs = { '%dialog', xmlOptionsSourceCombo.Tag };
 isArchitectureModel = m3iModelContext.isContextArchitectureModel(  );
 if ( ~isArchitectureModel && ~m3iModelContext.isContextMappedToAdaptiveApplication(  ) )
 
-xmlOptionsSourceVisible = nameValueArgs.IsDlgForInterfaceEditor || ~isSharedDictionary;
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow(  ...
-{ xmlOptionsSourceText, xmlOptionsSourceCombo }, xmlOptionsSourceVisible );
+    xmlOptionsSourceVisible = nameValueArgs.IsDlgForInterfaceEditor || ~isSharedDictionary;
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow(  ...
+        { xmlOptionsSourceText, xmlOptionsSourceCombo }, xmlOptionsSourceVisible );
 
 
 
-xmlOptionsVisible = strcmp( xmlOptionsSourceVal,  ...
-char( autosar.mm.util.XmlOptionsSourceEnum.Inlined ) );
-else 
-xmlOptionsVisible = true;
-end 
+    xmlOptionsVisible = strcmp( xmlOptionsSourceVal,  ...
+        char( autosar.mm.util.XmlOptionsSourceEnum.Inlined ) );
+else
+    xmlOptionsVisible = true;
+end
 
 if isSharedDictionary && nameValueArgs.IsDlgForInterfaceEditor
 
 
 
-schemaVersionText.Name = [ DAStudio.message( 'RTW:autosar:generateXMLForSchema' ), ':' ];
-schemaVersionText.Type = 'text';
-schemaVersionText.ColSpan = [ 2, columnOffset ];
-schemaVersionText.Visible = xmlOptionsVisible;
-schemaVersionText.Tag = 'schemaVersionText';
+    schemaVersionText.Name = [ DAStudio.message( 'RTW:autosar:generateXMLForSchema' ), ':' ];
+    schemaVersionText.Type = 'text';
+    schemaVersionText.ColSpan = [ 2, columnOffset ];
+    schemaVersionText.Visible = xmlOptionsVisible;
+    schemaVersionText.Tag = 'schemaVersionText';
 
-schemaVersionCombo.Name = DAStudio.message( 'autosarstandard:interface_dictionary:SchemaVersionHeader' );
-schemaVersionCombo.HideName = true;
-schemaVersionCombo.Type = 'combobox';
-schemaVersionCombo.Tag = 'SchemaVersion';
-schemaVersionCombo.Value = XmlOptionsAdapter.get( m3iRoot, 'SchemaVersion' );
+    schemaVersionCombo.Name = DAStudio.message( 'autosarstandard:interface_dictionary:SchemaVersionHeader' );
+    schemaVersionCombo.HideName = true;
+    schemaVersionCombo.Type = 'combobox';
+    schemaVersionCombo.Tag = 'SchemaVersion';
+    schemaVersionCombo.Value = XmlOptionsAdapter.get( m3iRoot, 'SchemaVersion' );
 
-schemaVersionCombo.Editable = 0;
-schemaVersionCombo.ToolTip = DAStudio.message( 'autosarstandard:interface_dictionary:SchemaVersionTooltip' );
-schemaVersionCombo.Entries = XmlOptionsAdapter.getEnumPropertyValues( 'SchemaVersion' );
-schemaVersionCombo.ColSpan = [ columnOffset + 1, 15 ];
-schemaVersionCombo.Visible = xmlOptionsVisible;
+    schemaVersionCombo.Editable = 0;
+    schemaVersionCombo.ToolTip = DAStudio.message( 'autosarstandard:interface_dictionary:SchemaVersionTooltip' );
+    schemaVersionCombo.Entries = XmlOptionsAdapter.getEnumPropertyValues( 'SchemaVersion' );
+    schemaVersionCombo.ColSpan = [ columnOffset + 1, 15 ];
+    schemaVersionCombo.Visible = xmlOptionsVisible;
 
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { schemaVersionText, schemaVersionCombo },  ...
-XmlOptionsAdapter.isVisibleProperty( 'SchemaVersion', m3iModelContext ) );
-end 
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { schemaVersionText, schemaVersionCombo },  ...
+        XmlOptionsAdapter.isVisibleProperty( 'SchemaVersion', m3iModelContext ) );
+end
 
 packagingText.Name = DAStudio.message( 'RTW:autosar:uiPackagingComboName' );
 packagingText.Type = 'text';
@@ -116,21 +111,21 @@ packagingCombo.Type = 'combobox';
 
 packagingCombo.Tag = 'ExportedXMLFilePackaging';
 packagingCombo.Entries = {  ...
-DAStudio.message( 'RTW:autosar:uiPackagingComboModularValue' ),  ...
-DAStudio.message( 'RTW:autosar:uiPackagingComboSingleFileValue' ) };
+    DAStudio.message( 'RTW:autosar:uiPackagingComboModularValue' ),  ...
+    DAStudio.message( 'RTW:autosar:uiPackagingComboSingleFileValue' ) };
 packagingCombo.Enabled = true;
 if m3iRoot.ArxmlFilePackaging == Simulink.metamodel.arplatform.common.ArxmlFilePackagingKind.SingleFile
-packagingCombo.Value = DAStudio.message( 'RTW:autosar:uiPackagingComboSingleFileValue' );
-else 
-packagingCombo.Value = DAStudio.message( 'RTW:autosar:uiPackagingComboModularValue' );
-end 
+    packagingCombo.Value = DAStudio.message( 'RTW:autosar:uiPackagingComboSingleFileValue' );
+else
+    packagingCombo.Value = DAStudio.message( 'RTW:autosar:uiPackagingComboModularValue' );
+end
 packagingCombo.Editable = 0;
 packagingCombo.ColSpan = [ columnOffset + 1, 15 ];
 packagingCombo.Visible = xmlOptionsVisible;
 
 if ~isArchitectureModel
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { packagingText, packagingCombo }, true );
-end 
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { packagingText, packagingCombo }, true );
+end
 
 pkgPathLabel.Name = DAStudio.message( 'RTW:autosar:uiPackagePathsLabel' );
 pkgPathLabel.Type = 'text';
@@ -163,10 +158,10 @@ componentPackageBrowse.MatlabArgs = { m3iRoot, '%dialog', componentPackageEdit.T
 componentPackageBrowse.Visible = 0;
 
 if isArchitectureModel
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow(  ...
-{ componentPackageText, componentPackageEdit, componentPackageBrowse },  ...
-true );
-end 
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow(  ...
+        { componentPackageText, componentPackageEdit, componentPackageBrowse },  ...
+        true );
+end
 
 datatypePackageText.Name = DAStudio.message( 'RTW:autosar:uiDatatypePackageLabel' );
 datatypePackageText.Tag = 'datatypePackageText';
@@ -191,7 +186,7 @@ datatypePackageBrowse.MatlabArgs = { m3iRoot, '%dialog', datatypePackageEdit.Tag
 datatypePackageBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { datatypePackageText, datatypePackageEdit, datatypePackageBrowse },  ...
-true );
+    true );
 
 interfacePackageText.Name = DAStudio.message( 'RTW:autosar:uiInterfacePackageLabel' );
 interfacePackageText.Type = 'text';
@@ -216,79 +211,79 @@ interfacePackageBrowse.MatlabArgs = { m3iRoot, '%dialog', interfacePackageEdit.T
 interfacePackageBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { interfacePackageText, interfacePackageEdit, interfacePackageBrowse },  ...
-true );
+    true );
 
 if slfeature( 'AUTOSARPlatformTypesRefAndNativeDecl' )
-platformTypesOptionsLabel.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformTypesLabel' );
-platformTypesOptionsLabel.Type = 'text';
-platformTypesOptionsLabel.Bold = 1;
-platformTypesOptionsLabel.ColSpan = [ 1, 15 ];
-platformTypesOptionsLabel.FontPointSize = 6;
-platformTypesOptionsLabel.Visible = xmlOptionsVisible;
-platformTypesOptionsLabel.Tag = 'platformTypesOptionsLabel';
+    platformTypesOptionsLabel.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformTypesLabel' );
+    platformTypesOptionsLabel.Type = 'text';
+    platformTypesOptionsLabel.Bold = 1;
+    platformTypesOptionsLabel.ColSpan = [ 1, 15 ];
+    platformTypesOptionsLabel.FontPointSize = 6;
+    platformTypesOptionsLabel.Visible = xmlOptionsVisible;
+    platformTypesOptionsLabel.Tag = 'platformTypesOptionsLabel';
 
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( platformTypesOptionsLabel,  ...
-true );
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( platformTypesOptionsLabel,  ...
+        true );
 
-platformTypePkgText.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformDataTypePackage' );
-platformTypePkgText.Type = 'text';
-platformTypePkgText.ColSpan = [ 2, columnOffset ];
-platformTypePkgText.Visible = xmlOptionsVisible;
-platformTypePkgText.Tag = 'platformTypePkgText';
+    platformTypePkgText.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformDataTypePackage' );
+    platformTypePkgText.Type = 'text';
+    platformTypePkgText.ColSpan = [ 2, columnOffset ];
+    platformTypePkgText.Visible = xmlOptionsVisible;
+    platformTypePkgText.Tag = 'platformTypePkgText';
 
-platformTypePkgEdit.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformDataTypePackage' );
-platformTypePkgEdit.HideName = true;
-platformTypePkgEdit.Type = 'edit';
-platformTypePkgEdit.Tag = 'PlatformDTPackage';
-platformTypePkgEdit.Value = XmlOptionsAdapter.get( m3iRoot, 'PlatformDataTypePackage' );
-platformTypePkgEdit.ColSpan = [ columnOffset + 1, 15 ];
-platformTypePkgEdit.Visible = xmlOptionsVisible;
+    platformTypePkgEdit.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformDataTypePackage' );
+    platformTypePkgEdit.HideName = true;
+    platformTypePkgEdit.Type = 'edit';
+    platformTypePkgEdit.Tag = 'PlatformDTPackage';
+    platformTypePkgEdit.Value = XmlOptionsAdapter.get( m3iRoot, 'PlatformDataTypePackage' );
+    platformTypePkgEdit.ColSpan = [ columnOffset + 1, 15 ];
+    platformTypePkgEdit.Visible = xmlOptionsVisible;
 
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { platformTypePkgText, platformTypePkgEdit },  ...
-XmlOptionsAdapter.isVisibleProperty( 'PlatformDataTypePackage', m3iModelContext ) );
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { platformTypePkgText, platformTypePkgEdit },  ...
+        XmlOptionsAdapter.isVisibleProperty( 'PlatformDataTypePackage', m3iModelContext ) );
 
-platformTypesRefText.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformReference' );
-platformTypesRefText.Type = 'text';
-platformTypesRefText.ColSpan = [ 2, columnOffset ];
-platformTypesRefText.Visible = xmlOptionsVisible;
-platformTypesRefText.Tag = 'platformTypesRefText';
+    platformTypesRefText.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformReference' );
+    platformTypesRefText.Type = 'text';
+    platformTypesRefText.ColSpan = [ 2, columnOffset ];
+    platformTypesRefText.Visible = xmlOptionsVisible;
+    platformTypesRefText.Tag = 'platformTypesRefText';
 
-platformTypesRefCombo.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformReference' );
-platformTypesRefCombo.HideName = true;
-platformTypesRefCombo.Type = 'combobox';
-platformTypesRefCombo.Tag = 'UsePlatformTypeReferences';
+    platformTypesRefCombo.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformReference' );
+    platformTypesRefCombo.HideName = true;
+    platformTypesRefCombo.Type = 'combobox';
+    platformTypesRefCombo.Tag = 'UsePlatformTypeReferences';
 
-platformTypesRefCombo.Value = XmlOptionsAdapter.get( m3iRoot, 'UsePlatformTypeReferences' );
-platformTypesRefCombo.Editable = 0;
-platformTypesRefCombo.ToolTip = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformReferenceTooltip' );
-platformTypesRefCombo.Entries = XmlOptionsAdapter.getEnumPropertyValues( 'UsePlatformTypeReferences' );
-platformTypesRefCombo.ColSpan = [ columnOffset + 1, 15 ];
-platformTypesRefCombo.Visible = xmlOptionsVisible;
+    platformTypesRefCombo.Value = XmlOptionsAdapter.get( m3iRoot, 'UsePlatformTypeReferences' );
+    platformTypesRefCombo.Editable = 0;
+    platformTypesRefCombo.ToolTip = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsPlatformReferenceTooltip' );
+    platformTypesRefCombo.Entries = XmlOptionsAdapter.getEnumPropertyValues( 'UsePlatformTypeReferences' );
+    platformTypesRefCombo.ColSpan = [ columnOffset + 1, 15 ];
+    platformTypesRefCombo.Visible = xmlOptionsVisible;
 
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { platformTypesRefText, platformTypesRefCombo },  ...
-XmlOptionsAdapter.isVisibleProperty( 'UsePlatformTypeReferences', m3iModelContext ) );
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { platformTypesRefText, platformTypesRefCombo },  ...
+        XmlOptionsAdapter.isVisibleProperty( 'UsePlatformTypeReferences', m3iModelContext ) );
 
-nativeDeclarationText.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsNativeDeclaration' );
-nativeDeclarationText.Type = 'text';
-nativeDeclarationText.ColSpan = [ 2, columnOffset ];
-nativeDeclarationText.Visible = xmlOptionsVisible;
-nativeDeclarationText.Tag = 'nativeDeclarationText';
+    nativeDeclarationText.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsNativeDeclaration' );
+    nativeDeclarationText.Type = 'text';
+    nativeDeclarationText.ColSpan = [ 2, columnOffset ];
+    nativeDeclarationText.Visible = xmlOptionsVisible;
+    nativeDeclarationText.Tag = 'nativeDeclarationText';
 
-nativeDeclarationCombo.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsNativeDeclaration' );
-nativeDeclarationCombo.HideName = true;
-nativeDeclarationCombo.Type = 'combobox';
-nativeDeclarationCombo.Tag = 'NativeDeclaration';
+    nativeDeclarationCombo.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsNativeDeclaration' );
+    nativeDeclarationCombo.HideName = true;
+    nativeDeclarationCombo.Type = 'combobox';
+    nativeDeclarationCombo.Tag = 'NativeDeclaration';
 
-nativeDeclarationCombo.Value = XmlOptionsAdapter.get( m3iRoot, 'NativeDeclaration' );
-nativeDeclarationCombo.Editable = 0;
-nativeDeclarationCombo.ToolTip = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsNativeDeclarationTooltip' );
-nativeDeclarationCombo.Entries = XmlOptionsAdapter.getEnumPropertyValues( 'NativeDeclaration' );
-nativeDeclarationCombo.ColSpan = [ columnOffset + 1, 15 ];
-nativeDeclarationCombo.Visible = xmlOptionsVisible;
+    nativeDeclarationCombo.Value = XmlOptionsAdapter.get( m3iRoot, 'NativeDeclaration' );
+    nativeDeclarationCombo.Editable = 0;
+    nativeDeclarationCombo.ToolTip = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsNativeDeclarationTooltip' );
+    nativeDeclarationCombo.Entries = XmlOptionsAdapter.getEnumPropertyValues( 'NativeDeclaration' );
+    nativeDeclarationCombo.ColSpan = [ columnOffset + 1, 15 ];
+    nativeDeclarationCombo.Visible = xmlOptionsVisible;
 
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { nativeDeclarationText, nativeDeclarationCombo },  ...
-XmlOptionsAdapter.isVisibleProperty( 'NativeDeclaration', m3iModelContext ) );
-end 
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { nativeDeclarationText, nativeDeclarationCombo },  ...
+        XmlOptionsAdapter.isVisibleProperty( 'NativeDeclaration', m3iModelContext ) );
+end
 
 addPkgPathLabel.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackagesLabel' );
 addPkgPathLabel.Type = 'text';
@@ -299,17 +294,17 @@ addPkgPathLabel.Visible = xmlOptionsVisible;
 addPkgPathLabel.Tag = 'addPkgPathLabel';
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( addPkgPathLabel,  ...
-true );
+    true );
 
 applTypePkgText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'ApplicationDataType Package' );
+    'ApplicationDataType Package' );
 applTypePkgText.Type = 'text';
 applTypePkgText.ColSpan = [ 2, columnOffset ];
 applTypePkgText.Visible = xmlOptionsVisible;
 applTypePkgText.Tag = 'applTypePkgText';
 
 applTypePkgEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'ApplicationDataType' );
+    'ApplicationDataType' );
 applTypePkgEdit.HideName = true;
 applTypePkgEdit.Type = 'edit';
 applTypePkgEdit.Tag = 'ApplDTPackage';
@@ -326,17 +321,17 @@ applTypeBrowse.MatlabArgs = { m3iRoot, '%dialog', applTypePkgEdit.Tag };
 applTypeBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { applTypePkgText, applTypePkgEdit, applTypeBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'ApplicationDataTypePackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'ApplicationDataTypePackage', m3iModelContext ) );
 
 baseTypeText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'SwBaseType Package' );
+    'SwBaseType Package' );
 baseTypeText.Type = 'text';
 baseTypeText.ColSpan = [ 2, columnOffset ];
 baseTypeText.Visible = xmlOptionsVisible;
 baseTypeText.Tag = 'baseTypeText';
 
 baseTypeEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'SwBaseType' );
+    'SwBaseType' );
 baseTypeEdit.HideName = true;
 baseTypeEdit.Type = 'edit';
 baseTypeEdit.Tag = 'BaseTypePackage';
@@ -353,17 +348,17 @@ baseTypeBrowse.MatlabArgs = { m3iRoot, '%dialog', baseTypeEdit.Tag };
 baseTypeBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { baseTypeText, baseTypeEdit, baseTypeBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'SwBaseTypePackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'SwBaseTypePackage', m3iModelContext ) );
 
 dataTypeMapText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'DataTypeMappingSet Package' );
+    'DataTypeMappingSet Package' );
 dataTypeMapText.Type = 'text';
 dataTypeMapText.ColSpan = [ 2, columnOffset ];
 dataTypeMapText.Visible = xmlOptionsVisible;
 dataTypeMapText.Tag = 'dataTypeMapText';
 
 dataTypeMapEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'DataTypeMappingSet' );
+    'DataTypeMappingSet' );
 dataTypeMapEdit.HideName = true;
 dataTypeMapEdit.Type = 'edit';
 dataTypeMapEdit.Tag = 'DataTypeMapPackage';
@@ -380,17 +375,17 @@ dataTypeMapBrowse.MatlabArgs = { m3iRoot, '%dialog', dataTypeMapEdit.Tag };
 dataTypeMapBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { dataTypeMapText, dataTypeMapEdit, dataTypeMapBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'DataTypeMappingPackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'DataTypeMappingPackage', m3iModelContext ) );
 
 constantText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'ConstantSpecification Package' );
+    'ConstantSpecification Package' );
 constantText.Type = 'text';
 constantText.ColSpan = [ 2, columnOffset ];
 constantText.Visible = xmlOptionsVisible;
 constantText.Tag = 'constantText';
 
 constantEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'ConstantSpecification' );
+    'ConstantSpecification' );
 constantEdit.HideName = true;
 constantEdit.Type = 'edit';
 constantEdit.Tag = 'ConstantPackage';
@@ -407,17 +402,17 @@ constantBrowse.MatlabArgs = { m3iRoot, '%dialog', constantEdit.Tag };
 constantBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { constantText, constantEdit, constantBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'ConstantSpecificationPackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'ConstantSpecificationPackage', m3iModelContext ) );
 
 dataConstrText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'Physical DataConstraints Package' );
+    'Physical DataConstraints Package' );
 dataConstrText.Type = 'text';
 dataConstrText.ColSpan = [ 2, columnOffset ];
 dataConstrText.Visible = xmlOptionsVisible;
 dataConstrText.Tag = 'dataConstrText';
 
 dataConstrEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'DataConstraints' );
+    'DataConstraints' );
 dataConstrEdit.HideName = true;
 dataConstrEdit.Type = 'edit';
 dataConstrEdit.Tag = 'DataConstrPackage';
@@ -434,17 +429,17 @@ dataConstrBrowse.MatlabArgs = { m3iRoot, '%dialog', dataConstrEdit.Tag };
 dataConstrBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { dataConstrText, dataConstrEdit, dataConstrBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'DataConstraintPackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'DataConstraintPackage', m3iModelContext ) );
 
 sysConstantText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'SystemConstant Package' );
+    'SystemConstant Package' );
 sysConstantText.Type = 'text';
 sysConstantText.ColSpan = [ 2, columnOffset ];
 sysConstantText.Visible = xmlOptionsVisible;
 sysConstantText.Tag = 'sysConstantText';
 
 sysConstantEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'SystemConstant' );
+    'SystemConstant' );
 sysConstantEdit.HideName = true;
 sysConstantEdit.Type = 'edit';
 sysConstantEdit.Tag = 'SysConstantPackage';
@@ -461,47 +456,47 @@ sysConstantBrowse.MatlabArgs = { m3iRoot, '%dialog', sysConstantEdit.Tag };
 sysConstantBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { sysConstantText, sysConstantEdit, sysConstantBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'SystemConstantPackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'SystemConstantPackage', m3iModelContext ) );
 
 if slfeature( 'AUTOSARPostBuildVariant' )
-pbVarCritText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'PostBuildVariantCriterion Package' );
-pbVarCritText.Type = 'text';
-pbVarCritText.ColSpan = [ 2, columnOffset ];
-pbVarCritText.Visible = xmlOptionsVisible;
-pbVarCritText.Tag = 'pbVarCritText';
-pbVarCritText.Visible = xmlOptionsVisible;
+    pbVarCritText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
+        'PostBuildVariantCriterion Package' );
+    pbVarCritText.Type = 'text';
+    pbVarCritText.ColSpan = [ 2, columnOffset ];
+    pbVarCritText.Visible = xmlOptionsVisible;
+    pbVarCritText.Tag = 'pbVarCritText';
+    pbVarCritText.Visible = xmlOptionsVisible;
 
-pbVarCritEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'PostBuildVariantCriterion' );
-pbVarCritEdit.HideName = true;
-pbVarCritEdit.Type = 'edit';
-pbVarCritEdit.Tag = 'PostBuildCriterionPackage';
-pbVarCritEdit.Value = XmlOptionsAdapter.get( m3iRoot, 'PostBuildCriterionPackage' );
-pbVarCritEdit.ColSpan = [ columnOffset + 1, 15 ];
-pbVarCritEdit.Visible = xmlOptionsVisible;
+    pbVarCritEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
+        'PostBuildVariantCriterion' );
+    pbVarCritEdit.HideName = true;
+    pbVarCritEdit.Type = 'edit';
+    pbVarCritEdit.Tag = 'PostBuildCriterionPackage';
+    pbVarCritEdit.Value = XmlOptionsAdapter.get( m3iRoot, 'PostBuildCriterionPackage' );
+    pbVarCritEdit.ColSpan = [ columnOffset + 1, 15 ];
+    pbVarCritEdit.Visible = xmlOptionsVisible;
 
-pbVarCritBrowse.Type = 'pushbutton';
-pbVarCritBrowse.Tag = 'pbVarCritBrowse';
-pbVarCritBrowse.Name = autosar.ui.metamodel.PackageString.browseLabel;
-pbVarCritBrowse.ColSpan = [ 16, 17 ];
-pbVarCritBrowse.MatlabMethod = 'autosar.ui.utils.editPackage';
-pbVarCritBrowse.MatlabArgs = { m3iRoot, '%dialog', pbVarCritEdit.Tag };
-pbVarCritBrowse.Visible = 0;
+    pbVarCritBrowse.Type = 'pushbutton';
+    pbVarCritBrowse.Tag = 'pbVarCritBrowse';
+    pbVarCritBrowse.Name = autosar.ui.metamodel.PackageString.browseLabel;
+    pbVarCritBrowse.ColSpan = [ 16, 17 ];
+    pbVarCritBrowse.MatlabMethod = 'autosar.ui.utils.editPackage';
+    pbVarCritBrowse.MatlabArgs = { m3iRoot, '%dialog', pbVarCritEdit.Tag };
+    pbVarCritBrowse.Visible = 0;
 
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { pbVarCritText, pbVarCritEdit, pbVarCritBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'PostBuildCriterionPackage', m3iModelContext ) );
-end 
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { pbVarCritText, pbVarCritEdit, pbVarCritBrowse },  ...
+        XmlOptionsAdapter.isVisibleProperty( 'PostBuildCriterionPackage', m3iModelContext ) );
+end
 
 swAddressText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'SwAddressMethod Package' );
+    'SwAddressMethod Package' );
 swAddressText.Type = 'text';
 swAddressText.ColSpan = [ 2, columnOffset ];
 swAddressText.Visible = xmlOptionsVisible;
 swAddressText.Tag = 'swAddressText';
 
 swAddressEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'SwAddressMethod' );
+    'SwAddressMethod' );
 swAddressEdit.HideName = true;
 swAddressEdit.Type = 'edit';
 swAddressEdit.Tag = 'SwAddrPackage';
@@ -518,17 +513,17 @@ swAddressBrowse.MatlabArgs = { m3iRoot, '%dialog', swAddressEdit.Tag };
 swAddressBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { swAddressText, swAddressEdit, swAddressBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'SwAddressMethodPackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'SwAddressMethodPackage', m3iModelContext ) );
 
 mdgText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'ModeDeclarationGroup Package' );
+    'ModeDeclarationGroup Package' );
 mdgText.Type = 'text';
 mdgText.ColSpan = [ 2, columnOffset ];
 mdgText.Visible = xmlOptionsVisible;
 mdgText.Tag = 'mdgText';
 
 mdgEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'ModeDeclarationGroup' );
+    'ModeDeclarationGroup' );
 mdgEdit.HideName = true;
 mdgEdit.Type = 'edit';
 mdgEdit.Tag = 'MDGPackage';
@@ -545,17 +540,17 @@ mdgBrowse.MatlabArgs = { m3iRoot, '%dialog', mdgEdit.Tag };
 mdgBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { mdgText, mdgEdit, mdgBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'ModeDeclarationGroupPackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'ModeDeclarationGroupPackage', m3iModelContext ) );
 
 compuText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'CompuMethod Package' );
+    'CompuMethod Package' );
 compuText.Type = 'text';
 compuText.ColSpan = [ 2, columnOffset ];
 compuText.Visible = xmlOptionsVisible;
 compuText.Tag = 'compuText';
 
 compuEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'CompuMethod' );
+    'CompuMethod' );
 compuEdit.HideName = true;
 compuEdit.Type = 'edit';
 compuEdit.Tag = 'CompuPackage';
@@ -572,17 +567,17 @@ compuBrowse.MatlabArgs = { m3iRoot, '%dialog', compuEdit.Tag };
 compuBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { compuText, compuEdit, compuBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'CompuMethodPackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'CompuMethodPackage', m3iModelContext ) );
 
 unitsText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'Unit Package' );
+    'Unit Package' );
 unitsText.Type = 'text';
 unitsText.ColSpan = [ 2, columnOffset ];
 unitsText.Visible = xmlOptionsVisible;
 unitsText.Tag = 'unitsText';
 
 unitsEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'Unit' );
+    'Unit' );
 unitsEdit.HideName = true;
 unitsEdit.Type = 'edit';
 unitsEdit.Tag = 'UnitPackage';
@@ -599,17 +594,17 @@ unitBrowse.MatlabArgs = { m3iRoot, '%dialog', unitsEdit.Tag };
 unitBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { unitsText, unitsEdit, unitBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'UnitPackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'UnitPackage', m3iModelContext ) );
 
 recordLayoutText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'SwRecordLayout Package' );
+    'SwRecordLayout Package' );
 recordLayoutText.Type = 'text';
 recordLayoutText.ColSpan = [ 2, columnOffset ];
 recordLayoutText.Visible = xmlOptionsVisible;
 recordLayoutText.Tag = 'recordLayoutText';
 
 recordLayoutEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'SwRecordLayout' );
+    'SwRecordLayout' );
 recordLayoutEdit.HideName = true;
 recordLayoutEdit.Type = 'edit';
 recordLayoutEdit.Tag = 'SwRecordLayoutPackage';
@@ -626,17 +621,17 @@ recordLayoutBrowse.MatlabArgs = { m3iRoot, '%dialog', recordLayoutEdit.Tag };
 recordLayoutBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { recordLayoutText, recordLayoutEdit, recordLayoutBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'SwRecordLayoutPackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'SwRecordLayoutPackage', m3iModelContext ) );
 
 internalDataConstrText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'Internal DataConstraints Package' );
+    'Internal DataConstraints Package' );
 internalDataConstrText.Type = 'text';
 internalDataConstrText.ColSpan = [ 2, columnOffset ];
 internalDataConstrText.Visible = xmlOptionsVisible;
 internalDataConstrText.Tag = 'internalDataConstrText';
 
 internalDataConstrEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'Internal DataConstraints' );
+    'Internal DataConstraints' );
 internalDataConstrEdit.HideName = true;
 internalDataConstrEdit.Type = 'edit';
 internalDataConstrEdit.Tag = 'InternalDataConstrPackage';
@@ -653,37 +648,37 @@ internalDataConstrBrowse.MatlabArgs = { m3iRoot, '%dialog', internalDataConstrEd
 internalDataConstrBrowse.Visible = 0;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { internalDataConstrText, internalDataConstrEdit, internalDataConstrBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'InternalDataConstraintPackage', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'InternalDataConstraintPackage', m3iModelContext ) );
 
 if slfeature( 'AUTOSAREcuExtract' )
-systemPkgText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'System Package' );
-systemPkgText.Type = 'text';
-systemPkgText.ColSpan = [ 2, columnOffset ];
-systemPkgText.Visible = xmlOptionsVisible;
-systemPkgText.Tag = 'systemPkgText';
+    systemPkgText.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
+        'System Package' );
+    systemPkgText.Type = 'text';
+    systemPkgText.ColSpan = [ 2, columnOffset ];
+    systemPkgText.Visible = xmlOptionsVisible;
+    systemPkgText.Tag = 'systemPkgText';
 
-systemPkgEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
-'System Package' );
-systemPkgEdit.HideName = true;
-systemPkgEdit.Type = 'edit';
-systemPkgEdit.Tag = 'SystemPackage';
-systemPkgEdit.Value = XmlOptionsAdapter.get( m3iRoot, 'SystemPackage' );
-systemPkgEdit.ColSpan = [ columnOffset + 1, 15 ];
-systemPkgEdit.Visible = xmlOptionsVisible;
+    systemPkgEdit.Name = DAStudio.message( 'RTW:autosar:uiAdditionalPackageStr',  ...
+        'System Package' );
+    systemPkgEdit.HideName = true;
+    systemPkgEdit.Type = 'edit';
+    systemPkgEdit.Tag = 'SystemPackage';
+    systemPkgEdit.Value = XmlOptionsAdapter.get( m3iRoot, 'SystemPackage' );
+    systemPkgEdit.ColSpan = [ columnOffset + 1, 15 ];
+    systemPkgEdit.Visible = xmlOptionsVisible;
 
-systemPkgBrowse.Type = 'pushbutton';
-systemPkgBrowse.Tag = 'systemPkgBrowse';
-systemPkgBrowse.Name = autosar.ui.metamodel.PackageString.browseLabel;
-systemPkgBrowse.ColSpan = [ 16, 17 ];
-systemPkgBrowse.MatlabMethod = 'autosar.ui.utils.editPackage';
-systemPkgBrowse.MatlabArgs = { m3iRoot, '%dialog', systemPkgEdit.Tag };
-systemPkgBrowse.Visible = 0;
+    systemPkgBrowse.Type = 'pushbutton';
+    systemPkgBrowse.Tag = 'systemPkgBrowse';
+    systemPkgBrowse.Name = autosar.ui.metamodel.PackageString.browseLabel;
+    systemPkgBrowse.ColSpan = [ 16, 17 ];
+    systemPkgBrowse.MatlabMethod = 'autosar.ui.utils.editPackage';
+    systemPkgBrowse.MatlabArgs = { m3iRoot, '%dialog', systemPkgEdit.Tag };
+    systemPkgBrowse.Visible = 0;
 
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow(  ...
-{ systemPkgText, systemPkgEdit, systemPkgBrowse },  ...
-XmlOptionsAdapter.isVisibleProperty( 'SystemPackage', m3iModelContext ) );
-end 
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow(  ...
+        { systemPkgText, systemPkgEdit, systemPkgBrowse },  ...
+        XmlOptionsAdapter.isVisibleProperty( 'SystemPackage', m3iModelContext ) );
+end
 
 additionalOptionsLabel.Name = DAStudio.message( 'RTW:autosar:uiAdditionalOptionsLabel' );
 additionalOptionsLabel.Type = 'text';
@@ -694,7 +689,7 @@ additionalOptionsLabel.Visible = xmlOptionsVisible;
 additionalOptionsLabel.Tag = 'additionalOptionsLabel';
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( additionalOptionsLabel,  ...
-true );
+    true );
 
 implTypeRefText.Name = DAStudio.message( 'RTW:autosar:uiImplTypeRefComboName' );
 implTypeRefText.Type = 'text';
@@ -715,7 +710,7 @@ implTypeRefCombo.ColSpan = [ columnOffset + 1, 15 ];
 implTypeRefCombo.Visible = xmlOptionsVisible;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { implTypeRefText, implTypeRefCombo },  ...
-XmlOptionsAdapter.isVisibleProperty( 'ImplementationTypeReference', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'ImplementationTypeReference', m3iModelContext ) );
 
 swCalibrationAccessText.Name = DAStudio.message( 'RTW:autosar:uiSwCalibrationAccessComboName' );
 swCalibrationAccessText.Type = 'text';
@@ -735,7 +730,7 @@ swCalibrationAccessCombo.ColSpan = [ columnOffset + 1, 15 ];
 swCalibrationAccessCombo.Visible = xmlOptionsVisible;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { swCalibrationAccessText, swCalibrationAccessCombo },  ...
-XmlOptionsAdapter.isVisibleProperty( 'SwCalibrationAccessDefault', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'SwCalibrationAccessDefault', m3iModelContext ) );
 
 compuDirectionText.Name = DAStudio.message( 'RTW:autosar:uiCompuDirectionComboName' );
 compuDirectionText.Type = 'text';
@@ -755,7 +750,7 @@ compuDirectionCombo.ColSpan = [ columnOffset + 1, 15 ];
 compuDirectionCombo.Visible = xmlOptionsVisible;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { compuDirectionText, compuDirectionCombo },  ...
-XmlOptionsAdapter.isVisibleProperty( 'CompuMethodDirection', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'CompuMethodDirection', m3iModelContext ) );
 
 internConstrsRefText.Name = DAStudio.message( 'autosarstandard:ui:uiInternalDataConstrComboName' );
 internConstrsRefText.Type = 'text';
@@ -775,28 +770,28 @@ internConstrsRefCheckBox.ColSpan = [ columnOffset + 1, 15 ];
 internConstrsRefCheckBox.Visible = xmlOptionsVisible;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { internConstrsRefText, internConstrsRefCheckBox },  ...
-XmlOptionsAdapter.isVisibleProperty( 'InternalDataConstraintExport', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'InternalDataConstraintExport', m3iModelContext ) );
 if slfeature( 'AUTOSARLUTRecordValueSpec' )
-lutApplValueSpecText.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsLUTApplValueSpecCheckBoxName' );
-lutApplValueSpecText.Type = 'text';
-lutApplValueSpecText.ColSpan = [ 2, columnOffset ];
-lutApplValueSpecText.Visible = xmlOptionsVisible;
-lutApplValueSpecText.Tag = 'lutApplValueSpecText';
+    lutApplValueSpecText.Name = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsLUTApplValueSpecCheckBoxName' );
+    lutApplValueSpecText.Type = 'text';
+    lutApplValueSpecText.ColSpan = [ 2, columnOffset ];
+    lutApplValueSpecText.Visible = xmlOptionsVisible;
+    lutApplValueSpecText.Tag = 'lutApplValueSpecText';
 
-lutApplValueSpecCheckBox.HideName = false;
-lutApplValueSpecCheckBox.Type = 'checkbox';
-lutApplValueSpecCheckBox.Tag = 'ExportLookupTableApplicationValueSpecification';
-lutApplValueSpecCheckBox.Visible = xmlOptionsVisible;
+    lutApplValueSpecCheckBox.HideName = false;
+    lutApplValueSpecCheckBox.Type = 'checkbox';
+    lutApplValueSpecCheckBox.Tag = 'ExportLookupTableApplicationValueSpecification';
+    lutApplValueSpecCheckBox.Visible = xmlOptionsVisible;
 
-lutApplValueSpecCheckBox.Value = XmlOptionsAdapter.get( m3iRoot, 'ExportLookupTableApplicationValueSpecification' );
-lutApplValueSpecCheckBox.Editable = 0;
-lutApplValueSpecCheckBox.ToolTip = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsLUTApplValueSpecTooltip' );
-lutApplValueSpecCheckBox.ColSpan = [ columnOffset + 1, 15 ];
-lutApplValueSpecCheckBox.Visible = xmlOptionsVisible;
+    lutApplValueSpecCheckBox.Value = XmlOptionsAdapter.get( m3iRoot, 'ExportLookupTableApplicationValueSpecification' );
+    lutApplValueSpecCheckBox.Editable = 0;
+    lutApplValueSpecCheckBox.ToolTip = DAStudio.message( 'autosarstandard:ui:uiXmlOptionsLUTApplValueSpecTooltip' );
+    lutApplValueSpecCheckBox.ColSpan = [ columnOffset + 1, 15 ];
+    lutApplValueSpecCheckBox.Visible = xmlOptionsVisible;
 
-xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { lutApplValueSpecText, lutApplValueSpecCheckBox },  ...
-XmlOptionsAdapter.isVisibleProperty( 'ExportLookupTableApplicationValueSpecification', m3iModelContext ) );
-end 
+    xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { lutApplValueSpecText, lutApplValueSpecCheckBox },  ...
+        XmlOptionsAdapter.isVisibleProperty( 'ExportLookupTableApplicationValueSpecification', m3iModelContext ) );
+end
 
 identifyServiceInstanceText.Name = DAStudio.message( 'autosarstandard:ui:uiServiceInstanceIdentifyComboName' );
 identifyServiceInstanceText.Type = 'text';
@@ -817,19 +812,19 @@ identifyServiceInstanceCombo.ColSpan = [ columnOffset + 1, 15 ];
 identifyServiceInstanceCombo.Visible = xmlOptionsVisible;
 
 xmlOptionRows( end  + 1 ) = autosar.ui.utils.XmlOptionsRow( { identifyServiceInstanceText, identifyServiceInstanceCombo },  ...
-XmlOptionsAdapter.isVisibleProperty( 'IdentifyServiceInstance', m3iModelContext ) );
+    XmlOptionsAdapter.isVisibleProperty( 'IdentifyServiceInstance', m3iModelContext ) );
 
 dlgstruct = assembleDlgStructFromRows( xmlOptionRows, m3iRoot, m3iModelContext );
-end 
+end
 
 function dlgstruct = assembleDlgStructFromRows( xmlOptionsRows, m3iRoot, m3iModelContext )
 
 
 if m3iModelContext.isContextMappedToAdaptiveApplication(  )
-helpViewID = 'autosar_config_props_xml_adaptive';
-else 
-helpViewID = 'autosar_config_props_xml';
-end 
+    helpViewID = 'autosar_config_props_xml_adaptive';
+else
+    helpViewID = 'autosar_config_props_xml';
+end
 
 
 dlgstruct.DialogTitle = DAStudio.message( 'RTW:autosar:uiXMLOptionsTitle' );
@@ -849,14 +844,14 @@ xmlOptionsRows = xmlOptionsRows( [ xmlOptionsRows.IsVisible ] );
 
 numRows = length( xmlOptionsRows );
 for rowIdx = 1:numRows
-items = xmlOptionsRows( rowIdx ).Items;
+    items = xmlOptionsRows( rowIdx ).Items;
 
 
-for itemIdx = 1:length( items )
-items{ itemIdx }.RowSpan = [ rowIdx, rowIdx ];
-end 
-dlgstruct.Items = [ dlgstruct.Items, items ];
-end 
+    for itemIdx = 1:length( items )
+        items{ itemIdx }.RowSpan = [ rowIdx, rowIdx ];
+    end
+    dlgstruct.Items = [ dlgstruct.Items, items ];
+end
 
 
 numColumns = 15;
@@ -865,12 +860,6 @@ dlgstruct.RowStretch = zeros( 1, numRows + 1 );
 dlgstruct.RowStretch( end  ) = 1;
 dlgstruct.ColStretch = zeros( 1, numColumns );
 dlgstruct.ColStretch( end  ) = 1;
-end 
+end
 
-
-
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp8E0Evm.p.
-% Please follow local copyright laws when handling this file.
 

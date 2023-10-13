@@ -1,67 +1,55 @@
 function copyExampleCacheFiles( appName, relCacheDir, options )
 
-
-
-
-
-R36
-appName{ mustBeTextScalar, mustBeNonempty }
-relCacheDir{ mustBeTextScalar, mustBeNonempty }
-options.DestFolder{ mustBeTextScalar } = fullfile( pwd, 'Work' )
-options.ModelRefs( 1, : ){ mustBeText, mustBeVector } = {  }
-end 
-
-
-
-
+arguments
+    appName{ mustBeTextScalar, mustBeNonempty }
+    relCacheDir{ mustBeTextScalar, mustBeNonempty }
+    options.DestFolder{ mustBeTextScalar } = fullfile( pwd, 'Work' )
+    options.ModelRefs( 1, : ){ mustBeText, mustBeVector } = {  }
+end
 
 cacheLeafFolder = Simulink.ModelReference.getSLXCCacheLeafFolder(  );
 
 if isempty( cacheLeafFolder )
-return ;
-end 
+    return ;
+end
 
 
 srcFolder = fullfile( relCacheDir, cacheLeafFolder );
 if ~isfolder( srcFolder )
-return ;
-end 
+    return ;
+end
 
 if ~isempty( options.ModelRefs )
-mdlrefs = options.ModelRefs;
-else 
+    mdlrefs = options.ModelRefs;
+else
 
-jsonFile = fullfile( srcFolder, [ appName, '.json' ] );
-if ~isfile( jsonFile )
-return ;
-end 
-mdlrefs = jsondecode( fileread( jsonFile ) );
-end 
+    jsonFile = fullfile( srcFolder, [ appName, '.json' ] );
+    if ~isfile( jsonFile )
+        return ;
+    end
+    mdlrefs = jsondecode( fileread( jsonFile ) );
+end
 
 
 for i = 1:length( mdlrefs )
 
-slxcFile = Simulink.packagedmodel.constructPackagedFile( mdlrefs{ i } );
-srcFile = fullfile( srcFolder, slxcFile );
-dstFile = fullfile( options.DestFolder, slxcFile );
+    slxcFile = Simulink.packagedmodel.constructPackagedFile( mdlrefs{ i } );
+    srcFile = fullfile( srcFolder, slxcFile );
+    dstFile = fullfile( options.DestFolder, slxcFile );
 
+    if ~isempty( options.ModelRefs ) && ~isfile( srcFile )
+        continue ;
+    end
 
+    copyfile( srcFile, dstFile, 'f' );
 
-if ~isempty( options.ModelRefs ) && ~isfile( srcFile )
-continue ;
-end 
+    if ispc
+        fileattrib( dstFile, '+w' );
+    else
+        fileattrib( dstFile, '+w', 'a' );
+    end
+end
 
-copyfile( srcFile, dstFile, 'f' );
+end
 
-if ispc
-fileattrib( dstFile, '+w' );
-else 
-fileattrib( dstFile, '+w', 'a' );
-end 
-end 
-
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpjPCfCb.p.
-% Please follow local copyright laws when handling this file.
 

@@ -1,526 +1,511 @@
 classdef ARClassicPlatformMappingSyncer < Simulink.interface.dictionary.internal.PlatformMappingSyncer
 
+    properties ( Access = private )
+        M3IModel
+        SLBusInterfaceBuilder autosar.mm.sl2mm.SLBusInterfaceBuilder
+        InterfaceDictAPI Simulink.interface.Dictionary
+    end
 
+    methods
+        function this = ARClassicPlatformMappingSyncer( dictImpl )
+            this@Simulink.interface.dictionary.internal.PlatformMappingSyncer( dictImpl );
+            this.InterfaceDictAPI = Simulink.interface.dictionary.open(  ...
+                this.DictImpl.getDictionaryFilePath );
 
 
+            if isempty( this.M3IModel )
+                this.getOrCreateM3IModel(  );
+            end
 
-properties ( Access = private )
-M3IModel
-SLBusInterfaceBuilder autosar.mm.sl2mm.SLBusInterfaceBuilder
-InterfaceDictAPI Simulink.interface.Dictionary
-end 
+            this.SLBusInterfaceBuilder = autosar.mm.sl2mm.SLBusInterfaceBuilder( this.M3IModel );
+        end
 
-methods 
-function this = ARClassicPlatformMappingSyncer( dictImpl )
-this@Simulink.interface.dictionary.internal.PlatformMappingSyncer( dictImpl );
-this.InterfaceDictAPI = Simulink.interface.dictionary.open(  ...
-this.DictImpl.getDictionaryFilePath );
+        function autosarClassicMapping = createPlatformMapping( this )
 
 
-if isempty( this.M3IModel )
-this.getOrCreateM3IModel(  );
-end 
 
-this.SLBusInterfaceBuilder = autosar.mm.sl2mm.SLBusInterfaceBuilder( this.M3IModel );
-end 
+            mdl = mf.zero.getModel( this.DictImpl );
+            autosarClassicMapping = sl.interface.dict.mapping.AUTOSARClassicMapping( mdl );
+            this.DictImpl.MappingManager.addMapping( autosarClassicMapping );
 
-function autosarClassicMapping = createPlatformMapping( this )
+            this.syncExistingSlddEntries(  );
 
+            this.DictImpl.registerObservingListener(  ...
+                'autosar.dictionary.internal.ARClassicPlatformSLDDListener.observeChanges' );
+        end
 
+        function removePlatformMapping( this )
 
-mdl = mf.zero.getModel( this.DictImpl );
-autosarClassicMapping = sl.interface.dict.mapping.AUTOSARClassicMapping( mdl );
-this.DictImpl.MappingManager.addMapping( autosarClassicMapping );
 
-this.syncExistingSlddEntries(  );
 
-this.DictImpl.registerObservingListener(  ...
-'autosar.dictionary.internal.ARClassicPlatformSLDDListener.observeChanges' );
-end 
 
-function removePlatformMapping( this )
 
+            if ~isempty( this.M3IModel ) && this.M3IModel.isvalid(  )
 
 
+                autosar.dictionary.Utils.closeDictUIForModelsReferencingSharedM3IModel( this.M3IModel );
 
 
-if ~isempty( this.M3IModel ) && this.M3IModel.isvalid(  )
+                tran = autosar.utils.M3ITransaction( this.M3IModel, DisableListeners = true );
+                autosarcore.unregisterListenerCB( this.M3IModel );
+                this.M3IModel.destroy(  );
+                tran.commit(  );
 
 
-autosar.dictionary.Utils.closeDictUIForModelsReferencingSharedM3IModel( this.M3IModel );
+                dictFilePath = this.SLDDConn.filespec(  );
+                Simulink.AutosarDictionary.ModelRegistry.removeEntryFromRegistry( dictFilePath );
+            end
 
 
-tran = autosar.utils.M3ITransaction( this.M3IModel, DisableListeners = true );
-autosarcore.unregisterListenerCB( this.M3IModel );
-this.M3IModel.destroy(  );
-tran.commit(  );
+            if this.DictImpl.MappingManager.hasMappingFor( 'AUTOSARClassic' )
+                autosarClassicMapping = this.DictImpl.MappingManager.getMappingFor( 'AUTOSARClassic' );
+                this.DictImpl.MappingManager.deleteMapping( autosarClassicMapping );
+            end
 
+            this.DictImpl.unregisterObservingListener(  ...
+                'autosar.dictionary.internal.ARClassicPlatformSLDDListener.observeChanges' );
+        end
 
-dictFilePath = this.SLDDConn.filespec(  );
-Simulink.AutosarDictionary.ModelRegistry.removeEntryFromRegistry( dictFilePath );
-end 
+        function syncInterface( this, interfaceName )
+            this.doSyncInterface( interfaceName, true );
+        end
 
+        function syncDataType( this, dataTypeName, namedargs )
+            arguments
+                this
+                dataTypeName
+                namedargs.PlatformEntryId = ''
+            end
+            this.doSyncDataType( dataTypeName, PlatformEntryId = namedargs.PlatformEntryId );
+        end
 
-if this.DictImpl.MappingManager.hasMappingFor( 'AUTOSARClassic' )
-autosarClassicMapping = this.DictImpl.MappingManager.getMappingFor( 'AUTOSARClassic' );
-this.DictImpl.MappingManager.deleteMapping( autosarClassicMapping );
-end 
+        function syncConstant( this, constantName, namedargs )
+            arguments
+                this
+                constantName
+                namedargs.DeploymentMethod = sl.interface.dict.mapping.ConstantDeploymentMethod.Auto;
+            end
+            this.doSyncConstant( constantName, DeploymentMethod = namedargs.DeploymentMethod );
+        end
 
-this.DictImpl.unregisterObservingListener(  ...
-'autosar.dictionary.internal.ARClassicPlatformSLDDListener.observeChanges' );
-end 
+        function m3iObj = getMappedToM3IObj( this, dictElem )
+            arguments
+                this
+                dictElem Simulink.interface.dictionary.BaseElement
+            end
 
-function syncInterface( this, interfaceName )
-this.doSyncInterface( interfaceName, true );
-end 
 
-function syncDataType( this, dataTypeName, namedargs )
-R36
-this
-dataTypeName
-namedargs.PlatformEntryId = ''
-end 
-this.doSyncDataType( dataTypeName, PlatformEntryId = namedargs.PlatformEntryId );
-end 
 
-function syncConstant( this, constantName, namedargs )
-R36
-this
-constantName
-namedargs.DeploymentMethod = sl.interface.dict.mapping.ConstantDeploymentMethod.Auto;
-end 
-this.doSyncConstant( constantName, DeploymentMethod = namedargs.DeploymentMethod );
-end 
+            if isa( dictElem, 'Simulink.interface.dictionary.InterfaceElement' )
+                m3iObj = this.getMappedM3IInterfaceElement( dictElem );
+            else
+                [ isEntryAlreadyMapped, entryMapping ] = this.isDDEntryMapped( dictElem.Name );
+                assert( isEntryAlreadyMapped, '%s is not mapped.', dictElem.Name );
+                m3iObj = M3I.getObjectById( entryMapping.MappedTo.EntryIdentifier, this.M3IModel );
+            end
+        end
 
-function m3iObj = getMappedToM3IObj( this, dictElem )
-R36
-this
-dictElem Simulink.interface.dictionary.BaseElement
-end 
+        function propValue = getInterfacePlatformPropValue( this, interfaceObj, propName )
 
 
 
-if isa( dictElem, 'Simulink.interface.dictionary.InterfaceElement' )
-m3iObj = this.getMappedM3IInterfaceElement( dictElem );
-else 
-[ isEntryAlreadyMapped, entryMapping ] = this.isDDEntryMapped( dictElem.Name );
-assert( isEntryAlreadyMapped, '%s is not mapped.', dictElem.Name );
-m3iObj = M3I.getObjectById( entryMapping.MappedTo.EntryIdentifier, this.M3IModel );
-end 
-end 
+            arguments
+                this
+                interfaceObj Simulink.interface.dictionary.PortInterface
+                propName
+            end
 
-function propValue = getInterfacePlatformPropValue( this, interfaceObj, propName )
 
+            m3iInterface = this.getMappedToM3IObj( interfaceObj );
 
 
-R36
-this
-interfaceObj Simulink.interface.dictionary.PortInterface
-propName
-end 
+            switch ( propName )
+                case 'InterfaceKind'
+                    propValue = m3iInterface.MetaClass.name;
+                case 'Package'
+                    propValue = autosar.api.Utils.getQualifiedName( m3iInterface.containerM3I );
+                otherwise
+                    propValue = m3iInterface.( propName );
+            end
+        end
 
+        function setInterfacePlatformProps( this, interfaceObj, propNames, propValues )
 
-m3iInterface = this.getMappedToM3IObj( interfaceObj );
 
 
-switch ( propName )
-case 'InterfaceKind'
-propValue = m3iInterface.MetaClass.name;
-case 'Package'
-propValue = autosar.api.Utils.getQualifiedName( m3iInterface.containerM3I );
-otherwise 
-propValue = m3iInterface.( propName );
-end 
-end 
+            arguments
+                this
+                interfaceObj Simulink.interface.dictionary.PortInterface
+                propNames
+                propValues
+            end
 
-function setInterfacePlatformProps( this, interfaceObj, propNames, propValues )
+            tran = autosar.utils.M3ITransaction( this.M3IModel, DisableListeners = false );
 
 
+            [ isEntryAlreadyMapped, entryMapping ] = this.isDDEntryMapped( interfaceObj.Name );
+            assert( isEntryAlreadyMapped, '%s is not mapped.', interfaceObj.Name );
+            m3iInterface = M3I.getObjectById( entryMapping.MappedTo.EntryIdentifier, this.M3IModel );
 
-R36
-this
-interfaceObj Simulink.interface.dictionary.PortInterface
-propNames
-propValues
-end 
 
-tran = autosar.utils.M3ITransaction( this.M3IModel, DisableListeners = false );
+            interfaceKind = propValues( strcmp( propNames, 'InterfaceKind' ) );
+            if ~isempty( interfaceKind )
+                m3iInterface = this.changeInterfaceKind( m3iInterface,  ...
+                    interfaceKind{ : }, interfaceObj, entryMapping );
+            end
 
 
-[ isEntryAlreadyMapped, entryMapping ] = this.isDDEntryMapped( interfaceObj.Name );
-assert( isEntryAlreadyMapped, '%s is not mapped.', interfaceObj.Name );
-m3iInterface = M3I.getObjectById( entryMapping.MappedTo.EntryIdentifier, this.M3IModel );
+            dataObj = autosar.api.getAUTOSARProperties( this.DictImpl.getDictionaryFilePath );
+            for i = 1:length( propNames )
+                propName = propNames{ i };
+                propValue = propValues{ i };
+                if strcmp( propName, 'InterfaceKind' )
+                    continue ;
+                elseif strcmp( propName, 'Package' )
+                    dataObj.moveElement( autosar.api.Utils.getQualifiedName( m3iInterface ), propValue );
+                else
+                    m3iInterface.( propNames{ i } ) = propValue;
+                end
+            end
 
+            tran.commit(  );
+        end
 
-interfaceKind = propValues( strcmp( propNames, 'InterfaceKind' ) );
-if ~isempty( interfaceKind )
-m3iInterface = this.changeInterfaceKind( m3iInterface,  ...
-interfaceKind{ : }, interfaceObj, entryMapping );
-end 
+        function [ propNames, propValues ] = getInterfaceElementPlatformProps( this, interfaceElemObj )
 
 
-dataObj = autosar.api.getAUTOSARProperties( this.DictImpl.getDictionaryFilePath );
-for i = 1:length( propNames )
-propName = propNames{ i };
-propValue = propValues{ i };
-if strcmp( propName, 'InterfaceKind' )
-continue ;
-elseif strcmp( propName, 'Package' )
-dataObj.moveElement( autosar.api.Utils.getQualifiedName( m3iInterface ), propValue );
-else 
-m3iInterface.( propNames{ i } ) = propValue;
-end 
-end 
 
-tran.commit(  );
-end 
+            arguments
+                this
+                interfaceElemObj Simulink.interface.dictionary.InterfaceElement
+            end
 
-function [ propNames, propValues ] = getInterfaceElementPlatformProps( this, interfaceElemObj )
+            propNames = {  };
+            propValues = {  };
 
 
+            m3iElement = this.getMappedToM3IObj( interfaceElemObj );
+            if isa( m3iElement, 'Simulink.metamodel.arplatform.interface.ModeDeclarationGroupElement' )
 
-R36
-this
-interfaceElemObj Simulink.interface.dictionary.InterfaceElement
-end 
+                return ;
+            end
 
-propNames = {  };
-propValues = {  };
+            if m3iElement.SwAddrMethod.isvalid(  )
+                swAddrMethod = m3iElement.SwAddrMethod.Name;
+            else
+                swAddrMethod = '';
+            end
+            propNames = { 'SwAddrMethod', 'SwCalibrationAccess', 'DisplayFormat' };
+            propValues = { swAddrMethod, m3iElement.SwCalibrationAccess.toString(  ), m3iElement.DisplayFormat };
+        end
 
+        function dataType = getInterfaceElementPlatformPropertyDataType( this, interfaceElemObj, propName )
 
-m3iElement = this.getMappedToM3IObj( interfaceElemObj );
-if isa( m3iElement, 'Simulink.metamodel.arplatform.interface.ModeDeclarationGroupElement' )
+            m3iElement = this.getMappedToM3IObj( interfaceElemObj );
+            dataType = autosar.ui.metamodel.AttributeUtils.getPropDataType(  ...
+                m3iElement, propName );
+        end
 
-return ;
-end 
+        function allowedValues = getInterfaceElementPlatformPropertyAllowedValues( this, interfaceElemObj, propName )
 
-if m3iElement.SwAddrMethod.isvalid(  )
-swAddrMethod = m3iElement.SwAddrMethod.Name;
-else 
-swAddrMethod = '';
-end 
-propNames = { 'SwAddrMethod', 'SwCalibrationAccess', 'DisplayFormat' };
-propValues = { swAddrMethod, m3iElement.SwCalibrationAccess.toString(  ), m3iElement.DisplayFormat };
-end 
+            switch propName
+                case 'DisplayFormat'
+                    allowedValues = '';
+                case { 'SwCalibrationAccess', 'SwAddrMethod' }
 
-function dataType = getInterfaceElementPlatformPropertyDataType( this, interfaceElemObj, propName )
+                    m3iElement = this.getMappedToM3IObj( interfaceElemObj );
+                    allowedValues =  ...
+                        autosar.ui.metamodel.AttributeUtils.getPropAllowedValues(  ...
+                        m3iElement, propName );
+                otherwise
+                    assert( false, 'Unexpected property' )
+            end
+        end
 
-m3iElement = this.getMappedToM3IObj( interfaceElemObj );
-dataType = autosar.ui.metamodel.AttributeUtils.getPropDataType(  ...
-m3iElement, propName );
-end 
 
-function allowedValues = getInterfaceElementPlatformPropertyAllowedValues( this, interfaceElemObj, propName )
+        function setInterfaceElementPlatformProps( this, interfaceElemObj, propNames, propValues )
 
-switch propName
-case 'DisplayFormat'
-allowedValues = '';
-case { 'SwCalibrationAccess', 'SwAddrMethod' }
 
-m3iElement = this.getMappedToM3IObj( interfaceElemObj );
-allowedValues =  ...
-autosar.ui.metamodel.AttributeUtils.getPropAllowedValues(  ...
-m3iElement, propName );
-otherwise 
-assert( false, 'Unexpected property' )
-end 
-end 
 
+            arguments
+                this
+                interfaceElemObj Simulink.interface.dictionary.InterfaceElement
+                propNames
+                propValues
+            end
 
-function setInterfaceElementPlatformProps( this, interfaceElemObj, propNames, propValues )
 
+            m3iElement = this.getMappedToM3IObj( interfaceElemObj );
 
 
-R36
-this
-interfaceElemObj Simulink.interface.dictionary.InterfaceElement
-propNames
-propValues
-end 
+            dataObj = autosar.api.getAUTOSARProperties( this.DictImpl.getDictionaryFilePath );
+            elemQName = autosar.api.Utils.getQualifiedName( m3iElement );
 
+            propValues =  ...
+                cellfun( @( x )strrep( x, autosar.ui.metamodel.PackageString.NoneSelection, '' ),  ...
+                propValues, 'UniformOutput', false );
 
-m3iElement = this.getMappedToM3IObj( interfaceElemObj );
 
+            propValues = this.ensurePropValuesUseQualifiedName( propNames, propValues );
 
-dataObj = autosar.api.getAUTOSARProperties( this.DictImpl.getDictionaryFilePath );
-elemQName = autosar.api.Utils.getQualifiedName( m3iElement );
+            propValuePair = [ propNames, propValues ]';
+            propValuePair = reshape( propValuePair, 1, numel( propValuePair ) );
+            dataObj.set( elemQName, propValuePair{ : } );
+        end
 
-propValues =  ...
-cellfun( @( x )strrep( x, autosar.ui.metamodel.PackageString.NoneSelection, '' ),  ...
-propValues, 'UniformOutput', false );
+        function mapping = getDictionaryMapping( this )
+            mapping = this.DictImpl.MappingManager.getMappingFor(  ...
+                sl.interface.dict.mapping.PlatformMappingKind.AUTOSARClassic );
+        end
+    end
 
+    methods ( Access = private )
+        function syncExistingSlddEntries( this )
 
-propValues = this.ensurePropValuesUseQualifiedName( propNames, propValues );
+            tran = autosar.utils.M3ITransaction( this.M3IModel, DisableListeners = true );
 
-propValuePair = [ propNames, propValues ]';
-propValuePair = reshape( propValuePair, 1, numel( propValuePair ) );
-dataObj.set( elemQName, propValuePair{ : } );
-end 
 
-function mapping = getDictionaryMapping( this )
-mapping = this.DictImpl.MappingManager.getMappingFor(  ...
-sl.interface.dict.mapping.PlatformMappingKind.AUTOSARClassic );
-end 
-end 
+            this.syncInterfaces(  );
+            this.syncDataTypes(  );
+            this.syncConstants(  );
 
-methods ( Access = private )
-function syncExistingSlddEntries( this )
+            tran.commit(  );
+        end
 
-tran = autosar.utils.M3ITransaction( this.M3IModel, DisableListeners = true );
+        function getOrCreateM3IModel( this )
+            dictFilePath = this.SLDDConn.filespec(  );
+            if ~autosar.dictionary.Utils.isSharedAutosarDictionary( dictFilePath )
 
 
-this.syncInterfaces(  );
-this.syncDataTypes(  );
-this.syncConstants(  );
+                newM3IModel = autosar.mm.Model.newM3IModel(  );
+                autosar.dictionary.Utils.registerM3IModelWithDictionary( newM3IModel, dictFilePath );
 
-tran.commit(  );
-end 
 
-function getOrCreateM3IModel( this )
-dictFilePath = this.SLDDConn.filespec(  );
-if ~autosar.dictionary.Utils.isSharedAutosarDictionary( dictFilePath )
+                tran = M3I.Transaction( newM3IModel );
+                autosar.mm.util.XmlOptionsDefaultPackages.setAllEmptyXmlOptionsToDefault( dictFilePath );
+                tran.commit(  );
+            end
+            this.M3IModel = Simulink.AutosarDictionary.ModelRegistry.getOrLoadM3IModel( dictFilePath );
 
 
-newM3IModel = autosar.mm.Model.newM3IModel(  );
-autosar.dictionary.Utils.registerM3IModelWithDictionary( newM3IModel, dictFilePath );
+            autosar.ui.utils.registerListenerCB( this.M3IModel );
+        end
 
+        function [ isMapped, entryMapping, slddEntry ] = isDDEntryMapped( this, entryName )
+            slddEntry = this.InterfaceDictAPI.getDDEntryObject( entryName );
+            entryMapping = this.getDictionaryMapping(  ).findMappingEntriesByUUID( { slddEntry.UUID } );
+            isMapped = ~isempty( entryMapping );
+        end
 
-tran = M3I.Transaction( newM3IModel );
-autosar.mm.util.XmlOptionsDefaultPackages.setAllEmptyXmlOptionsToDefault( dictFilePath );
-tran.commit(  );
-end 
-this.M3IModel = Simulink.AutosarDictionary.ModelRegistry.getOrLoadM3IModel( dictFilePath );
+        function m3iElement = getMappedM3IInterfaceElement( this, interfaceElemObj )
 
 
-autosar.ui.utils.registerListenerCB( this.M3IModel );
-end 
 
-function [ isMapped, entryMapping, slddEntry ] = isDDEntryMapped( this, entryName )
-slddEntry = this.InterfaceDictAPI.getDDEntryObject( entryName );
-entryMapping = this.getDictionaryMapping(  ).findMappingEntriesByUUID( { slddEntry.UUID } );
-isMapped = ~isempty( entryMapping );
-end 
+            arguments
+                this
+                interfaceElemObj Simulink.interface.dictionary.InterfaceElement
+            end
 
-function m3iElement = getMappedM3IInterfaceElement( this, interfaceElemObj )
 
+            m3iInterface = this.getMappedToM3IObj( interfaceElemObj.Owner );
+            if isa( m3iInterface, 'Simulink.metamodel.arplatform.interface.ModeSwitchInterface' )
+                m3iElement = m3iInterface.ModeGroup;
+            else
+                m3i.mapcell( @( x )x.Name, m3iInterface.DataElements );
+                m3iElements = m3iInterface.DataElements;
+                m3iElement = [  ];
+                for i = 1:m3iElements.size(  )
+                    if strcmp( m3iElements.at( i ).Name, interfaceElemObj.Name )
+                        m3iElement = m3iElements.at( i );
+                        break
+                    end
+                end
+                assert( ~isempty( m3iElement ), 'Could not find m3iElement for %s', interfaceElemObj.Name );
+            end
+        end
 
+        function m3iInterfaceOut = changeInterfaceKind( this, m3iInterfaceIn,  ...
+                newInterfaceKind, interfaceObj, entryMapping )
 
-R36
-this
-interfaceElemObj Simulink.interface.dictionary.InterfaceElement
-end 
+            arguments
+                this
+                m3iInterfaceIn
+                newInterfaceKind{ mustBeMember( newInterfaceKind,  ...
+                    { 'SenderReceiverInterface', 'NvDataInterface', 'ModeSwitchInterface' } ) }
+                interfaceObj Simulink.interface.dictionary.PortInterface
+                entryMapping sl.interface.dict.mapping.InterfaceMapping
+            end
 
+            if strcmp( m3iInterfaceIn.MetaClass.name, newInterfaceKind )
+                m3iInterfaceOut = m3iInterfaceIn;
+                return ;
+            end
 
-m3iInterface = this.getMappedToM3IObj( interfaceElemObj.Owner );
-if isa( m3iInterface, 'Simulink.metamodel.arplatform.interface.ModeSwitchInterface' )
-m3iElement = m3iInterface.ModeGroup;
-else 
-m3i.mapcell( @( x )x.Name, m3iInterface.DataElements );
-m3iElements = m3iInterface.DataElements;
-m3iElement = [  ];
-for i = 1:m3iElements.size(  )
-if strcmp( m3iElements.at( i ).Name, interfaceElemObj.Name )
-m3iElement = m3iElements.at( i );
-break 
-end 
-end 
-assert( ~isempty( m3iElement ), 'Could not find m3iElement for %s', interfaceElemObj.Name );
-end 
-end 
+            slddBusEntry = this.InterfaceDictAPI.getDDEntryObject( interfaceObj.Name );
 
-function m3iInterfaceOut = changeInterfaceKind( this, m3iInterfaceIn,  ...
-newInterfaceKind, interfaceObj, entryMapping )
 
-R36
-this
-m3iInterfaceIn
-newInterfaceKind{ mustBeMember( newInterfaceKind,  ...
-{ 'SenderReceiverInterface', 'NvDataInterface', 'ModeSwitchInterface' } ) }
-interfaceObj Simulink.interface.dictionary.PortInterface
-entryMapping sl.interface.dict.mapping.InterfaceMapping
-end 
 
-if strcmp( m3iInterfaceIn.MetaClass.name, newInterfaceKind )
-m3iInterfaceOut = m3iInterfaceIn;
-return ;
-end 
+            [ isCompatible, MException ] = this.SLBusInterfaceBuilder.checkInterfaceCompatibleWithBusObject(  ...
+                slddBusEntry.Name, slddBusEntry.getValue, newInterfaceKind );
 
-slddBusEntry = this.InterfaceDictAPI.getDDEntryObject( interfaceObj.Name );
+            if ~isCompatible
+                rethrow( MException );
+            end
 
 
 
-[ isCompatible, MException ] = this.SLBusInterfaceBuilder.checkInterfaceCompatibleWithBusObject(  ...
-slddBusEntry.Name, slddBusEntry.getValue, newInterfaceKind );
 
-if ~isCompatible
-rethrow( MException );
-end 
 
 
+            propNames = [  ];
+            if ~isempty( interfaceObj.Elements )
+                propNames = this.getInterfaceElementPlatformProps( interfaceObj.Elements( 1 ) );
+            end
 
+            m3iInterfaceOut = this.SLBusInterfaceBuilder.cloneM3IInterfaceToDifferentKind(  ...
+                m3iInterfaceIn, newInterfaceKind, slddBusEntry.Name, slddBusEntry.getValue,  ...
+                propNames );
 
 
+            m3iInterfaceIn.destroy(  );
 
-propNames = [  ];
-if ~isempty( interfaceObj.Elements )
-propNames = this.getInterfaceElementPlatformProps( interfaceObj.Elements( 1 ) );
-end 
 
-m3iInterfaceOut = this.SLBusInterfaceBuilder.cloneM3IInterfaceToDifferentKind(  ...
-m3iInterfaceIn, newInterfaceKind, slddBusEntry.Name, slddBusEntry.getValue,  ...
-propNames );
+            entryMapping.MappedTo.EntryIdentifier = M3I.SerializeId( m3iInterfaceOut );
 
 
-m3iInterfaceIn.destroy(  );
+            this.applyStereotype( interfaceObj.getZCImpl(  ) );
+        end
 
+        function syncInterfaces( this )
+            interfaces = this.InterfaceDictAPI.Interfaces;
+            for i = 1:length( interfaces )
+                this.doSyncInterface( interfaces( i ).Name, false );
+            end
+        end
 
-entryMapping.MappedTo.EntryIdentifier = M3I.SerializeId( m3iInterfaceOut );
+        function syncDataTypes( this )
+            dataTypes = this.InterfaceDictAPI.DataTypes;
+            for i = 1:length( dataTypes )
+                this.doSyncDataType( dataTypes( i ).Name );
+            end
+        end
 
+        function syncConstants( this )
+            constant = this.InterfaceDictAPI.Constants;
+            for i = 1:length( constant )
+                this.doSyncConstant( constant( i ).Name );
+            end
+        end
 
-this.applyStereotype( interfaceObj.getZCImpl(  ) );
-end 
+        function m3iInterface = doSyncInterface( this, interfaceName, openM3ITransaction )
 
-function syncInterfaces( this )
-interfaces = this.InterfaceDictAPI.Interfaces;
-for i = 1:length( interfaces )
-this.doSyncInterface( interfaces( i ).Name, false );
-end 
-end 
+            slddBusEntry = this.InterfaceDictAPI.getDDEntryObject( interfaceName );
+            entryValue = slddBusEntry.getValue(  );
+            if isa( entryValue, 'Simulink.ConnectionBus' )
 
-function syncDataTypes( this )
-dataTypes = this.InterfaceDictAPI.DataTypes;
-for i = 1:length( dataTypes )
-this.doSyncDataType( dataTypes( i ).Name );
-end 
-end 
+                return ;
+            end
 
-function syncConstants( this )
-constant = this.InterfaceDictAPI.Constants;
-for i = 1:length( constant )
-this.doSyncConstant( constant( i ).Name );
-end 
-end 
 
-function m3iInterface = doSyncInterface( this, interfaceName, openM3ITransaction )
+            if openM3ITransaction
+                tran = autosar.utils.M3ITransaction( this.M3IModel, DisableListeners = false );
+            end
 
-slddBusEntry = this.InterfaceDictAPI.getDDEntryObject( interfaceName );
-entryValue = slddBusEntry.getValue(  );
-if isa( entryValue, 'Simulink.ConnectionBus' )
 
-return ;
-end 
 
 
-if openM3ITransaction
-tran = autosar.utils.M3ITransaction( this.M3IModel, DisableListeners = false );
-end 
+            entryMapping = this.getDictionaryMapping(  ).findMappingEntriesByUUID( { slddBusEntry.UUID } );
+            isEntryAlreadyMapped = ~isempty( entryMapping );
 
+            if isEntryAlreadyMapped
+                m3iInterface = M3I.getObjectById( entryMapping.MappedTo.EntryIdentifier, this.M3IModel );
+                this.SLBusInterfaceBuilder.updateM3IInterface(  ...
+                    m3iInterface, slddBusEntry.Name, entryValue );
+            else
 
+                m3iInterface = this.SLBusInterfaceBuilder.createM3IInterface(  ...
+                    slddBusEntry.Name, entryValue );
 
 
-entryMapping = this.getDictionaryMapping(  ).findMappingEntriesByUUID( { slddBusEntry.UUID } );
-isEntryAlreadyMapped = ~isempty( entryMapping );
+                this.getDictionaryMapping(  ).mapInterface( slddBusEntry.UUID, M3I.SerializeId( m3iInterface ) );
 
-if isEntryAlreadyMapped
-m3iInterface = M3I.getObjectById( entryMapping.MappedTo.EntryIdentifier, this.M3IModel );
-this.SLBusInterfaceBuilder.updateM3IInterface(  ...
-m3iInterface, slddBusEntry.Name, entryValue );
-else 
 
-m3iInterface = this.SLBusInterfaceBuilder.createM3IInterface(  ...
-slddBusEntry.Name, entryValue );
+                zcInterface = this.InterfaceDictAPI.getInterface( interfaceName ).getZCImpl(  );
+                this.applyStereotype( zcInterface );
+            end
 
+            if openM3ITransaction
+                tran.commit(  );
+            end
+        end
 
-this.getDictionaryMapping(  ).mapInterface( slddBusEntry.UUID, M3I.SerializeId( m3iInterface ) );
+        function doSyncDataType( this, dataTypeName, namedargs )
+            arguments
+                this
+                dataTypeName
+                namedargs.PlatformEntryId = ''
+            end
 
 
-zcInterface = this.InterfaceDictAPI.getInterface( interfaceName ).getZCImpl(  );
-this.applyStereotype( zcInterface );
-end 
+            [ isEntryAlreadyMapped, entryMapping, slddEntry ] = this.isDDEntryMapped( dataTypeName );
 
-if openM3ITransaction
-tran.commit(  );
-end 
-end 
+            if isEntryAlreadyMapped
 
-function doSyncDataType( this, dataTypeName, namedargs )
-R36
-this
-dataTypeName
-namedargs.PlatformEntryId = ''
-end 
 
 
-[ isEntryAlreadyMapped, entryMapping, slddEntry ] = this.isDDEntryMapped( dataTypeName );
+                entryMapping.MappedTo.EntryIdentifier = namedargs.PlatformEntryId;
+            else
 
-if isEntryAlreadyMapped
+                this.getDictionaryMapping(  ).mapDataType(  ...
+                    slddEntry.UUID, namedargs.PlatformEntryId );
+            end
+        end
 
+        function doSyncConstant( this, constantName, namedargs )
+            arguments
+                this
+                constantName
+                namedargs.DeploymentMethod = sl.interface.dict.mapping.ConstantDeploymentMethod.Auto;
+            end
 
 
-entryMapping.MappedTo.EntryIdentifier = namedargs.PlatformEntryId;
-else 
+            [ isEntryAlreadyMapped, constantMapping, slddEntry ] = this.isDDEntryMapped( constantName );
 
-this.getDictionaryMapping(  ).mapDataType(  ...
-slddEntry.UUID, namedargs.PlatformEntryId );
-end 
-end 
+            if ~isEntryAlreadyMapped
 
-function doSyncConstant( this, constantName, namedargs )
-R36
-this
-constantName
-namedargs.DeploymentMethod = sl.interface.dict.mapping.ConstantDeploymentMethod.Auto;
-end 
+                constantMapping = this.getDictionaryMapping(  ).mapConstant(  ...
+                    slddEntry.UUID, '' );
+            end
 
+            constantMapping.DeploymentMethod = namedargs.DeploymentMethod;
+        end
 
-[ isEntryAlreadyMapped, constantMapping, slddEntry ] = this.isDDEntryMapped( constantName );
+        function propValues = ensurePropValuesUseQualifiedName( this, propNames, propValues )
 
-if ~isEntryAlreadyMapped
+            propsToMetaClassMap = dictionary( 'SwAddrMethod', Simulink.metamodel.arplatform.common.SwAddrMethod.MetaClass );
+            propsRequireQName = propsToMetaClassMap.keys;
 
-constantMapping = this.getDictionaryMapping(  ).mapConstant(  ...
-slddEntry.UUID, '' );
-end 
 
-constantMapping.DeploymentMethod = namedargs.DeploymentMethod;
-end 
 
-function propValues = ensurePropValuesUseQualifiedName( this, propNames, propValues )
+            for propName = propsRequireQName
+                idx = strcmp( propNames, propName );
+                if ~any( idx )
+                    continue
+                end
+                oldPropValue = propValues{ idx };
+                if ~isempty( oldPropValue ) && ~startsWith( oldPropValue, '/' )
+                    m3iObjs = autosar.mm.Model.findObjectByMetaClass( this.M3IModel, propsToMetaClassMap( propName ) );
+                    matchingObjs = m3i.filter( @( x )strcmp( x.Name, oldPropValue ), m3iObjs );
+                    if numel( matchingObjs ) == 1
+                        propValues{ idx } = autosar.api.Utils.getQualifiedName( matchingObjs{ 1 } );
+                    end
+                end
+            end
+        end
 
-
-
-
-
-
-propsToMetaClassMap = dictionary( 'SwAddrMethod', Simulink.metamodel.arplatform.common.SwAddrMethod.MetaClass );
-propsRequireQName = propsToMetaClassMap.keys;
-
-
-
-for propName = propsRequireQName
-idx = strcmp( propNames, propName );
-if ~any( idx )
-continue 
-end 
-oldPropValue = propValues{ idx };
-if ~isempty( oldPropValue ) && ~startsWith( oldPropValue, '/' )
-m3iObjs = autosar.mm.Model.findObjectByMetaClass( this.M3IModel, propsToMetaClassMap( propName ) );
-matchingObjs = m3i.filter( @( x )strcmp( x.Name, oldPropValue ), m3iObjs );
-if numel( matchingObjs ) == 1
-propValues{ idx } = autosar.api.Utils.getQualifiedName( matchingObjs{ 1 } );
-end 
-end 
-end 
-end 
-
-function applyStereotype( this, zcInterface )%#ok<INUSL>
-zcInterface.cachedWrapper.applyStereotype( 'AUTOSARClassic.PortInterface' );
-end 
-end 
-end 
-
-
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpBSTjQs.p.
-% Please follow local copyright laws when handling this file.
+        function applyStereotype( this, zcInterface )%#ok<INUSL>
+            zcInterface.cachedWrapper.applyStereotype( 'AUTOSARClassic.PortInterface' );
+        end
+    end
+end
 

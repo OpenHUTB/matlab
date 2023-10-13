@@ -1,31 +1,6 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function saveGraphAsGml( fileName, NameVarArgs )
 
-R36
+arguments
 fileName{ mustBeText }
 NameVarArgs.Graph{ mustBeUnderlyingType( NameVarArgs.Graph, "alm.Graph" ) } = alm.Graph.empty(  )
 NameVarArgs.SelfContainedGrouping{ mustBeNumericOrLogical } = false
@@ -54,12 +29,9 @@ else
 g = NameVarArgs.Graph;
 end 
 
-
-
 file = fopen( fileName, 'wt' );
 writeLine( file, 'graph [' );
 writeLine( file, '  directed 1' );
-
 
 if NameVarArgs.SelfContainedGrouping
 allFileArtifacts = g.getAllFileArtifacts(  );
@@ -75,8 +47,6 @@ writeGroupNode( file, id, label, width, type, fill, w, h );
 end 
 end 
 end 
-
-
 
 mgr = alm.internal.HandlerServiceManager.get(  );
 md = mgr.getInstalledServicesMetaData(  );
@@ -99,7 +69,6 @@ end
 end 
 end 
 
-
 itemMap = containers.Map;
 for i = 1:numel( NameVarArgs.Connections )
 con = NameVarArgs.Connections( i );
@@ -107,10 +76,7 @@ itemMap( con.getLeftItem(  ).UUID ) = con.getLeftItem(  );
 itemMap( con.getRightItem(  ).UUID ) = con.getRightItem(  );
 end 
 
-
-
 allArtifacts = g.getAllArtifacts(  );
-
 
 if numel( NameVarArgs.Connections ) > 0
 lgx = isKey( itemMap, { allArtifacts.UUID } );
@@ -338,6 +304,4 @@ h = 10 + numRows * 10;
 end 
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp4_6qzR.p.
-% Please follow local copyright laws when handling this file.
 

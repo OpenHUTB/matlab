@@ -1,23 +1,14 @@
-
-
 function resultsFolderName = getResultsFolderName( modelName )
 
-
-
-
-
-R36
-modelName = ''
-end 
+arguments
+    modelName = ''
+end
 resultsFolderSuffixName = modelName;
 if isempty( modelName )
-resultsFolderSuffixName = 'ClonesAcrossModels';
-end 
+    resultsFolderSuffixName = 'ClonesAcrossModels';
+end
 
 resultsFolderName = [ 'm2m_', resultsFolderSuffixName ];
-end 
+end
 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp1BrCs2.p.
-% Please follow local copyright laws when handling this file.
 

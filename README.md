@@ -67,6 +67,10 @@ arguments
 end
 ```
 
+* 将`enumeration`错误解码为`emumeration`。
+
+
+
 2. simulink模块选中后，通过“模块”菜单中的“查看封装”，再查看“代码”选项卡可以看到代码（其中的函数调用`matlab\toolbox\shared\sim3dblks\sim3dblks`中的脚本。
 并且通过“模块”菜单中的“查看基础封装”中的“查看基础封装内部”，可以查看模块内部的连接信息。
 

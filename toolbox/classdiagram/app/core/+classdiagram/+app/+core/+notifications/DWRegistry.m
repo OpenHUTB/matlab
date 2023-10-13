@@ -46,7 +46,7 @@ end
 end 
 
 function clear( obj, option )
-R36
+arguments
 obj( 1, 1 )
 option.current( 1, : )
 end 
@@ -67,7 +67,7 @@ end
 methods ( Access = { ?classdiagram.app.core.notifications.WDFNotifier,  ...
 ?classdiagram.app.core.notifications.DWRegistry } )
 function setCleanUpRules( obj, rules )
-R36
+arguments
 obj( 1, 1 )classdiagram.app.core.notifications.DWRegistry;
 rules( 1, 1 )classdiagram.app.core.notifications.CleanUpRules;
 end 
@@ -75,7 +75,7 @@ obj.CleanUpRules = rules;
 end 
 
 function removeNotification( obj, options )
-R36
+arguments
 obj( 1, 1 )classdiagram.app.core.notifications.DWRegistry;
 options.categories( 1, : )string;
 options.uuids( 1, : )string;

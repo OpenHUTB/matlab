@@ -1,67 +1,61 @@
 classdef PhasedValidator < handle
 
+    properties ( Access = protected )
+        AutosarUtilsValidator autosar.validation.AutosarUtils;
+    end
+
+    methods ( Access = public )
+
+        function this = PhasedValidator( namedargs )
+            arguments
+                namedargs.ModelHandle = [  ];
+            end
+
+            if ~isempty( namedargs.ModelHandle )
+                this.AutosarUtilsValidator = autosar.validation.AutosarUtils( namedargs.ModelHandle );
+            end
+        end
+
+        function verify( this, varargin )
+
+            this.verifyPhase( 'Initial', varargin{ : } );
+            this.verifyPhase( 'PostProp', varargin{ : } );
+            this.verifyPhase( 'Final', varargin{ : } );
+        end
 
 
+        function verifyPhase( this, validationPhase, varargin )
 
-properties ( Access = protected )
-AutosarUtilsValidator autosar.validation.AutosarUtils;
-end 
+            switch validationPhase
+                case 'Initial'
+                    this.verifyInitial( varargin{ : } );
+                case 'PostProp'
+                    this.verifyPostProp( varargin{ : } );
+                case 'Final'
+                    this.verifyFinal( varargin{ : } );
+                otherwise
+                    assert( false, 'Did not recognize phase %s', validationPhase );
+            end
 
-methods ( Access = public )
+        end
 
-function this = PhasedValidator( namedargs )
-R36
-namedargs.ModelHandle = [  ];
-end 
+    end
 
-if ~isempty( namedargs.ModelHandle )
-this.AutosarUtilsValidator = autosar.validation.AutosarUtils( namedargs.ModelHandle );
-end 
-end 
+    methods ( Access = protected )
 
-function verify( this, varargin )
+        function verifyInitial( ~, varargin )
 
-this.verifyPhase( 'Initial', varargin{ : } );
-this.verifyPhase( 'PostProp', varargin{ : } );
-this.verifyPhase( 'Final', varargin{ : } );
-end 
+        end
 
+        function verifyPostProp( ~, varargin )
 
-function verifyPhase( this, validationPhase, varargin )
+        end
 
-switch validationPhase
-case 'Initial'
-this.verifyInitial( varargin{ : } );
-case 'PostProp'
-this.verifyPostProp( varargin{ : } );
-case 'Final'
-this.verifyFinal( varargin{ : } );
-otherwise 
-assert( false, 'Did not recognize phase %s', validationPhase );
-end 
+        function verifyFinal( ~, varargin )
 
-end 
+        end
 
-end 
+    end
 
-methods ( Access = protected )
-
-function verifyInitial( ~, varargin )
-
-end 
-
-function verifyPostProp( ~, varargin )
-
-end 
-
-function verifyFinal( ~, varargin )
-
-end 
-
-end 
-
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpJ40X4V.p.
-% Please follow local copyright laws when handling this file.
+end
 

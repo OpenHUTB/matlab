@@ -1,9 +1,6 @@
 function fqStruct = extractFlightPhase( fqStruct, flightphase )
 
-
-
-
-R36
+arguments
 fqStruct
 flightphase( 1, 1 )string
 end 
@@ -11,6 +8,5 @@ end
 fqStruct = fqStruct( :, [ fqStruct( 1, : ).FlightPhase ] == flightphase );
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpndMASA.p.
-% Please follow local copyright laws when handling this file.
+
 

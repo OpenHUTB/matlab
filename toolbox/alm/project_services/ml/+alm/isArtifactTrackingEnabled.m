@@ -1,9 +1,6 @@
 function state = isArtifactTrackingEnabled( prjFolder )
 
-
-
-
-R36
+arguments
 prjFolder{ mustBeFolder }
 end 
 
@@ -22,6 +19,4 @@ state = com.mathworks.toolbox.alm.project_services.ProjectServicesEnvironmentCus
 end 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpMu7k69.p.
-% Please follow local copyright laws when handling this file.
 

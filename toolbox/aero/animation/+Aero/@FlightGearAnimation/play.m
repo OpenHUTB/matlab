@@ -1,19 +1,13 @@
 function play( h, timername )
 
-
-
-
-
-R36
+arguments
 h Aero.FlightGearAnimation
 timername string{ Aero.internal.validation.mustBeScalarOrSameSize( h, timername, "h", "timername" ) } = 'FGAnimTimer'
 end 
 
 arrayfun( @verifyTimeSeriesData, h );
 
-
 consistencyCheck( h );
-
 
 oldTimer = timerfind;
 
@@ -27,35 +21,27 @@ while any( isvalid( oldTimer( idxTags ) ) )
 end 
 catch invalidFGAnimTimer %#ok<NASGU>
 
-
-
-
 end 
 end 
 
 arrayfun( @setAndValidateTimeBounds, h )
 
-
 h.SetTimer( timername );
-
 
 start( [ h.FGTimer ] );
 end 
 
+
 function locStartStopTimeValidate( h )
 
-
-
-
-
 validateStartTimeLessThanFinalTime( h )
-
 
 [ minStart, maxFinal ] = h.TimeSeriesReadFcn( h );
 
 validateTimeBounds( h, minStart, maxFinal )
 
 end 
+
 
 function setAndValidateTimeBounds( h )
 if ~isfinite( h.TStart ) || ~isfinite( h.TFinal )
@@ -65,8 +51,8 @@ locStartStopTimeValidate( h );
 end 
 end 
 
-function verifyTimeSeriesData( h )
 
+function verifyTimeSeriesData( h )
 
 if h.TimeSeriesSourceType == "Timeseries"
 if h.TimeSeriesSource.Length == 0
@@ -79,6 +65,5 @@ end
 end 
 
 end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp1W8XXS.p.
-% Please follow local copyright laws when handling this file.
+
 
