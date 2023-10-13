@@ -1,8 +1,5 @@
 classdef(Abstract)Part<handle&matlab.mixin.Heterogeneous
 
-
-
-
     properties
         StartPoint=em.wire.Part.DefaultStartPoint
         Azimuth=em.wire.Part.DefaultAzimuth
