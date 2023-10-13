@@ -9,26 +9,8 @@ function diam=convertawg(gauge)
     diam=0.000127*92^((36-g)/39);
 end
 
+
 function g=awgstr2num(gauge)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if~isempty(regexp(gauge,'[^0-9/]','once'))
         error('disallowed character')
     end
