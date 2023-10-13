@@ -1,8 +1,5 @@
 classdef ContentWindowFactory<handle&matlab.mixin.Heterogeneous
 
-
-
-
     methods(Abstract)
 
         bool=canDisplay(obj,contentId)
