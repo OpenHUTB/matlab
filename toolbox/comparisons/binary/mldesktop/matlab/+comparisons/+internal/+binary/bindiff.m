@@ -363,6 +363,4 @@ function varargout = escapeHTML( varargin )
 varargout = cellfun( @code2html, varargin, 'UniformOutput', false );
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpHQ6qW6.p.
-% Please follow local copyright laws when handling this file.
 
