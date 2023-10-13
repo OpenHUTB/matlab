@@ -1,17 +1,5 @@
 classdef externalAudioPlugin<audioPlugin&audio.internal.loadableAudioPlugin
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Hidden,SetAccess=private)
         Prepared=false
     end

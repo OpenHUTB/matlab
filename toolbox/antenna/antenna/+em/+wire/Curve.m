@@ -1,6 +1,5 @@
 classdef Curve<handle
 
-
     properties
 X
 Y

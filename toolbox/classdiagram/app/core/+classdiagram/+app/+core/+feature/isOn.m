@@ -1,7 +1,5 @@
 function bool=isOn(feature,varargin)
 
-
-
     bool=0;
     s=settings;
     cdv=s.classviewer;

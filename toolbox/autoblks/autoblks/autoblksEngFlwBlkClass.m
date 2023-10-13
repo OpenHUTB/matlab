@@ -1,7 +1,5 @@
 classdef autoblksEngFlwBlkClass<handle
 
-
-
     properties(SetAccess=private)
 BlkHdl
         BlkMassFracSetupFcn={};

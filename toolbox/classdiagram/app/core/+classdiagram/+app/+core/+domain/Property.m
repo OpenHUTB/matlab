@@ -1,7 +1,5 @@
 classdef Property<classdiagram.app.core.domain.BaseObject
 
-
-
     properties(Access=private)
         OwningClass;
         DomainType='';

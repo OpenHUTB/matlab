@@ -1,9 +1,6 @@
 function[midiControlCell,mappings,status]=configureMIDIDevice(objHandle,...
     params,cachedMIDIControls,cachedMIDIMappings,interface,enableCodeGeneration)
 
-
-
-
     cachedMIDIProperties={};
     for index=1:length(cachedMIDIMappings)
         cachedMIDIProperties{end+1}=cachedMIDIMappings{index}.Property;%#ok  

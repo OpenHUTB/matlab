@@ -1,8 +1,4 @@
 classdef ClassDiagramTypes
-
-
-
-
     properties(Constant,Access=public,Hidden)
         typeMap=containers.Map([classdiagram.app.core.domain.Package.ConstantType,...
         classdiagram.app.core.domain.Class.ConstantType,...

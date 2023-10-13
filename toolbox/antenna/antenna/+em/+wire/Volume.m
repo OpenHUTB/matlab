@@ -1,7 +1,5 @@
 classdef Volume<handle
 
-
-
     properties
 Surfaces
 ColorsMap

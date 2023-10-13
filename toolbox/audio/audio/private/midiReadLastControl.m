@@ -1,14 +1,10 @@
 function[val,ctl,chn,err]=midiReadLastControl(cid)
-
-
-
     assert(isa(cid,'double')&&isscalar(cid)&&isreal(cid));
 
 %#codegen
     coder.allowpcode('plain');
 
     if isempty(coder.target)
-
         [val,ctl,chn,err]=midimexif('midiReadLastControl',cid);
     else
 

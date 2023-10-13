@@ -1,7 +1,5 @@
 classdef Relationship<classdiagram.app.core.domain.BaseObject
 
-
-
     properties(Access=private)
         SrcEnd classdiagram.app.core.domain.RelationshipEnd;
         DstEnd classdiagram.app.core.domain.RelationshipEnd;

@@ -10,10 +10,6 @@ classdef Antenna<em.EmStructures&...
     em.OptimizationAnalysis
 
 
-
-
-
-
     properties(SetObservable)
 
 Load

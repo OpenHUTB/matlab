@@ -1,7 +1,5 @@
 classdef midimex<coder.ExternalDependency %#codegen
 
-
-
     methods
         function obj=midimex
             coder.allowpcode('plain');

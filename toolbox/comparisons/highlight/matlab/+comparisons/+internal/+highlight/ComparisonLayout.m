@@ -1,8 +1,4 @@
 classdef ComparisonLayout<handle
-
-
-
-
     properties(Abstract,GetAccess=public,SetAccess=private)
 ContentIds
     end

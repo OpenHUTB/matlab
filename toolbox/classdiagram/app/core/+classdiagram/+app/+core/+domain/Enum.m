@@ -1,7 +1,5 @@
 classdef Enum<classdiagram.app.core.domain.PackageElement
 
-
-
     properties(Constant)
         ConstantType="Enum";
     end

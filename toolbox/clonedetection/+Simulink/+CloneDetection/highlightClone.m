@@ -1,10 +1,5 @@
 
 function highlightClone(cloneResults,subsystem)
-
-
-
-
-
     Simulink.CloneDetection.internal.util.checkoutLicenseForCloneDetection();
 
     if isa(cloneResults,'Simulink.CloneDetection.Results')&&isempty(cloneResults.Clones)

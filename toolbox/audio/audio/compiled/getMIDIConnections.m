@@ -1,30 +1,6 @@
 function param=getMIDIConnections(obj)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(1,1);
-
 
     import matlab.internal.lang.capability.Capability;
     Capability.require(Capability.LocalClient);

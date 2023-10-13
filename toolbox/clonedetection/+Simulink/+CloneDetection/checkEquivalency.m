@@ -1,11 +1,7 @@
 function equivalencyCheckResults=checkEquivalency(replacementResults)
 
-
-
-
     loadedModels={};
     try
-
         if~isa(replacementResults,'Simulink.CloneDetection.ReplacementResults')||...
             isempty(replacementResults.ClonesId)
             DAStudio.error('sl_pir_cpp:creator:InvalidReplacementResultsObject');
@@ -14,10 +10,6 @@ function equivalencyCheckResults=checkEquivalency(replacementResults)
         Simulink.CloneDetection.internal.util.checkoutLicenseForCloneDetection();
 
         clonesId=split(replacementResults.ClonesId,",");
-
-
-
-
 
         if~(length(clonesId)>=3)
             DAStudio.error('sl_pir_cpp:creator:InvalidReplacementResultsObject');

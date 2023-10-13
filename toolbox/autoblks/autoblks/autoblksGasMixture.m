@@ -1,7 +1,5 @@
 classdef autoblksGasMixture
 
-
-
     properties(SetAccess=private)
 MixtureName
 GasNames
@@ -19,8 +17,6 @@ MassFracStruct
                 obj.MassFracStruct.(obj.GasNames{i})=obj.GasMassFracs(i);
             end
         end
-
-
 
 
         function SpeciesMassFracs=SpeciesFrac(obj,MixtureFrac)

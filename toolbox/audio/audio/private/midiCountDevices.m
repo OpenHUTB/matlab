@@ -1,7 +1,5 @@
 function count=midiCountDevices
 
-
-
 %#codegen
     coder.allowpcode('plain');
 

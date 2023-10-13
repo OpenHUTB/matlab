@@ -1,11 +1,4 @@
-
-
-
-
 classdef hostmexif<coder.ExternalDependency %#codegen
-
-
-
 
     methods
         function obj=hostmexif

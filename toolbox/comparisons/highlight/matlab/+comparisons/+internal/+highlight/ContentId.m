@@ -1,8 +1,5 @@
 classdef ContentId
 
-
-
-
     properties(Constant)
         Report="Report",
         Left="Left",

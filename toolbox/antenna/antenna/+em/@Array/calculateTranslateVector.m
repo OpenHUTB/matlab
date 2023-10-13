@@ -1,39 +1,5 @@
 function v=calculateTranslateVector(obj)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if isa(obj,'linearArray')
         v=[-obj.TotalArraySpacing/2,0,0];
     elseif isa(obj,'rectangularArray')

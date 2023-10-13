@@ -1,8 +1,6 @@
 classdef MIDIInterface<handle
 
 
-
-
     properties(Access=private)
 
 pSystemUnderTest

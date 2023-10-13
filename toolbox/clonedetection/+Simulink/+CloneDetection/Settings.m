@@ -1,8 +1,5 @@
 classdef Settings<matlab.mixin.SetGetExactNames&handle&dynamicprops
 
-
-
-
     properties
 IgnoreSignalName
 
@@ -19,8 +16,6 @@ ParamDifferenceThreshold
 
 
 ReplaceExactClonesWithSubsystemReference
-
-
 
 Libraries
 

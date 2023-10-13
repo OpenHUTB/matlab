@@ -1,38 +1,5 @@
 function asiosettings(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(0,1);
     nargoutchk(0,0);
 

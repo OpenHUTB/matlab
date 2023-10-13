@@ -1,7 +1,5 @@
 classdef Surface<handle
 
-
-
     properties
 Faces
 Vertices

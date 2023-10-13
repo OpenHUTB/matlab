@@ -1,38 +1,6 @@
 function configureMIDI(varargin)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     import matlab.internal.lang.capability.Capability;
     Capability.require(Capability.LocalClient);
 

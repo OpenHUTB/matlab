@@ -1,22 +1,7 @@
 classdef constantExternalAudioPluginSource<audioPluginSource
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
-
 
     properties(Hidden)
         Prepared=false

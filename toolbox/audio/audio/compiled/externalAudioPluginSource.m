@@ -1,17 +1,5 @@
 classdef externalAudioPluginSource<audioPluginSource&audio.internal.loadableAudioPlugin
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Hidden,SetAccess=private)
         Prepared=false
     end
@@ -23,15 +11,6 @@ classdef externalAudioPluginSource<audioPluginSource&audio.internal.loadableAudi
         end
 
         function out=process(plugin)
-
-
-
-
-
-
-
-
-
 
             inst=plugin.PluginInstance;
             if~inst

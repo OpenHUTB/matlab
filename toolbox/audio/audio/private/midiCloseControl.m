@@ -1,7 +1,4 @@
 function err=midiCloseControl(cid)
-
-
-
     assert(isa(cid,'double')&&isreal(cid));
 
 %#codegen

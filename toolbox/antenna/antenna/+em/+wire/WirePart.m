@@ -1,8 +1,5 @@
 classdef(Abstract)WirePart<em.wire.Part
 
-
-
-
     properties
         WireDiameter=em.wire.WirePart.DefaultWireDiameter
         FeedOffset=em.wire.WirePart.DefaultFeedOffset

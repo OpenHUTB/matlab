@@ -1,11 +1,5 @@
 function varargout=iptfeature(varargin)
 
-
-
-
-
-
-
     narginchk(1,2);
 
     mlock;
@@ -14,7 +8,6 @@ function varargout=iptfeature(varargin)
 
     if isempty(iptFeatureMap)
         iptFeatureMap=containers.Map('KeyType','char','ValueType','logical');
-
 
         iptFeatureMap('BigImageProcessing')=false;
     end
@@ -35,8 +28,5 @@ function varargout=iptfeature(varargin)
     if nargout==1
         varargout{1}=retVal;
     end
-
-
-
 
 end

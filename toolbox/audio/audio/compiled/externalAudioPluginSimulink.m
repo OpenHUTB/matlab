@@ -1,21 +1,5 @@
 classdef externalAudioPluginSimulink<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     methods
