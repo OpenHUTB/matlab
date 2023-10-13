@@ -124,11 +124,8 @@ binName.linux = "bowtie2-2.3.2-legacy-linux";
 end 
 end 
 
+
 function qePath = getQePath( addonName )
-
-
-
-
 
 switch addonName
 case 'cufflinks'
@@ -144,6 +141,4 @@ qePath = fullfile( getenv( 'LARGE_TEST_DATA_ROOT' ),  ...
 end 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpSs6ono.p.
-% Please follow local copyright laws when handling this file.
 
