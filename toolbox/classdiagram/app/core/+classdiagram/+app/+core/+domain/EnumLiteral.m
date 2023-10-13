@@ -1,7 +1,5 @@
 classdef EnumLiteral<classdiagram.app.core.domain.BaseObject
 
-
-
     properties(Constant)
         ConstantType="EnumLiteral";
     end
