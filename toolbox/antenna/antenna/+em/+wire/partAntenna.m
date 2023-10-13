@@ -1,12 +1,5 @@
 classdef partAntenna<em.wire.Part
 
-
-
-
-
-
-
-
     properties
 Parts
     end
