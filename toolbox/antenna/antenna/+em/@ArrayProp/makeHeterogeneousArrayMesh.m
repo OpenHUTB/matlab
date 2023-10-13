@@ -1,8 +1,5 @@
 function[p_element,t_element]=makeHeterogeneousArrayMesh(obj)
 
-
-
-
     edgeLength=getMeshEdgeLength(obj);
     growthRate=getMeshGrowthRate(obj);
 
