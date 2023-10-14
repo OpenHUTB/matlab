@@ -1,62 +1,59 @@
-
-
-
-
 classdef ( Sealed, ConstructOnLoad )bigimageshow < matlab.graphics.primitive.Data & matlab.graphics.mixin.AxesParentable
 
-properties ( Hidden )
+    properties ( Hidden )
+        CurrentCoalescePeriod = 0;
+        RequiredCoalescePeriod = 0.2;
 
+        DisplayTileManager images.bigdata.internal.DisplayTileManager
 
+        FullImageExtentsX
+        FullImageExtentsY
 
+        SpatialReferencing
+        SpatialReferencing_Alpha
+    end
 
-CurrentCoalescePeriod = 0;
-RequiredCoalescePeriod = 0.2;
+    properties ( Transient, GetAccess = public, SetAccess = protected, NonCopyable )
+        Type matlab.internal.datatype.matlab.graphics.datatype.TypeName = 'bigimageshow';
+    end
 
+    properties ( AffectsObject, NeverAmbiguous )
+        ResolutionLevelMode matlab.internal.datatype.matlab.graphics.datatype.AutoManual = 'auto';
+    end
 
 
-DisplayTileManager images.bigdata.internal.DisplayTileManager
+    properties ( Dependent, AffectsObject )
 
 
 
-FullImageExtentsX
-FullImageExtentsY
 
 
-SpatialReferencing
-SpatialReferencing_Alpha
-end 
 
-properties ( Transient, GetAccess = public, SetAccess = protected, NonCopyable )
-Type matlab.internal.datatype.matlab.graphics.datatype.TypeName = 'bigimageshow';
-end 
 
-properties ( AffectsObject, NeverAmbiguous )
 
+        ResolutionLevel
 
 
+        CData
 
 
 
 
 
 
-ResolutionLevelMode matlab.internal.datatype.matlab.graphics.datatype.AutoManual = 'auto';
-end 
 
 
-properties ( Dependent, AffectsObject )
 
 
+        AlphaData
 
 
 
 
 
 
-ResolutionLevel
 
 
-CData
 
 
 
@@ -67,7 +64,6 @@ CData
 
 
 
-AlphaData
 
 
 
@@ -83,6 +79,7 @@ AlphaData
 
 
 
+        CDataMapping
 
 
 
@@ -101,7 +98,6 @@ AlphaData
 
 
 
-CDataMapping
 
 
 
@@ -134,7 +130,10 @@ CDataMapping
 
 
 
+        AlphaDataMapping
+    end
 
+    properties ( Dependent, AffectsObject )
 
 
 
@@ -144,1196 +143,1175 @@ CDataMapping
 
 
 
+        Interpolation
+    end
 
 
+    properties ( Hidden, AffectsObject, Access = private )
+        ResolutionLevel_I = [  ]
+        CData_I = blockedImage.empty(  )
+        CDataMapping_I = 'direct'
+        AlphaData_I
+        AlphaDataMapping_I = 'none'
+        GrayscaleTiles_I = false;
+    end
 
 
+    properties ( Hidden, Dependent )
 
 
 
+        GrayscaleTiles
+    end
 
-AlphaDataMapping
-end 
 
-properties ( Dependent, AffectsObject )
+    properties ( Access = private, Transient, Hidden, NonCopyable )
 
 
 
+        CoalesceTimer timer
 
 
+        CancelEventTimeStamp
 
 
+        MaskQuads matlab.graphics.primitive.Patch
+        MaskBlockSize = [ 0, 0 ]
+        MaskApplyLevel
 
 
-Interpolation
-end 
 
+        PreviousUpdateStateInfo
 
-properties ( Hidden, AffectsObject, Access = private )
-ResolutionLevel_I = [  ]
-CData_I = blockedImage.empty(  )
-CDataMapping_I = 'direct'
-AlphaData_I
-AlphaDataMapping_I = 'none'
-GrayscaleTiles_I = false;
-end 
 
 
-properties ( Hidden, Dependent )
+        PrintSettingsCache
 
 
+        ChannelInds = 1
+    end
 
-GrayscaleTiles
-end 
 
+    properties ( Dependent )
 
-properties ( Access = private, Transient, Hidden, NonCopyable )
 
 
 
-CoalesceTimer timer
 
 
-CancelEventTimeStamp
 
 
-MaskQuads matlab.graphics.primitive.Patch
-MaskBlockSize = [ 0, 0 ]
-MaskApplyLevel
+        GridLevel
+    end
 
 
 
-PreviousUpdateStateInfo
+    properties ( Hidden, AffectsObject, Access = private )
+        GridLevel_I = [  ]
+    end
 
 
+    properties ( AffectsObject )
 
-PrintSettingsCache
 
 
-ChannelInds = 1
-end 
 
+        GridAlpha matlab.internal.datatype.matlab.graphics.datatype.ZeroToOne = 0.8;
 
-properties ( Dependent )
 
 
+        GridLineWidth matlab.internal.datatype.matlab.graphics.datatype.Positive = 1
 
 
 
 
 
 
-GridLevel
-end 
 
 
 
-properties ( Hidden, AffectsObject, Access = private )
-GridLevel_I = [  ]
-end 
+        GridLineStyle matlab.internal.datatype.matlab.graphics.datatype.LineStyle = '-'
 
 
-properties ( AffectsObject )
 
 
+        GridColor matlab.internal.datatype.matlab.graphics.datatype.RGBAColor = [ 0, 0, 1 ]
 
 
-GridAlpha matlab.internal.datatype.matlab.graphics.datatype.ZeroToOne = 0.8;
 
 
 
-GridLineWidth matlab.internal.datatype.matlab.graphics.datatype.Positive = 1
 
 
+        GridVisible( 1, 1 )matlab.lang.OnOffSwitchState = 'off'
+    end
 
+    properties ( AffectsObject, NeverAmbiguous )
 
 
 
 
 
 
-GridLineStyle matlab.internal.datatype.matlab.graphics.datatype.LineStyle = '-'
 
 
+        GridLevelMode matlab.internal.datatype.matlab.graphics.datatype.AutoManual = 'auto'
+    end
 
 
-GridColor matlab.internal.datatype.matlab.graphics.datatype.RGBAColor = [ 0, 0, 1 ]
+    properties ( Transient, Hidden, NonCopyable, Access = private )
 
+        GridLines matlab.graphics.primitive.world.LineStrip
+    end
 
 
 
+    methods
+        function obj = bigimageshow( varargin )
 
+            args = {  };
+            cax = [  ];
+            if ~isempty( varargin )
 
+                [ cax, args ] = axescheck( varargin{ : } );
 
-GridVisible( 1, 1 )matlab.lang.OnOffSwitchState = 'off'
-end 
 
-properties ( AffectsObject, NeverAmbiguous )
 
+                validateattributes( args{ 1 }, { 'bigimage', 'blockedImage', 'char', 'string' },  ...
+                    { 'nonempty' }, mfilename );
 
 
+                if numel( args ) >= 1 && ( isa( args{ 1 }, 'blockedImage' ) || isa( args{ 1 }, 'bigimage' ) )
+                    args = [ { 'CData' }, args( : )' ];
+                end
+            end
 
+            obj.DisplayTileManager = images.bigdata.internal.DisplayTileManager(  );
 
 
+            obj.CurrentCoalescePeriod = 0;
 
 
-GridLevelMode matlab.internal.datatype.matlab.graphics.datatype.AutoManual = 'auto'
-end 
+            info = opengl( 'data' );
+            if ispc && info.Software == 1
 
+                obj.DisplayTileManager.Interpolation = 'nearest';
+            else
+                obj.DisplayTileManager.Interpolation = 'linear';
+            end
 
-properties ( Transient, Hidden, NonCopyable, Access = private )
 
-GridLines matlab.graphics.primitive.world.LineStrip
-end 
 
+            if ~isempty( args )
+                set( obj, args{ : } );
+            end
 
 
-methods 
-function obj = bigimageshow( varargin )
+            if nargin > 0 && ( isempty( cax ) || ishghandle( cax, 'axes' ) )
+                cax = newplot( cax );
+                parax = cax;
+                switch cax.NextPlot
+                    case { 'replaceall', 'replace' }
+                        parax.YDir = 'reverse';
+                        parax.DataAspectRatio = [ 1, 1, 1 ];
+                        axis( parax, 'tight' );
+                    case 'replacechildren'
+                        parax.YDir = 'reverse';
+                end
+            else
+                parax = cax;
+            end
+            obj.Parent = parax;
 
-args = {  };
-cax = [  ];
-if ~isempty( varargin )
 
-[ cax, args ] = axescheck( varargin{ : } );
 
+            if ~isempty( args )
+                set( obj, args{ : } );
+            end
 
 
-validateattributes( args{ 1 }, { 'bigimage', 'blockedImage', 'char', 'string' },  ...
-{ 'nonempty' }, mfilename );
 
+            addNode( obj, obj.DisplayTileManager.BackgroundTile );
 
-if numel( args ) >= 1 && ( isa( args{ 1 }, 'blockedImage' ) || isa( args{ 1 }, 'bigimage' ) )
-args = [ { 'CData' }, args( : )' ];
-end 
-end 
 
-obj.DisplayTileManager = images.bigdata.internal.DisplayTileManager(  );
+            addDependencyConsumed( obj, { 'xyzdatalimits', 'dataspace',  ...
+                'figurecolormap', 'colorspace',  ...
+                'ref_frame', 'view', 'resolution', 'renderer' } );
 
 
-obj.CurrentCoalescePeriod = 0;
+            behaviorProp = findprop( obj, 'Behavior' );
+            if isempty( behaviorProp )
+                behaviorProp = addprop( obj, 'Behavior' );
+                behaviorProp.Hidden = true;
+                behaviorProp.Transient = true;
+            end
+            hBehavior = hggetbehavior( obj, 'print' );
+            hBehavior.PrePrintCallback = @( obj, callbackName )printEvent( obj, callbackName );
+            hBehavior.PostPrintCallback = @( obj, callbackName )printEvent( obj, callbackName );
 
+            if nargout == 0
 
-info = opengl( 'data' );
-if ispc && info.Software == 1
+                clear obj
+            end
+        end
 
-obj.DisplayTileManager.Interpolation = 'nearest';
-else 
-obj.DisplayTileManager.Interpolation = 'linear';
-end 
+        function delete( obj )
+            if isvalid( obj )
+                obj.cancelPendingIO(  );
+            end
+            if isscalar( obj.CoalesceTimer ) && isvalid( obj.CoalesceTimer )
+                stop( obj.CoalesceTimer )
+                delete( obj.CoalesceTimer );
+            end
+        end
 
+        function showmask( obj, mask, varargin )
 
+            narginchk( 2, 9 );
 
-if ~isempty( args )
-set( obj, args{ : } );
-end 
+            validateattributes( mask, { 'blockedImage', 'bigimage' }, { 'scalar' },  ...
+                'showmask', 'mask' );
 
 
-if nargin > 0 && ( isempty( cax ) || ishghandle( cax, 'axes' ) )
-cax = newplot( cax );
-parax = cax;
-switch cax.NextPlot
-case { 'replaceall', 'replace' }
-parax.YDir = 'reverse';
-parax.DataAspectRatio = [ 1, 1, 1 ];
-axis( parax, 'tight' );
-case 'replacechildren'
-parax.YDir = 'reverse';
-end 
-else 
-parax = cax;
-end 
-obj.Parent = parax;
 
+            resLevel = obj.ResolutionLevel;%#ok<NASGU>
 
 
-if ~isempty( args )
-set( obj, args{ : } );
-end 
+            parser = inputParser;
+            parser.addOptional( 'ApplyLevel', getFinestLevel( obj.CData ),  ...
+                @( l )validateattributes( l, { 'numeric' },  ...
+                { 'positive', 'scalar', 'integer', '<=', numel( obj.SpatialReferencing ) },  ...
+                mfilename, 'applyLevel' ) );
+            parser.addParameter( 'BlockSize', [  ],  ...
+                @( bs )validateattributes( bs, { 'numeric' },  ...
+                { 'positive', 'integer', 'numel', 2 }, mfilename, 'BlockSize' ) );
+            parser.addParameter( 'InclusionThreshold', 0.5,  ...
+                @( in )validateattributes( in,  ...
+                { 'numeric' }, { 'scalar', 'real', '>=', 0, '<=', 1 } ) );
+            parser.addParameter( 'Alpha', 0.3,  ...
+                @( a )validateattributes( a, { 'numeric' },  ...
+                { 'scalar', '<=', 1, '>=', 0 }, 'showmask', 'Alpha' ) );
 
+            parser.parse( varargin{ : } );
+            inputs = parser.Results;
+            if any( strcmp( parser.UsingDefaults, 'BlockSize' ) )
+                inputs.BlockSize = getBlockSize( obj.CData, inputs.ApplyLevel );
+            end
 
+            onFaceColor = 'g';
+            offFaceColor = 'r';
 
-addNode( obj, obj.DisplayTileManager.BackgroundTile );
+            if isequal( obj.MaskBlockSize, inputs.BlockSize ) ...
+                    && isequal( obj.MaskApplyLevel, inputs.ApplyLevel )
 
 
-addDependencyConsumed( obj, { 'xyzdatalimits', 'dataspace',  ...
-'figurecolormap', 'colorspace',  ...
-'ref_frame', 'view', 'resolution', 'renderer' } );
+                for hPatch = obj.MaskQuads
+                    if hPatch.UserData.pct > 0 ...
+                            && hPatch.UserData.pct >= inputs.InclusionThreshold
+                        hPatch.FaceColor = onFaceColor;
+                    else
+                        hPatch.FaceColor = offFaceColor;
+                    end
 
 
-behaviorProp = findprop( obj, 'Behavior' );
-if isempty( behaviorProp )
-behaviorProp = addprop( obj, 'Behavior' );
-behaviorProp.Hidden = true;
-behaviorProp.Transient = true;
-end 
-hBehavior = hggetbehavior( obj, 'print' );
-hBehavior.PrePrintCallback = @( obj, callbackName )printEvent( obj, callbackName );
-hBehavior.PostPrintCallback = @( obj, callbackName )printEvent( obj, callbackName );
+                    hPatch.Visible = 'on';
+                    hPatch.FaceAlpha = inputs.Alpha;
+                    drawnow limitrate
+                end
 
-if nargout == 0
+            else
 
-clear obj
-end 
-end 
+                delete( obj.MaskQuads );
+                obj.MaskBlockSize = inputs.BlockSize;
+                obj.MaskApplyLevel = inputs.ApplyLevel;
 
-function delete( obj )
-if isvalid( obj )
-obj.cancelPendingIO(  );
-end 
-if isscalar( obj.CoalesceTimer ) && isvalid( obj.CoalesceTimer )
-stop( obj.CoalesceTimer )
-delete( obj.CoalesceTimer );
-end 
-end 
+                imRef = obj.SpatialReferencing( obj.MaskApplyLevel );
 
-function showmask( obj, mask, varargin )
 
-narginchk( 2, 9 );
+                [ r, c ] = imRef.intrinsicToWorldAlgo( obj.MaskBlockSize( 2 ), obj.MaskBlockSize( 1 ) );
+                blockSizeInWorld = [ r, c ];
 
-validateattributes( mask, { 'blockedImage', 'bigimage' }, { 'scalar' },  ...
-'showmask', 'mask' );
 
 
 
-resLevel = obj.ResolutionLevel;%#ok<NASGU>
+                xStart = imRef.XWorldLimits( 1 ) + imRef.PixelExtentInWorldX / 2;
+                yStart = imRef.YWorldLimits( 1 ) + imRef.PixelExtentInWorldY / 2;
+                xEnd = imRef.XWorldLimits( 2 ) - imRef.PixelExtentInWorldX / 2;
+                yEnd = imRef.YWorldLimits( 2 ) - imRef.PixelExtentInWorldY / 2;
 
+                xLoc = xStart:blockSizeInWorld( 1 ):imRef.XWorldLimits( 2 );
+                yLoc = yStart:blockSizeInWorld( 2 ):imRef.YWorldLimits( 2 );
 
-parser = inputParser;
-parser.addOptional( 'ApplyLevel', getFinestLevel( obj.CData ),  ...
-@( l )validateattributes( l, { 'numeric' },  ...
-{ 'positive', 'scalar', 'integer', '<=', numel( obj.SpatialReferencing ) },  ...
-mfilename, 'applyLevel' ) );
-parser.addParameter( 'BlockSize', [  ],  ...
-@( bs )validateattributes( bs, { 'numeric' },  ...
-{ 'positive', 'integer', 'numel', 2 }, mfilename, 'BlockSize' ) );
-parser.addParameter( 'InclusionThreshold', 0.5,  ...
-@( in )validateattributes( in,  ...
-{ 'numeric' }, { 'scalar', 'real', '>=', 0, '<=', 1 } ) );
-parser.addParameter( 'Alpha', 0.3,  ...
-@( a )validateattributes( a, { 'numeric' },  ...
-{ 'scalar', '<=', 1, '>=', 0 }, 'showmask', 'Alpha' ) );
 
-parser.parse( varargin{ : } );
-inputs = parser.Results;
-if any( strcmp( parser.UsingDefaults, 'BlockSize' ) )
-inputs.BlockSize = getBlockSize( obj.CData, inputs.ApplyLevel );
-end 
+                if xLoc( end  ) ~= xEnd
+                    xLoc( end  + 1 ) = xEnd;
+                end
+                if yLoc( end  ) ~= yEnd
+                    yLoc( end  + 1 ) = yEnd;
+                end
 
-onFaceColor = 'g';
-offFaceColor = 'r';
+                obj.MaskQuads = matlab.graphics.primitive.Patch.empty(  );
 
-if isequal( obj.MaskBlockSize, inputs.BlockSize ) ...
- && isequal( obj.MaskApplyLevel, inputs.ApplyLevel )
+                for yInd = 1:numel( yLoc ) - 1
+                    for xInd = 1:numel( xLoc ) - 1
+                        px = [ xLoc( xInd ), xLoc( xInd + 1 ), xLoc( xInd + 1 ), xLoc( xInd ) ];
+                        py = [ yLoc( yInd ), yLoc( yInd ), yLoc( yInd + 1 ), yLoc( yInd + 1 ) ];
 
 
-for hPatch = obj.MaskQuads
-if hPatch.UserData.pct > 0 ...
- && hPatch.UserData.pct >= inputs.InclusionThreshold
-hPatch.FaceColor = onFaceColor;
-else 
-hPatch.FaceColor = offFaceColor;
-end 
+                        maskStartWorld = [ xLoc( xInd ), yLoc( yInd ) ];
+                        maskEndWorld = [ xLoc( xInd + 1 ), yLoc( yInd + 1 ) ];
 
 
-hPatch.Visible = 'on';
-hPatch.FaceAlpha = inputs.Alpha;
-drawnow limitrate
-end 
+                        pct = computeWorldRegionNNZ( mask, getFinestLevel( mask ),  ...
+                            maskStartWorld, maskEndWorld );
 
-else 
+                        if pct > 0 && pct >= inputs.InclusionThreshold
+                            faceColor = onFaceColor;
+                        else
+                            faceColor = offFaceColor;
+                        end
 
-delete( obj.MaskQuads );
-obj.MaskBlockSize = inputs.BlockSize;
-obj.MaskApplyLevel = inputs.ApplyLevel;
+                        hPatch = patch( px, py, faceColor,  ...
+                            'Parent', obj.Parent', 'FaceAlpha', inputs.Alpha,  ...
+                            'EdgeColor', 'none',  ...
+                            'HitTest', 'off', 'HandleVisibility', 'off',  ...
+                            'PickableParts', 'none', 'Visible', 'on' );
+                        hPatch.UserData.pct = pct;
+                        obj.MaskQuads( end  + 1 ) = hPatch;
+                        drawnow limitrate
+                    end
+                end
+            end
 
-imRef = obj.SpatialReferencing( obj.MaskApplyLevel );
+        end
 
+        function hidemask( obj )
+            [ obj.MaskQuads.Visible ] = deal( 'off' );
+        end
 
-[ r, c ] = imRef.intrinsicToWorldAlgo( obj.MaskBlockSize( 2 ), obj.MaskBlockSize( 1 ) );
-blockSizeInWorld = [ r, c ];
+        function showlabels( obj, blabels, params )
+            arguments
+                obj( 1, 1 )bigimageshow
+                blabels
+                params.AlphaData( 1, 1 ) = 1
+                params.Alphamap( 1, : ){ mustBeInRange( params.Alphamap, 0, 1 ) } = 0.5
+                params.Colormap = 'jet'
+            end
 
 
+            if ~isempty( blabels ) && ismatrix( blabels ) && ( isnumeric( blabels ) || islogical( blabels ) )
 
 
-xStart = imRef.XWorldLimits( 1 ) + imRef.PixelExtentInWorldX / 2;
-yStart = imRef.YWorldLimits( 1 ) + imRef.PixelExtentInWorldY / 2;
-xEnd = imRef.XWorldLimits( 2 ) - imRef.PixelExtentInWorldX / 2;
-yEnd = imRef.YWorldLimits( 2 ) - imRef.PixelExtentInWorldY / 2;
+                blabels = blockedImage( blabels,  ...
+                    'WorldStart', obj.CData.WorldStart( 1, 1:2 ),  ...
+                    'WorldEnd', obj.CData.WorldEnd( 1, 1:2 ) );
+            else
+                validateattributes( blabels, { 'blockedImage' },  ...
+                    { 'scalar' }, mfilename, 'blabels' );
+            end
 
-xLoc = xStart:blockSizeInWorld( 1 ):imRef.XWorldLimits( 2 );
-yLoc = yStart:blockSizeInWorld( 2 ):imRef.YWorldLimits( 2 );
 
+            if isfield( params, 'Colormap' )
+                images.internal.LabelColormapHelper.validateColormap( params.Colormap );
+            end
+            params.Colormap = images.internal.LabelColormapHelper.normalizeColormap( params.Colormap );
 
-if xLoc( end  ) ~= xEnd
-xLoc( end  + 1 ) = xEnd;
-end 
-if yLoc( end  ) ~= yEnd
-yLoc( end  + 1 ) = yEnd;
-end 
 
-obj.MaskQuads = matlab.graphics.primitive.Patch.empty(  );
+            if isa( params.AlphaData, 'blockedImage' )
+                validateattributes( params.AlphaData, { 'blockedImage' },  ...
+                    { 'scalar' }, mfilename, 'AlphaData' );
+            else
+                validateattributes( params.AlphaData, { 'numeric', 'logical' },  ...
+                    { 'scalar', 'finite', 'real' }, mfilename, 'AlphaData' );
+            end
 
-for yInd = 1:numel( yLoc ) - 1
-for xInd = 1:numel( xLoc ) - 1
-px = [ xLoc( xInd ), xLoc( xInd + 1 ), xLoc( xInd + 1 ), xLoc( xInd ) ];
-py = [ yLoc( yInd ), yLoc( yInd ), yLoc( yInd + 1 ), yLoc( yInd + 1 ) ];
+            obj.hidelabels(  );
 
+            hAxes = obj.Parent;
 
-maskStartWorld = [ xLoc( xInd ), yLoc( yInd ) ];
-maskEndWorld = [ xLoc( xInd + 1 ), yLoc( yInd + 1 ) ];
 
+            hLabelAxes = axes( 'HitTest', 'off',  ...
+                'HandleVisibility', "off",  ...
+                'Parent', hAxes.Parent,  ...
+                'Units', hAxes.Units );
 
-pct = computeWorldRegionNNZ( mask, getFinestLevel( mask ),  ...
-maskStartWorld, maskEndWorld );
+            resizeLabelAxes( hAxes, hLabelAxes );
 
-if pct > 0 && pct >= inputs.InclusionThreshold
-faceColor = onFaceColor;
-else 
-faceColor = offFaceColor;
-end 
+            bigimageshow( blabels, 'Parent', hLabelAxes,  ...
+                "Interpolation", "nearest",  ...
+                "AlphaData", params.AlphaData,  ...
+                "AlphaDataMapping", "direct" );
 
-hPatch = patch( px, py, faceColor,  ...
-'Parent', obj.Parent', 'FaceAlpha', inputs.Alpha,  ...
-'EdgeColor', 'none',  ...
-'HitTest', 'off', 'HandleVisibility', 'off',  ...
-'PickableParts', 'none', 'Visible', 'on' );
-hPatch.UserData.pct = pct;
-obj.MaskQuads( end  + 1 ) = hPatch;
-drawnow limitrate
-end 
-end 
-end 
+            hLabelAxes.Visible = 'off';
 
-end 
+            numColors = size( params.Colormap, 1 );
+            if numColors > 1
+                hLabelAxes.CLim = [ 0, numColors - 1 ];
+            end
+            colormap( hLabelAxes, params.Colormap );
+            hLabelAxes.Alphamap = params.Alphamap;
 
-function hidemask( obj )
-[ obj.MaskQuads.Visible ] = deal( 'off' );
-end 
 
-function showlabels( obj, blabels, params )
-R36
-obj( 1, 1 )bigimageshow
-blabels
-params.AlphaData( 1, 1 ) = 1
-params.Alphamap( 1, : ){ mustBeInRange( params.Alphamap, 0, 1 ) } = 0.5
-params.Colormap = 'jet'
-end 
+            linkaxes( [ obj.Parent, hLabelAxes ] );
+            addlistener( hAxes, 'MarkedClean', @( ~, ~ )resizeLabelAxes( hAxes, hLabelAxes ) );
 
 
-if ~isempty( blabels ) && ismatrix( blabels ) && ( isnumeric( blabels ) || islogical( blabels ) )
+            addlistener( hAxes, 'Cla', @( ~, ~ )delete( hLabelAxes ) );
+            addlistener( hAxes, 'ObjectBeingDestroyed', @( ~, ~ )delete( hLabelAxes ) );
 
 
-blabels = blockedImage( blabels,  ...
-'WorldStart', obj.CData.WorldStart( 1, 1:2 ),  ...
-'WorldEnd', obj.CData.WorldEnd( 1, 1:2 ) );
-else 
-validateattributes( blabels, { 'blockedImage' },  ...
-{ 'scalar' }, mfilename, 'blabels' );
-end 
 
 
-if isfield( params, 'Colormap' )
-images.internal.LabelColormapHelper.validateColormap( params.Colormap );
-end 
-params.Colormap = images.internal.LabelColormapHelper.normalizeColormap( params.Colormap );
+            set( ancestor( obj, 'Figure' ), 'CurrentAxes', hAxes );
 
+            key = 'showLabelLinkedAxes';
+            setappdata( obj, key, hLabelAxes );
 
-if isa( params.AlphaData, 'blockedImage' )
-validateattributes( params.AlphaData, { 'blockedImage' },  ...
-{ 'scalar' }, mfilename, 'AlphaData' );
-else 
-validateattributes( params.AlphaData, { 'numeric', 'logical' },  ...
-{ 'scalar', 'finite', 'real' }, mfilename, 'AlphaData' );
-end 
+            function resizeLabelAxes( hAxes, hLabelAxes )
+                if isvalid( hLabelAxes ) && (  ...
+                        ~isequal( hLabelAxes.Layout, hAxes.Layout ) ||  ...
+                        ~isequal( hLabelAxes.Units, hAxes.Units ) ||  ...
+                        ~isequal( hLabelAxes.InnerPosition, hAxes.InnerPosition ) )
+                    hLabelAxes.Layout = hAxes.Layout;
+                    if isempty( hAxes.Layout )
+                        hLabelAxes.Units = hAxes.Units;
+                        hLabelAxes.InnerPosition = hAxes.InnerPosition;
+                        hLabelAxes.Parent = hAxes.Parent;
+                    end
+                end
+            end
+        end
 
-obj.hidelabels(  );
+        function hidelabels( obj )
 
-hAxes = obj.Parent;
+            key = 'showLabelLinkedAxes';
+            if isappdata( obj, key )
+                delete( getappdata( obj, key ) );
+            end
+        end
+    end
 
 
-hLabelAxes = axes( 'HitTest', 'off',  ...
-'HandleVisibility', "off",  ...
-'Parent', hAxes.Parent,  ...
-'Units', hAxes.Units );
+    methods
 
-resizeLabelAxes( hAxes, hLabelAxes );
 
-bigimageshow( blabels, 'Parent', hLabelAxes,  ...
-"Interpolation", "nearest",  ...
-"AlphaData", params.AlphaData,  ...
-"AlphaDataMapping", "direct" );
+        function set.ResolutionLevel( obj, res )
+            obj.ResolutionLevel_I = obj.resolveResolutionLevelString( res );
+            obj.ResolutionLevelMode = 'manual';
+        end
 
-hLabelAxes.Visible = 'off';
+        function res = get.ResolutionLevel( obj )
+            if strcmp( obj.ResolutionLevelMode, 'auto' )
 
-numColors = size( params.Colormap, 1 );
-if numColors > 1
-hLabelAxes.CLim = [ 0, numColors - 1 ];
-end 
-colormap( hLabelAxes, params.Colormap );
-hLabelAxes.Alphamap = params.Alphamap;
+                forceFullUpdate( obj, 'all', 'ResolutionLevel' );
+            end
+            res = obj.ResolutionLevel_I;
+        end
 
 
-linkaxes( [ obj.Parent, hLabelAxes ] );
-addlistener( hAxes, 'MarkedClean', @( ~, ~ )resizeLabelAxes( hAxes, hLabelAxes ) );
+        function set.CData( obj, bigim )
+            validateattributes( bigim, { 'blockedImage', 'bigimage' },  ...
+                { 'nonempty' }, mfilename, 'CData' );
 
+            if numel( bigim ) > 1
+                error( message( 'images:bigimage:expectedScalar' ) );
+            end
 
-addlistener( hAxes, 'Cla', @( ~, ~ )delete( hLabelAxes ) );
-addlistener( hAxes, 'ObjectBeingDestroyed', @( ~, ~ )delete( hLabelAxes ) );
+            isGray = true;
+            if isa( bigim, 'bigimage' )
 
 
+                if bigim.Channels == 2
+                    warning( message( 'images:bigimage:notGray' ) );
+                end
+                if bigim.Channels > 3
+                    warning( message( 'images:bigimage:notRGB' ) );
+                end
+                obj.ChannelInds = 1;
+                if bigim.Channels >= 3
+                    isGray = false;
+                    obj.ChannelInds = [ 1, 2, 3 ];
+                end
+                obj.SpatialReferencing = bigim.SpatialReferencing;
+            else
+                isGray = bigim.NumDimensions == 2;
 
 
-set( ancestor( obj, 'Figure' ), 'CurrentAxes', hAxes );
+                isRGBOrGrayScale = bigim.NumDimensions == 3 && ( all( bigim.Size( :, 3 ) == 3 | bigim.Size( :, 3 ) == 1 ) );
+                isSupportedType = ~isequal( bigim.ClassUnderlying( 1 ), 'struct' );
 
-key = 'showLabelLinkedAxes';
-setappdata( obj, key, hLabelAxes );
+                if ~isSupportedType || ~( isGray || isRGBOrGrayScale )
+                    error( message( 'images:blockedImage:onlyGrayOrRGBblockedImage' ) )
+                end
 
-function resizeLabelAxes( hAxes, hLabelAxes )
-if isvalid( hLabelAxes ) && (  ...
-~isequal( hLabelAxes.Layout, hAxes.Layout ) ||  ...
-~isequal( hLabelAxes.Units, hAxes.Units ) ||  ...
-~isequal( hLabelAxes.InnerPosition, hAxes.InnerPosition ) )
-hLabelAxes.Layout = hAxes.Layout;
-if isempty( hAxes.Layout )
-hLabelAxes.Units = hAxes.Units;
-hLabelAxes.InnerPosition = hAxes.InnerPosition;
-hLabelAxes.Parent = hAxes.Parent;
-end 
-end 
-end 
-end 
+                obj.SpatialReferencing = getSpatialReferencingObject( bigim );
+            end
 
-function hidelabels( obj )
+            obj.CData_I = bigim;
 
-key = 'showLabelLinkedAxes';
-if isappdata( obj, key )
-delete( getappdata( obj, key ) );
-end 
-end 
-end 
 
 
-methods 
+            obj.FullImageExtentsX = [
+                min( [ obj.SpatialReferencing.XWorldLimits ] ),  ...
+                max( [ obj.SpatialReferencing.XWorldLimits ] ) ];
+            obj.FullImageExtentsY = [
+                min( [ obj.SpatialReferencing.YWorldLimits ] ),  ...
+                max( [ obj.SpatialReferencing.YWorldLimits ] ) ];
 
+            obj.DisplayTileManager.reset(  );
 
-function set.ResolutionLevel( obj, res )
-obj.ResolutionLevel_I = obj.resolveResolutionLevelString( res );
-obj.ResolutionLevelMode = 'manual';
-end 
 
-function res = get.ResolutionLevel( obj )
-if strcmp( obj.ResolutionLevelMode, 'auto' )
 
-forceFullUpdate( obj, 'all', 'ResolutionLevel' );
-end 
-res = obj.ResolutionLevel_I;
-end 
+            obj.DisplayTileManager.TileSize = obj.CData_I.BlockSize( 1, 1:2 );
 
 
-function set.CData( obj, bigim )
-validateattributes( bigim, { 'blockedImage', 'bigimage' },  ...
-{ 'nonempty' }, mfilename, 'CData' );
 
-if numel( bigim ) > 1
-error( message( 'images:bigimage:expectedScalar' ) );
-end 
+            hAxes = ancestor( obj, 'Axes' );
+            if ~( strcmp( bigim.ClassUnderlying( 1 ), 'uint8' ) || strcmp( bigim.ClassUnderlying( 1 ), 'categorical' ) )
+                obj.CDataMapping = 'scaled';
+                hAxes.CLim = getrangefromclass( zeros( 1, bigim.ClassUnderlying( 1 ) ) );
+            else
+                obj.CDataMapping = 'direct';
+            end
 
-isGray = true;
-if isa( bigim, 'bigimage' )
 
+            if strcmp( bigim.ClassUnderlying( 1 ), 'categorical' )
+                if isa( bigim, 'bigimage' )
 
-if bigim.Channels == 2
-warning( message( 'images:bigimage:notGray' ) );
-end 
-if bigim.Channels > 3
-warning( message( 'images:bigimage:notRGB' ) );
-end 
-obj.ChannelInds = 1;
-if bigim.Channels >= 3
-isGray = false;
-obj.ChannelInds = [ 1, 2, 3 ];
-end 
-obj.SpatialReferencing = bigim.SpatialReferencing;
-else 
-isGray = bigim.NumDimensions == 2;
+                    hAxes.Colormap = parula( numel( bigim.Classes ) + 1 );
+                else
+                    hAxes.Colormap = parula( numel( categories( bigim.InitialValue ) ) + 1 );
+                end
+            elseif isGray
+                hAxes.Colormap = gray( 256 );
+            end
 
 
-isRGBOrGrayScale = bigim.NumDimensions == 3 && ( all( bigim.Size( :, 3 ) == 3 | bigim.Size( :, 3 ) == 1 ) );
-isSupportedType = ~isequal( bigim.ClassUnderlying( 1 ), 'struct' );
+            if strcmp( bigim.ClassUnderlying( 1 ), 'logical' ) ||  ...
+                    strcmp( bigim.ClassUnderlying( 1 ), 'categorical' )
+                obj.Interpolation = 'nearest';
+            end
 
-if ~isSupportedType || ~( isGray || isRGBOrGrayScale )
-error( message( 'images:blockedImage:onlyGrayOrRGBblockedImage' ) )
-end 
+            obj.checkAndCreateOverViewIfNeeded( obj.CData );
+        end
 
-obj.SpatialReferencing = getSpatialReferencingObject( bigim );
-end 
+        function bigim = get.CData( obj )
+            bigim = obj.CData_I;
+        end
 
-obj.CData_I = bigim;
 
+        function set.CDataMapping( obj, str )
+            obj.CDataMapping_I = validatestring( str,  ...
+                { 'direct', 'scaled' }, mfilename, 'CDataMapping' );
+            obj.DisplayTileManager.reset(  );
+        end
 
+        function str = get.CDataMapping( obj )
+            str = obj.CDataMapping_I;
+        end
 
-obj.FullImageExtentsX = [ 
-min( [ obj.SpatialReferencing.XWorldLimits ] ),  ...
-max( [ obj.SpatialReferencing.XWorldLimits ] ) ];
-obj.FullImageExtentsY = [ 
-min( [ obj.SpatialReferencing.YWorldLimits ] ),  ...
-max( [ obj.SpatialReferencing.YWorldLimits ] ) ];
 
-obj.DisplayTileManager.reset(  );
+        function set.Interpolation( obj, interpString )
+            info = opengl( 'data' );
+            if ispc && info.Software == 1
 
+                validStrings = { 'nearest' };
+            else
+                validStrings = { 'nearest', 'linear' };
+            end
+            interpString = validatestring( interpString,  ...
+                validStrings, mfilename, 'Interpolation' );
 
+            if ~isempty( obj.CData ) && strcmp( obj.CData.ClassUnderlying( 1 ), 'categorical' )
+                if strcmp( interpString, 'linear' )
+                    error( message( 'images:bigimage:unsupportedInterpolation' ) );
+                end
+            end
 
-obj.DisplayTileManager.TileSize = obj.CData_I.BlockSize( 1, 1:2 );
+            obj.DisplayTileManager.Interpolation = interpString;
+            obj.DisplayTileManager.reset(  );
+        end
+        function interpString = get.Interpolation( obj )
+            interpString = obj.DisplayTileManager.Interpolation;
+        end
 
 
+        function set.AlphaData( obj, bimAlpha )
+            if isempty( bimAlpha )
 
-hAxes = ancestor( obj, 'Axes' );
-if ~( strcmp( bigim.ClassUnderlying( 1 ), 'uint8' ) || strcmp( bigim.ClassUnderlying( 1 ), 'categorical' ) )
-obj.CDataMapping = 'scaled';
-hAxes.CLim = getrangefromclass( zeros( 1, bigim.ClassUnderlying( 1 ) ) );
-else 
-obj.CDataMapping = 'direct';
-end 
+                bimAlpha = bigimage.empty(  );
 
+            elseif isa( bimAlpha, 'blockedImage' ) || isa( bimAlpha, 'bigimage' )
 
-if strcmp( bigim.ClassUnderlying( 1 ), 'categorical' )
-if isa( bigim, 'bigimage' )
+                if isa( bimAlpha, 'blockedImage' )
+                    notSingleChannel = bimAlpha.NumDimensions > 2;
+                    obj.SpatialReferencing_Alpha = getSpatialReferencingObject( bimAlpha );
+                else
+                    notSingleChannel = bimAlpha.Channels ~= 1;
+                    obj.SpatialReferencing_Alpha = bimAlpha.SpatialReferencing;
+                end
+                if ~isempty( bimAlpha ) && notSingleChannel
+                    error( message( 'images:bigimage:singleChannelAlpha' ) );
+                end
 
-hAxes.Colormap = parula( numel( bigim.Classes ) + 1 );
-else 
-hAxes.Colormap = parula( numel( categories( bigim.InitialValue ) ) + 1 );
-end 
-elseif isGray
-hAxes.Colormap = gray( 256 );
-end 
+            else
 
+                validateattributes( bimAlpha, { 'numeric', 'logical' },  ...
+                    { 'scalar', 'finite' }, mfilename, 'AlphaData' );
+            end
+            obj.AlphaData_I = bimAlpha;
+            if isa( bimAlpha, 'bigimage' ) && ~isempty( bimAlpha )
+                obj.checkAndCreateOverViewIfNeeded( obj.AlphaData_I );
+            end
+            obj.DisplayTileManager.reset(  );
+        end
 
-if strcmp( bigim.ClassUnderlying( 1 ), 'logical' ) ||  ...
-strcmp( bigim.ClassUnderlying( 1 ), 'categorical' )
-obj.Interpolation = 'nearest';
-end 
+        function bimAlpha = get.AlphaData( obj )
+            bimAlpha = obj.AlphaData_I;
+        end
 
-obj.checkAndCreateOverViewIfNeeded( obj.CData );
-end 
 
-function bigim = get.CData( obj )
-bigim = obj.CData_I;
-end 
+        function set.AlphaDataMapping( obj, str )
+            obj.AlphaDataMapping_I = validatestring( str,  ...
+                { 'none', 'direct', 'scaled' }, mfilename, 'AlphaDataMapping' );
+            obj.DisplayTileManager.reset(  );
+        end
 
+        function str = get.AlphaDataMapping( obj )
+            str = obj.AlphaDataMapping_I;
+        end
 
-function set.CDataMapping( obj, str )
-obj.CDataMapping_I = validatestring( str,  ...
-{ 'direct', 'scaled' }, mfilename, 'CDataMapping' );
-obj.DisplayTileManager.reset(  );
-end 
 
-function str = get.CDataMapping( obj )
-str = obj.CDataMapping_I;
-end 
+        function set.GridLevel( obj, res )
+            obj.GridLevel_I = obj.resolveResolutionLevelString( res );
+            obj.GridLevelMode = 'manual';
+        end
 
+        function res = get.GridLevel( obj )
+            if strcmp( obj.GridLevelMode, 'auto' )
 
-function set.Interpolation( obj, interpString )
-info = opengl( 'data' );
-if ispc && info.Software == 1
+                forceFullUpdate( obj, 'all', 'GridLevel' );
+            end
+            res = obj.GridLevel_I;
+        end
 
-validStrings = { 'nearest' };
-else 
-validStrings = { 'nearest', 'linear' };
-end 
-interpString = validatestring( interpString,  ...
-validStrings, mfilename, 'Interpolation' );
 
-if ~isempty( obj.CData ) && strcmp( obj.CData.ClassUnderlying( 1 ), 'categorical' )
-if strcmp( interpString, 'linear' )
-error( message( 'images:bigimage:unsupportedInterpolation' ) );
-end 
-end 
+        function set.GrayscaleTiles( obj, tf )
+            obj.GrayscaleTiles_I = tf;
+            obj.DisplayTileManager.forceGrayScaleRendering( obj.GrayscaleTiles_I );
+        end
 
-obj.DisplayTileManager.Interpolation = interpString;
-obj.DisplayTileManager.reset(  );
-end 
-function interpString = get.Interpolation( obj )
-interpString = obj.DisplayTileManager.Interpolation;
-end 
+        function tf = get.GrayscaleTiles( obj )
+            tf = obj.GrayscaleTiles_I;
+        end
 
 
-function set.AlphaData( obj, bimAlpha )
-if isempty( bimAlpha )
+        function set.GridAlpha( obj, alpha )
+            validateattributes( alpha, { 'numeric', 'logical' },  ...
+                { 'scalar', '>=', 0, '<=', 1, 'real' }, mfilename, 'GridAlpha' );
+            obj.GridAlpha = alpha;
+        end
+    end
 
-bimAlpha = bigimage.empty(  );
 
-elseif isa( bimAlpha, 'blockedImage' ) || isa( bimAlpha, 'bigimage' )
 
-if isa( bimAlpha, 'blockedImage' )
-notSingleChannel = bimAlpha.NumDimensions > 2;
-obj.SpatialReferencing_Alpha = getSpatialReferencingObject( bimAlpha );
-else 
-notSingleChannel = bimAlpha.Channels ~= 1;
-obj.SpatialReferencing_Alpha = bimAlpha.SpatialReferencing;
-end 
-if ~isempty( bimAlpha ) && notSingleChannel
-error( message( 'images:bigimage:singleChannelAlpha' ) );
-end 
+    methods ( Access = protected, Hidden )
+        function groups = getPropertyGroups( obj )
 
-else 
+            props = { 'CData', 'CDataMapping', 'Parent', 'ResolutionLevel' };
+            if ~isempty( obj.AlphaData )
+                props{ end  + 1 } = 'AlphaData';
+                props{ end  + 1 } = 'AlphaDataMapping';
+            end
+            if strcmp( obj.GridVisible, 'on' )
+                props{ end  + 1 } = 'GridLevel';
+            end
+            groups = matlab.mixin.util.PropertyGroup( props );
+        end
 
-validateattributes( bimAlpha, { 'numeric', 'logical' },  ...
-{ 'scalar', 'finite' }, mfilename, 'AlphaData' );
-end 
-obj.AlphaData_I = bimAlpha;
-if isa( bimAlpha, 'bigimage' ) && ~isempty( bimAlpha )
-obj.checkAndCreateOverViewIfNeeded( obj.AlphaData_I );
-end 
-obj.DisplayTileManager.reset(  );
-end 
+        function printEvent( obj, callbackName )
+            switch callbackName
+                case 'PrePrintCallback'
+                    obj.PrintSettingsCache.CoalescePeriod = obj.CurrentCoalescePeriod;
 
-function bimAlpha = get.AlphaData( obj )
-bimAlpha = obj.AlphaData_I;
-end 
+                    obj.CurrentCoalescePeriod = 0;
+                case 'PostPrintCallback'
 
+                    obj.CurrentCoalescePeriod = obj.PrintSettingsCache.CoalescePeriod;
+            end
+        end
+    end
 
-function set.AlphaDataMapping( obj, str )
-obj.AlphaDataMapping_I = validatestring( str,  ...
-{ 'none', 'direct', 'scaled' }, mfilename, 'AlphaDataMapping' );
-obj.DisplayTileManager.reset(  );
-end 
+    methods ( Hidden )
 
-function str = get.AlphaDataMapping( obj )
-str = obj.AlphaDataMapping_I;
-end 
+        function mcodeConstructor( ~, hCode )
 
+            markAsParameter( hCode, { 'CData' } );
 
-function set.GridLevel( obj, res )
-obj.GridLevel_I = obj.resolveResolutionLevelString( res );
-obj.GridLevelMode = 'manual';
-end 
+            generateDefaultPropValueSyntax( hCode );
+        end
+    end
 
-function res = get.GridLevel( obj )
-if strcmp( obj.GridLevelMode, 'auto' )
 
-forceFullUpdate( obj, 'all', 'GridLevel' );
-end 
-res = obj.GridLevel_I;
-end 
+    methods ( Hidden )
+        function extents = getXYZDataExtents( obj )
+            extents = [  ];
+            if ~isempty( obj.CData ) && isvalid( obj.CData )
+                xExtents = [
+                    min( [ obj.SpatialReferencing.XWorldLimits ] ),  ...
+                    max( [ obj.SpatialReferencing.XWorldLimits ] ) ];
+                yExtents = [
+                    min( [ obj.SpatialReferencing.YWorldLimits ] ),  ...
+                    max( [ obj.SpatialReferencing.YWorldLimits ] ) ];
+                extents = [
+                    matlab.graphics.chart.primitive.utilities.arraytolimits( xExtents )
+                    matlab.graphics.chart.primitive.utilities.arraytolimits( yExtents )
+                    NaN, NaN, NaN, NaN ];
+            end
+        end
 
+        function doUpdate( obj, uState )
+            if isempty( obj.CData ) || isempty( obj.DisplayTileManager )
+                return
+            end
 
-function set.GrayscaleTiles( obj, tf )
-obj.GrayscaleTiles_I = tf;
-obj.DisplayTileManager.forceGrayScaleRendering( obj.GrayscaleTiles_I );
-end 
+            if isa( obj.Parent, 'matlab.graphics.primitive.Transform' )
+                error( message( 'images:bigimage:transformNotSupported' ) );
+            end
 
-function tf = get.GrayscaleTiles( obj )
-tf = obj.GrayscaleTiles_I;
-end 
+            if strcmp( obj.Parent.XScale, 'log' ) || strcmp( obj.Parent.YScale, 'log' )
+                error( message( 'images:bigimage:logScaleNotSupported' ) );
+            end
 
 
-function set.GridAlpha( obj, alpha )
-validateattributes( alpha, { 'numeric', 'logical' },  ...
-{ 'scalar', '>=', 0, '<=', 1, 'real' }, mfilename, 'GridAlpha' );
-obj.GridAlpha = alpha;
-end 
-end 
+            obj.cancelPendingIO(  );
 
 
+            if ischar( obj.ResolutionLevel_I )
+                obj.ResolutionLevel_I = obj.resolveResolutionLevelString( obj.ResolutionLevel_I );
+            end
+            if ischar( obj.GridLevel_I )
+                obj.GridLevel_I = obj.resolveResolutionLevelString( obj.GridLevel_I );
+            end
 
-methods ( Access = protected, Hidden )
-function groups = getPropertyGroups( obj )
+            obj.resetIfNeeded( uState );
 
-props = { 'CData', 'CDataMapping', 'Parent', 'ResolutionLevel' };
-if ~isempty( obj.AlphaData )
-props{ end  + 1 } = 'AlphaData';
-props{ end  + 1 } = 'AlphaDataMapping';
-end 
-if strcmp( obj.GridVisible, 'on' )
-props{ end  + 1 } = 'GridLevel';
-end 
-groups = matlab.mixin.util.PropertyGroup( props );
-end 
 
-function printEvent( obj, callbackName )
-switch callbackName
-case 'PrePrintCallback'
-obj.PrintSettingsCache.CoalescePeriod = obj.CurrentCoalescePeriod;
+            xExternalWorldLocs = uState.DataSpace.XDataLim;
+            yExternalWorldLocs = uState.DataSpace.YDataLim;
 
-obj.CurrentCoalescePeriod = 0;
-case 'PostPrintCallback'
 
-obj.CurrentCoalescePeriod = obj.PrintSettingsCache.CoalescePeriod;
-end 
-end 
-end 
+            switch obj.ResolutionLevelMode
+                case 'auto'
+                    layout = GetLayoutInformation( obj.Parent );
+                    screenSpaceTaken = layout.PlotBox( 3:4 );
 
-methods ( Hidden )
+                    pixelExtent = max( [ diff( xExternalWorldLocs ), diff( yExternalWorldLocs ) ] ./ screenSpaceTaken );
 
-function mcodeConstructor( ~, hCode )
+                    availablePixelExtents = [ obj.SpatialReferencing.PixelExtentInWorldX ];
+                    [ ~, useResLevel ] = min( abs( availablePixelExtents - pixelExtent ) );
 
-markAsParameter( hCode, { 'CData' } );
+                case 'manual'
+                    useResLevel = obj.ResolutionLevel_I;
+            end
+            obj.ResolutionLevel_I = useResLevel;
 
-generateDefaultPropValueSyntax( hCode );
-end 
-end 
 
+            obj.gridUpdate( uState );
 
-methods ( Hidden )
-function extents = getXYZDataExtents( obj )
-extents = [  ];
-if ~isempty( obj.CData ) && isvalid( obj.CData )
-xExtents = [ 
-min( [ obj.SpatialReferencing.XWorldLimits ] ),  ...
-max( [ obj.SpatialReferencing.XWorldLimits ] ) ];
-yExtents = [ 
-min( [ obj.SpatialReferencing.YWorldLimits ] ),  ...
-max( [ obj.SpatialReferencing.YWorldLimits ] ) ];
-extents = [ 
-matlab.graphics.chart.primitive.utilities.arraytolimits( xExtents )
-matlab.graphics.chart.primitive.utilities.arraytolimits( yExtents )
-NaN, NaN, NaN, NaN ];
-end 
-end 
 
-function doUpdate( obj, uState )
-if isempty( obj.CData ) || isempty( obj.DisplayTileManager )
-return 
-end 
+            levelRef = obj.SpatialReferencing( useResLevel );
 
-if isa( obj.Parent, 'matlab.graphics.primitive.Transform' )
-error( message( 'images:bigimage:transformNotSupported' ) );
-end 
 
-if strcmp( obj.Parent.XScale, 'log' ) || strcmp( obj.Parent.YScale, 'log' )
-error( message( 'images:bigimage:logScaleNotSupported' ) );
-end 
 
+            tileSize = obj.DisplayTileManager.TileSize;
+            tileSizeInExteralWorld = tileSize .* [ levelRef.PixelExtentInWorldY, levelRef.PixelExtentInWorldX ];
+            yExtTileSize = tileSizeInExteralWorld( 1 );
+            xExtTileSize = tileSizeInExteralWorld( 2 );
 
-obj.cancelPendingIO(  );
 
 
-if ischar( obj.ResolutionLevel_I )
-obj.ResolutionLevel_I = obj.resolveResolutionLevelString( obj.ResolutionLevel_I );
-end 
-if ischar( obj.GridLevel_I )
-obj.GridLevel_I = obj.resolveResolutionLevelString( obj.GridLevel_I );
-end 
+            yTileSubEdge = yExternalWorldLocs / yExtTileSize;
+            xTileSubEdge = xExternalWorldLocs / xExtTileSize;
 
-obj.resetIfNeeded( uState );
+            yTileSubEdge( 1 ) = floor( yTileSubEdge( 1 ) );yTileSubEdge( 2 ) = ceil( yTileSubEdge( 2 ) );
+            xTileSubEdge( 1 ) = floor( xTileSubEdge( 1 ) );xTileSubEdge( 2 ) = ceil( xTileSubEdge( 2 ) );
 
 
-xExternalWorldLocs = uState.DataSpace.XDataLim;
-yExternalWorldLocs = uState.DataSpace.YDataLim;
 
+            yExternalWorldLocs = yTileSubEdge * yExtTileSize;
+            xExternalWorldLocs = xTileSubEdge * xExtTileSize;
 
-switch obj.ResolutionLevelMode
-case 'auto'
-layout = GetLayoutInformation( obj.Parent );
-screenSpaceTaken = layout.PlotBox( 3:4 );
 
-pixelExtent = max( [ diff( xExternalWorldLocs ), diff( yExternalWorldLocs ) ] ./ screenSpaceTaken );
 
-availablePixelExtents = [ obj.SpatialReferencing.PixelExtentInWorldX ];
-[ ~, useResLevel ] = min( abs( availablePixelExtents - pixelExtent ) );
+            xExternalWorldLocs = max( levelRef.XWorldLimits( 1 ), xExternalWorldLocs );
+            yExternalWorldLocs = max( levelRef.YWorldLimits( 1 ), yExternalWorldLocs );
+            xExternalWorldLocs = min( xExternalWorldLocs, levelRef.XWorldLimits( 2 ) );
+            yExternalWorldLocs = min( yExternalWorldLocs, levelRef.YWorldLimits( 2 ) );
 
-case 'manual'
-useResLevel = obj.ResolutionLevel_I;
-end 
-obj.ResolutionLevel_I = useResLevel;
 
+            fullWorldX = levelRef.XWorldLimits;
+            fullWorldY = levelRef.YWorldLimits;
+            obj.DisplayTileManager.positionBackgroundTile( fullWorldX, fullWorldY, uState );
 
-obj.gridUpdate( uState );
 
 
-levelRef = obj.SpatialReferencing( useResLevel );
+            obj.DisplayTileManager.updateExistingTiles( xExternalWorldLocs, yExternalWorldLocs, uState, useResLevel );
 
 
+            for xStart = xExternalWorldLocs( 1 ):xExtTileSize:xExternalWorldLocs( 2 )
+                for yStart = yExternalWorldLocs( 1 ):yExtTileSize:yExternalWorldLocs( 2 )
 
-tileSize = obj.DisplayTileManager.TileSize;
-tileSizeInExteralWorld = tileSize .* [ levelRef.PixelExtentInWorldY, levelRef.PixelExtentInWorldX ];
-yExtTileSize = tileSizeInExteralWorld( 1 );
-xExtTileSize = tileSizeInExteralWorld( 2 );
+                    xExtLim = [ xStart, min( levelRef.XWorldLimits( 2 ), xStart + xExtTileSize ) ];
+                    yExtLim = [ yStart, min( levelRef.YWorldLimits( 2 ), yStart + yExtTileSize ) ];
 
 
+                    if diff( xExtLim ) <= eps( xExtLim( 2 ) ) || diff( yExtLim ) <= eps( yExtLim( 2 ) )
+                        continue
+                    end
 
-yTileSubEdge = yExternalWorldLocs / yExtTileSize;
-xTileSubEdge = xExternalWorldLocs / xExtTileSize;
 
-yTileSubEdge( 1 ) = floor( yTileSubEdge( 1 ) );yTileSubEdge( 2 ) = ceil( yTileSubEdge( 2 ) );
-xTileSubEdge( 1 ) = floor( xTileSubEdge( 1 ) );xTileSubEdge( 2 ) = ceil( xTileSubEdge( 2 ) );
+                    newTile = obj.DisplayTileManager.manageTileAt( xExtLim, yExtLim, useResLevel, uState );
+                    if ~isempty( newTile )
+                        addNode( obj, newTile );
+                    end
+                end
+            end
 
+            obj.loadImageIntoTiles( uState.ColorSpace );
 
 
-yExternalWorldLocs = yTileSubEdge * yExtTileSize;
-xExternalWorldLocs = xTileSubEdge * xExtTileSize;
 
+            obj.CurrentCoalescePeriod = obj.RequiredCoalescePeriod;
+        end
 
+        function gridUpdate( obj, uState )
 
-xExternalWorldLocs = max( levelRef.XWorldLimits( 1 ), xExternalWorldLocs );
-yExternalWorldLocs = max( levelRef.YWorldLimits( 1 ), yExternalWorldLocs );
-xExternalWorldLocs = min( xExternalWorldLocs, levelRef.XWorldLimits( 2 ) );
-yExternalWorldLocs = min( yExternalWorldLocs, levelRef.YWorldLimits( 2 ) );
 
+            if strcmp( obj.GridVisible, 'off' )
+                if ~isempty( obj.GridLines )
+                    obj.GridLines.Visible = 'off';
+                end
+                return
+            end
 
-fullWorldX = levelRef.XWorldLimits;
-fullWorldY = levelRef.YWorldLimits;
-obj.DisplayTileManager.positionBackgroundTile( fullWorldX, fullWorldY, uState );
 
+            if isempty( obj.GridLines )
+                obj.GridLines = matlab.graphics.primitive.world.LineStrip(  );
+                obj.addNode( obj.GridLines );
+                set( obj.GridLines, 'HitTest', 'off',  ...
+                    'Visible', 'off',  ...
+                    'LineCap', 'square',  ...
+                    'PickableParts', 'none',  ...
+                    'ColorType', 'truecoloralpha', 'ColorBinding', 'object',  ...
+                    'Layer', 'front', 'HandleVisibility', 'off' );
+            end
 
 
-obj.DisplayTileManager.updateExistingTiles( xExternalWorldLocs, yExternalWorldLocs, uState, useResLevel );
+            obj.GridLines.Visible = 'on';
 
+            if strcmp( obj.GridLevelMode, 'auto' )
+                obj.GridLevel_I = obj.ResolutionLevel_I;
+            end
 
-for xStart = xExternalWorldLocs( 1 ):xExtTileSize:xExternalWorldLocs( 2 )
-for yStart = yExternalWorldLocs( 1 ):yExtTileSize:yExternalWorldLocs( 2 )
 
-xExtLim = [ xStart, min( levelRef.XWorldLimits( 2 ), xStart + xExtTileSize ) ];
-yExtLim = [ yStart, min( levelRef.YWorldLimits( 2 ), yStart + yExtTileSize ) ];
 
+            tileSizeWorld = getBlockSize( obj.CData, obj.GridLevel_I ) .*  ...
+                [ obj.SpatialReferencing( obj.GridLevel_I ).PixelExtentInWorldY,  ...
+                obj.SpatialReferencing( obj.GridLevel_I ).PixelExtentInWorldX ];
 
-if diff( xExtLim ) <= eps( xExtLim( 2 ) ) || diff( yExtLim ) <= eps( yExtLim( 2 ) )
-continue 
-end 
+            [ xLoc, yLoc ] = obj.gridLocations( tileSizeWorld );
 
 
-newTile = obj.DisplayTileManager.manageTileAt( xExtLim, yExtLim, useResLevel, uState );
-if ~isempty( newTile )
-addNode( obj, newTile );
-end 
-end 
-end 
+            x = zeros( [ ( numel( xLoc ) + numel( yLoc ) ) * 2, 1 ] );
+            y = zeros( [ ( numel( xLoc ) + numel( yLoc ) ) * 2, 1 ] );
 
-obj.loadImageIntoTiles( uState.ColorSpace );
 
+            lInd = 1;
+            for xPoint = xLoc
+                x( lInd ) = xPoint;
+                y( lInd ) = obj.FullImageExtentsY( 1 );
+                x( lInd + 1 ) = xPoint;
+                y( lInd + 1 ) = obj.FullImageExtentsY( 2 );
+                lInd = lInd + 2;
+            end
+            for yPoint = yLoc
+                x( lInd ) = obj.FullImageExtentsX( 1 );
+                y( lInd ) = yPoint;
+                x( lInd + 1 ) = obj.FullImageExtentsX( 2 );
+                y( lInd + 1 ) = yPoint;
+                lInd = lInd + 2;
+            end
 
 
-obj.CurrentCoalescePeriod = obj.RequiredCoalescePeriod;
-end 
+            iter = matlab.graphics.axis.dataspace.XYZPointsIterator;
+            iter.XData = x';
+            iter.YData = y';
+            iter.ZData = zeros( [ numel( x ), 1 ] );
+            obj.GridLines.VertexData = TransformPoints( uState.DataSpace,  ...
+                uState.TransformUnderDataSpace,  ...
+                iter );
 
-function gridUpdate( obj, uState )
 
+            obj.GridLines.StripData = uint32( 1:2:numel( x ) + 1 );
 
-if strcmp( obj.GridVisible, 'off' )
-if ~isempty( obj.GridLines )
-obj.GridLines.Visible = 'off';
-end 
-return 
-end 
+            obj.GridLines.ColorData = uint8( ( [ obj.GridColor, obj.GridAlpha ] * 255 ).' );
+            obj.GridLines.LineWidth = obj.GridLineWidth;
+            hgfilter( 'LineStyleToPrimLineStyle', obj.GridLines, obj.GridLineStyle );
+        end
+    end
 
 
-if isempty( obj.GridLines )
-obj.GridLines = matlab.graphics.primitive.world.LineStrip(  );
-obj.addNode( obj.GridLines );
-set( obj.GridLines, 'HitTest', 'off',  ...
-'Visible', 'off',  ...
-'LineCap', 'square',  ...
-'PickableParts', 'none',  ...
-'ColorType', 'truecoloralpha', 'ColorBinding', 'object',  ...
-'Layer', 'front', 'HandleVisibility', 'off' );
-end 
 
+    methods ( Hidden )
+        function cancelPendingIO( obj )
+            if isscalar( obj.CoalesceTimer ) && isvalid( obj.CoalesceTimer ) ...
+                    && strcmp( obj.CoalesceTimer.Running, 'on' )
 
-obj.GridLines.Visible = 'on';
+                stop( obj.CoalesceTimer )
+            end
 
-if strcmp( obj.GridLevelMode, 'auto' )
-obj.GridLevel_I = obj.ResolutionLevel_I;
-end 
+            obj.CancelEventTimeStamp = now;
 
+            obj.DisplayTileManager.resetPending(  );
+        end
 
+        function loadImageIntoTiles( obj, colorspace )
+            cb = @( varargin )obj.loadTileDataFromFileExceptionSafe( colorspace );
 
-tileSizeWorld = getBlockSize( obj.CData, obj.GridLevel_I ) .*  ...
-[ obj.SpatialReferencing( obj.GridLevel_I ).PixelExtentInWorldY,  ...
-obj.SpatialReferencing( obj.GridLevel_I ).PixelExtentInWorldX ];
+            cbhandler = @( e, d )matlab.graphics.internal.drawnow.callback( cb );
 
-[ xLoc, yLoc ] = obj.gridLocations( tileSizeWorld );
+            if obj.CurrentCoalescePeriod == 0
+                cbhandler(  );
+                return
+            end
 
 
-x = zeros( [ ( numel( xLoc ) + numel( yLoc ) ) * 2, 1 ] );
-y = zeros( [ ( numel( xLoc ) + numel( yLoc ) ) * 2, 1 ] );
+            stop( obj.CoalesceTimer )
+            delete( obj.CoalesceTimer )
+            obj.CoalesceTimer = timer(  ...
+                'Name', 'BD_CoalesceTimer',  ...
+                'ExecutionMode', 'singleShot',  ...
+                'ObjectVisibility', 'off',  ...
+                'TimerFcn', cbhandler,  ...
+                'StartDelay', obj.CurrentCoalescePeriod );
+            start( obj.CoalesceTimer );
+        end
 
+        function loadTileDataFromFileExceptionSafe( obj, colorspace )
+            try
+                obj.loadTileDataFromFile( colorspace )
+            catch ALL
 
-lInd = 1;
-for xPoint = xLoc
-x( lInd ) = xPoint;
-y( lInd ) = obj.FullImageExtentsY( 1 );
-x( lInd + 1 ) = xPoint;
-y( lInd + 1 ) = obj.FullImageExtentsY( 2 );
-lInd = lInd + 2;
-end 
-for yPoint = yLoc
-x( lInd ) = obj.FullImageExtentsX( 1 );
-y( lInd ) = yPoint;
-x( lInd + 1 ) = obj.FullImageExtentsX( 2 );
-y( lInd + 1 ) = yPoint;
-lInd = lInd + 2;
-end 
 
 
-iter = matlab.graphics.axis.dataspace.XYZPointsIterator;
-iter.XData = x';
-iter.YData = y';
-iter.ZData = zeros( [ numel( x ), 1 ] );
-obj.GridLines.VertexData = TransformPoints( uState.DataSpace,  ...
-uState.TransformUnderDataSpace,  ...
-iter );
 
 
-obj.GridLines.StripData = uint32( 1:2:numel( x ) + 1 );
 
-obj.GridLines.ColorData = uint8( ( [ obj.GridColor, obj.GridAlpha ] * 255 ).' );
-obj.GridLines.LineWidth = obj.GridLineWidth;
-hgfilter( 'LineStyleToPrimLineStyle', obj.GridLines, obj.GridLineStyle );
-end 
-end 
 
 
 
-methods ( Hidden )
-function cancelPendingIO( obj )
-if isscalar( obj.CoalesceTimer ) && isvalid( obj.CoalesceTimer ) ...
- && strcmp( obj.CoalesceTimer.Running, 'on' )
 
-stop( obj.CoalesceTimer )
-end 
 
-obj.CancelEventTimeStamp = now;
+                [ ~, fileNames ] = cellfun( @( x )fileparts( x ), { ALL.stack.file }, 'UniformOutput', false );
+                isErrorFromBigImage = any( strcmp( fileNames, 'blockedImage' ) ) ...
+                    || any( strcmp( fileNames, 'bigimage' ) );
+                if isErrorFromBigImage
 
-obj.DisplayTileManager.resetPending(  );
-end 
 
-function loadImageIntoTiles( obj, colorspace )
-cb = @( varargin )obj.loadTileDataFromFileExceptionSafe( colorspace );
+                    rethrow( ALL );
+                end
+            end
+        end
 
-cbhandler = @( e, d )matlab.graphics.internal.drawnow.callback( cb );
+        function loadTileDataFromFile( obj, colorspace )
+            tileInds = obj.DisplayTileManager.getTilesThatNeedDataFromSource(  );
 
-if obj.CurrentCoalescePeriod == 0
-cbhandler(  );
-return 
-end 
+            loadTime = now;
 
 
-stop( obj.CoalesceTimer )
-delete( obj.CoalesceTimer )
-obj.CoalesceTimer = timer(  ...
-'Name', 'BD_CoalesceTimer',  ...
-'ExecutionMode', 'singleShot',  ...
-'ObjectVisibility', 'off',  ...
-'TimerFcn', cbhandler,  ...
-'StartDelay', obj.CurrentCoalescePeriod );
-start( obj.CoalesceTimer );
-end 
 
-function loadTileDataFromFileExceptionSafe( obj, colorspace )
-try 
-obj.loadTileDataFromFile( colorspace )
-catch ALL
 
+            ref = obj.SpatialReferencing( obj.ResolutionLevel );
+            halfPixel = [ ref.PixelExtentInWorldX, ref.PixelExtentInWorldY ] / 2;
 
+            for tileInd = tileInds
+                [ xExtLim, yExtLim, resLevel ] = obj.DisplayTileManager.getExtents( tileInd );
+                xExtLim( 2 ) = xExtLim( 2 ) - halfPixel( 1 );
+                yExtLim( 2 ) = yExtLim( 2 ) - halfPixel( 2 );
 
 
 
 
 
 
+                if obj.haveToCancelThisLoad( loadTime )
+                    break
+                end
+                rawData = getRegion( obj.CData_I, resLevel,  ...
+                    [ xExtLim( 1 ), yExtLim( 1 ) ], [ xExtLim( 2 ), yExtLim( 2 ) ] );
+                if size( rawData, 3 ) ~= 1 && size( rawData, 3 ) ~= 3
 
+                    rawData = rawData( :, :, obj.ChannelInds );
+                end
 
 
-[ ~, fileNames ] = cellfun( @( x )fileparts( x ), { ALL.stack.file }, 'UniformOutput', false );
-isErrorFromBigImage = any( strcmp( fileNames, 'blockedImage' ) ) ...
- || any( strcmp( fileNames, 'bigimage' ) );
-if isErrorFromBigImage
+                if isempty( obj.AlphaData )
+                    alpha = [  ];
+                elseif isnumeric( obj.AlphaData ) || islogical( obj.AlphaData )
+                    alpha = obj.AlphaData;
+                else
 
 
-rethrow( ALL );
-end 
-end 
-end 
+                    levelRef = obj.SpatialReferencing( obj.ResolutionLevel_I );
+                    pixelExtent = max( [ levelRef.PixelExtentInWorldY, levelRef.PixelExtentInWorldX ] );
 
-function loadTileDataFromFile( obj, colorspace )
-tileInds = obj.DisplayTileManager.getTilesThatNeedDataFromSource(  );
+                    availablePixelExtents = [ obj.SpatialReferencing_Alpha.PixelExtentInWorldX ];
+                    [ ~, aLevel ] = min( abs( availablePixelExtents - pixelExtent ) );
 
-loadTime = now;
 
+                    aLevelRef = obj.SpatialReferencing_Alpha( aLevel );
+                    xExtLim( 1 ) = max( xExtLim( 1 ), aLevelRef.XWorldLimits( 1 ) );
+                    xExtLim( 2 ) = min( xExtLim( 2 ), aLevelRef.XWorldLimits( 2 ) );
+                    yExtLim( 1 ) = max( yExtLim( 1 ), aLevelRef.YWorldLimits( 1 ) );
+                    yExtLim( 2 ) = min( yExtLim( 2 ), aLevelRef.YWorldLimits( 2 ) );
+                    if obj.haveToCancelThisLoad( loadTime )
+                        break
+                    end
+                    alpha = getRegion( obj.AlphaData, aLevel,  ...
+                        [ xExtLim( 1 ), yExtLim( 1 ) ], [ xExtLim( 2 ), yExtLim( 2 ) ] );
+                    if iscategorical( alpha )
+                        alpha = double( alpha );
+                    end
+                end
 
+                if obj.haveToCancelThisLoad( loadTime )
+                    break
+                end
+                obj.DisplayTileManager.updateTileWithData( tileInd,  ...
+                    rawData, obj.CDataMapping_I,  ...
+                    alpha, obj.AlphaDataMapping_I, colorspace );
 
 
-ref = obj.SpatialReferencing( obj.ResolutionLevel );
-halfPixel = [ ref.PixelExtentInWorldX, ref.PixelExtentInWorldY ] / 2;
 
-for tileInd = tileInds
-[ xExtLim, yExtLim, resLevel ] = obj.DisplayTileManager.getExtents( tileInd );
-xExtLim( 2 ) = xExtLim( 2 ) - halfPixel( 1 );
-yExtLim( 2 ) = yExtLim( 2 ) - halfPixel( 2 );
 
 
 
 
+                drawnow limitrate
+            end
 
+            obj.DisplayTileManager.cleanUpPreviousResolutionTiles(  );
+        end
+    end
 
-if obj.haveToCancelThisLoad( loadTime )
-break 
-end 
-rawData = getRegion( obj.CData_I, resLevel,  ...
-[ xExtLim( 1 ), yExtLim( 1 ) ], [ xExtLim( 2 ), yExtLim( 2 ) ] );
-if size( rawData, 3 ) ~= 1 && size( rawData, 3 ) ~= 3
 
-rawData = rawData( :, :, obj.ChannelInds );
-end 
 
+    methods ( Access = private, Hidden )
 
-if isempty( obj.AlphaData )
-alpha = [  ];
-elseif isnumeric( obj.AlphaData ) || islogical( obj.AlphaData )
-alpha = obj.AlphaData;
-else 
+        function checkAndCreateOverViewIfNeeded( obj, bim )
+            if isa( obj.CData_I, 'blockedImage' )
 
 
-levelRef = obj.SpatialReferencing( obj.ResolutionLevel_I );
-pixelExtent = max( [ levelRef.PixelExtentInWorldY, levelRef.PixelExtentInWorldX ] );
 
-availablePixelExtents = [ obj.SpatialReferencing_Alpha.PixelExtentInWorldX ];
-[ ~, aLevel ] = min( abs( availablePixelExtents - pixelExtent ) );
+                return ;
+            end
 
 
-aLevelRef = obj.SpatialReferencing_Alpha( aLevel );
-xExtLim( 1 ) = max( xExtLim( 1 ), aLevelRef.XWorldLimits( 1 ) );
-xExtLim( 2 ) = min( xExtLim( 2 ), aLevelRef.XWorldLimits( 2 ) );
-yExtLim( 1 ) = max( yExtLim( 1 ), aLevelRef.YWorldLimits( 1 ) );
-yExtLim( 2 ) = min( yExtLim( 2 ), aLevelRef.YWorldLimits( 2 ) );
-if obj.haveToCancelThisLoad( loadTime )
-break 
-end 
-alpha = getRegion( obj.AlphaData, aLevel,  ...
-[ xExtLim( 1 ), yExtLim( 1 ) ], [ xExtLim( 2 ), yExtLim( 2 ) ] );
-if iscategorical( alpha )
-alpha = double( alpha );
-end 
-end 
 
-if obj.haveToCancelThisLoad( loadTime )
-break 
-end 
-obj.DisplayTileManager.updateTileWithData( tileInd,  ...
-rawData, obj.CDataMapping_I,  ...
-alpha, obj.AlphaDataMapping_I, colorspace );
+            if strcmp( obj.ResolutionLevelMode, 'auto' )
+                monitorSizes = get( 0, 'MonitorPositions' );
+                maxScreenSize = max( monitorSizes( :, 3:4 ), 1 );
+                maxScreenPixels = max( prod( maxScreenSize ) );
 
 
+                imageSizes = { bim.SpatialReferencing.ImageSize };
+                imageSizes = cell2mat( imageSizes' );
+                imagePixels = prod( imageSizes, 2 );
+                [ smallestImagePixels, smallestLevel ] = min( imagePixels );
 
+                overResFactor = smallestImagePixels / maxScreenPixels;
+                if overResFactor > 3
+                    if isa( bim.Adapter, 'images.internal.adapters.BinAdapter' )
 
+                        bim.addSubLevel( smallestLevel, [ NaN, maxScreenSize( 2 ) ] );
+                    else
+                        warning( message( 'images:bigimage:largeFlatFile' ) );
+                    end
+                end
+            end
+        end
 
+        function tf = haveToCancelThisLoad( obj, loadTime )
 
+            tf = ~isvalid( obj ) || loadTime < obj.CancelEventTimeStamp;
+        end
 
-drawnow limitrate
-end 
+        function res = resolveResolutionLevelString( obj, res )
 
-obj.DisplayTileManager.cleanUpPreviousResolutionTiles(  );
-end 
-end 
+            if isnumeric( res )
+                validateattributes( res, { 'numeric' }, { 'scalar', 'real', 'positive', 'integer' },  ...
+                    mfilename );
+            else
+                res = validatestring( res, { 'fine', 'coarse' },  ...
+                    mfilename );
+            end
 
 
+            if ~isempty( obj.CData )
+                switch res
+                    case 'coarse'
+                        res = getCoarsestLevel( obj.CData );
+                    case 'fine'
+                        res = getFinestLevel( obj.CData );
+                    otherwise
 
-methods ( Access = private, Hidden )
 
-function checkAndCreateOverViewIfNeeded( obj, bim )
-if isa( obj.CData_I, 'blockedImage' )
 
+                        validateattributes( res, { 'numeric' },  ...
+                            { 'positive', '<=', numel( obj.SpatialReferencing ) },  ...
+                            mfilename, 'ResolutionLevel' );
+                end
+            end
+        end
 
+        function [ xLoc, yLoc ] = gridLocations( obj, tileSizeWorld )
 
-return ;
-end 
 
+            levelRef = obj.SpatialReferencing( obj.ResolutionLevel_I );
+            xLoc = levelRef.XWorldLimits( 1 ):tileSizeWorld( 2 ):levelRef.XWorldLimits( 2 );
+            yLoc = levelRef.YWorldLimits( 1 ):tileSizeWorld( 1 ):levelRef.YWorldLimits( 2 );
 
 
-if strcmp( obj.ResolutionLevelMode, 'auto' )
-monitorSizes = get( 0, 'MonitorPositions' );
-maxScreenSize = max( monitorSizes( :, 3:4 ), 1 );
-maxScreenPixels = max( prod( maxScreenSize ) );
+            if xLoc( end  ) ~= levelRef.XWorldLimits( 2 )
+                xLoc( end  + 1 ) = levelRef.XWorldLimits( 2 );
+            end
+            if yLoc( end  ) ~= levelRef.YWorldLimits( 2 )
+                yLoc( end  + 1 ) = levelRef.YWorldLimits( 2 );
+            end
+        end
 
+        function resetIfNeeded( obj, ustate )
 
-imageSizes = { bim.SpatialReferencing.ImageSize };
-imageSizes = cell2mat( imageSizes' );
-imagePixels = prod( imageSizes, 2 );
-[ smallestImagePixels, smallestLevel ] = min( imagePixels );
 
-overResFactor = smallestImagePixels / maxScreenPixels;
-if overResFactor > 3
-if isa( bim.Adapter, 'images.internal.adapters.BinAdapter' )
+            newStateInfo.Colormap = ustate.ColorSpace.Colormap;
+            newStateInfo.Alphamap = ustate.ColorSpace.Alphamap;
+            newStateInfo.CLimMode = ustate.ColorSpace.CLimMode;
+            newStateInfo.CLimWithInfs = ustate.ColorSpace.CLimWithInfs_I;
+            newStateInfo.CLimWithInfsMode = ustate.ColorSpace.CLimWithInfsMode;
+            newStateInfo.ColorScale = ustate.ColorSpace.ColorScale;
+            newStateInfo.AlphaScale = ustate.ColorSpace.AlphaScale;
+            newStateInfo.ALimMode = ustate.ColorSpace.ALimMode;
+            newStateInfo.ALimWithInfs = ustate.ColorSpace.ALimWithInfs_I;
+            newStateInfo.ALimWithInfsMode = ustate.ColorSpace.ALimWithInfsMode;
 
-bim.addSubLevel( smallestLevel, [ NaN, maxScreenSize( 2 ) ] );
-else 
-warning( message( 'images:bigimage:largeFlatFile' ) );
-end 
-end 
-end 
-end 
-
-function tf = haveToCancelThisLoad( obj, loadTime )
-
-tf = ~isvalid( obj ) || loadTime < obj.CancelEventTimeStamp;
-end 
-
-function res = resolveResolutionLevelString( obj, res )
-
-if isnumeric( res )
-validateattributes( res, { 'numeric' }, { 'scalar', 'real', 'positive', 'integer' },  ...
-mfilename );
-else 
-res = validatestring( res, { 'fine', 'coarse' },  ...
-mfilename );
-end 
-
-
-if ~isempty( obj.CData )
-switch res
-case 'coarse'
-res = getCoarsestLevel( obj.CData );
-case 'fine'
-res = getFinestLevel( obj.CData );
-otherwise 
-
-
-
-validateattributes( res, { 'numeric' },  ...
-{ 'positive', '<=', numel( obj.SpatialReferencing ) },  ...
-mfilename, 'ResolutionLevel' );
-end 
-end 
-end 
-
-function [ xLoc, yLoc ] = gridLocations( obj, tileSizeWorld )
-
-
-levelRef = obj.SpatialReferencing( obj.ResolutionLevel_I );
-xLoc = levelRef.XWorldLimits( 1 ):tileSizeWorld( 2 ):levelRef.XWorldLimits( 2 );
-yLoc = levelRef.YWorldLimits( 1 ):tileSizeWorld( 1 ):levelRef.YWorldLimits( 2 );
-
-
-if xLoc( end  ) ~= levelRef.XWorldLimits( 2 )
-xLoc( end  + 1 ) = levelRef.XWorldLimits( 2 );
-end 
-if yLoc( end  ) ~= levelRef.YWorldLimits( 2 )
-yLoc( end  + 1 ) = levelRef.YWorldLimits( 2 );
-end 
-end 
-
-function resetIfNeeded( obj, ustate )
-
-
-newStateInfo.Colormap = ustate.ColorSpace.Colormap;
-newStateInfo.Alphamap = ustate.ColorSpace.Alphamap;
-newStateInfo.CLimMode = ustate.ColorSpace.CLimMode;
-newStateInfo.CLimWithInfs = ustate.ColorSpace.CLimWithInfs_I;
-newStateInfo.CLimWithInfsMode = ustate.ColorSpace.CLimWithInfsMode;
-newStateInfo.ColorScale = ustate.ColorSpace.ColorScale;
-newStateInfo.AlphaScale = ustate.ColorSpace.AlphaScale;
-newStateInfo.ALimMode = ustate.ColorSpace.ALimMode;
-newStateInfo.ALimWithInfs = ustate.ColorSpace.ALimWithInfs_I;
-newStateInfo.ALimWithInfsMode = ustate.ColorSpace.ALimWithInfsMode;
-
-if ~isequal( newStateInfo, obj.PreviousUpdateStateInfo )
-obj.DisplayTileManager.reset(  );
-obj.PreviousUpdateStateInfo = newStateInfo;
-end 
-end 
-end 
-end 
+            if ~isequal( newStateInfo, obj.PreviousUpdateStateInfo )
+                obj.DisplayTileManager.reset(  );
+                obj.PreviousUpdateStateInfo = newStateInfo;
+            end
+        end
+    end
+end
 
 
 
@@ -1341,19 +1319,19 @@ function l = getFinestLevel( bim )
 if isa( bim, 'blockedImage' )
 
 
-l = 1;
-else 
-l = bim.FinestResolutionLevel;
-end 
-end 
+    l = 1;
+else
+    l = bim.FinestResolutionLevel;
+end
+end
 
 function l = getCoarsestLevel( bim )
 if isa( bim, 'blockedImage' )
-l = bim.NumLevels;
-else 
-l = bim.CoarsestResolutionLevel;
-end 
-end 
+    l = bim.NumLevels;
+else
+    l = bim.CoarsestResolutionLevel;
+end
+end
 
 function ref = getSpatialReferencingObject( blockedbim )
 
@@ -1361,61 +1339,56 @@ function ref = getSpatialReferencingObject( blockedbim )
 xDimInd = 2;
 yDimInd = 1;
 for ind = 1:blockedbim.NumLevels
-imageStart = blockedbim.WorldStart( ind, : );
-imageEnd = blockedbim.WorldEnd( ind, : );
-xWorldLims = [ imageStart( xDimInd ), imageEnd( xDimInd ) ];
-yWorldLims = [ imageStart( yDimInd ), imageEnd( yDimInd ) ];
-imageSize = blockedbim.Size( ind, [ yDimInd, xDimInd ] );
-ref( ind ) = imref2d( imageSize, xWorldLims, yWorldLims );%#ok<AGROW>
-end 
-end 
+    imageStart = blockedbim.WorldStart( ind, : );
+    imageEnd = blockedbim.WorldEnd( ind, : );
+    xWorldLims = [ imageStart( xDimInd ), imageEnd( xDimInd ) ];
+    yWorldLims = [ imageStart( yDimInd ), imageEnd( yDimInd ) ];
+    imageSize = blockedbim.Size( ind, [ yDimInd, xDimInd ] );
+    ref( ind ) = imref2d( imageSize, xWorldLims, yWorldLims );%#ok<AGROW>
+end
+end
 
 function bs = getBlockSize( bim, level )
 if isa( bim, 'blockedImage' )
 
 
-bs = bim.BlockSize( level, 1:2 );
-else 
-bs = bim.getBlockSize( level );
-end 
-end 
+    bs = bim.BlockSize( level, 1:2 );
+else
+    bs = bim.getBlockSize( level );
+end
+end
 
 function rawData = getRegion( bim, resLevel, worldMin, worldMax )
 if isa( bim, 'blockedImage' )
 
-pixelStartWorld = bim.WorldStart( resLevel, : );
-pixelEndWorld = bim.WorldEnd( resLevel, : );
+    pixelStartWorld = bim.WorldStart( resLevel, : );
+    pixelEndWorld = bim.WorldEnd( resLevel, : );
 
+    pixelStartWorld( 1 ) = worldMin( 2 );
+    pixelStartWorld( 2 ) = worldMin( 1 );
 
+    pixelEndWorld( 1 ) = worldMax( 2 );
+    pixelEndWorld( 2 ) = worldMax( 1 );
 
+    pixelStartSub = bim.world2sub( pixelStartWorld, "Level", resLevel );
+    pixelEndSub = bim.world2sub( pixelEndWorld, "Level", resLevel );
 
-pixelStartWorld( 1 ) = worldMin( 2 );
-pixelStartWorld( 2 ) = worldMin( 1 );
-
-pixelEndWorld( 1 ) = worldMax( 2 );
-pixelEndWorld( 2 ) = worldMax( 1 );
-
-pixelStartSub = bim.world2sub( pixelStartWorld, "Level", resLevel );
-pixelEndSub = bim.world2sub( pixelEndWorld, "Level", resLevel );
-
-rawData = bim.getRegion( pixelStartSub, pixelEndSub,  ...
-"Level", resLevel );
-else 
-rawData = bim.getRegion( resLevel, worldMin, worldMax );
-end 
-end 
+    rawData = bim.getRegion( pixelStartSub, pixelEndSub,  ...
+        "Level", resLevel );
+else
+    rawData = bim.getRegion( resLevel, worldMin, worldMax );
+end
+end
 
 function pct = computeWorldRegionNNZ( bim, level, maskStartWorld, maskEndWorld )
 if isa( bim, 'blockedImage' )
-subs = bim.world2sub( [ maskStartWorld( 2: - 1:1 );maskEndWorld( 2: - 1:1 ) ] );
-mblock = bim.getRegionPadded( subs( 1, : ), subs( 2, : ), bim.NumLevels, false, [  ] );
-pct = nnz( mblock ) / numel( mblock );
+    subs = bim.world2sub( [ maskStartWorld( 2: - 1:1 );maskEndWorld( 2: - 1:1 ) ] );
+    mblock = bim.getRegionPadded( subs( 1, : ), subs( 2, : ), bim.NumLevels, false, [  ] );
+    pct = nnz( mblock ) / numel( mblock );
 
-else 
-pct = bim.computeWorldRegionNNZ( level, maskStartWorld, maskEndWorld );
-end 
-end 
+else
+    pct = bim.computeWorldRegionNNZ( level, maskStartWorld, maskEndWorld );
+end
+end
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpacmVey.p.
-% Please follow local copyright laws when handling this file.
 

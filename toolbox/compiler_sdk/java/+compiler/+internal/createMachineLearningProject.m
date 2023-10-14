@@ -1,28 +1,13 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function createMachineLearningProject( projectFile, archiveName, entryFunctionFiles, additionalFiles )
-R36
-projectFile{ mustBeNonempty, mustBeNonzeroLengthText, mustBeTextScalar }
-archiveName{ mustBeNonempty, mustBeNonzeroLengthText, mustBeTextScalar }
-entryFunctionFiles{ mustBeNonempty, mustBeNonzeroLengthText, mustBeText }
-additionalFiles{ mustBeNonempty, mustBeNonzeroLengthText, mustBeText }
-end 
+arguments
+    projectFile{ mustBeNonempty, mustBeNonzeroLengthText, mustBeTextScalar }
+    archiveName{ mustBeNonempty, mustBeNonzeroLengthText, mustBeTextScalar }
+    entryFunctionFiles{ mustBeNonempty, mustBeNonzeroLengthText, mustBeText }
+    additionalFiles{ mustBeNonempty, mustBeNonzeroLengthText, mustBeText }
+end
 
 templateProject = fullfile( matlabroot, 'toolbox', 'compiler_sdk',  ...
-'java', '+compiler', '+internal', 'machineLearningTemplate.prj.template' );
+    'java', '+compiler', '+internal', 'machineLearningTemplate.prj.template' );
 parser = matlab.io.xml.dom.Parser(  );
 dom = parser.parseFile( templateProject );
 
@@ -41,38 +26,37 @@ insertFiles( cellstr( additionalFiles ), resourcesNodes );
 
 if exist( projectFile, 'file' )
 
-movefile( projectFile, [ projectFile, '.bak' ], 'f' );
-end 
+    movefile( projectFile, [ projectFile, '.bak' ], 'f' );
+end
 writer = matlab.io.xml.dom.DOMWriter(  );
 writer.write( dom, matlab.io.xml.dom.FileWriter( projectFile ) );
 
 
-function insertFiles( files, nodes )
-theNode = nodes.item( 0 );
-nodeChildren = theNode.getChildNodes;
+    function insertFiles( files, nodes )
+        theNode = nodes.item( 0 );
+        nodeChildren = theNode.getChildNodes;
 
-if length( files ) == 1
+        if length( files ) == 1
 
-nodeChildren.item( 1 ).TextContent =  ...
-compiler.internal.validate.makePathAbsolute( files{ 1 } );
-else 
-
-
-
-for i = 2:length( files )
-theNode.appendChild( nodeChildren.item( 1 ).cloneNode( true ) );
-theNode.appendChild( nodeChildren.item( 2 ).cloneNode( true ) );
-end 
+            nodeChildren.item( 1 ).TextContent =  ...
+                compiler.internal.validate.makePathAbsolute( files{ 1 } );
+        else
 
 
-for i = 1:length( files )
-nodeChildren.item( i * 2 - 1 ).TextContent =  ...
-compiler.internal.validate.makePathAbsolute( files{ i } );
-end 
-end 
-end 
 
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmplAsnyH.p.
-% Please follow local copyright laws when handling this file.
+            for i = 2:length( files )
+                theNode.appendChild( nodeChildren.item( 1 ).cloneNode( true ) );
+                theNode.appendChild( nodeChildren.item( 2 ).cloneNode( true ) );
+            end
+
+
+            for i = 1:length( files )
+                nodeChildren.item( i * 2 - 1 ).TextContent =  ...
+                    compiler.internal.validate.makePathAbsolute( files{ i } );
+            end
+        end
+    end
+
+end
+
 

@@ -1,289 +1,273 @@
 classdef EvolutionTreeReporter < evolutions.internal.report.DesignEvolutionReporter
 
+    properties
 
+        Object{ mustBeInstanceOf( 'evolutions.model.EvolutionTreeInfo', Object ) } = [  ];
+        ReportTempDir = '';
 
+        IncludeEvolutionTreeNameHeading{ mustBeLogical } = true;
+        IncludeEvolutionTreeTopInfoTable{ mustBeLogical } = true;
+        IncludeEvolutionTreePlot{ mustBeLogical } = true;
+        IncludeEvolutionTreeEvolutionHyperlinks{ mustBeLogical } = true;
+        IncludeEvolutionTreeDetailsTable{ mustBeLogical } = true;
 
+    end
 
 
 
+    methods ( Access = protected, Hidden )
 
+        result = openImpl( report, impl, varargin )
+    end
 
 
+    methods
+        function h = EvolutionTreeReporter( nameValueArgs )
 
+            arguments
+                nameValueArgs.Object = [  ];
+                nameValueArgs.ReportTempDir = tempdir;
 
+                nameValueArgs.TemplateName = "DesignEvolutionTreeReporter";
 
-properties 
+                nameValueArgs.IncludeEvolutionTreeNameHeading = true;
+                nameValueArgs.IncludeEvolutionTreeTopInfoTable = true;
+                nameValueArgs.IncludeEvolutionTreePlot = true;
+                nameValueArgs.IncludeEvolutionTreeEvolutionHyperlinks = true;
+                nameValueArgs.IncludeEvolutionTreeDetailsTable = true;
 
-Object{ mustBeInstanceOf( 'evolutions.model.EvolutionTreeInfo', Object ) } = [  ];
-ReportTempDir = '';
+            end
 
-IncludeEvolutionTreeNameHeading{ mustBeLogical } = true;
-IncludeEvolutionTreeTopInfoTable{ mustBeLogical } = true;
-IncludeEvolutionTreePlot{ mustBeLogical } = true;
-IncludeEvolutionTreeEvolutionHyperlinks{ mustBeLogical } = true;
-IncludeEvolutionTreeDetailsTable{ mustBeLogical } = true;
+            nameValuePairs = namedargs2cell( nameValueArgs );
+            h = h@evolutions.internal.report.DesignEvolutionReporter( nameValuePairs{ : } );
 
-end 
+            h.Object = nameValueArgs.Object;
+            h.ReportTempDir = nameValueArgs.ReportTempDir;
+            h.TemplateName = nameValueArgs.TemplateName;
 
+        end
 
+        function set.Object( h, value )
+            h.Object = value;
+        end
 
-methods ( Access = protected, Hidden )
 
-result = openImpl( report, impl, varargin )
-end 
+        function content = getEvolutionTreeNameHeading( h, ~ )
+            content = [  ];
+            if h.IncludeEvolutionTreeNameHeading
 
+                testObj = h.Object;
+                heading = mlreportgen.dom.Heading4( testObj.getName );
 
-methods 
-function h = EvolutionTreeReporter( nameValueArgs )
+                append( heading, mlreportgen.dom.LinkTarget( testObj.Id ) );
+                heading.StyleName = 'StyleName_EvolutionTreeNameHeading';
+                content = [ content, { heading } ];
+            end
+        end
 
-R36
-nameValueArgs.Object = [  ];
-nameValueArgs.ReportTempDir = tempdir;
+        function content = getEvolutionTreeTopInfoTable( h, ~ )
+            content = [  ];
+            if h.IncludeEvolutionTreeTopInfoTable
 
-nameValueArgs.TemplateName = "DesignEvolutionTreeReporter";
+                testObj = h.Object;
 
-nameValueArgs.IncludeEvolutionTreeNameHeading = true;
-nameValueArgs.IncludeEvolutionTreeTopInfoTable = true;
-nameValueArgs.IncludeEvolutionTreePlot = true;
-nameValueArgs.IncludeEvolutionTreeEvolutionHyperlinks = true;
-nameValueArgs.IncludeEvolutionTreeDetailsTable = true;
+                evolutionTreeInfos.evolutionTreeName = testObj.getName;
 
-end 
+                evolutionTreeInfos.evolutionTreeAuthor = h.getAuthor;
 
-nameValuePairs = namedargs2cell( nameValueArgs );
-h = h@evolutions.internal.report.DesignEvolutionReporter( nameValuePairs{ : } );
+                evoTreeTopInfoTable = mlreportgen.dom.Table( [ { 'Design Tree: ', evolutionTreeInfos.evolutionTreeName }; ...
+                    { 'Created By: ', evolutionTreeInfos.evolutionTreeAuthor }; ...
+                    { 'Report Date: ', string( datetime(  ) ) } ] );
 
-h.Object = nameValueArgs.Object;
-h.ReportTempDir = nameValueArgs.ReportTempDir;
-h.TemplateName = nameValueArgs.TemplateName;
+                evoTreeTopInfoTable.StyleName = 'StyleName_EvolutionTreeTopInfoTable';
+                for i = 1:3
+                    evoTreeTopInfoTable.entry( i, 1 ).Style = { mlreportgen.dom.Bold( true ) };
+                end
+                evoTreeTopInfoTable = customizeTableWidthsForTable( h, evoTreeTopInfoTable, 35 );
+                content = [ content, { evoTreeTopInfoTable } ];
 
-end 
+            end
+        end
 
-function set.Object( h, value )
-h.Object = value;
-end 
 
+        function content = getEvolutionTreePlot( h, ~ )
+            content = [  ];
+            if h.IncludeEvolutionTreePlot
 
-function content = getEvolutionTreeNameHeading( h, ~ )
-content = [  ];
-if h.IncludeEvolutionTreeNameHeading
+                testObj = h.Object;
+                heading = mlreportgen.dom.Heading4( 'Evolution Tree' );
+                heading.StyleName = 'StyleName_EvolutionTreePlotHeading';
+                content = [ content, { heading } ];
 
-testObj = h.Object;
-heading = mlreportgen.dom.Heading4( testObj.getName );
 
-append( heading, mlreportgen.dom.LinkTarget( testObj.Id ) );
-heading.StyleName = 'StyleName_EvolutionTreeNameHeading';
-content = [ content, { heading } ];
-end 
-end 
+                imageTempDir = exportTreePlot( h );
 
-function content = getEvolutionTreeTopInfoTable( h, ~ )
-content = [  ];
-if h.IncludeEvolutionTreeTopInfoTable
 
-testObj = h.Object;
+                imageHyperlink = mlreportgen.dom.Paragraph(  ...
+                    mlreportgen.dom.ExternalLink( fullfile( '.', 'ExternalLinks', 'Images', sprintf( '%s%s', testObj.getName, '.png' ) ),  ...
+                    'Open image outside this document' ) );
 
-evolutionTreeInfos.evolutionTreeName = testObj.getName;
+                imageHyperlink.StyleName = 'StyleName_EvolutionTreePlotImageHyperlink';
+                content = [ content, { imageHyperlink } ];
 
-evolutionTreeInfos.evolutionTreeAuthor = h.getAuthor;
 
-evoTreeTopInfoTable = mlreportgen.dom.Table( [ { 'Design Tree: ', evolutionTreeInfos.evolutionTreeName }; ...
-{ 'Created By: ', evolutionTreeInfos.evolutionTreeAuthor }; ...
-{ 'Report Date: ', string( datetime(  ) ) } ] );
+                evoTreeImg = mlreportgen.dom.Image( fullfile( imageTempDir, sprintf( '%s%s', testObj.getName, '.png' ) ) );
+                evoTreeImg.Style = [ evoTreeImg.Style, { mlreportgen.dom.ScaleToFit } ];
+                evoTreeImg.StyleName = 'StyleName_EvolutionTreePlotImage';
 
-evoTreeTopInfoTable.StyleName = 'StyleName_EvolutionTreeTopInfoTable';
-for i = 1:3
-evoTreeTopInfoTable.entry( i, 1 ).Style = { mlreportgen.dom.Bold( true ) };
-end 
-evoTreeTopInfoTable = customizeTableWidthsForTable( h, evoTreeTopInfoTable, 35 );
-content = [ content, { evoTreeTopInfoTable } ];
 
-end 
-end 
 
 
-function content = getEvolutionTreePlot( h, ~ )
-content = [  ];
-if h.IncludeEvolutionTreePlot
+                imageContainerDiv = mlreportgen.dom.Container( 'div' );
+                append( imageContainerDiv, evoTreeImg );
+                imageContainerDiv.StyleName = 'StyleName_EvolutionTreeImageContainerDiv';
+                content = [ content, { imageContainerDiv } ];
 
-testObj = h.Object;
-heading = mlreportgen.dom.Heading4( 'Evolution Tree' );
-heading.StyleName = 'StyleName_EvolutionTreePlotHeading';
-content = [ content, { heading } ];
+            end
+        end
 
+        function imageTempDir = exportTreePlot( h )
+            testObj = h.Object;
+            tp = evolutions.internal.report.EvolutionTreePlotter( testObj.EvolutionManager.RootEvolution );
 
-imageTempDir = exportTreePlot( h );
+            imageTempDir = fullfile( h.ReportTempDir, 'ExternalLinks', 'Images' );
+            mkdir( imageTempDir );
+            exportgraphics( tp.TreeAxes,  ...
+                fullfile( imageTempDir, sprintf( '%s%s', testObj.getName, '.png' ) ) );
+        end
 
 
-imageHyperlink = mlreportgen.dom.Paragraph(  ...
-mlreportgen.dom.ExternalLink( fullfile( '.', 'ExternalLinks', 'Images', sprintf( '%s%s', testObj.getName, '.png' ) ),  ...
-'Open image outside this document' ) );
+        function content = getEvolutionTreeEvolutionHyperlinks( h, ~ )
+            content = [  ];
+            if h.IncludeEvolutionTreeEvolutionHyperlinks
 
-imageHyperlink.StyleName = 'StyleName_EvolutionTreePlotImageHyperlink';
-content = [ content, { imageHyperlink } ];
+                evolutionTreeInfos.evolutionSequential = sortEvolutionsSequential( h );
 
 
-evoTreeImg = mlreportgen.dom.Image( fullfile( imageTempDir, sprintf( '%s%s', testObj.getName, '.png' ) ) );
-evoTreeImg.Style = [ evoTreeImg.Style, { mlreportgen.dom.ScaleToFit } ];
-evoTreeImg.StyleName = 'StyleName_EvolutionTreePlotImage';
+                evolutionTreeEvolutionHyperlinks = mlreportgen.dom.Table(  );
+                for j = 1:numel( evolutionTreeInfos.evolutionSequential )
+                    fileTableRow = mlreportgen.dom.TableRow(  );
+                    fileTableEntry = mlreportgen.dom.TableEntry(  );
+                    append( fileTableEntry, mlreportgen.dom.InternalLink( evolutionTreeInfos.evolutionSequential( j ).Id,  ...
+                        sprintf( '%s%s', 'Go to: ', evolutionTreeInfos.evolutionSequential( j ).getName ) ) );
+                    append( fileTableRow, fileTableEntry );
+                    append( evolutionTreeEvolutionHyperlinks, fileTableRow );
 
+                end
+                evolutionTreeEvolutionHyperlinks.StyleName = 'StyleName_EvolutionTreeEvolutionHyperlinks';
+                content = [ content, { evolutionTreeEvolutionHyperlinks } ];
 
+            end
+        end
 
+        function evolutionsSequential = sortEvolutionsSequential( h )
+            testObj = h.Object;
+            evolutionTreeIterator = evolutions.internal.tree.EvolutionTreeIterator( testObj.EvolutionManager.RootEvolution );
+            count = 1;
+            evolutionsSequential = testObj.EvolutionManager.Infos.empty(  );
+            while ~isempty( evolutionTreeIterator.current )
+                if ~evolutionTreeIterator.current.IsWorking
+                    evolutionsSequential( count ) = evolutionTreeIterator.current;
+                    count = count + 1;
+                end
+                evolutionTreeIterator.next;
+            end
+            evolutionsSequential = flip( evolutionsSequential );
+        end
 
-imageContainerDiv = mlreportgen.dom.Container( 'div' );
-append( imageContainerDiv, evoTreeImg );
-imageContainerDiv.StyleName = 'StyleName_EvolutionTreeImageContainerDiv';
-content = [ content, { imageContainerDiv } ];
 
-end 
-end 
+        function content = getEvolutionTreeDetailsTable( h, ~ )
+            content = [  ];
+            if h.IncludeEvolutionTreeDetailsTable
 
-function imageTempDir = exportTreePlot( h )
-testObj = h.Object;
-tp = evolutions.internal.report.EvolutionTreePlotter( testObj.EvolutionManager.RootEvolution );
+                testObj = h.Object;
 
-imageTempDir = fullfile( h.ReportTempDir, 'ExternalLinks', 'Images' );
-mkdir( imageTempDir );
-exportgraphics( tp.TreeAxes,  ...
-fullfile( imageTempDir, sprintf( '%s%s', testObj.getName, '.png' ) ) );
-end 
+                heading = mlreportgen.dom.Heading4( 'Details' );
+                heading.StyleName = 'StyleName_EvolutionTreeDetailsHeading';
+                content = [ content, { heading } ];
 
 
-function content = getEvolutionTreeEvolutionHyperlinks( h, ~ )
-content = [  ];
-if h.IncludeEvolutionTreeEvolutionHyperlinks
+                if ~isempty( h.getDescription )
+                    evolutionTreeInfos.evolutionTreeDescription = h.getDescription;
+                else
+                    evolutionTreeInfos.evolutionTreeDescription = '-';
+                end
 
-evolutionTreeInfos.evolutionSequential = sortEvolutionsSequential( h );
+                evolutionTreeInfos.evolutionTreeAuthor = h.getAuthor;
+                evolutionTreeInfos.evolutionTreeCreatedOn = string( testObj.Created );
+                evolutionTreeInfos.evolutionTreeUpdatedOn = h.getUpdated;
+                evolutionTreeInfos.projectName = testObj.Project.Name;
 
+                evoTreeBottomDescriptionTable = mlreportgen.dom.Table( { 'Description: '; ...
+                    evolutionTreeInfos.evolutionTreeDescription } );
+                evoTreeBottomDescriptionTable.StyleName = 'StyleName_EvolutionTreeBottomDescriptionTable';
+                evoTreeBottomDescriptionTable.entry( 1, 1 ).Style = { mlreportgen.dom.Bold( true ) };
 
-evolutionTreeEvolutionHyperlinks = mlreportgen.dom.Table(  );
-for j = 1:numel( evolutionTreeInfos.evolutionSequential )
-fileTableRow = mlreportgen.dom.TableRow(  );
-fileTableEntry = mlreportgen.dom.TableEntry(  );
-append( fileTableEntry, mlreportgen.dom.InternalLink( evolutionTreeInfos.evolutionSequential( j ).Id,  ...
-sprintf( '%s%s', 'Go to: ', evolutionTreeInfos.evolutionSequential( j ).getName ) ) );
-append( fileTableRow, fileTableEntry );
-append( evolutionTreeEvolutionHyperlinks, fileTableRow );
+                evoTreeBottomInfoTable = mlreportgen.dom.Table( [ { 'Project: ', evolutionTreeInfos.projectName }; ...
+                    { 'Created On: ', evolutionTreeInfos.evolutionTreeCreatedOn }; ...
+                    { 'Created By: ', evolutionTreeInfos.evolutionTreeAuthor }; ...
+                    { 'Last Update: ', evolutionTreeInfos.evolutionTreeUpdatedOn }; ...
+                    { 'Updated By: ', evolutionTreeInfos.evolutionTreeAuthor } ] );
 
-end 
-evolutionTreeEvolutionHyperlinks.StyleName = 'StyleName_EvolutionTreeEvolutionHyperlinks';
-content = [ content, { evolutionTreeEvolutionHyperlinks } ];
+                evoTreeBottomInfoTable.StyleName = 'StyleName_EvolutionTreeBottomInfoTable';
+                for i = 1:5
+                    evoTreeBottomInfoTable.entry( i, 1 ).Style = { mlreportgen.dom.Bold( true ) };
+                end
+                evoTreeBottomInfoTable = customizeTableWidthsForTable( h, evoTreeBottomInfoTable, 35 );
 
-end 
-end 
+                evoTreeDetailsTable = mlreportgen.dom.Table( { evoTreeBottomDescriptionTable, evoTreeBottomInfoTable } );
+                evoTreeDetailsTable.StyleName = 'StyleName_EvolutionTreeDetailsTable';
+                evoTreeDetailsTable = customizeTableWidthsForTable( h, evoTreeDetailsTable, 50 );
 
-function evolutionsSequential = sortEvolutionsSequential( h )
-testObj = h.Object;
-evolutionTreeIterator = evolutions.internal.tree.EvolutionTreeIterator( testObj.EvolutionManager.RootEvolution );
-count = 1;
-evolutionsSequential = testObj.EvolutionManager.Infos.empty(  );
-while ~isempty( evolutionTreeIterator.current )
-if ~evolutionTreeIterator.current.IsWorking
-evolutionsSequential( count ) = evolutionTreeIterator.current;
-count = count + 1;
-end 
-evolutionTreeIterator.next;
-end 
-evolutionsSequential = flip( evolutionsSequential );
-end 
+                content = [ content, { evoTreeDetailsTable } ];
+            end
 
 
-function content = getEvolutionTreeDetailsTable( h, ~ )
-content = [  ];
-if h.IncludeEvolutionTreeDetailsTable
+        end
 
-testObj = h.Object;
 
-heading = mlreportgen.dom.Heading4( 'Details' );
-heading.StyleName = 'StyleName_EvolutionTreeDetailsHeading';
-content = [ content, { heading } ];
+        function author = getAuthor( h )
+            author = h.Object.Author;
+        end
 
+        function description = getDescription( h )
+            description = h.Object.Description;
+        end
 
-if ~isempty( h.getDescription )
-evolutionTreeInfos.evolutionTreeDescription = h.getDescription;
-else 
-evolutionTreeInfos.evolutionTreeDescription = '-';
-end 
+        function updated = getUpdated( h )
+            updated = char( h.Object.Updated );
+        end
 
-evolutionTreeInfos.evolutionTreeAuthor = h.getAuthor;
-evolutionTreeInfos.evolutionTreeCreatedOn = string( testObj.Created );
-evolutionTreeInfos.evolutionTreeUpdatedOn = h.getUpdated;
-evolutionTreeInfos.projectName = testObj.Project.Name;
+    end
 
-evoTreeBottomDescriptionTable = mlreportgen.dom.Table( { 'Description: '; ...
-evolutionTreeInfos.evolutionTreeDescription } );
-evoTreeBottomDescriptionTable.StyleName = 'StyleName_EvolutionTreeBottomDescriptionTable';
-evoTreeBottomDescriptionTable.entry( 1, 1 ).Style = { mlreportgen.dom.Bold( true ) };
 
-evoTreeBottomInfoTable = mlreportgen.dom.Table( [ { 'Project: ', evolutionTreeInfos.projectName }; ...
-{ 'Created On: ', evolutionTreeInfos.evolutionTreeCreatedOn }; ...
-{ 'Created By: ', evolutionTreeInfos.evolutionTreeAuthor }; ...
-{ 'Last Update: ', evolutionTreeInfos.evolutionTreeUpdatedOn }; ...
-{ 'Updated By: ', evolutionTreeInfos.evolutionTreeAuthor } ] );
+    methods ( Static )
+        function path = getClassFolder(  )
+            [ path ] = fileparts( mfilename( 'fullpath' ) );
+        end
 
-evoTreeBottomInfoTable.StyleName = 'StyleName_EvolutionTreeBottomInfoTable';
-for i = 1:5
-evoTreeBottomInfoTable.entry( i, 1 ).Style = { mlreportgen.dom.Bold( true ) };
-end 
-evoTreeBottomInfoTable = customizeTableWidthsForTable( h, evoTreeBottomInfoTable, 35 );
+        function createTemplate( templatePath, type )
+            path = EvolutionTreeReporter.getClassFolder(  );
+            mlreportgen.report.ReportForm.createFormTemplate(  ...
+                templatePath, type, path );
+        end
 
-evoTreeDetailsTable = mlreportgen.dom.Table( { evoTreeBottomDescriptionTable, evoTreeBottomInfoTable } );
-evoTreeDetailsTable.StyleName = 'StyleName_EvolutionTreeDetailsTable';
-evoTreeDetailsTable = customizeTableWidthsForTable( h, evoTreeDetailsTable, 50 );
+        function customizeReporter( toClasspath )
+            mlreportgen.report.ReportForm.customizeClass(  ...
+                toClasspath, "EvolutionTreeReporter" );
+        end
 
-content = [ content, { evoTreeDetailsTable } ];
-end 
-
-
-end 
-
-
-function author = getAuthor( h )
-author = h.Object.Author;
-end 
-
-function description = getDescription( h )
-description = h.Object.Description;
-end 
-
-function updated = getUpdated( h )
-updated = char( h.Object.Updated );
-end 
-
-end 
-
-
-methods ( Static )
-function path = getClassFolder(  )
-[ path ] = fileparts( mfilename( 'fullpath' ) );
-end 
-
-function createTemplate( templatePath, type )
-path = EvolutionTreeReporter.getClassFolder(  );
-mlreportgen.report.ReportForm.createFormTemplate(  ...
-templatePath, type, path );
-end 
-
-function customizeReporter( toClasspath )
-mlreportgen.report.ReportForm.customizeClass(  ...
-toClasspath, "EvolutionTreeReporter" );
-end 
-
-end 
-end 
+    end
+end
 
 
 
 function mustBeLogical( varargin )
 mlreportgen.report.validators.mustBeLogical( varargin{ : } );
-end 
+end
 
 function mustBeInstanceOf( varargin )
 mlreportgen.report.validators.mustBeInstanceOf( varargin{ : } );
-end 
+end
 
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpXc5kHF.p.
-% Please follow local copyright laws when handling this file.
 

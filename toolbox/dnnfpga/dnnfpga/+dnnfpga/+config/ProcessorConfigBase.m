@@ -1,160 +1,161 @@
 classdef ( Abstract )ProcessorConfigBase < dnnfpga.config.PropertyListBase
 
+    properties
+        SynthesisToolChipFamily
+        SynthesisToolDeviceName
+        SynthesisToolPackageName
+        SynthesisToolSpeedValue
+        TargetFrequency
+    end
 
+    properties ( Dependent )
+        TargetPlatform
+        SynthesisTool
+        ReferenceDesign
 
+        InputRunTimeControl
+        OutputRunTimeControl
+    end
 
+    properties ( Access = protected )
+        TargetPlatformInternal
+        SynthesisToolInternal
+        ReferenceDesignInternal
+    end
 
-properties 
-SynthesisToolChipFamily
-SynthesisToolDeviceName
-SynthesisToolPackageName
-SynthesisToolSpeedValue
-TargetFrequency
-end 
+    properties
 
-properties ( Dependent )
+        RunTimeControl
+        RunTimeStatus
+        SetupControl
 
+        InputStreamControl
+        OutputStreamControl
+        InputDataInterface
+        OutputDataInterface
+        ProcessorDataType
+    end
 
 
+    properties ( Constant, Hidden )
 
+        GenericDLProcessorTargetName = 'Generic Deep Learning Processor';
 
-TargetPlatform
-SynthesisTool
-ReferenceDesign
 
+        TargetPlatformDefault = 'Xilinx Zynq UltraScale+ MPSoC ZCU102 Evaluation Kit';
+        SynthesisToolDefault = dlhdl.Tool.convertToString( dlhdl.Tool.XilinxVivado );
+        ReferenceDesignDefault = 'AXI-Stream DDR Memory Access : 3-AXIM';
+        SynthesisToolChipFamilyDefault = 'Zynq UltraScale+';
+        SynthesisToolDeviceNameDefault = 'xczu9eg-ffvb1156-2-e';
+        SynthesisToolPackageNameDefault = '';
+        SynthesisToolSpeedValueDefault = '';
+        TargetFrequencyDefault = 200;
 
+        RunTimeControlDefault = 'register';
+        RunTimeStatusDefault = 'register';
+        SetupControlDefault = 'register';
 
+        InputStreamControlDefault = 'register';
+        OutputStreamControlDefault = 'register';
 
-InputRunTimeControl
-OutputRunTimeControl
-end 
+        InputDataInterfaceDefault = 'External Memory';
+        OutputDataInterfaceDefault = 'External Memory';
+        ProcessorDataTypeDefault = 'single';
 
-properties ( Access = protected )
-TargetPlatformInternal
-SynthesisToolInternal
-ReferenceDesignInternal
-end 
 
-properties 
 
-RunTimeControl
-RunTimeStatus
-SetupControl
+        RunTimeControlChoices = { 'register', 'port' };
+        RunTimeStatusChoices = { 'register', 'port' };
+        SetupControlChoices = { 'register', 'port' };
+        InputStreamControlChoices = { 'register', 'port' };
+        OutputStreamControlChoices = { 'register', 'port' };
+        InputDataInterfaceChoices = { 'External Memory', 'AXI4-Stream' };
+        OutputDataInterfaceChoices = { 'External Memory', 'AXI4-Stream' };
+        ProcessorDataTypeChoices = { 'single', 'int8' };
+        ProcessorDataTypeChoicesFixedPoint = { 'single', 'int8', 'int4', 'half' };
+    end
 
-InputStreamControl
-OutputStreamControl
-InputDataInterface
-OutputDataInterface
-ProcessorDataType
-end 
 
+    properties ( Access = protected )
 
-properties ( Constant, Hidden )
 
-GenericDLProcessorTargetName = 'Generic Deep Learning Processor';
+        ModuleIDList = {  };
+        ModuleConfigMap = [  ];
 
+    end
 
-TargetPlatformDefault = 'Xilinx Zynq UltraScale+ MPSoC ZCU102 Evaluation Kit';
-SynthesisToolDefault = dlhdl.Tool.convertToString( dlhdl.Tool.XilinxVivado );
-ReferenceDesignDefault = 'AXI-Stream DDR Memory Access : 3-AXIM';
-SynthesisToolChipFamilyDefault = 'Zynq UltraScale+';
-SynthesisToolDeviceNameDefault = 'xczu9eg-ffvb1156-2-e';
-SynthesisToolPackageNameDefault = '';
-SynthesisToolSpeedValueDefault = '';
-TargetFrequencyDefault = 200;
+    properties ( Access = protected )
 
-RunTimeControlDefault = 'register';
-RunTimeStatusDefault = 'register';
-SetupControlDefault = 'register';
 
-InputStreamControlDefault = 'register';
-OutputStreamControlDefault = 'register';
+        hBoardList = [  ];
+        ToolEnumList = {  };
+        hRDList = [  ];
+    end
 
-InputDataInterfaceDefault = 'External Memory';
-OutputDataInterfaceDefault = 'External Memory';
-ProcessorDataTypeDefault = 'single';
+    properties ( Hidden, GetAccess = public, SetAccess = protected )
+        CustomLayerManager = [  ]
 
 
+        hBackDoorFiFeature
 
-RunTimeControlChoices = { 'register', 'port' };
-RunTimeStatusChoices = { 'register', 'port' };
-SetupControlChoices = { 'register', 'port' };
-InputStreamControlChoices = { 'register', 'port' };
-OutputStreamControlChoices = { 'register', 'port' };
-InputDataInterfaceChoices = { 'External Memory', 'AXI4-Stream' };
-OutputDataInterfaceChoices = { 'External Memory', 'AXI4-Stream' };
-ProcessorDataTypeChoices = { 'single', 'int8' };
-ProcessorDataTypeChoicesFixedPoint = { 'single', 'int8', 'int4', 'half' };
-end 
 
+        ModelManager
+    end
 
-properties ( Access = protected )
+    properties ( Hidden )
 
 
-ModuleIDList = {  };
-ModuleConfigMap = [  ];
 
-end 
+        CalibrationData = [  ]
+    end
 
-properties ( Access = protected )
 
+    methods
+        function obj = ProcessorConfigBase(  )
 
-hBoardList = [  ];
-ToolEnumList = {  };
-hRDList = [  ];
-end 
 
-properties ( Hidden, GetAccess = public, SetAccess = protected )
-CustomLayerManager = [  ]
 
+            obj.hBackDoorFiFeature = dnnfpga.internal.BackDoorFiFeature;
 
-hBackDoorFiFeature
 
+            obj.ModuleIDList = {  };
+            obj.ModuleConfigMap = containers.Map(  );
 
-ModelManager
-end 
 
-properties ( Hidden )
 
+            obj.Properties( 'SystemLevelProperties' ) = {  ...
+                'TargetPlatform',  ...
+                'TargetFrequency',  ...
+                'SynthesisTool',  ...
+                'ReferenceDesign',  ...
+                'SynthesisToolChipFamily',  ...
+                'SynthesisToolDeviceName',  ...
+                'SynthesisToolPackageName',  ...
+                'SynthesisToolSpeedValue',  ...
+                };
 
 
-CalibrationData = [  ]
-end 
+            obj.Properties( 'ProcessorTopLevelProperties' ) = {  ...
+                'RunTimeControl',  ...
+                'RunTimeStatus',  ...
+                'InputStreamControl',  ...
+                'OutputStreamControl',  ...
+                'SetupControl',  ...
+                'ProcessorDataType' ...
+                };
 
 
-methods 
-function obj = ProcessorConfigBase(  )
 
 
 
-obj.hBackDoorFiFeature = dnnfpga.internal.BackDoorFiFeature;
 
 
-obj.ModuleIDList = {  };
-obj.ModuleConfigMap = containers.Map(  );
 
+            obj.hBoardList = hdlturnkey.plugin.DLBoardList;
 
 
-obj.Properties( 'SystemLevelProperties' ) = {  ...
-'TargetPlatform',  ...
-'TargetFrequency',  ...
-'SynthesisTool',  ...
-'ReferenceDesign',  ...
-'SynthesisToolChipFamily',  ...
-'SynthesisToolDeviceName',  ...
-'SynthesisToolPackageName',  ...
-'SynthesisToolSpeedValue',  ...
- };
 
 
-obj.Properties( 'ProcessorTopLevelProperties' ) = {  ...
-'RunTimeControl',  ...
-'RunTimeStatus',  ...
-'InputStreamControl',  ...
-'OutputStreamControl',  ...
-'SetupControl',  ...
-'ProcessorDataType' ...
- };
 
 
 
@@ -163,1003 +164,1002 @@ obj.Properties( 'ProcessorTopLevelProperties' ) = {  ...
 
 
 
-obj.hBoardList = hdlturnkey.plugin.DLBoardList;
 
+            platformList = obj.getPlatformList;
+            if ismember( obj.TargetPlatformDefault, platformList )
+                obj.TargetPlatform = obj.TargetPlatformDefault;
+            else
+                obj.TargetPlatform = platformList{ end  };
+            end
 
 
+            obj.TargetFrequency = obj.TargetFrequencyDefault;
 
+            obj.RunTimeControl = obj.RunTimeControlDefault;
+            obj.RunTimeStatus = obj.RunTimeStatusDefault;
+            obj.SetupControl = obj.SetupControlDefault;
 
+            obj.InputStreamControl = obj.InputStreamControlDefault;
+            obj.OutputStreamControl = obj.OutputStreamControlDefault;
 
+            obj.InputDataInterface = obj.InputDataInterfaceDefault;
+            obj.OutputDataInterface = obj.OutputDataInterfaceDefault;
+            obj.ProcessorDataType = obj.ProcessorDataTypeDefault;
 
 
+            try
+                dnnfpga.utilscripts.checkUtility;
+            catch ME
 
+                throwAsCaller( ME );
+            end
+        end
+    end
 
 
 
+    methods
+        function setModuleProperty( obj, moduleID, propertyName, propertyValue )
 
-platformList = obj.getPlatformList;
-if ismember( obj.TargetPlatformDefault, platformList )
-obj.TargetPlatform = obj.TargetPlatformDefault;
-else 
-obj.TargetPlatform = platformList{ end  };
-end 
 
+            if nargin ~= 4
+                error( message( 'dnnfpga:config:SetModulePropertyInputs' ) );
+            end
 
-obj.TargetFrequency = obj.TargetFrequencyDefault;
+            if ( strcmpi( propertyName, 'KernelDataType' ) )
+                error( message( 'dnnfpga:config:KernelDataTypeNotSupported', propertyValue ) );
+            end
 
-obj.RunTimeControl = obj.RunTimeControlDefault;
-obj.RunTimeStatus = obj.RunTimeStatusDefault;
-obj.SetupControl = obj.SetupControlDefault;
+            hModule = obj.validateSetGetModuleProperty( moduleID, propertyName );
 
-obj.InputStreamControl = obj.InputStreamControlDefault;
-obj.OutputStreamControl = obj.OutputStreamControlDefault;
+            try
+                moduleGeneration = hModule.ModuleGeneration;
+            catch ME
 
-obj.InputDataInterface = obj.InputDataInterfaceDefault;
-obj.OutputDataInterface = obj.OutputDataInterfaceDefault;
-obj.ProcessorDataType = obj.ProcessorDataTypeDefault;
+                throwAsCaller( ME );
+            end
 
+            if moduleGeneration || strcmp( propertyName, 'ModuleGeneration' )
+                try
 
-try 
-dnnfpga.utilscripts.checkUtility;
-catch ME
+                    hProp = findprop( hModule, propertyName );
 
-throwAsCaller( ME );
-end 
-end 
-end 
+                    obj.validationForSoftmaxSigmoidBlocks( hProp, hModule, propertyValue );
 
+                    if ( strcmpi( hModule.ModuleID, 'custom' ) )
+                        if ( ~strcmp( propertyName, 'ModuleGeneration' ) )
 
 
-methods 
-function setModuleProperty( obj, moduleID, propertyName, propertyValue )
+                            obj.validationForCustomBlocks( hProp, hModule, propertyValue );
+                        else
+                            kernelDataType = obj.ProcessorDataType;
+                            if ( strcmpi( propertyValue, 'on' ) && strcmpi( kernelDataType, 'int8' ) )
+                                customLayerManager = obj.CustomLayerManager;
+                                registeredCustomBlocks = customLayerManager.getLayerList( true );
+                                registeredCustomBlockNames = arrayfun( @( x )x.ConfigBlockName, registeredCustomBlocks, UniformOutput = false );
 
 
-if nargin ~= 4
-error( message( 'dnnfpga:config:SetModulePropertyInputs' ) );
-end 
 
-if ( strcmpi( propertyName, 'KernelDataType' ) )
-error( message( 'dnnfpga:config:KernelDataTypeNotSupported', propertyValue ) );
-end 
+                                blocksSupportedForQuantization = customLayerManager.getBlocksSupportedForQuantization;
 
-hModule = obj.validateSetGetModuleProperty( moduleID, propertyName );
+                                for i = 1:numel( blocksSupportedForQuantization )
+                                    indexToRemove = strcmpi( registeredCustomBlockNames, blocksSupportedForQuantization{ i } );
+                                    registeredCustomBlockNames( indexToRemove ) = [  ];
+                                end
 
-try 
-moduleGeneration = hModule.ModuleGeneration;
-catch ME
+                                customModule = obj.getModule( 'custom' );
+                                for i = 1:numel( registeredCustomBlockNames )
+                                    blockName = registeredCustomBlockNames{ i };
+                                    if ( customModule.( blockName ) )
+                                        msg = message( 'dnnfpga:config:UnsupportedCustomLayerForQuantization', blockName );
+                                        error( msg );
+                                    end
+                                end
+                            end
+                        end
+                    end
 
-throwAsCaller( ME );
-end 
+                    if isa( hProp, 'meta.DynamicProperty' )
+                        hModule.setDynamicProp( propertyValue, propertyName );
+                    else
+                        hModule.( propertyName ) = propertyValue;
+                    end
 
-if moduleGeneration || strcmp( propertyName, 'ModuleGeneration' )
-try 
+                catch ME
 
-hProp = findprop( hModule, propertyName );
+                    throwAsCaller( ME );
+                end
+            else
+                error( message( 'dnnfpga:config:CannotSetProperty', propertyName, hModule.ModuleID ) );
+            end
 
-obj.validationForSoftmaxSigmoidBlocks( hProp, hModule, propertyValue );
+        end
 
-if ( strcmpi( hModule.ModuleID, 'custom' ) )
-if ( ~strcmp( propertyName, 'ModuleGeneration' ) )
+        function propertyValue = getModuleProperty( obj, moduleID, propertyName )
 
 
-obj.validationForCustomBlocks( hProp, hModule, propertyValue );
-else 
-kernelDataType = obj.ProcessorDataType;
-if ( strcmpi( propertyValue, 'on' ) && strcmpi( kernelDataType, 'int8' ) )
-customLayerManager = obj.CustomLayerManager;
-registeredCustomBlocks = customLayerManager.getLayerList( true );
-registeredCustomBlockNames = arrayfun( @( x )x.ConfigBlockName, registeredCustomBlocks, UniformOutput = false );
 
 
 
-blocksSupportedForQuantization = customLayerManager.getBlocksSupportedForQuantization;
 
-for i = 1:numel( blocksSupportedForQuantization )
-indexToRemove = strcmpi( registeredCustomBlockNames, blocksSupportedForQuantization{ i } );
-registeredCustomBlockNames( indexToRemove ) = [  ];
-end 
 
-customModule = obj.getModule( 'custom' );
-for i = 1:numel( registeredCustomBlockNames )
-blockName = registeredCustomBlockNames{ i };
-if ( customModule.( blockName ) )
-msg = message( 'dnnfpga:config:UnsupportedCustomLayerForQuantization', blockName );
-error( msg );
-end 
-end 
-end 
-end 
-end 
 
-if isa( hProp, 'meta.DynamicProperty' )
-hModule.setDynamicProp( propertyValue, propertyName );
-else 
-hModule.( propertyName ) = propertyValue;
-end 
 
-catch ME
 
-throwAsCaller( ME );
-end 
-else 
-error( message( 'dnnfpga:config:CannotSetProperty', propertyName, hModule.ModuleID ) );
-end 
 
-end 
 
-function propertyValue = getModuleProperty( obj, moduleID, propertyName )
 
 
 
 
+            if nargin ~= 3
+                error( message( 'dnnfpga:config:GetModulePropertyInputs' ) );
+            end
 
+            if ( strcmpi( propertyName, 'KernelDataType' ) )
+                error( message( 'dnnfpga:config:GetKernelDataTypeNotSupported' ) );
+            end
 
 
+            hModule = obj.validateSetGetModuleProperty( moduleID, propertyName );
 
 
+            propertyValue = dnnfpga.config.getPropertyValue( hModule, propertyName );
 
+        end
+    end
 
+    methods ( Access = protected )
 
+        function hModule = validateSetGetModuleProperty( obj, moduleID, propertyName )
 
 
 
+            [ isIn, hModule ] = obj.isInModuleIDList( moduleID );
+            if ~isIn
 
-if nargin ~= 3
-error( message( 'dnnfpga:config:GetModulePropertyInputs' ) );
-end 
+                moduleIDMsgObj = obj.getModuleIDMessageObj( moduleID );
+                error( message( 'dnnfpga:config:SetGetModulePropertyFirstInput', moduleIDMsgObj.getString ) );
+            end
 
-if ( strcmpi( propertyName, 'KernelDataType' ) )
-error( message( 'dnnfpga:config:GetKernelDataTypeNotSupported' ) );
-end 
 
+            try
+                hModule.( propertyName );
+            catch ME
+                choiceStr = dnnfpga.config.getPropertyChoiceString( hModule.getVisiblePropertyList );
+                error( message( 'dnnfpga:config:SetGetModulePropertySecondInput', choiceStr ) );
+            end
+        end
 
-hModule = obj.validateSetGetModuleProperty( moduleID, propertyName );
+        function moduleIDMsg = getModuleIDMessageObj( obj, moduleID )
 
+            choices = obj.getModuleIDList;
 
-propertyValue = dnnfpga.config.getPropertyValue( hModule, propertyName );
+            choiceStr = dnnfpga.config.getPropertyChoiceString( choices );
+            moduleIDMsg = message( 'dnnfpga:config:InvalidModuleID', moduleID, choiceStr );
+        end
 
-end 
-end 
+        function validationForSoftmaxSigmoidBlocks( obj, hProp, hModule, propertyValue )
 
-methods ( Access = protected )
 
-function hModule = validateSetGetModuleProperty( obj, moduleID, propertyName )
+            convThreadNum = obj.getModuleProperty( 'conv', 'ConvThreadNumber' );
+            isaPowerOfTwo = floor( log2( sqrt( convThreadNum ) ) ) == ceil( log2( sqrt( convThreadNum ) ) );
+            ispropertyOn = strcmpi( propertyValue, 'on' );
 
 
 
-[ isIn, hModule ] = obj.isInModuleIDList( moduleID );
-if ~isIn
+            if ( strcmpi( hProp.Name, 'SigmoidBlockGeneration' ) && ispropertyOn && strcmpi( obj.ProcessorDataType, 'single' ) )
 
-moduleIDMsgObj = obj.getModuleIDMessageObj( moduleID );
-error( message( 'dnnfpga:config:SetGetModulePropertyFirstInput', moduleIDMsgObj.getString ) );
-end 
+                msg = message( 'dnnfpga:config:UnsupportedSigmoidConfigurationForSingle' );
+                error( msg );
+            end
 
+            if ( strcmpi( hProp.Name, 'Sigmoid' ) && ispropertyOn && ~strcmpi( obj.ProcessorDataType, 'single' ) )
 
-try 
-hModule.( propertyName );
-catch ME
-choiceStr = dnnfpga.config.getPropertyChoiceString( hModule.getVisiblePropertyList );
-error( message( 'dnnfpga:config:SetGetModulePropertySecondInput', choiceStr ) );
-end 
-end 
+                msg = message( 'dnnfpga:config:UnsupportedSigmoidConfigurationForQuantization' );
+                error( msg );
+            end
 
-function moduleIDMsg = getModuleIDMessageObj( obj, moduleID )
 
-choices = obj.getModuleIDList;
 
-choiceStr = dnnfpga.config.getPropertyChoiceString( choices );
-moduleIDMsg = message( 'dnnfpga:config:InvalidModuleID', moduleID, choiceStr );
-end 
 
-function validationForSoftmaxSigmoidBlocks( obj, hProp, hModule, propertyValue )
 
 
-convThreadNum = obj.getModuleProperty( 'conv', 'ConvThreadNumber' );
-isaPowerOfTwo = floor( log2( sqrt( convThreadNum ) ) ) == ceil( log2( sqrt( convThreadNum ) ) );
-ispropertyOn = strcmpi( propertyValue, 'on' );
 
+            if ( ( strcmpi( hProp.Name, 'SoftmaxBlockGeneration' ) || strcmpi( hProp.Name, 'SigmoidBlockGeneration' ) ) ...
+                    && ispropertyOn )
+                if ( ~isaPowerOfTwo && strcmpi( obj.getModuleProperty( 'conv', 'ModuleGeneration' ), 'on' ) )
+                    msg = message( 'dnnfpga:config:NonPowerofTwoConvThreadNotSupported' );
+                    warning( msg );
+                end
+            end
 
+            if ( strcmpi( hProp.Name, 'ModuleGeneration' ) && strcmpi( hModule.ModuleID, 'conv' ) && ispropertyOn )
+                if ( ~isaPowerOfTwo &&  ...
+                        ( strcmpi( obj.getModuleProperty( 'fc', 'SoftmaxBlockGeneration' ), 'on' ) ||  ...
+                        strcmpi( obj.getModuleProperty( 'fc', 'SigmoidBlockGeneration' ), 'on' ) ) )
+                    msg = message( 'dnnfpga:config:NonPowerofTwoConvThreadNotSupported' );
+                    warning( msg );
+                end
+            end
 
-if ( strcmpi( hProp.Name, 'SigmoidBlockGeneration' ) && ispropertyOn && strcmpi( obj.ProcessorDataType, 'single' ) )
+            if ( strcmpi( hProp.Name, 'ConvThreadNumber' ) )
+                convThreadNum = propertyValue;
+                isaPowerOfTwo = floor( log2( sqrt( convThreadNum ) ) ) == ceil( log2( sqrt( convThreadNum ) ) );
+                isConvModuleOn = strcmpi( obj.getModuleProperty( 'conv', 'ModuleGeneration' ), 'on' );
 
-msg = message( 'dnnfpga:config:UnsupportedSigmoidConfigurationForSingle' );
-error( msg );
-end 
+                if ( ~isaPowerOfTwo && isConvModuleOn &&  ...
+                        ( strcmpi( obj.getModuleProperty( 'fc', 'SoftmaxBlockGeneration' ), 'on' ) ||  ...
+                        strcmpi( obj.getModuleProperty( 'fc', 'SigmoidBlockGeneration' ), 'on' ) ) )
+                    msg = message( 'dnnfpga:config:NonPowerofTwoConvThreadNotSupported' );
+                    warning( msg );
+                end
+            end
+        end
 
-if ( strcmpi( hProp.Name, 'Sigmoid' ) && ispropertyOn && ~strcmpi( obj.ProcessorDataType, 'single' ) )
+        function validationForCustomBlocks( obj, hProp, hModule, propertyValue )
+            if ( strcmpi( hModule.ModuleID, 'custom' ) )
+                blocksSupportedForQuantization = obj.CustomLayerManager.getBlocksSupportedForQuantization;
+                if ( ~strcmpi( obj.ProcessorDataType, 'single' ) && ~any( strcmp( hProp.Name, blocksSupportedForQuantization ) ) &&  ...
+                        strcmpi( propertyValue, 'on' ) )
+                    msg = message( 'dnnfpga:config:UnsupportedCustomLayerForQuantization', hProp.Name );
+                    error( msg );
+                end
+            end
+        end
 
-msg = message( 'dnnfpga:config:UnsupportedSigmoidConfigurationForQuantization' );
-error( msg );
-end 
+    end
 
+    methods ( Hidden )
 
+        function [ isIn, hModule ] = isInModuleIDList( obj, moduleID )
 
 
 
 
 
-if ( ( strcmpi( hProp.Name, 'SoftmaxBlockGeneration' ) || strcmpi( hProp.Name, 'SigmoidBlockGeneration' ) ) ...
- && ispropertyOn )
-if ( ~isaPowerOfTwo && strcmpi( obj.getModuleProperty( 'conv', 'ModuleGeneration' ), 'on' ) )
-msg = message( 'dnnfpga:config:NonPowerofTwoConvThreadNotSupported' );
-warning( msg );
-end 
-end 
 
-if ( strcmpi( hProp.Name, 'ModuleGeneration' ) && strcmpi( hModule.ModuleID, 'conv' ) && ispropertyOn )
-if ( ~isaPowerOfTwo &&  ...
-( strcmpi( obj.getModuleProperty( 'fc', 'SoftmaxBlockGeneration' ), 'on' ) ||  ...
-strcmpi( obj.getModuleProperty( 'fc', 'SigmoidBlockGeneration' ), 'on' ) ) )
-msg = message( 'dnnfpga:config:NonPowerofTwoConvThreadNotSupported' );
-warning( msg );
-end 
-end 
 
-if ( strcmpi( hProp.Name, 'ConvThreadNumber' ) )
-convThreadNum = propertyValue;
-isaPowerOfTwo = floor( log2( sqrt( convThreadNum ) ) ) == ceil( log2( sqrt( convThreadNum ) ) );
-isConvModuleOn = strcmpi( obj.getModuleProperty( 'conv', 'ModuleGeneration' ), 'on' );
+            if strcmpi( moduleID, 'adder' )
+                moduleID = dnnfpga.config.CustomLayerModuleConfig.DefaultModuleID;
+            end
 
-if ( ~isaPowerOfTwo && isConvModuleOn &&  ...
-( strcmpi( obj.getModuleProperty( 'fc', 'SoftmaxBlockGeneration' ), 'on' ) ||  ...
-strcmpi( obj.getModuleProperty( 'fc', 'SigmoidBlockGeneration' ), 'on' ) ) )
-msg = message( 'dnnfpga:config:NonPowerofTwoConvThreadNotSupported' );
-warning( msg );
-end 
-end 
-end 
+            if obj.ModuleConfigMap.isKey( moduleID )
+                isIn = true;
+                hModule = obj.ModuleConfigMap( moduleID );
+            else
+                isIn = false;
+                hModule = [  ];
+            end
+        end
 
-function validationForCustomBlocks( obj, hProp, hModule, propertyValue )
-if ( strcmpi( hModule.ModuleID, 'custom' ) )
-blocksSupportedForQuantization = obj.CustomLayerManager.getBlocksSupportedForQuantization;
-if ( ~strcmpi( obj.ProcessorDataType, 'single' ) && ~any( strcmp( hProp.Name, blocksSupportedForQuantization ) ) &&  ...
-strcmpi( propertyValue, 'on' ) )
-msg = message( 'dnnfpga:config:UnsupportedCustomLayerForQuantization', hProp.Name );
-error( msg );
-end 
-end 
-end 
 
-end 
+        function list = getModuleIDList( obj )
 
-methods ( Hidden )
+            list = obj.ModuleIDList;
+        end
 
-function [ isIn, hModule ] = isInModuleIDList( obj, moduleID )
+        function hModule = getModule( obj, moduleID )
 
+            [ isIn, hModule ] = obj.isInModuleIDList( moduleID );
+            if ~isIn
 
+                moduleIDMsg = obj.getModuleIDMessageObj( moduleID );
+                error( moduleIDMsg );
+            end
+        end
 
 
+        function addModule( obj, hModule )
 
+            moduleID = hModule.ModuleID;
+            if ~obj.ModuleConfigMap.isKey( moduleID )
+                obj.ModuleConfigMap( moduleID ) = hModule;
+                obj.ModuleIDList{ end  + 1 } = moduleID;
+            else
 
 
-if strcmpi( moduleID, 'adder' )
-moduleID = dnnfpga.config.CustomLayerModuleConfig.DefaultModuleID;
-end 
+            end
+        end
+    end
 
-if obj.ModuleConfigMap.isKey( moduleID )
-isIn = true;
-hModule = obj.ModuleConfigMap( moduleID );
-else 
-isIn = false;
-hModule = [  ];
-end 
-end 
 
 
-function list = getModuleIDList( obj )
+    methods ( Hidden )
 
-list = obj.ModuleIDList;
-end 
 
-function hModule = getModule( obj, moduleID )
+        function isa = isGenericDLProcessor( obj )
 
-[ isIn, hModule ] = obj.isInModuleIDList( moduleID );
-if ~isIn
+            isa = obj.isGenericDLProcessorTarget( obj.TargetPlatform );
+        end
 
-moduleIDMsg = obj.getModuleIDMessageObj( moduleID );
-error( moduleIDMsg );
-end 
-end 
+        function hRD = getReferenceDesignObject( obj, rdName )
 
+            if nargin < 2
+                rdName = obj.ReferenceDesign;
+            end
 
-function addModule( obj, hModule )
+            hRD = [  ];
+            if ~isempty( rdName ) && ~isempty( obj.hRDList )
+                hRD = obj.hRDList.getRDPlugin( rdName );
+            end
+        end
 
-moduleID = hModule.ModuleID;
-if ~obj.ModuleConfigMap.isKey( moduleID )
-obj.ModuleConfigMap( moduleID ) = hModule;
-obj.ModuleIDList{ end  + 1 } = moduleID;
-else 
+        function hBoard = getBoardObject( obj )
 
+            if obj.isGenericDLProcessor
 
-end 
-end 
-end 
 
+                toolEnum = dlhdl.Tool.convertToEnum( obj.SynthesisTool );
+                hBoard = obj.getGenericDLBoardPlugin( toolEnum );
+            else
+                hBoard = obj.getBoardListObject( obj.TargetPlatform );
+            end
+        end
 
+        function validateResourceAvailability( obj )
+            x = obj.estimateResources( 'Verbose', 1, 'IncludeReferenceDesign', true );
+            if any( contains( x.Row, 'Available' ) )
+                if any( contains( x.Row, 'Total' ) )
 
-methods ( Hidden )
 
 
-function isa = isGenericDLProcessor( obj )
+                    dspUtilization = x{ 'Total', 'DSP' } / x{ 'Available', 'DSP' };
+                    ramUtilization = x{ 'Total', 'blockRAM' } / x{ 'Available', 'blockRAM' };
+                    lutUtilization = x{ 'Total', 'LUT' } / x{ 'Available', 'LUT' };
+                elseif any( contains( x.Row, 'DL_Processor' ) )
 
-isa = obj.isGenericDLProcessorTarget( obj.TargetPlatform );
-end 
 
-function hRD = getReferenceDesignObject( obj, rdName )
+                    dspUtilization = x{ 'DL_Processor', 'DSP' } / x{ 'Available', 'DSP' };
+                    ramUtilization = x{ 'DL_Processor', 'blockRAM' } / x{ 'Available', 'blockRAM' };
+                    lutUtilization = x{ 'DL_Processor', 'LUT' } / x{ 'Available', 'LUT' };
+                end
+                if ( dspUtilization > 1 || ramUtilization > 1 || lutUtilization > 1 )
 
-if nargin < 2
-rdName = obj.ReferenceDesign;
-end 
 
-hRD = [  ];
-if ~isempty( rdName ) && ~isempty( obj.hRDList )
-hRD = obj.hRDList.getRDPlugin( rdName );
-end 
-end 
 
-function hBoard = getBoardObject( obj )
 
-if obj.isGenericDLProcessor
 
 
-toolEnum = dlhdl.Tool.convertToEnum( obj.SynthesisTool );
-hBoard = obj.getGenericDLBoardPlugin( toolEnum );
-else 
-hBoard = obj.getBoardListObject( obj.TargetPlatform );
-end 
-end 
+                    distributedRAMOverUse = ( lutUtilization > 0.9 && ramUtilization > 1.05 );
+                    dspInLogicOverUse = ( lutUtilization > 0.9 && dspUtilization > 1.05 );
+                    lutOverUse = ( lutUtilization > 1 );
+                    if ( distributedRAMOverUse || dspInLogicOverUse || lutOverUse )
+                        error( message( "dnnfpga:config:InsufficientResourceOnDevice", obj.SynthesisToolDeviceName ) );
+                    end
+                end
+            end
+        end
 
-function validateResourceAvailability( obj )
-x = obj.estimateResources( 'Verbose', 1, 'IncludeReferenceDesign', true );
-if any( contains( x.Row, 'Available' ) )
-if any( contains( x.Row, 'Total' ) )
+    end
 
+    methods ( Access = protected )
+        function platformList = getPlatformList( obj )
 
 
-dspUtilization = x{ 'Total', 'DSP' } / x{ 'Available', 'DSP' };
-ramUtilization = x{ 'Total', 'blockRAM' } / x{ 'Available', 'blockRAM' };
-lutUtilization = x{ 'Total', 'LUT' } / x{ 'Available', 'LUT' };
-elseif any( contains( x.Row, 'DL_Processor' ) )
 
 
-dspUtilization = x{ 'DL_Processor', 'DSP' } / x{ 'Available', 'DSP' };
-ramUtilization = x{ 'DL_Processor', 'blockRAM' } / x{ 'Available', 'blockRAM' };
-lutUtilization = x{ 'DL_Processor', 'LUT' } / x{ 'Available', 'LUT' };
-end 
-if ( dspUtilization > 1 || ramUtilization > 1 || lutUtilization > 1 )
 
 
+            boardList = obj.getBoardList;
+            filterdBoardList = {  };
+            for ii = 1:length( boardList )
+                boardName = boardList{ ii };
+                hBoard = obj.getBoardListObject( boardName );
+                if ~hBoard.isGenericIPPlatform
+                    filterdBoardList{ end  + 1 } = boardName;%#ok<AGROW>
+                end
+            end
 
+            platformList = [ obj.GenericDLProcessorTargetName, filterdBoardList ];
+        end
+        function boardList = getBoardList( obj )
 
+            boardList = obj.hBoardList.getNameList;
+        end
+        function [ isIn, hP ] = isInBoardList( obj, boardName )
 
+            [ isIn, hP ] = obj.hBoardList.isInList( boardName );
+        end
+        function hBoard = getBoardListObject( obj, boardName )
 
-distributedRAMOverUse = ( lutUtilization > 0.9 && ramUtilization > 1.05 );
-dspInLogicOverUse = ( lutUtilization > 0.9 && dspUtilization > 1.05 );
-lutOverUse = ( lutUtilization > 1 );
-if ( distributedRAMOverUse || dspInLogicOverUse || lutOverUse )
-error( message( "dnnfpga:config:InsufficientResourceOnDevice", obj.SynthesisToolDeviceName ) );
-end 
-end 
-end 
-end 
+            [ ~, hBoard ] = obj.isInBoardList( boardName );
+        end
+        function isa = isGenericDLProcessorTarget( obj, boardName )
 
-end 
+            isa = strcmpi( boardName, obj.GenericDLProcessorTargetName );
+        end
 
-methods ( Access = protected )
-function platformList = getPlatformList( obj )
 
+        function loadGenericDLProcessorTarget( obj )
 
 
+            backupToolEnumList = obj.ToolEnumList;
+            try
 
+                obj.ToolEnumList = { dlhdl.Tool.XilinxVivado, dlhdl.Tool.IntelQuartusStandard };
 
 
-boardList = obj.getBoardList;
-filterdBoardList = {  };
-for ii = 1:length( boardList )
-boardName = boardList{ ii };
-hBoard = obj.getBoardListObject( boardName );
-if ~hBoard.isGenericIPPlatform
-filterdBoardList{ end  + 1 } = boardName;%#ok<AGROW>
-end 
-end 
+                obj.SynthesisTool = obj.SynthesisToolDefault;
 
-platformList = [ obj.GenericDLProcessorTargetName, filterdBoardList ];
-end 
-function boardList = getBoardList( obj )
+            catch ME
 
-boardList = obj.hBoardList.getNameList;
-end 
-function [ isIn, hP ] = isInBoardList( obj, boardName )
 
-[ isIn, hP ] = obj.hBoardList.isInList( boardName );
-end 
-function hBoard = getBoardListObject( obj, boardName )
 
-[ ~, hBoard ] = obj.isInBoardList( boardName );
-end 
-function isa = isGenericDLProcessorTarget( obj, boardName )
+                obj.ToolEnumList = backupToolEnumList;
 
-isa = strcmpi( boardName, obj.GenericDLProcessorTargetName );
-end 
+                rethrow( ME );
+            end
 
 
-function loadGenericDLProcessorTarget( obj )
+            obj.hRDList = [  ];
+            obj.ReferenceDesign = '';
+        end
+        function loadGenericDLBoardPlugin( obj, toolEnum )
 
 
-backupToolEnumList = obj.ToolEnumList;
-try 
 
-obj.ToolEnumList = { dlhdl.Tool.XilinxVivado, dlhdl.Tool.IntelQuartusStandard };
+            hBoard = obj.getGenericDLBoardPlugin( toolEnum );
 
 
-obj.SynthesisTool = obj.SynthesisToolDefault;
+            obj.SynthesisToolChipFamily = hBoard.FPGAFamily;
+            obj.SynthesisToolDeviceName = hBoard.FPGADevice;
+            obj.SynthesisToolPackageName = hBoard.FPGAPackage;
+            obj.SynthesisToolSpeedValue = hBoard.FPGASpeed;
+        end
+        function hBoard = getGenericDLBoardPlugin( obj, toolEnum )
 
-catch ME
+            switch toolEnum
+                case dlhdl.Tool.XilinxVivado
 
 
+                    hBoard = obj.getBoardListObject( 'Generic Deep Learning Processor Xilinx' );
 
-obj.ToolEnumList = backupToolEnumList;
+                case dlhdl.Tool.IntelQuartusStandard
 
-rethrow( ME );
-end 
 
+                    hBoard = obj.getBoardListObject( 'Generic Deep Learning Processor Intel' );
 
-obj.hRDList = [  ];
-obj.ReferenceDesign = '';
-end 
-function loadGenericDLBoardPlugin( obj, toolEnum )
+                otherwise
+                    error( message( 'dnnfpga:plugin:InvalidToolEnum' ) );
+            end
+        end
 
 
+        function loadCustomDLBoard( obj, boardName )
 
-hBoard = obj.getGenericDLBoardPlugin( toolEnum );
 
 
-obj.SynthesisToolChipFamily = hBoard.FPGAFamily;
-obj.SynthesisToolDeviceName = hBoard.FPGADevice;
-obj.SynthesisToolPackageName = hBoard.FPGAPackage;
-obj.SynthesisToolSpeedValue = hBoard.FPGASpeed;
-end 
-function hBoard = getGenericDLBoardPlugin( obj, toolEnum )
+            hBoard = obj.getBoardListObject( boardName );
 
-switch toolEnum
-case dlhdl.Tool.XilinxVivado
+            backupToolEnumList = obj.ToolEnumList;
+            try
+                obj.ToolEnumList = dlhdl.Tool.convertToEnum( hBoard.SupportedTool );
 
 
-hBoard = obj.getBoardListObject( 'Generic Deep Learning Processor Xilinx' );
 
-case dlhdl.Tool.IntelQuartusStandard
 
 
-hBoard = obj.getBoardListObject( 'Generic Deep Learning Processor Intel' );
+                obj.SynthesisTool = hBoard.SupportedTool{ 1 };
 
-otherwise 
-error( message( 'dnnfpga:plugin:InvalidToolEnum' ) );
-end 
-end 
+            catch ME
 
 
-function loadCustomDLBoard( obj, boardName )
 
+                obj.ToolEnumList = backupToolEnumList;
 
+                rethrow( ME );
+            end
 
-hBoard = obj.getBoardListObject( boardName );
 
-backupToolEnumList = obj.ToolEnumList;
-try 
-obj.ToolEnumList = dlhdl.Tool.convertToEnum( hBoard.SupportedTool );
+            obj.SynthesisToolChipFamily = hBoard.FPGAFamily;
+            obj.SynthesisToolDeviceName = hBoard.FPGADevice;
+            obj.SynthesisToolPackageName = hBoard.FPGAPackage;
+            obj.SynthesisToolSpeedValue = hBoard.FPGASpeed;
 
+        end
 
+        function loadCustomDLReferenceDesignList( obj, toolEnum )
 
 
+            boardName = obj.TargetPlatform;
+            hBoard = obj.getBoardListObject( boardName );
 
-obj.SynthesisTool = hBoard.SupportedTool{ 1 };
 
-catch ME
 
+            obj.hRDList = hdlturnkey.plugin.ReferenceDesignListSimple;
+            obj.hRDList.buildRDList( hBoard, boardName, dlhdl.Tool.convertToString( toolEnum ) );
 
 
-obj.ToolEnumList = backupToolEnumList;
+            referenceDesignList = obj.getReferenceDesignChoice;
 
-rethrow( ME );
-end 
+            obj.ReferenceDesign = referenceDesignList{ 1 };
 
+        end
 
-obj.SynthesisToolChipFamily = hBoard.FPGAFamily;
-obj.SynthesisToolDeviceName = hBoard.FPGADevice;
-obj.SynthesisToolPackageName = hBoard.FPGAPackage;
-obj.SynthesisToolSpeedValue = hBoard.FPGASpeed;
+    end
 
-end 
 
-function loadCustomDLReferenceDesignList( obj, toolEnum )
+    methods
+        function value = get.TargetPlatform( obj )
+            value = obj.TargetPlatformInternal;
+        end
+        function value = get.SynthesisTool( obj )
+            value = obj.SynthesisToolInternal;
+        end
+        function value = get.ReferenceDesign( obj )
+            value = obj.ReferenceDesignInternal;
+        end
 
+        function list = getTargetPlatformChoice( obj )
 
-boardName = obj.TargetPlatform;
-hBoard = obj.getBoardListObject( boardName );
+            list = obj.getPlatformList;
+        end
+        function list = getSynthesisToolChoice( obj )
 
+            list = dlhdl.Tool.convertToString( obj.ToolEnumList );
+        end
+        function list = getReferenceDesignChoice( obj )
 
+            list = { '' };
+            if ~isempty( obj.hRDList )
+                list = obj.hRDList.getReferenceDesignAll;
+            end
+        end
+    end
 
-obj.hRDList = hdlturnkey.plugin.ReferenceDesignListSimple;
-obj.hRDList.buildRDList( hBoard, boardName, dlhdl.Tool.convertToString( toolEnum ) );
 
+    methods
+        function set.TargetPlatform( obj, boardName )
 
-referenceDesignList = obj.getReferenceDesignChoice;
 
-obj.ReferenceDesign = referenceDesignList{ 1 };
+            dnnfpga.config.validateStringProperty( boardName, 'TargetPlatform', obj.TargetPlatformDefault );
 
-end 
+            mustBeMember( boardName, obj.getTargetPlatformChoice );
 
-end 
+            backupTargetPlatformInternal = obj.TargetPlatformInternal;
+            try
 
+                obj.TargetPlatformInternal = boardName;
 
-methods 
-function value = get.TargetPlatform( obj )
-value = obj.TargetPlatformInternal;
-end 
-function value = get.SynthesisTool( obj )
-value = obj.SynthesisToolInternal;
-end 
-function value = get.ReferenceDesign( obj )
-value = obj.ReferenceDesignInternal;
-end 
+                if obj.isGenericDLProcessorTarget( boardName )
 
-function list = getTargetPlatformChoice( obj )
+                    obj.loadGenericDLProcessorTarget;
+                else
 
-list = obj.getPlatformList;
-end 
-function list = getSynthesisToolChoice( obj )
+                    obj.loadCustomDLBoard( boardName );
+                end
+            catch ME
 
-list = dlhdl.Tool.convertToString( obj.ToolEnumList );
-end 
-function list = getReferenceDesignChoice( obj )
+                obj.TargetPlatformInternal = backupTargetPlatformInternal;
 
-list = { '' };
-if ~isempty( obj.hRDList )
-list = obj.hRDList.getReferenceDesignAll;
-end 
-end 
-end 
+                rethrow( ME );
+            end
+        end
+        function set.SynthesisTool( obj, toolName )
 
 
-methods 
-function set.TargetPlatform( obj, boardName )
+            dnnfpga.config.validateStringProperty( toolName, 'SynthesisTool', obj.SynthesisToolDefault );
 
+            mustBeMember( toolName, obj.getSynthesisToolChoice );
 
-dnnfpga.config.validateStringProperty( boardName, 'TargetPlatform', obj.TargetPlatformDefault );
+            toolEnum = dlhdl.Tool.convertToEnum( toolName );
+            if obj.isGenericDLProcessor
 
-mustBeMember( boardName, obj.getTargetPlatformChoice );
+                obj.loadGenericDLBoardPlugin( toolEnum );
+            else
 
-backupTargetPlatformInternal = obj.TargetPlatformInternal;
-try 
+                obj.loadCustomDLReferenceDesignList( toolEnum );
+            end
 
-obj.TargetPlatformInternal = boardName;
 
-if obj.isGenericDLProcessorTarget( boardName )
+            obj.SynthesisToolInternal = toolName;
+        end
+        function set.ReferenceDesign( obj, rdName )
 
-obj.loadGenericDLProcessorTarget;
-else 
+            arguments
+                obj
+                rdName char
+            end
 
-obj.loadCustomDLBoard( boardName );
-end 
-catch ME
+            dnnfpga.config.validateStringProperty( rdName, 'ReferenceDesign', obj.ReferenceDesignDefault );
 
-obj.TargetPlatformInternal = backupTargetPlatformInternal;
+            mustBeMember( rdName, obj.getReferenceDesignChoice );
 
-rethrow( ME );
-end 
-end 
-function set.SynthesisTool( obj, toolName )
 
 
-dnnfpga.config.validateStringProperty( toolName, 'SynthesisTool', obj.SynthesisToolDefault );
+            hRD = obj.getReferenceDesignObject( rdName );
+            if ~isempty( hRD )
+                try
+                    hRD.validateReferenceDesign;
+                    hRD.validateReferenceDesignForDeepLearning;
+                catch ME
+                    msg = MException( message( 'dnnfpga:config:InvalidReferenceDesign', rdName ) );
+                    msg = msg.addCause( ME );
+                    throw( msg );
+                end
+            end
 
-mustBeMember( toolName, obj.getSynthesisToolChoice );
 
-toolEnum = dlhdl.Tool.convertToEnum( toolName );
-if obj.isGenericDLProcessor
 
-obj.loadGenericDLBoardPlugin( toolEnum );
-else 
 
-obj.loadCustomDLReferenceDesignList( toolEnum );
-end 
+            obj.ReferenceDesignInternal = rdName;
+        end
+        function set.SynthesisToolChipFamily( obj, val )
+            dnnfpga.config.validateStringProperty( val, 'SynthesisToolChipFamily', obj.SynthesisToolChipFamilyDefault );
+            obj.SynthesisToolChipFamily = val;
+        end
+        function set.SynthesisToolDeviceName( obj, val )
+            dnnfpga.config.validateStringProperty( val, 'SynthesisToolDeviceName', obj.SynthesisToolDeviceNameDefault );
+            obj.SynthesisToolDeviceName = val;
+        end
+        function set.SynthesisToolPackageName( obj, val )
+            dnnfpga.config.validateStringProperty( val, 'SynthesisToolPackageName', obj.SynthesisToolPackageNameDefault );
+            obj.SynthesisToolPackageName = val;
+        end
+        function set.SynthesisToolSpeedValue( obj, val )
+            dnnfpga.config.validateStringProperty( val, 'SynthesisToolSpeedValue', obj.SynthesisToolSpeedValueDefault );
+            obj.SynthesisToolSpeedValue = val;
+        end
+        function set.TargetFrequency( obj, val )
+            dnnfpga.config.validatePositiveNumericProperty( val, 'TargetFrequency',  ...
+                obj.TargetFrequencyDefault );
+            obj.TargetFrequency = val;
+        end
+        function set.RunTimeControl( obj, val )
+            dnnfpga.config.validateStringPropertyValue( val, 'RunTimeControl',  ...
+                obj.RunTimeControlChoices, obj.RunTimeControlDefault );
+            obj.RunTimeControl = val;
+        end
+        function set.RunTimeStatus( obj, val )
+            dnnfpga.config.validateStringPropertyValue( val, 'RunTimeStatus',  ...
+                obj.RunTimeStatusChoices, obj.RunTimeStatusDefault );
+            obj.RunTimeStatus = val;
+        end
+        function set.SetupControl( obj, val )
+            dnnfpga.config.validateStringPropertyValue( val, 'SetupControl',  ...
+                obj.SetupControlChoices, obj.SetupControlDefault );
+            obj.SetupControl = val;
+        end
+        function set.InputStreamControl( obj, val )
+            dnnfpga.config.validateStringPropertyValue( val, 'InputStreamControl',  ...
+                obj.InputStreamControlChoices, obj.InputStreamControlDefault );
+            obj.InputStreamControl = val;
+        end
+        function set.OutputStreamControl( obj, val )
+            dnnfpga.config.validateStringPropertyValue( val, 'OutputStreamControl',  ...
+                obj.OutputStreamControlChoices, obj.OutputStreamControlDefault );
+            obj.OutputStreamControl = val;
+        end
 
+        function value = get.InputRunTimeControl( obj )
+            value = obj.InputStreamControl;
+        end
+        function set.InputRunTimeControl( obj, val )
+            dnnfpga.config.validateStringPropertyValue( val, 'InputRunTimeControl',  ...
+                obj.InputStreamControlChoices, obj.InputStreamControlDefault );
+            obj.InputStreamControl = val;
+        end
 
-obj.SynthesisToolInternal = toolName;
-end 
-function set.ReferenceDesign( obj, rdName )
+        function value = get.OutputRunTimeControl( obj )
+            value = obj.OutputStreamControl;
+        end
+        function set.OutputRunTimeControl( obj, val )
+            dnnfpga.config.validateStringPropertyValue( val, 'OutputStreamControl',  ...
+                obj.OutputStreamControlChoices, obj.OutputStreamControlDefault );
+            obj.OutputStreamControl = val;
+        end
+        function set.InputDataInterface( obj, val )
+            dnnfpga.config.validateStringPropertyValue( val, 'InputDataInterface',  ...
+                obj.InputDataInterfaceChoices, obj.InputDataInterfaceDefault );
+            obj.InputDataInterface = val;
+        end
 
-R36
-obj
-rdName char
-end 
+        function set.OutputDataInterface( obj, val )
+            dnnfpga.config.validateStringPropertyValue( val, 'OutputDataInterface',  ...
+                obj.OutputDataInterfaceChoices, obj.OutputDataInterfaceDefault );
+            obj.OutputDataInterface = val;
+        end
 
-dnnfpga.config.validateStringProperty( rdName, 'ReferenceDesign', obj.ReferenceDesignDefault );
+        function set.ProcessorDataType( obj, val )
 
-mustBeMember( rdName, obj.getReferenceDesignChoice );
+            if ( strcmpi( dnnfpgafeature( 'FixedPointWorkflow' ), 'on' ) )
+                validProcessorDataTypeChoices = obj.ProcessorDataTypeChoicesFixedPoint;
+            else
+                validProcessorDataTypeChoices = obj.ProcessorDataTypeChoices;
+            end
+            dnnfpga.config.validateStringPropertyValue( val, 'ProcessorDataType',  ...
+                validProcessorDataTypeChoices, obj.ProcessorDataTypeDefault );
 
 
 
-hRD = obj.getReferenceDesignObject( rdName );
-if ~isempty( hRD )
-try 
-hRD.validateReferenceDesign;
-hRD.validateReferenceDesignForDeepLearning;
-catch ME
-msg = MException( message( 'dnnfpga:config:InvalidReferenceDesign', rdName ) );
-msg = msg.addCause( ME );
-throw( msg );
-end 
-end 
+            customLayerManager = obj.CustomLayerManager;%#ok<MCSUP>
+            if ~isempty( customLayerManager )
+                customLayerList = customLayerManager.getUserLayerList;
+                if ~isempty( customLayerList ) && ~strcmpi( val, 'single' )
+                    msg = message( 'dnnfpga:customLayer:UnableChangeDataType', val );
+                    error( msg );
+                end
+                customModule = obj.getModule( 'custom' );
 
+                if ( strcmpi( val, 'int8' ) && customModule.ModuleGeneration )
 
 
+                    registeredCustomBlocks = customLayerManager.getLayerList( true );
+                    registeredCustomBlockNames = arrayfun( @( x )x.ConfigBlockName, registeredCustomBlocks, UniformOutput = false );
 
-obj.ReferenceDesignInternal = rdName;
-end 
-function set.SynthesisToolChipFamily( obj, val )
-dnnfpga.config.validateStringProperty( val, 'SynthesisToolChipFamily', obj.SynthesisToolChipFamilyDefault );
-obj.SynthesisToolChipFamily = val;
-end 
-function set.SynthesisToolDeviceName( obj, val )
-dnnfpga.config.validateStringProperty( val, 'SynthesisToolDeviceName', obj.SynthesisToolDeviceNameDefault );
-obj.SynthesisToolDeviceName = val;
-end 
-function set.SynthesisToolPackageName( obj, val )
-dnnfpga.config.validateStringProperty( val, 'SynthesisToolPackageName', obj.SynthesisToolPackageNameDefault );
-obj.SynthesisToolPackageName = val;
-end 
-function set.SynthesisToolSpeedValue( obj, val )
-dnnfpga.config.validateStringProperty( val, 'SynthesisToolSpeedValue', obj.SynthesisToolSpeedValueDefault );
-obj.SynthesisToolSpeedValue = val;
-end 
-function set.TargetFrequency( obj, val )
-dnnfpga.config.validatePositiveNumericProperty( val, 'TargetFrequency',  ...
-obj.TargetFrequencyDefault );
-obj.TargetFrequency = val;
-end 
-function set.RunTimeControl( obj, val )
-dnnfpga.config.validateStringPropertyValue( val, 'RunTimeControl',  ...
-obj.RunTimeControlChoices, obj.RunTimeControlDefault );
-obj.RunTimeControl = val;
-end 
-function set.RunTimeStatus( obj, val )
-dnnfpga.config.validateStringPropertyValue( val, 'RunTimeStatus',  ...
-obj.RunTimeStatusChoices, obj.RunTimeStatusDefault );
-obj.RunTimeStatus = val;
-end 
-function set.SetupControl( obj, val )
-dnnfpga.config.validateStringPropertyValue( val, 'SetupControl',  ...
-obj.SetupControlChoices, obj.SetupControlDefault );
-obj.SetupControl = val;
-end 
-function set.InputStreamControl( obj, val )
-dnnfpga.config.validateStringPropertyValue( val, 'InputStreamControl',  ...
-obj.InputStreamControlChoices, obj.InputStreamControlDefault );
-obj.InputStreamControl = val;
-end 
-function set.OutputStreamControl( obj, val )
-dnnfpga.config.validateStringPropertyValue( val, 'OutputStreamControl',  ...
-obj.OutputStreamControlChoices, obj.OutputStreamControlDefault );
-obj.OutputStreamControl = val;
-end 
 
-function value = get.InputRunTimeControl( obj )
-value = obj.InputStreamControl;
-end 
-function set.InputRunTimeControl( obj, val )
-dnnfpga.config.validateStringPropertyValue( val, 'InputRunTimeControl',  ...
-obj.InputStreamControlChoices, obj.InputStreamControlDefault );
-obj.InputStreamControl = val;
-end 
 
-function value = get.OutputRunTimeControl( obj )
-value = obj.OutputStreamControl;
-end 
-function set.OutputRunTimeControl( obj, val )
-dnnfpga.config.validateStringPropertyValue( val, 'OutputStreamControl',  ...
-obj.OutputStreamControlChoices, obj.OutputStreamControlDefault );
-obj.OutputStreamControl = val;
-end 
-function set.InputDataInterface( obj, val )
-dnnfpga.config.validateStringPropertyValue( val, 'InputDataInterface',  ...
-obj.InputDataInterfaceChoices, obj.InputDataInterfaceDefault );
-obj.InputDataInterface = val;
-end 
+                    blocksSupportedForQuantization = customLayerManager.getBlocksSupportedForQuantization;
 
-function set.OutputDataInterface( obj, val )
-dnnfpga.config.validateStringPropertyValue( val, 'OutputDataInterface',  ...
-obj.OutputDataInterfaceChoices, obj.OutputDataInterfaceDefault );
-obj.OutputDataInterface = val;
-end 
+                    for i = 1:numel( blocksSupportedForQuantization )
+                        indexToRemove = strcmpi( registeredCustomBlockNames, blocksSupportedForQuantization{ i } );
+                        registeredCustomBlockNames( indexToRemove ) = [  ];
+                    end
 
-function set.ProcessorDataType( obj, val )
+                    for i = 1:numel( registeredCustomBlockNames )
+                        blockName = registeredCustomBlockNames{ i };
+                        if ( customModule.( blockName ) )
+                            msg = message( 'dnnfpga:customLayer:UnableChangeDataType', val );
+                            error( msg );
+                        end
+                    end
+                end
 
-if ( strcmpi( dnnfpgafeature( 'FixedPointWorkflow' ), 'on' ) )
-validProcessorDataTypeChoices = obj.ProcessorDataTypeChoicesFixedPoint;
-else 
-validProcessorDataTypeChoices = obj.ProcessorDataTypeChoices;
-end 
-dnnfpga.config.validateStringPropertyValue( val, 'ProcessorDataType',  ...
-validProcessorDataTypeChoices, obj.ProcessorDataTypeDefault );
+                if ( strcmpi( obj.getModuleProperty( 'fc', 'ModuleGeneration' ), 'on' ) &&  ...
+                        strcmpi( obj.getModuleProperty( 'fc', 'SigmoidBlockGeneration' ), 'on' ) &&  ...
+                        strcmpi( val, 'single' ) )
 
+                    msg = message( 'dnnfpga:config:UnsupportedSigmoidConfigurationForSingle' );
+                    error( msg );
+                end
+            end
+            obj.ProcessorDataType = val;
 
+        end
 
-customLayerManager = obj.CustomLayerManager;%#ok<MCSUP> 
-if ~isempty( customLayerManager )
-customLayerList = customLayerManager.getUserLayerList;
-if ~isempty( customLayerList ) && ~strcmpi( val, 'single' )
-msg = message( 'dnnfpga:customLayer:UnableChangeDataType', val );
-error( msg );
-end 
-customModule = obj.getModule( 'custom' );
+        function set.CalibrationData( obj, calData )
 
-if ( strcmpi( val, 'int8' ) && customModule.ModuleGeneration )
+            if isstruct( calData ) && isequal( fields( calData ), { 'BurstLengths';'ReadLatencies';'WriteLatencies' } ) &&  ...
+                    isnumeric( calData.BurstLengths ) && isnumeric( calData.ReadLatencies ) && isnumeric( calData.ReadLatencies )
+                obj.CalibrationData = calData;
+            else
+                error( message( 'dnnfpga:config:InvalidCalibrationData' ) );
+            end
+        end
+    end
 
+    methods ( Access = public )
+        function varargout = estimatePerformance( obj, network, varargin )
 
-registeredCustomBlocks = customLayerManager.getLayerList( true );
-registeredCustomBlockNames = arrayfun( @( x )x.ConfigBlockName, registeredCustomBlocks, UniformOutput = false );
 
 
 
-blocksSupportedForQuantization = customLayerManager.getBlocksSupportedForQuantization;
 
-for i = 1:numel( blocksSupportedForQuantization )
-indexToRemove = strcmpi( registeredCustomBlockNames, blocksSupportedForQuantization{ i } );
-registeredCustomBlockNames( indexToRemove ) = [  ];
-end 
 
-for i = 1:numel( registeredCustomBlockNames )
-blockName = registeredCustomBlockNames{ i };
-if ( customModule.( blockName ) )
-msg = message( 'dnnfpga:customLayer:UnableChangeDataType', val );
-error( msg );
-end 
-end 
-end 
 
-if ( strcmpi( obj.getModuleProperty( 'fc', 'ModuleGeneration' ), 'on' ) &&  ...
-strcmpi( obj.getModuleProperty( 'fc', 'SigmoidBlockGeneration' ), 'on' ) &&  ...
-strcmpi( val, 'single' ) )
 
-msg = message( 'dnnfpga:config:UnsupportedSigmoidConfigurationForSingle' );
-error( msg );
-end 
-end 
-obj.ProcessorDataType = val;
 
-end 
 
-function set.CalibrationData( obj, calData )
+            validInputs = { 'SeriesNetwork', 'DAGNetwork', 'dlquantizer', 'dlnetwork' };
+            if ( nargin < 2 ) || ( ~ismember( class( network ), validInputs ) )
+                error( message( 'dnnfpga:workflow:EstimateFirstInput' ) );
+            end
 
-if isstruct( calData ) && isequal( fields( calData ), { 'BurstLengths';'ReadLatencies';'WriteLatencies' } ) &&  ...
-isnumeric( calData.BurstLengths ) && isnumeric( calData.ReadLatencies ) && isnumeric( calData.ReadLatencies )
-obj.CalibrationData = calData;
-else 
-error( message( 'dnnfpga:config:InvalidCalibrationData' ) );
-end 
-end 
-end 
 
-methods ( Access = public )
-function varargout = estimatePerformance( obj, network, varargin )
+            if isequal( obj.TargetPlatform, 'Generic Deep Learning Processor' )
+                error( message( 'dnnfpga:config:InvalidPlatformPerfEstimation' ) );
+            end
 
 
 
+            dnnfpga.validateDLSupportPackage( 'shared', 'multiple' );
 
+            if ( isa( network, 'dlquantizer' ) )
 
+                network = network.Net;
+            end
 
+            p = inputParser;
+            addParameter( p, 'InternalArchParam', [  ] );
 
 
+            addParameter( p, 'FrameCount', 1, @isnumeric );
+            addParameter( p, 'Verbose', dnnfpgafeature( 'Verbose' ) );
+            parse( p, varargin{ : } );
+            InternalArchParam = p.Results.InternalArchParam;
+            verbose = p.Results.Verbose;
+            frameNum = p.Results.FrameCount;
 
 
-validInputs = { 'SeriesNetwork', 'DAGNetwork', 'dlquantizer', 'dlnetwork' };
-if ( nargin < 2 ) || ( ~ismember( class( network ), validInputs ) )
-error( message( 'dnnfpga:workflow:EstimateFirstInput' ) );
-end 
+            if ~isscalar( frameNum )
+                error( message( 'dnnfpga:config:ScalarProperty',  ...
+                    'FrameCount', '10' ) );
+            end
 
+            if frameNum <= 0 || frameNum == Inf
+                valueStr = sprintf( '%g', frameNum );
+                error( message( 'dnnfpga:config:PositiveProperty',  ...
+                    valueStr, 'FrameCount', '10' ) );
+            end
 
-if isequal( obj.TargetPlatform, 'Generic Deep Learning Processor' )
-error( message( 'dnnfpga:config:InvalidPlatformPerfEstimation' ) );
-end 
 
+            obj.hBackDoorFiFeature.enable;
 
 
-dnnfpga.validateDLSupportPackage( 'shared', 'multiple' );
+            try
 
-if ( isa( network, 'dlquantizer' ) )
+                if class( obj ) == "dnnfpga.config.CNN5ProcessorConfig"
+                    allowDAGNetwork = 1;
+                else
+                    allowDAGNetwork = 0;
+                end
 
-network = network.Net;
-end 
+                obj.validateNet( network, allowDAGNetwork );
 
-p = inputParser;
-addParameter( p, 'InternalArchParam', [  ] );
+                result = obj.estimateSpeed( network,  ...
+                    InternalArchParam, frameNum, verbose, obj.CalibrationData );
 
+                if isempty( obj.CalibrationData ) && ~contains( lower( obj.SynthesisToolChipFamily ), { 'zynq', 'arria 10' } )
+                    dnnfpga.disp( message( 'dnnfpga:dnnfpgadisp:CustomVendor' ) );
+                end
+            catch ME
 
-addParameter( p, 'FrameCount', 1, @isnumeric );
-addParameter( p, 'Verbose', dnnfpgafeature( 'Verbose' ) );
-parse( p, varargin{ : } );
-InternalArchParam = p.Results.InternalArchParam;
-verbose = p.Results.Verbose;
-frameNum = p.Results.FrameCount;
 
+                obj.hBackDoorFiFeature.disable;
+                throwAsCaller( ME );
+            end
 
-if ~isscalar( frameNum )
-error( message( 'dnnfpga:config:ScalarProperty',  ...
-'FrameCount', '10' ) );
-end 
+            if nargout > 0
+                varargout{ 1 } = result;
+            end
 
-if frameNum <= 0 || frameNum == Inf
-valueStr = sprintf( '%g', frameNum );
-error( message( 'dnnfpga:config:PositiveProperty',  ...
-valueStr, 'FrameCount', '10' ) );
-end 
 
+            obj.hBackDoorFiFeature.disable;
+        end
 
-obj.hBackDoorFiFeature.enable;
 
+        function varargout = estimateResources( obj, varargin )
 
-try 
 
-if class( obj ) == "dnnfpga.config.CNN5ProcessorConfig"
-allowDAGNetwork = 1;
-else 
-allowDAGNetwork = 0;
-end 
 
-obj.validateNet( network, allowDAGNetwork );
 
-result = obj.estimateSpeed( network,  ...
-InternalArchParam, frameNum, verbose, obj.CalibrationData );
 
-if isempty( obj.CalibrationData ) && ~contains( lower( obj.SynthesisToolChipFamily ), { 'zynq', 'arria 10' } )
-dnnfpga.disp( message( 'dnnfpga:dnnfpgadisp:CustomVendor' ) );
-end 
-catch ME
 
 
-obj.hBackDoorFiFeature.disable;
-throwAsCaller( ME );
-end 
 
-if nargout > 0
-varargout{ 1 } = result;
-end 
 
 
-obj.hBackDoorFiFeature.disable;
-end 
+            if ( mod( nargin, 2 ) == 0 )
+                error( message( 'dnnfpga:config:EstimateAreaNotPair' ) );
+            end
+            p = inputParser;
+            addParameter( p, 'Verbose', 1, @( x )( isnumeric( x ) && x >= 0 ) );
+            addParameter( p, 'IncludeReferenceDesign', false, @( x )( islogical( x ) ) );
+            parse( p, varargin{ : } );
+            verbosity = p.Results.Verbose;
+            IncludeReferenceDesign = p.Results.IncludeReferenceDesign;
 
 
-function varargout = estimateResources( obj, varargin )
+            customLayerList = obj.CustomLayerManager.getUserLayerList;
+            classNameList = [  ];
+            for customLayer = customLayerList
+                classNameList = horzcat( classNameList, convertCharsToStrings( customLayer.ClassName ) );%#ok<AGROW>
+            end
+            if ~isempty( customLayerList )
+                msg = message( 'dnnfpga:customLayer:InaccuarateEstimateResource', strjoin( classNameList, ', ' ) );
+                warning( msg );
+            end
 
+            try
+                result = obj.estimateArea( verbosity, IncludeReferenceDesign );
+            catch ME
+                throwAsCaller( ME );
+            end
 
+            if nargout > 0
+                varargout{ 1 } = result;
+            end
 
+        end
 
 
+        function bitstreamPath = buildCalibrationBitstream( obj )
 
 
 
 
 
-if ( mod( nargin, 2 ) == 0 )
-error( message( 'dnnfpga:config:EstimateAreaNotPair' ) );
-end 
-p = inputParser;
-addParameter( p, 'Verbose', 1, @( x )( isnumeric( x ) && x >= 0 ) );
-addParameter( p, 'IncludeReferenceDesign', false, @( x )( islogical( x ) ) );
-parse( p, varargin{ : } );
-verbosity = p.Results.Verbose;
-IncludeReferenceDesign = p.Results.IncludeReferenceDesign;
 
 
-customLayerList = obj.CustomLayerManager.getUserLayerList;
-classNameList = [  ];
-for customLayer = customLayerList
-classNameList = horzcat( classNameList, convertCharsToStrings( customLayer.ClassName ) );%#ok<AGROW> 
-end 
-if ~isempty( customLayerList )
-msg = message( 'dnnfpga:customLayer:InaccuarateEstimateResource', strjoin( classNameList, ', ' ) );
-warning( msg );
-end 
 
-try 
-result = obj.estimateArea( verbosity, IncludeReferenceDesign );
-catch ME
-throwAsCaller( ME );
-end 
 
-if nargout > 0
-varargout{ 1 } = result;
-end 
 
-end 
 
 
-function bitstreamPath = buildCalibrationBitstream( obj )
 
+            modelPath = fullfile( matlabroot, 'toolbox', 'dnnfpga', 'dnnfpga', 'model', 'EstimatorCalibration' );
+            addpath( modelPath );
+            calibrationProjectPath = fullfile( pwd, 'EstimatorCalibration' );
 
 
+            mkdir( calibrationProjectPath );
+            currentPath = pwd;
+            cd( calibrationProjectPath );
 
 
+            obj.hBackDoorFiFeature.enable;
 
 
+            try
+                bitstreamPath = dnnfpga.estimate.buildCalibrationBitstream( calibrationProjectPath, obj );
+            catch ME
 
 
+                bdclose( 'loopback_external_memory' );
+                rmpath( modelPath );
+                cd( currentPath );
 
+                obj.hBackDoorFiFeature.disable;
+                throwAsCaller( ME );
+            end
 
 
+            obj.hBackDoorFiFeature.disable;
 
-modelPath = fullfile( matlabroot, 'toolbox', 'dnnfpga', 'dnnfpga', 'model', 'EstimatorCalibration' );
-addpath( modelPath );
-calibrationProjectPath = fullfile( pwd, 'EstimatorCalibration' );
+            rmpath( modelPath );
+            cd( currentPath );
+        end
 
+        function deployCalibrationBitstream( obj, bitstreamPath )
 
-mkdir( calibrationProjectPath );
-currentPath = pwd;
-cd( calibrationProjectPath );
 
 
-obj.hBackDoorFiFeature.enable;
 
 
-try 
-bitstreamPath = dnnfpga.estimate.buildCalibrationBitstream( calibrationProjectPath, obj );
-catch ME
 
 
-bdclose( 'loopback_external_memory' );
-rmpath( modelPath );
-cd( currentPath );
 
-obj.hBackDoorFiFeature.disable;
-throwAsCaller( ME );
-end 
 
 
-obj.hBackDoorFiFeature.disable;
 
-rmpath( modelPath );
-cd( currentPath );
-end 
 
-function deployCalibrationBitstream( obj, bitstreamPath )
 
+            if ~isfile( bitstreamPath )
+                error( message( 'dnnfpga:config:InvalidBitstreamFile' ) );
+            end
 
+            try
 
+                obj.CalibrationData = dnnfpga.estimate.deployCalibrationBitstream( bitstreamPath, obj );
+                dnnfpga.disp( message( 'dnnfpga:dnnfpgadisp:CalibrationFinish' ) );
+            catch ME
+                throwAsCaller( ME );
+            end
+        end
+    end
 
+    methods ( Abstract )
 
 
+        validateProcessorConfig( obj )
 
+    end
 
 
+    methods ( Abstract, Hidden )
 
 
 
 
-if ~isfile( bitstreamPath )
-error( message( 'dnnfpga:config:InvalidBitstreamFile' ) );
-end 
 
-try 
 
-obj.CalibrationData = dnnfpga.estimate.deployCalibrationBitstream( bitstreamPath, obj );
-dnnfpga.disp( message( 'dnnfpga:dnnfpgadisp:CalibrationFinish' ) );
-catch ME
-throwAsCaller( ME );
-end 
-end 
-end 
 
-methods ( Abstract )
 
 
-validateProcessorConfig( obj )
 
-end 
 
 
-methods ( Abstract, Hidden )
 
 
 
@@ -1179,136 +1179,119 @@ methods ( Abstract, Hidden )
 
 
 
+        bcc = applyProcessorConfigtoBCC( obj )
 
 
+        hProcessor = createProcessorObject( obj )
 
+    end
 
+    methods
 
+        function optimizeConfigurationForNetwork( ~, ~ )
 
+        end
+    end
 
+    methods ( Hidden )
 
+        function hProcessorModel = createProcessorModel( obj, verbose )
 
 
 
 
-bcc = applyProcessorConfigtoBCC( obj )
 
 
-hProcessor = createProcessorObject( obj )
 
-end 
 
-methods 
 
-function optimizeConfigurationForNetwork( ~, ~ )
 
-end 
-end 
+            hProcessorModel = dnnfpga.model.CNN5ProcessorModel( obj, verbose );
 
-methods ( Hidden )
+        end
 
-function hProcessorModel = createProcessorModel( obj, verbose )
+    end
 
+    methods ( Access = protected )
 
+    end
 
 
 
+    methods ( Access = protected )
+        function result = estimateSpeed( obj, network, InternalArchParam, frameNum, verbose, calData )
 
 
+            cnnp = obj.createProcessorObject;
 
 
 
-hProcessorModel = dnnfpga.model.CNN5ProcessorModel( obj, verbose );
+            result = [  ];
 
-end 
 
-end 
+            fpgaParamLayers = dnnfpga.compiler.codegenSN2TPEstIR( network, cnnp, 'exponentData', [  ], 'ProcessorConfig', obj, 'Verbose', verbose );
 
-methods ( Access = protected )
 
-end 
 
+            if isempty( fpgaParamLayers )
+                dnnfpga.disp( message( 'dnnfpga:config:NoEstimatableLayer' ) );
+                return ;
+            end
 
+            estimator = dnnfpga.estimate.EstimatorNetworkTime( cnnp, fpgaParamLayers, obj, InternalArchParam, frameNum, verbose, calData );
+            estimator.populateNetworkLayerLatency(  );
+            result = estimator.getNetworkTime(  );
+        end
 
-methods ( Access = protected )
-function result = estimateSpeed( obj, network, InternalArchParam, frameNum, verbose, calData )
+        function result = estimateArea( obj, verbosity, includeReferenceDesign )
 
 
-cnnp = obj.createProcessorObject;
 
+            cnnp = obj.createProcessorObject;
+            estimator = dnnfpga.estimate.EstimatorNetworkArea( cnnp, obj );
+            estimator.populateNetworkLayerArea;
+            result = estimator.estimateArea( verbosity, includeReferenceDesign );
 
 
-result = [  ];
+        end
 
+        function validateNet( obj, network, allowDAGNetwork )
+            if isempty( network )
+                error( message( 'dnnfpga:workflow:InvalidInputEmpty', 'Network' ) );
+            end
 
-fpgaParamLayers = dnnfpga.compiler.codegenSN2TPEstIR( network, cnnp, 'exponentData', [  ], 'ProcessorConfig', obj, 'Verbose', verbose );
+            if ~dnnfpga.compiler.canCompileNet( network, ~allowDAGNetwork )
+                error( message( 'dnnfpga:workflow:InvalidInputWrongClass', 'Network', 'SeriesNetwork or DAGNetwork', class( obj.Network ) ) );
+            end
+        end
 
+    end
 
 
-if isempty( fpgaParamLayers )
-dnnfpga.disp( message( 'dnnfpga:config:NoEstimatableLayer' ) );
-return ;
-end 
+    methods ( Hidden )
+        function disp( obj, varargin )
 
-estimator = dnnfpga.estimate.EstimatorNetworkTime( cnnp, fpgaParamLayers, obj, InternalArchParam, frameNum, verbose, calData );
-estimator.populateNetworkLayerLatency(  );
-result = estimator.getNetworkTime(  );
-end 
 
-function result = estimateArea( obj, verbosity, includeReferenceDesign )
 
+            moduleIDList = obj.getModuleIDList;
+            for ii = 1:length( moduleIDList )
+                moduleID = moduleIDList{ ii };
+                hModule = obj.getModule( moduleID );
+                hModule.ShowHidden = obj.ShowHidden;
+                hModule.disp;
+            end
 
 
-cnnp = obj.createProcessorObject;
-estimator = dnnfpga.estimate.EstimatorNetworkArea( cnnp, obj );
-estimator.populateNetworkLayerArea;
-result = estimator.estimateArea( verbosity, includeReferenceDesign );
+            obj.dispHeading( 'Processor Top Level Properties' );
+            obj.dispProperties( 'ProcessorTopLevelProperties' );
 
 
-end 
+            obj.dispHeading( 'System Level Properties' );
+            obj.dispProperties( 'SystemLevelProperties' );
 
-function validateNet( obj, network, allowDAGNetwork )
-if isempty( network )
-error( message( 'dnnfpga:workflow:InvalidInputEmpty', 'Network' ) );
-end 
+        end
+    end
+end
 
-if ~dnnfpga.compiler.canCompileNet( network, ~allowDAGNetwork )
-error( message( 'dnnfpga:workflow:InvalidInputWrongClass', 'Network', 'SeriesNetwork or DAGNetwork', class( obj.Network ) ) );
-end 
-end 
 
-end 
-
-
-methods ( Hidden )
-function disp( obj, varargin )
-
-
-
-moduleIDList = obj.getModuleIDList;
-for ii = 1:length( moduleIDList )
-moduleID = moduleIDList{ ii };
-hModule = obj.getModule( moduleID );
-hModule.ShowHidden = obj.ShowHidden;
-hModule.disp;
-end 
-
-
-obj.dispHeading( 'Processor Top Level Properties' );
-obj.dispProperties( 'ProcessorTopLevelProperties' );
-
-
-obj.dispHeading( 'System Level Properties' );
-obj.dispProperties( 'SystemLevelProperties' );
-
-end 
-end 
-end 
-
-
-
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp_slXqj.p.
-% Please follow local copyright laws when handling this file.
 

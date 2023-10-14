@@ -238,7 +238,7 @@ end
 
 
 function tf = isemptyArray( data )
-R36
+arguments
 data( 1, 1 )map.shape.internal.HeterogeneousData
 end 
 tf = isempty( data.GeometryType );
@@ -246,7 +246,7 @@ end
 
 
 function len = arrayLength( data )
-R36
+arguments
 data( 1, 1 )map.shape.internal.HeterogeneousData
 end 
 len = length( data.GeometryType );
@@ -254,7 +254,7 @@ end
 
 
 function sz = arraySize( data, args )
-R36
+arguments
 data( 1, 1 )map.shape.internal.HeterogeneousData
 args( 1, : )cell
 end 
@@ -263,7 +263,7 @@ end
 
 
 function data = transposeArray( data )
-R36
+arguments
 data( 1, 1 )map.shape.internal.HeterogeneousData
 end 
 if isvector( data.GeometryType )
@@ -275,10 +275,10 @@ end
 
 
 function data = catArray( dim, dataIn )
-R36
+arguments
 dim( 1, 1 )double{ mustBeInteger, mustBePositive }
 end 
-R36( Repeating )
+arguments( Repeating )
 dataIn( 1, 1 )map.shape.internal.HeterogeneousData
 end 
 
@@ -319,7 +319,7 @@ end
 
 
 function data = reshapeArray( data, sz )
-R36
+arguments
 data( 1, 1 )map.shape.internal.HeterogeneousData
 sz( 1, : )cell
 end 
@@ -418,7 +418,7 @@ end
 
 
 function array = split( data )
-R36
+arguments
 data( 1, 1 )map.shape.internal.HeterogeneousData
 end 
 

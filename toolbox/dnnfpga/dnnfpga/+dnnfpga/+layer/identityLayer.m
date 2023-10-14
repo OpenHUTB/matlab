@@ -1,35 +1,25 @@
 classdef identityLayer < nnet.layer.Layer & nnet.layer.Formattable
 
+    methods
+        function layer = identityLayer( NameValueArgs )
 
-methods 
-function layer = identityLayer( NameValueArgs )
+            arguments
+                NameValueArgs.Name = 'identity';
+            end
 
+            name = NameValueArgs.Name;
 
-R36
-NameValueArgs.Name = 'identity';
-end 
+            layer.Name = name;
 
-name = NameValueArgs.Name;
+            layer.Description = "identity layer";
 
+            layer.Type = "IdentityLayer";
+        end
 
-layer.Name = name;
+        function Z = predict( layer, X )
+            Z = X;
+        end
+    end
+end
 
-
-layer.Description = "identity layer";
-
-
-layer.Type = "IdentityLayer";
-
-end 
-
-function Z = predict( layer, X )
-
-
-Z = X;
-
-end 
-end 
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpiwPKww.p.
-% Please follow local copyright laws when handling this file.
 

@@ -1,196 +1,184 @@
-
-
-
 classdef ( Abstract )PluginBaseWithInterface < downstream.plugin.PluginBase
 
+    properties ( Access = protected )
 
-properties ( Access = protected )
+        DeviceTree = '';
+        IsDeviceTreeCompiled = false;
+        IsDeviceTreeOverlay = false;
+        DeviceTreeIncludeDirs string
+    end
 
-DeviceTree = '';
-IsDeviceTreeCompiled = false;
-IsDeviceTreeOverlay = false;
-DeviceTreeIncludeDirs string
-end 
+    properties ( Access = protected )
+        hRAWInterfaceList = [  ];
+        isAXI4SlaveInterfaceRequired = false;
+    end
 
-properties ( Access = protected )
+    properties ( Hidden )
+        PluginFileName = '';
+        PluginPath = '';
+        PluginPackage = '';
+    end
 
+    methods
 
-hRAWInterfaceList = [  ];
-isAXI4SlaveInterfaceRequired = false;
-end 
+        function obj = PluginBaseWithInterface(  )
 
-properties ( Hidden )
+            obj.hRAWInterfaceList = hdlturnkey.interface.InterfaceListBase(  );
+        end
 
-PluginFileName = '';
-PluginPath = '';
-PluginPackage = '';
-end 
-
-methods 
-
-function obj = PluginBaseWithInterface(  )
-
-obj.hRAWInterfaceList = hdlturnkey.interface.InterfaceListBase(  );
-end 
-
-end 
+    end
 
 
+    methods
+        function addDeviceTree( obj, devTree, devTreeOptions )
+            arguments
+                obj
+                devTree{ hdlturnkey.plugin.PluginBaseWithInterface.validateDeviceTree }
+                devTreeOptions.IsOverlay logical = false;
+            end
+
+            if ~isempty( obj.DeviceTree )
+                error( message( 'hdlcommon:plugin:DuplicateDeviceTree' ) );
+            end
+
+            obj.DeviceTree = devTree;
+            obj.IsDeviceTreeCompiled = obj.isDeviceTreeCompiled( devTree );
+            obj.IsDeviceTreeOverlay = devTreeOptions.IsOverlay;
+        end
+
+        function addDeviceTreeIncludeDirectory( obj, includeDirs )
+            arguments
+                obj
+                includeDirs{ mustBeText }
+            end
 
 
-methods 
-function addDeviceTree( obj, devTree, devTreeOptions )
-R36
-obj
-devTree{ hdlturnkey.plugin.PluginBaseWithInterface.validateDeviceTree }
-devTreeOptions.IsOverlay logical = false;
-end 
+            obj.DeviceTreeIncludeDirs = [ obj.DeviceTreeIncludeDirs, includeDirs ];
+        end
+    end
 
-if ~isempty( obj.DeviceTree )
-error( message( 'hdlcommon:plugin:DuplicateDeviceTree' ) );
-end 
+    methods ( Hidden )
+        function [ devTree, isCompiled, isOverlay ] = getDeviceTree( obj )
+            isCompiled = obj.IsDeviceTreeCompiled;
+            isOverlay = obj.IsDeviceTreeOverlay;
 
-obj.DeviceTree = devTree;
-obj.IsDeviceTreeCompiled = obj.isDeviceTreeCompiled( devTree );
-obj.IsDeviceTreeOverlay = devTreeOptions.IsOverlay;
-end 
-
-function addDeviceTreeIncludeDirectory( obj, includeDirs )
-R36
-obj
-includeDirs{ mustBeText }
-end 
+            if isCompiled
 
 
-obj.DeviceTreeIncludeDirs = [ obj.DeviceTreeIncludeDirs, includeDirs ];
-end 
-end 
-
-methods ( Hidden )
-function [ devTree, isCompiled, isOverlay ] = getDeviceTree( obj )
-isCompiled = obj.IsDeviceTreeCompiled;
-isOverlay = obj.IsDeviceTreeOverlay;
-
-if isCompiled
+                devTree = fullfile( obj.getPluginPath, obj.DeviceTree );
+            else
 
 
-devTree = fullfile( obj.getPluginPath, obj.DeviceTree );
-else 
+                devTree = obj.DeviceTree;
+            end
+        end
+
+        function [ includeDirs, validateCell ] = getDeviceTreeIncludeDirs( obj, cmdDisplay )
+            if nargin < 2
+                cmdDisplay = true;
+            end
+            validateCell = {  };
+
+            includeDirs = string.empty;
+            for dirPath = obj.DeviceTreeIncludeDirs
+                if isfolder( fullfile( dirPath ) )
+
+                    dirPathFull = dirPath;
+                elseif isfolder( fullfile( obj.getPluginPath, dirPath ) )
 
 
-devTree = obj.DeviceTree;
-end 
-end 
+                    dirPathFull = fullfile( obj.getPluginPath, dirPath );
+                else
 
-function [ includeDirs, validateCell ] = getDeviceTreeIncludeDirs( obj, cmdDisplay )
-if nargin < 2
-cmdDisplay = true;
-end 
-validateCell = {  };
-
-includeDirs = string.empty;
-for dirPath = obj.DeviceTreeIncludeDirs
-if isfolder( fullfile( dirPath ) )
-
-dirPathFull = dirPath;
-elseif isfolder( fullfile( obj.getPluginPath, dirPath ) )
+                    msg = message( 'hdlcommon:plugin:DeviceTreeIncludeDirMissing', dirPath, obj.PluginFileName );
+                    if cmdDisplay
+                        warning( msg );
+                    else
+                        validateCell{ end  + 1 } = hdlvalidatestruct( 'Warning', msg );%#ok<AGROW>
+                    end
 
 
-dirPathFull = fullfile( obj.getPluginPath, dirPath );
-else 
-
-msg = message( 'hdlcommon:plugin:DeviceTreeIncludeDirMissing', dirPath, obj.PluginFileName );
-if cmdDisplay
-warning( msg );
-else 
-validateCell{ end  + 1 } = hdlvalidatestruct( 'Warning', msg );%#ok<AGROW> 
-end 
+                    continue ;
+                end
+                includeDirs( end  + 1 ) = dirPathFull;%#ok<AGROW>
+            end
 
 
-continue ;
-end 
-includeDirs( end  + 1 ) = dirPathFull;%#ok<AGROW> 
-end 
+            includeDirs = [ includeDirs, obj.getPluginPath ];
+        end
+    end
 
 
-includeDirs = [ includeDirs, obj.getPluginPath ];
-end 
-end 
-
-
-methods ( Hidden = true )
+    methods ( Hidden = true )
 
 
 
-function addInterface( obj, hInterface )
+        function addInterface( obj, hInterface )
 
-hInterface.validateInterface;
-
-
-obj.hRAWInterfaceList.addInterface( hInterface );
-end 
-function hInterface = getInterface( obj, InterfaceID )
-hInterface = obj.hRAWInterfaceList.getInterface( InterfaceID );
-end 
-function list = getInterfaceIDList( obj )
-list = obj.hRAWInterfaceList.getInterfaceIDList;
-end 
+            hInterface.validateInterface;
 
 
-function propVal = getInterfaceProperty( obj, interfaceID, varargin )
-propVal = obj.hRAWInterfaceList.getInterfaceProperty( interfaceID, varargin{ : } );
-end 
+            obj.hRAWInterfaceList.addInterface( hInterface );
+        end
+        function hInterface = getInterface( obj, InterfaceID )
+            hInterface = obj.hRAWInterfaceList.getInterface( InterfaceID );
+        end
+        function list = getInterfaceIDList( obj )
+            list = obj.hRAWInterfaceList.getInterfaceIDList;
+        end
 
 
-function list = getInputInterfaceIDList( obj )
-list = obj.hRAWInterfaceList.getInputInterfaceIDList;
-end 
-function list = getOutputInterfaceIDList( obj )
-list = obj.hRAWInterfaceList.getOutputInterfaceIDList;
-end 
-function populateRAWINOUTInterfaceIDList( obj )
-obj.hRAWInterfaceList.populateRAWINOUTInterfaceIDList;
-end 
-
-end 
+        function propVal = getInterfaceProperty( obj, interfaceID, varargin )
+            propVal = obj.hRAWInterfaceList.getInterfaceProperty( interfaceID, varargin{ : } );
+        end
 
 
-methods ( Access = protected )
-function pluginPath = getPluginPath( obj )
+        function list = getInputInterfaceIDList( obj )
+            list = obj.hRAWInterfaceList.getInputInterfaceIDList;
+        end
+        function list = getOutputInterfaceIDList( obj )
+            list = obj.hRAWInterfaceList.getOutputInterfaceIDList;
+        end
+        function populateRAWINOUTInterfaceIDList( obj )
+            obj.hRAWInterfaceList.populateRAWINOUTInterfaceIDList;
+        end
 
-pluginPath = obj.PluginPath;
-end 
-end 
-
-methods ( Static, Access = protected )
-function validateDeviceTree( devTree )
-
-
-if ~( downstream.tool.isTextScalar( devTree ) || isa( devTree, 'devicetree' ) )
-error( message( 'hdlcommon:plugin:InvalidDeviceTree' ) );
-end 
+    end
 
 
-if downstream.tool.isTextScalar( devTree )
-[ ~, ~, ext ] = fileparts( devTree );
-if ~ismember( ext, [ ".dts", ".dtsi", ".dtb" ] )
-error( message( 'hdlcommon:plugin:InvalidDeviceTreeExtension', devTree ) );
-end 
-end 
-end 
+    methods ( Access = protected )
+        function pluginPath = getPluginPath( obj )
 
-function isCompiled = isDeviceTreeCompiled( devTree )
+            pluginPath = obj.PluginPath;
+        end
+    end
 
-isCompiled = false;
-if downstream.tool.isTextScalar( devTree )
-[ ~, ~, ext ] = fileparts( devTree );
-isCompiled = strcmp( ext, ".dtb" );
-end 
-end 
-end 
-end 
+    methods ( Static, Access = protected )
+        function validateDeviceTree( devTree )
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpykelDM.p.
-% Please follow local copyright laws when handling this file.
+            if ~( downstream.tool.isTextScalar( devTree ) || isa( devTree, 'devicetree' ) )
+                error( message( 'hdlcommon:plugin:InvalidDeviceTree' ) );
+            end
+
+
+            if downstream.tool.isTextScalar( devTree )
+                [ ~, ~, ext ] = fileparts( devTree );
+                if ~ismember( ext, [ ".dts", ".dtsi", ".dtb" ] )
+                    error( message( 'hdlcommon:plugin:InvalidDeviceTreeExtension', devTree ) );
+                end
+            end
+        end
+
+        function isCompiled = isDeviceTreeCompiled( devTree )
+
+            isCompiled = false;
+            if downstream.tool.isTextScalar( devTree )
+                [ ~, ~, ext ] = fileparts( devTree );
+                isCompiled = strcmp( ext, ".dtb" );
+            end
+        end
+    end
+end
+
 
