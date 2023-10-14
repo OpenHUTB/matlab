@@ -1,57 +1,51 @@
 classdef ConnectivityLauncher < coder.oneclick.ILauncher
 
+    properties ( Access = private )
+        Launcher;
+    end
 
+    methods
+        function this = ConnectivityLauncher( launcher )
+            arguments
+                launcher( 1, 1 )rtw.connectivity.Launcher
+            end
+            this.Launcher = launcher;
+        end
 
+        function setExe( this, exe )
+            this.Launcher.setExe( exe );
+        end
 
-properties ( Access = private )
-Launcher;
-end 
+        function exe = getExe( this )
+            exe = this.Launcher.getExe;
+        end
 
-methods 
-function this = ConnectivityLauncher( launcher )
-R36
-launcher( 1, 1 )rtw.connectivity.Launcher
-end 
-this.Launcher = launcher;
-end 
+        function startApplication( this )
+            this.Launcher.startApplication;
+        end
 
-function setExe( this, exe )
-this.Launcher.setExe( exe );
-end 
+        function status = getApplicationStatus( this )
+            status = this.Launcher.getApplicationStatus;
+        end
 
-function exe = getExe( this )
-exe = this.Launcher.getExe;
-end 
+        function stopApplication( this )
+            this.Launcher.stopApplication;
+        end
 
-function startApplication( this )
-this.Launcher.startApplication;
-end 
+        function extModeEnable( this, enableConnection )
+            if isa( this.Launcher, 'coder.oneclick.TCPIPHostLauncher' )
+                this.Launcher.extModeEnable( enableConnection );
+            end
+        end
 
-function status = getApplicationStatus( this )
-status = this.Launcher.getApplicationStatus;
-end 
+        function componentCodePath = getComponentCodePath( this )
+            componentCodePath = this.Launcher.getComponentArgs.getComponentCodePath;
+        end
 
-function stopApplication( this )
-this.Launcher.stopApplication;
-end 
+        function launcher = getLauncher( this )
 
-function extModeEnable( this, enableConnection )
-if isa( this.Launcher, 'coder.oneclick.TCPIPHostLauncher' )
-this.Launcher.extModeEnable( enableConnection );
-end 
-end 
-
-function componentCodePath = getComponentCodePath( this )
-componentCodePath = this.Launcher.getComponentArgs.getComponentCodePath;
-end 
-
-function launcher = getLauncher( this )
-
-launcher = this.Launcher;
-end 
-end 
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpNmCGZ0.p.
-% Please follow local copyright laws when handling this file.
+            launcher = this.Launcher;
+        end
+    end
+end
 

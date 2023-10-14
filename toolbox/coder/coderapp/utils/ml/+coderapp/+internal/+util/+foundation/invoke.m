@@ -1,24 +1,12 @@
 function varargout = invoke( aFunctionHandle, args )
 
-
-
-
-
-
-
-
-
-
-
-R36
-aFunctionHandle( 1, 1 )function_handle
-end 
-R36( Repeating )
+arguments
+    aFunctionHandle( 1, 1 )function_handle
+end
+arguments( Repeating )
 args
-end 
+end
 [ varargout{ 1:nargout } ] = coderapp.internal.util.foundation.unchecked.invoke( aFunctionHandle, args{ : } );
-end 
+end
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpuzOdZx.p.
-% Please follow local copyright laws when handling this file.
 

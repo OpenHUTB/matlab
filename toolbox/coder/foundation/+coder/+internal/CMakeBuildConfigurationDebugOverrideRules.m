@@ -15,7 +15,7 @@ end
 methods ( Access = public )
 function obj = CMakeBuildConfigurationDebugOverrideRules( toolchainInfo )
 
-R36
+arguments
 toolchainInfo( 1, 1 )coder.make.internal.adapter.IToolchain
 end 
 obj.TFToolchain = toolchainInfo.getWrappedObject(  );
@@ -58,7 +58,7 @@ function ret = getDebugBuildType( obj, buildType )
 
 
 
-R36
+arguments
 obj
 buildType( 1, : )char
 end 
@@ -98,7 +98,7 @@ function lCustomToolchainOptions_out = applyDebugOptionsForCMake( obj, lCustomTo
 
 
 
-R36
+arguments
 obj
 lCustomToolchainOptions cell
 end 

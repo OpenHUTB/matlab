@@ -32,11 +32,11 @@ methods ( Sealed )
 function hardFail( this, delegateName, errArgs )
 
 
-R36
+arguments
 this( 1, 1 )
 delegateName( 1, 1 )string
 end 
-R36( Repeating )
+arguments( Repeating )
 errArgs
 end 
 
@@ -47,11 +47,11 @@ end
 function me = softFail( this, delegateName, errArgs )
 
 
-R36
+arguments
 this( 1, 1 )
 delegateName( 1, 1 )string
 end 
-R36( Repeating )
+arguments( Repeating )
 errArgs
 end 
 
@@ -62,11 +62,11 @@ end
 function me = maybeFail( this, delegateName, errArgs )
 
 
-R36
+arguments
 this( 1, 1 )
 delegateName( 1, 1 )string
 end 
-R36( Repeating )
+arguments( Repeating )
 errArgs
 end 
 
@@ -77,10 +77,10 @@ end
 function this = withContext( this, context )
 
 
-R36
+arguments
 this( 1, 1 )
 end 
-R36( Repeating )
+arguments( Repeating )
 context
 end 
 
@@ -91,10 +91,10 @@ end
 function cleanup = useTemporaryContext( this, context )
 
 
-R36
+arguments
 this( 1, 1 )
 end 
-R36( Repeating )
+arguments( Repeating )
 context
 end 
 
@@ -106,7 +106,7 @@ end
 
 function this = withDebugInfo( this, debugInfo )
 
-R36
+arguments
 this( 1, 1 )
 debugInfo
 end 
@@ -117,11 +117,11 @@ end
 
 function this = withCause( this, cause, varargin )
 
-R36
+arguments
 this( 1, 1 )
 cause{ mustBeA( cause, [ "char", "string", "MException" ] ) }
 end 
-R36( Repeating )
+arguments( Repeating )
 varargin
 end 
 
@@ -139,7 +139,7 @@ end
 
 function this = withoutContext( this )
 
-R36
+arguments
 this( 1, 1 )
 end 
 
@@ -151,12 +151,12 @@ function assert( this, failureType, condition, varargin )
 
 
 
-R36
+arguments
 this( 1, 1 )
 failureType( 1, 1 )string
 condition( 1, 1 )logical
 end 
-R36( Repeating )
+arguments( Repeating )
 varargin
 end 
 
@@ -169,11 +169,11 @@ end
 
 
 function throwEnumeratedError( this, errorSymbol, varargin )
-R36
+arguments
 this( 1, 1 )
 errorSymbol( 1, 1 )coderapp.internal.error.ErrorEnumerable
 end 
-R36( Repeating )
+arguments( Repeating )
 varargin
 end 
 
@@ -194,7 +194,7 @@ end
 methods ( Access = private )
 
 function me = doFail( this, delegateName, delegateArgs, mode )
-R36
+arguments
 this( 1, 1 )
 delegateName( 1, 1 )string
 delegateArgs( 1, : )cell

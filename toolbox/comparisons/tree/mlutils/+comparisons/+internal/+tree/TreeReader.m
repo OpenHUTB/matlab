@@ -1,91 +1,84 @@
 classdef TreeReader < handle
 
+    methods ( Access = public, Static )
 
+        function roots = getRootEntries( mcosView )
+            roots = mcosView.getForest.roots.toArray;
+        end
 
+        function name = getName( optionalNode )
+            if isempty( optionalNode.node )
+                name = '';
+            else
+                name = optionalNode.node.name;
+            end
+        end
 
-methods ( Access = public, Static )
+        function icon = getIcon( optionalNode )
+            if isempty( optionalNode.node )
+                icon = '';
+            else
+                icon = optionalNode.node.iconUri;
+            end
+        end
 
-function roots = getRootEntries( mcosView )
-roots = mcosView.getForest.roots.toArray;
-end 
+        function name = getNameOnSide( entry, side )
+            sideIndex = uint8( side );
+            optionalNode = entry.nodes( sideIndex );
 
-function name = getName( optionalNode )
-if isempty( optionalNode.node )
-name = '';
-else 
-name = optionalNode.node.name;
-end 
-end 
+            import comparisons.internal.tree.TreeReader.getName
+            name = getName( optionalNode );
+        end
 
-function icon = getIcon( optionalNode )
-if isempty( optionalNode.node )
-icon = '';
-else 
-icon = optionalNode.node.iconUri;
-end 
-end 
+        function path = getPathOnSide( entry, side, formatPathAsString, delimiter )
+            arguments
+                entry comparisons.viewmodel.tree.mfzero.Entry
+                side
+                formatPathAsString logical = true
+                delimiter char = '/'
+            end
 
-function name = getNameOnSide( entry, side )
-sideIndex = uint8( side );
-optionalNode = entry.nodes( sideIndex );
+            import comparisons.internal.tree.TreeReader.getNameOnSide
+            import comparisons.internal.tree.TreeReader.getPathOnSide
 
-import comparisons.internal.tree.TreeReader.getName
-name = getName( optionalNode );
-end 
+            currentEntry = entry;
+            currentName = getNameOnSide( entry, side );
+            path = { currentName };
 
-function path = getPathOnSide( entry, side, formatPathAsString, delimiter )
-R36
-entry comparisons.viewmodel.tree.mfzero.Entry
-side
-formatPathAsString logical = true
-delimiter char = '/'
-end 
+            while ~isempty( currentName ) && ~isempty( currentEntry.parent )
+                currentEntry = currentEntry.parent;
+                currentName = getNameOnSide( currentEntry, side );
+                path = [ { currentName }, { delimiter }, path ];%#ok<AGROW>
+            end
 
-import comparisons.internal.tree.TreeReader.getNameOnSide
-import comparisons.internal.tree.TreeReader.getPathOnSide
+            if formatPathAsString
+                path = [ path{ : } ];
+            end
+        end
 
-currentEntry = entry;
-currentName = getNameOnSide( entry, side );
-path = { currentName };
+        function bool = isChanged( entry )
 
-while ~isempty( currentName ) && ~isempty( currentEntry.parent )
-currentEntry = currentEntry.parent;
-currentName = getNameOnSide( currentEntry, side );
-path = [ { currentName }, { delimiter }, path ];%#ok<AGROW>
-end 
+            if ~strcmp( entry.match.editTypes( 1 ), "Same" )
 
-if formatPathAsString
-path = [ path{ : } ];
-end 
-end 
+                bool = true;
+            elseif isempty( entry.nodes( 1 ).node ) || isempty( entry.nodes( 2 ).node )
 
-function bool = isChanged( entry )
+                bool = true;
+            else
+                bool = false;
+                submetrics = entry.match.submetrics;
+                for f = fields( submetrics )'
+                    if submetrics.( f{ 1 } )
+                        bool = true;
+                        return
+                    end
+                end
+            end
 
-if ~strcmp( entry.match.editTypes( 1 ), "Same" )
+        end
 
-bool = true;
-elseif isempty( entry.nodes( 1 ).node ) || isempty( entry.nodes( 2 ).node )
+    end
 
-bool = true;
-else 
-bool = false;
-submetrics = entry.match.submetrics;
-for f = fields( submetrics )'
-if submetrics.( f{ 1 } )
+end
 
-
-bool = true;
-return 
-end 
-end 
-end 
-
-end 
-
-end 
-
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpigoemq.p.
-% Please follow local copyright laws when handling this file.
 

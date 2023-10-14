@@ -1,20 +1,9 @@
 function container = initializeSDP( fileName, options )
 
-
-
-
-
-
-
-
-
-
-
-
-R36
-fileName
-options.PlatformName( 1, 1 )string = "Untitled Platform"
-end 
+arguments
+    fileName
+    options.PlatformName( 1, 1 )string = "Untitled Platform"
+end
 
 
 container = coder.internal.CoderDataStaticAPI.createServiceInterface( fileName );
@@ -43,7 +32,4 @@ reset = false;
 coder.internal.CoderDataStaticAPI.Utils.initializeDict( container.CDefinitions, loadSimulinkPackage, reset );
 
 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpaWpxNT.p.
-% Please follow local copyright laws when handling this file.
 

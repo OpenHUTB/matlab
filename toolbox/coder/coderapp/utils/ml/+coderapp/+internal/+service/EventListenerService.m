@@ -1,204 +1,187 @@
 classdef ( Abstract )EventListenerService < coderapp.internal.service.AbstractService
 
+    properties ( GetAccess = protected, SetAccess = immutable )
+        MfzModel mf.zero.Model
+    end
 
+    properties ( Access = protected )
 
+        EventListenersById
+    end
 
-properties ( GetAccess = protected, SetAccess = immutable )
+    properties ( SetAccess = private )
+        Started
+    end
 
-MfzModel mf.zero.Model
-end 
+    methods ( Abstract, Access = protected )
 
-properties ( Access = protected )
+        eventListener = createEventListener( this, opts )
+    end
 
-EventListenersById
-end 
+    methods
+        function this = EventListenerService( mfzModel )
 
-properties ( SetAccess = private )
-Started
-end 
+            arguments
+                mfzModel( 1, 1 )mf.zero.Model
+            end
+            this.MfzModel = mfzModel;
+            this.EventListenersById = dictionary( string.empty, coderapp.internal.event.EventListener.empty );
+            this.Started = false;
+        end
 
-methods ( Abstract, Access = protected )
+        function start( this )
 
-eventListener = createEventListener( this, opts )
-end 
+            if ~this.Started
+                this.Started = true;
+            end
+        end
 
-methods 
-function this = EventListenerService( mfzModel )
+        function shutdown( this )
 
-R36
-mfzModel( 1, 1 )mf.zero.Model
-end 
-this.MfzModel = mfzModel;
-this.EventListenersById = dictionary( string.empty, coderapp.internal.event.EventListener.empty );
-this.Started = false;
-end 
+            if this.Started
 
-function start( this )
+                for listenerKey = this.EventListenersById.keys(  )'
+                    this.deleteEventListener( listenerKey );
+                end
+                this.Started = false;
+            end
+        end
 
-if ~this.Started
-this.Started = true;
-end 
-end 
+        function id = register( this, varargin )
 
-function shutdown( this )
 
-if this.Started
 
-for listenerKey = this.EventListenersById.keys(  )'
-this.deleteEventListener( listenerKey );
-end 
-this.Started = false;
-end 
-end 
+            arguments
+                this( 1, 1 )
+            end
+            arguments( Repeating )
+                varargin
+            end
+            if ~this.Started
+                this.start(  );
+            end
+            eventListener = this.createEventListener( varargin{ : } );
+            id = eventListener.UUID;
+            this.EventListenersById( id ) = eventListener;
+            eventListener.start(  );
+        end
 
-function id = register( this, varargin )
+        function result = unregister( this, id )
 
 
 
-R36
-this( 1, 1 )
-end 
-R36( Repeating )
-varargin
-end 
-if ~this.Started
-this.start(  );
-end 
-eventListener = this.createEventListener( varargin{ : } );
-id = eventListener.UUID;
-this.EventListenersById( id ) = eventListener;
-eventListener.start(  );
-end 
 
-function result = unregister( this, id )
 
 
 
+            arguments
+                this( 1, 1 )
+                id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
+            end
+            this.assertServiceStarted(  );
+            result = this.deleteEventListener( id );
+        end
 
+        function delete( this )
 
+            this.shutdown(  );
+        end
+    end
 
+    methods ( Hidden )
+        function result = isEventListenerAlive( this, id )
 
-R36
-this( 1, 1 )
-id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
-end 
-this.assertServiceStarted(  );
-result = this.deleteEventListener( id );
-end 
 
-function delete( this )
 
-this.shutdown(  );
-end 
-end 
 
-methods ( Hidden )
-function result = isEventListenerAlive( this, id )
 
 
 
+            arguments
+                this( 1, 1 )
+                id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
+            end
+            this.assertServiceStarted(  );
+            eventListener = this.getEventListener( id );
+            result = ~isempty( eventListener ) && eventListener.Started;
+        end
 
+        function result = pauseEventListener( this, id )
 
 
 
-R36
-this( 1, 1 )
-id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
-end 
-this.assertServiceStarted(  );
-eventListener = this.getEventListener( id );
-result = ~isempty( eventListener ) && eventListener.Started;
-end 
 
-function result = pauseEventListener( this, id )
 
 
+            arguments
+                this( 1, 1 )
+                id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
+            end
+            this.assertServiceStarted(  );
+            eventListener = this.getEventListener( id );
+            assert( ~isempty( eventListener ), message( "coderApp:services:eventListenerInvalid", id ) );
+            if eventListener.Started
+                eventListener.stop(  );
+            end
+            result = eventListener.Started;
+        end
 
+        function result = resumeEventListener( this, id )
 
 
 
-R36
-this( 1, 1 )
-id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
-end 
-this.assertServiceStarted(  );
-eventListener = this.getEventListener( id );
-assert( ~isempty( eventListener ), message( "coderApp:services:eventListenerInvalid", id ) );
-if eventListener.Started
-eventListener.stop(  );
-end 
-result = eventListener.Started;
-end 
 
-function result = resumeEventListener( this, id )
 
 
+            arguments
+                this( 1, 1 )
+                id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
+            end
+            this.assertServiceStarted(  );
+            eventListener = this.getEventListener( id );
+            assert( ~isempty( eventListener ), message( "coderApp:services:eventListenerInvalid", id ) );
+            if ~eventListener.Started
+                eventListener.start(  );
+            end
+            result = eventListener.Started;
+        end
+    end
 
+    methods ( Access = private )
+        function eventListener = getEventListener( this, id )
 
+            arguments
+                this( 1, 1 )
+                id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
+            end
+            if ~this.EventListenersById.isKey( id )
+                error( message( "coderApp:services:noMatchingEventListenerFound", id ) );
+            end
+            eventListener = this.EventListenersById( id );
 
+            if ~isvalid( eventListener ) || isempty( eventListener.UUID )
+                eventListener = coderapp.internal.event.EventListener.empty(  );
+            end
+        end
 
-R36
-this( 1, 1 )
-id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
-end 
-this.assertServiceStarted(  );
-eventListener = this.getEventListener( id );
-assert( ~isempty( eventListener ), message( "coderApp:services:eventListenerInvalid", id ) );
-if ~eventListener.Started
-eventListener.start(  );
-end 
-result = eventListener.Started;
-end 
-end 
 
-methods ( Access = private )
-function eventListener = getEventListener( this, id )
+        function result = deleteEventListener( this, id )
 
+            arguments
+                this( 1, 1 )
+                id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
+            end
+            eventListener = this.getEventListener( id );
+            if ~isempty( eventListener )
+                if eventListener.Started
+                    eventListener.stop(  );
+                end
+                eventListener.destroy(  );
+            end
+            this.EventListenersById( id ) = [  ];
+            result = true;
+        end
+    end
+end
 
-
-
-
-
-R36
-this( 1, 1 )
-id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
-end 
-if ~this.EventListenersById.isKey( id )
-error( message( "coderApp:services:noMatchingEventListenerFound", id ) );
-end 
-eventListener = this.EventListenersById( id );
-
-
-
-
-if ~isvalid( eventListener ) || isempty( eventListener.UUID )
-eventListener = coderapp.internal.event.EventListener.empty(  );
-end 
-end 
-
-function result = deleteEventListener( this, id )
-
-
-
-
-
-R36
-this( 1, 1 )
-id{ mustBeNonempty( id ), mustBeTextScalar( id ) }
-end 
-eventListener = this.getEventListener( id );
-if ~isempty( eventListener )
-if eventListener.Started
-eventListener.stop(  );
-end 
-eventListener.destroy(  );
-end 
-this.EventListenersById( id ) = [  ];
-result = true;
-end 
-end 
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpbPEfLw.p.
-% Please follow local copyright laws when handling this file.
 

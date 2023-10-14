@@ -1,381 +1,375 @@
 classdef TargetFrameworkLauncher < coder.oneclick.ILauncher
 
+    properties ( Access = private )
+        Board;
+        Exe;
+        AppExecutionService;
+        CommunicationInterfaceArgs;
+        VariableExpansion;
+        ComponentCodePath;
+        Model;
+        RootFolder;
+        StdOutInd = 0;
+        StdErrInd = 0;
+    end
+
+    methods
+        function this = TargetFrameworkLauncher( model,  ...
+                board,  ...
+                componentCodePath,  ...
+                rootFolder, exe )
+            arguments
+                model( 1, 1 )string;
+                board( 1, 1 )target.internal.Board;
+                componentCodePath( 1, 1 )string;
+                rootFolder( 1, 1 )string;
+                exe( 1, 1 )string;
+            end
+            this.Model = model;
+            this.Board = board;
+            this.ComponentCodePath = componentCodePath;
+            this.RootFolder = rootFolder;
+            this.Exe = exe;
+
+            this.createAppExecutionService;
+        end
+
+        function setExe( ~, ~ )
+            assert( false,  ...
+                'TargetFrameworkLauncher:assert:setExe',  ...
+                'Exe must be set once during object construction.' );
+        end
+
+        function exe = getExe( this )
+            exe = this.Exe;
+        end
+
+        function startApplication( this )
+
+
+            this.AppExecutionService.open;
+            this.AppExecutionService.load;
+            this.AppExecutionService.start;
+
+
+            [ ~, command ] = this.getFinalExecutionTool( this.Board );
+            if isempty( command )
+
+                allArgs = {  };
+            else
+
+                allArgs = command.Arguments;
+            end
+            allArgs = [ allArgs, this.CommunicationInterfaceArgs ];
+            argDisplayString = this.VariableExpansion.expand( strjoin( allArgs, ' ' ) );
+
+            if isempty( command )
+
+                commandDisplayString = this.Exe;
+                if ~isempty( argDisplayString )
+                    argDisplayString = sprintf( '(%s)', argDisplayString );
+                end
+            else
+
+                commandDisplayString = this.VariableExpansion.expand( command.String );
+            end
+            if ~isempty( argDisplayString )
+                commandDisplayString = sprintf( '%s %s', commandDisplayString, argDisplayString );
+            end
 
+            startMessage = message( 'Simulink:Extmode:StartedExecutable',  ...
+                commandDisplayString ).getString;
 
 
-properties ( Access = private )
-Board;
-Exe;
-AppExecutionService;
-CommunicationInterfaceArgs;
-VariableExpansion;
-ComponentCodePath;
-Model;
-RootFolder;
-StdOutInd = 0;
-StdErrInd = 0;
-end 
+            startMessage = strrep( startMessage, '$(EXE)', this.Exe );
+            Simulink.output.info( startMessage );
 
-methods 
-function this = TargetFrameworkLauncher( model,  ...
-board,  ...
-componentCodePath,  ...
-rootFolder, exe )
-R36
-model( 1, 1 )string;
-board( 1, 1 )target.internal.Board;
-componentCodePath( 1, 1 )string;
-rootFolder( 1, 1 )string;
-exe( 1, 1 )string;
-end 
-this.Model = model;
-this.Board = board;
-this.ComponentCodePath = componentCodePath;
-this.RootFolder = rootFolder;
-this.Exe = exe;
-
-this.createAppExecutionService;
-end 
-
-function setExe( ~, ~ )
-assert( false,  ...
-'TargetFrameworkLauncher:assert:setExe',  ...
-'Exe must be set once during object construction.' );
-end 
-
-function exe = getExe( this )
-exe = this.Exe;
-end 
-
-function startApplication( this )
-
-
-this.AppExecutionService.open;
-this.AppExecutionService.load;
-this.AppExecutionService.start;
-
-
-[ ~, command ] = this.getFinalExecutionTool( this.Board );
-if isempty( command )
-
-allArgs = {  };
-else 
-
-allArgs = command.Arguments;
-end 
-allArgs = [ allArgs, this.CommunicationInterfaceArgs ];
-argDisplayString = this.VariableExpansion.expand( strjoin( allArgs, ' ' ) );
-
-if isempty( command )
-
-commandDisplayString = this.Exe;
-if ~isempty( argDisplayString )
-argDisplayString = sprintf( '(%s)', argDisplayString );
-end 
-else 
+            this.showOutputStreams(  ...
+                'Simulink:Extmode:TFLauncherStdoutOnStart',  ...
+                'Simulink:Extmode:TFLauncherStderrOnStart',  ...
+                true );
+        end
 
-commandDisplayString = this.VariableExpansion.expand( command.String );
-end 
-if ~isempty( argDisplayString )
-commandDisplayString = sprintf( '%s %s', commandDisplayString, argDisplayString );
-end 
+        function status = getApplicationStatus( this )
+            switch this.AppExecutionService.ApplicationStatus
+                case target.internal.ApplicationStatus.Running
+                    status = rtw.connectivity.LauncherApplicationStatus.RUNNING;
 
-startMessage = message( 'Simulink:Extmode:StartedExecutable',  ...
-commandDisplayString ).getString;
+                case target.internal.ApplicationStatus.Stopped
+                    status = rtw.connectivity.LauncherApplicationStatus.NOT_RUNNING;
 
+                case target.internal.ApplicationStatus.Unknown
+                    status = rtw.connectivity.LauncherApplicationStatus.UNKNOWN;
 
-startMessage = strrep( startMessage, '$(EXE)', this.Exe );
-Simulink.output.info( startMessage );
+                otherwise
 
-this.showOutputStreams(  ...
-'Simulink:Extmode:TFLauncherStdoutOnStart',  ...
-'Simulink:Extmode:TFLauncherStderrOnStart',  ...
-true );
-end 
+                    assert( false, 'Unhandled application status' );
+            end
+        end
 
-function status = getApplicationStatus( this )
-switch this.AppExecutionService.ApplicationStatus
-case target.internal.ApplicationStatus.Running
-status = rtw.connectivity.LauncherApplicationStatus.RUNNING;
+        function stopApplication( this )
 
-case target.internal.ApplicationStatus.Stopped
-status = rtw.connectivity.LauncherApplicationStatus.NOT_RUNNING;
 
-case target.internal.ApplicationStatus.Unknown
-status = rtw.connectivity.LauncherApplicationStatus.UNKNOWN;
+            this.AppExecutionService.stop;
+            this.AppExecutionService.unload;
+            this.AppExecutionService.close;
 
-otherwise 
+            this.showOutputStreams(  ...
+                'Simulink:Extmode:TFLauncherStdoutOnStop',  ...
+                'Simulink:Extmode:TFLauncherStderrOnStop',  ...
+                false );
 
-assert( false, 'Unhandled application status' );
-end 
-end 
+            Simulink.output.info(  ...
+                sprintf( '%s: %s',  ...
+                message( 'Simulink:Extmode:StoppedExecutable' ).getString, this.Exe ) );
+        end
 
-function stopApplication( this )
+        function showOutputStreams( this, stdoutHeader, stderrHeader, reset )
+            if reset
+                this.StdOutInd = 0;
+                this.StdErrInd = 0;
+            end
 
+            stdOutStr = this.AppExecutionService.getStandardOutput;
+            if numel( stdOutStr ) > this.StdOutInd
+                stdoutMessageHeader = message( stdoutHeader );
+                Simulink.output.info( ' ' );
+                Simulink.output.info( stdoutMessageHeader.getString );
+                Simulink.output.info( stdOutStr( this.StdOutInd + 1:end  ) );
+                Simulink.output.info( ' ' );
+                this.StdOutInd = numel( stdOutStr );
+            end
 
-this.AppExecutionService.stop;
-this.AppExecutionService.unload;
-this.AppExecutionService.close;
+            stdErrStr = this.AppExecutionService.getStandardError;
+            if numel( stdErrStr ) > this.StdErrInd
+                stderrMessageHeader = message( stderrHeader );
+                Simulink.output.info( ' ' );
+                Simulink.output.info( stderrMessageHeader.getString );
+                Simulink.output.info( stdErrStr( this.StdErrInd + 1:end  ) );
+                Simulink.output.info( ' ' );
+                this.StdErrInd = numel( stdErrStr );
+            end
+        end
 
-this.showOutputStreams(  ...
-'Simulink:Extmode:TFLauncherStdoutOnStop',  ...
-'Simulink:Extmode:TFLauncherStderrOnStop',  ...
-false );
+        function extModeEnable( ~, ~ )
 
-Simulink.output.info(  ...
-sprintf( '%s: %s',  ...
-message( 'Simulink:Extmode:StoppedExecutable' ).getString, this.Exe ) );
-end 
 
-function showOutputStreams( this, stdoutHeader, stderrHeader, reset )
-if reset
-this.StdOutInd = 0;
-this.StdErrInd = 0;
-end 
 
-stdOutStr = this.AppExecutionService.getStandardOutput;
-if numel( stdOutStr ) > this.StdOutInd
-stdoutMessageHeader = message( stdoutHeader );
-Simulink.output.info( ' ' );
-Simulink.output.info( stdoutMessageHeader.getString );
-Simulink.output.info( stdOutStr( this.StdOutInd + 1:end  ) );
-Simulink.output.info( ' ' );
-this.StdOutInd = numel( stdOutStr );
-end 
+        end
 
-stdErrStr = this.AppExecutionService.getStandardError;
-if numel( stdErrStr ) > this.StdErrInd
-stderrMessageHeader = message( stderrHeader );
-Simulink.output.info( ' ' );
-Simulink.output.info( stderrMessageHeader.getString );
-Simulink.output.info( stdErrStr( this.StdErrInd + 1:end  ) );
-Simulink.output.info( ' ' );
-this.StdErrInd = numel( stdErrStr );
-end 
-end 
+        function componentCodePath = getComponentCodePath( this )
+            componentCodePath = this.ComponentCodePath;
+        end
 
-function extModeEnable( ~, ~ )
+        function delete( this )
 
+            if ~isempty( this.AppExecutionService )
 
 
-end 
 
-function componentCodePath = getComponentCodePath( this )
-componentCodePath = this.ComponentCodePath;
-end 
 
-function delete( this )
+                try
+                    this.AppExecutionService.release(  );
+                catch releaseError
 
-if ~isempty( this.AppExecutionService )
 
 
 
 
-try 
-this.AppExecutionService.release(  );
-catch releaseError
 
 
+                    if ~strcmp( releaseError.identifier, 'targetframework:AppExecutionService:ReleaseNotSupported' )
 
 
 
 
+                        warning( releaseError.message, releaseError.identifier );
+                    end
+                end
+            end
+        end
+    end
 
-if ~strcmp( releaseError.identifier, 'targetframework:AppExecutionService:ReleaseNotSupported' )
+    methods ( Static )
+        function deploymentTool = getDeploymentTool( board )
 
+            deploymentTool = [  ];
+            if ~isempty( board.Tools.DeploymentTools )
+                deploymentTool = board.Tools.DeploymentTools( 1 );
+            end
+        end
 
+        function executionTool = getExecutionTool( board )
 
+            executionTool = [  ];
+            if ~isempty( board.Tools.ExecutionTools )
+                executionTool = board.Tools.ExecutionTools( 1 );
+            end
+        end
 
-warning( releaseError.message, releaseError.identifier );
-end 
-end 
-end 
-end 
-end 
+        function [ tool, command ] = getFinalExecutionTool( board )
 
-methods ( Static )
-function deploymentTool = getDeploymentTool( board )
+            tool = [  ];
+            command = [  ];
+            deploymentTool = coder.oneclick.TargetFrameworkLauncher.getDeploymentTool( board );
+            if isempty( deploymentTool ) || ~deploymentTool.ApplicationStartsOnDeployment
+                tool = coder.oneclick.TargetFrameworkLauncher.getExecutionTool( board );
+                if ~isempty( tool ) && isa( tool, 'target.internal.SystemCommandExecutionTool' )
+                    command = tool.StartCommand;
+                end
+            elseif ~isempty( deploymentTool )
+                tool = deploymentTool;
+                command = tool.Command;
+            end
+        end
 
-deploymentTool = [  ];
-if ~isempty( board.Tools.DeploymentTools )
-deploymentTool = board.Tools.DeploymentTools( 1 );
-end 
-end 
+        function variableExpansion = createVariableExpansion( board,  ...
+                exe,  ...
+                connectionParams )
+            variableExpansion = targetframework.services.variableexpansion.createVariableExpansion(  );
 
-function executionTool = getExecutionTool( board )
+            [ exePath, exeName, exeExt ] = fileparts( exe );
+            variableExpansion.define( 'EXE_PATH', exePath );
+            variableExpansion.define( 'EXE_NAME', exeName );
+            variableExpansion.define( 'EXE_EXT', exeExt );
 
-executionTool = [  ];
-if ~isempty( board.Tools.ExecutionTools )
-executionTool = board.Tools.ExecutionTools( 1 );
-end 
-end 
+            if ~isempty( connectionParams )
 
-function [ tool, command ] = getFinalExecutionTool( board )
 
-tool = [  ];
-command = [  ];
-deploymentTool = coder.oneclick.TargetFrameworkLauncher.getDeploymentTool( board );
-if isempty( deploymentTool ) || ~deploymentTool.ApplicationStartsOnDeployment
-tool = coder.oneclick.TargetFrameworkLauncher.getExecutionTool( board );
-if ~isempty( tool ) && isa( tool, 'target.internal.SystemCommandExecutionTool' )
-command = tool.StartCommand;
-end 
-elseif ~isempty( deploymentTool )
-tool = deploymentTool;
-command = tool.Command;
-end 
-end 
+                switch connectionParams.transport
+                    case Simulink.ExtMode.Transports.XCPTCP.Transport
 
-function variableExpansion = createVariableExpansion( board,  ...
-exe,  ...
-connectionParams )
-variableExpansion = targetframework.services.variableexpansion.createVariableExpansion(  );
+                        communicationChannel = target.internal.create( 'TCPChannel',  ...
+                            'IPAddress', connectionParams.targetName,  ...
+                            'Port', string( connectionParams.targetPort ) );
 
-[ exePath, exeName, exeExt ] = fileparts( exe );
-variableExpansion.define( 'EXE_PATH', exePath );
-variableExpansion.define( 'EXE_NAME', exeName );
-variableExpansion.define( 'EXE_EXT', exeExt );
+                        connectionProperties = target.internal.ConnectionProperties.empty(  );
+                    case Simulink.ExtMode.Transports.XCPSerial.Transport
 
-if ~isempty( connectionParams )
+                        communicationChannel = target.internal.create( 'RS232Channel',  ...
+                            'BaudRate', connectionParams.baudRate );
 
+                        connectionProperties = target.internal.create( 'Port',  ...
+                            'PortNumber', connectionParams.portName );
+                    otherwise
+                        assert( false, 'Unexpected transport: %s', connectionParams.transport );
+                end
 
-switch connectionParams.transport
-case Simulink.ExtMode.Transports.XCPTCP.Transport
+                mexArgsConnection = target.internal.create( 'TargetConnection',  ...
+                    'CommunicationChannel', communicationChannel );
+                mexArgsConnection.Target = board;
+                mexArgsConnection.ConnectionProperties = connectionProperties;
 
-communicationChannel = target.internal.create( 'TCPChannel',  ...
-'IPAddress', connectionParams.targetName,  ...
-'Port', string( connectionParams.targetPort ) );
 
-connectionProperties = target.internal.ConnectionProperties.empty(  );
-case Simulink.ExtMode.Transports.XCPSerial.Transport
+                variableExpansion.define( mexArgsConnection );
+            end
+        end
+    end
 
-communicationChannel = target.internal.create( 'RS232Channel',  ...
-'BaudRate', connectionParams.baudRate );
+    methods ( Access = private )
+        function communicationInterfaceArgs = getCommunicationInterfaceArguments( this, connectivity )
+            communicationInterfaceArgs = [  ];
+            if isempty( connectivity )
 
-connectionProperties = target.internal.create( 'Port',  ...
-'PortNumber', connectionParams.portName );
-otherwise 
-assert( false, 'Unexpected transport: %s', connectionParams.transport );
-end 
 
-mexArgsConnection = target.internal.create( 'TargetConnection',  ...
-'CommunicationChannel', communicationChannel );
-mexArgsConnection.Target = board;
-mexArgsConnection.ConnectionProperties = connectionProperties;
 
 
-variableExpansion.define( mexArgsConnection );
-end 
-end 
-end 
 
-methods ( Access = private )
-function communicationInterfaceArgs = getCommunicationInterfaceArguments( this, connectivity )
-communicationInterfaceArgs = [  ];
-if isempty( connectivity )
+                processCommunicationInterfaceArguments = false;
+            else
 
 
 
 
 
-processCommunicationInterfaceArguments = false;
-else 
 
 
+                processCommunicationInterfaceArguments = true;
+            end
 
+            if processCommunicationInterfaceArguments
 
 
 
 
-processCommunicationInterfaceArguments = true;
-end 
+                communicationInterface =  ...
+                    Simulink.ExtMode.TargetFrameworkUtils.getBoardCommunicationInterfaceForXCPTransport( this.Board,  ...
+                    connectivity.XCP.XCPTransport );
+                if ~isempty( communicationInterface.APIImplementations )
+                    if ~isempty( communicationInterface.APIImplementations.MainFunction )
+                        communicationInterfaceArgs =  ...
+                            communicationInterface.APIImplementations.MainFunction.Arguments;
+                    end
+                end
+            end
+        end
 
-if processCommunicationInterfaceArguments
+        function createAppExecutionService( this )
+            connectivity = Simulink.ExtMode.TargetFrameworkUtils.getActiveExternalModeConnectivity( this.Model,  ...
+                this.Board );
 
+            if isempty( connectivity )
 
+                connectionParams = [  ];
+            else
 
+                connectionParams = coder.internal.xcp.parseExtModeArgs(  ...
+                    get_param( this.Model, 'ExtModeMexArgs' ),  ...
+                    connectivity.getTransport,  ...
+                    this.Model,  ...
+                    this.RootFolder );
+            end
 
-communicationInterface =  ...
-Simulink.ExtMode.TargetFrameworkUtils.getBoardCommunicationInterfaceForXCPTransport( this.Board,  ...
-connectivity.XCP.XCPTransport );
-if ~isempty( communicationInterface.APIImplementations )
-if ~isempty( communicationInterface.APIImplementations.MainFunction )
-communicationInterfaceArgs =  ...
-communicationInterface.APIImplementations.MainFunction.Arguments;
-end 
-end 
-end 
-end 
 
-function createAppExecutionService( this )
-connectivity = Simulink.ExtMode.TargetFrameworkUtils.getActiveExternalModeConnectivity( this.Model,  ...
-this.Board );
+            options = targetframework.services.appexecution.ExecutionOptions(  );
 
-if isempty( connectivity )
+            variableExpansion = this.createVariableExpansion( this.Board,  ...
+                this.Exe,  ...
+                connectionParams );
+            options.VariableExpansion = variableExpansion;
+            this.VariableExpansion = variableExpansion;
 
-connectionParams = [  ];
-else 
+            options.Deploy = true;
+            options.Execute = true;
 
-connectionParams = coder.internal.xcp.parseExtModeArgs(  ...
-get_param( this.Model, 'ExtModeMexArgs' ),  ...
-connectivity.getTransport,  ...
-this.Model,  ...
-this.RootFolder );
-end 
+            communicationInterfaceArgs = this.getCommunicationInterfaceArguments( connectivity );
+            if ~isempty( communicationInterfaceArgs )
 
+                options.ApplicationArguments = communicationInterfaceArgs;
+                this.CommunicationInterfaceArgs = communicationInterfaceArgs;
+            end
 
-options = targetframework.services.appexecution.ExecutionOptions(  );
 
-variableExpansion = this.createVariableExpansion( this.Board,  ...
-this.Exe,  ...
-connectionParams );
-options.VariableExpansion = variableExpansion;
-this.VariableExpansion = variableExpansion;
 
-options.Deploy = true;
-options.Execute = true;
+            import targetframework.internal.model.foundation.ServiceMethodRequirement;
 
-communicationInterfaceArgs = this.getCommunicationInterfaceArguments( connectivity );
-if ~isempty( communicationInterfaceArgs )
 
-options.ApplicationArguments = communicationInterfaceArgs;
-this.CommunicationInterfaceArgs = communicationInterfaceArgs;
-end 
 
+            options.ServiceInterfaceRequirements.setMethodRequirement( 'startApplication', ServiceMethodRequirement.Required );
+            options.ServiceInterfaceRequirements.setMethodRequirement( 'stopApplication', ServiceMethodRequirement.Required );
+            options.ServiceInterfaceRequirements.setMethodRequirement( 'getApplicationStatus', ServiceMethodRequirement.Required );
 
 
-import targetframework.internal.model.foundation.ServiceMethodRequirement;
 
+            options.ServiceInterfaceRequirements.setMethodRequirement( 'open', ServiceMethodRequirement.Optional );
+            options.ServiceInterfaceRequirements.setMethodRequirement( 'loadApplication', ServiceMethodRequirement.Optional );
+            options.ServiceInterfaceRequirements.setMethodRequirement( 'unloadApplication', ServiceMethodRequirement.Optional );
+            options.ServiceInterfaceRequirements.setMethodRequirement( 'close', ServiceMethodRequirement.Optional );
 
 
-options.ServiceInterfaceRequirements.setMethodRequirement( 'startApplication', ServiceMethodRequirement.Required );
-options.ServiceInterfaceRequirements.setMethodRequirement( 'stopApplication', ServiceMethodRequirement.Required );
-options.ServiceInterfaceRequirements.setMethodRequirement( 'getApplicationStatus', ServiceMethodRequirement.Required );
+            options.ServiceInterfaceRequirements.setMethodRequirement( 'terminateApplication', ServiceMethodRequirement.Optional );
 
 
+            options.ServiceInterfaceRequirements.setMethodRequirement( 'getStandardOutput', ServiceMethodRequirement.Optional );
+            options.ServiceInterfaceRequirements.setMethodRequirement( 'getStandardError', ServiceMethodRequirement.Optional );
 
-options.ServiceInterfaceRequirements.setMethodRequirement( 'open', ServiceMethodRequirement.Optional );
-options.ServiceInterfaceRequirements.setMethodRequirement( 'loadApplication', ServiceMethodRequirement.Optional );
-options.ServiceInterfaceRequirements.setMethodRequirement( 'unloadApplication', ServiceMethodRequirement.Optional );
-options.ServiceInterfaceRequirements.setMethodRequirement( 'close', ServiceMethodRequirement.Optional );
 
+            this.AppExecutionService = targetframework.services.appexecution.createExecutionManager( this.Exe,  ...
+                this.Board,  ...
+                options );
+        end
+    end
+end
 
-options.ServiceInterfaceRequirements.setMethodRequirement( 'terminateApplication', ServiceMethodRequirement.Optional );
 
-
-options.ServiceInterfaceRequirements.setMethodRequirement( 'getStandardOutput', ServiceMethodRequirement.Optional );
-options.ServiceInterfaceRequirements.setMethodRequirement( 'getStandardError', ServiceMethodRequirement.Optional );
-
-
-this.AppExecutionService = targetframework.services.appexecution.createExecutionManager( this.Exe,  ...
-this.Board,  ...
-options );
-end 
-end 
-end 
-
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpI3dV8v.p.
-% Please follow local copyright laws when handling this file.
 

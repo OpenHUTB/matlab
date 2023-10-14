@@ -54,7 +54,7 @@ this.MaxFrames = ip.Results.MaxFrames;
 end 
 
 function addStateOwner( this, stateOwner )
-R36
+arguments
 this( 1, 1 )
 stateOwner( 1, 1 )coderapp.internal.undo.StateOwner
 end 
@@ -92,7 +92,7 @@ end
 end 
 
 function removeStateOwner( this, stateOwner )
-R36
+arguments
 this( 1, 1 )
 stateOwner( 1, 1 )coderapp.internal.undo.StateOwner
 end 
@@ -100,7 +100,7 @@ this.doRemoveStateOwner( stateOwner, true );
 end 
 
 function snapshot( this, invalidatePrior )
-R36
+arguments
 this( 1, 1 )
 invalidatePrior( 1, 1 )logical = false
 end 
@@ -135,7 +135,7 @@ this.fireChangeEvent(  );
 end 
 
 function success = next( this, n )
-R36
+arguments
 this( 1, 1 )
 n( 1, 1 ){ mustBeGreaterThanOrEqual( n, 1 ) } = 1
 end 
@@ -150,7 +150,7 @@ end
 end 
 
 function success = previous( this, n )
-R36
+arguments
 this( 1, 1 )
 n( 1, 1 ){ mustBeGreaterThanOrEqual( n, 1 ) } = 1
 end 

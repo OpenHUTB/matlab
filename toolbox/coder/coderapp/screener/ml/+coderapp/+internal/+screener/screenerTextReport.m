@@ -1,41 +1,36 @@
 function outputReport = screenerTextReport( screenerResultView )
 
-
-
-
-R36
-screenerResultView( 1, 1 )coderapp.internal.screener.ScreenerResultView
-end 
+arguments
+    screenerResultView( 1, 1 )coderapp.internal.screener.ScreenerResultView
+end
 
 summaryTxt = composeSummaryTxt( screenerResultView );
 configurationTxt = constructConfigurationTxt( screenerResultView );
 issuesTxt = composeIssuesTxt( screenerResultView );
 
 outputReport = strip( char( join( {  ...
-summaryTxt,  ...
-'',  ...
-configurationTxt,  ...
-'',  ...
-issuesTxt,  ...
- }, '' ) ) );
-end 
+    summaryTxt,  ...
+    '',  ...
+    configurationTxt,  ...
+    '',  ...
+    issuesTxt,  ...
+    }, '' ) ) );
+end
+
 
 function summaryTxt = composeSummaryTxt( screenerResultView )
-
-
-
 numIssues = screenerResultView.Messages.Size;
 numFiles = length( screenerResultView.Files.keys );
 numUnsupportedFunctions = length( screenerResultView.UnsupportedFunctions.toArray );
 
 summaryTxt = char( join( {  ...
-underlineHeader( message( 'coderApp:screener:OverviewHeader' ).getString(  ) ),  ...
-'',  ...
-message( 'coderApp:screener:issueCount', numIssues ).getString(  ),  ...
-message( 'coderApp:screener:unsupportedFunctions', numUnsupportedFunctions ).getString(  ),  ...
-message( 'coderApp:screener:filesAnalyzed', numFiles ).getString(  ),  ...
-'', '' }, newline ) );
-end 
+    underlineHeader( message( 'coderApp:screener:OverviewHeader' ).getString(  ) ),  ...
+    '',  ...
+    message( 'coderApp:screener:issueCount', numIssues ).getString(  ),  ...
+    message( 'coderApp:screener:unsupportedFunctions', numUnsupportedFunctions ).getString(  ),  ...
+    message( 'coderApp:screener:filesAnalyzed', numFiles ).getString(  ),  ...
+    '', '' }, newline ) );
+end
 
 function configurationTxt = constructConfigurationTxt( screenerResultView )
 
@@ -45,15 +40,15 @@ function configurationTxt = constructConfigurationTxt( screenerResultView )
 tgt = screenerResultView.Result.Input.Target;
 
 if ~isempty( tgt )
-configurationTxt = char( join( {  ...
-underlineHeader( message( 'coderApp:screener:ConfigurationHeader' ).getString(  ) ),  ...
-'',  ...
-[ message( 'coderApp:screener:configLanguage' ).getString(  ), ': ', enumMsgText( tgt.Language ) ],  ...
-'', '' }, newline ) );
-else 
-configurationTxt = '';
-end 
-end 
+    configurationTxt = char( join( {  ...
+        underlineHeader( message( 'coderApp:screener:ConfigurationHeader' ).getString(  ) ),  ...
+        '',  ...
+        [ message( 'coderApp:screener:configLanguage' ).getString(  ), ': ', enumMsgText( tgt.Language ) ],  ...
+        '', '' }, newline ) );
+else
+    configurationTxt = '';
+end
+end
 
 function issuesTxt = composeIssuesTxt( screenerResultView )
 
@@ -63,16 +58,16 @@ function issuesTxt = composeIssuesTxt( screenerResultView )
 underlinedHeader = underlineHeader( message( 'coderApp:screener:IssuesHeader' ).getString(  ) );
 
 if screenerResultView.Messages.Size > 0
-problemsTxt = composeHierarchicalIssues( screenerResultView );
-else 
-problemsTxt = message( 'coderApp:screener:analysisNoProblems' ).getString(  );
-end 
+    problemsTxt = composeHierarchicalIssues( screenerResultView );
+else
+    problemsTxt = message( 'coderApp:screener:analysisNoProblems' ).getString(  );
+end
 
 issuesTxt = char( join( {  ...
-underlinedHeader,  ...
-'',  ...
-problemsTxt }, newline ) );
-end 
+    underlinedHeader,  ...
+    '',  ...
+    problemsTxt }, newline ) );
+end
 
 function hierarchicalIssues = composeHierarchicalIssues( screenerResultView )
 messages = screenerResultView.Messages.toArray;
@@ -97,17 +92,17 @@ functionNames = arrayfun( @functionNameFromMessage, messages, 'UniformOutput', f
 messages = messages( I );
 
 for msg = messages
-fullMessage = fullMessages{ msg.UUID };
-[ msgText, subMsgText, isDisplayableMessage ] = msgTextFromMessage( fullMessage );
-if isDisplayableMessage
-if ~isKey( buckets, msgText ) && ~isempty( msgText ) && ~isempty( subMsgText )
-buckets( msgText ) = { subMsgText };
-severities( msgText ) = getMessageSeverity( fullMessage );
-else 
-buckets( msgText ) = horzcat( buckets( msgText ), { subMsgText } );
-end 
-end 
-end 
+    fullMessage = fullMessages{ msg.UUID };
+    [ msgText, subMsgText, isDisplayableMessage ] = msgTextFromMessage( fullMessage );
+    if isDisplayableMessage
+        if ~isKey( buckets, msgText ) && ~isempty( msgText ) && ~isempty( subMsgText )
+            buckets( msgText ) = { subMsgText };
+            severities( msgText ) = getMessageSeverity( fullMessage );
+        else
+            buckets( msgText ) = horzcat( buckets( msgText ), { subMsgText } );
+        end
+    end
+end
 
 keysInOrder = string( buckets.keys );
 
@@ -122,7 +117,7 @@ keySeverities = arrayfun( @( key )severities( key ), keysInOrder );
 keysInOrder = keysInOrder( I );
 
 hierarchicalIssues = bucketsToHierarchicalIssuesText( buckets, keysInOrder );
-end 
+end
 
 function severity = getMessageSeverity( fullMessage )
 
@@ -130,13 +125,13 @@ function severity = getMessageSeverity( fullMessage )
 
 
 if isa( fullMessage.Message, 'coderapp.internal.screener.CallSiteMessage' )
-severity = 3;
+    severity = 3;
 elseif fullMessage.Message.Severity == coderapp.internal.screener.MessageSeverity.ERROR
-severity = 2;
+    severity = 2;
 elseif fullMessage.Message.Severity == coderapp.internal.screener.MessageSeverity.WARNING
-severity = 1;
-end 
-end 
+    severity = 1;
+end
+end
 
 function [ msgText, subMsgText, isDisplayableMessage ] = msgTextFromMessage( fullMessage )
 
@@ -152,14 +147,14 @@ if ~isDisplayableMessage
 
 
 
-return ;
-end 
+    return ;
+end
 if isa( fullMessage.Message, 'coderapp.internal.screener.CallSiteMessage' )
-callee = fullMessage.Message.CallSite.Symbol;
-msgText = sprintf( "%s: %s", message( 'coderApp:screener:unsupportedFunction' ).getString(  ), callee );
-end 
+    callee = fullMessage.Message.CallSite.Symbol;
+    msgText = sprintf( "%s: %s", message( 'coderApp:screener:unsupportedFunction' ).getString(  ), callee );
+end
 subMsgText = sprintf( "%s (%s)", functionName, message( 'coderApp:screener:lineMessage', loc ).getString(  ) );
-end 
+end
 
 function [ functionName, isDisplayableMessage ] = functionNameFromMessage( message )
 
@@ -168,59 +163,54 @@ function [ functionName, isDisplayableMessage ] = functionNameFromMessage( messa
 isDisplayableMessage = true;
 
 switch class( message )
-case 'coderapp.internal.screener.CallSiteMessage'
-functionName = message.CallSite.Caller.Path;
-case 'coderapp.internal.screener.FunctionMessage'
-functionName = message.Function.Path;
-otherwise 
+    case 'coderapp.internal.screener.CallSiteMessage'
+        functionName = message.CallSite.Caller.Path;
+    case 'coderapp.internal.screener.FunctionMessage'
+        functionName = message.Function.Path;
+    otherwise
 
 
 
 
-functionName = '';
-isDisplayableMessage = false;
-end 
+        functionName = '';
+        isDisplayableMessage = false;
+end
 
 
 
 
 [ ~, functionName, extension ] = fileparts( functionName );
 functionName = strcat( functionName, extension );
-end 
+end
 
 function issuesTxt = bucketsToHierarchicalIssuesText( buckets, keysInOrder )
 
 
 
 
-R36
-buckets containers.Map
-keysInOrder( 1, : )string
-end 
+arguments
+    buckets containers.Map
+    keysInOrder( 1, : )string
+end
 issuesTxt = "";
 
 for key = keysInOrder
-issuesTxt = sprintf( "%s%s (%d)\n", issuesTxt, key, length( buckets( key ) ) );
-for subMsg = buckets( key )
-issuesTxt = sprintf( "%s%s%s\n", issuesTxt, '    - ', subMsg{ 1 } );
-end 
-end 
+    issuesTxt = sprintf( "%s%s (%d)\n", issuesTxt, key, length( buckets( key ) ) );
+    for subMsg = buckets( key )
+        issuesTxt = sprintf( "%s%s%s\n", issuesTxt, '    - ', subMsg{ 1 } );
+    end
+end
 issuesTxt = char( issuesTxt );
-end 
+end
 
 function txt = enumMsgText( enumMember )
 msgID = coderapp.internal.screener.ui.getMessageIDForEnumMember( enumMember );
 txt = message( msgID ).getString(  );
-end 
+end
 
 function underlinedHeader = underlineHeader( header )
-
-
-
 underlineTxt = repmat( '=', 1, length( header ) );
 underlinedHeader = char( sprintf( "%s\n%s", header, underlineTxt ) );
-end 
+end
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpLcUr06.p.
-% Please follow local copyright laws when handling this file.
 
