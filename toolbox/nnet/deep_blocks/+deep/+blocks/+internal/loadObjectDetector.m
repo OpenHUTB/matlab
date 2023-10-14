@@ -1,55 +1,55 @@
 function detector = loadObjectDetector( matfile, nvps )
 
-R36
-matfile
-nvps.ReturnDetectorClassName( 1, 1 )logical = false
-end 
+arguments
+    matfile
+    nvps.ReturnDetectorClassName( 1, 1 )logical = false
+end
 assert( exist( matfile, 'file' ) == 2,  ...
-message( 'gpucoder:cnncodegen:invalid_filename', matfile ) );
+    message( 'gpucoder:cnncodegen:invalid_filename', matfile ) );
 if endsWith( matfile, '.mat' )
-detector = [  ];
-foundDLObject = false;
-matobj = load( matfile );
-f = fields( matobj );
+    detector = [  ];
+    foundDLObject = false;
+    matobj = load( matfile );
+    f = fields( matobj );
 
-for i = 1:numel( f )
+    for i = 1:numel( f )
 
-if isObjectDetector( matobj.( f{ i } ) )
-if ~foundDLObject
-detector = matobj.( f{ i } );
-foundDLObject = true;
-else 
+        if isObjectDetector( matobj.( f{ i } ) )
+            if ~foundDLObject
+                detector = matobj.( f{ i } );
+                foundDLObject = true;
+            else
 
-error( message( 'vision:ObjectDetectorBlock:InvalidDLObjectCount' ) );
-end 
-end 
-end 
+                error( message( 'vision:ObjectDetectorBlock:InvalidDLObjectCount' ) );
+            end
+        end
+    end
 
-assert( ~isempty( detector ),  ...
-message( 'vision:ObjectDetectorBlock:InvalidMatFileObject', matfile ) );
+    assert( ~isempty( detector ),  ...
+        message( 'vision:ObjectDetectorBlock:InvalidMatFileObject', matfile ) );
 
-else 
+else
 
-detector = feval( matfile );
-assert( isObjectDetector( detector ),  ...
-message( 'vision:ObjectDetectorBlock:InvalidFunction', matfile ) );
-end 
+    detector = feval( matfile );
+    assert( isObjectDetector( detector ),  ...
+        message( 'vision:ObjectDetectorBlock:InvalidFunction', matfile ) );
+end
 
 if nvps.ReturnDetectorClassName
-detector = class( detector );
-end 
-end 
+    detector = class( detector );
+end
+end
 
 
 function isDetector = isObjectDetector( obj )
 isDetector =  ...
-isa( obj, 'yolov4ObjectDetector' ) ||  ...
-isa( obj, 'yolov3ObjectDetector' ) ||  ...
-isa( obj, 'yolov2ObjectDetector' ) ||  ...
-isa( obj, 'ssdObjectDetector' ) ||  ...
-isa( obj, 'rcnnObjectDetector' ) ||  ...
-isa( obj, 'fastRCNNObjectDetector' ) ||  ...
-isa( obj, 'fasterRCNNObjectDetector' );
-end 
+    isa( obj, 'yolov4ObjectDetector' ) ||  ...
+    isa( obj, 'yolov3ObjectDetector' ) ||  ...
+    isa( obj, 'yolov2ObjectDetector' ) ||  ...
+    isa( obj, 'ssdObjectDetector' ) ||  ...
+    isa( obj, 'rcnnObjectDetector' ) ||  ...
+    isa( obj, 'fastRCNNObjectDetector' ) ||  ...
+    isa( obj, 'fasterRCNNObjectDetector' );
+end
 
 

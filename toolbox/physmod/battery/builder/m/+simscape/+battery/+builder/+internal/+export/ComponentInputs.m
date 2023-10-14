@@ -1,82 +1,76 @@
 classdef ComponentInputs
 
+    properties ( Access = private )
+        Inputs = table( string.empty, string.empty, string.empty, string.empty, string.empty ...
+            , 'VariableNames', [ "ID", "Label", "DefaultValue", "DefaultUnit", "ScalingVariable" ] );
+    end
 
+    properties ( Dependent )
+        IDs
+        Labels
+        DefaultValues
+        DefaultUnits
+    end
 
+    methods
+        function obj = addInputs( obj, id, label, defaultValue, defaultUnit )
 
-properties ( Access = private )
-Inputs = table( string.empty, string.empty, string.empty, string.empty, string.empty ...
-, 'VariableNames', [ "ID", "Label", "DefaultValue", "DefaultUnit", "ScalingVariable" ] );
-end 
+            arguments
+                obj{ mustBeScalarOrEmpty, mustBeNonempty }
+                id( :, 1 )string{ mustBeNonzeroLengthText, mustBeVector }
+                label( :, 1 )string{ mustBeNonzeroLengthText, mustBeVector }
+                defaultValue( :, 1 )string{ mustBeNonzeroLengthText, mustBeVector }
+                defaultUnit( :, 1 )string{ mustBeNonzeroLengthText, mustBeVector }
+            end
 
-properties ( Dependent )
-IDs
-Labels
-DefaultValues
-DefaultUnits
-end 
+            inputsToAdd = table( id, label, defaultValue, defaultUnit, repmat( "", size( id ) ) ...
+                , 'VariableNames', [ "ID", "Label", "DefaultValue", "DefaultUnit", "ScalingVariable" ] );
+            obj.Inputs = [ obj.Inputs;inputsToAdd ];
+        end
 
-methods 
-function obj = addInputs( obj, id, label, defaultValue, defaultUnit )
+        function obj = addDimensionScalingForInput( obj, id, scalingVariable )
 
-R36
-obj{ mustBeScalarOrEmpty, mustBeNonempty }
-id( :, 1 )string{ mustBeNonzeroLengthText, mustBeVector }
-label( :, 1 )string{ mustBeNonzeroLengthText, mustBeVector }
-defaultValue( :, 1 )string{ mustBeNonzeroLengthText, mustBeVector }
-defaultUnit( :, 1 )string{ mustBeNonzeroLengthText, mustBeVector }
-end 
+            arguments
+                obj
+                id string{ mustBeTextScalar, mustBeNonzeroLengthText }
+                scalingVariable string{ mustBeTextScalar }
+            end
+            hasId = obj.IDs == id;
+            obj.Inputs.ScalingVariable( hasId ) = scalingVariable;
+        end
 
-inputsToAdd = table( id, label, defaultValue, defaultUnit, repmat( "", size( id ) ) ...
-, 'VariableNames', [ "ID", "Label", "DefaultValue", "DefaultUnit", "ScalingVariable" ] );
-obj.Inputs = [ obj.Inputs;inputsToAdd ];
-end 
+        function obj = mergeInputs( obj1, obj2 )
 
-function obj = addDimensionScalingForInput( obj, id, scalingVariable )
+            arguments
+                obj1{ mustBeScalarOrEmpty, mustBeNonempty }
+                obj2( 1, 1 ){ mustBeA( obj2, "simscape.battery.builder.internal.export.ComponentInputs" ), mustBeScalarOrEmpty }
+            end
+            obj = obj1;
+            obj.Inputs = [ obj1.Inputs;obj2.Inputs ];
+        end
 
-R36
-obj
-id string{ mustBeTextScalar, mustBeNonzeroLengthText }
-scalingVariable string{ mustBeTextScalar }
-end 
-hasId = obj.IDs == id;
-obj.Inputs.ScalingVariable( hasId ) = scalingVariable;
-end 
+        function ids = get.IDs( obj )
 
-function obj = mergeInputs( obj1, obj2 )
+            ids = obj.Inputs.ID;
+        end
 
-R36
-obj1{ mustBeScalarOrEmpty, mustBeNonempty }
-obj2( 1, 1 ){ mustBeA( obj2, "simscape.battery.builder.internal.export.ComponentInputs" ), mustBeScalarOrEmpty }
-end 
-obj = obj1;
-obj.Inputs = [ obj1.Inputs;obj2.Inputs ];
-end 
+        function labels = get.Labels( obj )
 
-function ids = get.IDs( obj )
+            labels = obj.Inputs.Label;
+        end
 
-ids = obj.Inputs.ID;
-end 
+        function defaultValues = get.DefaultValues( obj )
 
-function labels = get.Labels( obj )
+            hasScalingVariable = ~ismember( obj.Inputs.ScalingVariable, "" );
+            defaultValues = obj.Inputs.DefaultValue;
+            defaultValues( hasScalingVariable ) = "repmat(" + defaultValues( hasScalingVariable ) ...
+                + "," + obj.Inputs.ScalingVariable( hasScalingVariable ) + ",1)";
+        end
 
-labels = obj.Inputs.Label;
-end 
+        function defaultUnits = get.DefaultUnits( obj )
 
-function defaultValues = get.DefaultValues( obj )
-
-hasScalingVariable = ~ismember( obj.Inputs.ScalingVariable, "" );
-defaultValues = obj.Inputs.DefaultValue;
-defaultValues( hasScalingVariable ) = "repmat(" + defaultValues( hasScalingVariable ) ...
- + "," + obj.Inputs.ScalingVariable( hasScalingVariable ) + ",1)";
-end 
-
-function defaultUnits = get.DefaultUnits( obj )
-
-defaultUnits = obj.Inputs.DefaultUnit;
-end 
-end 
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpMUdsRC.p.
-% Please follow local copyright laws when handling this file.
+            defaultUnits = obj.Inputs.DefaultUnit;
+        end
+    end
+end
 

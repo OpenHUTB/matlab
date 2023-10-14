@@ -1,9 +1,6 @@
 function files = getProjectFiles( project )
 
-
-
-
-R36
+arguments
 project( 1, 1 ) = currentProject(  )
 end 
 

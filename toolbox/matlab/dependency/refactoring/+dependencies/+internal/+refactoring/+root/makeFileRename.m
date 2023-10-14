@@ -1,10 +1,7 @@
 function root = makeFileRename( model, graph, oldNode, newName,  ...
 useRefactoringHandlers, renameAction )
 
-
-
-
-R36
+arguments
 model( 1, 1 )mf.zero.Model;
 graph( 1, 1 )dependencies.internal.graph.Graph;
 oldNode( 1, 1 )dependencies.internal.graph.Node{ i_mustBeFileNode };
@@ -105,7 +102,4 @@ resultMessages.error = MessageWithDetails;
 resultMessages.error.Message = string( message( baseResource + "MessageError" ) );
 resultMessages.error.Details = string( message( baseResource + "DetailsError" ) );
 end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpodlaG2.p.
-% Please follow local copyright laws when handling this file.
 

@@ -662,7 +662,7 @@ end
 
 
 function loadData( this, variableNames, variableData )
-R36
+arguments
 this
 variableNames( 1, : )string
 variableData
@@ -746,7 +746,7 @@ end
 
 
 function initializeVariableBrowser( this, varData, variableNames )
-R36
+arguments
 this
 varData( 1, : )cell
 variableNames( 1, : )string
@@ -824,7 +824,7 @@ end
 
 
 function initializeAppWithData( this, varData, variableNames )
-R36
+arguments
 this
 varData( 1, : )cell
 variableNames( 1, : )string
@@ -1231,7 +1231,7 @@ end
 
 
 function openTask( this, task, workspace, variableName, tableVariableName, state )
-R36
+arguments
 this
 task( 1, 1 )struct
 workspace( 1, 1 )matlab.internal.datatoolsservices.AppWorkspace

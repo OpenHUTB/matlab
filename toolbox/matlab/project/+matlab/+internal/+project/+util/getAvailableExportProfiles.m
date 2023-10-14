@@ -1,20 +1,17 @@
 function names = getAvailableExportProfiles( project )
 
-
-
-
-R36
-project( 1, 1 ){ mustBeA( project, [ "matlab.project.Project", "matlab.internal.project.api.Project" ] ) }
-end 
+arguments
+    project( 1, 1 ){ mustBeA( project, [ "matlab.project.Project", "matlab.internal.project.api.Project" ] ) }
+end
 
 if matlab.internal.project.util.useWebFrontEnd
-profiles = matlab.internal.project.profiles.getAvailableExportProfiles( project.RootFolder );
-names = unique( string( { profiles.Name } )' );
-else 
-names = i_getJavaExportProfiles( project );
-end 
+    profiles = matlab.internal.project.profiles.getAvailableExportProfiles( project.RootFolder );
+    names = unique( string( { profiles.Name } )' );
+else
+    names = i_getJavaExportProfiles( project );
+end
 
-end 
+end
 
 function names = i_getJavaExportProfiles( project )
 import matlab.internal.project.util.processJavaCall;
@@ -23,12 +20,10 @@ project = processJavaCall( @(  )MatlabAPIMatlabProjectManager.newInstance( char(
 
 names = project.getAvailableExportProfiles(  );
 if isempty( names )
-names = string.empty( 0, 1 );
-else 
-names = sort( string( cellstr( names ) ) );
-end 
-end 
+    names = string.empty( 0, 1 );
+else
+    names = sort( string( cellstr( names ) ) );
+end
+end
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpEIcFCe.p.
-% Please follow local copyright laws when handling this file.
 

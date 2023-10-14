@@ -1,14 +1,9 @@
 function viewer = createSimulationManagerFromSimInputOutputPair( simIn, simOut )
 
-
-
-
-
-
-R36
-simIn Simulink.SimulationInput{ mustBeNonempty }
-simOut Simulink.SimulationOutput{ mustHaveSameSize( simOut, simIn ) }
-end 
+arguments
+    simIn Simulink.SimulationInput{ mustBeNonempty }
+    simOut Simulink.SimulationOutput{ mustHaveSameSize( simOut, simIn ) }
+end
 
 validateModelNamesMatch( simIn, simOut );
 
@@ -23,21 +18,19 @@ cleanupJobData = onCleanup( @(  )delete( jobData ) );
 job.JobStatusDB.updateData( jobData, simMetaData )
 
 viewer = MultiSim.internal.MultiSimJobViewer( job );
-end 
+end
 
 function mustHaveSameSize( simOut, simIn )
 expectedSize = size( simIn );
 validateattributes( simOut, { 'Simulink.SimulationOutput' }, { 'size', expectedSize } );
-end 
+end
 
 function validateModelNamesMatch( simIn, simOut )
 modelNamesSimIn = arrayfun( @( x )string( x.ModelName ), simIn );
 modelNamesSimOut = arrayfun( @( x )string( x.SimulationMetadata.ModelInfo.ModelName ), simOut );
 
 if any( modelNamesSimIn ~= modelNamesSimOut )
-error( message( 'Simulink:MultiSim:ModelNameMismatch' ) );
-end 
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp3X_JLu.p.
-% Please follow local copyright laws when handling this file.
+    error( message( 'Simulink:MultiSim:ModelNameMismatch' ) );
+end
+end
 

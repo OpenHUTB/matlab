@@ -1,19 +1,13 @@
 function status = logComposition( identification, properties, componentCounts )
 
-R36
+arguments
 
-identification( 1, 1 )matlab.ddux.internal.ArtifactIdentification
+    identification( 1, 1 )matlab.ddux.internal.ArtifactIdentification
 
+    properties( 1, 1 )struct = [  ]
 
-
-
-properties( 1, 1 )struct = [  ]
-
-
-
-
-componentCounts( 1, 1 )struct = [  ]
-end 
+    componentCounts( 1, 1 )struct = [  ]
+end
 
 
 
@@ -23,9 +17,6 @@ identStruct.artifactType = identification.ArtifactType;
 identStruct.artifactId = identification.ArtifactId;
 
 status = dduxinternal.logComposition( identStruct, properties, componentCounts );
-end 
+end
 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmph86V01.p.
-% Please follow local copyright laws when handling this file.
 

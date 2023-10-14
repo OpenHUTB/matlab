@@ -1,88 +1,85 @@
 classdef MedicalLabeler < handle
+    
+    properties ( SetAccess = private, GetAccess = ?uitest.factory.Tester )
+
+        View medical.internal.app.labeler.View
+
+    end
+
+    properties ( Access = private )
+
+        Model medical.internal.app.labeler.Model
+        Controller medical.internal.app.labeler.Controller
+
+    end
+
+    methods
+
+        function self = MedicalLabeler( input, opts )
+
+            arguments
+                input = [  ]
+                opts.UseDarkMode( 1, 1 )matlab.lang.OnOffSwitchState = false;
+            end
 
 
+            if ~isempty( input )
+                input = validateInput( input );
+            end
+
+            self.Model = medical.internal.app.labeler.Model(  );
+            self.View = medical.internal.app.labeler.View( opts.UseDarkMode );
+
+            if ~isvalid( self.View )
+                return ;
+            end
+
+            self.Controller = medical.internal.app.labeler.Controller( self.Model, self.View );
+
+            self.View.setBusy( false );
 
 
-properties ( SetAccess = private, GetAccess = ?uitest.factory.Tester )
+            if ~isempty( input )
 
-View medical.internal.app.labeler.View
+                if isstring( input )
 
-end 
+                    if strcmp( input, "Volume" )
+                        self.View.newVolumeSessionRequested(  );
 
-properties ( Access = private )
+                    elseif strcmp( input, "Image" )
+                        self.View.newImageSessionRequested(  );
 
-Model medical.internal.app.labeler.Model
-Controller medical.internal.app.labeler.Controller
+                    elseif isfolder( input )
+                        self.View.openSessionFromDirectory( input );
+                    end
 
-end 
+                elseif isa( input, 'groundTruthMedical' )
 
-methods 
+                    if isa( input.DataSource, 'medical.labeler.loading.VolumeSource' )
+                        self.View.newVolumeSessionRequested(  );
 
-function self = MedicalLabeler( input, opts )
+                    elseif isa( input.DataSource, 'medical.labeler.loading.ImageSource' )
+                        self.View.newImageSessionRequested(  );
 
-R36
-input = [  ]
-opts.UseDarkMode( 1, 1 )matlab.lang.OnOffSwitchState = false;
-end 
+                    end
 
+                    self.View.importGroundTruthFromWksp( input );
 
-if ~isempty( input )
-input = validateInput( input );
-end 
+                end
 
-self.Model = medical.internal.app.labeler.Model(  );
-self.View = medical.internal.app.labeler.View( opts.UseDarkMode );
-
-if ~isvalid( self.View )
-return ;
-end 
-
-self.Controller = medical.internal.app.labeler.Controller( self.Model, self.View );
-
-self.View.setBusy( false );
+            end
 
 
-if ~isempty( input )
+            self.View.requestToRefreshRecentSessions(  );
+            self.View.requestToRefreshUserDefinedVolumeRenderings(  );
 
-if isstring( input )
+            self.View.canTheAppClose( true );
 
-if strcmp( input, "Volume" )
-self.View.newVolumeSessionRequested(  );
+        end
 
-elseif strcmp( input, "Image" )
-self.View.newImageSessionRequested(  );
+    end
 
-elseif isfolder( input )
-self.View.openSessionFromDirectory( input );
-end 
-
-elseif isa( input, 'groundTruthMedical' )
-
-if isa( input.DataSource, 'medical.labeler.loading.VolumeSource' )
-self.View.newVolumeSessionRequested(  );
-
-elseif isa( input.DataSource, 'medical.labeler.loading.ImageSource' )
-self.View.newImageSessionRequested(  );
-
-end 
-
-self.View.importGroundTruthFromWksp( input );
-
-end 
-
-end 
-
-
-self.View.requestToRefreshRecentSessions(  );
-self.View.requestToRefreshUserDefinedVolumeRenderings(  );
-
-self.View.canTheAppClose( true );
-
-end 
-
-end 
-
-end 
+end
 
 
 function input = validateInput( input )
@@ -91,22 +88,19 @@ input = convertCharsToStrings( input );
 
 if isstring( input )
 
-if isfile( input )
-input = medical.internal.app.labeler.utils.readGTruthMedicalFromMATFile( filename );
-elseif isfolder( input )
+    if isfile( input )
+        input = medical.internal.app.labeler.utils.readGTruthMedicalFromMATFile( filename );
+    elseif isfolder( input )
 
-else 
-input = validatestring( input, [ "Volume", "Image" ] );
-end 
+    else
+        input = validatestring( input, [ "Volume", "Image" ] );
+    end
 
 elseif isa( input, 'groundTruthMedical' )
 
-else 
-error( message( 'medical:medicalLabeler:invalidInput' ) );
-end 
+else
+    error( message( 'medical:medicalLabeler:invalidInput' ) );
+end
 
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpNUrxGn.p.
-% Please follow local copyright laws when handling this file.
+end
 

@@ -1,10 +1,10 @@
 function status = logData( identification, varargin )
 
-R36
+arguments
 
 identification( 1, 1 )matlab.ddux.internal.DataIdentification
 end 
-R36( Repeating )
+arguments( Repeating )
 
 
 

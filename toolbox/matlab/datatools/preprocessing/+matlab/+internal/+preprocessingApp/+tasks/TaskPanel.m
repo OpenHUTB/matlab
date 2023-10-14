@@ -74,7 +74,7 @@ obj.TabGroup.SelectionChangedFcn = @( e, d )obj.updateTab;
 end 
 
 function updateVisualization( obj, visScript, workspace )
-R36
+arguments
 obj
 visScript = ""
 workspace = "base"
@@ -95,7 +95,7 @@ axtoolbar( obj.Figure.CurrentAxes, { 'pan', 'restoreview', 'zoomin', 'zoomout' }
 end 
 
 function setTableData( obj, tableData, tableName, origTableData )
-R36
+arguments
 obj
 tableData{ matlab.internal.preprocessingApp.tabular.mustBeTabularOrNumericMatrix( tableData ) }
 tableName( 1, 1 )string

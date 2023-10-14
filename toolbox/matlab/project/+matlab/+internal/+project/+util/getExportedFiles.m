@@ -1,9 +1,6 @@
 function files = getExportedFiles( project, profile )
 
-
-
-
-R36
+arguments
 project( 1, 1 ){ mustBeA( project, [ "matlab.project.Project", "matlab.internal.project.api.Project" ] ) }
 profile( 1, 1 )string;
 end 
@@ -36,7 +33,3 @@ files = sort( string( cellstr( paths ) ) );
 end 
 
 end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpjin_If.p.
-% Please follow local copyright laws when handling this file.
-

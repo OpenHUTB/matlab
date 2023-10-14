@@ -1,2722 +1,2715 @@
 classdef View < handle & matlab.mixin.SetGet
 
+    properties ( Access = { ?uitest.factory.Tester, ?ViewLayer } )
 
+        Container medical.internal.app.labeler.view.Container
 
+        Toolstrip medical.internal.app.labeler.view.toolstrip.Toolstrip
 
-properties ( Access = { ?uitest.factory.Tester, ?ViewLayer } )
+        Pointer medical.internal.app.labeler.view.Pointer
 
-Container medical.internal.app.labeler.view.Container
+        Key medical.internal.app.labeler.view.Key
 
-Toolstrip medical.internal.app.labeler.view.toolstrip.Toolstrip
+        Dialog medical.internal.app.labeler.view.dialogs.Dialog
 
-Pointer medical.internal.app.labeler.view.Pointer
+        Slices
 
-Key medical.internal.app.labeler.view.Key
+        ROI
 
-Dialog medical.internal.app.labeler.view.dialogs.Dialog
+        VolumeRendering medical.internal.app.labeler.view.volumeRendering.VolumeRendering
 
-Slices
+        DataBrowser medical.internal.app.labeler.view.dataBrowser.DataBrowser
 
-ROI
+        LabelBrowser
 
-VolumeRendering medical.internal.app.labeler.view.volumeRendering.VolumeRendering
+        Publish
 
-DataBrowser medical.internal.app.labeler.view.dataBrowser.DataBrowser
+    end
 
-LabelBrowser
+    properties
 
-Publish
+        HasData
+        DataFormat
+        IsCurrentDataOblique( 1, 1 )logical = false;
 
-end 
+    end
 
-properties 
+    properties ( Access = protected )
 
-HasData
-DataFormat
-IsCurrentDataOblique( 1, 1 )logical = false;
+        HasDataInternal( 1, 1 )logical = false;
+        DataFormatInternal
+        SessionLocation = string.empty(  );
 
-end 
+    end
 
-properties ( Access = protected )
+    events
 
-HasDataInternal( 1, 1 )logical = false;
-DataFormatInternal
-SessionLocation = string.empty(  );
+        DataFormatUpdated
+        RefreshRecentSessions
 
-end 
+    end
 
-events 
+    methods
 
-DataFormatUpdated
-RefreshRecentSessions
 
-end 
+        function self = View( useDarkMode, varargin )
 
-methods 
 
+            if useDarkMode
+                s = settings;
+                s.matlab.appearance.MATLABTheme.TemporaryValue = 'Dark';
+            end
 
-function self = View( useDarkMode, varargin )
+            self.createComponents( useDarkMode, varargin{ : } );
+            self.wireupComponents(  );
 
+            addlistener( self.Container, 'AppResized', @( src, evt )self.resize(  ) );
 
-if useDarkMode
-s = settings;
-s.matlab.appearance.MATLABTheme.TemporaryValue = 'Dark';
-end 
+            self.resize(  );
+            drawnow
 
-self.createComponents( useDarkMode, varargin{ : } );
-self.wireupComponents(  );
+        end
 
-addlistener( self.Container, 'AppResized', @( src, evt )self.resize(  ) );
 
-self.resize(  );
-drawnow
+        function clear( self )
 
-end 
+            self.DataBrowser.clear(  );
+            if ~isempty( self.Slices )
+                self.Slices.clear(  );
+                self.Slices = [  ];
+            end
 
+            if ~isempty( self.ROI )
+                self.ROI.clear(  );
+                self.ROI = [  ];
+            end
 
-function clear( self )
+            self.LabelBrowser.clear(  );
+            self.LabelBrowser.showStartupMessage( true );
 
-self.DataBrowser.clear(  );
-if ~isempty( self.Slices )
-self.Slices.clear(  );
-self.Slices = [  ];
-end 
+            self.Toolstrip.enableLoadOnly(  );
+            self.Toolstrip.deselectPaintBySuperpixels(  );
 
-if ~isempty( self.ROI )
-self.ROI.clear(  );
-self.ROI = [  ];
-end 
+            if ~isempty( self.VolumeRendering )
+                self.VolumeRendering.clear(  );
+            end
+            self.Container.clearTitleBarName(  );
 
-self.LabelBrowser.clear(  );
-self.LabelBrowser.showStartupMessage( true );
 
-self.Toolstrip.enableLoadOnly(  );
-self.Toolstrip.deselectPaintBySuperpixels(  );
+            self.Container.showRenderingEditor( false );
+            self.Container.showPublishPanel( false );
 
-if ~isempty( self.VolumeRendering )
-self.VolumeRendering.clear(  );
-end 
-self.Container.clearTitleBarName(  );
+            self.HasData = false;
+            self.DataFormatInternal = [  ];
 
+        end
 
-self.Container.showRenderingEditor( false );
-self.Container.showPublishPanel( false );
 
-self.HasData = false;
-self.DataFormatInternal = [  ];
+        function setDataFormat( self, dataFormat )
+            self.DataFormat = dataFormat;
+        end
 
-end 
+    end
 
+    methods ( Access = protected )
 
-function setDataFormat( self, dataFormat )
-self.DataFormat = dataFormat;
-end 
+        function createComponents( self, useDarkMode, varargin )
 
-end 
 
-methods ( Access = protected )
+            self.Container = medical.internal.app.labeler.view.Container( useDarkMode );
+            self.Toolstrip = medical.internal.app.labeler.view.toolstrip.Toolstrip(  );
 
-function createComponents( self, useDarkMode, varargin )
 
+            tabGroups = self.Toolstrip.TabGroup;
+            self.Container.addTabGroup( tabGroups );
 
-self.Container = medical.internal.app.labeler.view.Container( useDarkMode );
-self.Toolstrip = medical.internal.app.labeler.view.toolstrip.Toolstrip(  );
+            self.canTheAppClose( false );
+            self.Container.openApp(  );
 
 
-tabGroups = self.Toolstrip.TabGroup;
-self.Container.addTabGroup( tabGroups );
 
-self.canTheAppClose( false );
-self.Container.openApp(  );
+            self.Container.wait(  );
 
+            self.Toolstrip.enableLoadOnly(  );
 
+            self.DataBrowser = medical.internal.app.labeler.view.dataBrowser.DataBrowser(  ...
+                self.Container.DataBrowserDocument.Figure );
 
-self.Container.wait(  );
+            self.Pointer = medical.internal.app.labeler.view.Pointer(  ...
+                self.Container.TransverseDocument.Figure,  ...
+                self.Container.CoronalDocument.Figure,  ...
+                self.Container.SagittalDocument.Figure,  ...
+                self.Container.VolumeDocument.Figure,  ...
+                self.Container.LabelBrowserDocument.Figure,  ...
+                self.Container.DataBrowserDocument.Figure );
 
-self.Toolstrip.enableLoadOnly(  );
+            self.Key = medical.internal.app.labeler.view.Key(  ...
+                self.Container.TransverseDocument.Figure,  ...
+                self.Container.CoronalDocument.Figure,  ...
+                self.Container.SagittalDocument.Figure,  ...
+                self.Container.VolumeDocument.Figure,  ...
+                self.Container.LabelBrowserDocument.Figure,  ...
+                self.Container.DataBrowserDocument.Figure );
 
-self.DataBrowser = medical.internal.app.labeler.view.dataBrowser.DataBrowser(  ...
-self.Container.DataBrowserDocument.Figure );
+            self.Dialog = medical.internal.app.labeler.view.dialogs.Dialog( useDarkMode );
+            self.LabelBrowser = medical.internal.app.labeler.view.labelBrowser.LabelBrowser( self.Container.LabelBrowserDocument.Figure );
+            self.Publish = medical.internal.app.labeler.view.Publish( self.Container.PublishDocument.Figure );
 
-self.Pointer = medical.internal.app.labeler.view.Pointer(  ...
-self.Container.TransverseDocument.Figure,  ...
-self.Container.CoronalDocument.Figure,  ...
-self.Container.SagittalDocument.Figure,  ...
-self.Container.VolumeDocument.Figure,  ...
-self.Container.LabelBrowserDocument.Figure,  ...
-self.Container.DataBrowserDocument.Figure );
+        end
 
-self.Key = medical.internal.app.labeler.view.Key(  ...
-self.Container.TransverseDocument.Figure,  ...
-self.Container.CoronalDocument.Figure,  ...
-self.Container.SagittalDocument.Figure,  ...
-self.Container.VolumeDocument.Figure,  ...
-self.Container.LabelBrowserDocument.Figure,  ...
-self.Container.DataBrowserDocument.Figure );
 
-self.Dialog = medical.internal.app.labeler.view.dialogs.Dialog( useDarkMode );
-self.LabelBrowser = medical.internal.app.labeler.view.labelBrowser.LabelBrowser( self.Container.LabelBrowserDocument.Figure );
-self.Publish = medical.internal.app.labeler.view.Publish( self.Container.PublishDocument.Figure );
+        function createSlices( self )
 
-end 
+            if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
 
+                self.Slices = medical.internal.app.labeler.view.sliceView.SliceViewsVolume(  ...
+                    self.Container.TransverseDocument.Figure,  ...
+                    self.Container.CoronalDocument.Figure,  ...
+                    self.Container.SagittalDocument.Figure );
 
-function createSlices( self )
+            else
 
-if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
+                self.Slices = medical.internal.app.labeler.view.sliceView.SliceViewsImage(  ...
+                    self.Container.TransverseDocument.Figure );
 
-self.Slices = medical.internal.app.labeler.view.sliceView.SliceViewsVolume(  ...
-self.Container.TransverseDocument.Figure,  ...
-self.Container.CoronalDocument.Figure,  ...
-self.Container.SagittalDocument.Figure );
+            end
 
-else 
+        end
 
-self.Slices = medical.internal.app.labeler.view.sliceView.SliceViewsImage(  ...
-self.Container.TransverseDocument.Figure );
 
-end 
+        function createROI( self )
 
-end 
+            if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
+                self.ROI = medical.internal.app.labeler.view.roi.ROIVolume(  );
+            else
+                self.ROI = medical.internal.app.labeler.view.roi.ROIImage(  );
+            end
 
+        end
 
-function createROI( self )
 
-if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
-self.ROI = medical.internal.app.labeler.view.roi.ROIVolume(  );
-else 
-self.ROI = medical.internal.app.labeler.view.roi.ROIImage(  );
-end 
+        function createVolumeRendering( self )
 
-end 
+            show3DDisplay = images.ui.graphics3d.internal.isViewer3DSupported(  );
 
+            self.VolumeRendering = medical.internal.app.labeler.view.volumeRendering.VolumeRendering(  ...
+                self.Container.VolumeDocument.Figure, self.Container.RenderingEditorDocument.Figure, show3DDisplay );
 
-function createVolumeRendering( self )
+            if ~show3DDisplay
+                self.Toolstrip.disableVolumeRendering(  );
+                self.warning( getString( message( 'images:volume:webGL2NotSupported' ) ) );
+            end
 
-show3DDisplay = images.ui.graphics3d.internal.isViewer3DSupported(  );
+            color = self.VolumeRendering.getVolumeBackgroundColor(  );
+            self.Toolstrip.setBackgroundColor( color );
+            set( self.Container.VolumeDocument.Figure, 'Color', [ 0, 0, 0 ] );
 
-self.VolumeRendering = medical.internal.app.labeler.view.volumeRendering.VolumeRendering(  ...
-self.Container.VolumeDocument.Figure, self.Container.RenderingEditorDocument.Figure, show3DDisplay );
+            color = self.VolumeRendering.getVolumeGradientColor(  );
+            self.Toolstrip.setGradientColor( color );
 
-if ~show3DDisplay
-self.Toolstrip.disableVolumeRendering(  );
-self.warning( getString( message( 'images:volume:webGL2NotSupported' ) ) );
-end 
+        end
+    end
 
-color = self.VolumeRendering.getVolumeBackgroundColor(  );
-self.Toolstrip.setBackgroundColor( color );
-set( self.Container.VolumeDocument.Figure, 'Color', [ 0, 0, 0 ] );
+    methods ( Access = protected )
 
-color = self.VolumeRendering.getVolumeGradientColor(  );
-self.Toolstrip.setGradientColor( color );
+        function wireupComponents( self )
 
-end 
-end 
+            addContainerListeners( self );
+            addToolstripListeners( self );
+            addDataBrowserListeners( self );
+            addDialogListeners( self );
+            addKeyListeners( self );
+            addPointerListeners( self );
+            addLabelsListeners( self );
+            addPuslishListeners( self );
 
-methods ( Access = protected )
+        end
 
-function wireupComponents( self )
 
-addContainerListeners( self );
-addToolstripListeners( self );
-addDataBrowserListeners( self );
-addDialogListeners( self );
-addKeyListeners( self );
-addPointerListeners( self );
-addLabelsListeners( self );
-addPuslishListeners( self );
+        function wireupSlices( self )
 
-end 
+            addSliceListeners( self );
 
+        end
 
-function wireupSlices( self )
 
-addSliceListeners( self );
+        function wireupROI( self )
 
-end 
+            addROIListeners( self );
 
+        end
 
-function wireupROI( self )
 
-addROIListeners( self );
+        function wireupVolumeRendering( self )
 
-end 
+            addVolumeRenderingListeners( self );
 
+        end
+    end
 
-function wireupVolumeRendering( self )
 
-addVolumeRenderingListeners( self );
+    methods
 
-end 
-end 
 
+        function hasData = get.HasData( self )
+            hasData = self.HasDataInternal;
+        end
 
-methods 
+        function set.HasData( self, TF )
+            self.HasDataInternal = TF;
+        end
 
 
-function hasData = get.HasData( self )
-hasData = self.HasDataInternal;
-end 
+        function set.DataFormat( self, dataFormat )
 
-function set.HasData( self, TF )
-self.HasDataInternal = TF;
-end 
+            self.canTheAppClose( false );
+            c = onCleanup( @(  )self.canTheAppClose( true ) );
 
+            self.DataFormatInternal = dataFormat;
 
-function set.DataFormat( self, dataFormat )
+            if self.HasData
+                self.clear(  );
+            end
 
-self.canTheAppClose( false );
-c = onCleanup( @(  )self.canTheAppClose( true ) );
+            evt = medical.internal.app.labeler.events.ValueEventData( self.DataFormatInternal );
+            self.notify( 'DataFormatUpdated', evt )
 
-self.DataFormatInternal = dataFormat;
+            self.Container.setup( dataFormat );
+            self.Toolstrip.setup( dataFormat );
+            self.Publish.setup( dataFormat );
 
-if self.HasData
-self.clear(  );
-end 
 
-evt = medical.internal.app.labeler.events.ValueEventData( self.DataFormatInternal );
-self.notify( 'DataFormatUpdated', evt )
+            self.createSlices(  );
+            self.createROI(  );
+            self.wireupSlices(  );
+            self.wireupROI(  );
 
-self.Container.setup( dataFormat );
-self.Toolstrip.setup( dataFormat );
-self.Publish.setup( dataFormat );
+            if dataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
 
 
-self.createSlices(  );
-self.createROI(  );
-self.wireupSlices(  );
-self.wireupROI(  );
+                if isempty( self.VolumeRendering )
+                    self.createVolumeRendering(  );
+                    self.wireupVolumeRendering(  );
+                end
 
-if dataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
+                [ transverseIm, coronalIm, sagittalIm ] = self.Slices.getImageHandles(  );
+                self.ROI.preload( transverseIm, coronalIm, sagittalIm );
 
+            else
 
-if isempty( self.VolumeRendering )
-self.createVolumeRendering(  );
-self.wireupVolumeRendering(  );
-end 
+                sliceIm = self.Slices.getImageHandles(  );
+                self.ROI.preload( sliceIm );
 
-[ transverseIm, coronalIm, sagittalIm ] = self.Slices.getImageHandles(  );
-self.ROI.preload( transverseIm, coronalIm, sagittalIm );
+            end
 
-else 
+            self.requestToRefreshRecentSessions(  );
 
-sliceIm = self.Slices.getImageHandles(  );
-self.ROI.preload( sliceIm );
+        end
 
-end 
+        function dataFormat = get.DataFormat( self )
+            dataFormat = self.DataFormatInternal;
+        end
 
-self.requestToRefreshRecentSessions(  );
 
-end 
+        function set.IsCurrentDataOblique( self, TF )
 
-function dataFormat = get.DataFormat( self )
-dataFormat = self.DataFormatInternal;
-end 
+            self.IsCurrentDataOblique = TF;
+            self.Toolstrip.setIsCurrentDataOblique( TF );%#ok<*MCSUP>
+            self.Container.setIsCurrentDataOblique( TF );
+            self.Publish.setIsCurrentDataOblique( TF );
 
+            if TF
+                self.Slices.showOrientationMarkers( false );
+            else
+                if self.Toolstrip.ShowOrientationMarkers
+                    self.Slices.showOrientationMarkers( true );
+                else
+                    self.Slices.showOrientationMarkers( false );
+                end
+            end
 
-function set.IsCurrentDataOblique( self, TF )
+        end
 
-self.IsCurrentDataOblique = TF;
-self.Toolstrip.setIsCurrentDataOblique( TF );%#ok<*MCSUP> 
-self.Container.setIsCurrentDataOblique( TF );
-self.Publish.setIsCurrentDataOblique( TF );
+        function isOblique = get.IsCurrentDataOblique( self )
+            isOblique = self.IsCurrentDataOblique;
+        end
 
-if TF
-self.Slices.showOrientationMarkers( false );
-else 
-if self.Toolstrip.ShowOrientationMarkers
-self.Slices.showOrientationMarkers( true );
-else 
-self.Slices.showOrientationMarkers( false );
-end 
-end 
+    end
 
-end 
 
-function isOblique = get.IsCurrentDataOblique( self )
-isOblique = self.IsCurrentDataOblique;
-end 
 
-end 
 
 
 
 
 
 
+    events
 
 
 
-events 
+        AppCleared
 
 
+        AppClosed
 
-AppCleared
+        UndoRequested
 
+        RedoRequested
 
-AppClosed
+    end
 
-UndoRequested
+    methods
 
-RedoRequested
 
-end 
+        function setBusy( self, TF )
 
-methods 
+            if TF
+                self.Container.wait(  );
+            else
+                self.Container.resume(  );
+            end
 
+        end
 
-function setBusy( self, TF )
 
-if TF
-self.Container.wait(  );
-else 
-self.Container.resume(  );
-end 
+        function enableUndoRedo( self, canUndo, canRedo )
 
-end 
+            enableUndo( self.Container, canUndo );
+            enableRedo( self.Container, canRedo );
 
+        end
 
-function enableUndoRedo( self, canUndo, canRedo )
 
-enableUndo( self.Container, canUndo );
-enableRedo( self.Container, canRedo );
+        function markSessionAsUnsaved( self )
 
-end 
+            self.Container.addTitleBarAsterisk(  );
+            self.Toolstrip.markSaveAsDirty(  );
 
+        end
 
-function markSessionAsUnsaved( self )
 
-self.Container.addTitleBarAsterisk(  );
-self.Toolstrip.markSaveAsDirty(  );
+        function markSessionAsSaved( self )
 
-end 
+            self.Container.removeTitleBarAsterisk(  );
+            self.Toolstrip.markSaveAsClean(  );
 
+        end
 
-function markSessionAsSaved( self )
 
-self.Container.removeTitleBarAsterisk(  );
-self.Toolstrip.markSaveAsClean(  );
+        function updateVoxelInfo( self, position, intensity, index, sliceDirection )
+            self.Container.updateVoxelInfo( position, intensity, index, sliceDirection );
+        end
 
-end 
 
+        function setSessionLocation( self, folderPath )
+            self.Container.setTitleBarName( folderPath );
+            self.SessionLocation = folderPath;
+        end
 
-function updateVoxelInfo( self, position, intensity, index, sliceDirection )
-self.Container.updateVoxelInfo( position, intensity, index, sliceDirection );
-end 
 
+        function canTheAppClose( self, TF )
+            self.Container.CanClose = TF;
+        end
 
-function setSessionLocation( self, folderPath )
-self.Container.setTitleBarName( folderPath );
-self.SessionLocation = folderPath;
-end 
+    end
 
+    methods ( Access = protected )
 
-function canTheAppClose( self, TF )
-self.Container.CanClose = TF;
-end 
 
-end 
+        function addContainerListeners( self )
 
-methods ( Access = protected )
+            addlistener( self.Container, 'AppClosed', @( src, evt )closeApp( self ) );
+            addlistener( self.Container, 'SelectedDocumentChanged', @( src, evt )reactToSelectedDocumentChanged( self, evt.Value ) );
+            addlistener( self.Container, 'UndoRequested', @( src, evt )reactToUndoRequest( self ) );
+            addlistener( self.Container, 'RedoRequested', @( src, evt )reactToRedoRequest( self ) );
+            addlistener( self.Container, 'HelpRequested', @( src, evt )doc( 'medicalImageLabeler' ) );
 
+        end
 
-function addContainerListeners( self )
 
-addlistener( self.Container, 'AppClosed', @( src, evt )closeApp( self ) );
-addlistener( self.Container, 'SelectedDocumentChanged', @( src, evt )reactToSelectedDocumentChanged( self, evt.Value ) );
-addlistener( self.Container, 'UndoRequested', @( src, evt )reactToUndoRequest( self ) );
-addlistener( self.Container, 'RedoRequested', @( src, evt )reactToRedoRequest( self ) );
-addlistener( self.Container, 'HelpRequested', @( src, evt )doc( 'medicalImageLabeler' ) );
+        function resize( self )
 
-end 
+            if ~isvalid( self ) || ~isvalid( self.Container.TransverseDocument.Figure )
+                return
+            end
 
+            self.LabelBrowser.resize( [ 1, 1, self.Container.LabelBrowserDocument.Figure.Position( 3:4 ) ] );
 
-function resize( self )
+            if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
 
-if ~isvalid( self ) || ~isvalid( self.Container.TransverseDocument.Figure )
-return 
-end 
+                if ~isempty( self.Slices ) && isvalid( self.Slices )
+                    self.Slices.resize(  ...
+                        self.Container.TransverseDocument.Figure.Position,  ...
+                        self.Container.CoronalDocument.Figure.Position,  ...
+                        self.Container.SagittalDocument.Figure.Position );
+                end
 
-self.LabelBrowser.resize( [ 1, 1, self.Container.LabelBrowserDocument.Figure.Position( 3:4 ) ] );
+            elseif self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Image
 
-if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
+                if ~isempty( self.Slices ) && isvalid( self.Slices )
+                    self.Slices.resize( self.Container.TransverseDocument.Figure.Position );
+                end
 
-if ~isempty( self.Slices ) && isvalid( self.Slices )
-self.Slices.resize(  ...
-self.Container.TransverseDocument.Figure.Position,  ...
-self.Container.CoronalDocument.Figure.Position,  ...
-self.Container.SagittalDocument.Figure.Position );
-end 
+            end
 
-elseif self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Image
+        end
 
-if ~isempty( self.Slices ) && isvalid( self.Slices )
-self.Slices.resize( self.Container.TransverseDocument.Figure.Position );
-end 
 
-end 
+        function closeApp( self )
 
-end 
+            if ~isvalid( self )
+                return
+            end
 
+            if self.HasData
+                self.requestToSaveSession(  )
+            end
 
-function closeApp( self )
+            self.notify( 'AppClosed' );
 
-if ~isvalid( self )
-return 
-end 
+            delete( self.Toolstrip );
+            delete( self.VolumeRendering );
 
-if self.HasData
-self.requestToSaveSession(  )
-end 
+        end
 
-self.notify( 'AppClosed' );
 
-delete( self.Toolstrip );
-delete( self.VolumeRendering );
+        function reactToRenderingEditorToggle( self, TF )
+            self.Container.showRenderingEditor( TF );
+        end
 
-end 
 
+        function reactToPublishPanelToggle( self, TF )
+            self.Container.showPublishPanel( TF );
+        end
 
-function reactToRenderingEditorToggle( self, TF )
-self.Container.showRenderingEditor( TF );
-end 
 
+        function reactToUndoRequest( self )
 
-function reactToPublishPanelToggle( self, TF )
-self.Container.showPublishPanel( TF );
-end 
+            deselectAll( self.ROI );
+            notify( self, 'UndoRequested' )
 
+        end
 
-function reactToUndoRequest( self )
 
-deselectAll( self.ROI );
-notify( self, 'UndoRequested' )
+        function reactToRedoRequest( self )
 
-end 
+            deselectAll( self.ROI );
+            notify( self, 'RedoRequested' )
 
+        end
 
-function reactToRedoRequest( self )
+    end
 
-deselectAll( self.ROI );
-notify( self, 'RedoRequested' )
 
-end 
 
-end 
 
+    events
 
+        ReadDataRequested
 
+        CopyDataLocationRequested
+        CopyLabelLocationRequested
 
-events 
+        RemoveDataRequested
+        RemoveLabelsRequested
 
-ReadDataRequested
+    end
 
-CopyDataLocationRequested
-CopyLabelLocationRequested
+    methods
 
-RemoveDataRequested
-RemoveLabelsRequested
 
-end 
+        function addToDataBrowser( self, dataName, hasLabels )
+            self.DataBrowser.add( dataName, hasLabels );
+        end
 
-methods 
 
+        function updateLabelStatus( self, dataName, hasLabels )
+            self.DataBrowser.updateLabelStatus( dataName, hasLabels );
+        end
 
-function addToDataBrowser( self, dataName, hasLabels )
-self.DataBrowser.add( dataName, hasLabels );
-end 
+    end
 
+    methods ( Access = private )
 
-function updateLabelStatus( self, dataName, hasLabels )
-self.DataBrowser.updateLabelStatus( dataName, hasLabels );
-end 
 
-end 
+        function addDataBrowserListeners( self )
 
-methods ( Access = private )
+            addlistener( self.DataBrowser, 'ReadDataRequested', @( src, evt )self.reactToReadDataRequest( evt ) );
+            addlistener( self.DataBrowser, 'CopyDataLocationRequested', @( src, evt )self.notify( 'CopyDataLocationRequested', evt ) );
+            addlistener( self.DataBrowser, 'CopyLabelLocationRequested', @( src, evt )self.notify( 'CopyLabelLocationRequested', evt ) );
+            addlistener( self.DataBrowser, 'RemoveDataRequested', @( src, evt )self.reactToRemoveDataRequest( evt ) );
+            addlistener( self.DataBrowser, 'RemoveLabelsRequested', @( src, evt )self.reactToRemoveLabelsRequest( evt ) );
 
+        end
 
-function addDataBrowserListeners( self )
 
-addlistener( self.DataBrowser, 'ReadDataRequested', @( src, evt )self.reactToReadDataRequest( evt ) );
-addlistener( self.DataBrowser, 'CopyDataLocationRequested', @( src, evt )self.notify( 'CopyDataLocationRequested', evt ) );
-addlistener( self.DataBrowser, 'CopyLabelLocationRequested', @( src, evt )self.notify( 'CopyLabelLocationRequested', evt ) );
-addlistener( self.DataBrowser, 'RemoveDataRequested', @( src, evt )self.reactToRemoveDataRequest( evt ) );
-addlistener( self.DataBrowser, 'RemoveLabelsRequested', @( src, evt )self.reactToRemoveLabelsRequest( evt ) );
+        function reactToReadDataRequest( self, evt )
 
-end 
+            wait( self.Container );
+            c = onCleanup( @(  )resume( self.Container ) );
 
+            if self.Toolstrip.AutoSave
+                self.requestToSaveSession(  );
+            end
 
-function reactToReadDataRequest( self, evt )
+            self.notify( 'ReadDataRequested', evt );
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+            if self.Toolstrip.IsSuperPixelsActive
+                sz = self.Toolstrip.getPaintBrushSize(  );
+                self.paintBySuperpixels( sz, [  ] )
+            end
 
-if self.Toolstrip.AutoSave
-self.requestToSaveSession(  );
-end 
+        end
 
-self.notify( 'ReadDataRequested', evt );
 
-if self.Toolstrip.IsSuperPixelsActive
-sz = self.Toolstrip.getPaintBrushSize(  );
-self.paintBySuperpixels( sz, [  ] )
-end 
+        function reactToRemoveDataRequest( self, evt )
 
-end 
+            question = getString( message( 'medical:medicalLabeler:removeDataQuestion' ) );
+            title = getString( message( 'medical:medicalLabeler:removeData' ) );
+            isCanceled = self.Dialog.askQuestion( self.Container.App, question, title );
 
+            if isCanceled
+                return
+            end
 
-function reactToRemoveDataRequest( self, evt )
+            self.DataBrowser.remove( evt.Value );
+            self.notify( 'RemoveDataRequested', evt );
 
-question = getString( message( 'medical:medicalLabeler:removeDataQuestion' ) );
-title = getString( message( 'medical:medicalLabeler:removeData' ) );
-isCanceled = self.Dialog.askQuestion( self.Container.App, question, title );
+            if self.DataBrowser.NumEntries == 0
 
-if isCanceled
-return 
-end 
+                if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
+                    self.newVolumeSessionRequested(  );
+                else
+                    self.newImageSessionRequested(  );
+                end
 
-self.DataBrowser.remove( evt.Value );
-self.notify( 'RemoveDataRequested', evt );
+            end
 
-if self.DataBrowser.NumEntries == 0
+        end
 
-if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
-self.newVolumeSessionRequested(  );
-else 
-self.newImageSessionRequested(  );
-end 
 
-end 
+        function reactToRemoveLabelsRequest( self, evt )
 
-end 
+            question = getString( message( 'medical:medicalLabeler:removeLabelsQuestion', evt.Value ) );
+            title = getString( message( 'medical:medicalLabeler:removeLabels' ) );
+            isCanceled = self.Dialog.askQuestion( self.Container.App, question, title );
 
+            if isCanceled
+                return
+            end
 
-function reactToRemoveLabelsRequest( self, evt )
+            self.notify( 'RemoveLabelsRequested', evt );
 
-question = getString( message( 'medical:medicalLabeler:removeLabelsQuestion', evt.Value ) );
-title = getString( message( 'medical:medicalLabeler:removeLabels' ) );
-isCanceled = self.Dialog.askQuestion( self.Container.App, question, title );
+        end
 
-if isCanceled
-return 
-end 
+    end
 
-self.notify( 'RemoveLabelsRequested', evt );
 
-end 
 
-end 
 
+    events
+        LabelDataLocationSet
 
 
 
-events 
-LabelDataLocationSet
+        SliceAtIndexRequestedForDialog
 
 
 
-SliceAtIndexRequestedForDialog
+        SummaryRequestedForDialog
 
 
 
-SummaryRequestedForDialog
+        InterpolateManually
 
+    end
 
+    methods
 
-InterpolateManually
 
-end 
+        function error( self, msg )
+            title = getString( message( 'medical:medicalLabeler:error' ) );
+            self.Dialog.displayError( self.Container.App, msg, title );
+        end
 
-methods 
 
+        function warning( self, msg )
+            title = getString( message( 'medical:medicalLabeler:warning' ) );
+            self.Dialog.displayWarning( self.Container.App, msg, title );
+        end
 
-function error( self, msg )
-title = getString( message( 'medical:medicalLabeler:error' ) );
-self.Dialog.displayError( self.Container.App, msg, title );
-end 
 
+        function startWaitBar( self, title, msg )
 
-function warning( self, msg )
-title = getString( message( 'medical:medicalLabeler:warning' ) );
-self.Dialog.displayWarning( self.Container.App, msg, title );
-end 
+            arguments
+                self
+                title
+                msg = ''
+            end
 
+            self.Dialog.startWaitBar( self.Container.App, title, msg );
+        end
 
-function startWaitBar( self, title, msg )
 
-R36
-self
-title
-msg = ''
-end 
+        function clearWaitBar( self )
+            self.Dialog.clearWaitBar(  );
+        end
 
-self.Dialog.startWaitBar( self.Container.App, title, msg );
-end 
 
+        function displayShortcuts( self )
+            loc = self.Container.getLocation(  );
+            self.Dialog.displayShortcuts( loc );
+        end
 
-function clearWaitBar( self )
-self.Dialog.clearWaitBar(  );
-end 
 
+        function displayAutomationHelp( self )
+            loc = self.Container.getLocation(  );
+            self.Dialog.displayAutomationHelp( loc, self.DataFormat );
+        end
 
-function displayShortcuts( self )
-loc = self.Container.getLocation(  );
-self.Dialog.displayShortcuts( loc );
-end 
 
+        function manuallyInterpolate( self )
 
-function displayAutomationHelp( self )
-loc = self.Container.getLocation(  );
-self.Dialog.displayAutomationHelp( loc, self.DataFormat );
-end 
+            wait( self.Container );
 
+            sliceDir = self.Slices.LastActiveSliceDirection;
+            idx = self.ROI.getSliceIndex( sliceDir );
+            pixSize = self.Slices.getPixelSize( sliceDir );
 
-function manuallyInterpolate( self )
+            dlgLoc = self.Container.getLocation(  );
 
-wait( self.Container );
+            [ roi, val, mask ] = self.ROI.getSelection( sliceDir );
+            rotationState = 1;
 
-sliceDir = self.Slices.LastActiveSliceDirection;
-idx = self.ROI.getSliceIndex( sliceDir );
-pixSize = self.Slices.getPixelSize( sliceDir );
+            [ pos1, pos2, idx1, idx2, val, interpSliceDir, isCanceled ] = self.Dialog.displayRegionSelector( dlgLoc,  ...
+                self.Toolstrip.getLabelOpacity(  ), im2single( self.Slices.ContrastLimits ), rotationState,  ...
+                roi, val, mask, idx, self.IsCurrentDataOblique, pixSize, sliceDir );
 
-dlgLoc = self.Container.getLocation(  );
+            if ~isvalid( self )
+                return ;
+            end
 
-[ roi, val, mask ] = self.ROI.getSelection( sliceDir );
-rotationState = 1;
+            resume( self.Container );
 
-[ pos1, pos2, idx1, idx2, val, interpSliceDir, isCanceled ] = self.Dialog.displayRegionSelector( dlgLoc,  ...
-self.Toolstrip.getLabelOpacity(  ), im2single( self.Slices.ContrastLimits ), rotationState,  ...
-roi, val, mask, idx, self.IsCurrentDataOblique, pixSize, sliceDir );
+            if ~isCanceled
 
-if ~isvalid( self )
-return ;
-end 
+                deselectAll( self.ROI );
+                evt = images.internal.app.segmenter.volume.events.ROIInterpolatedEventData( pos1, pos2, val, idx1, idx2 );
+                evt.SliceDirection = interpSliceDir;
+                notify( self, 'InterpolateManually', evt );
 
-resume( self.Container );
+            end
 
-if ~isCanceled
+        end
 
-deselectAll( self.ROI );
-evt = images.internal.app.segmenter.volume.events.ROIInterpolatedEventData( pos1, pos2, val, idx1, idx2 );
-evt.SliceDirection = interpSliceDir;
-notify( self, 'InterpolateManually', evt );
 
-end 
+        function reassignLabels( self, names, idx, sliceDir )
 
-end 
+            if numel( names ) > 1
 
+                wait( self.Container );
 
-function reassignLabels( self, names, idx, sliceDir )
+                title = getString( message( 'images:segmenter:reassignDialogTitle' ) );
+                msg = getString( message( 'images:segmenter:reassignDialogMessage' ) );
+                loc = self.Container.getLocation(  );
+                name = self.Dialog.displayFilter( loc, title, msg, cellstr( names ) );
 
-if numel( names ) > 1
+                if ~isvalid( self )
+                    return ;
+                end
 
-wait( self.Container );
+                resume( self.Container );
 
-title = getString( message( 'images:segmenter:reassignDialogTitle' ) );
-msg = getString( message( 'images:segmenter:reassignDialogMessage' ) );
-loc = self.Container.getLocation(  );
-name = self.Dialog.displayFilter( loc, title, msg, cellstr( names ) );
+                if ~isempty( name )
 
-if ~isvalid( self )
-return ;
-end 
+                    evt = images.internal.app.segmenter.volume.events.ROIEventData(  ...
+                        self.ROI.getReassignmentMask( sliceDir ), name, logical.empty, 0 );
+                    evt.SliceIdx = idx;
+                    evt.SliceDirection = sliceDir;
 
-resume( self.Container );
+                    notify( self, 'RegionDrawn', evt );
 
-if ~isempty( name )
+                end
 
-evt = images.internal.app.segmenter.volume.events.ROIEventData(  ...
-self.ROI.getReassignmentMask( sliceDir ), name, logical.empty, 0 );
-evt.SliceIdx = idx;
-evt.SliceDirection = sliceDir;
+            end
 
-notify( self, 'RegionDrawn', evt );
+        end
 
-end 
 
-end 
+        function sliceAtIndexProvidedForDialog( self, vol, labels, cmap, idx, maxIdx )
 
-end 
 
+            self.Dialog.updateRegionSelector( vol, labels, cmap, idx, maxIdx );
 
-function sliceAtIndexProvidedForDialog( self, vol, labels, cmap, idx, maxIdx )
+        end
 
 
-self.Dialog.updateRegionSelector( vol, labels, cmap, idx, maxIdx );
+        function updateDialogSummary( self, data, color )
+            self.Dialog.updateDialogSummary( data, color );
+        end
 
-end 
 
+        function updateDataLoadingProgessDialog( self, tempDataName )
+            msg = getString( message( 'medical:medicalLabeler:importing' ) );
+            msg = strcat( msg, " ", tempDataName );
+            self.Dialog.updateWaitBarMessage( msg )
+        end
 
-function updateDialogSummary( self, data, color )
-self.Dialog.updateDialogSummary( data, color );
-end 
+    end
 
+    methods ( Access = private )
 
-function updateDataLoadingProgessDialog( self, tempDataName )
-msg = getString( message( 'medical:medicalLabeler:importing' ) );
-msg = strcat( msg, " ", tempDataName );
-self.Dialog.updateWaitBarMessage( msg )
-end 
 
-end 
+        function addDialogListeners( self )
 
-methods ( Access = private )
+            addlistener( self.Dialog, 'BringAppToFront', @( src, evt )self.Container.bringToFront(  ) );
 
 
-function addDialogListeners( self )
+            addlistener( self.Dialog, 'SliceAtIndexRequested', @( src, evt )notify( self, 'SliceAtIndexRequestedForDialog', evt ) );
+            addlistener( self.Dialog, 'UpdateDialogSummary', @( src, evt )notify( self, 'SummaryRequestedForDialog', evt ) );
+            addlistener( self.Dialog, 'ThrowError', @( src, evt )error( self, evt.Message ) );
 
-addlistener( self.Dialog, 'BringAppToFront', @( src, evt )self.Container.bringToFront(  ) );
+        end
 
+    end
 
-addlistener( self.Dialog, 'SliceAtIndexRequested', @( src, evt )notify( self, 'SliceAtIndexRequestedForDialog', evt ) );
-addlistener( self.Dialog, 'UpdateDialogSummary', @( src, evt )notify( self, 'SummaryRequestedForDialog', evt ) );
-addlistener( self.Dialog, 'ThrowError', @( src, evt )error( self, evt.Message ) );
 
-end 
 
-end 
 
+    methods ( Access = protected )
 
 
+        function reactToKeyPress( self, evt )
 
-methods ( Access = protected )
+            if ~self.HasData
+                return
+            end
 
+            if self.ROI.getIsUserDrawing
 
-function reactToKeyPress( self, evt )
+                switch evt.Key
 
-if ~self.HasData
-return 
-end 
+                    case 'ctrl+'
+                        self.Slices.zoomIn(  );
+                    case 'ctrl-'
+                        self.Slices.zoomOut(  );
+                    case 'panup'
+                        self.Slices.pan( 'up' );
+                    case 'pandown'
+                        self.Slices.pan( 'down' );
+                    case 'panleft'
+                        self.Slices.pan( 'left' );
+                    case 'panright'
+                        self.Slices.pan( 'right' );
 
-if self.ROI.getIsUserDrawing
+                end
 
-switch evt.Key
+            else
 
-case 'ctrl+'
-self.Slices.zoomIn(  );
-case 'ctrl-'
-self.Slices.zoomOut(  );
-case 'panup'
-self.Slices.pan( 'up' );
-case 'pandown'
-self.Slices.pan( 'down' );
-case 'panleft'
-self.Slices.pan( 'left' );
-case 'panright'
-self.Slices.pan( 'right' );
+                switch evt.Key
 
-end 
+                    case 'ctrla'
+                        sliceDir = self.Slices.LastActiveSliceDirection;
+                        idx = self.ROI.getSliceIndex( sliceDir );
+                        evt = medical.internal.app.labeler.events.SliceEventData( idx, sliceDir );
+                        self.notify( 'LocationSelected', evt );
 
-else 
+                    case 'ctrlc'
+                        self.ROI.copy( self.Slices.LastActiveSliceDirection );
+                    case 'ctrls'
+                        self.requestToSaveSession(  );
+                    case 'ctrlv'
+                        self.ROI.paste( self.Slices.LastActiveSliceDirection );
+                    case 'ctrlx'
+                        self.ROI.cut( self.Slices.LastActiveSliceDirection )
+                    case 'ctrly'
+                        self.reactToRedoRequest(  );
+                    case 'ctrlz'
+                        self.reactToUndoRequest(  );
+                    case 'down'
+                        self.LabelBrowser.down(  );
+                    case 'up'
+                        self.LabelBrowser.up(  );
+                    case 'left'
+                        if ~strcmp( self.Pointer.ActivePanel, 'EntryPanel' )
+                            self.Slices.previousSlice( self.Slices.LastActiveSliceDirection );
+                        end
+                    case 'right'
+                        if ~strcmp( self.Pointer.ActivePanel, 'EntryPanel' )
+                            self.Slices.nextSlice( self.Slices.LastActiveSliceDirection );
+                        end
+                    case 'delete'
+                        self.ROI.deleteSelected( self.Slices.LastActiveSliceDirection );
+                    case 'ctrl+'
+                        self.Slices.zoomIn(  );
+                    case 'ctrl-'
+                        self.Slices.zoomOut(  );
+                    case { 'return', 'escape' }
+                        self.ROI.deselectAll(  );
+                    case 'panup'
+                        self.Slices.pan( 'up' );
+                    case 'pandown'
+                        self.Slices.pan( 'down' );
+                    case 'panleft'
+                        self.Slices.pan( 'left' );
+                    case 'panright'
+                        self.Slices.pan( 'right' );
+                    case 'windowLevelOn'
+                        self.Slices.EnableWindowLevel = true;
+                end
 
-switch evt.Key
+            end
 
-case 'ctrla'
-sliceDir = self.Slices.LastActiveSliceDirection;
-idx = self.ROI.getSliceIndex( sliceDir );
-evt = medical.internal.app.labeler.events.SliceEventData( idx, sliceDir );
-self.notify( 'LocationSelected', evt );
+        end
 
-case 'ctrlc'
-self.ROI.copy( self.Slices.LastActiveSliceDirection );
-case 'ctrls'
-self.requestToSaveSession(  );
-case 'ctrlv'
-self.ROI.paste( self.Slices.LastActiveSliceDirection );
-case 'ctrlx'
-self.ROI.cut( self.Slices.LastActiveSliceDirection )
-case 'ctrly'
-self.reactToRedoRequest(  );
-case 'ctrlz'
-self.reactToUndoRequest(  );
-case 'down'
-self.LabelBrowser.down(  );
-case 'up'
-self.LabelBrowser.up(  );
-case 'left'
-if ~strcmp( self.Pointer.ActivePanel, 'EntryPanel' )
-self.Slices.previousSlice( self.Slices.LastActiveSliceDirection );
-end 
-case 'right'
-if ~strcmp( self.Pointer.ActivePanel, 'EntryPanel' )
-self.Slices.nextSlice( self.Slices.LastActiveSliceDirection );
-end 
-case 'delete'
-self.ROI.deleteSelected( self.Slices.LastActiveSliceDirection );
-case 'ctrl+'
-self.Slices.zoomIn(  );
-case 'ctrl-'
-self.Slices.zoomOut(  );
-case { 'return', 'escape' }
-self.ROI.deselectAll(  );
-case 'panup'
-self.Slices.pan( 'up' );
-case 'pandown'
-self.Slices.pan( 'down' );
-case 'panleft'
-self.Slices.pan( 'left' );
-case 'panright'
-self.Slices.pan( 'right' );
-case 'windowLevelOn'
-self.Slices.EnableWindowLevel = true;
-end 
 
-end 
+        function reactToKeyRelease( self, evt )
 
-end 
+            switch evt.Key
+                case 'windowLevelOff'
+                    if ~isequal( self.Toolstrip.getActiveLabelingTool(  ), 'WindowLevel' )
 
 
-function reactToKeyRelease( self, evt )
+                        self.Slices.EnableWindowLevel = false;
+                    end
+            end
 
-switch evt.Key
-case 'windowLevelOff'
-if ~isequal( self.Toolstrip.getActiveLabelingTool(  ), 'WindowLevel' )
+        end
 
 
-self.Slices.EnableWindowLevel = false;
-end 
-end 
+        function reactToScrollWheel( self, evt )
 
-end 
+            switch self.Pointer.ActivePanel
 
+                case 'EntryPanel'
+                    scroll( self.LabelBrowser, evt.VerticalScrollCount );
+                case 'TransverseSlicePanel'
+                    scroll( self.Slices, evt.VerticalScrollCount, medical.internal.app.labeler.enums.SliceDirection.Transverse );
+                case 'CoronalSlicePanel'
+                    scroll( self.Slices, evt.VerticalScrollCount, medical.internal.app.labeler.enums.SliceDirection.Coronal );
+                case 'SagittalSlicePanel'
+                    scroll( self.Slices, evt.VerticalScrollCount, medical.internal.app.labeler.enums.SliceDirection.Sagittal );
 
-function reactToScrollWheel( self, evt )
+            end
 
-switch self.Pointer.ActivePanel
+        end
 
-case 'EntryPanel'
-scroll( self.LabelBrowser, evt.VerticalScrollCount );
-case 'TransverseSlicePanel'
-scroll( self.Slices, evt.VerticalScrollCount, medical.internal.app.labeler.enums.SliceDirection.Transverse );
-case 'CoronalSlicePanel'
-scroll( self.Slices, evt.VerticalScrollCount, medical.internal.app.labeler.enums.SliceDirection.Coronal );
-case 'SagittalSlicePanel'
-scroll( self.Slices, evt.VerticalScrollCount, medical.internal.app.labeler.enums.SliceDirection.Sagittal );
 
-end 
+        function reactToSliceMousePressed( self, clickType )
 
-end 
+            if strcmp( clickType, 'right' )
+                updateContextMenu( self.ROI );
+            end
 
+        end
 
-function reactToSliceMousePressed( self, clickType )
 
-if strcmp( clickType, 'right' )
-updateContextMenu( self.ROI );
-end 
+        function addKeyListeners( self )
 
-end 
+            addlistener( self.Key, 'KeyPressed', @( src, evt )reactToKeyPress( self, evt ) );
+            addlistener( self.Key, 'KeyReleased', @( src, evt )reactToKeyRelease( self, evt ) );
+            addlistener( self.Key, 'ScrollWheelSpun', @( src, evt )reactToScrollWheel( self, evt ) );
+            addlistener( self.Key, 'SliceMousePressed', @( src, evt )reactToSliceMousePressed( self, evt.ClickType ) );
 
+        end
 
-function addKeyListeners( self )
+    end
 
-addlistener( self.Key, 'KeyPressed', @( src, evt )reactToKeyPress( self, evt ) );
-addlistener( self.Key, 'KeyReleased', @( src, evt )reactToKeyRelease( self, evt ) );
-addlistener( self.Key, 'ScrollWheelSpun', @( src, evt )reactToScrollWheel( self, evt ) );
-addlistener( self.Key, 'SliceMousePressed', @( src, evt )reactToSliceMousePressed( self, evt.ClickType ) );
 
-end 
 
-end 
 
+    events
 
+        NewLabelDefinitionRequested
+        LabelNameChanged
+        LabelColorChanged
+        LabelVisibilityChanged
+        LabelDeleted
+        LabelSelected
 
+        UpdateLevelTraceLabel
 
-events 
+    end
 
-NewLabelDefinitionRequested
-LabelNameChanged
-LabelColorChanged
-LabelVisibilityChanged
-LabelDeleted
-LabelSelected
+    methods
 
-UpdateLevelTraceLabel
 
-end 
+        function updateLabelDefinitions( self, labelNames, labelColors, labelVisible, selectedIdx )
 
-methods 
+            self.LabelBrowser.update( selectedIdx, labelNames, labelColors, labelVisible );
 
 
-function updateLabelDefinitions( self, labelNames, labelColors, labelVisible, selectedIdx )
+            if self.LabelBrowser.NumLabels > 0
+                self.LabelBrowser.showStartupMessage( false );
+                self.Toolstrip.enableSaveSession( true );
+            else
+                self.LabelBrowser.showStartupMessage( true );
+            end
 
-self.LabelBrowser.update( selectedIdx, labelNames, labelColors, labelVisible );
+            self.reactToLabelBrowserChanges(  );
 
+        end
 
-if self.LabelBrowser.NumLabels > 0
-self.LabelBrowser.showStartupMessage( false );
-self.Toolstrip.enableSaveSession( true );
-else 
-self.LabelBrowser.showStartupMessage( true );
-end 
 
-self.reactToLabelBrowserChanges(  );
+        function updateLabelColor( self, cmapLabels )
 
-end 
+            if self.HasData
+                self.ROI.updateRGBA( cmapLabels );
+                self.Slices.refresh(  );
+                self.updateLabelVolumeColor( cmapLabels );
+            end
 
+        end
 
-function updateLabelColor( self, cmapLabels )
 
-if self.HasData
-self.ROI.updateRGBA( cmapLabels );
-self.Slices.refresh(  );
-self.updateLabelVolumeColor( cmapLabels );
-end 
+        function updateLabelAlpha( self, amapLabels )
 
-end 
+            if self.HasData
+                self.Slices.refresh(  );
+                self.updateLabelVolumeAlpha( amapLabels );
+            end
 
+        end
 
-function updateLabelAlpha( self, amapLabels )
+    end
 
-if self.HasData
-self.Slices.refresh(  );
-self.updateLabelVolumeAlpha( amapLabels );
-end 
+    methods ( Access = protected )
 
-end 
 
-end 
+        function addLabelsListeners( self )
 
-methods ( Access = protected )
+            addlistener( self.LabelBrowser, 'LabelAdded', @( src, evt )notify( self, 'NewLabelDefinitionRequested' ) );
+            addlistener( self.LabelBrowser, 'NameChanged', @( src, evt )notify( self, 'LabelNameChanged', evt ) );
+            addlistener( self.LabelBrowser, 'ColorChanged', @( src, evt )reactToColorChange( self, evt ) );
+            addlistener( self.LabelBrowser, 'EntryRemoved', @( src, evt )reactToLabelRemoved( self, evt.Label ) );
+            addlistener( self.LabelBrowser, 'EntrySelected', @( src, evt )reactToLabelSelection( self, evt ) );
+            addlistener( self.LabelBrowser, 'BringAppToFront', @( src, evt )self.Container.bringToFront(  ) );
+            addlistener( self.LabelBrowser, 'LabelVisibilityChanged', @( src, evt )reactToLabelVisibilityChanged( self, evt ) );
 
+        end
 
-function addLabelsListeners( self )
 
-addlistener( self.LabelBrowser, 'LabelAdded', @( src, evt )notify( self, 'NewLabelDefinitionRequested' ) );
-addlistener( self.LabelBrowser, 'NameChanged', @( src, evt )notify( self, 'LabelNameChanged', evt ) );
-addlistener( self.LabelBrowser, 'ColorChanged', @( src, evt )reactToColorChange( self, evt ) );
-addlistener( self.LabelBrowser, 'EntryRemoved', @( src, evt )reactToLabelRemoved( self, evt.Label ) );
-addlistener( self.LabelBrowser, 'EntrySelected', @( src, evt )reactToLabelSelection( self, evt ) );
-addlistener( self.LabelBrowser, 'BringAppToFront', @( src, evt )self.Container.bringToFront(  ) );
-addlistener( self.LabelBrowser, 'LabelVisibilityChanged', @( src, evt )reactToLabelVisibilityChanged( self, evt ) );
+        function reactToColorChange( self, evt )
 
-end 
+            if self.HasData
+                self.Slices.displayLabelColor( evt.Color );
+            end
 
+            notify( self, 'LabelColorChanged', evt );
 
-function reactToColorChange( self, evt )
 
-if self.HasData
-self.Slices.displayLabelColor( evt.Color );
-end 
 
-notify( self, 'LabelColorChanged', evt );
 
 
 
+        end
 
 
+        function reactToLabelSelection( self, evt )
 
-end 
+            self.notify( 'LabelSelected', evt )
 
+            if self.HasData
 
-function reactToLabelSelection( self, evt )
+                self.Slices.displayLabelColor( evt.Color );
 
-self.notify( 'LabelSelected', evt )
+                if self.LabelBrowser.isCurrentVisible
+                    self.Toolstrip.enableDrawing(  );
+                else
+                    self.Toolstrip.disableDrawing(  );
+                end
 
-if self.HasData
+                self.reactToInteractionToolChange(  );
 
-self.Slices.displayLabelColor( evt.Color );
+                if strcmp( 'LevelTracing', self.Toolstrip.getActiveLabelingTool(  ) )
+                    self.notify( 'UpdateLevelTraceLabel' );
+                end
 
-if self.LabelBrowser.isCurrentVisible
-self.Toolstrip.enableDrawing(  );
-else 
-self.Toolstrip.disableDrawing(  );
-end 
+            end
 
-self.reactToInteractionToolChange(  );
+        end
 
-if strcmp( 'LevelTracing', self.Toolstrip.getActiveLabelingTool(  ) )
-self.notify( 'UpdateLevelTraceLabel' );
-end 
 
-end 
+        function reactToLabelRemoved( self, labelName )
 
-end 
+            quest = getString( message( 'medical:medicalLabeler:deleteLabelDefQuestion', labelName ) );
+            title = getString( message( 'medical:medicalLabeler:deleteLabelDefTitle', labelName ) );
 
+            isCanceled = self.Dialog.askQuestion( self.Container.App, quest, title );
 
-function reactToLabelRemoved( self, labelName )
+            if isCanceled
+                return
+            end
 
-quest = getString( message( 'medical:medicalLabeler:deleteLabelDefQuestion', labelName ) );
-title = getString( message( 'medical:medicalLabeler:deleteLabelDefTitle', labelName ) );
+            wait( self.Container );
+            c = onCleanup( @(  )resume( self.Container ) );
 
-isCanceled = self.Dialog.askQuestion( self.Container.App, quest, title );
+            if ~isempty( self.ROI )
+                self.ROI.clearClipboard(  );
+            end
 
-if isCanceled
-return 
-end 
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+            evt = medical.internal.app.labeler.events.ValueEventData( string( labelName ) );
+            notify( self, 'LabelDeleted', evt );
 
-if ~isempty( self.ROI )
-self.ROI.clearClipboard(  );
-end 
 
 
-evt = medical.internal.app.labeler.events.ValueEventData( string( labelName ) );
-notify( self, 'LabelDeleted', evt );
 
 
+        end
 
 
+        function reactToLabelVisibilityChanged( self, evt )
 
-end 
+            if self.HasData
 
+                TF = self.LabelBrowser.isCurrentVisible(  );
 
-function reactToLabelVisibilityChanged( self, evt )
+                if TF
+                    self.Toolstrip.enableDrawing(  );
+                else
+                    self.Toolstrip.disableDrawing(  );
+                end
 
-if self.HasData
+                self.reactToInteractionToolChange(  );
 
-TF = self.LabelBrowser.isCurrentVisible(  );
+            end
 
-if TF
-self.Toolstrip.enableDrawing(  );
-else 
-self.Toolstrip.disableDrawing(  );
-end 
+            self.notify( 'LabelVisibilityChanged', evt )
 
-self.reactToInteractionToolChange(  );
+        end
 
-end 
 
-self.notify( 'LabelVisibilityChanged', evt )
+        function reactToLabelBrowserChanges( self )
 
-end 
+            if self.HasData
 
 
-function reactToLabelBrowserChanges( self )
+                if self.LabelBrowser.NumLabels > 0
 
-if self.HasData
+                    self.Toolstrip.enableLabelControls(  );
+                    self.Toolstrip.enableDrawing(  );
 
+                    self.Slices.displayLabelColor( self.LabelBrowser.getCurrentColor(  ) );
 
-if self.LabelBrowser.NumLabels > 0
+                else
+                    self.Toolstrip.disableLabelControls(  );
+                    self.Toolstrip.disableDrawing(  );
 
-self.Toolstrip.enableLabelControls(  );
-self.Toolstrip.enableDrawing(  );
+                    self.Slices.displayLabelColor( [  ] );
+                end
 
-self.Slices.displayLabelColor( self.LabelBrowser.getCurrentColor(  ) );
+                self.Slices.displayMode( self.Toolstrip.getActiveLabelingTool(  ) );
 
-else 
-self.Toolstrip.disableLabelControls(  );
-self.Toolstrip.disableDrawing(  );
+            else
 
-self.Slices.displayLabelColor( [  ] );
-end 
+                if self.LabelBrowser.NumLabels > 0
+                    self.Toolstrip.enableExportLabelDefs(  );
+                else
+                    self.Toolstrip.disableExportLabelDefs(  );
+                end
 
-self.Slices.displayMode( self.Toolstrip.getActiveLabelingTool(  ) );
+            end
 
-else 
+        end
 
-if self.LabelBrowser.NumLabels > 0
-self.Toolstrip.enableExportLabelDefs(  );
-else 
-self.Toolstrip.disableExportLabelDefs(  );
-end 
+    end
 
-end 
 
-end 
 
-end 
 
+    methods ( Access = protected )
 
 
+        function addPointerListeners( self )
 
-methods ( Access = protected )
+            addlistener( self.Pointer, 'SetDrawingToolPointer', @( src, evt )setDrawingToolPointer( self ) );
 
 
-function addPointerListeners( self )
+            addlistener( self.Pointer, 'UpdateThumbnail', @( src, evt )showThumbnail( self, evt.Show, evt.Location ) );
 
-addlistener( self.Pointer, 'SetDrawingToolPointer', @( src, evt )setDrawingToolPointer( self ) );
+        end
 
 
-addlistener( self.Pointer, 'UpdateThumbnail', @( src, evt )showThumbnail( self, evt.Show, evt.Location ) );
+        function setDrawingToolPointer( self )
 
-end 
 
 
-function setDrawingToolPointer( self )
 
 
 
 
+            if ~isvalid( self ) || ~isvalid( self.Toolstrip )
+                return
+            end
+            activeLabelingTool = self.Toolstrip.getActiveLabelingTool(  );
+            self.Pointer.setPointer( self.Container.TransverseDocument.Figure, activeLabelingTool );
 
+        end
 
+    end
 
-if ~isvalid( self ) || ~isvalid( self.Toolstrip )
-return 
-end 
-activeLabelingTool = self.Toolstrip.getActiveLabelingTool(  );
-self.Pointer.setPointer( self.Container.TransverseDocument.Figure, activeLabelingTool );
 
-end 
 
-end 
 
+    events
+        PublishRequested
+    end
 
+    methods ( Access = protected )
 
 
-events 
-PublishRequested
-end 
+        function addPuslishListeners( self )
 
-methods ( Access = protected )
+            addlistener( self.Publish, 'PublishRequested', @( src, evt )self.reactToPublishRequested( evt ) );
+            addlistener( self.Publish, 'BringAppToFront', @( src, evt )self.Container.bringToFront(  ) );
 
+        end
 
-function addPuslishListeners( self )
 
-addlistener( self.Publish, 'PublishRequested', @( src, evt )self.reactToPublishRequested( evt ) );
-addlistener( self.Publish, 'BringAppToFront', @( src, evt )self.Container.bringToFront(  ) );
+        function reactToPublishRequested( self, evt )
 
-end 
 
 
-function reactToPublishRequested( self, evt )
+            if self.Toolstrip.AutoSave
+                self.notify( 'SaveSessionRequested' );
+            end
 
+            self.startWaitBar( getString( message( 'medical:medicalLabeler:publishingImages' ) ) );
+            c = onCleanup( @(  )self.clearWaitBar(  ) );
 
+            if evt.Screenshot3D && self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
+                volumeImgData = getframe( self.Container.VolumeDocument.Figure );
+                evt.Screenshot3D = volumeImgData.cdata;
+            else
+                evt.Screenshot3D = [  ];
+            end
 
-if self.Toolstrip.AutoSave
-self.notify( 'SaveSessionRequested' );
-end 
+            self.notify( 'PublishRequested', evt );
 
-self.startWaitBar( getString( message( 'medical:medicalLabeler:publishingImages' ) ) );
-c = onCleanup( @(  )self.clearWaitBar(  ) );
+        end
 
-if evt.Screenshot3D && self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
-volumeImgData = getframe( self.Container.VolumeDocument.Figure );
-evt.Screenshot3D = volumeImgData.cdata;
-else 
-evt.Screenshot3D = [  ];
-end 
+    end
 
-self.notify( 'PublishRequested', evt );
 
-end 
 
-end 
 
+    events
 
 
+        RegionDrawn
 
-events 
 
+        RegionPasted
 
-RegionDrawn
 
 
-RegionPasted
 
+        SetPriorMask
 
 
+        FillRegion
 
-SetPriorMask
+        FloodFillRegion
 
 
-FillRegion
 
-FloodFillRegion
 
+        LabelNamesForROIRequested
 
+        LocationSelected
 
+        SliceRequestedForROI
 
-LabelNamesForROIRequested
+    end
 
-LocationSelected
+    methods
 
-SliceRequestedForROI
 
-end 
+        function selectAllROIs( self, label, cmap )
 
-methods 
+            selectAll( self.ROI, label, cmap );
 
+        end
 
-function selectAllROIs( self, label, cmap )
 
-selectAll( self.ROI, label, cmap );
+        function sliceSelected( self, label, cmap, sliceDir )
 
-end 
+            if self.ROI.getSelectAll( sliceDir ) || self.Key.CtrlAPressed
+                selectAll( self.ROI, label, cmap, sliceDir );
+            elseif self.Key.CtrlPressed
+                select( self.ROI, label, cmap, sliceDir );
+            else
+                selectWindow( self.ROI, label, cmap, sliceDir );
+            end
 
+        end
 
-function sliceSelected( self, label, cmap, sliceDir )
 
-if self.ROI.getSelectAll( sliceDir ) || self.Key.CtrlAPressed
-selectAll( self.ROI, label, cmap, sliceDir );
-elseif self.Key.CtrlPressed
-select( self.ROI, label, cmap, sliceDir );
-else 
-selectWindow( self.ROI, label, cmap, sliceDir );
-end 
+        function drawLabel( self, val, color, sliceDir )
 
-end 
+            switch self.Toolstrip.getActiveLabelingTool(  )
+                case 'Freehand'
+                    redrawSliceWithoutLabels( self );
+                    draw( self.ROI, val, color, sliceDir );
 
+                case 'AssistedFreehand'
+                    redrawSliceWithoutLabels( self );
+                    drawAssisted( self.ROI, val, color, sliceDir );
 
-function drawLabel( self, val, color, sliceDir )
+                case 'Polygon'
+                    redrawSliceWithoutLabels( self );
+                    drawPolygon( self.ROI, val, color, sliceDir );
 
-switch self.Toolstrip.getActiveLabelingTool(  )
-case 'Freehand'
-redrawSliceWithoutLabels( self );
-draw( self.ROI, val, color, sliceDir );
+                case 'PaintBrush'
+                    redrawSliceWithoutLabels( self );
+                    paint( self.ROI, val, color, sliceDir );
 
-case 'AssistedFreehand'
-redrawSliceWithoutLabels( self );
-drawAssisted( self.ROI, val, color, sliceDir );
+                case 'Eraser'
+                    paint( self.ROI, 0, [ 1, 1, 1 ], sliceDir );
 
-case 'Polygon'
-redrawSliceWithoutLabels( self );
-drawPolygon( self.ROI, val, color, sliceDir );
+                case 'FillRegion'
+                    fill( self.ROI, val, color, sliceDir );
 
-case 'PaintBrush'
-redrawSliceWithoutLabels( self );
-paint( self.ROI, val, color, sliceDir );
+                case 'FloodFill'
 
-case 'Eraser'
-paint( self.ROI, 0, [ 1, 1, 1 ], sliceDir );
+                    val = self.ROI.getMeanSuperpixelValues( sliceDir );
+                    if isempty( val )
+                        wait( self.Container );
+                        c = onCleanup( @(  )resume( self.Container ) );
 
-case 'FillRegion'
-fill( self.ROI, val, color, sliceDir );
+                        sliceIdx = self.ROI.getSliceIndex( sliceDir );
+                        evt = medical.internal.app.labeler.events.SliceEventData( sliceIdx, sliceDir );
+                        notify( self, 'SliceRequestedForROI', evt );
 
-case 'FloodFill'
+                    end
+                    floodFill( self.ROI, val, sliceDir );
 
-val = self.ROI.getMeanSuperpixelValues( sliceDir );
-if isempty( val )
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+            end
 
-sliceIdx = self.ROI.getSliceIndex( sliceDir );
-evt = medical.internal.app.labeler.events.SliceEventData( sliceIdx, sliceDir );
-notify( self, 'SliceRequestedForROI', evt );
+        end
 
-end 
-floodFill( self.ROI, val, sliceDir );
 
-end 
+        function updateROISlice( self, slice, labelSlice, sliceDir )
 
-end 
+            updateSlice( self.ROI, slice, labelSlice, sliceDir );
 
+        end
 
-function updateROISlice( self, slice, labelSlice, sliceDir )
 
-updateSlice( self.ROI, slice, labelSlice, sliceDir );
+        function reactToLevelTraceSelection( self, TF, val, color )
 
-end 
+            if TF
+                self.ROI.startLevelTrace( val, color );
+                threshold = self.Toolstrip.LevelTraceThreshold;
+                self.ROI.setLevelTraceThreshold( threshold );
+            else
+                self.ROI.stopLevelTrace(  );
+            end
 
+        end
 
-function reactToLevelTraceSelection( self, TF, val, color )
 
-if TF
-self.ROI.startLevelTrace( val, color );
-threshold = self.Toolstrip.LevelTraceThreshold;
-self.ROI.setLevelTraceThreshold( threshold );
-else 
-self.ROI.stopLevelTrace(  );
-end 
+        function updateLevelTraceLabel( self, val, color )
+            self.ROI.startLevelTrace( val, color );
+        end
 
-end 
+    end
 
+    methods ( Access = protected )
 
-function updateLevelTraceLabel( self, val, color )
-self.ROI.startLevelTrace( val, color );
-end 
 
-end 
+        function addROIListeners( self )
 
-methods ( Access = protected )
+            addlistener( self.ROI, 'SetPriorMask', @( src, evt )notify( self, 'SetPriorMask', evt ) );
+            addlistener( self.ROI, 'ROIUpdated', @( src, evt )notify( self, 'RegionDrawn', evt ) );
+            addlistener( self.ROI, 'ROIReassigned', @( src, evt )notify( self, 'LabelNamesForROIRequested', evt ) );
+            addlistener( self.ROI, 'ROIPasted', @( src, evt )roiPasted( self, evt ) );
+            addlistener( self.ROI, 'FillRegion', @( src, evt )notify( self, 'FillRegion', evt ) );
+            addlistener( self.ROI, 'FloodFillRegion', @( src, evt )notify( self, 'FloodFillRegion', evt ) );
+            addlistener( self.ROI, 'DrawingStarted', @( src, evt )disableForDrawing( self ) );
+            addlistener( self.ROI, 'DrawingFinished', @( src, evt )enableForDrawing( self ) );
+            addlistener( self.ROI, 'ROISelected', @( src, evt )enableInterpolation( self.Toolstrip, evt.NumberSelected == 1 ) );
+            addlistener( self.ROI, 'AllROIsSelected', @( src, evt )notify( self, 'LocationSelected', evt ) );
+            addlistener( self.ROI, 'DrawingAborted', @( src, evt )reactToDrawingAborted( self ) );
 
+        end
 
-function addROIListeners( self )
 
-addlistener( self.ROI, 'SetPriorMask', @( src, evt )notify( self, 'SetPriorMask', evt ) );
-addlistener( self.ROI, 'ROIUpdated', @( src, evt )notify( self, 'RegionDrawn', evt ) );
-addlistener( self.ROI, 'ROIReassigned', @( src, evt )notify( self, 'LabelNamesForROIRequested', evt ) );
-addlistener( self.ROI, 'ROIPasted', @( src, evt )roiPasted( self, evt ) );
-addlistener( self.ROI, 'FillRegion', @( src, evt )notify( self, 'FillRegion', evt ) );
-addlistener( self.ROI, 'FloodFillRegion', @( src, evt )notify( self, 'FloodFillRegion', evt ) );
-addlistener( self.ROI, 'DrawingStarted', @( src, evt )disableForDrawing( self ) );
-addlistener( self.ROI, 'DrawingFinished', @( src, evt )enableForDrawing( self ) );
-addlistener( self.ROI, 'ROISelected', @( src, evt )enableInterpolation( self.Toolstrip, evt.NumberSelected == 1 ) );
-addlistener( self.ROI, 'AllROIsSelected', @( src, evt )notify( self, 'LocationSelected', evt ) );
-addlistener( self.ROI, 'DrawingAborted', @( src, evt )reactToDrawingAborted( self ) );
+        function reactToBrushSelection( self, TF )
 
-end 
+            if TF
 
+                if strcmp( self.Toolstrip.getActiveLabelingTool(  ), 'PaintBrush' )
+                    self.ROI.setBrushColor( [ 0.5, 0.5, 0.5 ] );
+                else
+                    self.ROI.setBrushColor( [ 1, 1, 1 ] );
+                end
 
-function reactToBrushSelection( self, TF )
+            end
 
-if TF
+            self.ROI.setBrushOutline( TF );
 
-if strcmp( self.Toolstrip.getActiveLabelingTool(  ), 'PaintBrush' )
-self.ROI.setBrushColor( [ 0.5, 0.5, 0.5 ] );
-else 
-self.ROI.setBrushColor( [ 1, 1, 1 ] );
-end 
+        end
 
-end 
 
-self.ROI.setBrushOutline( TF );
+        function reactToDrawingToolSelected( self )
 
-end 
+            if self.Toolstrip.WindowLevelEnabled
+                self.Slices.EnableWindowLevel = false;
+                self.Toolstrip.WindowLevelEnabled = false;
+            end
 
+            self.reactToInteractionToolChange(  );
 
-function reactToDrawingToolSelected( self )
+        end
 
-if self.Toolstrip.WindowLevelEnabled
-self.Slices.EnableWindowLevel = false;
-self.Toolstrip.WindowLevelEnabled = false;
-end 
 
-self.reactToInteractionToolChange(  );
 
-end 
 
+        function reactToInteractionToolChange( self )
 
+            self.ROI.deselectAll(  );
+            self.Slices.deselectAxesInteraction(  );
+            self.Slices.displayMode( self.Toolstrip.getActiveLabelingTool(  ) );
 
+            TF = any( strcmp( self.Toolstrip.getActiveLabelingTool(  ), { 'PaintBrush', 'Eraser' } ) );
 
-function reactToInteractionToolChange( self )
+            refreshRequired = TF ~= self.Slices.SuperpixelsVisible;
 
-self.ROI.deselectAll(  );
-self.Slices.deselectAxesInteraction(  );
-self.Slices.displayMode( self.Toolstrip.getActiveLabelingTool(  ) );
+            self.Slices.SuperpixelsVisible = TF;
 
-TF = any( strcmp( self.Toolstrip.getActiveLabelingTool(  ), { 'PaintBrush', 'Eraser' } ) );
+            if refreshRequired
+                self.Slices.refresh(  );
+            end
 
-refreshRequired = TF ~= self.Slices.SuperpixelsVisible;
+        end
 
-self.Slices.SuperpixelsVisible = TF;
 
-if refreshRequired
-self.Slices.refresh(  );
-end 
+        function reactToDrawingAborted( self )
 
-end 
+            if self.Toolstrip.getHideLabelsOnDraw(  )
+                self.Slices.refresh(  );
+            end
 
+        end
 
-function reactToDrawingAborted( self )
 
-if self.Toolstrip.getHideLabelsOnDraw(  )
-self.Slices.refresh(  );
-end 
+        function disableForDrawing( self )
+            self.Slices.disableForDrawing(  );
+            self.Toolstrip.disable(  );
+            self.LabelBrowser.disable(  );
+            self.Container.disableQuickAccessBar(  );
+            self.DataBrowser.disable(  );
+            self.Publish.disablePublish(  );
+        end
 
-end 
 
+        function enableForDrawing( self )
+            self.Slices.enableForDrawing(  );
+            self.Toolstrip.enable(  );
+            self.LabelBrowser.enable(  );
+            self.Container.enableQuickAccessBar(  );
+            self.DataBrowser.enable(  );
+            self.Publish.enablePublish(  );
+        end
 
-function disableForDrawing( self )
-self.Slices.disableForDrawing(  );
-self.Toolstrip.disable(  );
-self.LabelBrowser.disable(  );
-self.Container.disableQuickAccessBar(  );
-self.DataBrowser.disable(  );
-self.Publish.disablePublish(  );
-end 
 
+        function roiPasted( self, evt )
 
-function enableForDrawing( self )
-self.Slices.enableForDrawing(  );
-self.Toolstrip.enable(  );
-self.LabelBrowser.enable(  );
-self.Container.enableQuickAccessBar(  );
-self.DataBrowser.enable(  );
-self.Publish.enablePublish(  );
-end 
+            notify( self, 'RegionPasted', evt );
 
+            evt = medical.internal.app.labeler.events.SliceEventData( evt.SliceIdx, evt.SliceDirection );
+            notify( self, 'SliceRequestedForROI', evt );
 
-function roiPasted( self, evt )
+        end
 
-notify( self, 'RegionPasted', evt );
+    end
 
-evt = medical.internal.app.labeler.events.SliceEventData( evt.SliceIdx, evt.SliceDirection );
-notify( self, 'SliceRequestedForROI', evt );
 
-end 
 
-end 
 
+    events
 
+        SliceAtIndexRequested
+        SliceAtIndexRequestedForThumbnail
+        RefreshSlice
+        RefreshSliceWithoutLabels
 
+        LabelRequested
 
-events 
+        VoxelInfoRequested
+        SaveSnapshot
 
-SliceAtIndexRequested
-SliceAtIndexRequestedForThumbnail
-RefreshSlice
-RefreshSliceWithoutLabels
+        LabelOpacityChanged
+        ContrastLimitsChanged
 
-LabelRequested
+    end
 
-VoxelInfoRequested
-SaveSnapshot
+    methods
 
-LabelOpacityChanged
-ContrastLimitsChanged
 
-end 
+        function initializeSlices( self, dataLimits, numSlicesTSC, pixelSpacingASC, isRGB )
 
-methods 
+            self.Slices.initialize( numSlicesTSC, pixelSpacingASC, dataLimits );
+            self.Toolstrip.enableContrastControls( ~isRGB );
+            self.Toolstrip.setWindowBounds( dataLimits );
+            self.Publish.setNumSlices( numSlicesTSC );
 
+            if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Image
+                self.Toolstrip.InterpolationAllowed = numSlicesTSC > 1;
+            end
 
-function initializeSlices( self, dataLimits, numSlicesTSC, pixelSpacingASC, isRGB )
+        end
 
-self.Slices.initialize( numSlicesTSC, pixelSpacingASC, dataLimits );
-self.Toolstrip.enableContrastControls( ~isRGB );
-self.Toolstrip.setWindowBounds( dataLimits );
-self.Publish.setNumSlices( numSlicesTSC );
 
-if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Image
-self.Toolstrip.InterpolationAllowed = numSlicesTSC > 1;
-end 
+        function updateSlice( self, slice, labelSlice, labelColormap, labelVisible, currIdx, maxIdx, sliceDir )
 
-end 
 
+            self.ROI.deselectAll(  );
 
-function updateSlice( self, slice, labelSlice, labelColormap, labelVisible, currIdx, maxIdx, sliceDir )
+            self.Slices.updateSlice( slice, labelSlice, labelColormap, labelVisible, currIdx, sliceDir );
 
+            self.Toolstrip.displayAutomationRange( currIdx, maxIdx, sliceDir );
+            self.ROI.updateBrushOutline(  );
+            self.ROI.updateSliceIndex( currIdx, sliceDir );
+            self.ROI.updateSlice( slice, labelSlice, sliceDir );
 
-self.ROI.deselectAll(  );
+        end
 
-self.Slices.updateSlice( slice, labelSlice, labelColormap, labelVisible, currIdx, sliceDir );
 
-self.Toolstrip.displayAutomationRange( currIdx, maxIdx, sliceDir );
-self.ROI.updateBrushOutline(  );
-self.ROI.updateSliceIndex( currIdx, sliceDir );
-self.ROI.updateSlice( slice, labelSlice, sliceDir );
+        function sliceAtIndexProvidedForThumbnail( self, vol, labels, cmap, idx, maxIdx, sliceDir )
 
-end 
 
+            self.Slices.updateThumbnailDisplay( vol, labels, cmap, idx, maxIdx, sliceDir );
 
-function sliceAtIndexProvidedForThumbnail( self, vol, labels, cmap, idx, maxIdx, sliceDir )
+        end
 
 
-self.Slices.updateThumbnailDisplay( vol, labels, cmap, idx, maxIdx, sliceDir );
+        function refreshSlice( self, slice, labelSlice, labelColormap, labelVisible, currIdx, maxIdx, sliceDir )
 
-end 
+            self.Slices.updateSlice( slice, labelSlice, labelColormap, labelVisible, currIdx, sliceDir );
+            self.ROI.clearBrush(  );
 
+        end
 
-function refreshSlice( self, slice, labelSlice, labelColormap, labelVisible, currIdx, maxIdx, sliceDir )
 
-self.Slices.updateSlice( slice, labelSlice, labelColormap, labelVisible, currIdx, sliceDir );
-self.ROI.clearBrush(  );
+        function labelsUpdated( self )
 
-end 
+            self.Slices.refresh(  );
+            if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume && self.Toolstrip.getShowVolume(  )
+                self.VolumeRendering.markLabelVolumeAsDirty(  );
+            end
 
+        end
 
-function labelsUpdated( self )
 
-self.Slices.refresh(  );
-if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume && self.Toolstrip.getShowVolume(  )
-self.VolumeRendering.markLabelVolumeAsDirty(  );
-end 
+        function updateSummary( self, data, color, sliceDir )
+            self.Slices.updateSummary( data, color, sliceDir );
+        end
 
-end 
 
+        function updateContrastLimits( self, contrastLimits )
+            self.Slices.updateContrastLimits( contrastLimits );
+            self.Toolstrip.setWindowBounds( contrastLimits );
+        end
 
-function updateSummary( self, data, color, sliceDir )
-self.Slices.updateSummary( data, color, sliceDir );
-end 
+    end
 
+    methods ( Access = private )
 
-function updateContrastLimits( self, contrastLimits )
-self.Slices.updateContrastLimits( contrastLimits );
-self.Toolstrip.setWindowBounds( contrastLimits );
-end 
 
-end 
+        function addSliceListeners( self )
 
-methods ( Access = private )
+            addlistener( self.Slices, 'ImageClicked', @( src, evt )reactToImageClick( self, evt.Position, evt.Index, evt.SliceDirection ) );
+            addlistener( self.Slices, 'SliceAtIndexRequested', @( src, evt )self.notify( 'SliceAtIndexRequested', evt ) );
+            addlistener( self.Slices, 'SliceChanged', @( src, evt )self.reactToSliceChanged( evt.Value ) );
+            addlistener( self.Slices, 'RefreshSlice', @( src, evt )self.notify( 'RefreshSlice', evt ) );
+            addlistener( self.Slices, 'RefreshSliceWithoutLabels', @( src, evt )self.notify( 'RefreshSliceWithoutLabels', evt ) );
+            addlistener( self.Slices, 'InteractionModeChanged', @( src, evt )reactToModeChanged( self, evt.Mode ) );
+            addlistener( self.Slices, 'VoxelInfoRequested', @( src, evt )self.notify( 'VoxelInfoRequested', evt ) );
+            addlistener( self.Slices, 'ClearVoxelInfo', @( src, evt )self.Container.clearVoxelInfo(  ) );
+            addlistener( self.Slices, 'ContrastLimitsChanged', @( src, evt )self.reactToContrastLimitsChanged( evt ) );
 
+        end
 
-function addSliceListeners( self )
 
-addlistener( self.Slices, 'ImageClicked', @( src, evt )reactToImageClick( self, evt.Position, evt.Index, evt.SliceDirection ) );
-addlistener( self.Slices, 'SliceAtIndexRequested', @( src, evt )self.notify( 'SliceAtIndexRequested', evt ) );
-addlistener( self.Slices, 'SliceChanged', @( src, evt )self.reactToSliceChanged( evt.Value ) );
-addlistener( self.Slices, 'RefreshSlice', @( src, evt )self.notify( 'RefreshSlice', evt ) );
-addlistener( self.Slices, 'RefreshSliceWithoutLabels', @( src, evt )self.notify( 'RefreshSliceWithoutLabels', evt ) );
-addlistener( self.Slices, 'InteractionModeChanged', @( src, evt )reactToModeChanged( self, evt.Mode ) );
-addlistener( self.Slices, 'VoxelInfoRequested', @( src, evt )self.notify( 'VoxelInfoRequested', evt ) );
-addlistener( self.Slices, 'ClearVoxelInfo', @( src, evt )self.Container.clearVoxelInfo(  ) );
-addlistener( self.Slices, 'ContrastLimitsChanged', @( src, evt )self.reactToContrastLimitsChanged( evt ) );
+        function reactToSelectedDocumentChanged( self, tag )
 
-end 
+            if isempty( tag ) || isempty( self.Slices )
+                return
+            end
 
+            if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
 
-function reactToSelectedDocumentChanged( self, tag )
+                switch tag
 
-if isempty( tag ) || isempty( self.Slices )
-return 
-end 
+                    case string( medical.internal.app.labeler.enums.Tag.TransverseFigure )
 
-if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
+                        newSliceDir = medical.internal.app.labeler.enums.SliceDirection.Transverse;
+                        self.Slices.LastActiveSliceDirection = newSliceDir;
 
-switch tag
+                        if self.ROI.getIsUserDrawing
+                            return
+                        end
 
-case string( medical.internal.app.labeler.enums.Tag.TransverseFigure )
 
-newSliceDir = medical.internal.app.labeler.enums.SliceDirection.Transverse;
-self.Slices.LastActiveSliceDirection = newSliceDir;
+                        self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Sagittal );
+                        self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Coronal );
 
-if self.ROI.getIsUserDrawing
-return 
-end 
 
+                        self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Sagittal );
+                        self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Coronal );
 
-self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Sagittal );
-self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Coronal );
+                    case string( medical.internal.app.labeler.enums.Tag.SagittalFigure )
 
+                        newSliceDir = medical.internal.app.labeler.enums.SliceDirection.Sagittal;
+                        self.Slices.LastActiveSliceDirection = newSliceDir;
 
-self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Sagittal );
-self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Coronal );
+                        if self.ROI.getIsUserDrawing
+                            return
+                        end
 
-case string( medical.internal.app.labeler.enums.Tag.SagittalFigure )
 
-newSliceDir = medical.internal.app.labeler.enums.SliceDirection.Sagittal;
-self.Slices.LastActiveSliceDirection = newSliceDir;
+                        self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Transverse );
+                        self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Coronal );
 
-if self.ROI.getIsUserDrawing
-return 
-end 
 
+                        self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Transverse );
+                        self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Coronal );
 
-self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Transverse );
-self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Coronal );
+                    case string( medical.internal.app.labeler.enums.Tag.CoronalFigure )
 
+                        newSliceDir = medical.internal.app.labeler.enums.SliceDirection.Coronal;
+                        self.Slices.LastActiveSliceDirection = newSliceDir;
 
-self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Transverse );
-self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Coronal );
+                        if self.ROI.getIsUserDrawing
+                            return
+                        end
 
-case string( medical.internal.app.labeler.enums.Tag.CoronalFigure )
 
-newSliceDir = medical.internal.app.labeler.enums.SliceDirection.Coronal;
-self.Slices.LastActiveSliceDirection = newSliceDir;
+                        self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Transverse );
+                        self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Sagittal );
 
-if self.ROI.getIsUserDrawing
-return 
-end 
 
+                        self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Transverse );
+                        self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Sagittal );
 
-self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Transverse );
-self.ROI.deselectAll( medical.internal.app.labeler.enums.SliceDirection.Sagittal );
+                end
 
+            end
 
-self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Transverse );
-self.ROI.clear( medical.internal.app.labeler.enums.SliceDirection.Sagittal );
+        end
 
-end 
 
-end 
+        function reactToImageClick( self, pos, idx, sliceDir )
 
-end 
+            self.ROI.setClickPosition( pos, sliceDir );
 
+            if strcmp( self.Toolstrip.getActiveLabelingTool(  ), 'Select' ) || self.Key.CtrlPressed
+                evt = medical.internal.app.labeler.events.SliceEventData( idx, sliceDir );
+                notify( self, 'LocationSelected', evt );
+            else
+                evt = medical.internal.app.labeler.events.ValueEventData( sliceDir );
+                notify( self, 'LabelRequested', evt );
+            end
 
-function reactToImageClick( self, pos, idx, sliceDir )
+        end
 
-self.ROI.setClickPosition( pos, sliceDir );
 
-if strcmp( self.Toolstrip.getActiveLabelingTool(  ), 'Select' ) || self.Key.CtrlPressed
-evt = medical.internal.app.labeler.events.SliceEventData( idx, sliceDir );
-notify( self, 'LocationSelected', evt );
-else 
-evt = medical.internal.app.labeler.events.ValueEventData( sliceDir );
-notify( self, 'LabelRequested', evt );
-end 
+        function reactToSliceChanged( self, sliceDir )
 
-end 
+            if self.Toolstrip.IsSuperPixelsActive
+                sz = self.Toolstrip.getPaintBrushSize(  );
+                self.paintBySuperpixels( sz, sliceDir )
+            end
 
+        end
 
-function reactToSliceChanged( self, sliceDir )
 
-if self.Toolstrip.IsSuperPixelsActive
-sz = self.Toolstrip.getPaintBrushSize(  );
-self.paintBySuperpixels( sz, sliceDir )
-end 
+        function reactToModeChanged( self, mode )
 
-end 
+            currentLabelingTool = self.Toolstrip.getActiveLabelingTool(  );
+            if strcmp( mode, '' ) && any( strcmp( currentLabelingTool, { 'PaintBrush', 'Eraser' } ) )
+                self.ROI.setBrushOutline( true );
+            else
+                self.ROI.setBrushOutline( false );
+            end
 
+        end
 
-function reactToModeChanged( self, mode )
 
-currentLabelingTool = self.Toolstrip.getActiveLabelingTool(  );
-if strcmp( mode, '' ) && any( strcmp( currentLabelingTool, { 'PaintBrush', 'Eraser' } ) )
-self.ROI.setBrushOutline( true );
-else 
-self.ROI.setBrushOutline( false );
-end 
+        function redrawSliceWithoutLabels( self )
 
-end 
+            if self.Toolstrip.getHideLabelsOnDraw(  )
+                self.Slices.refreshWithoutLabels(  );
+            end
 
+        end
 
-function redrawSliceWithoutLabels( self )
 
-if self.Toolstrip.getHideLabelsOnDraw(  )
-self.Slices.refreshWithoutLabels(  );
-end 
+        function reactToLabelOpacityChange( self )
 
-end 
+            opacity = self.Toolstrip.getLabelOpacity(  );
 
 
-function reactToLabelOpacityChange( self )
+            self.Slices.LabelOpacity = single( opacity );
 
-opacity = self.Toolstrip.getLabelOpacity(  );
+            evt = medical.internal.app.labeler.events.ValueEventData( opacity );
+            self.notify( 'LabelOpacityChanged', evt )
 
+            if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume && self.Toolstrip.getShowVolume(  )
+                self.notify( 'RefreshLabelVolumeAlpha' );
+            end
 
-self.Slices.LabelOpacity = single( opacity );
+            drawnow( 'limitrate' );
 
-evt = medical.internal.app.labeler.events.ValueEventData( opacity );
-self.notify( 'LabelOpacityChanged', evt )
+        end
 
-if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume && self.Toolstrip.getShowVolume(  )
-self.notify( 'RefreshLabelVolumeAlpha' );
-end 
 
-drawnow( 'limitrate' );
+        function reactToContrastLimitsChanged( self, evt )
 
-end 
+            self.Toolstrip.setWindowBounds( evt.Value );
 
+            self.notify( 'ContrastLimitsChanged', evt );
 
-function reactToContrastLimitsChanged( self, evt )
+        end
 
-self.Toolstrip.setWindowBounds( evt.Value );
 
-self.notify( 'ContrastLimitsChanged', evt );
+        function reactToOrientationMarkerVisibilityToggle( self, TF )
+            self.Slices.showOrientationMarkers( TF );
+        end
 
-end 
 
+        function reactToScaleBarVisibilityToggle( self, TF )
+            self.Slices.showScaleBar( TF );
+            if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
+                self.VolumeRendering.setScaleBar( TF );
+            end
+        end
 
-function reactToOrientationMarkerVisibilityToggle( self, TF )
-self.Slices.showOrientationMarkers( TF );
-end 
 
+        function reactToDisplayConventionChanged( self, displayConvention )
+            self.Slices.setDisplayConvention( displayConvention );
+            notify( self, 'RedrawVolume' );
+        end
 
-function reactToScaleBarVisibilityToggle( self, TF )
-self.Slices.showScaleBar( TF );
-if self.DataFormat == medical.internal.app.labeler.enums.DataFormat.Volume
-self.VolumeRendering.setScaleBar( TF );
-end 
-end 
 
+        function snapshotRequested( self )
 
-function reactToDisplayConventionChanged( self, displayConvention )
-self.Slices.setDisplayConvention( displayConvention );
-notify( self, 'RedrawVolume' );
-end 
+            wait( self.Container );
+            c = onCleanup( @(  )resume( self.Container ) );
 
+            switch self.DataFormat
 
-function snapshotRequested( self )
+                case medical.internal.app.labeler.enums.DataFormat.Volume
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+                    if self.IsCurrentDataOblique
+                        sliceViewNames = [ "Direction 1", "Direction2", "Direction3", "3D Volume" ];
+                    else
+                        sliceViewNames = [ "Transverse", "Coronal", "Sagittal", "3D Volume" ];
+                    end
 
-switch self.DataFormat
+                    loc = self.Container.getLocation(  );
+                    [ selectedViews, filename, isCanceled ] = self.Dialog.snapshotVolumeMode( loc, sliceViewNames );
 
-case medical.internal.app.labeler.enums.DataFormat.Volume
+                    if isCanceled
+                        return
+                    else
 
-if self.IsCurrentDataOblique
-sliceViewNames = [ "Direction 1", "Direction2", "Direction3", "3D Volume" ];
-else 
-sliceViewNames = [ "Transverse", "Coronal", "Sagittal", "3D Volume" ];
-end 
+                        sliceDirs = medical.internal.app.labeler.enums.SliceDirection.empty(  );
+                        sliceIdxs = [  ];
+                        snapshot3D = [  ];
 
-loc = self.Container.getLocation(  );
-[ selectedViews, filename, isCanceled ] = self.Dialog.snapshotVolumeMode( loc, sliceViewNames );
+                        for i = 1:length( selectedViews )
 
-if isCanceled
-return 
-else 
+                            switch selectedViews( i )
+                                case "Axial"
+                                    sliceDir = medical.internal.app.labeler.enums.SliceDirection.Transverse;
+                                    sliceDirs( end  + 1 ) = sliceDir;%#ok<*AGROW>
+                                    sliceIdxs( end  + 1 ) = self.ROI.getSliceIndex( sliceDir );
 
-sliceDirs = medical.internal.app.labeler.enums.SliceDirection.empty(  );
-sliceIdxs = [  ];
-snapshot3D = [  ];
+                                case "Coronal"
+                                    sliceDir = medical.internal.app.labeler.enums.SliceDirection.Coronal;
+                                    sliceDirs( end  + 1 ) = sliceDir;
+                                    sliceIdxs( end  + 1 ) = self.ROI.getSliceIndex( sliceDir );
 
-for i = 1:length( selectedViews )
+                                case "Sagittal"
+                                    sliceDir = medical.internal.app.labeler.enums.SliceDirection.Sagittal;
+                                    sliceDirs( end  + 1 ) = sliceDir;
+                                    sliceIdxs( end  + 1 ) = self.ROI.getSliceIndex( sliceDir );
 
-switch selectedViews( i )
-case "Axial"
-sliceDir = medical.internal.app.labeler.enums.SliceDirection.Transverse;
-sliceDirs( end  + 1 ) = sliceDir;%#ok<*AGROW> 
-sliceIdxs( end  + 1 ) = self.ROI.getSliceIndex( sliceDir );
+                                case "Volume"
 
-case "Coronal"
-sliceDir = medical.internal.app.labeler.enums.SliceDirection.Coronal;
-sliceDirs( end  + 1 ) = sliceDir;
-sliceIdxs( end  + 1 ) = self.ROI.getSliceIndex( sliceDir );
 
-case "Sagittal"
-sliceDir = medical.internal.app.labeler.enums.SliceDirection.Sagittal;
-sliceDirs( end  + 1 ) = sliceDir;
-sliceIdxs( end  + 1 ) = self.ROI.getSliceIndex( sliceDir );
 
-case "Volume"
+                                    if self.Toolstrip.AutoSave
+                                        self.requestToSaveSession(  );
+                                    else
+                                        self.VolumeRendering.redraw(  );
+                                    end
 
+                                    messageShown = self.VolumeRendering.ShowMessageVolume;
+                                    self.VolumeRendering.ShowMessageVolume = false;
+                                    c1 = onCleanup( @(  )set( self.VolumeRendering, 'ShowMessageVolume', messageShown ) );
 
+                                    volumeImgData = getframe( self.Container.VolumeDocument.Figure );
+                                    snapshot3D = volumeImgData.cdata;
+                            end
 
-if self.Toolstrip.AutoSave
-self.requestToSaveSession(  );
-else 
-self.VolumeRendering.redraw(  );
-end 
+                        end
 
-messageShown = self.VolumeRendering.ShowMessageVolume;
-self.VolumeRendering.ShowMessageVolume = false;
-c1 = onCleanup( @(  )set( self.VolumeRendering, 'ShowMessageVolume', messageShown ) );
+                        evt = medical.internal.app.labeler.events.SaveSnapshotEventData( filename, sliceIdxs, sliceDirs );
+                        evt.Snapshot3D = snapshot3D;
+                        self.notify( 'SaveSnapshot', evt );
 
-volumeImgData = getframe( self.Container.VolumeDocument.Figure );
-snapshot3D = volumeImgData.cdata;
-end 
+                    end
 
-end 
+                case medical.internal.app.labeler.enums.DataFormat.Image
 
-evt = medical.internal.app.labeler.events.SaveSnapshotEventData( filename, sliceIdxs, sliceDirs );
-evt.Snapshot3D = snapshot3D;
-self.notify( 'SaveSnapshot', evt );
+                    [ filename, isCanceled ] = self.Dialog.snapshotImageSequenceMode(  );
+                    if isCanceled
+                        return
+                    end
 
-end 
+                    sliceDir = medical.internal.app.labeler.enums.SliceDirection.Unknown;
+                    sliceIdx = self.ROI.getSliceIndex(  );
+                    evt = medical.internal.app.labeler.events.SaveSnapshotEventData( filename, sliceIdx, sliceDir );
+                    self.notify( 'SaveSnapshot', evt );
 
-case medical.internal.app.labeler.enums.DataFormat.Image
+            end
 
-[ filename, isCanceled ] = self.Dialog.snapshotImageSequenceMode(  );
-if isCanceled
-return 
-end 
 
-sliceDir = medical.internal.app.labeler.enums.SliceDirection.Unknown;
-sliceIdx = self.ROI.getSliceIndex(  );
-evt = medical.internal.app.labeler.events.SaveSnapshotEventData( filename, sliceIdx, sliceDir );
-self.notify( 'SaveSnapshot', evt );
+        end
 
-end 
 
+        function showVoxelInfo( self, TF )
 
-end 
+            self.Slices.enableVoxelInfoListeners( TF );
+            self.Container.showVoxelInfo( TF );
 
+        end
 
-function showVoxelInfo( self, TF )
 
-self.Slices.enableVoxelInfoListeners( TF );
-self.Container.showVoxelInfo( TF );
+        function enableWindowLevel( self, TF )
 
-end 
+            if TF
+                self.Toolstrip.deselectAllDrawingTools(  );
+                self.ROI.clearBrush(  );
+                self.reactToBrushSelection( false );
+                self.ROI.stopLevelTrace(  );
+            else
+                self.Toolstrip.selectDefaultDrawingTool(  );
+            end
 
+            self.Slices.EnableWindowLevel = TF;
 
-function enableWindowLevel( self, TF )
+            self.reactToInteractionToolChange(  )
 
-if TF
-self.Toolstrip.deselectAllDrawingTools(  );
-self.ROI.clearBrush(  );
-self.reactToBrushSelection( false );
-self.ROI.stopLevelTrace(  );
-else 
-self.Toolstrip.selectDefaultDrawingTool(  );
-end 
+        end
 
-self.Slices.EnableWindowLevel = TF;
 
-self.reactToInteractionToolChange(  )
+        function showThumbnail( self, TF, pos )
 
-end 
+            if TF
+                switch self.Pointer.ActivePanel
 
+                    case 'TransverseSummary'
+                        sliceDir = medical.internal.app.labeler.enums.SliceDirection.Transverse;
+                    case 'CoronalSummary'
+                        sliceDir = medical.internal.app.labeler.enums.SliceDirection.Coronal;
+                    case 'SagittalSummary'
+                        sliceDir = medical.internal.app.labeler.enums.SliceDirection.Sagittal;
+                    otherwise
+                        self.Slices.hideThumbnail(  );
 
-function showThumbnail( self, TF, pos )
+                end
 
-if TF
-switch self.Pointer.ActivePanel
+                if pos > 1
+                    evt = medical.internal.app.labeler.events.SliceEventData( pos, sliceDir );
+                    self.notify( 'SliceAtIndexRequestedForThumbnail', evt );
+                end
 
-case 'TransverseSummary'
-sliceDir = medical.internal.app.labeler.enums.SliceDirection.Transverse;
-case 'CoronalSummary'
-sliceDir = medical.internal.app.labeler.enums.SliceDirection.Coronal;
-case 'SagittalSummary'
-sliceDir = medical.internal.app.labeler.enums.SliceDirection.Sagittal;
-otherwise 
-self.Slices.hideThumbnail(  );
+            else
+                if ~isempty( self.Slices )
+                    self.Slices.hideThumbnail(  );
+                end
+            end
 
-end 
+        end
+    end
 
-if pos > 1
-evt = medical.internal.app.labeler.events.SliceEventData( pos, sliceDir );
-self.notify( 'SliceAtIndexRequestedForThumbnail', evt );
-end 
 
-else 
-if ~isempty( self.Slices )
-self.Slices.hideThumbnail(  );
-end 
-end 
 
-end 
-end 
 
+    events
 
+        ClearCurrentSession
+        OpenSessionRequested
+        SaveSessionRequested
+        DataFromFileRequested
+        VolumeFromFolderRequested
+        GroundTruthFromFileRequested
+        GroundTruthFromWkspRequested
+        LabelDefsFromFileRequested
+        ExportGroundTruthToFile
+        ExportLabelDefsToFile
 
+        ResetWindowLevel
 
-events 
+        LevelTraceSelected
+        InterpolateRequested
 
-ClearCurrentSession
-OpenSessionRequested
-SaveSessionRequested
-DataFromFileRequested
-VolumeFromFolderRequested
-GroundTruthFromFileRequested
-GroundTruthFromWkspRequested
-LabelDefsFromFileRequested
-ExportGroundTruthToFile
-ExportLabelDefsToFile
+        PresetRenderingRequested
+        UserDefinedRenderingRequested
+        SaveUserDefinedRendering
+        RemoveUserDefinedRendering
+        ApplyRenderingToAllVolumes
+        RefreshUserDefinedVolumeRenderings
+        ShowLabelsInVolume
+        RequestToCustomizeLabelsInVolume
 
-ResetWindowLevel
+        AutomationStarted
+        AutomationStopped
+        AutomationRangeUpdated
+        AutomationDirectionUpdated
 
-LevelTraceSelected
-InterpolateRequested
+    end
 
-PresetRenderingRequested
-UserDefinedRenderingRequested
-SaveUserDefinedRendering
-RemoveUserDefinedRendering
-ApplyRenderingToAllVolumes
-RefreshUserDefinedVolumeRenderings
-ShowLabelsInVolume
-RequestToCustomizeLabelsInVolume
+    methods
 
-AutomationStarted
-AutomationStopped
-AutomationRangeUpdated
-AutomationDirectionUpdated
 
-end 
+        function newVolumeSessionRequested( self )
 
-methods 
+            if ~self.HasData && isequal( self.DataFormat, medical.internal.app.labeler.enums.DataFormat.Volume )
+                return ;
+            end
 
+            if self.clearCurrentAppData(  )
 
-function newVolumeSessionRequested( self )
+                wait( self.Container );
+                c = onCleanup( @(  )resume( self.Container ) );
 
-if ~self.HasData && isequal( self.DataFormat, medical.internal.app.labeler.enums.DataFormat.Volume )
-return ;
-end 
+                [ sessionFolder, isCanceled ] = self.Dialog.newSessionLocation( self.Container.getLocation(  ) );
+                if isCanceled
+                    return
+                end
 
-if self.clearCurrentAppData(  )
+                self.notify( 'ClearCurrentSession' );
+                self.clear(  );
+                self.DataFormat = medical.internal.app.labeler.enums.DataFormat.Volume;
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+                evt = medical.internal.app.labeler.events.ValueEventData( sessionFolder );
+                self.notify( 'LabelDataLocationSet', evt );
 
-[ sessionFolder, isCanceled ] = self.Dialog.newSessionLocation( self.Container.getLocation(  ) );
-if isCanceled
-return 
-end 
+            end
 
-self.notify( 'ClearCurrentSession' );
-self.clear(  );
-self.DataFormat = medical.internal.app.labeler.enums.DataFormat.Volume;
+        end
 
-evt = medical.internal.app.labeler.events.ValueEventData( sessionFolder );
-self.notify( 'LabelDataLocationSet', evt );
 
-end 
+        function newImageSessionRequested( self )
 
-end 
+            if ~self.HasData && isequal( self.DataFormat, medical.internal.app.labeler.enums.DataFormat.Image )
+                return ;
+            end
 
+            if self.clearCurrentAppData(  )
 
-function newImageSessionRequested( self )
+                wait( self.Container );
+                c = onCleanup( @(  )resume( self.Container ) );
 
-if ~self.HasData && isequal( self.DataFormat, medical.internal.app.labeler.enums.DataFormat.Image )
-return ;
-end 
+                [ sessionFolder, isCanceled ] = self.Dialog.newSessionLocation( self.Container.getLocation(  ) );
+                if isCanceled
+                    return
+                end
 
-if self.clearCurrentAppData(  )
+                self.notify( 'ClearCurrentSession' );
+                self.clear(  );
+                self.DataFormat = medical.internal.app.labeler.enums.DataFormat.Image;
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+                evt = medical.internal.app.labeler.events.ValueEventData( sessionFolder );
+                self.notify( 'LabelDataLocationSet', evt );
 
-[ sessionFolder, isCanceled ] = self.Dialog.newSessionLocation( self.Container.getLocation(  ) );
-if isCanceled
-return 
-end 
+            end
 
-self.notify( 'ClearCurrentSession' );
-self.clear(  );
-self.DataFormat = medical.internal.app.labeler.enums.DataFormat.Image;
+        end
 
-evt = medical.internal.app.labeler.events.ValueEventData( sessionFolder );
-self.notify( 'LabelDataLocationSet', evt );
 
-end 
+        function reactToFirstDataAdded( self )
 
-end 
+            self.HasData = true;
 
+            self.Toolstrip.enableDataControls(  );
 
-function reactToFirstDataAdded( self )
+            self.Slices.Empty = false;
 
-self.HasData = true;
 
-self.Toolstrip.enableDataControls(  );
+            self.reactToLabelBrowserChanges(  );
 
-self.Slices.Empty = false;
+            if isempty( self.Slices.LastActiveSliceDirection )
 
+                s.tag = string( medical.internal.app.labeler.enums.Tag.TransverseFigure );
+                self.Container.App.SelectedChild = s;
 
-self.reactToLabelBrowserChanges(  );
+            end
 
-if isempty( self.Slices.LastActiveSliceDirection )
+        end
 
-s.tag = string( medical.internal.app.labeler.enums.Tag.TransverseFigure );
-self.Container.App.SelectedChild = s;
 
-end 
+        function setLabelOpacity( self, opacity )
+            self.Toolstrip.setLabelOpacity( opacity );
+        end
 
-end 
 
+        function requestToRefreshRecentSessions( self )
+            self.notify( 'RefreshRecentSessions' );
+        end
 
-function setLabelOpacity( self, opacity )
-self.Toolstrip.setLabelOpacity( opacity );
-end 
 
+        function refreshRecentSessions( self, folderpaths, dataFormats )
+            self.Toolstrip.refreshRecentSessions( folderpaths, dataFormats );
+        end
 
-function requestToRefreshRecentSessions( self )
-self.notify( 'RefreshRecentSessions' );
-end 
 
+        function requestToRefreshUserDefinedVolumeRenderings( self )
+            self.notify( 'RefreshUserDefinedVolumeRenderings' );
+        end
 
-function refreshRecentSessions( self, folderpaths, dataFormats )
-self.Toolstrip.refreshRecentSessions( folderpaths, dataFormats );
-end 
 
+        function disableSaveUserDefinedRenderings( self )
+            self.Toolstrip.disableSaveUserDefinedRenderings(  );
+        end
 
-function requestToRefreshUserDefinedVolumeRenderings( self )
-self.notify( 'RefreshUserDefinedVolumeRenderings' );
-end 
 
+        function addUserDefinedRendering( self, renderingSettings )
+            tags = [ renderingSettings.Tag ];
+            renderingNames = [ renderingSettings.Name ];
+            self.Toolstrip.addUserDefinedRendering( tags, renderingNames );
+        end
 
-function disableSaveUserDefinedRenderings( self )
-self.Toolstrip.disableSaveUserDefinedRenderings(  );
-end 
 
+        function refreshUserDefinedRenderings( self, renderingSettings )
+            tags = [  ];
+            renderingNames = [  ];
 
-function addUserDefinedRendering( self, renderingSettings )
-tags = [ renderingSettings.Tag ];
-renderingNames = [ renderingSettings.Name ];
-self.Toolstrip.addUserDefinedRendering( tags, renderingNames );
-end 
+            if ~isempty( renderingSettings )
+                tags = [ renderingSettings.Tag ];
+                renderingNames = [ renderingSettings.Name ];
+            end
 
+            self.Toolstrip.refreshUserDefinedRenderings( tags, renderingNames );
+        end
 
-function refreshUserDefinedRenderings( self, renderingSettings )
-tags = [  ];
-renderingNames = [  ];
 
-if ~isempty( renderingSettings )
-tags = [ renderingSettings.Tag ];
-renderingNames = [ renderingSettings.Name ];
-end 
+        function setAutomationRange( self, startVal, endVal )
+            setAutomationRange( self.Toolstrip, startVal, endVal );
+        end
 
-self.Toolstrip.refreshUserDefinedRenderings( tags, renderingNames );
-end 
 
+        function setAutomationDirection( self, maxSliceIdx, sliceDir )
 
-function setAutomationRange( self, startVal, endVal )
-setAutomationRange( self.Toolstrip, startVal, endVal );
-end 
+            currentSliceIdx = self.ROI.getSliceIndex( sliceDir );
+            self.Toolstrip.setAutomationRangeBounds( currentSliceIdx, maxSliceIdx );
 
+        end
 
-function setAutomationDirection( self, maxSliceIdx, sliceDir )
 
-currentSliceIdx = self.ROI.getSliceIndex( sliceDir );
-self.Toolstrip.setAutomationRangeBounds( currentSliceIdx, maxSliceIdx );
+        function cleanUpAfterAutomation( self )
 
-end 
+            clearWaitBar( self );
 
+            self.Slices.Enabled = true;
+            self.Key.Enabled = true;
+            self.Pointer.Enabled = true;
+            self.enableForDrawing(  );
 
-function cleanUpAfterAutomation( self )
+        end
 
-clearWaitBar( self );
 
-self.Slices.Enabled = true;
-self.Key.Enabled = true;
-self.Pointer.Enabled = true;
-self.enableForDrawing(  );
+        function setCustomRenderingPreset( self )
+            preset = medical.internal.app.labeler.model.PresetRenderingOptions.CustomPreset;
+            self.Toolstrip.setRenderingPreset( preset );
+        end
 
-end 
 
+        function importGroundTruthFromWksp( self, gTruthMed )
 
-function setCustomRenderingPreset( self )
-preset = medical.internal.app.labeler.model.PresetRenderingOptions.CustomPreset;
-self.Toolstrip.setRenderingPreset( preset );
-end 
+            title = getString( message( 'medical:medicalLabeler:importing' ) );
+            msg = strcat( title, "..." );
+            self.startWaitBar( title, msg );
+            c = onCleanup( @(  )self.clearWaitBar(  ) );
 
+            self.notify( 'GroundTruthFromWkspRequested', medical.internal.app.labeler.events.ValueEventData( gTruthMed ) );
 
-function importGroundTruthFromWksp( self, gTruthMed )
+        end
 
-title = getString( message( 'medical:medicalLabeler:importing' ) );
-msg = strcat( title, "..." );
-self.startWaitBar( title, msg );
-c = onCleanup( @(  )self.clearWaitBar(  ) );
 
-self.notify( 'GroundTruthFromWkspRequested', medical.internal.app.labeler.events.ValueEventData( gTruthMed ) );
+        function openSessionFromDirectory( self, directory )
 
-end 
+            title = getString( message( 'medical:medicalLabeler:importing' ) );
+            msg = strcat( title, "..." );
+            self.startWaitBar( title, msg );
+            c = onCleanup( @(  )self.clearWaitBar(  ) );
 
+            self.clear(  );
+            self.notify( 'ClearCurrentSession' );
 
-function openSessionFromDirectory( self, directory )
+            evt = medical.internal.app.labeler.events.ValueEventData( directory );
+            self.notify( 'OpenSessionRequested', evt );
 
-title = getString( message( 'medical:medicalLabeler:importing' ) );
-msg = strcat( title, "..." );
-self.startWaitBar( title, msg );
-c = onCleanup( @(  )self.clearWaitBar(  ) );
+        end
 
-self.clear(  );
-self.notify( 'ClearCurrentSession' );
+    end
 
-evt = medical.internal.app.labeler.events.ValueEventData( directory );
-self.notify( 'OpenSessionRequested', evt );
+    methods ( Access = private )
 
-end 
 
-end 
+        function addToolstripListeners( self )
 
-methods ( Access = private )
+            addlistener( self.Toolstrip, 'ErrorThrown', @( src, evt )self.error( evt.Message ) );
 
 
-function addToolstripListeners( self )
+            addlistener( self.Toolstrip, 'NewVolumeSessionRequested', @( src, evt )self.newVolumeSessionRequested(  ) );
+            addlistener( self.Toolstrip, 'NewImageSessionRequested', @( src, evt )self.newImageSessionRequested(  ) );
+            addlistener( self.Toolstrip, 'OpenSessionRequested', @( src, evt )self.requestToOpenSession(  ) );
+            addlistener( self.Toolstrip, 'OpenRecentSessionRequested', @( src, evt )self.requestToOpenRecentSession( evt.Value ) );
+            addlistener( self.Toolstrip, 'SaveSessionRequested', @( src, evt )self.requestToSaveSession(  ) );
+            addlistener( self.Toolstrip, 'ImportDataFromFile', @( src, evt )self.requestToImportDataFromFile(  ) );
+            addlistener( self.Toolstrip, 'ImportVolumeFromFolder', @( src, evt )self.requestToImportVolumeFromDICOMFolder(  ) );
+            addlistener( self.Toolstrip, 'ImportGroundTruthFromFile', @( src, evt )self.requestToImportGroundTruthFromFile(  ) );
+            addlistener( self.Toolstrip, 'ImportGroundTruthFromWksp', @( src, evt )self.requestToImportGroundTruthFromWksp(  ) );
+            addlistener( self.Toolstrip, 'ImportLabelDefsFromFile', @( src, evt )self.requestToImportLabelDefsFromFile(  ) );
+            addlistener( self.Toolstrip, 'ShowVolume', @( src, evt )self.reactToVolumeVisibilityToggle( evt.Value ) );
+            addlistener( self.Toolstrip, 'EnableWindowLevel', @( src, evt )self.enableWindowLevel( evt.Value ) );
+            addlistener( self.Toolstrip, 'ResetWindowLevel', @( src, evt )self.notify( 'ResetWindowLevel' ) );
+            addlistener( self.Toolstrip, 'LabelOpacityChanged', @( src, evt )self.reactToLabelOpacityChange(  ) );
+            addlistener( self.Toolstrip, 'ShowVoxelInfo', @( src, evt )self.showVoxelInfo( evt.Value ) );
+            addlistener( self.Toolstrip, 'ShowScaleBars', @( src, evt )reactToScaleBarVisibilityToggle( self, evt.Value ) );
+            addlistener( self.Toolstrip, 'Show2DOrientationMarkers', @( src, evt )reactToOrientationMarkerVisibilityToggle( self, evt.Value ) );
+            addlistener( self.Toolstrip, 'Show3DOrientationAxes', @( src, evt )reactToOrientationAxesVisibilityToggle( self, evt.Value ) );
+            addlistener( self.Toolstrip, 'DisplayConventionChanged', @( src, evt )self.reactToDisplayConventionChanged( evt.Value ) );
+            addlistener( self.Toolstrip, 'ViewShortcuts', @( src, evt )displayShortcuts( self ) );
+            addlistener( self.Toolstrip, 'LayoutChangeRequested', @( src, evt )self.Container.setLayout( evt.Value ) );
+            addlistener( self.Toolstrip, 'SnapshotRequested', @( src, evt )snapshotRequested( self ) );
+            addlistener( self.Toolstrip, 'ShowPublishPanel', @( src, evt )self.reactToPublishPanelToggle( evt.Value ) );
+            addlistener( self.Toolstrip, 'ExportGroundTruthToFile', @( src, evt )self.exportGroundTruthToFile(  ) );
+            addlistener( self.Toolstrip, 'ExportLabelDefsToFile', @( src, evt )self.exportLabelDefsToFile(  ) );
 
-addlistener( self.Toolstrip, 'ErrorThrown', @( src, evt )self.error( evt.Message ) );
 
+            addlistener( self.Toolstrip, 'BrushSelected', @( src, evt )reactToBrushSelection( self, evt.Selected ) );
+            addlistener( self.Toolstrip, 'BrushSizeChanged', @( src, evt )setBrushSize( self.ROI, evt.Size ) );
+            addlistener( self.Toolstrip, 'LevelTraceSelected', @( src, evt )notify( self, 'LevelTraceSelected', evt ) );
+            addlistener( self.Toolstrip, 'LevelTraceThresholdChanged', @( src, evt )setLevelTraceThreshold( self.ROI, evt.Value ) );
+            addlistener( self.Toolstrip, 'PaintBySuperpixels', @( src, evt )paintBySuperpixels( self, evt.Size, [  ] ) );
+            addlistener( self.Toolstrip, 'LabelToolSelected', @( src, evt )reactToDrawingToolSelected( self ) );
+            addlistener( self.Toolstrip, 'InterpolateRequested', @( src, evt )reactToInterpolationRequest( self ) );
+            addlistener( self.Toolstrip, 'InterpolateManually', @( src, evt )manuallyInterpolate( self ) );
+            addlistener( self.Toolstrip, 'FloodFillSensitivityChanged', @( src, evt )setFloodFillSettings( self.ROI, evt.Size, evt.Sensitivity ) );
 
-addlistener( self.Toolstrip, 'NewVolumeSessionRequested', @( src, evt )self.newVolumeSessionRequested(  ) );
-addlistener( self.Toolstrip, 'NewImageSessionRequested', @( src, evt )self.newImageSessionRequested(  ) );
-addlistener( self.Toolstrip, 'OpenSessionRequested', @( src, evt )self.requestToOpenSession(  ) );
-addlistener( self.Toolstrip, 'OpenRecentSessionRequested', @( src, evt )self.requestToOpenRecentSession( evt.Value ) );
-addlistener( self.Toolstrip, 'SaveSessionRequested', @( src, evt )self.requestToSaveSession(  ) );
-addlistener( self.Toolstrip, 'ImportDataFromFile', @( src, evt )self.requestToImportDataFromFile(  ) );
-addlistener( self.Toolstrip, 'ImportVolumeFromFolder', @( src, evt )self.requestToImportVolumeFromDICOMFolder(  ) );
-addlistener( self.Toolstrip, 'ImportGroundTruthFromFile', @( src, evt )self.requestToImportGroundTruthFromFile(  ) );
-addlistener( self.Toolstrip, 'ImportGroundTruthFromWksp', @( src, evt )self.requestToImportGroundTruthFromWksp(  ) );
-addlistener( self.Toolstrip, 'ImportLabelDefsFromFile', @( src, evt )self.requestToImportLabelDefsFromFile(  ) );
-addlistener( self.Toolstrip, 'ShowVolume', @( src, evt )self.reactToVolumeVisibilityToggle( evt.Value ) );
-addlistener( self.Toolstrip, 'EnableWindowLevel', @( src, evt )self.enableWindowLevel( evt.Value ) );
-addlistener( self.Toolstrip, 'ResetWindowLevel', @( src, evt )self.notify( 'ResetWindowLevel' ) );
-addlistener( self.Toolstrip, 'LabelOpacityChanged', @( src, evt )self.reactToLabelOpacityChange(  ) );
-addlistener( self.Toolstrip, 'ShowVoxelInfo', @( src, evt )self.showVoxelInfo( evt.Value ) );
-addlistener( self.Toolstrip, 'ShowScaleBars', @( src, evt )reactToScaleBarVisibilityToggle( self, evt.Value ) );
-addlistener( self.Toolstrip, 'Show2DOrientationMarkers', @( src, evt )reactToOrientationMarkerVisibilityToggle( self, evt.Value ) );
-addlistener( self.Toolstrip, 'Show3DOrientationAxes', @( src, evt )reactToOrientationAxesVisibilityToggle( self, evt.Value ) );
-addlistener( self.Toolstrip, 'DisplayConventionChanged', @( src, evt )self.reactToDisplayConventionChanged( evt.Value ) );
-addlistener( self.Toolstrip, 'ViewShortcuts', @( src, evt )displayShortcuts( self ) );
-addlistener( self.Toolstrip, 'LayoutChangeRequested', @( src, evt )self.Container.setLayout( evt.Value ) );
-addlistener( self.Toolstrip, 'SnapshotRequested', @( src, evt )snapshotRequested( self ) );
-addlistener( self.Toolstrip, 'ShowPublishPanel', @( src, evt )self.reactToPublishPanelToggle( evt.Value ) );
-addlistener( self.Toolstrip, 'ExportGroundTruthToFile', @( src, evt )self.exportGroundTruthToFile(  ) );
-addlistener( self.Toolstrip, 'ExportLabelDefsToFile', @( src, evt )self.exportLabelDefsToFile(  ) );
 
+            addlistener( self.Toolstrip, 'AutomationStarted', @( src, evt )reactToAutomationStart( self, evt ) );
+            addlistener( self.Toolstrip, 'AutomationStopped', @( src, evt )notify( self, 'AutomationStopped', evt ) );
+            addlistener( self.Toolstrip, 'AutomationRangeUpdated', @( src, evt )notify( self, 'AutomationRangeUpdated', evt ) );
+            addlistener( self.Toolstrip, 'AutomationDirectionUpdated', @( src, evt )notify( self, 'AutomationDirectionUpdated', evt ) );
+            addlistener( self.Toolstrip, 'ManageAlgorithms', @( src, evt )manageAlgorithms( self ) );
+            addlistener( self.Toolstrip, 'AddAlgorithm', @( src, evt )addAlgorithm( self, evt.VolumeBased ) );
+            addlistener( self.Toolstrip, 'OpenSettings', @( src, evt )displaySettings( self.Dialog, getLocation( self.Container ), evt.Settings ) );
+            addlistener( self.Toolstrip, 'CloseDialogs', @( src, evt )close( self.Dialog ) );
+            addlistener( self.Toolstrip, 'ViewAutomationHelp', @( src, evt )displayAutomationHelp( self ) );
 
-addlistener( self.Toolstrip, 'BrushSelected', @( src, evt )reactToBrushSelection( self, evt.Selected ) );
-addlistener( self.Toolstrip, 'BrushSizeChanged', @( src, evt )setBrushSize( self.ROI, evt.Size ) );
-addlistener( self.Toolstrip, 'LevelTraceSelected', @( src, evt )notify( self, 'LevelTraceSelected', evt ) );
-addlistener( self.Toolstrip, 'LevelTraceThresholdChanged', @( src, evt )setLevelTraceThreshold( self.ROI, evt.Value ) );
-addlistener( self.Toolstrip, 'PaintBySuperpixels', @( src, evt )paintBySuperpixels( self, evt.Size, [  ] ) );
-addlistener( self.Toolstrip, 'LabelToolSelected', @( src, evt )reactToDrawingToolSelected( self ) );
-addlistener( self.Toolstrip, 'InterpolateRequested', @( src, evt )reactToInterpolationRequest( self ) );
-addlistener( self.Toolstrip, 'InterpolateManually', @( src, evt )manuallyInterpolate( self ) );
-addlistener( self.Toolstrip, 'FloodFillSensitivityChanged', @( src, evt )setFloodFillSettings( self.ROI, evt.Size, evt.Sensitivity ) );
 
+            addlistener( self.Toolstrip, 'RenderingEditorToggled', @( src, evt )self.reactToRenderingEditorToggle( evt.Value ) );
+            addlistener( self.Toolstrip, 'PresetRenderingRequested', @( src, evt )self.notify( 'PresetRenderingRequested', evt ) );
+            addlistener( self.Toolstrip, 'UserDefinedRenderingRequested', @( src, evt )self.notify( 'UserDefinedRenderingRequested', evt ) );
+            addlistener( self.Toolstrip, 'SaveRenderingRequested', @( src, evt )self.saveRenderingRequested(  ) );
+            addlistener( self.Toolstrip, 'ManageRenderingRequested', @( src, evt )self.manageCustomRenderingRequested( evt.Names, evt.Tags ) );
+            addlistener( self.Toolstrip, 'ApplyRenderingToAllVolumes', @( src, evt )self.applyRenderingToAllVolumesRequested(  ) );
+            addlistener( self.Toolstrip, 'BackgroundGradientToggled', @( src, evt )reactToBackgroundGradientToggle( self, evt.Value ) );
+            addlistener( self.Toolstrip, 'BackgroundColorChangeRequested', @( src, evt )self.requestToChangeVolumeBackgroundColor(  ) );
+            addlistener( self.Toolstrip, 'GradientColorChangeRequested', @( src, evt )self.requestToChangeVolumeGradientColor(  ) );
+            addlistener( self.Toolstrip, 'RestoreBackgroundRequested', @( src, evt )self.restoreVolumeBackgroundRequested(  ) );
 
-addlistener( self.Toolstrip, 'AutomationStarted', @( src, evt )reactToAutomationStart( self, evt ) );
-addlistener( self.Toolstrip, 'AutomationStopped', @( src, evt )notify( self, 'AutomationStopped', evt ) );
-addlistener( self.Toolstrip, 'AutomationRangeUpdated', @( src, evt )notify( self, 'AutomationRangeUpdated', evt ) );
-addlistener( self.Toolstrip, 'AutomationDirectionUpdated', @( src, evt )notify( self, 'AutomationDirectionUpdated', evt ) );
-addlistener( self.Toolstrip, 'ManageAlgorithms', @( src, evt )manageAlgorithms( self ) );
-addlistener( self.Toolstrip, 'AddAlgorithm', @( src, evt )addAlgorithm( self, evt.VolumeBased ) );
-addlistener( self.Toolstrip, 'OpenSettings', @( src, evt )displaySettings( self.Dialog, getLocation( self.Container ), evt.Settings ) );
-addlistener( self.Toolstrip, 'CloseDialogs', @( src, evt )close( self.Dialog ) );
-addlistener( self.Toolstrip, 'ViewAutomationHelp', @( src, evt )displayAutomationHelp( self ) );
+        end
 
 
-addlistener( self.Toolstrip, 'RenderingEditorToggled', @( src, evt )self.reactToRenderingEditorToggle( evt.Value ) );
-addlistener( self.Toolstrip, 'PresetRenderingRequested', @( src, evt )self.notify( 'PresetRenderingRequested', evt ) );
-addlistener( self.Toolstrip, 'UserDefinedRenderingRequested', @( src, evt )self.notify( 'UserDefinedRenderingRequested', evt ) );
-addlistener( self.Toolstrip, 'SaveRenderingRequested', @( src, evt )self.saveRenderingRequested(  ) );
-addlistener( self.Toolstrip, 'ManageRenderingRequested', @( src, evt )self.manageCustomRenderingRequested( evt.Names, evt.Tags ) );
-addlistener( self.Toolstrip, 'ApplyRenderingToAllVolumes', @( src, evt )self.applyRenderingToAllVolumesRequested(  ) );
-addlistener( self.Toolstrip, 'BackgroundGradientToggled', @( src, evt )reactToBackgroundGradientToggle( self, evt.Value ) );
-addlistener( self.Toolstrip, 'BackgroundColorChangeRequested', @( src, evt )self.requestToChangeVolumeBackgroundColor(  ) );
-addlistener( self.Toolstrip, 'GradientColorChangeRequested', @( src, evt )self.requestToChangeVolumeGradientColor(  ) );
-addlistener( self.Toolstrip, 'RestoreBackgroundRequested', @( src, evt )self.restoreVolumeBackgroundRequested(  ) );
+        function TF = clearCurrentAppData( self )
 
-end 
+            TF = true;
+            if self.HasData || self.LabelBrowser.NumLabels > 0
 
 
-function TF = clearCurrentAppData( self )
+                self.requestToSaveSession(  );
 
-TF = true;
-if self.HasData || self.LabelBrowser.NumLabels > 0
+                question = getString( message( 'medical:medicalLabeler:newSessionQuestion' ) );
+                title = getString( message( 'medical:medicalLabeler:removeData' ) );
+                isCanceled = self.Dialog.askQuestion( self.Container.App, question, title );
 
+                if isCanceled
+                    TF = false;
+                end
 
-self.requestToSaveSession(  );
+            end
 
-question = getString( message( 'medical:medicalLabeler:newSessionQuestion' ) );
-title = getString( message( 'medical:medicalLabeler:removeData' ) );
-isCanceled = self.Dialog.askQuestion( self.Container.App, question, title );
+        end
 
-if isCanceled
-TF = false;
-end 
 
-end 
+        function requestToOpenRecentSession( self, directory )
 
-end 
+            if isequal( directory, self.SessionLocation )
 
+                return
+            end
 
-function requestToOpenRecentSession( self, directory )
+            if self.clearCurrentAppData(  )
+                self.openSessionFromDirectory( directory );
+            end
 
-if isequal( directory, self.SessionLocation )
+        end
 
-return 
-end 
 
-if self.clearCurrentAppData(  )
-self.openSessionFromDirectory( directory );
-end 
+        function requestToOpenSession( self )
 
-end 
+            if self.clearCurrentAppData(  )
 
+                [ directory, isCanceled ] = self.Dialog.openSession(  );
+                self.Container.bringToFront(  );
 
-function requestToOpenSession( self )
+                if isCanceled || isequal( directory, self.SessionLocation )
 
-if self.clearCurrentAppData(  )
+                    return
+                end
 
-[ directory, isCanceled ] = self.Dialog.openSession(  );
-self.Container.bringToFront(  );
+                self.openSessionFromDirectory( directory );
 
-if isCanceled || isequal( directory, self.SessionLocation )
+            end
 
-return 
-end 
+        end
 
-self.openSessionFromDirectory( directory );
 
-end 
+        function requestToSaveSession( self )
 
-end 
+            self.startWaitBar( getString( message( 'medical:medicalLabeler:savingSession' ) ) );
+            c = onCleanup( @(  )self.clearWaitBar(  ) );
+            notify( self, 'SaveSessionRequested' );
 
+        end
 
-function requestToSaveSession( self )
 
-self.startWaitBar( getString( message( 'medical:medicalLabeler:savingSession' ) ) );
-c = onCleanup( @(  )self.clearWaitBar(  ) );
-notify( self, 'SaveSessionRequested' );
+        function requestToImportDataFromFile( self )
 
-end 
+            switch self.DataFormat
+                case medical.internal.app.labeler.enums.DataFormat.Volume
+                    [ filename, isCanceled ] = self.Dialog.importVolumeFromFile(  );
 
+                case medical.internal.app.labeler.enums.DataFormat.Image
+                    [ filename, isCanceled ] = self.Dialog.importImageSequenceFromFile(  );
 
-function requestToImportDataFromFile( self )
+            end
 
-switch self.DataFormat
-case medical.internal.app.labeler.enums.DataFormat.Volume
-[ filename, isCanceled ] = self.Dialog.importVolumeFromFile(  );
+            self.Container.bringToFront(  );
 
-case medical.internal.app.labeler.enums.DataFormat.Image
-[ filename, isCanceled ] = self.Dialog.importImageSequenceFromFile(  );
+            if ~isCanceled
 
-end 
+                title = getString( message( 'medical:medicalLabeler:importing' ) );
+                msg = strcat( title, "..." );
+                self.startWaitBar( title, msg );
+                c = onCleanup( @(  )self.clearWaitBar(  ) );
 
-self.Container.bringToFront(  );
+                self.notify( 'DataFromFileRequested', medical.internal.app.labeler.events.ValueEventData( filename ) );
 
-if ~isCanceled
+            end
 
-title = getString( message( 'medical:medicalLabeler:importing' ) );
-msg = strcat( title, "..." );
-self.startWaitBar( title, msg );
-c = onCleanup( @(  )self.clearWaitBar(  ) );
+        end
 
-self.notify( 'DataFromFileRequested', medical.internal.app.labeler.events.ValueEventData( filename ) );
 
-end 
+        function requestToImportVolumeFromDICOMFolder( self )
 
-end 
+            [ directory, isCanceled ] = self.Dialog.importVolumeFromDICOMFolder(  );
+            self.Container.bringToFront(  );
 
+            if ~isCanceled
 
-function requestToImportVolumeFromDICOMFolder( self )
+                title = getString( message( 'medical:medicalLabeler:importing' ) );
+                msg = strcat( title, "..." );
+                self.startWaitBar( title, msg );
+                c = onCleanup( @(  )self.clearWaitBar(  ) );
 
-[ directory, isCanceled ] = self.Dialog.importVolumeFromDICOMFolder(  );
-self.Container.bringToFront(  );
+                evt = medical.internal.app.labeler.events.ValueEventData( directory );
+                self.notify( 'VolumeFromFolderRequested', evt );
 
-if ~isCanceled
+            end
 
-title = getString( message( 'medical:medicalLabeler:importing' ) );
-msg = strcat( title, "..." );
-self.startWaitBar( title, msg );
-c = onCleanup( @(  )self.clearWaitBar(  ) );
+        end
 
-evt = medical.internal.app.labeler.events.ValueEventData( directory );
-self.notify( 'VolumeFromFolderRequested', evt );
 
-end 
+        function requestToImportGroundTruthFromFile( self )
 
-end 
+            [ filename, isCanceled ] = self.Dialog.importGroundTruthFromFile(  );
+            self.Container.bringToFront(  );
 
+            if ~isCanceled
 
-function requestToImportGroundTruthFromFile( self )
+                title = getString( message( 'medical:medicalLabeler:importing' ) );
+                msg = strcat( title, "..." );
+                self.startWaitBar( title, msg );
+                c = onCleanup( @(  )self.clearWaitBar(  ) );
 
-[ filename, isCanceled ] = self.Dialog.importGroundTruthFromFile(  );
-self.Container.bringToFront(  );
+                self.notify( 'GroundTruthFromFileRequested', medical.internal.app.labeler.events.ValueEventData( filename ) );
 
-if ~isCanceled
+            end
 
-title = getString( message( 'medical:medicalLabeler:importing' ) );
-msg = strcat( title, "..." );
-self.startWaitBar( title, msg );
-c = onCleanup( @(  )self.clearWaitBar(  ) );
+        end
 
-self.notify( 'GroundTruthFromFileRequested', medical.internal.app.labeler.events.ValueEventData( filename ) );
 
-end 
+        function requestToImportGroundTruthFromWksp( self )
 
-end 
+            loc = self.Container.getLocation(  );
+            [ gTruthMed, isCanceled ] = self.Dialog.importGroundTruthFromWksp( loc );
 
+            if ~isCanceled
+                self.importGroundTruthFromWksp( gTruthMed );
+            end
 
-function requestToImportGroundTruthFromWksp( self )
+        end
 
-loc = self.Container.getLocation(  );
-[ gTruthMed, isCanceled ] = self.Dialog.importGroundTruthFromWksp( loc );
 
-if ~isCanceled
-self.importGroundTruthFromWksp( gTruthMed );
-end 
+        function requestToImportLabelDefsFromFile( self )
 
-end 
+            [ filename, isCanceled ] = self.Dialog.importLabelDefsFromFile(  );
+            self.Container.bringToFront(  );
 
+            if ~isCanceled
 
-function requestToImportLabelDefsFromFile( self )
+                wait( self.Container );
+                c = onCleanup( @(  )resume( self.Container ) );
 
-[ filename, isCanceled ] = self.Dialog.importLabelDefsFromFile(  );
-self.Container.bringToFront(  );
+                self.notify( 'LabelDefsFromFileRequested', medical.internal.app.labeler.events.ValueEventData( filename ) );
 
-if ~isCanceled
+            end
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+        end
 
-self.notify( 'LabelDefsFromFileRequested', medical.internal.app.labeler.events.ValueEventData( filename ) );
 
-end 
+        function exportGroundTruthToFile( self )
 
-end 
+            wait( self.Container );
+            c = onCleanup( @(  )resume( self.Container ) );
 
+            [ filename, isCanceled ] = self.Dialog.exportGroundTruthToFile(  );
+            self.Container.bringToFront(  );
 
-function exportGroundTruthToFile( self )
+            if isCanceled
+                return
+            end
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+            if self.Toolstrip.AutoSave
+                self.notify( 'SaveSessionRequested' );
+            end
 
-[ filename, isCanceled ] = self.Dialog.exportGroundTruthToFile(  );
-self.Container.bringToFront(  );
+            evt = medical.internal.app.labeler.events.ValueEventData( filename );
+            self.notify( 'ExportGroundTruthToFile', evt );
 
-if isCanceled
-return 
-end 
+        end
 
-if self.Toolstrip.AutoSave
-self.notify( 'SaveSessionRequested' );
-end 
 
-evt = medical.internal.app.labeler.events.ValueEventData( filename );
-self.notify( 'ExportGroundTruthToFile', evt );
+        function exportLabelDefsToFile( self )
 
-end 
+            wait( self.Container );
+            c = onCleanup( @(  )resume( self.Container ) );
 
+            [ filename, isCanceled ] = self.Dialog.exportLabelDefsToFile(  );
+            self.Container.bringToFront(  );
 
-function exportLabelDefsToFile( self )
+            if isCanceled
+                return
+            end
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+            if self.Toolstrip.AutoSave
+                self.notify( 'SaveSessionRequested' );
+            end
 
-[ filename, isCanceled ] = self.Dialog.exportLabelDefsToFile(  );
-self.Container.bringToFront(  );
+            evt = medical.internal.app.labeler.events.ValueEventData( filename );
+            self.notify( 'ExportLabelDefsToFile', evt );
 
-if isCanceled
-return 
-end 
+        end
 
-if self.Toolstrip.AutoSave
-self.notify( 'SaveSessionRequested' );
-end 
 
-evt = medical.internal.app.labeler.events.ValueEventData( filename );
-self.notify( 'ExportLabelDefsToFile', evt );
+        function saveRenderingRequested( self )
 
-end 
+            wait( self.Container );
+            c = onCleanup( @(  )resume( self.Container ) );
 
+            loc = self.Container.getLocation(  );
+            [ renderingName, isCanceled ] = self.Dialog.saveRendering( loc );
 
-function saveRenderingRequested( self )
+            if isCanceled
+                return
+            end
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+            [ renderingStyle, colorCP, alphaCP ] = self.VolumeRendering.getRendering(  );
+            tag = strcat( renderingName, '_', matlab.lang.internal.uuid );
 
-loc = self.Container.getLocation(  );
-[ renderingName, isCanceled ] = self.Dialog.saveRendering( loc );
+            renderingInfo.Tag = tag;
+            renderingInfo.Name = renderingName;
+            renderingInfo.RenderingStyle = renderingStyle;
+            renderingInfo.ColorControlPoints = colorCP;
+            renderingInfo.AlphaControlPoints = alphaCP;
 
-if isCanceled
-return 
-end 
+            evt = medical.internal.app.labeler.events.ValueEventData( renderingInfo );
+            self.notify( 'SaveUserDefinedRendering', evt );
 
-[ renderingStyle, colorCP, alphaCP ] = self.VolumeRendering.getRendering(  );
-tag = strcat( renderingName, '_', matlab.lang.internal.uuid );
 
-renderingInfo.Tag = tag;
-renderingInfo.Name = renderingName;
-renderingInfo.RenderingStyle = renderingStyle;
-renderingInfo.ColorControlPoints = colorCP;
-renderingInfo.AlphaControlPoints = alphaCP;
+            self.Toolstrip.addUserDefinedRendering( tag, renderingName );
 
-evt = medical.internal.app.labeler.events.ValueEventData( renderingInfo );
-self.notify( 'SaveUserDefinedRendering', evt );
 
+            self.Toolstrip.setRenderingPreset( tag );
 
-self.Toolstrip.addUserDefinedRendering( tag, renderingName );
+        end
 
 
-self.Toolstrip.setRenderingPreset( tag );
+        function manageCustomRenderingRequested( self, names, tags )
 
-end 
+            wait( self.Container );
+            c = onCleanup( @(  )resume( self.Container ) );
 
+            loc = self.Container.getLocation(  );
+            [ removeRenderingTags, isCanceled ] = self.Dialog.manageCustomRendering( loc, names, tags );
 
-function manageCustomRenderingRequested( self, names, tags )
+            if isCanceled
+                return
+            end
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+            for idx = 1:length( removeRenderingTags )
+                self.Toolstrip.removeUserDefinedRendering( removeRenderingTags( idx ) );
+            end
 
-loc = self.Container.getLocation(  );
-[ removeRenderingTags, isCanceled ] = self.Dialog.manageCustomRendering( loc, names, tags );
+            evt = medical.internal.app.labeler.events.ValueEventData( removeRenderingTags );
+            self.notify( 'RemoveUserDefinedRendering', evt );
 
-if isCanceled
-return 
-end 
+        end
 
-for idx = 1:length( removeRenderingTags )
-self.Toolstrip.removeUserDefinedRendering( removeRenderingTags( idx ) );
-end 
 
-evt = medical.internal.app.labeler.events.ValueEventData( removeRenderingTags );
-self.notify( 'RemoveUserDefinedRendering', evt );
+        function applyRenderingToAllVolumesRequested( self )
 
-end 
+            title = getString( message( 'medical:medicalLabeler:applyRenderingToAllDlgTitle' ) );
+            question = getString( message( 'medical:medicalLabeler:applyRenderingToAllQuestion' ) );
+            isCanceled = self.Dialog.askQuestion( self.Container.App, question, title );
 
+            if isCanceled
+                return
+            end
 
-function applyRenderingToAllVolumesRequested( self )
+            self.notify( 'ApplyRenderingToAllVolumes' );
 
-title = getString( message( 'medical:medicalLabeler:applyRenderingToAllDlgTitle' ) );
-question = getString( message( 'medical:medicalLabeler:applyRenderingToAllQuestion' ) );
-isCanceled = self.Dialog.askQuestion( self.Container.App, question, title );
+        end
 
-if isCanceled
-return 
-end 
 
-self.notify( 'ApplyRenderingToAllVolumes' );
+        function reactToAutomationStart( self, evt )
 
-end 
+            self.Slices.Enabled = false;
+            self.Key.Enabled = false;
+            self.Pointer.Enabled = false;
+            self.LabelBrowser.disable(  );
+            self.DataBrowser.disable(  );
+            self.ROI.deselectAll(  );
 
+            if evt.VolumeBased
+                self.startWaitBar( getString( message( 'images:segmenter:waitForAutomation' ) ) );
+            end
 
-function reactToAutomationStart( self, evt )
+            evt.Parent = self.Container.TransverseDocument.Figure;
 
-self.Slices.Enabled = false;
-self.Key.Enabled = false;
-self.Pointer.Enabled = false;
-self.LabelBrowser.disable(  );
-self.DataBrowser.disable(  );
-self.ROI.deselectAll(  );
+            self.notify( 'AutomationStarted', evt );
 
-if evt.VolumeBased
-self.startWaitBar( getString( message( 'images:segmenter:waitForAutomation' ) ) );
-end 
+            if ~isvalid( self )
+                return ;
+            end
 
-evt.Parent = self.Container.TransverseDocument.Figure;
+        end
 
-self.notify( 'AutomationStarted', evt );
 
-if ~isvalid( self )
-return ;
-end 
+        function addAlgorithm( self, isVolumeBased )
 
-end 
+            wait( self.Container );
+            c = onCleanup( @(  )resume( self.Container ) );
 
+            loc = self.Container.getLocation(  );
+            [ isCanceled, alg ] = self.Dialog.addAlgorithm( loc, getString( message( 'images:segmenter:loadAlgorithmFile' ) ) );
 
-function addAlgorithm( self, isVolumeBased )
+            if ~isvalid( self )
+                return ;
+            end
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+            self.Container.bringToFront(  );
 
-loc = self.Container.getLocation(  );
-[ isCanceled, alg ] = self.Dialog.addAlgorithm( loc, getString( message( 'images:segmenter:loadAlgorithmFile' ) ) );
+            if ~isCanceled
+                self.Toolstrip.addAlgorithm( alg, isVolumeBased );
+            end
 
-if ~isvalid( self )
-return ;
-end 
+        end
 
-self.Container.bringToFront(  );
 
-if ~isCanceled
-self.Toolstrip.addAlgorithm( alg, isVolumeBased );
-end 
+        function manageAlgorithms( self )
 
-end 
+            wait( self.Container );
+            c = onCleanup( @(  )resume( self.Container ) );
 
+            loc = self.Container.getLocation(  );
+            isCanceled = self.Dialog.manageAlgorithms( loc, getString( message( 'images:segmenter:manageAlgorithm' ) ) );
 
-function manageAlgorithms( self )
+            if ~isvalid( self )
+                return ;
+            end
 
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
+            if ~isCanceled
+                self.Toolstrip.refreshAlgorithms(  );
+            end
 
-loc = self.Container.getLocation(  );
-isCanceled = self.Dialog.manageAlgorithms( loc, getString( message( 'images:segmenter:manageAlgorithm' ) ) );
+        end
 
-if ~isvalid( self )
-return ;
-end 
 
-if ~isCanceled
-self.Toolstrip.refreshAlgorithms(  );
-end 
+        function paintBySuperpixels( self, sz, sliceDir )
 
-end 
+            if isempty( sliceDir )
 
+                switch self.DataFormat
+                    case medical.internal.app.labeler.enums.DataFormat.Volume
+                        sliceDir = [  ...
+                            medical.internal.app.labeler.enums.SliceDirection.Transverse,  ...
+                            medical.internal.app.labeler.enums.SliceDirection.Coronal,  ...
+                            medical.internal.app.labeler.enums.SliceDirection.Sagittal
+                            ];
 
-function paintBySuperpixels( self, sz, sliceDir )
+                    case medical.internal.app.labeler.enums.DataFormat.Image
+                        sliceDir = medical.internal.app.labeler.enums.SliceDirection.Unknown;
 
-if isempty( sliceDir )
+                end
 
-switch self.DataFormat
-case medical.internal.app.labeler.enums.DataFormat.Volume
-sliceDir = [  ...
-medical.internal.app.labeler.enums.SliceDirection.Transverse,  ...
-medical.internal.app.labeler.enums.SliceDirection.Coronal,  ...
-medical.internal.app.labeler.enums.SliceDirection.Sagittal
- ];
+            end
 
-case medical.internal.app.labeler.enums.DataFormat.Image
-sliceDir = medical.internal.app.labeler.enums.SliceDirection.Unknown;
+            for i = 1:length( sliceDir )
 
-end 
+                if isempty( sz )
 
-end 
+                    L = self.ROI.generateSuperpixels( [  ], sliceDir( i ) );
+                    redrawRequired = ~isempty( self.Slices.getSuperpixelOverlay( sliceDir( i ) ) );
+                    self.Slices.setSuperpixelOverlay( L, sliceDir( i ) );
 
-for i = 1:length( sliceDir )
+                    if redrawRequired
 
-if isempty( sz )
+                        self.Toolstrip.deselectPaintBySuperpixels(  );
 
-L = self.ROI.generateSuperpixels( [  ], sliceDir( i ) );
-redrawRequired = ~isempty( self.Slices.getSuperpixelOverlay( sliceDir( i ) ) );
-self.Slices.setSuperpixelOverlay( L, sliceDir( i ) );
+                        sliceIdx = self.ROI.getSliceIndex( sliceDir( i ) );
+                        evt = medical.internal.app.labeler.events.SliceEventData( sliceIdx, sliceDir( i ) );
+                        self.notify( 'RefreshSlice', evt );
 
-if redrawRequired
+                    end
 
-self.Toolstrip.deselectPaintBySuperpixels(  );
+                else
 
-sliceIdx = self.ROI.getSliceIndex( sliceDir( i ) );
-evt = medical.internal.app.labeler.events.SliceEventData( sliceIdx, sliceDir( i ) );
-self.notify( 'RefreshSlice', evt );
 
-end 
+                    sliceIdx = self.ROI.getSliceIndex( sliceDir( i ) );
+                    evt = medical.internal.app.labeler.events.SliceEventData( sliceIdx, sliceDir( i ) );
+                    self.notify( 'SliceRequestedForROI', evt );
 
-else 
+                    L = self.ROI.generateSuperpixels( sz, sliceDir( i ) );
+                    self.Slices.setSuperpixelOverlay( L, sliceDir( i ) );
 
+                    self.notify( 'RefreshSlice', evt );
 
-sliceIdx = self.ROI.getSliceIndex( sliceDir( i ) );
-evt = medical.internal.app.labeler.events.SliceEventData( sliceIdx, sliceDir( i ) );
-self.notify( 'SliceRequestedForROI', evt );
+                end
 
-L = self.ROI.generateSuperpixels( sz, sliceDir( i ) );
-self.Slices.setSuperpixelOverlay( L, sliceDir( i ) );
+            end
 
-self.notify( 'RefreshSlice', evt );
+        end
 
-end 
 
-end 
+        function reactToInterpolationRequest( self )
 
-end 
+            sliceDir = self.Slices.LastActiveSliceDirection;
+            [ roi, val ] = getSelection( self.ROI, sliceDir );
 
+            if ~isempty( roi )
 
-function reactToInterpolationRequest( self )
+                deselectAll( self.ROI, self.Slices.LastActiveSliceDirection );
 
-sliceDir = self.Slices.LastActiveSliceDirection;
-[ roi, val ] = getSelection( self.ROI, sliceDir );
+                currSliceIdx = self.ROI.getSliceIndex( sliceDir );
 
-if ~isempty( roi )
+                evt = images.internal.app.segmenter.volume.events.ROIInterpolatedEventData( roi, [  ], val, currSliceIdx, [  ] );
+                evt.SliceDirection = sliceDir;
+                notify( self, 'InterpolateRequested', evt );
 
-deselectAll( self.ROI, self.Slices.LastActiveSliceDirection );
+            end
 
-currSliceIdx = self.ROI.getSliceIndex( sliceDir );
+        end
+    end
 
-evt = images.internal.app.segmenter.volume.events.ROIInterpolatedEventData( roi, [  ], val, currSliceIdx, [  ] );
-evt.SliceDirection = sliceDir;
-notify( self, 'InterpolateRequested', evt );
 
-end 
 
-end 
-end 
 
+    events
 
+        RefreshLabelVolumeAlpha
+        RedrawVolume
 
+        RefreshLabels3D
 
-events 
+        VolumeRenderingStyleChanged
+        AlphaControlPtsUpdated
+        ColorControlPtsUpdated
 
-RefreshLabelVolumeAlpha
-RedrawVolume
+    end
 
-RefreshLabels3D
+    methods
 
-VolumeRenderingStyleChanged
-AlphaControlPtsUpdated
-ColorControlPtsUpdated
 
-end 
+        function updateVolume( self, vol, labels, tform, volumeBounds, axesLabels )
 
-methods 
+            showVolume = self.Toolstrip.getShowVolume(  );
+            if showVolume
 
+                self.VolumeRendering.updateVolume( vol, tform, volumeBounds );
+                self.VolumeRendering.updateLabels( labels );
+                self.VolumeRendering.setOrientationAxesLabels( axesLabels );
 
-function updateVolume( self, vol, labels, tform, volumeBounds, axesLabels )
+                self.VolumeRendering.setVolumeVisiblity( true );
 
-showVolume = self.Toolstrip.getShowVolume(  );
-if showVolume
+            end
 
-self.VolumeRendering.updateVolume( vol, tform, volumeBounds );
-self.VolumeRendering.updateLabels( labels );
-self.VolumeRendering.setOrientationAxesLabels( axesLabels );
+        end
 
-self.VolumeRendering.setVolumeVisiblity( true );
 
-end 
+        function updateLabels( self, labels )
 
-end 
+            showVolume = self.Toolstrip.getShowVolume(  );
+            if showVolume
+                self.VolumeRendering.updateLabels( labels );
+            end
 
+        end
 
-function updateLabels( self, labels )
 
-showVolume = self.Toolstrip.getShowVolume(  );
-if showVolume
-self.VolumeRendering.updateLabels( labels );
-end 
+        function setVolumeRendering( self, renderingPreset, renderer, volAlphaCP, volColorCP )
 
-end 
+            showVolume = self.Toolstrip.getShowVolume(  );
+            if showVolume
+                self.Toolstrip.setRenderingPreset( renderingPreset );
+                self.VolumeRendering.setVolumeRendering( renderer, volAlphaCP, volColorCP );
+            end
 
+        end
 
-function setVolumeRendering( self, renderingPreset, renderer, volAlphaCP, volColorCP )
 
-showVolume = self.Toolstrip.getShowVolume(  );
-if showVolume
-self.Toolstrip.setRenderingPreset( renderingPreset );
-self.VolumeRendering.setVolumeRendering( renderer, volAlphaCP, volColorCP );
-end 
+        function updateLabelVolumeColor( self, labelColormap )
+            self.VolumeRendering.updateLabelColor( labelColormap )
+        end
 
-end 
 
+        function updateLabelVolumeAlpha( self, labelAlphamap )
+            labelOpacity = self.Toolstrip.getLabelOpacity(  );
+            labelAlphamap = labelOpacity * labelAlphamap;
+            self.VolumeRendering.updateLabelAlpha( labelAlphamap )
+        end
 
-function updateLabelVolumeColor( self, labelColormap )
-self.VolumeRendering.updateLabelColor( labelColormap )
-end 
+    end
 
+    methods ( Access = protected )
 
-function updateLabelVolumeAlpha( self, labelAlphamap )
-labelOpacity = self.Toolstrip.getLabelOpacity(  );
-labelAlphamap = labelOpacity * labelAlphamap;
-self.VolumeRendering.updateLabelAlpha( labelAlphamap )
-end 
 
-end 
+        function addVolumeRenderingListeners( self )
 
-methods ( Access = protected )
+            addlistener( self.VolumeRendering, 'WarningThrown', @( src, evt )self.warning( evt.Message ) );
+            addlistener( self.VolumeRendering, 'RefreshLabels3D', @( src, evt )self.notify( 'RefreshLabels3D' ) );
 
+            addlistener( self.VolumeRendering, 'VolumeRenderingStyleChanged', @( src, evt )self.notify( 'VolumeRenderingStyleChanged', evt ) );
+            addlistener( self.VolumeRendering, 'AlphaControlPtsUpdated', @( src, evt )self.notify( 'AlphaControlPtsUpdated', evt ) );
+            addlistener( self.VolumeRendering, 'ColorControlPtsUpdated', @( src, evt )self.notify( 'ColorControlPtsUpdated', evt ) );
+            addlistener( self.VolumeRendering, 'RedrawVolume', @( src, evt )self.notify( 'RedrawVolume' ) );
+            addlistener( self.VolumeRendering, 'BringAppToFront', @( src, evt )self.Container.bringToFront(  ) );
 
-function addVolumeRenderingListeners( self )
+        end
 
-addlistener( self.VolumeRendering, 'WarningThrown', @( src, evt )self.warning( evt.Message ) );
-addlistener( self.VolumeRendering, 'RefreshLabels3D', @( src, evt )self.notify( 'RefreshLabels3D' ) );
 
-addlistener( self.VolumeRendering, 'VolumeRenderingStyleChanged', @( src, evt )self.notify( 'VolumeRenderingStyleChanged', evt ) );
-addlistener( self.VolumeRendering, 'AlphaControlPtsUpdated', @( src, evt )self.notify( 'AlphaControlPtsUpdated', evt ) );
-addlistener( self.VolumeRendering, 'ColorControlPtsUpdated', @( src, evt )self.notify( 'ColorControlPtsUpdated', evt ) );
-addlistener( self.VolumeRendering, 'RedrawVolume', @( src, evt )self.notify( 'RedrawVolume' ) );
-addlistener( self.VolumeRendering, 'BringAppToFront', @( src, evt )self.Container.bringToFront(  ) );
+        function requestToChangeVolumeBackgroundColor( self )
 
-end 
+            color = uisetcolor( self.VolumeRendering.getVolumeBackgroundColor(  ),  ...
+                getString( message( 'images:volumeViewer:backgroundColorButtonLabel' ) ) );
 
+            self.Container.bringToFront(  );
 
-function requestToChangeVolumeBackgroundColor( self )
+            self.Toolstrip.setBackgroundColor( color );
+            self.VolumeRendering.setVolumeBackgroundColor( color );
+            set( self.Container.VolumeDocument.Figure, 'Color', color );
 
-color = uisetcolor( self.VolumeRendering.getVolumeBackgroundColor(  ),  ...
-getString( message( 'images:volumeViewer:backgroundColorButtonLabel' ) ) );
+        end
 
-self.Container.bringToFront(  );
 
-self.Toolstrip.setBackgroundColor( color );
-self.VolumeRendering.setVolumeBackgroundColor( color );
-set( self.Container.VolumeDocument.Figure, 'Color', color );
+        function requestToChangeVolumeGradientColor( self )
 
-end 
+            color = uisetcolor( self.VolumeRendering.getVolumeBackgroundColor(  ),  ...
+                getString( message( 'images:volumeViewer:backgroundColorButtonLabel' ) ) );
 
+            self.Container.bringToFront(  );
 
-function requestToChangeVolumeGradientColor( self )
+            self.Toolstrip.setGradientColor( color );
+            self.VolumeRendering.setVolumeGradientColor( color );
+            set( self.Container.VolumeDocument.Figure, 'Color', color );
 
-color = uisetcolor( self.VolumeRendering.getVolumeBackgroundColor(  ),  ...
-getString( message( 'images:volumeViewer:backgroundColorButtonLabel' ) ) );
+        end
 
-self.Container.bringToFront(  );
 
-self.Toolstrip.setGradientColor( color );
-self.VolumeRendering.setVolumeGradientColor( color );
-set( self.Container.VolumeDocument.Figure, 'Color', color );
+        function reactToBackgroundGradientToggle( self, TF )
+            self.VolumeRendering.setBackgroundGradient( TF );
+        end
 
-end 
 
+        function restoreVolumeBackgroundRequested( self )
 
-function reactToBackgroundGradientToggle( self, TF )
-self.VolumeRendering.setBackgroundGradient( TF );
-end 
+            self.VolumeRendering.restoreVolumeBackground(  );
 
 
-function restoreVolumeBackgroundRequested( self )
+            useGradient = self.VolumeRendering.getBackgroundGradient(  );
+            backgroundColor = self.VolumeRendering.getVolumeBackgroundColor(  );
+            gradientColor = self.VolumeRendering.getVolumeGradientColor(  );
+            self.Toolstrip.setVolumeBackgroundSettings( useGradient, backgroundColor, gradientColor );
 
-self.VolumeRendering.restoreVolumeBackground(  );
+        end
 
 
-useGradient = self.VolumeRendering.getBackgroundGradient(  );
-backgroundColor = self.VolumeRendering.getVolumeBackgroundColor(  );
-gradientColor = self.VolumeRendering.getVolumeGradientColor(  );
-self.Toolstrip.setVolumeBackgroundSettings( useGradient, backgroundColor, gradientColor );
+        function reactToVolumeVisibilityToggle( self, TF )
 
-end 
 
 
-function reactToVolumeVisibilityToggle( self, TF )
+            if TF
+                wait( self.Container );
+                c = onCleanup( @(  )resume( self.Container ) );
+            end
 
 
 
-if TF
-wait( self.Container );
-c = onCleanup( @(  )resume( self.Container ) );
-end 
+            TFRenderingEditor = self.Toolstrip.getShowRenderingEditor(  );
+            self.Container.showRenderingEditor( TF & TFRenderingEditor )
 
 
 
-TFRenderingEditor = self.Toolstrip.getShowRenderingEditor(  );
-self.Container.showRenderingEditor( TF & TFRenderingEditor )
+            if TF && self.HasData
+                self.VolumeRendering.redraw(  );
+            end
 
 
+            self.VolumeRendering.setVolumeVisiblity( TF );
 
-if TF && self.HasData
-self.VolumeRendering.redraw(  );
-end 
 
+            self.Publish.enable3DScreenshot( TF );
 
-self.VolumeRendering.setVolumeVisiblity( TF );
+        end
 
 
-self.Publish.enable3DScreenshot( TF );
+        function reactToOrientationAxesVisibilityToggle( self, TF )
+            self.VolumeRendering.setOrientationAxes( TF );
+        end
 
-end 
+    end
 
-
-function reactToOrientationAxesVisibilityToggle( self, TF )
-self.VolumeRendering.setOrientationAxes( TF );
-end 
-
-end 
-
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpmOmW5a.p.
-% Please follow local copyright laws when handling this file.
-
+end

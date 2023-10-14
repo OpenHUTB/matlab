@@ -102,7 +102,7 @@ end
 methods 
 
 function this = PreprocessingDataModel( workspace )
-R36
+arguments
 workspace( 1, 1 )matlab.internal.datatoolsservices.AppWorkspace = matlab.internal.datatoolsservices.AppWorkspace;
 end 
 
@@ -117,7 +117,7 @@ this.PreprocessingStepIDsList = int64( [  ] );
 end 
 
 function workspace = getWorkspaceAt( this, stepIndex )
-R36
+arguments
 this
 stepIndex double
 end 
@@ -147,7 +147,7 @@ stepIndex = find( stepIndexArrayLogical, 1, 'first' );
 end 
 
 function [ isSuccess, errorMsg ] = addCodeAt( this, pvPairs )
-R36
+arguments
 this( 1, 1 )matlab.internal.preprocessingApp.state.PreprocessingDataModel
 pvPairs.Code string = ""
 pvPairs.DisplayName string = ""
@@ -215,7 +215,7 @@ end
 end 
 
 function [ isSuccess, errorMsg ] = removeCodeAt( this, stepIndex )
-R36
+arguments
 this
 stepIndex double
 end 
@@ -235,7 +235,7 @@ end
 end 
 
 function replaceCodeAt( this, pvPairs )
-R36
+arguments
 this( 1, 1 )matlab.internal.preprocessingApp.state.PreprocessingDataModel
 pvPairs.Code string = ""
 pvPairs.DisplayName string = ""
@@ -272,7 +272,7 @@ end
 end 
 
 function [ varValue, fullTable ] = getVariableValueAt( this, pvPairs )
-R36
+arguments
 this( 1, 1 )matlab.internal.preprocessingApp.state.PreprocessingDataModel
 pvPairs.VariableName( 1, 1 )string
 pvPairs.TableVariableName string = string.empty
@@ -353,7 +353,7 @@ newStepID = currentStepID;
 end 
 
 function stepStruct = createCodeStruct( this, codeStruct, stepID )
-R36
+arguments
 this( 1, 1 )matlab.internal.preprocessingApp.state.PreprocessingDataModel
 codeStruct( 1, 1 )struct
 stepID( 1, 1 )int64 = this.getNewStepID;
@@ -373,7 +373,7 @@ stepStruct.VariableList = codeStruct.VariablesList;
 end 
 
 function updateWorkspace( this, isAppend )
-R36
+arguments
 this
 isAppend( 1, 1 )logical = false
 end 
