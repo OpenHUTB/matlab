@@ -36,7 +36,7 @@ end
 
 methods 
 function this = OpDefs( keywords, mfzOpName, evalFun, staticType, arity )
-R36
+arguments
 keywords
 mfzOpName
 evalFun = function_handle.empty(  )
@@ -58,7 +58,7 @@ end
 
 methods ( Static )
 function ops = fromKeywords( keywords )
-R36
+arguments
 keywords{ mustBeText( keywords ) }
 end 
 

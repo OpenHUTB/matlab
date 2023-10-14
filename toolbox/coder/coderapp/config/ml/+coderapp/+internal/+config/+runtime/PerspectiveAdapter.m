@@ -1,63 +1,59 @@
 classdef ( Sealed )PerspectiveAdapter < coderapp.internal.config.runtime.InternalNodeAdapter
 
+    properties ( Constant )
+        NodeType coderapp.internal.config.runtime.NodeType = coderapp.internal.config.runtime.NodeType.Perspective
+    end
 
+    properties ( Dependent, SetAccess = private )
+        DependencyKeys
+    end
 
-properties ( Constant )
-NodeType coderapp.internal.config.runtime.NodeType = coderapp.internal.config.runtime.NodeType.Perspective
-end 
+    properties ( Dependent )
+        IsActive logical
+    end
 
-properties ( Dependent, SetAccess = private )
-DependencyKeys
-end 
+    properties ( Dependent, SetAccess = immutable )
+        IsDefault logical
+    end
 
-properties ( Dependent )
-IsActive logical
-end 
+    properties ( SetAccess = immutable )
+        PerspectiveDef
+    end
 
-properties ( Dependent, SetAccess = immutable )
-IsDefault logical
-end 
+    properties ( Access = private )
+        MemberNodes
+    end
 
-properties ( SetAccess = immutable )
-PerspectiveDef
-end 
+    methods
+        function this = PerspectiveAdapter( perDef )
+            arguments
+                perDef coderapp.internal.config.schema.PerspectiveDef
+            end
+            this@coderapp.internal.config.runtime.InternalNodeAdapter( perDef );
+            this.PerspectiveDef = perDef;
+        end
 
-properties ( Access = private )
-MemberNodes
-end 
+        function keys = get.DependencyKeys( ~ )
+            keys = {  };
+        end
 
-methods 
-function this = PerspectiveAdapter( perDef )
-R36
-perDef coderapp.internal.config.schema.PerspectiveDef
-end 
-this@coderapp.internal.config.runtime.InternalNodeAdapter( perDef );
-this.PerspectiveDef = perDef;
-end 
+        function active = get.IsActive( this )
+            active = this.State.IsActive;
+        end
 
-function keys = get.DependencyKeys( ~ )
-keys = {  };
-end 
+        function set.IsActive( this, active )
+            this.State.IsActive = active;
+        end
 
-function active = get.IsActive( this )
-active = this.State.IsActive;
-end 
+        function default = get.IsDefault( this )
+            default = this.State.IsDefault;
+        end
+    end
 
-function set.IsActive( this, active )
-this.State.IsActive = active;
-end 
-
-function default = get.IsDefault( this )
-default = this.State.IsDefault;
-end 
-end 
-
-methods ( Access = protected )
-function depNodes = getDependencyNodes( ~ )
-depNodes = [  ];
-end 
-end 
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpJs06MR.p.
-% Please follow local copyright laws when handling this file.
+    methods ( Access = protected )
+        function depNodes = getDependencyNodes( ~ )
+            depNodes = [  ];
+        end
+    end
+end
 
