@@ -1,263 +1,263 @@
 classdef ReqRoot < slreq.das.BaseObject
 
+    properties
+        reqData;
+        reqDataChangeListener;
+        otherArtifactChangeListerners = {  };
 
+    end
 
+    methods ( Static, Hidden )
 
-properties 
-reqData;
-reqDataChangeListener;
-otherArtifactChangeListerners = {  };
+        function c = count( op )
+            arguments
+                op = 'get'
+            end
 
-end 
+            mlock;
+            persistent counter;
+            if isempty( counter )
+                counter = 0;
+            end
+            switch op
+                case 'inc'
+                    counter = counter + 1;
+                case 'dec'
+                    counter = counter - 1;
+            end
+            c = counter;
+        end
+    end
 
-methods ( Static, Hidden )
+    methods
 
-function c = count( op )
-R36
-op = 'get'
-end 
+        function this = ReqRoot( view )
+            this@slreq.das.BaseObject(  );
+            this.childrenCreated = false;
 
-mlock;
-persistent counter;
-if isempty( counter )
-counter = 0;
-end 
-switch op
-case 'inc'
-counter = counter + 1;
-case 'dec'
-counter = counter - 1;
-end 
-c = counter;
-end 
-end 
+            this.view = view;
+            this.reqData = slreq.data.ReqData.getInstance(  );
+            this.reqDataChangeListener = this.reqData.addlistener( 'ReqDataChange', @this.onReqDataChange );
+            if dig.isProductInstalled( 'Simulink Test' ) && contains( path, [ 'toolbox', filesep, 'stm', filesep, 'stm' ] )
+                this.otherArtifactChangeListerners{ 1 } = sltest.internal.Events.getInstance.addlistener( 'SimulationCompleted', @this.onSimulationCompleted );
+                this.otherArtifactChangeListerners{ 2 } = sltest.internal.Events.getInstance.addlistener( 'TestFileOpened', @this.onTestFileOpened );
 
-methods 
+            end
 
-function this = ReqRoot( view )
-this@slreq.das.BaseObject(  );
-this.childrenCreated = false;
+            this.syncWithRepository(  );
 
-this.view = view;
-this.reqData = slreq.data.ReqData.getInstance(  );
-this.reqDataChangeListener = this.reqData.addlistener( 'ReqDataChange', @this.onReqDataChange );
-if dig.isProductInstalled( 'Simulink Test' ) && contains( path, [ 'toolbox', filesep, 'stm', filesep, 'stm' ] )
-this.otherArtifactChangeListerners{ 1 } = sltest.internal.Events.getInstance.addlistener( 'SimulationCompleted', @this.onSimulationCompleted );
-this.otherArtifactChangeListerners{ 2 } = sltest.internal.Events.getInstance.addlistener( 'TestFileOpened', @this.onTestFileOpened );
+            this.notifyViewChange( true );
 
-end 
+            assert( this.count(  ) == 0, 'duplicated ReqRoot created' );
+            this.count( 'inc' );
+        end
 
-this.syncWithRepository(  );
+        function delete( this )
+            this.count( 'dec' );
+
+            delete( this.reqDataChangeListener );
+            for n = 1:length( this.otherArtifactChangeListerners )
+                delete( this.otherArtifactChangeListerners{ n } );
+            end
 
-this.notifyViewChange( true );
+            this.reqDataChangeListener = [  ];
+            this.otherArtifactChangeListerners = {  };
+        end
+    end
 
-assert( this.count(  ) == 0, 'duplicated ReqRoot created' );
-this.count( 'inc' );
-end 
+    methods ( Static )
 
-function delete( this )
-this.count( 'dec' );
 
-delete( this.reqDataChangeListener );
-for n = 1:length( this.otherArtifactChangeListerners )
-delete( this.otherArtifactChangeListerners{ n } );
-end 
 
-this.reqDataChangeListener = [  ];
-this.otherArtifactChangeListerners = {  };
-end 
-end 
 
-methods ( Static )
+        function name = promptForReqSetFile( defaultName )
+            dialogTitle = getString( message( 'Slvnv:slreq:NewRequirementSetLocation' ) );
+            filterSpec = { '*.slreqx', 'Requirement Set Files (*.slreqx)';
+                '*.*', 'All Files (*.*)' };
+            [ filename, pathName, filterIndex ] = uiputfile( filterSpec, dialogTitle, defaultName );
+            if filterIndex > 0
+                name = [ pathName, filename ];
+            else
+                name = '';
+            end
+        end
 
+        function reqSet = createAndSaveReqSet( name )
 
 
+            reqData = slreq.data.ReqData.getInstance;
+            try
 
-function name = promptForReqSetFile( defaultName )
-dialogTitle = getString( message( 'Slvnv:slreq:NewRequirementSetLocation' ) );
-filterSpec = { '*.slreqx', 'Requirement Set Files (*.slreqx)';
-'*.*', 'All Files (*.*)' };
-[ filename, pathName, filterIndex ] = uiputfile( filterSpec, dialogTitle, defaultName );
-if filterIndex > 0
-name = [ pathName, filename ];
-else 
-name = '';
-end 
-end 
 
-function reqSet = createAndSaveReqSet( name )
 
 
-reqData = slreq.data.ReqData.getInstance;
-try 
+                reqSet = reqData.createAndSaveReqSet( name );
 
+            catch ex
+                errordlg( ex.message,  ...
+                    getString( message( 'Slvnv:slreq:Error' ) ) );
+                if exist( 'reqSet', 'var' ) == 1
+                    reqData.discardReqSet( reqSet );%#ok<NODEF>
+                end
 
+                reqSet = slreq.data.RequirementSet.empty(  );
+            end
+        end
+    end
 
+    methods
+        function ch = getChildren( this, ~ )
+            if ~this.childrenCreated
+                this.childrenCreated = true;
+                if isempty( this.children )
 
-reqSet = reqData.createAndSaveReqSet( name );
+                    childReqs = [  ];
+                    if ~isempty( this.dataModelObj )
+                        childReqs = this.dataModelObj.children;
+                    end
+                    for i = 1:numel( childReqs )
 
-catch ex
-errordlg( ex.message,  ...
-getString( message( 'Slvnv:slreq:Error' ) ) );
-if exist( 'reqSet', 'var' ) == 1
-reqData.discardReqSet( reqSet );%#ok<NODEF>
-end 
-
-reqSet = slreq.data.RequirementSet.empty(  );
-end 
-end 
-end 
+                        reqDasObj = slreq.das.Requirement(  );
+                        reqDasObj.postConstructorProcess( childReqs( i ), this, this.view, this.eventListener );
+                        this.addChildObject( reqDasObj );
+                    end
+                end
+            end
 
-methods 
-function ch = getChildren( this, ~ )
-if ~this.childrenCreated
-this.childrenCreated = true;
-if isempty( this.children )
+            ch = this.children;
+        end
 
-childReqs = [  ];
-if ~isempty( this.dataModelObj )
-childReqs = this.dataModelObj.children;
-end 
-for i = 1:numel( childReqs )
+        function ch = getHierarchicalChildren( this )
+            ch = this.getChildren( this );
+        end
 
-reqDasObj = slreq.das.Requirement(  );
-reqDasObj.postConstructorProcess( childReqs( i ), this, this.view, this.eventListener );
-this.addChildObject( reqDasObj );
-end 
-end 
-end 
+        function onSimulationCompleted( this, ~, ~ )
+            mgr = slreq.app.MainManager.getInstance;
+            allViewers = mgr.getAllViewers;
+            if mgr.isVerificationStatusEnabled( allViewers )
 
-ch = this.children;
-end 
 
-function ch = getHierarchicalChildren( this )
-ch = this.getChildren( this );
-end 
+                this.refreshVerificationStatus(  );
+                mgr.update( true );
+            end
+        end
 
-function onSimulationCompleted( this, ~, ~ )
-mgr = slreq.app.MainManager.getInstance;
-allViewers = mgr.getAllViewers;
-if mgr.isVerificationStatusEnabled( allViewers )
+        function onTestFileOpened( ~, ~, data )
+            mgr = slreq.app.MainManager.getInstance;
+            mgr.refreshUIOnArtifactLoad( data.FilePath );
+        end
 
+        function reqSetDasObj = addRequirementSet( this, name )
+            if nargin == 1
+                name = '';
+            end
+            this.reqDataChangeListener.Enabled = false;
+            reqSet = slreq.das.ReqRoot.createAndSaveReqSet( name );
+            this.reqDataChangeListener.Enabled = true;
+            if isempty( reqSet )
 
-this.refreshVerificationStatus(  );
-mgr.update( true );
-end 
-end 
 
-function onTestFileOpened( ~, ~, data )
-mgr = slreq.app.MainManager.getInstance;
-mgr.refreshUIOnArtifactLoad( data.FilePath );
-end 
 
-function reqSetDasObj = addRequirementSet( this, name )
-if nargin == 1
-name = '';
-end 
-this.reqDataChangeListener.Enabled = false;
-reqSet = slreq.das.ReqRoot.createAndSaveReqSet( name );
-this.reqDataChangeListener.Enabled = true;
-if isempty( reqSet )
+                reqSetDasObj = [  ];
+            else
+                reqSetDasObj = slreq.das.RequirementSet( reqSet, this, this.view, this.reqDataChangeListener );
+                this.addChildObject( reqSetDasObj );
 
 
 
-reqSetDasObj = [  ];
-else 
-reqSetDasObj = slreq.das.RequirementSet( reqSet, this, this.view, this.reqDataChangeListener );
-this.addChildObject( reqSetDasObj );
+                this.notifyViewChange( true );
+            end
+        end
 
+        function reqSetDasObj = loadRequirementSet( this, filePath, resolveProfile, profChecker, profNs )
+            if nargin == 2
+                resolveProfile = false;
+            end
 
 
-this.notifyViewChange( true );
-end 
-end 
+            this.reqDataChangeListener.Enabled = false;
 
-function reqSetDasObj = loadRequirementSet( this, filePath, resolveProfile, profChecker, profNs )
-if nargin == 2
-resolveProfile = false;
-end 
+            try
+                [ ~, ~, fExt ] = fileparts( filePath );
+                if strcmpi( fExt, '.slx' )
+                    mdlHandle = load_system( filePath );
+                    reqsetName = slreq.data.ReqData.getInstance.getSfReqSet( mdlHandle );
+                    if ~isempty( reqsetName )
+                        reqSet = slreq.data.ReqData.getInstance.getReqSet( reqsetName );
+                    else
 
+                        reqSet = [  ];
+                    end
+                else
+                    reqSet = this.reqData.loadReqSet( filePath,  ...
+                        [  ], resolveProfile, profChecker, profNs );
+                end
+            catch ex
 
-this.reqDataChangeListener.Enabled = false;
+                this.reqDataChangeListener.Enabled = true;
 
-try 
-[ ~, ~, fExt ] = fileparts( filePath );
-if strcmpi( fExt, '.slx' )
-mdlHandle = load_system( filePath );
-reqsetName = slreq.data.ReqData.getInstance.getSfReqSet( mdlHandle );
-if ~isempty( reqsetName )
-reqSet = slreq.data.ReqData.getInstance.getReqSet( reqsetName );
-else 
 
-reqSet = [  ];
-end 
-else 
-reqSet = this.reqData.loadReqSet( filePath,  ...
-[  ], resolveProfile, profChecker, profNs );
-end 
-catch ex
+                rethrow( ex );
+            end
 
-this.reqDataChangeListener.Enabled = true;
+            this.reqDataChangeListener.Enabled = true;
+            if isempty( reqSet )
 
 
-rethrow( ex );
-end 
+                reqSetDasObj = slreq.das.RequirementSet.empty(  );
+                return ;
+            end
 
-this.reqDataChangeListener.Enabled = true;
-if isempty( reqSet )
+            reqSetDasObj = reqSet.getDasObject(  );
+            if isempty( reqSetDasObj )
+                reqSetDasObj = slreq.das.RequirementSet( reqSet, this, this.view, this.reqDataChangeListener );
+                this.addChildObject( reqSetDasObj );
+            end
 
 
-reqSetDasObj = slreq.das.RequirementSet.empty(  );
-return ;
-end 
+            if ~isempty( this.view.spreadsheetManager )
+                this.view.spreadsheetManager.updateDisplayedReqSet(  );
+            end
 
-reqSetDasObj = reqSet.getDasObject(  );
-if isempty( reqSetDasObj )
-reqSetDasObj = slreq.das.RequirementSet( reqSet, this, this.view, this.reqDataChangeListener );
-this.addChildObject( reqSetDasObj );
-end 
+            if ~isempty( this.view.markupManager )
+                this.view.markupManager.updateMarkupOnReqSetLoaded( reqSetDasObj );
+            end
+        end
 
+        function discardReqSet( this )%#ok<MANU>
+        end
 
-if ~isempty( this.view.spreadsheetManager )
-this.view.spreadsheetManager.updateDisplayedReqSet(  );
-end 
 
-if ~isempty( this.view.markupManager )
-this.view.markupManager.updateMarkupOnReqSetLoaded( reqSetDasObj );
-end 
-end 
 
-function discardReqSet( this )%#ok<MANU>
-end 
+        function discardAll( this )%#ok<MANU>
+        end
 
+        function showSuggestion( this, suggestionId, suggestionText )
+            reqEditor = this.view.requirementsEditor;
 
+            if isempty( reqEditor )
+                return ;
+            end
+            reqEditor.ShowSuggestion = true;
+            reqEditor.SuggestionId = suggestionId;
+            reqEditor.SuggestionReason = suggestionText;
+            reqEditor.showNotification(  );
+        end
 
-function discardAll( this )%#ok<MANU>
-end 
 
-function showSuggestion( this, suggestionId, suggestionText )
-reqEditor = this.view.requirementsEditor;
 
-if isempty( reqEditor )
-return ;
-end 
-reqEditor.ShowSuggestion = true;
-reqEditor.SuggestionId = suggestionId;
-reqEditor.SuggestionReason = suggestionText;
-reqEditor.showNotification(  );
-end 
+        function suggestionText = getSuggestion( this )
+            reqEditor = this.view.requirementsEditor;
+            suggestionText = reqEditor.SuggestionReason;
+        end
 
+        function onReqDataChange( this, ~, eventInfo )
+            slreq.utils.assertValid( this );
 
+            objToBeSelected = [  ];
 
-function suggestionText = getSuggestion( this )
-reqEditor = this.view.requirementsEditor;
-suggestionText = reqEditor.SuggestionReason;
-end 
 
-function onReqDataChange( this, ~, eventInfo )
-slreq.utils.assertValid( this );
 
-objToBeSelected = [  ];
 
 
 
@@ -269,536 +269,536 @@ objToBeSelected = [  ];
 
 
 
+            localDataRefreshed = false;
 
+            doNotify = true;
 
+            switch eventInfo.type
+                case { 'ReqSet Created', 'ReqSet Loaded' }
+                    reqSet = eventInfo.eventObj;
+                    slreq.utils.assertValid( reqSet );
+                    if ~any( strcmp( reqSet.filepath, { 'default.slreqx', 'clipboard.slreqx', 'slinternal_scratchpad.slreqx' } ) )
+                        dasReqSet = slreq.das.RequirementSet( reqSet,  ...
+                            this,  ...
+                            this.view,  ...
+                            this.reqDataChangeListener );
+                        this.addChildObject( dasReqSet );
 
-localDataRefreshed = false;
+                        if ~isempty( this.view.spreadsheetManager )
+                            this.view.spreadsheetManager.updateDisplayedReqSet(  );
+                        end
 
-doNotify = true;
+                        if ~isempty( this.view.markupManager )
+                            this.view.markupManager.updateMarkupOnReqSetLoaded( dasReqSet );
+                        end
 
-switch eventInfo.type
-case { 'ReqSet Created', 'ReqSet Loaded' }
-reqSet = eventInfo.eventObj;
-slreq.utils.assertValid( reqSet );
-if ~any( strcmp( reqSet.filepath, { 'default.slreqx', 'clipboard.slreqx', 'slinternal_scratchpad.slreqx' } ) )
-dasReqSet = slreq.das.RequirementSet( reqSet,  ...
-this,  ...
-this.view,  ...
-this.reqDataChangeListener );
-this.addChildObject( dasReqSet );
+                        localDataRefreshed = true;
+                        mgr = slreq.app.MainManager.getInstance;
 
-if ~isempty( this.view.spreadsheetManager )
-this.view.spreadsheetManager.updateDisplayedReqSet(  );
-end 
 
-if ~isempty( this.view.markupManager )
-this.view.markupManager.updateMarkupOnReqSetLoaded( dasReqSet );
-end 
+                        if ~mgr.isAnalysisDeferred
+                            allViewers = mgr.getAllViewers;
+                            if strcmp( eventInfo.type, 'ReqSet Loaded' )
 
-localDataRefreshed = true;
-mgr = slreq.app.MainManager.getInstance;
 
 
-if ~mgr.isAnalysisDeferred
-allViewers = mgr.getAllViewers;
-if strcmp( eventInfo.type, 'ReqSet Loaded' )
 
+                                if isempty( dasReqSet ) && mgr.isChangeInformationEnabled( allViewers )
+                                    ctmgr = mgr.changeTracker;
+                                    ctmgr.refresh(  );
+                                end
+                            end
 
 
+                            if mgr.isImplementationStatusEnabled( allViewers )
+                                this.refreshImplementationStatus( dasReqSet );
+                            end
 
-if isempty( dasReqSet ) && mgr.isChangeInformationEnabled( allViewers )
-ctmgr = mgr.changeTracker;
-ctmgr.refresh(  );
-end 
-end 
+                            if mgr.isVerificationStatusEnabled( allViewers )
+                                this.refreshVerificationStatus( dasReqSet );
+                            end
+                        end
+                        detectionMgr = slreq.dataexchange.UpdateDetectionManager.getInstance(  );
+                        detected = detectionMgr.checkUpdatesForAllArtifacts(  );
+                        if detected
 
 
-if mgr.isImplementationStatusEnabled( allViewers )
-this.refreshImplementationStatus( dasReqSet );
-end 
+                            dasReqSet.updateImportNodeIcons(  );
+                        end
 
-if mgr.isVerificationStatusEnabled( allViewers )
-this.refreshVerificationStatus( dasReqSet );
-end 
-end 
-detectionMgr = slreq.dataexchange.UpdateDetectionManager.getInstance(  );
-detected = detectionMgr.checkUpdatesForAllArtifacts(  );
-if detected
+                    end
 
+                case 'ReqSet Discarded'
 
-dasReqSet.updateImportNodeIcons(  );
-end 
 
-end 
+                    localDataRefreshed = true;
 
-case 'ReqSet Discarded'
 
+                    mgr = slreq.app.MainManager.getInstance;
+                    allViewers = mgr.getAllViewers;
+                    if mgr.isChangeInformationEnabled( allViewers )
+                        ctmgr = mgr.changeTracker;
+                        ctmgr.refresh(  );
+                    end
 
-localDataRefreshed = true;
 
+                case 'Before ReqSet Discarded'
 
-mgr = slreq.app.MainManager.getInstance;
-allViewers = mgr.getAllViewers;
-if mgr.isChangeInformationEnabled( allViewers )
-ctmgr = mgr.changeTracker;
-ctmgr.refresh(  );
-end 
 
 
-case 'Before ReqSet Discarded'
 
 
 
+                    dataReqSet = eventInfo.eventObj;
+                    dasReqSet = dataReqSet.getDasObject(  );
+                    index = this.findObjectIndex( dasReqSet );
+                    if ~isempty( dasReqSet )
 
 
+                        if slreq.app.MainManager.hasEditor(  )
+                            this.view.clearSelectedObjectsUponDeletion( dasReqSet );
+                            this.view.markupManager.updateMarkupOnReqSetDiscarded( dasReqSet );
+                        end
+                        dasReqSet.discardAll(  );
+                    end
 
-dataReqSet = eventInfo.eventObj;
-dasReqSet = dataReqSet.getDasObject(  );
-index = this.findObjectIndex( dasReqSet );
-if ~isempty( dasReqSet )
+                    if index > 0
 
 
-if slreq.app.MainManager.hasEditor(  )
-this.view.clearSelectedObjectsUponDeletion( dasReqSet );
-this.view.markupManager.updateMarkupOnReqSetDiscarded( dasReqSet );
-end 
-dasReqSet.discardAll(  );
-end 
 
-if index > 0
 
+                        this.children( index ) = [  ];
+                    end
 
 
+                    localDataRefreshed = true;
 
-this.children( index ) = [  ];
-end 
 
+                    doNotify = false;
+                case { 'ReqSetDirtied', 'ReqSetUndirtied' }
 
-localDataRefreshed = true;
+                    dataReqSet = eventInfo.eventObj;
+                    dasReqSet = dataReqSet.getDasObject(  );
+                    if ~isempty( dasReqSet )
+                        mgr = slreq.app.MainManager.getInstance;
+                        mgr.refreshUI( dasReqSet );
+                    end
 
+                    return ;
 
-doNotify = false;
-case { 'ReqSetDirtied', 'ReqSetUndirtied' }
+                case 'Set Prop Update'
+                    dataObj = eventInfo.eventObj;
+                    dasObj = dataObj.getDasObject(  );
+                    needToNotifyView = false;
+                    if ~isempty( dasObj )
 
-dataReqSet = eventInfo.eventObj;
-dasReqSet = dataReqSet.getDasObject(  );
-if ~isempty( dasReqSet )
-mgr = slreq.app.MainManager.getInstance;
-mgr.refreshUI( dasReqSet );
-end 
 
-return ;
 
-case 'Set Prop Update'
-dataObj = eventInfo.eventObj;
-dasObj = dataObj.getDasObject(  );
-needToNotifyView = false;
-if ~isempty( dasObj )
+                        mgr = slreq.app.MainManager.getInstance;
+                        allViewers = mgr.getAllViewers;
+                        if mgr.isChangeInformationEnabled( allViewers )
 
+                            [ inlinks, outlinks ] = dataObj.getLinks;
+                            if ~isempty( inlinks ) || ~isempty( outlinks )
+                                ctmgr = mgr.changeTracker;
+                                ctmgr.refreshReq( dasObj );
+                                needToNotifyView = true;
+                            end
+                        end
 
+                        [ affectImp, affectVer ] = dataObj.doesChangeImpactRollupStatus( eventInfo );
 
-mgr = slreq.app.MainManager.getInstance;
-allViewers = mgr.getAllViewers;
-if mgr.isChangeInformationEnabled( allViewers )
+                        refreshImp = affectImp && mgr.isImplementationStatusEnabled( allViewers );
+                        refreshVer = affectVer && mgr.isVerificationStatusEnabled( allViewers );
+                        needToNotifyView = needToNotifyView || refreshImp || refreshVer;
 
-[ inlinks, outlinks ] = dataObj.getLinks;
-if ~isempty( inlinks ) || ~isempty( outlinks )
-ctmgr = mgr.changeTracker;
-ctmgr.refreshReq( dasObj );
-needToNotifyView = true;
-end 
-end 
+                        if strcmpi( eventInfo.PropName, 'isHierarchicalJustification' )
 
-[ affectImp, affectVer ] = dataObj.doesChangeImpactRollupStatus( eventInfo );
 
-refreshImp = affectImp && mgr.isImplementationStatusEnabled( allViewers );
-refreshVer = affectVer && mgr.isVerificationStatusEnabled( allViewers );
-needToNotifyView = needToNotifyView || refreshImp || refreshVer;
 
-if strcmpi( eventInfo.PropName, 'isHierarchicalJustification' )
+                            [ ~, outDataLinks ] = dataObj.getLinks;
+                            slreq.analysis.BaseRollupAnalysis.refreshRollupStatusForLinks( outDataLinks, refreshImp, refreshVer );
+                        else
+                            if refreshImp
+                                dataObj.updateImplementationStatus(  );
+                            end
+                            if refreshVer
+                                dataObj.updateVerificationStatus(  );
+                            end
+                        end
 
+                        if any( strcmp( eventInfo.PropName, { 'Unlocked', 'pendingDetectionStatus' } ) )
+                            dasObj.setDisplayIcon(  );
+                        end
 
+                        mgr.refreshUI( dasObj );
+                    end
 
-[ ~, outDataLinks ] = dataObj.getLinks;
-slreq.analysis.BaseRollupAnalysis.refreshRollupStatusForLinks( outDataLinks, refreshImp, refreshVer );
-else 
-if refreshImp
-dataObj.updateImplementationStatus(  );
-end 
-if refreshVer
-dataObj.updateVerificationStatus(  );
-end 
-end 
 
-if any( strcmp( eventInfo.PropName, { 'Unlocked', 'pendingDetectionStatus' } ) )
-dasObj.setDisplayIcon(  );
-end 
 
-mgr.refreshUI( dasObj );
-end 
+                    if isa( dasObj, 'slreq.das.Requirement' )
+                        markups = dasObj.Markups;
+                        for i = 1:length( markups )
+                            markups( i ).update(  );
+                        end
+                    end
+                    if needToNotifyView
 
 
+                        this.notifyViewChange( true );
+                    elseif ~isempty( dasObj )
 
-if isa( dasObj, 'slreq.das.Requirement' )
-markups = dasObj.Markups;
-for i = 1:length( markups )
-markups( i ).update(  );
-end 
-end 
-if needToNotifyView
+                        dasObj.updatePropertyInspector( eventInfo );
+                    end
 
 
-this.notifyViewChange( true );
-elseif ~isempty( dasObj )
 
-dasObj.updatePropertyInspector( eventInfo );
-end 
+                    this.view.badgeManager.updateBadge( dasObj );
+                    return ;
 
+                case 'Requirement Added'
+                    req = eventInfo.eventObj;
+                    reqSet = req.getReqSet(  );
+                    dasReqSet = reqSet.getDasObject(  );
+                    if ~isempty( dasReqSet )
+                        dasReqSet.addChild( req );
+                    end
+                    mgr = slreq.app.MainManager.getInstance;
+                    allViewers = mgr.getAllViewers;
 
 
-this.view.badgeManager.updateBadge( dasObj );
-return ;
+                    localDataRefreshed = true;
+                    if mgr.isImplementationStatusEnabled( allViewers )
+                        req.updateImplementationStatus(  );
+                    end
 
-case 'Requirement Added'
-req = eventInfo.eventObj;
-reqSet = req.getReqSet(  );
-dasReqSet = reqSet.getDasObject(  );
-if ~isempty( dasReqSet )
-dasReqSet.addChild( req );
-end 
-mgr = slreq.app.MainManager.getInstance;
-allViewers = mgr.getAllViewers;
+                    if mgr.isVerificationStatusEnabled( allViewers )
+                        req.updateVerificationStatus(  );
+                    end
 
+                case 'Justification Added'
+                    req = eventInfo.eventObj;
+                    reqSet = req.getReqSet(  );
+                    dasReqSet = reqSet.getDasObject(  );
+                    if ~isempty( dasReqSet )
+                        parentDasObj = req.parent.getDasObject(  );
+                        if isempty( parentDasObj )
 
-localDataRefreshed = true;
-if mgr.isImplementationStatusEnabled( allViewers )
-req.updateImplementationStatus(  );
-end 
 
-if mgr.isVerificationStatusEnabled( allViewers )
-req.updateVerificationStatus(  );
-end 
+                            dasReqSet.addChild( req.parent );
+                        else
 
-case 'Justification Added'
-req = eventInfo.eventObj;
-reqSet = req.getReqSet(  );
-dasReqSet = reqSet.getDasObject(  );
-if ~isempty( dasReqSet )
-parentDasObj = req.parent.getDasObject(  );
-if isempty( parentDasObj )
+                            dasReqSet.addChild( req );
+                        end
+                    end
 
+                    mgr = slreq.app.MainManager.getInstance;
+                    allViewers = mgr.getAllViewers;
+                    localDataRefreshed = true;
 
-dasReqSet.addChild( req.parent );
-else 
 
-dasReqSet.addChild( req );
-end 
-end 
+                    if mgr.isImplementationStatusEnabled( allViewers )
 
-mgr = slreq.app.MainManager.getInstance;
-allViewers = mgr.getAllViewers;
-localDataRefreshed = true;
+                        req.updateImplementationStatus(  );
+                    end
 
+                    if mgr.isVerificationStatusEnabled( allViewers )
+                        req.updateVerificationStatus(  );
+                    end
 
-if mgr.isImplementationStatusEnabled( allViewers )
+                case 'Requirement Pasted'
+                    req = eventInfo.eventObj;
+                    if isa( req, 'slreq.data.Requirement' )
+                        reqSet = req.getReqSet;
+                    elseif isa( req, 'slreq.data.RequirementSet' )
+                        reqSet = req;
+                    else
 
-req.updateImplementationStatus(  );
-end 
+                    end
+                    parentDas = req.getDasObject(  );
 
-if mgr.isVerificationStatusEnabled( allViewers )
-req.updateVerificationStatus(  );
-end 
+                    reqSet.updateHIdx(  );
+                    if ~isempty( parentDas )
+                        addedReq = this.recAddDasObjctsIfNeeded( parentDas, req );
 
-case 'Requirement Pasted'
-req = eventInfo.eventObj;
-if isa( req, 'slreq.data.Requirement' )
-reqSet = req.getReqSet;
-elseif isa( req, 'slreq.data.RequirementSet' )
-reqSet = req;
-else 
+                        if ~isempty( this.view.getCurrentView ) && ~isempty( addedReq )
+                            objToBeSelected = addedReq( 1 );
+                        end
 
-end 
-parentDas = req.getDasObject(  );
+                        mgr = slreq.app.MainManager.getInstance;
+                        allViewers = mgr.getAllViewers;
+                        localDataRefreshed = true;
+                        if mgr.isChangeInformationEnabled( allViewers )
 
-reqSet.updateHIdx(  );
-if ~isempty( parentDas )
-addedReq = this.recAddDasObjctsIfNeeded( parentDas, req );
 
-if ~isempty( this.view.getCurrentView ) && ~isempty( addedReq )
-objToBeSelected = addedReq( 1 );
-end 
 
-mgr = slreq.app.MainManager.getInstance;
-allViewers = mgr.getAllViewers;
-localDataRefreshed = true;
-if mgr.isChangeInformationEnabled( allViewers )
+                            ctmgr = mgr.changeTracker;
+                            ctmgr.refreshReq( addedReq );
+                        end
 
+                        if mgr.isImplementationStatusEnabled( allViewers )
 
 
-ctmgr = mgr.changeTracker;
-ctmgr.refreshReq( addedReq );
-end 
+                            req.updateImplementationStatus(  );
+                        end
 
-if mgr.isImplementationStatusEnabled( allViewers )
+                        if mgr.isVerificationStatusEnabled( allViewers )
 
+                            req.updateVerificationStatus(  );
+                        end
+                    end
+                case 'Requirement Deleted'
+                    eventData = eventInfo.eventObj;
+                    dasObj = eventData.dasObj;
+                    parent = [  ];
+                    if ~isempty( dasObj )
+                        parent = dasObj.parent;
 
-req.updateImplementationStatus(  );
-end 
+                        if ~isempty( parent )
 
-if mgr.isVerificationStatusEnabled( allViewers )
 
-req.updateVerificationStatus(  );
-end 
-end 
-case 'Requirement Deleted'
-eventData = eventInfo.eventObj;
-dasObj = eventData.dasObj;
-parent = [  ];
-if ~isempty( dasObj )
-parent = dasObj.parent;
 
-if ~isempty( parent )
 
 
 
+                            parent.removeChildObject( dasObj, false );
+                        end
+                    end
 
 
 
-parent.removeChildObject( dasObj, false );
-end 
-end 
+                    dasObjList = eventData.dasObjList;
+                    for index = 1:length( dasObjList )
+                        cObj = dasObjList{ index };
+                        cObj.delete(  );
+                    end
 
+                    mgr = slreq.app.MainManager.getInstance;
+                    allViewers = mgr.getAllViewers;
 
 
-dasObjList = eventData.dasObjList;
-for index = 1:length( dasObjList )
-cObj = dasObjList{ index };
-cObj.delete(  );
-end 
 
-mgr = slreq.app.MainManager.getInstance;
-allViewers = mgr.getAllViewers;
+                    localDataRefreshed = true;
 
+                    if mgr.isImplementationStatusEnabled( allViewers )
 
+                        if ~isempty( parent )
+                            parent.dataModelObj.updateImplementationStatusForStatsOnly;
+                        end
+                    end
 
-localDataRefreshed = true;
+                    if mgr.isVerificationStatusEnabled( allViewers )
+                        if ~isempty( parent )
+                            parent.dataModelObj.updateVerificationStatusForStatsOnly;
+                        end
+                    end
 
-if mgr.isImplementationStatusEnabled( allViewers )
 
-if ~isempty( parent )
-parent.dataModelObj.updateImplementationStatusForStatsOnly;
-end 
-end 
+                case 'BeforeDeleteRequirement'
+                    eventData = eventInfo.eventObj;
+                    uuids = eventData.uuids;
+                    this.view.markupManager.destroyMarkupsByUuids( uuids );
 
-if mgr.isVerificationStatusEnabled( allViewers )
-if ~isempty( parent )
-parent.dataModelObj.updateVerificationStatusForStatsOnly;
-end 
-end 
+                    dasObjs = eventData.dasObjs;
 
 
-case 'BeforeDeleteRequirement'
-eventData = eventInfo.eventObj;
-uuids = eventData.uuids;
-this.view.markupManager.destroyMarkupsByUuids( uuids );
+                    for n = 1:length( dasObjs )
+                        this.view.clearSelectedObjectsUponDeletion( dasObjs{ n } );
+                    end
 
-dasObjs = eventData.dasObjs;
 
+                    mgr = slreq.app.MainManager.getInstance;
+                    eemgr = mgr.externalEditorManager;
+                    if ~isempty( eemgr )
+                        eemgr.deleteExternalEditorForReqs( dasObjs );
+                    end
 
-for n = 1:length( dasObjs )
-this.view.clearSelectedObjectsUponDeletion( dasObjs{ n } );
-end 
+                    allViewers = mgr.getAllViewers;
+                    if mgr.isChangeInformationEnabled( allViewers )
 
+                        ctmgr = mgr.changeTracker;
+                        for index = 1:length( dasObjs )
+                            cDasObj = dasObjs{ index };
+                            if isa( cDasObj, 'slreq.das.Requirement' )
+                                ctmgr.refreshReqToBeDeleted( cDasObj );
+                            end
+                        end
+                    end
 
-mgr = slreq.app.MainManager.getInstance;
-eemgr = mgr.externalEditorManager;
-if ~isempty( eemgr )
-eemgr.deleteExternalEditorForReqs( dasObjs );
-end 
+                    for index = 1:length( dasObjs )
+                        cDasObj = dasObjs{ index };
 
-allViewers = mgr.getAllViewers;
-if mgr.isChangeInformationEnabled( allViewers )
 
-ctmgr = mgr.changeTracker;
-for index = 1:length( dasObjs )
-cDasObj = dasObjs{ index };
-if isa( cDasObj, 'slreq.das.Requirement' )
-ctmgr.refreshReqToBeDeleted( cDasObj );
-end 
-end 
-end 
 
-for index = 1:length( dasObjs )
-cDasObj = dasObjs{ index };
 
+                        cDasObj.releaseDataObj(  );
+                    end
 
 
+                    return ;
 
-cDasObj.releaseDataObj(  );
-end 
+                case 'Requirements Moved'
+                    movedDataReqs = eventInfo.eventObjs;
+                    sz = numel( movedDataReqs );
+                    affectImp = false;
+                    affectVer = false;
+                    affectedDataObjs = {  };
+                    affectedDataObjsForStats = {  };
+                    for i = 1:sz
+                        movedDataReq = movedDataReqs{ i };
+                        dasMovedReq = movedDataReq.getDasObject(  );
+                        if ~isempty( dasMovedReq )
+                            dasMovedReq.onDataReqMove(  );
+                            if isempty( dasMovedReq.parent )
 
 
-return ;
 
-case 'Requirements Moved'
-movedDataReqs = eventInfo.eventObjs;
-sz = numel( movedDataReqs );
-affectImp = false;
-affectVer = false;
-affectedDataObjs = {  };
-affectedDataObjsForStats = {  };
-for i = 1:sz
-movedDataReq = movedDataReqs{ i };
-dasMovedReq = movedDataReq.getDasObject(  );
-if ~isempty( dasMovedReq )
-dasMovedReq.onDataReqMove(  );
-if isempty( dasMovedReq.parent )
 
+                                this.view.clearSelectedObjectsUponDeletion( dasMovedReq );
+                            elseif ~isempty( this.view.getCurrentView )
+                                objToBeSelected = dasMovedReq;
+                            end
+                            markups = dasMovedReq.Markups;
+                            for n = 1:length( markups )
+                                markups( n ).update(  );
+                            end
+                        end
 
 
+                        singleEventInfo = eventInfo.getChangeEvent( i );
+                        [ affectImp, affectVer, affectedDataObjs, affectedDataObjsForStats ] = checkChangeImpectRollupStatus(  ...
+                            movedDataReq, singleEventInfo, affectImp, affectVer, affectedDataObjs, affectedDataObjsForStats );
+                    end
+                    mgr = slreq.app.MainManager.getInstance;
+                    allViewers = mgr.getAllViewers;
 
-this.view.clearSelectedObjectsUponDeletion( dasMovedReq );
-elseif ~isempty( this.view.getCurrentView )
-objToBeSelected = dasMovedReq;
-end 
-markups = dasMovedReq.Markups;
-for n = 1:length( markups )
-markups( n ).update(  );
-end 
-end 
+                    if affectImp && mgr.isImplementationStatusEnabled( allViewers )
+                        for index = 1:length( affectedDataObjs )
+                            affectedDataObjs{ index }.updateImplementationStatus(  );
+                        end
 
+                        for index = 1:length( affectedDataObjsForStats )
+                            affectedDataObjsForStats{ index }.updateImplementationStatusForStatsOnly(  );
+                        end
+                    end
 
-singleEventInfo = eventInfo.getChangeEvent( i );
-[ affectImp, affectVer, affectedDataObjs, affectedDataObjsForStats ] = checkChangeImpectRollupStatus(  ...
-movedDataReq, singleEventInfo, affectImp, affectVer, affectedDataObjs, affectedDataObjsForStats );
-end 
-mgr = slreq.app.MainManager.getInstance;
-allViewers = mgr.getAllViewers;
+                    if affectVer && mgr.isVerificationStatusEnabled( allViewers )
+                        for index = 1:length( affectedDataObjs )
+                            affectedDataObjs{ index }.updateVerificationStatus(  );
+                        end
 
-if affectImp && mgr.isImplementationStatusEnabled( allViewers )
-for index = 1:length( affectedDataObjs )
-affectedDataObjs{ index }.updateImplementationStatus(  );
-end 
+                        for index = 1:length( affectedDataObjsForStats )
+                            affectedDataObjsForStats{ index }.updateVerificationStatusForStatsOnly(  );
+                        end
+                    end
+                    localDataRefreshed = true;
+                case 'Requirement Moved'
+                    movedDataReq = eventInfo.eventObj;
 
-for index = 1:length( affectedDataObjsForStats )
-affectedDataObjsForStats{ index }.updateImplementationStatusForStatsOnly(  );
-end 
-end 
+                    dasMovedReq = movedDataReq.getDasObject(  );
+                    if ~isempty( dasMovedReq )
+                        dasMovedReq.onDataReqMove(  );
+                        if isempty( dasMovedReq.parent )
 
-if affectVer && mgr.isVerificationStatusEnabled( allViewers )
-for index = 1:length( affectedDataObjs )
-affectedDataObjs{ index }.updateVerificationStatus(  );
-end 
 
-for index = 1:length( affectedDataObjsForStats )
-affectedDataObjsForStats{ index }.updateVerificationStatusForStatsOnly(  );
-end 
-end 
-localDataRefreshed = true;
-case 'Requirement Moved'
-movedDataReq = eventInfo.eventObj;
 
-dasMovedReq = movedDataReq.getDasObject(  );
-if ~isempty( dasMovedReq )
-dasMovedReq.onDataReqMove(  );
-if isempty( dasMovedReq.parent )
 
+                            this.view.clearSelectedObjectsUponDeletion( dasMovedReq );
+                        elseif ~isempty( this.view.getCurrentView )
+                            objToBeSelected = dasMovedReq;
+                        end
+                        markups = dasMovedReq.Markups;
+                        for n = 1:length( markups )
+                            markups( n ).update(  );
+                        end
+                    end
 
 
 
-this.view.clearSelectedObjectsUponDeletion( dasMovedReq );
-elseif ~isempty( this.view.getCurrentView )
-objToBeSelected = dasMovedReq;
-end 
-markups = dasMovedReq.Markups;
-for n = 1:length( markups )
-markups( n ).update(  );
-end 
-end 
+                    [ affectImp, affectVer, affectedDataObjs, affectedDataObjsForStats ] = movedDataReq.doesChangeImpactRollupStatusWhenMoving( eventInfo );
 
 
 
-[ affectImp, affectVer, affectedDataObjs, affectedDataObjsForStats ] = movedDataReq.doesChangeImpactRollupStatusWhenMoving( eventInfo );
+                    mgr = slreq.app.MainManager.getInstance;
+                    allViewers = mgr.getAllViewers;
 
+                    if affectImp && mgr.isImplementationStatusEnabled( allViewers )
+                        for index = 1:length( affectedDataObjs )
+                            affectedDataObjs{ index }.updateImplementationStatus(  );
+                        end
 
+                        for index = 1:length( affectedDataObjsForStats )
+                            affectedDataObjsForStats{ index }.updateImplementationStatusForStatsOnly(  );
+                        end
+                    end
 
-mgr = slreq.app.MainManager.getInstance;
-allViewers = mgr.getAllViewers;
+                    if affectVer && mgr.isVerificationStatusEnabled( allViewers )
+                        for index = 1:length( affectedDataObjs )
+                            affectedDataObjs{ index }.updateVerificationStatus(  );
+                        end
 
-if affectImp && mgr.isImplementationStatusEnabled( allViewers )
-for index = 1:length( affectedDataObjs )
-affectedDataObjs{ index }.updateImplementationStatus(  );
-end 
+                        for index = 1:length( affectedDataObjsForStats )
+                            affectedDataObjsForStats{ index }.updateVerificationStatusForStatsOnly(  );
+                        end
+                    end
+                    localDataRefreshed = true;
 
-for index = 1:length( affectedDataObjsForStats )
-affectedDataObjsForStats{ index }.updateImplementationStatusForStatsOnly(  );
-end 
-end 
+                case 'Requirement Shifted'
 
-if affectVer && mgr.isVerificationStatusEnabled( allViewers )
-for index = 1:length( affectedDataObjs )
-affectedDataObjs{ index }.updateVerificationStatus(  );
-end 
 
-for index = 1:length( affectedDataObjsForStats )
-affectedDataObjsForStats{ index }.updateVerificationStatusForStatsOnly(  );
-end 
-end 
-localDataRefreshed = true;
 
-case 'Requirement Shifted'
 
 
+                    req = eventInfo.eventObj.req;
+                    offset = eventInfo.eventObj.offset;
+                    dasObj = req.getDasObject(  );
 
+                    parent = dasObj.parent;
+                    currentIndex = parent.findObjectIndex( dasObj );
+                    parent.swapChildrenObject( currentIndex, currentIndex + offset );
+                    if ~isempty( this.view.getCurrentView )
+                        objToBeSelected = dasObj;
+                    end
 
 
-req = eventInfo.eventObj.req;
-offset = eventInfo.eventObj.offset;
-dasObj = req.getDasObject(  );
 
-parent = dasObj.parent;
-currentIndex = parent.findObjectIndex( dasObj );
-parent.swapChildrenObject( currentIndex, currentIndex + offset );
-if ~isempty( this.view.getCurrentView )
-objToBeSelected = dasObj;
-end 
 
 
 
+                    localDataRefreshed = true;
 
+                case 'Requirement AddedAfter'
+                    req = eventInfo.eventObj;
+                    if isempty( req.parent )
+                        parentData = req.getReqSet;
+                    else
+                        parentData = req.parent;
+                    end
+                    parentDas = parentData.getDasObject(  );
+                    reqDasObj = slreq.das.Requirement(  );
+                    reqDasObj.postConstructorProcess( req, parentDas, this.view, this.reqDataChangeListener );
+                    eventDas = req.getDasObject(  );
+                    assert( ~isempty( eventDas ), 'das cannot be empty for insertion' );
+                    parentDas.insertChildObject( reqDasObj );
 
+                    mgr = slreq.app.MainManager.getInstance;
+                    allViewers = mgr.getAllViewers;
 
-localDataRefreshed = true;
 
-case 'Requirement AddedAfter'
-req = eventInfo.eventObj;
-if isempty( req.parent )
-parentData = req.getReqSet;
-else 
-parentData = req.parent;
-end 
-parentDas = parentData.getDasObject(  );
-reqDasObj = slreq.das.Requirement(  );
-reqDasObj.postConstructorProcess( req, parentDas, this.view, this.reqDataChangeListener );
-eventDas = req.getDasObject(  );
-assert( ~isempty( eventDas ), 'das cannot be empty for insertion' );
-parentDas.insertChildObject( reqDasObj );
 
-mgr = slreq.app.MainManager.getInstance;
-allViewers = mgr.getAllViewers;
+                    localDataRefreshed = true;
+                    if mgr.isImplementationStatusEnabled( allViewers )
+                        req.updateImplementationStatus(  );
+                    end
 
+                    if mgr.isVerificationStatusEnabled( allViewers )
+                        req.updateVerificationStatus(  );
+                    end
 
+                case 'Requirements Changed'
 
-localDataRefreshed = true;
-if mgr.isImplementationStatusEnabled( allViewers )
-req.updateImplementationStatus(  );
-end 
 
-if mgr.isVerificationStatusEnabled( allViewers )
-req.updateVerificationStatus(  );
-end 
 
-case 'Requirements Changed'
 
 
 
@@ -809,235 +809,228 @@ case 'Requirements Changed'
 
 
 
+                    localDataRefreshed = true;
+                case 'CustomAttributeModified'
 
+                    modInfo = eventInfo.eventObj;
+                    if ~strcmp( modInfo.prevName, modInfo.newName )
 
+                        if ~isempty( this.view.requirementsEditor )
+                            this.view.requirementsEditor.updateColumnOnCustomAttributeNameChange( modInfo.prevName, modInfo.newName );
+                        end
+                        if ~isempty( this.view.spreadsheetManager )
+                            this.view.spreadsheetManager.updateColumnOnCustomAttributeNameChange( modInfo.prevName, modInfo.newName );
+                        end
+                    end
 
-localDataRefreshed = true;
-case 'CustomAttributeModified'
 
-modInfo = eventInfo.eventObj;
-if ~strcmp( modInfo.prevName, modInfo.newName )
 
-if ~isempty( this.view.requirementsEditor )
-this.view.requirementsEditor.updateColumnOnCustomAttributeNameChange( modInfo.prevName, modInfo.newName );
-end 
-if ~isempty( this.view.spreadsheetManager )
-this.view.spreadsheetManager.updateColumnOnCustomAttributeNameChange( modInfo.prevName, modInfo.newName );
-end 
-end 
+                    localDataRefreshed = true;
+                case 'CustomAttributeRemoved'
 
+                    modInfo = eventInfo.eventObj;
+                    if ~isempty( this.view.requirementsEditor )
+                        this.view.requirementsEditor.updateColumnOnCustomAttributeRemoval( modInfo.removedName );
+                    end
+                    if ~isempty( this.view.spreadsheetManager )
+                        this.view.spreadsheetManager.updateColumnOnCustomAttributeRemoval( modInfo.removedName );
+                    end
 
 
-localDataRefreshed = true;
-case 'CustomAttributeRemoved'
 
-modInfo = eventInfo.eventObj;
-if ~isempty( this.view.requirementsEditor )
-this.view.requirementsEditor.updateColumnOnCustomAttributeRemoval( modInfo.removedName );
-end 
-if ~isempty( this.view.spreadsheetManager )
-this.view.spreadsheetManager.updateColumnOnCustomAttributeRemoval( modInfo.removedName );
-end 
+                    localDataRefreshed = true;
+                case 'Pre Requirement Deleted'
 
 
+                    return ;
 
-localDataRefreshed = true;
-case 'Pre Requirement Deleted'
+                otherwise
+                    error( 'Unsupported event type %s', eventInfo.type );
+            end
+            if doNotify
+                this.notifyViewChange( localDataRefreshed );
+            end
 
+            if ~isempty( objToBeSelected )
 
-return ;
 
-otherwise 
-error( 'Unsupported event type %s', eventInfo.type );
-end 
-if doNotify
-this.notifyViewChange( localDataRefreshed );
-end 
+                this.view.getCurrentView.setSelectedObject( objToBeSelected )
+            end
+        end
 
-if ~isempty( objToBeSelected )
 
+        function icon = getDisplayIcon( this )%#ok<MANU>
+            icon = slreq.gui.IconRegistry.instance.folder;
+        end
 
-this.view.getCurrentView.setSelectedObject( objToBeSelected )
-end 
-end 
+        function label = getDisplayLabel( this )%#ok<MANU>
+            label = 'Requirement Set files';
+        end
 
+        function refreshImplementationStatus( this, reqSets )
 
-function icon = getDisplayIcon( this )%#ok<MANU>
-icon = slreq.gui.IconRegistry.instance.folder;
-end 
+            mgr = slreq.app.MainManager.getInstance;
 
-function label = getDisplayLabel( this )%#ok<MANU>
-label = 'Requirement Set files';
-end 
+            if nargin < 2
+                reqSets = this.children;
+            end
+            for n = 1:length( reqSets )
+                if mgr.isAnalysisDeferred
+                    mgr.showDeferredAnalysisNotification(  );
+                    return ;
+                end
 
-function refreshImplementationStatus( this, reqSets )
+                cReqSet = reqSets( n );
+                if isa( cReqSet, 'slreq.das.RequirementSet' )
+                    cReqSet = reqSets( n ).dataModelObj;
+                end
+                cReqSet.updateImplementationStatus(  );
+            end
+        end
 
-mgr = slreq.app.MainManager.getInstance;
+        function refreshVerificationStatus( this, reqSets )
 
-if nargin < 2
-reqSets = this.children;
-end 
-for n = 1:length( reqSets )
-if mgr.isAnalysisDeferred
-mgr.showDeferredAnalysisNotification(  );
-return ;
-end 
+            mgr = slreq.app.MainManager.getInstance;
 
-cReqSet = reqSets( n );
-if isa( cReqSet, 'slreq.das.RequirementSet' )
-cReqSet = reqSets( n ).dataModelObj;
-end 
-cReqSet.updateImplementationStatus(  );
-end 
-end 
+            if nargin < 2
+                reqSets = this.children;
+            end
+            for n = 1:length( reqSets )
+                if mgr.isAnalysisDeferred
+                    mgr.showDeferredAnalysisNotification(  );
+                    return ;
+                end
 
-function refreshVerificationStatus( this, reqSets )
+                cReqSet = reqSets( n );
+                if isa( cReqSet, 'slreq.das.RequirementSet' )
+                    cReqSet = reqSets( n ).dataModelObj;
+                end
 
-mgr = slreq.app.MainManager.getInstance;
+                cReqSet.updateVerificationStatus(  );
+            end
+        end
 
-if nargin < 2
-reqSets = this.children;
-end 
-for n = 1:length( reqSets )
-if mgr.isAnalysisDeferred
-mgr.showDeferredAnalysisNotification(  );
-return ;
-end 
+        function out = getAvailableAttributes( this )
 
-cReqSet = reqSets( n );
-if isa( cReqSet, 'slreq.das.RequirementSet' )
-cReqSet = reqSets( n ).dataModelObj;
-end 
 
-cReqSet.updateVerificationStatus(  );
-end 
-end 
 
-function out = getAvailableAttributes( this )
+            builtInAttr = slreq.utils.getBuiltinAttributeList( 'req' );
 
+            customAttr = slreq.utils.getCustomAttributeList( this.children );
+            out = [ builtInAttr, customAttr ];
+        end
 
+        function dlgstruct = getDialogSchema( this )
+            dlgstruct = slreq.gui.OnRampDialog( this );
+        end
 
-builtInAttr = slreq.utils.getBuiltinAttributeList( 'req' );
+        function count = ensureDasTrees( this )
 
-customAttr = slreq.utils.getCustomAttributeList( this.children );
-out = [ builtInAttr, customAttr ];
-end 
 
-function dlgstruct = getDialogSchema( this )
-dlgstruct = slreq.gui.OnRampDialog( this );
-end 
+            count = 0;
+            dataReqSets = this.reqData.getLoadedReqSets(  );
+            for i = 1:numel( dataReqSets )
+                dataReqSet = dataReqSets( i );
+                if this.reqData.isReservedReqSetName( dataReqSet.name )
+                    continue ;
+                elseif isempty( dataReqSet.getDasObject(  ) )
+                    eventData = struct( 'type', 'ReqSet Loaded', 'eventObj', dataReqSet );
+                    this.onReqDataChange( '', eventData );
+                    count = count + 1;
+                end
+            end
+        end
 
-function count = ensureDasTrees( this )
+        function stopObj = pauseUpdatesFromSTMEvents( this )
 
 
-count = 0;
-dataReqSets = this.reqData.getLoadedReqSets(  );
-for i = 1:numel( dataReqSets )
-dataReqSet = dataReqSets( i );
-if this.reqData.isReservedReqSetName( dataReqSet.name )
-continue ;
-elseif isempty( dataReqSet.getDasObject(  ) )
-eventData = struct( 'type', 'ReqSet Loaded', 'eventObj', dataReqSet );
-this.onReqDataChange( '', eventData );
-count = count + 1;
-end 
-end 
-end 
+            stopObj = [  ];
 
-function stopObj = pauseUpdatesFromSTMEvents( this )
 
 
-stopObj = [  ];
 
+            for i = 1:length( this.otherArtifactChangeListerners )
+                l = this.otherArtifactChangeListerners{ i };
+                if strcmp( l.EventName, 'SimulationCompleted' ) && any( isa( l.Source, 'sltest.internal.Events' ) )
+                    setListenerEnabled( l, false );
+                    stopObj = onCleanup( @(  )setListenerEnabled( l, true ) );
+                    return ;
+                end
+            end
 
+            function setListenerEnabled( listenerObj, val )
+                listenerObj.Enabled = val;
+            end
+        end
 
+        function dasReqSet = addSLReqSet( this, slReqSet )
+            dasReqSet = slreq.das.RequirementSet( slReqSet, this,  ...
+                this.view,  ...
+                this.reqDataChangeListener );
+            this.addChildObject( dasReqSet );
+        end
+    end
 
-for i = 1:length( this.otherArtifactChangeListerners )
-l = this.otherArtifactChangeListerners{ i };
-if strcmp( l.EventName, 'SimulationCompleted' ) && any( isa( l.Source, 'sltest.internal.Events' ) )
-setListenerEnabled( l, false );
-stopObj = onCleanup( @(  )setListenerEnabled( l, true ) );
-return ;
-end 
-end 
+    methods ( Access = private )
 
-function setListenerEnabled( listenerObj, val )
-listenerObj.Enabled = val;
-end 
-end 
+        function syncWithRepository( this )
+            this.children = slreq.das.RequirementSet.empty(  );
 
-function dasReqSet = addSLReqSet( this, slReqSet )
-dasReqSet = slreq.das.RequirementSet( slReqSet, this,  ...
-this.view,  ...
-this.reqDataChangeListener );
-this.addChildObject( dasReqSet );
-end 
-end 
+            reqSets = this.reqData.getLoadedReqSets(  );
+            for i = 1:numel( reqSets )
+                if strcmp( reqSets( i ).name, 'default' )
 
-methods ( Access = private )
 
-function syncWithRepository( this )
-this.children = slreq.das.RequirementSet.empty(  );
+                else
+                    this.addChildObject( slreq.das.RequirementSet( reqSets( i ),  ...
+                        this, this.view, this.reqDataChangeListener ) );
+                end
+            end
+        end
 
-reqSets = this.reqData.getLoadedReqSets(  );
-for i = 1:numel( reqSets )
-if strcmp( reqSets( i ).name, 'default' )
+        function added = recAddDasObjctsIfNeeded( this, parentDas, reqDataObj )
+            added = slreq.das.Requirement.empty(  );
 
+            reqDasObj = reqDataObj.getDasObject(  );
+            if isempty( reqDasObj )
+                reqDasObj = slreq.das.Requirement(  );
+                reqDasObj.postConstructorProcess( reqDataObj, parentDas, this.view, this.reqDataChangeListener );
+                idx = parentDas.dataModelObj.indexOf( reqDataObj );
+                parentDas.insertChildObjectAt( reqDasObj, idx );
+                added( end  + 1 ) = reqDasObj;
+            end
 
-else 
-this.addChildObject( slreq.das.RequirementSet( reqSets( i ),  ...
-this, this.view, this.reqDataChangeListener ) );
-end 
-end 
-end 
 
-function added = recAddDasObjctsIfNeeded( this, parentDas, reqDataObj )
-added = slreq.das.Requirement.empty(  );
 
-reqDasObj = reqDataObj.getDasObject(  );
-if isempty( reqDasObj )
-reqDasObj = slreq.das.Requirement(  );
-reqDasObj.postConstructorProcess( reqDataObj, parentDas, this.view, this.reqDataChangeListener );
-idx = parentDas.dataModelObj.indexOf( reqDataObj );
-parentDas.insertChildObjectAt( reqDasObj, idx );
-added( end  + 1 ) = reqDasObj;
-end 
 
-
-
-
-objChildren = reqDataObj.children;
-for n = 1:length( objChildren )
-added = [ added, this.recAddDasObjctsIfNeeded( reqDasObj, objChildren( n ) ) ];%#ok<AGROW>
-end 
-end 
-end 
-end 
+            objChildren = reqDataObj.children;
+            for n = 1:length( objChildren )
+                added = [ added, this.recAddDasObjctsIfNeeded( reqDasObj, objChildren( n ) ) ];%#ok<AGROW>
+            end
+        end
+    end
+end
 
 
 
 function [ affectImp, affectVer, affectedDataObjs, affectedDataObjsForStats ] = checkChangeImpectRollupStatus(  ...
-movedDataReq, eventInfo, affectImp, affectVer, affectedDataObjs, affectedDataObjsForStats )
+    movedDataReq, eventInfo, affectImp, affectVer, affectedDataObjs, affectedDataObjsForStats )
 [ newAffectImp, newAffectVer, newAffectedDataObjs, newAffectedDataObjsForStats ] = movedDataReq.doesChangeImpactRollupStatusWhenMoving( eventInfo );
 affectImp = affectImp || newAffectImp;
 affectVer = affectVer || newAffectVer;
 
 for i = 1:numel( newAffectedDataObjsForStats )
-affected = newAffectedDataObjsForStats{ i };
+    affected = newAffectedDataObjsForStats{ i };
 
-if ~any( cellfun( @( x )strcmp( x.getUuid(  ), affected.getUuid(  ) ), affectedDataObjsForStats ) )
-affectedDataObjsForStats{ end  + 1 } = affected;%#ok<AGROW> 
-end 
-end 
+    if ~any( cellfun( @( x )strcmp( x.getUuid(  ), affected.getUuid(  ) ), affectedDataObjsForStats ) )
+        affectedDataObjsForStats{ end  + 1 } = affected;%#ok<AGROW>
+    end
+end
 
 for i = 1:numel( newAffectedDataObjs )
-affected = newAffectedDataObjs{ i };
-if ~any( cellfun( @( x )strcmp( x.getUuid(  ), affected.getUuid(  ) ), affectedDataObjs ) )
-affectedDataObjs{ end  + 1 } = affected;%#ok<AGROW> 
-end 
-end 
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpzgCJuy.p.
-% Please follow local copyright laws when handling this file.
-
+    affected = newAffectedDataObjs{ i };
+    if ~any( cellfun( @( x )strcmp( x.getUuid(  ), affected.getUuid(  ) ), affectedDataObjs ) )
+        affectedDataObjs{ end  + 1 } = affected;%#ok<AGROW>
+    end
+end
+end

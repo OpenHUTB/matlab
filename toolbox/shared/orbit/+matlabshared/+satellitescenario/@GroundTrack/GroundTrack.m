@@ -133,55 +133,9 @@ updateViewers( gt, gt.Scenario.Viewers, false, true );
 end 
 end 
 
+
 function show( objs, viewers )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-R36
+arguments
 objs{ mustBeNonempty }
 viewers matlabshared.satellitescenario.Viewer = objs( 1 ).Scenario.Viewers
 end 
