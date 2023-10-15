@@ -3,64 +3,60 @@ classdef Utils < handle
 
 
 
-methods ( Static )
-function ddFilePath = getResolvedFilePath( ddFileName )
-if matlab.io.internal.common.isAbsolutePath( ddFileName )
-ddFilePath = ddFileName;
-else 
+    methods ( Static )
+        function ddFilePath = getResolvedFilePath( ddFileName )
+            if matlab.io.internal.common.isAbsolutePath( ddFileName )
+                ddFilePath = ddFileName;
+            else
 
 
 
 
 
-ddFilePath = which( ddFileName );
-if isempty( ddFilePath )
-openDDsWithFilePath = Simulink.data.dictionary.getOpenDictionaryPaths( ddFileName );
-if ~isempty( openDDsWithFilePath )
-ddFilePath = openDDsWithFilePath{ 1 };
-else 
-ddFilePath = fullfile( pwd, ddFileName );
-end 
-end 
-end 
-end 
+                ddFilePath = which( ddFileName );
+                if isempty( ddFilePath )
+                    openDDsWithFilePath = Simulink.data.dictionary.getOpenDictionaryPaths( ddFileName );
+                    if ~isempty( openDDsWithFilePath )
+                        ddFilePath = openDDsWithFilePath{ 1 };
+                    else
+                        ddFilePath = fullfile( pwd, ddFileName );
+                    end
+                end
+            end
+        end
 
-function entries = getDataTypeDisplayNames( dictAPI, namedargs )
-R36
-dictAPI Simulink.interface.Dictionary
-namedargs.IncludeBusTypes = true;
-end 
+        function entries = getDataTypeDisplayNames( dictAPI, namedargs )
+            arguments
+                dictAPI Simulink.interface.Dictionary
+                namedargs.IncludeBusTypes = true;
+            end
 
-import Simulink.interface.dictionary.internal.Utils
+            import Simulink.interface.dictionary.internal.Utils
 
-separator = DAStudio.message( 'SystemArchitecture:PropertyInspector:Separator' );
-defaultEntries = systemcomposer.internal.getBuiltInDataTypeList(  );
+            separator = DAStudio.message( 'SystemArchitecture:PropertyInspector:Separator' );
+            defaultEntries = systemcomposer.internal.getBuiltInDataTypeList(  );
 
-userDefinedTypes = sort( Utils.fetchDataTypeDisplayNames( dictAPI ) );
-if ~namedargs.IncludeBusTypes
-userDefinedTypes = userDefinedTypes( ~startsWith( userDefinedTypes, 'Bus: ' ) );
-end 
+            userDefinedTypes = sort( Utils.fetchDataTypeDisplayNames( dictAPI ) );
+            if ~namedargs.IncludeBusTypes
+                userDefinedTypes = userDefinedTypes( ~startsWith( userDefinedTypes, 'Bus: ' ) );
+            end
 
-entries = [ defaultEntries, separator, userDefinedTypes ];
-end 
-end 
+            entries = [ defaultEntries, separator, userDefinedTypes ];
+        end
+    end
 
-methods ( Static, Access = private )
-function displayNames = fetchDataTypeDisplayNames( dictAPI )
-R36
-dictAPI Simulink.interface.Dictionary
-end 
+    methods ( Static, Access = private )
+        function displayNames = fetchDataTypeDisplayNames( dictAPI )
+            arguments
+                dictAPI Simulink.interface.Dictionary
+            end
 
-dtObjs = dictAPI.DataTypes;
-displayNames = cell( 1, length( dtObjs ) );
-for idx = 1:length( dtObjs )
-dtObj = dtObjs( idx );
-displayNames{ idx } = dtObj.getTypeString(  );
-end 
-end 
-end 
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpy_leeB.p.
-% Please follow local copyright laws when handling this file.
-
+            dtObjs = dictAPI.DataTypes;
+            displayNames = cell( 1, length( dtObjs ) );
+            for idx = 1:length( dtObjs )
+                dtObj = dtObjs( idx );
+                displayNames{ idx } = dtObj.getTypeString(  );
+            end
+        end
+    end
+end

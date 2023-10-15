@@ -32,7 +32,7 @@ end
 
 methods ( Access = public )
 function this = AbstractPlatformCustomizer( dictObj )
-R36
+arguments
 dictObj( 1, 1 )Simulink.interface.Dictionary;
 end 
 this.DictObj = dictObj;
@@ -43,10 +43,9 @@ function delete( this )
 this.deregisterPlatformListener(  );
 end 
 
+
 function refreshSpreadsheetList( this, listObj, changesReport )
-
-
-R36
+arguments
 this;%#ok custom platform customizer
 listObj( 1, 1 )arch.internal.dictionaryApp.list.List;%#ok
 changesReport;%#ok object type dependent on listener and platform

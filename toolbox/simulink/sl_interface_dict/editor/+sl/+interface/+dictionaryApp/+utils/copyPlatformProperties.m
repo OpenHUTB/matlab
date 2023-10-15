@@ -1,18 +1,15 @@
 function copyPlatformProperties( dictObj, sourceDictEntry, destinationDictEntry )
 
-
-
-
-R36
-dictObj Simulink.interface.Dictionary;
-sourceDictEntry Simulink.interface.dictionary.NamedElement;
-destinationDictEntry Simulink.interface.dictionary.NamedElement;
-end 
+arguments
+    dictObj Simulink.interface.Dictionary;
+    sourceDictEntry Simulink.interface.dictionary.NamedElement;
+    destinationDictEntry Simulink.interface.dictionary.NamedElement;
+end
 
 if ~dictObj.hasPlatformMapping( 'AUTOSARClassic' )
 
-return ;
-end 
+    return ;
+end
 
 platformMapping = dictObj.getPlatformMapping( "AUTOSARClassic" );
 
@@ -26,17 +23,13 @@ platformMapping.setPlatformProperty( destinationDictEntry, nameValueVec{ : } );
 
 if isprop( sourceDictEntry, 'Elements' )
 
-assert(  ...
-numel( sourceDictEntry.Elements ) == numel( destinationDictEntry.Elements ),  ...
-'Expected same hierarchy in source and destination' );
-for childIdx = 1:length( sourceDictEntry.Elements )
-sourceElem = sourceDictEntry.Elements( childIdx );
-destElem = destinationDictEntry.Elements( childIdx );
-sl.interface.dictionaryApp.utils.copyPlatformProperties( dictObj,  ...
-sourceElem, destElem );
-end 
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpLrFaYV.p.
-% Please follow local copyright laws when handling this file.
-
+    assert(  ...
+        numel( sourceDictEntry.Elements ) == numel( destinationDictEntry.Elements ),  ...
+        'Expected same hierarchy in source and destination' );
+    for childIdx = 1:length( sourceDictEntry.Elements )
+        sourceElem = sourceDictEntry.Elements( childIdx );
+        destElem = destinationDictEntry.Elements( childIdx );
+        sl.interface.dictionaryApp.utils.copyPlatformProperties( dictObj,  ...
+            sourceElem, destElem );
+    end
+end

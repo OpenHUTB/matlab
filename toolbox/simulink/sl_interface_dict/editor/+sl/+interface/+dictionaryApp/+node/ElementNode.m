@@ -1,234 +1,218 @@
 classdef ( Abstract )ElementNode < sl.interface.dictionaryApp.node.DesignNode
 
+    properties ( Access = private )
+        Parent;
+    end
+
+    methods ( Access = public )
+        function this = ElementNode( interfaceDictObj, parent, dictObj, platformKind, studio )
+            this = this@sl.interface.dictionaryApp.node.DesignNode(  ...
+                interfaceDictObj, dictObj, platformKind, studio );
+            this.Parent = parent;
+        end
+
+        function dataObj = getDataObject( this )
+            slddEntry = this.DictObj.getDDEntryObject( this.InterfaceDictElement.Owner.Name );
+            entryValue = slddEntry.getValue(  );
+            dataObj = entryValue.Elements( strcmp( { entryValue.Elements.Name },  ...
+                this.InterfaceDictElement.Name ) );
+        end
+
+        function typeEditorObj = getTypeEditorObject( this, namedArgs )
 
+            arguments
+                this
+                namedArgs.RefreshTypeEditorObject = false;
+            end
 
+            if isempty( this.TypeEditorObject ) || namedArgs.RefreshTypeEditorObject
+                typeEditorParent = this.Parent.getTypeEditorObject( RefreshTypeEditorObject = namedArgs.RefreshTypeEditorObject );
+                this.TypeEditorObject = sl.interface.dictionaryApp.node.typeeditor.ElementAdapter(  ...
+                    this, typeEditorParent, this.getStudio(  ) );
+
+
+                this.TypeEditorObject.UDTAssistOpen = this.UDTAssistOpen;
+                this.TypeEditorObject.UDTIPOpen = this.UDTIPOpen;
+            end
+            assert( ~isempty( this.TypeEditorObject ),  ...
+                'Did not construct TypeEditor object' );
+            this.TypeEditorObject.IsBus = startsWith(  ...
+                this.TypeEditorObject.getPropValue( 'DataType' ), 'Bus:' );
 
 
-properties ( Access = private )
-Parent;
-end 
+            typeEditorObj = this.TypeEditorObject;
+        end
 
-methods ( Access = public )
-function this = ElementNode( interfaceDictObj, parent, dictObj, platformKind, studio )
-this = this@sl.interface.dictionaryApp.node.DesignNode(  ...
-interfaceDictObj, dictObj, platformKind, studio );
-this.Parent = parent;
-end 
+        function parentNode = getParentNode( this )
+            parentNode = this.Parent;
+        end
 
-function dataObj = getDataObject( this )
-slddEntry = this.DictObj.getDDEntryObject( this.InterfaceDictElement.Owner.Name );
-entryValue = slddEntry.getValue(  );
-dataObj = entryValue.Elements( strcmp( { entryValue.Elements.Name },  ...
-this.InterfaceDictElement.Name ) );
-end 
+        function propValue = getPropValue( this, propName )
 
-function typeEditorObj = getTypeEditorObject( this, namedArgs )
+            propName = this.getRealPropName( propName );
+            if strcmp( propName,  ...
+                    sl.interface.dictionaryApp.node.PackageString.NameProp )
+                propValue = this.getDisplayLabel(  );
+            else
+                if this.isPlatformProperty( propName )
+                    propValue = getPropValue@sl.interface.dictionaryApp.node.DesignNode( this, propName );
+                else
+                    typeEditorObj = this.getTypeEditorObject(  );
+                    if ~typeEditorObj.isReadonlyProperty( propName )
+                        propValue = typeEditorObj.getPropValue( propName );
+                    else
+                        propValue = '';
+                    end
+                end
+            end
+        end
 
+        function setPropValue( this, propName, propValue )
 
 
+            propName = this.getRealPropName( propName );
+            if this.isPlatformProperty( propName ) || strcmp( propName,  ...
+                    sl.interface.dictionaryApp.node.PackageString.NameProp )
+                setPropValue@sl.interface.dictionaryApp.node.DesignNode( this, propName, propValue );
+            else
 
-R36
-this
-namedArgs.RefreshTypeEditorObject = false;
-end 
 
-if isempty( this.TypeEditorObject ) || namedArgs.RefreshTypeEditorObject
-typeEditorParent = this.Parent.getTypeEditorObject( RefreshTypeEditorObject = namedArgs.RefreshTypeEditorObject );
-this.TypeEditorObject = sl.interface.dictionaryApp.node.typeeditor.ElementAdapter(  ...
-this, typeEditorParent, this.getStudio(  ) );
+                studioApp = this.getStudio(  );
+                cleanupObj = studioApp.disableSLDDListener(  );%#ok
 
+                refreshTypeEditorObject = false;
+                if ~isempty( this.TypeEditorObject )
 
-this.TypeEditorObject.UDTAssistOpen = this.UDTAssistOpen;
-this.TypeEditorObject.UDTIPOpen = this.UDTIPOpen;
-end 
-assert( ~isempty( this.TypeEditorObject ),  ...
-'Did not construct TypeEditor object' );
-this.TypeEditorObject.IsBus = startsWith(  ...
-this.TypeEditorObject.getPropValue( 'DataType' ), 'Bus:' );
 
+                    refreshTypeEditorObject = ~strcmp( this.getParentNode.Name, this.TypeEditorObject.Parent.Name );
+                end
+                typeEditorObj = this.getTypeEditorObject( RefreshTypeEditorObject = refreshTypeEditorObject );
+                typeEditorObj.setPropValue( propName, propValue );
+            end
+        end
 
-typeEditorObj = this.TypeEditorObject;
-end 
+        function isReadOnly = isReadonlyProperty( this, propName )
 
-function parentNode = getParentNode( this )
-parentNode = this.Parent;
-end 
+            typeEditorObj = this.getTypeEditorObject(  );
+            realPropName = this.getRealPropName( propName );
+            isReadOnly = typeEditorObj.isReadonlyProperty( realPropName );
+        end
 
-function propValue = getPropValue( this, propName )
+        function allowed = isDragAllowed( this )%#ok<MANU>
 
-propName = this.getRealPropName( propName );
-if strcmp( propName,  ...
-sl.interface.dictionaryApp.node.PackageString.NameProp )
-propValue = this.getDisplayLabel(  );
-else 
-if this.isPlatformProperty( propName )
-propValue = getPropValue@sl.interface.dictionaryApp.node.DesignNode( this, propName );
-else 
-typeEditorObj = this.getTypeEditorObject(  );
-if ~typeEditorObj.isReadonlyProperty( propName )
-propValue = typeEditorObj.getPropValue( propName );
-else 
-propValue = '';
-end 
-end 
-end 
-end 
+            allowed = true;
+        end
 
-function setPropValue( this, propName, propValue )
+        function allowed = isDropAllowed( this )%#ok<MANU>
 
+            allowed = true;
+        end
 
-propName = this.getRealPropName( propName );
-if this.isPlatformProperty( propName ) || strcmp( propName,  ...
-sl.interface.dictionaryApp.node.PackageString.NameProp )
-setPropValue@sl.interface.dictionaryApp.node.DesignNode( this, propName, propValue );
-else 
+        function moveInParent( this, numPlaces )
+            parentNode = this.getParentNode(  );
+            parentBus = parentNode.getDataObject(  );
+            sourceIdx = find( strcmp( this.Name, { parentBus.Elements.Name } ) );
+            tmpElements = parentBus.Elements;
 
 
-studioApp = this.getStudio(  );
-cleanupObj = studioApp.disableSLDDListener(  );%#ok
+            destinationIdx = sourceIdx + numPlaces;
+            if numPlaces > 0
 
-refreshTypeEditorObject = false;
-if ~isempty( this.TypeEditorObject )
+                tmpElements( sourceIdx:destinationIdx - 1 ) =  ...
+                    tmpElements( sourceIdx + 1:destinationIdx );
+            elseif numPlaces < 0
 
+                tmpElements( destinationIdx + 1:sourceIdx ) =  ...
+                    tmpElements( destinationIdx:sourceIdx - 1 );
+            else
+                assert( false, 'Unexpected move' )
+            end
 
-refreshTypeEditorObject = ~strcmp( this.getParentNode.Name, this.TypeEditorObject.Parent.Name );
-end 
-typeEditorObj = this.getTypeEditorObject( RefreshTypeEditorObject = refreshTypeEditorObject );
-typeEditorObj.setPropValue( propName, propValue );
-end 
-end 
+            tmpElements( destinationIdx ) = this.getDataObject(  );
+            parentBus.Elements = tmpElements;
 
-function isReadOnly = isReadonlyProperty( this, propName )
+            this.DictObj.setDDEntryValue( parentNode.Name, parentBus );
+        end
 
-typeEditorObj = this.getTypeEditorObject(  );
-realPropName = this.getRealPropName( propName );
-isReadOnly = typeEditorObj.isReadonlyProperty( realPropName );
-end 
+        function copyTo( this, destinationParent, destinationIdx )
 
-function allowed = isDragAllowed( this )%#ok<MANU>
+            copiedElement = this.getDataObject(  );
 
-allowed = true;
-end 
+            destinationBus = destinationParent.getDataObject(  );
 
-function allowed = isDropAllowed( this )%#ok<MANU>
 
-allowed = true;
-end 
+            copiedElement.Name =  ...
+                sl.interface.dictionaryApp.utils.getUniqueName(  ...
+                copiedElement.Name, { destinationBus.Elements.Name } );
+            tmpElements = destinationBus.Elements;
+            numElementsInDestination = length( tmpElements );
 
-function moveInParent( this, numPlaces )
-parentNode = this.getParentNode(  );
-parentBus = parentNode.getDataObject(  );
-sourceIdx = find( strcmp( this.Name, { parentBus.Elements.Name } ) );
-tmpElements = parentBus.Elements;
+            tmpElements( destinationIdx ) = copiedElement;
+            if destinationIdx <= numElementsInDestination
+                tmpElements( destinationIdx + 1:numElementsInDestination + 1 ) =  ...
+                    destinationBus.Elements( destinationIdx:end  );
+            else
 
+            end
 
-destinationIdx = sourceIdx + numPlaces;
-if numPlaces > 0
+            assert( length( tmpElements ) == length( destinationBus.Elements ) + 1,  ...
+                'Copy did not create correct number of elements' )
+            destinationBus.Elements = tmpElements;
 
-tmpElements( sourceIdx:destinationIdx - 1 ) =  ...
-tmpElements( sourceIdx + 1:destinationIdx );
-elseif numPlaces < 0
+            this.DictObj.setDDEntryValue( destinationParent.Name, destinationBus );
 
-tmpElements( destinationIdx + 1:sourceIdx ) =  ...
-tmpElements( destinationIdx:sourceIdx - 1 );
-else 
-assert( false, 'Unexpected move' )
-end 
+            source = this.InterfaceDictElement;
 
-tmpElements( destinationIdx ) = this.getDataObject(  );
-parentBus.Elements = tmpElements;
 
-this.DictObj.setDDEntryValue( parentNode.Name, parentBus );
-end 
 
-function copyTo( this, destinationParent, destinationIdx )
+            destinationElements = destinationParent.InterfaceDictElement.Elements;
+            destElementIdx = find( strcmp( copiedElement.Name, { destinationElements.Name } ) );
+            destination = destinationParent.InterfaceDictElement.Elements( destElementIdx );
+            if this.hasPlatformProperties(  ) &&  ...
+                    isa( source, class( destination ) )
 
-copiedElement = this.getDataObject(  );
+                sl.interface.dictionaryApp.utils.copyPlatformProperties( this.DictObj,  ...
+                    source, destination );
+            end
+        end
+    end
 
-destinationBus = destinationParent.getDataObject(  );
+    methods ( Access = protected )
+        function dlgSchema = customizeDialogSchema( this, dlgSchema )
+            dlgSchema = this.adjustDialogSource( dlgSchema );
+            dlgSchema = this.customizeAvailableDataTypes( dlgSchema );
+        end
+    end
 
+    methods ( Access = private )
 
-copiedElement.Name =  ...
-sl.interface.dictionaryApp.utils.getUniqueName(  ...
-copiedElement.Name, { destinationBus.Elements.Name } );
-tmpElements = destinationBus.Elements;
-numElementsInDestination = length( tmpElements );
+        function dlgSchema = adjustDialogSource( this, dlgSchema )
+            assert( strcmp( dlgSchema.Items{ 1 }.Items{ 2 }.Items{ 2 }.Tag, 'DataType' ),  ...
+                'Unexpected data type widget' )
+            dlgSchema.Items{ 1 }.Items{ 2 }.Items{ 2 }.Source = this;
+        end
 
-tmpElements( destinationIdx ) = copiedElement;
-if destinationIdx <= numElementsInDestination
-tmpElements( destinationIdx + 1:numElementsInDestination + 1 ) =  ...
-destinationBus.Elements( destinationIdx:end  );
-else 
+        function dlgSchema = customizeAvailableDataTypes( ~, dlgSchema )
 
-end 
+            assert( strcmp( dlgSchema.Items{ 1 }.Items{ 2 }.Items{ 2 }.Tag, 'DataType' ),  ...
+                'Unexpected widget for datatypes' );
+            availableDataTypes = dlgSchema.Items{ 1 }.Items{ 2 }.Items{ 2 }.Entries;
+            if ~any( startsWith( availableDataTypes, 'Bus:' ) )
+                refreshIdx = find( startsWith( availableDataTypes,  ...
+                    DAStudio.message( 'Simulink:DataType:RefreshDataTypeInWorkspace' ) ) );
+                availableDataTypes = [ availableDataTypes( 1:refreshIdx - 1 ) ...
+                    , { 'Bus: <object name>' }, availableDataTypes( refreshIdx:end  ) ];
+            end
+            dlgSchema.Items{ 1 }.Items{ 2 }.Items{ 2 }.Entries = availableDataTypes;
+        end
+    end
 
-assert( length( tmpElements ) == length( destinationBus.Elements ) + 1,  ...
-'Copy did not create correct number of elements' )
-destinationBus.Elements = tmpElements;
+    methods ( Access = public, Hidden )
+        function getPropertyStyle( this, propName, propStyleObj )
+            typeEditorObj = this.getTypeEditorObject(  );
+            typeEditorObj.getPropertyStyle( propName, propStyleObj );
+        end
+    end
+end
 
-this.DictObj.setDDEntryValue( destinationParent.Name, destinationBus );
-
-source = this.InterfaceDictElement;
-
-
-
-destinationElements = destinationParent.InterfaceDictElement.Elements;
-destElementIdx = find( strcmp( copiedElement.Name, { destinationElements.Name } ) );
-destination = destinationParent.InterfaceDictElement.Elements( destElementIdx );
-if this.hasPlatformProperties(  ) &&  ...
-isa( source, class( destination ) )
-
-sl.interface.dictionaryApp.utils.copyPlatformProperties( this.DictObj,  ...
-source, destination );
-end 
-end 
-end 
-
-methods ( Access = protected )
-function dlgSchema = customizeDialogSchema( this, dlgSchema )
-dlgSchema = this.adjustDialogSource( dlgSchema );
-dlgSchema = this.customizeAvailableDataTypes( dlgSchema );
-end 
-end 
-
-methods ( Access = private )
-
-function dlgSchema = adjustDialogSource( this, dlgSchema )
-assert( strcmp( dlgSchema.Items{ 1 }.Items{ 2 }.Items{ 2 }.Tag, 'DataType' ),  ...
-'Unexpected data type widget' )
-dlgSchema.Items{ 1 }.Items{ 2 }.Items{ 2 }.Source = this;
-end 
-
-function dlgSchema = customizeAvailableDataTypes( ~, dlgSchema )
-
-assert( strcmp( dlgSchema.Items{ 1 }.Items{ 2 }.Items{ 2 }.Tag, 'DataType' ),  ...
-'Unexpected widget for datatypes' );
-availableDataTypes = dlgSchema.Items{ 1 }.Items{ 2 }.Items{ 2 }.Entries;
-if ~any( startsWith( availableDataTypes, 'Bus:' ) )
-
-
-
-
-
-refreshIdx = find( startsWith( availableDataTypes,  ...
-DAStudio.message( 'Simulink:DataType:RefreshDataTypeInWorkspace' ) ) );
-availableDataTypes = [ availableDataTypes( 1:refreshIdx - 1 ) ...
-, { 'Bus: <object name>' }, availableDataTypes( refreshIdx:end  ) ];
-end 
-dlgSchema.Items{ 1 }.Items{ 2 }.Items{ 2 }.Entries = availableDataTypes;
-end 
-end 
-
-methods ( Access = public, Hidden )
-function getPropertyStyle( this, propName, propStyleObj )
-typeEditorObj = this.getTypeEditorObject(  );
-typeEditorObj.getPropertyStyle( propName, propStyleObj );
-end 
-end 
-end 
-
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpCUmR36.p.
-% Please follow local copyright laws when handling this file.
 

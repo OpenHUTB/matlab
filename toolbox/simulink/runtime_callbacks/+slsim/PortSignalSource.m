@@ -1,78 +1,60 @@
-
-
-
-
-
-
-
 classdef PortSignalSource < slsim.SignalSource
 
-properties ( SetAccess = private, GetAccess = public )
+    properties ( SetAccess = private, GetAccess = public )
+
+        PortName
+
+        Element
+
+        Port{ slsim.PortSignalSource.validatePort } = ''
+    end
+
+    methods
 
 
+        function obj = PortSignalSource( propArgs )
+            arguments
+                propArgs.BlockPath
+                propArgs.UserData
+                propArgs.BusElement
+                propArgs.PortName
+                propArgs.Element
+                propArgs.Port
+            end
+            obj = obj@slsim.SignalSource( BlockPath = propArgs.BlockPath,  ...
+                UserData = propArgs.UserData,  ...
+                BusElement = propArgs.BusElement );
+            obj.PortName = propArgs.PortName;
+            obj.Element = propArgs.Element;
+            obj.Port = propArgs.Port;
+        end
 
-PortName
+    end
 
+    methods ( Static, Hidden )
 
+        function validatePortName( portName )
+            mustBeTextScalar( portName );
+        end
 
+        function validateElement( element )
+            mustBeTextScalar( element );
+        end
 
-Element
+        function validatePort( port )
+            mustBeTextScalar( port );
+        end
 
+        function val = getDefaultStruct(  )
+            val = struct( 'BlockPath', Simulink.SimulationData.BlockPath.empty(  ),  ...
+                'UserData', [  ],  ...
+                'BusElement', '',  ...
+                'PortName', '',  ...
+                'Element', '',  ...
+                'Port', '' );
+        end
 
+    end
 
-
-Port{ slsim.PortSignalSource.validatePort } = ''
-end 
-
-methods 
-
-
-function obj = PortSignalSource( propArgs )
-R36
-propArgs.BlockPath
-propArgs.UserData
-propArgs.BusElement
-propArgs.PortName
-propArgs.Element
-propArgs.Port
-end 
-obj = obj@slsim.SignalSource( BlockPath = propArgs.BlockPath,  ...
-UserData = propArgs.UserData,  ...
-BusElement = propArgs.BusElement );
-obj.PortName = propArgs.PortName;
-obj.Element = propArgs.Element;
-obj.Port = propArgs.Port;
-end 
-
-end 
-
-methods ( Static, Hidden )
-
-function validatePortName( portName )
-mustBeTextScalar( portName );
-end 
-
-function validateElement( element )
-mustBeTextScalar( element );
-end 
-
-function validatePort( port )
-mustBeTextScalar( port );
-end 
-
-function val = getDefaultStruct(  )
-val = struct( 'BlockPath', Simulink.SimulationData.BlockPath.empty(  ),  ...
-'UserData', [  ],  ...
-'BusElement', '',  ...
-'PortName', '',  ...
-'Element', '',  ...
-'Port', '' );
-end 
-
-end 
-
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpDRO1FV.p.
-% Please follow local copyright laws when handling this file.
+end
 

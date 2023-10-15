@@ -3,75 +3,72 @@ classdef LocalXYSettings
 
 
 
-properties 
+    properties
 
 
-SubPlotID
+        SubPlotID
 
 
-isAutoLimits
+        isAutoLimits
 
 
-limits
-end 
+        limits
+    end
 
-methods 
-
-
-function obj = LocalXYSettings( plotIndex )
-if nargin > 0
-obj.SubPlotID = plotIndex;
-end 
-obj.isAutoLimits = true;
-
-obj.limits = [ 0, 10,  - 5, 5 ];
-end 
+    methods
 
 
-function obj = set.SubPlotID( obj, plotIndex )
-Simulink.record.internal.verifySubPlot( plotIndex );
-obj.SubPlotID = plotIndex;
-end 
+        function obj = LocalXYSettings( plotIndex )
+            if nargin > 0
+                obj.SubPlotID = plotIndex;
+            end
+            obj.isAutoLimits = true;
+
+            obj.limits = [ 0, 10,  - 5, 5 ];
+        end
 
 
-function obj = set.isAutoLimits( obj, autoLimits )
-validateattributes( autoLimits, 'logical', { 'scalar' } );
-obj.isAutoLimits = autoLimits;
-end 
+        function obj = set.SubPlotID( obj, plotIndex )
+            Simulink.record.internal.verifySubPlot( plotIndex );
+            obj.SubPlotID = plotIndex;
+        end
 
 
-function obj = set.limits( obj, limits )
-validateattributes( limits, obj.NUMERIC_CLASS, obj.LIMITS_ATTRIBUTES );
-obj.limits = limits;
-end 
-end 
-
-methods ( Static )
-
-function xyLocalSettingObj = createXYLocalSettingsFromDataModel( subPlotID, xyLocalDataModel )
-R36
-subPlotID
-xyLocalDataModel SdiVisual.LocalXYSettings
-end 
+        function obj = set.isAutoLimits( obj, autoLimits )
+            validateattributes( autoLimits, 'logical', { 'scalar' } );
+            obj.isAutoLimits = autoLimits;
+        end
 
 
-subPlotID = Simulink.record.internal.verifySubPlot( subPlotID );
+        function obj = set.limits( obj, limits )
+            validateattributes( limits, obj.NUMERIC_CLASS, obj.LIMITS_ATTRIBUTES );
+            obj.limits = limits;
+        end
+    end
+
+    methods ( Static )
+
+        function xyLocalSettingObj = createXYLocalSettingsFromDataModel( subPlotID, xyLocalDataModel )
+            arguments
+                subPlotID
+                xyLocalDataModel SdiVisual.LocalXYSettings
+            end
 
 
-xyLocalSettingObj = Simulink.record.internal.LocalXYSettings( subPlotID );
-xyLocalSettingObj.isAutoLimits = xyLocalDataModel.autoLimits;
-xyLocalSettingObj.limits = [ xyLocalDataModel.limits.xMin, xyLocalDataModel.limits.xMax, xyLocalDataModel.limits.yMin, xyLocalDataModel.limits.yMax ];
-end 
-
-end 
+            subPlotID = Simulink.record.internal.verifySubPlot( subPlotID );
 
 
-properties ( Constant, Access = protected )
-NUMERIC_CLASS = { 'numeric' }
-LIMITS_ATTRIBUTES = { 'ncols', 4, 'real', 'finite' }
-end 
-end 
+            xyLocalSettingObj = Simulink.record.internal.LocalXYSettings( subPlotID );
+            xyLocalSettingObj.isAutoLimits = xyLocalDataModel.autoLimits;
+            xyLocalSettingObj.limits = [ xyLocalDataModel.limits.xMin, xyLocalDataModel.limits.xMax, xyLocalDataModel.limits.yMin, xyLocalDataModel.limits.yMax ];
+        end
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpDh4TJV.p.
-% Please follow local copyright laws when handling this file.
+    end
+
+
+    properties ( Constant, Access = protected )
+        NUMERIC_CLASS = { 'numeric' }
+        LIMITS_ATTRIBUTES = { 'ncols', 4, 'real', 'finite' }
+    end
+end
 
