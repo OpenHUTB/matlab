@@ -1,88 +1,81 @@
 classdef EditorDiagramExporter < diagram.editor.print.Exporter
 
+    properties
+        modelName( 1, 1 )string
+    end
 
+    properties ( Access = private )
+        modelHandle( 1, 1 )double
+    end
 
+    methods
+        function obj = EditorDiagramExporter( modelHandle, options )
+            arguments
+                modelHandle( 1, 1 )double
+                options.Legend( 1, 1 )logical = false
+            end
 
-properties 
-modelName( 1, 1 )string
-end 
+            sltp.internal.EditorDiagramExporter.validateHandle( modelHandle );
 
-properties ( Access = private )
-modelHandle( 1, 1 )double
-end 
+            graphEditor = sltp.GraphEditor( modelHandle );
+            syntax = graphEditor.syntax(  );
 
-methods 
-function obj = EditorDiagramExporter( modelHandle, options )
-R36
-modelHandle( 1, 1 )double
-options.Legend( 1, 1 )logical = false
-end 
+            [ sltpIndexFilename, sltpIndexParams ] = sltp.internal.URLBuilder.getURLInformation( modelHandle );
+            sltpIndex = [ sltp.internal.URLBuilder.BaseDirectory,  ...
+                sltpIndexFilename ];
 
-sltp.internal.EditorDiagramExporter.validateHandle( modelHandle );
+            sltpIndexParams( end  + 1 ) = { 'export=1' };
 
-graphEditor = sltp.GraphEditor( modelHandle );
-syntax = graphEditor.syntax(  );
+            if ( options.Legend )
+                sltpIndexParams( end  + 1 ) = { 'exportLegend=1' };
+            end
 
-[ sltpIndexFilename, sltpIndexParams ] = sltp.internal.URLBuilder.getURLInformation( modelHandle );
-sltpIndex = [ sltp.internal.URLBuilder.BaseDirectory,  ...
-sltpIndexFilename ];
+            obj = obj@diagram.editor.print.Exporter( syntax,  ...
+                'AppIndex', sltpIndex,  ...
+                'IndexParams', sltpIndexParams );
+            obj.modelName = get_param( modelHandle, 'Name' );
+            obj.modelHandle = modelHandle;
+        end
 
-sltpIndexParams( end  + 1 ) = { 'export=1' };
+        function appIndex = getAppIndex( obj )
+            appIndex = obj.appIndex;
+        end
 
-if ( options.Legend )
-sltpIndexParams( end  + 1 ) = { 'exportLegend=1' };
-end 
+        function indexParams = getIndexParams( obj )
+            indexParams = obj.indexParams;
+        end
 
-obj = obj@diagram.editor.print.Exporter( syntax,  ...
-'AppIndex', sltpIndex,  ...
-'IndexParams', sltpIndexParams );
-obj.modelName = get_param( modelHandle, 'Name' );
-obj.modelHandle = modelHandle;
-end 
+        function url = getUrl( obj )
+            url = obj.generateUrl(  );
+        end
+    end
 
-function appIndex = getAppIndex( obj )
-appIndex = obj.appIndex;
-end 
+    methods ( Static )
+        function validateHandle( modelHandle )
+            if ( ~ishandle( modelHandle ) )
+                msg = 'Simulink:Commands:InvSimulinkObjHandle';
+                error( message( msg ) )
+            end
 
-function indexParams = getIndexParams( obj )
-indexParams = obj.indexParams;
-end 
+            isConfiguredForMds =  ...
+                ( strcmp( get_param( modelHandle, 'ConcurrentTasks' ), 'on' ) ) &&  ...
+                ( strcmp( get_param( modelHandle, 'ExplicitPartitioning' ), 'on' ) );
+            if ( isConfiguredForMds )
+                msg = 'SimulinkPartitioning:Config:InvalidModelMds';
+                error( message( msg ) )
+            end
 
-function url = getUrl( obj )
-url = obj.generateUrl(  );
-end 
-end 
+            if ( bdIsLibrary( modelHandle ) )
+                msg = 'SimulinkPartitioning:Config:InvalidModelLibrary';
+                error( message( msg ) )
+            end
 
-methods ( Static )
-function validateHandle( modelHandle )
-if ( ~ishandle( modelHandle ) )
-msg = 'Simulink:Commands:InvSimulinkObjHandle';
-error( message( msg ) )
-end 
+            if ( bdIsSubsystem( modelHandle ) )
+                msg = 'SimulinkPartitioning:Config:InvalidModelSubsystemReference';
+                error( message( msg ) )
+            end
+        end
+    end
+end
 
-isConfiguredForMds =  ...
-( strcmp( get_param( modelHandle, 'ConcurrentTasks' ), 'on' ) ) &&  ...
-( strcmp( get_param( modelHandle, 'ExplicitPartitioning' ), 'on' ) );
-if ( isConfiguredForMds )
-msg = 'SimulinkPartitioning:Config:InvalidModelMds';
-error( message( msg ) )
-end 
-
-if ( bdIsLibrary( modelHandle ) )
-msg = 'SimulinkPartitioning:Config:InvalidModelLibrary';
-error( message( msg ) )
-end 
-
-if ( bdIsSubsystem( modelHandle ) )
-msg = 'SimulinkPartitioning:Config:InvalidModelSubsystemReference';
-error( message( msg ) )
-end 
-end 
-end 
-end 
-
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpYON5eT.p.
-% Please follow local copyright laws when handling this file.
 

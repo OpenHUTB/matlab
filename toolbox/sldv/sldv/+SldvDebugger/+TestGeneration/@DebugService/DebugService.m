@@ -1,322 +1,316 @@
 classdef DebugService < SldvDebugger.DebugService
 
+    properties
+        commonBackwardCriteria = [  ];
 
+        analysisMode = 'Generic';
+        slicerRefreshPortLabelListener = [  ];
+        slicerCloseListener = [  ];
+    end
 
+    methods
+        function obj = DebugService( model, sldvData )
 
-properties 
-commonBackwardCriteria = [  ];
 
-analysisMode = 'Generic';
-slicerRefreshPortLabelListener = [  ];
-slicerCloseListener = [  ];
-end 
+            obj@SldvDebugger.DebugService( model, sldvData );
+        end
 
-methods 
-function obj = DebugService( model, sldvData )
+        function addSlicerRefreshPortLabelListener( obj )
+            if ~isempty( obj.slicerRefreshPortLabelListener )
+                return ;
+            end
+            slicerConfig = SlicerConfiguration.getConfiguration( obj.model );
+            obj.slicerRefreshPortLabelListener = addlistener( slicerConfig, 'eventSlicerRefreshPortValueLabel',  ...
+                @( ~, ~ )obj.togglePortValueLabelsForOverlapHighlight( slicerConfig ) );
+        end
 
+        function removeSlicerRefreshPortLabelListener( obj )
+            delete( obj.slicerRefreshPortLabelListener );
+            obj.slicerRefreshPortLabelListener = [  ];
+        end
 
-obj@SldvDebugger.DebugService( model, sldvData );
-end 
+        function addSlicerCloseListener( obj )
+            if ~isempty( obj.slicerCloseListener )
+                return ;
+            end
+            slicerConfig = SlicerConfiguration.getConfiguration( obj.model );
+            obj.slicerCloseListener = addlistener( slicerConfig.modelSlicer, 'eventModelSlicerDialogClosed',  ...
+                @( ~, ~ )obj.removeAllSlicerListeners );
+        end
 
-function addSlicerRefreshPortLabelListener( obj )
-if ~isempty( obj.slicerRefreshPortLabelListener )
-return ;
-end 
-slicerConfig = SlicerConfiguration.getConfiguration( obj.model );
-obj.slicerRefreshPortLabelListener = addlistener( slicerConfig, 'eventSlicerRefreshPortValueLabel',  ...
-@( ~, ~ )obj.togglePortValueLabelsForOverlapHighlight( slicerConfig ) );
-end 
+        function removeSlicerCloseListener( obj )
+            delete( obj.slicerCloseListener );
+            obj.slicerCloseListener = [  ];
+        end
 
-function removeSlicerRefreshPortLabelListener( obj )
-delete( obj.slicerRefreshPortLabelListener );
-obj.slicerRefreshPortLabelListener = [  ];
-end 
+        function removeAllSlicerListeners( obj )
+            obj.removeSlicerCloseListener(  );
+            obj.removeSlicerRefreshPortLabelListener(  );
+        end
 
-function addSlicerCloseListener( obj )
-if ~isempty( obj.slicerCloseListener )
-return ;
-end 
-slicerConfig = SlicerConfiguration.getConfiguration( obj.model );
-obj.slicerCloseListener = addlistener( slicerConfig.modelSlicer, 'eventModelSlicerDialogClosed',  ...
-@( ~, ~ )obj.removeAllSlicerListeners );
-end 
+        function detectionPointHandles = getObjectDetectionSites( obj, objectiveId )
 
-function removeSlicerCloseListener( obj )
-delete( obj.slicerCloseListener );
-obj.slicerCloseListener = [  ];
-end 
 
-function removeAllSlicerListeners( obj )
-obj.removeSlicerCloseListener(  );
-obj.removeSlicerRefreshPortLabelListener(  );
-end 
+            detectionPointHandles = [  ];
+            if ~isfield( obj.sldvData.Objectives( objectiveId ), 'detectionSites' )
+                return ;
+            end
+            DetectionPointObjects = obj.sldvData.Objectives( objectiveId ).detectionSites;
+            for i = 1:length( DetectionPointObjects )
+                detectionPointSID = string( DetectionPointObjects( i ).modelObj );
+                updatedSID = obj.updateSIDForExtractionReplacementWorkflow( detectionPointSID );
+                portHandles = get_param( updatedSID, 'PortHandles' );
+                detectionPointHandles = [ detectionPointHandles, portHandles.Outport( DetectionPointObjects( i ).port ) ];
+            end
+        end
 
-function detectionPointHandles = getObjectDetectionSites( obj, objectiveId )
+        function status = isObjectiveDebuggable( obj, objectiveId )
 
 
-detectionPointHandles = [  ];
-if ~isfield( obj.sldvData.Objectives( objectiveId ), 'detectionSites' )
-return ;
-end 
-DetectionPointObjects = obj.sldvData.Objectives( objectiveId ).detectionSites;
-for i = 1:length( DetectionPointObjects )
-detectionPointSID = string( DetectionPointObjects( i ).modelObj );
-updatedSID = obj.updateSIDForExtractionReplacementWorkflow( detectionPointSID );
-portHandles = get_param( updatedSID, 'PortHandles' );
-detectionPointHandles = [ detectionPointHandles, portHandles.Outport( DetectionPointObjects( i ).port ) ];
-end 
-end 
+            objective = obj.sldvData.Objectives( objectiveId );
+            status = isfield( objective, 'testCaseIdx' ) && ~isempty( objective.testCaseIdx );
+        end
 
-function status = isObjectiveDebuggable( obj, objectiveId )
+        function testCase = getTestCase( obj, idx )
 
 
-objective = obj.sldvData.Objectives( objectiveId );
-status = isfield( objective, 'testCaseIdx' ) && ~isempty( objective.testCaseIdx );
-end 
+            testCase = obj.sldvData.TestCases( idx );
+        end
 
-function testCase = getTestCase( obj, idx )
+        function simInputValues = getSimInputValues( obj, idx )
 
+            sldvDataSLDataSet = Sldv.DataUtils.convertTestCasesToSLDataSet( obj.sldvData );
+            simInputValues = sldvDataSLDataSet.TestCases( idx );
+        end
 
-testCase = obj.sldvData.TestCases( idx );
-end 
+        function mapKey = getCriteriaMapKey( obj, objectiveNum )
+            arguments
+                obj( 1, 1 )SldvDebugger.TestGeneration.DebugService
+                objectiveNum( 1, 1 )double = obj.DebugCtx.curObjId
+            end
 
-function simInputValues = getSimInputValues( obj, idx )
+            mapKey = strcat( string( objectiveNum ), obj.analysisMode );
+        end
 
-sldvDataSLDataSet = Sldv.DataUtils.convertTestCasesToSLDataSet( obj.sldvData );
-simInputValues = sldvDataSLDataSet.TestCases( idx );
-end 
+        function simButtonEnableMessage = getSimButtonEnableMessage( ~ )
 
-function mapKey = getCriteriaMapKey( obj, objectiveNum )
-R36
-obj( 1, 1 )SldvDebugger.TestGeneration.DebugService
-objectiveNum( 1, 1 )double = obj.DebugCtx.curObjId
-end 
+            simButtonEnableMessage = getString( message( 'Sldv:DebugUsingSlicer:SimulationButtonEnabledMessageForInspect' ) );
+        end
 
-mapKey = strcat( string( objectiveNum ), obj.analysisMode );
-end 
+        function messageTag = getProgressIndicatorToLoadTestCase( ~ )
 
-function simButtonEnableMessage = getSimButtonEnableMessage( ~ )
+            messageTag = 'Sldv:DebugUsingSlicer:ProgressIndicatorLoadTestCase';
+        end
 
-simButtonEnableMessage = getString( message( 'Sldv:DebugUsingSlicer:SimulationButtonEnabledMessageForInspect' ) );
-end 
+        function messageTag = getProgressIndicatorStepToTime( ~ )
 
-function messageTag = getProgressIndicatorToLoadTestCase( ~ )
+            messageTag = 'Sldv:DebugUsingSlicer:ProgressIndicatorStepToObservationTime';
+        end
 
-messageTag = 'Sldv:DebugUsingSlicer:ProgressIndicatorLoadTestCase';
-end 
+        function messageTag = getCriteriaDescription( obj )
 
-function messageTag = getProgressIndicatorStepToTime( ~ )
+            if strcmp( obj.analysisMode, 'Generic' )
+                messageTag = 'Sldv:DebugUsingSlicer:CriteriaDescriptionForTestGenValidation';
+            elseif strcmp( obj.analysisMode, 'EnhancedMCDC' )
+                messageTag = 'Sldv:DebugUsingSlicer:CriteriaDescriptionForValidation';
+            end
+        end
 
-messageTag = 'Sldv:DebugUsingSlicer:ProgressIndicatorStepToObservationTime';
-end 
+        function togglePortValueLabelsForOverlapHighlight( ~, slicerConfig )
 
-function messageTag = getCriteriaDescription( obj )
 
-if strcmp( obj.analysisMode, 'Generic' )
-messageTag = 'Sldv:DebugUsingSlicer:CriteriaDescriptionForTestGenValidation';
-elseif strcmp( obj.analysisMode, 'EnhancedMCDC' )
-messageTag = 'Sldv:DebugUsingSlicer:CriteriaDescriptionForValidation';
-end 
-end 
+            import SldvDebugger.TestGeneration.DebugService.*;
+            if ~isempty( slicerConfig.allDisplayed )
+                turnOffPortValueLabels( slicerConfig );
+                turnOnPortValueLabelsToInspectEMCDC( slicerConfig );
+            end
+        end
 
-function togglePortValueLabelsForOverlapHighlight( ~, slicerConfig )
+        function disableCriteriaPanel( obj, dlg )
 
 
-import SldvDebugger.TestGeneration.DebugService.*;
-if ~isempty( slicerConfig.allDisplayed )
-turnOffPortValueLabels( slicerConfig );
-turnOnPortValueLabelsToInspectEMCDC( slicerConfig );
-end 
-end 
 
-function disableCriteriaPanel( obj, dlg )
+            dlgSrc = dlg.getDialogSource;
 
+            dlgSrc.sigListPanel.lockedForInspect = 1;
+            dlgSrc.criteriaListPanel.lockedForInspect = 1;
+            dlg.refresh(  );
+            obj.disableCriteriaPanel@SlicerApplication.DebugService( dlg );
+        end
 
+        function setupSlicer( obj, SID, objectiveId )
 
-dlgSrc = dlg.getDialogSource;
 
-dlgSrc.sigListPanel.lockedForInspect = 1;
-dlgSrc.criteriaListPanel.lockedForInspect = 1;
-dlg.refresh(  );
-obj.disableCriteriaPanel@SlicerApplication.DebugService( dlg );
-end 
 
-function setupSlicer( obj, SID, objectiveId )
+            obj.setupSlicer@SldvDebugger.DebugService( SID, objectiveId );
+            if ~exist( obj.model )%#ok<EXIST>
 
+                return ;
+            end
+            slicerConfig = SlicerConfiguration.getConfiguration( obj.model );
+            obj.togglePortValueLabelsForOverlapHighlight( slicerConfig );
 
+            obj.setupBackWardCriterionCoverageData( slicerConfig );
+        end
 
-obj.setupSlicer@SldvDebugger.DebugService( SID, objectiveId );
-if ~exist( obj.model )%#ok<EXIST> 
+        function setupSlicerConfiguration( obj, dlgSrc, objectiveId, ~ )
 
-return ;
-end 
-slicerConfig = SlicerConfiguration.getConfiguration( obj.model );
-obj.togglePortValueLabelsForOverlapHighlight( slicerConfig );
 
-obj.setupBackWardCriterionCoverageData( slicerConfig );
-end 
 
-function setupSlicerConfiguration( obj, dlgSrc, objectiveId, ~ )
+            import SldvDebugger.TestGeneration.DebugService.*;
+            obj.commonBackwardCriteria = [  ];
+            slicerConfig = dlgSrc.Model;
 
 
+            obj.criteriaColor = 'Green';
+            obj.analysisMode = 'Generic';
 
-import SldvDebugger.TestGeneration.DebugService.*;
-obj.commonBackwardCriteria = [  ];
-slicerConfig = dlgSrc.Model;
 
+            obj.addSlicerRefreshPortLabelListener(  );
+            obj.addSlicerCloseListener(  );
 
-obj.criteriaColor = 'Green';
-obj.analysisMode = 'Generic';
+            slicerConfig.externalPVDManagement = true;
 
 
-obj.addSlicerRefreshPortLabelListener(  );
-obj.addSlicerCloseListener(  );
+            obj.setupSlicerConfiguration@SldvDebugger.DebugService( dlgSrc, objectiveId );
 
-slicerConfig.externalPVDManagement = true;
+            multiCriteriaRowIndex = { slicerConfig.allDisplayed };
 
 
-obj.setupSlicerConfiguration@SldvDebugger.DebugService( dlgSrc, objectiveId );
+            objectDetectionHandles = obj.getObjectDetectionSites( objectiveId );
+            if ~isempty( objectDetectionHandles )
 
-multiCriteriaRowIndex = { slicerConfig.allDisplayed };
 
 
-objectDetectionHandles = obj.getObjectDetectionSites( objectiveId );
-if ~isempty( objectDetectionHandles )
 
+                slicerConfig.unhighlightCriteria(  );
 
+                obj.analysisMode = 'EnhancedMCDC';
 
 
-slicerConfig.unhighlightCriteria(  );
 
-obj.analysisMode = 'EnhancedMCDC';
 
+                startingPointH = obj.getSlicerSeed;
 
 
+                turnOffPortValueLabels( slicerConfig );
 
-startingPointH = obj.getSlicerSeed;
+                newCriteria = obj.setupExtraSlicerCriteriaForInspection(  );
+                removeUncommonOverlays( slicerConfig, newCriteria );
 
 
-turnOffPortValueLabels( slicerConfig );
+                obj.setupSlicerConfiguration@SldvDebugger.DebugService( dlgSrc, objectiveId );
 
-newCriteria = obj.setupExtraSlicerCriteriaForInspection(  );
-removeUncommonOverlays( slicerConfig, newCriteria );
 
 
-obj.setupSlicerConfiguration@SldvDebugger.DebugService( dlgSrc, objectiveId );
 
+                slicerConfig.CurrentCriteria.direction = 'Forward';
 
+                for n = 1:length( objectDetectionHandles )
+                    newCriteria.addStart( objectDetectionHandles( n ) );
+                    slicerConfig.CurrentCriteria.addExclusion( objectDetectionHandles( n ) );
+                end
+                newCriteria.addExclusion( startingPointH );
 
+                slicerConfig.CurrentCriteria.showCtrlDep = true;
+                newCriteria.showCtrlDep = true;
 
-slicerConfig.CurrentCriteria.direction = 'Forward';
 
-for n = 1:length( objectDetectionHandles )
-newCriteria.addStart( objectDetectionHandles( n ) );
-slicerConfig.CurrentCriteria.addExclusion( objectDetectionHandles( n ) );
-end 
-newCriteria.addExclusion( startingPointH );
+                criteriaIndex = slicerConfig.getCriteriaIndexInSlicerConfiguration( newCriteria );
+                slicerConfig.allDisplayed = unique( [ criteriaIndex, slicerConfig.selectedIdx ] );
 
-slicerConfig.CurrentCriteria.showCtrlDep = true;
-newCriteria.showCtrlDep = true;
+                for i = 1:length( slicerConfig.allDisplayed )
+                    idx = slicerConfig.allDisplayed( i );
+                    slicerConfig.sliceCriteria( idx ).refresh;
+                end
+                slicerConfig.addOverlapRules( true );
 
 
-criteriaIndex = slicerConfig.getCriteriaIndexInSlicerConfiguration( newCriteria );
-slicerConfig.allDisplayed = unique( [ criteriaIndex, slicerConfig.selectedIdx ] );
 
-for i = 1:length( slicerConfig.allDisplayed )
-idx = slicerConfig.allDisplayed( i );
-slicerConfig.sliceCriteria( idx ).refresh;
-end 
-slicerConfig.addOverlapRules( true );
 
 
+                obj.commonBackwardCriteria = multiCriteriaRowIndex{ 1 };
 
 
+                multiCriteriaRowIndex = [ slicerConfig.allDisplayed, multiCriteriaRowIndex ];
+            end
 
-obj.commonBackwardCriteria = multiCriteriaRowIndex{ 1 };
 
+            dlgSrc.criteriaListPanel.multiCriteriaRowIndex = multiCriteriaRowIndex;
 
-multiCriteriaRowIndex = [ slicerConfig.allDisplayed, multiCriteriaRowIndex ];
-end 
+            dlgSrc.criteriaListPanel.rowToInspect = 0;
+            slicerConfig.modelSlicer.dlg.refresh;
+        end
 
+        function setupBackWardCriterionCoverageData( obj, slicerConfig )
 
-dlgSrc.criteriaListPanel.multiCriteriaRowIndex = multiCriteriaRowIndex;
 
-dlgSrc.criteriaListPanel.rowToInspect = 0;
-slicerConfig.modelSlicer.dlg.refresh;
-end 
+            if ~isempty( obj.commonBackwardCriteria )
+                criteria = slicerConfig.sliceCriteria( obj.commonBackwardCriteria );
+                criteria.cvd = slicerConfig.CurrentCriteria.cvd;
+                criteria.useCvd = true;
+            end
+        end
+    end
 
-function setupBackWardCriterionCoverageData( obj, slicerConfig )
+    methods ( Static )
+        function turnOnPortValueLabelsToInspectEMCDC( slicerConfig )
 
 
-if ~isempty( obj.commonBackwardCriteria )
-criteria = slicerConfig.sliceCriteria( obj.commonBackwardCriteria );
-criteria.cvd = slicerConfig.CurrentCriteria.cvd;
-criteria.useCvd = true;
-end 
-end 
-end 
+            selectedCriteria = slicerConfig.sliceCriteria( slicerConfig.selectedIdx );
+            if ~selectedCriteria.showLabels
+                return ;
+            end
+            activeBlocksIntersect = slicerConfig.sliceCriteria( slicerConfig.allDisplayed( 1 ) ).activeBlocks;
+            for idx = 2:length( slicerConfig.allDisplayed )
+                activeBlocksIntersect = intersect( activeBlocksIntersect, slicerConfig.sliceCriteria( slicerConfig.allDisplayed( idx ) ).activeBlocks );
+            end
 
-methods ( Static )
-function turnOnPortValueLabelsToInspectEMCDC( slicerConfig )
 
 
-selectedCriteria = slicerConfig.sliceCriteria( slicerConfig.selectedIdx );
-if ~selectedCriteria.showLabels
-return ;
-end 
-activeBlocksIntersect = slicerConfig.sliceCriteria( slicerConfig.allDisplayed( 1 ) ).activeBlocks;
-for idx = 2:length( slicerConfig.allDisplayed )
-activeBlocksIntersect = intersect( activeBlocksIntersect, slicerConfig.sliceCriteria( slicerConfig.allDisplayed( idx ) ).activeBlocks );
-end 
 
+            activeBlocksIntersect = slicerConfig.filterRedundantParents( activeBlocksIntersect );
+            SlicerConfiguration.togglePortValueLabel( activeBlocksIntersect, 'on' );
+            SldvDebugger.TestGeneration.DebugService.toggleInportLabels( activeBlocksIntersect, 'on' );
+        end
 
+        function turnOffPortValueLabels( slicerConfig )
 
 
-activeBlocksIntersect = slicerConfig.filterRedundantParents( activeBlocksIntersect );
-SlicerConfiguration.togglePortValueLabel( activeBlocksIntersect, 'on' );
-SldvDebugger.TestGeneration.DebugService.toggleInportLabels( activeBlocksIntersect, 'on' );
-end 
+            activeBlocksUnion = [  ];
+            for idx = 1:length( slicerConfig.allDisplayed )
+                activeBlocksUnion = union( activeBlocksUnion, slicerConfig.sliceCriteria( slicerConfig.allDisplayed( idx ) ).activeBlocks );
+            end
+            SlicerConfiguration.togglePortValueLabel( activeBlocksUnion, 'off' );
+            SldvDebugger.TestGeneration.DebugService.toggleInportLabels( activeBlocksUnion, 'off' );
+        end
 
-function turnOffPortValueLabels( slicerConfig )
+        function toggleInportLabels( blocks, value )
+            for i = 1:length( blocks )
+                portHandles = get_param( blocks( i ), 'PortHandles' );
+                for j = 1:length( portHandles.Inport )
+                    inport = portHandles.Inport( j );
+                    lineH = get( inport, 'Line' );
+                    if ishandle( lineH )
+                        srcPortHandle = get( lineH, 'SrcPortHandle' );
+                        if ishandle( srcPortHandle )
+                            set_param( srcPortHandle, 'ShowValueLabel', value );
+                        end
+                    end
+                end
+            end
+        end
 
+        function removeUncommonOverlays( slicerConfig, commonCriteria )
 
-activeBlocksUnion = [  ];
-for idx = 1:length( slicerConfig.allDisplayed )
-activeBlocksUnion = union( activeBlocksUnion, slicerConfig.sliceCriteria( slicerConfig.allDisplayed( idx ) ).activeBlocks );
-end 
-SlicerConfiguration.togglePortValueLabel( activeBlocksUnion, 'off' );
-SldvDebugger.TestGeneration.DebugService.toggleInportLabels( activeBlocksUnion, 'off' );
-end 
-
-function toggleInportLabels( blocks, value )
-for i = 1:length( blocks )
-portHandles = get_param( blocks( i ), 'PortHandles' );
-for j = 1:length( portHandles.Inport )
-inport = portHandles.Inport( j );
-lineH = get( inport, 'Line' );
-if ishandle( lineH )
-srcPortHandle = get( lineH, 'SrcPortHandle' );
-if ishandle( srcPortHandle )
-set_param( srcPortHandle, 'ShowValueLabel', value );
-end 
-end 
-end 
-end 
-end 
-
-function removeUncommonOverlays( slicerConfig, commonCriteria )
-
-commonCriteriaIndex = slicerConfig.getCriteriaIndexInSlicerConfiguration( commonCriteria );
-for i = 1:length( slicerConfig.allDisplayed )
-if slicerConfig.allDisplayed( i ) ~= commonCriteriaIndex &&  ...
-~isempty( slicerConfig.sliceCriteria( slicerConfig.allDisplayed( i ) ).overlay )
-slicerConfig.sliceCriteria( slicerConfig.allDisplayed( i ) ).overlay.removeFromEditor(  );
-end 
-end 
-end 
-end 
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpYIkoSe.p.
-% Please follow local copyright laws when handling this file.
+            commonCriteriaIndex = slicerConfig.getCriteriaIndexInSlicerConfiguration( commonCriteria );
+            for i = 1:length( slicerConfig.allDisplayed )
+                if slicerConfig.allDisplayed( i ) ~= commonCriteriaIndex &&  ...
+                        ~isempty( slicerConfig.sliceCriteria( slicerConfig.allDisplayed( i ) ).overlay )
+                    slicerConfig.sliceCriteria( slicerConfig.allDisplayed( i ) ).overlay.removeFromEditor(  );
+                end
+            end
+        end
+    end
+end
 

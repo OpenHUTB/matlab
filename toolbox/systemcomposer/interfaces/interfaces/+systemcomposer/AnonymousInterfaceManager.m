@@ -440,7 +440,7 @@ systemcomposer.AnonymousInterfaceManager.SetSLPortProperty( blockH, 'Description
 end 
 
 function portInfo = GetZCPortInfo( aPort )
-R36
+arguments
 aPort{ mustBeA( aPort, 'systemcomposer.arch.ArchitecturePort' ) }
 end 
 

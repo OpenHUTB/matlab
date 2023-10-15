@@ -1,16 +1,6 @@
 function plotMultipleSignals( obj, filePath, signalList, numRows, numCols, lastPlottedSigIdx )
 
-
-
-
-
-
-
-
-
-
-
-R36
+arguments
 obj;
 filePath( 1, : )char{ mustBeNonempty };
 signalList sltest.testmanager.ReportUtility.Signal;

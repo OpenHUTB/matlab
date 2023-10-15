@@ -1,16 +1,6 @@
-
-
-
-
-
-
-
-
-
-
 function changeAssessmentsData( testCaseID, objID, property, value )
 
-R36
+arguments
 testCaseID( 1, 1 )double
 objID( 1, 1 )double
 property( 1, 1 )string{ mustBeMember( property, [ "enabled", "assessmentName" ] ) }
@@ -33,8 +23,3 @@ else
 end 
 
 end 
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpNoUo4W.p.
-% Please follow local copyright laws when handling this file.
-

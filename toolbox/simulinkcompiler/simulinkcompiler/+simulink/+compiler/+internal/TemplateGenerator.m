@@ -1,148 +1,144 @@
 classdef TemplateGenerator < handle
 
+    properties ( Access = private )
+        SourceAppName
+        TemplateName
+        OutputDir
+        AppPath
+        ExistingTemplateHandling
+    end
 
+    properties ( Access = private, Dependent )
+        TemplateDir
+    end
 
+    properties ( Access = private, Constant )
+        OverwriteExistingTemplate = "overwrite"
+        RenameExistingTemplate = "rename"
+        DefaultTemplateName = "SimAppTemplate"
 
+        ClassDirPrefix = "@"
+        AppFileExt = ".mlapp"
+    end
 
-properties ( Access = private )
-SourceAppName
-TemplateName
-OutputDir
-AppPath
-ExistingTemplateHandling
-end 
+    methods
 
-properties ( Access = private, Dependent )
-TemplateDir
-end 
+        function obj = TemplateGenerator( sourceAppName, options )
+            arguments
+                sourceAppName( 1, 1 )string ...
+                    { simulink.compiler.internal.TemplateGenerator.appMustExist }
+                options.TemplateName( 1, 1 )string =  ...
+                    simulink.compiler.internal.TemplateGenerator.DefaultTemplateName
+                options.OutputDir( 1, 1 )string = pwd
+                options.ExistingTemplateHandling( 1, 1 )string ...
+                    { simulink.compiler.internal.TemplateGenerator.mustBeValidTemplateHandling }
+            end
 
-properties ( Access = private, Constant )
-OverwriteExistingTemplate = "overwrite"
-RenameExistingTemplate = "rename"
-DefaultTemplateName = "SimAppTemplate"
+            obj.SourceAppName = obj.baseAppName( sourceAppName );
+            obj.AppPath = obj.appPath( sourceAppName );
+            obj.OutputDir = options.OutputDir;
+            obj.TemplateName = options.TemplateName;
 
-ClassDirPrefix = "@"
-AppFileExt = ".mlapp"
-end 
+            if isfield( options, "ExistingTemplateHandling" )
+                obj.ExistingTemplateHandling = options.ExistingTemplateHandling;
+            end
+        end
 
-methods 
+        function generate( obj )
+            obj.handleExistingTemplate(  );
 
-function obj = TemplateGenerator( sourceAppName, options )
-R36
-sourceAppName( 1, 1 )string ...
-{ simulink.compiler.internal.TemplateGenerator.appMustExist }
-options.TemplateName( 1, 1 )string =  ...
-simulink.compiler.internal.TemplateGenerator.DefaultTemplateName
-options.OutputDir( 1, 1 )string = pwd
-options.ExistingTemplateHandling( 1, 1 )string ...
-{ simulink.compiler.internal.TemplateGenerator.mustBeValidTemplateHandling }
-end 
+            msgKey = "simulinkcompiler:genapp:CreatingTemplate";
+            msg = message( msgKey, obj.TemplateName ).string;
+            fprintf( msg );
 
-obj.SourceAppName = obj.baseAppName( sourceAppName );
-obj.AppPath = obj.appPath( sourceAppName );
-obj.OutputDir = options.OutputDir;
-obj.TemplateName = options.TemplateName;
+            try
+                obj.copyAppDirToTemplate(  );
+                if isMultiPaneSimApp( obj.AppPath )
+                    appLocation = dir( obj.AppPath ).folder;
+                    mkdir( obj.TemplateDir, "@AppHelper" );
+                    mkdir( fullfile( obj.TemplateDir ), "assets" );
+                    copyfile( fullfile( appLocation, "@AppHelper" ), fullfile( obj.TemplateDir, "@AppHelper" ) );
+                    copyfile( fullfile( appLocation, "assets" ), fullfile( obj.TemplateDir, "assets" ) );
+                end
+                obj.renameMlappFile(  );
+                unzipDir = obj.unzipMlappFile(  );
+                obj.renameClassInMlappFile( unzipDir );
+                obj.zipMlappFile( unzipDir );
+                obj.removeUnneededFiles(  );
+            catch templateGenException
+                errorId = "SimulinkCompiler:GenTemplate:UnableToGenerateTemplate";
+                msgKey = "simulinkcompiler:genapp:UnableToGenerateTemplate";
+                msg = message( msgKey ).string;
 
-if isfield( options, "ExistingTemplateHandling" )
-obj.ExistingTemplateHandling = options.ExistingTemplateHandling;
-end 
-end 
+                userException = MException( errorId, msg );
+                userException = addCause( userException, templateGenException );
+                throw( userException );
+            end
+        end
 
-function generate( obj )
-obj.handleExistingTemplate(  );
+        function templateDir = get.TemplateDir( obj )
+            if isMultiPaneSimApp( obj.AppPath )
+                templateDir = fullfile( obj.OutputDir, obj.TemplateName );
+            else
+                templateDir = fullfile( obj.OutputDir, obj.ClassDirPrefix + obj.TemplateName );
+            end
+        end
 
-msgKey = "simulinkcompiler:genapp:CreatingTemplate";
-msg = message( msgKey, obj.TemplateName ).string;
-fprintf( msg );
+    end
 
-try 
-obj.copyAppDirToTemplate(  );
-if isMultiPaneSimApp( obj.AppPath )
-appLocation = dir( obj.AppPath ).folder;
-mkdir( obj.TemplateDir, "@AppHelper" );
-mkdir( fullfile( obj.TemplateDir ), "assets" );
-copyfile( fullfile( appLocation, "@AppHelper" ), fullfile( obj.TemplateDir, "@AppHelper" ) );
-copyfile( fullfile( appLocation, "assets" ), fullfile( obj.TemplateDir, "assets" ) );
-end 
-obj.renameMlappFile(  );
-unzipDir = obj.unzipMlappFile(  );
-obj.renameClassInMlappFile( unzipDir );
-obj.zipMlappFile( unzipDir );
-obj.removeUnneededFiles(  );
-catch templateGenException
-errorId = "SimulinkCompiler:GenTemplate:UnableToGenerateTemplate";
-msgKey = "simulinkcompiler:genapp:UnableToGenerateTemplate";
-msg = message( msgKey ).string;
+    methods ( Access = private )
 
-userException = MException( errorId, msg );
-userException = addCause( userException, templateGenException );
-throw( userException );
-end 
-end 
+        function pickUnusedNameForTemplate( obj )
+            origTemplateName = obj.TemplateName;
+            suffix = 1;
+            while exist( obj.TemplateDir, "dir" ) == 7
+                obj.TemplateName = origTemplateName + suffix;
+                suffix = suffix + 1;
+            end
+        end
 
-function templateDir = get.TemplateDir( obj )
-if isMultiPaneSimApp( obj.AppPath )
-templateDir = fullfile( obj.OutputDir, obj.TemplateName );
-else 
-templateDir = fullfile( obj.OutputDir, obj.ClassDirPrefix + obj.TemplateName );
-end 
-end 
+        function removeTemplateDir( obj )
+            if ~isfolder( obj.TemplateDir )
+                return
+            end
 
-end 
+            rmdir( obj.TemplateDir, "s" );
+        end
 
-methods ( Access = private )
+        function copyAppDirToTemplate( obj )
+            if isMultiPaneSimApp( obj.AppPath )
+                mkdir( obj.TemplateDir );
+            end
 
-function pickUnusedNameForTemplate( obj )
-origTemplateName = obj.TemplateName;
-suffix = 1;
-while exist( obj.TemplateDir, "dir" ) == 7
-obj.TemplateName = origTemplateName + suffix;
-suffix = suffix + 1;
-end 
-end 
+            copyfile( obj.AppPath, obj.TemplateDir );
 
-function removeTemplateDir( obj )
-if ~isfolder( obj.TemplateDir )
-return 
-end 
+            if isunix
+                makeWritable( obj.TemplateDir );
+            end
+        end
 
-rmdir( obj.TemplateDir, "s" );
-end 
+        function renameMlappFile( obj )
+            classDefOld = fullfile( obj.TemplateDir, obj.SourceAppName + obj.AppFileExt );
+            movefile( classDefOld, obj.newClassDef(  ) );
+        end
 
-function copyAppDirToTemplate( obj )
-if isMultiPaneSimApp( obj.AppPath )
-mkdir( obj.TemplateDir );
-end 
+        function renameClassInMlappFile( obj, unzipDir )
+            obj.updateClassNameInDocDotXML( unzipDir );
+            obj.updateClassNameInAppModelDotMAT( unzipDir );
+            obj.updateAppNameInCorePropsDotXML( unzipDir );
+        end
 
-copyfile( obj.AppPath, obj.TemplateDir );
+        function unzipDir = unzipMlappFile( obj )
+            unzipDir = fullfile( obj.OutputDir, strrep( tempname, tempdir, "" ) );
+            unzip( obj.newClassDef(  ), unzipDir );
+        end
 
-if isunix
-makeWritable( obj.TemplateDir );
-end 
-end 
+        function linesCell = readXMLFileAsCharCell( ~, filePath )
+            [ fXML, errmsg ] = fopen( filePath );
 
-function renameMlappFile( obj )
-classDefOld = fullfile( obj.TemplateDir, obj.SourceAppName + obj.AppFileExt );
-movefile( classDefOld, obj.newClassDef(  ) );
-end 
-
-function renameClassInMlappFile( obj, unzipDir )
-obj.updateClassNameInDocDotXML( unzipDir );
-obj.updateClassNameInAppModelDotMAT( unzipDir );
-obj.updateAppNameInCorePropsDotXML( unzipDir );
-end 
-
-function unzipDir = unzipMlappFile( obj )
-unzipDir = fullfile( obj.OutputDir, strrep( tempname, tempdir, "" ) );
-unzip( obj.newClassDef(  ), unzipDir );
-end 
-
-function linesCell = readXMLFileAsCharCell( ~, filePath )
-[ fXML, errmsg ] = fopen( filePath );
-
-if fXML < 0
-error( errmsg );
-end 
+            if fXML < 0
+                error( errmsg );
+            end
 
 
 
@@ -155,173 +151,170 @@ end
 
 
 
-fileContentsCell = textscan( fXML, '%s', 'Delimiter', '\r\n', 'Whitespace', '' );
-linesCell = fileContentsCell{ 1 };
-status = fclose( fXML );
+            fileContentsCell = textscan( fXML, '%s', 'Delimiter', '\r\n', 'Whitespace', '' );
+            linesCell = fileContentsCell{ 1 };
+            status = fclose( fXML );
 
-if status ~= 0
-msgKey = "simulinkcompiler:genapp:ErrorClosingAfterRead";
-error( message( msgKey, filePath ).string );
-end 
-end 
+            if status ~= 0
+                msgKey = "simulinkcompiler:genapp:ErrorClosingAfterRead";
+                error( message( msgKey, filePath ).string );
+            end
+        end
 
-function replaceAppNameInXMLFile( obj, replacement, filePath )
-xmlLinesCell = obj.readXMLFileAsCharCell( filePath );
-xmlLinesCell = strrep( xmlLinesCell, obj.SourceAppName, replacement );
-obj.writeCharCellToXMLFile( xmlLinesCell, filePath );
-end 
+        function replaceAppNameInXMLFile( obj, replacement, filePath )
+            xmlLinesCell = obj.readXMLFileAsCharCell( filePath );
+            xmlLinesCell = strrep( xmlLinesCell, obj.SourceAppName, replacement );
+            obj.writeCharCellToXMLFile( xmlLinesCell, filePath );
+        end
 
-function updateClassNameInDocDotXML( obj, zipDir )
-xmlFileName = fullfile( zipDir, "matlab", "document.xml" );
-obj.replaceAppNameInXMLFile( obj.TemplateName, xmlFileName );
-end 
+        function updateClassNameInDocDotXML( obj, zipDir )
+            xmlFileName = fullfile( zipDir, "matlab", "document.xml" );
+            obj.replaceAppNameInXMLFile( obj.TemplateName, xmlFileName );
+        end
 
-function updateClassNameInAppModelDotMAT( obj, zipDir )
-appModelDotMat = fullfile( zipDir, "appdesigner", "appModel.mat" );
-tmpVar = load( appModelDotMat, "code" );
-code = tmpVar.code;
-code.ClassName = obj.TemplateName;
-save( appModelDotMat, "code", "-append" );
-end 
+        function updateClassNameInAppModelDotMAT( obj, zipDir )
+            appModelDotMat = fullfile( zipDir, "appdesigner", "appModel.mat" );
+            tmpVar = load( appModelDotMat, "code" );
+            code = tmpVar.code;
+            code.ClassName = obj.TemplateName;
+            save( appModelDotMat, "code", "-append" );
+        end
 
-function updateAppNameInCorePropsDotXML( obj, zipDir )
-corePropsFileName = fullfile( zipDir, "metadata", "coreProperties.xml" );
-obj.replaceAppNameInXMLFile( "$TOKEN_AppName", corePropsFileName );
-end 
+        function updateAppNameInCorePropsDotXML( obj, zipDir )
+            corePropsFileName = fullfile( zipDir, "metadata", "coreProperties.xml" );
+            obj.replaceAppNameInXMLFile( "$TOKEN_AppName", corePropsFileName );
+        end
 
-function zipMlappFile( obj, unzipDir )
-classDefNew = obj.newClassDef(  );
-zip( classDefNew, strcat( unzipDir, filesep, "*" ) );
-movefile( strcat( classDefNew, ".zip" ), classDefNew, "f" );
-rmdir( unzipDir, "s" );
-end 
+        function zipMlappFile( obj, unzipDir )
+            classDefNew = obj.newClassDef(  );
+            zip( classDefNew, strcat( unzipDir, filesep, "*" ) );
+            movefile( strcat( classDefNew, ".zip" ), classDefNew, "f" );
+            rmdir( unzipDir, "s" );
+        end
 
-function classDef = newClassDef( obj )
-classDef = fullfile( obj.TemplateDir, obj.TemplateName + obj.AppFileExt );
-end 
+        function classDef = newClassDef( obj )
+            classDef = fullfile( obj.TemplateDir, obj.TemplateName + obj.AppFileExt );
+        end
 
-function removeUnneededFiles( obj )
-if isMultiPaneSimApp( obj.AppPath )
-autoGeneratedFiles = [ 
-fullfile( "assets", "metadata", "pragma.m" ),  ...
-fullfile( "assets", "data", "modelData.mat" ),  ...
-fullfile( "assets", "images", "modelImage.svg" )
- ];
-else 
-autoGeneratedFiles = [  ...
-"defaultInputMATFileName.m",  ...
-"defaultModelAspectRatio.m",  ...
-"defaultModelImage.m",  ...
-"defaultModelName.m",  ...
-"pragma.m" ...
-, obj.SourceAppName + "_inputs.mat",  ...
-obj.SourceAppName + "_image.svg"
- ];
-end 
-deleteFile = @( fn )delete( fullfile( obj.TemplateDir, fn ) );
-arrayfun( deleteFile, autoGeneratedFiles );
-if isMultiPaneSimApp( obj.AppPath )
-rmdir( fullfile( obj.TemplateDir, "assets", "data" ), "s" );
-rmdir( fullfile( obj.TemplateDir, "assets", "metadata" ), "s" );
-end 
-end 
+        function removeUnneededFiles( obj )
+            if isMultiPaneSimApp( obj.AppPath )
+                autoGeneratedFiles = [
+                    fullfile( "assets", "metadata", "pragma.m" ),  ...
+                    fullfile( "assets", "data", "modelData.mat" ),  ...
+                    fullfile( "assets", "images", "modelImage.svg" )
+                    ];
+            else
+                autoGeneratedFiles = [  ...
+                    "defaultInputMATFileName.m",  ...
+                    "defaultModelAspectRatio.m",  ...
+                    "defaultModelImage.m",  ...
+                    "defaultModelName.m",  ...
+                    "pragma.m" ...
+                    , obj.SourceAppName + "_inputs.mat",  ...
+                    obj.SourceAppName + "_image.svg"
+                    ];
+            end
+            deleteFile = @( fn )delete( fullfile( obj.TemplateDir, fn ) );
+            arrayfun( deleteFile, autoGeneratedFiles );
+            if isMultiPaneSimApp( obj.AppPath )
+                rmdir( fullfile( obj.TemplateDir, "assets", "data" ), "s" );
+                rmdir( fullfile( obj.TemplateDir, "assets", "metadata" ), "s" );
+            end
+        end
 
-function handleExistingTemplate( obj )
-if ~isempty( obj.ExistingTemplateHandling )
-switch ( obj.ExistingTemplateHandling )
-case obj.RenameExistingTemplate
-obj.pickUnusedNameForTemplate(  );
+        function handleExistingTemplate( obj )
+            if ~isempty( obj.ExistingTemplateHandling )
+                switch ( obj.ExistingTemplateHandling )
+                    case obj.RenameExistingTemplate
+                        obj.pickUnusedNameForTemplate(  );
 
-case obj.OverwriteExistingTemplate
-obj.removeTemplateDir(  );
-end 
-elseif exist( obj.TemplateDir, "dir" ) == 7
-msgKey = "simulinkcompiler:genapp:DirectoryExists";
-validValues = obj.validExistingTemplateHandlingValues(  );
-validValues = join( arrayfun( @( elem )"<enum>" + elem + "</enum>", validValues ) );
-msg = message( msgKey, obj.TemplateDir, obj.SourceAppName, validValues );
-throw( MSLException( [  ], msg ) );
-end 
-end 
+                    case obj.OverwriteExistingTemplate
+                        obj.removeTemplateDir(  );
+                end
+            elseif exist( obj.TemplateDir, "dir" ) == 7
+                msgKey = "simulinkcompiler:genapp:DirectoryExists";
+                validValues = obj.validExistingTemplateHandlingValues(  );
+                validValues = join( arrayfun( @( elem )"<enum>" + elem + "</enum>", validValues ) );
+                msg = message( msgKey, obj.TemplateDir, obj.SourceAppName, validValues );
+                throw( MSLException( [  ], msg ) );
+            end
+        end
 
-function baseName = baseAppName( obj, appName )
-[ ~, fileName ] = fileparts( appName );
-baseName = strrep( fileName, obj.ClassDirPrefix, "" );
-end 
-end 
+        function baseName = baseAppName( obj, appName )
+            [ ~, fileName ] = fileparts( appName );
+            baseName = strrep( fileName, obj.ClassDirPrefix, "" );
+        end
+    end
 
-methods ( Static, Access = private )
-function writeCharCellToXMLFile( charCell, filePath )
-[ fXML, errmsg ] = fopen( filePath, "wt" );
+    methods ( Static, Access = private )
+        function writeCharCellToXMLFile( charCell, filePath )
+            [ fXML, errmsg ] = fopen( filePath, "wt" );
 
-if fXML < 0
-error( errmsg );
-end 
+            if fXML < 0
+                error( errmsg );
+            end
 
-fprintf( fXML, "%s\n", charCell );
-status = fclose( fXML );
+            fprintf( fXML, "%s\n", charCell );
+            status = fclose( fXML );
 
-if status ~= 0
-msgKey = "simulinkcompiler:genapp:ErrorClosingAfterWrite";
-error( message( msgKey, filePath ).string );
-end 
-end 
+            if status ~= 0
+                msgKey = "simulinkcompiler:genapp:ErrorClosingAfterWrite";
+                error( message( msgKey, filePath ).string );
+            end
+        end
 
-function appPath = appPath( sourceAppName )
-import simulink.compiler.internal.TemplateGenerator;
+        function appPath = appPath( sourceAppName )
+            import simulink.compiler.internal.TemplateGenerator;
 
-[ filePath, fileName ] = fileparts( sourceAppName );
-if isMultiPaneSimApp( sourceAppName )
-fileName = fileName + ".mlapp";
-else 
-fileName = TemplateGenerator.ClassDirPrefix +  ...
-strrep( fileName, TemplateGenerator.ClassDirPrefix, "" );
-end 
-appPath = fullfile( filePath, fileName );
-end 
+            [ filePath, fileName ] = fileparts( sourceAppName );
+            if isMultiPaneSimApp( sourceAppName )
+                fileName = fileName + ".mlapp";
+            else
+                fileName = TemplateGenerator.ClassDirPrefix +  ...
+                    strrep( fileName, TemplateGenerator.ClassDirPrefix, "" );
+            end
+            appPath = fullfile( filePath, fileName );
+        end
 
-function appMustExist( sourceAppName )
-import simulink.compiler.internal.TemplateGenerator;
-appPath = TemplateGenerator.appPath( sourceAppName );
+        function appMustExist( sourceAppName )
+            import simulink.compiler.internal.TemplateGenerator;
+            appPath = TemplateGenerator.appPath( sourceAppName );
 
-isOldStyleApp = ~isMultiPaneSimApp( appPath ) && isfolder( appPath );
+            isOldStyleApp = ~isMultiPaneSimApp( appPath ) && isfolder( appPath );
 
-if ~isMultiPaneSimApp( appPath ) && ~isOldStyleApp
-msgKey = "simulinkcompiler:genapp:DirectoryNotFound";
-error( message( msgKey, sourceAppName ).string );
-end 
-end 
+            if ~isMultiPaneSimApp( appPath ) && ~isOldStyleApp
+                msgKey = "simulinkcompiler:genapp:DirectoryNotFound";
+                error( message( msgKey, sourceAppName ).string );
+            end
+        end
 
-function validValues = validExistingTemplateHandlingValues(  )
-import simulink.compiler.internal.TemplateGenerator;
-validValues = [  ...
-TemplateGenerator.OverwriteExistingTemplate,  ...
-TemplateGenerator.RenameExistingTemplate,  ...
- ];
-end 
+        function validValues = validExistingTemplateHandlingValues(  )
+            import simulink.compiler.internal.TemplateGenerator;
+            validValues = [  ...
+                TemplateGenerator.OverwriteExistingTemplate,  ...
+                TemplateGenerator.RenameExistingTemplate,  ...
+                ];
+        end
 
-function mustBeValidTemplateHandling( option )
-import simulink.compiler.internal.TemplateGenerator;
-mustBeMember( option, TemplateGenerator.validExistingTemplateHandlingValues(  ) )
-end 
-end 
-end 
+        function mustBeValidTemplateHandling( option )
+            import simulink.compiler.internal.TemplateGenerator;
+            mustBeMember( option, TemplateGenerator.validExistingTemplateHandlingValues(  ) )
+        end
+    end
+end
 
 function makeWritable( dir )
 [ success, msg, msgId ] = fileattrib( dir, "+w", "u", "s" );
-if success ~= 1, error( msg, msgId );end 
-end 
+if success ~= 1, error( msg, msgId );end
+end
 
 function TF = isMultiPaneSimApp( appPath )
 
-
-
-
 [ filePath, fileName ] = fileparts( appPath );
 TF = isfolder( fullfile( filePath, "@AppHelper" ) ) &&  ...
-isfile( fullfile( filePath, fileName + ".mlapp" ) ) &&  ...
-isfolder( fullfile( filePath, "assets" ) );
-end 
+    isfile( fullfile( filePath, fileName + ".mlapp" ) ) &&  ...
+    isfolder( fullfile( filePath, "assets" ) );
+end
 
 
 

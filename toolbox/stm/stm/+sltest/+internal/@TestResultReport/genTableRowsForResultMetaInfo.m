@@ -1,18 +1,6 @@
 function rowList = genTableRowsForResultMetaInfo( obj, result )
 
-
-
-
-
-
-
-
-
-
-
-
-
-R36
+arguments
 obj( 1, 1 ){ mustBeA( obj, [ "sltest.internal.TestResultReport", "sltest.testmanager.TestResultReport" ] ) };
 result sltest.testmanager.ReportUtility.ReportResultData;
 end 

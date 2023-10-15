@@ -1,36 +1,32 @@
-
-
 function modifyParameters( model, variables )
 
-
-
-R36
-model{ mustBeText }
-variables( 1, : )Simulink.Simulation.Variable{ mustBeNonempty }
-end 
+arguments
+    model{ mustBeText }
+    variables( 1, : )Simulink.Simulation.Variable{ mustBeNonempty }
+end
 
 product = "Simulink_Compiler";
 [ status, msg ] = builtin( 'license', 'checkout', product );
 if ~status
-product = extractBetween( msg, 'Cannot find a license for ', '.' );
-if ~isempty( product )
-error( message( 'simulinkcompiler:build:LicenseCheckoutError', product{ 1 } ) );
-end 
-error( msg );
-end 
+    product = extractBetween( msg, 'Cannot find a license for ', '.' );
+    if ~isempty( product )
+        error( message( 'simulinkcompiler:build:LicenseCheckoutError', product{ 1 } ) );
+    end
+    error( msg );
+end
 
 isDeployed = Simulink.isRaccelDeployed;
 isRapidAccelMode = strcmp( get_param( model, 'SimulationMode' ), 'rapid-accelerator' );
 
 if ~( isDeployed || isRapidAccelMode )
-error( message( 'simulinkcompiler:runtime:UnsupportedSimulationModeForModifyParameter' ) );
-end 
+    error( message( 'simulinkcompiler:runtime:UnsupportedSimulationModeForModifyParameter' ) );
+end
 
 
 if ~( simulink.compiler.getSimulationStatus( model ) == slsim.SimulationStatus.Running ||  ...
-simulink.compiler.getSimulationStatus( model ) == slsim.SimulationStatus.Paused )
-error( message( 'simulinkcompiler:runtime:WrongContextForModifyParameter' ) );
-end 
+        simulink.compiler.getSimulationStatus( model ) == slsim.SimulationStatus.Paused )
+    error( message( 'simulinkcompiler:runtime:WrongContextForModifyParameter' ) );
+end
 
 buildData = slsim.internal.getBuildData( model );
 prmFile = [ buildData.buildDir, filesep, 'pr', buildData.tmpVarPrefix{ 1 }, '.mat' ];
@@ -39,17 +35,15 @@ prmFile = [ buildData.buildDir, filesep, 'pr', buildData.tmpVarPrefix{ 1 }, '.ma
 rtp = load( prmFile );
 
 for i = 1:length( variables )
-modelParameterIdentifier = variables( i ).Name;
-modelParameterValue = variables( i ).Value;
+    modelParameterIdentifier = variables( i ).Name;
+    modelParameterValue = variables( i ).Value;
 
-rtp = sl(  ...
-'modifyRTP',  ...
-rtp,  ...
-modelParameterIdentifier,  ...
-modelParameterValue );
-end 
-
-
+    rtp = sl(  ...
+        'modifyRTP',  ...
+        rtp,  ...
+        modelParameterIdentifier,  ...
+        modelParameterValue );
+end
 
 delete( prmFile );
 modelChecksum = rtp.modelChecksum;
@@ -60,8 +54,5 @@ save( prmFile, '-v7', 'modelChecksum', 'parameters', 'globalParameterInfo' );
 
 slsim.internal.modifyParameters( model, variables );
 
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpCjCaMh.p.
-% Please follow local copyright laws when handling this file.
+end
 

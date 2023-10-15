@@ -1,33 +1,6 @@
 function extractArchitectureFromSimulink( slModelName, archModelName, nameValueArgs )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-R36
+arguments
 slModelName string
 archModelName string
 nameValueArgs.AutoArrange logical = true

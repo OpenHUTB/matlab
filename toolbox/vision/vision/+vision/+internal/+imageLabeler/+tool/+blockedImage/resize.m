@@ -1,53 +1,40 @@
 function bimResized = resize( bim, outSize, namedargs )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-R36
-bim( 1, 1 )blockedImage
-outSize( 1, 2 )double{ mustBeNonempty, mustBePositive, mustBeFinite }
-namedargs.Level double{ mustBePositive, mustBeFinite, mustBeScalarOrEmpty } = [  ];
-end 
+arguments
+    bim( 1, 1 )blockedImage
+    outSize( 1, 2 )double{ mustBeNonempty, mustBePositive, mustBeFinite }
+    namedargs.Level double{ mustBePositive, mustBeFinite, mustBeScalarOrEmpty } = [  ];
+end
 
 numLevels = size( bim.Size, 1 );
 if isempty( namedargs.Level ) || namedargs.Level > numLevels
 
 
-if numLevels == 1
-level = 1;
-else 
+    if numLevels == 1
+        level = 1;
+    else
 
 
-numRows = bim.Size( :, 1 );
-[ ~, level ] = min( abs( numRows - outSize( 1 ) ) );
-end 
+        numRows = bim.Size( :, 1 );
+        [ ~, level ] = min( abs( numRows - outSize( 1 ) ) );
+    end
 
-else 
-validateattributes( namedargs.Level, { 'double' }, '>=', 0, '<=', numLevels, mfilename, 'LEVEL' );
-level = namedargs.Level;
-end 
+else
+    validateattributes( namedargs.Level, { 'double' }, '>=', 0, '<=', numLevels, mfilename, 'LEVEL' );
+    level = namedargs.Level;
+end
 
 imgSize = bim.Size( level, 1:2 );
 
 resizeFactor = outSize( 1 ) / imgSize( 1 );
 
 bimResized = apply( bim, @( bstruct )resizeBlock( bstruct, resizeFactor ),  ...
-'Adapter', images.blocked.InMemory,  ...
-'PadPartialBlocks', false,  ...
-'Level', level,  ...
-'DisplayWaitbar', false );
+    'Adapter', images.blocked.InMemory,  ...
+    'PadPartialBlocks', false,  ...
+    'Level', level,  ...
+    'DisplayWaitbar', false );
 
-end 
+end
 
 function out = resizeBlock( bstruct, resizeFactor )
 out = imresize( bstruct.Data, resizeFactor, 'nearest' );
@@ -55,7 +42,5 @@ out = imresize( bstruct.Data, resizeFactor, 'nearest' );
 
 
 drawnow limitrate
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpGlzUVG.p.
-% Please follow local copyright laws when handling this file.
+end
 
