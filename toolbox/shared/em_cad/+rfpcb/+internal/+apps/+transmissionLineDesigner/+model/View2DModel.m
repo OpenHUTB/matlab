@@ -7,7 +7,7 @@ methods
 
 function obj = View2DModel( TransmissionLine, Logger )
 
-R36
+arguments
 TransmissionLine{ mustBeA( TransmissionLine, [ "rfpcb.TxLine", "double" ] ) } = microstripLine;
 Logger( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.Logger = rfpcb.internal.apps.transmissionLineDesigner.model.Logger;
 end 
@@ -20,7 +20,7 @@ end
 
 function update( obj )
 
-R36
+arguments
 obj( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.View2DModel{ mustBeNonempty }
 end 
 

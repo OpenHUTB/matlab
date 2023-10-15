@@ -1,53 +1,47 @@
 classdef ( Sealed, Hidden )Branch < simscape.battery.internal.sscinterface.StringItem
 
+    properties ( Constant )
+        Type = "Branch";
+    end
 
+    properties ( Access = private )
+        ComponentVariable
+        DomainVariable1
+        DomainVariable2
+    end
 
+    methods
+        function obj = Branch( componentVariable, domainVariable1, domainVariable2 )
 
-properties ( Constant )
-Type = "Branch";
-end 
+            arguments
+                componentVariable string{ mustBeTextScalar, mustBeNonzeroLengthText }
+                domainVariable1 string{ mustBeTextScalar, mustBeNonzeroLengthText }
+                domainVariable2 string{ mustBeTextScalar, mustBeNonzeroLengthText }
+            end
 
-properties ( Access = private )
-ComponentVariable
-DomainVariable1
-DomainVariable2
-end 
+            obj.ComponentVariable = componentVariable;
+            obj.DomainVariable1 = domainVariable1;
+            obj.DomainVariable2 = domainVariable2;
+        end
+    end
 
-methods 
-function obj = Branch( componentVariable, domainVariable1, domainVariable2 )
+    methods ( Access = protected )
 
-R36
-componentVariable string{ mustBeTextScalar, mustBeNonzeroLengthText }
-domainVariable1 string{ mustBeTextScalar, mustBeNonzeroLengthText }
-domainVariable2 string{ mustBeTextScalar, mustBeNonzeroLengthText }
-end 
+        function children = getChildren( ~ )
 
-obj.ComponentVariable = componentVariable;
-obj.DomainVariable1 = domainVariable1;
-obj.DomainVariable2 = domainVariable2;
-end 
-end 
+            children = [  ];
+        end
 
-methods ( Access = protected )
+        function str = getOpenerString( obj )
 
-function children = getChildren( ~ )
+            str = obj.ComponentVariable.append( " : ", obj.DomainVariable1, " -> ", obj.DomainVariable2 );
+        end
 
-children = [  ];
-end 
+        function str = getTerminalString( ~ )
 
-function str = getOpenerString( obj )
+            str = ";" + newline;
+        end
+    end
+end
 
-str = obj.ComponentVariable.append( " : ", obj.DomainVariable1, " -> ", obj.DomainVariable2 );
-end 
-
-function str = getTerminalString( ~ )
-
-str = ";" + newline;
-end 
-end 
-end 
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpeAqXkq.p.
-% Please follow local copyright laws when handling this file.
 

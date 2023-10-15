@@ -1,7 +1,3 @@
-
-
-
-
 classdef ( Hidden = true )CallGraph
 
 properties ( SetAccess = private, GetAccess = public )
@@ -52,7 +48,7 @@ end
 
 
 function calleeSigs = getCallees( this, callerSigs )
-R36
+arguments
 this( 1, 1 )
 callerSigs string = ""
 end 

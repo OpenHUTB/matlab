@@ -1,25 +1,9 @@
 function p = plotKinematicGraph_internal( G, nameValueArgs )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-R36
-G( 1, 1 )digraph
-nameValueArgs.Layout( 1, 1 )string{ mustBeMember( nameValueArgs.Layout, [ "tree", "circle", "snake", "layered" ] ) } = "tree"
-end 
+arguments
+    G( 1, 1 )digraph
+    nameValueArgs.Layout( 1, 1 )string{ mustBeMember( nameValueArgs.Layout, [ "tree", "circle", "snake", "layered" ] ) } = "tree"
+end
 
 
 nodeColor = [ 0, 0, 1 ];
@@ -42,14 +26,14 @@ edgeColors( impJointIndices, : ) = repmat( implicitJointColor, numel( impJointIn
 
 
 if ( nameValueArgs.Layout == "tree" )
-[ x, y ] = treeLocations( G );
+    [ x, y ] = treeLocations( G );
 elseif ( nameValueArgs.Layout == "circle" )
-[ x, y ] = circleLocations( G );
+    [ x, y ] = circleLocations( G );
 elseif ( nameValueArgs.Layout == "snake" )
-[ x, y ] = snakeLocations( G );
+    [ x, y ] = snakeLocations( G );
 elseif ( nameValueArgs.Layout == "layered" )
 
-end 
+end
 
 
 lineWidth = 3.0;
@@ -57,30 +41,30 @@ lineWidth = 3.0;
 
 
 plot( [ NaN, NaN ], [ NaN, NaN ], 'o', 'Marker', 'o',  ...
-'MarkerSize', 10, 'MarkerFaceColor', nodeColor, 'MarkerEdgeColor', 'b' );
+    'MarkerSize', 10, 'MarkerFaceColor', nodeColor, 'MarkerEdgeColor', 'b' );
 hold on;
 legendNames = [ "Body" ];
 if ~isempty( expJointIndices )
-plot( [ NaN, NaN ], [ NaN, NaN ], '-', 'LineWidth', lineWidth, 'Color', explicitJointColor );
+    plot( [ NaN, NaN ], [ NaN, NaN ], '-', 'LineWidth', lineWidth, 'Color', explicitJointColor );
+    if ~isempty( impJointIndices )
+        legendNames = [ legendNames, "Explicit Joint" ];
+    else
+        legendNames = [ legendNames, "Joint" ];
+    end
+end
 if ~isempty( impJointIndices )
-legendNames = [ legendNames, "Explicit Joint" ];
-else 
-legendNames = [ legendNames, "Joint" ];
-end 
-end 
-if ~isempty( impJointIndices )
-plot( [ NaN, NaN ], [ NaN, NaN ], '-', 'LineWidth', lineWidth, 'Color', implicitJointColor );
-legendNames = [ legendNames, "Implicit Joint" ];
-end 
+    plot( [ NaN, NaN ], [ NaN, NaN ], '-', 'LineWidth', lineWidth, 'Color', implicitJointColor );
+    legendNames = [ legendNames, "Implicit Joint" ];
+end
 
 
 if ( nameValueArgs.Layout == "layered" )
 
-p = plot( G, 'Layout', 'layered', 'EdgeLabel', G.Edges.Name );
-else 
+    p = plot( G, 'Layout', 'layered', 'EdgeLabel', G.Edges.Name );
+else
 
-p = plot( G, 'EdgeLabel', G.Edges.Name, 'XData', x', 'YData', y' );
-end 
+    p = plot( G, 'EdgeLabel', G.Edges.Name, 'XData', x', 'YData', y' );
+end
 hold off;
 
 
@@ -104,13 +88,13 @@ dcm.Interpreter = 'none';
 
 legend( legendNames );
 
-end 
+end
 
 
 function [ x, y ] = treeLocations( G )
 x = G.Nodes.Location( :, 1 );
 y =  - G.Nodes.Location( :, 2 );
-end 
+end
 
 
 function [ x, y ] = circleLocations( G )
@@ -124,7 +108,7 @@ halfRange = halfRange + posQuantum / 2;
 angles = ( ( posns - mid ) / halfRange - 0.5 ) * pi;
 x = locs( :, 2 ) .* cos( angles );
 y = locs( :, 2 ) .* sin( angles );
-end 
+end
 
 
 function [ x, y ] = snakeLocations( G )
@@ -135,10 +119,6 @@ row = floor( indices / numCols );
 m = mod( row, 2 );
 x = ( indices - row * numCols ) .* ( (  - 1 ) .^ m ) + ( m * ( numCols - 1 ) );
 y =  - row;
-end 
+end
 
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpRZNqVs.p.
-% Please follow local copyright laws when handling this file.
 

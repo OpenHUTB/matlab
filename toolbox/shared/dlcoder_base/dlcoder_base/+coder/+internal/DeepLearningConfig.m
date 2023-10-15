@@ -1,91 +1,73 @@
 function deepLearningCfg = DeepLearningConfig( targetLib, nvps )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-R36
-targetLib( 1, 1 )string = "none"
-nvps.DeepLearningAcceleration( 1, 1 )logical = false
-nvps.TargetLibrary( 1, 1 )string
-end 
+arguments
+    targetLib( 1, 1 )string = "none"
+    nvps.DeepLearningAcceleration( 1, 1 )logical = false
+    nvps.TargetLibrary( 1, 1 )string
+end
 
 dlMexAcceleration = nvps.DeepLearningAcceleration;
 
 if ( nargin == 1 ) && isfield( nvps, 'TargetLibrary' )
 
-error( message( 'gpucoder:cnnconfig:InvalidInputForDeepLearningConfig' ) );
-end 
+    error( message( 'gpucoder:cnnconfig:InvalidInputForDeepLearningConfig' ) );
+end
 
 if isfield( nvps, 'TargetLibrary' )
-targetLib = lower( nvps.TargetLibrary );
-else 
-targetLib = lower( targetLib );
-end 
+    targetLib = lower( nvps.TargetLibrary );
+else
+    targetLib = lower( targetLib );
+end
 
 dlcoder_base.internal.checkSupportedTargetLib( targetLib, dlMexAcceleration );
 
 switch targetLib
 
-case 'cudnn'
+    case 'cudnn'
 
-deepLearningCfg = coder.CuDNNConfig(  );
-
-
-if ~license( 'test', 'GPU_Coder' ) && ~dlMexAcceleration
-warning( message( 'gpucoder:cnnconfig:MissingGpuCoderLicense', targetLib ) );
-end 
-
-case 'tensorrt'
-
-deepLearningCfg = coder.TensorRTConfig(  );
-
-if ~license( 'test', 'GPU_Coder' ) && ~dlMexAcceleration
-warning( message( 'gpucoder:cnnconfig:MissingGpuCoderLicense', targetLib ) );
-end 
-
-case 'mkldnn'
-
-deepLearningCfg = coder.MklDNNConfig(  );
-
-case 'onednn'
-
-deepLearningCfg = coder.OneDNNConfig(  );
-
-case 'arm-compute'
-
-deepLearningCfg = coder.ARMNEONConfig(  );
-
-case 'arm-compute-mali'
-
-deepLearningCfg = coder.ARMMALIConfig(  );
-
-case 'none'
-
-deepLearningCfg = coder.DeepLearningConfigBase(  );
+        deepLearningCfg = coder.CuDNNConfig(  );
 
 
-case 'cmsis-nn'
+        if ~license( 'test', 'GPU_Coder' ) && ~dlMexAcceleration
+            warning( message( 'gpucoder:cnnconfig:MissingGpuCoderLicense', targetLib ) );
+        end
 
-deepLearningCfg = coder.CMSISNNConfig(  );
-otherwise 
+    case 'tensorrt'
 
-assert( false );
-end 
+        deepLearningCfg = coder.TensorRTConfig(  );
 
-end 
+        if ~license( 'test', 'GPU_Coder' ) && ~dlMexAcceleration
+            warning( message( 'gpucoder:cnnconfig:MissingGpuCoderLicense', targetLib ) );
+        end
+
+    case 'mkldnn'
+
+        deepLearningCfg = coder.MklDNNConfig(  );
+
+    case 'onednn'
+
+        deepLearningCfg = coder.OneDNNConfig(  );
+
+    case 'arm-compute'
+
+        deepLearningCfg = coder.ARMNEONConfig(  );
+
+    case 'arm-compute-mali'
+
+        deepLearningCfg = coder.ARMMALIConfig(  );
+
+    case 'none'
+
+        deepLearningCfg = coder.DeepLearningConfigBase(  );
 
 
+    case 'cmsis-nn'
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpUNpMus.p.
-% Please follow local copyright laws when handling this file.
+        deepLearningCfg = coder.CMSISNNConfig(  );
+    otherwise
+
+        assert( false );
+end
+
+end
 

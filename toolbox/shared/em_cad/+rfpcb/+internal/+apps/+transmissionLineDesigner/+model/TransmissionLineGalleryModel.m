@@ -4,75 +4,72 @@ classdef TransmissionLineGalleryModel < rfpcb.internal.apps.transmissionLineDesi
 
 
 
-properties ( Constant )
+    properties ( Constant )
 
-Path = fullfile( matlabroot, 'toolbox', 'shared', 'em_cad', '+rfpcb', '+internal', '+apps', '+transmissionLineDesigner', '+src', '+galleryIcons' );
+        Path = fullfile( matlabroot, 'toolbox', 'shared', 'em_cad', '+rfpcb', '+internal', '+apps', '+transmissionLineDesigner', '+src', '+galleryIcons' );
 
-MaxColumnCount = 1;
+        MaxColumnCount = 1;
 
-MinColumnCount = 1;
+        MinColumnCount = 1;
 
-Tag = 'transmissionLineGallery'
-
-
-GalleryItemTextLineCount = 1;
-end 
-
-properties 
+        Tag = 'transmissionLineGallery'
 
 
-Names = { 'microstripLine', 'microstripBuried' };
+        GalleryItemTextLineCount = 1;
+    end
+
+    properties
 
 
-NickNames = { 'MicrostripLine', 'Buried MicrostripLine' };
-
-Families = { 'Transmission Lines', 'Transmission Lines', 'Transmission Lines', 'Transmission Lines' };
-end 
-
-methods 
-
-function obj = TransmissionLineGalleryModel( TransmissionLine, Logger, options )
+        Names = { 'microstripLine', 'microstripBuried' };
 
 
-R36
-TransmissionLine{ mustBeA( TransmissionLine, [ "rfpcb.TxLine", "double" ] ) } = microstripLine;
-Logger( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.Logger = rfpcb.internal.apps.transmissionLineDesigner.model.Logger;
-options.Names = { 'microstripLine', 'microstripBuried' };
-options.NickNames = { 'MicrostripLine', 'Buried MicrostripLine' };
-options.Families = { 'Transmission Lines', 'Transmission Lines', 'Transmission Lines', 'Transmission Lines' };
-end 
-obj@rfpcb.internal.apps.transmissionLineDesigner.model.Visualization( Logger );
+        NickNames = { 'MicrostripLine', 'Buried MicrostripLine' };
+
+        Families = { 'Transmission Lines', 'Transmission Lines', 'Transmission Lines', 'Transmission Lines' };
+    end
+
+    methods
+
+        function obj = TransmissionLineGalleryModel( TransmissionLine, Logger, options )
 
 
-obj.Names = options.Names;
-obj.NickNames = options.NickNames;
-obj.Families = options.Families;
-obj.TransmissionLine = TransmissionLine;
+            arguments
+                TransmissionLine{ mustBeA( TransmissionLine, [ "rfpcb.TxLine", "double" ] ) } = microstripLine;
+                Logger( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.Logger = rfpcb.internal.apps.transmissionLineDesigner.model.Logger;
+                options.Names = { 'microstripLine', 'microstripBuried' };
+                options.NickNames = { 'MicrostripLine', 'Buried MicrostripLine' };
+                options.Families = { 'Transmission Lines', 'Transmission Lines', 'Transmission Lines', 'Transmission Lines' };
+            end
+            obj@rfpcb.internal.apps.transmissionLineDesigner.model.Visualization( Logger );
 
 
-log( obj.Logger, '% TransmissionLineGalleryModel object created.' )
-end 
+            obj.Names = options.Names;
+            obj.NickNames = options.NickNames;
+            obj.Families = options.Families;
+            obj.TransmissionLine = TransmissionLine;
 
 
-function update( obj )
-
-R36
-obj( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.View2DModel{ mustBeNonempty }
-end 
-
-if ~isempty( obj.TransmissionLine )
-
-else 
-clear( obj );
-end 
+            log( obj.Logger, '% TransmissionLineGalleryModel object created.' )
+        end
 
 
-log( obj.Logger, '% View2D plot computed.' )
-end 
-end 
-end 
+        function update( obj )
+
+            arguments
+                obj( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.View2DModel{ mustBeNonempty }
+            end
+
+            if ~isempty( obj.TransmissionLine )
+
+            else
+                clear( obj );
+            end
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpn0R1_O.p.
-% Please follow local copyright laws when handling this file.
+            log( obj.Logger, '% View2D plot computed.' )
+        end
+    end
+end
+
 

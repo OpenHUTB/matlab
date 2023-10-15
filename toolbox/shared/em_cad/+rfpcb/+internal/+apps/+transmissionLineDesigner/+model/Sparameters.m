@@ -3,49 +3,46 @@ classdef Sparameters < rfpcb.internal.apps.transmissionLineDesigner.model.Analys
 
 
 
-properties 
+    properties
 
-Impedance( 1, : )double{ mustBeNonempty, mustBeNonzero, mustBeNumeric } = 50;
-end 
+        Impedance( 1, : )double{ mustBeNonempty, mustBeNonzero, mustBeNumeric } = 50;
+    end
 
-methods 
+    methods
 
-function obj = Sparameters( TransmissionLine, Logger )
+        function obj = Sparameters( TransmissionLine, Logger )
 
-R36
-TransmissionLine{ mustBeA( TransmissionLine, [ "rfpcb.TxLine", "double" ] ) } = microstripLine;
-Logger( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.Logger = rfpcb.internal.apps.transmissionLineDesigner.model.Logger;
-end 
-obj@rfpcb.internal.apps.transmissionLineDesigner.model.AnalysisPlots( TransmissionLine, Logger );
-obj.TransmissionLine = TransmissionLine;
+            arguments
+                TransmissionLine{ mustBeA( TransmissionLine, [ "rfpcb.TxLine", "double" ] ) } = microstripLine;
+                Logger( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.Logger = rfpcb.internal.apps.transmissionLineDesigner.model.Logger;
+            end
+            obj@rfpcb.internal.apps.transmissionLineDesigner.model.AnalysisPlots( TransmissionLine, Logger );
+            obj.TransmissionLine = TransmissionLine;
 
-log( obj.Logger, '% Sparameters object created.' )
-end 
-
-
-function compute( obj, options )
+            log( obj.Logger, '% Sparameters object created.' )
+        end
 
 
-R36
-obj( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.Sparameters{ mustBeNonempty }
-options.SuppressOutput = true;
-end 
+        function compute( obj, options )
 
 
-obj.Value = sparameters( obj.TransmissionLine, obj.FrequencyRange, obj.Impedance );
-sparamFcn = @(  )rfplot( obj.Value );
-if ~options.SuppressOutput
-drawnow update
-compute@rfpcb.internal.apps.transmissionLineDesigner.model.Analysis( obj, sparamFcn, options.SuppressOutput );
-end 
+            arguments
+                obj( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.Sparameters{ mustBeNonempty }
+                options.SuppressOutput = true;
+            end
 
 
-log( obj.Logger, '% Sparameters computed.' );
-end 
-end 
-end 
+            obj.Value = sparameters( obj.TransmissionLine, obj.FrequencyRange, obj.Impedance );
+            sparamFcn = @(  )rfplot( obj.Value );
+            if ~options.SuppressOutput
+                drawnow update
+                compute@rfpcb.internal.apps.transmissionLineDesigner.model.Analysis( obj, sparamFcn, options.SuppressOutput );
+            end
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpomeSYQ.p.
-% Please follow local copyright laws when handling this file.
+            log( obj.Logger, '% Sparameters computed.' );
+        end
+    end
+end
+
 

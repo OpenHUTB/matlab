@@ -1,13 +1,10 @@
 function S = couplerBranchlineS( obj, freq, z0 )
 
-
-
-
-R36
-obj( 1, 1 )
-freq( 1, : ){ mustBeFinite, mustBeNonnegative, mustBeVector }
-z0( 1, 1 ){ mustBeFinite, mustBePositive } = 50
-end 
+arguments
+    obj( 1, 1 )
+    freq( 1, : ){ mustBeFinite, mustBeNonnegative, mustBeVector }
+    z0( 1, 1 ){ mustBeFinite, mustBePositive } = 50
+end
 
 
 rfpcb.internal.behavioral.ValidateObjectForBehavioral( obj, freq );
@@ -19,10 +16,10 @@ TotalHeight = max( sum( obj.Substrate.Thickness ), obj.Height );
 ratio1 = min( [ obj.PortLineWidth / TotalHeight, obj.SeriesArmWidth / TotalHeight, obj.ShuntArmWidth / TotalHeight ] );
 ratio2 = max( [ obj.PortLineWidth / TotalHeight, obj.SeriesArmWidth / TotalHeight, obj.ShuntArmWidth / TotalHeight ] );
 if ~( isempty( ratio1 ) || isempty( ratio2 ) )
-if ( ratio2 > 20 ) || ( ratio1 < 0.05 )
-error( message( 'rfpcb:rfpcberrors:WidthHeightLimit', '' ) );
-end 
-end 
+    if ( ratio2 > 20 ) || ( ratio1 < 0.05 )
+        error( message( 'rfpcb:rfpcberrors:WidthHeightLimit', '' ) );
+    end
+end
 
 portline = microstripLine;
 ref = obj;
@@ -61,7 +58,5 @@ add( ckt, [ 3, 7 ], clone( shuntarm ) )
 setports( ckt, [ 1, 0 ], [ 4, 0 ], [ 5, 0 ], [ 8, 0 ], { 'in', 'out1', 'out2', 'out3' } )
 
 S = sparameters( ckt, freq, z0 );
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpYFsvR_.p.
-% Please follow local copyright laws when handling this file.
+end
 

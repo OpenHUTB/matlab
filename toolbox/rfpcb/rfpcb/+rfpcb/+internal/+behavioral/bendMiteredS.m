@@ -1,16 +1,10 @@
 function S = bendMiteredS( robj, freq, Z0 )
 
-
-
-
-
-
-
-R36
-robj( 1, 1 )pcbComponent
-freq( 1, : ){ mustBeFinite, mustBeNonnegative, mustBeVector }
-Z0( 1, 1 ){ mustBeFinite, mustBePositive } = 50
-end 
+arguments
+    robj( 1, 1 )pcbComponent
+    freq( 1, : ){ mustBeFinite, mustBeNonnegative, mustBeVector }
+    Z0( 1, 1 ){ mustBeFinite, mustBePositive } = 50
+end
 validateattributes( freq, { 'double' }, { 'increasing' }, 2 )
 
 validateattributes( robj.Layers, { 'cell' }, { 'size', [ 1, 3 ] }, 'sparameters', 'Layers' )
@@ -26,67 +20,67 @@ obj = robj.Layers{ 1 };
 w1 = obj.Width( 1 );
 w2 = obj.Width( 2 );
 if ~( abs( w1 - w2 ) <= eps( max( abs( w1 ), abs( w2 ) ) ) )
-error( message( 'rfpcb:rfpcberrors:BehavioralUnsupported', 'Unequal width mitered bend' ) )
-end 
+    error( message( 'rfpcb:rfpcberrors:BehavioralUnsupported', 'Unequal width mitered bend' ) )
+end
 w = w1;
 woverh = w / robj.BoardThickness;
 validateattributes( woverh, { 'numeric' }, { '>=', 0.2, '<=', 6 }, 'sparameters',  ...
-'(conductor width/substrate height)' )
+    '(conductor width/substrate height)' )
 ckt = [  ];
 if robj.Layers{ 1 }.MiterDiagonal > 0.98 * w * sqrt( 2 ) &&  ...
-robj.Layers{ 1 }.MiterDiagonal < 1.02 * w * sqrt( 2 )
+        robj.Layers{ 1 }.MiterDiagonal < 1.02 * w * sqrt( 2 )
 
 
-h = robj.BoardThickness * 1e3;
-C = 0.001 * h * ( ( 3.93 * Er + 0.62 ) * ( woverh ^ 2 ) + ( 7.6 * Er + 3.80 ) * ( woverh ) ) * ( 10 ^  - 12 );
-L = 0.44 * h * ( 1 - 1.062 * exp(  - 0.177 * ( woverh ^ 0.947 ) ) ) * ( 10 ^  - 9 );
-ckt = buildCircuit( L, C, robj, freq, Z0 );
-
-
-
+    h = robj.BoardThickness * 1e3;
+    C = 0.001 * h * ( ( 3.93 * Er + 0.62 ) * ( woverh ^ 2 ) + ( 7.6 * Er + 3.80 ) * ( woverh ) ) * ( 10 ^  - 12 );
+    L = 0.44 * h * ( 1 - 1.062 * exp(  - 0.177 * ( woverh ^ 0.947 ) ) ) * ( 10 ^  - 9 );
+    ckt = buildCircuit( L, C, robj, freq, Z0 );
 
 
 
 
-end 
+
+
+
+end
 if ~isempty( ckt )
-S = sparameters( ckt, freq, Z0 );
-else 
-error( message( 'rfpcb:rfpcberrors:BehavioralUnavailable', 'mitered-bend with other than 50% miter.' ) )
-end 
-end 
+    S = sparameters( ckt, freq, Z0 );
+else
+    error( message( 'rfpcb:rfpcberrors:BehavioralUnavailable', 'mitered-bend with other than 50% miter.' ) )
+end
+end
 
 function ckt = buildCircuit( L, C, robj, freq, Z0 )
-R36
-L
-C
-robj( 1, 1 )pcbComponent
-freq
-Z0
-end 
+arguments
+    L
+    C
+    robj( 1, 1 )pcbComponent
+    freq
+    Z0
+end
 
 obj = robj.Layers{ 1 };
 
 tx1 = microstripLine(  ...
-"Length", obj.Length( 1 ) - obj.Width( 2 ) / 2,  ...
-'Height', robj.BoardThickness,  ...
-'Width', obj.Width( 1 ),  ...
-"Conductor", robj.Conductor,  ...
-"Substrate", robj.Layers{ 2 } );
+    "Length", obj.Length( 1 ) - obj.Width( 2 ) / 2,  ...
+    'Height', robj.BoardThickness,  ...
+    'Width', obj.Width( 1 ),  ...
+    "Conductor", robj.Conductor,  ...
+    "Substrate", robj.Layers{ 2 } );
 
 tx2 = microstripLine(  ...
-"Length", obj.Length( 2 ) - obj.Width( 1 ) / 2,  ...
-'Height', robj.BoardThickness,  ...
-'Width', obj.Width( 2 ),  ...
-"Conductor", robj.Conductor,  ...
-"Substrate", robj.Layers{ 2 } );
+    "Length", obj.Length( 2 ) - obj.Width( 1 ) / 2,  ...
+    'Height', robj.BoardThickness,  ...
+    'Width', obj.Width( 2 ),  ...
+    "Conductor", robj.Conductor,  ...
+    "Substrate", robj.Layers{ 2 } );
 
 ckt = circuit( robj.Name );
 add( ckt, [ 1, 2, 0, 0 ], tx1 )
 add( ckt, [ 2, 4, 0, 0 ], nport( lumpedTeeS( C, L, Z0, freq ) ) )
 add( ckt, [ 4, 5, 0, 0 ], tx2 )
 setports( ckt, [ 1, 0 ], [ 5, 0 ] )
-end 
+end
 
 function S = lumpedTeeS( C, L, Z0, freq )
 s = 1i * 2 * pi * freq;
@@ -95,7 +89,5 @@ s12( 1, 1, : ) = ( 2 * Z0 ) ./ ( ( Z0 + L .* s ) .* ( C * L * s .^ 2 + C * Z0 * 
 s21 = s12;
 s22 = s11;
 S = sparameters( [ s11, s12;s21, s22 ], freq, Z0 );
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp8gX2ut.p.
-% Please follow local copyright laws when handling this file.
+end
 

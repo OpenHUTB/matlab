@@ -1,56 +1,41 @@
 function addport( blk, porttype, port, NameValues )
 
-
-
-
-
-
-
-
-
-
-
-
-R36
-blk
-porttype( 1, 1 )string{ mustBeMember( porttype, [ "Outport", "Inport" ] ) }
-port( 1, 1 )string
-NameValues.OutUnit( 1, 1 )string = getUnit( blk )
-NameValues.Dimensions( 1, 1 )string = "-1";
-NameValues.DataType( 1, 1 )string = "Inherit: auto";
-end 
+arguments
+    blk
+    porttype( 1, 1 )string{ mustBeMember( porttype, [ "Outport", "Inport" ] ) }
+    port( 1, 1 )string
+    NameValues.OutUnit( 1, 1 )string = getUnit( blk )
+    NameValues.Dimensions( 1, 1 )string = "-1";
+    NameValues.DataType( 1, 1 )string = "Inherit: auto";
+end
 
 
 if get_param( blk, 'BlockType' ) ~= porttype
-pos = get_param( blk, 'Position' );
-delete_block( blk );
-add_block( "built-in/" + porttype, blk,  ...
-Position = pos,  ...
-ShowName = "on",  ...
-Port = port,  ...
-OutUnit = NameValues.OutUnit,  ...
-OutDataTypeStr = NameValues.DataType,  ...
-PortDimensions = NameValues.Dimensions );
-else 
+    pos = get_param( blk, 'Position' );
+    delete_block( blk );
+    add_block( "built-in/" + porttype, blk,  ...
+        Position = pos,  ...
+        ShowName = "on",  ...
+        Port = port,  ...
+        OutUnit = NameValues.OutUnit,  ...
+        OutDataTypeStr = NameValues.DataType,  ...
+        PortDimensions = NameValues.Dimensions );
+else
 
-Aero.internal.maskutilities.shortCircuitSetParam( blk,  ...
-Port = port,  ...
-OutUnit = NameValues.OutUnit,  ...
-OutDataTypeStr = NameValues.DataType,  ...
-PortDimensions = NameValues.Dimensions );
-end 
+    Aero.internal.maskutilities.shortCircuitSetParam( blk,  ...
+        Port = port,  ...
+        OutUnit = NameValues.OutUnit,  ...
+        OutDataTypeStr = NameValues.DataType,  ...
+        PortDimensions = NameValues.Dimensions );
+end
 
-end 
+end
 
 function unit = getUnit( blk )
 if get_param( blk, 'BlockType' ) == "Inport"
 
-unit = get_param( blk, 'OutUnit' );
-else 
-unit = 'inherit';
-end 
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpveM9j7.p.
-% Please follow local copyright laws when handling this file.
-
+    unit = get_param( blk, 'OutUnit' );
+else
+    unit = 'inherit';
+end
+end

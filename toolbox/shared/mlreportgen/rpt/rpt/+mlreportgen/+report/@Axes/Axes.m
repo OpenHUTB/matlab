@@ -69,7 +69,7 @@ classdef Axes < mlreportgen.report.MATLABGraphicsContainer
 
 
 
-properties 
+    properties
 
 
 
@@ -98,11 +98,11 @@ properties
 
 
 
-SnapshotFormat = "auto"
+        SnapshotFormat = "auto"
 
 
 
-Source = [  ];
+        Source = [  ];
 
 
 
@@ -138,7 +138,7 @@ Source = [  ];
 
 
 
-Snapshot = mlreportgen.report.FormalImage;
+        Snapshot = mlreportgen.report.FormalImage;
 
 
 
@@ -170,7 +170,7 @@ Snapshot = mlreportgen.report.FormalImage;
 
 
 
-Scaling = "auto"
+        Scaling = "auto"
 
 
 
@@ -187,7 +187,7 @@ Scaling = "auto"
 
 
 
-Height = "6in";
+        Height = "6in";
 
 
 
@@ -204,7 +204,7 @@ Height = "6in";
 
 
 
-Width = "6.5in";
+        Width = "6.5in";
 
 
 
@@ -213,68 +213,68 @@ Width = "6.5in";
 
 
 
-PreserveBackgroundColor = false;
-end 
+        PreserveBackgroundColor = false;
+    end
 
-properties ( Hidden )
+    properties ( Hidden )
 
 
 
-IsWebApp = false;
-end 
+        IsWebApp = false;
+    end
 
-properties ( Access = private, Hidden )
+    properties ( Access = private, Hidden )
 
 
-ClonedFigureFile = [  ];
-end 
+        ClonedFigureFile = [  ];
+    end
 
-properties ( Constant, Access = protected )
-ImageTemplateName = "AxesImage";
-NumberedCaptionTemplateName = "AxesNumberedCaption";
-HierNumberedCaptionTemplateName = "AxesHierNumberedCaption";
-end 
+    properties ( Constant, Access = protected )
+        ImageTemplateName = "AxesImage";
+        NumberedCaptionTemplateName = "AxesNumberedCaption";
+        HierNumberedCaptionTemplateName = "AxesHierNumberedCaption";
+    end
 
-properties ( Constant, Access = private )
+    properties ( Constant, Access = private )
 
-SupportedWebAppFormats = [ "auto", "png", "emf", "tif", "tiff", "jpeg", "jpg", "pdf" ];
-end 
+        SupportedWebAppFormats = [ "auto", "png", "emf", "tif", "tiff", "jpeg", "jpg", "pdf" ];
+    end
 
-methods 
-function this = Axes( varargin )
-this =  ...
-this@mlreportgen.report.MATLABGraphicsContainer( varargin{ : } );
+    methods
+        function this = Axes( varargin )
+            this =  ...
+                this@mlreportgen.report.MATLABGraphicsContainer( varargin{ : } );
 
-if isempty( this.TemplateName )
-this.TemplateName = "Axes";
-end 
-end 
+            if isempty( this.TemplateName )
+                this.TemplateName = "Axes";
+            end
+        end
 
-function impl = getImpl( this, rpt )
-R36
-this( 1, 1 )
-rpt( 1, 1 ){ validateReport( this, rpt ) }
-end 
+        function impl = getImpl( this, rpt )
+            arguments
+                this( 1, 1 )
+                rpt( 1, 1 ){ validateReport( this, rpt ) }
+            end
 
 
-if isempty( this.LinkTarget )
-this.LinkTarget = mlreportgen.report.Axes.getLinkTargetID( this.Source );
-end 
+            if isempty( this.LinkTarget )
+                this.LinkTarget = mlreportgen.report.Axes.getLinkTargetID( this.Source );
+            end
 
-impl = getImpl@mlreportgen.report.Reporter( this, rpt );
-end 
+            impl = getImpl@mlreportgen.report.Reporter( this, rpt );
+        end
 
-function set.Source( this, value )
-if ishghandle( value ) && value.Type == "axes"
-this.Source = value;
-createAxesClone( this );
-else 
-error( message( "mlreportgen:report:error:invalidAxes" ) );
-end 
+        function set.Source( this, value )
+            if ishghandle( value ) && value.Type == "axes"
+                this.Source = value;
+                createAxesClone( this );
+            else
+                error( message( "mlreportgen:report:error:invalidAxes" ) );
+            end
 
-end 
+        end
 
-function image = getSnapshotImage( this, report )
+        function image = getSnapshotImage( this, report )
 
 
 
@@ -286,180 +286,180 @@ function image = getSnapshotImage( this, report )
 
 
 
-image = getSnapshotImage@mlreportgen.report.MATLABGraphicsContainer( this, report );
-end 
-end 
+            image = getSnapshotImage@mlreportgen.report.MATLABGraphicsContainer( this, report );
+        end
+    end
 
-methods ( Access = protected )
+    methods ( Access = protected )
 
-result = openImpl( reporter, impl, varargin )
-end 
+        result = openImpl( reporter, impl, varargin )
+    end
 
-methods ( Access = protected )
+    methods ( Access = protected )
 
-function content = getSnapshotImageImpl( this, rpt, pageLayout )
+        function content = getSnapshotImageImpl( this, rpt, pageLayout )
 
 
-try 
-f = figure( 'Visible', 'off' );
-delete( f );
-catch 
-this.IsWebApp = true;
-end 
+            try
+                f = figure( 'Visible', 'off' );
+                delete( f );
+            catch
+                this.IsWebApp = true;
+            end
 
-if this.IsWebApp
+            if this.IsWebApp
 
 
-content = getWebAppSnapshotImageImpl( this, rpt, pageLayout );
-else 
+                content = getWebAppSnapshotImageImpl( this, rpt, pageLayout );
+            else
 
-content = getSnapshotImageImpl@mlreportgen.report.MATLABGraphicsContainer( this, rpt, pageLayout );
-end 
-end 
+                content = getSnapshotImageImpl@mlreportgen.report.MATLABGraphicsContainer( this, rpt, pageLayout );
+            end
+        end
 
-function content = getWebAppSnapshotImageImpl( this, rpt, pageLayout )
+        function content = getWebAppSnapshotImageImpl( this, rpt, pageLayout )
 
 
 
-imgformat = getImageFormat( this, rpt );
+            imgformat = getImageFormat( this, rpt );
 
-tempImageFile = rpt.generateFileName( imgformat );
-resolutionArg = rptgen.utils.getScreenPixelsPerInch(  );
+            tempImageFile = rpt.generateFileName( imgformat );
+            resolutionArg = rptgen.utils.getScreenPixelsPerInch(  );
 
-if this.PreserveBackgroundColor
-bgColorArg = 'current';
-else 
-bgColorArg = 'white';
-end 
+            if this.PreserveBackgroundColor
+                bgColorArg = 'current';
+            else
+                bgColorArg = 'white';
+            end
 
-figFile = this.getClonedFigureFile(  );
-snapShotFigure = openfig( figFile, "invisible" );
-scopedDelete = onCleanup( @(  )delete( snapShotFigure ) );
+            figFile = this.getClonedFigureFile(  );
+            snapShotFigure = openfig( figFile, "invisible" );
+            scopedDelete = onCleanup( @(  )delete( snapShotFigure ) );
 
-axesHandle = snapShotFigure.Children;
-exportgraphics( axesHandle, tempImageFile,  ...
-"Resolution", resolutionArg,  ...
-"BackgroundColor", bgColorArg );
-domImage = mlreportgen.dom.Image( tempImageFile );
+            axesHandle = snapShotFigure.Children;
+            exportgraphics( axesHandle, tempImageFile,  ...
+                "Resolution", resolutionArg,  ...
+                "BackgroundColor", bgColorArg );
+            domImage = mlreportgen.dom.Image( tempImageFile );
 
 
-[ newWidth, newHeight ] = getSnapshotDimensions( this, rpt, pageLayout, axesHandle );
+            [ newWidth, newHeight ] = getSnapshotDimensions( this, rpt, pageLayout, axesHandle );
 
-if newHeight > 0 && newWidth > 0
-domImage.Height = strcat( num2str( newHeight ), "in" );
-domImage.Width = strcat( num2str( newWidth ), "in" );
-elseif strcmp( imgformat, "emf" )
+            if newHeight > 0 && newWidth > 0
+                domImage.Height = strcat( num2str( newHeight ), "in" );
+                domImage.Width = strcat( num2str( newWidth ), "in" );
+            elseif strcmp( imgformat, "emf" )
 
-pos = axesHandle.Position;
-origWidth = mlreportgen.utils.units.toInches( pos( 3 ), axesHandle.Units );
-origHeight = mlreportgen.utils.units.toInches( pos( 4 ), axesHandle.Units );
-domImage.Height = strcat( num2str( origHeight ), "in" );
-domImage.Width = strcat( num2str( origWidth ), "in" );
-end 
+                pos = axesHandle.Position;
+                origWidth = mlreportgen.utils.units.toInches( pos( 3 ), axesHandle.Units );
+                origHeight = mlreportgen.utils.units.toInches( pos( 4 ), axesHandle.Units );
+                domImage.Height = strcat( num2str( origHeight ), "in" );
+                domImage.Width = strcat( num2str( origWidth ), "in" );
+            end
 
-content = domImage;
-end 
+            content = domImage;
+        end
 
-function imgformat = getImageFormat( this, rpt )
+        function imgformat = getImageFormat( this, rpt )
 
 
-if ~this.IsWebApp
-imgformat = getImageFormat@mlreportgen.report.MATLABGraphicsContainer( this );
-else 
-imgformat = this.SnapshotFormat;
-giveWarn = false;
-if ~ismember( imgformat, this.SupportedWebAppFormats )
+            if ~this.IsWebApp
+                imgformat = getImageFormat@mlreportgen.report.MATLABGraphicsContainer( this );
+            else
+                imgformat = this.SnapshotFormat;
+                giveWarn = false;
+                if ~ismember( imgformat, this.SupportedWebAppFormats )
 
 
-giveWarn = true;
-imgformat = "auto";
-end 
+                    giveWarn = true;
+                    imgformat = "auto";
+                end
 
-if strcmp( imgformat, "auto" )
+                if strcmp( imgformat, "auto" )
 
-if rpt.ispdf
-imgformat = "pdf";
-elseif rpt.isdocx && ispc
-imgformat = "emf";
-else 
-imgformat = "png";
-end 
-if giveWarn
-warning(  ...
-message( "mlreportgen:report:warning:invalidWebAppSnapshotFormat",  ...
-this.SnapshotFormat,  ...
-upper( imgformat ) ) );
-end 
-end 
-end 
-end 
+                    if rpt.ispdf
+                        imgformat = "pdf";
+                    elseif rpt.isdocx && ispc
+                        imgformat = "emf";
+                    else
+                        imgformat = "png";
+                    end
+                    if giveWarn
+                        warning(  ...
+                            message( "mlreportgen:report:warning:invalidWebAppSnapshotFormat",  ...
+                            this.SnapshotFormat,  ...
+                            upper( imgformat ) ) );
+                    end
+                end
+            end
+        end
 
-function figureFile = getClonedFigureFile( axesReporter )
+        function figureFile = getClonedFigureFile( axesReporter )
 
 
 
-if ( ~isempty( axesReporter.Source ) && isgraphics( axesReporter.Source ) )
-createAxesClone( axesReporter );
-end 
+            if ( ~isempty( axesReporter.Source ) && isgraphics( axesReporter.Source ) )
+                createAxesClone( axesReporter );
+            end
 
-assert( ~isempty( axesReporter.ClonedFigureFile ),  ...
-message( "mlreportgen:report:error:invalidAxes" ) );
+            assert( ~isempty( axesReporter.ClonedFigureFile ),  ...
+                message( "mlreportgen:report:error:invalidAxes" ) );
 
-figureFile = axesReporter.ClonedFigureFile;
-end 
-end 
+            figureFile = axesReporter.ClonedFigureFile;
+        end
+    end
 
-methods ( Access = private )
-function figFile = createAxesClone( axesReporter )
+    methods ( Access = private )
+        function figFile = createAxesClone( axesReporter )
 
 
-axesH = axesReporter.Source;
+            axesH = axesReporter.Source;
 
-figHandle = copyAxes( axesH );
+            figHandle = copyAxes( axesH );
 
 
-assert( ~isempty( figHandle.Children ),  ...
-message( "mlreportgen:report:error:invalidAxes" ) );
+            assert( ~isempty( figHandle.Children ),  ...
+                message( "mlreportgen:report:error:invalidAxes" ) );
 
-scopedDelete = onCleanup( @(  )delete( figHandle ) );
-figFile = tempname + ".fig";
-hgsave( figHandle, figFile );
+            scopedDelete = onCleanup( @(  )delete( figHandle ) );
+            figFile = tempname + ".fig";
+            hgsave( figHandle, figFile );
 
 
-deleteClonedFigureFile( axesReporter );
+            deleteClonedFigureFile( axesReporter );
 
-axesReporter.ClonedFigureFile = figFile;
-end 
-end 
+            axesReporter.ClonedFigureFile = figFile;
+        end
+    end
 
-methods ( Static, Hidden )
-function id = getLinkTargetID( axesHandle )
+    methods ( Static, Hidden )
+        function id = getLinkTargetID( axesHandle )
 
 
-id = "axes_" + double( axesHandle );
-id = mlreportgen.utils.normalizeLinkID( id );
-end 
-end 
+            id = "axes_" + double( axesHandle );
+            id = mlreportgen.utils.normalizeLinkID( id );
+        end
+    end
 
-methods ( Static )
-function path = getClassFolder(  )
+    methods ( Static )
+        function path = getClassFolder(  )
 
 
-[ path ] = fileparts( mfilename( 'fullpath' ) );
-end 
+            [ path ] = fileparts( mfilename( 'fullpath' ) );
+        end
 
-function template = createTemplate( templatePath, type )
+        function template = createTemplate( templatePath, type )
 
 
 
 
 
-path = mlreportgen.report.Axes.getClassFolder(  );
-template = mlreportgen.report.ReportForm.createFormTemplate(  ...
-templatePath, type, path );
-end 
+            path = mlreportgen.report.Axes.getClassFolder(  );
+            template = mlreportgen.report.ReportForm.createFormTemplate(  ...
+                templatePath, type, path );
+        end
 
-function classfile = customizeReporter( toClasspath )
+        function classfile = customizeReporter( toClasspath )
 
 
 
@@ -469,17 +469,17 @@ function classfile = customizeReporter( toClasspath )
 
 
 
-classfile = mlreportgen.report.ReportForm.customizeClass( toClasspath,  ...
-"mlreportgen.report.Axes" );
-end 
-end 
-end 
+            classfile = mlreportgen.report.ReportForm.customizeClass( toClasspath,  ...
+                "mlreportgen.report.Axes" );
+        end
+    end
+end
 
 function axFig = copyAxes( hAx )
 
 axFig = makeAxes( hAx );
 copyAxesToFigure( axFig, hAx );
-end 
+end
 
 
 function copyAxFig = makeAxes( hAx )
@@ -489,15 +489,15 @@ axUIPanel = getUIPanelHandle( hAx );
 axFig = getFigureHandle( hAx );
 
 if ~isempty( axUIPanel )
-orig.Units = get( axUIPanel, 'Units' );
-orig.Position = get( axUIPanel, 'position' );
-orig.Color = get( axUIPanel, 'backgroundcolor' );
-else 
+    orig.Units = get( axUIPanel, 'Units' );
+    orig.Position = get( axUIPanel, 'position' );
+    orig.Color = get( axUIPanel, 'backgroundcolor' );
+else
 
-orig.Units = get( axFig, 'Units' );
-orig.Position = get( axFig, 'position' );
-orig.Color = get( axFig, 'color' );
-end 
+    orig.Units = get( axFig, 'Units' );
+    orig.Position = get( axFig, 'position' );
+    orig.Color = get( axFig, 'color' );
+end
 
 
 orig.ColorMap = get( axFig, 'colormap' );
@@ -505,28 +505,28 @@ orig.InvertHardcopy = get( axFig, 'InvertHardcopy' );
 orig.Renderer = get( axFig, 'Renderer' );
 
 set( copyAxFig, orig );
-end 
+end
 
 
 function axFig = getFigureHandle( hAx )
 axFig = get( hAx, 'parent' );
 while ~isempty( axFig ) && ~strcmpi( get( axFig, 'Type' ), 'figure' )
-axFig = get( axFig, 'parent' );
-end 
+    axFig = get( axFig, 'parent' );
+end
 
 if isempty( axFig )
-error( message( "mlreportgen:report:error:noParentFigure" ) );
-end 
-end 
+    error( message( "mlreportgen:report:error:noParentFigure" ) );
+end
+end
 
 function axUIPanel = getUIPanelHandle( hAx )
 parent = get( hAx, 'parent' );
 if strcmpi( get( parent, 'type' ), 'uipanel' )
-axUIPanel = parent;
-else 
-axUIPanel = [  ];
-end 
-end 
+    axUIPanel = parent;
+else
+    axUIPanel = [  ];
+end
+end
 
 function copyAxesToFigure( axFig, allAx )
 allAx = copyobj( allAx, axFig );
@@ -547,23 +547,23 @@ set( [ allAx;axFig ], 'units', 'pixels' );
 numAx = length( allAx );
 extentMatrix = ones( numAx, 4 );
 for i = 1:numAx
-extentMatrix( i, 1:4 ) = LocAxesExtent( allAx( i ) );
-end 
+    extentMatrix( i, 1:4 ) = LocAxesExtent( allAx( i ) );
+end
 
 minExtent = min( extentMatrix, [  ], 1 );
 border = 10;
 axPos = get( allAx, 'Position' );
 if ( numAx > 1 )
-axPos = cat( 1, axPos{ : } );
-axPos( :, 1 ) = axPos( :, 1 ) - minExtent( 1 ) + border;
-axPos( :, 2 ) = axPos( :, 2 ) - minExtent( 2 ) + border;
-axPos = num2cell( axPos, 2 );
-posID = { 'Position' };
-else 
-axPos( :, 1 ) = axPos( :, 1 ) - minExtent( 1 ) + border;
-axPos( :, 2 ) = axPos( :, 2 ) - minExtent( 2 ) + border;
-posID = 'Position';
-end 
+    axPos = cat( 1, axPos{ : } );
+    axPos( :, 1 ) = axPos( :, 1 ) - minExtent( 1 ) + border;
+    axPos( :, 2 ) = axPos( :, 2 ) - minExtent( 2 ) + border;
+    axPos = num2cell( axPos, 2 );
+    posID = { 'Position' };
+else
+    axPos( :, 1 ) = axPos( :, 1 ) - minExtent( 1 ) + border;
+    axPos( :, 2 ) = axPos( :, 2 ) - minExtent( 2 ) + border;
+    posID = 'Position';
+end
 
 set( allAx, posID, axPos );
 maxExtent = max( extentMatrix, [  ], 1 );
@@ -571,24 +571,21 @@ maxExtent = max( extentMatrix, [  ], 1 );
 figSize = maxExtent( 3:4 ) - minExtent( 1:2 ) + 2 * border;
 
 set( axFig, 'Position', [ 20, 20, figSize ] );
-end 
+end
 
 function axExtent = LocAxesExtent( axH )
 axExtent = get( axH, 'OuterPosition' );
 axExtent = [ axExtent( 1:2 ), axExtent( 1:2 ) + axExtent( 3:4 ) ];
-end 
+end
 
 function h = makeTempCanvas
 
 
 h = figure( 'HandleVisibility', 'off',  ...
-'IntegerHandle', 'off',  ...
-'Visible', 'off',  ...
-'CloseRequestFcn', 'set(gcbf,''Visible'',''off'')',  ...
-'NumberTitle', 'off',  ...
-'Name', 'Report Generator Temporary Drawing Canvas' );
-end 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp4Kcd8H.p.
-% Please follow local copyright laws when handling this file.
+    'IntegerHandle', 'off',  ...
+    'Visible', 'off',  ...
+    'CloseRequestFcn', 'set(gcbf,''Visible'',''off'')',  ...
+    'NumberTitle', 'off',  ...
+    'Name', 'Report Generator Temporary Drawing Canvas' );
+end
 

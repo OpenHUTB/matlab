@@ -1,79 +1,58 @@
 function out = SystemTargetFile( action, cc, param, value )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-R36
-action
-cc
-end 
-R36( Repeating )
-param
-value
-end 
+arguments
+    action
+    cc
+end
+arguments( Repeating )
+    param
+    value
+end
 
 out = [  ];
 if length( param ) >= 2 && param{ 2 } == "PlatformDefinition"
-platform = value{ 2 };
-else 
-platform = get_param( cc, 'PlatformDefinition' );
-end 
+    platform = value{ 2 };
+else
+    platform = get_param( cc, 'PlatformDefinition' );
+end
 allowed = configset.internal.constraints.getSystemTargetFile(  ...
-get_param( cc, 'EmbeddedCoderDictionary' ), platform );
+    get_param( cc, 'EmbeddedCoderDictionary' ), platform );
 if allowed == ""
 
-allowed = "ert.tlc";
-end 
+    allowed = "ert.tlc";
+end
 if ~isSupportedTarget( allowed )
 
 
 
 
 
-out = message(  ...
-'RTW:configSet:UnsupportedSystemTargetFileInPlatformDefinition',  ...
-allowed, platform );
+    out = message(  ...
+        'RTW:configSet:UnsupportedSystemTargetFileInPlatformDefinition',  ...
+        allowed, platform );
 elseif ~strcmp( value{ 1 }, allowed )
-if action == "apply"
-cs = cc.getConfigSet;
-set_param( cs, 'SystemTargetFile', allowed );
-else 
-out = message( 'RTW:configSet:IncompatibleParameter', param{ 1 } );
-end 
-end 
+    if action == "apply"
+        cs = cc.getConfigSet;
+        set_param( cs, 'SystemTargetFile', allowed );
+    else
+        out = message( 'RTW:configSet:IncompatibleParameter', param{ 1 } );
+    end
+end
 
-end 
+end
 
 function out = isSupportedTarget( target )
 
 if target == "ert.tlc"
-out = true;
+    out = true;
 elseif any( target == [ "autosar.tlc", "autosar_adaptive.tlc" ] )
-out = false;
-else 
+    out = false;
+else
 
-cs = Simulink.ConfigSet;
-set_param( cs, 'SystemTargetFile', target );
-out = get_param( cs, 'IsERTTarget' ) == "on";
-end 
+    cs = Simulink.ConfigSet;
+    set_param( cs, 'SystemTargetFile', target );
+    out = get_param( cs, 'IsERTTarget' ) == "on";
+end
 
-end 
-
-
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp_1VmGu.p.
-% Please follow local copyright laws when handling this file.
+end
 

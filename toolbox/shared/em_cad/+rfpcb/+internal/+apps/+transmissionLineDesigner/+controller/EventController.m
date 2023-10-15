@@ -4,67 +4,63 @@ classdef EventController < rfpcb.internal.apps.transmissionLineDesigner.controll
 
 
 
-methods 
-function obj = EventController( Model, App )
+    methods
+        function obj = EventController( Model, App )
 
 
-R36
-Model( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.AppModel{ mustBeNonempty } = rfpcb.internal.apps.transmissionLineDesigner.model.AppModel;
-App( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.view.AppView{ mustBeNonempty } = rfpcb.internal.apps.transmissionLineDesigner.view.AppView;
-end 
-obj@rfpcb.internal.apps.transmissionLineDesigner.controller.Controller( Model, App );
+            arguments
+                Model( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.AppModel{ mustBeNonempty } = rfpcb.internal.apps.transmissionLineDesigner.model.AppModel;
+                App( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.view.AppView{ mustBeNonempty } = rfpcb.internal.apps.transmissionLineDesigner.view.AppView;
+            end
+            obj@rfpcb.internal.apps.transmissionLineDesigner.controller.Controller( Model, App );
 
-log( obj.Model.Logger, '% EventController is created.' )
-end 
-
-
-function onModelChange( obj, src, evt )
+            log( obj.Model.Logger, '% EventController is created.' )
+        end
 
 
-R36
-obj
-src = [  ];
-evt( 1, 1 )event.PropertyEvent = [  ];
-end 
-
-if ~obj.Model.AppLoading
-update( obj.Model, src.Name );
-sync( obj.App );
-update( obj.App, src.Name );
-end 
-end 
+        function onModelChange( obj, src, evt )
 
 
-function onError( obj, src, evt )
+            arguments
+                obj
+                src = [  ];
+                evt( 1, 1 )event.PropertyEvent = [  ];
+            end
 
-R36
-obj
-src = [  ];
-evt = [  ];
-end 
-
-error( obj.App, evt.Data );
-end 
-
-
-function onAppState( obj, src, evt )
-
+            if ~obj.Model.AppLoading
+                update( obj.Model, src.Name );
+                sync( obj.App );
+                update( obj.App, src.Name );
+            end
+        end
 
 
-R36
-obj
-src( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.AppModel = [  ];%#ok<INUSA>
-evt( 1, 1 )event.EventData = [  ];
-end 
+        function onError( obj, src, evt )
+
+            arguments
+                obj
+                src = [  ];
+                evt = [  ];
+            end
+
+            error( obj.App, evt.Data );
+        end
 
 
-update( obj.App, evt.EventName );
-end 
-end 
-end 
+        function onAppState( obj, src, evt )
 
 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmprz0Icy.p.
-% Please follow local copyright laws when handling this file.
+            arguments
+                obj
+                src( 1, 1 )rfpcb.internal.apps.transmissionLineDesigner.model.AppModel = [  ];%#ok<INUSA>
+                evt( 1, 1 )event.EventData = [  ];
+            end
+
+
+            update( obj.App, evt.EventName );
+        end
+    end
+end
+
 
