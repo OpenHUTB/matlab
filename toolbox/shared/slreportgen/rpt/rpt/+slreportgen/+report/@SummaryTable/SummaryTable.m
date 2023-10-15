@@ -79,7 +79,7 @@ classdef SummaryTable < slreportgen.report.Reporter & mlreportgen.report.interna
 
 
 
-properties 
+    properties
 
 
 
@@ -90,7 +90,7 @@ properties
 
 
 
-FinderResults
+        FinderResults
 
 
 
@@ -101,7 +101,7 @@ FinderResults
 
 
 
-Title{ mlreportgen.report.validators.mustBeInline } = [  ];
+        Title{ mlreportgen.report.validators.mustBeInline } = [  ];
 
 
 
@@ -116,7 +116,7 @@ Title{ mlreportgen.report.validators.mustBeInline } = [  ];
 
 
 
-Properties string = string.empty;
+        Properties string = string.empty;
 
 
 
@@ -126,7 +126,7 @@ Properties string = string.empty;
 
 
 
-SeparateTablesByType( 1, 1 )logical = true;
+        SeparateTablesByType( 1, 1 )logical = true;
 
 
 
@@ -139,7 +139,7 @@ SeparateTablesByType( 1, 1 )logical = true;
 
 
 
-IncludeLinks( 1, 1 )logical = true;
+        IncludeLinks( 1, 1 )logical = true;
 
 
 
@@ -147,7 +147,7 @@ IncludeLinks( 1, 1 )logical = true;
 
 
 
-ShowEmptyColumns( 1, 1 )logical = false;
+        ShowEmptyColumns( 1, 1 )logical = false;
 
 
 
@@ -160,92 +160,92 @@ ShowEmptyColumns( 1, 1 )logical = false;
 
 
 
-TableReporter
-end 
+        TableReporter
+    end
 
-methods 
-function this = SummaryTable( varargin )
-if nargin == 1
-results = varargin{ 1 };
-varargin = { "FinderResults", results };
-end 
+    methods
+        function this = SummaryTable( varargin )
+            if nargin == 1
+                results = varargin{ 1 };
+                varargin = { "FinderResults", results };
+            end
 
-this = this@slreportgen.report.Reporter( varargin{ : } );
+            this = this@slreportgen.report.Reporter( varargin{ : } );
 
 
-p = inputParser;
+            p = inputParser;
 
 
 
 
-p.KeepUnmatched = true;
+            p.KeepUnmatched = true;
 
 
 
 
-addParameter( p, "TemplateName", "SummaryTable" );
+            addParameter( p, "TemplateName", "SummaryTable" );
 
-baseTable = mlreportgen.report.BaseTable(  );
-baseTable.TableStyleName = "SummaryTableTable";
-addParameter( p, "TableReporter", baseTable );
+            baseTable = mlreportgen.report.BaseTable(  );
+            baseTable.TableStyleName = "SummaryTableTable";
+            addParameter( p, "TableReporter", baseTable );
 
 
-parse( p, varargin{ : } );
+            parse( p, varargin{ : } );
 
 
-results = p.Results;
-this.TemplateName = results.TemplateName;
-this.TableReporter = results.TableReporter;
-end 
+            results = p.Results;
+            this.TemplateName = results.TemplateName;
+            this.TableReporter = results.TableReporter;
+        end
 
-function set.FinderResults( this, value )
+        function set.FinderResults( this, value )
 
-mustBeVector( value );
+            mustBeVector( value );
 
-try 
+            try
 
-mustBeA( value( 1 ), "mlreportgen.finder.Result" );
+                mustBeA( value( 1 ), "mlreportgen.finder.Result" );
 
-mustBeA( value, class( value( 1 ) ) );
-catch ME
-error( message( "slreportgen:report:error:invalidResultObjects" ) );
-end 
+                mustBeA( value, class( value( 1 ) ) );
+            catch ME
+                error( message( "slreportgen:report:error:invalidResultObjects" ) );
+            end
 
-this.FinderResults = value;
-end 
+            this.FinderResults = value;
+        end
 
-function set.TableReporter( this, value )
+        function set.TableReporter( this, value )
 
 
-mustBeNonempty( value );
+            mustBeNonempty( value );
 
-mustBeA( value, "mlreportgen.report.BaseTable" );
+            mustBeA( value, "mlreportgen.report.BaseTable" );
 
 
-mustBeScalarOrEmpty( value );
+            mustBeScalarOrEmpty( value );
 
-this.TableReporter = value;
-end 
+            this.TableReporter = value;
+        end
 
-function impl = getImpl( this, rpt )
-R36
-this( 1, 1 )
-rpt( 1, 1 ){ validateReport( this, rpt ) }
-end 
+        function impl = getImpl( this, rpt )
+            arguments
+                this( 1, 1 )
+                rpt( 1, 1 ){ validateReport( this, rpt ) }
+            end
 
-if isempty( this.FinderResults )
+            if isempty( this.FinderResults )
 
-error( message( "slreportgen:report:error:invalidResultObjects" ) );
-end 
+                error( message( "slreportgen:report:error:invalidResultObjects" ) );
+            end
 
 
 
-impl = getImpl@slreportgen.report.Reporter( this, rpt );
-end 
-end 
+            impl = getImpl@slreportgen.report.Reporter( this, rpt );
+        end
+    end
 
-methods ( Access = { ?mlreportgen.report.internal.SummaryTableBase } )
-function [ titles, props, content ] = getSummaryTablesData( this, rpt )
+    methods ( Access = { ?mlreportgen.report.internal.SummaryTableBase } )
+        function [ titles, props, content ] = getSummaryTablesData( this, rpt )
 
 
 
@@ -257,143 +257,123 @@ function [ titles, props, content ] = getSummaryTablesData( this, rpt )
 
 
 
-results = this.FinderResults;
+            results = this.FinderResults;
 
-if this.SeparateTablesByType && isprop( results( 1 ), 'Type' )
+            if this.SeparateTablesByType && isprop( results( 1 ), 'Type' )
 
 
-allResultTypes = [ results.Type ];
-types = unique( allResultTypes );
-nTypes = numel( types );
+                allResultTypes = [ results.Type ];
+                types = unique( allResultTypes );
+                nTypes = numel( types );
 
 
 
-content = cell( 1, nTypes );
+                content = cell( 1, nTypes );
 
 
-props = cell( 1, nTypes );
+                props = cell( 1, nTypes );
 
 
-titles = strings( 1, nTypes );
-for typeIdx = 1:nTypes
-type = types( typeIdx );
+                titles = strings( 1, nTypes );
+                for typeIdx = 1:nTypes
+                    type = types( typeIdx );
 
-typeResults = results( strcmp( type, allResultTypes ) );
+                    typeResults = results( strcmp( type, allResultTypes ) );
 
-[ typeTitle, typeProps, typeContent ] = compileAndGetSingleSummaryTableData( this, rpt, typeResults );
-titles( typeIdx ) = typeTitle;
-props{ typeIdx } = typeProps;
-content{ typeIdx } = typeContent;
-end 
-else 
+                    [ typeTitle, typeProps, typeContent ] = compileAndGetSingleSummaryTableData( this, rpt, typeResults );
+                    titles( typeIdx ) = typeTitle;
+                    props{ typeIdx } = typeProps;
+                    content{ typeIdx } = typeContent;
+                end
+            else
 
 
-[ titles, props, content ] = compileAndGetSingleSummaryTableData( this, rpt, this.FinderResults );
-props = { props };
-content = { content };
-end 
+                [ titles, props, content ] = compileAndGetSingleSummaryTableData( this, rpt, this.FinderResults );
+                props = { props };
+                content = { content };
+            end
 
-end 
+        end
 
-function [ title, props, content ] = compileAndGetSingleSummaryTableData( this, rpt, results )
+        function [ title, props, content ] = compileAndGetSingleSummaryTableData( this, rpt, results )
 
 
 
 
 
-srcMdls = [  ];
+            srcMdls = [  ];
 
-try 
+            try
 
 
-srcMdls = arrayfun( @( x )slreportgen.utils.getModelHandle( x.Object ), results );
+                srcMdls = arrayfun( @( x )slreportgen.utils.getModelHandle( x.Object ), results );
 
-if numel( unique( srcMdls ) ) > 1
+                if numel( unique( srcMdls ) ) > 1
 
 
 
-compileEachMdl = true;
-else 
+                    compileEachMdl = true;
+                else
 
 
-compileEachMdl = false;
-compileModel( rpt, srcMdls( 1 ) );
-end 
-catch ME %#ok<NASGU>
+                    compileEachMdl = false;
+                    compileModel( rpt, srcMdls( 1 ) );
+                end
+            catch ME %#ok<NASGU>
 
 
 
-compileEachMdl = false;
-end 
-props = this.Properties;
-if isempty( props ) || isequal( props, "" )
-props = getDefaultSummaryProperties( results( 1 ), TypeSpecificProperties = this.SeparateTablesByType );
-else 
+                compileEachMdl = false;
+            end
+            props = this.Properties;
+            if isempty( props ) || isequal( props, "" )
+                props = getDefaultSummaryProperties( results( 1 ), TypeSpecificProperties = this.SeparateTablesByType );
+            else
 
 
-props = props( : )';
-end 
+                props = props( : )';
+            end
 
 
-if props ~= ""
+            if props ~= ""
 
-title = getDefaultSummaryTableTitle( results( 1 ), TypeSpecificTitle = this.SeparateTablesByType );
-[ props, content ] = getSingleSummaryTableData( this, rpt, results, props, "Name", compileEachMdl, srcMdls );
-end 
-end 
-end 
+                title = getDefaultSummaryTableTitle( results( 1 ), TypeSpecificTitle = this.SeparateTablesByType );
+                [ props, content ] = getSingleSummaryTableData( this, rpt, results, props, "Name", compileEachMdl, srcMdls );
+            end
+        end
+    end
 
-methods ( Hidden )
-function templatePath = getDefaultTemplatePath( ~, rpt )
-path = slreportgen.report.SummaryTable.getClassFolder(  );
-templatePath =  ...
-mlreportgen.report.ReportForm.getFormTemplatePath(  ...
-path, rpt.Type );
-end 
+    methods ( Hidden )
+        function templatePath = getDefaultTemplatePath( ~, rpt )
+            path = slreportgen.report.SummaryTable.getClassFolder(  );
+            templatePath =  ...
+                mlreportgen.report.ReportForm.getFormTemplatePath(  ...
+                path, rpt.Type );
+        end
 
-end 
+    end
 
-methods ( Access = protected, Hidden )
+    methods ( Access = protected, Hidden )
 
-result = openImpl( reporter, impl, varargin )
-end 
+        result = openImpl( reporter, impl, varargin )
+    end
 
-methods ( Static )
-function path = getClassFolder(  )
+    
+    methods ( Static )
+        function path = getClassFolder(  )
+            [ path ] = fileparts( mfilename( 'fullpath' ) );
+        end
 
 
-[ path ] = fileparts( mfilename( 'fullpath' ) );
-end 
+        function template = createTemplate( templatePath, type )
+            path = slreportgen.report.SummaryTable.getClassFolder(  );
+            template = mlreportgen.report.ReportForm.createFormTemplate(  ...
+                templatePath, type, path );
+        end
 
-function template = createTemplate( templatePath, type )
-
-
-
-
-
-
-
-
-path = slreportgen.report.SummaryTable.getClassFolder(  );
-template = mlreportgen.report.ReportForm.createFormTemplate(  ...
-templatePath, type, path );
-end 
-
-function classFile = customizeReporter( toClasspath )
-
-
-
-
-
-
-
-
-
-classFile = mlreportgen.report.ReportForm.customizeClass(  ...
-toClasspath, "slreportgen.report.SummaryTable" );
-end 
-end 
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmprlHGd1.p.
-% Please follow local copyright laws when handling this file.
-
+        function classFile = customizeReporter( toClasspath )
+            classFile = mlreportgen.report.ReportForm.customizeClass(  ...
+                toClasspath, "slreportgen.report.SummaryTable" );
+        end
+    end
+end

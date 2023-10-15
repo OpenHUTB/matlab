@@ -1,17 +1,11 @@
 function props = getBusRenameProperties( numFiles, nodes, oldNode, newFullName )
 
-
-
-
-
-
-
-R36
-numFiles( 1, 1 )uint64;
-nodes( 1, : )dependencies.internal.graph.Node{ mustBeNonempty };
-oldNode( 1, 1 )dependencies.internal.graph.Node;
-newFullName( 1, 1 )string;
-end 
+arguments
+    numFiles( 1, 1 )uint64;
+    nodes( 1, : )dependencies.internal.graph.Node{ mustBeNonempty };
+    oldNode( 1, 1 )dependencies.internal.graph.Node;
+    newFullName( 1, 1 )string;
+end
 
 import dependencies.internal.refactoring.MessageWithDetails;
 
@@ -31,27 +25,27 @@ resourceCatalog = "SimulinkDependencyAnalysis:Buses:";
 commonGroup = resourceCatalog + "BusRefactoring";
 
 if length( oldNode.Location ) > 1
-resourceGroup = resourceCatalog + "BusElementRename";
-else 
-resourceGroup = resourceCatalog + "BusRename";
-end 
+    resourceGroup = resourceCatalog + "BusElementRename";
+else
+    resourceGroup = resourceCatalog + "BusRename";
+end
 
 if numFiles == 1
-appendage = "Single";
-else 
-appendage = "Multi";
-end 
+    appendage = "Single";
+else
+    appendage = "Multi";
+end
 
 
 if isempty( falsePositives )
-appendage = appendage + "NoFalsePositives";
-else 
-appendage = appendage + "WithFalsePositives";
-falsePositiveNames = arrayfun( @( n )string( n.Location{ 1 } ), falsePositives );
-falsePositiveNames = sort( unique( falsePositiveNames ) );
-messageParams{ end  + 1 } = strjoin( falsePositiveNames, ", " );
-detailsParams{ end  + 1 } = oldName;
-end 
+    appendage = appendage + "NoFalsePositives";
+else
+    appendage = appendage + "WithFalsePositives";
+    falsePositiveNames = arrayfun( @( n )string( n.Location{ 1 } ), falsePositives );
+    falsePositiveNames = sort( unique( falsePositiveNames ) );
+    messageParams{ end  + 1 } = strjoin( falsePositiveNames, ", " );
+    detailsParams{ end  + 1 } = oldName;
+end
 
 msgResource = resourceGroup + "Message" + appendage;
 detailsResource = commonGroup + "Details" + appendage;
@@ -68,8 +62,6 @@ props.incomplete.Details = string( message( commonGroup + "DetailsIncomplete" ) 
 props.error = MessageWithDetails;
 props.error.Message = string( message( resourceGroup + "MessageError" ) );
 props.error.Details = string( message( commonGroup + "DetailsError" ) );
-end 
+end
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp1SZpRG.p.
-% Please follow local copyright laws when handling this file.
 

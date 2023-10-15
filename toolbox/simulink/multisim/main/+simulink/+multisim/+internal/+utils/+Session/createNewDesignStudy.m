@@ -1,27 +1,24 @@
 function createNewDesignStudy( sessionDataModel, designSession, ~, studyType )
 
-
-
-
-R36
-sessionDataModel( 1, 1 )mf.zero.Model
-designSession( 1, 1 )simulink.multisim.mm.session.Session
-~
-studyType( 1, 1 )simulink.multisim.mm.design.ParameterSpaceType
-end 
+arguments
+    sessionDataModel( 1, 1 )mf.zero.Model
+    designSession( 1, 1 )simulink.multisim.mm.session.Session
+    ~
+    studyType( 1, 1 )simulink.multisim.mm.design.ParameterSpaceType
+end
 
 bdAssociatedDataId = simulink.multisim.internal.blockDiagramAssociatedDataId(  );
 designSuiteMap = Simulink.BlockDiagramAssociatedData.get( designSession.ModelHandle, bdAssociatedDataId ).DesignSuiteMap;
 
 if ~isKey( designSuiteMap, designSession.ActiveDesignSuiteUUID )
-createNewDesignSuite( sessionDataModel, designSession )
-end 
+    createNewDesignSuite( sessionDataModel, designSession )
+end
 
 designSuiteInfo = designSuiteMap( designSession.ActiveDesignSuiteUUID );
 designStudy = simulink.multisim.internal.utils.Design.createNewDesignStudy(  ...
-designSuiteInfo.DataModel, designSuiteInfo.DesignSuite, studyType );
+    designSuiteInfo.DataModel, designSuiteInfo.DesignSuite, studyType );
 selectDesignStudyForRun( designSuiteInfo.DataModel, designStudy, designSession.ModelHandle );
-end 
+end
 
 function createNewDesignSuite( sessionDataModel, designSession )
 import simulink.multisim.internal.utils.Session.*
@@ -37,13 +34,11 @@ modelHandle = designSession.ModelHandle;
 dataModel.addObservingListener( @( ~, ~ )simulink.multisim.internal.setSessionDirtyState( modelHandle, true ) );
 setDesignSuiteBdData( modelHandle, designSession, dataModel, designSuite );
 setActiveDesignSuite( sessionDataModel, designSession, dataModel.UUID );
-end 
+end
 
 function selectDesignStudyForRun( dataModel, designStudy, modelHandle )
 designStudy.SelectedForRun = true;
 simulink.multisim.internal.utils.DesignStudy.handlePropertyChange( dataModel,  ...
-designStudy, "SelectedForRun", modelHandle );
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpXgEnLT.p.
-% Please follow local copyright laws when handling this file.
+    designStudy, "SelectedForRun", modelHandle );
+end
 
