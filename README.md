@@ -80,6 +80,24 @@ edit sort
 ```
 对应源代码位于：`toolbox/matlab/datatypes/categorical/@categorical/sort.m`
 
+### Simulink
+选中模块，菜单栏中“模块”->查看封装内部。
+
+#### 三维仿真
+三维仿真库：`toolbox\shared\sim3dblks\sim3dblks\sim3dlib.slx`。
+
+自动驾驶虚拟环境（Automotive Virtual Environment）：`matlab\SupportPackages\toolbox\shared\sim3dprojects\spkg\project\AutoVrtlEnv\AutoVrtlEnv.uproject`。
+`AutoVrtlEnv\Binaries\Win64\UE4Editor-AutoVrtlEnv.pdb`是指“程序数据库”（Program Data Base）文件，是VS编译链接时生成的文件，主要存储了VS调试程序时所需要的基本信息，主要包括源文件名、变量名、函数名、FPO(帧指针)、对应的行号等等。PDB文件是在编译工程的时候产生的，它是和对应的模块（UE4Editor-AutoVrtlEnv.dll）一起生成出来的。因为存储的是调试信息，所以一般情况下PDB文件是在Debug模式下才会生成。
+
+PDB文件中记录了源文件路径的相关信息，所以在载入PDB文件的时候，就可以将相关调试信息与源码对应。这样可以可视化的实时查看调试时的函数调用、变量值等相关信息。模块当中记录的PDB文件是绝对路径。所以只要模块在当前电脑上载入，调试器自然地会根据模块当中的路径信息找到相应PDB文件并载入。同样PDB文件中记录的源文件路径也是绝对路径，所以PDB文件只要在当前电脑上载入，调试进入相应模块时，都能够匹配到记录的源文件，然后可视化地查看相应信息。
+
+### 工具
+开源[cutter](https://github.com/rizinorg/cutter) 。
+
+[IDA](https://soft.macxf.com/soft/2059.html?id=MTcyMDc1%20) 。
+
+[教程](https://wizardforcel.gitbooks.io/re-for-beginners/content/) 。
+
 ## 维护
 
 ### 覆盖本地的文件

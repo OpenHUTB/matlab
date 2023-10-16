@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Simulation 3D Message Set</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Vehicle Dynamics Blockset"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../vehicle-scenarios.html",
+          "name": "Vehicle Scenarios"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "vehicle-scenarios"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="block:Simulation 3D Message Set"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="blk"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/block"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The Simulation 3D Message Set block sends data to the Unreal Engine 3D visualization environment."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "vdynblks";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Vehicle Dynamics Blockset</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../vehicle-scenarios.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Vehicle Scenarios</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">Simulation 3D Message Set</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e194592" class="intrnllnk">Description</a><ul class="nav"><li><a href="#mw_6444a019-3309-4fa5-9d76-91b56cc8d458" class="intrnllnk">Configure Scenes to Receive Data</a></li>
+</ul></li>
+<li><a href="#d124e194806" class="intrnllnk">Ports</a><ul class="nav"><li><a href="#d124e194808" class="intrnllnk">Input</a><ul class="nav"><li><a href="#mw_c05973be-c48c-46f4-a258-080b7f477279" class="intrnllnk">WriteMsg</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#d124e194894" class="intrnllnk">Parameters</a><ul class="nav"><li><a href="#mw_4aa6a408-8345-4dde-a559-9bc63032310f" class="intrnllnk">Signal name, SigName</a></li>
+<li><a href="#mw_998f82fd-3fe2-405c-9370-7c6205dc0325_sep_mw_ff7f4101-a5e8-436f-9e3b-ba247580fd77" class="intrnllnk">Sample time</a></li>
+</ul></li>
+<li><a href="#examples" class="intrnllnk">Model Examples</a></li>
+<li><a href="#mw_998f82fd-3fe2-405c-9370-7c6205dc0325_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_998f82fd-3fe2-405c-9370-7c6205dc0325_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="block_ref"><span id="mw_998f82fd-3fe2-405c-9370-7c6205dc0325" class="anchor_target"></span><span id="vbsim3dunrealset" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">Simulation 3D Message Set</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">将数据发送到虚幻引擎可视化环境<br/></p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div itemprop="content" class="ref_sect"><div class="row"><div class="col-xs-12 col-sm-9 col-md-10"><ul class="list-unstyled library_path_container"><li><strong>库:</strong></li>
+<li><p class="library_path">
+      Vehicle Dynamics Blockset / 
+      Vehicle Scenarios / 
+      Sim3D / 
+      Sim3D Core
+   </p><p class="library_path">
+      Aerospace Blockset / 
+      Animation / 
+      Simulation 3D
+   </p><p class="library_path">
+      Simulink 3D Animation / 
+      Simulation 3D
+   </p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="function_icons"><ul class="list-unstyled"><li class="add_cursor_pointer" data-toggle="modal" data-target="#image_zoom_modal" data-title="Simulation 3D Message Set block" data-src="sim3dmessageset.png"><img itemprop="thumbnailUrl" src="sim3dmessageset.png" alt="Simulation 3D Message Set block" height="103" width="209"/><span class="icon-zoomin add_font_color_white add_background_color_mediumgray function_icon_zoom"></span></li>
+</ul>
+</div>
+<div class="modal fade" id="image_zoom_modal" tabindex="-1" role="dialog" aria-labelledby="modal-title"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="modal-title remove_border" id="modal-title"></h2>
+</div>
+<div class="modal-body"><img src="sim3dmessageset.png" id="image_zoom" class="center-block"/></div>
+</div>
+</div>
+</div>
+<script>
+      $('#image_zoom_modal').on('show.bs.modal', function (event) {
+      var modal_trigger = $(event.relatedTarget)
+      var image_src = modal_trigger.data('src');
+      var image_title = modal_trigger.data('title');
+      $('#image_zoom').attr('src', image_src);
+      if (image_title) {
+        $('#modal-title').text(image_title);
+      } else { 
+        $('#modal-title').hide;  
+      } 
+      })
+    </script>
+<div id="d124e194592_div" class="refsect1 description"><h2 id="d124e194592">描述</h2>
+<p><span class="block">Simulation 3D Message Set</span> 模块将数据发送到虚幻引擎<sup>®</sup> 三维可视化环境。在您的模型中，确保 <span class="block">Simulation
+        3D Scene Configuration</span> 模块与 <span class="block">Simulation 3D
+        Message Set</span> 模块处于同一级别。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><b>提示</b><br/></p>
+<p>验证 <span class="block">Simulation 3D Message
+          Set</span> 模块是否在 <span class="block">Simulation 3D Scene Configuration</span>
+        模块之前执行。这样，<span class="block">Simulation 3D Message Set 在虚幻引擎三维可视化环境接收信号数据之前准备好信号数据。</span>要检查模块执行顺序，请右键单击块并选择 <strong class="guilabel">Properties</strong>。在
+          <strong class="guilabel">General</strong> 选项卡上，确认一下优先级 <strong class="guilabel">Priority</strong> 设置：</p>
+<div class="itemizedlist"><ul><li><p><span class="block">Simulation 3D Scene Configuration</span> — <code class="literal">0</code></p></li>
+<li><p><span class="block">Simulation 3D Message Set</span> — <code class="literal remove_text_wrapping">-1</code></p></li>
+</ul>
+</div>
+<p>
+有关执行顺序的更多信息，请参阅 <a href="../../simulink/ug/controlling-and-displaying-the-sorted-order.html" class="a">控制并显示执行顺序</a>。</p>
+</div>
+<div id="mw_6444a019-3309-4fa5-9d76-91b56cc8d458_div" class="refsect2"><h3 id="mw_6444a019-3309-4fa5-9d76-91b56cc8d458">配置场景以接收数据</h3>
+<p> 要使用该模块，您必须在虚幻引擎环境中配置场景以从 Simulink<sup>®</sup> 模型接收数据： </p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>安装 <a href="../ug/customize-3d-scenes-for-vehicle-dynamics-simulations.html" class="a">Customize 3D Scenes for Vehicle Dynamics Simulations</a>。</p></li>
+<li><p>在虚幻<sup>®</sup> 编辑器中，<span>按照以下一般工作流程实现从 Simulink 接收数据。有关详细信息，请参阅<a href="../ug/get-started-communicating-with-the-unreal-engine-visualization-environment.html" class="a">开始与虚幻引擎可视化环境通信</a>。</span></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="23%"/>
+<col class="tcol2" width="77%"/>
+</colgroup>
+<thead><tr><th><p>虚幻引擎用户</p>
+</th>
+<th>工作流程</th>
+</tr>
+</thead>
+<tbody><tr><td><p>Blueprint</p>
+</td>
+<td><p>
+                            </p>
+<div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>实例化想要从 Simulink 模型接收的数据类型相对应的参与者 <code class="literal">Sim3DGet</code>。此示例显示虚幻编辑器 <code class="literal">Sim3DGet</code> 数据类型（从左上角“放置Actor”搜索类中进行搜索）。</p>
+<div class="informalfigure"><div id="d124e194702" class="mediaobject"><p class="listimage"><img src="ue_set1.png" alt="Image of Unreal Engine options" height="235" width="230"/></p>
+</div>
+</div><p></p></li>
+<li><p>指定与                                            <span class="block">Simulation 3D Message Set</span> 模块                                            <strong class="guilabel">Signal name</strong> 参数匹配的参与者标签名称。</p></li>
+<li><p>导航到关卡蓝图（Level Blueprint）：菜单“蓝图”-&gt;“打开关卡蓝图”。</p></li>
+<li><p>根据您想要从 Simulink 模型接收的数据类型和大小，找到
+                                            <code class="literal">Sim3DGet</code> 参与者类的蓝图方法。</p><p>例如，在虚幻编辑器中，此图显示的是 Sim3DGetInterger 类中  <code class="literal">Read
+                                            Scalar Integer</code> 方法接收 <code class="literal">int32</code> 大小标量数据类型。 </p>
+<div class="informalfigure"><div id="d124e194735" class="mediaobject"><p class="listimage"><img src="ue_set2.png" alt="Image of Unreal Engine blueprint connections" height="143" width="360"/></p>
+</div>
+</div><p></p></li>
+<li><p>编译并保存场景。</p></li>
+</ol>
+</div>
+<p>
+
+                        </p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>笔记</strong></p>
+<p>默认情况下，双车道变更场景 Double Lane Change 有一个标签名为 <span style="font-family: monospace;">TrafficLight1 </span>的 <code class="literal">Sim3DGetInteger</code> 参与者。</p>
+</div>
+</td>
+</tr>
+<tr><td><p>C++ class</p>
+</td>
+<td><p>
+                            </p>
+<div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>如果您希望创建一个新的参与者与 Simulink 模型进行交互。从 <code class="object"><a href="asim3dactor.html">ASim3dActor</a> </code>从继承。</p></li>
+<li><p>在新的参与者类中：</p>
+<div class="itemizedlist"><ul><li><p>将指向信号名称的指针声明为类字段。</p></li>
+<li><p>获取类标签。</p></li>
+<li><p>创建一个信号读取器并在方法 <code class="function"><a href="asim3dactor.sim3dsetup.html">Sim3dSetup</a> </code>中分配指针。</p></li>
+<li><p>在方法 <code class="function"><a href="asim3dactor.sim3dstep.html">Sim3dStep</a> </code>中，调用方法 <a href="asim3dactor.readsimulation3dmessage.html"><code class="function">ReadSimulation3DMessage</code></a> 从 Simulink 模型中读取数据。</p></li>
+<li><p>在参与者的 <a href="asim3dactor.sim3drelease.html"><code class="function">Sim3dRelease</code></a> 方法中删除信号读取器。</p></li>
+</ul>
+</div><p>
+</p></li>
+</ol>
+</div>
+<p>
+
+                        </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p><p>有关虚幻编辑器的更多信息，请参阅 <a href="https://docs.unrealengine.com" target="_blank">虚幻引擎 4 文档</a>。</p></li>
+</ol>
+</div>
+<p>
+</p>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e194806">端口</h2>
+</div>
+<div class="ref_sect"><h3 id="d124e194808">Input</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="d124e194808_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c05973be-c48c-46f4-a258-080b7f477279" data-target="#expand_panel_body_mw_c05973be-c48c-46f4-a258-080b7f477279" aria-controls="expand_panel_body_mw_c05973be-c48c-46f4-a258-080b7f477279" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_c05973be-c48c-46f4-a258-080b7f477279"><code class="name">WriteMsg</code> — 发送到场景的数据<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">标量</code> | <code class="literal">数组</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c05973be-c48c-46f4-a258-080b7f477279" aria-labelledby="expand_panel_heading_mw_c05973be-c48c-46f4-a258-080b7f477279" class="panel-collapse collapse"><div class="panel-body">
+            <p>数据发送到三维可视化环境场景。在虚幻引擎环境中，您可以配置 <code class="literal">Sim3DGet</code> 类以从 Simulink 模型接收数据。</p>
+            <p>例如，在虚幻编辑器中，双车道变更场景 Double Lane Change 有一个标签名为 <span style="font-family: monospace;">TrafficLight1</span> 的 <code class="literal">Sim3DGetInteger</code> 整型参与者。该整型参与者从 Simulink 模型中读取 <code class="literal">int32</code> 数据类型。您可以用它来控制交通信号灯的颜色。</p>
+            <p>此表提供了与双车道变换场景 Double Lane Change 中的
+        <code class="literal">WriteMsg</code> 值相对应的场景交通信号灯颜色。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th><p><span class="block">Simulation 3D Message Set</span> Block
+                                <code class="literal">WriteMsg</code> 值</p>
+</th>
+<th><p><code class="literal">TrafficLight1</code> 颜色</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">0</code></td>
+<td><code class="literal">红</code></td>
+</tr>
+<tr><td><code class="literal">1</code></td>
+<td><code class="literal">黄</code></td>
+</tr>
+<tr><td><code class="literal">2</code></td>
+<td><code class="literal">绿</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e194894">参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="d124e194894_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4aa6a408-8345-4dde-a559-9bc63032310f" data-target="#expand_panel_body_mw_4aa6a408-8345-4dde-a559-9bc63032310f" aria-controls="expand_panel_body_mw_4aa6a408-8345-4dde-a559-9bc63032310f" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_SignalnameSigName" class="anchor_target"></span><h3 class="panel-title" id="mw_4aa6a408-8345-4dde-a559-9bc63032310f"><code class="name">Signal name, SigName</code> — 消息信号名称<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">mySignal</code> (默认)</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4aa6a408-8345-4dde-a559-9bc63032310f" aria-labelledby="expand_panel_heading_mw_4aa6a408-8345-4dde-a559-9bc63032310f" class="panel-collapse collapse"><div class="panel-body">
+          <p>指定三维可视化环境中的信号名称。在虚幻引擎环境中，使用“详细信息”（Details）窗格中的 <code class="literal">Sim3Get</code> 参与者类。</p>
+          <p>例如，您可以将数据发送到双车道变更场景，将交通信号灯颜色更改为红色、黄色或绿色。要将数据发送到交通信号灯，请将此参数设置为 <code class="literal">TrafficLight1</code>。在双车道变换场景中，将 <code class="literal">Sim3dGetInteger</code> 参与者类的“Tags”属性设置为 TrafficLight1。</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_998f82fd-3fe2-405c-9370-7c6205dc0325_sep_mw_ff7f4101-a5e8-436f-9e3b-ba247580fd77" data-target="#expand_panel_body_mw_998f82fd-3fe2-405c-9370-7c6205dc0325_sep_mw_ff7f4101-a5e8-436f-9e3b-ba247580fd77" aria-controls="expand_panel_body_mw_998f82fd-3fe2-405c-9370-7c6205dc0325_sep_mw_ff7f4101-a5e8-436f-9e3b-ba247580fd77" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sampletime" class="anchor_target"></span><h3 class="panel-title" id="mw_998f82fd-3fe2-405c-9370-7c6205dc0325_sep_mw_ff7f4101-a5e8-436f-9e3b-ba247580fd77"><code class="name">Sample time</code> — 采样时间<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.02</code> (默认) | <code class="literal remove_text_wrapping">-1</code> | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_998f82fd-3fe2-405c-9370-7c6205dc0325_sep_mw_ff7f4101-a5e8-436f-9e3b-ba247580fd77" aria-labelledby="expand_panel_heading_mw_998f82fd-3fe2-405c-9370-7c6205dc0325_sep_mw_ff7f4101-a5e8-436f-9e3b-ba247580fd77" class="panel-collapse collapse"><div class="panel-body"><p>采样时间，以秒为单位。图形帧速率是采样时间的倒数。如果将采样时间设置为 <code class="literal remove_text_wrapping">-1</code>，则该模块将使用在 <span class="block">Simulation 3D Scene Configuration</span> 模块中指定的采样时间。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="examples">模型示例</h2>
+<section class="example_short_list"><div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../ug/scene-interrogation-reference-application.html"><div class="card_media" style="background-image:url(../../examples/vdynblks/win64/SceneInterrogationReferenceApplicationExample_01.png);"><img alt="Scene Interrogation with Camera and Ray Tracing Reference Application" src="../../examples/vdynblks/win64/SceneInterrogationReferenceApplicationExample_01.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Scene Interrogation with Camera and Ray Tracing Reference Application</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Interrogate a 3D Unreal Engine scene with a vehicle dynamics model by using a camera and ray tracing
+                reference application project.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:cd(setupExample('vdynblks/SceneInterrogationReferenceApplicationExample'));helpersetupscr">Open Example</a></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="clearfix"></div>
+<div class="ref_sect"><h2 id="mw_998f82fd-3fe2-405c-9370-7c6205dc0325_vh">Version History</h2>
+<p><strong>Introduced in R2019b</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_998f82fd-3fe2-405c-9370-7c6205dc0325_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
+        Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dmessageget.html"><span itemprop="name"><span class="block">Simulation 3D Message Get</span></span></a></span></p>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/get-started-communicating-with-the-unreal-engine-visualization-environment.html" class="a">Get Started Communicating with the Unreal Engine Visualization Environment</a></li>
+<li><a href="../ug/send-and-receive-double-lane-change-scene-data.html" class="a">Send Double-Lane Change Scene Data</a></li>
+<li><a href="../ug/customize-3d-scenes-for-vehicle-dynamics-simulations.html" class="a">Customize 3D Scenes for Vehicle Dynamics Simulations</a></li>
+</ul>
+</div>
+</div>
+<div class="examples_container"><h3 class="remove_border">External Websites</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="https://www.unrealengine.com/unreal" target="_blank">Unreal
+        Engine</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

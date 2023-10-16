@@ -1,26 +1,15 @@
-
-
-
+% Simulink Bug 信号的传播
+% matlab\toolbox\shared\sim3dblks\sim3dblks\AbstractSim3DTruthSensor.m
+% 继承自该类。
 classdef(Hidden)SimulinkBusUtilities<matlab.System...
     &matlabshared.tracking.internal.SimulinkBusPropagation
-%#codegen
-
-
-
-
-
-
-
-
-
 
     properties(Nontunable)
-
         BusNameSource='Auto';
-
-
         BusName=char.empty(1,0)
     end
+
+
     properties(Constant,Hidden)
         BusNameSourceSet=matlab.system.internal.MessageCatalogSet({'shared_tracking:SimulinkBusUtilities:BusNameSourceAuto',...
         'shared_tracking:SimulinkBusUtilities:BusNameSourceProperty'});
@@ -29,15 +18,15 @@ classdef(Hidden)SimulinkBusUtilities<matlab.System...
 
     methods
         function obj=SimulinkBusUtilities
-
-
             coder.allowpcode('plain');
         end
+
 
         function val=get.BusName(obj)
             val=obj.BusName;
             val=getBusName(obj,val);
         end
+
 
         function set.BusName(obj,val)
             validateBusName(obj,val,'BusName')
@@ -45,16 +34,19 @@ classdef(Hidden)SimulinkBusUtilities<matlab.System...
         end
     end
 
+
     methods(Access=protected)
         function s=saveObjectImpl(obj)
             s=saveObjectImpl@matlab.System(obj);
             s=saveBuses(obj,s);
         end
 
+
         function loadObjectImpl(obj,s,wasLocked)
             loadBuses(obj,s,wasLocked);
             loadObjectImpl@matlab.System(obj,s,wasLocked);
         end
+        
 
         function flag=isInactivePropertyImpl(obj,prop)
             flag=isInactiveBusProperty(obj,prop)...
