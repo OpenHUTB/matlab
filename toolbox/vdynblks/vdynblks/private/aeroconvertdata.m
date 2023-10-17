@@ -1,13 +1,5 @@
 function Convert=aeroconvertdata(mtype,varargin)
 
-
-
-
-
-
-
-
-
     usys='hybrid';
     if~isempty(varargin)&&length(varargin)==2
         usys=checkUnitSys(mtype,varargin{1},varargin{2});
