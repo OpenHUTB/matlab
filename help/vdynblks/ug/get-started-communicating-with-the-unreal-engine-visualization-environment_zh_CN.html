@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Get Started Communicating with the Unreal Engine Visualization Environment</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Vehicle Dynamics Blockset"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../vehicle-scenarios.html",
+          "name": "Vehicle Scenarios"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "vehicle-scenarios"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Use the Simulation 3D Message Get and Simulation 3D Message Set blocks to communicate with the Unreal Editor."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "vdynblks";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Vehicle Dynamics Blockset</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../vehicle-scenarios.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Vehicle Scenarios</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">开始与虚幻引擎可视化环境进行通信</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_4610232b-3381-407d-86d8-cb77dc77aa2c" class="intrnllnk">设置虚幻引擎以发送和接收数据</a><ul class="nav"><li><a href="#mw_57566ba1-d1f6-4c13-904b-c9a461b35250" class="intrnllnk">第 1 步：安装支持包</a></li>
+<li><a href="#mw_00d25859-a4d8-42b9-a215-03012209fcc4" class="intrnllnk">第 2 步：设置 Simulink 模型</a></li>
+<li><a href="#mw_5698f175-7c87-4f85-913f-0b90c79687fe" class="intrnllnk">第 3 步：配置模块</a></li>
+</ul></li>
+<li><a href="#mw_96b47190-844c-4525-b5c1-1fe2d0a65cf1" class="intrnllnk">C++ 工作流程: 设置虚幻引擎以发送和接收数据</a><ul class="nav"><li><a href="#mw_34069ddf-4da8-4e7a-b489-c2d01b64aae7" class="intrnllnk">第 4 步：在编辑模式打开虚幻编辑器</a></li>
+<li><a href="#mw_c699a3e1-060c-4fcc-9519-918e2498e29d" class="intrnllnk">第 5 步：创建参与者类</a></li>
+<li><a href="#mw_cd8594f6-0204-4709-a7c6-f5e553cd2a15" class="intrnllnk">第 6 步：打开 SetGetActorLocation.h</a></li>
+<li><a href="#mw_f0d8ccc0-0c44-4c46-bdb0-14cd03662d69" class="intrnllnk">第 7 步：打开 SetGetActorLocation.cpp</a></li>
+<li><a href="#mw_9dd1f04d-5a67-41ff-8feb-6a25519c2912" class="intrnllnk">第 8 步：构建 Visual Studio 工程并打开虚幻编辑器</a></li>
+<li><a href="#mw_36cdb20d-08da-49ae-9798-05d633f54a7f" class="intrnllnk">第 9 步：放置并检查参与者</a></li>
+<li><a href="#mw_50c8ec3f-0a50-4238-afea-857a36879934" class="intrnllnk">第 10 步：添加纹理</a></li>
+<li><a href="#mw_5c2a4e8a-11e3-4110-9f3f-df8631cb6347" class="intrnllnk">第 11 步：设置圆锥体位置</a></li>
+<li><a href="#mw_aa3fae0c-7930-4d6e-8508-9e68f8bc1c98" class="intrnllnk">第 12 步：设置父类并保存场景</a></li>
+<li><a href="#mw_50b4bbd8-6e24-4b79-9124-537d2e3d865b" class="intrnllnk">第 13 步：运行仿真</a></li>
+<li><a href="#mw_29611e6b-cdf6-455a-8448-8616ceb4f620" class="intrnllnk">Reference: C++ Functions for Sending and Receiving Simulink Data</a></li>
+</ul></li>
+<li><a href="#mw_d916dea9-c596-4ce0-848c-47d7db9a9650" class="intrnllnk">蓝图工作流程: 设置虚幻引擎以发送和接收数据</a><ul class="nav"><li><a href="#mw_734ca2cf-a410-4871-a4b3-4e807400b643" class="intrnllnk">步骤 4: 配置场景以接收数据</a></li>
+<li><a href="#mw_0b71efa0-3192-4615-bead-a3208932d14c" class="intrnllnk">步骤 5: 配置场景以发送数据</a></li>
+<li><a href="#mw_f347733b-249b-4b83-9109-aa1ad26d2264" class="intrnllnk">步骤 6: 创建蓝图</a></li>
+<li><a href="#mw_bb011440-1e53-41e4-8d31-2b8f242e72d7" class="intrnllnk">步骤 7: 运行仿真</a></li>
+</ul></li>
+<li><a href="#mw_2f5ae8a8-dbd8-4020-9aae-c78d777d55d4" class="intrnllnk">运行仿真</a></li>
+<li><a href="#d124e14385" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e14410" class="intrnllnk">Related Topics</a></li>
+<li><a href="#d124e14419" class="intrnllnk">External Websites</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h2 class="title r2022b" itemprop="title content" id="mw_54fa748e-2d08-4268-960c-b932bf6e8ae4">开始与虚幻引擎可视化环境进行通信<br/></h2>
+<p>您可以使用 Simulation 3D Message Get 和 Simulation 3D Message Set 模块与虚幻引擎<sup>®</sup> 建立通信：</p>
+<div class="itemizedlist"><ul><li><p><a href="../ref/simulation3dmessageget.html"><span class="block">Simulation
+                        3D Message Get</span></a> 从虚幻引擎环境接收数据。</p></li>
+<li><p><a href="../ref/simulation3dmessageset.html"><span class="block">Simulation
+                        3D Message Set</span></a> 向虚幻引擎环境发送数据。</p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>要使用这些块并与虚幻引擎进行通信，请确保安装 <span class="entity">Vehicle Dynamics Blockset™ Interface for Unreal Engine 4 Projects</span> 支持包。有关详细信息，请参阅 <a href="install-support-package-and-configure-environment.html" class="a">Install Support Package and Configure Environment</a>。</p>
+<p>接下来，按照这些工作流程步骤设置 Simulink<sup>®</sup> 模型和虚幻引擎环境并运行仿真。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="20%"/>
+<col class="tcol2" width="23%"/>
+<col class="tcol3" width="57%"/>
+</colgroup>
+<thead><tr><th colspan="2">工作流程</th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody><tr><td colspan="2"><a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_4610232b-3381-407d-86d8-cb77dc77aa2c" class="intrnllnk">设置 Simulink 模型以发送和接收数据</a></td>
+<td><p>在Simulink 中配置 Simulation 3D Message Get 和 Simulation 3D Message Set 模块，以从虚幻<sup>®</sup> 编辑器发送和接收圆锥体位置。这些步骤提供了与编辑器通信的一般工作流程。</p>
+<p>Simulation 3D Message Get 和 Simulation 3D Message Set 模块可以发送和接收以下数据类型： <code class="literal">double</code>, <code class="literal">single</code>,
+                                    <code class="literal">int8</code>, <code class="literal">uint8</code>,
+                                    <code class="literal">int16</code>, <code class="literal">uint16</code>,
+                                    <code class="literal">int32</code>, <code class="literal">uint32</code>, 和
+                                    <code class="literal">Boolean</code>。Simulation 3D Actor Transform Set 和 Simulation 3D Actor Transform Get 模块只能发送和接收 <code class="literal">single</code> 数据类型。</p>
+</td>
+</tr>
+<tr><td rowspan="2"><p>设置虚幻引擎以发送和接收数据</p>
+</td>
+<td><a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_96b47190-844c-4525-b5c1-1fe2d0a65cf1" class="intrnllnk">C++ 工作流程：设置虚幻引擎以发送和接收数据</a></td>
+<td><p>用于发送和接收 Simulink 圆锥体位置数据的特定虚幻 C++ 工作流程。</p>
+<div class="itemizedlist"><ul><li><p><span class="block">Simulation 3D Message Get</span> 从虚幻引擎环境 C++ 参与者类接收数据。在此示例工作流程中，您使用块从虚幻编辑器接收圆锥体位置。</p></li>
+<li><p><span class="block">Simulation 3D Message Set</span> 将数据发送到虚幻引擎 C++ 参与者类。在此示例中，您使用块在虚幻编辑器中设置初始圆锥体位置。</p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>要遵循此工作流程，您应该熟悉在虚幻引擎中使用 C++ 进行编码。确保您的环境满足<a href="3d-visualization-engine-requirements.html" class="a">虚幻引擎仿真环境的要求和限制</a>的要求。</p>
+</td>
+</tr>
+<tr><td><a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_d916dea9-c596-4ce0-848c-47d7db9a9650" class="intrnllnk">蓝图工作流程：设置虚幻引擎以发送和接收数据</a></td>
+<td><p>用于发送和接收 Simulink 数据的通用虚幻编辑器蓝图工作流程。</p>
+</td>
+</tr>
+<tr><td colspan="2"><a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_2f5ae8a8-dbd8-4020-9aae-c78d777d55d4" class="intrnllnk">运行仿真</a></td>
+<td><p>设置 Simulink 模型和虚幻编辑器环境后，运行仿真。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<section itemprop="content"><h3 class="title" id="mw_4610232b-3381-407d-86d8-cb77dc77aa2c">设置 Simulink 模型以发送和接收数据<br/></h3>
+<section itemprop="content"><h4 class="title" id="mw_57566ba1-d1f6-4c13-904b-c9a461b35250">第 1 步：安装支持包</h4>
+<p>如果您已经下载并安装了虚幻引擎和 <span class="entity">Vehicle Dynamics Blockset Interface for Unreal Engine 4 Projects</span> 支持包，请转到下一步。</p>
+<p>要安装和配置支持包，请参阅 <a href="install-support-package-and-configure-environment.html" class="a">安装支持包和配置环境</a>。</p>
+<p>在安装支持包之前，请确保您的环境满足 <a href="3d-visualization-engine-requirements.html" class="a">虚幻引擎模仿真境要求和限制</a> 中描述的最低软件和硬件要求。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><b>笔记</b><br/></p>
+<p>确保从 Simulink 启动虚幻引擎。</p>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_00d25859-a4d8-42b9-a215-03012209fcc4">第 2 步：设置 Simulink 模型</h4>
+<p>打开一个新的 Simulink 模型。如图所示连接模块。</p>
+<p>
+                </p>
+<div class="mediaobject"><p><img src="get_set_step2_1.png" alt="Simulink model with connected blocks" height="380" width="636"/></p>
+</div>
+<p>
+            </p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_5698f175-7c87-4f85-913f-0b90c79687fe">第 3 步：配置模块</h4>
+<p>使用这些模块设置来配置块以从虚幻编辑器发送和接收圆锥体数据。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="31%"/>
+<col class="tcol2" width="69%"/>
+</colgroup>
+<thead><tr><th>模块</th>
+<th>参数设置</th>
+</tr>
+</thead>
+<tbody><tr><td><p><span class="block">Constant</span></p>
+</td>
+<td>
+                                    <div class="itemizedlist"><ul><li><p><strong class="guilabel">常量值</strong> —
+                                                  <code class="literal">[100,10,50]</code></p><p>设置虚幻编辑器坐标系中的初始圆锥体位置（以厘米为单位，左手坐标系，Z 向上坐标系）</p></li>
+<li><p><strong class="guilabel">将向量参数解释为一维向量</strong> — <code class="literal">off</code></p></li>
+<li><p><strong class="guilabel">输出数据类型</strong> —
+                                                  <code class="guidropdown">single</code></p></li>
+</ul>
+</div>
+                                </td>
+</tr>
+<tr><td><p><span class="block">Data Type Conversion</span></p>
+</td>
+<td><p>
+                                        </p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">输出数据类型</strong> —
+                                                  <code class="guidropdown">single</code></p></li>
+</ul>
+</div>
+<p>
+
+                                    </p>
+</td>
+</tr>
+<tr><td><p><span class="block">Simulation 3D Scene
+                                    Configuration</span></p>
+</td>
+<td><p>
+                                        </p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Scene Source</strong> —
+                                                  <code class="guidropdown">Unreal Editor</code></p></li>
+<li><p><strong class="guilabel">Project</strong> — Project
+                                                  path</p><p>指向工程的路径，比如支持包工程。<em class="replaceable"><code>C:\Local\AutoVrtlEnv\AutoVrtlEnv.uproject</code></em></p></li>
+<li><p><strong class="guilabel">Open Unreal Editor</strong> — 选择以打开编辑器</p></li>
+</ul>
+</div>
+<p>
+
+                                    </p>
+</td>
+</tr>
+<tr><td><p><span class="block">Simulation 3D Message Get</span></p>
+</td>
+<td><p>
+                                        </p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Signal name, SigName</strong> —
+                                                  <code class="literal">ConeLocGet</code></p></li>
+<li><p><strong class="guilabel">Data type, DataType</strong> —
+                                                  <code class="guidropdown">single</code></p></li>
+<li><p><strong class="guilabel">Message size, MsgSize</strong> —
+                                                  <code class="literal">[1 3]</code></p></li>
+<li><p><strong class="guilabel">Sample time</strong> —
+                                                  <code class="literal remove_text_wrapping">-1</code></p></li>
+</ul>
+</div>
+<p>
+
+                                    </p>
+</td>
+</tr>
+<tr><td><span class="block">Simulation 3D Message Set</span></td>
+<td><p>
+                                        </p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Signal name, SigName</strong> —
+                                                  <code class="literal">ConeLocSet</code></p></li>
+<li><p><strong class="guilabel">Sample time</strong> —
+                                                  <code class="literal remove_text_wrapping">-1</code></p></li>
+</ul>
+</div>
+<p>
+
+                                    </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+</section>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_96b47190-844c-4525-b5c1-1fe2d0a65cf1">C++ 工作流程：设置虚幻引擎以发送和接收数据</h3>
+<section itemprop="content"><h4 class="title" id="mw_34069ddf-4da8-4e7a-b489-c2d01b64aae7">第 4 步：在编辑器模式下打开虚幻编辑器<br/></h4>
+<p>
+                </p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>按照 <a href="create-empty-project-in-unreal-engine.html" class="a">在虚幻引擎中创建空项目</a>中列出的步骤在虚幻引擎中创建一个新项目（可以用<a href="https://github.com/OpenHUTB/engine">定制的虚幻引擎</a>，项目设置选默认的”蓝图“）。</p></li>
+<li><p>在您的模型中，打开“Simulation 3D Scene Configuration”模块。选择“打开虚幻编辑器（<strong class="guilabel">Open Unreal
+                                Editor</strong>）。</p></li>
+<li><p>创建虚幻引擎 C++ 项目。将它命名为 <code class="literal">TestSim3dGetSet</code>。有关如何创建 C++ 项目的步骤，请参阅 <a href="https://docs.unrealengine.com" target="_blank">虚幻引擎 4 文档</a>。</p></li>
+<li><p>在虚幻编辑器的“编辑（Edit）”选项卡上，选择“插件（<strong class="guilabel">Plugins</strong><span class="guilabel">）。</span>确保 <code class="guidropdown">MathWorks Interface</code> 插件已启用。如果已禁用，请将其启用。</p></li>
+<li><p>关闭虚幻编辑器。</p></li>
+<li><p>如果 Visual Studio<sup>®</sup> 未打开，请将其打开。</p></li>
+<li><p>在 Visual Studio 中，将 MathWorksSimulation 依赖项添加到
+                                <code class="literal">TestSim3dGetSet</code> 项目生成文件中。</p>
+<div class="itemizedlist"><ul><li><p>项目构建文件 <code class="literal">TestSim3dGetSet.Build.cs </code>位于此文件夹中：<code class="literal">...\TestSim3dGetSet\Source\TestSim3dGetSet</code>。</p></li>
+</ul>
+</div><p>
+</p></li>
+<li><p>保存更改。在 Visual Studio 中，重建 <code class="literal">TestSim3dGetSet</code> 项目。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>提示</strong></p>
+<p>在 Visual Studio 中重建项目之前，请确保虚幻编辑器未打开。</p>
+</div><p>
+</p></li>
+<li><p>关闭 Visual Studio。</p></li>
+<li><p>在您的模型中，打开 <span class="block">Simulation 3D Scene
+                                Configuration</span> 模块。</p><div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>将项目（<strong class="guilabel">Project</strong>）设置为
+                                            <code class="literal"><em class="replaceable"><code>Your_Project_path</code></em>\TestSim3dGetSet.uproject</code>。</p></li>
+<li><p>选择 <strong class="guilabel">Open Unreal Editor</strong>。</p></li>
+</ol>
+</div></li>
+</ol>
+</div>
+<p>
+
+            </p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_c699a3e1-060c-4fcc-9519-918e2498e29d">第 5 步：创建参与者类</h4>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在虚幻编辑器中，在“内容浏览器（Content Browser）” 选项卡上的“视图选项（View Options）”选项卡下，选择“显示引擎内容（Show Engine Content）”和“显示插件内容（Show Plugin Content）。</p>
+<div class="mediaobject"><p class="listimage"><img src="ue_animate_find_engine.png" alt="Unreal Editor options" height="503" width="172"/></p>
+</div><p></p></li>
+<li><p>在虚幻编辑器中，从 MathWorksSimulation C++ 类目录中选择 <strong class="guilabel">Sim3dActor</strong>。</p>
+<div class="mediaobject"><p class="listimage"><img src="ue_animate_find_sim3d.png" alt="Unreal Editor content browser" height="334" width="637"/></p>
+</div><p>右键单击并选择 <strong class="guilabel">创建从 Sim3dActor 继承的 C++ 类</strong>。</p><div id="d124e13659" class="mediaobject"><p class="listimage"><img src="ue_animate_step5_1.png" alt="Unreal Editor class actions" height="363" width="317"/></p>
+</div></li>
+<li><p>将新的 Sim3dActor 命名为 <code class="literal">SetGetActorLocation</code>。选择 <strong class="guilabel">Public</strong>。单击创建类（<strong class="guilabel">Create
+                        Class</strong><span class="guilabel">）</span>。</p></li>
+<li><p>关闭虚幻编辑器。</p></li>
+</ol>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_cd8594f6-0204-4709-a7c6-f5e553cd2a15">第 6 步：打开 <code class="literal">SetGetActorLocation.h</code></h4>
+<p>使用 Visual Studio 在项目文件夹中打开新的 C++ 文件：</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">SetGetActorLocation.h</code></p></li>
+<li><p><code class="literal">SetGetActorLocation.cpp</code></p></li>
+</ul>
+</div>
+<p>
+确保关闭虚幻编辑器。</p>
+<p>在 Visual Studio 中，构建解决方案 <code class="literal">TestSim3dGetSet</code>:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在解决方案资源管理器（Solution Explorer）中，右键单间解决方案 <strong class="guilabel">Solution
+                                'TestSim3dGetSet' (2 个项目)</strong>。</p></li>
+<li><p>选择构建解决方案（<strong class="guilabel">Build Solution</strong>）。</p></li>
+<li><p>解决方案构建后，打开
+                                <code class="literal">SetGetActorLocation.h</code>。如图所示编辑文件。</p><p><a href="#" onclick="return toggleexpander('d124e13720_block','d124e13720_expandable_text');"><img style="border:0;" id="d124e13720_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e13720_block','d124e13720_expandable_text');">替换代码：<code class="literal">SetGetActorLocation.h</code></a></p><div class="expander" style="display:none; padding-left:4px;" id="d124e13720_block"><p>This is the replacement code for
+                                    <code class="literal">SetGetActorLocation.h</code>.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>// Copyright 2019 The <span style="color:#A020F0">MathWorks</span>, Inc.
+
+#pragma once
+
+#include <span style="color:#A020F0">"Sim3dActor.h"</span>
+#include <span style="color:#A020F0">"SetGetActorLocation.generated.h"</span>
+
+UCLASS()
+class <span style="color:#A020F0">TESTSIM3DGETSET_API</span> <span style="color:#A020F0">ASetGetActorLocation</span> <span style="color:#A020F0">:</span> <span style="color:#A020F0">public</span> <span style="color:#A020F0">ASim3dActor</span>
+{
+	GENERATED_BODY()
+	
+	void *SignalReader;
+	void *SignalWriter;
+
+public:	
+	// Sets default values <span style="color:#0000FF">for</span> this actor's properties
+	ASetGetActorLocation();
+
+	virtual <span style="color:#A020F0">void</span> <span style="color:#A020F0">Sim3dSetup()</span> <span style="color:#A020F0">override</span>;
+	virtual <span style="color:#A020F0">void</span> <span style="color:#A020F0">Sim3dRelease()</span> <span style="color:#A020F0">override</span>;
+	virtual <span style="color:#A020F0">void</span> <span style="color:#A020F0">Sim3dStep(float DeltaSeconds)</span> <span style="color:#A020F0">override</span>;
+};
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+</div></li>
+</ol>
+</div>
+<p>
+</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_f0d8ccc0-0c44-4c46-bdb0-14cd03662d69">第 7 步：打开 <code class="literal">SetGetActorLocation.cpp</code></h4>
+<p>打开 <code class="literal">SetGetActorLocation.cpp</code> 并替换代码块。</p>
+<p><a href="#" onclick="return toggleexpander('d124e13741_block','d124e13741_expandable_text');"><img style="border:0;" id="d124e13741_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e13741_block','d124e13741_expandable_text');">替换代码：设置指向参数的指针</a></p>
+<div class="expander" style="display:none; padding-left:4px;" id="d124e13741_block"><p>This code allows you to set a pointer to the parameter Signal Name parameter
+                    for the Simulink blocks <span class="block">Simulation 3D Message Set</span> and
+                        <span class="block">Simulation 3D Message Get</span>, respectively.
+                    </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>// Sets default <span style="color:#A020F0">values</span>
+ASetGetActorLocation::ASetGetActorLocation():SignalReader(nullptr), SignalWriter(nullptr)
+{
+}
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+</div>
+<p><a href="#" onclick="return toggleexpander('d124e13757_block','d124e13757_expandable_text');"><img style="border:0;" id="d124e13757_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e13757_block','d124e13757_expandable_text');">替换代码：访问参与者标签名</a></p>
+<div class="expander" style="display:none; padding-left:4px;" id="d124e13757_block"><p>The following code allows you to access the tag name of this actor after it is
+                    instantiated in the scene with an assigned tag name. The code also initializes
+                    the pointers <code class="literal">SignalReader</code> and
+                    <code class="literal">SignalWriter</code>, to initiate a link between Unreal Editor and Simulink. The variables represent these block Signal Name parameter values:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">SignalReaderTag</code> — <span class="block">Simulation 3D Message
+                                    Set</span></p></li>
+<li><p><code class="literal">SignalWriterTag</code> — <span class="block">Simulation 3D Message
+                                    Get</span></p></li>
+</ul>
+</div>
+<p>
+</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>void <span style="color:#A020F0">ASetGetActorLocation::Sim3dSetup()</span>
+{
+Super::Sim3dSetup();
+       <span style="color:#0000FF">if</span> (Tags.Num() != 0) {
+              unsigned <span style="color:#A020F0">int</span> <span style="color:#A020F0">numElements</span> <span style="color:#A020F0">=</span> <span style="color:#A020F0">3</span>;
+              FString <span style="color:#A020F0">tagName</span> <span style="color:#A020F0">=</span> <span style="color:#A020F0">Tags.Top().ToString()</span>;
+
+              FString <span style="color:#A020F0">SignalReaderTag</span> <span style="color:#A020F0">=</span> <span style="color:#A020F0">tagName</span>;
+              SignalReaderTag.Append(TEXT(<span style="color:#A020F0">"Set"</span>));
+              SignalReader = StartSimulation3DMessageReader(TCHAR_TO_ANSI(*SignalReaderTag), sizeof(float)*numElements);
+
+              FString <span style="color:#A020F0">SignalWriterTag</span> <span style="color:#A020F0">=</span> <span style="color:#A020F0">tagName</span>;
+              SignalWriterTag.Append(TEXT(<span style="color:#A020F0">"Get"</span>));
+              SignalWriter = StartSimulation3DMessageWriter(TCHAR_TO_ANSI(*SignalWriterTag), sizeof(float)*numElements);
+              }
+}
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+</div>
+<p><a href="#" onclick="return toggleexpander('d124e13787_block','d124e13787_expandable_text');"><img style="border:0;" id="d124e13787_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e13787_block','d124e13787_expandable_text');">附加代码：在运行时读取和写入数据</a></p>
+<div class="expander" style="display:none; padding-left:4px;" id="d124e13787_block"><p>Add this code to allow Unreal Engine to read the data value set by <span class="block">Simulation 3D Message
+                        Set</span> and then write back to <span class="block">Simulation 3D Message Get</span>
+                    during run time. Unreal Engine uses this data to set the location value of the
+                    actor.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>void <span style="color:#A020F0">ASetGetActorLocation::Sim3dStep(float DeltaSeconds)</span>
+{
+       unsigned int numElements = 3;
+       float array[3];
+       int statusR = ReadSimulation3DMessage(SignalReader, sizeof(float)*numElements, array);
+       FVector NewLocation;
+       NewLocation.X = array[0];
+       NewLocation.Y = array[1];
+       NewLocation.Z = array[2];
+       SetActorLocation(NewLocation);
+       float fvector[3] = { NewLocation.X, NewLocation.Y, NewLocation.Z };
+       int statusW = WriteSimulation3DMessage(SignalWriter, sizeof(float)*numElements ,fvector);
+}
+
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+</div>
+<p><a href="#" onclick="return toggleexpander('d124e13806_block','d124e13806_expandable_text');"><img style="border:0;" id="d124e13806_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e13806_block','d124e13806_expandable_text');">附加代码：停止仿真</a></p>
+<div class="expander" style="display:none; padding-left:4px;" id="d124e13806_block"><p>Add this code so that Unreal Engine stops when you press the Simulink stop button. The code destroys the pointer SignalReader and
+                    SignalWriter.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>void <span style="color:#A020F0">ASetGetActorLocation::Sim3dRelease()</span>
+{
+       Super::Sim3dRelease();
+       <span style="color:#0000FF">if</span> (SignalReader) {
+              StopSimulation3DMessageReader(SignalReader);
+       }
+       SignalReader = nullptr;     
+
+       <span style="color:#0000FF">if</span> (SignalWriter) {
+              StopSimulation3DMessageWriter(SignalWriter);
+       }
+       SignalWriter = nullptr;
+}
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+</div>
+<p><a href="#" onclick="return toggleexpander('d124e13821_block','d124e13821_expandable_text');"><img style="border:0;" id="d124e13821_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"/></a> <a href="#" onclick="return toggleexpander('d124e13821_block','d124e13821_expandable_text');">完整替换代码：<code class="literal">SetGetActorLocation.cpp</code></a></p>
+<div class="expander" style="display:none; padding-left:4px;" id="d124e13821_block"><p>This is the entire replacement code for
+                        <code class="literal">SetGetActorLocation.cpp</code>.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>// Copyright 2019 The <span style="color:#A020F0">MathWorks</span>, Inc.
+#include <span style="color:#A020F0">"CoreMinimal.h"</span>
+#include <span style="color:#A020F0">"Sim3dActor.h"</span>
+#include <span style="color:#A020F0">"SetGetActorLocation.generated.h"</span>
+
+// Sets default <span style="color:#A020F0">values</span>
+ASetGetActorLocation::ASetGetActorLocation():SignalReader(nullptr), SignalWriter(nullptr)
+{
+}
+
+void <span style="color:#A020F0">ASetGetActorLocation::Sim3dSetup()</span>
+{
+Super::Sim3dSetup();
+       <span style="color:#0000FF">if</span> (Tags.Num() != 0) {
+              unsigned <span style="color:#A020F0">int</span> <span style="color:#A020F0">numElements</span> <span style="color:#A020F0">=</span> <span style="color:#A020F0">3</span>;
+              FString <span style="color:#A020F0">tagName</span> <span style="color:#A020F0">=</span> <span style="color:#A020F0">Tags.Top().ToString()</span>;
+
+              FString <span style="color:#A020F0">SignalReaderTag</span> <span style="color:#A020F0">=</span> <span style="color:#A020F0">tagName</span>;
+              SignalReaderTag.Append(TEXT(<span style="color:#A020F0">"Set"</span>));
+              SignalReader = StartSimulation3DMessageReader(TCHAR_TO_ANSI(*SignalReaderTag), sizeof(float)*numElements);
+
+              FString <span style="color:#A020F0">SignalWriterTag</span> <span style="color:#A020F0">=</span> <span style="color:#A020F0">tagName</span>;
+              SignalWriterTag.Append(TEXT(<span style="color:#A020F0">"Get"</span>));
+              SignalWriter = StartSimulation3DMessageWriter(TCHAR_TO_ANSI(*SignalWriterTag), sizeof(float)*numElements);
+              }
+}
+
+void <span style="color:#A020F0">ASetGetActorLocation::Sim3dStep(float DeltaSeconds)</span>
+{
+       unsigned int numElements = 3;
+       float array[3];
+       int statusR = ReadSimulation3DMessage(SignalReader, sizeof(float)*numElements, array);
+       FVector NewLocation;
+       NewLocation.X = array[0];
+       NewLocation.Y = array[1];
+       NewLocation.Z = array[2];
+       SetActorLocation(NewLocation);
+       float fvector[3] = { NewLocation.X, NewLocation.Y, NewLocation.Z };
+       int statusW = WriteSimulation3DMessage(SignalWriter, sizeof(float)*numElements ,fvector);
+}
+
+void <span style="color:#A020F0">ASetGetActorLocation::Sim3dRelease()</span>
+{
+       Super::Sim3dRelease();
+       <span style="color:#0000FF">if</span> (SignalReader) {
+              StopSimulation3DMessageReader(SignalReader);
+       }
+       SignalReader = nullptr;     
+
+       <span style="color:#0000FF">if</span> (SignalWriter) {
+              StopSimulation3DMessageWriter(SignalWriter);
+       }
+       SignalWriter = nullptr;
+}
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_9dd1f04d-5a67-41ff-8feb-6a25519c2912">第 8 步：构建 Visual Studio 项目并打开虚幻编辑器<br/></h4>
+<p>在 Visual Studio 中，选择 <strong class="guimenuitem">Debug</strong> &gt; <strong class="guimenuitem">Start Debugging</strong> 或按 <strong class="guilabel">F5</strong> 运行
+                    <code class="literal">TestSim3dGetSet</code> 解决方案。虚幻编辑器打开。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>笔记</strong></p>
+<p>在虚幻编辑器中，通过单击 <strong class="guilabel">Save
+                        Current</strong> （位于左上角）保存当前关卡并将其命名为
+                        <code class="literal">TestMap</code>。通过单击 <strong class="guimenuitem">Edit</strong> &gt; <strong class="guimenuitem">Project Settings</strong> &gt; <strong class="guimenuitem">Maps&amp;Modes</strong>. 将该关卡作为默认值添加到“项目设置”（Project Setting）。 然后选择 <code class="literal">TestMap</code> 作为 Editor Startup Map 和 Game Default Map 的默认值。关闭项目设置以保存默认值。</p>
+</div>
+<div id="d124e13876" class="mediaobject"><p><img src="get_set_step8_1.png" alt="Unreal Editor project settings" height="499" width="931"/></p>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_36cdb20d-08da-49ae-9798-05d633f54a7f">第 9 步：放置并检查参与者</h4>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在虚幻编辑器中，找到 Set Get Actor Location 并将其放置在
+                            <code class="literal">TestMap</code>.</p>
+<div class="mediaobject"><p class="listimage"><img src="get_set_step8_2.png" alt="Unreal Editor Place Actors tab" height="154" width="254"/></p>
+</div><p></p></li>
+<li><p>在 <strong class="guilabel">World Outliner</strong> 选项卡上，检查新实例化的参与者 <code class="literal">SetGetActorLocation1</code> 是否已列出。</p>
+<div class="mediaobject"><p class="listimage"><img src="get_set_step9_1.png" alt="Unreal Editor World Outliner tab" height="188" width="388"/></p>
+</div><p></p></li>
+</ol>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_50c8ec3f-0a50-4238-afea-857a36879934">第 10 步：添加网格</h4>
+<p>单击您在 <a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_36cdb20d-08da-49ae-9798-05d633f54a7f" class="intrnllnk">第 9 步：放置并检查参与者</a> 中创建的参与者。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在“详细信息（<strong class="guilabel">Details</strong>）”面板中，单击“添加组件（Add Component）”以向参与者 <code class="literal">SetGetActorLocation1</code> 添加网格。选择 <code class="literal">Cone</code> 作为默认的网格。</p></li>
+<li><p>查找参与者的属性标签
+                                <code class="literal">SetGetActorLocation1</code>。单击 0 数组元素旁边的加号来添加标签。将它命名为 <code class="literal">ConeLoc</code>。</p></li>
+</ol>
+</div>
+<p>
+</p>
+<div id="d124e13929" class="mediaobject"><p><img src="get_set_step10_1.png" alt="Unreal Editor add component" height="648" width="779"/></p>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_5c2a4e8a-11e3-4110-9f3f-df8631cb6347">第 11 步：设置圆锥体位置</h4>
+<p>在“详细信息（<strong class="guilabel">Details</strong>）”选项卡上，单击“圆锥体（<strong class="guilabel">Cone</strong>）。 将圆锥设置为 X = <code class="literal">0.0</code>, Y = <code class="literal">0.0</code>, 和 Z =
+                    <code class="literal">0.0</code>. 还将参与者的 <strong class="guilabel">Mobility</strong> 属性设置为 Movable。</p>
+<div class="mediaobject"><p><img src="get_set_step11_1.png" alt="Unreal Editor set cone location" height="334" width="421"/></p>
+</div>
+<p></p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_aa3fae0c-7930-4d6e-8508-9e68f8bc1c98">第 12 步：设置父类并保存场景</h4>
+<p>设置父类。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在“蓝图（<strong class="guilabel">Blueprints</strong><span class="guilabel">）”下，单击“打开关卡蓝图（</span><strong class="guilabel">Open Level Blueprint</strong><span class="guilabel">）”，然后选择“类设置（</span> <strong class="guilabel">Class Settings</strong>）。</p>
+<div class="mediaobject"><p class="listimage"><img src="get_set_step12_1.png" alt="Unreal Editor Work Outliner tab" height="261" width="528"/></p>
+</div><p></p></li>
+<li><p>在“类选项（<strong class="guilabel">Class Options</strong><span class="guilabel">）中，将“父类（</span><strong class="guilabel">Parent Class</strong><span class="guilabel">）设置为</span> <code class="literal">Sim 3d Level Script Actor</code>。</p>
+<div class="mediaobject"><p class="listimage"><img src="get_set_step12_2.png" alt="Unreal Editor class settings" height="149" width="504"/></p>
+</div><p></p></li>
+</ol>
+</div>
+<p>
+</p>
+<p>保存虚幻编辑器场景。</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_50b4bbd8-6e24-4b79-9124-537d2e3d865b">第 13 步：运行仿真</h4>
+<p>运行仿真。转到 <a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_2f5ae8a8-dbd8-4020-9aae-c78d777d55d4" class="intrnllnk">运行仿真</a>。</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_29611e6b-cdf6-455a-8448-8616ceb4f620">参考：用于发送和接收 Simulink 数据的 C++ 函数<br/></h4>
+<p>Call these C++ functions 从 <a href="../ref/asim3dactor.sim3dsetup.html"><code class="function">Sim3dSetup</code></a>, <a href="../ref/asim3dactor.sim3dstep.html"><code class="function">Sim3dStep</code></a>, 和 <a href="../ref/asim3dactor.sim3drelease.html"><code class="function">Sim3dRelease</code></a> 调用这些 C++ 函数来发送和接收 Simulink 数据。</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="34%"/>
+<col class="tcol2" width="66%"/>
+</colgroup>
+<thead><tr><th>To</th>
+<th>C++ 函数</th>
+</tr>
+</thead>
+<tbody><tr><td rowspan="3">接收数据</td>
+<td><a href="../ref/asim3dactor.startsimulation3dmessagereader.html"><code class="function">StartSimulation3DMessageReader</code></a></td>
+</tr>
+<tr><td><a href="../ref/asim3dactor.readsimulation3dmessage.html"><code class="function">ReadSimulation3DMessage</code></a></td>
+</tr>
+<tr><td><a href="../ref/asim3dactor.stopsimulation3dmessagereader.html"><code class="function">StopSimulation3DMessageReader</code></a></td>
+</tr>
+<tr><td rowspan="3">发送数据</td>
+<td><a href="../ref/asim3dactor.startsimulation3dmessagewriter.html"><code class="function">StartSimulation3DMessageWriter</code></a></td>
+</tr>
+<tr><td><a href="../ref/asim3dactor.writesimulation3dmessage.html"><code class="function">WriteSimulation3DMessage</code></a></td>
+</tr>
+<tr><td><a href="../ref/asim3dactor.stopsimulation3dmessagewriter.html"><code class="function">StopSimulation3DMessageWriter</code></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_d916dea9-c596-4ce0-848c-47d7db9a9650">蓝图工作流程：设置虚幻引擎以发送和接收数据</h3>
+<section itemprop="content"><h4 class="title" id="mw_734ca2cf-a410-4871-a4b3-4e807400b643">第 4 步：配置场景以接收数据</h4>
+<p> 要使用 <span class="block">Simulation 3D Message Set</span> 模块，您必须在虚幻环境中配置场景以从 Simulink 模型接收数据：</p>
+<p>
+                </p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在虚幻编辑器中，实例化您想要从 Simulink 模型接收数据类型相对应的 <code class="literal">Sim3DGet</code> 参与者。此示例显示虚幻编辑器 <code class="literal">Sim3DGet</code> 数据类型。</p>
+<div class="informalfigure"><div id="d124e14095" class="mediaobject"><p class="listimage"><img src="ue_set1.png" alt="Unreal Editor Modes tab" height="235" width="230"/></p>
+</div>
+</div><p></p></li>
+<li><p>指定与 Simulation 3D Message Set 模块 <strong class="guilabel">Signal name</strong>
+                            参数匹配的参与者标签名称。</p></li>
+<li><p>导航至关卡蓝图（Level Blueprint）。</p></li>
+<li><p>根据您想要从 Simulink 模型接收的数据类型和大小，找到 <code class="literal">Sim3DGet</code> 参与者类的蓝图方法。</p><p>例如，在虚幻编辑器中，此图显示的是 <i>Sim3DGetInteger </i>参与者接收 <i>int32 </i>大小标量数据类型的  <code class="literal">Read Scalar
+                                Integer</code> 方法。</p>
+<div class="informalfigure"><div id="d124e14128" class="mediaobject"><p class="listimage"><img src="ue_set2.png" alt="Unreal Editor blueprint connections" height="143" width="360"/></p>
+</div>
+</div><p></p></li>
+<li><p>编译并保存场景。</p></li>
+</ol>
+</div>
+<p>
+
+            </p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_0b71efa0-3192-4615-bead-a3208932d14c">第 5 步：配置场景发送数据</h4>
+<p>要在虚幻引擎环境中配置场景以将数据发送到 Simulink 模型：</p>
+<p>
+                </p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在虚幻编辑器中，实例化与要发送到 Simulink 模型的数据类型相对应的 <code class="literal">Sim3DSet</code> 参与者。此示例显示虚幻编辑器 <code class="literal">Sim3DSet</code> 数据类型。</p>
+<div class="informalfigure"><div id="d124e14166" class="mediaobject"><p class="listimage"><img src="ue_get1.png" alt="Unreal Editor Modes tab" height="214" width="203"/></p>
+</div>
+</div><p></p></li>
+<li><p>指定与 Simulation 3D Message Get 模块 <strong class="guilabel">Signal name</strong>
+                            参数匹配的参与者标签名称。</p></li>
+<li><p>导航至关卡蓝图。</p></li>
+<li><p>根据由 Simulation 3D Message Get 模块数据类型（Data Type）和消息大小（Message size）参数指定数据类型大小，查找 <code class="literal">Sim3DSet</code> <span class="block">参与者类的蓝图方法。</span></p><p>对于本例，数组大小为 3。虚幻编辑器图表显示，<code class="literal">Write Array
+                                Float</code> 是发送数组大小为 3 的 float 数据类型的
+                                <code class="literal">Sim3DSetFloat3</code> 参与者类中的方法。</p>
+<div class="informalfigure"><div id="d124e14200" class="mediaobject"><p class="listimage"><img src="ue_get2.png" alt="Unreal Editor blueprint connections" height="155" width="373"/></p>
+</div>
+</div><p></p></li>
+<li><p>编译并保存场景。</p></li>
+</ol>
+</div>
+<p>
+
+            </p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><b>笔记</b><br/></p>
+<p>或者，为了获得更好的性能，请在参与者蓝图中将 <strong class="guilabel">Read Array Float Max Num
+                        Elements</strong> 设置为 <code class="guidropdown">Num El</code>。</p>
+<div class="informalfigure"><div id="d124e14215" class="mediaobject"><p><img src="get_set_step5_4.png" alt="Unreal Editor blueprint connections" height="490" width="374"/></p>
+</div>
+</div>
+<p></p>
+</div>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_f347733b-249b-4b83-9109-aa1ad26d2264">第 6 步：创建蓝图</h4>
+<p>在虚幻编辑器中，创建连接 Get and Set 参与者的关卡蓝图。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>设置参与者标签值。</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Sim3dGetFloat1</code> — <span class="block">Simulation 3D
+                                            Message Set</span> 模块 <strong class="guilabel">Signal name,
+                                            SigName</strong> 参数值，例如 <code class="literal">ConeLocSet</code></p></li>
+<li><p><code class="literal">Sim3dSetFloat1</code> — <span class="block">Simulation 3D
+                                            Message Get</span> 模块 <strong class="guilabel">Signal name,
+                                            SigName</strong> 参数值，例如 <code class="literal">ConeLocGet</code></p></li>
+</ul>
+</div><p>
+</p></li>
+<li><p>设置父类。</p>
+<div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>在“蓝图” <strong class="guilabel">Blueprints </strong>下，单击“打开关卡蓝图（<strong class="guilabel">Open Level Blueprint</strong>），然后选择 “类设置（<strong class="guilabel">Class Settings</strong>）。</p>
+<div class="mediaobject"><p class="listimage"><img src="get_set_step12_1.png" alt="Unreal Editor Work Outliner tab" height="261" width="528"/></p>
+</div><p></p></li>
+<li><p>在类选项（<strong class="guilabel">Class Options</strong><span class="guilabel">）中，将父类（</span><strong class="guilabel">Parent Class</strong>）设置为 <code class="literal">Sim 3d Level Script Actor</code>。</p>
+<div class="mediaobject"><p class="listimage"><img src="get_set_step12_2.png" alt="Unreal Editor class settings" height="149" width="504"/></p>
+</div><p></p></li>
+</ol>
+</div><p>
+</p></li>
+<li><p>在关卡蓝图中，进行连接，例如：</p>
+<div class="mediaobject"><p class="listimage"><img src="ue_getset_bp.png" alt="Unreal Editor blueprint connections" height="349" width="978"/></p>
+</div><p></p></li>
+</ol>
+</div>
+<p>
+</p>
+</section>
+<section itemprop="content"><h4 class="title" id="mw_bb011440-1e53-41e4-8d31-2b8f242e72d7">第 7 步：运行仿真</h4>
+<p>运行仿真。转到 <a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_2f5ae8a8-dbd8-4020-9aae-c78d777d55d4" class="intrnllnk">运行仿真</a>。</p>
+</section>
+</section>
+<section itemprop="content"><h3 class="title" id="mw_2f5ae8a8-dbd8-4020-9aae-c78d777d55d4">运行仿真</h3>
+<p>配置 Simulink 模型和虚幻编辑器环境后，您可以运行仿真。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>笔记</strong></p>
+<p>在 BeginPlay 事件中，Simulink 不会从虚幻编辑器接收数据。Simulink 在 Tick 事件中接收数据。</p>
+</div>
+<p>运行仿真。</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>在 Simulink 模型中，单击“运行（<strong class="guilabel">Run</strong>）”。</p><p>由于场景的来源是在虚幻编辑器中打开的项目，因此仿真不会启动。</p></li>
+<li><p>验证 Simulink 中的 Diagnostic Viewer 窗口是否显示以下消息：</p><p><code class="errortext">In the Simulation 3D Scene Configuration block, you set the scene source to 'Unreal Editor'. In Unreal Editor, select 'Play' to view the scene.</code></p><p>此消息确认 Simulink 已在虚幻引擎三维环境中实例化车辆和其他资产。 </p></li>
+<li><p>在虚幻编辑器中，单击“播放（<strong class="guilabel">Play</strong><span class="guilabel">）。</span>仿真在虚幻编辑器中当前打开的场景中运行。</p></li>
+</ol>
+</div>
+<p>
+</p>
+<p>您可以发送和接收以下数据类型：<code class="literal">double</code>,
+                <code class="literal">single</code>, <code class="literal">int8</code>, <code class="literal">uint8</code>,
+                <code class="literal">int16</code>, <code class="literal">uint16</code>, <code class="literal">int32</code>,
+                <code class="literal">uint32</code>, <code class="literal">boolean</code>。The code 在 <a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_f0d8ccc0-0c44-4c46-bdb0-14cd03662d69" class="intrnllnk">第 7 步：打开 SetGetActorLocation.cpp</a> 的代码从 Simulink 读取单个数据类型（或浮点值）。</p>
+</section>
+        <h2 id="d124e14385">也可以看看</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/asim3dactor.html"><span itemprop="name"><code class="object">ASim3dActor</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/asim3dactor.sim3dsetup.html"><span itemprop="name"><code class="function">Sim3dSetup</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/asim3dactor.sim3dstep.html"><span itemprop="name"><code class="function">Sim3dStep</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/asim3dactor.sim3drelease.html"><span itemprop="name"><code class="function">Sim3dRelease</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
+                Scene Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dmessageget.html"><span itemprop="name"><span class="block">Simulation 3D
+                Message Get</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dmessageset.html"><span itemprop="name"><span class="block">Simulation 3D
+                Message Set</span></span></a></span></p>
+        <h2 id="d124e14410">相关话题</h2>
+<ul><li><a href="animate-custom-actors-in-the-unreal-editor.html" class="a">Animate Custom Actors in the Unreal Editor</a></li>
+<li><a href="place-cameras-on-actors-in-the-unreal-editor.html" class="a">Place Cameras on Actors in the Unreal Editor</a></li>
+<li><a href="send-and-receive-double-lane-change-scene-data.html" class="a">Send Double-Lane Change Scene Data</a></li>
+</ul>
+        <h2 id="d124e14419">External Websites</h2>
+<ul><li><a href="https://docs.unrealengine.com" target="_blank">Unreal Engine 4
+                Documentation</a></li>
+</ul>
+    </section>
+    </div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
