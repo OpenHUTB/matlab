@@ -1,3 +1,4 @@
+% 单位数据的转换
 function Convert=aeroconvertdata(mtype,varargin)
 
     usys='hybrid';
