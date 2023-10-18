@@ -139,7 +139,7 @@
 <li><a href="#mw_f0d8ccc0-0c44-4c46-bdb0-14cd03662d69" class="intrnllnk">第 7 步：打开 SetGetActorLocation.cpp</a></li>
 <li><a href="#mw_9dd1f04d-5a67-41ff-8feb-6a25519c2912" class="intrnllnk">第 8 步：构建 Visual Studio 工程并打开虚幻编辑器</a></li>
 <li><a href="#mw_36cdb20d-08da-49ae-9798-05d633f54a7f" class="intrnllnk">第 9 步：放置并检查参与者</a></li>
-<li><a href="#mw_50c8ec3f-0a50-4238-afea-857a36879934" class="intrnllnk">第 10 步：添加纹理</a></li>
+<li><a href="#mw_50c8ec3f-0a50-4238-afea-857a36879934" class="intrnllnk">第 10 步：添加网格</a></li>
 <li><a href="#mw_5c2a4e8a-11e3-4110-9f3f-df8631cb6347" class="intrnllnk">第 11 步：设置圆锥体位置</a></li>
 <li><a href="#mw_aa3fae0c-7930-4d6e-8508-9e68f8bc1c98" class="intrnllnk">第 12 步：设置父类并保存场景</a></li>
 <li><a href="#mw_50b4bbd8-6e24-4b79-9124-537d2e3d865b" class="intrnllnk">第 13 步：运行仿真</a></li>
@@ -681,7 +681,7 @@ void <span style="color:#A020F0">ASetGetActorLocation::Sim3dRelease()</span>
 <p>运行仿真。转到 <a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_2f5ae8a8-dbd8-4020-9aae-c78d777d55d4" class="intrnllnk">运行仿真</a>。</p>
 </section>
 <section itemprop="content"><h4 class="title" id="mw_29611e6b-cdf6-455a-8448-8616ceb4f620">参考：用于发送和接收 Simulink 数据的 C++ 函数<br/></h4>
-<p>Call these C++ functions 从 <a href="../ref/asim3dactor.sim3dsetup.html"><code class="function">Sim3dSetup</code></a>, <a href="../ref/asim3dactor.sim3dstep.html"><code class="function">Sim3dStep</code></a>, 和 <a href="../ref/asim3dactor.sim3drelease.html"><code class="function">Sim3dRelease</code></a> 调用这些 C++ 函数来发送和接收 Simulink 数据。</p>
+<p>从 <a href="../ref/asim3dactor.sim3dsetup.html"><code class="function">Sim3dSetup</code></a>, <a href="../ref/asim3dactor.sim3dstep.html"><code class="function">Sim3dStep</code></a>, 和 <a href="../ref/asim3dactor.sim3drelease.html"><code class="function">Sim3dRelease</code></a> 调用这些 C++ 函数来发送和接收 Simulink 数据。</p>
 <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="34%"/>
 <col class="tcol2" width="66%"/>
 </colgroup>
@@ -801,7 +801,7 @@ void <span style="color:#A020F0">ASetGetActorLocation::Sim3dRelease()</span>
 <section itemprop="content"><h3 class="title" id="mw_2f5ae8a8-dbd8-4020-9aae-c78d777d55d4">运行仿真</h3>
 <p>配置 Simulink 模型和虚幻编辑器环境后，您可以运行仿真。</p>
 <div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>笔记</strong></p>
-<p>在 BeginPlay 事件中，Simulink 不会从虚幻编辑器接收数据。Simulink 在 Tick 事件中接收数据。</p>
+<p>在 BeginPlay 事件（虚幻编辑器中点击“运行”）中，Simulink 不会从虚幻编辑器接收数据。Simulink 在 Tick 事件（产生游戏的每一帧）中接收数据。</p>
 </div>
 <p>运行仿真。</p>
 <div class="orderedlist"><ol style="list-style: decimal;"><li><p>在 Simulink 模型中，单击“运行（<strong class="guilabel">Run</strong>）”。</p><p>由于场景的来源是在虚幻编辑器中打开的项目，因此仿真不会启动。</p></li>
@@ -814,7 +814,7 @@ void <span style="color:#A020F0">ASetGetActorLocation::Sim3dRelease()</span>
 <p>您可以发送和接收以下数据类型：<code class="literal">double</code>,
                 <code class="literal">single</code>, <code class="literal">int8</code>, <code class="literal">uint8</code>,
                 <code class="literal">int16</code>, <code class="literal">uint16</code>, <code class="literal">int32</code>,
-                <code class="literal">uint32</code>, <code class="literal">boolean</code>。The code 在 <a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_f0d8ccc0-0c44-4c46-bdb0-14cd03662d69" class="intrnllnk">第 7 步：打开 SetGetActorLocation.cpp</a> 的代码从 Simulink 读取单个数据类型（或浮点值）。</p>
+                <code class="literal">uint32</code>, <code class="literal">boolean</code>。在 <a href="get-started-communicating-with-the-unreal-engine-visualization-environment.html#mw_f0d8ccc0-0c44-4c46-bdb0-14cd03662d69" class="intrnllnk">第 7 步：打开 SetGetActorLocation.cpp</a> 的代码从 Simulink 读取单个数据类型（或浮点值）。</p>
 </section>
         <h2 id="d124e14385">也可以看看</h2>
 <p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/asim3dactor.html"><span itemprop="name"><code class="object">ASim3dActor</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/asim3dactor.sim3dsetup.html"><span itemprop="name"><code class="function">Sim3dSetup</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/asim3dactor.sim3dstep.html"><span itemprop="name"><code class="function">Sim3dStep</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/asim3dactor.sim3drelease.html"><span itemprop="name"><code class="function">Sim3dRelease</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D
@@ -835,6 +835,8 @@ void <span style="color:#A020F0">ASetGetActorLocation::Sim3dRelease()</span>
 <div class="clearfix"></div>
 <div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
 <script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
 <div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
 </div>
 <link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>

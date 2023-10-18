@@ -1,0 +1,514 @@
+<!-- Copyright 2016-2023 The MathWorks, Inc. -->
+
+<robot name = "robot">
+
+<material name = "red_A">
+	<color rgba = "0.87 0.32 0.16 1" />
+</material>
+
+<material name = "red_B">
+	<color rgba = "0.88 0.57 0.48 1" />
+</material>
+
+<material name = "gray_A">
+	<color rgba = "0.3 0.3 0.3 1" />
+</material>
+
+<material name = "gray_B">
+	<color rgba = "1 1 1 1" />
+</material>
+
+<link name = "trunk">
+	<inertial>
+		<origin xyz = "0 0 -0.109" rpy = "0 0 0" />
+		<mass value = "0.369" />
+		<inertia ixx = "1.334e-3" iyy = "1.935e-3" izz = "6.712e-4" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "Trunk.step" />
+		</geometry>
+		<material name = "red_A" />
+	</visual>
+</link>
+
+<link name = "right_hip">
+	<inertial>
+		<origin xyz = "-0.004 0 -0.012" rpy = "0 0 0" />
+		<mass value = "0.085" />
+		<inertia ixx = "3.380e-5" iyy = "2.674e-5" izz = "1.953e-5" iyz = "0" ixz = "-4.474e-6" ixy = "0" />
+	</inertial>
+
+	<visual>
+		<geometry>
+			<mesh filename = "Hip.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "left_hip">
+	<inertial>
+		<origin xyz = "-0.004 0 -0.012" rpy = "0 0 0" />
+		<mass value = "0.085" />
+		<inertia ixx = "3.380e-5" iyy = "2.674e-5" izz = "1.953e-5" iyz = "0" ixz = "-4.474e-6" ixy = "0" />
+	</inertial>
+
+	<visual>
+		<geometry>
+			<mesh filename = "Hip.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "right_upper_leg">
+	<inertial>
+		<origin xyz = "-0.025 0 -0.063" rpy = "0 0 0" />
+		<mass value = "0.176" />
+		<inertia ixx = "4.075e-4" iyy = "4.285e-4" izz = "4.997e-5" iyz = "0" ixz = "-7.163e-6" ixy = "0" />
+	</inertial>
+
+	<visual>
+		<geometry>
+			<mesh filename = "UpperLeg.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "left_upper_leg">
+	<inertial>
+		<origin xyz = "-0.025 0 -0.063" rpy = "0 0 0" />
+		<mass value = "0.176" />
+		<inertia ixx = "4.075e-4" iyy = "4.285e-4" izz = "4.997e-5" iyz = "0" ixz = "-7.163e-6" ixy = "0" />
+	</inertial>
+
+	<visual>
+		<geometry>
+			<mesh filename = "UpperLeg.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "right_lower_leg">
+	<inertial>
+		<origin xyz = "0.000 0 -0.052" rpy = "0 0 0" />
+		<mass value = "0.161" />
+		<inertia ixx = "3.775e-4" iyy = "3.872e-4" izz = "3.398e-5" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+
+	<visual>
+		<geometry>
+			<mesh filename = "LowerLeg.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "left_lower_leg">
+	<inertial>
+		<origin xyz = "0.000 0 -0.052" rpy = "0 0 0" />
+		<mass value = "0.161" />
+		<inertia ixx = "3.775e-4" iyy = "3.872e-4" izz = "3.398e-5" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+
+	<visual>
+		<geometry>
+			<mesh filename = "LowerLeg.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "right_foot">
+	<inertial>
+		<origin xyz = "0 -0.013 -0.011" rpy = "0 0 0" />
+		<mass value = "0.126" />
+		<inertia ixx = "1.256e-4" iyy = "3.787e-5" izz = "1.145e-4" iyz = "-2.238e-5" ixz = "0" ixy = "0" />
+	</inertial>
+
+	<visual>
+		<geometry>
+			<mesh filename = "Foot.step" />
+		</geometry>
+		<material name = "gray_A" />
+	</visual>
+</link>
+
+<link name = "left_foot">
+	<inertial>
+		<origin xyz = "0 -0.013 -0.011" rpy = "0 0 0" />
+		<mass value = "0.126" />
+		<inertia ixx = "1.256e-4" iyy = "3.787e-5" izz = "1.145e-4" iyz = "-2.238e-5" ixz = "0" ixy = "0" />
+	</inertial>
+
+	<visual>
+		<geometry>
+			<mesh filename = "Foot.step" />
+		</geometry>
+		<material name = "gray_A" />
+	</visual>
+</link>
+
+<link name = "shoulder_line">
+	<inertial>
+		<origin xyz = "0 0 0.003" rpy = "0 0 0" />
+		<mass value = "0.049" />
+		<inertia ixx = "1.753e-5" iyy = "4.884e-5" izz = "4.634e-5" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "ShoulderLine.step" />
+		</geometry>
+		<material name = "red_B" />
+	</visual>
+</link>
+
+<link name = "right_shoulder">
+	<inertial>
+		<origin xyz = "0.008 0 0" rpy = "0 0 0" />
+		<mass value = "0.026" />
+		<inertia ixx = "2.025e-6" iyy = "4.592e-6" izz = "6.030e-6" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "Shoulder.step" />
+		</geometry>
+		<material name = "gray_A" />
+	</visual>
+</link>
+
+<link name = "left_shoulder">
+	<inertial>
+		<origin xyz = "0.008 0 0" rpy = "0 0 0" />
+		<mass value = "0.026" />
+		<inertia ixx = "2.025e-6" iyy = "4.592e-6" izz = "6.030e-6" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "Shoulder.step" />
+		</geometry>
+		<material name = "gray_A" />
+	</visual>
+</link>
+
+<link name = "right_upper_arm">
+	<inertial>
+		<origin xyz = "0 0 -0.039" rpy = "0 0 0" />
+		<mass value = "0.080" />
+		<inertia ixx = "1.291e-4" iyy = "1.346e-4" izz = "1.316e-5" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "UpperArm.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+
+<link name = "left_upper_arm">
+	<inertial>
+		<origin xyz = "0 0 -0.039" rpy = "0 0 0" />
+		<mass value = "0.080" />
+		<inertia ixx = "1.291e-4" iyy = "1.346e-4" izz = "1.316e-5" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "UpperArm.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "right_lower_arm">
+	<inertial>
+		<origin xyz = "0 0 -0.041" rpy = "0 0 0" />
+		<mass value = "0.058" />
+		<inertia ixx = "6.543e-5" iyy = "6.913e-5" izz = "7.689e-6" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "LowerArm.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "left_lower_arm">
+	<inertial>
+		<origin xyz = "0 0 -0.041" rpy = "0 0 0" />
+		<mass value = "0.058" />
+		<inertia ixx = "6.543e-5" iyy = "6.913e-5" izz = "7.689e-6" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "LowerArm.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "right_hand">
+	<inertial>
+		<origin xyz = "0 0 -0.02" rpy = "0 0 0" />
+		<mass value = "0.052" />
+		<inertia ixx = "1.981e-5" iyy = "2.229e-5" izz = "9.561e-6" iyz = "-2.684e-6" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "Hand.step" />
+		</geometry>
+		<material name = "gray_A" />
+	</visual>
+</link>
+
+<link name = "left_hand">
+	<inertial>
+		<origin xyz = "0 0 -0.02" rpy = "0 0 0" />
+		<mass value = "0.052" />
+		<inertia ixx = "1.981e-5" iyy = "2.229e-5" izz = "9.561e-6" iyz = "-2.684e-6" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "Hand.step" />
+		</geometry>
+		<material name = "gray_A" />
+	</visual>
+</link>
+
+<link name = "head">
+	<inertial>
+		<origin xyz = "0 0.002 0" rpy = "0 0 0" />
+		<mass value = "0.01" />
+		<inertia ixx = "6.874e-6" iyy = "8.226e-6" izz = "6.992e-6" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "Head.step" />
+		</geometry>
+		<material name = "gray_A" />
+	</visual>
+</link>
+
+<link name = "cover">
+	<inertial>
+		<origin xyz = "0 -0.024 0" rpy = "0 0 0" />
+		<mass value = "0.004" />
+		<inertia ixx = "1.030e-6" iyy = "2.060e-6" izz = "1.030e-6" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "Cover.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "neck">
+	<inertial>
+		<origin xyz = "0 0 0.019" rpy = "0 0 0" />
+		<mass value = "0.021" />
+		<inertia ixx = "6.005e-6" iyy = "8.752e-6" izz = "3.339e-6" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "Neck.step" />
+		</geometry>
+		<material name = "gray_B" />
+	</visual>
+</link>
+
+<link name = "waistline">
+	<inertial>
+		<origin xyz = "0 0 0" rpy = "0 0 0" />
+		<mass value = "0.311" />
+		<inertia ixx = "1.008e-4" iyy = "2.751e-4" izz = "3.104e-4" iyz = "0" ixz = "0" ixy = "0" />
+	</inertial>
+	
+	<visual>
+		<geometry>
+			<mesh filename = "Waistline.step" />
+		</geometry>
+		<material name = "color_A" />
+	</visual>
+</link>
+
+<joint name = "right_hip_sagittal" type = "continuous">
+	<origin xyz = "-0.01905 0 -0.1849" rpy = "0 0 0" />
+	<axis xyz = "0 1 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "trunk" />
+	<child link = "right_hip" />
+</joint>
+
+<joint name = "left_hip_sagittal" type = "continuous">
+	<origin xyz = "0.01905 0 -0.1849" rpy = "0 0 3.1415" />
+	<axis xyz = "0 1 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "trunk" />
+	<child link = "left_hip" />
+</joint>
+
+<joint name = "right_hip_frontal" type = "continuous">
+	<origin xyz = "0 0 -0.02286" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "right_hip" />
+	<child link = "right_upper_leg" />
+</joint>
+
+<joint name = "left_hip_frontal" type = "continuous">
+	<origin xyz = "0 0 -0.02286" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "left_hip" />
+	<child link = "left_upper_leg" />
+</joint>
+
+<joint name = "right_knee" type = "continuous">
+	<origin xyz = "-0.02537 0 -0.1041" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "right_upper_leg" />
+	<child link = "right_lower_leg" />
+</joint>
+
+<joint name = "left_knee" type = "continuous">
+	<origin xyz = "-0.02537 0 -0.1041" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "left_upper_leg" />
+	<child link = "left_lower_leg" />
+</joint>
+
+<joint name = "right_ankle" type = "continuous">
+	<origin xyz = "0 0 -0.10414" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "right_lower_leg" />
+	<child link = "right_foot" />
+</joint>
+
+<joint name = "left_ankle" type = "continuous">
+	<origin xyz = "0 0 -0.10414" rpy = "0 0 3.1415" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "left_lower_leg" />
+	<child link = "left_foot" />
+</joint>
+
+<joint name = "right_shoulder_frontal" type = "continuous">
+	<origin xyz = "-0.06413 0 -0.0399" rpy = "0 0 3.1415" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "trunk" />
+	<child link = "right_shoulder" />
+</joint>
+
+<joint name = "left_shoulder_frontal" type = "continuous">
+	<origin xyz = "0.06413 0 -0.0399" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "trunk" />
+	<child link = "left_shoulder" />
+</joint>
+
+<joint name = "right_shoulder_sagittal" type = "continuous">
+	<origin xyz = "0.01905 0 0" rpy = "0 0 -1.57075" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "right_shoulder" />
+	<child link = "right_upper_arm" />
+</joint>
+
+<joint name = "left_shoulder_sagittal" type = "continuous">
+	<origin xyz = "0.01905 0 0" rpy = "0 0 -1.57075" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "left_shoulder" />
+	<child link = "left_upper_arm" />
+</joint>
+
+<joint name = "right_elbow" type = "continuous">
+	<origin xyz = "0 0 -0.0889" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "right_upper_arm" />
+	<child link = "right_lower_arm" />
+</joint>
+
+<joint name = "left_elbow" type = "continuous">
+	<origin xyz = "0 0 -0.0889" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "left_upper_arm" />
+	<child link = "left_lower_arm" />
+</joint>
+
+<joint name = "right_wrist" type = "continuous">
+	<origin xyz = "0 0 -0.0762" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "right_lower_arm" />
+	<child link = "right_hand" />
+</joint>
+
+<joint name = "left_wrist" type = "continuous">
+	<origin xyz = "0 0 -0.0762" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.001" />
+	<parent link = "left_lower_arm" />
+	<child link = "left_hand" />
+</joint>
+
+<joint name = "trunk_shoulder" type = "continuous">
+	<origin xyz = "0 0 -0.0399" rpy = "0 0 0" />
+	<axis xyz = "1 0 0" />
+	<dynamics damping = "0.05" />
+	<parent link = "trunk" />
+	<child link = "shoulder_line" />
+</joint>
+
+<joint name = "shoulder_neck" type = "continuous">
+	<origin xyz = "0 0 0.01016" rpy = "0 0 0" />
+	<axis xyz = "0 0 1" />
+	<dynamics damping = "0.001" />
+	<parent link = "shoulder_line" />
+	<child link = "neck" />
+</joint>
+
+<joint name = "neck_head" type = "fixed">
+	<origin xyz = "0 0 0.06414" rpy = "0 0 0" />
+	<parent link = "neck" />
+	<child link = "head" />
+</joint>
+
+<joint name = "head_cover_fixed" type = "fixed">
+	<origin xyz = "0 0 0" rpy = "0 0 0" />
+	<parent link = "head" />
+	<child link = "cover" />
+</joint>
+
+<joint name = "trunk_waistline_fixed" type = "fixed">
+	<origin xyz = "0 0 -0.1487" rpy = "0 0 0" />
+	<parent link = "trunk" />
+	<child link = "waistline" />
+</joint>
+
+</robot>

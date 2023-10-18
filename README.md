@@ -96,7 +96,7 @@ PDB文件中记录了源文件路径的相关信息，所以在载入PDB文件�
 
 [IDA](https://soft.macxf.com/soft/2059.html?id=MTcyMDc1%20) 。
 
-[教程](https://wizardforcel.gitbooks.io/re-for-beginners/content/) 。
+[教程](https://wizardforcel.gitbooks.io/re-for-beginners/content/) 。+
 
 ## 维护
 
