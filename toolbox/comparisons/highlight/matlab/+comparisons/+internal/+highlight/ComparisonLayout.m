@@ -3,7 +3,6 @@ classdef ComparisonLayout<handle
 ContentIds
     end
 
-
     methods(Access=public,Abstract)
 
         addWindow(obj,window,contentId)

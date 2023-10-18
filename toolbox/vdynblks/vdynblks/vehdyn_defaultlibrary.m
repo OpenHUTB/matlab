@@ -1,11 +1,8 @@
 function libName = vehdyn_defaultlibrary
-%VEHDYN_DEFAULTLIBRARY Return the name of the default library
-%    LIBNAME=AUTO_DEFAULTLIBRARY returns the name of the default
-%    library (context).
+%VEHDYN_DEFAULTLIBRARY 返回默认库的名称
+%    LIBNAME=AUTO_DEFAULTLIBRARY 返回默认库（context）的名字
     
-% Copyright 2016-2018 The MathWorks, Inc.
-    
-%    This function provides a single place for the default library name.
+%    该函数为默认库名提供一个单独的位置
     
     libName = 'vehdynlib';
     
