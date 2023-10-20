@@ -238,7 +238,7 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
 <section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
-<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_f780d508-aca7-46bb-b440-40ec9e6ff0af">为虚幻引擎仿真选择位点</h1>
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="mw_f780d508-aca7-46bb-b440-40ec9e6ff0af"><a href="https://ww2.mathworks.cn/help/releases/R2022b/driving/ug/select-waypoints-for-3d-simulation.html">为虚幻引擎仿真选择路径点</a><br/></h1>
 <div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">This example uses:</p>
 <ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('DR')">Automated Driving Toolbox</a></li>
 <li><a href="matlab:matlab.internal.language.introspective.showAddon('SL')">Simulink</a></li>
@@ -269,14 +269,14 @@
 </ul>
 </div>
 <h3 class="title" id="SelectWaypointsFor3DSimulationExample-2">可视化场景</h3>
-<p>首先，在 MATLAB 中可视化场景。每个场景都可以使用场景到图像上的二维顶视图投影来可视化。 Each scene image has a corresponding 2D spatial referencing object of class <code class="literal"></code><a href="../../images/ref/imref2d.html" data-docid="images_ref#ref_q21n8hna8" class="a"><code class="olink">imref2d</code></a> describing the relationship between the pixels in the image and the world coordinates of the scene. Use the <code class="literal">helperGetSceneImage</code> function to retrieve the scene image and associated spatial reference. This example uses a prebuilt scene of a large parking lot. To generate a scene image and spatial reference for a custom scene, follow the process described in <a href="create-top-down-map-of-unreal-engine-scene.html" data-docid="driving_ug#mw_f62fb345-d746-4250-aab8-c85a67b50fc5" class="a">Create Top-Down Map of Unreal Engine Scene</a> instead.</p>
+<p>首先，在 MATLAB 中可视化场景。每个场景都可以使用场景到图像上的二维顶视图投影来可视化。 每个场景图像都有一个相应的二维空间参考对象  <code class="literal"></code><a href="../../images/ref/imref2d.html" data-docid="images_ref#ref_q21n8hna8" class="a"><code class="olink">imref2d</code></a> ，它描述图像中的像素与场景的世界坐标之间的关系。 使用 <code class="literal">helperGetSceneImage</code> f函数检索场景图像和关联的空间参考。此示例使用大型停车场的预构建场景。要为自定义场景生成场景图像和空间参考，请按照 <a href="create-top-down-map-of-unreal-engine-scene.html" data-docid="driving_ug#mw_f62fb345-d746-4250-aab8-c85a67b50fc5" class="a">创建虚幻引擎场景的自上而下地图中描述</a> 的过程进行操作。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sceneName = <span style="color:#A020F0">'LargeParkingLot'</span>;
 [sceneImage, sceneRef] = helperGetSceneImage(sceneName);</pre>
 </div>
 </div>
 </div>
-<p>To better understand the physical dimensions of the scene, inspect the <code class="literal">sceneRef</code> variable. The <code class="literal">XWorldLimits</code> and <code class="literal">YWorldLimits</code> properties specify the limits of the world in the X and Y directions.</p>
-<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sceneRef.XWorldLimits   <span style="color:#228B22">% (in meters)</span></pre>
+<p>为了更好地了解场景的物理尺寸，请检查 <code class="literal">sceneRef</code> 变量。<code class="literal">XWorldLimits</code> 和 <code class="literal">YWorldLimits</code> 属性指定世界在 X 和 Y 方向上的限制。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sceneRef.XWorldLimits   <font color="#228b22">% (以米为单位)</font></pre>
 </div>
 </div>
 </div>
@@ -288,7 +288,7 @@
 </div>
 </div>
 </div>
-<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sceneRef.YWorldLimits   <span style="color:#228B22">% (in meters)</span></pre>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sceneRef.YWorldLimits   <font color="#228b22">% (以米为单位)</font></pre>
 </div>
 </div>
 </div>
@@ -300,7 +300,7 @@
 </div>
 </div>
 </div>
-<p>Visualize the scene image by using the <code class="literal">helperShowSceneImage</code> function. This helper function displays the scene image in a figure window. Use the pan and zoom tools to explore the scene.</p>
+<p>使用 <code class="literal">helperShowSceneImage</code> 函数可视化场景图像。该辅助函数在图形窗口中显示场景图像。使用平移和缩放工具探索场景。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hScene = figure;
 helperShowSceneImage(sceneImage, sceneRef)
 title(sceneName)</pre>
@@ -310,8 +310,8 @@ title(sceneName)</pre>
 <div class="informalfigure"><div id="d124e46833" class="mediaobject"><p><img src="../../examples/shared_vision_driving/win64/SelectWaypointsFor3DSimulationExample_01.png" alt="Figure contains an axes object. The axes object with title LargeParkingLot contains an object of type image." width="467"/></p>
 </div>
 </div>
-<h3 class="title" id="SelectWaypointsFor3DSimulationExample-3">Interactively Select Waypoints</h3>
-<p>After exploring the scene, select a set of waypoints to define a path for a vehicle to follow. This path can be used to move the vehicle in the scene. Use the helper function <code class="literal">helperSelectSceneWaypoints</code> to interactively select waypoints in the scene.</p>
+<h3 class="title" id="SelectWaypointsFor3DSimulationExample-3">交互式选择路径点</h3>
+<p>探索场景后，选择一组路径点来定义车辆遵循的路径。该路径可用于在场景中移动车辆。使用辅助函数 <code class="literal">helperSelectSceneWaypoints</code> 以交互方式选择场景中的路径点。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hFig = helperSelectSceneWaypoints(sceneImage, sceneRef);</pre>
 </div>
 </div>
@@ -319,15 +319,15 @@ title(sceneName)</pre>
 <div class="informalfigure"><div id="d124e46846" class="mediaobject"><p><img src="../../examples/shared_vision_driving/win64/SelectWaypointsFor3DSimulationExample_02.png" alt="{&quot;String&quot;:&quot;Figure Draw Scene Waypoints contains an axes object and other objects of type uicontrol. The axes object contains an object of type image.&quot;,&quot;Tex&quot;:[],&quot;LaTex&quot;:[]}" width="871"/></p>
 </div>
 </div>
-<p>This helper function opens a figure window with the selected scene. </p>
-<div class="itemizedlist"><ul><li><p>Explore the scene by zooming and panning through the scene image. Use the mouse scrollwheel or the axes toolbar to zoom. Hover over the edge of the axes to pan in that direction.</p></li>
-<li><p>Begin drawing a path by clicking on the scene. A path is created as a polyline consisting of multiple points. Finish drawing the path by double-clicking or right-clicking.</p></li>
-<li><p>Once you are done drawing a path, click <strong class="emphasis bold">Export to Workspace</strong> to export the variables to the MATLAB workspace. In the dialog box that opens, click <strong class="emphasis bold">OK</strong> to export a set of variables to the workspace.</p></li>
+<p>此辅助函数会打开一个包含所选场景的图形窗口。 </p>
+<div class="itemizedlist"><ul><li><p>通过缩放和平移场景图像来探索场景。使用鼠标滚轮或轴工具栏进行缩放。将鼠标悬停在轴的边缘上以沿该方向平移。</p></li>
+<li><p>通过单击场景开始绘制路径。路径被创建为由多个点组成的折线。通过双击或右键单击完成路径的绘制。</p></li>
+<li><p>绘制完路径后，单击“导出到工作区（Export to Workspace）”将变量导出到 MATLAB 工作区。在打开的对话框中，单击“确定”将一组变量导出到工作区。</p></li>
 </ul>
 </div>
-<p>The following data is exported to the workspace as MATLAB variables:</p>
-<div class="itemizedlist"><ul><li><p><strong class="emphasis bold">Waypoints:</strong> A cell array with each element containing an <span class="emphasis"><em>M</em></span>-by-2 matrix of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></math></span> waypoints in world coordinates. Each element of the cell array corresponds to the waypoints from a different path.</p></li>
-<li><p><strong class="emphasis bold">Path Poses:</strong> A cell array with each element containing <span class="emphasis"><em>M</em></span>-by-3 matrices of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow></math></span> poses containing the pose of each waypoint. <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>x</mi></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi></mrow></math></span> are specified in meters. <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>θ</mi></mrow></math></span> is specified in degrees.</p></li>
+<p>以下数据作为 MATLAB 变量导出到工作区：</p>
+<div class="itemizedlist"><ul><li><p><strong class="emphasis bold">Waypoints:</strong> 一个元胞数组，每个元素包含一个世界坐标中 <span class="emphasis"><em>M</em></span>-by-2 的路径点矩阵 <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></math></span> 元胞数组的每个元素对应于来自不同路径的路径点。</p></li>
+<li><p><strong class="emphasis bold">Path Poses:</strong> 一个元胞数组，每个元素包含每个路径点的姿态 <span class="emphasis"><em>M</em></span>-by-3 matrices of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow></math></span>姿态包含每个路径点的姿态<span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>x</mi></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi></mrow></math></span> 以米为单位指定 <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>θ</mi></mrow></math></span> 以度为单位指定</p></li>
 </ul>
 </div>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Load variables to workspace if they do not exist</span>
@@ -344,7 +344,7 @@ title(sceneName)</pre>
 </div>
 </div>
 </div>
-<p>The exported variables now contain a sequence of waypoints (<code class="literal">wayPoints</code>) and a sequence of poses (<code class="literal">refPoses</code>). Use the <a href="../ref/smoothpathspline.html" data-docid="driving_ref#mw_46e609fd-e71c-408f-80e6-3ef228a24cd2" class="a"><code class="olink">smoothPathSpline</code></a> function to transform the sequence of poses to a <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msup><mrow><mi>C</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math></span> continuous path.</p>
+<p>导出的变量现在包含一系列路径点 (<code class="literal">wayPoints</code>) 和一系列姿势 (<code class="literal">refPoses</code>)。使用 <a href="../ref/smoothpathspline.html" data-docid="driving_ref#mw_46e609fd-e71c-408f-80e6-3ef228a24cd2" class="a"><code class="olink">smoothPathSpline</code></a> 函数将姿势序列转换为连续的路径<span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msup><mrow><mi>C</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math></span> continuous path.</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numPoses = size(refPoses{1}, 1);
 
 refDirections  = ones(numPoses,1);   <span style="color:#228B22">% Forward-only motion</span>
@@ -354,8 +354,8 @@ numSmoothPoses = 20 * numPoses;      <span style="color:#228B22">% Increase this
 </div>
 </div>
 </div>
-<h3 class="title" id="SelectWaypointsFor3DSimulationExample-4">Set Up Model and Simulation Environment</h3>
-<p>Open the <code class="literal">VisualizeVehiclePathIn3DSimulation</code> Simulink model. This model uses the <a href="../ref/simulation3dsceneconfiguration.html" data-docid="driving_ref#mw_96a521fd-316f-497b-bc01-b2c5f4083563" class="a">Simulation 3D Scene Configuration</a> block to select a desired scene. This example uses the <a href="../ref/largeparkinglot.html" data-docid="driving_ref#mw_8ecb60fe-eb82-4f45-9629-a581750c6b69" class="a">Large Parking Lot</a> scene. The Simulation 3D Scene Configuration block sets up the environment and establishes communication between Simulink and the simulation environment.</p>
+<h3 class="title" id="SelectWaypointsFor3DSimulationExample-4">设置模型和仿真环境</h3>
+<p>打开 <code class="literal">VisualizeVehiclePathIn3DSimulation</code> Simulink 模型。该模型使用 <a href="../ref/simulation3dsceneconfiguration.html" data-docid="driving_ref#mw_96a521fd-316f-497b-bc01-b2c5f4083563" class="a">Simulation 3D Scene Configuration</a> 模块来选择所需的场景。此示例使用大型停车场场景（<a href="../ref/largeparkinglot.html" data-docid="driving_ref#mw_8ecb60fe-eb82-4f45-9629-a581750c6b69" class="a">Large Parking Lot</a>）。Simulation 3D Scene Configuration 模块设置环境并在 Simulink 和仿真环境之间建立通信。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">if</span> ~ispc
     error([<span style="color:#A020F0">'3D Simulation is only supported on Microsoft'</span>, char(174), <span style="color:#A020F0">' Windows'</span>, char(174), <span style="color:#A020F0">'.'</span>]);
 <span style="color:#0000FF">end</span>
@@ -366,28 +366,28 @@ snapnow;</pre>
 </div>
 </div>
 </div>
-<h3 class="title" id="SelectWaypointsFor3DSimulationExample-5">Move Vehicle Along Path</h3>
-<p>Use the <a href="../ref/simulation3dvehiclewithgroundfollowing.html" data-docid="driving_ref#mw_32cd8e72-2d69-4c3e-98b0-5b918db383a4" class="a">Simulation 3D Vehicle with Ground Following</a> block to place and move vehicles in the scene. The model is set up to accept variables <code class="literal">refPosesX</code>, <code class="literal">refPosesY</code>, and <code class="literal">refPosesT</code> from the workspace using the <a href="../../simulink/slref/fromworkspace.html" data-docid="simulink_ref#f7-890184" class="a">From Workspace</a><span role="cross_prod"> (Simulink)</span> block. Separate <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>x</mi></mrow></math></span>, <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>θ</mi></mrow></math></span> from <code class="literal">newRefPoses</code> into separate time series. The model reads these workspace variables to update the position of the vehicle.</p>
-<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Configure the model to stop simulation at 5 seconds.</span>
+<h3 class="title" id="SelectWaypointsFor3DSimulationExample-5">沿着路径移动车辆</h3>
+<p>使用 <a href="../ref/simulation3dvehiclewithgroundfollowing.html" data-docid="driving_ref#mw_32cd8e72-2d69-4c3e-98b0-5b918db383a4" class="a">Simulation 3D Vehicle with Ground Following</a> 在场景中放置和移动车辆。该模型设置使用 <a href="../../simulink/slref/fromworkspace.html" data-docid="simulink_ref#f7-890184" class="a">From Workspace</a><span role="cross_prod"> (Simulink)</span> 模块从工作区接收变量 <code class="literal">refPosesX</code>, <code class="literal">refPosesY</code>, 和 <code class="literal">refPosesT</code>。从 <code class="literal">newRefPoses</code> 中将</p>
+<p><span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>x</mi></mrow></math></span>, <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>θ</mi></mrow></math></span>分离成单独的时间序列。 模型读取这些工作空间变量来更新车辆的位置。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% 配置模型在 5 秒 钟时停止仿真。</span>
 simStopTime = 5;
 set_param(gcs, <span style="color:#A020F0">'StopTime'</span>, num2str(simStopTime));
 
-<span style="color:#228B22">% Create a constant velocity profile by generating a time vector</span>
-<span style="color:#228B22">% proportional to the cumulative path length.</span>
+<span style="color:#228B22">% </span><font color="#228b22">通过生成与累积路径长度成比例的时间向量来创建恒定速度曲线。</font>
 timeVector = normalize(cumLengths, <span style="color:#A020F0">'range'</span>, [0, simStopTime]);
 
-<span style="color:#228B22">% Create variables required by the Simulink model.</span>
+<span style="color:#228B22">% </span><font color="#228b22">创建 Simulink 模型所需的变量。</font>
 refPosesX = [timeVector, smoothRefPoses(:,1)];
 refPosesY = [timeVector, smoothRefPoses(:,2)];
 refPosesT = [timeVector, smoothRefPoses(:,3)];</pre>
 </div>
 </div>
 </div>
-<p>When you simulate the model, a few seconds are needed to initialize the simulation environment. Once this initialization is complete, a separate window opens for the simulation environment visualization. The image below is a snapshot of the simulation environment window.</p>
+<p>当您模拟模型时，需要几秒钟来初始化仿真环境。初始化完成后，将打开一个单独的窗口用于仿真环境可视化。下图是仿真环境窗口的快照。</p>
 <div class="informalfigure"><div id="d124e46989" class="mediaobject"><p><img src="../../examples/shared_vision_driving/win64/SelectWaypointsFor3DSimulationExample_03.png" height="753" width="1280"/></p>
 </div>
 </div>
-<p>Run the simulation. The figure window plot shows the path that the vehicle traverses through the simulation environment.</p>
+<p>运行仿真。图形窗口图显示了车辆在仿真环境中行驶的路径。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sim(modelName);</pre>
 </div>
 </div>
@@ -403,16 +403,16 @@ close(hScene)</pre>
 </div>
 </div>
 </div>
-      <h2 id="d124e47005">See Also</h2>
-<h3>Blocks</h3>
+      <h2 id="d124e47005">参见</h2>
+<h3>模块</h3>
 <ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
             Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/simulation3dvehiclewithgroundfollowing.html"><span itemprop="name"><span class="block">Simulation 3D Vehicle
             with Ground Following</span></span></a></span></li>
 </ul>
-<h3>Functions</h3>
+<h3>函数</h3>
 <ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../images/ref/imref2d.html"><span itemprop="name"><code class="function">imref2d</code></span></a></span></li>
 </ul>
-      <h2 id="d124e47023">Related Topics</h2>
+      <h2 id="d124e47023">相关话题</h2>
 <ul><li><a href="create-top-down-map-of-unreal-engine-scene.html" class="a">Create Top-Down Map of Unreal Engine Scene</a></li>
 <li><a href="design-of-lane-marker-detector-in-3d-simulation-environment.html" class="a">Design Lane Marker Detector Using Unreal Engine Simulation Environment</a></li>
 <li><a href="visualize-automated-parking-valet-using-3d-simulation.html" class="a">Visualize Automated Parking Valet Using Unreal Engine Simulation</a></li>
@@ -432,8 +432,10 @@ close(hScene)</pre>
 </div>
 </div>
 <div class="clearfix"></div>
-<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
 <script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
 <link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
 <script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
 

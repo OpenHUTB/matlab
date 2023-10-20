@@ -1,6 +1,6 @@
 classdef Map
 
-    properties(Constant=true,Access=private,Hidden=true)
+    properties(Constant=true, Access=private, Hidden=true)
         baseUrl='https://ssd.mathworks.com/supportfiles/R2022a/';
         pakDestPath = fullfile(userpath,'sim3d_project',['R',version('-release')],'WindowsNoEditor/AutoVrtlEnv/Content/Paks/');
         csvFileName='Maps';
