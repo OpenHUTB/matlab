@@ -1,0 +1,366 @@
+{
+    "gitinit": {
+        "inputs": [
+            {
+                "name": "folder",
+                "kind": "ordered",
+                "type": [
+                    [
+                        "folder"
+                    ],
+                    [
+                        "string",
+                        "scalar"
+                    ]
+                ]
+            },
+            {
+                "name": "Bare",
+                "kind": "namevalue",
+                "type": [
+                    "logical",
+                    "scalar"
+                ]
+            },
+            {
+                "name": "Reinit",
+                "kind": "namevalue",
+                "type": [
+                    "logical",
+                    "scalar"
+                ]
+            },
+            {
+                "name": "InitialBranch",
+                "kind": "namevalue",
+                "type": [
+                    [
+                        "string",
+                        "scalar"
+                    ],
+                    [
+                        "string",
+                        "choices={'main'}"
+                    ]
+                ]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "gitRepository",
+                "type": "matlab.git.GitRepository"
+            }
+        ]
+    },
+    "gitrepo": {
+        "inputs": [
+            {
+                "name": "folder",
+                "kind": "ordered",
+                "type": [
+                    "folder"
+                ]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "gitRepository",
+                "type": "matlab.git.GitRepository"
+            }
+        ]
+    },
+    "gitclone": {
+        "inputs": [
+            {
+                "name": "repositoryUrl",
+                "kind": "required",
+                "type": [
+                    "choices=settings().matlab.sourcecontrol.git.internal.RecentCloneList.ActiveValue"
+                ]
+            },
+            {
+                "name": "folder",
+                "kind": "ordered",
+                "type": [
+                    [
+                        "folder"
+                    ],
+                    [
+                        "string",
+                        "scalar"
+                    ]
+                ]
+            },
+            {
+                "name": "RecurseSubmodules",
+                "kind": "namevalue",
+                "type": [
+                    "logical",
+                    "scalar"
+                ]
+            },
+            {
+                "name": "Depth",
+                "kind": "namevalue",
+                "type": [
+                    "numeric",
+                    "scalar"
+                ]
+            },
+            {
+                "name": "Username",
+                "kind": "namevalue",
+                "type": [
+                    "string",
+                    "scalar"
+                ]
+            },
+            {
+                "name": "Token",
+                "kind": "namevalue",
+                "type": [
+                    "string",
+                    "scalar"
+                ]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "gitRepository",
+                "type": "matlab.git.GitRepository"
+            }
+        ]
+    },
+    "matlab.git.GitRepository.add": {
+        "inputs": [
+            {
+                "name": "gitRepository",
+                "kind": "required",
+                "type": "matlab.git.GitRepository"
+            },
+            {
+                "name": "files",
+                "kind": "required",
+                "type": [
+                    "file"
+                ]
+            }
+        ],
+        "outputs": []
+    },
+    "matlab.git.GitRepository.rm": {
+        "inputs": [
+            {
+                "name": "gitRepository",
+                "kind": "required",
+                "type": "matlab.git.GitRepository"
+            },
+            {
+                "name": "files",
+                "kind": "required",
+                "type": [
+                    "file"
+                ]
+            }
+        ],
+        "outputs": []
+    },
+    "matlab.git.GitRepository.commit": {
+        "inputs": [
+            {
+                "name": "gitRepository",
+                "kind": "required",
+                "type": "matlab.git.GitRepository"
+            },
+            {
+                "name": "Files",
+                "kind": "namevalue",
+                "type": [
+                    "file"
+                ]
+            },
+            {
+                "name": "Message",
+                "kind": "namevalue",
+                "type": [
+                    "string",
+                    "scalar"
+                ]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "newCommit",
+                "type": "matlab.git.GitCommit"
+            }
+        ]
+    },
+    "matlab.git.GitRepository.createBranch": {
+        "inputs": [
+            {
+                "name": "gitRepository",
+                "kind": "required",
+                "type": "matlab.git.GitRepository"
+            },
+            {
+                "name": "branchName",
+                "kind": "required",
+                "type": [
+                    "string",
+                    "scalar"
+                ]
+            },
+            {
+                "name": "StartPoint",
+                "kind": "namevalue",
+                "type": [
+                    "string",
+                    "scalar"
+                ]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "newBranch",
+                "type": "matlab.git.GitBranch"
+            }
+        ]
+    },
+    "matlab.git.GitRepository.deleteBranch": {
+        "inputs": [
+            {
+                "name": "gitRepository",
+                "kind": "required",
+                "type": "matlab.git.GitRepository"
+            },
+            {
+                "name": "branch",
+                "kind": "required",
+                "type": [
+                    [
+                        "string",
+                        "choices=matlab.internal.git.getLocalBranches(gitRepository.WorkingFolder)"
+                    ]
+                ]
+            }
+        ]
+    },
+    "matlab.git.GitRepository.switchBranch": {
+        "inputs": [
+            {
+                "name": "gitRepository",
+                "kind": "required",
+                "type": "matlab.git.GitRepository"
+            },
+            {
+                "name": "branch",
+                "kind": "required",
+                "type": [
+                    [
+                        "string",
+                        "choices=matlab.internal.git.getLocalBranches(gitRepository.WorkingFolder)"
+                    ]
+                ]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "switchedBranch",
+                "type": "matlab.git.GitBranch"
+            }
+        ]
+    },
+    "matlab.git.GitRepository.log": {
+        "inputs": [
+            {
+                "name": "gitRepository",
+                "kind": "required",
+                "type": "matlab.git.GitRepository"
+            },
+            {
+                "name": "File",
+                "kind": "namevalue",
+                "type": [
+                    [
+                        "file"
+                    ],
+                    [
+                        "string",
+                        "scalar"
+                    ]
+                ]
+            },
+            {
+                "name": "Revisions",
+                "kind": "namevalue",
+                "type": [
+                    [
+                        "string",
+                        "scalar"
+                    ],
+                    [
+                        "string",
+                        "choices=matlab.internal.git.getLocalBranches(gitRepository.WorkingFolder)"
+                    ]
+                ]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "logs",
+                "type": "table"
+            }
+        ]
+    },
+    "matlab.git.GitRepository.status": {
+        "inputs": [
+            {
+                "name": "gitRepository",
+                "kind": "required",
+                "type": "matlab.git.GitRepository"
+            },
+            {
+                "name": "Files",
+                "kind": "namevalue",
+                "type": [
+                    [
+                        "file"
+                    ],
+                    [
+                        "folder"
+                    ]
+                ]
+            },
+            {
+                "name": "IncludeUntrackedFiles",
+                "kind": "namevalue",
+                "type": [
+                    "logical",
+                    "scalar"
+                ]
+            },
+            {
+                "name": "IncludeIgnoredFiles",
+                "kind": "namevalue",
+                "type": [
+                    "logical",
+                    "scalar"
+                ]
+            },
+            {
+                "name": "IncludeUnmodifiedFiles",
+                "kind": "namevalue",
+                "type": [
+                    "logical",
+                    "scalar"
+                ]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "fileStatuses",
+                "type": "table"
+            }
+        ]
+    }
+}
