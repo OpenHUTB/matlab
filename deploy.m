@@ -1,7 +1,6 @@
 %% 将修改的文件和原始maltab程序进行合并
 
 % deploy()  % 使用正在运行的matlab进行部署
-% deploy('D:\matlab')  % 参数为解压后的matlab主路径
 % deploy('D:\ssd\matlab_2022b_win_run.zip')  % 参数为压缩包的绝对路径
 function deploy(varargin)
 
@@ -15,8 +14,8 @@ cur_dir = fileparts(mfilename('fullpath'));
 
 if isfile(raw_matlab_dir)
     % 解压到和zip文件同一文件夹内
-    unzip(zip_path, zip_dir);
-
+    zip_dir = fileparts(raw_matlab_dir);
+    unzip(raw_matlab_dir,zip_dir);
     raw_matlab_dir = fullfile(zip_dir, 'matlab_2022b');
 end
 
@@ -27,7 +26,7 @@ addpath(genpath(fullfile(cur_dir, 'utils')));
 all_files = RangTraversal(raw_matlab_dir);
 
 for i = 1 : numel(all_files)
-    cur_file = all_files{end};
+    cur_file = all_files{i};
 
     % 获得相对matlab主目录的后缀目录
     split_strs = split(cur_file, 'matlab_2022b');
