@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Train Humanoid Walker</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Simscape Multibody"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../multibody-modeling.html",
+          "name": "Multibody Modeling"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../sm_examples_applications.html",
+          "name": "Applications"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../sm-robotics.html",
+          "name": "Robotics"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "sm-robotics"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Train Humanoid Walker",
+          "description": "Model a humanoid robot using Simscape Multibody™ and train it using either a genetic algorithm (which requires a Global Optimization Toolbox license) or reinforcement learning (which requires Deep Learning Toolbox™ and Reinforcement Learning Toolbox™ licenses).",
+          "thumbnailURL": "../../examples/multibody_deeplearning/win64/TrainHumanoidWalkerExample_07.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "Simulink"
+
+        },
+          "identifier": "multibody_deeplearning.TrainHumanoidWalkerExample",
+          "name": "TrainHumanoidWalkerExample",
+          "url": "humanoid_walker.html"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('multibody_deeplearning/TrainHumanoidWalkerExample')"
+
+        }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "TrainHumanoidWalkerExample.mlx",
+        "imagebackground.PNG",
+        "sm_humanoid_arms.PNG",
+        "sm_humanoid_legs.PNG",
+        "sm_humanoid_robot.PNG",
+        "sm_humanoid_torso.PNG",
+        "sm_humanoid_walker_cover.stp",
+        "sm_humanoid_walker_create_networks.m",
+        "sm_humanoid_walker_foot.stp",
+        "sm_humanoid_walker_ga.slx",
+        "sm_humanoid_walker_ga_parameters.m",
+        "sm_humanoid_walker_ga_speedup.m",
+        "sm_humanoid_walker_ga_train.m",
+        "sm_humanoid_walker_generate_waypoints.m",
+        "sm_humanoid_walker_hand.stp",
+        "sm_humanoid_walker_head.stp",
+        "sm_humanoid_walker_hip_swivel.stp",
+        "sm_humanoid_walker_lib.slx",
+        "sm_humanoid_walker_lower_arm.stp",
+        "sm_humanoid_walker_lower_leg.stp",
+        "sm_humanoid_walker_neck.stp",
+        "sm_humanoid_walker_rl.slx",
+        "sm_humanoid_walker_rl_parameters.m",
+        "sm_humanoid_walker_rl_train.m",
+        "sm_humanoid_walker_saved_agent.mat",
+        "sm_humanoid_walker_shoulder.stp",
+        "sm_humanoid_walker_shoulder_swivel.stp",
+        "sm_humanoid_walker_sim_walking.m",
+        "sm_humanoid_walker_trunk.stp",
+        "sm_humanoid_walker_upper_arm.stp",
+        "sm_humanoid_walker_upper_leg.stp",
+        "sm_humanoid_walker_waist.stp"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Model a humanoid robot using Simscape Multibody™ and train it using either a genetic algorithm (which requires a Global Optimization Toolbox license) or reinforcement learning (which requires Deep Learning Toolbox™ and Reinforcement Learning Toolbox™ licenses)."/>
+<meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/multibody_deeplearning/win64/TrainHumanoidWalkerExample_07.png" itemprop="thumbnailUrl"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "sm";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/physical-modeling.html" itemprop="url"><span itemprop="title">Physical Modeling</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Simscape Multibody</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../multibody-modeling.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Multibody Modeling</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../sm_examples_applications.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Applications</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../sm-robotics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Robotics</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">Train Humanoid Walker</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#TrainHumanoidWalkerExample-1" class="intrnllnk">Humanoid Walker Model</a></li>
+<li><a href="#TrainHumanoidWalkerExample-4" class="intrnllnk">Humanoid Walker Training</a></li>
+<li><a href="#TrainHumanoidWalkerExample-8" class="intrnllnk">References</a></li>
+<li><a href="#d124e23546" class="intrnllnk">See Also</a></li>
+<li><a href="#d124e23558" class="intrnllnk">Related Topics</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=sm-robotics&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sm-robotics&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=sm-robotics&amp;s_tid=CRUX_topnav">Blocks</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=sm-robotics&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sm-robotics&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=sm-robotics&amp;s_tid=CRUX_topnav">Blocks</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section itemprop="content"><h1 class="r2022b" itemprop="title content" id="example-sm_humanoid_walker"><strong class="emphasis bold">Train Humanoid Walker</strong></h1>
+<div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><p class="add_margin_5">This example uses:</p>
+<ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.language.introspective.showAddon('MS')">Simscape Multibody</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('RL')">Reinforcement Learning Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('GD')">Global Optimization Toolbox</a></li>
+<li><a href="matlab:matlab.internal.language.introspective.showAddon('NN')">Deep Learning Toolbox</a></li>
+</ul>
+<a class="btn btn_secondary btn-block" href="matlab:openExample('multibody_deeplearning/TrainHumanoidWalkerExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="multibody_deeplearning-TrainHumanoidWalkerExample"/>
+<meta itemprop="exampletitle" content="Train Humanoid Walker"/>
+</div>
+<span id="TrainHumanoidWalkerExample" class="anchor_target"></span><p class="shortdesc">This example shows how to model a humanoid robot using <a href="../index.html" data-docid="sm_doccenter#index" class="a">Simscape Multibody</a>™ and train it using either a genetic algorithm (which requires a <a href="../../gads/index.html" data-docid="gads_doccenter#index" class="a">Global Optimization Toolbox</a> license) or reinforcement learning (which requires <a href="../../deeplearning/index.html" data-docid="nnet_doccenter#index" class="a">Deep Learning Toolbox</a>™ and  <a href="../../reinforcement-learning/index.html" data-docid="rl_doccenter#index" class="a">Reinforcement Learning Toolbox</a>™ licenses). </p>
+<div class="procedure"><h3 class="title" id="TrainHumanoidWalkerExample-1">Humanoid Walker Model<span id="mw_rtc_TrainHumanoidWalkerExample_H_544EF65D" class="anchor_target"></span></h3>
+<p>This example is based on a humanoid robot model. You can open the model by entering <code class="literal">sm_import_humanoid_urdf</code> in the MATLAB® command prompt. Each leg of the robot has torque-actuated revolute joints in the frontal hip, knee, and ankle. Each arm has two passive revolute joints in the frontal and sagittal shoulder. During the simulation, the model senses the contact forces, position and orientation of the torso, joint states, and forward position. The figure shows the Simscape Multibody model on different levels. </p>
+<div class="informalfigure"><div id="d124e23186" class="mediaobject"><p><img src="../../examples/multibody_deeplearning/win64/TrainHumanoidWalkerExample_01.png" height="326" width="448"/></p>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e23190" class="mediaobject"><p><img src="../../examples/multibody_deeplearning/win64/TrainHumanoidWalkerExample_02.png" height="322" width="715"/></p>
+</div>
+</div>
+<h4 class="title" id="TrainHumanoidWalkerExample-2">Contact Modeling<span id="mw_rtc_TrainHumanoidWalkerExample_H_3F4EF37D" class="anchor_target"></span></h4>
+<p>The model uses <a href="../ref/spatialcontactforce.html" data-docid="sm_ref#mw_42c86d36-73b4-42f9-9034-f575972f2738" class="a">Spatial Contact Force</a> blocks to simulate the contact between the feet and ground. To simplify the contact and speed up the simulation, red spheres are used to represent the bottoms of the robotic feet. For more details, see <a href="use-contact-proxies.html" data-docid="sm_ug#mw_e058b402-d01f-4dd9-bc45-a20ba3a805ba" class="a">Use Contact Proxies to Simulate Contact</a>.</p>
+<p><span class="guiicon"><span class="inlinemediaobject"><img src="../../examples/multibody_deeplearning/win64/TrainHumanoidWalkerExample_03.png" height="253" width="370"/></span></span><span class="guiicon"><span class="inlinemediaobject"><img src="../../examples/multibody_deeplearning/win64/TrainHumanoidWalkerExample_04.png" height="266" width="385"/></span></span></p>
+<h4 class="title" id="TrainHumanoidWalkerExample-3">Joint Controller<span id="mw_rtc_TrainHumanoidWalkerExample_H_269C6153" class="anchor_target"></span></h4>
+<p>The model uses a stiffness-based feedback controller to control each joint [1]. Model the joints as first-order systems with an associated stiffness (<span class="emphasis"><em>K</em></span>) and damping (<span class="emphasis"><em>B</em></span>), which you can set to make the joint behavior critically damped. The torque is applied when the setpoint <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><msub><mrow><mi>θ</mi></mrow><mrow><mn>0</mn></mrow></msub></math></span> differs from the current joint position <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><mi>θ</mi></math></span>:</p>
+<p class="displayequation"><span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi mathvariant="italic">T</mi><mo>=</mo><mi mathvariant="italic">B</mi><mover accent="false" accentunder="false"><mrow><mi>θ</mi></mrow><mrow><mo>•</mo></mrow></mover><mo>+</mo><mi mathvariant="italic">K</mi><mrow><mo>(</mo><mrow><msub><mrow><mi>θ</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>-</mo><mi>θ</mi></mrow><mo>)</mo></mrow></mrow></math></span>.</p>
+<p>You can vary the spring set-point <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><msub><mrow><mi>θ</mi></mrow><mrow><mn>0</mn></mrow></msub></math></span> to elicit a feedback response to move the joint. The figure shows the Simulink model of the controller.</p>
+<div class="informalfigure"><div id="d124e23274" class="mediaobject"><p><img src="../../examples/multibody_deeplearning/win64/TrainHumanoidWalkerExample_05.png" height="232" width="657"/></p>
+</div>
+</div>
+<h3 class="title" id="TrainHumanoidWalkerExample-4">Humanoid Walker Training<span id="mw_rtc_TrainHumanoidWalkerExample_H_039EFE11" class="anchor_target"></span></h3>
+<p>The goal of this example is to train a humanoid robot to walk, and you can use various methods to train the robot. The example shows the genetic algorithm and reinforcement learning methods.</p>
+<h4 class="title" id="TrainHumanoidWalkerExample-5">The Walking Objective Function<span id="mw_rtc_TrainHumanoidWalkerExample_H_D023069E" class="anchor_target"></span></h4>
+<p>This example uses an objective function to evaluate different walking styles. The model gives a reward (<span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><msub><mrow><mi mathvariant="italic">r</mi></mrow><mrow><mi mathvariant="italic">t</mi></mrow></msub></math></span>) at each timestep: </p>
+<p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">r</mi></mrow><mrow><mi mathvariant="italic">t</mi></mrow></msub><mo>=</mo><msub><mrow><mi mathvariant="italic">w</mi></mrow><mrow><mn>1</mn><mtext> </mtext></mrow></msub><msub><mrow><mi mathvariant="italic">v</mi></mrow><mrow><mi mathvariant="italic">y</mi><mtext> </mtext></mrow></msub><mo>+</mo><msub><mrow><mi mathvariant="italic">w</mi></mrow><mrow><mn>2</mn></mrow></msub><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msub><mo>-</mo><msub><mrow><mi mathvariant="italic">w</mi></mrow><mrow><mn>3</mn><mtext> </mtext></mrow></msub><mi mathvariant="italic">p</mi><mo>-</mo><msub><mrow><mi mathvariant="italic">w</mi></mrow><mrow><mn>4</mn><mtext> </mtext></mrow></msub><mi>Δ</mi><mi mathvariant="italic">z</mi><mo>-</mo><msub><mrow><mi mathvariant="italic">w</mi></mrow><mrow><mn>5</mn><mtext> </mtext></mrow></msub><mi>Δ</mi><mi mathvariant="italic">x</mi></mrow></math></p>
+</div>
+<p></p>
+<p>Here: </p>
+<div class="itemizedlist"><ul><li><p><span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">v</mi></mrow><mrow><mi mathvariant="italic">y</mi></mrow></msub></mrow></math></span> — Forward velocity (rewarded)</p></li>
+<li><p><span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">p</mi></mrow></math></span> — Power consumption (penalized)</p></li>
+<li><p><span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><mi>Δ</mi><mi mathvariant="italic">z</mi></math></span> — Vertical displacement (penalized)</p></li>
+<li><p><span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi>Δ</mi><mi mathvariant="italic">x</mi></mrow></math></span> — Lateral displacement (penalized) </p></li>
+<li><p><span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">w</mi></mrow><mrow><mn>1</mn><mo>,</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo>,</mo><mn>5</mn></mrow></msub></mrow></math></span>: Weights, which represent the relative importance of each term in the reward function</p></li>
+</ul>
+</div>
+<p>Additionally, not falling over is rewarded.</p>
+<p>Consequently, the total reward (<span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><mi mathvariant="italic">R</mi></math></span>) for a walking trial is:</p>
+<p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi mathvariant="italic">R</mi><mo>=</mo><mrow><munderover accent="false" accentunder="false"><mrow><mo>∑</mo></mrow><mrow><mi mathvariant="italic">t</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi mathvariant="italic">T</mi></mrow></munderover><mrow><msub><mrow><mi mathvariant="italic">r</mi></mrow><mrow><mi mathvariant="italic">t</mi><mtext> </mtext></mrow></msub></mrow></mrow></mrow></math></p>
+</div>
+<p></p>
+<p>Here <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><mi mathvariant="italic">T</mi></math></span> is the time at which the simulation terminates. You can change the reward weights in the <a href="matlab:openExample('multibody_deeplearning/TrainHumanoidWalkerExample','supportingFile','sm_humanoid_walker_rl_parameters.m')" target="_blank"><code class="literal">sm_humanoid_walker_rl_parameters</code></a> script. The simulation terminates when the simulation time is reached or the robot falls. Falling is defined as:</p>
+<div class="itemizedlist"><ul><li><p>The robot drops below 0.5 m.</p></li>
+<li><p>The robot moves laterally by more than 1 m.</p></li>
+<li><p>The robot torso rotates by more than 30 degrees.</p></li>
+</ul>
+</div>
+<h4 class="title" id="TrainHumanoidWalkerExample-6">Train with Genetic Algorithm<span id="mw_rtc_TrainHumanoidWalkerExample_H_A7F2F327" class="anchor_target"></span></h4>
+<p>To optimize the walking of the robot, you can use a genetic algorithm. A genetic algorithm solves optimization problems based on a natural selection process that mimics biological evolution. Genetic algorithms are especially suited to problems when the objective function is discontinuous, nondifferentiable, stochastic, or highly nonlinear. For more information, see <a href="../../gads/ga.html" data-docid="gads#bs08mt7-1" class="a"><code class="olink">ga</code></a><span role="cross_prod"> (Global Optimization Toolbox)</span>. </p>
+<div class="informalfigure"><div id="d124e23492" class="mediaobject"><p><img src="../../examples/multibody_deeplearning/win64/TrainHumanoidWalkerExample_06.png" height="285" width="929"/></p>
+</div>
+</div>
+<p>The model sets the angular demand for each joint to a repeating pattern that is analogous to the central pattern generators seen in nature [2]. The repeating pattern yields an open-loop controller. The periodicity of the signals is the gait period, which is the time taken to complete one full step. During each gait period, the signal switches between different angular demand values. Ideally, the humanoid robot walks symmetrically, and the control pattern for each joint in the right leg is transmitted to the corresponding joint in the left leg, with a delay of half a gait period. The pattern generator aims to determine the optimal control pattern for each joint and to maximize the walking objective function.</p>
+<div class="informalfigure"><div id="d124e23497" class="mediaobject"><p><img src="../../examples/multibody_deeplearning/win64/TrainHumanoidWalkerExample_07.png" height="386" width="559"/></p>
+</div>
+</div>
+<p>To train the robot with a genetic algorithm, open the <a href="matlab:openExample('multibody_deeplearning/TrainHumanoidWalkerExample','supportingFile','sm_humanoid_walker_ga_train.m')" target="_blank"><code class="literal">sm_humanoid_walker_ga_train</code></a> script. By default, this example uses a pretrained humanoid walker. To train the humanoid walker, set <code class="literal">trainWalker</code> to <code class="literal">true</code>.</p>
+<h4 class="title" id="TrainHumanoidWalkerExample-7">Train with Reinforcement Learning<span id="mw_rtc_TrainHumanoidWalkerExample_H_8620425E" class="anchor_target"></span></h4>
+<span id="mw_rtc_TrainHumanoidWalkerExample_H_98EDCD5F" class="anchor_target"></span><p>Alternatively, you can also train the robot using a deep deterministic policy gradient (DDPG) reinforcement learning agent. A DDPG agent is an actor-critic reinforcement learning agent that computes an optimal policy that maximizes the long-term reward. DDPG agents can be used in systems with continuous actions and states. For details about DDPG agents, see <a href="../../reinforcement-learning/ref/rlddpgagent.html" data-docid="rl_ref#mw_7e49ed9c-eea8-4994-8532-c7f66d5359ef" class="a"><code class="olink">rlDDPGAgent</code></a><span role="cross_prod"> (Reinforcement Learning Toolbox)</span>.</p>
+<div class="informalfigure"><div id="d124e23519" class="mediaobject"><p><img src="../../examples/multibody_deeplearning/win64/TrainHumanoidWalkerExample_08.png" height="253" width="570"/></p>
+</div>
+</div>
+<p>To train the robot with reinforcement learning, open the <a href="matlab:openExample('multibody_deeplearning/TrainHumanoidWalkerExample','supportingFile','sm_humanoid_walker_rl_train.m')" target="_blank"><code class="literal">sm_humanoid_walker_rl_train</code></a> script. By default, this example uses a pretrained humanoid walker. To train the humanoid walker, set <code class="literal">trainWalker</code> to <code class="literal">true</code>.</p>
+<h3 class="title" id="TrainHumanoidWalkerExample-8">References<span id="mw_rtc_TrainHumanoidWalkerExample_H_316B5A2B" class="anchor_target"></span></h3>
+<p>[1] Kalveram, Karl T., Thomas Schinauer, Steffen Beirle, Stefanie Richter, and Petra Jansen-Osmann. “Threading Neural Feedforward into a Mechanical Spring: How Biology Exploits Physics in Limb Control.” <span class="emphasis"><em>Biological Cybernetics</em></span> 92, no. 4 (April 2005): 229–40. https://doi.org/10.1007/s00422-005-0542-6.</p>
+<p>[2] Jiang Shan, Cheng Junshi, and Chen Jiapin. “Design of Central Pattern Generator for Humanoid Robot Walking Based on Multi-Objective GA.” In <span class="emphasis"><em>Proceedings. 2000 IEEE/RSJ International Conference on Intelligent Robots and Systems</em></span> (IROS 2000) (Cat. No.00CH37113), 3: 1930–35. Takamatsu, Japan: IEEE, 2000. https://doi.org/10.1109/IROS.2000.895253.</p>
+</div>
+					<h2 id="d124e23546">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/point.html"><span itemprop="name"><span class="simscapeblock">Point</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/pointcloud.html"><span itemprop="name"><span class="simscapeblock">Point
+							Cloud</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/spatialcontactforce.html"><span itemprop="name"><span class="simscapeblock">Spatial
+							Contact Force</span></span></a></span></p>
+					<h2 id="d124e23558">Related Topics</h2>
+<ul><li><a href="../../deeplearning/index.html" class="a">Deep Learning Toolbox</a></li>
+<li><a href="../../gads/index.html" class="a">Global Optimization Toolbox</a></li>
+<li><a href="humanoid-robot.html" class="a">Humanoid Robot</a></li>
+<li><a href="import-a-urdf-model.html" class="a">Import a URDF Humanoid Model</a></li>
+<li><a href="modeling-contact-force-between-two-solids.html" class="a">Modeling Contact Force Between Two Solids</a></li>
+<li><a href="../../reinforcement-learning/index.html" class="a">Reinforcement Learning Toolbox</a></li>
+<li><a href="use-contact-proxies.html" class="a">Use Contact Proxies to Simulate Contact</a></li>
+</ul>
+					
+				</section>
+    </div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

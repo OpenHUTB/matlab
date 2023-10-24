@@ -57,8 +57,10 @@ userpath
 ```
 
 * git代码管理
+将功能添加到系统路径当中
 ```shell
-
+addpath(fullfile(toolboxdir('matlab'), 'git'))
+savepath
 ```
 
 

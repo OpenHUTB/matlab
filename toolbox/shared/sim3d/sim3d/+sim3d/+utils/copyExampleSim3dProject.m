@@ -1,18 +1,21 @@
 % 将将三维仿真示例工程支持包文件拷贝到目的文件夹
 function copyExampleSim3dProject(varargin)
 
-    projectName="AutoVrtlEnv";
+    projectName = "AutoVrtlEnv";
 
-    parser=inputParser();
+    parser = inputParser();
 
+    % 将 AutoVrtlEnv工程拷贝的目的地（必须的参数）
     parser.addRequired("Destination", @(Destination)~isfolder(fullfile(Destination,projectName)));
+
+    % 第二个参数为源工程的目录：
     parser.addParameter(...
         "Source",...
         fullfile(matlabshared.supportpkg.getSupportPackageRoot(),"toolbox","shared","sim3dprojects","spkg"),...
         @isfolder...
         );
     parser.addParameter("VerboseOutput",false,@islogical);
-    parser.addParameter("PluginDestination","C:\Program Files\Epic Games\UE_4.26\Engine\Plugins\MathWorks");
+    parser.addParameter("PluginDestination", "C:\Program Files\Epic Games\UE_4.26\Engine\Plugins\MathWorks");
 
     parser.parse(varargin{:});
 
@@ -100,9 +103,9 @@ end
 
 
 % 在拷贝的时候输出拷贝过程的详细信息
-function status=CopyWithLog(source,destination,verboseOutput)
+function status = CopyWithLog(source,destination,verboseOutput)
     if verboseOutput
         fprintf("Copying %s to %s\n",source,destination);
     end
-    status=copyfile(source,destination);
+    status = copyfile(source,destination);
 end

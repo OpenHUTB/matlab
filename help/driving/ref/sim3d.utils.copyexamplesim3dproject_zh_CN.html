@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>sim3d.utils.copyExampleSim3dProject</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../unreal-engine-scenario-simulation.html",
+          "name": "Unreal Engine Scenario Simulation"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "unreal-engine-scenario-simulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:sim3d.utils.sim3d.utils.copyExampleSim3dProject"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="mlref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function copies the support package files to the destination folder, DestFldr."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../unreal-engine-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Unreal Engine Scenario Simulation</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas">copyExampleSim3dProject</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_563d09dc-6f28-4f5a-a7b2-b244bebdf312" class="intrnllnk">Syntax</a></li>
+<li><a href="#mw_f11ef8d3-98d4-4f6d-b6bb-b57d649f3677" class="intrnllnk">Description</a></li>
+<li><a href="#mw_61785910-cca4-420c-bf6f-24b234f5e1d9" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#mw_fd109abb-0977-4480-bb48-e8f6275500ec" class="intrnllnk">DestFldr</a></li>
+</ul><ul class="nav"><li><a href="#namevaluepairs" class="intrnllnk">Name-Value Arguments</a><ul class="nav"><li><a href="#mw_79109545-1be4-4668-b7ad-1f1f16c8b5ab" class="intrnllnk">Source</a></li>
+</ul><ul class="nav"><li><a href="#mw_2beb89b2-a244-4f0a-a1f5-803f48a0c0f4" class="intrnllnk">VerboseOutput</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mw_bc9a766d-1697-4451-a620-d672660c37f2" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_48606858-2c21-4585-8a2d-03e4b4210993" class="intrnllnk">Copy Support Package Files to Destination Folder</a></li>
+</ul></li>
+<li><a href="#mw_5792645f-d849-4e60-b9a8-7a7f283cdb72_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_5792645f-d849-4e60-b9a8-7a7f283cdb72_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=unreal-engine-scenario-simulation&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="method_ref"><span id="mw_5792645f-d849-4e60-b9a8-7a7f283cdb72" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title">copyExampleSim3dProject</h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">将支持包文件和插件复制到指定文件夹</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<span id="mw_563d09dc-6f28-4f5a-a7b2-b244bebdf312" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_563d09dc-6f28-4f5a-a7b2-b244bebdf312">语法</h2>
+<div class="syntax_signature"><p xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="synopsis"><code>sim3d.utils.copyExampleSim3dProject(DestFldr)<br/>
+sim3d.utils.copyExampleSim3dProject(DestFldr,Name=Value)<br/>
+</code></p>
+</div>
+</div>
+<div class="clear"></div>
+<div class="ref_sect"><h2 id="mw_f11ef8d3-98d4-4f6d-b6bb-b57d649f3677">描述</h2>
+<p><span xmlns:mf="http://mathworks.com/namespace/tmwbook/function" id="d124e212153" itemprop="syntax"><code class="synopsis">sim3d.utils.copyExampleSim3dProject(<a href="#mw_fd109abb-0977-4480-bb48-e8f6275500ec" class="intrnllnk"><code class="argument">DestFldr</code></a>)</code></span> 将支持包项目文件复制到目标文件夹
+                <code class="literal">DestFldr</code>。</p>
+<p><span xmlns:mf="http://mathworks.com/namespace/tmwbook/function" id="d124e212161" itemprop="syntax"><code class="synopsis">sim3d.utils.copyExampleSim3dProject(<a href="#mw_fd109abb-0977-4480-bb48-e8f6275500ec" class="intrnllnk"><code class="argument">DestFldr</code></a>,<a href="#namevaluepairarguments" class="intrnllnk"><code class="argument">Name=Value</code></a>)</code></span>
+            使用名-值对参数指定的其他选项将支持包文件复制到目的地。</p>
+<p>Running the
+                <code class="literal">sim3d.utils.copyExampleSim3dProject</code> function configures your
+            environment so that you can customize scenes. The destination folder contains these
+                <span><span class="entity">Automated Driving Toolbox™ Interface for Unreal Engine<sup>®</sup> 4 Projects</span></span> support package components.</p>
+<div class="itemizedlist"><ul><li><p>An Unreal<sup>®</sup> project, defined in <code class="literal">AutoVrtlEnv.uproject</code>, and its associated files. The project includes editable versions of the prebuilt 3D scenes that you can select from the <strong class="guilabel">Scene description</strong> parameter of the <span class="block">Simulation 3D Scene Configuration</span> block. </p></li>
+<li><p>Three plugins, <code class="literal">MathWorkSimulation</code>:
+                <code class="literal">RoadRunnerMaterials</code>, and
+                <code class="literal">MathWorksAutomotiveContent</code>. These plugins establish the
+            connection between MATLAB<sup>®</sup> and the Unreal Editor and are required for co-simulation. </p></li>
+<li><p>A <span class="entity">RoadRunner</span> scene project defined in  <code class="literal">RRscene.uproject</code> file, along
+            with a <code class="literal">WindowsPackage</code> folder that contains supporting files and the
+            executable <code class="literal">RRscene.exe</code>. This project contains the editable version of
+            the scene and the executable with supporting files to co-simulate the <a href="../ug/highway-lane-following-with-roadrunner-scene.html" class="a">Highway Lane Following with RoadRunner Scene</a> example.</p></li>
+</ul>
+</div>
+<p>
+</p>
+</div>
+<div class="ref_sect"><h2 id="mw_61785910-cca4-420c-bf6f-24b234f5e1d9">Input Arguments</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_61785910-cca4-420c-bf6f-24b234f5e1d9_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="mw_fd109abb-0977-4480-bb48-e8f6275500ec"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_fd109abb-0977-4480-bb48-e8f6275500ec" data-target="#expand_panel_body_mw_fd109abb-0977-4480-bb48-e8f6275500ec" aria-controls="expand_panel_body_mw_fd109abb-0977-4480-bb48-e8f6275500ec" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_DestFldr" class="anchor_target"></span><h3 class="panel-title" id="mw_fd109abb-0977-4480-bb48-e8f6275500ec"><code itemprop="name">DestFldr</code> — <span itemprop="purpose">Destination folder</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">character vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_fd109abb-0977-4480-bb48-e8f6275500ec" aria-labelledby="expand_panel_heading_mw_fd109abb-0977-4480-bb48-e8f6275500ec" class="panel-collapse collapse"><div class="panel-body"><p>Destination folder name, specified as a character vector.</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p>
+<p>You must have write permission for the destination folder.</p>
+</div>
+<p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">char</code> | <code itemprop="datatype">string</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span id="namevaluepairarguments" class="anchor_target"></span><span id="mw_22dcfe28-75be-439c-8251-e6fc1c5a61d6" class="anchor_target"></span><h3 id="namevaluepairs" class="bottom_ruled">Name-Value Arguments</h3>
+<div class="namevaluecontainer"><p class="neqvpair_boilerplate">Specify optional pairs of arguments as
+      <code class="argument">Name1=Value1,...,NameN=ValueN</code>, where <code class="literal">Name</code> is
+      the argument name and <code class="literal">Value</code> is the corresponding value.
+      Name-value arguments must appear after other arguments, but the order of the
+      pairs does not matter.
+    </p>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_5e1b48da-5203-4ef5-8d65-ad81ecb7af6d_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_79109545-1be4-4668-b7ad-1f1f16c8b5ab"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_79109545-1be4-4668-b7ad-1f1f16c8b5ab" data-target="#expand_panel_body_mw_79109545-1be4-4668-b7ad-1f1f16c8b5ab" aria-controls="expand_panel_body_mw_79109545-1be4-4668-b7ad-1f1f16c8b5ab" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Source" class="anchor_target"></span><h3 class="panel-title" id="mw_79109545-1be4-4668-b7ad-1f1f16c8b5ab"><code itemprop="name">Source</code> — <span itemprop="purpose">Support package source folder</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">character vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_79109545-1be4-4668-b7ad-1f1f16c8b5ab" aria-labelledby="expand_panel_heading_mw_79109545-1be4-4668-b7ad-1f1f16c8b5ab" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Support package source folder, specified as a character vector. The
+                            folder contains the downloaded support packages files.</p>
+<p>By default, if you do not specify the source folder, <code class="literal">copyExampleSim3dProject</code> copies the
+                            file from the support package installation folder,
+                                <code class="literal">matlabshared.supportpkg.getSupportPackageRoot()</code>.</p>
+<p class="description_valueexample"><strong>Example: </strong><code class="literal">Source="shared\sim3dprojects\spkg\"</code></p>
+<p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">char</code> | <code itemprop="datatype">string</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_f75c54eb-2925-4264-ba83-16c8c993b747_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_2beb89b2-a244-4f0a-a1f5-803f48a0c0f4"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_2beb89b2-a244-4f0a-a1f5-803f48a0c0f4" data-target="#expand_panel_body_mw_2beb89b2-a244-4f0a-a1f5-803f48a0c0f4" aria-controls="expand_panel_body_mw_2beb89b2-a244-4f0a-a1f5-803f48a0c0f4" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_VerboseOutput" class="anchor_target"></span><h3 class="panel-title" id="mw_2beb89b2-a244-4f0a-a1f5-803f48a0c0f4"><code itemprop="name">VerboseOutput</code> — <span itemprop="purpose">Option to enable verbose logging</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code> or
+                            <code class="literal">false</code></span> (default) | <span itemprop="inputvalue"><code class="literal">1</code> or <code class="literal">true</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_2beb89b2-a244-4f0a-a1f5-803f48a0c0f4" aria-labelledby="expand_panel_heading_mw_2beb89b2-a244-4f0a-a1f5-803f48a0c0f4" class="panel-collapse collapse"><div class="panel-body">
+                        <p>Option to enable verbose logging, specified as a logical
+                                <code class="literal">0</code> (false) or <code class="literal">1</code> (true). Verbose
+                            logging displays intermediate iteration information on the MATLAB command line.</p>
+                        <p class="description_valueexample"><strong>Example: </strong><code class="literal">VerboseOutput=true</code></p>
+                    <p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">logical</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="examples"><h2 id="mw_bc9a766d-1697-4451-a620-d672660c37f2">Examples</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink">expand all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_48606858-2c21-4585-8a2d-03e4b4210993"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_48606858-2c21-4585-8a2d-03e4b4210993" data-target="#expand_panel_body_mw_48606858-2c21-4585-8a2d-03e4b4210993" aria-controls="expand_panel_body_mw_48606858-2c21-4585-8a2d-03e4b4210993" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_48606858-2c21-4585-8a2d-03e4b4210993">Copy Support Package Files to Destination Folder<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_48606858-2c21-4585-8a2d-03e4b4210993" aria-labelledby="expand_panel_heading_mw_48606858-2c21-4585-8a2d-03e4b4210993" class="panel-collapse collapse"><div class="panel-body"><p class="shortdesc">Copy the support package files to <code class="literal">C:\project</code>.</p>
+<div class="procedure"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sim3d.utils.copyExampleSim3dProject(<span style="color:#A020F0">"C:\project"</span>);</pre>
+</div>
+</div>
+</div>
+<p>Copy the support package files to <code class="literal">C:\project</code> with
+                            <code class="literal">VerboseOutput</code> set to <code class="literal">true</code>.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sim3d.utils.copyExampleSim3dProject(<span style="color:#A020F0">"C:\project"</span>, VerboseOutput=true)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Copying ...\spkg\project\AutoVrtlEnv to C:\project\AutoVrtlEnv
+Creating C:\project\AutoVrtlEnv\Plugins
+Copying ...\spkg\plugins\mw_aerospace\MathWorksAerospace to C:\project\AutoVrtlEnv\Plugins\MathWorksAerospace
+Copying ...\spkg\plugins\mw_automotive\MathWorksAutomotiveContent to C:\project\AutoVrtlEnv\Plugins\MathWorksAutomotiveContent
+Copying ...\spkg\plugins\mw_simulation\MathWorksSimulation to C:\project\AutoVrtlEnv\Plugins\MathWorksSimulation
+Copying ...\spkg\plugins\mw_uav\MathWorksUAVContent to C:\project\AutoVrtlEnv\Plugins\MathWorksUAVContent
+Copying ...\spkg\plugins\rr_materials\RoadRunnerMaterials to C:\project\AutoVrtlEnv\Plugins\RoadRunnerMaterials
+Ensuring C:\project\AutoVrtlEnv\AutoVrtlEnv.uproject is writable
+Enabling plugin MathWorksSimulation in C:\project\AutoVrtlEnv\AutoVrtlEnv.uproject
+Enabling plugin MathWorksUAVContent in C:\project\AutoVrtlEnv\AutoVrtlEnv.uproject
+Enabling plugin MathWorksAutomotiveContent in C:\project\AutoVrtlEnv\AutoVrtlEnv.uproject
+Enabling plugin RoadRunnerMaterials in C:\project\AutoVrtlEnv\AutoVrtlEnv.uproject</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_5792645f-d849-4e60-b9a8-7a7f283cdb72_vh">Version History</h2>
+<p><strong>Introduced in R2022b</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_5792645f-d849-4e60-b9a8-7a7f283cdb72_seealso">See Also</h2>
+<div class="examples_container"><h3 class="remove_border">External Websites</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="https://www.unrealengine.com/en-US/unreal" target="_blank">Unreal Engine</a></li>
+<li><a href="https://www.mathworks.com/videos/series/using-unreal-engine-with-simulink.html" target="_blank" class="video">Using Unreal Engine with Simulink</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

@@ -352,38 +352,29 @@ classdef SimPool
                 ActorBlk=sim3d.utils.SimPool.getActorBlock(blk,'Custom',ActorTag);
             end
             if isempty(ActorName)&&isempty(ActorTag)&&isempty(ID)
-
                 out='AddDefault';
-
             elseif strcmp(ActorName,ActorTag)
-
-
                 if isempty(ActorBlk)
-
                     out='AddNew';
                 elseif strcmp(blk,ActorBlk)
-
                     out='Skip';
                 else
-
                     out='Refresh';
                 end
             else
-
                 poolBlk=[sim3d.utils.SimPool.getActorBlock(blk,ActorType,ActorName),sim3d.utils.SimPool.getActorBlock(blk,'Custom',ActorName)];
                 if isempty(poolBlk)
                     out='Refresh';
                 elseif strcmp(blk,poolBlk)
-
                     out='Skip';
                 else
-
                     out='Error';
                 end
             end
         end
-        function out=isCustomTag(ActorTag,ActorType)
 
+
+        function out=isCustomTag(ActorTag,ActorType)
             if length(ActorTag)<=length(ActorType)||~strcmp(ActorTag(1:length(ActorType)),ActorType)
                 out=true;
             else
