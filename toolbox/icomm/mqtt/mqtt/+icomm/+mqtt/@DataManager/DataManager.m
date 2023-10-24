@@ -1,25 +1,19 @@
 classdef DataManager<handle
 
-
-
     properties
         DataStore=timetable();
     end
 
+
     methods
 
         function storeData(obj,topic,value)
-
             obj.DataStore=[obj.DataStore;
             timetable(datetime('now'),string(topic),string(value),'VariableNames',{'Topic','Data'})];
         end
 
+
         function data=read(obj,topic)
-
-
-
-
-
             drawnow;
 
             data=timetable();
@@ -29,30 +23,23 @@ classdef DataManager<handle
 
                 data=obj.DataStore(topicLogicalIdx,:);
 
-
                 data=sortrows(data,{'Time','Topic'});
 
                 obj.DataStore(topicLogicalIdx,:)=[];
             end
         end
 
+
         function data=peek(obj,topic)
-
-
-
-
 
             drawnow;
 
             dataTemp=timetable();
 
-
             topicLogicalIdx=getTopicLogicalIdx(obj.DataStore,topic);
             if(~isempty(topicLogicalIdx))
-
                 dataTemp=obj.DataStore(topicLogicalIdx,:);
             end
-
 
             if isempty(dataTemp)
                 data=dataTemp;
@@ -62,11 +49,8 @@ classdef DataManager<handle
                 return
             end
 
-
             catArray=categorical(dataTemp.Topic);
             catSet=categories(catArray);
-
-
 
             data=timetable();
             for i=1:length(catSet)
@@ -76,49 +60,37 @@ classdef DataManager<handle
                 data=[data;dataCatI(end,:)];
             end
 
-
-
             if~isempty(data)
                 data=sortrows(data,{'Time','Topic'});
             end
         end
 
+
         function flush(obj,topic)
-
-
-
-
-
             drawnow;
-
 
             topicLogicalIdx=getTopicLogicalIdx(obj.DataStore,topic);
             if(~isempty(topicLogicalIdx))
-
-
                 obj.DataStore(topicLogicalIdx,:)=[];
             end
         end
+
     end
 end
 
+
 function topicLogicalIdx=getTopicLogicalIdx(dataStore,topic)
-
-
 
     if isempty(dataStore)
         topicLogicalIdx=[];
         return
     end
 
-
     topicLogicalIdx=dataStore.Topic==topic;
 
     if any(topicLogicalIdx)
         return
     end
-
-
 
     if contains(topic,'+')
         topics=strsplit(topic,'+');

@@ -1,17 +1,8 @@
 classdef(Hidden)Utility
 
-
-
-
-
-
-
-
     properties(Constant)
 
-
         MW_MQTTASYNC_RESPONSE_CODE_PLACEHOLDER=1;
-
 
         MQTTASYNC_SUCCESS=0;
         MQTTASYNC_FAILURE=-1;
@@ -30,13 +21,12 @@ classdef(Hidden)Utility
         MQTTASYNC_BAD_PROTOCOL=-14;
         MQTTASYNC_BAD_MQTT_OPTION=-15;
         MQTTASYNC_WRONG_MQTT_VERSION=-16;
-
     end
+
 
     methods(Static)
         function checkLicense()
             try
-
                 matlab.internal.licensing.checkoutProductLicense('OT');
             catch
                 error(message('icomm_mqtt:MQTTClient:NotLicensed'));

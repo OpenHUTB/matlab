@@ -1,8 +1,5 @@
 classdef Subscription
 
-
-
-
     properties(SetAccess=private,GetAccess=public)
         Topic;
         QualityOfService;
@@ -15,10 +12,9 @@ classdef Subscription
         SubscriptionListener;
     end
 
+
     methods
         function obj=Subscription(mqttClient,topic,QoS,callback)
-
-
             obj.MQTTClient=mqttClient;
             obj.Topic=topic;
             obj.QualityOfService=QoS;
@@ -27,14 +23,11 @@ classdef Subscription
 
             obj.SubscriptionListener=addlistener(obj.MQTTClient,'Custom',@obj.handleCustomEvent);
 
-
             subscribeOptions=[];
             subscribeOptions.Topic=obj.Topic;
             subscribeOptions.QoS=int32(obj.QualityOfService);
 
-
             obj.MQTTClient.execute("subscribeTopic",subscribeOptions);
-
 
             responseCode=obj.MQTTClient.subscribeResponseCode;
             if(responseCode~=icomm.mqtt.Utility.MQTTASYNC_SUCCESS)
@@ -42,55 +35,47 @@ classdef Subscription
             end
         end
 
+
         function unsubscribe(obj)
-
-
             unsubscribeOptions=[];
             unsubscribeOptions.Topic=obj.Topic;
             obj.MQTTClient.execute("unsubscribeTopic",unsubscribeOptions)
-
 
             responseCode=obj.MQTTClient.unsubscribeResponseCode;
             if(responseCode~=icomm.mqtt.Utility.MQTTASYNC_SUCCESS)
                 error(message('icomm_mqtt:Subscription:UnsubscribeAttemptFail',obj.Topic));
             end
 
-
             delete(obj.SubscriptionListener);
         end
 
-        function[message]=read(obj,topic)
 
+        function[message]=read(obj,topic)
             message=read(obj.DataManager,topic);
         end
 
-        function[message]=peek(obj,topic)
 
+        function[message]=peek(obj,topic)
             message=peek(obj.DataManager,topic);
         end
 
-        function flush(obj,topic)
 
+        function flush(obj,topic)
             flush(obj.DataManager,topic);
         end
 
 
         function handleCustomEvent(obj,~,eventData)
-
             switch eventData.Type
             case 'MessageArrivedEvent'
                 topic=eventData.Data.Topic;
-
 
                 if~eventTopicBelongsToSubscription(topic,obj)
                     return;
                 end
 
-
                 data=eventData.Data.Message;
                 obj.DataManager.storeData(topic,data);
-
-
 
                 obj.MQTTClient.execute("clearAllBuffers",[])
                 fireCallback=1;
@@ -98,12 +83,9 @@ classdef Subscription
                 error(message('icomm_mqtt:Subscription:InvalidEventType'));
             end
 
-
-
             if isempty(obj.Callback)
                 return
             end
-
 
             if fireCallback
                 try
@@ -118,6 +100,7 @@ classdef Subscription
         end
     end
 
+
     methods(Hidden=true)
         function delete(obj)
             try
@@ -130,19 +113,15 @@ classdef Subscription
     end
 end
 
+
 function flag=eventTopicBelongsToSubscription(topic,subscription)
 
-
-
-
     flag=false;
-
 
     if strcmpi(topic,subscription.Topic)
         flag=true;
         return;
     end
-
 
     if contains(subscription.Topic,'+')
         topics=strsplit(subscription.Topic,'+');
@@ -151,7 +130,6 @@ function flag=eventTopicBelongsToSubscription(topic,subscription)
             return;
         end
     end
-
 
     if contains(subscription.Topic,'#')
         topicOfinterest=strsplit(subscription.Topic,'#');
