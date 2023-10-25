@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>imref2d</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Image Processing Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../image-registration-and-geometric-transformation.html",
+          "name": "Geometric Transformation and Image Registration"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../spatial-referencing.html",
+          "name": "Generic Geometric Transformations"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Image Processing Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../image-registration-and-geometric-transformation.html",
+          "name": "Geometric Transformation and Image Registration"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../image-registration.html",
+          "name": "Image Registration"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "spatial-referencing",
+        "image-registration"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExtendedCapabilities",
+
+        "itemListElement":
+        [
+{
+          "@type": "ListItem",
+          "position": 1,
+"item": 
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "codegen",
+          "value": "limited"
+
+        }
+          },
+{
+          "@type": "ListItem",
+          "position": 2,
+"item": 
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "threadsupport",
+          "value": "full"
+
+        }
+          }
+        ]
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:imref2d"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:imref2d"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="object:imref2d"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="An imref2d object stores the relationship between the intrinsic coordinates anchored to the rows and columns of a 2-D image and the spatial location of the same row and column locations in a world coordinate system."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "images";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/image-processing-and-computer-vision.html" itemprop="url"><span itemprop="title">Image Processing and Computer Vision</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Image Processing Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../image-registration-and-geometric-transformation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Geometric Transformation and Image Registration</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../spatial-referencing.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Generic Geometric Transformations</span></a></li>
+</ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Image Processing Toolbox</a>
+</li>
+<li><a href="../image-registration-and-geometric-transformation.html?s_tid=CRUX_lftnav">Geometric Transformation and Image Registration</a></li>
+<li><a href="../image-registration.html?s_tid=CRUX_lftnav">Image Registration</a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas">imref2d</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e172542" class="intrnllnk">Description</a></li>
+<li><a href="#d124e172565" class="intrnllnk">Creation</a><ul class="nav"><li><a href="#d124e172584" class="intrnllnk">Description</a></li>
+</ul></li>
+<li><a href="#d124e172658" class="intrnllnk">Properties</a><ul class="nav"><li><a href="#d124e172662" class="intrnllnk">ImageExtentInWorldX</a></li>
+<li><a href="#d124e172694" class="intrnllnk">ImageExtentInWorldY</a></li>
+<li><a href="#mw_ed79e2aa-9415-43a2-af30-b658b0172035" class="intrnllnk">ImageSize</a></li>
+<li><a href="#mw_825c2aab-f5ad-4cd7-bb35-b5f65730d279" class="intrnllnk">PixelExtentInWorldX</a></li>
+<li><a href="#mw_18cc350e-190e-41a4-88ab-e15af99c7b5f" class="intrnllnk">PixelExtentInWorldY</a></li>
+<li><a href="#mw_3a08bff8-fcdb-4c3e-9ff6-cb63b4c1a30c" class="intrnllnk">XWorldLimits</a></li>
+<li><a href="#mw_e2d67cec-851a-49ce-a376-cb6d9b225883" class="intrnllnk">YWorldLimits</a></li>
+<li><a href="#d124e172871" class="intrnllnk">XIntrinsicLimits</a></li>
+<li><a href="#d124e172916" class="intrnllnk">YIntrinsicLimits</a></li>
+</ul></li>
+<li><a href="#d124e172961" class="intrnllnk">Object Functions</a></li>
+<li><a href="#d124e172980" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_a94dd832-f03d-433a-818a-a647264d6420" class="intrnllnk">Create 2-D Spatial Referencing Object Knowing Image Size and World Limits</a></li>
+</ul><ul class="nav"><li><a href="#mw_49578ad0-5c28-4465-a282-b3ff9f68e721" class="intrnllnk">Create 2-D Spatial Referencing Object Knowing Image Size and Resolution</a></li>
+</ul></li>
+<li><a href="#d124e173075" class="intrnllnk">More About</a><ul class="nav"><li><a href="#d124e173077" class="intrnllnk">Intrinsic Coordinate System</a></li>
+</ul></li>
+<li><a href="#d124e173083" class="intrnllnk">Tips</a></li>
+<li><a href="#refsect-extended-capabilities" class="intrnllnk">Extended Capabilities</a></li>
+<li><a href="#ref_q21n8hna8_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#ref_q21n8hna8_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=spatial-referencing&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=spatial-referencing&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=spatial-referencing&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=spatial-referencing&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=spatial-referencing&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=spatial-referencing&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="object_ref"><span id="ref_q21n8hna8" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title">imref2d</h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">世界坐标的参考二维图像</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div class="refsummary" itemprop="content"><h2 id="d124e172542">描述</h2>
+        <div class="shortsummary"><p><code class="literal">imref2d</code> 对象存储锚定到二维图像行和列的固有坐标与世界坐标系中相同行和列位置的空间位置之间的关系。</p>
+</div>
+        <p>在平面世界<i>x</i>和世界<i>y</i>坐标系中定期对图像进行采样，使得内在<i>x</i>值与世界<i>x</i>值对齐，并且内在<i>y</i>值与世界<i>y</i>值对齐。每个维度的分辨率可以不同。</p>
+    </div>
+<div id="d124e172565_div" class="ref_sect createobject"><h2 id="d124e172565">创建</h2>
+<p>您可以通过这些方式创建 <code class="literal">imref2d</code> 对象。</p>
+<div class="itemizedlist"><ul><li><p><a href="affineoutputview.html"><code class="function">affineOutputView</code></a> — Store the spatial extent of an image
+                    that is warped by a 2-D affine geometric transformation.</p></li>
+<li><p>The <code class="literal">imref2d</code> function described here</p></li>
+</ul>
+</div>
+<span id="mw_9bd8bc4d-a99d-4251-9181-39b39834de3f" class="anchor_target"></span><div class="ref_sect"><h3 id="mw_9bd8bc4d-a99d-4251-9181-39b39834de3f">Syntax</h3>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e172589" class="intrnllnk">R = imref2d</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e172599" class="intrnllnk">R = imref2d(imageSize)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e172611" class="intrnllnk">R = imref2d(imageSize,pixelExtentInWorldX,pixelExtentInWorldY)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e172636" class="intrnllnk">R = imref2d(imageSize,xWorldLimits,yWorldLimits)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="d124e172584_div" class="refsect2 description"><h3 id="d124e172584">Description</h3>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><div class="code_responsive"><p><span id="d124e172589" itemprop="syntax"><code class="synopsis"><code class="argument">R</code> = imref2d</code></span> creates an
+                        <code class="literal">imref2d</code> object with default property settings.</p>
+</div>
+</div>
+<div class="description_element"><div class="code_responsive"><p><span id="d124e172599" itemprop="syntax"><code class="synopsis"><code class="argument">R</code> = imref2d(imageSize)</code></span> sets the
+                    optional <code class="literal"><a href="imref2d.html#mw_ed79e2aa-9415-43a2-af30-b658b0172035" class="intrnllnk">ImageSize</a></code> property.</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="imref2d.html#mw_49578ad0-5c28-4465-a282-b3ff9f68e721" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e172611" itemprop="syntax"><code class="synopsis"><code class="argument">R</code> = imref2d(imageSize,pixelExtentInWorldX,pixelExtentInWorldY)</code></span>
+                    sets the optional <code class="literal"><a href="imref2d.html#mw_ed79e2aa-9415-43a2-af30-b658b0172035" class="intrnllnk">ImageSize</a></code>, <code class="literal"><a href="imref2d.html#mw_825c2aab-f5ad-4cd7-bb35-b5f65730d279" class="intrnllnk">PixelExtentInWorldX</a></code>, and <code class="literal"><a href="imref2d.html#mw_18cc350e-190e-41a4-88ab-e15af99c7b5f" class="intrnllnk">PixelExtentInWorldY</a></code> properties.</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="imref2d.html#mw_a94dd832-f03d-433a-818a-a647264d6420" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e172636" itemprop="syntax"><code class="synopsis"><code class="argument">R</code> = imref2d(imageSize,xWorldLimits,yWorldLimits)</code></span>
+                    sets the optional <code class="literal"><a href="imref2d.html#mw_ed79e2aa-9415-43a2-af30-b658b0172035" class="intrnllnk">ImageSize</a></code>, <code class="literal"><a href="imref2d.html#mw_3a08bff8-fcdb-4c3e-9ff6-cb63b4c1a30c" class="intrnllnk">XWorldLimits</a></code>, and <code class="literal"><a href="imref2d.html#mw_e2d67cec-851a-49ce-a376-cb6d9b225883" class="intrnllnk">YWorldLimits</a></code> properties.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e172658">Properties</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="d124e172658_panel-group" role="tablist" aria-multiselectable="true"><div itemscope="" class="ref_sect" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntityGroup" itemprop="refentitygroup">
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e172662"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e172662" data-target="#expand_panel_body_d124e172662" aria-controls="expand_panel_body_d124e172662" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_ImageExtentInWorldX" class="anchor_target"></span><h3 class="panel-title" id="d124e172662"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:imref2d.ImageExtentInWorldX"/><code itemprop="name" id="propname_ImageExtentInWorldX">ImageExtentInWorldX</code></span> — <span itemprop="purpose">Span of image in the <em class="varname">x</em>-dimension in the world coordinate                     system</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">numeric scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e172662" aria-labelledby="expand_panel_heading_d124e172662" class="panel-collapse collapse"><div class="panel-body">
+                    <p>Span of image in the <em class="varname">x</em>-dimension in the world
+                        coordinate system, specified as a numeric scalar. The
+                            <code class="literal">imref2d</code> object sets this value as
+                            <code class="literal">PixelExtentInX * ImageSize(2)</code>.</p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e172694"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e172694" data-target="#expand_panel_body_d124e172694" aria-controls="expand_panel_body_d124e172694" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_ImageExtentInWorldY" class="anchor_target"></span><h3 class="panel-title" id="d124e172694"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:imref2d.ImageExtentInWorldY"/><code itemprop="name" id="propname_ImageExtentInWorldY">ImageExtentInWorldY</code></span> — <span itemprop="purpose">Span of image in the <em class="varname">y</em>-dimension in the world coordinate                     system</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">numeric scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e172694" aria-labelledby="expand_panel_heading_d124e172694" class="panel-collapse collapse"><div class="panel-body">
+                    <p>Span of image in the <em class="varname">y</em>-dimension in the world
+                        coordinate system, specified as a numeric scalar. The
+                            <code class="literal">imref2d</code> object sets this value as
+                            <code class="literal">PixelExtentInY * ImageSize(1)</code>.</p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_ed79e2aa-9415-43a2-af30-b658b0172035"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ed79e2aa-9415-43a2-af30-b658b0172035" data-target="#expand_panel_body_mw_ed79e2aa-9415-43a2-af30-b658b0172035" aria-controls="expand_panel_body_mw_ed79e2aa-9415-43a2-af30-b658b0172035" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_ImageSize" class="anchor_target"></span><h3 class="panel-title" id="mw_ed79e2aa-9415-43a2-af30-b658b0172035"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:imref2d.ImageSize"/><code itemprop="name" id="propname_ImageSize">ImageSize</code></span> — <span itemprop="purpose">Number of elements in each spatial dimension</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">2-element positive row vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_ed79e2aa-9415-43a2-af30-b658b0172035" aria-labelledby="expand_panel_heading_mw_ed79e2aa-9415-43a2-af30-b658b0172035" class="panel-collapse collapse"><div class="panel-body">
+                    <p>Number of elements in each spatial dimension, specified as a 2-element
+                        positive row vector. <code class="literal">ImageSize</code> is the same form as that
+                        returned by the <a href="../../matlab/ref/size.html"><code class="function">size</code></a> function.</p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_825c2aab-f5ad-4cd7-bb35-b5f65730d279"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_825c2aab-f5ad-4cd7-bb35-b5f65730d279" data-target="#expand_panel_body_mw_825c2aab-f5ad-4cd7-bb35-b5f65730d279" aria-controls="expand_panel_body_mw_825c2aab-f5ad-4cd7-bb35-b5f65730d279" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_PixelExtentInWorldX" class="anchor_target"></span><h3 class="panel-title" id="mw_825c2aab-f5ad-4cd7-bb35-b5f65730d279"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:imref2d.PixelExtentInWorldX"/><code itemprop="name" id="propname_PixelExtentInWorldX">PixelExtentInWorldX</code></span> — <span itemprop="purpose">Size of a single pixel in the <em class="varname">x</em>-dimension measured in                     the world coordinate system</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">positive number</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_825c2aab-f5ad-4cd7-bb35-b5f65730d279" aria-labelledby="expand_panel_heading_mw_825c2aab-f5ad-4cd7-bb35-b5f65730d279" class="panel-collapse collapse"><div class="panel-body">
+                    <p>Size of a single pixel in the <em class="varname">x</em>-dimension measured in
+                        the world coordinate system, specified as a positive number.</p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_18cc350e-190e-41a4-88ab-e15af99c7b5f"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_18cc350e-190e-41a4-88ab-e15af99c7b5f" data-target="#expand_panel_body_mw_18cc350e-190e-41a4-88ab-e15af99c7b5f" aria-controls="expand_panel_body_mw_18cc350e-190e-41a4-88ab-e15af99c7b5f" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_PixelExtentInWorldY" class="anchor_target"></span><h3 class="panel-title" id="mw_18cc350e-190e-41a4-88ab-e15af99c7b5f"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:imref2d.PixelExtentInWorldY"/><code itemprop="name" id="propname_PixelExtentInWorldY">PixelExtentInWorldY</code></span> — <span itemprop="purpose">Size of a single pixel in the <em class="varname">y</em>-dimension measured in                     the world coordinate system</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">positive number</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_18cc350e-190e-41a4-88ab-e15af99c7b5f" aria-labelledby="expand_panel_heading_mw_18cc350e-190e-41a4-88ab-e15af99c7b5f" class="panel-collapse collapse"><div class="panel-body">
+                    <p>Size of a single pixel in the <em class="varname">y</em>-dimension measured in
+                        the world coordinate system, specified as a positive number.</p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_3a08bff8-fcdb-4c3e-9ff6-cb63b4c1a30c"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3a08bff8-fcdb-4c3e-9ff6-cb63b4c1a30c" data-target="#expand_panel_body_mw_3a08bff8-fcdb-4c3e-9ff6-cb63b4c1a30c" aria-controls="expand_panel_body_mw_3a08bff8-fcdb-4c3e-9ff6-cb63b4c1a30c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_XWorldLimits" class="anchor_target"></span><h3 class="panel-title" id="mw_3a08bff8-fcdb-4c3e-9ff6-cb63b4c1a30c"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:imref2d.XWorldLimits"/><code itemprop="name" id="propname_XWorldLimits">XWorldLimits</code></span> — <span itemprop="purpose">Limits of image in world <em class="varname">x</em>-dimension</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">2-element numeric row vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_3a08bff8-fcdb-4c3e-9ff6-cb63b4c1a30c" aria-labelledby="expand_panel_heading_mw_3a08bff8-fcdb-4c3e-9ff6-cb63b4c1a30c" class="panel-collapse collapse"><div class="panel-body">
+                    <p>Limits of image in world <em class="varname">x</em>-dimension, specified as a
+                        2-element row numeric vector <code class="literal">[xMin xMax]</code>.</p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_e2d67cec-851a-49ce-a376-cb6d9b225883"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e2d67cec-851a-49ce-a376-cb6d9b225883" data-target="#expand_panel_body_mw_e2d67cec-851a-49ce-a376-cb6d9b225883" aria-controls="expand_panel_body_mw_e2d67cec-851a-49ce-a376-cb6d9b225883" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_YWorldLimits" class="anchor_target"></span><h3 class="panel-title" id="mw_e2d67cec-851a-49ce-a376-cb6d9b225883"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:imref2d.YWorldLimits"/><code itemprop="name" id="propname_YWorldLimits">YWorldLimits</code></span> — <span itemprop="purpose">Limits of image in world <em class="varname">y</em>-dimension</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">2-element numeric row vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e2d67cec-851a-49ce-a376-cb6d9b225883" aria-labelledby="expand_panel_heading_mw_e2d67cec-851a-49ce-a376-cb6d9b225883" class="panel-collapse collapse"><div class="panel-body">
+                    <p>Limits of image in world <em class="varname">y</em>-dimension, specified as a
+                        2-element numeric row vector <code class="literal">[yMin yMax]</code>.</p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e172871"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e172871" data-target="#expand_panel_body_d124e172871" aria-controls="expand_panel_body_d124e172871" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_XIntrinsicLimits" class="anchor_target"></span><h3 class="panel-title" id="d124e172871"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:imref2d.XIntrinsicLimits"/><code itemprop="name" id="propname_XIntrinsicLimits">XIntrinsicLimits</code></span> — <span itemprop="purpose">Limits of image in intrinsic units in the                     <em class="varname">x</em>-dimension</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">2-element row vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e172871" aria-labelledby="expand_panel_heading_d124e172871" class="panel-collapse collapse"><div class="panel-body">
+                    <p>Limits of image in intrinsic units in the <em class="varname">x</em>-dimension,
+                        specified as a 2-element row vector <code class="literal">[xMin xMax]</code>. For an
+                            <em class="varname">m</em>-by-<em class="varname">n</em> image (or an
+                            <em class="varname">m</em>-by-<em class="varname">n</em>-by-<em class="varname">p</em>
+                        image), <code class="literal">XIntrinsicLimits</code> equals <code class="literal">[0.5,
+                            n+0.5]</code>. </p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="d124e172916"><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e172916" data-target="#expand_panel_body_d124e172916" aria-controls="expand_panel_body_d124e172916" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_YIntrinsicLimits" class="anchor_target"></span><h3 class="panel-title" id="d124e172916"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:imref2d.YIntrinsicLimits"/><code itemprop="name" id="propname_YIntrinsicLimits">YIntrinsicLimits</code></span> — <span itemprop="purpose">Limits of image in intrinsic units in the                     <em class="varname">y</em>-dimension</span><br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">2-element row vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e172916" aria-labelledby="expand_panel_heading_d124e172916" class="panel-collapse collapse"><div class="panel-body">
+                    <p>Limits of image in intrinsic units in the <em class="varname">y</em>-dimension,
+                        specified as a 2-element row vector <code class="literal">[yMin yMax]</code>. For an
+                            <em class="varname">m</em>-by-<em class="varname">n</em> image (or an
+                            <em class="varname">m</em>-by-<em class="varname">n</em>-by-<em class="varname">p</em>
+                        image), <code class="literal">YIntrinsicLimits</code> equals <code class="literal">[0.5,
+                            m+0.5]</code>.</p>
+                <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+        </div>
+</div>
+</div>
+</div>
+<div id="d124e172961_div" class="refsect1 objectfunctions"><h2 id="d124e172961">Object Functions</h2>
+<div class="doc_classesgroup_container"><div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="imref2d.contains.html"><code class="function">contains</code></a></td>
+<td class="description">Determine if image contains points in world coordinate system</td>
+</tr>
+<tr><td class="term notranslate"><a href="imref2d.intrinsictoworld.html"><code class="function">intrinsicToWorld</code></a></td>
+<td class="description">Convert from intrinsic to world coordinates</td>
+</tr>
+<tr><td class="term notranslate"><a href="imref2d.sizesmatch.html"><code class="function">sizesMatch</code></a></td>
+<td class="description">Determine if object and image are size-compatible</td>
+</tr>
+<tr><td class="term notranslate"><a href="imref2d.worldtointrinsic.html"><code class="function">worldToIntrinsic</code></a></td>
+<td class="description">Convert from world to intrinsic coordinates</td>
+</tr>
+<tr><td class="term notranslate"><a href="imref2d.worldtosubscript.html"><code class="function">worldToSubscript</code></a></td>
+<td class="description">Convert world coordinates to row and column subscripts</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="examples"><h2 id="d124e172980">Examples</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_a94dd832-f03d-433a-818a-a647264d6420"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a94dd832-f03d-433a-818a-a647264d6420" data-target="#expand_panel_body_mw_a94dd832-f03d-433a-818a-a647264d6420" aria-controls="expand_panel_body_mw_a94dd832-f03d-433a-818a-a647264d6420" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_a94dd832-f03d-433a-818a-a647264d6420">Create 2-D Spatial Referencing Object Knowing Image Size and World Limits<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_a94dd832-f03d-433a-818a-a647264d6420" aria-labelledby="expand_panel_heading_mw_a94dd832-f03d-433a-818a-a647264d6420" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('images/Create2DSpatialReferencingObjectKnowingWorldLimitsExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create 2-D Spatial Referencing Object Knowing Image Size and World Limits",
+          "description": "Read a 2-D grayscale image into the workspace.",
+          "thumbnailURL": "../../examples/images/win64/Create2DSpatialReferencingObjectKnowingWorldLimitsExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "imref2d.html"
+
+        },
+          "identifier": "images.Create2DSpatialReferencingObjectKnowingWorldLimitsExample",
+          "name": "Create2DSpatialReferencingObjectKnowingWorldLimitsExample",
+          "url": "imref2d.html#mw_a94dd832-f03d-433a-818a-a647264d6420"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('images/Create2DSpatialReferencingObjectKnowingWorldLimitsExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "Create2DSpatialReferencingObjectKnowingWorldLimitsExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">Read a 2-D grayscale image into the workspace.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = imread(<span style="color:#A020F0">'pout.tif'</span>);</pre>
+</div>
+</div>
+</div>
+<p>Create an <code class="literal">imref2d</code> object, specifying the size and world limits of the image associated with the object.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xWorldLimits = [2 5];
+yWorldLimits = [3 6];
+RA = imref2d(size(A),xWorldLimits,yWorldLimits)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>RA = 
+  imref2d with properties:
+
+           XWorldLimits: [2 5]
+           YWorldLimits: [3 6]
+              ImageSize: [291 240]
+    PixelExtentInWorldX: 0.0125
+    PixelExtentInWorldY: 0.0103
+    ImageExtentInWorldX: 3
+    ImageExtentInWorldY: 3
+       XIntrinsicLimits: [0.5000 240.5000]
+       YIntrinsicLimits: [0.5000 291.5000]
+
+</pre>
+</div>
+</div>
+</div>
+<p>Display the image, specifying the spatial referencing object. The axes coordinates reflect the world coordinates.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+imshow(A,RA);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e173016" class="mediaobject"><p><img src="../../examples/images/win64/Create2DSpatialReferencingObjectKnowingWorldLimitsExample_01.png" alt="Figure contains an axes object. The axes object contains an object of type image." width="372"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content=""/>
+<meta itemprop="exampletitle" content=""/>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="images-Create2DSpatialReferencingObjectKnowingWorldLimitsExample"/>
+<meta itemprop="exampletitle" content="Create 2D Spatial Referencing Object Knowing Image Size and World Limits"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_49578ad0-5c28-4465-a282-b3ff9f68e721"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_49578ad0-5c28-4465-a282-b3ff9f68e721" data-target="#expand_panel_body_mw_49578ad0-5c28-4465-a282-b3ff9f68e721" aria-controls="expand_panel_body_mw_49578ad0-5c28-4465-a282-b3ff9f68e721" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_49578ad0-5c28-4465-a282-b3ff9f68e721">Create 2-D Spatial Referencing Object Knowing Image Size and Resolution<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_49578ad0-5c28-4465-a282-b3ff9f68e721" aria-labelledby="expand_panel_heading_mw_49578ad0-5c28-4465-a282-b3ff9f68e721" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('images/Create2DSpatialReferencingObjectKnowingResolutionExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create 2-D Spatial Referencing Object Knowing Image Size and Resolution",
+          "description": "Read a 2-D grayscale image into the workspace.",
+          "thumbnailURL": "../../examples/images/win64/Create2DSpatialReferencingObjectKnowingResolutionExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "imref2d.html"
+
+        },
+          "identifier": "images.Create2DSpatialReferencingObjectKnowingResolutionExample",
+          "name": "Create2DSpatialReferencingObjectKnowingResolutionExample",
+          "url": "imref2d.html#mw_49578ad0-5c28-4465-a282-b3ff9f68e721"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('images/Create2DSpatialReferencingObjectKnowingResolutionExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "Create2DSpatialReferencingObjectKnowingResolutionExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">Read a 2-D grayscale image into the workspace.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m = dicominfo(<span style="color:#A020F0">'knee1.dcm'</span>);
+A = dicomread(m);</pre>
+</div>
+</div>
+</div>
+<p>Create an <code class="literal">imref2d</code> object, specifying the size and the resolution of the pixels. The DICOM file contains a metadata field <code class="literal">PixelSpacing</code> that specifies the image resolution in each dimension in millimeters per pixel.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>RA = imref2d(size(A),m.PixelSpacing(2),m.PixelSpacing(1))</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>RA = 
+  imref2d with properties:
+
+           XWorldLimits: [0.1562 160.1562]
+           YWorldLimits: [0.1562 160.1562]
+              ImageSize: [512 512]
+    PixelExtentInWorldX: 0.3125
+    PixelExtentInWorldY: 0.3125
+    ImageExtentInWorldX: 160
+    ImageExtentInWorldY: 160
+       XIntrinsicLimits: [0.5000 512.5000]
+       YIntrinsicLimits: [0.5000 512.5000]
+
+</pre>
+</div>
+</div>
+</div>
+<p>Display the image, specifying the spatial referencing object. The axes coordinates reflect the world coordinates.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+imshow(A,RA,<span style="color:#A020F0">'DisplayRange'</span>,[0 512])</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e173058" class="mediaobject"><p><img src="../../examples/images/win64/Create2DSpatialReferencingObjectKnowingResolutionExample_01.png" alt="Figure contains an axes object. The axes object contains an object of type image." width="644"/></p>
+</div>
+</div>
+<p>Compare the width of the image in world coordinates and intrinsic coordinates. This image width in intrinsic coordinates, with units of pixels, is:</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>RA.ImageSize(1)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 512
+</pre>
+</div>
+</div>
+</div>
+<p>The image width in world coordinates, with units of millimeters, is:</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>RA.ImageExtentInWorldX</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 160
+</pre>
+</div>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content=""/>
+<meta itemprop="exampletitle" content=""/>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="images-Create2DSpatialReferencingObjectKnowingResolutionExample"/>
+<meta itemprop="exampletitle" content="Create 2D Spatial Referencing Object Knowing Image Size and Resolution"/>
+</div>
+</div>
+</div>
+<div class="moreabout ref_sect"><h2 id="d124e173075">More About</h2>
+<div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink">expand all</a></p>
+<div class="expand_collapse"><h3 class="expand_trigger collapsed" id="d124e173077" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_d124e173077" aria-controls="expand_body_d124e173077"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>Intrinsic Coordinate System</h3>
+<div id="expand_body_d124e173077" class="collapsible_content collapse" aria-expanded="false"><p class="shortdesc">The intrinsic coordinate values (x,y) of the center point of any
+                pixel are identical to the values of the column and row subscripts for that pixel.
+                For example, the center point of the pixel in row 5, column 3 has intrinsic
+                coordinates x = 3.0, y = 5.0.</p>
+<p class="shortdesc">The order of coordinate specification (3.0,5.0) is reversed in
+                intrinsic coordinates relative to pixel subscripts (5,3). Intrinsic coordinates are
+                defined on a continuous plane, while the subscript locations are discrete locations
+                with integer values.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e173083">Tips</h2>
+<div class="itemizedlist"><ul><li><p>You can create an <code class="literal">imref2d</code> object for an RGB image. If you
+                    create the object specifying the <code class="literal"><a href="imref2d.html#mw_ed79e2aa-9415-43a2-af30-b658b0172035" class="intrnllnk">ImageSize</a></code> property as a three-element vector (such as that
+                    returned by the <a href="../../matlab/ref/size.html"><code class="function">size</code></a> function), only the first
+                    two elements are used to set <code class="property">ImageSize</code>.</p></li>
+</ul>
+</div>
+</div>
+<div class="ref_sect"><h2 id="refsect-extended-capabilities">Extended Capabilities</h2>
+<div class="expand_collapse" id="accordion_refsect-extended-capabilities" role="tablist" aria-multiselectable="true"><span id="ref_q21n8hna8" class="anchor_target"></span><h3 class="expand_trigger collapsed" id="ref_q21n8hna8_codegen" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_ref_q21n8hna8_codegen" aria-controls="expand_body_ref_q21n8hna8_codegen"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>C/C++ Code Generation<br/> <span class=" remove_bold add_font_color_general">Generate C and C++ code using MATLAB® Coder™.</span></h3>
+<div id="expand_body_ref_q21n8hna8_codegen" class="collapsible_content collapse" aria-expanded="false"><p>
+                <span>Usage notes and limitations:</span>
+            </p>
+<p>
+                </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">imref2d</code> supports the generation of C
+    code (requires <span class="entity">MATLAB<sup>®</sup>
+            Coder™</span>). For more information, see <a href="../code-generation-for-image-processing.html" class="a">Code Generation for Image Processing</a>.</p></li>
+<li><p>When generating code, you can only specify singular
+                            objects—arrays of objects are not supported. </p></li>
+</ul>
+</div>
+<p>
+
+            </p>
+</div>
+<span id="mw_eeb18f86-8a0a-4bcf-8ad3-73492baa36ca" class="anchor_target"></span><span id="ref_q21n8hna8" class="anchor_target"></span><h3 class="expand_trigger collapsed" id="ref_q21n8hna8_threadsupport" aria-expanded="false" data-toggle="collapse" data-target="#expand_body_ref_q21n8hna8_threadsupport" aria-controls="expand_body_ref_q21n8hna8_threadsupport"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>Thread-Based Environment<br/> <span class=" remove_bold add_font_color_general">Run code in the background using MATLAB® <code class="function">backgroundPool</code> or accelerate code with Parallel Computing Toolbox™ <code class="function">ThreadPool</code>.</span></h3>
+<div id="expand_body_ref_q21n8hna8_threadsupport" class="collapsible_content collapse" aria-expanded="false"><p>This function fully supports thread-based environments. For
+                more information, see <a href="../../matlab/matlab_prog/run-functions-on-threads.html" class="a">Run MATLAB Functions in Thread-Based Environment</a>.</p>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="ref_q21n8hna8_vh">Version History</h2>
+<p><strong>Introduced in R2013a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="ref_q21n8hna8_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="imref3d.html"><span itemprop="name"><code class="object">imref3d</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="imwarp.html"><span itemprop="name"><code class="function">imwarp</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="imshow.html"><span itemprop="name"><code class="function">imshow</code></span></a></span></p>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../specify-fill-values-in-geometric-transformation-output.html" class="a">Specify Fill Values in Geometric Transformation Output</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

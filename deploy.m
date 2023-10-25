@@ -44,6 +44,15 @@ for i = 1 : numel(all_files)
     end
 end
 
+% 删除.p文件，使.m生效
+sim_3d_dir = fullfile( toolboxdir('shared'),  'sim3d', 'sim3d', '+sim3d');
+if exist(fullfile(sim_3d_dir, 'World.p'), 'file')
+    delete(fullfile(sim_3d_dir, 'World.p'));
+    addpath(fullfile(toolboxdir('shared'),  'sim3d', 'sim3d'));
+    rehash toolboxcache
+end
+
+
 end
 
 
