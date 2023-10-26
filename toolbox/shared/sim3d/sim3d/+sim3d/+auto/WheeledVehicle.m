@@ -22,7 +22,6 @@ classdef WheeledVehicle<sim3d.vehicle.Vehicle
 
         function self=WheeledVehicle(actorName,actorID,translation,rotation,scale,numberOfParts,mesh)
             self@sim3d.vehicle.Vehicle(actorName,actorID,translation,rotation,scale,numberOfParts,mesh);
-
         end
 
 

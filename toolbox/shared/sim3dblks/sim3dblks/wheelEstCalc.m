@@ -7,7 +7,7 @@ function[xdotW,delta]=wheelEstCalc(Xdot,Ydot,psi,r,wb,delta0)
     [~,rabs]=automltirediv0prot(r,1e-3);
     Rabs=abs(xdot)./rabs;
     delta=atan2(wb,max(Rabs,wb))*sign(r).*sign(xdot);
-    if abs(xdot)<xdotLim
+    if abs(xdot) < xdotLim
         delta=delta0;
     else
         if delta>whlLim
@@ -19,7 +19,8 @@ function[xdotW,delta]=wheelEstCalc(Xdot,Ydot,psi,r,wb,delta0)
     xdotW=double(xdot*cos(abs(delta)));
 end
 
-function[y,yabs]=automltirediv0prot(u,tol)%#codegen
+
+function[y,yabs]=automltirediv0prot(u,tol)
     coder.allowpcode('plain')
 
     yabs=abs(u);

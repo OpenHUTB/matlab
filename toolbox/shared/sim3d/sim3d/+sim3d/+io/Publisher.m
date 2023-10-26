@@ -18,17 +18,18 @@ classdef Publisher<handle
 
     methods(Access=public)
 
-        function self=Publisher(topic,varargin)
-            parser=inputParser;
+        % 向虚幻引擎发布数据的发布者
+        function self = Publisher(topic,varargin)
+            parser = inputParser;
             parser.addParameter('Domain',num2str(uint32(feature('getpid'))));
             parser.addParameter('QueueDepth',self.QueueDepth);
             parser.addParameter('PacketSize',self.PacketSize);
             parser.addParameter('LeaseDuration',self.LeaseDuration);
             parser.addParameter('Packet',[]);
             parser.parse(varargin{:});
-            self.Topic=topic;
-            mf0Model=mf.zero.Model;
-            qos=liveio.SharedMemoryPublisherQos(mf0Model);
+            self.Topic = topic;
+            mf0Model = mf.zero.Model;
+            qos = liveio.SharedMemoryPublisherQos(mf0Model);
             self.QueueDepth=parser.Results.QueueDepth;
             qos.History.Depth=self.QueueDepth;
             if isempty(parser.Results.Packet)
@@ -39,9 +40,10 @@ classdef Publisher<handle
             qos.History.PacketSize=self.PacketSize;
             self.LeaseDuration=parser.Results.LeaseDuration;
             qos.Liveliness.LeaseDuration=self.LeaseDuration;
-            qos.History.OverflowPolicy=liveio.shared_memory.publisher_qos.OverflowKind.FIFO;
+            qos.History.OverflowPolicy = liveio.shared_memory.publisher_qos.OverflowKind.FIFO;
             self.Domain=parser.Results.Domain;
-            self.Writer=liveio.SharedMemoryPublisher(self.Domain,self.Topic,qos);
+            % 实时输入输出 -> 共享内存的发布者
+            self.Writer = liveio.SharedMemoryPublisher(self.Domain, self.Topic, qos);
         end
 
 

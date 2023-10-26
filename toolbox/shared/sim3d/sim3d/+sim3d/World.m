@@ -1,4 +1,5 @@
 % 对象创建和定义虚拟现实世界，并使用 Unreal Engine®运行协同仿真。
+% 转发像素流需要，但是"在仿真期间删除参与者"失败
 classdef World < handle
 
     properties(Constant = true, Hidden = true)
@@ -68,6 +69,7 @@ classdef World < handle
             parser.addParameter("OverrideExecCmds", false, @islogical);
             parser.addParameter("RenderOffScreen", false, @islogical);  % 在后台运行仿真的选项，指定为 0(false) 或 1(true)。
             parser.addParameter("Setup", []);
+            % 将数据从matlab输出到虚幻引擎
             parser.addParameter("Output", []);  % 通过在每个仿真步骤执行 @outputFcn 来修改协同仿真。此自定义函数可用于将有关指定 sim3d.Actor 对象的数据发送到虚幻引擎。.
             parser.addParameter("Update", []);  % 自定义更新函数，用于从虚幻引擎读取有关指定参与者的数据，指定为用户定义函数的句柄。
             parser.addParameter("Release", []);
@@ -130,13 +132,14 @@ classdef World < handle
         end
 
         
+        % 运行世界仿真
         function run(self, sampleTime, simulationTime)
             % R36
             % self sim3d.World
             % sampleTime(1, 1) single{ mustBePositive } = 1 / 50.0;
             arguments
                 self sim3d.World
-                sampleTime(1, 1) single{ mustBePositive } = 1/50.0;
+                sampleTime(1, 1) single{ mustBePositive } = 1/50.0; % 0.02s采样（仿真？）一次
                 simulationTime(1, 1) single{ mustBePositive } = inf;
             end
 
@@ -201,33 +204,31 @@ classdef World < handle
     end
 
 
-    methods (Access = public, Hidden = true)
+    methods (Access = public)  % , Hidden = true
         function setup(self, sampleTime)
-            % R36
-            % self sim3d.World
-            % sampleTime(1, 1)single{ mustBePositive }
             arguments
                 self sim3d.World
                 sampleTime(1,1) single{mustBePositive}
             end
             
-            status = sim3d.engine.Engine.getState(  );
+            status = sim3d.engine.Engine.getState();
             if status == sim3d.engine.EngineCommands.RUN || status == sim3d.engine.EngineCommands.INITIALIZE
                 error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
             end
-            self.Root.setupTree(  );
+            self.Root.setupTree();
         
             self.SampleTime = sampleTime;
-            self.CommandReader = sim3d.io.CommandReader(  );
+            self.CommandReader = sim3d.io.CommandReader();
             self.CommandReader.setTimeout( self.CommandReadTimeout );
-            self.CommandWriter = sim3d.io.CommandWriter(  );
-            self.CommandWriter.setSampleTime( self.SampleTime );
+            self.CommandWriter = sim3d.io.CommandWriter();
+            self.CommandWriter.setSampleTime(self.SampleTime);
         
             if ~isempty( self.SetupImpl )
                 self.SetupImpl( self );
             end
             self.emptyActorBuffer();
         end
+
 
         % 打开虚幻引擎（黑色）界面
         function start(self)
@@ -239,7 +240,7 @@ classdef World < handle
         end
 
 
-        function reset( self )
+        function reset(self)
             status = sim3d.engine.Engine.getState();
             if status == sim3d.engine.EngineCommands.RUN || status == sim3d.engine.EngineCommands.INITIALIZE
                 error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
@@ -247,7 +248,7 @@ classdef World < handle
         
             self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.INITIALIZE ) );
             self.CommandWriter.write();
-            self.CommandReader.read(  );
+            self.CommandReader.read();
             sim3d.engine.Engine.setState( sim3d.engine.EngineCommands.RUN );
             self.State = sim3d.engine.EngineCommands.RUN;
         end
@@ -264,7 +265,6 @@ classdef World < handle
 
 
         function step( self )
-        
             if ~isempty( self.OutputImpl )
                 self.OutputImpl( self );
             end
@@ -280,6 +280,7 @@ classdef World < handle
                 self.UpdateImpl(self)
             end
         end
+
 
         function stop(self)
             self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.STOP ) );
@@ -343,7 +344,7 @@ classdef World < handle
                 strcat( "-pakdir=", """", fullfile(userpath, "sim3d_project", string(sprintf( 'R%s', version( '-release' ) ) ), "WindowsNoEditor", "AutoVrtlEnv", "Content", "Paks" ), """" ) ...
                 );
             % 添加像素流转发参数
-            command.Arguments = command.Arguments.append(" -AudioMixer -PixelStreamingIP=localhost -PixelStreamingPort=8888");
+            command.Arguments = command.Arguments.append(" -AudioMixer -PixelStreamingIP=localhost -PixelStreamingPort=8888 -RenderOffScreen");
         end
 
 
@@ -420,8 +421,8 @@ classdef World < handle
             self.Root.generateUniqueActorID( 1 );
         end
 
+
         function keepRate( self, Rate )
-        
             self.RateLimiter( 2 ) = self.RateLimiter( 2 ) + 1;
             ExpectedTime = self.RateLimiter( 1 ) + self.RateLimiter( 2 ) / Rate;
             CurrentTime = now * 86400;
@@ -443,14 +444,15 @@ classdef World < handle
     methods ( Static = true, Access = public, Hidden = false )
         function world = getWorld( worldName )
     
-            world = [  ];
+            world = [];
             map = sim3d.World.Worlds;
             if ( map.isKey( worldName ) )
                 world = map( worldName );
             end
         end
-        function worldName = generateWorldName(  )
-    
+
+
+        function worldName = generateWorldName()
             map = sim3d.World.Worlds;
             worldName = sprintf( "World%d", map.Count );
         end
@@ -469,7 +471,6 @@ classdef World < handle
 
 
         function addWorld( worldName, world )
-    
             map = sim3d.World.Worlds;
             if ( ~map.isKey( worldName ) )
                 map( worldName ) = world;%#ok
@@ -480,7 +481,6 @@ classdef World < handle
 
 
         function removeWorld( worldName )
-    
             map = sim3d.World.Worlds;
             if ~isempty( map ) && ( map.isKey( worldName ) )
                 map.remove( worldName );
@@ -496,7 +496,6 @@ classdef World < handle
                     world = sim3d.World( 'Name', modelName );
                 end
             else
-    
                 world = sim3d.World( 'Name', modelName );
             end
             libraryBlock = 'sim3dlib/Simulation 3D Actor';
@@ -527,8 +526,7 @@ classdef World < handle
             scalePrm = maskObj.getParameter( 'Scale' );
             scale = eval( scalePrm.Value );
             if isfield( world.Actors, actorName )
-    
-                return ;
+                return;
             end
             actor = sim3d.Actor( 'ActorName', actorName,  ...
                 'Translation', translation,  ...

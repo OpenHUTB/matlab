@@ -7,9 +7,9 @@ function[varargout]=sim3dblks3dphysvehVDBS(varargin)
     Context=varargin{2};
     switch Context
     case 'Initialization'
-        varargout{1}=Initialization(Block);
+        varargout{1} = Initialization(Block);
     case 'DrawCommands'
-        varargout{1}=DrawCommands(Block);
+        varargout{1} = DrawCommands(Block);
     case 'VehicleSelection'
         VehicleSelection(Block);
     case 'VehLightsControl'
@@ -32,7 +32,7 @@ function IconInfo=DrawCommands(Block)
     AliasNames={'Steer','Steer';'Accel','Accel';'Decel','Decel';'Gear','Gear';'HndBrk','HndBrk';};
     IconInfo=autoblksgetportlabels(Block,AliasNames);
     IconInfo.ImageName='sim3dphysicalvehicle.png';
-    [IconInfo.image,IconInfo.position]=iconImageUpdate(IconInfo.ImageName,1,0,0,'white');
+    [IconInfo.image,IconInfo.position] = iconImageUpdate(IconInfo.ImageName,1,0,0,'white');
 end
 
 

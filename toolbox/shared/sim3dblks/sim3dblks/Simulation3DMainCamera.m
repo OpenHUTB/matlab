@@ -1,11 +1,11 @@
 classdef Simulation3DMainCamera<Simulation3DVisionSensor&...
 Simulation3DHandleMap
 
-
     properties(Access=private)
         ModelName=[];
     end
 
+    
     methods(Access=protected)
         function setupImpl(self)
             setupImpl@Simulation3DVisionSensor(self);
@@ -24,13 +24,17 @@ Simulation3DHandleMap
                 end
             end
         end
+
+
         function[Image]=stepImpl(self)
             Image=zeros(self.VerticalResolution,self.HorizontalResolution,3,'uint8');
         end
-        function icon=getIconImpl(~)
 
+
+        function icon=getIconImpl(~)
             icon={'Main','Camera'};
         end
+
 
         function loadObjectImpl(self,s,wasInUse)
             if self.loadflag
@@ -41,10 +45,13 @@ Simulation3DHandleMap
                 loadObjectImpl@Simulation3DSensor(self,s,wasInUse);
             end
         end
+
+
         function s=saveObjectImpl(self)
             s=saveObjectImpl@Simulation3DSensor(self);
             s.ModelName=self.ModelName;
         end
+
 
         function releaseImpl(self)
             releaseImpl@Simulation3DSensor(self);
@@ -52,5 +59,6 @@ Simulation3DHandleMap
                 self.Sim3dSetGetHandle([self.ModelName,'/Sensor'],[]);
             end
         end
+
     end
 end

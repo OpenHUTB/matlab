@@ -1,18 +1,14 @@
 classdef Vehicle < sim3d.AbstractActor
 
     properties ( SetAccess = protected )
-
         Config
-
         ConfigWriter
     end
 
+
     properties
-
         Color
-
         Animation
-
         ActorID
     end
 
@@ -32,9 +28,10 @@ classdef Vehicle < sim3d.AbstractActor
 
         function setup( self )
             setup@sim3d.AbstractActor( self );
-
             self.ConfigWriter = sim3d.io.Publisher( [ self.ActorName, self.Suffix ] );
         end
+
+
         function reset( self )
             reset@sim3d.AbstractActor( self );
             self.ConfigWriter.send( self.Config );
@@ -42,7 +39,6 @@ classdef Vehicle < sim3d.AbstractActor
 
 
         function writeTransform( self, translation, rotation, scale )
-
             if ~isempty( self.TransformWriter )
                 self.TransformWriter.write( single( translation ), single( rotation ), single( scale ) );
             end
@@ -76,7 +72,6 @@ classdef Vehicle < sim3d.AbstractActor
             self.ActorID = other.ActorID;
 
             copy@sim3d.AbstractActor( self, other, CopyChildren, UseSourcePosition );
-
         end
 
 

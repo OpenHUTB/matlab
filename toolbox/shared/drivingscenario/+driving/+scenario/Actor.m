@@ -10,7 +10,9 @@ classdef Actor < driving.scenario.ActorBase
 %   Copyright 2016-2020 The MathWorks, Inc.
     
     properties
+        % 参与者生成的进入时间
         EntryTime {mustBeNumeric, double, mustBeFinite, mustBeNonnegative} = 0
+        % 参与者消失的退出时间
         ExitTime {mustBeNumeric, double, mustBePositive} = Inf
     end
 

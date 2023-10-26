@@ -107,9 +107,9 @@ classdef Actor < sim3d.AbstractActor
                 );
             self.OutputImpl = r.Output;
             self.UpdateImpl = r.Update;
-            self.Material = sim3d.internal.MaterialAttributes(  );
-            self.DynamicMesh = sim3d.internal.DynamicMeshAttributes(  );
-            self.Physical = sim3d.internal.PhysicalAttributes(  );
+            self.Material = sim3d.internal.MaterialAttributes();
+            self.DynamicMesh = sim3d.internal.DynamicMeshAttributes();
+            self.Physical = sim3d.internal.PhysicalAttributes();
             self.Physical.Mobility = r.Mobility;
         end
 
@@ -126,7 +126,7 @@ classdef Actor < sim3d.AbstractActor
 
         function reset( self )
             reset@sim3d.AbstractActor( self );
-            self.write(  );
+            self.write();
         end
 
 
@@ -134,7 +134,7 @@ classdef Actor < sim3d.AbstractActor
             if ~isempty( self.OutputImpl )
                 self.OutputImpl( self );
             end
-            self.write(  );
+            self.write();
         end
 
 
@@ -153,9 +153,9 @@ classdef Actor < sim3d.AbstractActor
 
         function actorS = getAttributes( self )
             actorS.Base = getAttributes@sim3d.AbstractActor( self );
-            actorS.DynamicMesh = self.DynamicMesh.getAttributes(  );
-            actorS.Material = self.Material.getAttributes(  );
-            actorS.Physical = self.Physical.getAttributes(  );
+            actorS.DynamicMesh = self.DynamicMesh.getAttributes();
+            actorS.Material = self.Material.getAttributes();
+            actorS.Physical = self.Physical.getAttributes();
             actorS.Selected = self.Selected;
         end
 
@@ -219,6 +219,7 @@ classdef Actor < sim3d.AbstractActor
                 Incremental (1, 1)logical = true
             end
 
+
             for obj = objs
                 Axis = sim3d.utils.Math.posToUnreal( Axis, 'vrml' );
                 Ra = sim3d.utils.Math.mat2unr( sim3d.utils.Math.rotAA( Axis, Angle ) );
@@ -250,9 +251,9 @@ classdef Actor < sim3d.AbstractActor
 
 
         function write( self )
-            self.DynamicMesh.publish(  );
-            self.Material.publish(  );
-            self.Physical.publish(  );
+            self.DynamicMesh.publish();
+            self.Material.publish();
+            self.Physical.publish();
         end
 
     end
@@ -262,7 +263,7 @@ classdef Actor < sim3d.AbstractActor
         function delete( self )
             delete@sim3d.AbstractActor( self );
             if ~isempty( self.GenericActorSubscriber )
-                self.GenericActorSubscriber = [  ];
+                self.GenericActorSubscriber = [];
             end
         end
 
@@ -291,8 +292,8 @@ classdef Actor < sim3d.AbstractActor
             arguments
                 objs(1, :)sim3d.Actor
                 Type(1, :)char
-                
             end
+
             % 函数可以有一个Repeating arguments用于输入的块和一个用于输出的块。
             % 输入 Repeating参数块可以包含一个或多个重复参数，而Repeating输出参数块只能包含一个重复参数。
             % R36( Repeating )
@@ -322,7 +323,6 @@ classdef Actor < sim3d.AbstractActor
                 TCoords(:, 2)double = []
                 VColors(:, 3)double = []
             end
-    
             self.DynamicMesh.createMesh( Vertices, Normals, Faces, TCoords, VColors );
             self.DynamicMesh.IsValid = true;
         end
@@ -344,7 +344,6 @@ classdef Actor < sim3d.AbstractActor
 
 
         function load( objs, Source, varargin )
-    
             for obj = objs
                 if ischar( Source ) || isstring( Source )
                     Source = strtrim( char( Source ) );

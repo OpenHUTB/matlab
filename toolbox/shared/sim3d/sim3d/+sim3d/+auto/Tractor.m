@@ -138,18 +138,17 @@ classdef Tractor < sim3d.auto.WheeledVehicle
                 UseSourcePosition( 1, 1 )logical = false
             end
 
-
             self.TractorType = other.TractorType;
 
-
             copy@sim3d.auto.WheeledVehicle( self, other, CopyChildren, UseSourcePosition );
-
         end
+
 
         function actorS = getAttributes( self )
             actorS = getAttributes@sim3d.auto.WheeledVehicle( self );
             actorS.TractorType = self.TractorType;
         end
+
 
         function setAttributes( self, actorS )
             setAttributes@sim3d.auto.WheeledVehicle( self, actorS );
@@ -161,7 +160,6 @@ classdef Tractor < sim3d.auto.WheeledVehicle
 
     methods ( Access = private, Static )
         function r = parseInputs( numberOfParts, varargin )
-
             defaultParams = struct(  ...
                 'Color', 'red',  ...
                 'Mesh', 'MeshText',  ...
@@ -171,7 +169,6 @@ classdef Tractor < sim3d.auto.WheeledVehicle
                 'Scale', single( ones( numberOfParts, 3 ) ),  ...
                 'ActorID', 10,  ...
                 'DebugRayTrace', false );
-
 
             parser = inputParser;
             parser.addParameter( 'Color', defaultParams.Color );

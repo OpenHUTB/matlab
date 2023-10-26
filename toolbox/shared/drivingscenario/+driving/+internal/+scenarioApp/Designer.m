@@ -654,7 +654,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
         % 获得虚幻引擎查看器（点击 3D Display -> View Simulation in 3D display 时调用）
         function v = getGamingEngineViewer(this, force, varargin)
-            v=this.GamingEngineViewer;
+            v = this.GamingEngineViewer;
             if isempty(v) && nargin>1 && force
                 % 构建虚幻引擎查看器
                 v = driving.internal.scenarioApp.GamingEngineScenarioViewer(this,varargin{:});
@@ -667,7 +667,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
 
         function sc=getSensorCanvasComponent(this,isOpening)
-            sc=this.SensorCanvas;
+            sc = this.SensorCanvas;
             if~isempty(sc)||nargin>1&&isOpening&&isempty(this.SensorSpecifications)
                 return;
             end

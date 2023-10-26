@@ -1,13 +1,13 @@
 classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
 
-
     properties
         Translation(4,3)double{mustBeFinite,mustBeReal,mustBeNonmissing}=zeros(4,3);
         Rotation(4,3)double{mustBeFinite,mustBeReal,mustBeNonmissing}=zeros(4,3);
         Scale(:,3)double{mustBeFinite,mustBeReal,mustBeNonmissing}=ones(4,3);
     end
-    properties(Nontunable)
 
+
+    properties(Nontunable)
         Mesh='Sports bike';
 
         MotorcycleColor='Red';
@@ -27,23 +27,17 @@ classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
         BrakelightColor=[1,0,0];
 
         SignallightColor=[1,0.146,0];
-
         HighBeamIntensity=100000;
-
         LowBeamIntensity=60000;
-
         AttenuationRadius=10000;
-
         HighBeamRadius=70;
-
         LowBeamRadius=70;
-
         BrakelightIntensity=500;
-
         IndicatorlightIntensity=500;
-
         MatPath='/MathWorksSimulation/VehicleCommon/Materials/Lights/M_VehicleMatLight.M_VehicleMatLight';
     end
+
+
     properties(Hidden,Constant)
         MeshSet=matlab.system.internal.MessageCatalogSet({'shared_sim3dblks:sim3dblkMotorcycle:sports',...
         'shared_sim3dblks:sim3dblkMotorcycle:economy',...
@@ -57,6 +51,8 @@ classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
         'shared_sim3dblks:sim3dblkMotorcycle:black',...
         'shared_sim3dblks:sim3dblkMotorcycle:silver'});
     end
+
+
     properties(Access=private)
         VehObj;
         VehicleType;
@@ -64,6 +60,8 @@ classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
         LightConfiguration;
         ModelName=[];
     end
+
+
     methods(Access=protected)
         function setupImpl(self)
             setupImpl@Simulation3DActor(self);
@@ -85,8 +83,9 @@ classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
                 self.Sim3dSetGetHandle([self.ModelName,'/VehObj'],self.VehObj);
             end
         end
-        function stepImpl(self,translation,rotation,LightStates)
 
+
+        function stepImpl(self,translation,rotation,LightStates)
             translation(:,3)=-translation(:,3);
             rotation=[fliplr(rotation(:,1:2)),rotation(:,3)];
             if coder.target('MATLAB')
@@ -99,6 +98,8 @@ classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
                 end
             end
         end
+
+
         function releaseImpl(self)
             simulationStatus=get_param(bdroot,'SimulationStatus');
             if strcmp(simulationStatus,'terminating')
@@ -113,9 +114,12 @@ classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
                 end
             end
         end
-        function resetImpl(~)
 
+
+        function resetImpl(~)
         end
+
+
         function loadObjectImpl(self,s,wasInUse)
             self.VehicleType=s.VehicleType;
             self.ActorColor=s.ActorColor;
@@ -134,6 +138,7 @@ classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
             loadObjectImpl@Simulation3DActor(self,s,wasInUse);
         end
 
+
         function s=saveObjectImpl(self)
             s=saveObjectImpl@Simulation3DActor(self);
             s.VehObj=self.VehObj;
@@ -147,9 +152,13 @@ classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
             s.ModelName=self.ModelName;
             s.LightConfiguration=self.LightConfiguration;
         end
+
+
         function icon=getIconImpl(~)
             icon={'Motorcycle'};
         end
+
+
         function[nrows,ncols]=getInputPortSize(~)
 
             nrows=4;
@@ -172,6 +181,8 @@ classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
             end
         end
     end
+
+
     methods(Access=public)
         function[Transformation,Rotation,Scale]=getPosition(self)
             [Transformation,Rotation,Scale]=self.VehObj.readTransform();
@@ -295,6 +306,7 @@ classdef Simulation3DMotorcycle<Simulation3DActor&Simulation3DHandleMap
                 LightConfiguration={HighBeam,HeadlightMat,BrakeLight,LeftSignal,RightSignal};
             end
         end
+
 
         function ApplyCoordinateTransformToLightParams(self)
             self.HeadlightOrientation=rad2deg(self.HeadlightOrientation);
