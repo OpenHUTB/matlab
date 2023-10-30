@@ -111,30 +111,23 @@ classdef ActorFactory < handle
 
 
         function actor = createSensor(other)
-
             if isa( other, 'sim3d.sensors.MainCamera')
                 cameraProperties = sim3d.sensors.MainCamera.getMainCameraProperties();
                 actor = sim3d.ActorFactory.createSensorUtil( 'MainCamera', cameraProperties );
-
             elseif isa( other, 'sim3d.sensors.FisheyeCamera')
                 fisheyeCameraProperties = sim3d.sensors.FisheyeCamera.getFisheyeCameraProperties();
                 actor = sim3d.ActorFactory.createSensorUtil( 'FisheyeCamera', fisheyeCameraProperties);
-
             elseif isa( other, 'sim3d.sensors.LidarSensor' )
                 lidarSensorProperties = sim3d.sensors.LidarSensor.getLidarSensorProperties();
                 actor = sim3d.ActorFactory.createSensorUtil( 'LidarSensor', lidarSensorProperties );
-
             elseif isa( other, 'sim3d.sensors.CameraVisionSensor' )
                 cameraVisionSensorProperties = sim3d.sensors.VisionSensor.getVisionSensorProperties();
                 actor = sim3d.ActorFactory.createSensorUtil( 'CameraVisionSensor', cameraVisionSensorProperties );
-
             elseif isa( other, 'sim3d.sensors.DepthVisionSensor' )
                 depthSensorProperties = sim3d.sensors.VisionSensor.getVisionSensorProperties();
                 actor = sim3d.ActorFactory.createSensorUtil( 'DepthVisionSensor', depthSensorProperties );
-
             elseif isa( other, 'sim3d.sensors.GroundTruth' )
                 actor = sim3d.ActorFactory.createSensorUtil( 'GroundTruth', ';ASim3dActor' );
-
             elseif isa( other, 'sim3d.sensors.RayTraceSensor' )
                 rayTraceSensorProperties = sim3d.sensors.RayTraceSensor.getRayTraceSensorProperties();
                 actor = sim3d.ActorFactory.createSensorUtil( 'RayTraceSensor', rayTraceSensorProperties );

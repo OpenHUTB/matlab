@@ -20,7 +20,7 @@ classdef ActorTransformReader<handle
     methods
 
         function self=ActorTransformReader(actorTag,NumberOfParts)
-            self.Reader=sim3d.io.Subscriber([actorTag,sim3d.io.ActorTransformReader.Suffix]);
+            self.Reader=sim3d.io.Subscriber([actorTag, sim3d.io.ActorTransformReader.Suffix]);
             self.NumberOfParts=NumberOfParts;
             if isempty(self.Reader)||self.Reader==uint64(0)
                 timeoutException=MException('sim3d:ActorTransformReader:ActorTransformReader:SetupError',...
@@ -35,6 +35,7 @@ classdef ActorTransformReader<handle
                 self.Reader.delete();
             end
         end
+
 
         function[translation,rotation,scale]=read(self)
             if self.Reader.has_message()
