@@ -58,22 +58,24 @@ classdef Publisher<handle
         end
 
 
-        function success=send(self,message)
-            messageSize=liveio.ArrayPacketSize(message);
-            if messageSize>self.PacketSize
-                warning("The published message size %d more than the declared size %d of the topic publisher %s. Updating the publisher QOS\n.",messageSize,self.PacketSize,self.Topic);
-                self.PacketSize=messageSize;
-                mf0Model=mf.zero.Model;
-                qos=liveio.SharedMemoryPublisherQos(mf0Model);
-                qos.History.Depth=self.QueueDepth;
-                qos.History.PacketSize=self.PacketSize;
-                qos.Liveliness.LeaseDuration=self.LeaseDuration;
-                qos.History.OverflowPolicy=liveio.shared_memory.publisher_qos.OverflowKind.FIFO;
+        % 向虚幻引擎发送数据
+        function success = send(self, message)
+            messageSize = liveio.ArrayPacketSize(message);  % 所发送数据的数组包大小
+            if messageSize > self.PacketSize
+                warning("The published message size %d more than the declared size %d of the topic publisher %s. Updating the publisher QOS\n.", ...
+                    messageSize,self.PacketSize,self.Topic);
+                self.PacketSize = messageSize;
+                mf0Model = mf.zero.Model;
+                qos = liveio.SharedMemoryPublisherQos(mf0Model);
+                qos.History.Depth = self.QueueDepth;
+                qos.History.PacketSize = self.PacketSize;
+                qos.Liveliness.LeaseDuration = self.LeaseDuration;
+                qos.History.OverflowPolicy = liveio.shared_memory.publisher_qos.OverflowKind.FIFO;
                 self.Writer.delete();
                 self.Writer=[];
-                self.Writer=liveio.SharedMemoryPublisher(self.Domain,self.Topic,qos);
+                self.Writer = liveio.SharedMemoryPublisher(self.Domain,self.Topic,qos);
             end
-            success=self.Writer.publish(message);
+            success = self.Writer.publish(message);
         end
     end
 end

@@ -21,15 +21,18 @@ classdef Actor < driving.scenario.ActorBase
         IsVisible (1,1) logical = true
         IsSpawnValid (1,1) logical = true
     end
+    
 
     properties(Hidden, Transient)
         EnablePlotUpdates = false;
     end
     
+
     properties (Access = private, Hidden)
         ObjectPoses = [];
     end
     
+
     methods
         function obj = Actor(scenario, id, varargin)
            obj@driving.scenario.ActorBase(scenario, id, varargin{:});
@@ -40,6 +43,7 @@ classdef Actor < driving.scenario.ActorBase
            isActorSpawnValid(obj);
         end
         
+
         function chasePlot(obj, varargin)
             %chasePlot(a, Name, Value, ...) adds an egocentric projective
             %    perspective plot seen from immediately behind the actor, a, with
@@ -125,6 +129,7 @@ classdef Actor < driving.scenario.ActorBase
                 varargin{:});
         end
         
+
         function rbs = roadBoundaries(obj)
             % get boundaries in scenario coordinates
             rbs = roadBoundaries(obj.Scenario);
@@ -137,6 +142,7 @@ classdef Actor < driving.scenario.ActorBase
             end
         end
         
+
         function targetStruct = targetPoses(egoActor,varargin)
             %targetPoses Return pose information for all other actors
             %   poses = targetPoses(a) returns a struct array containing
@@ -460,10 +466,12 @@ classdef Actor < driving.scenario.ActorBase
             updatePlots(obj);
         end
 
+
         function path(obj, waypoints, varargin)
             trajectory(obj, waypoints, varargin{:});
         end
         
+
         function [position, yaw, length, width, originOffset, color, varargout] = targetOutlines(obj, type)
             %targetOutlines Return rectangular outlines relative to a specific actor
             %   [position, yaw, length, width, originOffset, color] =
@@ -587,6 +595,7 @@ classdef Actor < driving.scenario.ActorBase
             end
         end 
         
+
         function [vertices, faces, colors] = targetMeshes(obj,orientation)
             %targetMeshes Return mesh vertices and faces relative to a specific actor
             %   [vertices, faces, color] = targetMeshes(a) returns the mesh
@@ -678,6 +687,7 @@ classdef Actor < driving.scenario.ActorBase
             % fetch target color list
             colors = colors(visibleTargets,:);
         end
+
         
         function [lmv, lmf] = laneMarkingVertices(obj)
             % Return vertices of lane markings in scenario coordinates
@@ -690,6 +700,7 @@ classdef Actor < driving.scenario.ActorBase
             end
         end
         
+
         function [plmv, plmf] = parkingLaneMarkingVertices(obj)
             % Return vertices of parking lane markings in scenario coordinates
             [plmv,plmf] = parkingLaneMarkingVertices(obj.Scenario);
@@ -701,6 +712,7 @@ classdef Actor < driving.scenario.ActorBase
             end
         end
         
+
         function [currentLane, numLanes] = currentLane(obj)
             %[cl, numLanes] = currentLane(a) returns the current lane (cl) of the
             %   actor a. Number of lanes (numLanes) for the road the actor is on can
@@ -733,6 +745,7 @@ classdef Actor < driving.scenario.ActorBase
             [currentLane,numLanes] = getCurrentLane(obj,rt);
         end
         
+
         function lb = laneBoundaries(obj,varargin)
             %lb = laneBoundaries(a, Name, Value, ...) returns lane boundaries as an
             %   array of structures of the actor a. By default, only the left and right
@@ -813,6 +826,7 @@ classdef Actor < driving.scenario.ActorBase
             lb = getLaneBoundaries(obj,rt,varargin{:});
         end
         
+
          function set.EntryTime(obj,enttime)
             validateActorEntryTime(obj, enttime);
             obj.EntryTime = enttime;
@@ -829,6 +843,7 @@ classdef Actor < driving.scenario.ActorBase
             end
         end
 
+
         function set.ExitTime(obj,exttime)
             validateActorExitTime(obj, exttime);
             obj.ExitTime = exttime;
@@ -844,6 +859,7 @@ classdef Actor < driving.scenario.ActorBase
                 end
             end
         end
+
 
         function mesh = roadMesh(obj,maxRadius)
             %roadMesh Returns a mesh representation of the actor's nearest roads
@@ -899,6 +915,7 @@ classdef Actor < driving.scenario.ActorBase
             mesh = getRoadMesh(obj,maxRadius);
         end
         
+        % 对路径点进行平滑
         function smoothTrajectory(obj, waypoints, varargin)
             %smoothTrajectory Specify jerk-limited actor trajectory
             %   smoothTrajectory(a, waypoints) specifies a trajectory through N waypoints that
@@ -1365,6 +1382,7 @@ classdef Actor < driving.scenario.ActorBase
                 warning(message('driving:scenario:ExitTimeExceedsStopTime'));
             end
         end
+
 
         function updateTrajectory(obj)
             if ~isempty(obj.MotionStrategy) && isprop(obj.MotionStrategy, 'Waypoints')

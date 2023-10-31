@@ -15,7 +15,7 @@ classdef GamingEngineScenarioAnimator < handle
         % EgoCarId: 
         % ActorProfiles: {ClassID}
         % VehiclePoses: {Position: Yaw: Velocity} Only first
-        Scenario = [];
+        Scenario = [];  % 需要仿真的驾驶场景
         EgoCarID = 1;
         ClassSpecifications;
         Span = 50;
@@ -82,10 +82,10 @@ classdef GamingEngineScenarioAnimator < handle
         end
         
 
-        function set.Scenario(this, scenario)
-            this.Scenario = scenario;
-            this.NumActors = size(scenario.Actors,1); %#ok<MCSUP>
-            this.EgoCarID = scenario.EgoCarId; %#ok<MCSUP>
+        function set.Scenario(this, scenario)  % function set.Scenario(this, scenario)
+            this.Scenario = scenario;  % 驾驶场景
+            this.NumActors = size(scenario.Actors,1);  % 参与者的数目
+            this.EgoCarID = scenario.EgoCarId;  % 自我车的数目
         end
 
         
@@ -186,10 +186,11 @@ classdef GamingEngineScenarioAnimator < handle
                 writer.setState(int32(sim3d.engine.EngineCommands.RUN));
                 writer.write();
                 pause(0.1);
+                % 读取到当前采样时刻的状态信息
                 r = reader.read(); %#ok<NASGU>
             end
             
-            % send step command
+            % 发送步进命令
             writer.write();
             reader.read(); % this is slowing things down
             
@@ -210,7 +211,7 @@ classdef GamingEngineScenarioAnimator < handle
                 Translation = actorInfo.Translation;
                 Translation(1,1) = x;
                 Translation(1,2) = y;
-                ARotation = actorInfo.Rotation;
+                ARotation = actorInfo.Rotation;  %  Actor Rotation
                 % 同时旋转车辆的轮子
                 if strcmp(actorInfo.Type, 'Bicyclist')
                     ARotation(1,3) = -yaw;
@@ -219,13 +220,13 @@ classdef GamingEngineScenarioAnimator < handle
                     ARotation(1,3) = yaw;
                     ARotation = this.computePedRotation(ARotation);
                 else
-                    ARotation(1,3) = yaw;
+                    ARotation(1,3) = yaw;  % 旋转矩阵（5x3） 第一行: 俯仰pitch,翻滚roll,偏航yaw
                     %                         Rotation(1,2) = 0; input.Actors(actorIdx).Roll;
                     ARotation(1,1) = -deg2rad(input.Actors(actorIdx).Pitch);
-                    ARotation = this.turnWheels(ARotation,input.Actors(actorIdx).Velocity(1));
+                    ARotation = this.turnWheels(ARotation, input.Actors(actorIdx).Velocity(1));
                 end
                 if reset
-                    actor.write(Translation, ARotation, ones(size(Translation)));  % 参与者各项数据的写入
+                    actor.write(Translation, ARotation, ones(size(Translation)) );  % 参与者各项数据的写入
                 else
                     actor.step(x, y, yaw);
                 end
@@ -243,6 +244,8 @@ classdef GamingEngineScenarioAnimator < handle
             end
         end
         
+
+        % 初始化虚幻引擎
         function varargout = setup(this)
             % 关闭其他窗口
             instances = matlabshared.application.InstanceCache.get(this.InstanceTag);
@@ -280,6 +283,7 @@ classdef GamingEngineScenarioAnimator < handle
             end
         end
         
+
         function b = isWindowOpen(this)
             try
                 [r, ~] = ReadSimulation3DCommand(this.CommandReader.Reader);
@@ -296,21 +300,41 @@ classdef GamingEngineScenarioAnimator < handle
                 reader.setTimeout(this.PausedReadTimeout);
             end
         end
-        
 
+
+        % 删除所有参与者
         function deleteActors(this)
             actors = this.ActorsMap;
             if ~isempty(actors)
-                for idx = 1:length(actors)
-                    actor = actors(idx);
-                    % Explicitly delete the actors
+                actor_keys = keys(actors);
+                for idx = 1:length(actor_keys)
+                    cur_idx = actor_keys(idx); cur_idx = cur_idx{1};
+                    actor = actors(cur_idx);
+                    % 明确删除所有参与者
                     delete(actor.Obj);
                     
-                    % Remove from the map
-                    actors.remove(idx);
+                    % 从参与者集合中删除
+                    actors.remove(cur_idx);
                 end
             end
         end
+        
+
+%         % 删除所有参与者
+%         function deleteActors(this)
+%             actors = this.ActorsMap;
+%             if ~isempty(actors)
+%                 for idx = 1:length(actors)
+%                     actor = actors(idx);
+%                     % 明确删除所有参与者
+%                     delete(actor.Obj);
+%                     
+%                     % Remove from the map
+%                     actors.remove(idx);
+%                 end
+%             end
+%         end
+
     end
     
 
@@ -329,6 +353,7 @@ classdef GamingEngineScenarioAnimator < handle
         end
 
         
+        % 获得指定参与者类型的维度
         function dims = getAssetDimensions(type)
             switch type
                 case 'Sedan'
@@ -404,6 +429,7 @@ classdef GamingEngineScenarioAnimator < handle
     
     methods (Access = protected)
         
+        % 初始化所有参与者的位置
         function initPositionForAllActors(this)
             actors = this.ActorsMap;
             actorIDs = keys(actors);
@@ -420,11 +446,13 @@ classdef GamingEngineScenarioAnimator < handle
             end
         end
         
+
+        % 初始化并启动游戏引擎
         function initAndStartGame(this)
             % 发送初始化命令
             writer = this.CommandWriter;
             writer.setState(int32(sim3d.engine.EngineCommands.INITIALIZE));
-            writer.write();  % 发送
+            writer.write();  % 设置完状态就发送数据
             this.CommandReader.read();
         end
         
@@ -484,6 +512,7 @@ classdef GamingEngineScenarioAnimator < handle
         end
 
         
+        % 计算行人腿的转动
         function ueRotation = computePedRotation(~, dsdRotation)
             % 3dSimYaw = -(dsdYaw + pi/2)
             ueRotation = dsdRotation;
@@ -529,7 +558,8 @@ classdef GamingEngineScenarioAnimator < handle
             actorType = getProperty(classSpecs, classID, 'AssetType');
         end
 
-               
+
+        % 向场景添加参与者
         function w = addActors(this)
             factory = this.AssetFactory;
             actors = this.Scenario.Actors;
@@ -582,10 +612,11 @@ classdef GamingEngineScenarioAnimator < handle
         end
 
         
+        % 更新参与者轨迹
         function updateActorTrajectories(this)
             scenario = this.Scenario;
             actors = scenario.Actors;
-            vehiclePoses = scenario.VehiclePoses; % this has all actor poses - not just vehicles
+            vehiclePoses = scenario.VehiclePoses; % 这有所有参与者的姿态，而不仅仅是车辆
             numActors = this.NumActors;
             for actorIdx = 1:numActors
                 % Just the first pose should do for initial-position. rest
