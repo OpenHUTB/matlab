@@ -3,12 +3,17 @@
 
 # 部署
 
-使用部署脚本`deploy.m`将`matlab_2022b_win_run.zip`解压到仓库，同名文件跳过。
+递归克隆项目：
+```shell
+git clone --recursive https://github.com/OpenHUTB/matlab.git
+```
+或者更新子模块：
+```shell
+git submodule update --init --recursive
+```
 
+然后使用部署脚本`deploy.m`将`matlab_2022b_win_run.zip`解压的文件部署到仓库中（同名文件跳过）。
 
-# 平台
-平台支持语言：英语，部分支持：汉语、日语、韩语。
-资源所在路径`resources/MATLAB/en{zh_CN}{ja_JP}{ko_KR}`
 
 # 定制
 
@@ -127,6 +132,9 @@ git reset --hard origin/master  # 将本地仓库的HEAD指针、工作目录和
 
 * 虚拟机中测试环境搭建；
 
+# 平台
+平台支持语言：英语，部分支持：汉语、日语、韩语。
+资源所在路径`resources/MATLAB/en{zh_CN}{ja_JP}{ko_KR}`
 
 # 参考
 ## 工具

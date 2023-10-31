@@ -1,3 +1,5 @@
+% 富通讯服务：Rich Communication Services (RCS)
+% 参考: https://en.wikipedia.org/wiki/Rich_Communication_Services
 classdef RCSHelper<handle
 
     properties
@@ -7,7 +9,7 @@ classdef RCSHelper<handle
 
 
     properties(Constant,Hidden)
-        Instance=driving.internal.scenarioApp.RCSHelper;
+        Instance = driving.internal.scenarioApp.RCSHelper;
     end
 
     properties(SetAccess=protected,Hidden)

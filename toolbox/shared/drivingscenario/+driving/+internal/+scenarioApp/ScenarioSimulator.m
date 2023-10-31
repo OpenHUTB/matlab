@@ -5,14 +5,16 @@ classdef ScenarioSimulator<driving.internal.scenarioApp.Simulator
         Player
     end
 
+
     properties(SetAccess=protected,Hidden)
         SimulateSection;
     end
 
+
     methods
-        function this=ScenarioSimulator(app)
+        function this = ScenarioSimulator(app)
             this@driving.internal.scenarioApp.Simulator(app)
-            this.Player=driving.internal.scenarioApp.ScenarioPlayer(app.Scenario);
+            this.Player = driving.internal.scenarioApp.ScenarioPlayer(app.Scenario);
             this.Tag='scenario';
         end
 

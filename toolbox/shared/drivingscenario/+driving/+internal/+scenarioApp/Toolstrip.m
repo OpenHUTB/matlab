@@ -113,8 +113,8 @@ OldSimulatorSections
 
             popup=PopupList;
 
-            scenarioSimulator=ListItem(getString(message('driving:scenarioApp:ScenarioSimulatorText')),Icon.MATLAB_24);
-            scenarioSimulator.ShowDescription=false;
+            scenarioSimulator = ListItem(getString(message('driving:scenarioApp:ScenarioSimulatorText')), Icon.MATLAB_24);
+            scenarioSimulator.ShowDescription = false;
             simulinkSimulator=ListItem(getString(message('driving:scenarioApp:SimulinkSimulatorText')),Icon.SIMULINK_24);
             simulinkSimulator.ShowDescription=false;
 

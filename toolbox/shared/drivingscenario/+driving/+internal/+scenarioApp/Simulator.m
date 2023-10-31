@@ -25,10 +25,10 @@ classdef Simulator<handle&matlab.mixin.Heterogeneous
         end
 
 
-        function tab=getDynamicTabs(this)
+        function tab = getDynamicTabs(this)
             tab=this.TabCache;
             if isempty(tab)&&~isempty(this.Designer.Toolstrip)
-                tab=matlab.ui.internal.toolstrip.Tab(getString(message('driving:scenarioApp:SimulationTabName')));
+                tab = matlab.ui.internal.toolstrip.Tab(getString(message('driving:scenarioApp:SimulationTabName')));
                 tab.Tag='simulation';
                 tab.add(createSimulationManagerSection(this.Designer.Toolstrip));
                 sections=getSections(this);
@@ -82,19 +82,19 @@ classdef Simulator<handle&matlab.mixin.Heterogeneous
 
 
     methods(Abstract)
-        run(this)  % 相当于点击图形界面的"运行"
+        run(this)                   % 相当于点击图形界面的"运行"
         stop(this)
         pause(this)
-        b=isRunning(this)
-        b=isStopped(this)
-        b=isPaused(this)
-        b=canRun(this)
-        t=getCurrentTime(this)
-        s=getCurrentSample(this)
-        t=getStopTime(this)
-        l=addStateChangedListener(this,cb)
-        l=addSampleChangedListener(this,cb)
-        i=getIcon(this)
+        b = isRunning(this)
+        b = isStopped(this)
+        b = isPaused(this)
+        b = canRun(this)
+        t = getCurrentTime(this)
+        s = getCurrentSample(this)
+        t = getStopTime(this)
+        l = addStateChangedListener(this,cb)
+        l = addSampleChangedListener(this,cb)
+        i = getIcon(this)
     end
 end
 

@@ -124,11 +124,11 @@ classdef Display<matlabshared.application.Application&...
         end
 
 
-        function varargout=initSimulator(this,className)
-            allSims=this.AllSimulators;
-            sim=findobj(allSims,'-isa',className);
+        function varargout = initSimulator(this, className)
+            allSims = this.AllSimulators;
+            sim = findobj(allSims,'-isa',className);
             if isempty(sim)
-                sim=feval(className,this);
+                sim = feval(className, this);
                 allSims(end+1)=sim;
                 this.AllSimulators=allSims;
             end
@@ -187,7 +187,7 @@ classdef Display<matlabshared.application.Application&...
                 scenario=drivingScenario;
             end
             this.Scenario=scenario;
-            this.Simulator=initSimulator(this,'driving.internal.scenarioApp.ScenarioSimulator');
+            this.Simulator = initSimulator(this,'driving.internal.scenarioApp.ScenarioSimulator');
             if nargin<3
                 actors=scenario.Actors;
                 if isempty(actors)

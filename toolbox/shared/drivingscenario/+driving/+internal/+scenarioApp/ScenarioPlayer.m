@@ -1,8 +1,8 @@
-classdef ScenarioPlayer<handle
+classdef ScenarioPlayer < handle
 
     properties
         Scenario;
-        Repeat=false;
+        Repeat = false;  % 重复播放
         PauseAtSample='end'
 
         StopCondition='first';
@@ -34,10 +34,12 @@ classdef ScenarioPlayer<handle
             this.Scenario=scenario;
         end
 
+
         function set.StopCondition(this,newCondition)
             this.StopCondition=newCondition;
             setupScenario(this);
         end
+
 
         function set.StopTime(this,newTime)
             this.StopTime=newTime;
@@ -58,7 +60,7 @@ classdef ScenarioPlayer<handle
         end
 
 
-        function stopTime=getStopTime(this)
+        function stopTime = getStopTime(this)
             if strcmp(this.StopCondition,'time')
                 stopTime=this.StopTime;
             else
@@ -87,9 +89,9 @@ classdef ScenarioPlayer<handle
 
         function stepForward(this)
             pause(this);
-            sample=this.CurrentSample;
-            if sample==this.NumSamples
-                sample=1;
+            sample = this.CurrentSample;
+            if sample == this.NumSamples
+                sample = 1;
             else
                 sample=sample+1;
             end
@@ -99,6 +101,7 @@ classdef ScenarioPlayer<handle
             notify(this,'StateChanged');
         end
 
+
         function stepBackward(this)
             pause(this);
             newSample=this.CurrentSample-1;
@@ -106,15 +109,15 @@ classdef ScenarioPlayer<handle
                 return;
             end
 
-            this.CurrentSample=newSample;
+            this.CurrentSample = newSample;
 
-            setCurrentSample(this,newSample);
+            setCurrentSample(this, newSample);
 
             notify(this,'StateChanged');
         end
 
 
-        function isRunning=setCurrentSample(this,newSample)
+        function isRunning = setCurrentSample(this,newSample)
             this.CurrentSample=newSample;
             scenario=this.Scenario;
 
@@ -138,7 +141,7 @@ classdef ScenarioPlayer<handle
                 this.IsPaused=~(newSample==1||newSample==this.NumSamples);
             end
 
-            notify(this,'SampleChanged');
+            % notify(this, 'SampleChanged');  % 关闭仿真时候的回调警告
         end
 
 
@@ -246,7 +249,7 @@ classdef ScenarioPlayer<handle
                 sample=sample+1;
             end
 
-            isRunning=setCurrentSample(this,sample)&&sample~=this.NumSamples;
+            isRunning = setCurrentSample(this,sample)&&sample~=this.NumSamples;
 
             if sample==1
                 notify(this,'StateChanged');

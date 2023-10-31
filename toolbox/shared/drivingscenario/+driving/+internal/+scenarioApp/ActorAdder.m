@@ -1,23 +1,25 @@
+% 参与者添加器
 classdef ActorAdder<driving.internal.scenarioApp.Adder
 
     methods
-        function this=ActorAdder(hApplication)
-            this.Application=hApplication;
+        function this = ActorAdder(hApplication)
+            this.Application = hApplication;
         end
 
 
-        function addViaMouse(this,spec)
-            if nargin>1&&isstruct(spec)
-                spec.Name=getUniqueName(this,spec.name);
-                spec.ClassID=spec.id;
-                spec=rmfield(spec,{'id','isVehicle','isMovable','name'});
+        % 通过鼠标添加参与者
+        function addViaMouse(this, spec)
+            if nargin>1 && isstruct(spec)
+                spec.Name = getUniqueName(this, spec.name);
+                spec.ClassID = spec.id;
+                spec = rmfield(spec,{'id','isVehicle','isMovable','name'});
             else
-                spec=struct;
+                spec = struct;
             end
-            hApp=this.Application;
-            hScenario=hApp.ScenarioView;
+            hApp = this.Application;
+            hScenario = hApp.ScenarioView;
             focusOnComponent(hScenario);
-            hSensorCanvas=hApp.SensorCanvas;
+            hSensorCanvas = hApp.SensorCanvas;
             if~isempty(hSensorCanvas)
                 hSensorCanvas.InteractionMode='move';
             end
@@ -31,9 +33,10 @@ classdef ActorAdder<driving.internal.scenarioApp.Adder
         end
 
 
+        % 添加路点
         function addWaypoints(this,actorID)
-            hApplication=this.Application;
-            hScenario=hApplication.ScenarioView;
+            hApplication = this.Application;
+            hScenario = hApplication.ScenarioView;
 
             hScenario.addActorWaypoints(actorID);
             hScenario.focusOnComponent;
@@ -43,8 +46,8 @@ classdef ActorAdder<driving.internal.scenarioApp.Adder
     
 
     methods(Access=protected)
-        function specs=getCurrentSpecifications(this)
-            specs=this.Application.ActorSpecifications;
+        function specs = getCurrentSpecifications(this)
+            specs = this.Application.ActorSpecifications;
         end
     end
 end

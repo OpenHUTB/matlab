@@ -5,40 +5,44 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         matlabshared.application.ToolGroupCutCopyPaste&...
         matlabshared.application.ToolGroupFileSystem
 
+
     properties(Hidden)
-        MostRecentCanvas='scenario';
-        Sim3dScene='';
+        MostRecentCanvas = 'scenario';
+        Sim3dScene = '';
     end
+
 
     properties(Hidden,Constant)
-        IsADTInstalled=~isempty(ver('driving'));
+        IsADTInstalled = ~isempty(ver('driving'));
     end
 
+
     properties(SetAccess=protected,Hidden)
-        RoadProperties;
-        ActorProperties;
-        BarrierProperties;
-        SensorCanvas;      % 传感器画布
-        SensorProperties;
-        BirdsEyePlot;
-        ActorAdder;
+        RoadProperties;     % 道路
+        ActorProperties;    % 参与者属性
+        BarrierProperties;  % 障碍物属性
+        SensorCanvas;       % 传感器画布
+        SensorProperties;   % 传感器属性
+        BirdsEyePlot;       % 鸟瞰图
+        ActorAdder;         % 参与者添加器
         ActorAligner;
         RoadAdder;
         BarrierAdder;
         SensorAdder;
         ClassEditor;
         GamingEngineViewer;  % 游戏引擎查看器
-        SimulationSettings;
-        ViewCache;
-        RoadCreationInProgress=false;
-        ShouldClearLargeRoadWarning=false;
+        SimulationSettings;  % 仿真设置
+        ViewCache;           % 查看缓存
+        RoadCreationInProgress = false;
+        ShouldClearLargeRoadWarning = false;
         RoadCreationTimer;
-        ShowAxesOrientation=false;
-        ShowOpenStreetMapImport=true;
-        ShowExport3dSim=false;
-        ShowPlacementSection=false;
-        ShowZenrinJapanMapImport=true;
+        ShowAxesOrientation = false;
+        ShowOpenStreetMapImport = true;
+        ShowExport3dSim = false;
+        ShowPlacementSection = false;
+        ShowZenrinJapanMapImport = true;
     end
+
 
     properties(Access=protected)
         PropertyListener;
@@ -52,6 +56,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         ShowAsymmetricRoads=false;
         LoadWarning
     end
+
 
     events(NotifyAccess=public)
         CurrentSensorChanged;
@@ -70,6 +75,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         NewScenario;
     end
 
+
     properties(Hidden)
         HEREHDLiveMapImportArgs={}
         OpenStreetMapImportArgs={}
@@ -80,11 +86,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         OpenSCENARIOExportArgs={}
     end
 
-    methods
 
-        function this=Designer(varargin)
+    methods
+        function this = Designer(varargin)
             this@driving.internal.scenarioApp.Display(varargin{:});
-            this.SimulatorListener=addStateChangedListener(this.Simulator,@this.onSimulatorStateChanged);
+            this.SimulatorListener=addStateChangedListener(this.Simulator, @this.onSimulatorStateChanged);
         end
 
 
@@ -96,7 +102,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
 
         % 获得应用程序的标题
-        function title=getTitle(this)
+        function title = getTitle(this)
             fileName = getCurrentFileName(this);
             if isempty(fileName)
                 fileName='untitled';
@@ -231,7 +237,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             cancel = getString(message('Spcuilib:application:Cancel'));
             saveAs = getString(message('driving:scenarioApp:ExportSimulinkModelSaveDialogSaveAs'));
 
-            scene=this.Sim3dScene;
+            scene = this.Sim3dScene;
             if isempty(scene)
                 ok=getString(message('MATLAB:uistring:popupdialogs:OK'));
                 selection=uiconfirm(this,getString(message('driving:scenarioApp:Export3dSimModelNoSceneText')),...
@@ -321,10 +327,10 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
         % 获得参与者添加器 ActorAdder 对象
         function actorAdder = getActorAdder(this)
-            actorAdder=this.ActorAdder;
+            actorAdder = this.ActorAdder;
             if isempty(actorAdder)
-                actorAdder=driving.internal.scenarioApp.ActorAdder(this);
-                this.ActorAdder=actorAdder;
+                actorAdder = driving.internal.scenarioApp.ActorAdder(this);
+                this.ActorAdder = actorAdder;
             end
         end
 
@@ -454,7 +460,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
 
         % 删除道路
-        function varargout=deleteRoad(this,index)
+        function varargout = deleteRoad(this,index)
             exitInteractionMode(this.ScenarioView);
             roadProps=this.RoadProperties;
             if index==roadProps.SpecificationIndex||roadProps.SpecificationIndex>=numel(this.RoadSpecifications)
@@ -2371,7 +2377,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
 
         % 处理打开的数据
-        function processOpenData(this,newData,type)
+        function processOpenData(this, newData, type)
             if any(strcmp(type,{'classes'}))
                 if~isfield(newData,'ClassSpecifications')
                     error(message('driving:scenarioApp:InvalidClassDefinitionFile'));
@@ -2589,23 +2595,22 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                     initSimulator(this,newData.Simulator);
                 else
 
-                    initSimulator(this,'driving.internal.scenarioApp.ScenarioSimulator');
-                    player=this.Simulator.Player;
-                    if isfield(newData,'Repeat')
-                        player.Repeat=newData.Repeat;
-                        player.StopCondition=newData.StopCondition;
-                        player.StopTime=newData.StopTime;
-                        this.SampleTime=newData.SampleTime;
+                    initSimulator(this,'driving.internal.scenarioApp.ScenarioSimulator');  % 初始化仿真器（包括是否重复仿真）
+                    player = this.Simulator.Player;
+                    if isfield(newData, 'Repeat')
+                        player.Repeat = newData.Repeat;
+                        player.StopCondition = newData.StopCondition;
+                        player.StopTime = newData.StopTime;
+                        this.SampleTime = newData.SampleTime;
                     else
-
-                        player.Repeat=false;
+                        player.Repeat = false;  % 不是重复仿真
                         player.StopCondition='first';
                         player.StopTime=10;
                         this.SampleTime=0.01;
                     end
                 end
                 if isfield(newData,'Use3dSimDimensions')
-                    this.Use3dSimDimensions=newData.Use3dSimDimensions;
+                    this.Use3dSimDimensions = newData.Use3dSimDimensions;
                 end
 
             end
@@ -2676,7 +2681,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             pvPairs=varargin;
             if nargin>1
                 if ischar(pvPairs{1})||isstring(pvPairs{1})
-
                     if~isprop(this,pvPairs{1})
                         fileName=pvPairs{1};
                         pvPairs(1)=[];
@@ -2796,7 +2800,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
-        function newData=extractBarriersFromActorData(this,newData)
+        function newData = extractBarriersFromActorData(this,newData)
             egoCarId=newData.EgoCarId;
             egoCar=newData.ActorSpecifications(egoCarId);
 
@@ -2821,7 +2825,6 @@ classdef Designer<driving.internal.scenarioApp.Display&...
                 if~isequal(egoIdx,egoCarId)
                     newData.EgoCarId=egoIdx;
                 end
-
                 if isfield(newData,'BarrierSpecifications')
                     newData.BarrierSpecifications=[newData.BarrierSpecifications,barrierSpecs'];
                 else
@@ -2866,36 +2869,33 @@ end
 
 
 function cleanUpWarning(wstate,wstr,wid)
-
-warning(wstate);
-lastwarn(wstr,wid);
-
+    warning(wstate);
+    lastwarn(wstr,wid);
 end
+
 
 
 function setLocation(comp,md,toolGroup,column,notFirstCall)
+    name=getName(comp);
 
-name=getName(comp);
-
-if notFirstCall
-    toolgroupClient=javaMethodEDT('getClient',md,name,toolGroup);
-    tl=javaMethodEDT('getClientLocation',md,toolgroupClient);
-else
-    tl=md.getClientLocation(md.getClient(name,toolGroup));
+    if notFirstCall
+        toolgroupClient=javaMethodEDT('getClient',md,name,toolGroup);
+        tl=javaMethodEDT('getClientLocation',md,toolgroupClient);
+    else
+        tl=md.getClientLocation(md.getClient(name,toolGroup));
+    end
+    
+    if tl.getTile~=column.getTile
+        md.setClientLocation(name,toolGroup,column);
+    end
 end
 
 
-if tl.getTile~=column.getTile
-    md.setClientLocation(name,toolGroup,column);
-end
-end
-
-
-function b=isSensor(input)
-b=isa(input,'driving.internal.AbstractDetectionGenerator')||...
-    isa(input,'lidarsim.internal.AbstractLidarSensor')||...
-    isa(input,'insSensor')||...
-    isa(input,'drivingRadarDataGenerator')||...
-    isa(input,'ultrasonicDetectionGenerator');
+function b = isSensor(input)
+    b=isa(input,'driving.internal.AbstractDetectionGenerator')||...
+        isa(input,'lidarsim.internal.AbstractLidarSensor')||...
+        isa(input,'insSensor')||...
+        isa(input,'drivingRadarDataGenerator')||...
+        isa(input,'ultrasonicDetectionGenerator');
 end
 
