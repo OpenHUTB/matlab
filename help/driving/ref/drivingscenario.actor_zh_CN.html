@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>actor</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Automated Driving Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../scenario-simulation.html",
+          "name": "Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cuboid-scenario-simulation.html",
+          "name": "Cuboid Scenario Simulation"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../programmatic-scenario-authoring.html",
+          "name": "Programmatic Scenario Authoring"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "programmatic-scenario-authoring"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:actor"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:drivingScenario.actor"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:driving.scenario.Actor.actor"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function adds an Actor object, ac, to the driving scenario, scenario."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "driving";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/robotics-and-autonomous-systems.html" itemprop="url"><span itemprop="title">Robotics and Autonomous Systems</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Automated Driving Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cuboid-scenario-simulation.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cuboid Scenario Simulation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programmatic-scenario-authoring.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programmatic Scenario Authoring</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">actor</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_bdbdf917-2a3d-4165-917c-ab7a33852002" class="intrnllnk">Syntax</a></li>
+<li><a href="#description" class="intrnllnk">Description</a></li>
+<li><a href="#mw_8b8e73f8-5bbe-4902-8f26-3d3473596d95" class="intrnllnk">Examples</a><ul class="nav"><li><a href="#mw_d7c0ead6-1858-43b7-bf77-67ed428311d0" class="intrnllnk">Create Driving Scenario with Multiple Actors and Roads</a></li>
+</ul><ul class="nav"><li><a href="#mw_99882eaa-cf28-46d2-905b-081a68ecbf1b" class="intrnllnk">Spawn and Despawn Actors in Scenario During Simulation</a></li>
+</ul></li>
+<li><a href="#mw_324f9e11-7a9e-4796-b161-0a10b0aa4566" class="intrnllnk">Input Arguments</a><ul class="nav"><li><a href="#bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="intrnllnk">scenario</a></li>
+</ul><ul class="nav"><li><a href="#namevaluepairs" class="intrnllnk">Name-Value Arguments</a><ul class="nav"><li><a href="#bvm91xv-1_sep_mw_b437ae7c-2f1d-42ba-aa16-7f363d9cac01" class="intrnllnk">ClassID</a></li>
+</ul><ul class="nav"><li><a href="#mw_ab81a7db-29cd-45b3-b2db-451258fc72a8" class="intrnllnk">Name</a></li>
+<li><a href="#mw_26b9ff3f-fb91-4b63-8ed9-49cd11235831" class="intrnllnk">EntryTime</a></li>
+<li><a href="#mw_f1e7a6c7-de0c-4445-822e-959eccdbed4e" class="intrnllnk">ExitTime</a></li>
+<li><a href="#mw_71c5f40b-d462-4d61-8481-8115568eeeca" class="intrnllnk">PlotColor</a></li>
+<li><a href="#bvm91xv-1-Position" class="intrnllnk">Position</a></li>
+<li><a href="#bvm91xv-1-Velocity" class="intrnllnk">Velocity</a></li>
+<li><a href="#bvm91xv-1-Yaw" class="intrnllnk">Yaw</a></li>
+<li><a href="#bvm91xv-1-Pitch" class="intrnllnk">Pitch</a></li>
+<li><a href="#bvm91xv-1-Roll" class="intrnllnk">Roll</a></li>
+<li><a href="#bvm91xv-1-AngularVelocity" class="intrnllnk">AngularVelocity</a></li>
+<li><a href="#bvm91xv-1-Length" class="intrnllnk">Length</a></li>
+<li><a href="#bvm91xv-1-Width" class="intrnllnk">Width</a></li>
+<li><a href="#bvm91xv-1-Height" class="intrnllnk">Height</a></li>
+<li><a href="#mw_ba634aa6-e8d2-4934-b13a-e185fa788074" class="intrnllnk">Mesh</a></li>
+<li><a href="#bvm91xv-1-RCSPattern" class="intrnllnk">RCSPattern</a></li>
+<li><a href="#bvm91xv-1-RCSAzimuthAngles" class="intrnllnk">RCSAzimuthAngles</a></li>
+<li><a href="#bvm91xv-1-RCSElevationAngles" class="intrnllnk">RCSElevationAngles</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mw_8cf92746-aa89-4fdf-b8fb-6258832e1248" class="intrnllnk">Output Arguments</a><ul class="nav"><li><a href="#bvm91xv-1_sep_mw_5d8e7ad9-f456-4987-89d8-e6bd5954c77b" class="intrnllnk">ac</a></li>
+</ul></li>
+<li><a href="#bvm91xv-1_sep_mw_df91624e-60df-4de8-b9aa-261fcdbe4a10" class="intrnllnk">More About</a><ul class="nav"><li><a href="#mw_8e566342-c81c-48d9-a978-c025524ff278" class="intrnllnk">Actor and Vehicle Positions and Dimensions</a></li>
+</ul></li>
+<li><a href="#bvm91xv-1_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#bvm91xv-1_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=programmatic-scenario-authoring&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="bvm91xv-1" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">actor</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">向驾驶场景添加参与者</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<span id="mw_bdbdf917-2a3d-4165-917c-ab7a33852002" class="anchor_target"></span><div class="ref_sect"><h2 id="mw_bdbdf917-2a3d-4165-917c-ab7a33852002">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e101089" class="intrnllnk">ac = actor(scenario)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e101111" class="intrnllnk">ac = actor(scenario,Name,Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="mw_cc63aa6a-30f0-497f-8f9b-86567bce07e3" class="anchor_target"></span><h2 id="description">描述</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><div class="code_responsive"><p><span id="d124e101089" itemprop="syntax"><code class="synopsis"><a href="#bvm91xv-1_sep_mw_5d8e7ad9-f456-4987-89d8-e6bd5954c77b" class="intrnllnk"><code class="argument">ac</code></a> = actor(<a href="#bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="intrnllnk"><code class="argument">scenario</code></a>)</code></span> 添加一个参与者 <code class="object">Actor</code> 对象 <code class="argument">ac </code>到驾驶场景 <code class="argument">scenario</code> 中。参与者有默认的属性值。</p>
+<p><em class="firstterm">Actors</em> 是长方体（盒子形状），代表运动中的物体，例如汽车、行人和自行车。参与者还可以代表可以影响其他参与者运动的固定障碍物，例如障碍物。有关如何定义参与者的更多详细信息，请参阅 <a href="drivingscenario.actor.html#mw_8e566342-c81c-48d9-a978-c025524ff278" class="intrnllnk">参与者和车辆位置和尺寸</a>。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="drivingscenario.actor.html#mw_d7c0ead6-1858-43b7-bf77-67ed428311d0" class="intrnllnk">示例</a></p>
+<div class="code_responsive"><p><span id="d124e101111" itemprop="syntax"><code class="synopsis"><a href="#bvm91xv-1_sep_mw_5d8e7ad9-f456-4987-89d8-e6bd5954c77b" class="intrnllnk"><code class="argument">ac</code></a> = actor(<a href="#bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="intrnllnk"><code class="argument">scenario</code></a>,<a href="#namevaluepairarguments" class="intrnllnk"><code class="argument">Name,Value</code></a>)</code></span>
+        使用一个或多个名-值对参数设置参与者属性。例如，您可以设置参与者的位置、速度、尺寸和方向。您还可以设置参与者在场景中生成或消失的时间。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>笔记</strong></p>
+<p>您可以将驾驶场景中的参与者配置为生成和消失，然后将关联的 <a href="drivingscenario.html"><code class="object">drivingScenario</code></a> 对象导入到 <strong class="app"><a href="drivingscenariodesigner-app.html">驾驶场景设计器</a></strong> 应用程序中。该应用程序将驾驶场景中创建的第一个参与者视为自我参与者，并且不允许自我参与者在场景中生成或消失。</p>
+</div>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="mw_8b8e73f8-5bbe-4902-8f26-3d3473596d95">示例</h2>
+<div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_d7c0ead6-1858-43b7-bf77-67ed428311d0"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_d7c0ead6-1858-43b7-bf77-67ed428311d0" data-target="#expand_panel_body_mw_d7c0ead6-1858-43b7-bf77-67ed428311d0" aria-controls="expand_panel_body_mw_d7c0ead6-1858-43b7-bf77-67ed428311d0" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_d7c0ead6-1858-43b7-bf77-67ed428311d0">使用多个参与者和路创建驾驶场景<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_d7c0ead6-1858-43b7-bf77-67ed428311d0" aria-labelledby="expand_panel_heading_mw_d7c0ead6-1858-43b7-bf77-67ed428311d0" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/CreateDrivingScenarioWithMultipleActorsAndRoadExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create Driving Scenario with Multiple Actors and Roads",
+          "description": "Create a driving scenario containing a curved road, two straight roads, and two actors: a car and a bicycle. Both actors move along the road for 60 seconds.",
+          "thumbnailURL": "../../examples/driving/win64/CreateDrivingScenarioWithMultipleActorsAndRoadExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.actor.html"
+
+        },
+          "identifier": "driving.CreateDrivingScenarioWithMultipleActorsAndRoadExample",
+          "name": "CreateDrivingScenarioWithMultipleActorsAndRoadExample",
+          "url": "drivingscenario.actor.html#mw_d7c0ead6-1858-43b7-bf77-67ed428311d0"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/CreateDrivingScenarioWithMultipleActorsAndRoadExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateDrivingScenarioWithMultipleActorsAndRoadExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">创建一个驾驶场景，其中包含一条弯曲的道路、两条笔直的道路和两个参与者：一辆汽车和一辆自行车。两个参与者沿路移动 60 秒。</p>
+<p>创建驾驶场景对象。</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario(<span style="color:#A020F0">'SampleTime'</span>,0.1',<span style="color:#A020F0">'StopTime'</span>,60);</pre>
+</div>
+</div>
+</div>
+<p>Create the curved road using road center points following the arc of a circle with an 800-meter radius. The arc starts at 0°, ends at 90°, and is sampled at 5° increments.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>angs = [0:5:90]';
+R = 800;
+roadcenters = R*[cosd(angs) sind(angs) zeros(size(angs))];
+roadwidth = 10;
+cr = road(scenario,roadcenters,roadwidth);</pre>
+</div>
+</div>
+</div>
+<p>Add two straight roads with the default width, using road center points at each end. To the first straight road add barriers on both road edges.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadcenters = [700 0 0; 100 0 0];
+sr1 = road(scenario,roadcenters);
+barrier(scenario,sr1)
+barrier(scenario,sr1,<span style="color:#A020F0">'RoadEdge'</span>,<span style="color:#A020F0">'left'</span>)
+roadcenters = [400 400 0; 0 0 0];
+road(scenario,roadcenters);</pre>
+</div>
+</div>
+</div>
+<p>Get the road boundaries.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rbdry = roadBoundaries(scenario);</pre>
+</div>
+</div>
+</div>
+<p>Add a car and a bicycle to the scenario. Position the car at the beginning of the first straight road.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>car = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1,<span style="color:#A020F0">'Position'</span>,[700 0 0], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Length'</span>,3,<span style="color:#A020F0">'Width'</span>,2,<span style="color:#A020F0">'Height'</span>,1.6);</pre>
+</div>
+</div>
+</div>
+<p>Position the bicycle farther down the road.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bicycle = actor(scenario,<span style="color:#A020F0">'ClassID'</span>,3,<span style="color:#A020F0">'Position'</span>,[706 376 0]', <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Length'</span>,2,<span style="color:#A020F0">'Width'</span>,0.45,<span style="color:#A020F0">'Height'</span>,1.5);</pre>
+</div>
+</div>
+</div>
+<p>Plot the scenario.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario,<span style="color:#A020F0">'Centerline'</span>,<span style="color:#A020F0">'on'</span>,<span style="color:#A020F0">'RoadCenters'</span>,<span style="color:#A020F0">'on'</span>);
+title(<span style="color:#A020F0">'Scenario'</span>);</pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e101178" class="mediaobject"><p><img src="../../examples/driving/win64/CreateDrivingScenarioWithMultipleActorsAndRoadExample_01.png" alt="Figure contains an axes object. The axes object with title Scenario contains 1221 objects of type patch, line." width="560"/></p>
+</div>
+</div>
+<p>Display the actor poses and profiles. </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>allActorPoses = actorPoses(scenario)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>allActorPoses=<span class="emphasis"><em>242×1 struct array with fields:</em></span>
+    ActorID
+    Position
+    Velocity
+    Roll
+    Pitch
+    Yaw
+    AngularVelocity
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>allActorProfiles = actorProfiles(scenario)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>allActorProfiles=<span class="emphasis"><em>242×1 struct array with fields:</em></span>
+    ActorID
+    ClassID
+    Length
+    Width
+    Height
+    OriginOffset
+    MeshVertices
+    MeshFaces
+    RCSPattern
+    RCSAzimuthAngles
+    RCSElevationAngles
+
+</pre>
+</div>
+</div>
+</div>
+<p>Because there are barriers in this scenario, and each barrier segment is considered an actor, <code class="literal">actorPoses</code> and <code class="literal">actorProfiles</code> functions return the poses of all stationary and non-stationary actors. To only obtain the poses and profiles of non-stationary actors such as vehicles and bicycles, first obtain their corresponding actor IDs using the <code class="literal">scenario.Actors.ActorID</code> property.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>movableActorIDs = [scenario.Actors.ActorID];</pre>
+</div>
+</div>
+</div>
+<p>Then, use those IDs to filter only non-stationary actor poses and profiles.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>movableActorPoseIndices = ismember([allActorPoses.ActorID],movableActorIDs);
+
+movableActorPoses = allActorPoses(movableActorPoseIndices)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>movableActorPoses=<span class="emphasis"><em>2×1 struct array with fields:</em></span>
+    ActorID
+    Position
+    Velocity
+    Roll
+    Pitch
+    Yaw
+    AngularVelocity
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>movableActorProfiles = allActorProfiles(movableActorPoseIndices)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>movableActorProfiles=<span class="emphasis"><em>2×1 struct array with fields:</em></span>
+    ActorID
+    ClassID
+    Length
+    Width
+    Height
+    OriginOffset
+    MeshVertices
+    MeshFaces
+    RCSPattern
+    RCSAzimuthAngles
+    RCSElevationAngles
+
+</pre>
+</div>
+</div>
+</div>
+<p>       </p>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-CreateDrivingScenarioWithMultipleActorsAndRoadExample"/>
+<meta itemprop="exampletitle" content="Create Driving Scenario with Multiple Actors and Roads"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_99882eaa-cf28-46d2-905b-081a68ecbf1b"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_99882eaa-cf28-46d2-905b-081a68ecbf1b" data-target="#expand_panel_body_mw_99882eaa-cf28-46d2-905b-081a68ecbf1b" aria-controls="expand_panel_body_mw_99882eaa-cf28-46d2-905b-081a68ecbf1b" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_99882eaa-cf28-46d2-905b-081a68ecbf1b">Spawn and Despawn Actors in Scenario During Simulation<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_99882eaa-cf28-46d2-905b-081a68ecbf1b" aria-labelledby="expand_panel_heading_mw_99882eaa-cf28-46d2-905b-081a68ecbf1b" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/SpawnAndDespawnActorsInScenarioDuringSimulationExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Spawn and Despawn Actors in Scenario During Simulation",
+          "description": "Create a driving scenario. Set the stop time for the scenario to 3 seconds.",
+          "thumbnailURL": "../../examples/driving/win64/SpawnAndDespawnActorsInScenarioDuringSimulationExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "drivingscenario.actor.html"
+
+        },
+          "identifier": "driving.SpawnAndDespawnActorsInScenarioDuringSimulationExample",
+          "name": "SpawnAndDespawnActorsInScenarioDuringSimulationExample",
+          "url": "drivingscenario.actor.html#mw_99882eaa-cf28-46d2-905b-081a68ecbf1b"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('driving/SpawnAndDespawnActorsInScenarioDuringSimulationExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "SpawnAndDespawnActorsInScenarioDuringSimulationExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">Create a driving scenario. Set the stop time for the scenario to 3 seconds.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario(<span style="color:#A020F0">'StopTime'</span>,3);</pre>
+</div>
+</div>
+</div>
+<p>Add a two-lane road to the scenario.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadCenters = [0 1 0; 53 1 0];
+laneSpecification = lanespec([1 1]);
+road(scenario,roadCenters,<span style="color:#A020F0">'Lanes'</span>,laneSpecification);</pre>
+</div>
+</div>
+</div>
+<p>Add another road that intersects the first road at a right angle to form a T-shape.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadCenters = [20.3 38.4 0; 20 3 0];
+laneSpecification = lanespec(2);
+road(scenario,roadCenters,<span style="color:#A020F0">'Lanes'</span>,laneSpecification)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+  Road with properties:
+
+           Name: ""
+         RoadID: 2
+    RoadCenters: [2x3 double]
+      RoadWidth: 7.3500
+      BankAngle: [2x1 double]
+        Heading: [2x1 double]
+
+</pre>
+</div>
+</div>
+</div>
+<p>Add the ego vehicle to the scenario and define its waypoints. Set the ego vehicle speed to 20 m/s and generate the trajectories for the ego vehicle.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>egoVehicle = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1, <span style="color:#0000FF">...</span>
+                    <span style="color:#A020F0">'Position'</span>,[1.5 2.5 0]);
+waypoints = [2 3 0; 13 3 0;
+            21 3 0; 31 3 0;
+            43 3 0; 47 3 0];
+speed = 20;
+trajectory(egoVehicle,waypoints,speed)</pre>
+</div>
+</div>
+</div>
+<p>Add a non-ego actor to the scenario. Set the non-ego actor to spawn and despawn two times during the simulation by specifying vectors for entry time and exit time. Notice that each entry time value is less than the corresponding exit time value.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nonEgoactor1 = actor(scenario,<span style="color:#A020F0">'ClassID'</span>,1, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'Position'</span>,[22 30 0],<span style="color:#A020F0">'EntryTime'</span>,[0.2 1.4],<span style="color:#A020F0">'ExitTime'</span>,[1.0 2.0]);</pre>
+</div>
+</div>
+</div>
+<p>Define the waypoints for the non-ego actor. Set the non-ego actor speed to 30 m/s and generate its trajectories.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>waypoints = [22 35 0; 22 23 0;
+            22 13 0; 22 7 0;
+            18 -0.3 0; 12 -0.8 0; 3 -0.8 0];
+speed = 30;
+trajectory(nonEgoactor1,waypoints,speed)</pre>
+</div>
+</div>
+</div>
+<p>Add another non-ego actor to the scenario. Set the second non-ego actor to spawn once during the simulation by specifying an entry time as a positive scalar. Since you do not specify an exit time, this actor will remain in the scenario until the scenario ends.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nonEgoactor2 = actor(scenario,<span style="color:#A020F0">'ClassID'</span>,1, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'Position'</span>,[48 -1 0],<span style="color:#A020F0">'EntryTime'</span>,2);</pre>
+</div>
+</div>
+</div>
+<p>Define the waypoints for the second non-ego actor. Set the actor speed to 50 m/s and generate its trajectories.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>waypoints = [48 -1 0; 42 -1 0; 28 -1 0;
+            16 -1 0; 12 -1 0];
+speed = 50;
+trajectory(nonEgoactor2,waypoints,speed)</pre>
+</div>
+</div>
+</div>
+<p>Create a custom figure window to plot the scenario.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = figure;
+set(fig,<span style="color:#A020F0">'Position'</span>,[0 0 600 600])
+movegui(fig,<span style="color:#A020F0">'center'</span>)
+hViewPnl = uipanel(fig,<span style="color:#A020F0">'Position'</span>,[0 0 1 1],<span style="color:#A020F0">'Title'</span>,<span style="color:#A020F0">'Actor Spawn and Despawn'</span>);
+hPlt = axes(hViewPnl);</pre>
+</div>
+</div>
+</div>
+<p>Plot the scenario and run the simulation. Observe how the non-ego actors spawn and despawn in the scenario while simulation is running.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(scenario,<span style="color:#A020F0">'Waypoints'</span>,<span style="color:#A020F0">'on'</span>,<span style="color:#A020F0">'Parent'</span>,hPlt)
+<span style="color:#0000FF">while</span> advance(scenario)
+    pause(0.1)
+<span style="color:#0000FF">end</span></pre>
+</div>
+</div>
+</div>
+<div class="informalfigure"><div id="d124e101274" class="mediaobject"><p><img src="../../examples/driving/win64/SpawnAndDespawnActorsInScenarioDuringSimulationExample_01.png" alt="{&quot;String&quot;:&quot;Figure contains an axes object and an object of type uipanel. The axes object contains 9 objects of type patch, line.&quot;,&quot;Tex&quot;:[],&quot;LaTex&quot;:[]}" width="600"/></p>
+</div>
+</div>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="driving-SpawnAndDespawnActorsInScenarioDuringSimulationExample"/>
+<meta itemprop="exampletitle" content="Spawn and Despawn Actors in Scenario During Simulation"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_324f9e11-7a9e-4796-b161-0a10b0aa4566">Input Arguments</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_324f9e11-7a9e-4796-b161-0a10b0aa4566_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" data-target="#expand_panel_body_bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" aria-controls="expand_panel_body_bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_scenario" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33"><code itemprop="name">scenario</code> — <span itemprop="purpose">Driving scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">drivingScenario</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" aria-labelledby="expand_panel_heading_bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="panel-collapse collapse in"><div class="panel-body">
+        <p>Driving scenario, specified as a <a href="drivingscenario.html"><code class="object">drivingScenario</code></a> object.</p>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<span id="namevaluepairarguments" class="anchor_target"></span><span id="mw_2647b813-13cf-4e93-acf4-6539146aeb6b" class="anchor_target"></span><h3 id="namevaluepairs" class="bottom_ruled">Name-Value Arguments</h3>
+<div class="namevaluecontainer"><p class="neqvpair_boilerplate">Specify optional pairs of arguments as
+      <code class="argument">Name1=Value1,...,NameN=ValueN</code>, where <code class="literal">Name</code> is
+      the argument name and <code class="literal">Value</code> is the corresponding value.
+      Name-value arguments must appear after other arguments, but the order of the
+      pairs does not matter.
+    </p>
+<p class="nvpaircompat_boilerplate"><span class="emphasis"><em>
+      Before R2021a, use commas to separate each name and value, and enclose</em></span> 
+      <code class="literal">Name</code> <span class="emphasis"><em>in quotes.</em></span>
+    </p>
+<p><span class="example_desc"><strong>Example: </strong><code class="literal">'Height',1.7</code> sets the height of the actor to 1.7 meters upon
+        creation.</span></p>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_f2e4f8fb-2d50-4dc3-a2fb-1656ec86338e_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1_sep_mw_b437ae7c-2f1d-42ba-aa16-7f363d9cac01"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1_sep_mw_b437ae7c-2f1d-42ba-aa16-7f363d9cac01" data-target="#expand_panel_body_bvm91xv-1_sep_mw_b437ae7c-2f1d-42ba-aa16-7f363d9cac01" aria-controls="expand_panel_body_bvm91xv-1_sep_mw_b437ae7c-2f1d-42ba-aa16-7f363d9cac01" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_ClassID" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1_sep_mw_b437ae7c-2f1d-42ba-aa16-7f363d9cac01"><code itemprop="name">ClassID</code> — <span itemprop="purpose">Classification identifier</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">nonnegative integer</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1_sep_mw_b437ae7c-2f1d-42ba-aa16-7f363d9cac01" aria-labelledby="expand_panel_heading_bvm91xv-1_sep_mw_b437ae7c-2f1d-42ba-aa16-7f363d9cac01" class="panel-collapse collapse in"><div class="panel-body"><p>Classification identifier of actor, specified as the comma-separated pair consisting of <code class="literal">'ClassID'</code> and a nonnegative integer.</p>
+<p>Specify <code class="literal">ClassID</code> values to group together actors that have similar
+            dimensions, radar cross-section (RCS) patterns, or other properties. As a best practice,
+            before adding actors to a <a href="drivingscenario.html"><code class="object">drivingScenario</code></a> object, determine the
+            actor classification scheme you want to use. Then, when creating the actors, specify the
+                <code class="argument">ClassID</code> name-value pair to set classification identifiers
+            according to the actor classification scheme.</p>
+<p>Suppose you want to create a scenario containing these actors:</p>
+<p></p>
+<div class="itemizedlist"><ul><li><p>Two cars, one of which is the ego vehicle</p></li>
+<li><p>A truck</p></li>
+<li><p>A bicycle</p></li>
+<li><p>A jersey barrier along a road</p></li>
+</ul>
+</div>
+<p>
+The code shows a sample classification scheme for this scenario, where
+                <code class="literal">1</code> refers to cars, <code class="literal">2</code> refers to trucks,
+                <code class="literal">3</code> refers to bicycles and <code class="literal">5</code> refers to jersey
+            barriers. The cars have default vehicle properties. The truck and bicycle have the
+            dimensions of a typical truck and bicycle, respectively.</p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
+ego = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+car = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
+truck = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,2,<span style="color:#A020F0">'Length'</span>,8.2,<span style="color:#A020F0">'Width'</span>,2.5,<span style="color:#A020F0">'Height'</span>,3.5);
+bicycle = actor(scenario,<span style="color:#A020F0">'ClassID'</span>,3,<span style="color:#A020F0">'Length'</span>,1.7,<span style="color:#A020F0">'Width'</span>,0.45,<span style="color:#A020F0">'Height'</span>,1.7);
+mainRoad = road(scenario,[0 0 0;10 0 0]);
+barrier(scenario,mainRoad,<span style="color:#A020F0">'ClassID'</span>,5);</pre>
+</div>
+</div>
+</div>
+<p>The default <code class="argument">ClassID</code> of <code class="literal">0</code> is reserved for an object of an unknown or unassigned class. If you plan to import <code class="function">drivingScenario</code> objects into the <strong class="app"><a href="drivingscenariodesigner-app.html">Driving Scenario Designer</a></strong> app, do not leave the <code class="argument">ClassID</code> property of actors set to <code class="literal">0</code>. The app does not recognize a <code class="literal">ClassID</code> of <code class="literal">0</code> for actors and returns an error. Instead, set <code class="argument">ClassID</code> values of actors according to the actor classification scheme used in the app.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<thead><tr><th><code class="literal">ClassID</code></th>
+<th>Class Name</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">1</code></td>
+<td>Car</td>
+</tr>
+<tr><td><code class="literal">2</code></td>
+<td>Truck</td>
+</tr>
+<tr><td><code class="literal">3</code></td>
+<td>Bicycle</td>
+</tr>
+<tr><td><code class="literal">4</code></td>
+<td>Pedestrian</td>
+</tr>
+<tr><td><code class="literal">5</code></td>
+<td>Jersey Barrier</td>
+</tr>
+<tr><td><code class="literal">6</code></td>
+<td>Guardrail</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="mw_1bc1c8b6-a88c-4c69-9405-51d483124b72_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_ab81a7db-29cd-45b3-b2db-451258fc72a8"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ab81a7db-29cd-45b3-b2db-451258fc72a8" data-target="#expand_panel_body_mw_ab81a7db-29cd-45b3-b2db-451258fc72a8" aria-controls="expand_panel_body_mw_ab81a7db-29cd-45b3-b2db-451258fc72a8" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Name" class="anchor_target"></span><h3 class="panel-title" id="mw_ab81a7db-29cd-45b3-b2db-451258fc72a8"><code itemprop="name">Name</code> — <span itemprop="purpose">Name of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">""</code></span> (default) | <span itemprop="inputvalue">character vector</span> | <span itemprop="inputvalue">string scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_ab81a7db-29cd-45b3-b2db-451258fc72a8" aria-labelledby="expand_panel_heading_mw_ab81a7db-29cd-45b3-b2db-451258fc72a8" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Name of the actor, specified as the comma-separated pair consisting of
+                <code class="literal">'Name'</code> and a character vector or string scalar.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">'Name','Actor1'</code></p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">"Name","Actor1"</code></p>
+          <p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">char</code> | <code itemprop="datatype">string</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_26b9ff3f-fb91-4b63-8ed9-49cd11235831"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_26b9ff3f-fb91-4b63-8ed9-49cd11235831" data-target="#expand_panel_body_mw_26b9ff3f-fb91-4b63-8ed9-49cd11235831" aria-controls="expand_panel_body_mw_26b9ff3f-fb91-4b63-8ed9-49cd11235831" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_EntryTime" class="anchor_target"></span><h3 class="panel-title" id="mw_26b9ff3f-fb91-4b63-8ed9-49cd11235831"><code itemprop="name">EntryTime</code> — <span itemprop="purpose">Entry time for actor to spawn</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">positive scalar</span> | <span itemprop="inputvalue">vector of positive values</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_26b9ff3f-fb91-4b63-8ed9-49cd11235831" aria-labelledby="expand_panel_heading_mw_26b9ff3f-fb91-4b63-8ed9-49cd11235831" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Entry time for an actor to spawn in the driving scenario, specified as the
+              comma-separated pair consisting of <code class="literal">'EntryTime'</code> and a positive
+              scalar or a vector of positive values. Units are in seconds, measured from the start
+              time of the scenario.</p>
+            <p>Specify this name-value pair argument to add or make an actor appear in the
+              driving scenario at the specified time while the simulation is running. </p>
+<div class="itemizedlist"><ul><li><p>To spawn an actor only once, specify entry time as a scalar.</p></li>
+<li><p>To spawn an actor multiple times, specify entry time as a vector.</p>
+<div class="itemizedlist"><ul><li><p>Arrange the elements of the vector in ascending order.</p></li>
+<li><p>The length of the vector must match the length of the exit time
+                          vector.</p></li>
+</ul>
+</div><p>
+</p></li>
+<li><p>If the actor has an associated exit time, then each entry time value must be
+                    less than the corresponding exit time value.</p></li>
+<li><p>Each entry time value must be less than the stop time of the scenario. You
+                    can set the stop time for the scenario by specifying a value for the
+                      <code class="property">'StopTime'</code> property of the <a href="drivingscenario.html"><code class="object">drivingScenario</code></a> object.</p></li>
+</ul>
+</div>
+<p>
+</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">'EntryTime',2</code></p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">'EntryTime',[2 4]</code></p>
+          <p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">single</code> | <code itemprop="datatype">double</code> | <code itemprop="datatype">int8</code> | <code itemprop="datatype">int16</code> | <code itemprop="datatype">int32</code> | <code itemprop="datatype">int64</code> | <code itemprop="datatype">uint8</code> | <code itemprop="datatype">uint16</code> | <code itemprop="datatype">uint32</code> | <code itemprop="datatype">uint64</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_f1e7a6c7-de0c-4445-822e-959eccdbed4e"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_f1e7a6c7-de0c-4445-822e-959eccdbed4e" data-target="#expand_panel_body_mw_f1e7a6c7-de0c-4445-822e-959eccdbed4e" aria-controls="expand_panel_body_mw_f1e7a6c7-de0c-4445-822e-959eccdbed4e" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_ExitTime" class="anchor_target"></span><h3 class="panel-title" id="mw_f1e7a6c7-de0c-4445-822e-959eccdbed4e"><code itemprop="name">ExitTime</code> — <span itemprop="purpose">Exit time for actor to despawn</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">Inf</code></span> (default) | <span itemprop="inputvalue">positive scalar</span> | <span itemprop="inputvalue">vector of positive values</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_f1e7a6c7-de0c-4445-822e-959eccdbed4e" aria-labelledby="expand_panel_heading_mw_f1e7a6c7-de0c-4445-822e-959eccdbed4e" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Exit time for an actor to despawn from the driving scenario, specified as the
+              comma-separated pair consisting of <code class="literal">'ExitTime'</code> and a positive scalar
+              or a vector of positive values. Units are in seconds, measured from the start time of
+              the scenario.</p>
+            <p>Specify this name-value pair argument to remove or make an actor disappear from
+              the scenario at a specified time while the simulation is running. </p>
+<div class="itemizedlist"><ul><li><p>To despawn an actor only once, specify exit time as a scalar.</p></li>
+<li><p>To despawn an actor multiple times, specify exit time as a vector.</p>
+<div class="itemizedlist"><ul><li><p>Arrange the elements of the vector in ascending order.</p></li>
+<li><p>The length of the vector must match the length of the entry time
+                          vector.</p></li>
+</ul>
+</div><p>
+</p></li>
+<li><p>If the actor has an associated entry time, then each exit time value must be
+                    greater than the corresponding entry time value.</p></li>
+<li><p>Each exit time value must be less than the stop time of the scenario. You
+                    can set the stop time for the scenario by specifying a value for the
+                      <code class="property">'StopTime'</code> property of the <a href="drivingscenario.html"><code class="object">drivingScenario</code></a> object.</p></li>
+</ul>
+</div>
+<p>
+</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">'ExitTime',3</code></p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">'ExitTime',[3 6]</code></p>
+          <p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">single</code> | <code itemprop="datatype">double</code> | <code itemprop="datatype">int8</code> | <code itemprop="datatype">int16</code> | <code itemprop="datatype">int32</code> | <code itemprop="datatype">int64</code> | <code itemprop="datatype">uint8</code> | <code itemprop="datatype">uint16</code> | <code itemprop="datatype">uint32</code> | <code itemprop="datatype">uint64</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_71c5f40b-d462-4d61-8481-8115568eeeca"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_71c5f40b-d462-4d61-8481-8115568eeeca" data-target="#expand_panel_body_mw_71c5f40b-d462-4d61-8481-8115568eeeca" aria-controls="expand_panel_body_mw_71c5f40b-d462-4d61-8481-8115568eeeca" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_PlotColor" class="anchor_target"></span><h3 class="panel-title" id="mw_71c5f40b-d462-4d61-8481-8115568eeeca"><code itemprop="name">PlotColor</code> — <span itemprop="purpose">Display color of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">RGB triplet </span> | <span itemprop="inputvalue">hexadecimal color code</span> | <span itemprop="inputvalue">color name</span> | <span itemprop="inputvalue">short color name</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_71c5f40b-d462-4d61-8481-8115568eeeca" aria-labelledby="expand_panel_heading_mw_71c5f40b-d462-4d61-8481-8115568eeeca" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Display color of actor, specified as the comma-separated pair consisting of
+                <code class="literal">'PlotColor'</code> and an RGB triplet, hexadecimal color code, color
+              name, or short color name.</p>
+            <p>The actor appears in the specified color in all programmatic scenario
+              visualizations, including the <a href="drivingscenario.plot.html"><code class="function">plot</code></a> function, <a href="drivingscenario.chaseplot.html"><code class="function">chasePlot</code></a> function, and plotting functions of <a href="birdseyeplot.html"><code class="object">birdsEyePlot</code></a> objects. If you import the scenario into the <strong class="app"><a href="drivingscenariodesigner-app.html">Driving Scenario
+                Designer</a></strong> app, then the actor appears in this color in all app visualizations.
+              If you import the scenario into Simulink<sup>®</sup>, then the actor appears in this color in the <strong class="app"><a href="birdseyescope-app.html">Bird's-Eye
+                Scope</a></strong>.</p>
+            <p>If you do not specify a color for the actor, the function assigns one based on the
+              default color order of <code class="object">Axes</code> objects. For more details, see the
+                <a href="../../matlab/ref/matlab.graphics.axis.axes-properties.html#budumk7_sep_shared-ColorOrder"><code class="property">ColorOrder</code></a> property for <code class="object">Axes</code> objects.</p>
+            <p>For a custom color, specify an RGB triplet or a hexadecimal color code.</p>
+<div class="itemizedlist"><ul><li><p>An RGB triplet is a three-element row vector whose elements
+                                        specify the intensities of the red, green, and blue
+                                        components of the color. The intensities must be in the
+                                        range <code class="literal">[0,1]</code>, for example, <code class="literal">[0.4
+                                                0.6 0.7]</code>. </p></li>
+<li><p>A hexadecimal color code is a character vector or a string
+                                        scalar that starts with a hash symbol (<code class="literal">#</code>)
+                                        followed by three or six hexadecimal digits, which can range
+                                        from <code class="literal">0</code> to <code class="literal">F</code>. The
+                                        values are not case sensitive. Therefore, the color codes
+                                                <code class="literal">"#FF8800"</code>,
+                                                <code class="literal">"#ff8800"</code>,
+                                                <code class="literal">"#F80"</code>, and
+                                                <code class="literal">"#f80"</code> are equivalent.</p></li>
+</ul>
+</div>
+<p>
+</p>
+<p>Alternatively, you can specify some common colors by name. This table lists the named color
+        options, the equivalent RGB triplets, and hexadecimal color codes.</p>
+            
+    <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="15%"/>
+<col class="tcol2" width="15%"/>
+<col class="tcol3" width="20%"/>
+<col class="tcol4" width="20%"/>
+<col class="tcol5" width="30%"/>
+</colgroup>
+<thead><tr><th>Color Name</th>
+<th>Short Name</th>
+<th>RGB Triplet</th>
+<th>Hexadecimal Color Code</th>
+<th>Appearance</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">"red"</code></td>
+<td><code class="literal">"r"</code></td>
+<td><code class="literal">[1 0 0]</code></td>
+<td><code class="literal">"#FF0000"</code></td>
+<td><div class="informalfigure"><div id="d124e101758" class="mediaobject"><p><img src="hg_red.png" alt="Sample of the color red" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"green"</code></td>
+<td><code class="literal">"g"</code></td>
+<td><code class="literal">[0 1 0]</code></td>
+<td><code class="literal">"#00FF00"</code></td>
+<td><div class="informalfigure"><div id="d124e101773" class="mediaobject"><p><img src="hg_green.png" alt="Sample of the color green" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"blue"</code></td>
+<td><code class="literal">"b"</code></td>
+<td><code class="literal">[0 0 1]</code></td>
+<td><code class="literal">"#0000FF"</code></td>
+<td><div class="informalfigure"><div id="d124e101788" class="mediaobject"><p><img src="hg_blue.png" alt="Sample of the color blue" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"cyan"</code>
+                                                  </td>
+<td><code class="literal">"c"</code></td>
+<td><code class="literal">[0 1 1]</code></td>
+<td><code class="literal">"#00FFFF"</code></td>
+<td><div class="informalfigure"><div id="d124e101804" class="mediaobject"><p><img src="hg_cyan.png" alt="Sample of the color cyan" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"magenta"</code></td>
+<td><code class="literal">"m"</code></td>
+<td><code class="literal">[1 0 1]</code></td>
+<td><code class="literal">"#FF00FF"</code></td>
+<td><div class="informalfigure"><div id="d124e101819" class="mediaobject"><p><img src="hg_magenta.png" alt="Sample of the color magenta" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"yellow"</code></td>
+<td><code class="literal">"y"</code></td>
+<td><code class="literal">[1 1 0]</code></td>
+<td><code class="literal">"#FFFF00"</code></td>
+<td><div class="informalfigure"><div id="d124e101834" class="mediaobject"><p><img src="hg_yellow.png" alt="Sample of the color yellow" height="27" width="159"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"black"</code></td>
+<td><code class="literal">"k"</code></td>
+<td><code class="literal">[0 0 0]</code></td>
+<td><code class="literal">"#000000"</code></td>
+<td><div class="informalfigure"><div id="d124e101849" class="mediaobject"><p><img src="hg_black.png" alt="Sample of the color black" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">"white"</code></td>
+<td><code class="literal">"w"</code></td>
+<td><code class="literal">[1 1 1]</code></td>
+<td><code class="literal">"#FFFFFF"</code></td>
+<td><div class="informalfigure"><div id="d124e101864" class="mediaobject"><p><img src="hg_white.png" alt="Sample of the color white" height="28" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here are the RGB triplets and hexadecimal color codes for the default colors MATLAB<sup>®</sup> uses in many types of plots.</p>
+    <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="35%"/>
+<col class="tcol2" width="35%"/>
+<col class="tcol3" width="30%"/>
+</colgroup>
+<thead><tr><th>RGB Triplet</th>
+<th>Hexadecimal Color Code</th>
+<th>Appearance</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">[0 0.4470 0.7410]</code></td>
+<td><code class="literal">"#0072BD"</code></td>
+<td><div class="informalfigure"><div id="d124e101895" class="mediaobject"><p><img src="colororder1.png" alt="Sample of RGB triplet [0 0.4470 0.7410], which appears as dark blue" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.8500 0.3250 0.0980]</code></td>
+<td><code class="literal">"#D95319"</code></td>
+<td><div class="informalfigure"><div id="d124e101906" class="mediaobject"><p><img src="colororder2.png" alt="Sample of RGB triplet [0.8500 0.3250 0.0980], which appears as dark orange" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.9290 0.6940 0.1250]</code></td>
+<td><code class="literal">"#EDB120"</code></td>
+<td><div class="informalfigure"><div id="d124e101917" class="mediaobject"><p><img src="colororder3.png" alt="Sample of RGB triplet [0.9290 0.6940 0.1250], which appears as dark yellow" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.4940 0.1840 0.5560]</code></td>
+<td><code class="literal">"#7E2F8E"</code></td>
+<td><div class="informalfigure"><div id="d124e101928" class="mediaobject"><p><img src="colororder4.png" alt="Sample of RGB triplet [0.4940 0.1840 0.5560], which appears as dark purple" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.4660 0.6740 0.1880]</code></td>
+<td><code class="literal">"#77AC30"</code></td>
+<td><div class="informalfigure"><div id="d124e101939" class="mediaobject"><p><img src="colororder5.png" alt="Sample of RGB triplet [0.4660 0.6740 0.1880], which appears as medium green" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.3010 0.7450 0.9330]</code></td>
+<td><code class="literal">"#4DBEEE"</code></td>
+<td><div class="informalfigure"><div id="d124e101950" class="mediaobject"><p><img src="colororder6.png" alt="Sample of RGB triplet [0.3010 0.7450 0.9330], which appears as light blue" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+<tr><td><code class="literal">[0.6350 0.0780 0.1840]</code></td>
+<td><code class="literal">"#A2142F"</code></td>
+<td><div class="informalfigure"><div id="d124e101961" class="mediaobject"><p><img src="colororder7.png" alt="Sample of RGB triplet [0.6350 0.0780 0.1840], which appears as dark red" height="27" width="160"/></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-Position"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-Position" data-target="#expand_panel_body_bvm91xv-1-Position" aria-controls="expand_panel_body_bvm91xv-1-Position" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Position" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-Position"><code itemprop="name">Position</code> — <span itemprop="purpose">Position of actor center</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[0 0 0]</code></span> (default) | <span itemprop="inputvalue">[<em class="varname">x</em>
+              <em class="varname">y</em>
+              <em class="varname">z</em>] real-valued vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-Position" aria-labelledby="expand_panel_heading_bvm91xv-1-Position" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Position of the actor center, specified as the comma-separated pair consisting of
+                <code class="literal">'Position'</code> and an [<em class="varname">x</em>
+              <em class="varname">y</em>
+              <em class="varname">z</em>] real-valued vector.</p>
+            <p>The center of the actor is [<em class="varname">L</em>/2 <em class="varname">W</em>/2
+                <em class="varname">b</em>], where:</p>
+<div class="itemizedlist"><ul><li><p><em class="varname">L</em>/2 is the midpoint of actor length
+                    <em class="varname">L</em>.</p></li>
+<li><p><em class="varname">W</em>/2 is the midpoint of actor width
+                    <em class="varname">W</em>.</p></li>
+<li><p><em class="varname">b</em> is the bottom of the cuboid.</p></li>
+</ul>
+</div>
+<p>
+Units are in meters.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">[10;50;0]</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-Velocity"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-Velocity" data-target="#expand_panel_body_bvm91xv-1-Velocity" aria-controls="expand_panel_body_bvm91xv-1-Velocity" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Velocity" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-Velocity"><code itemprop="name">Velocity</code> — <span itemprop="purpose">Velocity of actor center</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[0 0 0]</code></span> (default) | <span itemprop="inputvalue">[<em class="varname">v</em><sub>x</sub>
+              <em class="varname">v</em><sub>y</sub>
+              <em class="varname">v</em><sub>z</sub>] real-valued vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-Velocity" aria-labelledby="expand_panel_heading_bvm91xv-1-Velocity" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Velocity (<em class="varname">v</em>) of the actor center in the <em class="varname">x</em>-,
+                <em class="varname">y</em>- and <em class="varname">z</em>-directions, specified as the
+              comma-separated pair consisting of <code class="literal">'Velocity'</code> and a
+                [<em class="varname">v</em><sub>x</sub>
+              <em class="varname">v</em><sub>y</sub>
+              <em class="varname">v</em><sub>z</sub>] real-valued vector. The
+                <a href="#bvm91xv-1-Position" class="intrnllnk"><code class="argument">'Position'</code></a> name-value pair specifies the actor center. Units
+              are in meters per second.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">[-4;7;10]</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-Yaw"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-Yaw" data-target="#expand_panel_body_bvm91xv-1-Yaw" aria-controls="expand_panel_body_bvm91xv-1-Yaw" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Yaw" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-Yaw"><code itemprop="name">Yaw</code> — <span itemprop="purpose">Yaw angle of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-Yaw" aria-labelledby="expand_panel_heading_bvm91xv-1-Yaw" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Yaw angle of the actor, specified as the comma-separated pair consisting of
+                <code class="literal">'Yaw'</code> and a real scalar. <em class="firstterm">Yaw</em> is the angle
+              of rotation of the actor around the <em class="varname">z</em>-axis. Yaw is
+              clockwise-positive when looking in the forward direction of the axis, which points up
+              from the ground. Therefore, when viewing actors from the top down, such as on a
+              bird's-eye plot, yaw is counterclockwise-positive. Angle values are wrapped to the
+              range [–180, 180]. Units are in degrees.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal remove_text_wrapping">-0.4</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-Pitch"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-Pitch" data-target="#expand_panel_body_bvm91xv-1-Pitch" aria-controls="expand_panel_body_bvm91xv-1-Pitch" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Pitch" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-Pitch"><code itemprop="name">Pitch</code> — <span itemprop="purpose">Pitch angle of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-Pitch" aria-labelledby="expand_panel_heading_bvm91xv-1-Pitch" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Pitch angle of the actor, specified as the comma-separated pair consisting of
+                <code class="literal">'Pitch'</code> and a real scalar. <em class="firstterm">Pitch</em> is the
+              angle of rotation of the actor around the <em class="varname">y</em>-axis and is
+              clockwise-positive when looking in the forward direction of the axis. Angle values are
+              wrapped to the range [–180, 180]. Units are in degrees.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">5.8</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-Roll"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-Roll" data-target="#expand_panel_body_bvm91xv-1-Roll" aria-controls="expand_panel_body_bvm91xv-1-Roll" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Roll" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-Roll"><code itemprop="name">Roll</code> — <span itemprop="purpose">Roll angle of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">0</code></span> (default) | <span itemprop="inputvalue">real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-Roll" aria-labelledby="expand_panel_heading_bvm91xv-1-Roll" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Roll angle of the actor, specified as the comma-separated pair consisting of
+                <code class="literal">'Roll'</code> and a real scalar. <em class="firstterm">Roll</em> is the
+              angle of rotation of the actor around the <em class="varname">x</em>-axis and is
+              clockwise-positive when looking in the forward direction of the axis. Angle values are
+              wrapped to the range [–180, 180]. Units are in degrees.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal remove_text_wrapping">-10</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-AngularVelocity"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-AngularVelocity" data-target="#expand_panel_body_bvm91xv-1-AngularVelocity" aria-controls="expand_panel_body_bvm91xv-1-AngularVelocity" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_AngularVelocity" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-AngularVelocity"><code itemprop="name">AngularVelocity</code> — <span itemprop="purpose">Angular velocity of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[0 0 0]</code></span> (default) | <span itemprop="inputvalue">[<em class="varname">ω</em><sub>x</sub>
+              <em class="varname">ω</em><sub>y</sub>
+              <em class="varname">ω</em><sub>z</sub>] real-valued vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-AngularVelocity" aria-labelledby="expand_panel_heading_bvm91xv-1-AngularVelocity" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Angular velocity (<em class="varname">ω</em>) of the actor, in world coordinates,
+              specified as the comma-separated pair consisting of
+                <code class="literal">'AngularVelocity'</code> and a
+                [<em class="varname">ω</em><sub>x</sub>
+              <em class="varname">ω</em><sub>y</sub>
+              <em class="varname">ω</em><sub>z</sub>] real-valued vector. Units are in degrees
+              per second.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">[20 40 20]</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-Length"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-Length" data-target="#expand_panel_body_bvm91xv-1-Length" aria-controls="expand_panel_body_bvm91xv-1-Length" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Length" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-Length"><code itemprop="name">Length</code> — <span itemprop="purpose">Length of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">4.7</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-Length" aria-labelledby="expand_panel_heading_bvm91xv-1-Length" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Length of the actor, specified as the comma-separated pair consisting of
+                <code class="literal">'Length'</code> and a positive real scalar. Units are in meters.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">5.5</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-Width"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-Width" data-target="#expand_panel_body_bvm91xv-1-Width" aria-controls="expand_panel_body_bvm91xv-1-Width" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Width" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-Width"><code itemprop="name">Width</code> — <span itemprop="purpose">Width of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">1.8</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-Width" aria-labelledby="expand_panel_heading_bvm91xv-1-Width" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Width of the actor, specified as the comma-separated pair consisting of
+                <code class="literal">'Width'</code> and a positive real scalar. Units are in meters.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">3.0</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-Height"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-Height" data-target="#expand_panel_body_bvm91xv-1-Height" aria-controls="expand_panel_body_bvm91xv-1-Height" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Height" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-Height"><code itemprop="name">Height</code> — <span itemprop="purpose">Height of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">1.4</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-Height" aria-labelledby="expand_panel_heading_bvm91xv-1-Height" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Height of the actor, specified as the comma-separated pair consisting of
+                <code class="literal">'Height'</code> and a positive real scalar. Units are meters.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">2.1</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="mw_ba634aa6-e8d2-4934-b13a-e185fa788074"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ba634aa6-e8d2-4934-b13a-e185fa788074" data-target="#expand_panel_body_mw_ba634aa6-e8d2-4934-b13a-e185fa788074" aria-controls="expand_panel_body_mw_ba634aa6-e8d2-4934-b13a-e185fa788074" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_Mesh" class="anchor_target"></span><h3 class="panel-title" id="mw_ba634aa6-e8d2-4934-b13a-e185fa788074"><code itemprop="name">Mesh</code> — <span itemprop="purpose">Extended object mesh</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">extendedObjectMesh</code> object</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_ba634aa6-e8d2-4934-b13a-e185fa788074" aria-labelledby="expand_panel_heading_mw_ba634aa6-e8d2-4934-b13a-e185fa788074" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Extended object mesh, specified as an <code class="object">extendedObjectMesh</code> object.
+            </p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-RCSPattern"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-RCSPattern" data-target="#expand_panel_body_bvm91xv-1-RCSPattern" aria-controls="expand_panel_body_bvm91xv-1-RCSPattern" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_RCSPattern" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-RCSPattern"><code itemprop="name">RCSPattern</code> — <span itemprop="purpose">Radar cross-section pattern of actor</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[10 10; 10 10]</code></span> (default) | <span itemprop="inputvalue"><em class="varname">Q</em>-by-<em class="varname">P</em> real-valued matrix</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-RCSPattern" aria-labelledby="expand_panel_heading_bvm91xv-1-RCSPattern" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Radar cross-section (RCS) pattern of actor, specified as the comma-separated pair
+              consisting of <code class="literal">'RCSPattern'</code> and a
+                <em class="varname">Q</em>-by-<em class="varname">P</em> real-valued matrix. RCS is a function
+              of the azimuth and elevation angles, where:</p>
+<div class="itemizedlist"><ul><li><p><em class="varname">Q</em> is the number of elevation angles specified by the
+                      <a href="#bvm91xv-1-RCSElevationAngles" class="intrnllnk"><code class="argument">'RCSElevationAngles'</code></a> name-value pair.</p></li>
+<li><p>
+                    <em class="varname">P</em> is the number of azimuth angles specified by the
+                      <a href="#bvm91xv-1-RCSAzimuthAngles" class="intrnllnk"><code class="argument">'RCSAzimuthAngles'</code></a> name-value pair. </p></li>
+</ul>
+</div>
+<p>
+Units are in decibels per square meter (dBsm).</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">5.8</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-RCSAzimuthAngles"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-RCSAzimuthAngles" data-target="#expand_panel_body_bvm91xv-1-RCSAzimuthAngles" aria-controls="expand_panel_body_bvm91xv-1-RCSAzimuthAngles" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_RCSAzimuthAngles" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-RCSAzimuthAngles"><code itemprop="name">RCSAzimuthAngles</code> — <span itemprop="purpose">Azimuth angles of actor's RCS pattern</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[-180 180]</code></span> (default) | <span itemprop="inputvalue"><em class="varname">P</em>-element real-valued vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-RCSAzimuthAngles" aria-labelledby="expand_panel_heading_bvm91xv-1-RCSAzimuthAngles" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Azimuth angles of the actor's RCS pattern, specified as the comma-separated pair
+              consisting of <code class="literal">'RCSAzimuthAngles'</code> and a <em class="varname">P</em>-element
+              real-valued vector. <em class="varname">P</em> is the number of azimuth angles. Values are
+              in the range [–180°, 180°].</p>
+            <p>Each element of <code class="property">RCSAzimuthAngles</code> defines the azimuth angle of
+              the corresponding column of the <a href="#bvm91xv-1-RCSPattern" class="intrnllnk"><code class="argument">'RCSPattern'</code></a> name-value pair.
+              Units are in degrees.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">[-90:90]</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bvm91xv-1-RCSElevationAngles"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1-RCSElevationAngles" data-target="#expand_panel_body_bvm91xv-1-RCSElevationAngles" aria-controls="expand_panel_body_bvm91xv-1-RCSElevationAngles" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_RCSElevationAngles" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1-RCSElevationAngles"><code itemprop="name">RCSElevationAngles</code> — <span itemprop="purpose">Elevation angles of actor's RCS pattern</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">[-90 90]</code></span> (default) | <span itemprop="inputvalue"><em class="varname">Q</em>-element real-valued vector</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1-RCSElevationAngles" aria-labelledby="expand_panel_heading_bvm91xv-1-RCSElevationAngles" class="panel-collapse collapse in"><div class="panel-body">
+            <p>Elevation angles of the actor's RCS pattern, specified as the comma-separated pair
+              consisting of <code class="literal">'RCSElevationAngles'</code> and a
+              <em class="varname">Q</em>-element real-valued vector. <em class="varname">Q</em> is the number of
+              elevation angles. Values are in the range [–90°, 90°].</p>
+            <p>Each element of <code class="property">RCSElevationAngles</code> defines the elevation
+              angle of the corresponding row of the <code class="property">RCSPattern</code> property. Units
+              are in degrees.</p>
+            <p class="description_valueexample"><strong>Example: </strong><code class="literal">[0:90]</code></p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_8cf92746-aa89-4fdf-b8fb-6258832e1248">Output Arguments</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="mw_8cf92746-aa89-4fdf-b8fb-6258832e1248_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm91xv-1_sep_mw_5d8e7ad9-f456-4987-89d8-e6bd5954c77b" data-target="#expand_panel_body_bvm91xv-1_sep_mw_5d8e7ad9-f456-4987-89d8-e6bd5954c77b" aria-controls="expand_panel_body_bvm91xv-1_sep_mw_5d8e7ad9-f456-4987-89d8-e6bd5954c77b" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_ac" class="anchor_target"></span><h3 class="panel-title" id="bvm91xv-1_sep_mw_5d8e7ad9-f456-4987-89d8-e6bd5954c77b"><code class="name">ac</code> — Driving scenario actor<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="object">Actor</code> object</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bvm91xv-1_sep_mw_5d8e7ad9-f456-4987-89d8-e6bd5954c77b" aria-labelledby="expand_panel_heading_bvm91xv-1_sep_mw_5d8e7ad9-f456-4987-89d8-e6bd5954c77b" class="panel-collapse collapse in"><div class="panel-body">
+          <p>Driving scenario actor, returned as an <code class="object">Actor</code> object belonging to
+            the driving scenario specified by <a href="#bvm91xv-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="intrnllnk"><code class="argument">scenario</code></a>.</p>
+          <p>You can modify the <code class="object">Actor</code> object by changing its property values.
+            The property names correspond to the name-value pair arguments used to create the
+            object. The only property that you cannot modify is <code class="property">ActorID</code>, which
+            is a positive integer indicating the unique, scenario-defined ID of the actor.</p>
+          <p>To specify or visualize actor motion, use these functions:</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<tbody><tr><td><a href="drivingscenario.trajectory.html"><code class="function">trajectory</code></a></td>
+<td><p>Create actor or vehicle trajectory in driving
+                      scenario</p>
+</td>
+</tr>
+<tr><td><a href="drivingscenario.smoothtrajectory.html"><code class="function">smoothTrajectory</code></a></td>
+<td><p>Create smooth, jerk-limited actor or vehicle trajectory in driving
+                        scenario</p>
+</td>
+</tr>
+<tr><td><a href="drivingscenario.chaseplot.html"><code class="function">chasePlot</code></a></td>
+<td><p>Ego-centric projective perspective plot</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+          <p>To get information about actor characteristics, use these functions:</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<tbody><tr><td><a href="drivingscenario.actorposes.html"><code class="function">actorPoses</code></a></td>
+<td><p>Positions, velocities, and orientations of actors in driving
+                        scenario</p>
+</td>
+</tr>
+<tr><td><a href="drivingscenario.actorprofiles.html"><code class="function">actorProfiles</code></a></td>
+<td><p>Physical and radar characteristics of actors in driving
+                        scenario</p>
+</td>
+</tr>
+<tr><td><a href="drivingscenario.targetoutlines.html"><code class="function">targetOutlines</code></a></td>
+<td><p>Outlines of targets viewed by actor</p>
+</td>
+</tr>
+<tr><td><a href="drivingscenario.targetposes.html"><code class="function">targetPoses</code></a></td>
+<td><p>Target positions and orientations relative to ego
+                      vehicle</p>
+</td>
+</tr>
+<tr><td><a href="driving.scenario.targetstoego.html"><code class="function">driving.scenario.targetsToEgo</code></a></td>
+<td><p>Convert actor poses to ego vehicle coordinates</p>
+</td>
+</tr>
+<tr><td><a href="driving.scenario.targetstoscenario.html"><code class="function">driving.scenario.targetsToScenario</code></a></td>
+<td><p>Convert target actor poses from ego vehicle coordinates to world
+                        coordinates of scenario</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+          <p>To get information about the roads and lanes that the actor is on, use these
+              functions:</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
+<col class="tcol2" width="50%"/>
+</colgroup>
+<tbody><tr><td><a href="drivingscenario.roadboundaries.html"><code class="function">roadBoundaries</code></a></td>
+<td><p>Get road boundaries</p>
+</td>
+</tr>
+<tr><td><a href="driving.scenario.roadboundariestoego.html"><code class="function">driving.scenario.roadBoundariesToEgo</code></a></td>
+<td><p>Convert road boundaries to ego vehicle coordinates</p>
+</td>
+</tr>
+<tr><td><a href="drivingscenario.currentlane.html"><code class="function">currentLane</code></a></td>
+<td><p>Get current lane of actor</p>
+</td>
+</tr>
+<tr><td><a href="drivingscenario.laneboundaries.html"><code class="function">laneBoundaries</code></a></td>
+<td><p>Get lane boundaries of actor lane</p>
+</td>
+</tr>
+<tr><td><a href="drivingscenario.lanemarkingvertices.html"><code class="function">laneMarkingVertices</code></a></td>
+<td><p>Lane marking vertices and faces in driving scenario</p>
+</td>
+</tr>
+<tr><td><a href="roadmesh.roadmesh.html"><code class="function">roadMesh</code></a></td>
+<td><p>Mesh representation of an actor's nearest roads in driving
+                        scenario.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="moreabout ref_sect"><h2 id="bvm91xv-1_sep_mw_df91624e-60df-4de8-b9aa-261fcdbe4a10">More About</h2>
+<div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true2">collapse all</a></p>
+<div class="expand_collapse"><h3 class="expand_trigger" id="mw_8e566342-c81c-48d9-a978-c025524ff278" aria-expanded="true" data-toggle="collapse" data-target="#expand_body_mw_8e566342-c81c-48d9-a978-c025524ff278" aria-controls="expand_body_mw_8e566342-c81c-48d9-a978-c025524ff278"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>Actor and Vehicle Positions and Dimensions</h3>
+<div id="expand_body_mw_8e566342-c81c-48d9-a978-c025524ff278" class="collapsible_content collapse in" aria-expanded="true"><p class="shortdesc">In driving scenarios, an
+        <em class="firstterm">actor</em> is a cuboid (box-shaped) object with a specific length, width,
+    and height. Actors also have a radar cross-section (RCS) pattern, specified in dBsm, which you
+    can refine by setting angular azimuth and elevation coordinates. The position of an actor is
+    defined as the center of its bottom face. This center point is used as the actor's rotational
+    center, its point of contact with the ground, and its origin in its local coordinate system. In
+    this coordinate system:</p>
+<div class="itemizedlist"><ul><li><p>The <em class="varname">X</em>-axis points forward from the actor.</p></li>
+<li><p>The <em class="varname">Y</em>-axis points left from the actor.</p></li>
+<li><p>The <em class="varname">Z</em>-axis points up from the ground.</p></li>
+</ul>
+</div>
+<p>
+Roll, pitch, and yaw are clockwise-positive when looking in the forward direction
+    of the <em class="varname">X</em>-, <em class="varname">Y</em>-, and <em class="varname">Z</em>-axes, respectively.</p>
+<div class="informalfigure"><div id="d124e102640" class="mediaobject"><p><img src="drivingscenario_actor_cuboid.png" alt="Cuboid actor with X-axis, Y-axis, Z-axis, yaw, pitch, roll, height, width, length, and position labeled" height="331" width="294"/></p>
+</div>
+</div>
+<p></p>
+<p>A <em class="firstterm">vehicle</em> is an actor that moves on
+    wheels. Vehicles have three extra properties that govern the placement of their front and rear axle.</p>
+<div class="itemizedlist"><ul><li><p><em class="firstterm">Wheelbase</em> — Distance between the front and rear
+                axles</p></li>
+<li><p><em class="firstterm">Front overhang</em> — Distance between the front of the vehicle
+                and the front axle</p></li>
+<li><p><em class="firstterm">Rear overhang</em> — Distance between the rear axle and the rear
+                of the vehicle</p></li>
+</ul>
+</div>
+<p>
+Unlike other types of actors, the position of a vehicle is defined by the point
+    on the ground that is below the center of its rear axle. This point corresponds to the natural
+    center of rotation of the vehicle. As with nonvehicle actors, this point is the origin in the
+    local coordinate system of the vehicle, where:</p>
+<div class="itemizedlist"><ul><li><p>The <em class="varname">X</em>-axis points forward from the vehicle.</p></li>
+<li><p>The <em class="varname">Y</em>-axis points left from the vehicle.</p></li>
+<li><p>The <em class="varname">Z</em>-axis points up from the ground.</p></li>
+</ul>
+</div>
+<p>
+Roll, pitch, and yaw are clockwise-positive when looking in the forward direction
+    of the <em class="varname">X</em>-, <em class="varname">Y</em>-, and <em class="varname">Z</em>-axes, respectively.</p>
+<div class="informalfigure"><div id="d124e102687" class="mediaobject"><p><img src="drivingscenario_vehicle_cuboid.png" alt="Cuboid vehicle with X-axis, Y-axis, Z-axis, yaw, pitch, roll, height, width, length, position, front overhang, wheelbase, and rear overhang labeled" height="372" width="530"/></p>
+</div>
+</div>
+<p></p>
+<p>This table shows a list of common actors and their dimensions. To specify these values in <code class="object">Actor</code> and <code class="object">Vehicle</code> objects, set the corresponding properties shown.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="11%"/>
+<col class="tcol2" width="11%"/>
+<col class="tcol3" width="11%"/>
+<col class="tcol4" width="11%"/>
+<col class="tcol5" width="11%"/>
+<col class="tcol6" width="11%"/>
+<col class="tcol7" width="11%"/>
+<col class="tcol8" width="11%"/>
+<col class="tcol9" width="11%"/>
+</colgroup>
+<thead><tr><th rowspan="2">Actor Classification</th>
+<th rowspan="2">Actor Object</th>
+<th colspan="7">Actor Properties</th>
+</tr>
+<tr><th><code class="literal">Length</code></th>
+<th><code class="literal">Width</code></th>
+<th><code class="literal">Height</code></th>
+<th><code class="literal">FrontOverhang</code></th>
+<th><code class="literal">RearOverhang</code></th>
+<th><code class="literal">Wheelbase</code></th>
+<th><code class="literal">RCSPattern</code></th>
+</tr>
+</thead>
+<tbody><tr><td>Pedestrian</td>
+<td><code class="function">Actor</code></td>
+<td>0.24 m</td>
+<td>0.45 m</td>
+<td>1.7 m</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>–8 dBsm</td>
+</tr>
+<tr><td>Car</td>
+<td><code class="function">Vehicle</code></td>
+<td>4.7 m</td>
+<td>1.8 m</td>
+<td>1.4 m</td>
+<td>0.9 m</td>
+<td>1.0 m</td>
+<td>2.8 m</td>
+<td>10 dBsm</td>
+</tr>
+<tr><td>Motorcycle</td>
+<td><code class="function">Vehicle</code></td>
+<td>2.2 m</td>
+<td>0.6 m</td>
+<td>1.5 m</td>
+<td>0.37 m</td>
+<td>0.32 m</td>
+<td>1.51 m</td>
+<td>0 dBsm</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bvm91xv-1_vh">Version History</h2>
+<p><strong>Introduced in R2017a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="bvm91xv-1_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.vehicle.html"><span itemprop="name"><code class="function">vehicle</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.barrier.html"><span itemprop="name"><code class="function">barrier</code></span></a></span></p>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/create-driving-scenario-programmatically.html" class="a">Create Driving Scenario Programmatically</a></li>
+<li><a href="../ug/create-actor-and-vehicle-trajectories.html" class="a">Create Actor and Vehicle Trajectories Programmatically</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

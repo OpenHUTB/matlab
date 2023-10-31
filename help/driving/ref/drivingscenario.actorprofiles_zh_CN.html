@@ -129,7 +129,7 @@
 </head>
 <body id="responsive_offcanvas">
 <div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
-<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
 </div>
 </div>
 </div>
@@ -234,7 +234,7 @@
 <div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
 <div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_4262ef5a-5a70-4a53-b1fd-79d77289cf01"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4262ef5a-5a70-4a53-b1fd-79d77289cf01" data-target="#expand_panel_body_mw_4262ef5a-5a70-4a53-b1fd-79d77289cf01" aria-controls="expand_panel_body_mw_4262ef5a-5a70-4a53-b1fd-79d77289cf01" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_4262ef5a-5a70-4a53-b1fd-79d77289cf01">创建具有多个参与者和道路的驾驶场景<br/> </h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_mw_4262ef5a-5a70-4a53-b1fd-79d77289cf01" aria-labelledby="expand_panel_heading_mw_4262ef5a-5a70-4a53-b1fd-79d77289cf01" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/CreateDrivingScenarioWithMultipleActorsAndRoadExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+<div role="tabpanel" id="expand_panel_body_mw_4262ef5a-5a70-4a53-b1fd-79d77289cf01" aria-labelledby="expand_panel_heading_mw_4262ef5a-5a70-4a53-b1fd-79d77289cf01" class="panel-collapse collapse in"><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('driving/CreateDrivingScenarioWithMultipleActorsAndRoadExample')" data-ex-genre="Live Script">打开实时脚本</a></div>
 </div>
 </div>
 <script type="application/ld+json">
@@ -281,13 +281,13 @@
         "itemListOrder": "http://schema.org/ItemListOrderAscending"
         }
         </script>
-<p class="shortdesc">Create a driving scenario containing a curved road, two straight roads, and two actors: a car and a bicycle. Both actors move along the road for 60 seconds.创建一个驾驶场景，包含一条弯曲道路、两条直道和两个参与者：一辆汽车和一辆自行车。这两个参与者沿着道路行驶60秒。</p>
+<p class="shortdesc">创建一个驾驶场景，包含一条弯曲道路、两条直道和两个参与者：一辆汽车和一辆自行车。这两个参与者沿着道路行驶 60 秒。</p>
 <p>创建驾驶场景对象。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario(<span style="color:#A020F0">'SampleTime'</span>,0.1',<span style="color:#A020F0">'StopTime'</span>,60);</pre>
 </div>
 </div>
 </div>
-<p>使用道路中心点创建弯曲道路，沿着半径为800米的圆弧绘制。该圆弧起始于0°，结束于90°，并以5°的增量进行采样。</p>
+<p>使用道路中心点创建弯曲道路，沿着半径为 800 米的圆弧绘制。该圆弧起始于 0°，结束于 90°，并以 5° 的增量进行采样。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>angs = [0:5:90]';
 R = 800;
 roadcenters = R*[cosd(angs) sind(angs) zeros(size(angs))];
@@ -430,7 +430,7 @@ movableActorPoses = allActorPoses(movableActorPoseIndices)</pre>
 </div>
 <div class="ref_sect"><h2 id="bvnm2bp-3">输入参数</h2>
 <div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
-<div class="panel-group" id="bvnm2bp-3_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" data-target="#expand_panel_body_bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" aria-controls="expand_panel_body_bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_scenario" class="anchor_target"></span><h3 class="panel-title" id="bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33"><code itemprop="name">scenario</code> — <span itemprop="purpose">Driving scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">drivingScenario</code> object</span></span></span></h3>
+<div class="panel-group" id="bvnm2bp-3_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" data-target="#expand_panel_body_bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" aria-controls="expand_panel_body_bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_scenario" class="anchor_target"></span><h3 class="panel-title" id="bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33"><code itemprop="name">scenario</code> — <span itemprop="purpose">Driving scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="object">drivingScenario</code> 对象</span></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" aria-labelledby="expand_panel_heading_bvnm2bp-1_sep_mw_6b101836-62d9-42a9-8da2-c4cca7782e33" class="panel-collapse collapse in"><div class="panel-body">
         <p>驾驶场景，指定为一个 <a href="drivingscenario.html"><code class="object">drivingScenario</code></a> 对象。</p>
@@ -444,7 +444,7 @@ movableActorPoses = allActorPoses(movableActorPoseIndices)</pre>
 </div>
 <div class="ref_sect"><h2 id="bvnm2bp-5">输出参数</h2>
 <div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
-<div class="panel-group" id="bvnm2bp-5_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvnm2bp-1-profiles" data-target="#expand_panel_body_bvnm2bp-1-profiles" aria-controls="expand_panel_body_bvnm2bp-1-profiles" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_profiles" class="anchor_target"></span><h3 class="panel-title" id="bvnm2bp-1-profiles"><code class="name">profiles</code> — Actor profiles<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">structure | array of structures</span></span></h3>
+<div class="panel-group" id="bvnm2bp-5_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvnm2bp-1-profiles" data-target="#expand_panel_body_bvnm2bp-1-profiles" aria-controls="expand_panel_body_bvnm2bp-1-profiles" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_profiles" class="anchor_target"></span><h3 class="panel-title" id="bvnm2bp-1-profiles"><code class="name">profiles</code> — 参与者配置<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">结构体 | 结构体数组</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_bvnm2bp-1-profiles" aria-labelledby="expand_panel_heading_bvnm2bp-1-profiles" class="panel-collapse collapse in"><div class="panel-body">
                     <p>参与者简介，以结构体或结构体数组的形式返回。每个结构体包含一个参与者的物理和雷达特征。</p>
@@ -452,8 +452,8 @@ movableActorPoses = allActorPoses(movableActorPoseIndices)</pre>
                     <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"/>
 <col class="tcol2" width="50%"/>
 </colgroup>
-<thead><tr><th>Field</th>
-<th>Description</th>
+<thead><tr><th>字段</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody><tr><td><code class="literal">ActorID</code></td>
@@ -481,7 +481,7 @@ movableActorPoses = allActorPoses(movableActorPoseIndices)</pre>
 <td>参与者的网格面，以 <em class="varname">m</em> x 3 的整数矩阵形式进行指定。<code class="literal">MeshFaces</code> 的每一行表示由顶点 ID（即顶点的行号）定义的一个三角形。</td>
 </tr>
 <tr><td><code class="literal">RCSPattern</code></td>
-<td>参与者的雷达截面 (RCS) 模式，以 <span style="font-family: monospace;">numel(RCSElevationAngles)</span>x <code class="literal">numel(RCSAzimuthAngles)</code> 列的实值矩阵形式进行指定。单位为每平方米的分贝。</td>
+<td>参与者的雷达截面 (Radar Cross-Section, RCS) 模式，以 <span style="font-family: monospace;">numel(RCSElevationAngles)</span>x <code class="literal">numel(RCSAzimuthAngles)</code> 列的实值矩阵形式进行指定。单位为每平方米的分贝。</td>
 </tr>
 <tr><td><code class="literal">RCSAzimuthAngles</code></td>
 <td>与 <code class="literal">RCSPattern</code> 的行对应的方位角，以取值范围为 [-180, 180] 的向量形式进行指定。单位为度。</td>
@@ -500,14 +500,14 @@ movableActorPoses = allActorPoses(movableActorPoseIndices)</pre>
 </div>
 </div>
 </div>
-<div class="ref_sect"><h2 id="bvnm2bp-1_vh">Version History</h2>
+<div class="ref_sect"><h2 id="bvnm2bp-1_vh">版本历史</h2>
 <p><strong>Introduced in R2017a</strong></p>
 </div>
-<div class="ref_sect"><h2 id="bvnm2bp-1_seealso">See Also</h2>
-<h3>Objects</h3>
+<div class="ref_sect"><h2 id="bvnm2bp-1_seealso">也可以参见</h2>
+<h3>对象</h3>
 <ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.html"><span itemprop="name"><code class="object">drivingScenario</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="visiondetectiongenerator-system-object.html"><span itemprop="name"><code class="sysobj">visionDetectionGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingradardatagenerator-system-object.html"><span itemprop="name"><code class="sysobj">drivingRadarDataGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="lidarpointcloudgenerator-system-object.html"><span itemprop="name"><code class="sysobj">lidarPointCloudGenerator</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="ultrasonicdetectiongenerator-system-object.html"><span itemprop="name"><code class="sysobj">ultrasonicDetectionGenerator</code></span></a></span></li>
 </ul>
-<h3>Functions</h3>
+<h3>函数</h3>
 <ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.actorposes.html"><span itemprop="name"><code class="function">actorPoses</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.actor.html"><span itemprop="name"><code class="function">actor</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.vehicle.html"><span itemprop="name"><code class="function">vehicle</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.barrier.html"><span itemprop="name"><code class="function">barrier</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.targetposes.html"><span itemprop="name"><code class="function">targetPoses</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="drivingscenario.targetoutlines.html"><span itemprop="name"><code class="function">targetOutlines</code></span></a></span></li>
 </ul>
 </div>
@@ -522,8 +522,10 @@ movableActorPoses = allActorPoses(movableActorPoseIndices)</pre>
 </div>
 </div>
 <div class="clearfix"></div>
-<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
 <script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
 <link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
 <script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
 

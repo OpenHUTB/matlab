@@ -129,7 +129,7 @@
 </head>
 <body id="responsive_offcanvas">
 <div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
-<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
 </div>
 </div>
 </div>
@@ -230,7 +230,7 @@
 </div>
 </div>
 <div class="clear"></div>
-<div class="examples"><h2 id="d124e98659">Examples</h2>
+<div class="examples"><h2 id="d124e98659">示例</h2>
 <div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
 <div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_mw_9ad6c14a-87cc-4222-aeb2-433d836ab4b4"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9ad6c14a-87cc-4222-aeb2-433d836ab4b4" data-target="#expand_panel_body_mw_9ad6c14a-87cc-4222-aeb2-433d836ab4b4" aria-controls="expand_panel_body_mw_9ad6c14a-87cc-4222-aeb2-433d836ab4b4" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="mw_9ad6c14a-87cc-4222-aeb2-433d836ab4b4">Advance Driving Scenario Simulation<br/> </h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
@@ -282,20 +282,20 @@
         }
         </script>
 
-<div class="procedure"><p class="shortdesc">Create a driving scenario. Use the default sample time of 0.01 second.</p>
+<div class="procedure"><p class="shortdesc">创建一个驾驶场景。使用默认采样时间 0.01 秒。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>scenario = drivingScenario;
 </pre>
 </div>
 </div>
 </div>
-<p>Add a straight, 30-meter road to the scenario. The road has two lanes.</p>
+<p>在场景中添加一条 30 米长的直路。这条路有两条车道。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roadCenters = [0 0; 30 0];
 road(scenario,roadCenters,<span style="color:#A020F0">'Lanes'</span>,lanespec(2));
 </pre>
 </div>
 </div>
 </div>
-<p>Add a vehicle that travels in the left lane at a constant speed of 30 meters per second. Plot the scenario before running the simulation.</p>
+<p>添加一辆车在左侧车道上以每秒 30 米的速度匀速行驶。在运行仿真之前绘制场景。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v = vehicle(scenario,<span style="color:#A020F0">'ClassID'</span>,1);
 waypoints = [5 2; 25 2];
 speed = 30; <span style="color:#228B22">% m/s</span>
@@ -309,7 +309,7 @@ plot(scenario)
 <div class="informalfigure"><div id="d124e98700" class="mediaobject"><p><img src="../../examples/driving/win64/AdvanceDrivingScenarioSimulationExample_01.png"/></p>
 </div>
 </div>
-<p>Call the <code class="literal">advance</code> function in a loop to advance the simulation one time step at a time. Pause every 0.01 second to observe the motion of the vehicle on the plot.</p>
+<p>循环调用 <code class="literal">advance</code> 函数以一次推进仿真一步。每 0.01 秒暂停一次，观察车辆在图上的运动。</p>
 <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">while</span> advance(scenario)
     pause(0.01)
 <span style="color:#0000FF">end</span>
@@ -665,8 +665,10 @@ legend(<span style="color:#A020F0">'off'</span>);
 </div>
 </div>
 <div class="clearfix"></div>
-<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
 <script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
 <link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
 <script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
 

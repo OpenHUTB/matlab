@@ -180,7 +180,7 @@
 </head>
 <body id="responsive_offcanvas">
 <div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
-<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
 </div>
 </div>
 </div>
@@ -297,141 +297,115 @@
 </div>
         <p>还可以使用 <strong class="app"><a href="drivingscenariodesigner-app.html">驾驶场景设计器</a></strong> 应用程序以交互式地方式创建场景。此外，可以从应用程序导出 <code class="object">drivingScenario</code> 对象以生成场景变体，以便在应用程序或 Simulink<sup>®</sup>中使用有关更多信息，请参阅 <a href="../ug/create-driving-scenario-variations-programmatically.html" class="a">以编程方式创建驾驶场景变体</a>。</p>
     </div>
-<div id="bvm8jbf-3_div" class="ref_sect createobject"><h2 id="bvm8jbf-3">Creation</h2>
-<div class="ref_sect"><h3 id="d124e97876">Syntax</h3>
+<div id="bvm8jbf-3_div" class="ref_sect createobject"><h2 id="bvm8jbf-3">创建</h2>
+<div class="ref_sect"><h3 id="d124e97876">语法</h3>
 <div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e97883" class="intrnllnk">scenario = drivingScenario</a></code></div>
 <div class="code_responsive"><code class="synopsis"><a href="#d124e97896" class="intrnllnk">scenario = drivingScenario(Name,Value)</a></code></div>
 </div>
 </div>
 </div>
 <div class="clear"></div>
-<div id="d124e97878_div" class="refsect2 description"><h3 id="d124e97878">Description</h3>
-<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="drivingscenario.html#mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4" class="intrnllnk">example</a></p>
-<div class="code_responsive"><p><span id="d124e97883" itemprop="syntax"><code class="synopsis"><code class="argument">scenario</code> = drivingScenario</code></span> creates
-                    an empty driving scenario.</p>
+<div id="d124e97878_div" class="refsect2 description"><h3 id="d124e97878">描述</h3>
+<div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="drivingscenario.html#mw_53b435fc-3e95-43c6-a941-bfb4d43a92e4" class="intrnllnk">示例</a></p>
+<div class="code_responsive"><p><span id="d124e97883" itemprop="syntax"><code class="synopsis"><code class="argument">scenario</code> = drivingScenario</code></span> 创建一个空的驾驶场景。</p>
 </div>
 </div>
-<div class="description_element"><p class="syntax_example"><a href="drivingscenario.html#bvnu3f0" class="intrnllnk">example</a></p>
-<div class="code_responsive"><p><span id="d124e97896" itemprop="syntax"><code class="synopsis"><code class="argument">scenario</code> = drivingScenario(<code class="argument">Name,Value</code>)</code></span>
-                    sets the <a href="drivingscenario.html#bvm8jbf-SampleTime" class="intrnllnk"><code class="property">SampleTime</code></a>, <a href="drivingscenario.html#bvm8jbf-StopTime" class="intrnllnk"><code class="property">StopTime</code></a>,
-                    and <a href="drivingscenario.html#mw_5bbea316-3140-4dd5-8516-900a32d756ad" class="intrnllnk"><code class="property">GeoReference</code></a> properties using name-value pairs. For
-                    example, <code class="literal">drivingScenario('GeoReference',[42.3 -71.0 0])</code> sets
-                    the geographic origin of the scene to a latitude-longitude coordinate of (42.3,
-                    –71.0) and an altitude of 0.</p>
+<div class="description_element"><p class="syntax_example"><a href="drivingscenario.html#bvnu3f0" class="intrnllnk">示例</a></p>
+<div class="code_responsive"><p><span id="d124e97896" itemprop="syntax"><code class="synopsis"><code class="argument">scenario</code> = drivingScenario(<code class="argument">Name,Value</code>)</code></span> 使用名-值对设置 <a href="drivingscenario.html#bvm8jbf-SampleTime" class="intrnllnk"><code class="property">SampleTime</code></a>, <a href="drivingscenario.html#bvm8jbf-StopTime" class="intrnllnk"><code class="property">StopTime</code></a>,
+                    和 <a href="drivingscenario.html#mw_5bbea316-3140-4dd5-8516-900a32d756ad" class="intrnllnk"><code class="property">GeoReference</code></a> 属性。比如，<code class="literal">drivingScenario('GeoReference',[42.3 -71.0 0])</code> 将场景的地理原点设置为经纬度坐标 (42.3,
+                    –71.0) 和海拔高度 0。</p>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="ref_sect"><h2 id="bvm8jbf-4">Properties</h2>
+<div class="ref_sect"><h2 id="bvm8jbf-4">属性</h2>
 <div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
 <div class="panel-group" id="bvm8jbf-4_panel-group" role="tablist" aria-multiselectable="true"><div itemscope="" class="ref_sect" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntityGroup" itemprop="refentitygroup">
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-SampleTime"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-SampleTime" data-target="#expand_panel_body_bvm8jbf-SampleTime" aria-controls="expand_panel_body_bvm8jbf-SampleTime" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_SampleTime" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-SampleTime"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.SampleTime"/><code itemprop="name" id="propname_SampleTime">SampleTime</code></span> — <span itemprop="purpose">Time interval between scenario simulation steps</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0.01</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-SampleTime"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-SampleTime" data-target="#expand_panel_body_bvm8jbf-SampleTime" aria-controls="expand_panel_body_bvm8jbf-SampleTime" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_SampleTime" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-SampleTime"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.SampleTime"/><code itemprop="name" id="propname_SampleTime">SampleTime</code></span> — <span itemprop="purpose">场景仿真步骤之间的时间间隔</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">0.01</code></span> (默认) | 正实数标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_bvm8jbf-SampleTime" aria-labelledby="expand_panel_heading_bvm8jbf-SampleTime" class="panel-collapse collapse"><div class="panel-body">
-<p>Time interval between scenario simulation steps, specified as a positive real scalar. Units
-                        are in seconds.</p>
-<p class="description_valueexample"><strong>Example: </strong><code class="literal">1.5</code></p>
+<p>场景分钟步骤之间的时间间隔，指定为正实数标量。单位为秒。</p>
+<p class="description_valueexample"><strong>示例：</strong><code class="literal">1.5</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-StopTime"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-StopTime" data-target="#expand_panel_body_bvm8jbf-StopTime" aria-controls="expand_panel_body_bvm8jbf-StopTime" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_StopTime" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-StopTime"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.StopTime"/><code itemprop="name" id="propname_StopTime">StopTime</code></span> — <span itemprop="purpose">End time of simulation</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">Inf</code></span> (default) | <span itemprop="inputvalue">positive real scalar</span></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-StopTime"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-StopTime" data-target="#expand_panel_body_bvm8jbf-StopTime" aria-controls="expand_panel_body_bvm8jbf-StopTime" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_StopTime" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-StopTime"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.StopTime"/><code itemprop="name" id="propname_StopTime">StopTime</code></span> — <span itemprop="purpose">仿真结束时间</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue defaultvalue"><code class="literal">Inf</code></span> (默认) | 正实数标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_bvm8jbf-StopTime" aria-labelledby="expand_panel_heading_bvm8jbf-StopTime" class="panel-collapse collapse"><div class="panel-body">
-<p>End time of simulation, specified as a positive real scalar. Units are in seconds. The default
-                            <code class="property">StopTime</code> of <code class="literal">Inf</code> causes the
-                        simulation to end when the first actor reaches the end of its
-                        trajectory.</p>
-<p class="description_valueexample"><strong>Example: </strong><code class="literal">60.0</code></p>
+<p>仿真的结束时间，指定为正实标量。单位为秒。<code class="property">StopTime</code> 的默认值 <code class="literal">Inf</code> 会导致仿真在第一个参与者到达其轨迹末端时结束。</p>
+<p class="description_valueexample"><strong>示例：</strong><code class="literal">60.0</code></p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-SimulationTime"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-SimulationTime" data-target="#expand_panel_body_bvm8jbf-SimulationTime" aria-controls="expand_panel_body_bvm8jbf-SimulationTime" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_SimulationTime" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-SimulationTime"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.SimulationTime"/><code itemprop="name" id="propname_SimulationTime">SimulationTime</code></span> — <span itemprop="purpose">Current time of simulation</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">nonnegative real scalar</span></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-SimulationTime"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-SimulationTime" data-target="#expand_panel_body_bvm8jbf-SimulationTime" aria-controls="expand_panel_body_bvm8jbf-SimulationTime" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_SimulationTime" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-SimulationTime"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.SimulationTime"/><code itemprop="name" id="propname_SimulationTime">SimulationTime</code></span> — 当前仿真时间<br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">nonnegative real scalar</span></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_bvm8jbf-SimulationTime" aria-labelledby="expand_panel_heading_bvm8jbf-SimulationTime" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
-<p>Current time of the simulation, specified as a nonnegative real scalar. To reset the time to
-                        zero, call the <a href="drivingscenario.restart.html"><code class="function">restart</code></a> function. Units
-                        are in seconds.</p>
+<div role="tabpanel" id="expand_panel_body_bvm8jbf-SimulationTime" aria-labelledby="expand_panel_heading_bvm8jbf-SimulationTime" class="panel-collapse collapse"><div class="panel-body"><p>该属性是只读的。</p>
+<p>当前仿真时间，指定为非负实数标量。要将时间重置为零，请调用 <a href="drivingscenario.restart.html"><code class="function">restart</code></a> 函数。单位为秒。</p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-IsRunning"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-IsRunning" data-target="#expand_panel_body_bvm8jbf-IsRunning" aria-controls="expand_panel_body_bvm8jbf-IsRunning" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_IsRunning" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-IsRunning"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.IsRunning"/><code itemprop="name" id="propname_IsRunning">IsRunning</code></span> — <span itemprop="purpose">Simulation state</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue"><code class="literal">true</code></span> | <span itemprop="inputvalue"><code class="literal">false</code></span></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-IsRunning"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-IsRunning" data-target="#expand_panel_body_bvm8jbf-IsRunning" aria-controls="expand_panel_body_bvm8jbf-IsRunning" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_IsRunning" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-IsRunning"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.IsRunning"/><code itemprop="name" id="propname_IsRunning">IsRunning</code></span> — <span itemprop="purpose">仿真状态</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue"><code class="literal">true</code></span> | <span itemprop="inputvalue"><code class="literal">false</code></span></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_bvm8jbf-IsRunning" aria-labelledby="expand_panel_heading_bvm8jbf-IsRunning" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
-<p>Simulation state, specified as <code class="literal">true</code> or <code class="literal">false</code>.
-If the simulation is running, <code class="property">IsRunning</code> is <code class="literal">true</code>.</p>
+<div role="tabpanel" id="expand_panel_body_bvm8jbf-IsRunning" aria-labelledby="expand_panel_heading_bvm8jbf-IsRunning" class="panel-collapse collapse"><div class="panel-body"><p>该属性是只读的。</p>
+<p>仿真状态，指定为 <code class="literal">true</code> 或者 <code class="literal">false</code>。如果仿真正在运行，<code class="property">IsRunning</code> 则为 <code class="literal">true</code>。</p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-Actors"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-Actors" data-target="#expand_panel_body_bvm8jbf-Actors" aria-controls="expand_panel_body_bvm8jbf-Actors" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Actors" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-Actors"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.Actors"/><code itemprop="name" id="propname_Actors">Actors</code></span> — <span itemprop="purpose">Actors and vehicles contained in scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">heterogeneous array of <code class="object">Actor</code> and
-                            <code class="object">Vehicle</code> objects</span></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="bvm8jbf-Actors"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvm8jbf-Actors" data-target="#expand_panel_body_bvm8jbf-Actors" aria-controls="expand_panel_body_bvm8jbf-Actors" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Actors" class="anchor_target"></span><h3 class="panel-title" id="bvm8jbf-Actors"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.Actors"/><code itemprop="name" id="propname_Actors">Actors</code></span> — <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">场景异构数组 <code class="object">Actor</code> 和
+                            <code class="object">Vehicle</code> 对象中包含的参与者和车辆</span></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_bvm8jbf-Actors" aria-labelledby="expand_panel_heading_bvm8jbf-Actors" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
-<p>Actors and vehicles contained in the scenario, specified as a heterogeneous array of
-                            <code class="object">Actor</code> and <code class="object">Vehicle</code> objects. To add
-                        actors and vehicles to a driving scenario, use the <a href="drivingscenario.actor.html"><code class="function">actor</code></a> and <a href="drivingscenario.vehicle.html"><code class="function">vehicle</code></a> functions.</p>
+<div role="tabpanel" id="expand_panel_body_bvm8jbf-Actors" aria-labelledby="expand_panel_heading_bvm8jbf-Actors" class="panel-collapse collapse"><div class="panel-body"><p>该属性是只读的。</p>
+<p>场景中包含的参与者和车辆，指定为
+                            <code class="object">Actor</code> 和 <code class="object">Vehicle</code> 对象的异构数组。要将参与者和车辆添加到驾驶场景中，请使用 <a href="drivingscenario.actor.html"><code class="function">actor</code></a> 和 <a href="drivingscenario.vehicle.html"><code class="function">vehicle</code></a> 函数。</p>
 </div>
 </div>
 </div>
 </div>
-            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_e40dbd26-f2c4-4734-89d1-33100e44ae12"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" data-target="#expand_panel_body_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" aria-controls="expand_panel_body_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Barriers" class="anchor_target"></span><h3 class="panel-title" id="mw_e40dbd26-f2c4-4734-89d1-33100e44ae12"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.Barriers"/><code itemprop="name" id="propname_Barriers">Barriers</code></span> — <span itemprop="purpose">Barriers contained in scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">heterogeneous array of <code class="object">Barrier</code> objects</span></span></span></h3>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_e40dbd26-f2c4-4734-89d1-33100e44ae12"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" data-target="#expand_panel_body_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" aria-controls="expand_panel_body_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_Barriers" class="anchor_target"></span><h3 class="panel-title" id="mw_e40dbd26-f2c4-4734-89d1-33100e44ae12"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.Barriers"/><code itemprop="name" id="propname_Barriers">Barriers</code></span> — <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">场景异构对象数组中包含的障碍物 <code class="object">Barrier</code> 对象</span></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" aria-labelledby="expand_panel_heading_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
-                    <p>Barriers contained in the scenario, specified as a heterogeneous array of
-                            <code class="object">Barrier</code> objects. To add barriers to a driving scenario,
-                        use the <a href="drivingscenario.barrier.html"><code class="function">barrier</code></a> function.</p>
+<div role="tabpanel" id="expand_panel_body_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" aria-labelledby="expand_panel_heading_mw_e40dbd26-f2c4-4734-89d1-33100e44ae12" class="panel-collapse collapse"><div class="panel-body"><p>该属性是只读的。</p>
+                    <p>场景中包含的障碍，指定为
+                            <code class="object">Barrier</code> 对象异构数组。要为驾驶场景添加障碍，请使用  <a href="drivingscenario.barrier.html"><code class="function">barrier</code></a> 函数。</p>
                 </div>
 </div>
 </div>
 </div>
-            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_4afdd268-b179-4268-84fc-65f20efbe6c6"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" data-target="#expand_panel_body_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" aria-controls="expand_panel_body_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_ParkingLots" class="anchor_target"></span><h3 class="panel-title" id="mw_4afdd268-b179-4268-84fc-65f20efbe6c6"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.ParkingLots"/><code itemprop="name" id="propname_ParkingLots">ParkingLots</code></span> — <span itemprop="purpose">Parking lots contained in scenario</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">heterogeneous array of <code class="object">ParkingLot</code> objects</span></span></span></h3>
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_4afdd268-b179-4268-84fc-65f20efbe6c6"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" data-target="#expand_panel_body_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" aria-controls="expand_panel_body_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_ParkingLots" class="anchor_target"></span><h3 class="panel-title" id="mw_4afdd268-b179-4268-84fc-65f20efbe6c6"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.ParkingLots"/><code itemprop="name" id="propname_ParkingLots">ParkingLots</code></span> — <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">场景异构 <code class="object">ParkingLot</code> 对象数组中包含的停车场</span></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" aria-labelledby="expand_panel_heading_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
-                    <p>Parking lots contained in the scenario, specified as a heterogeneous array
-                        of <code class="object">ParkingLot</code> objects. To add parking lots to a driving
-                        scenario, use the <a href="drivingscenario.parkinglot.html"><code class="function">parkingLot</code></a> function.</p>
+<div role="tabpanel" id="expand_panel_body_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" aria-labelledby="expand_panel_heading_mw_4afdd268-b179-4268-84fc-65f20efbe6c6" class="panel-collapse collapse"><div class="panel-body"><p>该属性是只读的。</p>
+                    <p>场景中包含的停车场，指定为异构 <code class="object">ParkingLot</code> 对象数组。要将停车场添加到驾驶场景中，请使用 <a href="drivingscenario.parkinglot.html"><code class="function">parkingLot</code></a> 函数。</p>
                 </div>
 </div>
 </div>
 </div>
-            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_5bbea316-3140-4dd5-8516-900a32d756ad"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5bbea316-3140-4dd5-8516-900a32d756ad" data-target="#expand_panel_body_mw_5bbea316-3140-4dd5-8516-900a32d756ad" aria-controls="expand_panel_body_mw_5bbea316-3140-4dd5-8516-900a32d756ad" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_GeoReference" class="anchor_target"></span><h3 class="panel-title" id="mw_5bbea316-3140-4dd5-8516-900a32d756ad"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.GeoReference"/><code itemprop="name" id="propname_GeoReference">GeoReference</code></span> — <span itemprop="purpose">Geographic coordinates of road network origin</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">three-element numeric row vector of form [<code class="literal">lat</code>,
+            <div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default " itemscope="" itemprop="property" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/PropertyReference" itemid="mw_5bbea316-3140-4dd5-8516-900a32d756ad"><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5bbea316-3140-4dd5-8516-900a32d756ad" data-target="#expand_panel_body_mw_5bbea316-3140-4dd5-8516-900a32d756ad" aria-controls="expand_panel_body_mw_5bbea316-3140-4dd5-8516-900a32d756ad" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="prop_GeoReference" class="anchor_target"></span><h3 class="panel-title" id="mw_5bbea316-3140-4dd5-8516-900a32d756ad"><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/ReferenceEntity" itemprop="refentityobj"><meta itemprop="refentity" content="property:drivingScenario.GeoReference"/><code itemprop="name" id="propname_GeoReference">GeoReference</code></span> — <span itemprop="purpose">三元素数值行向量</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc" itemprop="inputvalues"><span itemprop="inputvalue">三元素数值行向量的形式 [<code class="literal">lat</code>,
                             <code class="literal">lon</code>, <code class="literal">alt</code>]</span></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_mw_5bbea316-3140-4dd5-8516-900a32d756ad" aria-labelledby="expand_panel_heading_mw_5bbea316-3140-4dd5-8516-900a32d756ad" class="panel-collapse collapse"><div class="panel-body"><p>This property is read-only.</p>
-                    <p>Geographic coordinates of the road network origin, specified as a
-                        three-element numeric row vector of the form [<code class="literal">lat</code>,
-                            <code class="literal">lon</code>, <code class="literal">alt</code>], where:</p>
-<div class="itemizedlist"><ul><li><p><code class="literal">lat</code> is the latitude of the coordinate in
-                                    degrees.</p></li>
-<li><p><code class="literal">lon</code> is the longitude of the coordinate in
-                                    degrees.</p></li>
-<li><p><code class="literal">alt</code> is the altitude of the coordinate in
-                                    meters.</p></li>
+<div role="tabpanel" id="expand_panel_body_mw_5bbea316-3140-4dd5-8516-900a32d756ad" aria-labelledby="expand_panel_heading_mw_5bbea316-3140-4dd5-8516-900a32d756ad" class="panel-collapse collapse"><div class="panel-body"><p>该属性是只读的。</p>
+                    <p>路网原点的地理坐标，指定为三元素数值行向量的形式 [<code class="literal">lat</code>,
+                            <code class="literal">lon</code>, <code class="literal">alt</code>]，其中：</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">lat</code> 是坐标的纬度（以度为单位）。</p></li>
+<li><p><code class="literal">lon</code> 是坐标的经度（以度为单位）。</p></li>
+<li><p><code class="literal">alt</code> 是坐标的高度（以米为单位）。</p></li>
 </ul>
 </div>
 <p>
-These values are with respect to the WGS84 reference
-                        ellipsoid, which is a standard ellipsoid used by GPS data.</p>
-                    <p>You can set <code class="property">GeoReference</code> when you create the driving
-                        scenario. The <a href="drivingscenario.roadnetwork.html"><code class="function">roadNetwork</code></a> function also sets this property when you import
-                        roads into an empty driving scenario.</p>
-<div class="itemizedlist"><ul><li><p>If you import roads by specifying coordinates, then the
-                                        <code class="function">roadNetwork</code> function sets
-                                        <code class="property">GeoReference</code> to the first (or only)
-                                    specified coordinate.</p></li>
-<li><p>If you import roads by specifying a region or map file, then
-                                    the <code class="function">roadNetwork</code> sets
-                                        <code class="property">GeoReference</code> to the center point of the
-                                    region or map.</p></li>
+这些值是相对于 WGS84 参考椭球而言的，这是 GPS 数据使用的标准椭球。</p>
+                    <p>您可以在创建驾驶场景时进行 <code class="property">GeoReference</code> 设置。<a href="drivingscenario.roadnetwork.html"><code class="function">roadNetwork</code></a> 当您将道路导入空驾驶场景时，该函数还会设置此属性。</p>
+<div class="itemizedlist"><ul><li><p>如果通过指定坐标导入道路，则
+                                        <code class="function">roadNetwork</code> 函数将设置
+                                        <code class="property">GeoReference</code> 为第一个（或唯一一个）指定的坐标。</p></li>
+<li><p>如果通过指定区域或地图文件导入道路，则将路网 <code class="function">roadNetwork</code> 设置为
+                                        <code class="property">GeoReference</code> 区域或地图的中心点。</p></li>
 </ul>
 </div>
 <p>
-The <code class="function">roadNetwork</code> function overrides any
-                        previously set <code class="property">GeoReference</code> value.</p>
+该 <code class="function">roadNetwork</code> 函数会覆盖任何先前设置的 <code class="property">GeoReference</code> 值。</p>
                     <p>In the <strong class="app"><a href="drivingscenariodesigner-app.html">Driving
                             Scenario Designer</a></strong> app, when you import map data and export a
                             <code class="object">drivingScenario</code> object, the
@@ -452,29 +426,29 @@ The <code class="function">roadNetwork</code> function overrides any
 </div>
 </div>
 </div>
-<div id="bvm8jbf-5_div" class="refsect1 objectfunctions"><h2 id="bvm8jbf-5">Object Functions</h2>
+<div id="bvm8jbf-5_div" class="refsect1 objectfunctions"><h2 id="bvm8jbf-5">对象函数</h2>
 <div class="doc_classesgroup_container expandableContent"><div class="expandableContent mwExpandToggle1" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
 <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true"><!--Expander Element: START-->
-<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98194" data-toggle="collapse" data-target="#expand_panel_body_d124e98194" aria-expanded="false" aria-controls="expand_panel_body_d124e98194"><h3 class="panel-title" id="d124e98194">Scenarios</h3>
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98194" data-toggle="collapse" data-target="#expand_panel_body_d124e98194" aria-expanded="false" aria-controls="expand_panel_body_d124e98194"><h3 class="panel-title" id="d124e98194">场景</h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div id="expand_panel_body_d124e98194" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e98194"><div class="panel-body"><!--Expander Content: START-->
 <div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="drivingscenario.advance.html"><code class="function">advance</code></a></td>
-<td class="description">Advance driving scenario simulation by one time step</td>
+<td class="description">将驾驶场景仿真前进一步</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.plot.html"><code class="function">plot</code></a></td>
-<td class="description">Plot driving scenario</td>
+<td class="description">绘制驾驶场景</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.record.html"><code class="function">record</code></a></td>
-<td class="description">Run driving scenario and record actor states</td>
+<td class="description">运行驾驶场景并记录参与者状态</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.restart.html"><code class="function">restart</code></a></td>
-<td class="description">Restart driving scenario simulation from beginning</td>
+<td class="description">从开始位置重新启动驾驶场景仿真</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.updateplots.html"><code class="function">updatePlots</code></a></td>
-<td class="description">Update driving scenario plots</td>
+<td class="description">更新驾驶场景图</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.export.html"><code class="function">export</code></a></td>
-<td class="description">Export driving scenario to <span class="trademark entity">ASAM OpenDRIVE</span> or <span class="trademark entity">ASAM OpenSCENARIO</span> file</td>
+<td class="description">将驾驶场景导出为 <span class="trademark entity">ASAM OpenDRIVE</span> 或 <span class="trademark entity">ASAM OpenSCENARIO</span> 文件</td>
 </tr>
 </tbody>
 </table>
@@ -484,45 +458,44 @@ The <code class="function">roadNetwork</code> function overrides any
 </div>
 <!--Expander Element: END-->
 <!--Expander Element: START-->
-<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98218" data-toggle="collapse" data-target="#expand_panel_body_d124e98218" aria-expanded="false" aria-controls="expand_panel_body_d124e98218"><h3 class="panel-title" id="d124e98218">Actors</h3>
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98218" data-toggle="collapse" data-target="#expand_panel_body_d124e98218" aria-expanded="false" aria-controls="expand_panel_body_d124e98218"><h3 class="panel-title" id="d124e98218">参与者</h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div id="expand_panel_body_d124e98218" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e98218"><div class="panel-body"><!--Expander Content: START-->
 <div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="drivingscenario.actor.html"><code class="function">actor</code></a></td>
-<td class="description">Add actor to driving scenario</td>
+<td class="description">将参与者添加到驾驶场景中</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.actorposes.html"><code class="function">actorPoses</code></a></td>
-<td class="description">Positions, velocities, and orientations of actors in driving
-scenario</td>
+<td class="description">驾驶场景中参与者的位置、速度和方向</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.actorprofiles.html"><code class="function">actorProfiles</code></a></td>
-<td class="description">Physical and radar characteristics of actors in driving scenario</td>
+<td class="description">驾驶场景中参与者的物理和雷达特征</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.vehicle.html"><code class="function">vehicle</code></a></td>
-<td class="description">Add vehicle to driving scenario</td>
+<td class="description">将车辆添加到驾驶场景</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.barrier.html"><code class="function">barrier</code></a></td>
-<td class="description">Add a barrier to a driving scenario</td>
+<td class="description">为驾驶场景添加障碍物</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.chaseplot.html"><code class="function">chasePlot</code></a></td>
-<td class="description">Ego-centric projective perspective plot</td>
+<td class="description">以自我为中心的投射透视图</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.trajectory.html"><code class="function">trajectory</code></a></td>
-<td class="description">Create actor or vehicle trajectory in driving scenario</td>
+<td class="description">在驾驶场景中创建参与者或车辆轨迹</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.smoothtrajectory.html"><code class="function">smoothTrajectory</code></a></td>
-<td class="description">Create smooth, jerk-limited actor trajectory in driving scenario</td>
+<td class="description">在驾驶场景中创建平滑、限制加加速度的参与者轨迹</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.targetposes.html"><code class="function">targetPoses</code></a></td>
-<td class="description">Target positions and orientations relative to ego vehicle</td>
+<td class="description">相对于自我车辆的目标位置和方向</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.targetoutlines.html"><code class="function">targetOutlines</code></a></td>
-<td class="description">Outlines of targets viewed by actor</td>
+<td class="description">参与者看到的目标轮廓</td>
 </tr>
 <tr><td class="term notranslate"><a href="driving.scenario.targetstoego.html"><code class="function">driving.scenario.targetsToEgo</code></a></td>
-<td class="description">Convert target poses from scenario to ego coordinates</td>
+<td class="description">将目标姿势从场景坐标转换为自我坐标</td>
 </tr>
 <tr><td class="term notranslate"><a href="driving.scenario.targetstoscenario.html"><code class="function">driving.scenario.targetsToScenario</code></a></td>
-<td class="description">Convert target poses from ego to scenario coordinates</td>
+<td class="description">将目标姿势从自我坐标转换为场景坐标</td>
 </tr>
 </tbody>
 </table>
@@ -532,20 +505,20 @@ scenario</td>
 </div>
 <!--Expander Element: END-->
 <!--Expander Element: START-->
-<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98261" data-toggle="collapse" data-target="#expand_panel_body_d124e98261" aria-expanded="false" aria-controls="expand_panel_body_d124e98261"><h3 class="panel-title" id="d124e98261">Roads</h3>
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98261" data-toggle="collapse" data-target="#expand_panel_body_d124e98261" aria-expanded="false" aria-controls="expand_panel_body_d124e98261"><h3 class="panel-title" id="d124e98261">道路</h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div id="expand_panel_body_d124e98261" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e98261"><div class="panel-body"><!--Expander Content: START-->
 <div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="drivingscenario.road.html"><code class="function">road</code></a></td>
-<td class="description">Add road to driving scenario or road group</td>
+<td class="description">将道路添加到驾驶场景或道路组</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.roadnetwork.html"><code class="function">roadNetwork</code></a></td>
-<td class="description">Add road network to driving scenario</td>
+<td class="description">将路网添加到驾驶场景中</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.roadboundaries.html"><code class="function">roadBoundaries</code></a></td>
-<td class="description">Get road boundaries</td>
+<td class="description">获取道路边界</td>
 </tr>
 <tr><td class="term notranslate"><a href="driving.scenario.roadboundariestoego.html"><code class="function">driving.scenario.roadBoundariesToEgo</code></a></td>
-<td class="description">Convert road boundaries to ego vehicle coordinates</td>
+<td class="description">将道路边界转换为自我车辆坐标</td>
 </tr>
 </tbody>
 </table>
@@ -555,32 +528,32 @@ scenario</td>
 </div>
 <!--Expander Element: END-->
 <!--Expander Element: START-->
-<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98278" data-toggle="collapse" data-target="#expand_panel_body_d124e98278" aria-expanded="false" aria-controls="expand_panel_body_d124e98278"><h3 class="panel-title" id="d124e98278">Lanes</h3>
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98278" data-toggle="collapse" data-target="#expand_panel_body_d124e98278" aria-expanded="false" aria-controls="expand_panel_body_d124e98278"><h3 class="panel-title" id="d124e98278">车道</h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div id="expand_panel_body_d124e98278" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e98278"><div class="panel-body"><!--Expander Content: START-->
 <div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="lanespec.html"><code class="object">lanespec</code></a></td>
-<td class="description">Create road lane specifications</td>
+<td class="description">创建道路车道规范</td>
 </tr>
 <tr><td class="term notranslate"><a href="lanemarking.html"><code class="function">laneMarking</code></a></td>
-<td class="description">Create road lane marking object</td>
+<td class="description">创建道路车道标记对象</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.lanemarkingvertices.html"><code class="function">laneMarkingVertices</code></a></td>
-<td class="description">Lane marking vertices and faces in driving scenario</td>
+<td class="description">驾驶场景中的车道标记顶点和面</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.currentlane.html"><code class="function">currentLane</code></a></td>
-<td class="description">Get current lane of actor</td>
+<td class="description">获取参与者当前车道</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.laneboundaries.html"><code class="function">laneBoundaries</code></a></td>
-<td class="description">Get lane boundaries of actor lane</td>
+<td class="description">获取参与者车道的车道边界</td>
 </tr>
 <tr><td class="term notranslate"><a href="clothoidlaneboundary.html"><code class="object">clothoidLaneBoundary</code></a></td>
-<td class="description">Clothoid-shaped lane boundary model</td>
+<td class="description">回旋形车道边界模型</td>
 </tr>
 <tr><td class="term notranslate"><a href="clothoidlaneboundary.computeboundarymodel.html"><code class="function">computeBoundaryModel</code></a></td>
-<td class="description">Compute lane boundary points from clothoid lane boundary model</td>
+<td class="description">从回旋车道边界模型计算车道边界点</td>
 </tr>
 <tr><td class="term notranslate"><a href="lanetype.html"><code class="function">laneType</code></a></td>
-<td class="description">Create road lane type object</td>
+<td class="description">创建道路车道类型对象</td>
 </tr>
 </tbody>
 </table>
@@ -590,20 +563,20 @@ scenario</td>
 </div>
 <!--Expander Element: END-->
 <!--Expander Element: START-->
-<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98308" data-toggle="collapse" data-target="#expand_panel_body_d124e98308" aria-expanded="false" aria-controls="expand_panel_body_d124e98308"><h3 class="panel-title" id="d124e98308">Parking Lots</h3>
+<div class="panel panel-default"><div class="panel-heading add_cursor_pointer collapsed" role="tab" id="expand_panel_heading_d124e98308" data-toggle="collapse" data-target="#expand_panel_body_d124e98308" aria-expanded="false" aria-controls="expand_panel_body_d124e98308"><h3 class="panel-title" id="d124e98308">停车场</h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div id="expand_panel_body_d124e98308" class="panel-collapse collapse" role="tabpanel" aria-labelledby="expand_panel_heading_d124e98308"><div class="panel-body"><!--Expander Content: START-->
 <div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="drivingscenario.parkinglot.html"><code class="function">parkingLot</code></a></td>
-<td class="description">Add parking lot to driving scenario</td>
+<td class="description">将停车场添加到驾驶场景</td>
 </tr>
 <tr><td class="term notranslate"><a href="parkingspace.html"><code class="object">parkingSpace</code></a></td>
-<td class="description">Define parking space for parking lot</td>
+<td class="description">为停车场定义停车位</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.insertparkingspaces.html"><code class="function">insertParkingSpaces</code></a></td>
-<td class="description">Insert parking spaces into parking lot</td>
+<td class="description">将停车位插入停车场</td>
 </tr>
 <tr><td class="term notranslate"><a href="drivingscenario.parkinglanemarkingvertices.html"><code class="function">parkingLaneMarkingVertices</code></a></td>
-<td class="description">Parking lane marking vertices and faces in driving scenario</td>
+<td class="description">驾驶场景中的停车道标记顶点和面</td>
 </tr>
 </tbody>
 </table>
@@ -616,7 +589,7 @@ scenario</td>
 </div>
 </div>
 </div>
-<div class="examples"><h2 id="bvm8jbf-12">Examples</h2>
+<div class="examples"><h2 id="bvm8jbf-12">示例</h2>
 <div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
 <div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_bvnu3f0"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bvnu3f0" data-target="#expand_panel_body_bvnu3f0" aria-controls="expand_panel_body_bvnu3f0" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="bvnu3f0">Create Driving Scenario with Multiple Actors and Roads<br/> </h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
@@ -1145,8 +1118,10 @@ plotCoverageArea(caPlotter,visionSensor.SensorLocation,<span style="color:#0000F
 </div>
 </div>
 <div class="clearfix"></div>
-<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
 <script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
 <link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
 <script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
 
