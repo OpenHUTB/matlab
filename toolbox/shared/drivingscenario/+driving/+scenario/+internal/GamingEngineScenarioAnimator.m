@@ -225,7 +225,7 @@ classdef GamingEngineScenarioAnimator < handle
                     ARotation(1,1) = -deg2rad(input.Actors(actorIdx).Pitch);
                     ARotation = this.turnWheels(ARotation, input.Actors(actorIdx).Velocity(1));
                 end
-                if reset
+                if reset  % 只有第一步才执行重置
                     actor.write(Translation, ARotation, ones(size(Translation)) );  % 参与者各项数据的写入
                 else
                     actor.step(x, y, yaw);

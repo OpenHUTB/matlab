@@ -47,7 +47,6 @@ classdef Vehicle < sim3d.AbstractActor
 
 
         function [ translation, rotation, scale ] = readTransform( self )
-
             if ~isempty( self.TransformReader )
                 sim3d.engine.EngineReturnCode.assertObject( self.TransformReader );
                 [ translation, rotation, scale ] = self.TransformReader.read();

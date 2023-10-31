@@ -134,6 +134,7 @@ classdef GamingEngineScenarioViewer < handle
         end
         
 
+        % 只初始化的时候调用一次？
         function update(this)
             animator = this.Animator;
             if ~isOpen(animator)
@@ -163,6 +164,8 @@ classdef GamingEngineScenarioViewer < handle
 
                     % 参与者映射
                     tmp_actors_map =  this.Animator.ActorsMap;
+                    tmp_actors_keys = keys(tmp_actors_map);
+                    first_key = tmp_actors_keys{1};
                     cur_actor_map = containers.Map('KeyType','double','ValueType','any');
                     
                     % 参与者配置
@@ -191,29 +194,21 @@ classdef GamingEngineScenarioViewer < handle
 
                         actors(i).AngularVelocity = [0, 0, 0];
 
-                        % Animator中的参与者构建
-                        car = vehicle(scenario, 'ClassID', obj_list(i, 3), ...
-                            'Position', [x, y, 0], ...
-                            'Velocity', [vx, vy, 0], ...
-                            'Roll', actors(i).Yaw, ...
-                            'Pitch', 0, ...
-                            'Yaw', 0, ...
-                            'AngularVelocity', [0, 0, 0]);
-%                         temp_actors.ActorID = actors(i).ActorID;
-%                         temp_actors.Position = actors(i).Position;
-%                         temp_actors.Velocity = actors(i).Velocity;
-%                         temp_actors.Yaw = actors(i).Yaw;
-%                         temp_actors.Pitch = actors(i).Pitch;
-%                         temp_actors.Roll = actors(i).Roll;
-%                         animator_actors(i) = temp_actors;  % ?
+                        temp_actors.ActorID = actors(i).ActorID;
+                        temp_actors.Position = actors(i).Position;
+                        temp_actors.Velocity = actors(i).Velocity;
+                        temp_actors.Yaw = actors(i).Yaw;
+                        temp_actors.Pitch = actors(i).Pitch;
+                        temp_actors.Roll = actors(i).Roll;
+                        animator_actors(i) = temp_actors;  % ?
 
                         % Animator的Actor Map 信息添加
                         % 5x3:4个轮子，一个车的躯干；
                         % tmp_actors_map(1)  x->(1,1); y-> (1,2)
-                        cur_translation = tmp_actors_map(1).Translation;
+                        cur_translation = tmp_actors_map(first_key).Translation;
                         cur_translation(1,1) = x;
                         cur_translation(1,2) = y;
-                        cur_actors_map = tmp_actors_map(1);
+                        cur_actors_map = tmp_actors_map(first_key);
                         cur_actors_map.Translation = cur_translation;
                         cur_actor_map(actors(i).ActorID) = cur_actors_map;
 
@@ -229,18 +224,6 @@ classdef GamingEngineScenarioViewer < handle
                     
                     this.Animator.ActorsMap = cur_actor_map;
 
-%                     animate_input.NumActors = animate_input.NumActors - 1;
-%                     actors = animate_input.Actors;
-%                     new_actors = actors(1:end-1);
-%                     animate_input.Actors = new_actors;
-%                     % 删除this.Animator中的Actor
-%                     this.Animator.Scenario.Actors = this.Animator.Scenario.Actors(1:end-1);
-%                     this.Animator.Scenario.ActorProfiles = this.Animator.Scenario.ActorProfiles(1:end-1);
-%                     this.Animator.Scenario.VehiclePoses.ActorPoses = this.Animator.Scenario.VehiclePoses.ActorPoses(1:end-1);
-%                     remove(this.Animator.ActorsMap, 2);
-%                     % this.Animator.ActorsMap.Count = this.Animator.ActorsMap.Count-1;  % 只减少数量，会删错
-%                     % 无法设置 'drivingScenario' 类的 'Actors' 属性，因为它为只读属性。
-%                     this.Application.Simulator.Designer.Scenario.Actors = simulator.Designer.Scenario.Actors(1:end-1);
                 end
                 animate(this.Animator, animate_input, getCurrentSample(simulator)==1); % 索引超过数组元素的数量。索引不能超过 1。
 

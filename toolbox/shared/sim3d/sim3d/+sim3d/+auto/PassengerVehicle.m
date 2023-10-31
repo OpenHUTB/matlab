@@ -1,9 +1,8 @@
+% 客车
 classdef PassengerVehicle < sim3d.auto.WheeledVehicle
 
     properties ( SetAccess = 'private', GetAccess = 'public' )
-
         LightModule = {};
-
         PassengerVehicleType;
     end
 
@@ -66,6 +65,7 @@ classdef PassengerVehicle < sim3d.auto.WheeledVehicle
         end
 
 
+        % 直接设置下一步车的位置和姿态
         function step(self, X, Y, Yaw)
             translation = zeros( self.NumberOfParts, 3, 'single' );
             rotation = zeros( self.NumberOfParts, 3, 'single' );

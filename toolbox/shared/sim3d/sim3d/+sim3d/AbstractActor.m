@@ -1,30 +1,19 @@
+% 参与者的抽象类
 classdef (Hidden)AbstractActor < handle
-
     properties (SetAccess = 'protected', GetAccess = 'protected')
         ObjectIdentifier( 1, 1 )uint32 = uint32( 1 );
-
         ParentIdentifier( 1, : )char = 'Scene Origin';
-
         ActorName( 1, : )char = '';
-
         ActorClassId( 1, 1 )uint16 = uint16( sim3d.utils.SemanticType.None );
-
         ActorType( 1, : )char = '';
-
         Mesh( 1, : )char = '';
-
         Visibility( 1, 1 )logical = true;
-
         HiddenInGame( 1, 1 )logical = false;
-
         SimulatePhysics( 1, 1 )logical = false;
-
+        % 参与者拆分成的部件数
         NumberOfParts( 1, 1 )uint32 = 1;
-
         EnableGravity( 1, 1 )logical = true;
-
         CastShadow( 1, 1 )logical = false;
-
         Snapshots( 1, 1 )sim3d.internal.Snapshots;
     end
 
@@ -32,11 +21,8 @@ classdef (Hidden)AbstractActor < handle
     properties (Access = public)
         % 参与者的父对象
         Parent = [];
-
         Children = struct();
-
         ParentWorld = [];
-
         Mobility(1, 1)int32 = int32(sim3d.utils.MobilityTypes.Static);
     end
 
@@ -48,9 +34,7 @@ classdef (Hidden)AbstractActor < handle
 
     properties (Access = public, Dependent = true)
         Translation(:, 3)single;
-
         Rotation(:, 3)single;
-
         Scale(:, 3)single;
     end
 
