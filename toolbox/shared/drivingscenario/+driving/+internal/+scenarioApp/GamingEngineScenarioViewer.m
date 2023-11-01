@@ -194,13 +194,16 @@ classdef GamingEngineScenarioViewer < handle
 
                         actors(i).AngularVelocity = [0, 0, 0];
 
-                        temp_actors.ActorID = actors(i).ActorID;
-                        temp_actors.Position = actors(i).Position;
-                        temp_actors.Velocity = actors(i).Velocity;
-                        temp_actors.Yaw = actors(i).Yaw;
-                        temp_actors.Pitch = actors(i).Pitch;
-                        temp_actors.Roll = actors(i).Roll;
-                        animator_actors(i) = temp_actors;  % ?
+                        actor_ids = cell2mat(tmp_actors_keys);
+                        if ~ismember(actors(i).ActorID, actor_ids)
+                            car = vehicle(this.Application.Simulator.Designer.Scenario, ...
+                                'ClassID',actors(i).ActorID, ...
+                                'Position', actors(i).Position, ...
+                                'Velocity', actors(i).Velocity, ...
+                                'Pitch', actors(i).Pitch, ...
+                                'Roll', actors(i).Roll, ...
+                                'Yaw', actors(i).Yaw);
+                        end
 
                         % Animator的Actor Map 信息添加
                         % 5x3:4个轮子，一个车的躯干；
@@ -216,7 +219,7 @@ classdef GamingEngineScenarioViewer < handle
                         cur_profiles(i, :) = tmp_profiles(1, :);
                     end
                     animate_input.Actors = actors;
-                    this.Application.Simulator.Designer.Scenario.Actors = animator_actors;
+                    % this.Application.Simulator.Designer.Scenario.Actors = animator_actors;
 
                     this.Animator.Scenario.ActorProfiles = cur_profiles;
 
