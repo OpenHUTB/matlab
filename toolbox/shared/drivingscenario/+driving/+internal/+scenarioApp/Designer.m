@@ -90,7 +90,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
     methods
         function this = Designer(varargin)
             this@driving.internal.scenarioApp.Display(varargin{:});
-            this.SimulatorListener=addStateChangedListener(this.Simulator, @this.onSimulatorStateChanged);
+            this.SimulatorListener = addStateChangedListener(this.Simulator, ...
+                @this.onSimulatorStateChanged);
         end
 
 
@@ -129,8 +130,8 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
 
         % 获得传感器的索引
-        function index=getCurrentSensorIndex(this)
-            props=this.SensorProperties;
+        function index = getCurrentSensorIndex(this)
+            props = this.SensorProperties;
             if isempty(props)
                 if isempty(this.SensorSpecifications)
                     index=[];
@@ -144,13 +145,13 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
 
         % 获取驾驶场景设计器的名字：Driving Scenario Designer
-        function name=getName(~)
+        function name = getName(~)
             name=getString(message('driving:scenarioApp:ScenarioBuilderName'));
         end
 
 
         % 获取应用程序的标签
-        function tag=getTag(~)
+        function tag = getTag(~)
             tag='DrivingScenarioDesigner';
 
         end
@@ -252,7 +253,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
             sessionName=this.CurrentFileName;
             assetTypes={this.ActorSpecifications.AssetType};
             validTypes={'MuscleCar','Sedan','SportUtilityVehicle','SmallPickupTruck','Hatchback','BoxTruck'};
-            if~isempty(setdiff(assetTypes,validTypes))
+            if~isempty(setdiff(assetTypes, validTypes))
                 removeAndSave=getString(message('driving:scenarioApp:Export3dSimRemoveInvalidAndSave'));
                 if isempty(sessionName)||dirty
                     keep=getString(message('driving:scenarioApp:Export3dSimKeepInvalidAndSave'));
@@ -384,12 +385,14 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
+        % 关闭当前设计器
         function close(this)
             stop(this.Simulator);
             close@driving.internal.scenarioApp.Display(this);
         end
 
 
+        % 初始化关闭
         function initializeClose(this)
             stop(this.Simulator);
             initializeClose@driving.internal.scenarioApp.Display(this);
@@ -506,36 +509,36 @@ classdef Designer<driving.internal.scenarioApp.Display&...
 
 
         % 删除参与者
-        function varargout=deleteActor(this,index)
+        function varargout=deleteActor(this, index)
             actorProps=this.ActorProperties;
             nSpecs=numel(this.ActorSpecifications);
             canvas=this.ScenarioView;
 
             index=index(:)';
 
-            if any(index==actorProps.SpecificationIndex)||all(actorProps.SpecificationIndex>=nSpecs)
+            if any(index==actorProps.SpecificationIndex) || all(actorProps.SpecificationIndex>=nSpecs)
                 actorProps.SpecificationIndex=1;
             end
             if strcmp(canvas.InteractionMode,'addActorWaypoints')&&canvas.ActorID>nSpecs-1
                 canvas.InteractionMode='none';
             end
-            deletedActor=deleteActor@driving.internal.scenarioApp.ScenarioBuilder(this,index);
-            oldEgo=this.EgoCarId;
+            deletedActor = deleteActor@driving.internal.scenarioApp.ScenarioBuilder(this,index);
+            oldEgo = this.EgoCarId;
 
-            if~isempty(oldEgo)
-                if any(oldEgo==index)
+            if ~isempty(oldEgo)
+                if any(oldEgo == index)
                     newEgo=[];
 
                     actorSpecs=this.ActorSpecifications;
-                    for indx=1:numel(actorSpecs)
+                    for indx = 1:numel(actorSpecs)
                         if getProperty(this.ClassSpecifications,actorSpecs(indx).ClassID,'isVehicle')
                             newEgo=indx;
                             break;
                         end
                     end
-                    this.EgoCarId=newEgo;
+                    this.EgoCarId = newEgo;
                 else
-                    this.EgoCarId=oldEgo-sum(oldEgo>index);
+                    this.EgoCarId = oldEgo-sum(oldEgo>index);
                 end
             end
             if~isempty(canvas.CurrentSpecification)&&any(canvas.CurrentSpecification==deletedActor)
@@ -612,6 +615,7 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
+        % 删除该设计器的内存占用
         function delete(this)
             this.SimulatorListener=[];
             this.PropertyListener=[];
@@ -619,11 +623,11 @@ classdef Designer<driving.internal.scenarioApp.Display&...
         end
 
 
-        function v=getVerticalAxis(this)
+        function v = getVerticalAxis(this)
             if~isempty(this.ScenarioView)
                 v=this.ScenarioView.VerticalAxis;
             else
-                v=getVerticalAxis@driving.internal.scenarioApp.ScenarioBuilder(this);
+                v = getVerticalAxis@driving.internal.scenarioApp.ScenarioBuilder(this);
             end
         end
     end
@@ -632,10 +636,10 @@ classdef Designer<driving.internal.scenarioApp.Display&...
     % 私有的方法
     methods(Hidden)
 
-        function[b,product,appName]=shouldSupportDDUX(~)
+        function[b,product,appName] = shouldSupportDDUX(~)
             b=true;
-            product='Automated Driving Toolbox';
-            appName='Driving Scenario Designer';
+            product = 'Automated Driving Toolbox';
+            appName = 'Driving Scenario Designer';
         end
 
 

@@ -6,8 +6,9 @@ classdef Adder<handle
 
 
     methods(Hidden)
-        function name=getUniqueName(this,name)
-            specs=getCurrentSpecifications(this);
+        % 获取参与者唯一的名字
+        function name = getUniqueName(this,name)
+            specs = getCurrentSpecifications(this);
             if isempty(specs)
                 return;
             end
@@ -15,7 +16,7 @@ classdef Adder<handle
             rawName=name;
 
             rawName(regexp(rawName,'(\d+)$'):end)=[];
-            indx=1;
+            indx = 1;
             allNames={specs.Name};
             while any(strcmp(allNames,name))
                 name=sprintf('%s%d',rawName,indx);
@@ -25,8 +26,9 @@ classdef Adder<handle
         end
     end
 
+
     methods(Access=protected,Abstract)
-        specs=getCurrentSpecifications(this)
+        specs = getCurrentSpecifications(this)
     end
 end
 

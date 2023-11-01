@@ -3,18 +3,18 @@ classdef ScenarioPlayer < handle
     properties
         Scenario;
         Repeat = false;  % 重复播放
-        PauseAtSample='end'
+        PauseAtSample = 'end';
 
         StopCondition='first';
-        StopTime=10;
+        StopTime = 10;   % 默认仿真时间10秒
     end
 
 
     properties(SetAccess=protected)
-        IsPlaying=false;
-        IsPaused=false;
-        CurrentSample=1;
-        NumSamples=NaN;
+        IsPlaying = false;
+        IsPaused = false;
+        CurrentSample = 1;
+        NumSamples = NaN;
     end
 
 
@@ -82,8 +82,8 @@ classdef ScenarioPlayer < handle
 
         function clearNumSamples(this)
             setupScenario(this);
-            this.CurrentSample=1;
-            notify(this,'StateChanged');
+            this.CurrentSample = 1;
+            notify(this, 'StateChanged');
         end
 
 
@@ -110,9 +110,7 @@ classdef ScenarioPlayer < handle
             end
 
             this.CurrentSample = newSample;
-
             setCurrentSample(this, newSample);
-
             notify(this,'StateChanged');
         end
 
@@ -121,12 +119,12 @@ classdef ScenarioPlayer < handle
             this.CurrentSample=newSample;
             scenario=this.Scenario;
 
-            newTime=(newSample-1)*scenario.SampleTime;
+            newTime = (newSample-1) * scenario.SampleTime;
 
-            isRunning=move(scenario.Actors,newTime);
+            isRunning = move(scenario.Actors,newTime);
 
             if strcmp(this.StopCondition,'time')
-                isRunning=newTime+scenario.SampleTime<=this.StopTime;
+                isRunning = newTime+scenario.SampleTime<=this.StopTime;
             elseif strcmp(this.StopCondition,'first')
                 isRunning=all(isRunning);
             else
@@ -141,7 +139,7 @@ classdef ScenarioPlayer < handle
                 this.IsPaused=~(newSample==1||newSample==this.NumSamples);
             end
 
-            % notify(this, 'SampleChanged');  % 关闭仿真时候的回调警告
+            notify(this, 'SampleChanged');  % 关闭仿真时候的回调警告
         end
 
 
@@ -150,22 +148,25 @@ classdef ScenarioPlayer < handle
                 return;
             end
             t=this.Timer;
-            if isempty(t)||~isvalid(t)
-                t=timer(...
-                    'Tag','ScenarioPlayerSimulationStep',...
-                    'ExecutionMode','fixedSpacing',...
-                    'TimerFcn',@this.timerTick,...
-                    'StopFcn',@this.stopFcn,...
-                    'BusyMode','queue',...
-                    'Period',0.01,...
-                    'ObjectVisibility','off');
-                this.Timer=t;
+            if isempty(t) || ~isvalid(t)
+                % TimerFcn: 计时器回调函数
+                % Period: 每 0.01 秒执行一次
+                t = timer(...
+                        'Tag', 'ScenarioPlayerSimulationStep',...
+                        'ExecutionMode', 'fixedSpacing',...
+                        'TimerFcn', @this.timerTick,...
+                        'StopFcn',@this.stopFcn,...
+                        'BusyMode', 'queue',...
+                        'Period', 0.01,...
+                        'ObjectVisibility', 'off');
+                this.Timer = t;
             end
 
             if this.IsPaused
                 this.IsPaused=false;
             end
-            this.IsPlaying=true;
+
+            this.IsPlaying = true;
             notify(this,'StateChanged');
             if this.CurrentSample==1
                 setupScenario(this);
@@ -192,7 +193,7 @@ classdef ScenarioPlayer < handle
 
 
         function b=isStopped(this)
-            b=~(this.IsPlaying||this.IsPaused&&this.CurrentSample~=1);
+            b=~(this.IsPlaying || this.IsPaused&&this.CurrentSample~=1);
         end
 
 
@@ -219,7 +220,7 @@ classdef ScenarioPlayer < handle
         function setupScenario(this)
             scenario=this.Scenario;
             if strcmp(this.StopCondition,'time')
-                this.NumSamples=floor(this.StopTime/scenario.SampleTime)+1;
+                this.NumSamples = floor(this.StopTime/scenario.SampleTime)+1;
             else
                 this.NumSamples=NaN;
             end
@@ -227,8 +228,8 @@ classdef ScenarioPlayer < handle
 
 
         function stopTimer(this)
-            t=this.Timer;
-            if isempty(t)||~isvalid(t)||strcmp(t.Running,'off')
+            t = this.Timer;
+            if isempty(t) || ~isvalid(t) || strcmp(t.Running,'off')
                 return;
             end
             stop(t);
@@ -236,42 +237,43 @@ classdef ScenarioPlayer < handle
 
 
         function stopFcn(this,varargin)
-            notify(this,'StateChanged');
+            notify(this, 'StateChanged');
         end
 
 
-        function timerTick(this,varargin)
-            sample=this.CurrentSample;
+        % 系统节拍定时器
+        function timerTick(this, varargin)
+            sample = this.CurrentSample;
 
-            if sample==this.NumSamples
-                sample=1;
+            if sample == this.NumSamples
+                sample = 1;
             else
-                sample=sample+1;
+                sample = sample+1;
             end
 
-            isRunning = setCurrentSample(this,sample)&&sample~=this.NumSamples;
+            isRunning = setCurrentSample(this,sample) && sample~=this.NumSamples;
 
-            if sample==1
-                notify(this,'StateChanged');
+            if sample == 1
+                notify(this, 'StateChanged');  % 通知监听程序this，事件StateChanged正在发生
             end
-            if sample>=getPauseAtSample(this)
+            if sample >= getPauseAtSample(this)
                 pause(this);
             elseif ~isRunning
-                if sample~=this.NumSamples
+                if sample ~= this.NumSamples
                     this.NumSamples=sample;
                 end
 
-                if~this.Repeat
+                if ~this.Repeat
                     stop(this);
                 end
             end
         end
 
 
-        function sample=getPauseAtSample(this)
-            sample=this.PauseAtSample;
-            if strcmp(sample,'end')
-                sample=Inf;
+        function sample = getPauseAtSample(this)
+            sample = this.PauseAtSample;
+            if strcmp(sample, 'end')
+                sample = Inf;
             end
         end
         

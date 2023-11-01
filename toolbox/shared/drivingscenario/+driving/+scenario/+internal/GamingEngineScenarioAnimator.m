@@ -222,7 +222,7 @@ classdef GamingEngineScenarioAnimator < handle
                 else
                     ARotation(1,3) = yaw;  % 旋转矩阵（5x3） 第一行: 俯仰pitch,翻滚roll,偏航yaw
                     %                         Rotation(1,2) = 0; input.Actors(actorIdx).Roll;
-                    ARotation(1,1) = -deg2rad(input.Actors(actorIdx).Pitch);
+                    ARotation(1,1) = -deg2rad(input.Actors(actorIdx).Pitch);  % 一般没有横滚
                     ARotation = this.turnWheels(ARotation, input.Actors(actorIdx).Velocity(1));
                 end
                 if reset  % 只有第一步才执行重置
@@ -520,10 +520,10 @@ classdef GamingEngineScenarioAnimator < handle
         end
 
         
-        function Rotation = turnWheels(this, Rotation, Speed)  % % 根据轮子的选择和速度计算旋转矩阵
+        function Rotation = turnWheels(this, Rotation, Speed)  % 根据轮子的选择和速度计算旋转矩阵
             % r = r + dr
             if size(Rotation, 1) > 1
-                Rotation(2:5,1) = Rotation(2:5,1) - Speed * this.SampleTime / 0.375;
+                Rotation(2:5,1) = Rotation(2:5,1) - Speed * this.SampleTime / 0.375;  % 四个轮子的横滚: Speed*this.SampleTime为水平方向移动的距离
             end
         end
 

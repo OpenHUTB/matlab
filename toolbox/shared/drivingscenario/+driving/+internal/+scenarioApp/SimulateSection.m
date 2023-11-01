@@ -1,7 +1,7 @@
 classdef SimulateSection<matlab.ui.internal.toolstrip.Section
 
     properties
-        Repeat=false;
+        Repeat = false;
     end
 
 
@@ -58,9 +58,9 @@ classdef SimulateSection<matlab.ui.internal.toolstrip.Section
             settings.Description=getString(message('driving:scenarioApp:SimulateSettingsDescription'));
             settings.ButtonPushedFcn=hApplication.initCallback(@this.settingsCallback);
             settings.Tag='settings';
-            repeat=CheckBox(getString(message('driving:scenarioApp:RepeatLabel')));
-            repeat.Tag='repeat';
-            repeat.Description=getString(message('driving:scenarioApp:RepeatDescription'));
+            repeat = CheckBox(getString(message('driving:scenarioApp:RepeatLabel')));
+            repeat.Tag = 'repeat';
+            repeat.Description = getString(message('driving:scenarioApp:RepeatDescription'));
             repeat.ValueChangedFcn=@this.repeatCallback;
 
             add(addColumn(this),reset);
@@ -152,7 +152,7 @@ classdef SimulateSection<matlab.ui.internal.toolstrip.Section
 
 
         function repeatCallback(this,hcbo,~)
-            this.Application.Simulator.Player.Repeat=hcbo.Selected;
+            this.Application.Simulator.Player.Repeat = hcbo.Selected;
         end
 
 

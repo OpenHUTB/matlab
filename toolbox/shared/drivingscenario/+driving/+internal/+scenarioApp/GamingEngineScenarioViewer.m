@@ -149,6 +149,7 @@ classdef GamingEngineScenarioViewer < handle
                 % 测试：drivingScenarioDesigner('LeftTurnScenarioNoSensors.mat')
                 if this.is_dynamic == 1  % && getCurrentSample(simulator) == 100  % 获得当前从仿真开始后的采样时间; false &&
                     current_sample = getCurrentSample(simulator);
+                    designer = this.Application.Simulator.Designer;
                     % current_sample = 1;
                     data_dir = 'D:\work\workspace\driving\perception\dynamic\id7\2';
                     radar_det = readmatrix(fullfile(data_dir, 'radarDet.txt'));
@@ -172,7 +173,9 @@ classdef GamingEngineScenarioViewer < handle
                     tmp_profiles = this.Animator.Scenario.ActorProfiles;
                     cur_profiles = tmp_profiles;
 
-                    scenario = this.Application.Simulator.Designer.Scenario;
+                    % scenario = this.Application.Simulator.Designer.Scenario;
+
+                    actor_ids = cell2mat(tmp_actors_keys);
 
                     for i = 1 : numel(cur_det)
                         actors(i).ActorID = obj_list(i, 3);
@@ -194,7 +197,6 @@ classdef GamingEngineScenarioViewer < handle
 
                         actors(i).AngularVelocity = [0, 0, 0];
 
-                        actor_ids = cell2mat(tmp_actors_keys);
                         if ~ismember(actors(i).ActorID, actor_ids)
                             car = vehicle(this.Application.Simulator.Designer.Scenario, ...
                                 'ClassID',actors(i).ActorID, ...
@@ -202,7 +204,8 @@ classdef GamingEngineScenarioViewer < handle
                                 'Velocity', actors(i).Velocity, ...
                                 'Pitch', actors(i).Pitch, ...
                                 'Roll', actors(i).Roll, ...
-                                'Yaw', actors(i).Yaw);
+                                'Yaw', actors(i).Yaw, ...
+                                'AngularVelocity', [0, 0, 0]);
                         end
 
                         % Animator的Actor Map 信息添加
@@ -218,6 +221,16 @@ classdef GamingEngineScenarioViewer < handle
                         % ActorProfiles信息的添加
                         cur_profiles(i, :) = tmp_profiles(1, :);
                     end
+
+                    % 如果之前的actor_ids不在当前帧的检测结果obj_list(:, 3)中，则从场景中移除
+%                     for i = 1 : numel(actor_ids)
+%                         cur_actor_id = actor_ids(i);
+%                         if ~ismember(cur_actor_id, obj_list(:, 3))
+%                             % 从场景 this.Application.Simulator.Designer.Scenario 中移除
+%                             designer.deleteActor(cur_actor_id);  % bug：删除后索引变了：索引超过数组元素的数量。索引不能超过 1。
+%                         end
+%                     end
+
                     animate_input.Actors = actors;
                     % this.Application.Simulator.Designer.Scenario.Actors = animator_actors;
 

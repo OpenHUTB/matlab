@@ -4,16 +4,19 @@ classdef ScenarioBuilder<handle
         Scenario
     end
 
+
     properties
-        SampleTime=0.01;
-        CustomSeed=[];
-        AxesOrientation='ENU'
-        Use3dSimDimensions=false;
+        SampleTime = 0.01;           % 仿真的默认采样时间为0.01
+        CustomSeed = [];
+        AxesOrientation = 'ENU';     % 东北天坐标系（ENU）：X轴：指向东边；Y轴：指向北边；Z轴：指向天顶（https://blog.csdn.net/xiaojinger_123/article/details/122112843）
+        Use3dSimDimensions = false;  % 是否使用三维仿真维度
     end
+
 
     properties(Dependent)
         GeographicReference
     end
+
 
     properties(SetAccess=protected, Hidden)
         RoadSpecifications=driving.internal.scenarioApp.road.Specification.empty;
@@ -24,12 +27,14 @@ classdef ScenarioBuilder<handle
         ActorCount=0;
     end
 
+
     methods
         function this=ScenarioBuilder
             this.ClassSpecifications=driving.internal.scenarioApp.ClassSpecifications;
         end
 
-        function set.Use3dSimDimensions(this,use3dSim)
+
+        function set.Use3dSimDimensions(this, use3dSim)
             this.Use3dSimDimensions=use3dSim;
             nActors=numel(this.ActorSpecifications);
             for indx=1:nActors
@@ -68,7 +73,6 @@ classdef ScenarioBuilder<handle
                 tag='session';
             end
 
-
             if any(strcmp(tag,{'session','scenario'}))
                 this.RoadSpecifications=driving.internal.scenarioApp.road.Specification.empty;
                 this.ActorSpecifications=driving.internal.scenarioApp.ActorSpecification.empty;
@@ -84,20 +88,21 @@ classdef ScenarioBuilder<handle
             end
         end
 
+
         function str=generateMatlabCode(this,functionName,egoCar,stopTime)
             if nargin<3
                 egoCar=[];
             end
 
-            rngSeed=this.CustomSeed;
+            rngSeed = this.CustomSeed;
 
-            roadSpecs=this.RoadSpecifications;
-            actorSpecs=this.ActorSpecifications;
-            barrierSpecs=this.BarrierSpecifications;
-            sensorSpecs=this.SensorSpecifications;
+            roadSpecs = this.RoadSpecifications;
+            actorSpecs = this.ActorSpecifications;
+            barrierSpecs = this.BarrierSpecifications;
+            sensorSpecs = this.SensorSpecifications;
 
-            createSensorsH1="% createSensors Returns all sensor objects to generate detections";
-            createScenarioH1="% createDrivingScenario Returns the drivingScenario defined in the Designer";
+            createSensorsH1 = "% createSensors Returns all sensor objects to generate detections";
+            createScenarioH1 = "% createDrivingScenario Returns the drivingScenario defined in the Designer";
             if~isempty(ver('driving'))
                 tbx='driving';
                 sensorSpecs(~[sensorSpecs.Enabled])=[];
@@ -683,9 +688,9 @@ classdef ScenarioBuilder<handle
         end
 
 
-        function varargout=addActor(this,varargin)
-            actorSpec=driving.internal.scenarioApp.ActorSpecification(varargin{:});
-            actor=addActorSpecification(this,actorSpec);
+        function varargout = addActor(this, varargin)
+            actorSpec = driving.internal.scenarioApp.ActorSpecification(varargin{:});
+            actor = addActorSpecification(this, actorSpec);
 
             if nargout
                 varargout={actorSpec,actor};
@@ -693,21 +698,21 @@ classdef ScenarioBuilder<handle
         end
 
 
-        function varargout=addActorSpecification(this,actorSpec,index)
-            maxIndex=numel(this.ActorSpecifications)+numel(actorSpec);
-            applyInMiddle=true;
-            if nargin<3||all(index>maxIndex)
-                index=maxIndex;
+        function varargout = addActorSpecification(this, actorSpec, index)
+            maxIndex = numel(this.ActorSpecifications) + numel(actorSpec);
+            applyInMiddle = true;
+            if nargin<3 || all(index>maxIndex)
+                index = maxIndex;
                 applyInMiddle=false;
             end
-            allSpecs=this.ActorSpecifications;
+            allSpecs = this.ActorSpecifications;
 
             if(size(actorSpec,2)<size(actorSpec,1))
                 actorSpec=actorSpec';
             end
 
             if(numel(index)>1)
-                for indx=1:numel(index)
+                for indx = 1:numel(index)
                     allSpecs=[allSpecs(1:(index(indx)-numel(actorSpec))),actorSpec(indx),allSpecs(index(indx):end)];
                 end
             else
@@ -742,13 +747,14 @@ classdef ScenarioBuilder<handle
         end
 
 
-        function varargout=deleteActor(this,index)
-            allActors=this.ActorSpecifications;
+        % 从场景中删除索引为index的参与者
+        function varargout=deleteActor(this, index)
+            allActors = this.ActorSpecifications;
             if nargout
                 varargout={allActors(index)};
             end
             for indx=1:numel(index)
-                if index(indx)==numel(allActors)&&isempty(getProperty(this.ClassSpecifications,allActors(index(indx)).ClassID,'PlotColor'))
+                if index(indx)==numel(allActors) && isempty(getProperty(this.ClassSpecifications,allActors(index(indx)).ClassID,'PlotColor'))
                     newCount=this.ActorCount-1;
                     if newCount<0
                         newCount=0;
@@ -756,9 +762,9 @@ classdef ScenarioBuilder<handle
                     this.ActorCount=newCount;
                 end
             end
-            this.ActorSpecifications(index)=[];
+            this.ActorSpecifications(index) = [];
             generateScenarioActorsFromSpecifications(this);
-            updatePlotsForActors(this);
+            updatePlotsForActors(this);  % 目前未实现，导致画布和视图出现不一致，虚幻场景也未更新
         end
 
 
@@ -1065,24 +1071,24 @@ classdef ScenarioBuilder<handle
         end
 
 
-        function generateScenarioActorsFromSpecifications(this,s)
+        function generateScenarioActorsFromSpecifications(this, s)
             if nargin<2
                 s=this.Scenario;
             end
             removeAllActors(s);
-            actorSpecs=this.ActorSpecifications;
-            use3d=this.Use3dSimDimensions;
+            actorSpecs = this.ActorSpecifications;
+            use3d = this.Use3dSimDimensions;
             pvPairs={};
             for indx=1:numel(actorSpecs)
                 if use3d
-                    pvPairs=getActorPVPairs(actorSpecs(indx));
+                    pvPairs = getActorPVPairs(actorSpecs(indx));
                 end
-                actorSpecs(indx).applyToScenario(s,this.ClassSpecifications,pvPairs{:});
+                actorSpecs(indx).applyToScenario(s, this.ClassSpecifications, pvPairs{:});
             end
         end
 
 
-        function varargout=generateNewScenarioFromSpecifications(this)
+        function varargout = generateNewScenarioFromSpecifications(this)
             s=drivingScenario(...
                 'SampleTime',this.SampleTime,...
                 'AxesOrientation',this.AxesOrientation,...
@@ -1160,18 +1166,21 @@ classdef ScenarioBuilder<handle
         function onNewUse3dSimDimensions(~,~)
         end
 
+
         function onNewSampleTime(~,~)
         end
 
+
         function updatePlots(~)
         end
+
 
         function updatePlotsForActors(~)
         end
 
 
         function convertAxesOrientation(this,oldOrientation,newOrientation)
-            roadSpecs=this.RoadSpecifications;%#ok<*MCSUP>
+            roadSpecs = this.RoadSpecifications;%#ok<*MCSUP>
             actorSpecs=this.ActorSpecifications;
             sensorSpecs=this.SensorSpecifications;
             barrierSpecs=this.BarrierSpecifications;
@@ -1246,11 +1255,10 @@ yawCell=num2cell([barrierSpec.BarrierSegments(:).Yaw]);
 end
 
 
-function pvPairs=getActorPVPairs(spec)
-
-dims=driving.scenario.internal.GamingEngineScenarioAnimator.getAssetDimensions(spec.AssetType);
-pvPairs=matlabshared.application.structToPVPairs(dims);
-
+% 获得参与者"参数-值（Parameter-Value）"对
+function pvPairs = getActorPVPairs(spec)
+    dims = driving.scenario.internal.GamingEngineScenarioAnimator.getAssetDimensions(spec.AssetType);
+    pvPairs = matlabshared.application.structToPVPairs(dims);
 end
 
 

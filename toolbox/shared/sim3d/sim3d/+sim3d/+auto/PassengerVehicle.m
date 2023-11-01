@@ -258,7 +258,6 @@ classdef PassengerVehicle < sim3d.auto.WheeledVehicle
 
 
         function [ steerAngle, wheelRotation ] = EstimateWheelRotationAndSteerAngle( ~, pX, pY, pYaw, pWheelRotation, X, Y, Yaw, WheelBase, TrackWidth, WheelRadius )
-
             dX = X - pX;
             dY = Y - pY;
             dPsi = sign( Yaw - pYaw ) * mod( Yaw - pYaw, 2 * pi );
@@ -295,7 +294,6 @@ classdef PassengerVehicle < sim3d.auto.WheeledVehicle
             self.LightModule = other.LightModule;
 
             copy@sim3d.auto.WheeledVehicle( self, other, CopyChildren, UseSourcePosition );
-
         end
 
 

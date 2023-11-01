@@ -729,7 +729,7 @@ classdef Geometry < handle
                 Size( 1, 3 )double = 100 * [ 10, 10, 0.1 ]
             end
 
-            arguments( Repeating )
+            arguments(Repeating)
                 varargin
             end
             Floor = sim3d.Actor( 'ActorName', 'Floor' );

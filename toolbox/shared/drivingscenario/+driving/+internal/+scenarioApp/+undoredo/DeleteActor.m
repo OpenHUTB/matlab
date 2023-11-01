@@ -1,16 +1,15 @@
 classdef DeleteActor<driving.internal.scenarioApp.undoredo.Delete
 
-
-
-
     properties(Access=protected)
         WasEgoCar=false;
     end
+
 
     methods
         function this=DeleteActor(varargin)
             this@driving.internal.scenarioApp.undoredo.Delete(varargin{:});
         end
+
 
         function execute(this)
             hApp=this.Application;
@@ -20,7 +19,7 @@ classdef DeleteActor<driving.internal.scenarioApp.undoredo.Delete
             if~isempty(oldEgo)&&any(oldEgo==this.Index)
                 this.WasEgoCar=oldEgo;
             end
-            this.Specification=deleteActor(hApp,this.Index);
+            this.Specification = deleteActor(hApp,this.Index);
             notify(hApp,'NumActorsChanged');
             actorProps=hApp.ActorProperties;
             if~isempty(actorProps)&&~isstruct(actorProps)
@@ -30,6 +29,7 @@ classdef DeleteActor<driving.internal.scenarioApp.undoredo.Delete
             hApp.ScenarioView.CurrentSpecification=[];
         end
 
+
         function undo(this)
             hApp=this.Application;
             notify(hApp,'NumActorsChanging');
@@ -38,16 +38,18 @@ classdef DeleteActor<driving.internal.scenarioApp.undoredo.Delete
             end
             if this.WasEgoCar
                 hApp.EgoCarId=this.WasEgoCar;
-            elseif any(this.Index<=hApp.EgoCarId)
+            elseif any(this.Index <= hApp.EgoCarId)
                 hApp.EgoCarId=hApp.EgoCarId+1;
             end
             updateForNewActor(hApp,this.Specification);
             notify(hApp,'NumActorsChanged');
         end
 
+
         function str=getDescription(~)
             str=getString(message('driving:scenarioApp:DeleteActorText'));
         end
+
     end
 end
 

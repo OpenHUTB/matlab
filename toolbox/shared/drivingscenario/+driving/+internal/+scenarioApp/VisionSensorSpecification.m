@@ -1,36 +1,30 @@
 classdef(ConstructOnLoad)VisionSensorSpecification<driving.internal.scenarioApp.SensorSpecification
     properties
-
-
-
         DetectionType='objects';
     end
+
+
     properties
-LaneUpdateInterval
-MinLaneImageSize
-LaneBoundaryAccuracy
-MaxNumLanesSource
-MaxNumLanes
-MaxSpeed
-MaxAllowedOcclusion
-MinObjectImageSize
-FalsePositivesPerImage
-BoundingBoxAccuracy
-ProcessNoiseIntensity
+        LaneUpdateInterval
+        MinLaneImageSize
+        LaneBoundaryAccuracy
+        MaxNumLanesSource
+        MaxNumLanes
+        MaxSpeed
+        MaxAllowedOcclusion
+        MinObjectImageSize
+        FalsePositivesPerImage
+        BoundingBoxAccuracy
+        ProcessNoiseIntensity
 
-
-FocalLength
-PrincipalPoint
-ImageSize
-
-
-
+        FocalLength
+        PrincipalPoint
+        ImageSize
     end
+
 
     methods
         function this=VisionSensorSpecification(varargin)
-
-
             this@driving.internal.scenarioApp.SensorSpecification(varargin{:});
             this.Type='vision';
         end
@@ -246,42 +240,12 @@ ImageSize
         end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function[sensorPairs,specPairs]=getPVPairs(this,varargin)
             sensorPairs=getPVPairs@driving.internal.scenarioApp.SensorSpecification(this,varargin{:});
             specPairs={'DetectionType',this.DetectionType};
         end
     end
+
 
     methods(Hidden)
         function c=getPropertySheetConstructor(~)
@@ -302,6 +266,7 @@ ImageSize
             end
         end
 
+
         function[pvPairs,warnings]=getPVPairsForSimulation3DBlock(this,params)
             [pvPairs,warnings]=getPVPairsForSimulation3DBlock@driving.internal.scenarioApp.SensorSpecification(this,params);
             if~strcmp(this.DetectionCoordinates,'Ego Cartesian')
@@ -310,35 +275,40 @@ ImageSize
         end
     end
 
+
     methods(Access=protected)
         function b=isObjectDetections(this)
             b=any(strcmp(this.DetectionType,{'lanes&objects','objects'}));
         end
+
         function color=getDefaultColor(~)
             color=[0,114,189]/255;
         end
+
         function sensor=getDefaultSensor(~)
             sensor=visionDetectionGenerator();
         end
 
+
         function value=getSpecificSimulinkBlockPV(this,parameter)
             switch parameter
-            case 'Intrinsics'
-                sensorParamExp='driving.internal.cameraIntrinsics(';
-                sensorObj=this.Sensor.Intrinsics;
-                sensorObjFields={'FocalLength','PrincipalPoint','ImageSize',...
-                'RadialDistortion','TangentialDistortion','Skew'};
-                for knd=1:length(sensorObjFields)
-                    if~strcmp(sensorObjFields{knd},'IntrinsicMatrix')
-                        value=mat2str(sensorObj.(sensorObjFields{knd}));
-                        sensorParamExp=[sensorParamExp,'''',sensorObjFields{knd},''',',value,','];%#ok<AGROW>
+                case 'Intrinsics'
+                    sensorParamExp='driving.internal.cameraIntrinsics(';
+                    sensorObj=this.Sensor.Intrinsics;
+                    sensorObjFields={'FocalLength','PrincipalPoint','ImageSize',...
+                        'RadialDistortion','TangentialDistortion','Skew'};
+                    for knd=1:length(sensorObjFields)
+                        if~strcmp(sensorObjFields{knd},'IntrinsicMatrix')
+                            value=mat2str(sensorObj.(sensorObjFields{knd}));
+                            sensorParamExp=[sensorParamExp,'''',sensorObjFields{knd},''',',value,','];%#ok<AGROW>
+                        end
                     end
-                end
-                value=[sensorParamExp(1:end-1),')'];
-            otherwise
-                value=[];
+                    value=[sensorParamExp(1:end-1),')'];
+                otherwise
+                    value=[];
             end
         end
+
 
         function setFieldOfView(this,fov)
             sensor=getSensor(this);
@@ -354,30 +324,27 @@ ImageSize
 
 
         function props=getExposedProperties(this)
-
-
-
             props=getExposedProperties@driving.internal.scenarioApp.SensorSpecification(this);
             props=[props,{'MaxSpeed',...
-            'MaxAllowedOcclusion',...
-            'MinObjectImageSize',...
-            'FalsePositivesPerImage',...
-            'BoundingBoxAccuracy',...
-            'ProcessNoiseIntensity'}];
+                'MaxAllowedOcclusion',...
+                'MinObjectImageSize',...
+                'FalsePositivesPerImage',...
+                'BoundingBoxAccuracy',...
+                'ProcessNoiseIntensity'}];
             detType=string(this.DetectionType);
             if detType.contains('lanes')
                 props=[props,{'MinLaneImageSize',...
-                'LaneBoundaryAccuracy',...
-                'MaxNumLanesSource'}];
+                    'LaneBoundaryAccuracy',...
+                    'MaxNumLanesSource'}];
                 if strcmp(this.MaxNumLanesSource,'Property')
                     props=[props,{'MaxNumLanes'}];
                 end
             end
         end
 
+
         function pvPairs=getPVPairsForMatlabCode(this,defaultSensor)
             pvPairs=getPVPairsForMatlabCode@driving.internal.scenarioApp.SensorSpecification(this,defaultSensor);
-
 
             index=find(strcmp(pvPairs(1:2:end),'DetectionType'));
             if~isempty(index)
@@ -388,11 +355,12 @@ ImageSize
 
             intrinsics=defaultSensor.Intrinsics;
             if~isequal(intrinsics.FocalLength,this.FocalLength)||...
-                ~isequal(intrinsics.PrincipalPoint,this.PrincipalPoint)||...
-                ~isequal(intrinsics.ImageSize,this.ImageSize)
+                    ~isequal(intrinsics.PrincipalPoint,this.PrincipalPoint)||...
+                    ~isequal(intrinsics.ImageSize,this.ImageSize)
                 pvPairs=[pvPairs,{'Intrinsics',['cameraIntrinsics(',mat2str(this.FocalLength),',',mat2str(this.PrincipalPoint),',',mat2str(this.ImageSize),')']}];
             end
         end
+
 
         function b=hasMaxNumDetections(this)
             detType=string(this.DetectionType);

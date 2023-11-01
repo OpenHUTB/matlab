@@ -1,6 +1,6 @@
 classdef PasteActor<driving.internal.scenarioApp.undoredo.Edit
     properties(SetAccess=protected)
-Actor
+        Actor
     end
 
     methods
@@ -9,14 +9,14 @@ Actor
             this.Actor=actor;
         end
 
+
         function execute(this)
-
-
             app=this.Application;
             actor=this.Actor;
             addActorSpecification(app,actor);
             updateForNewActor(app,actor);
         end
+
 
         function undo(this)
             app=this.Application;
@@ -25,6 +25,7 @@ Actor
             deleteActor(app,index);
             update(app.ActorProperties);
         end
+
 
         function str=getDescription(this)
             str=getString(message('Spcuilib:application:PasteObject',[this.Actor.Name]));
