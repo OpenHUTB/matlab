@@ -1,8 +1,4 @@
 function pauseAtFailure
-
-
-
-
 keyboard
 end
 
