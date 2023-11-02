@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Simulation 3D Actor Transform Set</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Vehicle Dynamics Blockset"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../vehicle-scenarios.html",
+          "name": "Vehicle Scenarios"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "vehicle-scenarios"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="block:Simulation 3D Actor Transform Set"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="blk"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/block"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The Simulation 3D Actor Transform Set block sets the actor translation, rotation, and scale in the 3D visualization environment."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "vdynblks";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Vehicle Dynamics Blockset</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../vehicle-scenarios.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Vehicle Scenarios</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">Simulation 3D Actor Transform Set</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d124e183748" class="intrnllnk">Description</a></li>
+<li><a href="#d124e183834" class="intrnllnk">Ports</a><ul class="nav"><li><a href="#d124e183836" class="intrnllnk">Input</a><ul class="nav"><li><a href="#d124e183840" class="intrnllnk">Translation</a></li>
+<li><a href="#d124e184055" class="intrnllnk">Rotation</a></li>
+<li><a href="#d124e184270" class="intrnllnk">Scale</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#d124e184515" class="intrnllnk">Parameters</a><ul class="nav"><li><a href="#d124e184517" class="intrnllnk">Actor Setup</a><ul class="nav"><li><a href="#mw_281f3502-16a8-479e-b09d-c71ab0443d6e" class="intrnllnk">Tag for actor in 3D scene, ActorTag</a></li>
+<li><a href="#mw_6d168813-a86f-4d8e-9e2b-7bf9fd16136a" class="intrnllnk">Number of parts per actor to set, NumberOfParts</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#d124e184586" class="intrnllnk">Initial Values</a><ul class="nav"><li><a href="#d124e184590" class="intrnllnk">Initial array values to translate actor per part, Translation</a></li>
+<li><a href="#d124e184815" class="intrnllnk">Initial array values to rotate actor per part, Rotation</a></li>
+<li><a href="#d124e185040" class="intrnllnk">Initial array values to scale actor per part, Scale</a></li>
+<li><a href="#mw_8c3f9074-edf2-4812-9851-2962460e12cf" class="intrnllnk">Sample time</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#examples" class="intrnllnk">Model Examples</a></li>
+<li><a href="#mw_da93c5ec-30aa-4b92-bf8e-5577329b6cdb_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_da93c5ec-30aa-4b92-bf8e-5577329b6cdb_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="block_ref"><span id="mw_da93c5ec-30aa-4b92-bf8e-5577329b6cdb" class="anchor_target"></span><span id="vbtransformset" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">Simulation 3D Actor Transform Set</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">设置参与者平移、旋转、缩放</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div itemprop="content" class="ref_sect"><div class="row"><div class="col-xs-12 col-sm-9 col-md-10"><ul class="list-unstyled library_path_container"><li><strong>库：</strong></li>
+<li><p class="library_path">
+      Vehicle Dynamics Blockset / 
+      Vehicle Scenarios / 
+      Sim3D / 
+      Sim3D Core
+   </p><p class="library_path">
+      Aerospace Blockset / 
+      Animation / 
+      Simulation 3D
+   </p><p class="library_path">
+      Simulink 3D Animation / 
+      Simulation 3D
+   </p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="function_icons"><ul class="list-unstyled"><li class="add_cursor_pointer" data-toggle="modal" data-target="#image_zoom_modal" data-title="Simulation 3D Actor Transform Set block" data-src="transformset.png"><img itemprop="thumbnailUrl" src="transformset.png" alt="Simulation 3D Actor Transform Set block" height="169" width="263"/><span class="icon-zoomin add_font_color_white add_background_color_mediumgray function_icon_zoom"></span></li>
+</ul>
+</div>
+<div class="modal fade" id="image_zoom_modal" tabindex="-1" role="dialog" aria-labelledby="modal-title"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="modal-title remove_border" id="modal-title"></h2>
+</div>
+<div class="modal-body"><img src="transformset.png" id="image_zoom" class="center-block"/></div>
+</div>
+</div>
+</div>
+<script>
+      $('#image_zoom_modal').on('show.bs.modal', function (event) {
+      var modal_trigger = $(event.relatedTarget)
+      var image_src = modal_trigger.data('src');
+      var image_title = modal_trigger.data('title');
+      $('#image_zoom').attr('src', image_src);
+      if (image_title) {
+        $('#modal-title').text(image_title);
+      } else { 
+        $('#modal-title').hide;  
+      } 
+      })
+    </script>
+<div id="d124e183748_div" class="refsect1 description"><h2 id="d124e183748">描述</h2>
+<p>The <span class="block">Simulation 3D Actor Transform Set </span>模块设置三维可视化环境中参与者的平移、旋转和缩放。</p>
+<p>该模块使用最初与惯性世界坐标系对齐的车辆固定坐标系。</p>
+<div class="informalfigure"><div id="d124e183757" class="mediaobject"><p><img src="cs_3dtransform.png" alt="Coordinate system image showing roll, pitch, and yaw about x, y, and z axes, respectively" height="221" width="229"/></p>
+</div>
+</div>
+<p></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="17%"/>
+<col class="tcol2" width="83%"/>
+</colgroup>
+<thead><tr><th>坐标轴</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr><td><span class="emphasis"><em>X</em></span></td>
+<td><p>车辆前进方向</p>
+<p>翻滚 — 绕 X 轴右手旋转</p>
+</td>
+</tr>
+<tr><td><span class="emphasis"><em>Y</em></span></td>
+<td><p>延伸到车辆右侧，最初与地平面平行</p>
+<p>俯仰 — 绕 Y 轴右手旋转</p>
+</td>
+</tr>
+<tr><td><span class="emphasis"><em>Z</em></span></td>
+<td><p>向上延伸</p>
+<p>偏航 — 绕 Z 轴左手旋转</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<p>参与者是支持三维平移、旋转和缩放的场景对象。部件是参与者组件。组件本身并不存在；他们与一个参与者有联系。</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>提示</strong></p>
+<p>验证 <span class="block">Simulation 3D Actor Transform
+          Set</span> 模块是否在 <span class="block">Simulation 3D Scene Configuration</span>
+        模块之前执行。这样，<span class="block">Simulation 3D Actor Transform Set</span> 在虚幻引擎 <sup>®</sup> 三维可视化环境接收信号数据之前准备好信号数据。要检查块执行顺序，请右键单击模块并选择“属性（Properties）”。在“常规（General）”选项卡上，确认以下“优先级（Priority）”设置：</p>
+<div class="itemizedlist"><ul><li><p><span class="block">Simulation 3D Scene Configuration</span> — <code class="literal">0</code></p></li>
+<li><p><span class="block">Simulation 3D Actor Transform Set</span> — <code class="literal remove_text_wrapping">-1</code></p></li>
+</ul>
+</div>
+<p>
+有关执行顺序的更多信息，请参阅 <a href="../../simulink/ug/controlling-and-displaying-the-sorted-order.html" class="a">控制和显示执行顺序</a>。</p>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e183834">端口</h2>
+</div>
+<div class="ref_sect"><h3 id="d124e183836">输入</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="d124e183836_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e183840" data-target="#expand_panel_body_d124e183840" aria-controls="expand_panel_body_d124e183840" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e183840"><code class="name">Translation</code> — 参与者平移<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">数组</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e183840" aria-labelledby="expand_panel_heading_d124e183840" class="panel-collapse collapse"><div class="panel-body">
+    <p>参与者平移，单位为米。数组维度是每个参与者的部件数量 ×<code class="literal">3</code>。</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Translation(1,1)</code>、<code class="literal">Translation(1,2)</code> 和 <code class="literal">Translation(1,3)</code> — 车辆分别沿世界X轴、Y轴和Z轴的位移。</p></li>
+<li><p><code class="literal">Translation(...,1)</code>、<code class="literal">Translation(...,2)</code>、和 <code class="literal">Translation(...,3)</code> — 在最初分别与世界X轴、 Y轴和Z轴对齐的车辆固定坐标系中， 参与者相对于车辆的位移。</p></li>
+</ul>
+</div>
+<p>
+</p>
+    <p>例如，考虑一个具有车身和四个轮子的车辆参与者。信号
+        <code class="literal">Translation</code>：</p>
+<div class="itemizedlist"><ul><li><p>维度为 <code class="literal">[5x3]</code>.</p></li>
+<li><p>包含根据相对于车辆车轴和车轮位置的平移信息。</p>
+<div id="d124e183902" class="mediaobject"><div class="code_responsive"><p class="listprogramlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-48px" display="block"><mrow><mi>T</mi><mi>r</mi><mi>a</mi><mi>n</mi><mi>s</mi><mi>l</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>=</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mrow><msub><mi>X</mi><mi>v</mi></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mi>v</mi></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mi>v</mi></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd></mtr></mtable></mrow><mo>]</mo></mrow></mrow></math></p>
+</div>
+</div><p></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="56%"/>
+<col class="tcol2" width="44%"/>
+</colgroup>
+<thead><tr><th>平移</th>
+<th>数组元素</th>
+</tr>
+</thead>
+<tbody><tr><td><p>车辆,
+                      <em class="varname">X<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Translation(1,1)</code></td>
+</tr>
+<tr><td><p>车辆,
+                      <em class="varname">Y<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Translation(1,2)</code></td>
+</tr>
+<tr><td><p>车辆,
+                      <em class="varname">Z<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Translation(1,3)</code></td>
+</tr>
+<tr><td><p>左前轮,
+                        <em class="varname">X<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Translation(2,1)</code></td>
+</tr>
+<tr><td><p>左前轮,
+                        <em class="varname">Y<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Translation(2,2)</code></td>
+</tr>
+<tr><td><p>左前轮,
+                        <em class="varname">Z<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Translation(2,3)</code></td>
+</tr>
+<tr><td><p>右前轮,
+                        <em class="varname">X<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Translation(3,1)</code></td>
+</tr>
+<tr><td><p>右前轮,
+                        <em class="varname">Y<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Translation(3,2)</code></td>
+</tr>
+<tr><td><p>右前轮,
+                        <em class="varname">Z<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Translation(3,3)</code></td>
+</tr>
+<tr><td><p>左后轮,
+                        <em class="varname">X<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Translation(4,1)</code></td>
+</tr>
+<tr><td><p>左后轮,
+                        <em class="varname">Y<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Translation(4,2)</code></td>
+</tr>
+<tr><td><p>左后轮,
+                        <em class="varname">Z<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Translation(4,3)</code></td>
+</tr>
+<tr><td><p>右后轮,
+                        <em class="varname">X<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Translation(5,1)</code></td>
+</tr>
+<tr><td><p>右后轮,
+                        <em class="varname">Y<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Translation(5,2)</code></td>
+</tr>
+<tr><td><p>右后轮,
+                        <em class="varname">Z<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Translation(5,3)</code></td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p></li>
+</ul>
+</div>
+<p>
+</p>
+  </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e184055" data-target="#expand_panel_body_d124e184055" aria-controls="expand_panel_body_d124e184055" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e184055"><code class="name">Rotation</code> — 参与者旋转<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">数组</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e184055" aria-labelledby="expand_panel_heading_d124e184055" class="panel-collapse collapse"><div class="panel-body">
+    <p>参与者在 [-pi/2, pi/2] 范围内旋转（以弧度为单位）。数组维度是每个参与者的部件数量×<code class="literal">3</code>。</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Rotation(1,1)</code>、<code class="literal">Rotation(1,2) </code>和 <code class="literal">Rotation(1,3)</code> — 车辆分别绕车辆固定的俯仰(Pitch)、翻滚(Roll)和偏航(Yaw) Y、Z和X轴旋转。</p></li>
+<li><p><code class="literal">Rotation(...,1)、</code> <code class="literal">Rotation(...,2)、</code>和
+              <code class="literal">Rotation(...,3)</code> — 参与者分别绕车辆固定的俯仰、翻滚和偏航Y、Z和X轴旋转。</p></li>
+</ul>
+</div>
+<p>
+</p>
+    <p>例如，考虑一个具有车身和四个轮子的车辆参与者。信号
+        <code class="literal">Rotation</code>：</p>
+<div class="itemizedlist"><ul><li><p>维度为 <code class="literal">[5x3]</code>.</p></li>
+<li><p>包含根据车轴和车轮位置的旋转信息。</p>
+<div id="d124e184117" class="mediaobject"><div class="code_responsive"><p class="listprogramlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-48px" display="block"><mrow><mi>R</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>=</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mrow><mi>P</mi><mi>i</mi><mi>t</mi><mi>c</mi><msub><mi>h</mi><mi>v</mi></msub></mrow></mtd><mtd><mrow><mi>R</mi><mi>o</mi><mi>l</mi><msub><mi>l</mi><mi>v</mi></msub></mrow></mtd><mtd><mrow><mi>Y</mi><mi>a</mi><msub><mi>w</mi><mi>v</mi></msub></mrow></mtd></mtr><mtr><mtd><mrow><mi>P</mi><mi>i</mi><mi>t</mi><mi>c</mi><msub><mi>h</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>R</mi><mi>o</mi><mi>l</mi><msub><mi>l</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>Y</mi><mi>a</mi><msub><mi>w</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mi>P</mi><mi>i</mi><mi>t</mi><mi>c</mi><msub><mi>h</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>R</mi><mi>o</mi><mi>l</mi><msub><mi>l</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>Y</mi><mi>a</mi><msub><mi>w</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mi>P</mi><mi>i</mi><mi>t</mi><mi>c</mi><msub><mi>h</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>R</mi><mi>o</mi><mi>l</mi><msub><mi>l</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>Y</mi><mi>a</mi><msub><mi>w</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mi>P</mi><mi>i</mi><mi>t</mi><mi>c</mi><msub><mi>h</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>R</mi><mi>o</mi><mi>l</mi><msub><mi>l</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>Y</mi><mi>a</mi><msub><mi>w</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd></mtr></mtable></mrow><mo>]</mo></mrow></mrow></math></p>
+</div>
+</div><p></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="57%"/>
+<col class="tcol2" width="43%"/>
+</colgroup>
+<thead><tr><th>旋转</th>
+<th>数组元素</th>
+</tr>
+</thead>
+<tbody><tr><td><p>车辆,
+                      <em class="varname">Pitch<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Rotation(1,1)</code></td>
+</tr>
+<tr><td><p>车辆,
+                      <em class="varname">Roll<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Rotation(1,2)</code></td>
+</tr>
+<tr><td><p>车辆,
+                      <em class="varname">Yaw<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Rotation(1,3)</code></td>
+</tr>
+<tr><td><p>左前轮,
+                        <em class="varname">Pitch<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(2,1)</code></td>
+</tr>
+<tr><td><p>左前轮,
+                        <em class="varname">Roll<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(2,2)</code></td>
+</tr>
+<tr><td><p>左前轮,
+                        <em class="varname">Yaw<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(2,3)</code></td>
+</tr>
+<tr><td><p>右前轮,
+                          <em class="varname">Pitch<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(3,1)</code></td>
+</tr>
+<tr><td><p>右前轮,
+                        <em class="varname">Roll<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(3,2)</code></td>
+</tr>
+<tr><td><p>右前轮,
+                        <em class="varname">Yaw<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(3,3)</code></td>
+</tr>
+<tr><td><p>左后轮,
+                        <em class="varname">Pitch<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(4,1)</code></td>
+</tr>
+<tr><td><p>左后轮,
+                        <em class="varname">Roll<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(4,2)</code></td>
+</tr>
+<tr><td><p>左后轮,
+                        <em class="varname">Yaw<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(4,3)</code></td>
+</tr>
+<tr><td><p>右后轮,
+                        <em class="varname">Pitch<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(5,1)</code></td>
+</tr>
+<tr><td><p>右后轮,
+                        <em class="varname">Roll<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(5,2)</code></td>
+</tr>
+<tr><td><p>右后轮,
+                        <em class="varname">Yaw<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(5,3)</code></td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p></li>
+</ul>
+</div>
+<p>
+</p>
+  </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e184270" data-target="#expand_panel_body_d124e184270" aria-controls="expand_panel_body_d124e184270" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="d124e184270"><code class="name">Scale</code> — 参与者缩放比例<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">数组</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e184270" aria-labelledby="expand_panel_heading_d124e184270" class="panel-collapse collapse"><div class="panel-body">
+    <p>参与者缩放比例。数组维度是每个参与者的部件数量 ×<code class="literal">3</code>。</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Scale(1,1)、</code><code class="literal">Scale(1,2)</code> 和 <code class="literal">Scale(1,3)</code> — 分别沿世界 X、 Y 和 Z 轴的车辆缩放比例。</p></li>
+<li><p><code class="literal">Scale(...,1)、</code><code class="literal">Scale(...,2)</code> 和 <code class="literal">Scale(...,3)</code> — 参与者分别沿世界X、 Y和Z轴缩放比例。</p></li>
+</ul>
+</div>
+<p>
+</p>
+    <p>例如，考虑一个具有车身和四个轮子的车辆参与者。信号
+        <code class="literal">Scale</code>：</p>
+<div class="itemizedlist"><ul><li><p>维度为：<code class="literal">[5x3]</code>.</p></li>
+<li><p>包含根据车轴和车轮位置的比例信息。</p>
+<div id="d124e184332" class="mediaobject"><div class="code_responsive"><p class="listprogramlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-56px" display="block"><mrow><mi>S</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo>=</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mrow><msub><mi>X</mi><mrow><msub><mi>V</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><msub><mi>V</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><msub><mi>V</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>F</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>F</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>F</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>F</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>F</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>F</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>R</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>R</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>R</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>R</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>R</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>R</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd></mtr></mtable></mrow><mo>]</mo></mrow></mrow></math></p>
+</div>
+</div><p></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="57%"/>
+<col class="tcol2" width="43%"/>
+</colgroup>
+<thead><tr><th>缩放比例</th>
+<th>数组元素</th>
+</tr>
+</thead>
+<tbody><tr><td><p>车辆,
+                            <em class="varname">X<sub>v<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(1,1)</code></td>
+</tr>
+<tr><td><p>车辆,
+                            <em class="varname">Y<sub>v<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(1,2)</code></td>
+</tr>
+<tr><td><p>车辆,
+                            <em class="varname">Z<sub>v<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(1,3)</code></td>
+</tr>
+<tr><td><p>左前轮,
+                              <em class="varname">X<sub>FL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(2,1)</code></td>
+</tr>
+<tr><td><p>左前轮,
+                              <em class="varname">Y<sub>FL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(2,2)</code></td>
+</tr>
+<tr><td><p>左前轮,
+                              <em class="varname">Z<sub>FL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(2,3)</code></td>
+</tr>
+<tr><td><p>右前轮,
+                              <em class="varname">X<sub>FR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(3,1)</code></td>
+</tr>
+<tr><td><p>右前轮,
+                              <em class="varname">Y<sub>FR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(3,2)</code></td>
+</tr>
+<tr><td><p>右前轮,
+                              <em class="varname">Z<sub>FR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(3,3)</code></td>
+</tr>
+<tr><td><p>左后轮,
+                              <em class="varname">X<sub>RL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(4,1)</code></td>
+</tr>
+<tr><td><p>左后轮,
+                              <em class="varname">Y<sub>RL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(4,2)</code></td>
+</tr>
+<tr><td><p>左后轮,
+                              <em class="varname">Z<sub>RL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(4,3)</code></td>
+</tr>
+<tr><td><p>右后轮,
+                              <em class="varname">X<sub>RR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(5,1)</code></td>
+</tr>
+<tr><td><p>右后轮,
+                              <em class="varname">Y<sub>RR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(5,2)</code></td>
+</tr>
+<tr><td><p>右后轮,
+                              <em class="varname">Z<sub>RR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(5,3)</code></td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p></li>
+</ul>
+</div>
+<p>
+</p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e184515">参数</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="d124e184515_panel-group" role="tablist" aria-multiselectable="true"><strong class="mw-doc-parametersgrp" id="d124e184517">参与者设置</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_281f3502-16a8-479e-b09d-c71ab0443d6e" data-target="#expand_panel_body_mw_281f3502-16a8-479e-b09d-c71ab0443d6e" aria-controls="expand_panel_body_mw_281f3502-16a8-479e-b09d-c71ab0443d6e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Tagforactorin3DsceneActorTag" class="anchor_target"></span><h3 class="panel-title" id="mw_281f3502-16a8-479e-b09d-c71ab0443d6e"><code class="name">Tag for actor in 3D scene, ActorTag</code> — 名称<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">SimulinkActor1</code> (默认) | 字符向量</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_281f3502-16a8-479e-b09d-c71ab0443d6e" aria-labelledby="expand_panel_heading_mw_281f3502-16a8-479e-b09d-c71ab0443d6e" class="panel-collapse collapse"><div class="panel-body">
+          <p>参与者名称。</p>
+          <p>参与者是支持三维 平移、旋转和缩放的场景对象。部件是参与者组件。组件本身并不存在；他们与一个参与者有联系。</p>
+          <p>该模块不支持同一参与者标签的多个实例。要在使用三维模块对（例如， <span class="block">Simulation 3D Actor
+              Transform Get</span> and <span class="block">Simulation 3D Actor Transform Set</span>) 时引用相同的场景参与者，指定相同的 <strong class="emphasis bold">Tag for actor in 3D scene, ActorTag</strong>
+            参数。</p>
+        </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6d168813-a86f-4d8e-9e2b-7bf9fd16136a" data-target="#expand_panel_body_mw_6d168813-a86f-4d8e-9e2b-7bf9fd16136a" aria-controls="expand_panel_body_mw_6d168813-a86f-4d8e-9e2b-7bf9fd16136a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_NumberofpartsperactortosetNumberOfParts" class="anchor_target"></span><h3 class="panel-title" id="mw_6d168813-a86f-4d8e-9e2b-7bf9fd16136a"><code class="name">Number of parts per actor to set, NumberOfParts</code> — 名称<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (默认) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_6d168813-a86f-4d8e-9e2b-7bf9fd16136a" aria-labelledby="expand_panel_heading_mw_6d168813-a86f-4d8e-9e2b-7bf9fd16136a" class="panel-collapse collapse"><div class="panel-body">
+          <p>Number of parts per actor. Actors are scene objects
+            that support 3D translation, rotation, and scale. Parts are actor components. Components
+            do not exist by themselves; they are associated with an actor. Typically, a vehicle
+            actor with a body and four wheels has 5 parts.</p>
+          <p>The block does not support multiple instances of the same actor tag. To refer to the
+            same scene actor when you use the 3D block pairs (e.g. <span class="block">Simulation 3D Actor
+              Transform Get</span> and <span class="block">Simulation 3D Actor Transform Set</span>), specify
+            the same <strong class="emphasis bold">Tag for actor in 3D scene, ActorTag</strong>
+            parameter.</p>
+        </div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="d124e184586">Initial Values</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e184590" data-target="#expand_panel_body_d124e184590" aria-controls="expand_panel_body_d124e184590" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialarrayvaluestotranslateactorperpartTranslation" class="anchor_target"></span><h3 class="panel-title" id="d124e184590"><code class="name">Initial array values to translate actor per part, Translation</code> — 参与者初始位置<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0 0 0]</code> (default) | <code class="literal">array</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e184590" aria-labelledby="expand_panel_heading_d124e184590" class="panel-collapse collapse"><div class="panel-body">
+    <p>Actor initial position, along world <span class="emphasis"><em>X</em></span>-, <span class="emphasis"><em>Y</em></span>-, and
+        <span class="emphasis"><em>Z</em></span>- axes, in m.</p>
+    <p>Array dimensions are number of parts per actor-by-<code class="literal">3</code>.</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Translation(1,1)</code>, <code class="literal">Translation(1,2)</code>, and
+              <code class="literal">Translation(1,3)</code> — Vehicle displacement along world
+              <span class="emphasis"><em>X</em></span>-, <span class="emphasis"><em>Y</em></span>, and <span class="emphasis"><em>Z</em></span>- axes,
+            respectively.</p></li>
+<li><p><code class="literal">Translation(...,1)</code>, <code class="literal">Translation(...,2)</code>, and
+              <code class="literal">Translation(...,3)</code> — Actor displacement relative to vehicle, in
+            vehicle-fixed coordinate system initially aligned with world <span class="emphasis"><em>X</em></span>-,
+              <span class="emphasis"><em>Y</em></span>, and <span class="emphasis"><em>Z</em></span>- axes, respectively.</p></li>
+</ul>
+</div>
+<p>
+</p>
+    <p>For example, consider a vehicle actor with a vehicle body and four wheels. The parameter:</p>
+<div class="itemizedlist"><ul><li><p>Dimensions are <code class="literal">[5x3]</code>.</p></li>
+<li><p>Contains translation information according to the axle and wheel locations, relative
+            to vehicle.</p>
+<div id="d124e184662" class="mediaobject"><div class="code_responsive"><p class="listprogramlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-48px" display="block"><mrow><mi>T</mi><mi>r</mi><mi>a</mi><mi>n</mi><mi>s</mi><mi>l</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>=</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mrow><msub><mi>X</mi><mi>v</mi></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mi>v</mi></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mi>v</mi></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd></mtr></mtable></mrow><mo>]</mo></mrow></mrow></math></p>
+</div>
+</div><p></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="56%"/>
+<col class="tcol2" width="44%"/>
+</colgroup>
+<thead><tr><th>Translation</th>
+<th>Array Element</th>
+</tr>
+</thead>
+<tbody><tr><td><p>Vehicle,
+                      <em class="varname">X<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Translation(1,1)</code></td>
+</tr>
+<tr><td><p>Vehicle,
+                      <em class="varname">Y<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Translation(1,2)</code></td>
+</tr>
+<tr><td><p>Vehicle,
+                      <em class="varname">Z<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Translation(1,3)</code></td>
+</tr>
+<tr><td><p>Front left wheel,
+                        <em class="varname">X<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Translation(2,1)</code></td>
+</tr>
+<tr><td><p>Front left wheel,
+                        <em class="varname">Y<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Translation(2,2)</code></td>
+</tr>
+<tr><td><p>Front left wheel,
+                        <em class="varname">Z<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Translation(2,3)</code></td>
+</tr>
+<tr><td><p>Front right wheel,
+                        <em class="varname">X<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Translation(3,1)</code></td>
+</tr>
+<tr><td><p>Front right wheel,
+                        <em class="varname">Y<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Translation(3,2)</code></td>
+</tr>
+<tr><td><p>Front right wheel,
+                        <em class="varname">Z<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Translation(3,3)</code></td>
+</tr>
+<tr><td><p>Rear left wheel,
+                        <em class="varname">X<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Translation(4,1)</code></td>
+</tr>
+<tr><td><p>Rear left wheel,
+                        <em class="varname">Y<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Translation(4,2)</code></td>
+</tr>
+<tr><td><p>Rear left wheel,
+                        <em class="varname">Z<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Translation(4,3)</code></td>
+</tr>
+<tr><td><p>Rear right wheel,
+                        <em class="varname">X<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Translation(5,1)</code></td>
+</tr>
+<tr><td><p>Rear right wheel,
+                        <em class="varname">Y<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Translation(5,2)</code></td>
+</tr>
+<tr><td><p>Rear right wheel,
+                        <em class="varname">Z<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Translation(5,3)</code></td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p></li>
+</ul>
+</div>
+<p>
+</p>
+  </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e184815" data-target="#expand_panel_body_d124e184815" aria-controls="expand_panel_body_d124e184815" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialarrayvaluestorotateactorperpartRotation" class="anchor_target"></span><h3 class="panel-title" id="d124e184815"><code class="name">Initial array values to rotate actor per part, Rotation</code> — 参与者初始旋转<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0 0 0]</code> (默认) | <code class="literal">array</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e184815" aria-labelledby="expand_panel_heading_d124e184815" class="panel-collapse collapse"><div class="panel-body">
+    <p>Actor initial rotation about world <span class="emphasis"><em>X</em></span>-, <span class="emphasis"><em>Y</em></span>-, and
+        <span class="emphasis"><em>Z</em></span>- axes across a [-pi/2, pi/2] range, in rad.</p>
+    <p>Array dimensions are number of parts per actor-by-<code class="literal">3</code>.</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Rotation(1,1)</code>, <code class="literal">Rotation(1,2)</code>, and
+              <code class="literal">Rotation(1,3)</code> — Vehicle rotation about vehicle-fixed pitch, roll,
+            and yaw <span class="emphasis"><em>Y</em></span>-, <span class="emphasis"><em>Z</em></span>-, and <span class="emphasis"><em>X</em></span>-
+            axes, respectively.</p></li>
+<li><p><code class="literal">Rotation(...,1)</code>, <code class="literal">Rotation(...,2)</code>, and
+              <code class="literal">Rotation(...,3)</code> — Actor rotation about vehicle-fixed pitch, roll,
+            and yaw <span class="emphasis"><em>Y</em></span>-, <span class="emphasis"><em>Z</em></span>-, and <span class="emphasis"><em>X</em></span>-
+            axes, respectively.</p></li>
+</ul>
+</div>
+<p>
+</p>
+    <p>For example, consider a vehicle actor with a vehicle body and four wheels. The parameter:</p>
+<div class="itemizedlist"><ul><li><p>Dimensions are <code class="literal">[5x3]</code>.</p></li>
+<li><p>Contains rotation information according to the axle and wheel locations.</p>
+<div id="d124e184887" class="mediaobject"><div class="code_responsive"><p class="listprogramlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-48px" display="block"><mrow><mi>R</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>=</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mrow><mi>P</mi><mi>i</mi><mi>t</mi><mi>c</mi><msub><mi>h</mi><mi>v</mi></msub></mrow></mtd><mtd><mrow><mi>R</mi><mi>o</mi><mi>l</mi><msub><mi>l</mi><mi>v</mi></msub></mrow></mtd><mtd><mrow><mi>Y</mi><mi>a</mi><msub><mi>w</mi><mi>v</mi></msub></mrow></mtd></mtr><mtr><mtd><mrow><mi>P</mi><mi>i</mi><mi>t</mi><mi>c</mi><msub><mi>h</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>R</mi><mi>o</mi><mi>l</mi><msub><mi>l</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>Y</mi><mi>a</mi><msub><mi>w</mi><mrow><mi>F</mi><mi>L</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mi>P</mi><mi>i</mi><mi>t</mi><mi>c</mi><msub><mi>h</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>R</mi><mi>o</mi><mi>l</mi><msub><mi>l</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>Y</mi><mi>a</mi><msub><mi>w</mi><mrow><mi>F</mi><mi>R</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mi>P</mi><mi>i</mi><mi>t</mi><mi>c</mi><msub><mi>h</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>R</mi><mi>o</mi><mi>l</mi><msub><mi>l</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>Y</mi><mi>a</mi><msub><mi>w</mi><mrow><mi>R</mi><mi>L</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mi>P</mi><mi>i</mi><mi>t</mi><mi>c</mi><msub><mi>h</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>R</mi><mi>o</mi><mi>l</mi><msub><mi>l</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd><mtd><mrow><mi>Y</mi><mi>a</mi><msub><mi>w</mi><mrow><mi>R</mi><mi>R</mi></mrow></msub></mrow></mtd></mtr></mtable></mrow><mo>]</mo></mrow></mrow></math></p>
+</div>
+</div><p></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="57%"/>
+<col class="tcol2" width="43%"/>
+</colgroup>
+<thead><tr><th>Rotation</th>
+<th>Array Element</th>
+</tr>
+</thead>
+<tbody><tr><td><p>Vehicle,
+                      <em class="varname">Pitch<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Rotation(1,1)</code></td>
+</tr>
+<tr><td><p>Vehicle,
+                      <em class="varname">Roll<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Rotation(1,2)</code></td>
+</tr>
+<tr><td><p>Vehicle,
+                      <em class="varname">Yaw<sub>v</sub></em></p>
+</td>
+<td><code class="literal">Rotation(1,3)</code></td>
+</tr>
+<tr><td><p>Front left wheel,
+                        <em class="varname">Pitch<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(2,1)</code></td>
+</tr>
+<tr><td><p>Front left wheel,
+                        <em class="varname">Roll<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(2,2)</code></td>
+</tr>
+<tr><td><p>Front left wheel,
+                        <em class="varname">Yaw<sub>FL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(2,3)</code></td>
+</tr>
+<tr><td><p>Front right wheel,
+                          <em class="varname">Pitch<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(3,1)</code></td>
+</tr>
+<tr><td><p>Front right wheel,
+                        <em class="varname">Roll<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(3,2)</code></td>
+</tr>
+<tr><td><p>Front right wheel,
+                        <em class="varname">Yaw<sub>FR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(3,3)</code></td>
+</tr>
+<tr><td><p>Rear left wheel,
+                        <em class="varname">Pitch<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(4,1)</code></td>
+</tr>
+<tr><td><p>Rear left wheel,
+                        <em class="varname">Roll<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(4,2)</code></td>
+</tr>
+<tr><td><p>Rear left wheel,
+                        <em class="varname">Yaw<sub>RL</sub></em></p>
+</td>
+<td><code class="literal">Rotation(4,3)</code></td>
+</tr>
+<tr><td><p>Rear right wheel,
+                        <em class="varname">Pitch<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(5,1)</code></td>
+</tr>
+<tr><td><p>Rear right wheel,
+                        <em class="varname">Roll<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(5,2)</code></td>
+</tr>
+<tr><td><p>Rear right wheel,
+                        <em class="varname">Yaw<sub>RR</sub></em></p>
+</td>
+<td><code class="literal">Rotation(5,3)</code></td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p></li>
+</ul>
+</div>
+<p>
+</p>
+  </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_d124e185040" data-target="#expand_panel_body_d124e185040" aria-controls="expand_panel_body_d124e185040" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_InitialarrayvaluestoscaleactorperpartScale" class="anchor_target"></span><h3 class="panel-title" id="d124e185040"><code class="name">Initial array values to scale actor per part, Scale</code> — 参与者初始缩放比例<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[1 1 1]</code> (默认) | <code class="literal">array</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_d124e185040" aria-labelledby="expand_panel_heading_d124e185040" class="panel-collapse collapse"><div class="panel-body">
+    <p>Actor initial scale.</p>
+    <p>Array dimensions are number of number of parts per actor-by-<code class="literal">3</code>.</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Scale(1,1)</code>, <code class="literal">Scale(1,2)</code>, and
+              <code class="literal">Scale(1,3)</code> — Vehicle scale along world <span class="emphasis"><em>X</em></span>-,
+              <span class="emphasis"><em>Y</em></span>, and <span class="emphasis"><em>Z</em></span>- axes, respectively.</p></li>
+<li><p><code class="literal">Scale(...,1)</code>, <code class="literal">Scale(...,2)</code>, and
+              <code class="literal">Scale(...,3)</code> — Actor scale along world <span class="emphasis"><em>X</em></span>-,
+              <span class="emphasis"><em>Y</em></span>, and <span class="emphasis"><em>Z</em></span>- axes, respectively.</p></li>
+</ul>
+</div>
+<p>
+</p>
+    <p>For example, consider a vehicle actor with a vehicle body and four wheels. The parameter:</p>
+<div class="itemizedlist"><ul><li><p>Dimensions are <code class="literal">[5x3]</code>.</p></li>
+<li><p>Contains scale information according to the axle and wheel locations.</p>
+<div id="d124e185105" class="mediaobject"><div class="code_responsive"><p class="listprogramlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-56px" display="block"><mrow><mi>S</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo>=</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mrow><msub><mi>X</mi><mrow><msub><mi>V</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><msub><mi>V</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><msub><mi>V</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>F</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>F</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>F</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>F</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>F</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>F</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>R</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>R</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>R</mi><msub><mi>L</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>X</mi><mrow><mi>R</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Y</mi><mrow><mi>R</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd><mtd><mrow><msub><mi>Z</mi><mrow><mi>R</mi><msub><mi>R</mi><mrow><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></msub></mrow></mtd></mtr></mtable></mrow><mo>]</mo></mrow></mrow></math></p>
+</div>
+</div><p></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="31%"/>
+<col class="tcol2" width="24%"/>
+<col class="tcol3" width="45%"/>
+</colgroup>
+<thead><tr><th>Scale</th>
+<th>Array Element</th>
+<th>Scale Axis</th>
+</tr>
+</thead>
+<tbody><tr><td><p>Vehicle,
+                            <em class="varname">X<sub>v<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(1,1)</code></td>
+<td>World <span class="emphasis"><em>X</em></span>-axis</td>
+</tr>
+<tr><td><p>Vehicle,
+                            <em class="varname">Y<sub>v<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(1,2)</code></td>
+<td>World <span class="emphasis"><em>Y</em></span>-axis</td>
+</tr>
+<tr><td><p>Vehicle,
+                            <em class="varname">Z<sub>v<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(1,3)</code></td>
+<td>World <span class="emphasis"><em>Z</em></span>-axis</td>
+</tr>
+<tr><td><p>Front left wheel,
+                              <em class="varname">X<sub>FL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(2,1)</code></td>
+<td>World <span class="emphasis"><em>X</em></span>-axis</td>
+</tr>
+<tr><td><p>Front left wheel,
+                              <em class="varname">Y<sub>FL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(2,2)</code></td>
+<td>World <span class="emphasis"><em>Y</em></span>-axis</td>
+</tr>
+<tr><td><p>Front left wheel,
+                              <em class="varname">Z<sub>FL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(2,3)</code></td>
+<td>World <span class="emphasis"><em>Z</em></span>-axis</td>
+</tr>
+<tr><td><p>Front right wheel,
+                              <em class="varname">X<sub>FR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(3,1)</code></td>
+<td>World <span class="emphasis"><em>X</em></span>-axis</td>
+</tr>
+<tr><td><p>Front right wheel,
+                              <em class="varname">Y<sub>FR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(3,2)</code></td>
+<td>World <span class="emphasis"><em>Y</em></span>-axis</td>
+</tr>
+<tr><td><p>Front right wheel,
+                              <em class="varname">Z<sub>FR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(3,3)</code></td>
+<td>World <span class="emphasis"><em>Z</em></span>-axis</td>
+</tr>
+<tr><td><p>Rear left wheel,
+                              <em class="varname">X<sub>RL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(4,1)</code></td>
+<td>World <span class="emphasis"><em>X</em></span>-axis</td>
+</tr>
+<tr><td><p>Rear left wheel,
+                              <em class="varname">Y<sub>RL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(4,2)</code></td>
+<td>World <span class="emphasis"><em>Y</em></span>-axis</td>
+</tr>
+<tr><td><p>Rear left wheel,
+                              <em class="varname">Z<sub>RL<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(4,3)</code></td>
+<td>World <span class="emphasis"><em>Z</em></span>-axis</td>
+</tr>
+<tr><td><p>Rear right wheel,
+                              <em class="varname">X<sub>RR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(5,1)</code></td>
+<td>World <span class="emphasis"><em>X</em></span>-axis</td>
+</tr>
+<tr><td><p>Rear right wheel,
+                              <em class="varname">Y<sub>RR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(5,2)</code></td>
+<td>World <span class="emphasis"><em>Y</em></span>-axis</td>
+</tr>
+<tr><td><p>Rear right wheel,
+                              <em class="varname">Z<sub>RR<sub>scale</sub></sub></em></p>
+</td>
+<td><code class="literal">Scale(5,3)</code></td>
+<td>World <span class="emphasis"><em>Z</em></span>-axis</td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p></li>
+</ul>
+</div>
+<p>
+</p>
+  </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8c3f9074-edf2-4812-9851-2962460e12cf" data-target="#expand_panel_body_mw_8c3f9074-edf2-4812-9851-2962460e12cf" aria-controls="expand_panel_body_mw_8c3f9074-edf2-4812-9851-2962460e12cf" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sampletime" class="anchor_target"></span><h3 class="panel-title" id="mw_8c3f9074-edf2-4812-9851-2962460e12cf"><code class="name">Sample time</code> — 采样时间<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal remove_text_wrapping">-1</code> (默认) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8c3f9074-edf2-4812-9851-2962460e12cf" aria-labelledby="expand_panel_heading_mw_8c3f9074-edf2-4812-9851-2962460e12cf" class="panel-collapse collapse"><div class="panel-body">
+          <p>Sample time, <em class="varname">T<sub>s</sub></em>. The graphics frame rate
+            is the inverse of the sample time.</p>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="examples">模型示例</h2>
+<section class="example_short_list"><div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../ug/scene-interrogation-reference-application.html"><div class="card_media" style="background-image:url(../../examples/vdynblks/win64/SceneInterrogationReferenceApplicationExample_01.png);"><img alt="Scene Interrogation with Camera and Ray Tracing Reference Application" src="../../examples/vdynblks/win64/SceneInterrogationReferenceApplicationExample_01.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Scene Interrogation with Camera and Ray Tracing Reference Application</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Interrogate a 3D Unreal Engine scene with a vehicle dynamics model by using a camera and ray tracing
+                reference application project.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:cd(setupExample('vdynblks/SceneInterrogationReferenceApplicationExample'));helpersetupscr">Open Example</a></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="clearfix"></div>
+<div class="ref_sect"><h2 id="mw_da93c5ec-30aa-4b92-bf8e-5577329b6cdb_vh">版本历史</h2>
+<p><strong>Introduced in R2018a</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_da93c5ec-30aa-4b92-bf8e-5577329b6cdb_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dactortransformget.html"><span itemprop="name"><span class="block">Simulation 3D Actor Transform
+        Get</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dcameraget.html"><span itemprop="name"><span class="block">Simulation 3D Camera Get</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
+        Configuration</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="vehicleterrainsensor.html"><span itemprop="name"><span class="block">Vehicle Terrain Sensor</span></span></a></span></p>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/coordinate-systems-in-vehicle-dynamics-blockset.html" class="a">Coordinate Systems in Vehicle Dynamics Blockset</a></li>
+<li><a href="../ug/how-3d-simulation-for-vehicle-dynamics-blockset-works.html" class="a">How 3D Simulation for Vehicle Dynamics Blockset Works</a></li>
+<li><a href="../ug/3d-visualization-engine-requirements.html" class="a">Unreal Engine Simulation Environment Requirements and Limitations</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>

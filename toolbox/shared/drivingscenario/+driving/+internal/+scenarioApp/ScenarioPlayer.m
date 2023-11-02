@@ -10,7 +10,7 @@ classdef ScenarioPlayer < handle
     end
 
 
-    properties(SetAccess=protected)
+    properties(SetAccess = protected)
         IsPlaying = false;
         IsPaused = false;
         CurrentSample = 1;
@@ -31,18 +31,18 @@ classdef ScenarioPlayer < handle
 
     methods
         function this=ScenarioPlayer(scenario)
-            this.Scenario=scenario;
+            this.Scenario = scenario;
         end
 
 
         function set.StopCondition(this,newCondition)
-            this.StopCondition=newCondition;
+            this.StopCondition = newCondition;
             setupScenario(this);
         end
 
 
         function set.StopTime(this,newTime)
-            this.StopTime=newTime;
+            this.StopTime = newTime;
             if strcmp(this.StopCondition,'time')
                 setupScenario(this);
             end
@@ -71,10 +71,10 @@ classdef ScenarioPlayer < handle
 
         function set.Scenario(this,newScenario)
             stop(this);
-            this.Scenario=newScenario;
+            this.Scenario = newScenario;
 
             setupScenario(this);
-            this.CurrentSample=1;%#ok<*MCSUP>
+            this.CurrentSample=1; %#ok<*MCSUP>
             notify(this,'StateChanged');
             notify(this,'SampleChanged');
         end
@@ -116,8 +116,8 @@ classdef ScenarioPlayer < handle
 
 
         function isRunning = setCurrentSample(this,newSample)
-            this.CurrentSample=newSample;
-            scenario=this.Scenario;
+            this.CurrentSample = newSample;
+            scenario = this.Scenario;
 
             newTime = (newSample-1) * scenario.SampleTime;
 
@@ -168,7 +168,7 @@ classdef ScenarioPlayer < handle
 
             this.IsPlaying = true;
             notify(this,'StateChanged');
-            if this.CurrentSample==1
+            if this.CurrentSample == 1
                 setupScenario(this);
             end
             if strcmp(t.Running,'off')
@@ -199,13 +199,13 @@ classdef ScenarioPlayer < handle
 
         function reset(this)
             setupScenario(this);
-            setCurrentSample(this,1);
+            setCurrentSample(this, 1);
             notify(this,'StateChanged');
         end
 
 
         function samples=getNumSamples(this)
-            samples=this.NumSamples;
+            samples = this.NumSamples;
         end
 
 
@@ -218,9 +218,9 @@ classdef ScenarioPlayer < handle
     methods(Access=protected)
 
         function setupScenario(this)
-            scenario=this.Scenario;
-            if strcmp(this.StopCondition,'time')
-                this.NumSamples = floor(this.StopTime/scenario.SampleTime)+1;
+            scenario = this.Scenario;
+            if strcmp(this.StopCondition, 'time')
+                this.NumSamples = floor(this.StopTime / scenario.SampleTime) + 1;
             else
                 this.NumSamples=NaN;
             end
@@ -260,9 +260,9 @@ classdef ScenarioPlayer < handle
                 pause(this);
             elseif ~isRunning
                 if sample ~= this.NumSamples
-                    this.NumSamples=sample;
+                    this.NumSamples = sample;
                 end
-
+                % 如果不是重复播放则停止
                 if ~this.Repeat
                     stop(this);
                 end

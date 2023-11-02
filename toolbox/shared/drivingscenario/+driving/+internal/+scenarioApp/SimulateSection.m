@@ -201,8 +201,8 @@ classdef SimulateSection<matlab.ui.internal.toolstrip.Section
             sample=player.CurrentSample;
 
             if player.IsPlaying
-                play.Icon=matlab.ui.internal.toolstrip.Icon.PAUSE_MATLAB_24;
-                play.Text=getString(message('driving:scenarioApp:PauseText'));
+                play.Icon = matlab.ui.internal.toolstrip.Icon.PAUSE_MATLAB_24;
+                play.Text = getString(message('driving:scenarioApp:PauseText'));
                 play.Description=getString(message('driving:scenarioApp:PauseDescription'));
             elseif player.IsPaused&&sample~=1
                 play.Icon=matlab.ui.internal.toolstrip.Icon.CONTINUE_MATLAB_24;

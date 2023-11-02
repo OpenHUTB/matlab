@@ -1,20 +1,22 @@
+% 虚幻引擎项目的接口
 classdef Editor
-    properties(SetAccess='private',GetAccess='public')
+    % 项目路径和名称（只读属性）
+    properties(SetAccess='private', GetAccess='public')
         Uproject string{mustBeNonempty} = fullfile(matlabroot,...
         "toolbox","shared","sim3d","sim3d","internal","sim3dtemplates",...
         "AutoVrtlEnv","AutoVrtlEnv.uproject");
     end
 
     methods
-        function self=Editor(uproject)
-            self.Uproject=uproject;
+        function self = Editor(uproject)
+            self.Uproject = uproject;
         end
 
 
-        function[status,result]=open(self)
+        function[status,result] = open(self)
             sim3d.engine.Engine.restart();
-            command=sprintf("start ""UE4"" /b ""%s""",self.Uproject);
-            [status,result]=system(command);
+            command = sprintf("start ""UE4"" /b ""%s""", self.Uproject);
+            [status,result] = system(command);
         end
     end
 
@@ -24,7 +26,7 @@ classdef Editor
             sim3d.engine.Engine.restart();
             platform = computer('arch');
 
-            if strcmp(platform,'win64')
+            if strcmp(platform, 'win64')
                 System.Environment.SetEnvironmentVariable(...
                     sim3d.engine.EngineInterface.environmentVariableMatlabRoot,...
                     matlabroot,System.EnvironmentVariableTarget.User ...

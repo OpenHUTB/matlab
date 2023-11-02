@@ -1,17 +1,12 @@
+% doc matlab.diagram.ClassViewer
 classdef ( Sealed )ClassViewer < handle
-
-
-
 
     properties ( Transient = true, SetAccess = private, GetAccess = { ?classDiagramTest.ClassDiagramTestCase } )
         App classdiagram.app.core.ClassDiagramApp = classdiagram.app.mcos.MCOSApp.empty;
     end
 
 
-
-
-
-    properties ( Dependent, Transient = true )
+    properties (Dependent, Transient = true)
         Visible( 1, 1 )logical;
         ActiveFile string;
         ClassesInDiagram string;
@@ -19,26 +14,30 @@ classdef ( Sealed )ClassViewer < handle
         ShowMixins( 1, 1 )logical;
     end
 
+
     methods
         function value = get.Visible( self )
             value = self.getApp.isVisible(  );
         end
 
-        function set.Visible( self, value )
+
+        function set.Visible(self, value)
             arguments
                 self( 1, 1 )matlab.diagram.ClassViewer;
                 value( 1, 1 )matlab.lang.OnOffSwitchState
             end
             if value
-                self.getApp.show(  );
+                self.getApp.show();
             else
-                self.getApp.close(  );
+                self.getApp.close();
             end
         end
+
 
         function value = get.ShowPackageNames( self )
             value = self.getApp.IsShowPackageNames;
         end
+
 
         function set.ShowPackageNames( self, value )
             arguments
@@ -46,14 +45,14 @@ classdef ( Sealed )ClassViewer < handle
                 value( 1, 1 )matlab.lang.OnOffSwitchState
             end
             app = self.getApp;
-            app.IsShowPackageNames = logical( value );
+            app.IsShowPackageNames = logical(value);
         end
 
-        function value = get.ShowMixins( self )
+        function value = get.ShowMixins(self)
             value = self.getApp.IsShowMixins;
         end
 
-        function set.ShowMixins( self, value )
+        function set.ShowMixins(self, value)
             arguments
                 self( 1, 1 )matlab.diagram.ClassViewer;
                 value( 1, 1 )matlab.lang.OnOffSwitchState
@@ -97,6 +96,7 @@ classdef ( Sealed )ClassViewer < handle
         end
     end
 
+
     methods
         function eql = eq( self, other )
             eql = [ self.App ] == [ other.App ];
@@ -106,6 +106,7 @@ classdef ( Sealed )ClassViewer < handle
             neql = ~self.eq( other );
         end
 
+
         function addClass( self, classes )
             arguments
                 self( 1, 1 )matlab.diagram.ClassViewer;
@@ -114,6 +115,7 @@ classdef ( Sealed )ClassViewer < handle
             self.importClassesFrom( "Classes", classes );
         end
 
+        
         function importClassesFrom( self, options )
             arguments
                 self( 1, 1 )matlab.diagram.ClassViewer;
@@ -384,6 +386,7 @@ if ischar( args )
 end
 arr = arrayfun( @( arg )classOrCharToString( arg ), args );
 end
+
 
 function mustBeClassOrString( arg )
 if ~( isa( arg, "char" ) || isa( arg, "string" ) || isa( arg, "cell" ) || isa( arg, "meta.class" ) )

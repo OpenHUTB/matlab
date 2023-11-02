@@ -1,0 +1,1753 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Simulation 3D Physics Vehicle</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "Vehicle Dynamics Blockset"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../vehicle-scenarios.html",
+          "name": "Vehicle Scenarios"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "vehicle-scenarios"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="block:Simulation 3D Physics Vehicle"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="blk"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/block"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The Simulation 3D Physics Vehicle block implements a controllable 10DOF vehicle in the 3D simulation environment, with a vertical DOF for each vehicle and 6DOF for the chassis."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset.xml";
+            product_help_location = "vdynblks";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">帮助中心</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../overview/automotive.html" itemprop="url"><span itemprop="title">Automotive</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav">Vehicle Dynamics Blockset</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../vehicle-scenarios.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Vehicle Scenarios</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas"><span class="refname">Simulation 3D Physics Vehicle</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#mw_61cf7b39-1bad-46e7-a6f6-dd65f5ad55a6" class="intrnllnk">Description</a></li>
+<li><a href="#mw_fa215cc2-2bdb-422b-8631-627ffa711c97" class="intrnllnk">Ports</a><ul class="nav"><li><a href="#mw_4f432592-502b-4647-a5f4-22e53dd7c3e4" class="intrnllnk">Input</a><ul class="nav"><li><a href="#mw_b569a35b-f87f-4447-8313-b50cef4cb70c" class="intrnllnk">SteerCmd</a></li>
+<li><a href="#mw_b7d2efa9-096e-4db8-8768-98e5c249a919" class="intrnllnk">AccelCmd</a></li>
+<li><a href="#mw_3c91528b-04d2-4e35-84eb-94be2c75fe12" class="intrnllnk">DecelCmd</a></li>
+<li><a href="#mw_c39f4431-8f32-4d26-9707-d04a241c93d4" class="intrnllnk">GearCmd</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_c685e903-f82a-4f65-b3d1-e1fc07d2d41a" class="intrnllnk">Output</a><ul class="nav"><li><a href="#mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" class="intrnllnk">Info</a></li>
+<li><a href="#mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" class="intrnllnk">xdot</a></li>
+<li><a href="#mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" class="intrnllnk">ydot</a></li>
+<li><a href="#mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" class="intrnllnk">psi</a></li>
+<li><a href="#mw_a421c129-b48d-485c-808a-16dc05665265" class="intrnllnk">r</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mw_674341ce-e622-40ae-b813-7c920a7c7248" class="intrnllnk">Parameters</a><ul class="nav"><li><a href="#mw_cb187652-0a12-4d58-97f1-c82eea5ce19d" class="intrnllnk">Chassis</a><ul class="nav"><li><a href="#mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" class="intrnllnk">Type</a></li>
+<li><a href="#mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="intrnllnk">Color</a></li>
+<li><a href="#mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" class="intrnllnk">Name</a></li>
+<li><a href="#mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" class="intrnllnk">Initial position</a></li>
+<li><a href="#mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" class="intrnllnk">Initial rotation</a></li>
+<li><a href="#mw_08811b2b-fe52-428f-bab2-97392f160528" class="intrnllnk">Mass</a></li>
+<li><a href="#mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" class="intrnllnk">Drag Coefficient</a></li>
+<li><a href="#mw_96b97212-cdf5-4e33-af75-f638be6710a2" class="intrnllnk">Track width</a></li>
+<li><a href="#mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" class="intrnllnk">Chassis height</a></li>
+<li><a href="#mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" class="intrnllnk">Center of mass offset</a></li>
+<li><a href="#mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" class="intrnllnk">Inertia tensor scaling vector</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_19718dd2-fe03-4e5a-a91c-8a296fb7e03d" class="intrnllnk">Powertrain and Driveline</a><ul class="nav"><li><a href="#mw_4f4b60b0-4787-4b9f-877c-075b6d285366" class="intrnllnk">Powertrain</a></li>
+</ul><ul class="nav"><li><a href="#mw_6652dacf-fdf6-4520-ba5d-55990875c962" class="intrnllnk">Driveline</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_440ec2f6-2057-4ee3-a375-c9d1b7c9a0ea" class="intrnllnk">Steering and Brakes</a><ul class="nav"><li><a href="#mw_d1e2c7ff-7352-4068-817f-6ef44b1cc7ec" class="intrnllnk">Steering</a></li>
+</ul><ul class="nav"><li><a href="#mw_9d64f370-cbda-4c48-882e-b8b53aaa06c5" class="intrnllnk">Brakes</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_5fdf7c4e-ac89-467f-9e15-e98b27d77980" class="intrnllnk">Suspension, Wheels and Tires</a><ul class="nav"><li><a href="#mw_3694bd37-8c0e-4fb2-8c98-d1de000ed853" class="intrnllnk">Suspension</a></li>
+</ul><ul class="nav"><li><a href="#mw_643fc766-3677-4e9f-8aae-adeed128fce1" class="intrnllnk">Wheels</a></li>
+</ul><ul class="nav"><li><a href="#mw_1c5bb3d1-9243-49a7-bb5d-eab1251e438e" class="intrnllnk">Tires</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_547fa996-2585-491c-ab01-c9ee04d8f673" class="intrnllnk">Light Controls</a><ul class="nav"><li><a href="#mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d75e19e8-ec3b-4eb3-afdb-10d6109cdb14" class="intrnllnk">Enable light controls, VehLightsControl</a></li>
+</ul><ul class="nav"><li><a href="#mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_2b59a68e-2a01-42ef-b956-57bcfc1de1ce" class="intrnllnk">Headlights</a></li>
+</ul><ul class="nav"><li><a href="#mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e6826853-a8dd-443a-a2b1-bf0c581b35eb" class="intrnllnk">Brake Lights</a></li>
+</ul><ul class="nav"><li><a href="#mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_52485197-f700-4568-83e1-fd34773b989e" class="intrnllnk">Reverse Lights</a></li>
+</ul><ul class="nav"><li><a href="#mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_dcaa3604-c4e4-488d-a3ae-6c7d827f09c1" class="intrnllnk">Turn Signal Lights</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_632e3516-8727-4086-a1d4-5cc19e39f4c2" class="intrnllnk">Sample Time</a><ul class="nav"><li><a href="#mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_bbb45691-7d52-4809-8745-3856a63a7f15" class="intrnllnk">Sample time</a></li>
+</ul></li>
+</ul><ul class="nav"><li><a href="#mw_cc64c603-303b-427c-8959-cc697fe532b1" class="intrnllnk">Ground Truth</a><ul class="nav"><li><a href="#mw_f7481ae7-d5d0-41a8-9902-ddc131f0322f" class="intrnllnk">Output location and orientation</a></li>
+<li><a href="#mw_fbfd1691-926b-4576-b7d7-8da88ff57274" class="intrnllnk">Output nominal vehicle state feedback</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#examples" class="intrnllnk">Model Examples</a></li>
+<li><a href="#References" class="intrnllnk">References</a></li>
+<li><a href="#mw_5646e82a-1c34-4ab2-9130-5c85f1473300_vh" class="intrnllnk">Version History</a></li>
+<li><a href="#mw_5646e82a-1c34-4ab2-9130-5c85f1473300_seealso" class="intrnllnk">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="../referencelist.html?type=block&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Apps</a></li>
+<li id="crux_nav_mobile_scene" class="crux_resource"><a href="../referencelist.html?type=scene&amp;category=vehicle-scenarios&amp;s_tid=CRUX_topnav">Scenes</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref"><div class="block_ref"><span id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300" class="anchor_target"></span><span id="sim3dphysicsveh" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">Simulation 3D Physics Vehicle</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">实现可控 6DOF 车辆三维环境</p>
+<div class="switch"><a href="javascript:void(0);" id="expandAllPage">expand all in page</a></div>
+</div>
+</div>
+<div itemprop="content" class="ref_sect"><div class="row"><div class="col-xs-12 col-sm-9 col-md-10"><ul class="list-unstyled library_path_container"><li><strong>库：</strong></li>
+<li><p class="library_path">
+      Vehicle Dynamics Blockset / 
+      Vehicle Scenarios / 
+      Sim3D / 
+      Sim3D Vehicle / 
+      Components
+   </p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="function_icons"><ul class="list-unstyled"><li class="add_cursor_pointer" data-toggle="modal" data-target="#image_zoom_modal" data-title="Simulation 3D Physics Vehicle Block" data-src="sim3d_physx_veh.png"><img itemprop="thumbnailUrl" src="sim3d_physx_veh.png" alt="Simulation 3D Physics Vehicle Block" height="154" width="223"/><span class="icon-zoomin add_font_color_white add_background_color_mediumgray function_icon_zoom"></span></li>
+</ul>
+</div>
+<div class="modal fade" id="image_zoom_modal" tabindex="-1" role="dialog" aria-labelledby="modal-title"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="modal-title remove_border" id="modal-title"></h2>
+</div>
+<div class="modal-body"><img src="sim3d_physx_veh.png" id="image_zoom" class="center-block"/></div>
+</div>
+</div>
+</div>
+<script>
+      $('#image_zoom_modal').on('show.bs.modal', function (event) {
+      var modal_trigger = $(event.relatedTarget)
+      var image_src = modal_trigger.data('src');
+      var image_title = modal_trigger.data('title');
+      $('#image_zoom').attr('src', image_src);
+      if (image_title) {
+        $('#modal-title').text(image_title);
+      } else { 
+        $('#modal-title').hide;  
+      } 
+      })
+    </script>
+<div id="mw_61cf7b39-1bad-46e7-a6f6-dd65f5ad55a6_div" class="refsect1 description"><h2 id="mw_61cf7b39-1bad-46e7-a6f6-dd65f5ad55a6">描述</h2>
+<p><span class="block">Simulation 3D Physics Vehicle</span> 模块在三维仿真环境中实现可控 10 自由度（Degree Of Freedom, DOF）车辆，每辆车具有垂直自由度，底盘具有 6 自由度。</p>
+<p>要使用 <span class="block">Simulation 3D Physics Vehicle</span> 模块，确保 <span class="block">Simulation 3D Scene Configuration</span> 模块位于您的模型中。如果将 Simulation 3D Physics Vehicle 模块的“采样时间（<strong class="guilabel">Sample time</strong>）”参数设置为 <code class="literal remove_text_wrapping">-1</code>，则该模块将使用在 <span class="block">Simulation 3D
+        Scene Configuration</span> 模块中指定的采样时间。</p>
+<p>该模块输入使用 SAE J670<sup>1</sup> 中定义的车辆 Z 向下的右手（<span class="emphasis"><em>right-handed, </em></span>RH）<i>笛卡尔</i>坐标系。 坐标系是惯性坐标系，最初与车辆几何中心对齐：</p>
+<div class="itemizedlist"><ul><li><p><span class="emphasis"><em>X</em></span>-轴— 沿车辆纵轴，指向前方
+          </p></li>
+<li><p><span class="emphasis"><em>Y</em></span>-轴 — 沿着车辆横轴，指向右侧</p></li>
+<li><p><span class="emphasis"><em>Z</em></span>-轴 — 指向下方</p></li>
+</ul>
+</div>
+<p>
+</p>
+<div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>提示</strong></p>
+<p>Verify that the <a href="simulation3dsceneconfiguration.html"><span class="block">Simulation 3D Scene
+          Configuration</span></a> block executes before the <span class="block">Simulation 3D Physics
+          Vehicle</span> block. That way, the Unreal Engine<sup>®</sup> 3D visualization environment prepares the data before the <span class="block">Simulation 3D
+          Physics Vehicle</span> block receives it. To check the block execution order, right-click
+        the blocks and select <strong class="guilabel">Properties</strong>. On the <strong class="guilabel">General</strong>
+        tab, confirm these <strong class="guilabel">Priority</strong> settings:</p>
+<div class="itemizedlist"><ul><li><p><span class="block">Simulation 3D Scene Configuration</span> — <code class="literal">0</code></p></li>
+<li><p><span class="block">Simulation 3D Physics Vehicle</span> — <code class="literal remove_text_wrapping">-1</code></p></li>
+</ul>
+</div>
+<p>
+For more information about execution order, see <a href="../../simulink/ug/controlling-and-displaying-the-sorted-order.html" class="a">Control and Display Execution Order</a>.</p>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_fa215cc2-2bdb-422b-8631-627ffa711c97">端口</h2>
+</div>
+<div class="ref_sect"><h3 id="mw_4f432592-502b-4647-a5f4-22e53dd7c3e4">输入</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_4f432592-502b-4647-a5f4-22e53dd7c3e4_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b569a35b-f87f-4447-8313-b50cef4cb70c" data-target="#expand_panel_body_mw_b569a35b-f87f-4447-8313-b50cef4cb70c" aria-controls="expand_panel_body_mw_b569a35b-f87f-4447-8313-b50cef4cb70c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_b569a35b-f87f-4447-8313-b50cef4cb70c"><code class="name">SteerCmd</code> — 正则化的转向角<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">标量</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_b569a35b-f87f-4447-8313-b50cef4cb70c" aria-labelledby="expand_panel_heading_mw_b569a35b-f87f-4447-8313-b50cef4cb70c" class="panel-collapse collapse"><div class="panel-body">
+            <p>正则化转向角，指定为标量。<code class="argument">SteerCmd</code>
+              分别对应于由和参数  <code class="argument">Front wheel max steer angle</code> and <code class="argument">Rear wheel max steer angle</code> 确定的转向角的最小和最大范围。</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b7d2efa9-096e-4db8-8768-98e5c249a919" data-target="#expand_panel_body_mw_b7d2efa9-096e-4db8-8768-98e5c249a919" aria-controls="expand_panel_body_mw_b7d2efa9-096e-4db8-8768-98e5c249a919" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_b7d2efa9-096e-4db8-8768-98e5c249a919"><code class="name">AccelCmd</code> — 正则化车辆加速度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_b7d2efa9-096e-4db8-8768-98e5c249a919" aria-labelledby="expand_panel_heading_mw_b7d2efa9-096e-4db8-8768-98e5c249a919" class="panel-collapse collapse"><div class="panel-body">
+            <p>Normalized acceleration torque request to the vehicle powertrain, specified as a
+              scalar. The exact response will be characterized by the engine, transmission and other
+              vehicle parameters.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3c91528b-04d2-4e35-84eb-94be2c75fe12" data-target="#expand_panel_body_mw_3c91528b-04d2-4e35-84eb-94be2c75fe12" aria-controls="expand_panel_body_mw_3c91528b-04d2-4e35-84eb-94be2c75fe12" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_3c91528b-04d2-4e35-84eb-94be2c75fe12"><code class="name">DecelCmd</code> — 正则化车辆减速度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_3c91528b-04d2-4e35-84eb-94be2c75fe12" aria-labelledby="expand_panel_heading_mw_3c91528b-04d2-4e35-84eb-94be2c75fe12" class="panel-collapse collapse"><div class="panel-body">
+            <p>Normalized deceleration torque request to the vehicle braking system, specified as
+              a scalar. The exact braking response will be characterized by the engine, transmission
+              and other vehicle parameters.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c39f4431-8f32-4d26-9707-d04a241c93d4" data-target="#expand_panel_body_mw_c39f4431-8f32-4d26-9707-d04a241c93d4" aria-controls="expand_panel_body_mw_c39f4431-8f32-4d26-9707-d04a241c93d4" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_c39f4431-8f32-4d26-9707-d04a241c93d4"><code class="name">GearCmd</code> — 齿轮输入<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> | <code class="literal remove_text_wrapping">-1</code> | <code class="literal">0</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c39f4431-8f32-4d26-9707-d04a241c93d4" aria-labelledby="expand_panel_heading_mw_c39f4431-8f32-4d26-9707-d04a241c93d4" class="panel-collapse collapse"><div class="panel-body">
+            <p>齿轮输入，指定为 <code class="literal">1、</code><code class="literal remove_text_wrapping">-1</code> 或 <code class="literal">0</code>，其中：</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">1</code> – 前进档。</p></li>
+<li><p><code class="literal remove_text_wrapping">-1</code> – 倒档。</p></li>
+<li><p><code class="literal">0</code> – 空档。</p></li>
+</ul>
+</div>
+<p>
+</p>
+            <p>如果选择手动换档模式，则车辆将根据信号进行换档，但列出的值仍然适用。任何与有效档位不对应的输入集都将被忽略。</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h3 id="mw_c685e903-f82a-4f65-b3d1-e1fc07d2d41a">输出</h3>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_c685e903-f82a-4f65-b3d1-e1fc07d2d41a_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" data-target="#expand_panel_body_mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" aria-controls="expand_panel_body_mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a"><code class="name">Info</code> — 总线信号<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc">bus</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" aria-labelledby="expand_panel_heading_mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" class="panel-collapse collapse"><div class="panel-body">
+            <p>Bus signal containing these block values.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="13.15%"/>
+<col class="tcol2" width="11.67%"/>
+<col class="tcol3" width="11.67%"/>
+<col class="tcol4" width="11.30%"/>
+<col class="tcol5" width="2.55%"/>
+<col class="tcol6" width="2.55%"/>
+<col class="tcol7" width="25.47%"/>
+<col class="tcol8" width="10.82%"/>
+<col class="tcol9" width="10.82%"/>
+</colgroup>
+<thead><tr><th colspan="6">Signal</th>
+<th>Description</th>
+<th>Value</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody><tr><td rowspan="9"><code class="literal">InertFrm</code></td>
+<td rowspan="9"><code class="literal">Cg</code></td>
+<td rowspan="3"><code class="literal">Disp</code></td>
+<td colspan="3"><code class="literal">X</code></td>
+<td>Vehicle CG displacement along the earth-fixed
+                        <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Y</code></td>
+<td>Vehicle CG displacement along the earth-fixed
+                        <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td><p>m</p>
+</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Z</code></td>
+<td>Vehicle CG displacement along the earth-fixed
+                        <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Vel</code></td>
+<td colspan="3"><code class="literal">Xdot</code></td>
+<td>Vehicle CG velocity along the earth-fixed
+                        <span class="emphasis"><em>X</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td><p>m/s</p>
+</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Ydot</code></td>
+<td>Vehicle CG velocity along the earth-fixed
+                        <span class="emphasis"><em>Y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">Zdot</code></td>
+<td>Vehicle CG velocity along the earth-fixed
+                        <span class="emphasis"><em>Z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Ang</code></td>
+<td colspan="3"><code class="literal">phi</code></td>
+<td>Rotation of the vehicle-fixed frame about the earth-fixed
+                          <span class="emphasis"><em>X</em></span>-axis (roll)</td>
+<td><code class="literal">0</code></td>
+<td>rad</td>
+</tr>
+<tr><td colspan="3"><code class="literal">theta</code></td>
+<td>Rotation of the vehicle-fixed frame about the earth-fixed
+                          <span class="emphasis"><em>Y</em></span>-axis (pitch)</td>
+<td><code class="literal">0</code></td>
+<td>rad</td>
+</tr>
+<tr><td colspan="3"><code class="literal">psi</code></td>
+<td>Rotation of the vehicle-fixed frame about the earth-fixed
+                          <span class="emphasis"><em>Z</em></span>-axis (yaw)</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+<tr><td rowspan="28"><code class="literal">BdyFrm</code></td>
+<td rowspan="17"><code class="literal">Cg</code></td>
+<td rowspan="3"><code class="literal">Vel</code></td>
+<td colspan="3"><code class="literal">xdot</code></td>
+<td>Vehicle CG velocity along the vehicle-fixed
+                        <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">ydot</code></td>
+<td>Vehicle CG velocity along the vehicle-fixed
+                        <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">zdot</code></td>
+<td>Vehicle CG velocity along the vehicle-fixed
+                        <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s</td>
+</tr>
+<tr><td><code class="literal">Ang</code></td>
+<td colspan="3"><code class="literal">Beta</code></td>
+<td><p>Body slip angle, <em class="varname">β</em></p>
+<p>
+                          </p>
+<div id="d124e197171" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-17px" display="block"><mrow><mi>β</mi><mo>=</mo><mfrac><mrow><msub><mi>V</mi><mi>y</mi></msub></mrow><mrow><msub><mi>V</mi><mi>x</mi></msub></mrow></mfrac></mrow></math></p>
+</div>
+</div>
+<p>
+                        </p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">AngVel</code></td>
+<td colspan="3"><code class="literal">p</code></td>
+<td>Vehicle angular velocity about the vehicle-fixed
+                        <span class="emphasis"><em>x</em></span>-axis (roll rate)</td>
+<td><code class="literal">0</code></td>
+<td>rad/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">q</code></td>
+<td>Vehicle angular velocity about the vehicle-fixed
+                        <span class="emphasis"><em>y</em></span>-axis (pitch rate)</td>
+<td><code class="literal">0</code></td>
+<td>rad/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">r</code></td>
+<td>Vehicle angular velocity about the vehicle-fixed
+                        <span class="emphasis"><em>z</em></span>-axis (yaw rate)</td>
+<td><p>Computed</p>
+</td>
+<td>rad/s</td>
+</tr>
+<tr><td rowspan="6"><code class="literal">Acc</code></td>
+<td colspan="3"><code class="literal">ax</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                        <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>gn</td>
+</tr>
+<tr><td colspan="3"><code class="literal">ay</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                        <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>gn</td>
+</tr>
+<tr><td colspan="3"><code class="literal">az</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                        <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>gn</td>
+</tr>
+<tr><td colspan="3"><code class="literal">xddot</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                        <span class="emphasis"><em>x</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s^2</td>
+</tr>
+<tr><td colspan="3"><code class="literal">yddot</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                        <span class="emphasis"><em>y</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>m/s^2</td>
+</tr>
+<tr><td colspan="3"><code class="literal">zddot</code></td>
+<td>Vehicle CG acceleration along the vehicle-fixed
+                        <span class="emphasis"><em>z</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>m/s^2</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">AngAcc</code></td>
+<td colspan="3"><code class="literal">pdot</code></td>
+<td>Vehicle angular acceleration about the vehicle-fixed
+                          <span class="emphasis"><em>x</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>rad/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">qdot</code></td>
+<td>Vehicle angular acceleration about the vehicle-fixed
+                          <span class="emphasis"><em>y</em></span>-axis</td>
+<td><code class="literal">0</code></td>
+<td>rad/s</td>
+</tr>
+<tr><td colspan="3"><code class="literal">rdot</code></td>
+<td>Vehicle angular acceleration about the vehicle-fixed
+                          <span class="emphasis"><em>z</em></span>-axis</td>
+<td><p>Computed</p>
+</td>
+<td>rad/s</td>
+</tr>
+<tr><td><code class="literal">DCM</code></td>
+<td colspan="4"><p>Direction cosine
+                        matrix</p>
+</td>
+<td><p>Computed</p>
+</td>
+<td>rad</td>
+</tr>
+<tr><td rowspan="11"><code class="literal">Forces</code></td>
+<td rowspan="11"><code class="literal">Tires</code></td>
+<td rowspan="6"><code class="literal">FrntTires</code></td>
+<td rowspan="3"><code class="literal">Lft</code></td>
+<td><code class="literal">Fx</code></td>
+<td><p>Front left tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>x</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td><code class="literal">Fy</code></td>
+<td><p>Front left tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>y</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td><code class="literal">Fz</code></td>
+<td><p>Front left tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>z</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td rowspan="3"><code class="literal">Rght</code></td>
+<td><code class="literal">Fx</code></td>
+<td><p>Front right tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>x</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td><code class="literal">Fy</code></td>
+<td><p>Front right tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>y</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td><code class="literal">Fz</code></td>
+<td><p>Front right tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>z</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td rowspan="5"><code class="literal">RearTires</code></td>
+<td rowspan="3"><code class="literal">Lft</code></td>
+<td><code class="literal">Fx</code></td>
+<td><p>Rear left tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>x</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td><code class="literal">Fy</code></td>
+<td><p>Rear left tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>y</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td><code class="literal">Fz</code></td>
+<td><p>Rear left tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>z</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td rowspan="2"><code class="literal">Rght</code></td>
+<td><code class="literal">Fx</code></td>
+<td><p>Rear right tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>x</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+<tr><td><code class="literal">Fy</code></td>
+<td><p>Rear right tire force, along the vehicle-fixed
+                            <span class="emphasis"><em>y</em></span>-axis</p>
+</td>
+<td>Computed</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="20%"/>
+<col class="tcol2" width="20%"/>
+<col class="tcol3" width="20%"/>
+<col class="tcol4" width="20%"/>
+<col class="tcol5" width="20%"/>
+</colgroup>
+<thead><tr><th colspan="2">Signal</th>
+<th>Description</th>
+<th>Variable</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="literal">Mtr</code></td>
+<td><code class="literal">MtrSpd</code></td>
+<td><p>Applied drive shaft angular speed input</p>
+</td>
+<td><em class="varname">ω<sub>i</sub></em></td>
+<td><p>RPM</p>
+</td>
+</tr>
+<tr><td rowspan="2"><code class="literal">Trans</code></td>
+<td><code class="literal">TransGearCmd</code></td>
+<td><p>Commanded gear</p>
+</td>
+<td><em class="varname">N<sub>cmd</sub></em></td>
+<td><p>N/A</p>
+</td>
+</tr>
+<tr><td><code class="literal">TransGear</code></td>
+<td><p>Engaged gear</p>
+</td>
+<td><em class="varname">N</em></td>
+<td><p>N/A</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+            <p>The <code class="argument">Info</code> output parameter is optional.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" data-target="#expand_panel_body_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" aria-controls="expand_panel_body_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_8f532359-9957-46fd-a9e5-f10a8ee9782b"><code class="name">xdot</code> — Vehicle longitudinal velocity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" aria-labelledby="expand_panel_heading_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vehicle CG velocity along the vehicle-fixed <span class="emphasis"><em>x</em></span>-axis, in
+              m/s.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" data-target="#expand_panel_body_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" aria-controls="expand_panel_body_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4"><code class="name">ydot</code> — Vehicle lateral velocity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" aria-labelledby="expand_panel_heading_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vehicle CG velocity along the vehicle-fixed <span class="emphasis"><em>y</em></span>-axis, in
+              m/s.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" data-target="#expand_panel_body_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" aria-controls="expand_panel_body_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_23af141f-c42f-4a7a-ab60-f74b9e222fda"><code class="name">psi</code> — Yaw<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" aria-labelledby="expand_panel_heading_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" class="panel-collapse collapse"><div class="panel-body">
+            <p>Rotation of the vehicle-fixed frame about the earth-fixed
+              <span class="emphasis"><em>Z</em></span>-axis (yaw), in rad.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a421c129-b48d-485c-808a-16dc05665265" data-target="#expand_panel_body_mw_a421c129-b48d-485c-808a-16dc05665265" aria-controls="expand_panel_body_mw_a421c129-b48d-485c-808a-16dc05665265" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_a421c129-b48d-485c-808a-16dc05665265"><code class="name">r</code> — Yaw rate<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_a421c129-b48d-485c-808a-16dc05665265" aria-labelledby="expand_panel_heading_mw_a421c129-b48d-485c-808a-16dc05665265" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vehicle angular velocity, <code class="literal">r</code>, about the vehicle-fixed
+                <span class="emphasis"><em>z</em></span>-axis (yaw rate), in rad/s.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_674341ce-e622-40ae-b813-7c920a7c7248">Parameters</h2>
+<div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
+<div class="panel-group" id="mw_674341ce-e622-40ae-b813-7c920a7c7248_panel-group" role="tablist" aria-multiselectable="true"><div id="mw_cb187652-0a12-4d58-97f1-c82eea5ce19d_div" class="refsect2"><h3 id="mw_cb187652-0a12-4d58-97f1-c82eea5ce19d">Chassis</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" data-target="#expand_panel_body_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" aria-controls="expand_panel_body_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Type" class="anchor_target"></span><h3 class="panel-title" id="mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9"><code class="name">Type</code> — Type<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Muscle car</code> (default) | <code class="guidropdown">Sedan</code> | <code class="guidropdown">Sport utility vehicle</code> | <code class="guidropdown">Small pickup truck</code> | <code class="guidropdown">Hatchback</code> | <code class="guidropdown">Box truck</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" aria-labelledby="expand_panel_heading_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" class="panel-collapse collapse"><div class="panel-body">
+            <p>Specify the vehicle type. This table provides
+              links to the vehicle dimensions.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="43%" align="left"/>
+<col class="tcol2" width="57%" align="left"/>
+</colgroup>
+<thead><tr><th><strong class="guilabel">Vehicle type</strong> Setting</th>
+<th>Vehicle Dimensions</th>
+</tr>
+</thead>
+<tbody><tr><td><code class="guidropdown">Muscle car</code></td>
+<td><p><strong class="tool"><a href="musclecar.html">Muscle
+                            Car</a></strong></p>
+</td>
+</tr>
+<tr><td><code class="guidropdown">Sedan</code></td>
+<td><p><strong class="tool"><a href="sedan.html">Sedan</a></strong></p>
+</td>
+</tr>
+<tr><td><code class="guidropdown">Sport utility vehicle</code></td>
+<td><p><strong class="tool"><a href="sportutilityvehicle.html">Sport
+                            Utility Vehicle</a></strong></p>
+</td>
+</tr>
+<tr><td><code class="guidropdown">Small pickup truck</code></td>
+<td><p><strong class="tool"><a href="smallpickuptruck.html">Small
+                            Pickup Truck</a></strong></p>
+</td>
+</tr>
+<tr><td><code class="guidropdown">Hatchback</code></td>
+<td><p><strong class="tool"><a href="hatchback.html">Hatchback</a></strong></p>
+</td>
+</tr>
+<tr><td><code class="guidropdown">Box truck</code></td>
+<td><p><strong class="tool"><a href="boxtruck.html">Box
+                            Truck</a></strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+            
+    <h4 class="descriptionsect">Dependencies</h4>
+    <p>Selecting <code class="guidropdown">Custom</code> enables parameters that allow you to import a
+        custom mesh for your vehicle.</p>
+
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Color" class="anchor_target"></span><span id="Color_" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c"><code class="name">Color</code> — Color of vehicle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Red</code> (default) | <code class="guidropdown">Orange</code> | <code class="guidropdown">Yellow</code> | <code class="guidropdown">Green</code> | <code class="guidropdown">Blue</code> | <code class="guidropdown">Black</code> | <code class="guidropdown">White</code> | <code class="guidropdown">Silver</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-collapse collapse"><div class="panel-body"><p>Select the color of the vehicle.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" data-target="#expand_panel_body_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" aria-controls="expand_panel_body_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Name" class="anchor_target"></span><h3 class="panel-title" id="mw_4ba52ef9-5f16-42b8-99fa-a379ec333177"><code class="name">Name</code> — Name of vehicle<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">SimulinkVehicle1</code> (default) | character vector</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" aria-labelledby="expand_panel_heading_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" class="panel-collapse collapse"><div class="panel-body">
+            <p>Name of vehicle. By default, when you use the block in your model, the block sets
+              the <strong class="guilabel">Name</strong> parameter to
+                  <code class="literal">SimulinkVehicle<em class="replaceable"><code>X</code></em></code>. The value of
+                  <code class="literal"><em class="replaceable"><code>X</code></em></code> depends on the number of
+                <span class="block">Simulation 3D Physics Vehicle</span> and <span class="block">Simulation 3D
+                Vehicle</span> blocks that you have in your model.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" data-target="#expand_panel_body_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" aria-controls="expand_panel_body_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Initialposition" class="anchor_target"></span><h3 class="panel-title" id="mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9"><code class="name">Initial position</code> — Vehicle initial position<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[ 0, 0, -0.5 ] (default) | <code class="literal">1</code>-by-<code class="literal">3</code> array</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" aria-labelledby="expand_panel_heading_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" class="panel-collapse collapse"><div class="panel-body">
+            <p>Initial vehicle position specified by a
+                <code class="literal">1</code>-by-<code class="literal">3</code> array, in m. Array elements are values
+              along the <strong class="guilabel">Coordinate system</strong> parameter <span class="emphasis"><em>X</em></span>-,
+                <span class="emphasis"><em>Y</em></span>-, and <span class="emphasis"><em>Z</em></span>- axes, respectively.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" data-target="#expand_panel_body_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" aria-controls="expand_panel_body_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Initialrotation" class="anchor_target"></span><h3 class="panel-title" id="mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac"><code class="name">Initial rotation</code> — Vehicle initial rotation<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[ 0, 0, 0 ] (default) | <code class="literal">1</code>-by-<code class="literal">3</code> array</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" aria-labelledby="expand_panel_heading_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" class="panel-collapse collapse"><div class="panel-body">
+            <p>Initial vehicle rotation specified by a
+                <code class="literal">1</code>-by-<code class="literal">3</code> array, in rad. Array elements are
+              values about the <strong class="guilabel">Coordinate system</strong> parameter
+                <span class="emphasis"><em>X</em></span>-, <span class="emphasis"><em>Y</em></span>-, and <span class="emphasis"><em>Z</em></span>- axes,
+              respectively.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_08811b2b-fe52-428f-bab2-97392f160528" data-target="#expand_panel_body_mw_08811b2b-fe52-428f-bab2-97392f160528" aria-controls="expand_panel_body_mw_08811b2b-fe52-428f-bab2-97392f160528" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Mass" class="anchor_target"></span><h3 class="panel-title" id="mw_08811b2b-fe52-428f-bab2-97392f160528"><code class="name">Mass</code> — Vehicle mass<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1500 (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_08811b2b-fe52-428f-bab2-97392f160528" aria-labelledby="expand_panel_heading_mw_08811b2b-fe52-428f-bab2-97392f160528" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vehicle mass, in kg. This value does not include the wheel masses.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" data-target="#expand_panel_body_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" aria-controls="expand_panel_body_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_DragCoefficient" class="anchor_target"></span><h3 class="panel-title" id="mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0"><code class="name">Drag Coefficient</code> — Vehicle drag coefficient<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">0.3 (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" aria-labelledby="expand_panel_heading_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" class="panel-collapse collapse"><div class="panel-body">
+            <p>Vehicle drag coefficient, dimensionless.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_96b97212-cdf5-4e33-af75-f638be6710a2" data-target="#expand_panel_body_mw_96b97212-cdf5-4e33-af75-f638be6710a2" aria-controls="expand_panel_body_mw_96b97212-cdf5-4e33-af75-f638be6710a2" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Trackwidth" class="anchor_target"></span><h3 class="panel-title" id="mw_96b97212-cdf5-4e33-af75-f638be6710a2"><code class="name">Track width</code> — Distance between wheels<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1.9 (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_96b97212-cdf5-4e33-af75-f638be6710a2" aria-labelledby="expand_panel_heading_mw_96b97212-cdf5-4e33-af75-f638be6710a2" class="panel-collapse collapse"><div class="panel-body">
+            <p>The vehicle track width refers to the distance between the wheels, or the axle
+              length, specified in meters. This parameter is only used for custom mesh
+              options.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" data-target="#expand_panel_body_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" aria-controls="expand_panel_body_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Chassisheight" class="anchor_target"></span><h3 class="panel-title" id="mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b"><code class="name">Chassis height</code> — Height of chassis<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1.5 (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" aria-labelledby="expand_panel_heading_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" class="panel-collapse collapse"><div class="panel-body">
+            <p>Height of chassis used to calculate drag force, specified in meters.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" data-target="#expand_panel_body_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" aria-controls="expand_panel_body_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Centerofmassoffset" class="anchor_target"></span><h3 class="panel-title" id="mw_bc3d32cd-01b5-4564-be83-cc58ebc75517"><code class="name">Center of mass offset</code> — Offset in center of mass<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[0, 0, 0] (default) | three element vector</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" aria-labelledby="expand_panel_heading_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" class="panel-collapse collapse"><div class="panel-body">
+            <p>Offset in center of mass, specified as a three element vector, in meters.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" data-target="#expand_panel_body_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" aria-controls="expand_panel_body_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Inertiatensorscalingvector" class="anchor_target"></span><h3 class="panel-title" id="mw_63862cb7-0411-42d2-b1b0-ff9bd3150839"><code class="name">Inertia tensor scaling vector</code> — Scaling of inertia tensor<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[1, 1, 1] (default) | three element vector</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" aria-labelledby="expand_panel_heading_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" class="panel-collapse collapse"><div class="panel-body">
+            <p>Scaling of inertia tensor, specified as a three element dimensionless
+              vector.</p>
+          </div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_19718dd2-fe03-4e5a-a91c-8a296fb7e03d_div" class="refsect2"><h3 id="mw_19718dd2-fe03-4e5a-a91c-8a296fb7e03d">Powertrain and Driveline</h3>
+<strong class="mw-doc-parametersgrp" id="mw_4f4b60b0-4787-4b9f-877c-075b6d285366">Powertrain</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" data-target="#expand_panel_body_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" aria-controls="expand_panel_body_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Motortorqueindices" class="anchor_target"></span><h3 class="panel-title" id="mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e"><code class="name">Motor torque indices</code> — Motor torque indices<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[ 0, 300, 400, 0 ]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" aria-labelledby="expand_panel_heading_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" class="panel-collapse collapse"><div class="panel-body">
+            <p>Motor torque indices, in N·m. You can use these pre-transmission values to
+              represent either an electric motor or a conventional engine.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c909bff8-006f-477a-bcf4-b61434017546" data-target="#expand_panel_body_mw_c909bff8-006f-477a-bcf4-b61434017546" aria-controls="expand_panel_body_mw_c909bff8-006f-477a-bcf4-b61434017546" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Motorspeedbreakpoints" class="anchor_target"></span><h3 class="panel-title" id="mw_c909bff8-006f-477a-bcf4-b61434017546"><code class="name">Motor speed breakpoints</code> — Motor speed breakpoints<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[ 0, 1000, 5500, 8000 ]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c909bff8-006f-477a-bcf4-b61434017546" aria-labelledby="expand_panel_heading_mw_c909bff8-006f-477a-bcf4-b61434017546" class="panel-collapse collapse"><div class="panel-body">
+            <p>Motor speed breakpoints, in rpm.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e4f703a8-43bc-462f-91c5-499030dbb1b5" data-target="#expand_panel_body_mw_e4f703a8-43bc-462f-91c5-499030dbb1b5" aria-controls="expand_panel_body_mw_e4f703a8-43bc-462f-91c5-499030dbb1b5" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Maxpowertrainspeed" class="anchor_target"></span><h3 class="panel-title" id="mw_e4f703a8-43bc-462f-91c5-499030dbb1b5"><code class="name">Max powertrain speed</code> — Max powertrain speed<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">8500</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e4f703a8-43bc-462f-91c5-499030dbb1b5" aria-labelledby="expand_panel_heading_mw_e4f703a8-43bc-462f-91c5-499030dbb1b5" class="panel-collapse collapse"><div class="panel-body">
+            <p>Max powertrain speed, in rpm. If you select an automatic transmission option, this
+              value also corresponds to the normalized shift points used in the up and downshift
+              logic.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_adab3bb0-570b-4d09-bee0-3a6f5fbb2f6b" data-target="#expand_panel_body_mw_adab3bb0-570b-4d09-bee0-3a6f5fbb2f6b" aria-controls="expand_panel_body_mw_adab3bb0-570b-4d09-bee0-3a6f5fbb2f6b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Powertrainrotationalinertia" class="anchor_target"></span><h3 class="panel-title" id="mw_adab3bb0-570b-4d09-bee0-3a6f5fbb2f6b"><code class="name">Powertrain rotational inertia</code> — Powertrain rotational inertia<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_adab3bb0-570b-4d09-bee0-3a6f5fbb2f6b" aria-labelledby="expand_panel_heading_mw_adab3bb0-570b-4d09-bee0-3a6f5fbb2f6b" class="panel-collapse collapse"><div class="panel-body">
+            <p>Powertrain rotational inertia, in kg·m<sup>2</sup>.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_aaae4ab5-a361-47eb-be02-ab6fa04e892a" data-target="#expand_panel_body_mw_aaae4ab5-a361-47eb-be02-ab6fa04e892a" aria-controls="expand_panel_body_mw_aaae4ab5-a361-47eb-be02-ab6fa04e892a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Powertraindampingatfullmaxtorquerequest" class="anchor_target"></span><h3 class="panel-title" id="mw_aaae4ab5-a361-47eb-be02-ab6fa04e892a"><code class="name">Powertrain damping at full max torque request</code> — Powertrain damping at full max torque request<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.15</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_aaae4ab5-a361-47eb-be02-ab6fa04e892a" aria-labelledby="expand_panel_heading_mw_aaae4ab5-a361-47eb-be02-ab6fa04e892a" class="panel-collapse collapse"><div class="panel-body">
+            <p>Powertrain damping at full max torque request, in
+              kg·m<sup>2</sup>/s.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c70951f2-b915-426e-8702-2236f548e0b5" data-target="#expand_panel_body_mw_c70951f2-b915-426e-8702-2236f548e0b5" aria-controls="expand_panel_body_mw_c70951f2-b915-426e-8702-2236f548e0b5" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Powertraindampingatzerotorquerequestingear" class="anchor_target"></span><h3 class="panel-title" id="mw_c70951f2-b915-426e-8702-2236f548e0b5"><code class="name">Powertrain damping at zero torque request, in gear</code> — Powertrain damping at zero torque request, in gear<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">2</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c70951f2-b915-426e-8702-2236f548e0b5" aria-labelledby="expand_panel_heading_mw_c70951f2-b915-426e-8702-2236f548e0b5" class="panel-collapse collapse"><div class="panel-body">
+            <p>Powertrain damping at zero torque request, in gear, in
+                kg·m<sup>2</sup>/s.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8df93a0a-b0a3-452a-b504-b91c8afa5fe0" data-target="#expand_panel_body_mw_8df93a0a-b0a3-452a-b504-b91c8afa5fe0" aria-controls="expand_panel_body_mw_8df93a0a-b0a3-452a-b504-b91c8afa5fe0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Powertraindampingatzerotorquerequestinneutral" class="anchor_target"></span><h3 class="panel-title" id="mw_8df93a0a-b0a3-452a-b504-b91c8afa5fe0"><code class="name">Powertrain damping at zero torque request, in neutral</code> — Powertrain damping at zero torque request, in neutral<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.35</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8df93a0a-b0a3-452a-b504-b91c8afa5fe0" aria-labelledby="expand_panel_heading_mw_8df93a0a-b0a3-452a-b504-b91c8afa5fe0" class="panel-collapse collapse"><div class="panel-body">
+            <p>Powertrain damping at zero torque request, in neutral, in
+                kg·m<sup>2</sup>/s.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_6652dacf-fdf6-4520-ba5d-55990875c962">Driveline</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_65f40664-7945-4062-a45e-922f9abbb915" data-target="#expand_panel_body_mw_65f40664-7945-4062-a45e-922f9abbb915" aria-controls="expand_panel_body_mw_65f40664-7945-4062-a45e-922f9abbb915" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Differentialtype" class="anchor_target"></span><h3 class="panel-title" id="mw_65f40664-7945-4062-a45e-922f9abbb915"><code class="name">Differential type</code> — Differential<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Limited Slip</code> (default) | <code class="guidropdown">Open</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_65f40664-7945-4062-a45e-922f9abbb915" aria-labelledby="expand_panel_heading_mw_65f40664-7945-4062-a45e-922f9abbb915" class="panel-collapse collapse"><div class="panel-body">
+            <p>For both <code class="guidropdown">Limited Slip</code> and
+                <code class="guidropdown">Open</code> differentials, the block implements a differential
+              as a planetary bevel gear train. The block matches the driveshaft bevel gear to the
+              crown (ring) bevel gear.</p>
+            <p>If you select <code class="guidropdown">Limited Slip</code>, the block prevents one of
+              the wheels from slipping by splitting the torque applied to the left and right axles.
+              With different torque applied to the axles, the wheels can move at different angular
+              velocities, preventing slip.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9bc0bc39-313e-4b5b-ac03-5b65c361a3d0" data-target="#expand_panel_body_mw_9bc0bc39-313e-4b5b-ac03-5b65c361a3d0" aria-controls="expand_panel_body_mw_9bc0bc39-313e-4b5b-ac03-5b65c361a3d0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Drivetraintype" class="anchor_target"></span><h3 class="panel-title" id="mw_9bc0bc39-313e-4b5b-ac03-5b65c361a3d0"><code class="name">Drivetrain type</code> — Drivetrain<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Rear Wheel Drive</code> (default) | <code class="guidropdown">Front Wheel Drive</code> | <code class="guidropdown">All Wheel Drive</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9bc0bc39-313e-4b5b-ac03-5b65c361a3d0" aria-labelledby="expand_panel_heading_mw_9bc0bc39-313e-4b5b-ac03-5b65c361a3d0" class="panel-collapse collapse"><div class="panel-body">
+            <p>Implement rear wheel, front wheel, or all wheel drive.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_40b8a509-f239-408a-983a-53bf03c092c7" data-target="#expand_panel_body_mw_40b8a509-f239-408a-983a-53bf03c092c7" aria-controls="expand_panel_body_mw_40b8a509-f239-408a-983a-53bf03c092c7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Transmissiontype" class="anchor_target"></span><h3 class="panel-title" id="mw_40b8a509-f239-408a-983a-53bf03c092c7"><code class="name">Transmission type</code> — Transmission<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Automatic</code> (default) | <code class="guidropdown">Manual</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_40b8a509-f239-408a-983a-53bf03c092c7" aria-labelledby="expand_panel_heading_mw_40b8a509-f239-408a-983a-53bf03c092c7" class="panel-collapse collapse"><div class="panel-body">
+            <p>Implement an automatic or manual transmission.</p>
+            <div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p>
+<p>A response is required for the <code class="argument">GearCmd</code> input even if
+                  <code class="argument">Transmission type</code> is set to
+                <code class="literal">Automatic</code>.</p>
+</div>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4e039d68-a0a8-42df-9f3e-32696f81381d" data-target="#expand_panel_body_mw_4e039d68-a0a8-42df-9f3e-32696f81381d" aria-controls="expand_panel_body_mw_4e039d68-a0a8-42df-9f3e-32696f81381d" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Clutchsliptorque" class="anchor_target"></span><h3 class="panel-title" id="mw_4e039d68-a0a8-42df-9f3e-32696f81381d"><code class="name">Clutch slip torque</code> — Clutch slip torque<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">10</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_4e039d68-a0a8-42df-9f3e-32696f81381d" aria-labelledby="expand_panel_heading_mw_4e039d68-a0a8-42df-9f3e-32696f81381d" class="panel-collapse collapse"><div class="panel-body">
+            <p>Clutch slip torque, specified as a scalar in N·m.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_c7116055-9434-44fe-8436-a0f44d165c4b" data-target="#expand_panel_body_mw_c7116055-9434-44fe-8436-a0f44d165c4b" aria-controls="expand_panel_body_mw_c7116055-9434-44fe-8436-a0f44d165c4b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Shifttime" class="anchor_target"></span><h3 class="panel-title" id="mw_c7116055-9434-44fe-8436-a0f44d165c4b"><code class="name">Shift time</code> — Time taken to complete a shift<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.25</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_c7116055-9434-44fe-8436-a0f44d165c4b" aria-labelledby="expand_panel_heading_mw_c7116055-9434-44fe-8436-a0f44d165c4b" class="panel-collapse collapse"><div class="panel-body">
+            <p>Time taken to complete a shift, specified as a scalar in s.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_81ff1020-aa2b-4494-acd5-364b4c59d56d" data-target="#expand_panel_body_mw_81ff1020-aa2b-4494-acd5-364b4c59d56d" aria-controls="expand_panel_body_mw_81ff1020-aa2b-4494-acd5-364b4c59d56d" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Minimumshiftlatency" class="anchor_target"></span><h3 class="panel-title" id="mw_81ff1020-aa2b-4494-acd5-364b4c59d56d"><code class="name">Minimum shift latency</code> — Minimum time transmission will stay in newly selected gear<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1.0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_81ff1020-aa2b-4494-acd5-364b4c59d56d" aria-labelledby="expand_panel_heading_mw_81ff1020-aa2b-4494-acd5-364b4c59d56d" class="panel-collapse collapse"><div class="panel-body">
+            <p>Minimum time the transmission will stay in a newly selected gear to mitigate shift
+              hunting, specified as a scalar in s.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_808394cf-0fac-4fcf-ac73-619a83f63d2c" data-target="#expand_panel_body_mw_808394cf-0fac-4fcf-ac73-619a83f63d2c" aria-controls="expand_panel_body_mw_808394cf-0fac-4fcf-ac73-619a83f63d2c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Shiftupindices" class="anchor_target"></span><h3 class="panel-title" id="mw_808394cf-0fac-4fcf-ac73-619a83f63d2c"><code class="name">Shift up indices</code> — Normalized engine speeds at which a shift up for forward gears begins<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[ 0.15, 0.65, 0.65, 0.65, 0.65 ]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_808394cf-0fac-4fcf-ac73-619a83f63d2c" aria-labelledby="expand_panel_heading_mw_808394cf-0fac-4fcf-ac73-619a83f63d2c" class="panel-collapse collapse"><div class="panel-body">
+            <p>Normalized engine speeds with respect to the <code class="argument">Max powertrain
+                speed</code> parameter, at which a shift up for forward gears will be initiated,
+              specified as a scalar in s.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_353e218b-0f47-48a2-afb4-59143955ee67" data-target="#expand_panel_body_mw_353e218b-0f47-48a2-afb4-59143955ee67" aria-controls="expand_panel_body_mw_353e218b-0f47-48a2-afb4-59143955ee67" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Shiftdownindices" class="anchor_target"></span><h3 class="panel-title" id="mw_353e218b-0f47-48a2-afb4-59143955ee67"><code class="name">Shift down indices</code> — Normalized engine speeds at which a shift down for forward gears begins<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[ 0.15, 0.5, 0.5, 0.5, 0.5 ]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_353e218b-0f47-48a2-afb4-59143955ee67" aria-labelledby="expand_panel_heading_mw_353e218b-0f47-48a2-afb4-59143955ee67" class="panel-collapse collapse"><div class="panel-body">
+            <p>Normalized engine speeds with respect to the <code class="argument">Max powertrain
+                speed</code> parameter, at which a shift down for forward gears will be
+              initiated, specified as a scalar in s.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_2c74fb0f-94f4-4735-b012-d050a9338cf3" data-target="#expand_panel_body_mw_2c74fb0f-94f4-4735-b012-d050a9338cf3" aria-controls="expand_panel_body_mw_2c74fb0f-94f4-4735-b012-d050a9338cf3" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Gearratiovector" class="anchor_target"></span><h3 class="panel-title" id="mw_2c74fb0f-94f4-4735-b012-d050a9338cf3"><code class="name">Gear ratio vector</code> — Gear ratios<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[ -4, 4, 2, 1.5, 1.1, 1.0 ]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_2c74fb0f-94f4-4735-b012-d050a9338cf3" aria-labelledby="expand_panel_heading_mw_2c74fb0f-94f4-4735-b012-d050a9338cf3" class="panel-collapse collapse"><div class="panel-body">
+            <p>Gear ratios, dimensionless.</p>
+            <div class="alert alert-info"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p>
+<p>At least one negative ratio is required for reverse gear. A neutral ratio is
+                also required such that the length of the array should correspond to the number of
+                forward gears plus two one for reverse and one for neutral.</p>
+</div>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_42637321-5440-41ae-a28e-47246216db26" data-target="#expand_panel_body_mw_42637321-5440-41ae-a28e-47246216db26" aria-controls="expand_panel_body_mw_42637321-5440-41ae-a28e-47246216db26" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Gearnumbervector" class="anchor_target"></span><h3 class="panel-title" id="mw_42637321-5440-41ae-a28e-47246216db26"><code class="name">Gear number vector</code> — Gear ratios<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[-1, 0, 1, 2, 3, 4, 5, 6, 7, 8]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_42637321-5440-41ae-a28e-47246216db26" aria-labelledby="expand_panel_heading_mw_42637321-5440-41ae-a28e-47246216db26" class="panel-collapse collapse"><div class="panel-body">
+            <p>Gear number vector, dimensionless.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5349af48-21c7-4566-bc61-3802a8d1d6d6" data-target="#expand_panel_body_mw_5349af48-21c7-4566-bc61-3802a8d1d6d6" aria-controls="expand_panel_body_mw_5349af48-21c7-4566-bc61-3802a8d1d6d6" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Fronttoreartorquesplitratio" class="anchor_target"></span><h3 class="panel-title" id="mw_5349af48-21c7-4566-bc61-3802a8d1d6d6"><code class="name">Front to rear torque split ratio</code> — Front to rear torque split ratio<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">0.5 (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5349af48-21c7-4566-bc61-3802a8d1d6d6" aria-labelledby="expand_panel_heading_mw_5349af48-21c7-4566-bc61-3802a8d1d6d6" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front to rear torque split ratio, dimensionless.</p>
+            <p><code class="literal">1</code> indicates 100% torque to the front, whereas
+                <code class="literal">0</code> indicates 100% to the rear.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_3cd6e0f2-f057-41b3-b1e9-f672a81c19a0" data-target="#expand_panel_body_mw_3cd6e0f2-f057-41b3-b1e9-f672a81c19a0" aria-controls="expand_panel_body_mw_3cd6e0f2-f057-41b3-b1e9-f672a81c19a0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Finaldriveratio" class="anchor_target"></span><h3 class="panel-title" id="mw_3cd6e0f2-f057-41b3-b1e9-f672a81c19a0"><code class="name">Final drive ratio</code> — Final drive ratio<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">4</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_3cd6e0f2-f057-41b3-b1e9-f672a81c19a0" aria-labelledby="expand_panel_heading_mw_3cd6e0f2-f057-41b3-b1e9-f672a81c19a0" class="panel-collapse collapse"><div class="panel-body">
+            <p>Final drive ratio, dimensionless. This is the post transmission ratio, typically
+              found in a differential or final drive gearbox.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_440ec2f6-2057-4ee3-a375-c9d1b7c9a0ea_div" class="refsect2"><h3 id="mw_440ec2f6-2057-4ee3-a375-c9d1b7c9a0ea">Steering and Brakes</h3>
+<strong class="mw-doc-parametersgrp" id="mw_d1e2c7ff-7352-4068-817f-6ef44b1cc7ec">Steering</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_dfbc4c06-b6a1-460f-b3c9-03af521f5ad8" data-target="#expand_panel_body_mw_dfbc4c06-b6a1-460f-b3c9-03af521f5ad8" aria-controls="expand_panel_body_mw_dfbc4c06-b6a1-460f-b3c9-03af521f5ad8" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Frontwheelmaxsteerangle" class="anchor_target"></span><h3 class="panel-title" id="mw_dfbc4c06-b6a1-460f-b3c9-03af521f5ad8"><code class="name">Front wheel max steer angle</code> — Front wheel max steer angle<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc">45*pi/180 (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_dfbc4c06-b6a1-460f-b3c9-03af521f5ad8" aria-labelledby="expand_panel_heading_mw_dfbc4c06-b6a1-460f-b3c9-03af521f5ad8" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front wheel max steer angle, in radians. This is the absolute angle which the
+              front wheels will turn with a <code class="literal remove_text_wrapping">-1</code> or <code class="literal">1</code> steer
+              command input signal</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_db675616-ef4c-48ac-8b5c-c6fa7b1035ab" data-target="#expand_panel_body_mw_db675616-ef4c-48ac-8b5c-c6fa7b1035ab" aria-controls="expand_panel_body_mw_db675616-ef4c-48ac-8b5c-c6fa7b1035ab" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Rearwheelmaxsteerangle" class="anchor_target"></span><h3 class="panel-title" id="mw_db675616-ef4c-48ac-8b5c-c6fa7b1035ab"><code class="name">Rear wheel max steer angle</code> — Rear wheel max steer angle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">0 (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_db675616-ef4c-48ac-8b5c-c6fa7b1035ab" aria-labelledby="expand_panel_heading_mw_db675616-ef4c-48ac-8b5c-c6fa7b1035ab" class="panel-collapse collapse"><div class="panel-body">
+            <p>Rear wheel max steer angle, in radians. This is the absolute angle which the rear
+              wheels will turn with a <code class="literal remove_text_wrapping">-1</code> or <code class="literal">1</code> steer command
+              input signal</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_155be2ef-c860-49b9-a00e-4e4d3352073e" data-target="#expand_panel_body_mw_155be2ef-c860-49b9-a00e-4e4d3352073e" aria-controls="expand_panel_body_mw_155be2ef-c860-49b9-a00e-4e4d3352073e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_PercentAckermanPctAck" class="anchor_target"></span><h3 class="panel-title" id="mw_155be2ef-c860-49b9-a00e-4e4d3352073e"><code class="name">Percent Ackerman, PctAck</code> — Percent Ackerman constant<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">100</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_155be2ef-c860-49b9-a00e-4e4d3352073e" aria-labelledby="expand_panel_heading_mw_155be2ef-c860-49b9-a00e-4e4d3352073e" class="panel-collapse collapse"><div class="panel-body">
+            <p>Constant value of percent Ackerman, in percent. A value of <code class="literal">100</code>
+              indicates an ideal Ackermann inside or outside steering adjustment, while
+                <code class="literal">0</code> indicates a pure parallel steer adjustment.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_df61b074-fff1-4f5d-b0f7-5de3c9acd5d2" data-target="#expand_panel_body_mw_df61b074-fff1-4f5d-b0f7-5de3c9acd5d2" aria-controls="expand_panel_body_mw_df61b074-fff1-4f5d-b0f7-5de3c9acd5d2" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Maximumsteeringratiobreakpoints" class="anchor_target"></span><h3 class="panel-title" id="mw_df61b074-fff1-4f5d-b0f7-5de3c9acd5d2"><code class="name">Maximum steering ratio breakpoints</code> — Maximum steering ratio<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[ 1, 0.8, 0.7 ]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_df61b074-fff1-4f5d-b0f7-5de3c9acd5d2" aria-labelledby="expand_panel_heading_mw_df61b074-fff1-4f5d-b0f7-5de3c9acd5d2" class="panel-collapse collapse"><div class="panel-body">
+            <p>Maximum steering ratio breakpoints, dimensionless. This is the gain by which the
+              steering command is affected by the vehicle speed brake points.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_22fd9af8-b628-4bd0-b82c-4444e87fb8fb" data-target="#expand_panel_body_mw_22fd9af8-b628-4bd0-b82c-4444e87fb8fb" aria-controls="expand_panel_body_mw_22fd9af8-b628-4bd0-b82c-4444e87fb8fb" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Steeringratiospeedbreakpoints" class="anchor_target"></span><h3 class="panel-title" id="mw_22fd9af8-b628-4bd0-b82c-4444e87fb8fb"><code class="name">Steering ratio speed breakpoints</code> — Steering ratio speed breakpoints<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[ 0, 60, 120 ]./3.6</code> (default) | <code class="literal">vector</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_22fd9af8-b628-4bd0-b82c-4444e87fb8fb" aria-labelledby="expand_panel_heading_mw_22fd9af8-b628-4bd0-b82c-4444e87fb8fb" class="panel-collapse collapse"><div class="panel-body">
+            <p>Steering ratio speed breakpoints, in m/s. This is the vehicle forward speed break
+              points used by the steer ratio gains.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_9d64f370-cbda-4c48-882e-b8b53aaa06c5">Brakes</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_6f7a0c0e-c36c-449d-8389-7a9d340b83e0" data-target="#expand_panel_body_mw_6f7a0c0e-c36c-449d-8389-7a9d340b83e0" aria-controls="expand_panel_body_mw_6f7a0c0e-c36c-449d-8389-7a9d340b83e0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Maximumfrontwheeltorque" class="anchor_target"></span><h3 class="panel-title" id="mw_6f7a0c0e-c36c-449d-8389-7a9d340b83e0"><code class="name">Maximum front wheel torque</code> — Maximum front wheel torque<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1500</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_6f7a0c0e-c36c-449d-8389-7a9d340b83e0" aria-labelledby="expand_panel_heading_mw_6f7a0c0e-c36c-449d-8389-7a9d340b83e0" class="panel-collapse collapse"><div class="panel-body">
+            <p>Maximum front wheel torque, in N·m. This is the maximum braking torque applied to
+              the front wheels corresponding to the normalized <code class="argument">DecelCmd</code>
+              input.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_692e9725-14a5-4773-b46d-6bac47cbcb80" data-target="#expand_panel_body_mw_692e9725-14a5-4773-b46d-6bac47cbcb80" aria-controls="expand_panel_body_mw_692e9725-14a5-4773-b46d-6bac47cbcb80" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Maximumrearwheeltorque" class="anchor_target"></span><h3 class="panel-title" id="mw_692e9725-14a5-4773-b46d-6bac47cbcb80"><code class="name">Maximum rear wheel torque</code> — Maximum rear wheel torque<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1500</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_692e9725-14a5-4773-b46d-6bac47cbcb80" aria-labelledby="expand_panel_heading_mw_692e9725-14a5-4773-b46d-6bac47cbcb80" class="panel-collapse collapse"><div class="panel-body">
+            <p>Maximum rear wheel torque, in N·m. This is the maximum braking torque applied to
+              the rear wheels corresponding to the normalized <code class="argument">DecelCmd</code>
+              input.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_40327e5c-d44b-4a11-b07f-cfcf8ae0ed68" data-target="#expand_panel_body_mw_40327e5c-d44b-4a11-b07f-cfcf8ae0ed68" aria-controls="expand_panel_body_mw_40327e5c-d44b-4a11-b07f-cfcf8ae0ed68" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Frontwheelsaffectedbyhandbrake" class="anchor_target"></span><h3 class="panel-title" id="mw_40327e5c-d44b-4a11-b07f-cfcf8ae0ed68"><code class="name">Front wheels affected by handbrake</code> — Selection<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_40327e5c-d44b-4a11-b07f-cfcf8ae0ed68" aria-labelledby="expand_panel_heading_mw_40327e5c-d44b-4a11-b07f-cfcf8ae0ed68" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front wheels affected by handbrake.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>Boolean</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_ce0dd214-3cd7-48c1-9886-86e182c4cef0" data-target="#expand_panel_body_mw_ce0dd214-3cd7-48c1-9886-86e182c4cef0" aria-controls="expand_panel_body_mw_ce0dd214-3cd7-48c1-9886-86e182c4cef0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Rearwheelsaffectedbyhandbrake" class="anchor_target"></span><h3 class="panel-title" id="mw_ce0dd214-3cd7-48c1-9886-86e182c4cef0"><code class="name">Rear wheels affected by handbrake</code> — Selection<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_ce0dd214-3cd7-48c1-9886-86e182c4cef0" aria-labelledby="expand_panel_heading_mw_ce0dd214-3cd7-48c1-9886-86e182c4cef0" class="panel-collapse collapse"><div class="panel-body">
+            <p>Rear wheels affected by handbrake.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>Boolean</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7565c5f2-8b14-4dc2-ada9-01ee3d7c40cc" data-target="#expand_panel_body_mw_7565c5f2-8b14-4dc2-ada9-01ee3d7c40cc" aria-controls="expand_panel_body_mw_7565c5f2-8b14-4dc2-ada9-01ee3d7c40cc" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Enablehandbrakeinput" class="anchor_target"></span><h3 class="panel-title" id="mw_7565c5f2-8b14-4dc2-ada9-01ee3d7c40cc"><code class="name">Enable handbrake input</code> — Enable handbrake input<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_7565c5f2-8b14-4dc2-ada9-01ee3d7c40cc" aria-labelledby="expand_panel_heading_mw_7565c5f2-8b14-4dc2-ada9-01ee3d7c40cc" class="panel-collapse collapse"><div class="panel-body">
+            <p>Enable handbrake input.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>Boolean</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_5fdf7c4e-ac89-467f-9e15-e98b27d77980_div" class="refsect2"><h3 id="mw_5fdf7c4e-ac89-467f-9e15-e98b27d77980">Suspension, Wheels and Tires</h3>
+<strong class="mw-doc-parametersgrp" id="mw_3694bd37-8c0e-4fb2-8c98-d1de000ed853">Suspension</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_2e4538df-bf1b-4ed0-8020-89fe97805f37" data-target="#expand_panel_body_mw_2e4538df-bf1b-4ed0-8020-89fe97805f37" aria-controls="expand_panel_body_mw_2e4538df-bf1b-4ed0-8020-89fe97805f37" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Frontsuspensionforceoffset" class="anchor_target"></span><h3 class="panel-title" id="mw_2e4538df-bf1b-4ed0-8020-89fe97805f37"><code class="name">Front suspension force offset</code> — Front suspension force offset<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_2e4538df-bf1b-4ed0-8020-89fe97805f37" aria-labelledby="expand_panel_heading_mw_2e4538df-bf1b-4ed0-8020-89fe97805f37" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front suspension force offset, specified as a scalar in meters.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8bafda7e-1b46-4789-aca0-121f9372be09" data-target="#expand_panel_body_mw_8bafda7e-1b46-4789-aca0-121f9372be09" aria-controls="expand_panel_body_mw_8bafda7e-1b46-4789-aca0-121f9372be09" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Maximumfrontsuspensioncompression" class="anchor_target"></span><h3 class="panel-title" id="mw_8bafda7e-1b46-4789-aca0-121f9372be09"><code class="name">Maximum front suspension compression</code> — Maximum front suspension compression<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">.01</code> (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8bafda7e-1b46-4789-aca0-121f9372be09" aria-labelledby="expand_panel_heading_mw_8bafda7e-1b46-4789-aca0-121f9372be09" class="panel-collapse collapse"><div class="panel-body">
+            <p>Maximum front suspension compression or jounce, specified as a scalar in meters.
+              Jounce is the upward movement or compression of suspension components.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_da3b5cec-7328-4231-a3f4-0e2ea5b8506c" data-target="#expand_panel_body_mw_da3b5cec-7328-4231-a3f4-0e2ea5b8506c" aria-controls="expand_panel_body_mw_da3b5cec-7328-4231-a3f4-0e2ea5b8506c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Maximumfrontsuspensionextension" class="anchor_target"></span><h3 class="panel-title" id="mw_da3b5cec-7328-4231-a3f4-0e2ea5b8506c"><code class="name">Maximum front suspension extension</code> — Maximum front suspension extension<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">.01</code> (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_da3b5cec-7328-4231-a3f4-0e2ea5b8506c" aria-labelledby="expand_panel_heading_mw_da3b5cec-7328-4231-a3f4-0e2ea5b8506c" class="panel-collapse collapse"><div class="panel-body">
+            <p>Maximum front suspension extension or rebound, specified as a scalar in meters.
+              Rebound is the downward movement or extension of suspension components.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e6c67c2a-33c4-4833-8541-96d2a4736929" data-target="#expand_panel_body_mw_e6c67c2a-33c4-4833-8541-96d2a4736929" aria-controls="expand_panel_body_mw_e6c67c2a-33c4-4833-8541-96d2a4736929" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Frontsuspensionnaturalfrequency" class="anchor_target"></span><h3 class="panel-title" id="mw_e6c67c2a-33c4-4833-8541-96d2a4736929"><code class="name">Front suspension natural frequency</code> — Natural frequency of front suspension<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">7</code> (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e6c67c2a-33c4-4833-8541-96d2a4736929" aria-labelledby="expand_panel_heading_mw_e6c67c2a-33c4-4833-8541-96d2a4736929" class="panel-collapse collapse"><div class="panel-body">
+            <p>Natural frequency of front suspension, in Hz. Suspension frequencies are the rate
+              that a spring oscillates after applying a load (or hitting a bump).</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a9788e2d-de3b-444c-b41b-acf95325c8c8" data-target="#expand_panel_body_mw_a9788e2d-de3b-444c-b41b-acf95325c8c8" aria-controls="expand_panel_body_mw_a9788e2d-de3b-444c-b41b-acf95325c8c8" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Frontsuspensiondampingratio" class="anchor_target"></span><h3 class="panel-title" id="mw_a9788e2d-de3b-444c-b41b-acf95325c8c8"><code class="name">Front suspension damping ratio</code> — Damping ratio of front suspension<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_a9788e2d-de3b-444c-b41b-acf95325c8c8" aria-labelledby="expand_panel_heading_mw_a9788e2d-de3b-444c-b41b-acf95325c8c8" class="panel-collapse collapse"><div class="panel-body">
+            <p>Damping ratio of front suspension, dimensionless. Damping ratio is the coefficient
+              of the damper at its peak level, where the vehicle will be in a completely stable
+              state.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e1081470-bf25-4fbc-811c-37bd3758ac5c" data-target="#expand_panel_body_mw_e1081470-bf25-4fbc-811c-37bd3758ac5c" aria-controls="expand_panel_body_mw_e1081470-bf25-4fbc-811c-37bd3758ac5c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Rearsuspensionforceoffset" class="anchor_target"></span><h3 class="panel-title" id="mw_e1081470-bf25-4fbc-811c-37bd3758ac5c"><code class="name">Rear suspension force offset</code> — Rear suspension force offset<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0</code> (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e1081470-bf25-4fbc-811c-37bd3758ac5c" aria-labelledby="expand_panel_heading_mw_e1081470-bf25-4fbc-811c-37bd3758ac5c" class="panel-collapse collapse"><div class="panel-body">
+            <p>Rear suspension force offset, specified as a scalar in meters.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_64ff6e84-c9c7-4483-8f7f-4f434ab3c35a" data-target="#expand_panel_body_mw_64ff6e84-c9c7-4483-8f7f-4f434ab3c35a" aria-controls="expand_panel_body_mw_64ff6e84-c9c7-4483-8f7f-4f434ab3c35a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Maximumrearsuspensioncompression" class="anchor_target"></span><h3 class="panel-title" id="mw_64ff6e84-c9c7-4483-8f7f-4f434ab3c35a"><code class="name">Maximum rear suspension compression</code> — Maximum rear suspension compression<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">.01</code> (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_64ff6e84-c9c7-4483-8f7f-4f434ab3c35a" aria-labelledby="expand_panel_heading_mw_64ff6e84-c9c7-4483-8f7f-4f434ab3c35a" class="panel-collapse collapse"><div class="panel-body">
+            <p>Maximum rear suspension compression or jounce, specified as a scalar in meters.
+              Jounce is the upward movement or compression of suspension components.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_f0a7478f-1dba-4d64-bed7-0391aee1c1af" data-target="#expand_panel_body_mw_f0a7478f-1dba-4d64-bed7-0391aee1c1af" aria-controls="expand_panel_body_mw_f0a7478f-1dba-4d64-bed7-0391aee1c1af" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Maximumrearsuspensionextension" class="anchor_target"></span><h3 class="panel-title" id="mw_f0a7478f-1dba-4d64-bed7-0391aee1c1af"><code class="name">Maximum rear suspension extension</code> — Maximum rear suspension extension<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">.01</code> (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_f0a7478f-1dba-4d64-bed7-0391aee1c1af" aria-labelledby="expand_panel_heading_mw_f0a7478f-1dba-4d64-bed7-0391aee1c1af" class="panel-collapse collapse"><div class="panel-body">
+            <p>Maximum rear suspension extension or rebound, specified as a scalar in meters.
+              Rebound is the downward movement or extension of suspension components.</p>
+          </div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_99c0efc1-f108-4052-97f8-2148c6be36fb" data-target="#expand_panel_body_mw_99c0efc1-f108-4052-97f8-2148c6be36fb" aria-controls="expand_panel_body_mw_99c0efc1-f108-4052-97f8-2148c6be36fb" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Rearsuspensionnaturalfrequency" class="anchor_target"></span><h3 class="panel-title" id="mw_99c0efc1-f108-4052-97f8-2148c6be36fb"><code class="name">Rear suspension natural frequency</code> — Natural frequency of rear suspension<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">7</code> (default) | scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_99c0efc1-f108-4052-97f8-2148c6be36fb" aria-labelledby="expand_panel_heading_mw_99c0efc1-f108-4052-97f8-2148c6be36fb" class="panel-collapse collapse"><div class="panel-body">
+            <p>Natural frequency of rear suspension, in Hz. Suspension frequencies are the rate
+              that a spring oscillates after applying a load (or hitting a bump).</p>
+          </div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_643fc766-3677-4e9f-8aae-adeed128fce1">Wheels</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_827c74ac-b427-4d46-826d-16f8a85afd97" data-target="#expand_panel_body_mw_827c74ac-b427-4d46-826d-16f8a85afd97" aria-controls="expand_panel_body_mw_827c74ac-b427-4d46-826d-16f8a85afd97" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Frontwheelmass" class="anchor_target"></span><h3 class="panel-title" id="mw_827c74ac-b427-4d46-826d-16f8a85afd97"><code class="name">Front wheel mass</code> — Front wheel mass<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">10</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_827c74ac-b427-4d46-826d-16f8a85afd97" aria-labelledby="expand_panel_heading_mw_827c74ac-b427-4d46-826d-16f8a85afd97" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front wheel mass, in kg.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_d50096ea-81b7-4997-925b-f91d658e7191" data-target="#expand_panel_body_mw_d50096ea-81b7-4997-925b-f91d658e7191" aria-controls="expand_panel_body_mw_d50096ea-81b7-4997-925b-f91d658e7191" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Frontwheeldamping" class="anchor_target"></span><h3 class="panel-title" id="mw_d50096ea-81b7-4997-925b-f91d658e7191"><code class="name">Front wheel damping</code> — Front wheel damping<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.25</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_d50096ea-81b7-4997-925b-f91d658e7191" aria-labelledby="expand_panel_heading_mw_d50096ea-81b7-4997-925b-f91d658e7191" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front wheel damping, in N·m/s.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5f3e0108-6872-4716-b94a-f933cd60f5d7" data-target="#expand_panel_body_mw_5f3e0108-6872-4716-b94a-f933cd60f5d7" aria-controls="expand_panel_body_mw_5f3e0108-6872-4716-b94a-f933cd60f5d7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Rearwheelmass" class="anchor_target"></span><h3 class="panel-title" id="mw_5f3e0108-6872-4716-b94a-f933cd60f5d7"><code class="name">Rear wheel mass</code> — Rear wheel mass<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">20</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5f3e0108-6872-4716-b94a-f933cd60f5d7" aria-labelledby="expand_panel_heading_mw_5f3e0108-6872-4716-b94a-f933cd60f5d7" class="panel-collapse collapse"><div class="panel-body">
+            <p>Rear wheel mass, in kg.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8da7259b-58a1-47d7-a9ff-f0e5fc670b81" data-target="#expand_panel_body_mw_8da7259b-58a1-47d7-a9ff-f0e5fc670b81" aria-controls="expand_panel_body_mw_8da7259b-58a1-47d7-a9ff-f0e5fc670b81" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Rearwheeldamping" class="anchor_target"></span><h3 class="panel-title" id="mw_8da7259b-58a1-47d7-a9ff-f0e5fc670b81"><code class="name">Rear wheel damping</code> — Rear wheel damping<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">0.25</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_8da7259b-58a1-47d7-a9ff-f0e5fc670b81" aria-labelledby="expand_panel_heading_mw_8da7259b-58a1-47d7-a9ff-f0e5fc670b81" class="panel-collapse collapse"><div class="panel-body">
+            <p>Rear wheel damping, in N·m/s.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_1c5bb3d1-9243-49a7-bb5d-eab1251e438e">Tires</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_91b5e459-1991-41ac-9d12-eef9d7a98ad8" data-target="#expand_panel_body_mw_91b5e459-1991-41ac-9d12-eef9d7a98ad8" aria-controls="expand_panel_body_mw_91b5e459-1991-41ac-9d12-eef9d7a98ad8" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Fronttiremaxlateralstiffnessfactor" class="anchor_target"></span><h3 class="panel-title" id="mw_91b5e459-1991-41ac-9d12-eef9d7a98ad8"><code class="name">Front tire max lateral stiffness factor</code> — Front tire max lateral stiffness factor<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">2.0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_91b5e459-1991-41ac-9d12-eef9d7a98ad8" aria-labelledby="expand_panel_heading_mw_91b5e459-1991-41ac-9d12-eef9d7a98ad8" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front tire max lateral stiffness factor, dimensionless.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9de72247-eb4a-4bc9-bd26-2a3dcd45cb11" data-target="#expand_panel_body_mw_9de72247-eb4a-4bc9-bd26-2a3dcd45cb11" aria-controls="expand_panel_body_mw_9de72247-eb4a-4bc9-bd26-2a3dcd45cb11" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Fronttirelateralstiffness" class="anchor_target"></span><h3 class="panel-title" id="mw_9de72247-eb4a-4bc9-bd26-2a3dcd45cb11"><code class="name">Front tire lateral stiffness</code> — Front tire lateral stiffness<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">17</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9de72247-eb4a-4bc9-bd26-2a3dcd45cb11" aria-labelledby="expand_panel_heading_mw_9de72247-eb4a-4bc9-bd26-2a3dcd45cb11" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front tire lateral stiffness, dimensionless.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_2587f532-5ec0-4da9-9fae-5f8d6e54e763" data-target="#expand_panel_body_mw_2587f532-5ec0-4da9-9fae-5f8d6e54e763" aria-controls="expand_panel_body_mw_2587f532-5ec0-4da9-9fae-5f8d6e54e763" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Fronttirelongitudinalstiffness" class="anchor_target"></span><h3 class="panel-title" id="mw_2587f532-5ec0-4da9-9fae-5f8d6e54e763"><code class="name">Front tire longitudinal stiffness</code> — Front tire longitudinal stiffness<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1000</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_2587f532-5ec0-4da9-9fae-5f8d6e54e763" aria-labelledby="expand_panel_heading_mw_2587f532-5ec0-4da9-9fae-5f8d6e54e763" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front tire longitudinal stiffness, dimensionless.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_9195ab98-1b64-4a7d-80af-43d57676c985" data-target="#expand_panel_body_mw_9195ab98-1b64-4a7d-80af-43d57676c985" aria-controls="expand_panel_body_mw_9195ab98-1b64-4a7d-80af-43d57676c985" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Reartiremaxlateralstiffnessfactor" class="anchor_target"></span><h3 class="panel-title" id="mw_9195ab98-1b64-4a7d-80af-43d57676c985"><code class="name">Rear tire max lateral stiffness factor</code> — Front tire max lateral stiffness factor<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">2.0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_9195ab98-1b64-4a7d-80af-43d57676c985" aria-labelledby="expand_panel_heading_mw_9195ab98-1b64-4a7d-80af-43d57676c985" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front tire max lateral stiffness factor, dimensionless.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_7539228d-e370-4cb8-a19e-86bfeaca5132" data-target="#expand_panel_body_mw_7539228d-e370-4cb8-a19e-86bfeaca5132" aria-controls="expand_panel_body_mw_7539228d-e370-4cb8-a19e-86bfeaca5132" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Reartirelateralstiffness" class="anchor_target"></span><h3 class="panel-title" id="mw_7539228d-e370-4cb8-a19e-86bfeaca5132"><code class="name">Rear tire lateral stiffness</code> — Front tire lateral stiffness<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">17</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_7539228d-e370-4cb8-a19e-86bfeaca5132" aria-labelledby="expand_panel_heading_mw_7539228d-e370-4cb8-a19e-86bfeaca5132" class="panel-collapse collapse"><div class="panel-body">
+            <p>Rear tire lateral stiffness, dimensionless.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e34b7952-bcb0-4ba7-b44e-0c19ab0d56f7" data-target="#expand_panel_body_mw_e34b7952-bcb0-4ba7-b44e-0c19ab0d56f7" aria-controls="expand_panel_body_mw_e34b7952-bcb0-4ba7-b44e-0c19ab0d56f7" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Reartirelongitudinalstiffness" class="anchor_target"></span><h3 class="panel-title" id="mw_e34b7952-bcb0-4ba7-b44e-0c19ab0d56f7"><code class="name">Rear tire longitudinal stiffness</code> — Front tire longitudinal stiffness<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1000</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_e34b7952-bcb0-4ba7-b44e-0c19ab0d56f7" aria-labelledby="expand_panel_heading_mw_e34b7952-bcb0-4ba7-b44e-0c19ab0d56f7" class="panel-collapse collapse"><div class="panel-body">
+            <p>Front tire longitudinal stiffness, dimensionless.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_133caa16-8e63-46b0-8a64-908947dd4078" data-target="#expand_panel_body_mw_133caa16-8e63-46b0-8a64-908947dd4078" aria-controls="expand_panel_body_mw_133caa16-8e63-46b0-8a64-908947dd4078" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Frictionscalingfactor" class="anchor_target"></span><h3 class="panel-title" id="mw_133caa16-8e63-46b0-8a64-908947dd4078"><code class="name">Friction scaling factor</code> — Friction scaling<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1.0</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_133caa16-8e63-46b0-8a64-908947dd4078" aria-labelledby="expand_panel_heading_mw_133caa16-8e63-46b0-8a64-908947dd4078" class="panel-collapse collapse"><div class="panel-body">
+            <p>Nominal friction scale, dimensionless.</p>
+            
+          <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300.mw_547fa996-2585-491c-ab01-c9ee04d8f673_div" class="refsect2"><h3 id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_547fa996-2585-491c-ab01-c9ee04d8f673">Light Controls</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d75e19e8-ec3b-4eb3-afdb-10d6109cdb14" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d75e19e8-ec3b-4eb3-afdb-10d6109cdb14" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d75e19e8-ec3b-4eb3-afdb-10d6109cdb14" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_EnablelightcontrolsVehLightsControl" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d75e19e8-ec3b-4eb3-afdb-10d6109cdb14"><code class="name">Enable light controls, VehLightsControl</code> — Control vehicle lights<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">off</code> (default) | <code class="literal">on</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d75e19e8-ec3b-4eb3-afdb-10d6109cdb14" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d75e19e8-ec3b-4eb3-afdb-10d6109cdb14" class="panel-collapse collapse"><div class="panel-body"><p>Select whether to control the vehicle headlights. Use the enabled parameters to set the light parameters, including headlight intensity.</p>
+<h4 class="descriptionsect">Dependencies</h4>
+<p>Selecting this parameter:</p>
+<div class="itemizedlist"><ul><li><p>Creates the input port <code class="literal">Light controls</code></p></li>
+<li><p>Enables these light parameters.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="36%"/>
+<col class="tcol2" width="64%"/>
+</colgroup>
+<thead><tr><th>Lights</th>
+<th>Light Parameters</th>
+</tr>
+</thead>
+<tbody><tr><td><strong class="guilabel">Headlights</strong></td>
+<td><p>
+                                                  </p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Headlight color</strong></p></li>
+<li><p><strong class="guilabel">High beam
+                                                  intensity</strong></p></li>
+<li><p><strong class="guilabel">Low beam
+                                                  intensity</strong></p></li>
+<li><p><strong class="guilabel">High beam cone half
+                                                  angle</strong></p></li>
+<li><p><strong class="guilabel">Low beam cone half
+                                                  angle</strong></p></li>
+<li><p><strong class="guilabel">Left headlight beam
+                                                  orientation</strong></p></li>
+<li><p><strong class="guilabel">Right headlight beam
+                                                  orientation</strong></p></li>
+</ul>
+</div>
+<p>
+
+                                                  </p>
+</td>
+</tr>
+<tr><td><strong class="guilabel">Brake lights</strong></td>
+<td><p><strong class="guilabel">Brake light
+                                                  intensity</strong></p>
+</td>
+</tr>
+<tr><td><strong class="guilabel">Reverse lights</strong></td>
+<td><p><strong class="guilabel">Reverse light
+                                                  intensity</strong></p>
+</td>
+</tr>
+<tr><td><strong class="guilabel">Turn signal
+                                                  lights</strong></td>
+<td><p>
+                                                  </p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Turn signal light
+                                                  intensity</strong></p></li>
+<li><p><strong class="guilabel">Period</strong></p></li>
+<li><p><strong class="guilabel">Pulse width</strong></p></li>
+</ul>
+</div>
+<p>
+
+                                                  </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div><p>
+</p></li>
+</ul>
+</div>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_2b59a68e-2a01-42ef-b956-57bcfc1de1ce">Headlights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_22184fe2-6635-466d-8f7a-f2b663b88e59" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_22184fe2-6635-466d-8f7a-f2b663b88e59" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_22184fe2-6635-466d-8f7a-f2b663b88e59" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_HeadlightcolorRGBHeadlightColor" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_22184fe2-6635-466d-8f7a-f2b663b88e59"><code class="name">Headlight color [R,G,B], HeadlightColor</code> — Headlight color<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[1,1,1]</code> (default) | 1-by-3 vector of RGB triplet values</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_22184fe2-6635-466d-8f7a-f2b663b88e59" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_22184fe2-6635-466d-8f7a-f2b663b88e59" class="panel-collapse collapse"><div class="panel-body">
+                <p>Headlight color, specified as a normalized 1-by-3 vector of RGB triplet
+                    values.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>int8</code> | <code>uint8</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_64a3bf89-742c-46bb-9192-ba4ac6f25149" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_64a3bf89-742c-46bb-9192-ba4ac6f25149" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_64a3bf89-742c-46bb-9192-ba4ac6f25149" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_HighbeamintensityHighBeamIntensity" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_64a3bf89-742c-46bb-9192-ba4ac6f25149"><code class="name">High beam intensity, HighBeamIntensity</code> — High beam intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">100000</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_64a3bf89-742c-46bb-9192-ba4ac6f25149" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_64a3bf89-742c-46bb-9192-ba4ac6f25149" class="panel-collapse collapse"><div class="panel-body">
+                <p>High beam intensity, in cd.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d2265a77-d118-4b66-be34-9c52ea508c2f" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d2265a77-d118-4b66-be34-9c52ea508c2f" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d2265a77-d118-4b66-be34-9c52ea508c2f" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_LowbeamintensityLowBeamIntensity" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d2265a77-d118-4b66-be34-9c52ea508c2f"><code class="name">Low beam intensity, LowBeamIntensity</code> — Low beam intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">60000</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d2265a77-d118-4b66-be34-9c52ea508c2f" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d2265a77-d118-4b66-be34-9c52ea508c2f" class="panel-collapse collapse"><div class="panel-body">
+                <p>Low beam intensity, in cd.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d77847d0-99a1-4c5e-b851-d1b94e22f21c" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d77847d0-99a1-4c5e-b851-d1b94e22f21c" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d77847d0-99a1-4c5e-b851-d1b94e22f21c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_HighbeamconehalfangleHighBeamConeAngle" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d77847d0-99a1-4c5e-b851-d1b94e22f21c"><code class="name">High beam cone half angle, HighBeamConeAngle</code> — High beam cone half angle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1.22</code> (default) | positive scalar less than pi/2</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d77847d0-99a1-4c5e-b851-d1b94e22f21c" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_d77847d0-99a1-4c5e-b851-d1b94e22f21c" class="panel-collapse collapse"><div class="panel-body">
+                <p>High beam cone half angle, in rad.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9519c8ee-9f52-4ea0-9854-dfca52ce99e8" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9519c8ee-9f52-4ea0-9854-dfca52ce99e8" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9519c8ee-9f52-4ea0-9854-dfca52ce99e8" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_LowbeamconehalfangleLowBeamConeAngle" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9519c8ee-9f52-4ea0-9854-dfca52ce99e8"><code class="name">Low beam cone half angle, LowBeamConeAngle</code> — Low beam cone half angle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1.22</code> (default) | positive scalar less than pi/2</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9519c8ee-9f52-4ea0-9854-dfca52ce99e8" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9519c8ee-9f52-4ea0-9854-dfca52ce99e8" class="panel-collapse collapse"><div class="panel-body">
+                <p>Low beam cone half angle, in rad.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_59968296-358d-459d-84bc-d2a5297b8189" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_59968296-358d-459d-84bc-d2a5297b8189" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_59968296-358d-459d-84bc-d2a5297b8189" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_LeftheadlightbeamorientationPitchYawLeftHeadlightOrientation" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_59968296-358d-459d-84bc-d2a5297b8189"><code class="name">Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation </code> — Left headlight beam orientation<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0,0]</code> (default) | 1-by-2 vector greater with values between -pi and pi</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_59968296-358d-459d-84bc-d2a5297b8189" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_59968296-358d-459d-84bc-d2a5297b8189" class="panel-collapse collapse"><div class="panel-body">
+                <p>Pitch and yaw orientation of the left headlight beam orientation in the
+                        <span class="emphasis"><em>Z</em></span>-down coordinate system, specified as a 1-by-2 vector,
+                    in rad. The first element of the vector, <code class="literal">[1,1]</code>, is the pitch
+                    angle. The second element of the vector, <code class="literal">[1,2]</code> is the yaw
+                    angle.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_403e61b1-ac13-4561-99c1-7b1e46eb8e7b" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_403e61b1-ac13-4561-99c1-7b1e46eb8e7b" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_403e61b1-ac13-4561-99c1-7b1e46eb8e7b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_RightheadlightbeamorientationPitchYawRightHeadlightOrientation" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_403e61b1-ac13-4561-99c1-7b1e46eb8e7b"><code class="name">Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation</code> — Right headlight beam orientation<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[0,0]</code> (default) | 1-by-2 vector greater with values between -pi and pi</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_403e61b1-ac13-4561-99c1-7b1e46eb8e7b" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_403e61b1-ac13-4561-99c1-7b1e46eb8e7b" class="panel-collapse collapse"><div class="panel-body">
+                <p>Pitch and yaw orientation of the right headlight beam orientation in the
+                        <span class="emphasis"><em>Z</em></span>-down coordinate system, specified as a 1-by-2 vector,
+                    in rad. The first element of the vector, <code class="literal">[1,1]</code>, is the pitch
+                    angle. The second element of the vector, <code class="literal">[1,2]</code> is the yaw
+                    angle.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            </div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e6826853-a8dd-443a-a2b1-bf0c581b35eb">Brake Lights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e13ee064-82c9-4fc0-8f36-2cb8a5de11ce" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e13ee064-82c9-4fc0-8f36-2cb8a5de11ce" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e13ee064-82c9-4fc0-8f36-2cb8a5de11ce" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_BrakelightintensityBrakelightIntensity" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e13ee064-82c9-4fc0-8f36-2cb8a5de11ce"><code class="name">Brake light intensity, BrakelightIntensity</code> — Intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e13ee064-82c9-4fc0-8f36-2cb8a5de11ce" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e13ee064-82c9-4fc0-8f36-2cb8a5de11ce" class="panel-collapse collapse"><div class="panel-body">
+                <p>Brake light intensity, in cd/m^2.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_52485197-f700-4568-83e1-fd34773b989e">Reverse Lights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_1c4cb1c5-787a-4f1b-9823-2d51137bf4cf" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_1c4cb1c5-787a-4f1b-9823-2d51137bf4cf" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_1c4cb1c5-787a-4f1b-9823-2d51137bf4cf" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_ReverselightintensityReverselightIntensity" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_1c4cb1c5-787a-4f1b-9823-2d51137bf4cf"><code class="name">Reverse light intensity, ReverselightIntensity</code> — Intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_1c4cb1c5-787a-4f1b-9823-2d51137bf4cf" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_1c4cb1c5-787a-4f1b-9823-2d51137bf4cf" class="panel-collapse collapse"><div class="panel-body">
+                <p>Reverse light intensity, in cd/m^2.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<strong class="mw-doc-parametersgrp" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_dcaa3604-c4e4-488d-a3ae-6c7d827f09c1">Turn Signal Lights</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e5fa0113-0c89-45b6-92b0-52f468e4f06a" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e5fa0113-0c89-45b6-92b0-52f468e4f06a" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e5fa0113-0c89-45b6-92b0-52f468e4f06a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_TurnsignallightintensitySignallightIntensity" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e5fa0113-0c89-45b6-92b0-52f468e4f06a"><code class="name">Turn signal light intensity, SignallightIntensity</code> — Intensity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">500</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e5fa0113-0c89-45b6-92b0-52f468e4f06a" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_e5fa0113-0c89-45b6-92b0-52f468e4f06a" class="panel-collapse collapse"><div class="panel-body">
+                <p>Turn signal light intensity, in cd/m^2.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_6691ef56-7c29-4878-9e59-83475c5c7d45" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_6691ef56-7c29-4878-9e59-83475c5c7d45" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_6691ef56-7c29-4878-9e59-83475c5c7d45" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_PeriodSignallightPeriod" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_6691ef56-7c29-4878-9e59-83475c5c7d45"><code class="name">Period, SignallightPeriod</code> — Turn signal light period<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">1</code> (default) | positive scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_6691ef56-7c29-4878-9e59-83475c5c7d45" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_6691ef56-7c29-4878-9e59-83475c5c7d45" class="panel-collapse collapse"><div class="panel-body">
+                <p>Turn signal light period, in s.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_00ede684-45a8-4a47-9223-6729b0c51bbf" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_00ede684-45a8-4a47-9223-6729b0c51bbf" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_00ede684-45a8-4a47-9223-6729b0c51bbf" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_PulsewidthSignalPulseWidth" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_00ede684-45a8-4a47-9223-6729b0c51bbf"><code class="name">Pulse width, SignalPulseWidth</code> — Pulse width<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">50</code> (default) | positive scalar less than 100</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_00ede684-45a8-4a47-9223-6729b0c51bbf" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_00ede684-45a8-4a47-9223-6729b0c51bbf" class="panel-collapse collapse"><div class="panel-body">
+                <p>Turn signal light pulse width, as a percent of the period.</p>
+                
+                    <h4 class="descriptionsect">Dependencies</h4>
+                    <p>To enable this parameter, select <strong class="guilabel">Enable light
+                            controls</strong>.</p>
+                
+            <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_632e3516-8727-4086-a1d4-5cc19e39f4c2_div" class="refsect2"><h3 id="mw_632e3516-8727-4086-a1d4-5cc19e39f4c2">Sample Time</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_bbb45691-7d52-4809-8745-3856a63a7f15" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_bbb45691-7d52-4809-8745-3856a63a7f15" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_bbb45691-7d52-4809-8745-3856a63a7f15" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Sampletime" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_bbb45691-7d52-4809-8745-3856a63a7f15"><code class="name">Sample time</code> — Sample time<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal remove_text_wrapping">-1</code> (default) | <code class="literal">scalar</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_bbb45691-7d52-4809-8745-3856a63a7f15" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_bbb45691-7d52-4809-8745-3856a63a7f15" class="panel-collapse collapse"><div class="panel-body">
+                                <p>Sample time, <em class="varname">T<sub>s</sub></em>. The
+                                                graphics frame rate is the inverse of the sample
+                                                time.</p>
+                </div>
+</div>
+</div>
+</div>
+</div>
+<div id="mw_cc64c603-303b-427c-8959-cc697fe532b1_div" class="refsect2"><h3 id="mw_cc64c603-303b-427c-8959-cc697fe532b1">Ground Truth</h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_f7481ae7-d5d0-41a8-9902-ddc131f0322f" data-target="#expand_panel_body_mw_f7481ae7-d5d0-41a8-9902-ddc131f0322f" aria-controls="expand_panel_body_mw_f7481ae7-d5d0-41a8-9902-ddc131f0322f" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Outputlocationandorientation" class="anchor_target"></span><h3 class="panel-title" id="mw_f7481ae7-d5d0-41a8-9902-ddc131f0322f"><code class="name">Output location and orientation</code> — Select to return location and orientation<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">on</code> (default) | <code class="literal">off</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_f7481ae7-d5d0-41a8-9902-ddc131f0322f" aria-labelledby="expand_panel_heading_mw_f7481ae7-d5d0-41a8-9902-ddc131f0322f" class="panel-collapse collapse"><div class="panel-body">
+            <p>Select to return location and orientation.</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>Boolean</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_fbfd1691-926b-4576-b7d7-8da88ff57274" data-target="#expand_panel_body_mw_fbfd1691-926b-4576-b7d7-8da88ff57274" aria-controls="expand_panel_body_mw_fbfd1691-926b-4576-b7d7-8da88ff57274" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Outputnominalvehiclestatefeedback" class="anchor_target"></span><h3 class="panel-title" id="mw_fbfd1691-926b-4576-b7d7-8da88ff57274"><code class="name">Output nominal vehicle state feedback</code> — Select to return nominal vehicle state feedback<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">on</code> (default) | <code class="literal">off</code></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_mw_fbfd1691-926b-4576-b7d7-8da88ff57274" aria-labelledby="expand_panel_heading_mw_fbfd1691-926b-4576-b7d7-8da88ff57274" class="panel-collapse collapse"><div class="panel-body">
+            <p>Select to return nominal vehicle state feedback</p>
+          <p class="datatypelist"><strong>Data Types: </strong><code>Boolean</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="examples">Model Examples</h2>
+<section class="example_short_list"><div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../ug/scene-interrogation-reference-application.html"><div class="card_media" style="background-image:url(../../examples/vdynblks/win64/SceneInterrogationReferenceApplicationExample_01.png);"><img alt="Scene Interrogation with Camera and Ray Tracing Reference Application" src="../../examples/vdynblks/win64/SceneInterrogationReferenceApplicationExample_01.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Scene Interrogation with Camera and Ray Tracing Reference Application</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Interrogate a 3D Unreal Engine scene with a vehicle dynamics model by using a camera and ray tracing
+                reference application project.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"><a href="matlab:cd(setupExample('vdynblks/SceneInterrogationReferenceApplicationExample'));helpersetupscr">Open Example</a></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="clearfix"></div>
+<div class="bibliography"><h2 id="References">References</h2>
+<div id="mw_813ea1fb-a89e-4a32-81d8-bde24ca4edfb" class="bibliomixed"><p>[1] Vehicle Dynamics Standards
+      Committee. <em class="citetitle">Vehicle Dynamics Terminology</em>. SAE J670. Warrendale, PA:
+      Society of Automotive Engineers, 2008.</p>
+</div>
+<div id="mw_02527911-62a4-465e-9b22-931842ecf335" class="bibliomixed"><p>[2] Technical Committee.
+        <em class="citetitle">Road vehicles — Vehicle dynamics and road-holding ability —
+        Vocabulary</em>. ISO 8855:2011. Geneva, Switzerland: International Organization for
+      Standardization, 2011.</p>
+</div>
+</div>
+<div class="ref_sect"><h2 id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_vh">Version History</h2>
+<p><strong>Introduced in R2022b</strong></p>
+</div>
+<div class="ref_sect"><h2 id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_seealso">See Also</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="simulation3dsceneconfiguration.html"><span itemprop="name"><span class="block">Simulation 3D Scene
+        Configuration</span></span></a></span></p>
+<div class="examples_container"><h3 class="remove_border">Topics</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="../ug/scene-interrogation.html" class="a">Scene Interrogation in 3D Environment</a></li>
+</ul>
+</div>
+</div>
+<div class="examples_container"><h3 class="remove_border">External Websites</h3>
+<div itemprop="content"><ul class="list-unstyled"><li><a href="https://www.unrealengine.com/en-US/unreal" target="_blank">Unreal Engine</a></li>
+<li><a href="https://docs.unrealengine.com/4.26/en-US/API/Plugins/PhysXVehicles/UWheeledVehicleMovementComponent/" target="_blank">UWheeledVehicleMovementComponent</a></li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">How useful was this information?</mw-rating-feedback-step><mw-rating-feedback-step step="1">Why did you choose this rating?</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>Thank you for your feedback!</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+</body>
+</html>
