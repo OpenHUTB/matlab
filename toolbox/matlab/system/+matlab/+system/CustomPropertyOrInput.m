@@ -1,22 +1,9 @@
 classdef CustomPropertyOrInput<matlab.system.internal.PropertyOrInput
 
-
-
-
-
-
-
-
-
-
-
 %#codegen
-
-
 
     methods
         function obj=CustomPropertyOrInput(aClient,aCPN,varargin)
-
 
 
             coder.allowpcode('plain');

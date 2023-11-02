@@ -1,17 +1,5 @@
 classdef(Abstract)System<matlab.system.SystemInterface&matlab.system.SystemProp
 
-
-
-
-
-
-
-
-
-
-
-
-
     methods(Access=protected)
         function dc=inputDimensionConstraint(~,varargin)
             dc=matlab.system.InputDimensionConstraint(varargin{:});

@@ -1,8 +1,5 @@
 classdef SysMex<handle
 
-
-
-
     properties(Hidden,Access=private)
 
 mexFile
