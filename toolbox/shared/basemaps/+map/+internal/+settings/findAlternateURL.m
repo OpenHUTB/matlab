@@ -1,15 +1,5 @@
 function alternateURL=findAlternateURL(url)
 
-
-
-
-
-
-
-
-
-
-
     k=0;
     alternateURL="";
     predefinedInfo=createPredefinedAlternateURLInfo();
