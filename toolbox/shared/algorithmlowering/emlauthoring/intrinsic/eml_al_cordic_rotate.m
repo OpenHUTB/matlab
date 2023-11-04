@@ -1,10 +1,6 @@
 function v=eml_al_cordic_rotate(theta,u,numIters,inputLUT,doOutputScaling,inputInvGC)
 
-
-
 %#codegen
-
-
 
     coder.allowpcode('plain');
 
