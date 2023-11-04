@@ -1,10 +1,6 @@
 function theta=eml_al_cordic_atan2(y,x,numIters,inputLUT)
 
-
-
 %#codegen
-
-
 
     coder.allowpcode('plain');
 
