@@ -1,13 +1,6 @@
 function v=eml_al_cordic_rotate_noscale(theta,u,numIters,inputLUT)
 
-
-
-
-
-
 %#codegen
-
-
 
     coder.allowpcode('plain');
 
@@ -15,7 +8,6 @@ function v=eml_al_cordic_rotate_noscale(theta,u,numIters,inputLUT)
     eml_prefer_const(u);
     eml_prefer_const(numIters);
     eml_prefer_const(inputLUT);
-
 
     if isfi(theta)
         lengthOfThetaArray=numberofelements(theta);
