@@ -1,6 +1,5 @@
 function[state]=alg_v5_advance(state)
 
-
 %#codegen
 
     coder.allowpcode('plain');
