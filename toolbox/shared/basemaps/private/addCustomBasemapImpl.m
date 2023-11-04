@@ -1,9 +1,4 @@
 function addCustomBasemapImpl(basemapName,url,varargin)
-
-
-
-
-
     basemapGroup=parseInputs(basemapName,url,varargin);
 
 
