@@ -1,7 +1,5 @@
 function[xn,yn]=eml_al_cordic_kernel_loop(x0,y0,z0,lut_values,num_iters)
 
-
-
 %#codegen
 
     coder.allowpcode('plain');
