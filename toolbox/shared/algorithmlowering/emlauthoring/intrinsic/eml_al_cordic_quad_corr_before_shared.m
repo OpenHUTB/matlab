@@ -1,7 +1,5 @@
 function[th_out,negate]=eml_al_cordic_quad_corr_before_shared(theta,piOverTwo,onePi,thetaMinusTwoPi,thetaPlusTwoPi,thetaValuesCanBeNegative)
 
-
-
 %#codegen
 
     coder.allowpcode('plain')
@@ -9,10 +7,6 @@ function[th_out,negate]=eml_al_cordic_quad_corr_before_shared(theta,piOverTwo,on
 
 
     if theta>piOverTwo
-
-
-
-
 
         if(theta-onePi)<=piOverTwo
             th_out=theta-onePi;
@@ -23,10 +17,6 @@ function[th_out,negate]=eml_al_cordic_quad_corr_before_shared(theta,piOverTwo,on
             negate=false;
         end
     elseif(thetaValuesCanBeNegative&&(theta<(-piOverTwo)))
-
-
-
-
 
         if(theta+onePi)>=(-piOverTwo)
             th_out=theta+onePi;
