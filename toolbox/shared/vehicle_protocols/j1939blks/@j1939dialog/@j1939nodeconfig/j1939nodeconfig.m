@@ -1,9 +1,5 @@
 function obj=j1939nodeconfig(hBlock)
 
-
-
-
-
     obj=j1939dialog.j1939nodeconfig(hBlock);
 
 
