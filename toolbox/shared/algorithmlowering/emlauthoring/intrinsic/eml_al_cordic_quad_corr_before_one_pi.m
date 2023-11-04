@@ -1,7 +1,5 @@
 function[th_out,negate]=eml_al_cordic_quad_corr_before_one_pi(theta,piOverTwo,onePi,thetaValuesCanBeNegative)
 
-
-
 %#codegen
 
     coder.allowpcode('plain')
