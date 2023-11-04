@@ -1,10 +1,5 @@
 function obj=j1939rx(hBlock)
 
-
-
-
-
-
     obj=j1939dialog.j1939rx(hBlock);
 
 
