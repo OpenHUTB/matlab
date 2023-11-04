@@ -1,9 +1,4 @@
 function schema
-
-
-
-
-
     parentPackage=findpackage('Simulink');
     parentClass=findclass(parentPackage,'SLDialogSource');
 
