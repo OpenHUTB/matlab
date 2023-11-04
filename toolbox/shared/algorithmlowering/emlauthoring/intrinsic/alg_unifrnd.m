@@ -1,12 +1,5 @@
 function[r]=alg_unifrnd(a,b,urand)
 
-
-
-
-
-
-
-
 %#codegen
 
     if a>b
