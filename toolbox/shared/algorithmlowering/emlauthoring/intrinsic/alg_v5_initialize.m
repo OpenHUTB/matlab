@@ -1,10 +1,6 @@
 function state=alg_v5_initialize(seed)
 
-
 %#codegen
-
-
-
 
     coder.allowpcode('plain');
 
