@@ -1,12 +1,6 @@
 function[negate,angle]=eml_al_cordic_quad_correction_before_float(theta)
 
-
-
 %#codegen
-
-
-
-
     coder.allowpcode('plain')
     eml_assert(isfloat(theta));
 
