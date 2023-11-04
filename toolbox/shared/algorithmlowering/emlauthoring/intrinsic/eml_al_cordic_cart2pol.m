@@ -1,7 +1,5 @@
 function[theta,r]=eml_al_cordic_cart2pol(x,y,numIters,inputLUT,doOutputScaling,inputInvGC)
 
-
-
 %#codegen
 
     coder.allowpcode('plain');
