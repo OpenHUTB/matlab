@@ -1,18 +1,5 @@
 function dlgStruct=getDialogSchema(obj,~)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     rowSpan=[1,1];
     colSpan=[1,6];
     descPane=tamslgate('privateslwidgetdescgrp',obj,rowSpan,colSpan);
