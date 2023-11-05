@@ -1,8 +1,5 @@
 function fileExt=getFileExt(fileType)
 
-
-
-
     narginchk(1,1);
     if isempty(fileType)
         error(message('TICCSEXT:autointerface:InvalidFileType'));
