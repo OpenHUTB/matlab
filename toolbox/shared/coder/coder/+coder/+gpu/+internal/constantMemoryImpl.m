@@ -1,12 +1,9 @@
 function constantMemoryImpl(var,externalUse)
 
-
-
 %#codegen 
     coder.internal.allowHalfInputs;
     if(~coder.target('MATLAB'))
         coder.allowpcode('plain');
-
 
         coder.inline('never');
 
