@@ -1,7 +1,5 @@
 function str=hdlCopyRightHeader(srcFile)
 
-
-
     str='';
 
     tmp=date;
