@@ -1,12 +1,5 @@
 function transformationMatrix=getAxesTransformationMatrix(varargin)
 
-
-
-
-
-
-
-
     narginchk(0,1);
     nargoutchk(0,1);
 
@@ -26,16 +19,10 @@ function transformationMatrix=getAxesTransformationMatrix(varargin)
         error(message('MATLAB:getAxesTransformationMatrix:InvalidCamera'));
     end
 
-
-
-
-
-
     xFactor=[1.0,0.0,0.0,0.0
     0.0,1.0,0.0,0.0
     0.0,0.0,-1.0,0.0
     0.0,0.0,0.0,1.0];
-
 
     drawnow update
     transformationMatrix=xFactor*hCamera.GetViewMatrix();
