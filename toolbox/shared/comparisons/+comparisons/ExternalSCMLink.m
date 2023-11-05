@@ -1,29 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef ExternalSCMLink<handle
 
     properties(GetAccess=public,Constant)
@@ -42,17 +16,6 @@ classdef ExternalSCMLink<handle
 
     methods(Access=public,Static)
 
-
-
-
-
-
-
-
-
-
-
-
         function varargout=enable()
             oldValue=comparisons.ExternalSCMLink.setPref(true);
             if(nargout==1)
@@ -61,32 +24,12 @@ classdef ExternalSCMLink<handle
         end
 
 
-
-
-
-
-
-
-
-
-
         function varargout=disable()
             oldValue=comparisons.ExternalSCMLink.setPref(false);
             if(nargout==1)
                 varargout{1}=oldValue;
             end
         end
-
-
-
-
-
-
-
-
-
-
-
 
 
         function setup()
