@@ -1,6 +1,3 @@
-
-
-
 classdef PCIe<eda.internal.boardmanager.FILCommInterface
 
     properties(Constant,Abstract)
