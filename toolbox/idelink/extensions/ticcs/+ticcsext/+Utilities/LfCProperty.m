@@ -1,8 +1,5 @@
 function resp=LfCProperty(opt,subopt)
 
-
-
-
     narginchk(1,2);
 
     switch opt
