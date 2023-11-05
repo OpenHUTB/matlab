@@ -1,5 +1,3 @@
-
-
 classdef SurrogateAdaptiveTrial<handle
 
     properties(SetAccess=private,GetAccess=public)
