@@ -1,9 +1,5 @@
 function out=generics(varargin)
 
-
-
-
-
     for i=1:3:length(varargin)
         out.(varargin{i}).Name=varargin{i};
 
