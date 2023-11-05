@@ -1,8 +1,5 @@
 classdef(Abstract)Merge3GUIProvider<handle&matlab.mixin.Heterogeneous
 
-
-
-
     methods(Abstract)
         canHandle(theirs,base,mine,options);
 
