@@ -1,8 +1,4 @@
 function availableProviders=getProvidersFor(providerList,args)
-
-
-
-
     registry=comparisons.internal.Registry.Instance;
     providers=registry.(providerList);
     canHandle=arrayfun(...
