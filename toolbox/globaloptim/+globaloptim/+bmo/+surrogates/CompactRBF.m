@@ -1,5 +1,3 @@
-
-
 classdef CompactRBF<APIs.SurrogateEvaluator
 
     properties(Access=public)
@@ -19,17 +17,9 @@ responseNames
 kernel
 tail
 
-
-
-
-
-
         unscaleResponse=true
         filter=globaloptim.bmo.surrogates.fscale.NoScale;
         fScaled=false;
-
-
-
 
         perturbX=false
 
@@ -68,7 +58,6 @@ Dlast
             assert(size(Y,2)==size(self.X,2));
 
             idx=self.getColIndex(idx);
-
 
             [D,YY]=self.computeDistance(Y);
 
