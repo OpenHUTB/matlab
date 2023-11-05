@@ -1,8 +1,5 @@
 classdef FigureCodeGenController<handle
 
-
-
-
     properties
         CodeGenerationProxy;
         InteractionListener;
@@ -29,9 +26,6 @@ CodeGenWidgetStateChanged
         function this=FigureCodeGenController(f)
             this.ActionRegistrator=matlab.internal.editor.figure.Registrator;
             this.CodeGenerationProxy=matlab.internal.editor.CodeGenerationProxy(this.ActionRegistrator);
-
-
-
             if~isprop(f,'CodeGenerationProxy')
                 pCodeGenerationProxy=addprop(f,'CodeGenerationProxy');
                 pCodeGenerationProxy.Hidden=true;
