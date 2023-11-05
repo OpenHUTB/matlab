@@ -1,6 +1,3 @@
-
-
-
 classdef RGMII<eda.internal.boardmanager.EthInterface
 
     properties(Constant)
