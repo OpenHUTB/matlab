@@ -1,8 +1,4 @@
 function ret=getTICCSv4(opt)
-
-
-
-
     switch(opt)
     case 'name',
         ret='Texas Instruments Code Composer Studio v4 (makefile generation only)';
