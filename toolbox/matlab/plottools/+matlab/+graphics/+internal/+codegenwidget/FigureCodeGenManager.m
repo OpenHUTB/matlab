@@ -1,16 +1,8 @@
 classdef FigureCodeGenManager<handle
 
-
-
-
-
-
-
     properties(Hidden)
         FigureCodeGenFeatureFlag matlab.lang.OnOffSwitchState='off'
         FigureCodeGenDebug matlab.lang.OnOffSwitchState='off'
-
-
 
         CodeGenMap=[]
     end
