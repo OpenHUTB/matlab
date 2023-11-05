@@ -1,8 +1,5 @@
 function out=dispatchToNoGUIProvider(providerList,args)
 
-
-
-
     out='';
 
     import comparisons.internal.getProvidersFor
