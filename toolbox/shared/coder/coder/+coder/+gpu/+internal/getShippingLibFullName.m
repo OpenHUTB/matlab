@@ -1,7 +1,5 @@
 function fullname=getShippingLibFullName(libname,libpath)
 
-
-
     assert(isunix);
     files=dir([libpath,'/',libname,'.so*']);
 
