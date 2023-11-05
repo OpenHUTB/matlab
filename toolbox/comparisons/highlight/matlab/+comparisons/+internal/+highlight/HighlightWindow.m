@@ -1,8 +1,5 @@
 classdef HighlightWindow<handle&matlab.mixin.Heterogeneous&comparisons.internal.highlight.Positionable
 
-
-
-
     methods(Abstract)
 
         canDisplay(obj,location)
