@@ -1,6 +1,3 @@
-
-
-
 classdef XlnxSGMII625MhzRef<eda.internal.boardmanager.EthInterface
 
     properties(Constant)
