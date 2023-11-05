@@ -1,7 +1,5 @@
 function result=copyContainersMap(obj)
 
-
-
     result=containers.Map;
     names=obj.keys;
 
