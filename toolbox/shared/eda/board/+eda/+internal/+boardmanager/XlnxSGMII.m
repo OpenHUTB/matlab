@@ -1,6 +1,3 @@
-
-
-
 classdef XlnxSGMII<eda.internal.boardmanager.EthInterface
 
     properties(Constant)
