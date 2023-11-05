@@ -1,10 +1,6 @@
 classdef(Abstract,Hidden)Object<handle
 
 
-
-
-
-
     methods(Hidden,Access=public)
 
         function result=findobj(this,varargin)
