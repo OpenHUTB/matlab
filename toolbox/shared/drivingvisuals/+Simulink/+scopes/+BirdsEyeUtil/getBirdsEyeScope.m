@@ -1,10 +1,5 @@
 function beScope=getBirdsEyeScope(modelName,forceCreation)
 
-
-
-
-
-
     if nargin<2
         forceCreation=false;
     end
