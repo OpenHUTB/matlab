@@ -1,19 +1,5 @@
 function removeToolbarExplorationButtons(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin~=1
         return;
     else
