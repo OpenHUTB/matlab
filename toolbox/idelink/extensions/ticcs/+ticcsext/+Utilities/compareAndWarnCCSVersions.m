@@ -1,17 +1,6 @@
 function resp=compareAndWarnCCSVersions(varargin)
 
 
-
-
-
-
-
-
-
-
-
-
-
     narginchk(1,2);
     product_name='Embedded Coder';
     if nargin>=1
@@ -25,10 +14,6 @@ function resp=compareAndWarnCCSVersions(varargin)
     resp=isSupportedApiVersion(apiversion);
 
     if resp==3,
-
-
-
-
         if nargin==2&&ischar(varargin{2})&&(strcmpi(varargin{2},'warn')||strcmpi(varargin{2},'warn-on-advance-versions'))
             warning(message('TICCSEXT:util:UntestedNewIdeVersion',product_name,product_name));
         end
