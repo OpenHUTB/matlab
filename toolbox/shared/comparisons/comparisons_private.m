@@ -1,8 +1,5 @@
 function out=comparisons_private(action,varargin)
 
-
-
-
     switch action
     case 'textdiff'
 
