@@ -1,17 +1,10 @@
 function[result,errorList,report]=checkDlAccelPrivate()
 
-
-
-
-
     result.gpu=false;
     result.deepcodegen=false;
     result.deepcodeexec=false;
 
-
     dltarget='cudnn';
-
-
     [result.gpu,errorMsg,cc]=coder.internal.validateGpuDevice();
 
     if isempty(errorMsg)
