@@ -1,8 +1,5 @@
 function includePtxImpl(varargin)%#codegen
 
-
-
-
     if~coder.target('MATLAB')
         coder.inline('never');
         coder.allowpcode('plain');
