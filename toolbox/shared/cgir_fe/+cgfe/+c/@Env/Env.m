@@ -1,6 +1,3 @@
-
-
-
 classdef Env<handle
     properties(SetAccess=private)
         CEnv=[];
