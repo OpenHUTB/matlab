@@ -1,7 +1,5 @@
 function updateBoardList(inHandle)
 
-
-
     persistent dlgHandle;
     if nargin==1
 
