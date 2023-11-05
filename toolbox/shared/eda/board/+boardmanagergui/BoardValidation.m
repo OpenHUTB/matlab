@@ -1,37 +1,4 @@
 classdef BoardValidation<handle
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=protected,SetObservable)
 
         BoardObj=[];
