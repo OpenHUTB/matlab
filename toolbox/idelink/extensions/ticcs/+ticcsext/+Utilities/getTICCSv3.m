@@ -1,8 +1,4 @@
 function ret=getTICCSv3(opt)
-
-
-
-
     switch(opt)
     case 'name',
         ret='Texas Instruments Code Composer Studio';
