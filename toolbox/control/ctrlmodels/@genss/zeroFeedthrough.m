@@ -1,10 +1,6 @@
 function[T,ChangedBlock]=zeroFeedthrough(...
     T,SoftReqs,HardReqs,SYSDATA,SPECDATA,tInfo)
 
-
-
-
-
     nf=numel(tInfo.iFree);
     x0=zeros(nf,1);
 
@@ -28,12 +24,6 @@ function[T,ChangedBlock]=zeroFeedthrough(...
                 Reqs=[SoftReqs(:);HardReqs(:)];
                 error(message('Control:tuning:Tuning7',getID(Reqs(RD.Goal))))
             end
-
-
-
-
-
-
             nw=numel(RD.Input);nz=numel(RD.Output);
             ny=SD.nzB;nu=SD.nwB;
             nL=numel(SD.iL);nwU=SD.nwU;nzU=SD.nzU;
