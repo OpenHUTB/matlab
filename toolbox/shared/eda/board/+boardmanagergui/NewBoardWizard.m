@@ -2,35 +2,6 @@ classdef NewBoardWizard<handle
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetObservable)
 
         Version{matlab.internal.validation.mustBeASCIICharRowVector(Version,'Version')}='';
