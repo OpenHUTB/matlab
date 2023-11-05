@@ -1,9 +1,4 @@
 function includePtx(varargin)%#codegen
-
-
-
-
-
     coder.extrinsic('coder.gpu.internal.getPtxFiles');
     coder.extrinsic('isunix');
     coder.extrinsic('ispc');
@@ -16,7 +11,6 @@ function includePtx(varargin)%#codegen
 
             [headers,sources,fullPaths]=...
             coder.const(@coder.gpu.internal.getPtxFiles,varargin);
-
 
 
             for i=1:length(headers)
