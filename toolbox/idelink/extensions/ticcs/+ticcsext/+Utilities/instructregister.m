@@ -1,9 +1,4 @@
 function instructregister
-
-
-
-
-
     server=ticcsext.Utilities.LfCProperty('inprocFile-current-server');
     client=ticcsext.Utilities.LfCProperty('inprocFile-current-client');
 
