@@ -1,31 +1,8 @@
 function programAlteraFPGA(filename,chainposition,varargin)
 
-
-
-
-
-
-
     if nargin==1
         chainposition=1;
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     NonBlockingMode=false;
 
