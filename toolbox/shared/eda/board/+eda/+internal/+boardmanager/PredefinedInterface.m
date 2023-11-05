@@ -1,6 +1,3 @@
-
-
-
 classdef PredefinedInterface<eda.internal.boardmanager.Interface
 
     methods
