@@ -1,7 +1,5 @@
 function updateParentGUI(parentDlg)
 
-
-
     try
         if isa(parentDlg,'ModelAdvisor.Task')
 
