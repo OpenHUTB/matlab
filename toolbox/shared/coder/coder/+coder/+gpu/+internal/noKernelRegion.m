@@ -1,6 +1,5 @@
 function noKernelRegion()
 
-
 %#codegen
     if~coder.target('MATLAB')
         coder.allowpcode('plain');
