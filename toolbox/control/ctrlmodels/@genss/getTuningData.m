@@ -1,15 +1,6 @@
 function[SYSDATA,SPECDATA,tInfo]=...
     getTuningData(T,SoftReqs,HardReqs,TunedModels,WarnFcn)
 
-
-
-
-
-
-
-
-
-
     [nz,nw,nsys]=size(T);
     Reqs=[SoftReqs(:);HardReqs(:)];
     nreqs=numel(Reqs);
