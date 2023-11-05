@@ -1,12 +1,9 @@
 function app=compareJava(first,second,options)
 
 
-
-
     error(javachk('jvm'));
 
     if isComparisonBeingLaunchedFromJava(options)
-
 
         builder=com.mathworks.comparisons.compare...
         .ComparisonDefinitionBuilder(options.ComparisonDefinition);%#ok<*JAPIMATHWORKS> 
