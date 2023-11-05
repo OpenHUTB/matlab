@@ -1,22 +1,11 @@
 function MessageBlks(obj)
 
-
-
-
-
-
-
-
-
     exportVer=obj.ver;
 
     if exportVer.isR2019aOrEarlier
 
         blks=obj.findLibraryLinksTo('canmsglib/CAN Pack');
         blks=[blks;obj.findLibraryLinksTo('canmsglib/CAN Unpack')];
-
-
-
 
         if~exportVer.isR2017bOrEarlier
             blks=[blks;obj.findLibraryLinksTo('canfdmsglib/CAN FD Pack')];
@@ -26,9 +15,6 @@ function MessageBlks(obj)
         for idx=1:length(blks)
 
             sid=get_param(blks{idx},'SID');
-
-
-
             signalInfo=get_param(blks{idx},'SignalInfo');
             [signalTable,nSignals,startBits,signalSizes,byteOrders,dataTypes,multiplexTypes,multiplexValues,factors,offsets,minimums,maximums]=canslshared.internal.helpers.convertToSignalTable(signalInfo);
 
@@ -44,15 +30,12 @@ function MessageBlks(obj)
                 obj.appendRule(removeParamRule(exportVer.isSLX,sid,'SignalInfo'));
             end
 
-
             funcName=get_param(blks{idx},'FunctionName');
-
 
             if(strcmpi(funcName,'scanpack')&&exportVer.isR2017aOrEarlier)
 
                 obj.appendRule(removeParamRule(exportVer.isSLX,sid,'BusOutput'));
             end
-
 
             libVer=get_param(blks{idx},'LibraryVersion');
             prevLibVer=findPrevLibVer(exportVer,funcName);
@@ -63,7 +46,6 @@ function MessageBlks(obj)
             elseif exportVer.isMDL
                 obj.appendRule(sprintf('<Block<SID|"%s"><LibraryVersion|"%s":repval "%s">>',sid,libVer,prevLibVer));
             end
-
 
             obj.appendRule(insertParamRule(exportVer.isSLX,sid,'NSignals',num2str(nSignals)));
             obj.appendRule(insertParamRule(exportVer.isSLX,sid,'StartBits',char(startBits)));
@@ -112,8 +94,8 @@ function prevLibVer=findPrevLibVer(ver,funcName)
 
 end
 
-function rule=removeParamRule(isSLX,sid,name)
 
+function rule=removeParamRule(isSLX,sid,name)
 
 
     if isSLX
