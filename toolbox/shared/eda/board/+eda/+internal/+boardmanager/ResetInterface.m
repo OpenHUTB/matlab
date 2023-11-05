@@ -1,6 +1,3 @@
-
-
-
 classdef ResetInterface<eda.internal.boardmanager.PredefinedInterface
 
     properties(Constant)
