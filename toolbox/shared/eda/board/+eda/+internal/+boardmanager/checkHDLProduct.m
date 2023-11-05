@@ -1,7 +1,5 @@
 function checkHDLProduct
 
-
-
     isHDLAvailable=...
     eda.internal.boardmanager.isHDLCoderAvailable||...
     eda.internal.boardmanager.isHDLVerifierAvailable;
