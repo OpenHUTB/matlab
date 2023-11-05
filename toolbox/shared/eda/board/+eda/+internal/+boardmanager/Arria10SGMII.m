@@ -1,6 +1,3 @@
-
-
-
 classdef Arria10SGMII<eda.internal.boardmanager.EthInterface
 
     properties(Constant)
