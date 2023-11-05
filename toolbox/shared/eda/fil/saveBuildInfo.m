@@ -1,9 +1,4 @@
 function saveBuildInfo(obj,matFilePath)
-
-
-
-
-
     if~isa(obj,'eda.internal.workflow.FILBuildInfo')
         error(message('EDALink:saveBuildInfo:InvalidInput'));
     end
@@ -35,10 +30,6 @@ function saveBuildInfo(obj,matFilePath)
     if~obj.isDefaultOutputFolder
         filStruct.OutputFolder=obj.OutputFolder;
     end
-
-
-
-
     filStruct.BoardClass=class(obj.BoardObj);
 
     save(matFilePath,'filStruct');
