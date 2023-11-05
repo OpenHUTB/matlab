@@ -1,13 +1,5 @@
-
-
-
-
 classdef SpaceFillingDesign<handle
-
-
-
-
-    properties(SetAccess=private,GetAccess=public)
+   properties(SetAccess=private,GetAccess=public)
 
         retcode=0
         errmsg=''
@@ -22,9 +14,6 @@ options
         MinSampleDistance=0;
 problem
 
-
-
-
         TrialMgr=[];
 
 qrng
@@ -33,15 +22,6 @@ qrng
     methods
 
         function self=SpaceFillingDesign(problem,options,TrialMgr)
-
-
-
-
-
-
-
-
-
 
 
             self.options=options;
@@ -56,8 +36,7 @@ qrng
                 self.pop_range=problem.pop_range';
             else
 
-
-                self.pop_range=[problem.lb(:),problem.ub(:)];
+               self.pop_range=[problem.lb(:),problem.ub(:)];
             end
             if isfield(options,'DistanceFcn')
                 self.DistanceFcn=options.DistanceFcn;
@@ -65,7 +44,6 @@ qrng
             if isfield(options,'MinSampleDistance')
                 self.MinSampleDistance=options.MinSampleDistance;
             end
-
 
             self.qrng=globaloptim.internal.QRandGenerator();
             if self.qrng.MAX_QRAND_DIMS>self.nvar
