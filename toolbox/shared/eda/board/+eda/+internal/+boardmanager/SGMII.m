@@ -1,6 +1,3 @@
-
-
-
 classdef SGMII<eda.internal.boardmanager.EthInterface
 
     properties(Constant)
