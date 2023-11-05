@@ -1,9 +1,5 @@
 classdef MessageService<handle
 
-
-
-
-
     properties(Access=private)
 Subscriptions
 HTMLViewerManager
