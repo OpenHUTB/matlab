@@ -1,8 +1,5 @@
 function jType=getJComparisonType(type)
 
-
-
-
     type=lower(string(type));
 
     switch(type)
