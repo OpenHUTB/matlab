@@ -1,11 +1,5 @@
-
-
-
-
 classdef SurrogateData<APIs.DataStorage
     properties
-
-
 
 
         dataStorage;
