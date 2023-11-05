@@ -1,20 +1,11 @@
 function[filObj,boardSet]=loadBuildInfo(matfile)
 
-
-
-
-
     load(matfile);
 
     if exist('filStruct','var')~=1
         error(message('EDALink:loadBuildInfo:InvalidMATFile',matfile));
     end
-
-
     filObj=eda.internal.workflow.FILBuildInfo;
-
-
-
     curVersion=filObj.BuildInfoVersion.Major+...
     filObj.BuildInfoVersion.Minor/10;
     matVersion=filStruct.BuildInfoVersion.Major+...
