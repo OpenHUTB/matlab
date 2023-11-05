@@ -1,6 +1,3 @@
-
-
-
 classdef AltJTAG<eda.internal.boardmanager.FILCommInterface
 
     properties(Constant)
