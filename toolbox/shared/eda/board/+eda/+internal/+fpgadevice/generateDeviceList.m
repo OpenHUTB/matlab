@@ -1,12 +1,5 @@
 function generateDeviceList(vendor,outputFolder)
 
-
-
-
-
-
-
-
     if nargin==1
         disp('Generating device list in the current directory');
         outputFolder=pwd;
