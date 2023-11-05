@@ -1,6 +1,3 @@
-
-
-
 classdef ClockInterface<eda.internal.boardmanager.PredefinedInterface
 
     properties(Constant)
