@@ -1,12 +1,8 @@
 function flag=isEmbeddedTarget(ctx)
 
-
-
-
 %#codegen
 
     flag=false;
-
 
     coder.allowpcode('plain');
     if nargin==0
@@ -18,6 +14,5 @@ function flag=isEmbeddedTarget(ctx)
         coder.const(feval('coder.gpu.getGpuTarget',ctx))),'NVIDIA Jetson')))
         flag=true;
     end
-
 
 end
