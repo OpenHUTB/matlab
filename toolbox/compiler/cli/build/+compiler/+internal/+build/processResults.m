@@ -1,16 +1,8 @@
 function processResults(buildResults)
-
-
-
-
-
     matlab.ddux.internal.logData(matlab.ddux.internal.DataIdentification("CO","CO_COMPILER","CO_COMPILER_BUILD_RESULTS"),...
     'build_id',buildResults.BuildID,...
     'target',buildResults.BuildType,...
     'build_time',int32(buildResults.BuildDuration));
-
-
-
     if~isempty(buildResults.NumericRuntimeDefinition)
         pcm=matlab.depfun.internal.ProductComponentModuleNavigator;
         productInfo=cellfun(@(X)pcm.productInfo(X),buildResults.NumericRuntimeDefinition);
