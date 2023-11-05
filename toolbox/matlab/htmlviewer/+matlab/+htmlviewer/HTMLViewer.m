@@ -1,52 +1,7 @@
 classdef HTMLViewer < handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( Access = public )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         Input
-
-
-
-
-
-
-
-
-
-
         Visible
     end
 
