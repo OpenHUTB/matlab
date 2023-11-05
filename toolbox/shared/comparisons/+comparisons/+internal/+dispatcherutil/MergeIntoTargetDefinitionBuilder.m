@@ -1,8 +1,6 @@
 classdef MergeIntoTargetDefinitionBuilder<handle
 
 
-
-
     properties(Access=private)
         Config{mustBeMergeIntoTarget}=comparisons.internal.merge.MergeIntoTarget.empty()
         Theirs{mustBeTextScalarOrEmpty}=[]
