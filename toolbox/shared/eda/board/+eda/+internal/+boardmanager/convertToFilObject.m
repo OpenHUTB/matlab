@@ -1,7 +1,5 @@
 function boardObj=convertToFilObject(customBoardObj)
 
-
-
     switch customBoardObj.FPGA.Family
     case eda.internal.fpgadevice.getXilinxVivadoFPGAFamilies
         classname='Kintex7';
