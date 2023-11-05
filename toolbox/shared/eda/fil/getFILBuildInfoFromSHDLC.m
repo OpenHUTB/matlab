@@ -1,14 +1,6 @@
 function buildInfo=getFILBuildInfoFromSHDLC(codeGenInfo,varargin)
 
-
-
-
-
-
-
     validateDUT(codeGenInfo);
-
-
 
     if nargin>1
         buildInfo=varargin{1};
