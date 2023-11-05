@@ -1,26 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef(ConstructOnLoad=true,UseClassDefaultsOnLoad=true,Sealed)Surface<matlab.graphics.chart.mixin.SurfaceBrushable&matlab.graphics.chart.interaction.DataAnnotatable
-
-
-
-
-
     properties(SetObservable=true,SetAccess='public',GetAccess='public',Dependent=true,Hidden=false)
 
         XDataSource matlab.internal.datatype.asciiString='';
