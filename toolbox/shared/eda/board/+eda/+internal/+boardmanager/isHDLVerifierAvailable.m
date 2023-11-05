@@ -1,7 +1,5 @@
 function[r,msg]=isHDLVerifierAvailable(~)
 
-
-
     persistent isAvailable;
 
     if isempty(isAvailable)
