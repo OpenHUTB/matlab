@@ -1,6 +1,4 @@
 function SaveFPGAFile(BoardObj)
-
-
     [fid,msg]=fopen(BoardObj.BoardFile,'w');
     if fid>=0
         fclose(fid);
