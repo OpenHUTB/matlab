@@ -1,25 +1,12 @@
 function[headers,sources,fullPaths]=getPtxFiles(files)
 
-
-
-
-
-
-
-
-
-
-
-
     ptxUtilsSrcDir='toolbox/shared/coder/coder/gpucoder/src/cuda';
     ptxUtilsHdrDir=[ptxUtilsSrcDir,'/export/include/cuda'];
     files{end+1}=[ptxUtilsHdrDir,'/MWPtxUtils.hpp'];
     files{end+1}=[ptxUtilsSrcDir,'/MWPtxUtils.cpp'];
 
-
     headersIndex=cellfun(@isHeader,files);
     sourcesIndex=~headersIndex;
-
 
     headers=cellfun(@getFileName,files(headersIndex),'UniformOutput',false);
     sources=cellfun(@getFileName,files(sourcesIndex),'UniformOutput',false);
@@ -39,7 +26,6 @@ function[headers,sources,fullPaths]=getPtxFiles(files)
     end
 
     function fullPath=getFullPath(filePath)
-
 
         fullPath=fullfile(matlabroot,filePath);
     end
