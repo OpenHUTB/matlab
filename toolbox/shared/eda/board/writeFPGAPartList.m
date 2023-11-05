@@ -1,10 +1,5 @@
 function writeFPGAPartList(varargin)
 
-
-
-
-
-
     xapi=eda.internal.workflow.ApiTM;
     fcn_dir=pwd;
     fcn_name='getCustomFPGAPartList';
