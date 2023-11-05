@@ -1,9 +1,5 @@
 classdef PackageType
 
-
-
-
-
     enumeration
 ExcelClientForProductionServer
 MCRInstaller
