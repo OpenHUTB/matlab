@@ -1,9 +1,5 @@
 classdef ReportFormat<handle
 
-
-
-
-
     enumeration
         HTML(...
         'html-file',...
