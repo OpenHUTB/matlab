@@ -1,8 +1,5 @@
 classdef PSEthernet<eda.internal.boardmanager.FILCommInterface
 
-
-
-
     properties(Constant)
         Name='PSEthernet';
         ConnectionDispName='Ethernet';
