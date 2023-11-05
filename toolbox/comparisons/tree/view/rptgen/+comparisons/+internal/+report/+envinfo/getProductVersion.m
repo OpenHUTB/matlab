@@ -1,7 +1,5 @@
 function version=getProductVersion(productName)
 
-
-
     persistent allVersions;
     if(isempty(allVersions))
 
