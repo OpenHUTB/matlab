@@ -1,13 +1,5 @@
 function shippingCudaLibs=getLinuxShippingCudaLibs()
 
-
-
-
-
-
-
-
-
     shippingCudaLibs=cell(1,6);
     libPath=fullfile(matlabroot,'bin','glnxa64');
     cudartFile=coder.gpu.internal.getShippingLibFullName('libcudart',libPath);
