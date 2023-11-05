@@ -1,8 +1,5 @@
 function URL=getURL(clientID)
 
-
-
-
     URL='/toolbox/shared/drivingvisuals/web/birdseyescope/birdseyescope-simulink';
     postFix=['.html?ClientID=',clientID];
     feature=slfeature('slBirdsEyeScopeApp');
