@@ -1,8 +1,5 @@
 function resp=isGel(filename)
 
-
-
-
     resp=0;
     if~isempty(filename)
         [fpath,fname,fext]=fileparts(filename);
