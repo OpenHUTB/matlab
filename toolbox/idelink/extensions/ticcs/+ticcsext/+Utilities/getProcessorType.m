@@ -1,39 +1,5 @@
 function proc=getProcessorType(cc,opt)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(1,2);
 
     if isa(cc,'ticcsext.autointerface.ticcs')
