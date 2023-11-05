@@ -1,9 +1,5 @@
 function varargout=checkifregistered
 
-
-
-
-
     linkfoundation.autointerface.baselink.checkPlatformSupport(mfilename,...
     ticcsext.Utilities.getPlatformsSupported(),'ticcs');
 
