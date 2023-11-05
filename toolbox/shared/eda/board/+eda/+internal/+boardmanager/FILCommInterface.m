@@ -1,6 +1,3 @@
-
-
-
 classdef FILCommInterface<eda.internal.boardmanager.PredefinedInterface
 
     properties(Abstract,Constant)
