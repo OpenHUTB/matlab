@@ -1,17 +1,10 @@
 function openVisual(this)
 
-
-
-
-
     if(this.IsLaunching)
         return;
     end
 
     this.IsLaunching=true;
-
-
-
 
     if dig.isProductInstalled('Automated Driving Toolbox')
         if~builtin('license','checkout','Automated_Driving_Toolbox')
@@ -114,18 +107,12 @@ end
 
 function closeImpl(this)
 
-
     this.close();
     this.WebWindow.hide();
 
 end
 
+
 function resetSimControlsState(this)
-
-
-
-
-
-
     this.SimControlsState='';
 end
