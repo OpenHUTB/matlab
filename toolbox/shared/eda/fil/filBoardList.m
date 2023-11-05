@@ -1,23 +1,8 @@
 function varargout=filBoardList(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
     mlock;
 
-
-
     persistent BoardObjList;
-
 
     defaultList={...
     'eda.board.AlteraArriaIIGX',...
