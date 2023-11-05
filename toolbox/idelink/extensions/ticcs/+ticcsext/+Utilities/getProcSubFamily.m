@@ -1,22 +1,5 @@
 function[procsubfamily,feature]=getProcSubFamily(cc)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     procsubfamily=[];
     feature=struct(...
     'debug',[],...
