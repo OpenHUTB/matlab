@@ -1,7 +1,5 @@
 function checkFixedPointToolbox
 
-
-
     persistent isFPTAvailable;
 
     if isempty(isFPTAvailable)
