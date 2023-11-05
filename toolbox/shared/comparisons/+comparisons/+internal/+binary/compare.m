@@ -1,9 +1,5 @@
 function htmlOut=compare(source1,source2,report_id,detailed,width)
 
-
-
-
-
     if nargin<4
         detailed=false;
     end
