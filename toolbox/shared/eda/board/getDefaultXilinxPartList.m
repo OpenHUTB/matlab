@@ -1,10 +1,6 @@
 function partList=getDefaultXilinxPartList(varargin)
 
 
-
-
-
-
     partList={};
 
     family=getFamily;
