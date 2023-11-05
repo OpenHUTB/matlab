@@ -1,13 +1,5 @@
 function buildInfo=launchFILWithSLHDLC(codeGenInfo)
-
-
-
-
-
-
     validateDUT(codeGenInfo);
-
-
     buildInfo=eda.internal.workflow.FILBuildInfo;
     buildInfo.HDLSourceType='SLHDLCoder';
 
