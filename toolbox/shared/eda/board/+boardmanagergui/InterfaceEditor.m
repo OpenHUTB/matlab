@@ -1,28 +1,5 @@
 classdef InterfaceEditor<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetObservable)
 
         Interface=[];
