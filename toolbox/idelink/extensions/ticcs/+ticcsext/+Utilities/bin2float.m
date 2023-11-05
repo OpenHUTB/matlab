@@ -1,8 +1,5 @@
 function y=bin2float(bin,wordsize)
 
-
-
-
     if isempty(bin)
         y=0;
         return
@@ -14,7 +11,6 @@ function y=bin2float(bin,wordsize)
 
     fp=getFloatProperties(wordsize);
 
-
     w=fp.wordlength;
     [mbin,nbin]=size(bin);
     if nbin<w
@@ -24,24 +20,14 @@ function y=bin2float(bin,wordsize)
         bin=[o(ones(mbin,1),ones(w-nbin,1)),bin];
     end
 
-
-
-
-
     s=(-1).^bin2dec(bin(:,1));
-
 
     e=bin2dec(bin(:,2:fp.exponentlength+1));
 
-
     b=e-fp.exponentbias;
-
-
     f=pow2(bin2dec(bin(:,fp.exponentlength+2:end)),-fp.fractionlength);
 
-
     y=zeros(size(s));
-
 
     n=e==0&f~=0;
     y(n)=s(n).*pow2(f(n),fp.exponentmin);
