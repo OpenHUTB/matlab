@@ -1,29 +1,7 @@
 function setupplotbrowser(fig,plotbrowser,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if isjava(plotbrowser)
         javaMethodEDT('clearAll',plotbrowser);
     end
-
-
 
 
     if nargin>=3&&strcmp(varargin{1},'-postUpdate')
