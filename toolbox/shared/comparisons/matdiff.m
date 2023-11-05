@@ -1,13 +1,5 @@
 function htmlOut=matdiff(filename1,filename2)
 
-
-
-
-
-
-
-
-
     import comparisons.internal.util.process;
     import comparisons.internal.util.APIUtils;
 
