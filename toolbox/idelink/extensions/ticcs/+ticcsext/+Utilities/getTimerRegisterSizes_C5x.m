@@ -1,8 +1,4 @@
 function[counterSize,prescalerSize]=getTimerRegisterSizes_C5x(timerOpt)
-
-
-
-
     timerReg=c5000_getMaxTimerBits(timerOpt);
     switch timerOpt
     case '16bit-timer',
