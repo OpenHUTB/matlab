@@ -1,8 +1,5 @@
 function app=dispatchToProvider(providerList,args)
 
-
-
-
     import comparisons.internal.getProvidersFor
     availableProviders=getProvidersFor(providerList,args);
 
