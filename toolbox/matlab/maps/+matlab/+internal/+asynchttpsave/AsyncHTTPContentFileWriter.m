@@ -1,225 +1,69 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef AsyncHTTPContentFileWriter<handle
     properties
 
-
-
-
-
         URL string{mustStartWithHTTP}=string.empty
-
-
-
-
-
-
-
 
         Filename string=string.empty
 
-
-
-
-
-
         Options weboptions=weboptions
-
-
-
-
-
 
         NumThreads double=1
 
-
-
-
-
-
-
         PauseInSeconds double=.001
-
-
-
-
-
-
 
         Action(1,1)string="download"
     end
 
     properties(Constant)
-
-
-
-
-
         MaxNumThreads=maxNumCompThreads*2;
     end
 
     properties(Dependent)
 
-
-
-
 FilesAreAvailable
 
-
-
-
-
 ErrorID
-
-
-
-
 
 ErrorMessage
     end
 
     properties(SetAccess=private)
 
-
-
-
-
-
-
-
-
-
         Data struct=struct.empty
     end
 
     properties(SetAccess=private,Hidden)
-
-
-
-
-
         UseAsyncDownloader(1,1)logical=true
     end
 
     properties(Constant,Access=private)
-
-
-
-
         InstallFolder=fullfile(toolboxdir('matlab'),'maps','asynchttpsave','bin',lower(computer('arch')));
-
-
-
-
-
-
-
 
         FilesAvailableTimeoutInSeconds double=60
     end
 
     properties(Access=private,Dependent)
 
-
-
-
 DeviceLibrary
-
-
-
-
 
 ConverterLibrary
     end
 
     properties(Access=private)
 
-
-
-
-
         DataCount double=0
-
-
-
-
-
-
 
         TimeCount double=0
 
-
-
-
 AsyncChannel
-
-
-
-
 
 ErrorListener
 
 
-
-
-
-
 ThreadIsFinishedListener
-
-
-
-
 
         Params=struct(...
         'URLs','',...
@@ -234,44 +78,19 @@ ThreadIsFinishedListener
     end
 
     events
-
-
-
-
 FileIsWritten
 
-
-
-
-
-
 DownloadError
-
-
-
-
 
 ThreadError
     end
 
     methods
         function writer=AsyncHTTPContentFileWriter
-
-
-
-
-
         end
 
 
         function writeContentToFiles(writer)
-
-
-
-
-
-
-
             assert(numel(writer.URL)==numel(writer.Filename),...
             'MATLAB:graphics:maps:InternalAsyncError',...
             'Internal error: Expect number of URLs to match number of filenames.')
