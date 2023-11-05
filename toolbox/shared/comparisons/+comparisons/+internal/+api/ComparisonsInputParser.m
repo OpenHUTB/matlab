@@ -1,10 +1,5 @@
 classdef(Abstract,Hidden)ComparisonsInputParser<handle
 
-
-
-
-
-
     methods(Abstract,Access=public)
 
         result=parse(this,varargin);
