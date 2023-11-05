@@ -1,20 +1,5 @@
 function addToolbarExplorationButtons(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin~=1
         return;
     else
@@ -25,7 +10,6 @@ function addToolbarExplorationButtons(varargin)
         end
     end
 
-
     for i=1:numel(figureHandles)
         currentFigure=figureHandles(i);
         if~isempty(currentFigure)&&isa(currentFigure,'matlab.ui.Figure')
@@ -33,7 +17,6 @@ function addToolbarExplorationButtons(varargin)
             tb=findobjinternal(currentFigure,'Type','uitoolbar','-and',...
             'Tag','FigureToolBar');
             if~isempty(tb)
-
                 zi=findobjinternal(tb,'Tag','Exploration.ZoomIn');
                 zo=findobjinternal(tb,'Tag','Exploration.ZoomOut');
                 panbtn=findobjinternal(tb,'Tag','Exploration.Pan');
