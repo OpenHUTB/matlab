@@ -1,7 +1,5 @@
 function r=isHDLCoderAvailable
 
-
-
     persistent isAvailable;
 
     if isempty(isAvailable)
