@@ -1,8 +1,5 @@
 function varargout=unregisterplugins(varargin)
 
-
-
-
     if nargout==0
         ticcsext.Utilities.registerplugins(false);
     else
