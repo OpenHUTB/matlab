@@ -1,8 +1,4 @@
 classdef EmptyLayout<comparisons.internal.highlight.ComparisonLayout
-
-
-
-
     properties(GetAccess=public,SetAccess=private)
         ContentIds=string.empty;
     end
