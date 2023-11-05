@@ -1,8 +1,5 @@
 classdef WindowGroup<comparisons.internal.highlight.HighlightWindow
 
-
-
-
     properties(Access=private)
 ActiveWindow
 AllWindows
