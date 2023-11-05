@@ -1,8 +1,5 @@
 classdef PreScaleTool<handle
 
-
-
-
     properties
 ScaleViewPanel
 ScaleViewEditor
