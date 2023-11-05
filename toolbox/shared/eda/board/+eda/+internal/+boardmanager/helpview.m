@@ -1,6 +1,3 @@
-
-
-
 function helpview(anchor)
     if eda.internal.boardmanager.isHDLVerifierAvailable
         helpview(fullfile(docroot,'toolbox','hdlverifier','helptargets.map'),anchor);
