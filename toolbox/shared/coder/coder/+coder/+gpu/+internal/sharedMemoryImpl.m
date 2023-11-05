@@ -1,7 +1,5 @@
 function sharedMemoryImpl(symbol,externalUse,isCtxRowMajor,varargin)
 
-
-
 %#codegen       
 
     if(~coder.target('MATLAB'))
