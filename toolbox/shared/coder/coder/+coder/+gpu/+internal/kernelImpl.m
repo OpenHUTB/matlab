@@ -1,8 +1,5 @@
 function kernelImpl(externalUse,varargin)
 
-
-
-
 %#codegen
     if(~coder.target('MATLAB'))
         coder.allowpcode('plain');
