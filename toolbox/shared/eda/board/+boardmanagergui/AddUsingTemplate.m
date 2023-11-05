@@ -1,18 +1,5 @@
 classdef AddUsingTemplate<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetObservable)
 
         Interface{matlab.internal.validation.mustBeASCIICharRowVector(Interface,'Interface')}='';
