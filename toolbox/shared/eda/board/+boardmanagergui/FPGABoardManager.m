@@ -1,26 +1,5 @@
 classdef FPGABoardManager<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetObservable)
 
         Display{matlab.internal.validation.mustBeCharRowVector(Display,'Display')}='';
