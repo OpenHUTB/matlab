@@ -1,10 +1,5 @@
 classdef DataModel<handle
 
-
-
-
-
-
     properties(GetAccess=public,SetAccess=private,Hidden)
 IsHTMLTextReceived
 IsTitleReceived
