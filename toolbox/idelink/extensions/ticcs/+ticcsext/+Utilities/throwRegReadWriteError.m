@@ -1,8 +1,4 @@
 function throwRegReadWriteError(rwException,regname,subfamily)
-
-
-
-
     if~isempty(findstr(rwException.message,'Given register name'))&&~isempty(findstr(rwException.message,'is invalid'))
 
         switch subfamily
