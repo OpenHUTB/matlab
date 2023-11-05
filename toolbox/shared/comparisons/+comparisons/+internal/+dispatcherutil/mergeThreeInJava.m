@@ -1,12 +1,8 @@
 function app=mergeThreeInJava(theirs,base,mine,options)
 
-
-
-
     error(javachk('jvm'));
 
     if isComparisonBeingLaunchedFromJava(options)
-
 
         builder=com.mathworks.comparisons.compare...
         .ComparisonDefinitionBuilder(options.ComparisonDefinition);%#ok<*JAPIMATHWORKS> 
