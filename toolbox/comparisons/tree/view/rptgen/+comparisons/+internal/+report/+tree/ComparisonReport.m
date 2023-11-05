@@ -1,9 +1,5 @@
 classdef ComparisonReport<mlreportgen.dom.LockedDocument
 
-
-
-
-
     properties(Access=private)
 MCOSView
 ComparisonSources
