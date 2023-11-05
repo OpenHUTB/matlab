@@ -1,8 +1,5 @@
 function checkRegReadWriteParams(op,subfamily,mmr,represent,supportedRegs,statusRegs)
 
-
-
-
     DataTypes={'binary','2scomp','ieee'};
 
     if nargin>=5
