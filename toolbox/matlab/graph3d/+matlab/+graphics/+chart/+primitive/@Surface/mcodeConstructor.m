@@ -1,10 +1,6 @@
 function mcodeConstructor(hObj,hCode)
 
-
-
-
     propsToIgnore={};
-
 
     edgecolor=get(hObj,'EdgeColor');
     facelighting=get(hObj,'FaceLighting');
@@ -62,16 +58,6 @@ function mcodeConstructor(hObj,hCode)
     cName=hCode.cleanName(cName,'cdata');
 
     ignoreProperty(hCode,{'XData','YData','ZData','CData'});
-
-
-
-
-
-
-
-
-
-
     if~(is_default_xdata&&is_default_ydata)
 
         hArg=codegen.codeargument('Value',xdata,'Name',xName,'IsParameter',true,...
