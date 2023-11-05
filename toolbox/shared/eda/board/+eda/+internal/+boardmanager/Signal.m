@@ -1,6 +1,3 @@
-
-
-
 classdef Signal<matlab.mixin.Copyable
 
     properties
