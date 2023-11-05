@@ -1,13 +1,6 @@
 classdef(Abstract)DiffGUIProvider<handle&matlab.mixin.Heterogeneous
 
-
-
-
-
     methods(Abstract)
-
-
-
 
         canHandle(first,second,options);
 
