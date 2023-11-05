@@ -1,9 +1,5 @@
 classdef HTMLViewerManager<handle
 
-
-
-
-
     properties(Access=private)
 DataModel
 MessageService
