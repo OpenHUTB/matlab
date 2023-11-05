@@ -1,6 +1,3 @@
-
-
-
 classdef UserdefinedInterface<eda.internal.boardmanager.Interface
     properties(SetAccess=private,GetAccess=private)
         SignalOrder;
