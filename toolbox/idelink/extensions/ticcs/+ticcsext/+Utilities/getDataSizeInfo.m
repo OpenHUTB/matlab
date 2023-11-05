@@ -1,8 +1,5 @@
 function[bytesperpass,numpasses,countperpass,extracount]=getDataSizeInfo(cc,opt,datatype,count)
 
-
-
-
     switch opt
     case 'read'
         totalcount=prod(count);
