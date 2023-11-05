@@ -1,7 +1,5 @@
 function createPreInstalledMatFile(varargin)
 
-
-
     if nargin==0
         basePath=fullfile(matlabroot,'toolbox','shared','eda','board','resources');
     else
