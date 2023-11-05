@@ -1,8 +1,5 @@
 function[timerIntPeriod,timerIntPrescaler,timerIntPostscaler,timerIntPeriodLast]=checkTimerValues_C5x(timerIntPeriod,timerIntPrescaler,timerIntPostscaler,timerOpt,numCycles,buildAction)
 
-
-
-
     [counterSize,prescalerSize]=ticcsext.Utilities.getTimerRegisterSizes_C5x(timerOpt);
 
 
