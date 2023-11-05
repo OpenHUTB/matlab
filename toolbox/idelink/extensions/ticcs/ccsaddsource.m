@@ -1,19 +1,5 @@
 function ccsaddsource(boardnum,procnum,srcfile)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(3,3);
 
     if isempty(fileparts(srcfile)),
