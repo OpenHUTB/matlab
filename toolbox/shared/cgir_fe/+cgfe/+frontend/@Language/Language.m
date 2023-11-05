@@ -1,6 +1,3 @@
-
-
-
 classdef Language<cgfe.util.BaseClass
 
     properties(Constant,GetAccess=public,Hidden)
