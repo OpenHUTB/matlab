@@ -1,12 +1,5 @@
 function makeInfo=rtwmakecfg()
 
-
-
-
-
-
-
-
     archStr=computer('arch');
     makeInfo.precompile=1;
 
@@ -14,15 +7,6 @@ function makeInfo=rtwmakecfg()
 
         makeInfo.linkLibsObjs={fullfile(matlabroot,'toolbox','shared','eda',...
         'fil','lib','win32','libmwfilcommon.lib')};
-
-
-
-
-
-
-
-
-
 
     elseif(strcmp(archStr,'win64'))
         compilerInfo=mex.getCompilerConfigurations('C','Selected');
