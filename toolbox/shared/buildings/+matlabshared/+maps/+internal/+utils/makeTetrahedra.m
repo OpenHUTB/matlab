@@ -1,21 +1,5 @@
 function[P,T]=makeTetrahedra(p,t,h,h0)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin<4
         h0=0;
     end
