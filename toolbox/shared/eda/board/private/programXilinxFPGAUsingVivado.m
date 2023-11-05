@@ -1,8 +1,4 @@
 function programXilinxFPGAUsingVivado(bitstreamfile,chainposition,varargin)
-
-
-
-
     assert(exist(bitstreamfile,'file')==2,message('EDALink:loadFPGABitstream:BitstreamNotFound',bitstreamfile));
 
 
