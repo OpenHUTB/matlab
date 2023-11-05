@@ -1,7 +1,5 @@
 function createPreInstalledMFile(vendor,feature,boardName)
 
-
-
     switch feature
     case 'turnkey'
         funcName='hdlcoder_turnkey_customization';
