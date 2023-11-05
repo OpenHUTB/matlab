@@ -1,12 +1,8 @@
 function persistentMemoryImpl(var,externalUse)
 
-
-
-
 %#codegen
     if(~coder.target('MATLAB'))
         coder.allowpcode('plain');
-
 
         coder.inline('never');
 
