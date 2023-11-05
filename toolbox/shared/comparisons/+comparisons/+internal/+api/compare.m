@@ -1,20 +1,6 @@
 function comparison=compare(left,right)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     import comparisons.internal.util.APIUtils;
 
     files=comparisons.internal.resolveFiles(left,right);
