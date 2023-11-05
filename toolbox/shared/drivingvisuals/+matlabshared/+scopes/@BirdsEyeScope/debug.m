@@ -1,8 +1,4 @@
 function debug(this)
-
-
-
-
     feature=slfeature('slBirdsEyeScopeApp');
 
     if feature>2&&~isempty(this.WebWindow)
