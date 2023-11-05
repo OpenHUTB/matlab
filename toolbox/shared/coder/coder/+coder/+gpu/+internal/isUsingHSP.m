@@ -1,9 +1,5 @@
 function usingHSP=isUsingHSP(ctx)
 
-
-
-
-
     usingHSP=false;
     if isempty(ctx)
         return;
