@@ -1,6 +1,5 @@
 function iterationsImpl(externalUse,iterations)
 
-
 %#codegen
     eml_invariant(isscalar(iterations)&&isnumeric(iterations),...
     'gpucoder:common:IterationsPragmaInputScalarNumeric');
