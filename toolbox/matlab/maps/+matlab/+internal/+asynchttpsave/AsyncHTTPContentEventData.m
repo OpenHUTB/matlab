@@ -1,22 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef(ConstructOnLoad)AsyncHTTPContentEventData<event.EventData
 
     properties
