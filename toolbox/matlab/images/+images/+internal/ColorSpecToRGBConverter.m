@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 classdef ColorSpecToRGBConverter<matlab.graphics.mixin.internal.GraphicsDataTypeContainer
 
     properties(Access='private')
