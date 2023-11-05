@@ -9,15 +9,6 @@ classdef DataStoreStrategy<driving.internal.heremaps.DataServiceStrategy
     methods(Hidden)
 
         function T=getPartitionMetadata(this,partitions)
-
-
-
-
-
-
-
-
-
             T=this.MetadataService.readDataHandles(partitions);
 
 
