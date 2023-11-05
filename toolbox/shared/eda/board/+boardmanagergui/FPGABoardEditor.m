@@ -1,38 +1,5 @@
 classdef FPGABoardEditor<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetObservable)
 
         BoardName{matlab.internal.validation.mustBeASCIICharRowVector(BoardName,'BoardName')}='';
