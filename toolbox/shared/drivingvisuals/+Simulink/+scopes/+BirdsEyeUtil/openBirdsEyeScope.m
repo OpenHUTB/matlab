@@ -1,8 +1,4 @@
 function openBirdsEyeScope(modelName,varargin)
-
-
-
-
     beScope=Simulink.scopes.BirdsEyeUtil.getBirdsEyeScope(modelName,true);
     if nargin<2||(nargin>=2&&varargin{1})
         hWebWindow=beScope.WebWindow;
