@@ -1,6 +1,3 @@
-
-
-
 classdef GlobalOptions<internal.cxxfe.FrontEndOptions
 
     methods
