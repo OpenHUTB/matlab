@@ -1,6 +1,3 @@
-
-
-
 classdef SessionOptions<cgfe.util.BaseClass
 
     properties
