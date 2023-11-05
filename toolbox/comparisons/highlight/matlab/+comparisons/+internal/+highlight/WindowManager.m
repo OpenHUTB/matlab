@@ -1,8 +1,5 @@
 classdef WindowManager<handle
 
-
-
-
     properties(Access=private)
 Layout
 ContentWindowFactories
