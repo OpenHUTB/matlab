@@ -1,22 +1,10 @@
 classdef FigureScreenReaderManager
 
-
-
-
-
-
     methods(Static)
 
         function updateFigureAriaLabel(f)
 
-
-
-
             import matlab.graphics.internal.FigureScreenReaderManager;
-
-
-
-
             if~matlab.graphics.internal.FigureScreenReaderManager.isSupportedFigure(f)
                 return
             end
