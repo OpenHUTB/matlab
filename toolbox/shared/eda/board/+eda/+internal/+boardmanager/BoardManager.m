@@ -1,6 +1,3 @@
-
-
-
 classdef BoardManager<handle
 
     properties(Access=private)
