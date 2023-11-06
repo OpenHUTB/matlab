@@ -347,10 +347,10 @@ For more information about execution order, see <a href="../../simulink/ug/contr
 <div class="ref_sect"><h3 id="mw_c685e903-f82a-4f65-b3d1-e1fc07d2d41a">输出</h3>
 <div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
 <div class="panel-group" id="mw_c685e903-f82a-4f65-b3d1-e1fc07d2d41a_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" data-target="#expand_panel_body_mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" aria-controls="expand_panel_body_mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a"><code class="name">Info</code> — 总线信号<br/>
-<span class="add_font_color_general remove_bold"><span class="example_desc">bus</span></span></h3>
+<span class="add_font_color_general remove_bold"><span class="example_desc">总线</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" aria-labelledby="expand_panel_heading_mw_065585b0-4cdb-4e42-b4bb-320f0ef9275a" class="panel-collapse collapse"><div class="panel-body">
-            <p>Bus signal containing these block values.</p>
+            <p>包含这些模块值的总线信号。</p>
 <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="13.15%"/>
 <col class="tcol2" width="11.67%"/>
 <col class="tcol3" width="11.67%"/>
@@ -361,74 +361,65 @@ For more information about execution order, see <a href="../../simulink/ug/contr
 <col class="tcol8" width="10.82%"/>
 <col class="tcol9" width="10.82%"/>
 </colgroup>
-<thead><tr><th colspan="6">Signal</th>
-<th>Description</th>
-<th>Value</th>
-<th>Units</th>
+<thead><tr><th colspan="6">信号</th>
+<th>描述</th>
+<th>值</th>
+<th>单位</th>
 </tr>
 </thead>
 <tbody><tr><td rowspan="9"><code class="literal">InertFrm</code></td>
 <td rowspan="9"><code class="literal">Cg</code></td>
 <td rowspan="3"><code class="literal">Disp</code></td>
 <td colspan="3"><code class="literal">X</code></td>
-<td>Vehicle CG displacement along the earth-fixed
-                        <span class="emphasis"><em>X</em></span>-axis</td>
+<td>车辆重心沿地球固定 X 轴的位移<br/></td>
 <td><p>Computed</p>
 </td>
 <td>m</td>
 </tr>
 <tr><td colspan="3"><code class="literal">Y</code></td>
-<td>Vehicle CG displacement along the earth-fixed
-                        <span class="emphasis"><em>Y</em></span>-axis</td>
+<td>车辆重心沿地球固定 Y 轴的位移<br/></td>
 <td><p>Computed</p>
 </td>
 <td><p>m</p>
 </td>
 </tr>
 <tr><td colspan="3"><code class="literal">Z</code></td>
-<td>Vehicle CG displacement along the earth-fixed
-                        <span class="emphasis"><em>Z</em></span>-axis</td>
+<td>车辆重心沿地球固定 Z 轴的位移<br/></td>
 <td><code class="literal">0</code></td>
 <td>m</td>
 </tr>
 <tr><td rowspan="3"><code class="literal">Vel</code></td>
 <td colspan="3"><code class="literal">Xdot</code></td>
-<td>Vehicle CG velocity along the earth-fixed
-                        <span class="emphasis"><em>X</em></span>-axis</td>
+<td>车辆沿地球固定 X 轴的重心速度<br/></td>
 <td><p>Computed</p>
 </td>
 <td><p>m/s</p>
 </td>
 </tr>
 <tr><td colspan="3"><code class="literal">Ydot</code></td>
-<td>Vehicle CG velocity along the earth-fixed
-                        <span class="emphasis"><em>Y</em></span>-axis</td>
+<td>车辆沿地球固定 Y 轴的重心速度<br/></td>
 <td><p>Computed</p>
 </td>
 <td>m/s</td>
 </tr>
 <tr><td colspan="3"><code class="literal">Zdot</code></td>
-<td>Vehicle CG velocity along the earth-fixed
-                        <span class="emphasis"><em>Z</em></span>-axis</td>
+<td>车辆沿地球固定 Z 轴的重心速度<br/></td>
 <td><code class="literal">0</code></td>
 <td>m/s</td>
 </tr>
 <tr><td rowspan="3"><code class="literal">Ang</code></td>
 <td colspan="3"><code class="literal">phi</code></td>
-<td>Rotation of the vehicle-fixed frame about the earth-fixed
-                          <span class="emphasis"><em>X</em></span>-axis (roll)</td>
+<td>车辆固定框架绕地球固定 X 轴的旋转（翻滚）<br/></td>
 <td><code class="literal">0</code></td>
 <td>rad</td>
 </tr>
 <tr><td colspan="3"><code class="literal">theta</code></td>
-<td>Rotation of the vehicle-fixed frame about the earth-fixed
-                          <span class="emphasis"><em>Y</em></span>-axis (pitch)</td>
+<td>车辆固定框架绕地球固定 Y 轴的旋转（俯仰）<br/></td>
 <td><code class="literal">0</code></td>
 <td>rad</td>
 </tr>
 <tr><td colspan="3"><code class="literal">psi</code></td>
-<td>Rotation of the vehicle-fixed frame about the earth-fixed
-                          <span class="emphasis"><em>Z</em></span>-axis (yaw)</td>
+<td>车辆固定框架绕地球固定 Z 轴的旋转（偏航）<br/></td>
 <td><p>Computed</p>
 </td>
 <td>rad</td>
@@ -437,28 +428,25 @@ For more information about execution order, see <a href="../../simulink/ug/contr
 <td rowspan="17"><code class="literal">Cg</code></td>
 <td rowspan="3"><code class="literal">Vel</code></td>
 <td colspan="3"><code class="literal">xdot</code></td>
-<td>Vehicle CG velocity along the vehicle-fixed
-                        <span class="emphasis"><em>x</em></span>-axis</td>
+<td>沿车辆固定 x 轴的车辆重心速度<br/></td>
 <td><p>Computed</p>
 </td>
 <td>m/s</td>
 </tr>
 <tr><td colspan="3"><code class="literal">ydot</code></td>
-<td>Vehicle CG velocity along the vehicle-fixed
-                        <span class="emphasis"><em>y</em></span>-axis</td>
+<td>沿车辆固定 y 轴的车辆重心速度<br/></td>
 <td><p>Computed</p>
 </td>
 <td>m/s</td>
 </tr>
 <tr><td colspan="3"><code class="literal">zdot</code></td>
-<td>Vehicle CG velocity along the vehicle-fixed
-                        <span class="emphasis"><em>z</em></span>-axis</td>
+<td>沿车辆固定 z 轴的车辆重心速度<br/></td>
 <td><code class="literal">0</code></td>
 <td>m/s</td>
 </tr>
 <tr><td><code class="literal">Ang</code></td>
 <td colspan="3"><code class="literal">Beta</code></td>
-<td><p>Body slip angle, <em class="varname">β</em></p>
+<td><p>车身滑移角, <em class="varname">β</em></p>
 <p>
                           </p>
 <div id="d124e197171" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-17px" display="block"><mrow><mi>β</mi><mo>=</mo><mfrac><mrow><msub><mi>V</mi><mi>y</mi></msub></mrow><mrow><msub><mi>V</mi><mi>x</mi></msub></mrow></mfrac></mrow></math></p>
@@ -656,10 +644,10 @@ For more information about execution order, see <a href="../../simulink/ug/contr
 <col class="tcol4" width="20%"/>
 <col class="tcol5" width="20%"/>
 </colgroup>
-<thead><tr><th colspan="2">Signal</th>
-<th>Description</th>
-<th>Variable</th>
-<th>Units</th>
+<thead><tr><th colspan="2">信号</th>
+<th>描述</th>
+<th>变量</th>
+<th>单位</th>
 </tr>
 </thead>
 <tbody><tr><td><code class="literal">Mtr</code></td>
@@ -695,38 +683,33 @@ For more information about execution order, see <a href="../../simulink/ug/contr
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" data-target="#expand_panel_body_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" aria-controls="expand_panel_body_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_8f532359-9957-46fd-a9e5-f10a8ee9782b"><code class="name">xdot</code> — Vehicle longitudinal velocity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" data-target="#expand_panel_body_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" aria-controls="expand_panel_body_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_8f532359-9957-46fd-a9e5-f10a8ee9782b"><code class="name">xdot</code> — 车辆纵向速度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">标量</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" aria-labelledby="expand_panel_heading_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" class="panel-collapse collapse"><div class="panel-body">
-            <p>Vehicle CG velocity along the vehicle-fixed <span class="emphasis"><em>x</em></span>-axis, in
-              m/s.</p>
+<div role="tabpanel" id="expand_panel_body_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" aria-labelledby="expand_panel_heading_mw_8f532359-9957-46fd-a9e5-f10a8ee9782b" class="panel-collapse collapse"><div class="panel-body"><p>车辆沿车辆固定 x 轴的重心速度，以米/秒为单位。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" data-target="#expand_panel_body_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" aria-controls="expand_panel_body_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4"><code class="name">ydot</code> — Vehicle lateral velocity<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" data-target="#expand_panel_body_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" aria-controls="expand_panel_body_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4"><code class="name">ydot</code> — 车辆横向速度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">标量</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" aria-labelledby="expand_panel_heading_mw_a4b1d282-bcbf-48ae-bdc4-c2bc3a97afa4" class="panel-collapse collapse"><div class="panel-body">
-            <p>Vehicle CG velocity along the vehicle-fixed <span class="emphasis"><em>y</em></span>-axis, in
-              m/s.</p>
+            <p>车辆沿车辆固定 y 轴的重心速度，以米/秒为单位。<br/></p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" data-target="#expand_panel_body_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" aria-controls="expand_panel_body_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_23af141f-c42f-4a7a-ab60-f74b9e222fda"><code class="name">psi</code> — Yaw<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" data-target="#expand_panel_body_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" aria-controls="expand_panel_body_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_23af141f-c42f-4a7a-ab60-f74b9e222fda"><code class="name">psi</code> — 偏航<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">标量</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" aria-labelledby="expand_panel_heading_mw_23af141f-c42f-4a7a-ab60-f74b9e222fda" class="panel-collapse collapse"><div class="panel-body">
-            <p>Rotation of the vehicle-fixed frame about the earth-fixed
-              <span class="emphasis"><em>Z</em></span>-axis (yaw), in rad.</p>
+            <p>车辆固定框架绕地球固定 Z 轴（偏航）的旋转，以 rad 为单位。<br/></p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a421c129-b48d-485c-808a-16dc05665265" data-target="#expand_panel_body_mw_a421c129-b48d-485c-808a-16dc05665265" aria-controls="expand_panel_body_mw_a421c129-b48d-485c-808a-16dc05665265" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_a421c129-b48d-485c-808a-16dc05665265"><code class="name">r</code> — Yaw rate<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">scalar</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_a421c129-b48d-485c-808a-16dc05665265" data-target="#expand_panel_body_mw_a421c129-b48d-485c-808a-16dc05665265" aria-controls="expand_panel_body_mw_a421c129-b48d-485c-808a-16dc05665265" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><h3 class="panel-title" id="mw_a421c129-b48d-485c-808a-16dc05665265"><code class="name">r</code> — 偏航率<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">标量</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_a421c129-b48d-485c-808a-16dc05665265" aria-labelledby="expand_panel_heading_mw_a421c129-b48d-485c-808a-16dc05665265" class="panel-collapse collapse"><div class="panel-body">
-            <p>Vehicle angular velocity, <code class="literal">r</code>, about the vehicle-fixed
-                <span class="emphasis"><em>z</em></span>-axis (yaw rate), in rad/s.</p>
+            <p>车辆绕车辆固定 z 轴（偏航率）的角速度 <code class="literal">r</code>，以 rad/s 为单位。</p>
           </div>
 </div>
 </div>
@@ -734,20 +717,19 @@ For more information about execution order, see <a href="../../simulink/ug/contr
 </div>
 </div>
 </div>
-<div class="ref_sect"><h2 id="mw_674341ce-e622-40ae-b813-7c920a7c7248">Parameters</h2>
+<div class="ref_sect"><h2 id="mw_674341ce-e622-40ae-b813-7c920a7c7248">参数</h2>
 <div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="false">expand all</a></p>
 <div class="panel-group" id="mw_674341ce-e622-40ae-b813-7c920a7c7248_panel-group" role="tablist" aria-multiselectable="true"><div id="mw_cb187652-0a12-4d58-97f1-c82eea5ce19d_div" class="refsect2"><h3 id="mw_cb187652-0a12-4d58-97f1-c82eea5ce19d">Chassis</h3>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" data-target="#expand_panel_body_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" aria-controls="expand_panel_body_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Type" class="anchor_target"></span><h3 class="panel-title" id="mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9"><code class="name">Type</code> — Type<br/>
-<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Muscle car</code> (default) | <code class="guidropdown">Sedan</code> | <code class="guidropdown">Sport utility vehicle</code> | <code class="guidropdown">Small pickup truck</code> | <code class="guidropdown">Hatchback</code> | <code class="guidropdown">Box truck</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" data-target="#expand_panel_body_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" aria-controls="expand_panel_body_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Type" class="anchor_target"></span><h3 class="panel-title" id="mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9"><code class="name">Type</code> — 类型<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Muscle car</code> (默认) | <code class="guidropdown">Sedan</code> | <code class="guidropdown">Sport utility vehicle</code> | <code class="guidropdown">Small pickup truck</code> | <code class="guidropdown">Hatchback</code> | <code class="guidropdown">Box truck</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" aria-labelledby="expand_panel_heading_mw_bfb3f664-f3e4-492d-b22a-3f00c50c91c9" class="panel-collapse collapse"><div class="panel-body">
-            <p>Specify the vehicle type. This table provides
-              links to the vehicle dimensions.</p>
+            <p>指定车辆类型。该表提供了车辆维度的链接。</p>
 <div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="43%" align="left"/>
 <col class="tcol2" width="57%" align="left"/>
 </colgroup>
-<thead><tr><th><strong class="guilabel">Vehicle type</strong> Setting</th>
-<th>Vehicle Dimensions</th>
+<thead><tr><th><strong class="guilabel">车辆类型设置</strong></th>
+<th>车辆维度</th>
 </tr>
 </thead>
 <tbody><tr><td><code class="guidropdown">Muscle car</code></td>
@@ -784,22 +766,21 @@ For more information about execution order, see <a href="../../simulink/ug/contr
 <p>
 </p>
             
-    <h4 class="descriptionsect">Dependencies</h4>
-    <p>Selecting <code class="guidropdown">Custom</code> enables parameters that allow you to import a
-        custom mesh for your vehicle.</p>
+    <h4 class="descriptionsect">依赖</h4>
+    <p>选择 <code class="guidropdown">Custom</code> 启用允许为车辆导入自定义网格的参数。</p>
 
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Color" class="anchor_target"></span><span id="Color_" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c"><code class="name">Color</code> — Color of vehicle<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Red</code> (default) | <code class="guidropdown">Orange</code> | <code class="guidropdown">Yellow</code> | <code class="guidropdown">Green</code> | <code class="guidropdown">Blue</code> | <code class="guidropdown">Black</code> | <code class="guidropdown">White</code> | <code class="guidropdown">Silver</code></span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" data-target="#expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-controls="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Color" class="anchor_target"></span><span id="Color_" class="anchor_target"></span><h3 class="panel-title" id="mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c"><code class="name">Color</code> — 车辆颜色<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="guidropdown">Red</code> (默认) | <code class="guidropdown">Orange</code> | <code class="guidropdown">Yellow</code> | <code class="guidropdown">Green</code> | <code class="guidropdown">Blue</code> | <code class="guidropdown">Black</code> | <code class="guidropdown">White</code> | <code class="guidropdown">Silver</code></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
-<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-collapse collapse"><div class="panel-body"><p>Select the color of the vehicle.</p>
+<div role="tabpanel" id="expand_panel_body_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" aria-labelledby="expand_panel_heading_mw_5646e82a-1c34-4ab2-9130-5c85f1473300_sep_mw_9a20fe4b-0a82-4c5e-8c75-ddf3a307e25c" class="panel-collapse collapse"><div class="panel-body"><p>选择车辆的颜色。</p>
 </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" data-target="#expand_panel_body_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" aria-controls="expand_panel_body_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Name" class="anchor_target"></span><h3 class="panel-title" id="mw_4ba52ef9-5f16-42b8-99fa-a379ec333177"><code class="name">Name</code> — Name of vehicle<br/>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" data-target="#expand_panel_body_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" aria-controls="expand_panel_body_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Name" class="anchor_target"></span><h3 class="panel-title" id="mw_4ba52ef9-5f16-42b8-99fa-a379ec333177"><code class="name">Name</code> — 车辆名称<br/>
 <span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">SimulinkVehicle1</code> (default) | character vector</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" aria-labelledby="expand_panel_heading_mw_4ba52ef9-5f16-42b8-99fa-a379ec333177" class="panel-collapse collapse"><div class="panel-body">
@@ -813,7 +794,7 @@ For more information about execution order, see <a href="../../simulink/ug/contr
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" data-target="#expand_panel_body_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" aria-controls="expand_panel_body_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Initialposition" class="anchor_target"></span><h3 class="panel-title" id="mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9"><code class="name">Initial position</code> — Vehicle initial position<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[ 0, 0, -0.5 ] (default) | <code class="literal">1</code>-by-<code class="literal">3</code> array</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" data-target="#expand_panel_body_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" aria-controls="expand_panel_body_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Initialposition" class="anchor_target"></span><h3 class="panel-title" id="mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9"><code class="name">Initial position</code> — 车辆初始位置<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[ 0, 0, -0.5 ] (default) | <code class="literal">1</code>-by-<code class="literal">3</code> array</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" aria-labelledby="expand_panel_heading_mw_5d58d88a-0ca1-4dfe-9533-bce938c61cc9" class="panel-collapse collapse"><div class="panel-body">
             <p>Initial vehicle position specified by a
@@ -824,7 +805,7 @@ For more information about execution order, see <a href="../../simulink/ug/contr
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" data-target="#expand_panel_body_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" aria-controls="expand_panel_body_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Initialrotation" class="anchor_target"></span><h3 class="panel-title" id="mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac"><code class="name">Initial rotation</code> — Vehicle initial rotation<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[ 0, 0, 0 ] (default) | <code class="literal">1</code>-by-<code class="literal">3</code> array</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" data-target="#expand_panel_body_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" aria-controls="expand_panel_body_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Initialrotation" class="anchor_target"></span><h3 class="panel-title" id="mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac"><code class="name">Initial rotation</code> — 车辆初始旋转<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[ 0, 0, 0 ] (default) | <code class="literal">1</code>-by-<code class="literal">3</code> array</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" aria-labelledby="expand_panel_heading_mw_e304f29a-22a7-4cb2-99ad-f7843e3ea8ac" class="panel-collapse collapse"><div class="panel-body">
             <p>Initial vehicle rotation specified by a
@@ -836,64 +817,61 @@ For more information about execution order, see <a href="../../simulink/ug/contr
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_08811b2b-fe52-428f-bab2-97392f160528" data-target="#expand_panel_body_mw_08811b2b-fe52-428f-bab2-97392f160528" aria-controls="expand_panel_body_mw_08811b2b-fe52-428f-bab2-97392f160528" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Mass" class="anchor_target"></span><h3 class="panel-title" id="mw_08811b2b-fe52-428f-bab2-97392f160528"><code class="name">Mass</code> — Vehicle mass<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1500 (default) | scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_08811b2b-fe52-428f-bab2-97392f160528" data-target="#expand_panel_body_mw_08811b2b-fe52-428f-bab2-97392f160528" aria-controls="expand_panel_body_mw_08811b2b-fe52-428f-bab2-97392f160528" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Mass" class="anchor_target"></span><h3 class="panel-title" id="mw_08811b2b-fe52-428f-bab2-97392f160528"><code class="name">Mass</code> — 车辆质量<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1500 (默认) | 标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_08811b2b-fe52-428f-bab2-97392f160528" aria-labelledby="expand_panel_heading_mw_08811b2b-fe52-428f-bab2-97392f160528" class="panel-collapse collapse"><div class="panel-body">
-            <p>Vehicle mass, in kg. This value does not include the wheel masses.</p>
+            <p>车辆质量，单位为千克。该值不包括车轮质量。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" data-target="#expand_panel_body_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" aria-controls="expand_panel_body_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_DragCoefficient" class="anchor_target"></span><h3 class="panel-title" id="mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0"><code class="name">Drag Coefficient</code> — Vehicle drag coefficient<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">0.3 (default) | scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" data-target="#expand_panel_body_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" aria-controls="expand_panel_body_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_DragCoefficient" class="anchor_target"></span><h3 class="panel-title" id="mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0"><code class="name">Drag Coefficient</code> — 车辆阻力系数<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">0.3 (默认) | 标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" aria-labelledby="expand_panel_heading_mw_0aa78388-867d-4d93-ad2f-5d28c6c7bad0" class="panel-collapse collapse"><div class="panel-body">
-            <p>Vehicle drag coefficient, dimensionless.</p>
+            <p>车辆阻力系数，无量纲。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_96b97212-cdf5-4e33-af75-f638be6710a2" data-target="#expand_panel_body_mw_96b97212-cdf5-4e33-af75-f638be6710a2" aria-controls="expand_panel_body_mw_96b97212-cdf5-4e33-af75-f638be6710a2" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Trackwidth" class="anchor_target"></span><h3 class="panel-title" id="mw_96b97212-cdf5-4e33-af75-f638be6710a2"><code class="name">Track width</code> — Distance between wheels<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1.9 (default) | scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_96b97212-cdf5-4e33-af75-f638be6710a2" data-target="#expand_panel_body_mw_96b97212-cdf5-4e33-af75-f638be6710a2" aria-controls="expand_panel_body_mw_96b97212-cdf5-4e33-af75-f638be6710a2" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Trackwidth" class="anchor_target"></span><h3 class="panel-title" id="mw_96b97212-cdf5-4e33-af75-f638be6710a2"><code class="name">Track width</code> — 轮子之间的距离<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1.9 (默认) | 标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_96b97212-cdf5-4e33-af75-f638be6710a2" aria-labelledby="expand_panel_heading_mw_96b97212-cdf5-4e33-af75-f638be6710a2" class="panel-collapse collapse"><div class="panel-body">
-            <p>The vehicle track width refers to the distance between the wheels, or the axle
-              length, specified in meters. This parameter is only used for custom mesh
-              options.</p>
+            <p>车辆轮距是指车轮之间的距离，或车轴长度，以米为单位。该参数仅用于自定义网格选项。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" data-target="#expand_panel_body_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" aria-controls="expand_panel_body_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Chassisheight" class="anchor_target"></span><h3 class="panel-title" id="mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b"><code class="name">Chassis height</code> — Height of chassis<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1.5 (default) | scalar</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" data-target="#expand_panel_body_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" aria-controls="expand_panel_body_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Chassisheight" class="anchor_target"></span><h3 class="panel-title" id="mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b"><code class="name">Chassis height</code> — 底盘高度<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1.5 (默认) | 标量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" aria-labelledby="expand_panel_heading_mw_535335c1-cec8-47d5-9c8c-0fb3f4b0668b" class="panel-collapse collapse"><div class="panel-body">
-            <p>Height of chassis used to calculate drag force, specified in meters.</p>
+            <p>用于计算阻力的底盘高度，以米为单位。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" data-target="#expand_panel_body_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" aria-controls="expand_panel_body_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Centerofmassoffset" class="anchor_target"></span><h3 class="panel-title" id="mw_bc3d32cd-01b5-4564-be83-cc58ebc75517"><code class="name">Center of mass offset</code> — Offset in center of mass<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[0, 0, 0] (default) | three element vector</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" data-target="#expand_panel_body_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" aria-controls="expand_panel_body_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Centerofmassoffset" class="anchor_target"></span><h3 class="panel-title" id="mw_bc3d32cd-01b5-4564-be83-cc58ebc75517"><code class="name">Center of mass offset</code> — 质心偏移<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[0, 0, 0] (默认) | 三元素向量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" aria-labelledby="expand_panel_heading_mw_bc3d32cd-01b5-4564-be83-cc58ebc75517" class="panel-collapse collapse"><div class="panel-body">
-            <p>Offset in center of mass, specified as a three element vector, in meters.</p>
+            <p>质心偏移，指定为三元素向量，以米为单位。</p>
           </div>
 </div>
 </div>
 </div>
-<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" data-target="#expand_panel_body_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" aria-controls="expand_panel_body_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Inertiatensorscalingvector" class="anchor_target"></span><h3 class="panel-title" id="mw_63862cb7-0411-42d2-b1b0-ff9bd3150839"><code class="name">Inertia tensor scaling vector</code> — Scaling of inertia tensor<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[1, 1, 1] (default) | three element vector</span></span></h3>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" data-target="#expand_panel_body_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" aria-controls="expand_panel_body_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Inertiatensorscalingvector" class="anchor_target"></span><h3 class="panel-title" id="mw_63862cb7-0411-42d2-b1b0-ff9bd3150839"><code class="name">Inertia tensor scaling vector</code> — 惯性张量的缩放<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">[1, 1, 1] (默认) | 三元素向量</span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" aria-labelledby="expand_panel_heading_mw_63862cb7-0411-42d2-b1b0-ff9bd3150839" class="panel-collapse collapse"><div class="panel-body">
-            <p>Scaling of inertia tensor, specified as a three element dimensionless
-              vector.</p>
+            <p>惯性张量的缩放，指定为三元素无量纲向量。</p>
           </div>
 </div>
 </div>
 </div>
 </div>
-<div id="mw_19718dd2-fe03-4e5a-a91c-8a296fb7e03d_div" class="refsect2"><h3 id="mw_19718dd2-fe03-4e5a-a91c-8a296fb7e03d">Powertrain and Driveline</h3>
-<strong class="mw-doc-parametersgrp" id="mw_4f4b60b0-4787-4b9f-877c-075b6d285366">Powertrain</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" data-target="#expand_panel_body_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" aria-controls="expand_panel_body_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Motortorqueindices" class="anchor_target"></span><h3 class="panel-title" id="mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e"><code class="name">Motor torque indices</code> — Motor torque indices<br/>
-<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[ 0, 300, 400, 0 ]</code> (default) | <code class="literal">vector</code></span></span></h3>
+<div id="mw_19718dd2-fe03-4e5a-a91c-8a296fb7e03d_div" class="refsect2"><h3 id="mw_19718dd2-fe03-4e5a-a91c-8a296fb7e03d">动力总成和传动系统</h3>
+<strong class="mw-doc-parametersgrp" id="mw_4f4b60b0-4787-4b9f-877c-075b6d285366">动力总成</strong><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" data-target="#expand_panel_body_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" aria-controls="expand_panel_body_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_Motortorqueindices" class="anchor_target"></span><h3 class="panel-title" id="mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e"><code class="name">Motor torque indices</code> — 电机扭矩指数<br/>
+<span class="add_font_color_general remove_bold"><span class="example_desc"><code class="literal">[ 0, 300, 400, 0 ]</code> (默认) | <font face="monospace"><span style="font-size: 15.21px;">向量</span></font></span></span></h3>
 <span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
 <div role="tabpanel" id="expand_panel_body_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" aria-labelledby="expand_panel_heading_mw_b3f94d32-f2cf-4d2d-b500-6fc66d6abd6e" class="panel-collapse collapse"><div class="panel-body">
-            <p>Motor torque indices, in N·m. You can use these pre-transmission values to
+            <p>电机扭矩指数，单位为 N·m。. You can use these pre-transmission values to
               represent either an electric motor or a conventional engine.</p>
           <p class="datatypelist"><strong>Data Types: </strong><code>double</code></p>
 </div>

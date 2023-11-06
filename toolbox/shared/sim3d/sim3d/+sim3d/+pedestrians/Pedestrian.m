@@ -1,16 +1,14 @@
 classdef Pedestrian<sim3d.AbstractActor
+    
     properties(SetAccess='private',GetAccess='public')
-
         PedestrianType;
-
         ActorTag;
     end
 
-   
- properties(SetAccess='public',GetAccess='public')
-        Animation;
-ActorID
 
+    properties(SetAccess='public',GetAccess='public')
+        Animation;
+        ActorID
     end
 
 
@@ -38,12 +36,12 @@ ActorID
             numberOfParts=uint32(1);
             r=sim3d.pedestrians.Pedestrian.parseInputs(varargin{:});
             switch pedestrianType
-            case 'Custom'
-                Mesh=r.Mesh;
-                Animation=r.Animation;
-            otherwise
-                Mesh=sim3d.pedestrians.Pedestrian.getMeshPath(pedestrianType);
-                Animation=sim3d.pedestrians.Pedestrian.getAnimationPath(pedestrianType);
+                case 'Custom'
+                    Mesh=r.Mesh;
+                    Animation=r.Animation;
+                otherwise
+                    Mesh=sim3d.pedestrians.Pedestrian.getMeshPath(pedestrianType);
+                    Animation=sim3d.pedestrians.Pedestrian.getAnimationPath(pedestrianType);
             end
             self@sim3d.AbstractActor(actorName,'Scene Origin',r.Translation,r.Rotation,r.Scale,'ActorClassId',r.ActorID,'NumberOfParts',numberOfParts);
             self.Translation=single(r.Translation);
@@ -148,12 +146,12 @@ ActorID
         function r=parseInputs(varargin)
 
             defaultParams=struct(...
-            'Mesh','MeshText',...
-            'Animation','AnimationText',...
-            'Translation',single(zeros(1,3)),...
-            'Rotation',single(zeros(1,3)),...
-            'Scale',single(ones(1,3)),...
-            'ActorID',4);
+                'Mesh','MeshText',...
+                'Animation','AnimationText',...
+                'Translation',single(zeros(1,3)),...
+                'Rotation',single(zeros(1,3)),...
+                'Scale',single(ones(1,3)),...
+                'ActorID',4);
 
             parser=inputParser;
             parser.addParameter('Mesh',defaultParams.Mesh);
@@ -170,29 +168,29 @@ ActorID
 
         function newType=legacyPedestrianTypeMapper(PedestrianType)
             switch PedestrianType
-            case{'human_01','male_01'}
-                newType='Male1';
-                warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "male_01" instead');
-            case{'human_02','male_02'}
-                newType='Male2';
-                warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "male_02" instead');
-            case{'human_03','male_03'}
-                newType='Male3';
-                warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "male_03" instead');
-            case{'human_04','female_01'}
-                newType='Female1';
-                warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "female_01" instead');
-            case{'human_05','female_02'}
-                newType='Female2';
-                warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "female_02" instead');
-            case{'human_06','female_03'}
-                newType='Female3';
-                warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "female_03" instead');
-            case 'child'
-                newType='Child';
-                warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "child" instead');
-            otherwise
-                newType=PedestrianType;
+                case{'human_01','male_01'}
+                    newType='Male1';
+                    warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "male_01" instead');
+                case{'human_02','male_02'}
+                    newType='Male2';
+                    warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "male_02" instead');
+                case{'human_03','male_03'}
+                    newType='Male3';
+                    warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "male_03" instead');
+                case{'human_04','female_01'}
+                    newType='Female1';
+                    warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "female_01" instead');
+                case{'human_05','female_02'}
+                    newType='Female2';
+                    warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "female_02" instead');
+                case{'human_06','female_03'}
+                    newType='Female3';
+                    warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "female_03" instead');
+                case 'child'
+                    newType='Child';
+                    warning('sim3d:pedestrians:Pedestrian:DeprecatedPedestrianType','This pedestrian type will be deprecated in R2020b please use "child" instead');
+                otherwise
+                    newType=PedestrianType;
             end
         end
 
@@ -200,22 +198,22 @@ ActorID
         function ret=getMeshPath(PedestrianType)
             PedestrianType=sim3d.pedestrians.Pedestrian.legacyPedestrianTypeMapper(PedestrianType);
             switch PedestrianType
-            case 'Male1'
-                ret="/MathWorksSimulation/Characters/human_01/Mesh/Male001.Male001";
-            case 'Male2'
-                ret="/MathWorksSimulation/Characters/human_02/Mesh/Male002.Male002";
-            case 'Male3'
-                ret="/MathWorksSimulation/Characters/human_03/Mesh/Male003.Male003";
-            case 'Female1'
-                ret="/MathWorksSimulation/Characters/human_04/Mesh/Female001.Female001";
-            case 'Female2'
-                ret="/MathWorksSimulation/Characters/human_05/Mesh/Female002.Female002";
-            case 'Female3'
-                ret="/MathWorksSimulation/Characters/human_06/Mesh/Female003.Female003";
-            case 'Child'
-                ret="/MathWorksSimulation/Characters/Child/Mesh/Child.Child";
-            otherwise
-                error('sim3dblks:invalidPedestrianType','Invalid Pedestrian Type. Please check help and select a valid Pedestrian Type.');
+                case 'Male1'
+                    ret="/MathWorksSimulation/Characters/human_01/Mesh/Male001.Male001";
+                case 'Male2'
+                    ret="/MathWorksSimulation/Characters/human_02/Mesh/Male002.Male002";
+                case 'Male3'
+                    ret="/MathWorksSimulation/Characters/human_03/Mesh/Male003.Male003";
+                case 'Female1'
+                    ret="/MathWorksSimulation/Characters/human_04/Mesh/Female001.Female001";
+                case 'Female2'
+                    ret="/MathWorksSimulation/Characters/human_05/Mesh/Female002.Female002";
+                case 'Female3'
+                    ret="/MathWorksSimulation/Characters/human_06/Mesh/Female003.Female003";
+                case 'Child'
+                    ret="/MathWorksSimulation/Characters/Child/Mesh/Child.Child";
+                otherwise
+                    error('sim3dblks:invalidPedestrianType','Invalid Pedestrian Type. Please check help and select a valid Pedestrian Type.');
             end
         end
 
@@ -223,22 +221,22 @@ ActorID
         function ret=getAnimationPath(PedestrianType)
             PedestrianType=sim3d.pedestrians.Pedestrian.legacyPedestrianTypeMapper(PedestrianType);
             switch PedestrianType
-            case 'Male1'
-                ret="/MathWorksSimulation/Characters/human_01/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
-            case 'Male2'
-                ret="/MathWorksSimulation/Characters/human_02/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
-            case 'Male3'
-                ret="/MathWorksSimulation/Characters/human_03/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
-            case 'Female1'
-                ret="/MathWorksSimulation/Characters/human_04/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
-            case 'Female2'
-                ret="/MathWorksSimulation/Characters/human_05/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
-            case 'Female3'
-                ret="/MathWorksSimulation/Characters/human_06/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
-            case 'Child'
-                ret="/MathWorksSimulation/Characters/Child/Animation/ChildAnimBP.ChildAnimBP_C";
-            otherwise
-                ret='';
+                case 'Male1'
+                    ret="/MathWorksSimulation/Characters/human_01/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
+                case 'Male2'
+                    ret="/MathWorksSimulation/Characters/human_02/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
+                case 'Male3'
+                    ret="/MathWorksSimulation/Characters/human_03/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
+                case 'Female1'
+                    ret="/MathWorksSimulation/Characters/human_04/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
+                case 'Female2'
+                    ret="/MathWorksSimulation/Characters/human_05/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
+                case 'Female3'
+                    ret="/MathWorksSimulation/Characters/human_06/Animation/SK_Mannequin_Mobile_Skeleton_AnimBlueprint1.SK_Mannequin_Mobile_Skeleton_AnimBlueprint1_C";
+                case 'Child'
+                    ret="/MathWorksSimulation/Characters/Child/Animation/ChildAnimBP.ChildAnimBP_C";
+                otherwise
+                    ret='';
             end
         end
     end
