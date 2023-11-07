@@ -1,8 +1,5 @@
 classdef DataFormat
 
-
-
-
     enumeration
 
 Volume
