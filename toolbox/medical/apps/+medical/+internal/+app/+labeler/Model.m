@@ -1,8 +1,5 @@
 classdef Model<handle
 
-
-
-
     properties(Access=protected)
 
 Data
