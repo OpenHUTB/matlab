@@ -1,8 +1,5 @@
 classdef PublishFormat
 
-
-
-
     enumeration
 
 Images
