@@ -1,8 +1,5 @@
 classdef Controller<handle
 
-
-
-
     properties(Access=private)
 
         View medical.internal.app.labeler.View
