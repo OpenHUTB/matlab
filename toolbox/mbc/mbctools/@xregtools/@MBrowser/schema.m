@@ -1,16 +1,8 @@
 function schema
 
-
-
-
-
-
-
     pk=findpackage('xregtools');
 
-
     c=schema.class(pk,'MBrowser');
-
 
     p=schema.prop(c,'RootNode','MATLAB array');
     p.AccessFlags.PublicSet='off';
