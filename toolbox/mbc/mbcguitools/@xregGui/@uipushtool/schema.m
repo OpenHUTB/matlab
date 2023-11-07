@@ -1,13 +1,7 @@
 function schema
 
-
-
-
-
     pk=findpackage('xregGui');
     c=schema.class(pk,'uipushtool');
-
-
     schema.prop(c,'ClickedCallback','MATLAB callback');
 
     schema.prop(c,'CData','MATLAB array');
