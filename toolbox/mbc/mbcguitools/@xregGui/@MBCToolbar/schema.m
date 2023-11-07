@@ -1,12 +1,7 @@
 function schema
 
-
-
-
-
     pk=findpackage('xregGui');
     c=schema.class(pk,'MBCToolbar');
-
 
     p=schema.prop(c,'Children','handle vector');
     p.AccessFlags.PublicSet='off';
