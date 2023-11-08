@@ -1,28 +1,5 @@
 function[heigs,w_acc]=HamGainTest(a,b,c,d,e,Ts,gam,UseExplicit)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     nx=size(a,1);
     [ny,nu]=size(d);
     if nargin<8
