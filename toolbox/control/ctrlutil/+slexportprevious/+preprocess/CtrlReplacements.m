@@ -1,8 +1,5 @@
 function CtrlReplacements(obj)
 
-
-
-
     if isR2017bOrEarlier(obj.ver)
         obj.removeLibraryLinksTo('sharedTrackingLibrary/Particle Filter');
     end
