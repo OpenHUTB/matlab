@@ -1,24 +1,7 @@
 function[z,p,k]=zpk_minreal_inf(am,bm,cm,dm,em,Ts)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     n=size(am,1)-1;
     if n==0
-
         z=zeros(0,1);p=zeros(0,1);k=dm-bm*cm/am;
     else
 
