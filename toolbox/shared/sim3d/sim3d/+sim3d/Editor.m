@@ -1,6 +1,6 @@
 classdef Editor
     properties(SetAccess='private',GetAccess='public')
-        Uproject string{mustBeNonempty} = fullfile(matlabroot,...
+        Uproject string{mustBeNonempty}=fullfile(matlabroot,...
         "toolbox","shared","sim3d","sim3d","internal","sim3dtemplates",...
         "AutoVrtlEnv","AutoVrtlEnv.uproject");
     end
@@ -9,7 +9,6 @@ classdef Editor
         function self=Editor(uproject)
             self.Uproject=uproject;
         end
-
 
         function[status,result]=open(self)
             sim3d.engine.Engine.restart();
@@ -37,7 +36,7 @@ classdef Editor
                 );
 
                 path=char(System.Environment.GetEnvironmentVariable('PATH',...
-                    System.EnvironmentVariableTarget.User));
+                System.EnvironmentVariableTarget.User));
 
                 path=[path,';',fullfile(matlabroot,'bin','win64')];
 

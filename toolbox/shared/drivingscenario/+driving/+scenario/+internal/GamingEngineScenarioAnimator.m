@@ -1,10 +1,10 @@
 classdef GamingEngineScenarioAnimator < handle
-% 对驾驶场景进行照片级仿真的动画师
-% 查看器模块的原型，这个在"Simulink中的ScenarioReader"和"驾驶场景设计器的GamingEngineScenarioViewer"中使用
+% GamingEngineScenarioViewer ?游戏引擎（比如照片级的）driving-scenario
+% 查看器模块的原型，这个在Simulink中的ScenarioReader中使用
     
     properties
         SampleTime = single(1/60);  % 采样时间
-        % 包含的字段：
+        % Contains fields
         % {
         % Roads: {
         %   Centers
@@ -24,16 +24,15 @@ classdef GamingEngineScenarioAnimator < handle
 
 
     properties (Hidden)
-        % 用于测试的工厂变化
+        % Change of factory to use for testing.
         AssetFactory;
     end
 
     
-    % 预先计算好的常量（不可以改变？）
-    % 为了动态修改ActorsMap，将protected改为public
-    properties (SetAccess = public)  % SetAccess = protected, Hidden
-        CommandWriter = [];  % 向虚幻引擎写出命令的写出器
-        CommandReader = [];  % 从虚幻引擎读入命令的读取器
+    % Pre-computed constants
+    properties (SetAccess = protected, Hidden)
+        CommandWriter = [];
+        CommandReader = [];
         StatusRead = [];
         Stopped = true;
         Paused = true;
@@ -44,21 +43,21 @@ classdef GamingEngineScenarioAnimator < handle
         % 道路信息
         
         % 游戏对象
-        MainCamera;  % 主相机
+        MainCamera;
         Roads(1,:) sim3d.road.Road;
         
-        % 参与者集合
+        % 其他参与者
         ActorsMap;
     end
     
     properties (Hidden)
-        SetupReadTimeout   = int32(120);  % 准备阶段的读取超时限制
-        RunningReadTimeout = int32(10);   % 运行时读取的超时限制
-        PausedReadTimeout  = int32(1);    % 暂停时的读取超时限制
+        SetupReadTimeout   = int32(120);
+        RunningReadTimeout = int32(10);
+        PausedReadTimeout  = int32(1);
     end
     
     properties (Hidden, Constant)
-        InstanceTag = 'GamingEngineScenarioAnimator';  % 实例标签：游戏引擎场景动画师
+        InstanceTag = 'GamingEngineScenarioAnimator';
     end
     
     events
@@ -169,8 +168,6 @@ classdef GamingEngineScenarioAnimator < handle
             sim3d.engine.Engine.stop();
         end
         
-
-        % 制作动画
         function animate(this, input, reset)
             % Input
             % struct('NumActors', int, 'Time', dbl, 'Actors',
@@ -182,7 +179,8 @@ classdef GamingEngineScenarioAnimator < handle
                 reset = false;
             end
             if this.Paused
-                % 如果动画是在暂停时进行调用，则必须成为一步，以确保引擎正在运行
+                % If animate is called while paused, it must be a step,
+                % make sure the engine is running.
                 writer.setState(int32(sim3d.engine.EngineCommands.RUN));
                 writer.write();
                 pause(0.1);
@@ -193,9 +191,9 @@ classdef GamingEngineScenarioAnimator < handle
             writer.write();
             reader.read(); % this is slowing things down
             
-            actors = this.ActorsMap;  % 没有动态变化
+            actors = this.ActorsMap;
             actorIDs = keys(actors);
-            for actorIdx = 1 : actors.Count
+            for actorIdx = 1:actors.Count
                 %actorID = actorIDs{actorIdx};
                 actorID = input.Actors(actorIdx).ActorID;
                 actorInfo = actors(actorID);
@@ -211,7 +209,7 @@ classdef GamingEngineScenarioAnimator < handle
                 Translation(1,1) = x;
                 Translation(1,2) = y;
                 ARotation = actorInfo.Rotation;
-                % 同时旋转车辆的轮子
+                % For vehicles rotate the wheels as well
                 if strcmp(actorInfo.Type, 'Bicyclist')
                     ARotation(1,3) = -yaw;
                     ARotation = this.computePedRotation(ARotation);
@@ -225,13 +223,12 @@ classdef GamingEngineScenarioAnimator < handle
                     ARotation = this.turnWheels(ARotation,input.Actors(actorIdx).Velocity(1));
                 end
                 if reset
-                    actor.write(Translation, ARotation, ones(size(Translation)));  % 参与者各项数据的写入
+                    actor.write(Translation, ARotation, ones(size(Translation)));
                 else
                     actor.step(x, y, yaw);
                 end
                 actorInfo.Rotation = ARotation;
                 actorInfo.Translation = Translation;
-                % 参与者信息写入
                 this.ActorsMap(actorIDs{actorIdx}) = actorInfo;
             end
             
@@ -491,7 +488,7 @@ classdef GamingEngineScenarioAnimator < handle
         end
 
         
-        function Rotation = turnWheels(this, Rotation, Speed)  % % 根据轮子的选择和速度计算旋转矩阵
+        function Rotation = turnWheels(this, Rotation, Speed)
             % r = r + dr
             if size(Rotation, 1) > 1
                 Rotation(2:5,1) = Rotation(2:5,1) - Speed * this.SampleTime / 0.375;

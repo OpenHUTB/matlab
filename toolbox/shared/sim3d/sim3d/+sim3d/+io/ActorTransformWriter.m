@@ -16,11 +16,10 @@ classdef ActorTransformWriter<handle
 
     methods
 
-        % 参与者转换写入到虚幻引擎
-        function self = ActorTransformWriter(actorTag, NumberOfParts)
-            self.Writer = sim3d.io.Publisher([actorTag,sim3d.io.ActorTransformWriter.Suffix],'Packet',zeros(NumberOfParts,3,3,'single'));
-            self.NumberOfParts = NumberOfParts;
-            if isempty(self.Writer) || self.Writer==uint64(0)
+        function self=ActorTransformWriter(actorTag,NumberOfParts)
+            self.Writer=sim3d.io.Publisher([actorTag,sim3d.io.ActorTransformWriter.Suffix],'Packet',zeros(NumberOfParts,3,3,'single'));
+            self.NumberOfParts=NumberOfParts;
+            if isempty(self.Writer)||self.Writer==uint64(0)
                 timeoutException=MException('sim3d:ActorTransformWriter:ActorTransformWriter:SetupError',...
                 '3D Simulation engine interface writer setup error. Is the 3D Simulation engine running?');
                 throw(timeoutException);

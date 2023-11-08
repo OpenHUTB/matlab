@@ -59,7 +59,7 @@ classdef Vehicle < sim3d.AbstractActor
         end
 
 
-        function copy(self, other, CopyChildren, UseSourcePosition)
+        function copy( self, other, CopyChildren, UseSourcePosition )
             arguments
                 self( 1, 1 )sim3d.vehicle.Vehicle
                 other( 1, 1 )sim3d.vehicle.Vehicle
@@ -71,12 +71,12 @@ classdef Vehicle < sim3d.AbstractActor
             self.Animation = other.Animation;
             self.ActorID = other.ActorID;
 
-            copy@sim3d.AbstractActor(self, other, CopyChildren, UseSourcePosition);
+            copy@sim3d.AbstractActor( self, other, CopyChildren, UseSourcePosition );
         end
 
 
         function actorS = getAttributes(self)
-            actorS.Base = getAttributes@sim3d.AbstractActor(self);
+            actorS.Base = getAttributes@sim3d.AbstractActor( self );
             actorS.Color = self.Color;
             actorS.Animation = self.Animation;
             actorS.ActorID = self.ActorID;

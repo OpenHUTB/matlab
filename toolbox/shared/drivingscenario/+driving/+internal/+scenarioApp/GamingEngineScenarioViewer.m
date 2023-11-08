@@ -12,10 +12,6 @@ classdef GamingEngineScenarioViewer<handle
         IsValid
         LastWarnings;
         Offset=[0, 0, 0];
-        % 接收实时更新数据的客户端
-        client;
-        % 仿真步
-        step_num = 0;
     end
 
 
@@ -44,7 +40,7 @@ classdef GamingEngineScenarioViewer<handle
             this.SimulatorStateChanged = addStateChangedListener(hApp.Simulator,@this.onSimulatorStateChanged);
             this.SimulatorSampleChanged = addSampleChangedListener(hApp.Simulator,@this.onSimulatorSampleChanged);
             this.RoadPropertyChanged = event.listener(hApp,'RoadPropertyChanged',@this.onRoadPropertyChanged);
-            this.ActorPropertyChanged = event.listener(hApp,'ActorPropertyChanged',@this.onActorPropertyChanged);
+            this.ActorPropertyChanged=event.listener(hApp,'ActorPropertyChanged',@this.onActorPropertyChanged);
             this.NumRoadsChanging = event.listener(hApp,'NumRoadsChanging',@this.onNumRoadsChanging);
             this.NumActorsChanging = event.listener(hApp,'NumActorsChanging',@this.onNumActorsChanging);
             this.NewScenario = event.listener(hApp,'NewScenario',@this.newScenario);
@@ -141,25 +137,7 @@ classdef GamingEngineScenarioViewer<handle
             simulator = app.Simulator;
 
             try
-                animate_input = getAnimateInput(this);
-                % 测试动态删除一辆车
-                % 测试：drivingScenarioDesigner('LeftTurnScenarioNoSensors.mat')
-                if false && getCurrentSample(simulator) == 100  % 获得当前从仿真开始后的采样时间; false &&
-                    animate_input.NumActors = animate_input.NumActors - 1;
-                    actors = animate_input.Actors;
-                    new_actors = actors(1:end-1);
-                    animate_input.Actors = new_actors;
-                    % 删除this.Animator中的Actor
-                    this.Animator.Scenario.Actors = this.Animator.Scenario.Actors(1:end-1);
-                    this.Animator.Scenario.ActorProfiles = this.Animator.Scenario.ActorProfiles(1:end-1);
-                    this.Animator.Scenario.VehiclePoses.ActorPoses = this.Animator.Scenario.VehiclePoses.ActorPoses(1:end-1);
-                    remove(this.Animator.ActorsMap, 2);
-                    % this.Animator.ActorsMap.Count = this.Animator.ActorsMap.Count-1;  % 只减少数量，会删错
-                    % 无法设置 'drivingScenario' 类的 'Actors' 属性，因为它为只读属性。
-                    this.Application.Simulator.Designer.Scenario.Actors = simulator.Designer.Scenario.Actors(1:end-1);
-                end
-                animate(this.Animator, animate_input, getCurrentSample(simulator)==1); % 索引超过数组元素的数量。索引不能超过 1。
-
+                animate(this.Animator,getAnimateInput(this),getCurrentSample(simulator)==1);
                 this.IsValid=true;
             catch me
                 stop(this.Animator,true);
@@ -205,14 +183,13 @@ classdef GamingEngineScenarioViewer<handle
         end
 
 
-        % 获得动画所有的输入参与者
-        function input = getAnimateInput(this)
-            s = this.Application.Scenario;
-            p = this.Application.Simulator;
-            poses = actorPoses(s);
-            offset = this.Offset;
-            actors = s.Actors;
-            for indx = 1:numel(poses)
+        function input=getAnimateInput(this)
+            s=this.Application.Scenario;
+            p=this.Application.Simulator;
+            poses=actorPoses(s);
+            offset=this.Offset;
+            actors=s.Actors;
+            for indx=1:numel(poses)
                 pos=poses(indx).Position;
                 if numel(actors)>=indx&&isa(actors(indx),'driving.scenario.Vehicle')
                     actor=actors(indx);
@@ -231,7 +208,7 @@ classdef GamingEngineScenarioViewer<handle
 
         % 启动虚幻引擎界面
         function setup(this)
-            animator = this.Animator;
+            animator=this.Animator;
 
             [animator.Scenario,this.Offset,animator.Span,animator.Rotation] = getAnimatorScenario(this);
             animator.SampleTime = single(this.Application.SampleTime);
@@ -276,6 +253,7 @@ end
 
 
 function b = isPropChanged(changedProps,props)
+
     if ischar(changedProps)
         changedProps={changedProps};
     end
