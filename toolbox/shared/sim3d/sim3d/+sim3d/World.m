@@ -103,9 +103,6 @@ classdef World < handle
             end
             self.Textures.reset();
 
-            % 添加默认的像素流转发
-            % self.ExecCmds = [self.ExecCmds, " -AudioMixer -PixelStreamingIP=localhost -PixelStreamingPort=8888"];
-
             sim3d.World.addWorld(self.Name, self);
         end
 
@@ -134,9 +131,6 @@ classdef World < handle
         
         % 运行世界仿真
         function run(self, sampleTime, simulationTime)
-            % R36
-            % self sim3d.World
-            % sampleTime(1, 1) single{ mustBePositive } = 1 / 50.0;
             arguments
                 self sim3d.World
                 sampleTime(1, 1) single{ mustBePositive } = 1/50.0; % 0.02s采样（仿真？）一次
@@ -146,7 +140,7 @@ classdef World < handle
             if ~isinf(simulationTime)
                 cleanup = onCleanup(@self.endSim);
             end
-            this.setup(sampleTime);
+            self.setup(sampleTime);
             if length( fieldnames( self.Actors ) ) > sim3d.World.MaxActorLimit
                 error( message( "shared_sim3d:sim3dWorld:MaxActorLimitExceeded", sim3d.World.MaxActorLimit ) );
             elseif length( fieldnames( self.Actors ) ) > 1200
@@ -155,7 +149,9 @@ classdef World < handle
             self.start();
             self.reset();
             if isinf(simulationTime)
-                self.StepTimer = timer('Period', sampleTime, 'ExecutionMode', 'fixedRate', 'TimerFcn', @self.onTimerEvent );
+                self.StepTimer = timer('Period', sampleTime, ...
+                    'ExecutionMode', 'fixedRate', ...
+                    'TimerFcn', @self.onTimerEvent );
                 self.StepTimer.start();
             else
                 currentTime = 0;
@@ -212,6 +208,7 @@ classdef World < handle
             end
             
             status = sim3d.engine.Engine.getState();
+            % 根据单例模式，如果引擎状态为运行或者已经初始化，则应提醒仿真会话要为单例
             if status == sim3d.engine.EngineCommands.RUN || status == sim3d.engine.EngineCommands.INITIALIZE
                 error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
             end
@@ -257,7 +254,7 @@ classdef World < handle
         function updateNewActorsInWorld(self)
             for n = 1:length( self.NewActorBuffer )
                 newactor = self.Actors.( self.NewActorBuffer{ n } );
-                newactor.setup();
+                newactor.setup();  % 发送
                 newactor.reset();
             end
             self.emptyActorBuffer();
@@ -268,12 +265,12 @@ classdef World < handle
             if ~isempty( self.OutputImpl )
                 self.OutputImpl( self );
             end
-            self.updateNewActorsInWorld();
+            self.updateNewActorsInWorld();  % 发送每辆车的配置、光线追踪、纹理
             self.Root.output();
             self.updateNewActorsInWorld();
-            self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.RUN ) );
-            self.CommandWriter.write();
-            self.CommandReader.read();
+            self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.RUN ) );  % 第一次执行完这句就出现，后面只执行run都不会出现，但是后面快速执行write()虚幻引擎出现车
+            self.CommandWriter.write();  % 
+            self.CommandReader.read();  
             self.Root.update();
         
             if ~isempty(self.UpdateImpl)
@@ -344,7 +341,7 @@ classdef World < handle
                 strcat( "-pakdir=", """", fullfile(userpath, "sim3d_project", string(sprintf( 'R%s', version( '-release' ) ) ), "WindowsNoEditor", "AutoVrtlEnv", "Content", "Paks" ), """" ) ...
                 );
             % 添加像素流转发参数
-            command.Arguments = command.Arguments.append(" -AudioMixer -PixelStreamingIP=localhost -PixelStreamingPort=8888 -RenderOffScreen");
+            command.Arguments = command.Arguments.append(" -AudioMixer -PixelStreamingIP=localhost -PixelStreamingPort=8888");  % 后台运行：-RenderOffScreen
         end
 
 
