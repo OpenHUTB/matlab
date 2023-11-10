@@ -1,9 +1,4 @@
 function blk=add_comment_cb(~)
-
-
-
-
-
     studios=DAS.Studio.getAllStudiosSortedByMostRecentlyActive;
     if~isempty(studios)
         studio=studios(1);
