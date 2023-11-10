@@ -1,9 +1,5 @@
 classdef(Hidden)CommentsManager<handle
 
-
-
-
-
     properties
 modelName
 modelUid
