@@ -5,88 +5,33 @@ classdef BinaryFileReader<matlab.system.SFunSystem&...
 
     properties(Nontunable)
 
-
-
-
         Filename='vipmen.bin';
-
-
 
         VideoFormat='Four character codes';
 
-
-
-
-
         FourCharacterCode='I420';
-
-
 
         BitstreamFormat='Planar';
 
-
-
         OutputSize=[120,160];
-
-
-
-
 
         VideoComponentCount=3;
 
-
-
-
-
-
-
         LineOrder='Top line first';
-
-
-
 
         ByteOrder='Little endian';
 
-
-
         PlayCount=1;
-
-
-
-
-
         InterlacedVideo(1,1)logical=false;
-
-
-
 
         SignedData(1,1)logical=false;
     end
 
     properties(Dependent,Nontunable)
 
-
-
-
-
         VideoComponentBits=[8,8,8];
 
-
-
-
-
-
-
-
-
         VideoComponentSizes=[120,160;60,80;60,80];
-
-
-
-
-
-
-
 
         VideoComponentOrder=[1,2,3];
     end
