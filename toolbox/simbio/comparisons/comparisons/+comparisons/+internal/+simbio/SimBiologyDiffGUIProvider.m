@@ -1,20 +1,10 @@
 classdef SimBiologyDiffGUIProvider<comparisons.internal.DiffGUIProvider
 
-
-
-
-
-
     methods
 
         function tfCanHandle=canHandle(obj,sourceFile,targetFile,options)
-
-
-
             [~,~,firstExt]=fileparts(sourceFile.Path);
             [~,~,secondExt]=fileparts(targetFile.Path);
-
-
             tfCanHandle=firstExt==".sbproj"&&...
             secondExt==".sbproj"&&...
             (options.Type==""||options.Type==obj.getType());
