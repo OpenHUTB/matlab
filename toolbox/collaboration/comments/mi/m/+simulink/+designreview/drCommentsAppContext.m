@@ -1,7 +1,3 @@
-
-
-
-
 classdef drCommentsAppContext<dig.CustomContext
 
     properties(GetAccess=public,SetAccess=public,SetObservable=true)
