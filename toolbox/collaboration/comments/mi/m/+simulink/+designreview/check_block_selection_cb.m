@@ -1,8 +1,5 @@
 function isBlock=check_block_selection_cb(~)
 
-
-
-
     isBlock='false';
     studios=DAS.Studio.getAllStudiosSortedByMostRecentlyActive;
     if~isempty(studios)
