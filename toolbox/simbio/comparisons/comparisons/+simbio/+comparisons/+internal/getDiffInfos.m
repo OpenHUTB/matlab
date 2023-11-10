@@ -1,44 +1,4 @@
 function[modelInfos,blockInfos]=getDiffInfos(source,target,options)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     simbio.comparisons.internal.mustBeSbprojFileOrModelObject(source);
     simbio.comparisons.internal.mustBeSbprojFileOrModelObject(target);
 
@@ -63,13 +23,11 @@ function[modelInfos,blockInfos]=getDiffInfos(source,target,options)
         if projectFileNames(i)~=""
             assert(~isempty(projectContents{i}));
 
-
             allModels=projectContents{i}.ModelNames;
             FileInfo=dir(projectFileNames(i));
             lastModified=string(FileInfo.date);
         else
             assert(isempty(projectContents{i}));
-
 
 
             allModels=models(i).Name;
