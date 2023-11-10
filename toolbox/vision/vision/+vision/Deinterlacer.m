@@ -1,50 +1,5 @@
 classdef Deinterlacer<matlab.system.SFunSystem
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#function mvipdeinterlace
 
 %#ok<*EMCLS>
@@ -52,50 +7,18 @@ classdef Deinterlacer<matlab.system.SFunSystem
 
     properties(Nontunable)
 
-
-
-
         Method='Line repetition';
-
-
-
-
-
 
         RoundingMethod='Floor';
 
 
         OverflowAction='Wrap';
 
-
-
         AccumulatorDataType='Custom';
-
-
-
-
-
-
-
         CustomAccumulatorDataType=numerictype([],12,3);
 
-
-
         OutputDataType='Same as input';
-
-
-
-
-
-
-
         CustomOutputDataType=numerictype([],8,0);
-
-
-
-
-
-
         TransposedInput(1,1)logical=false;
     end
 
