@@ -1,44 +1,9 @@
 function[modelObj,diagramFile]=getModelFromProject(specifiedModelName,...
     projectContent,tfUseSingleProject,defaultModelIdx,archiveDir)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if ismissing(specifiedModelName)
 
         if tfUseSingleProject
-
-
 
             specifiedModelName=projectContent.ModelNames(defaultModelIdx);
             modelIdx=defaultModelIdx;
@@ -53,7 +18,6 @@ function[modelObj,diagramFile]=getModelFromProject(specifiedModelName,...
     modelVariableName=projectContent.ModelVariableNames(modelIdx);
     if ismissing(modelVariableName)
 
-
         loadStruct=load(fullfile(archiveDir,"simbiodata.mat"));
         allModelVariableNames=fields(loadStruct);
         allModelNames=string(cellfun(@(modelVarName)loadStruct.(modelVarName).Name,...
@@ -61,7 +25,6 @@ function[modelObj,diagramFile]=getModelFromProject(specifiedModelName,...
         [~,modelIdx]=ismember(specifiedModelName,allModelNames);
         modelObj=loadStruct.(allModelVariableNames{modelIdx});
     else
-
 
         loadStruct=load(fullfile(archiveDir,"simbiodata.mat"),modelVariableName);
         modelObj=loadStruct.(modelVariableName);
