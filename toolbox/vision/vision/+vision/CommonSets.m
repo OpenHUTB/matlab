@@ -1,10 +1,5 @@
 classdef CommonSets
 
-
-
-
-
-
     properties(Constant=true)
         ImageType=matlab.system.StringSet({...
         'Intensity',...
