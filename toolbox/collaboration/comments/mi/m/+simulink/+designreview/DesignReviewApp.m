@@ -1,10 +1,5 @@
 classdef(Hidden)DesignReviewApp<handle
 
-
-
-
-
-
     methods(Static,Access=public)
         function dr=getInstance()
             persistent instance;
