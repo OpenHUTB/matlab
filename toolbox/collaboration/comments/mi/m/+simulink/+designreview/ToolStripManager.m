@@ -1,10 +1,5 @@
 classdef(Hidden)ToolStripManager<handle
 
-
-
-
-
-
     methods(Static,Access=public)
 
         function nextComment(cbinfo)
