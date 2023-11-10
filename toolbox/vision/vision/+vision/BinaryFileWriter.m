@@ -1,166 +1,32 @@
 classdef BinaryFileWriter<matlab.system.SFunSystem
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#function mvipfilewrite
 
     properties(Nontunable)
 
-
-
         Filename='output.bin';
-
-
 
         VideoFormat='Four character codes';
 
-
-
-
-
         FourCharacterCode='I420';
-
-
 
         BitstreamFormat='Planar';
 
-
-
-
-
         VideoComponentCount=3;
-
-
-
-
-
-
 
         VideoComponentBitsSource='Auto';
 
-
-
-
-
-
         LineOrder='Top line first';
 
-
-
-
         ByteOrder='Little endian';
-
-
-
-
-
         InterlacedVideo(1,1)logical=false;
-
-
-
 
         SignedData(1,1)logical=false;
     end
 
     properties(Dependent,Nontunable)
 
-
-
-
-
-
         VideoComponentBits=[8,8,8];
-
-
-
-
-
-
-
 
         VideoComponentOrder=[1,2,3];
     end
