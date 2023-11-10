@@ -1,10 +1,5 @@
 classdef(Hidden)UriProvider<handle
 
-
-
-
-
-
     methods(Static,Access=public)
 
         function uri=getTargetUri(editor)
