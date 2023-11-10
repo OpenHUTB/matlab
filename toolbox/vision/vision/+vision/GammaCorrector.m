@@ -1,54 +1,5 @@
 classdef GammaCorrector<matlab.system.SFunSystem
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#function mvipgamma
 
 %#ok<*EMCLS>
@@ -56,26 +7,10 @@ classdef GammaCorrector<matlab.system.SFunSystem
 
     properties(Nontunable)
 
-
         Correction='Gamma';
 
-
-
-
-
-
-
         Gamma=2.2;
-
-
-
-
-
         BreakPoint=0.018;
-
-
-
-
 
         LinearSegment(1,1)logical=true;
     end
