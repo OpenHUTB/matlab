@@ -1,6 +1,5 @@
 classdef AlphaBlender<matlab.system.SFunSystem
 
-
 %#function mvipcomposite
 
 %#ok<*EMCLS>
@@ -8,115 +7,31 @@ classdef AlphaBlender<matlab.system.SFunSystem
 
     properties
 
-
-
-
-
-
-
-
         Opacity=0.75;
 
-
-
-
-
-
         Mask=1;
-
-
-
-
-
-
 
         Location;
     end
 
     properties(Nontunable)
-
-
-
-
-
-
-
-
-
-
         Operation='Blend';
-
-
-
-
         OpacitySource='Property';
-
-
-
-
         MaskSource='Property';
-
-
-
-
         LocationSource='Property';
-
-
-
-
-
-
         RoundingMethod='Floor';
-
-
         OverflowAction='Wrap';
-
-
-
         OpacityDataType='Same word length as input';
-
-
-
-
-
-
-
         CustomOpacityDataType=numerictype([],16);
-
-
 
         ProductDataType='Custom';
 
-
-
-
-
-
-
         CustomProductDataType=numerictype([],32,10);
 
-
-
         AccumulatorDataType='Same as product';
-
-
-
-
-
-
-
         CustomAccumulatorDataType=numerictype([],32,10);
 
-
-
         OutputDataType='Same as first input';
-
-
-
-
-
-
-
         CustomOutputDataType=numerictype([],32,10);
     end
 
