@@ -1,10 +1,5 @@
 classdef(Hidden)Util<handle
 
-
-
-
-
-
     methods(Static,Access=public)
 
         function studio=getActiveStudio()
