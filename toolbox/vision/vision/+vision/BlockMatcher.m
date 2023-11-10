@@ -1,181 +1,38 @@
 classdef(StrictDefaults)BlockMatcher<matlab.System
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#ok<*EMCLS>
 %#ok<*EMCA>
 
     properties(Nontunable)
 
-
-
-
-
         ReferenceFrameSource='Property';
-
-
-
-
-
 
         ReferenceFrameDelay=1;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         SearchMethod='Exhaustive';
-
-
 
         BlockSize=[17,17];
 
-
-
         Overlap=[0,0];
-
-
-
-
 
         MaximumDisplacement=[7,7];
 
-
-
-
         MatchCriteria='Mean square error (MSE)';
-
-
-
 
         OutputValue='Magnitude-squared';
 
-
-
-
-
-
         RoundingMethod='Floor';
-
 
         OverflowAction='Saturate';
 
-
-
-
         ProductDataType='Custom';
-
-
-
-
-
-
-
-
         CustomProductDataType=numerictype([],32,0);
 
-
         AccumulatorDataType='Custom';
-
-
-
-
-
-
         CustomAccumulatorDataType=numerictype([],32,0);
 
 
         OutputDataType='Custom';
-
-
-
-
-
-
         CustomOutputDataType=numerictype([],8);
     end
 
