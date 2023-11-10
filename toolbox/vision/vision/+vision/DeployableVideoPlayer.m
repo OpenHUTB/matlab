@@ -1,66 +1,5 @@
 classdef DeployableVideoPlayer<matlab.system.SFunSystem
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#function mvipwvo2
 %#function cvstToVideoDisplayPanel
 
@@ -69,36 +8,13 @@ classdef DeployableVideoPlayer<matlab.system.SFunSystem
 
     properties(Nontunable)
 
-
-
-
-
-
-
-
         Location=[];
-
-
-
 
         Name='Deployable Video Player';
 
-
-
-
         Size='True size (1:1)';
 
-
-
-
-
-
-
         CustomSize=[300,410];
-
-
-
-
 
         InputColorFormat='RGB';
     end
@@ -120,8 +36,6 @@ classdef DeployableVideoPlayer<matlab.system.SFunSystem
 
         VideoSize=[];
         figureID='';
-
-
 
         FrameRate=30;
         CoderTarget='';
