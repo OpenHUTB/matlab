@@ -1,9 +1,5 @@
 classdef(Hidden)PerspectiveManager<handle
 
-
-
-
-
     events
 TogglePerspective
     end
