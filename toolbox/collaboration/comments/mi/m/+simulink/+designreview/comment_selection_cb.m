@@ -1,9 +1,5 @@
 function comment_selection_cb(~,in)
 
-
-
-
-
     if~isempty(in)
         if(simulink.designreview.UriProvider.isStateflowUri(in))
             simulink.designreview.Util.highlightStateflowElement(in);
