@@ -1,14 +1,7 @@
 function[oppoint,opreport,exitflag,output]=optimize(this)
-
-
-
-
-
-
     X=[this.x0(this.indx);this.u0(this.indu)];
     LB=[this.lbx(this.indx);this.lbu(this.indu)];
     UB=[this.ubx(this.indx);this.ubu(this.indu)];
-
 
     OptimOptions=this.linoptions.OptimizationOptions;
     if strcmp(OptimOptions.Jacobian,'on')
@@ -84,20 +77,6 @@ end
 
 function[c,ceq,Gc,Gceq]=LocalNonlinearConstraint(X,this)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     UpdateErrors(this,X);
 
     Gceq=[];Gc=[];
@@ -121,22 +100,12 @@ end
 
 function[Gcost,Gcceq,Gccieq]=LocalComputeGradient(this)
 
-
-
-
-
-
     [A,B,C,D,C0,D0]=sortJacobian(this);
-
-
     G_cost_x=this.G_cost_x+C0'*this.G_cost_y;
     G_cost_u=this.G_cost_u+D0'*this.G_cost_y;
 
-
-
     G_cceq_x=this.G_cceq_x+C0'*this.G_cceq_y;
     G_cceq_u=this.G_cceq_u+D0'*this.G_cceq_y;
-
 
     G_ccieq_x=this.G_ccieq_x+C0'*this.G_ccieq_y;
     G_ccieq_u=this.G_ccieq_u+D0'*this.G_ccieq_y;
@@ -145,12 +114,6 @@ function[Gcost,Gcceq,Gccieq]=LocalComputeGradient(this)
     ind=(this.F_ccieq<0);
     G_ccieq_x(:,ind)=0;
     G_ccieq_u(:,ind)=0;
-
-
-
-
-
-
     Gcost=[G_cost_x(this.indx,:);G_cost_u(this.indu,:)];
 
 
