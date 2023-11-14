@@ -1,10 +1,6 @@
 classdef NDInterp<controldesign.blockconfig.NDLookUp
 
 
-
-
-
-
     methods(Access=public)
 
         function this=NDInterp(BlockPath)
