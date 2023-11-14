@@ -1,15 +1,8 @@
 function[oppoint,opreport,exitflag,output]=optimize(this)
 
-
-
-
-
-
     X=[this.x0;this.u0];
     LB=[this.lbx;this.lbu];
     UB=[this.ubx;this.ubu];
-
-
     OptimOptions=this.linoptions.OptimizationOptions;
     if strcmp(OptimOptions.Jacobian,'on')
         if~isempty(feval(this.model,[],[],[],'constraints'))
