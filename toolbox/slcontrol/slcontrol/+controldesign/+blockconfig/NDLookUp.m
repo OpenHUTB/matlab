@@ -1,9 +1,5 @@
 classdef NDLookUp<controldesign.blockconfig.GainSurface
 
-
-
-
-
     properties(Access=protected)
 
 BreakPoints_
