@@ -1,151 +1,33 @@
 classdef(StrictDefaults)BilateralFilter<visionhdl.internal.abstractLineMemoryKernel
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 %#ok<*EMCLS>
 
     properties(Nontunable)
 
-
-
         NeighborhoodSize='3x3';
-
-
 
         SpatialStdDev=0.5;
 
-
-
         IntensityStdDev=0.5;
-
-
-
 
         PaddingMethod='Constant';
 
-
-
-
-
         PaddingValue=0;
-
-
-
-
 
         LineBufferSize=2048;
 
-
-
-
         CoefficientsDataType='Same as first input';
 
-
-
-
-
         CustomCoefficientsDataType=numerictype(1,16,15);
-
-
 
 
         RoundingMethod='Floor';
 
 
-
-
         OverflowAction='Saturate';
 
 
-
-
         OutputDataType='Same as first input';
-
-
-
-
 
         CustomOutputDataType=numerictype(1,8,0);
     end
