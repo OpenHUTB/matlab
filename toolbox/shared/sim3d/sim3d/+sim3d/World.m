@@ -49,6 +49,11 @@ classdef World < handle
         % 需要定制的 Update, Output, Setup 和 Release 函数来使用 UserData 存储数据。UserData 确保所有这些功能都可以访问相同的数据。
         UserData
         Viewports = struct();
+        % R2023b
+        HitActors = [  ];
+        BeginOverlappedActors = [  ];
+        EndOverlappedActors = [  ];
+        ClickedActors = [  ];
     end
 
 
@@ -111,6 +116,8 @@ classdef World < handle
             self.Textures.reset();
 
             sim3d.World.addWorld(self.Name, self);
+
+            self.Model = sim3d.WorldModel( "WorldModel" );
         end
 
 
@@ -221,6 +228,12 @@ classdef World < handle
             if status == sim3d.engine.EngineCommands.RUN || status == sim3d.engine.EngineCommands.INITIALIZE
                 error( message( "shared_sim3d:sim3dWorld:SimulationSessionSingleton" ) );
             end
+            
+            self.Model.clear();
+            self.Model.setup();
+
+            self.Model.send();
+            self.Model.clear();
             self.Root.setupTree();
         
             self.SampleTime = sampleTime;
@@ -270,20 +283,38 @@ classdef World < handle
         end
 
 
+        function resetUpdate( self )
+            self.resetEvents(  );
+        end
+
+
+        function update( self )
+            self.resetUpdate(  );
+            self.ReceivedModelData = self.Model.receive(  );
+            while ~isempty( self.ReceivedModelData )
+                actorName = fieldnames( self.ReceivedModelData );
+                try
+                    self.Actors.( actorName{ 1 } ).update( self.ReceivedModelData.( actorName{ 1 } ) );
+                catch e
+                    disp(e);
+                end
+                self.ReceivedModelData = self.Model.receive(  );
+            end
+            self.Root.update(  );
+        end
+
+
         function step( self )
             if ~isempty( self.OutputImpl )
                 self.OutputImpl( self );
             end
-            self.updateNewActorsInWorld();  % 发送每辆车的配置、光线追踪、纹理
-            self.Root.output();
-            self.updateNewActorsInWorld();
-            self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.RUN ) );  % 第一次执行完这句就出现，后面只执行run都不会出现，但是后面快速执行write()虚幻引擎出现车
-            self.CommandWriter.write();  % 
-            self.CommandReader.read();  
-            self.Root.update();
-        
-            if ~isempty(self.UpdateImpl)
-                self.UpdateImpl(self)
+            self.output(  );
+            self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.RUN ) );
+            self.CommandWriter.write(  );
+            self.CommandReader.read(  );
+            self.update(  );
+            if ~isempty( self.UpdateImpl )
+                self.UpdateImpl( self )
             end
         end
 
@@ -308,7 +339,8 @@ classdef World < handle
             if ~isempty(self.CommandReader)
                 self.CommandReader.delete();
             end
-            self.Root.delete();
+            self.Model.clear(  );
+            self.Model.release(  );
             sim3d.engine.Engine.stop();
         end
 
@@ -444,6 +476,18 @@ classdef World < handle
             end
         end
 
+
+        function output( self )
+            self.updateNewActorsInWorld(  );
+            self.Root.output(  );
+            for i = 1:length( self.OutputActors )
+                self.OutputActors( i ).output(  );
+            end
+            self.Model.send(  );
+            self.Model.clear(  );
+            self.resetOutput(  );
+        end
+
     end
 
 
@@ -461,6 +505,35 @@ classdef World < handle
         function worldName = generateWorldName()
             map = sim3d.World.Worlds;
             worldName = sprintf( "World%d", map.Count );
+        end
+    end
+
+    methods ( Access = private )
+        function resetOutput( self )
+            self.OutputActors = [  ];
+        end
+
+        function resetEvents( self )
+            for i = 1:length( self.HitActors )
+                self.HitActors( i ).EventsData.resetEventData(  );
+            end
+
+            for i = 1:length( self.BeginOverlappedActors )
+                self.BeginOverlappedActors( i ).EventsData.resetEventData(  );
+            end
+
+            for i = 1:length( self.EndOverlappedActors )
+                self.EndOverlappedActors( i ).EventsData.resetEventData(  );
+            end
+
+            for i = 1:length( self.ClickedActors )
+                self.ClickedActors( i ).EventsData.resetEventData(  );
+            end
+
+            self.HitActors = [  ];
+            self.BeginOverlappedActors = [  ];
+            self.EndOverlappedActors = [  ];
+            self.ClickedActors = [  ];
         end
     end
 
