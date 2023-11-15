@@ -302,9 +302,22 @@ classdef (Hidden)AbstractActor < handle
 
 
         function remove( self, childFlag )
-            self.ParentWorld = [];
+            if ~isempty( self.RemoveActorPublisher )
+                self.RemoveActorPublisher.setActorName( self.getTag(  ) );
+                self.RemoveActorPublisher.setRemoveActorType( self.getActorType(  ) );
+                if ~isempty( self.ParentWorld )
+                    try
+                        self.RemoveActorPublisher.write( self.ParentWorld.Model );
+                    catch ex
+                        disp(ex);
+                    end
+                else
+                    self.RemoveActorPublisher.write(  );
+                end
+            end
+            self.ParentWorld = [  ];
             if ~childFlag
-                self.Parent = [];
+                self.Parent = [  ];
             end
 
             childList = self.getChildList();
@@ -312,11 +325,6 @@ classdef (Hidden)AbstractActor < handle
                 for i = 1:numel(childList)
                     self.Children.( childList{i} ).remove(true);
                 end
-            end
-            if ~isempty(self.RemoveActorPublisher)
-                self.RemoveActorPublisher.setActorName( self.getTag() );
-                self.RemoveActorPublisher.setRemoveActorType( self.getActorType() );
-                self.RemoveActorPublisher.write();
             end
         end
 

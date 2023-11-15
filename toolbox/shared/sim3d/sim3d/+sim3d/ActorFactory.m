@@ -211,11 +211,11 @@ classdef ActorFactory < handle
 
 
         % 创建车辆的工具：('auto', 'PassengerVehicle', 'MuscleCar')
-        function actor = createVehicleUtil( actorNameSpace, actorType, defaultActorType )
+        function actor = createVehicleUtil( actorNameSpace, vehicleID, actorType, defaultActorType )
             if ( nargin == 2 )
-                actor = sim3d.(actorNameSpace).( actorType )( strcat( actorType, num2str( sim3d.ActorFactory.getUniqueActorID ) ), actorType );
+                actor = sim3d.(actorNameSpace).( actorType )( strcat( actorType, num2str( vehicleID ) ), actorType );
             else
-                actor = sim3d.(actorNameSpace ).( actorType )( strcat( actorType, num2str( sim3d.ActorFactory.getUniqueActorID ) ), defaultActorType );
+                actor = sim3d.(actorNameSpace ).( actorType )( strcat( actorType, num2str( vehicleID ) ), defaultActorType );
             end
         end
 

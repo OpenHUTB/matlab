@@ -29,6 +29,13 @@ classdef World < handle
         Root(1, 1)sim3d.internal.RootObject;
         StepTimer;
         RateLimiter = [0, 0];
+        % R2023b
+        Model = [  ]
+        OutputActors = [  ];
+        ReceivedModelData = [  ];
+        CoordinateSystem = '';
+        NewActors = {  };
+
     end
 
 
@@ -175,14 +182,16 @@ classdef World < handle
                 tag = '';
                 if isa(object, 'sim3d.AbstractActor')
                     tag = object.getTag(  );
+                    if ~isempty( object.ParentWorld ) && ~isequal( self, object.ParentWorld )
+                        error( message( "shared_sim3d:sim3dWorld:DelActorInDiffWorld", tag ) );
+                    end
                 elseif isa( object, 'char' )
                     tag = object;
                 end
                 if isfield( self.Actors, tag )
-                    if ~isequal( self, self.Actors.( tag ).ParentWorld )
-                        error( message( "shared_sim3d:sim3dWorld:DelActorInDiffWorld", tag ) );
-                    end
                     self.Actors.( tag ).remove( false );
+                else
+                    warning( message( "shared_sim3d:sim3dWorld:ActorNotFound", tag ) );
                 end
             end
         end
