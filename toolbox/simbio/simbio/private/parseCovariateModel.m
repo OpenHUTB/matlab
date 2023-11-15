@@ -1,24 +1,11 @@
 function out=parseCovariateModel(expr)
 
 
-
-
-
-
-
-
-
-
-
-
     ruleRow=1;
     startIndexRow=2;
     endIndexRow=3;
-
     parser=getParserForCovariateExpressions();
-
-    out=SimBiology.internal.Covariate.ParsedCovariateModel;
-
+   out=SimBiology.internal.Covariate.ParsedCovariateModel;
 
     columnNumber=numel(expr)+1;
     for i=1:numel(expr)
@@ -27,13 +14,9 @@ function out=parseCovariateModel(expr)
         rulemap=parser.rulemap;
 
 
-
-
         if isempty(tree)
             error(message('SimBiology:CovariateModel:InvalidExpressionSyntax1',str));
         end
-
-
         columns.ValidLHS=tree(ruleRow,:)==rulemap.ValidLHS;
         columns.Formula=tree(ruleRow,:)==rulemap.Formula;
         columns.Transform=tree(ruleRow,:)==rulemap.Transform;
