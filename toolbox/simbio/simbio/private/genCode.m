@@ -1,20 +1,5 @@
 function [ fluxM, realFluxCode, complexFluxCode, repeatedCode, initialCode ] = genCode( odedata, codeGenFlag )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 fluxBaseName = SimBiology.internal.Code.Generator.FluxBaseName;
 repeatBaseName = SimBiology.internal.Code.Generator.RepeatedAssignmentsBaseName;
 initialBaseName = SimBiology.internal.Code.Generator.InitialAssignmentsBaseName;
@@ -24,11 +9,6 @@ assert( ~isempty( odedata ) );
 [ t0, x0, p, actualInputLengths ] = getSampleInputs( odedata );
 
 sizeS = size( odedata.Stoich );
-
-
-
-
-
 
 numOutputs = sizeS( 2 ) + ( actualInputLengths( 2 ) - sizeS( 1 ) ) + 2;
 
