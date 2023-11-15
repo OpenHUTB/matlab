@@ -1,15 +1,5 @@
 function[cs,variants,doses]=compileargchk(mobj,varargin)
 
-
-
-
-
-
-
-
-
-
-
     try
         narginchk(1,4);
 
@@ -17,15 +7,10 @@ function[cs,variants,doses]=compileargchk(mobj,varargin)
             validateattributes(mobj,{'SimBiology.Model'},{'scalar'},'','MOBJ',1);
         end
 
-
-
         cs=SimBiology.Configset.empty();
 
         numVarargin=numel(varargin);
         if numVarargin==1
-
-
-
 
             if~isempty(varargin{1})
                 if isa(varargin{1},'SimBiology.Configset')
@@ -39,8 +24,6 @@ function[cs,variants,doses]=compileargchk(mobj,varargin)
                 end
             end
         elseif numVarargin==2
-
-
 
             if~isempty(varargin{1})
                 cs=varargin{1};
@@ -119,21 +102,12 @@ function[cs,variants,doses]=compileargchk(mobj,varargin)
                 doses=findobj(mobj.getdose,'Active',true);
             end
         end
-
-
-
         if~isempty(doses)&&~isa(cs.SolverOptions,'SimBiology.ODESolverOptions')
-
-
-
-
 
             cs.SolverType='ode15s';
 
             localWarning(message('SimBiology:Compilation:InvalidSolverDoses',cs.SolverType));
         end
-
-
         if(isa(cs.SolverOptions,'SimBiology.ImplicitTauSolverOptions')||...
             isa(cs.SolverOptions,'SimBiology.ExplicitTauSolverOptions'))&&...
             (~isempty(mobj.Events)&&~isempty(findobj(mobj.Events,'Active',true)))
