@@ -1,12 +1,5 @@
 function out=createNLINResultObject(results,pkModelMap,paramtransform)
 
-
-
-
-
-
-
-
     parameterNames=pkModelMap.Estimated;
 
     numResults=numel(results);
@@ -36,8 +29,6 @@ function out=createNLINResultObject(results,pkModelMap,paramtransform)
         out(i).COVB=results(i).COVB;
         out(i).mse=results(i).mse;
         out(i).errorparam=results(i).errorparam;
-
-
         [standarderror,out(i).CovarianceMatrix]=SimBiology.internal.computeStandardErrors(results(i).beta,results(i).COVB,paramtransform);
 
         out(i).ParameterEstimates=dataset({parameterNames,'Name'},{results(i).estimate,'Estimate'},...
