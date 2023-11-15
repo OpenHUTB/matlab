@@ -13,9 +13,11 @@ classdef Editor
         end
 
 
+        % 通过matlab启动虚幻编辑器
         function[status,result] = open(self)
             sim3d.engine.Engine.restart();
-            command = sprintf("start ""UE4"" /b ""%s""", self.Uproject);
+            % /b:可选参数,表示在新窗口中启动程序
+            command = sprintf("start ""UE4"" /b ""%s""", self.Uproject);  % start "UE4" /b "D:\project\AutoVrtlEnv\AutoVrtlEnv.uproject"
             [status,result] = system(command);
         end
     end
