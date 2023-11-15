@@ -1,26 +1,5 @@
 function odebuilder(caller,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     try
         switch lower(caller)
         case 'odecompile'
