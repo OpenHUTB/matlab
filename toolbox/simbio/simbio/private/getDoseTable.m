@@ -1,15 +1,5 @@
 function doseTable=getDoseTable(doseObjects,UnitsOn,units)
 
-
-
-
-
-
-
-
-
-
-
     doseTable=cell(size(doseObjects));
 
     for i=1:size(doseTable,1)
@@ -28,9 +18,6 @@ function doseTable=getDoseTable(doseObjects,UnitsOn,units)
                 else
                     amount=sbiounitcalculator(obj.AmountUnits,units.AmountUnits,amount);
                 end
-
-
-
 
                 if any(rate~=0)
 
