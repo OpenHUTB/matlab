@@ -1,8 +1,5 @@
 classdef(Abstract)BaseResource<matlab.mixin.Heterogeneous&handle
 
-
-
-
     properties(SetAccess=protected,GetAccess=public)
         ResourceUrl char;
         Dirty logical=false;
