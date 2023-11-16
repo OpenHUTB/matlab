@@ -1,11 +1,5 @@
 function openslreqx(slreqxFile)
 
-
-
-
-
-
-
     if~rmiut.isCompletePath(slreqxFile)
         resolved=which(slreqxFile);
         if isempty(resolved)
