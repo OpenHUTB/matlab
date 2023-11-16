@@ -1,9 +1,5 @@
 classdef ArchitecturePort < systemcomposer.arch.BasePort
 
-
-
-
-
     properties ( SetAccess = private )
         Parent
     end
