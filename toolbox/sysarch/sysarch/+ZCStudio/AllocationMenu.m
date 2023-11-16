@@ -1,10 +1,5 @@
 function schema=AllocationMenu(~)
 
-
-
-
-
-
     schema=sl_container_schema;
     schema.tag='SystemComposer:AllocationMenu';
     schema.label=DAStudio.message('SystemArchitecture:studio:Allocations');
