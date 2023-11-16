@@ -1,9 +1,5 @@
 classdef Checker<handle
 
-
-
-
-
     properties
 domain
 document
@@ -24,10 +20,7 @@ lastChecked
         function registerMwLinks(this,source,linksTable)
             this.mwSource=source;
 
-
             mwItemIds=keys(linksTable);
-
-
             this.mwLinksMap=containers.Map('KeyType','char','ValueType','any');
             for i=1:length(mwItemIds)
                 mwItemId=mwItemIds{i};
@@ -92,37 +85,12 @@ lastChecked
     methods(Abstract)
 
         charStrOut=getCanonicalId(this,charStrStoredId)
-
-
-
-
-
-
         [countUnmatched,countChecked]=countUnmatchedLinks(this)
-
-
-
-
-
-
-
         [countDeleted,countChecked]=deleteUnmatchedLinks(this)
-
-
-
-
-
-
 
         initialize(this);
 
-
-
         tf=isFile(this);
-
-
-
-
     end
 
 end
