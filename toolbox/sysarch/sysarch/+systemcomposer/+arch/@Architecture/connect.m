@@ -1,41 +1,5 @@
 function cn=connect(this,src,dst,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(3,9);
 
     this.validateAPISupportForAUTOSAR('connect');
