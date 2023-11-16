@@ -1,8 +1,5 @@
 classdef(Abstract)BaseClient<slreq.rest.AuthClient
 
-
-
-
     properties(SetAccess=protected)
         ServiceProvider char='';
         ConfigurationContext char='';
