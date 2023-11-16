@@ -1,7 +1,5 @@
 function updateProjectQueryUrl(this)
 
-
-
     this.projectQuery='';
     idx=find(strcmp(this.projCatalog(:,1),this.projectName));
     if~isempty(idx)
