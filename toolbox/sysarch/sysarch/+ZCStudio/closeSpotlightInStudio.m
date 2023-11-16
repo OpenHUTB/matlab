@@ -1,8 +1,5 @@
 function closeSpotlightInStudio(varargin)
 
-
-
-
     if(nargin>0)
         studioTag=varargin{1};
         studios=DAS.Studio.getStudio(studioTag);
@@ -13,13 +10,9 @@ function closeSpotlightInStudio(varargin)
     if~isempty(studios)
         activeStudio=studios(1,1);
         activeStudio.App.removeSpotlightView();
-
-
         resetPropertyInspector(activeStudio);
 
         resetRequirement(activeStudio);
-
-
         ZCStudio.StudioIntegManager.closeInvalidNotifInStudio(activeStudio)
 
     end
@@ -39,7 +32,6 @@ function resetPropertyInspector(studio)
         editorName=editor.getName();
         objH=get_param(editorName,'Handle');
     end
-
 
     studio=editor.getStudio();
     propInspector=studio.getComponent('GLUE2:PropertyInspector','Property Inspector');
