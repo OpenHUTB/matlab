@@ -1,7 +1,4 @@
 function urls=getRequirementsUrlsInCollection(this,collectionId,progressBarInfo)
-
-
-
     rdf=getRdfForUsesOf(this,collectionId);
 
     if(nargin==3)
@@ -14,9 +11,6 @@ function urls=getRequirementsUrlsInCollection(this,collectionId,progressBarInfo)
 end
 
 function rdf=getRdfForUsesOf(this,collectionId)
-
-
-
     queryBase=this.getReqQueryCapability();
     oslc_rm=sprintf('oslc_rm=%s',urlencode(['<',oslc.matlab.Constants.OSLC_RM_V2,'>']));
     dcterms=sprintf('dcterms=%s',urlencode(['<',oslc.matlab.Constants.DC,'>']));
