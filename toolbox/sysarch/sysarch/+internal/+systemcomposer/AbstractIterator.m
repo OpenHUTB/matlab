@@ -1,9 +1,5 @@
 classdef AbstractIterator<handle
 
-
-
-
-
     properties
         Direction;
     end
@@ -22,7 +18,6 @@ classdef AbstractIterator<handle
 
     methods
         function this=AbstractIterator(direction)
-
 
             this.Direction=direction;
         end
