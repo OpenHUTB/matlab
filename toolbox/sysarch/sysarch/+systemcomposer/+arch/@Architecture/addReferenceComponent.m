@@ -1,9 +1,4 @@
 function comp=addReferenceComponent(this,compName,varargin)
-
-
-
-
-
     this.validateAPISupportForAUTOSAR('addReferenceComponent');
 
     compPos=[];
