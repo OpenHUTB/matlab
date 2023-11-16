@@ -1,9 +1,5 @@
 classdef ArchitectureType<uint32
 
-
-
-
-
     enumeration
         Architecture(0)
         SoftwareArchitecture(1)
