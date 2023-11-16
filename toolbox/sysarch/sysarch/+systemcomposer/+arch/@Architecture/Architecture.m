@@ -1,10 +1,5 @@
 classdef Architecture < systemcomposer.arch.Element & systemcomposer.base.BaseArchitecture
 
-
-
-
-
-
     properties
         Name;
     end
