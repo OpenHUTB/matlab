@@ -1,7 +1,4 @@
-
-
 function dropOntoComponentFromReq(params,diagramUuid,modelName)
-
     semElem=systemcomposer.internal.getArchitectureElementFromDiagram(modelName,diagramUuid);
     if~isempty(semElem)
         slBlkH=systemcomposer.utils.getSimulinkPeer(semElem);
