@@ -1,17 +1,5 @@
 classdef AppProxy < handle
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( Access = private )
         AppHandle
 
