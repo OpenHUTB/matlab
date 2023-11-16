@@ -1,9 +1,4 @@
 function makeZcFixitNotification(mdlName,notificationId,notificationMsg,type,varargin)
-
-
-
-
-
     studios=DAS.Studio.getAllStudiosSortedByMostRecentlyActive;
     editors=studios(1).App.getActiveEditor;
 
