@@ -1,7 +1,5 @@
 classdef BaseService<handle
 
-
-
     properties(Hidden)
         dom;
     end
