@@ -1,7 +1,5 @@
 classdef(Abstract)BaseRequirement<oslc.internal.BaseResource
 
-
-
     properties(Hidden)
         linkTagName='j.0:Link';
         linkNameSpaceURI='http://www.ibm.com/xmlns/rdm/types/';
