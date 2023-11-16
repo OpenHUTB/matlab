@@ -1,7 +1,5 @@
 function updatePIInStudio(varargin)
 
-
-
     if(nargin<2)
         return;
     end
