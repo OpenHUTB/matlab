@@ -1,8 +1,5 @@
 function obj=update(obj,name,rename)
 
-
-
-
     if isempty(obj)
         return
     end
@@ -10,12 +7,9 @@ function obj=update(obj,name,rename)
     switch class(obj)
     case "Aero.FixedWing.Coefficient"
 
-
-
         if(~rename)
             return
         end
-
         [stateOutputs,stateVariables]=find(obj.isLT);
         for i=1:numel(stateOutputs)
             appendCoefficientToLTStructInfo(obj.Values{stateOutputs(i),stateVariables(i)},join([name,obj.StateOutput(stateOutputs(i)),obj.StateVariables(stateVariables(i))],"_"));
