@@ -1,11 +1,5 @@
 function writeExecutionOutput(outputInfoStruct)
 
-
-
-
-
-
-
     rt=sfroot;
     machine=rt.find('-isa','Stateflow.Machine','Name',outputInfoStruct.ObserverModel);
     machineId=machine.Id;
@@ -17,20 +11,11 @@ function writeExecutionOutput(outputInfoStruct)
     warningsDataID=warningsDataH.Id;
     warningsDataName=warningsDataH.Name;
 
-
     verdictDataH=chartHandle.find('-isa','Stateflow.Data','Name',outputInfoStruct.VerdictPort);
     verdictDataID=verdictDataH.Id;
     verdictDataName=verdictDataH.Name;
 
-
     dataSymbolValues=sfprivate('getDataValueFromMexFunction',machineId,{verdictDataName,warningsDataName},[verdictDataID,warningsDataID],instanceH);
-
-
-
-
-
-
-
 
 
     simOutStruct=struct(...
