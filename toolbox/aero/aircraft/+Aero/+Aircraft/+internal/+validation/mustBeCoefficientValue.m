@@ -1,8 +1,5 @@
 function mustBeCoefficientValue(value)
 
-
-
-
     if~iscell(value)
         value=num2cell(value);
     end
