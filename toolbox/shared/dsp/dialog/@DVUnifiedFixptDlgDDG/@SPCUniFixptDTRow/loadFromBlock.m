@@ -1,16 +1,9 @@
 function loadFromBlock(this)
 
-
-
-
-
-
-
     prefixStr=this.Prefix;
     udtPrmStr=strcat(prefixStr,'DataTypeStr');
     minPrmStr=strcat(prefixStr,'Min');
     maxPrmStr=strcat(prefixStr,'Max');
-
 
     this.DataTypeStr=this.Block.(udtPrmStr);
 
