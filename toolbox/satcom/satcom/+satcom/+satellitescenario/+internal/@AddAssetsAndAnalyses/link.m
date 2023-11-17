@@ -1,34 +1,10 @@
 function outputLnk=link(source,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     coder.allowpcode('plain');
 
-
     narginchk(2,inf);
-
 
     if coder.target('MATLAB')
         validateattributes(source,...
