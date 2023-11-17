@@ -1,11 +1,6 @@
 classdef(CompatibleInexactProperties=true,ConstructOnLoad=true)Body<...
     Aero.animation.internal.TimeSeries
 
-
-
-
-
-
     properties(Transient,SetObservable)
         Name='';
         CoordTransformFcn=@nullCoordTransform;
@@ -19,8 +14,6 @@ classdef(CompatibleInexactProperties=true,ConstructOnLoad=true)Body<...
 
     methods
         function h=Body(varargin)
-
-
             if~builtin('license','test','Aerospace_Toolbox')
                 error(message('aero:licensing:noLicenseBody'));
             end
@@ -109,23 +102,11 @@ classdef(CompatibleInexactProperties=true,ConstructOnLoad=true)Body<...
 
             if ishghandle(h.ViewingTransform,'hgtransform')
 
-
-
-
-
-
-
-
-
-
-
-
                 TR=makehgtform(...
                 'translate',hgTrans,...
                 'yrotate',hgRot(2),...
                 'zrotate',hgRot(3),...
                 'xrotate',hgRot(1));
-
 
                 set(h.ViewingTransform,'Matrix',TR);
 
