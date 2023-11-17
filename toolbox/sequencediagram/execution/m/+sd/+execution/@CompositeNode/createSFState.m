@@ -1,9 +1,5 @@
 function newState=createSFState(obj,parent)
 
-
-
-
-
     if(isempty(obj.parent)||(obj.getParentState~=obj.parent))
 
         obj.cachedSFState=Stateflow.State(parent);
