@@ -1,10 +1,5 @@
 classdef EditorOpenedEventData<event.EventData
 
-
-
-
-
-
     properties
         ModelName;
         SequenceDiagramName;
