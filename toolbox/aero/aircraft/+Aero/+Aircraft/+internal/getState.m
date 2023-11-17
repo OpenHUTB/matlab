@@ -1,8 +1,4 @@
 function value=getState(state,stateName)
-
-
-
-
     value=arrayfun(@(s)getStateHelper(state,s),stateName,'UniformOutput',false);
 
     if isscalar(value)||all(cellfun(@isscalar,value),'all')
