@@ -1,11 +1,6 @@
 classdef(CompatibleInexactProperties=true,ConstructOnLoad=true)Node<...
     Aero.animation.internal.TimeSeries
 
-
-
-
-
-
     properties(Transient,SetObservable)
         Name='';
         VRNode={};
@@ -47,12 +42,6 @@ classdef(CompatibleInexactProperties=true,ConstructOnLoad=true)Node<...
 
 
             [abTrans,abRot]=h.CoordTransformFcn(trans,rot);
-
-
-
-
-
-
             dcmRotBodyVRML=[-1,0,0;0,0,-1;0,-1,0];
 
 
