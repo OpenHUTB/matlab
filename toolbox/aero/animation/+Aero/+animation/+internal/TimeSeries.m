@@ -1,9 +1,6 @@
 classdef(CompatibleInexactProperties=true)TimeSeries...
     <matlab.mixin.SetGet&matlab.mixin.Copyable
 
-
-
-
     properties(Transient,SetObservable)
         TimeSeriesSource=[];
         TimeSeriesSourceType(1,1)Aero.animation.internal.TimeSeriesSourceType='Array6DoF';
