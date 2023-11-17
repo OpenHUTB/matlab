@@ -1,8 +1,5 @@
 function value=getCoefficient(obj,stateOutput,stateVariable,NameValues)
 
-
-
-
     value=arrayfun(@(r,c)getCoefficientInternal(obj,r,c,NameValues.State,NameValues.Component),stateOutput,stateVariable,'UniformOutput',~isempty(NameValues.State));
     if iscell(value)&&(all(cellfun(@isnumeric,value),'all')||all(cellfun(@(x)isa(x,"Simulink.LookupTable"),value),'all'))
         value=[value{:}];
