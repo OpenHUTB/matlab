@@ -1,12 +1,7 @@
 function FW=setMappedCoefficientLTData(FW,datcomStruct,coeffMap,statesMap,component)
 
-
-
-
-
     coeffTemplate=Simulink.LookupTable;
     coeffs=cell(size(coeffMap,1),1);
-
 
     bpOrder=cell(size(statesMap,1),1);
     for i=1:size(statesMap,1)
@@ -17,7 +12,6 @@ function FW=setMappedCoefficientLTData(FW,datcomStruct,coeffMap,statesMap,compon
         end
 
         if statesMap(i,1)=="deltal"
-
             coeffTemplate.Breakpoints(i).Value=datcomStruct.deltal-datcomStruct.deltar;
         elseif statesMap(i,1)=="grndht"
 
@@ -26,11 +20,6 @@ function FW=setMappedCoefficientLTData(FW,datcomStruct,coeffMap,statesMap,compon
             coeffTemplate.Breakpoints(i).Value=datcomStruct.(statesMap(i,1));
         end
         coeffTemplate.Breakpoints(i).FieldName=statesMap(i,2);
-
-
-
-
-
         [coeffTemplate.Breakpoints(i).Value,bpOrder{i}]=sort(coeffTemplate.Breakpoints(i).Value);
     end
 
@@ -43,14 +32,6 @@ function FW=setMappedCoefficientLTData(FW,datcomStruct,coeffMap,statesMap,compon
 
         tmpLT=copy(coeffTemplate);
         tmpLT.Table.Value=extractDATCOMdata(datcomStruct,coeffMap(i,1),statesMap(:,1));
-
-
-
-
-
-
-
-
 
 
         idxDelta=contains(statesMap(:,1),"delta");
