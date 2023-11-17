@@ -1,8 +1,5 @@
 function outputRx=receiver(asset,varargin)%#codegen
 
-
-
-
     coder.allowpcode('plain');
 
 
