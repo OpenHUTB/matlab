@@ -1,24 +1,10 @@
 function[reGrid,msg]=computeResourceGridRE(waveconfig,channel,selectedRow,chplevel)
-
-
-
-
-
-
-
-
-
-
-
-
     wid='nr5g:nrPXSCH:DMRSParametersNoSymbols';
     w=warning('query',wid);
     cleanup=onCleanup(@()warning(w.state,wid));
     warning('off',wid);
 
-
     msg='';
-
 
     channelName=channel(isletter(channel));
     ch=waveconfig.(channelName){selectedRow};
