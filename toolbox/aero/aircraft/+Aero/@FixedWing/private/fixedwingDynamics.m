@@ -1,8 +1,4 @@
 function dydt=fixedwingDynamics(aircraft,state)
-
-
-
-
     [F,M]=aircraft.forcesAndMoments(state);
 
     sinPhi=state.sin(state.Phi);
