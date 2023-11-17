@@ -1,8 +1,5 @@
 classdef SignalDetector<matlab.DiscreteEventSystem
 
-
-
-
     properties
         edge=uint8(1);
         threshold=0;
