@@ -1,8 +1,5 @@
 function addSourceBlocks(obj,namePrefix,sourcePort)
 
-
-
-
     if slsvTestingHook('SequenceDiagramUseTestingBlock')==2
 
         qhdl1=add_block('built-in/MessageQueue',string(obj.owner.name)+"/"+namePrefix+"_q1");
