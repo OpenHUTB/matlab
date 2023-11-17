@@ -1,9 +1,4 @@
 function schema
-
-
-
-
-
     pkg=findpackage('DVUnifiedFixptDlgDDG');
 
     findclass(pkg,'SPCWidgetWrapper');
@@ -12,8 +7,6 @@ function schema
     findclass(dspdialogPackage,'DSPDDG');
 
     this=schema.class(pkg,'SPCUniFixptDialog');
-
-
     schema.prop(this,'roundingMode','DSPRoundingModeEnum');
     schema.prop(this,'overflowMode','bool');
     schema.prop(this,'TotalOpRows','int');
@@ -21,8 +14,6 @@ function schema
     schema.prop(this,'LockScale','bool');
     schema.prop(this,'HasRoundingMode','bool');
     schema.prop(this,'HasOverflowMode','bool');
-
-
 
     schema.prop(this,'Block','handle');
 
