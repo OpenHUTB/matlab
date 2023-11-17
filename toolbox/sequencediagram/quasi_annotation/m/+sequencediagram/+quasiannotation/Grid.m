@@ -1,54 +1,12 @@
 classdef Grid<sequencediagram.quasiannotation.internal.BaseAnnotation
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetObservable)
-
-
-
-
 
         GridSpec(1,:)struct=struct(...
         'GridSize',{10,100,1000},...
         'LineThickness',{1,3,8},...
         'LineColor',{"#ccc","#ddd","#ddd"}...
         )
-
-
 
         Size(1,2)double{mustBeReal,mustBeFinite,mustBeNonnegative}=[800,1200];
     end
@@ -66,23 +24,6 @@ classdef Grid<sequencediagram.quasiannotation.internal.BaseAnnotation
 
             id=obj.getHtmlId();
             rootDiv.setAttribute('id',id);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             sizeStyleString=...
             "width: "+obj.Size(1)+"px;"+...
