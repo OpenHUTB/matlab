@@ -1,8 +1,5 @@
 function validComponentNames=getValidComponentNames(obj)
 
-
-
-
     if numel(obj)>1
         validComponentNames=arrayfun(@Aero.Aircraft.internal.validation.getValidComponentNames,obj,"UniformOutput",false);
         validComponentNames=string(horzcat(validComponentNames{:}));
