@@ -1,17 +1,6 @@
 classdef(CompatibleInexactProperties=true)Camera...
     <matlab.mixin.SetGet&matlab.mixin.Copyable
 
-
-
-
-
-
-
-
-
-
-
-
     properties(Transient,SetObservable)
         CoordTransformFcn=@nullCoordTransform;
         PositionFcn=@doFirstOrderChaseCameraDynamics;
@@ -49,11 +38,7 @@ classdef(CompatibleInexactProperties=true)Camera...
 
         function update(h,Tnew,Bodies)
 
-
-
             h.PositionFcn(Tnew,Bodies,h);
-
-
 
             h.PrevTime=Tnew;
 
@@ -66,10 +51,6 @@ end
 
 
 function[nullTrans,nullRot]=nullCoordTransform(trans,rot)
-
-
-
-
 
     nullTrans=trans;
     nullRot=rot;
