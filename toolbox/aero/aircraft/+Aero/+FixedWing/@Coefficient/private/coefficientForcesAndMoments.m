@@ -1,21 +1,14 @@
 function[F,M]=coefficientForcesAndMoments(coeff,state,S,b,c)
 
-
-
-
-
     qbarS=state.DynamicPressure*S;
     qbarSb=qbarS*b;
     qbarSc=qbarS*c;
 
     try
-
         coefficientValues=cell2mat(coeff.Values);
 
     catch
-
         numelStateVariables=numel(coeff.StateVariables);
-
         stateOutputs=repmat(coeff.StateOutput,numelStateVariables,1);
         stateVariables=repelem(coeff.StateVariables,1,6)';
 
