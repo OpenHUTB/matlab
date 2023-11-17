@@ -1,23 +1,11 @@
 function this=initSPCUniFixptDTRow(this,type,rowIndex,controller)
 
-
-
-
-
-
-
-
-
-
     this.Controller=controller;
     this.Block=controller.block;
     this.Row=rowIndex;
     [prfxStr,nmStr]=udtGetPrmPrefixFromFixptDTRowStruct(type);
     this.Prefix=prfxStr;
     this.Name=nmStr;
-
-
-
 
     if isfield(type,'autoSignedness')
         this.AutoSignedness=type.autoSignedness;
@@ -30,8 +18,6 @@ function this=initSPCUniFixptDTRow(this,type,rowIndex,controller)
     if isfield(type,'unsignedSignedness')
         this.UnsignedSignedness=type.unsignedSignedness;
     end
-
-
 
     if isfield(type,'binaryPointScaling')
         this.BinaryPointScaling=type.binaryPointScaling;
@@ -48,10 +34,6 @@ function this=initSPCUniFixptDTRow(this,type,rowIndex,controller)
             this.CustomInhRuleStrs=customInheritRuleCellArray;
         end
     end
-
-
-
-
 
     if isfield(type,'inheritInternalRule')
         this.InheritInternalRule=type.inheritInternalRule;
@@ -97,17 +79,10 @@ function this=initSPCUniFixptDTRow(this,type,rowIndex,controller)
         this.HasDesignMax=type.hasDesignMax;
     end
 
-
-
-
     if isfield(type,'valBestPrecFLMaskPrm')
         this.ValBestPrecFLMaskPrm=type.valBestPrecFLMaskPrm;
     else
         this.ValBestPrecFLMaskPrm='';
     end
-
-
-
-
 
     this.loadFromBlock;
