@@ -1,15 +1,4 @@
 function loadFromBlock(this)
-
-
-
-
-
-
-
-
-
-
-
     params=get(this.Block,'DialogParameters');
     paramNames=fieldnames(params);
     this.HasRoundingMode=ismember('roundingMode',paramNames);
