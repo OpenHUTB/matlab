@@ -1,10 +1,6 @@
 function generateSFChart(obj,modelName)
 
 
-
-
-
-
     load_system('sfAuthoredChartLib');
     c=onCleanup(@()close_system('sfAuthoredChartLib',0));
 
