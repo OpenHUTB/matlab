@@ -1,8 +1,5 @@
 classdef TimeSeriesSourceType
 
-
-
-
     enumeration
 Timeseries
 Timetable
