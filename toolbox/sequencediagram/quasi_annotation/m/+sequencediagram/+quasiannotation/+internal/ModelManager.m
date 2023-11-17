@@ -1,10 +1,5 @@
 classdef ModelManager<handle
 
-
-
-
-
-
     properties(Transient)
 ModelHandle
     end
