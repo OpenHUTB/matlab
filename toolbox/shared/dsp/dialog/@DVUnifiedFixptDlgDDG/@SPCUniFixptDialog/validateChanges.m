@@ -1,9 +1,5 @@
 function errmsg=validateChanges(this)
 
-
-
-
-
     errmsg='';
 
     if~isempty(this.DataTypeRows)
