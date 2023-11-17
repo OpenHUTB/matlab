@@ -1,13 +1,6 @@
 classdef(Sealed)EditorInterface<handle
 
-
-
-
-
-
     properties(Access=private)
-
-
         ExecutingJS=false;
     end
 
@@ -22,19 +15,6 @@ classdef(Sealed)EditorInterface<handle
         end
 
         function evalMLString=getRunMatlabFunctionFromJavascriptString(fcnName,inputs)
-
-
-
-
-
-
-
-
-
-
-
-
-
             assert(iscell(inputs));
 
             jsonEncodedInputs=jsonencode(inputs);
@@ -47,60 +27,6 @@ classdef(Sealed)EditorInterface<handle
     end
 
     events
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 EditorOpened
@@ -126,12 +52,6 @@ EditorOpened
         end
 
         function isOpen=isEditorOpen(obj,modelName,sequenceDiagramName)
-
-
-
-
-
-
 
             isOpen=false;
 
