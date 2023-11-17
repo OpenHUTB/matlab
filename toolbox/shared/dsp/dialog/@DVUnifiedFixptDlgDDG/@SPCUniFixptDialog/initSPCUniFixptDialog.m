@@ -1,11 +1,5 @@
 function this=initSPCUniFixptDialog(this,controller,dtRowStructInputArgs)
 
-
-
-
-
-
-
     startRowIdx=2;
     row=startRowIdx;
     lenBaseDTs=length(dtRowStructInputArgs);
@@ -20,9 +14,6 @@ function this=initSPCUniFixptDialog(this,controller,dtRowStructInputArgs)
             row=row+1;
         end
     end
-
-
-
 
     this.Controller=controller;
     this.Block=controller.block;
