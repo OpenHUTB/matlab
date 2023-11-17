@@ -1,7 +1,5 @@
 function dt=createSFTransition(obj,parent)
 
-
-
     if(~isempty(obj.dest.cachedSFState))
 
         dt=Stateflow.Transition(parent);
@@ -12,11 +10,7 @@ function dt=createSFTransition(obj,parent)
             dt.SourceEndPoint=[obj.sourceEndPointX,obj.sourceEndPointY];
             dt.Source=obj.source.cachedSFState;
 
-
             if(obj.source==obj.dest)
-
-
-
 
                 midpoint=dt.MidPoint;
                 switch obj.destEdge
