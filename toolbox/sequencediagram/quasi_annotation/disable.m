@@ -1,16 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
 unregisterSimulinkRequirements();
 removeBlockDiagramListeners();
 destroySingletons();
