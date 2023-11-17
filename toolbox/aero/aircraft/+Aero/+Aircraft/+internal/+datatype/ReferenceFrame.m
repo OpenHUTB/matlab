@@ -1,8 +1,5 @@
 classdef ReferenceFrame
 
-
-
-
     enumeration
 Body
 Wind
