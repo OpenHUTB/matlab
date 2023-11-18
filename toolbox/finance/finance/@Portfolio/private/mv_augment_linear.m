@@ -1,25 +1,5 @@
 function[A,b,d]=mv_augment_linear(obj,A,b,d)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     n=obj.NumAssets;
 
     A=[A,zeros(size(A))];
