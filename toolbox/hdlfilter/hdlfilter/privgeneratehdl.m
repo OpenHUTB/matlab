@@ -1,15 +1,7 @@
 function privgeneratehdl(filterobj,varargin)
-
-
-
-
-
     if~(builtin('license','checkout','Filter_Design_HDL_Coder'))
         error(message('hdlfilter:privgeneratehdl:nolicenseavailable'));
     end
-
-
-
     indices=strcmpi({varargin{1:2:end}},'generatehdltestbench');
     pos=1:2:2*length(indices);
     pos=pos(indices);
@@ -95,25 +87,8 @@ no_tbname
         hF=createhdlfilter(filterobj,inputnumerictype);
     end
 
-
-
-
-
-
-
-
-
     hF.setupCBSSetting(filterobj);
-
-
-
-
     hF.setHDLParameter('GenerateHDLTestbench','off');
-
-
-
-
-
     pvvalues=l_flattenPVPairs(varargin{:});
 
     hF.setHDLParameter(pvvalues{:});
