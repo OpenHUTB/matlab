@@ -1,11 +1,4 @@
 function codeoptions=hdlcommentcodeoptions(optionscell,commentchars)
-
-
-
-
-
-
-
     idx=find(strcmpi(optionscell,'EnableFPGAWorkflow'),1);
     if~isempty(idx)&&(mod(idx,2)==1)
         optionscell(idx)=[];
