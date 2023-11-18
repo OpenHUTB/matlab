@@ -1,24 +1,9 @@
 function outdata=hdlgetfilterdata(filterobj,indata)
-
-
-
-
-
     filtersysobj=hdlgetparameter('filter_systemobject');
     if isempty(filtersysobj)
 
         outdata=filter(filterobj,indata);
     else
-
-
-
-
-
-
-
-
-
-
         indata=reframeData(filtersysobj,indata);
 
         filtersysobj_copy=clone(filtersysobj);
@@ -39,14 +24,8 @@ function outdata=hdlgetfilterdata(filterobj,indata)
 
 end
 
+
 function outdata=reframeData(filtersysobj,indata)
-
-
-
-
-
-
-
 
     try
         dfactor=filtersysobj.DecimationFactor;
@@ -59,7 +38,6 @@ function outdata=reframeData(filtersysobj,indata)
     extraSamples=mod(lenindata,dfactor);
     outlendata=lenindata-extraSamples;
     indecimdata=indata(1:outlendata);
-
 
     outdata=reshape(indecimdata,outlendata,1);
 
