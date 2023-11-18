@@ -1,14 +1,10 @@
 function hF=createhdlfilter(systemObj,varargin)
 
-
-
-
     if nargin>1
         inputnumerictype=varargin{1};
     else
         inputnumerictype=hdlgetparameter('InputDataType');
     end
-
 
     hS=clone(systemObj);
 
