@@ -1,8 +1,5 @@
 function[dobj,varargin]=getdfilt(obj,varargin)
 
-
-
-
     narginchk(3,Inf);
     indices=strcmpi(varargin,'inputdatatype');
     pos=1:length(indices);
