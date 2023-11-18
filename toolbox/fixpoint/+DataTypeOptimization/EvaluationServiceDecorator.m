@@ -1,10 +1,5 @@
 classdef EvaluationServiceDecorator<DataTypeOptimization.AbstractEvaluationService
 
-
-
-
-
-
     properties
 decoratedEvaluationService
 
