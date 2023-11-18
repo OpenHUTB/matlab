@@ -1,10 +1,5 @@
 function info=hdlcommentfixupcbsinfo(info,commentchars)
 
-
-
-
-
-
     cpos=strmatch([commentchars,' Cast Before Sum'],info);
 
     if~isempty(cpos)
