@@ -1,10 +1,5 @@
 function varargout=opcslclntmgritf(block,action,varargin)
 
-
-
-
-
-
     if ischar(block),
         block=get_param(block,'Object');
     else
@@ -22,7 +17,6 @@ function varargout=opcslclntmgritf(block,action,varargin)
     function myDlg=GetOpenClntMgr(anyBlock)
 
         myDlg=[];
-
         configBlk=opcslconfigitf(anyBlock,'FindUsed');
         if~isempty(configBlk),
             allDlg=findall(0,'Tag','dlgOPCClntMgr');
