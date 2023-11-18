@@ -1,8 +1,5 @@
 classdef OptimizationEngine<handle
 
-
-
-
     properties(SetAccess=protected)
 environmentProxy
 modelingService
@@ -76,14 +73,8 @@ hiddenBaselineRunID
 
         function resume(this,result,options)
             this.options=options;
-
-
-
-
-
             this.progressTracer=DataTypeOptimization.ProgressTracking.getProgressTracer(options,this.solutionsRepository);
             this.solver.progressTracer=this.progressTracer;
-
 
 
             this.solver.resetSolver();
@@ -91,12 +82,7 @@ hiddenBaselineRunID
 
             this.solver.run(this.evaluationService,this.solutionsRepository);
 
-
-
-
-
             result.updateResult(this.progressTracer,this.options);
-
 
             if~isempty(this.progressTracer)
                 this.progressTracer.reset();
