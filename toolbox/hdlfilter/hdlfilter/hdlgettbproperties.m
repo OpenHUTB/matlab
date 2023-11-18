@@ -1,9 +1,5 @@
 function tbprops=hdlgettbproperties
 
-
-
-
-
     tbprops={'ClockHighTime',...
     'ClockLowTime',...
     'ErrorMargin',...
