@@ -1,8 +1,4 @@
 function has=hasFixedPointDesigner()
-
-
-
-
     has=builtin('license','test','Fixed_Point_Toolbox')&&~isempty(ver('fixedpoint'));
 
 
