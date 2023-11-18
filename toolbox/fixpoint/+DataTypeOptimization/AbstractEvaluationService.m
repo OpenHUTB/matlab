@@ -1,10 +1,5 @@
 classdef AbstractEvaluationService<handle
 
-
-
-
-
-
     properties(SetAccess=protected)
 problemPrototype
 environmentProxy
