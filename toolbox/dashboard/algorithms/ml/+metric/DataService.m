@@ -1,8 +1,5 @@
 classdef DataService<metric.Algorithm
 
-
-
-
     properties
     end
 
