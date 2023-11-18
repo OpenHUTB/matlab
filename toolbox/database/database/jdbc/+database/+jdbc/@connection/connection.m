@@ -2,50 +2,6 @@ classdef(CaseInsensitiveProperties=true,Sealed=true)...
     connection<database.relational.connection&...
     matlab.mixin.CustomDisplay
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Constant,Access='public')
 
         DEFAULT_LOGINTIMEOUT=0;
@@ -74,9 +30,6 @@ classdef(CaseInsensitiveProperties=true,Sealed=true)...
 
         URL='';
 
-
-
-
 Message
 
 
@@ -85,17 +38,7 @@ Message
 
     properties(Access=public)
 
-
-
-
-
-
         AutoCommit='';
-
-
-
-
-
 
         ReadOnly='';
     end
