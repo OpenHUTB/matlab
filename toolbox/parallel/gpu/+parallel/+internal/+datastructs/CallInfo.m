@@ -1,10 +1,5 @@
 function callInfo=CallInfo(prototype,entryname,numBoundFcnInputs,types,complexities,neededUplevels,contextFcnCallsMap,needsRand,theWarnings)
 
-
-
-
-
-
     callInfo=struct(...
     'Prototype',prototype,...
     'EntryName',entryname,...
