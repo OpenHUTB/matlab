@@ -1,16 +1,5 @@
 classdef DecisionVariable<handle
 
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=private)
 definitionDomain
 
