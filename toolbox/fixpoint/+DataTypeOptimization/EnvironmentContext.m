@@ -1,10 +1,5 @@
 classdef EnvironmentContext<handle
 
-
-
-
-
-
     properties(SetAccess=private)
 TopModel
 SUD
