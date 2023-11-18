@@ -1,17 +1,5 @@
 function oStr=opcblkitemlist(itemStr,block)
 
-
-
-
-
-
-
-
-
-
-
-
-
     if isempty(strtrim(itemStr)),
         oStr='';
         return
