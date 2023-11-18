@@ -1,17 +1,8 @@
 function varargout=privhdlfilterserialinfo(filterobj,varargin)
-
-
-
-
-
     if~(builtin('license','checkout','Filter_Design_HDL_Coder'))
         error(message('hdlfilter:privhdlfilterserialinfo:nolicenseavailable'));
     end
-
-
     if~isempty(varargin)&&length(varargin)~=2&&length(varargin)~=4
-
-
         error(message('hdlfilter:privhdlfilterserialinfo:wrongargs'));
     end
 
