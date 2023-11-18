@@ -1,15 +1,5 @@
 function opcslerrorhandler(obj,event,errState)
 
-
-
-
-
-
-
-
-
-
-
     errID='opc:simulink:error';
     if isa(event,'MException'),
 
