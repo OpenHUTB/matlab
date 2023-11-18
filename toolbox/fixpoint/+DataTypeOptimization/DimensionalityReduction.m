@@ -1,8 +1,5 @@
 classdef DimensionalityReduction<DataTypeOptimization.AbstractHeuristic
 
-
-
-
     properties(SetAccess=private)
 dimensionalityReductionStrategies
     end
