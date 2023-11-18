@@ -1,15 +1,10 @@
 classdef(Abstract)AbstractHeuristic<handle
-
-
-
-
     properties
 problemPrototype
 tracer
     end
 
     methods(Abstract)
-
 
         run(this,evaluationService,solutionRepo);
     end
