@@ -1,14 +1,5 @@
 classdef OverrideType<double
 
-
-
-
-
-
-
-
-
-
     enumeration
         Off(0)
         Double(1)
