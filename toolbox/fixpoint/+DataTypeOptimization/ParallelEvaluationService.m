@@ -1,11 +1,5 @@
 classdef ParallelEvaluationService<DataTypeOptimization.AbstractEvaluationService
 
-
-
-
-
-
-
     properties
 baselineComparisonUtil
 simulationInputCreator
