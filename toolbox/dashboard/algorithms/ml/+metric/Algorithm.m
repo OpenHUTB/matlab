@@ -1,22 +1,8 @@
 classdef Algorithm<handle
-
-
-
-
-
-
-
-
-
     properties(Dependent,SetAccess=protected)
         AlgorithmID string;
         Version uint32;
     end
-
-
-
-
-
 
     properties(Dependent,SetAccess=private)
         ID string;
