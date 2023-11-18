@@ -1,8 +1,5 @@
 classdef EnvironmentProxy<handle
 
-
-
-
     properties(Hidden)
 mlfbMaps
 rangeExtractionInterface
