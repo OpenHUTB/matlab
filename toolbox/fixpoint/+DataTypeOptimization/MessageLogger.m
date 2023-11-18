@@ -1,17 +1,5 @@
 classdef MessageLogger<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=private)
 verbosityLevel
 stream
