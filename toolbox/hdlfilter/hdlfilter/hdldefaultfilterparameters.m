@@ -1,8 +1,5 @@
 function hdldefaultfilterparameters(targetlang)
 
-
-
-
     if nargin<1
         targetlang='vhdl';
     else
@@ -10,13 +7,6 @@ function hdldefaultfilterparameters(targetlang)
     end
 
     hdldefaultparameters(targetlang);
-
-
-
-
-
-
-
     hdlsetparameter('vhdl_package_name',...
     [hdlgetparameter('filter_name'),hdlgetparameter('package_suffix')]);
     hdlsetparameter('tb_name',...
