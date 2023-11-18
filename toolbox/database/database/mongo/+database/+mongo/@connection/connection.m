@@ -1,52 +1,5 @@
 classdef connection<handle&matlab.mixin.CustomDisplay
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=public)
 
         Database;
@@ -57,19 +10,15 @@ classdef connection<handle&matlab.mixin.CustomDisplay
 
         UserName string;
 
-
         Server string;
 
         Port double;
-
 
         CollectionNames string;
 
     end
 
     properties(Hidden=true)
-
-
         ConnectionHandle;
 
     end
