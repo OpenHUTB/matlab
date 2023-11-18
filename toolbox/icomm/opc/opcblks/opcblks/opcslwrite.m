@@ -1,22 +1,6 @@
 function opcslwrite(block)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     grp=[];
     writeMode=0;
     tfItm=[];
@@ -26,48 +10,22 @@ function opcslwrite(block)
     setup(block);
 
 
-
-
-
-
-
-
-
-
-
-
     function setup(block)
-
-
         itemIDs=parseitemids(block.DialogPrm(3).Data);
         updateRate=block.DialogPrm(4).Data;
         writeMode=block.DialogPrm(5).Data;
 
         block.NumInputPorts=1;
         block.NumOutputPorts=0;
-
-
-
         block.SetPreCompInpPortInfoToDynamic;
-
-
 
         block.InputPort(1).DatatypeID=-1;
         block.InputPort(1).Complexity='Real';
         block.InputPort(1).SamplingMode='Sample';
         block.InputPort(1).Dimensions=max(1,length(itemIDs));
 
-
-
         block.NumDialogPrms=5;
         block.DialogPrmsTunable=repmat({'Nontunable'},1,5);
-
-
-
-
-
-
-
 
         if updateRate==0,
 
@@ -77,157 +35,33 @@ function opcslwrite(block)
         end
         block.SampleTimes=[updateRate,minorRate];
 
-
-
-
-
-
         block.SetAccelRunOnTLC(false);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         block.RegBlockMethod('CheckParameters',@CheckPrms);
-
-
-
-
-
-
-
 
         block.RegBlockMethod('PostPropagationSetup',@DoPostPropSetup);
 
-
-
-
-
-
-
-
-
-
-
-
         block.RegBlockMethod('ProcessParameters',@ProcessPrms);
-
-
-
-
-
-
-
 
         block.RegBlockMethod('InitializeConditions',@InitializeConditions);
 
-
-
-
-
-
-
-
         block.RegBlockMethod('Start',@Start);
-
-
-
-
-
-
-
 
         block.RegBlockMethod('Outputs',@Outputs);
 
-
-
-
-
-
-
-
         block.RegBlockMethod('Update',@Update);
-
-
-
-
-
-
-
 
         block.RegBlockMethod('Derivatives',@Derivatives);
 
-
-
-
-
-
-
-
         block.RegBlockMethod('Projection',@Projection);
-
-
-
-
-
-
-
-
-
 
         block.RegBlockMethod('ZeroCrossings',@ZeroCrossings);
 
-
-
-
-
-
-
-
         block.RegBlockMethod('SimStatusChange',@SimStatusChange);
-
-
-
-
-
-
 
         block.RegBlockMethod('Terminate',@Terminate);
 
-
-
-
-
-
-
-
-
-
-
         block.RegBlockMethod('WriteRTW',@WriteRTW);
     end
-
-
-
-
-
 
 
 
@@ -283,12 +117,9 @@ function opcslwrite(block)
 
         writeMode=block.DialogPrm(5).Data;
 
-
-
         errState=opcslconfigitf(block.BlockHandle,'GetErrorState');
 
-
-        grps=opcfind('Type','dagroup','UserData',block.BlockHandle);
+       grps=opcfind('Type','dagroup','UserData',block.BlockHandle);
         if isempty(grps)
 
             da=opcslclntmgritf(block.BlockHandle,'GetClient');
