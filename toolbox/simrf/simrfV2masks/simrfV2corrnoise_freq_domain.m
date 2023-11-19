@@ -1,28 +1,18 @@
 function[corrMatRatFitStr,isHerm]=...
     simrfV2corrnoise_freq_domain(spars,scale,block)
 
-
-
-
-
     sparams=spars;
     freqsLen=size(sparams,3);
     nports=size(sparams,1);
     isHerm=true;
-
-
-
 
     if~ispassive_herm(sparams)
         warning(message('simrf:simrfV2errors:DerivedNoiseNotPassive',block));
         sparams=makepassive_herm(sparams);
     end
 
-
-
     corrMatRatFitStr='cat(3';
     for fidx=1:freqsLen
-
         sparsSq=sparams(:,:,fidx)*sparams(:,:,fidx)';
         sparsSq(1:nports+1:nports^2)=real(sparsSq(1:nports+1:nports^2));
         hermPart=scale*(eye(nports)-sparsSq);
@@ -53,9 +43,7 @@ function spars_passive=makepassive_herm(spars)
     spars_passive=spars;
     threshold=1-100*(eps);
 
-
     for freq_idx=1:freqsLen
-
         result=ispassive_herm(spars_passive(:,:,freq_idx));
         idx=0;
 
