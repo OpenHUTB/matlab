@@ -1,18 +1,6 @@
 function outvalue=simrfV2checkparam(invalue,paramname,ispositive,...
     vectorlength)
 
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(2,4);
 
     validateattributes(invalue,{'numeric'},...
@@ -43,6 +31,5 @@ function outvalue=simrfV2checkparam(invalue,paramname,ispositive,...
     else
         outvalue=invalue;
     end
-
 
 end
