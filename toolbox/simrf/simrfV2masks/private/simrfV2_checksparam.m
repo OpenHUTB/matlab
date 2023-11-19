@@ -1,7 +1,5 @@
 function simrfV2_checksparam(data,freq,Z0)
 
-
-
     validateattributes(data,{'numeric'},...
     {'nonempty','finite'},'','S-parameter');
 
