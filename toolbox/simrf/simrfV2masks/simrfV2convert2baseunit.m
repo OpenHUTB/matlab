@@ -1,9 +1,5 @@
 function Outval=simrfV2convert2baseunit(Inval,Unit)
 
-
-
-
-
     first_letter_of_unit=Unit(1);
     switch first_letter_of_unit
     case 'k'
