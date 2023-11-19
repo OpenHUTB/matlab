@@ -1,12 +1,5 @@
 function simrfV2rfbudgetiqdemod(block,action)
 
-
-
-
-
-
-
-
     switch(action)
     case 'simrfInit'
         top_sys=bdroot(block);
@@ -14,8 +7,6 @@ function simrfV2rfbudgetiqdemod(block,action)
         if strcmpi(top_sys,'rfBudgetAnalyzer_lib')
             return
         end
-
-
         MaskVals=get_param(block,'MaskValues');
         idxMaskNames=simrfV2getblockmaskparamsindex(block);
 
@@ -37,8 +28,6 @@ function simrfV2rfbudgetiqdemod(block,action)
 
                 set_param(block,'SetFilters','off')
             end
-
-
 
             repBlkFullPath=find_system(block,'LookUnderMasks',...
             'all','FollowLinks','on','SearchDepth',1,'Name',...
@@ -188,9 +177,6 @@ function simrfV2rfbudgetiqdemod(block,action)
                     ,posIinBlk_x_mid+posSparamBlk_dx/2+...
                     Blks_halfway,posIinBlk_y_mid+...
                     posSparamBlk_dy/2]);
-
-
-
                     userData=get_param([block,'/',IRFilter],'UserData');
                     userData.initIRFilter=false;
                     set_param([block,'/',IRFilter],'UserData',userData);
@@ -205,14 +191,10 @@ function simrfV2rfbudgetiqdemod(block,action)
                 end
             else
                 if~isempty(repBlkFullPath)
-
-
-
                     phIRBlk=get_param([block,'/',IRFilter],...
                     'PortHandles');
 
                     simrfV2deletelines(get(phIRBlk.LConn,'Line'));
-
                     simrfV2deletelines(get(phIRBlk.RConn,'Line'));
                     delete_block([block,'/',IRFilter]);
                     simrfV2connports(struct('SrcBlk',RFinPort,...
@@ -221,8 +203,6 @@ function simrfV2rfbudgetiqdemod(block,action)
                     'LConn','DstBlkPortIdx',1),block);
                 end
             end
-
-
             repBlkFullPath=find_system(block,'LookUnderMasks',...
             'all','FollowLinks','on','SearchDepth',1,'Name',...
             CSFilterI);
@@ -312,9 +292,6 @@ function simrfV2rfbudgetiqdemod(block,action)
                 end
             else
                 if~isempty(repBlkFullPath)
-
-
-
                     phCSBlk=get_param([block,'/',CSFilterI],...
                     'PortHandles');
 
@@ -326,10 +303,6 @@ function simrfV2rfbudgetiqdemod(block,action)
                     'SrcBlkPortStr','RConn','SrcBlkPortIdx',1,...
                     'DstBlk','IQ Demodulator','DstBlkPortStr',...
                     'RConn','DstBlkPortIdx',1),block);
-
-
-
-
                     phCSBlk=get_param([block,'/',CSFilterQ],...
                     'PortHandles');
 
