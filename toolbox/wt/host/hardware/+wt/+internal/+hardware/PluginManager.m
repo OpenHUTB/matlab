@@ -1,8 +1,5 @@
 classdef PluginManager<matlab.mixin.SetGet
 
-
-
-
     properties(SetAccess=private)
 plugins
     end
@@ -49,10 +46,6 @@ plugins
 
         end
         function loadPlugins(obj)
-
-
-
-
             pluginFiles=l_searchFileByName(obj.plugin_name);
             for n=1:numel(pluginFiles)
                 loadPlugin(obj,pluginFiles{n});
