@@ -1,14 +1,6 @@
 function simrfV2antnoop(block,action,blkType)
 
-
-
-
-
-
-
-
     top_sys=bdroot(block);
-
     isRunningorPaused=any(strcmpi(get_param(top_sys,'SimulationStatus'),...
     {'running','paused'}));
 
@@ -16,20 +8,12 @@ function simrfV2antnoop(block,action,blkType)
         return
     end
 
-
-
-
     switch(action)
     case 'simrfInit'
-
 
         if isRunningorPaused
             return
         end
-
-
-
-
         MaskWSValues=simrfV2getblockmaskwsvalues(block);
 
         ports=MaskWSValues.PortNum;
