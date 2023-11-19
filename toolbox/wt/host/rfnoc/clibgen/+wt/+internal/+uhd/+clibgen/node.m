@@ -1,10 +1,5 @@
 classdef node<handle
 
-
-
-
-
-
     properties(Access=protected)
 in_node
 in_count
@@ -17,7 +12,6 @@ name
 
     methods
         function obj=node(name,varargin)
-
 
             obj.name=name;
             obj.in_node={};
