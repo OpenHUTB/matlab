@@ -1,10 +1,5 @@
 function dialog=simrfV2_find_dialog(block)
 
-
-
-
-
-
     dialog=[];
     toolroot=DAStudio.ToolRoot;
     dv=toolroot.getOpenDialogs;
