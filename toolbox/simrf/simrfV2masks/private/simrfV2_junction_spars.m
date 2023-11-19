@@ -1,8 +1,5 @@
 function MaskWSValues=simrfV2_junction_spars(MaskWSValues,isSimStopped)
 
-
-
-
     switch MaskWSValues.classname
     case 'circulators'
         deviceType=MaskWSValues.DeviceCirculator;
