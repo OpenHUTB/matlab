@@ -1,16 +1,5 @@
 function simrfV2connports( this, block )
 
-
-
-
-
-
-
-
-
-
-
-
 for ii = 1:numel( this )
 
 DstBlk = [ block, '/', this( ii ).DstBlk ];
@@ -27,6 +16,5 @@ DstPorts( this.DstBlkPortIdx ), 'autorouting', 'on' )
 end 
 
 end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpblQ4Ms.p.
-% Please follow local copyright laws when handling this file.
+
 
