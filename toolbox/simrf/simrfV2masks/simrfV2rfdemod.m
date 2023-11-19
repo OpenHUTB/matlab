@@ -1,12 +1,5 @@
 function rfDemodMaskParams=simrfV2rfdemod(block,action)
 
-
-
-
-
-
-
-
     switch(action)
     case{'simrfInit','simrfInitForced','simrfInitForcedExp'}
         top_sys=bdroot(block);
@@ -15,12 +8,6 @@ function rfDemodMaskParams=simrfV2rfdemod(block,action)
             {'running','paused'}))
             return
         end
-
-
-
-
-
-
         mwsv=get_param(block,'MaskWSVariables');
         if~ismember({mwsv.Name},'rfDemodParams')
             evalin('caller',['rfDemodParams.Mixer.Gain=0;',...
