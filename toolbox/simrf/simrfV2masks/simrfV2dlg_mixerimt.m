@@ -1,26 +1,15 @@
 function simrfV2dlg_mixerimt(block,swCase)
 
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(get_param(top_sys,'BlockDiagramType'),'library')&&...
         strcmpi(top_sys,'simrfV2elements1')
         return;
     end
 
-
-
-
-
-
     if any(strcmpi(get_param(top_sys,'SimulationStatus'),...
         {'running','paused'}))
         return
     end
-
-
     idxMaskNames=simrfV2getblockmaskparamsindex(block);
     Vis=get_param(block,'MaskVisibilities');
 
@@ -285,47 +274,7 @@ noiseImpulseSetup
         end
     end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
-
-
-
-
-
-
-
 
 
 
