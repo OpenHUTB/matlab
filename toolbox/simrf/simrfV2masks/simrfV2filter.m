@@ -1,17 +1,9 @@
 function simrfV2filter(block,action)
 
-
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(top_sys,'simrfV2elements')
         return;
     end
-
-
-
 
     switch(action)
     case 'simrfInit'
@@ -20,14 +12,9 @@ function simrfV2filter(block,action)
             {'running','paused'}))
             return
         end
-
-
         MaskWSValues=simrfV2getblockmaskwsvalues(block);
 
         MaskDisplay='';
-
-
-
         hasUnderMaskGnd=~isempty(find_system(block,...
         'LookUnderMasks','all','FollowLinks','on',...
         'SearchDepth',1,'Parent',block,'Name','Gnd1'));
@@ -43,7 +30,6 @@ function simrfV2filter(block,action)
 
         switch lower(MaskWSValues.InternalGrounding)
         case 'on'
-
             MaskDisplay=simrfV2_add_portlabel(MaskDisplay,...
             1,{'1'},1,{'2'},true);
             set_param(block,'MaskDisplay',MaskDisplay)
@@ -62,12 +48,10 @@ function simrfV2filter(block,action)
                 end
 
                 for p_idx=1:2
-
                     simrfV2repblk(struct('RepBlk',portLbl{p_idx},...
                     'SrcBlk','simrfV2elements/Gnd',...
                     'SrcLib','simrfV2elements',...
                     'DstBlk',gndName{p_idx}),block);
-
                     simrfV2connports(struct(...
                     'SrcBlk',fromBlk,...
                     'SrcBlkPortStr',portSide{p_idx},...
@@ -79,7 +63,6 @@ function simrfV2filter(block,action)
             end
 
         case 'off'
-
             MaskDisplay=simrfV2_add_portlabel(MaskDisplay,...
             2,{'1'},2,{'2'},false);
             set_param(block,'MaskDisplay',MaskDisplay)
@@ -117,13 +100,10 @@ function simrfV2filter(block,action)
             end
         end
 
-
         if strcmpi(MaskWSValues.DesignMethod,'Ideal')
             designData.DesignMethod=MaskWSValues.DesignMethod;
             designData.ResponseType=MaskWSValues.ResponseType;
             designData.Implementation=MaskWSValues.Implementation;
-
-
             simrfV2_filt_f2port_setup(block,...
             simrfV2getblockmaskwsvalues(block));
             uData=get_param(block,'UserData');
@@ -132,8 +112,6 @@ function simrfV2filter(block,action)
             end
         elseif strcmpi(MaskWSValues.DesignMethod,'InverseChebyshev')
             designData=simrfV2_filt_design(MaskWSValues);
-
-
             simrfV2_filt_s2box_setup(block,MaskWSValues.Rsrc,...
             MaskWSValues.Rload,designData)
 
@@ -142,20 +120,13 @@ function simrfV2filter(block,action)
 
             designData=simrfV2_filt_design(MaskWSValues);
             if strcmpi(MaskWSValues.Implementation,'Transfer function')
-
-
                 simrfV2_filt_s2box_setup(block,MaskWSValues.Rsrc,...
                 MaskWSValues.Rload,designData)
-
                 set_param(block,'UserData',designData);
             else
-
                 topology=lower(sprintf('lc%s%s',...
                 designData.ResponseType,designData.Implementation(4:end)));
                 userData=get_param(block,'UserData');
-
-
-
 
                 if isempty(userData)||...
                     ~isa(userData,'rffilter')||...
@@ -172,7 +143,6 @@ function simrfV2filter(block,action)
                     userData.DesignData.Capacitors)>=...
                     100*eps(userData.DesignData.Capacitors))||...
                     MaskWSValues.needRedraw==true
-
                     simrfV2_lcladder_setup(block,topology,...
                     designData.DesignData.Inductors,...
                     designData.DesignData.Capacitors)
