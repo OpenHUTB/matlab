@@ -1,19 +1,14 @@
 function simrfV2filterexport(block,dialog)
 
-
-
-
     topBlk=bdroot(block);
     if strcmpi(get_param(topBlk,'BlockDiagramType'),'library')
         return;
     end
 
-
     if dialog.hasUnappliedChanges
         blkName=regexprep(block,'\n','');
         error(message('simrf:simrfV2errors:ApplyButton',blkName));
     end
-
 
     guiTitle=['Save Filter Parameters From Block ',block];
     [fileName,pathName]=uiputfile({'*.mat;*.txt'},guiTitle,...
@@ -66,9 +61,6 @@ end
 
 
 function restring(instring,varargin)
-
-
-
     narginchk(1,3);
     if nargin<2
         indent_level=0;
@@ -80,7 +72,6 @@ function restring(instring,varargin)
     else
         fid=varargin{2};
     end
-
     instring=regexprep([blanks(4*indent_level),instring],'\s+$','');
     while length(instring)>75
         char_pos=regexp(instring,' ');
@@ -94,6 +85,7 @@ function restring(instring,varargin)
     end
     fprintf(fid,'%s\n',instring);
 end
+
 
 function desStruct=desOutput(uData)
     uDesData=uData.DesignData;
