@@ -1,18 +1,11 @@
 classdef radio_block<wt.internal.uhd.clibgen.block
 
 
-
-
     methods(Access=protected)
         function control=getCustomBlockController(obj)
             control=obj.graph.get_block_uhd__rfnoc__radio_control_(getID(obj));
         end
         function stop(obj,channel)
-
-
-
-
-
             streamhelper=wt.internal.uhd.clibgen.stream("temp");
             tx_stream_cmd=streamhelper.configureStreamCommand("stop",0);
             obj.ctrl.issue_stream_cmd(tx_stream_cmd,channel);
