@@ -1,16 +1,9 @@
 function simrfV2noisesource(block,action)
 
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(top_sys,'simrfV2sources1')
         return
     end
-
-
-
 
     switch(action)
     case 'simrfInit'
