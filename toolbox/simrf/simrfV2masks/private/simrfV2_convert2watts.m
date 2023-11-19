@@ -1,8 +1,5 @@
 function Pwatts=simrfV2_convert2watts(Power,Unit)
 
-
-
-
     if isinf(Power)
         Pwatts=inf;
         return
