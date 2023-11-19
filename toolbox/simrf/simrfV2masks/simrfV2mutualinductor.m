@@ -1,18 +1,10 @@
 function simrfV2mutualinductor(block,action)
 
-
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(get_param(top_sys,'BlockDiagramType'),'library')&&...
         strcmpi(top_sys,'simrfV2elements')
         return
     end
-
-
-
 
     switch(action)
     case 'simrfInit'
@@ -21,8 +13,6 @@ function simrfV2mutualinductor(block,action)
             '^(updating|initializing|stopped)$')
 
             MaskWSValues=simrfV2getblockmaskwsvalues(block);
-
-
             validateattributes(MaskWSValues.L1,{'numeric'},...
             {'nonempty','scalar','positive','finite'},block,...
             'Mutual Inductor L1');
