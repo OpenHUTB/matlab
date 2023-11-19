@@ -1,12 +1,5 @@
 function simrfV2_filt_f2port_setup(blk,MaskWSValues)
 
-
-
-
-
-
-
-
     OldElems=find_system(blk,'LookUnderMasks','all',...
     'FollowLinks','on','SearchDepth',1,'FindAll','on',...
     'RegExp','on','Classname',...
@@ -24,9 +17,6 @@ function simrfV2_filt_f2port_setup(blk,MaskWSValues)
         SrcBlk='F2PORT_RF';
         add_block([libMod,'/Sparameters/',SrcBlk],[blk,'/F2PORT_RF'],...
         'Position',[180,167,245,223])
-
-
-
         hasUnderMaskGnd=~isempty(find_system(blk,...
         'LookUnderMasks','all','FollowLinks','on',...
         'SearchDepth',1,'Parent',blk,'Name','Gnd1'));
@@ -115,9 +105,6 @@ function simrfV2_filt_f2port_setup(blk,MaskWSValues)
             resampled.S_Parameters=cat(3,Spass,Sstop,Sstop,Spass);
         end
 
-
-
-
         impulse_length=0;
         if strcmpi(MaskWSValues.ImplementationIdeal,...
             'Frequency Domain')
@@ -134,13 +121,6 @@ function simrfV2_filt_f2port_setup(blk,MaskWSValues)
                 end
             end
         end
-
-
-
-
-
-
-
 
         if impulse_length==0
             new_freqs=envfreq;
