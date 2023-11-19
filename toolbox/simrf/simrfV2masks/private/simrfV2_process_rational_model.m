@@ -1,10 +1,5 @@
 function cacheData=simrfV2_process_rational_model(block,MaskWSValues)...
 
-
-
-
-
-
     if isfield(MaskWSValues,'isRationalObj')&&...
         strcmp(MaskWSValues.isRationalObj,'on')
         ratObj=MaskWSValues.RationalObject;
@@ -195,8 +190,6 @@ function cacheData=simrfV2_process_rational_model(block,MaskWSValues)...
     1,[])];
     D=[Dname_cell;simrfV2vector2str(reshape(DFmat.',1,[]))];
 
-
-
     cacheData.RationalModel.ACell=A;
     cacheData.RationalModel.CCell=C;
     cacheData.RationalModel.DCell=D;
@@ -204,7 +197,6 @@ function cacheData=simrfV2_process_rational_model(block,MaskWSValues)...
     cacheData.RationalModel.Z0Cell={'Z0';...
     simrfV2vector2str(Z0*ones(1,nport))};
     cacheData.NumPorts=nport;
-
 
     num_freqs=1001;
     freqs=linspace(0,10e9,num_freqs);
