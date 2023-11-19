@@ -1,8 +1,5 @@
 classdef BaseMatlabFileAdapter<handle
 
-
-
-
     properties
 source
 section
@@ -11,14 +8,7 @@ section
     methods(Abstract)
 
         name=getAdapterName(this)
-
-
-
-
         extensions=getSupportedExtensions(this)
-
-
-
         diagnostic=getData(this,sourceWorkspace,prevChecksum,diagnostic)
     end
 
@@ -71,7 +61,6 @@ section
             fileInfo=dir(this.source);
             currentChecksum=fileInfo.date;
         end
-
 
 
 
