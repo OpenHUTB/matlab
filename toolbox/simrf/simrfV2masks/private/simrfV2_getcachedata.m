@@ -1,9 +1,6 @@
 function[cacheData,cacheBlock,cacheDataBase,blkNames]=...
     simrfV2_getcachedata(block,levels,createCache)
 
-
-
-
     if nargin<3
 
         createCache=true;
@@ -17,17 +14,12 @@ function[cacheData,cacheBlock,cacheDataBase,blkNames]=...
     if levels>0
         lvlInd=1;
 
-
         while lvlInd<=levels&&strcmp(get_param(cacheBlock,'Type'),'block')
             blkNames{levels+1-lvlInd}=get_param(cacheBlock,'Name');
             cacheBlockPrev=cacheBlock;
             cacheBlock=get_param(cacheBlock,'Parent');
             lvlInd=lvlInd+1;
         end
-
-
-
-
         if~strcmp(get_param(cacheBlock,'Type'),'block')
             blkNames=blkNames(levels+3-lvlInd:levels);
             levels=lvlInd-2;
@@ -44,8 +36,6 @@ function[cacheData,cacheBlock,cacheDataBase,blkNames]=...
     else
         cacheDataBase=cacheData;
 
-
-
         lvlInd=1;
         while lvlInd<=levels
             if isfield(cacheData,blkNames{lvlInd})
@@ -57,13 +47,9 @@ function[cacheData,cacheBlock,cacheDataBase,blkNames]=...
             end
         end
     end
-
-
-
     if~isempty(cacheData)&&~isfield(cacheData,'MaxPoles')
         cacheData.MaxPoles=48;
     end
-
 
     if createCache&&(isempty(cacheData)||~isfield(cacheData,'Vers'))
         if isfield(cacheData,'NumPorts')
@@ -128,26 +114,21 @@ function[cacheData,cacheBlock,cacheDataBase,blkNames]=...
             Z0=50;
         end
 
-
         cacheData=[];
         cacheData.Vers=2.0;
         cacheData.NumPorts=nports;
         cacheData.Impedance=Z0;
         cacheData.OrigParamType='s';
 
-
         cacheData.filename='';
         cacheData.timestamp=0;
         cacheData.hashcode=0;
-
 
         cacheData.Fit=false;
         cacheData.FitOpt=fitopt;
         cacheData.FitTol=fittol;
         cacheData.MaxPoles=maxpoles;
         cacheData.FitErrorAchieved=fiterror;
-
-
         cacheData.RationalModel.A=ratmodA;
         cacheData.RationalModel.C=ratmodC;
         cacheData.RationalModel.D=ratmodD;
@@ -157,7 +138,6 @@ function[cacheData,cacheBlock,cacheDataBase,blkNames]=...
         cacheData.RationalModel.Z0Cell=ratmodImpedCell;
         simrfV2_setcachedata(cacheBlock,cacheData,cacheDataBase,blkNames);
         set_param(cacheBlock,'UserDataPersistent','on');
-
 
         cacheData.NL.IP3=[];
         cacheData.NL.P1dB=[];
