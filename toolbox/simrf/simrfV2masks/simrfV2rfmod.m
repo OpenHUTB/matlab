@@ -1,12 +1,5 @@
 function rfModMaskParams=simrfV2rfmod(block,action)
 
-
-
-
-
-
-
-
     switch(action)
     case{'simrfInit','simrfInitForced','simrfInitForcedExp'}
         top_sys=bdroot(block);
@@ -15,11 +8,6 @@ function rfModMaskParams=simrfV2rfmod(block,action)
             {'running','paused'}))
             return
         end
-
-
-
-
-
 
         mwsv=get_param(block,'MaskWSVariables');
         if~ismember({mwsv.Name},'rfModParams')
@@ -90,9 +78,6 @@ function rfModMaskParams=simrfV2rfmod(block,action)
                 ao=get_param(ah(1),'Object');
                 ao.Selected='on';
                 ao.delete;
-
-
-
                 MixerPos=get_param([block,'/Mixer'],'Position');
 
                 InPosPos=get_param([block,'/In+'],'Position');
