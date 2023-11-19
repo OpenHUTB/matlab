@@ -1,10 +1,5 @@
 classdef(Hidden)AbstractSampleRateEngine<phased.internal.AbstractVarSizeEngine
 
-
-
-
-
-
 %#ok<*EMCLS>
 %#ok<*EMCA>
 %#codegen
