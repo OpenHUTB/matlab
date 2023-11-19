@@ -1,9 +1,5 @@
 classdef RadioManager
 
-
-
-
-
     properties
 claimedRadios
     end
