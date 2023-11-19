@@ -1,17 +1,10 @@
 function simrfV2resistor(block,action)
 
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(get_param(top_sys,'BlockDiagramType'),'library')&&...
         strcmpi(top_sys,'simrfV2elements')
         return
     end
-
-
-
 
     switch(action)
     case 'simrfInit'
@@ -21,8 +14,6 @@ function simrfV2resistor(block,action)
             '^(updating|initializing)$')
 
             MaskWSValues=simrfV2getblockmaskwsvalues(block);
-
-
             validateattributes(MaskWSValues.Resistance,{'numeric'},...
             {'nonempty','scalar','real','nonnegative','finite'},'',...
             'Resistance');
