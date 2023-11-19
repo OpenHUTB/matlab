@@ -1,10 +1,5 @@
 classdef block<wt.internal.uhd.clibgen.node
 
-
-
-
-
-
     properties(Access=protected)
 id
 ctrl
@@ -24,7 +19,6 @@ graph
     end
     methods
         function obj=block(graph,name,varargin)
-
 
             obj=obj@wt.internal.uhd.clibgen.node(name,varargin{:});
             obj.id=clib.wt_uhd.uhd.rfnoc.block_id_t(name);
