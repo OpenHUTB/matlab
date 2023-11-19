@@ -1,7 +1,5 @@
 function uhd_bin_path=setup(varargin)
 
-
-
     pathTo3P=matlab.internal.get3pInstallLocation('uhdbinary.instrset');
     if~exist(pathTo3P,"dir")
         msg=message("wt:rfnoc:host:UHDInstallNotFound");
@@ -27,7 +25,6 @@ function uhd_bin_path=setup(varargin)
     end
     if(~exist(fullfile(clibgen_dst_path,clibgen_lib_name.(archstr)),"file"))
 
-
         copyfile(clibgen_src,fullfile(clibgen_dst_path,clibgen_lib_name.(archstr)),"f");
     end
 
@@ -44,7 +41,6 @@ function uhd_bin_path=setup(varargin)
     end
 
     if strcmp(archstr,"win64"),return,end
-
 
     old_LD_LIBRARY_PATH=getenv("LD_LIBRARY_PATH");
     if~contains(old_LD_LIBRARY_PATH,uhd_lib_path)
