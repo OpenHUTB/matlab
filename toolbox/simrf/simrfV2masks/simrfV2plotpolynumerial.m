@@ -1,8 +1,5 @@
 function simrfV2plotpolynumerial(block,dialog)
 
-
-
-
     if strcmpi(get_param(bdroot(block),'BlockDiagramType'),'library')
         return;
     end
@@ -14,13 +11,6 @@ function simrfV2plotpolynumerial(block,dialog)
     type=get_param(block,'Source_linear_gain');
     switch type
     case 'AM/AM-AM/PM table'
-
-
-
-
-
-
-
 
     case 'Polynomial coefficients'
     otherwise
@@ -34,8 +24,8 @@ function simrfV2plotpolynumerial(block,dialog)
     return
 end
 
-function visualise(obj,~,type)
 
+function visualise(obj,~,type)
 
     if strcmpi(type,'AM/AM-AM/PM table')
 
