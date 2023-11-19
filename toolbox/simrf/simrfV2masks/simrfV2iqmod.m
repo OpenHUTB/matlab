@@ -1,12 +1,5 @@
 function iqModMaskParams=simrfV2iqmod(block,action)
 
-
-
-
-
-
-
-
     switch(action)
     case{'simrfInit','simrfInitForced','simrfInitForcedExp'}
         top_sys=bdroot(block);
