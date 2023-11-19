@@ -1,30 +1,21 @@
 function simrfV2dlg_mixerimt_plot(block,~)
 
-
-
-
-
     if strcmpi(get_param(bdroot(block),'BlockDiagramType'),'library')
         return;
     end
 
-
     dialog=simrfV2_find_dialog(block);
-
 
     if dialog.hasUnappliedChanges
         blkName=regexprep(block,'\n','');
         error(message('simrf:simrfV2errors:ApplyButton',blkName));
     end
-
-
     mwsv=simrfV2getblockmaskwsvalues(block);
     uData=get_param(block,'UserData');
 
     validateattributes(mwsv.PowerOut,...
     {'numeric'},{'nonempty','scalar','finite','real'},...
     '','Desired mixer output signal power (dBm)');
-
 
     if strcmp(mwsv.UseDataFile,'on')
         if isempty(uData)
@@ -70,18 +61,6 @@ function simrfV2dlg_mixerimt_plot(block,~)
     end
     mixer=rfckt.mixer('FLO',mwsv.FrequencyLO,'MixerSpurData',spurs,...
     'MixerType',mwsv.MixerType,'NetworkData',netwk);
-
-
-
-
-
-
-
-
-
-
-
-
     figureID=matlab.lang.makeValidName(...
     [get_param(block,'classname'),'_'...
     ,num2str(get_param(block,'Handle'))],'ReplacementStyle','hex');
@@ -103,23 +82,9 @@ function simrfV2dlg_mixerimt_plot(block,~)
     hfig.Tag=figureID;
 
     top_obj.addCallback('PreClose',figureID,@()delete_plot(hfig))
-
-
-
-
-
-
-
-
-
-
-
-
     set(hfig,'Name',block,'NumberTitle','off')
 
 end
-
-
 
 
 
