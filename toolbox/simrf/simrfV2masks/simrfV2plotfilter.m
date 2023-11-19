@@ -1,14 +1,8 @@
 function simrfV2plotfilter(block,dialog)
 
-
-
-
-
     if strcmpi(get_param(bdroot(block),'BlockDiagramType'),'library')
         return;
     end
-
-
     plotLeft=dialog.getComboBoxText('PlotFuncLeft');
     switch plotLeft
     case 'Voltage transfer'
@@ -22,9 +16,6 @@ function simrfV2plotfilter(block,dialog)
     case 'Step response'
         plotRight=dialog.getComboBoxText('PlotRightNoSR');
     end
-
-
-
 
     switch plotLeft
     case{'Voltage transfer','Phase delay','Group delay'}
@@ -54,8 +45,6 @@ function simrfV2plotfilter(block,dialog)
     end
 
     xData=simrfV2convert2baseunit(dataPoints,dataUnits);
-
-
     mwsv=simrfV2getblockmaskwsvalues(block);
     uData=get_param(block,'UserData');
     switch mwsv.Implementation
@@ -93,13 +82,10 @@ function simrfV2plotfilter(block,dialog)
             plotfun=@loglog;
         end
     end
-
-
     leftForm=dialog.getComboBoxText('PlotLeftForm');
     rightForm=dialog.getComboBoxText('PlotRightForm');
     [ydata1,legendStr1]=filterResponse(filtPars,xData,plotLeft,leftForm);
     hfig=singleplot(block);
-
 
     if~strcmpi(plotRight,'None')&&...
         (~strcmpi(plotLeft,plotRight)||~strcmpi(leftForm,rightForm))
@@ -134,19 +120,11 @@ end
 
 
 
-
-
 function hfig=singleplot(block)
-
-
-
-
-
     figureID=matlab.lang.makeValidName(...
     [get_param(block,'classname'),'_',get_param(block,'Handle')],...
     'ReplacementStyle','hex');
     hfig=findall(0,'Type','Figure','Tag',figureID);
-
     top_obj=get_param(bdroot(block),'Object');
 
     if top_obj.hasCallback('PreClose',figureID)
@@ -164,8 +142,6 @@ end
 
 function[yData,legendStr]=responseRat(ratFcns,xData,...
     funcType,dataForm)
-
-
 
     num=simrfV2_quad2poly(ratFcns.Numerator21);
     den=simrfV2_quad2poly(ratFcns.Denominator);
@@ -202,7 +178,6 @@ end
 
 function ydata=polyeval21(designData,omega)
 
-
     num=designData.Numerator21;
     den=designData.Denominator;
     denEval=polyvalCoeff(den,1i*omega);
@@ -234,8 +209,6 @@ function values=polyvalCoeff(coeff,x_data)
 end
 
 function[yData,legendStr]=responseLC(lcFilt,xData,funcType,dataForm)
-
-
 
     switch funcType
     case 'Voltage transfer'
@@ -277,16 +250,11 @@ function[yDataOut,legendStrForm]=dataForPlot(ydata,dataForm)
     end
 end
 
+
 function angPoly=anglePoly(polyCoeffs,omega)
-
-
-
-
-
     angReal=@(zeroes,omega)atand(omega./(-zeroes));
     angCplx=@(zeroes,omega)atan2d(-2*real(zeroes).*omega,...
     (real(zeroes).^2+imag(zeroes).^2-omega.^2));
-
     [zeroes,numCplx]=simrfV2topconj(roots(polyCoeffs));
     lenZeroes=length(zeroes);
     if lenZeroes==0
@@ -304,11 +272,6 @@ function angPoly=anglePoly(polyCoeffs,omega)
 end
 
 function grpPoly=groupPoly(polyCoeffs,omega)
-
-
-
-
-
     grpReal=@(zeroes,omega)zeroes./(zeroes.^2+omega.^2);
     grpCplx=@(zeroes,omega)2*real(zeroes).*...
     (real(zeroes).^2+imag(zeroes).^2+omega.^2)./...
@@ -330,6 +293,7 @@ function grpPoly=groupPoly(polyCoeffs,omega)
         end
     end
 end
+
 
 function delete_plot(hfig)
 
