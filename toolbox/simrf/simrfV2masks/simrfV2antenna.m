@@ -1,18 +1,9 @@
 function varargout=simrfV2antenna(block,action)
 
-
-
-
-
-
-
     top_sys=bdroot(block);
 
     isRunningorPaused=any(strcmpi(get_param(top_sys,'SimulationStatus'),...
     {'running','paused'}));
-
-
-
 
     MaskWSValues=simrfV2getblockmaskwsvalues(block);
     if~isRunningorPaused&&~isfield(MaskWSValues,'antParams')
