@@ -2,11 +2,6 @@ function[solverfreq,solverblock,AddNoise,envtempK,...
     NormalizeCarrierPower,StepSize,SamplesPerFrame,Tones]=...
     simrfV2_find_solverparams(sys,block,onlynoiseinfo,forceCheck)
 
-
-
-
-
-
     if nargin<2
         block=[];
         onlynoiseinfo=false;
@@ -29,15 +24,9 @@ function[solverfreq,solverblock,AddNoise,envtempK,...
     NormalizeCarrierPower=true;
     StepSize=1e-6;
     SamplesPerFrame=1;
-
-
-
-
     RFSolve=find_system(sys,'LookUnderMasks','all','FollowLinks','on',...
     'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
     'BlockType','SubSystem','classname','solver_simrf');
-
-
 
     if isempty(RFSolve)
         if strcmpi(get_param(sys,'SimulationStatus'),'updating')||...
@@ -49,8 +38,6 @@ function[solverfreq,solverblock,AddNoise,envtempK,...
     end
 
     RFSolve=find_nearest(RFSolve,block,forceCheck);
-
-
 
 
     if isempty(RFSolve)
@@ -68,16 +55,8 @@ function[solverfreq,solverblock,AddNoise,envtempK,...
     MaskVals=get_param(solverblock,'MaskValues');
 
     AddNoise=MaskWSValues.AddNoise;
-
-
-
-
     NormalizeCarrierPower=MaskWSValues.NormalizeCarrierPower;
     SamplesPerFrame=MaskWSValues.SamplesPerFrame;
-
-
-
-
 
     if regexpi(get_param(sys,'SimulationStatus'),...
         '^(updating|initializing)$')
@@ -86,8 +65,6 @@ function[solverfreq,solverblock,AddNoise,envtempK,...
             if strcmpi(get_param(solverBlkParent,'Type'),'block')
                 srcLib=fileparts(get_param(solverBlkParent,'ReferenceBlock'));
                 if regexpi(srcLib,'^(simrfV2testbenches|rfTestbenches_lib)$')
-
-
                     simNoise=get_param(solverBlkParent,'SimNoise');
                     try
                         set_param(solverBlkParent,'SimNoise',simNoise);
@@ -99,9 +76,6 @@ function[solverfreq,solverblock,AddNoise,envtempK,...
         end
     end
 
-
-
-
     try
         StepSize=simrfV2convert2baseunit(...
         slResolve(MaskVals{idxMaskNames.StepSize},solverblock),...
@@ -111,10 +85,6 @@ function[solverfreq,solverblock,AddNoise,envtempK,...
         MaskWSValues.StepSize_unit);
     end
 
-
-
-
-
     try
         envtempK=convert2K(...
         slResolve(MaskVals{idxMaskNames.Temperature},solverblock),...
@@ -123,9 +93,6 @@ function[solverfreq,solverblock,AddNoise,envtempK,...
         envtempK=convert2K(MaskWSValues.Temperature,...
         MaskWSValues.Temperature_unit);
     end
-
-
-
 
     if isempty(SamplesPerFrame)
         try
