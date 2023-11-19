@@ -1,13 +1,6 @@
 function simrfV2recantvoc(block,action)
 
-
-
-
-
-
-
     top_sys=bdroot(block);
-
     isRunningorPaused=any(strcmpi(get_param(top_sys,'SimulationStatus'),...
     {'running','paused'}));
 
@@ -15,20 +8,12 @@ function simrfV2recantvoc(block,action)
         return
     end
 
-
-
-
     switch(action)
     case 'simrfInit'
-
 
         if isRunningorPaused
             return
         end
-
-
-
-
         MaskWSValues=simrfV2getblockmaskwsvalues(block);
 
         ports=MaskWSValues.PortNum;
@@ -46,7 +31,6 @@ function simrfV2recantvoc(block,action)
 
             SThetaBlk=[block,'/normhV_theta'];
 
-
             set_param(SThetaBlk,'Sparam','2*normhV_theta');
             set_param(SThetaBlk,'Sparam','normhV_theta');
             posSTheta=get_param(SThetaBlk,'Position');
@@ -55,7 +39,6 @@ function simrfV2recantvoc(block,action)
             phSTheta=get_param(SThetaBlk,'PortHandles');
 
             SPhiBlk=[block,'/normhV_phi'];
-
 
             set_param(SPhiBlk,'Sparam','2*normhV_phi');
             set_param(SPhiBlk,'Sparam','normhV_phi');
