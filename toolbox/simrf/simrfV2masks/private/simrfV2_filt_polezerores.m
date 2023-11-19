@@ -1,30 +1,7 @@
 function[R,P,K]=simrfV2_filt_polezerores(qZeros,qPoles)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     numberTolDigits=3;
     tol=10^numberTolDigits;
-
 
     K=[];
 
@@ -82,9 +59,6 @@ function[R,P,K]=simrfV2_filt_polezerores(qZeros,qPoles)
             abs(imag(poles(2:2:num_cplx,:))))),...
             {'logical'},{'nonzero'},mfilename,...
             'complex conjugate poles of the rational function')
-
-
-
 
             polesSecondQuad=poles(1:2:end);
             RHS=ones(round(num_cplx/2,0),1);
