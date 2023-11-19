@@ -1,7 +1,5 @@
 function VoutBB=calcBBDescFunc(Vin,coeffsRPB,VsatIn,VSatOutRPB)
 
-
-
     VinPreSat=Vin(Vin<=VsatIn);
     VinPostSat=Vin(Vin>VsatIn);
     VoutBBpresat=zeros(size(VinPreSat));
