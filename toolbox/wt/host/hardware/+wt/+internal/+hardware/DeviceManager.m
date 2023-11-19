@@ -1,8 +1,5 @@
 classdef DeviceManager<handle
 
-
-
-
     properties(Hidden,SetAccess=private)
         InUse=false
         ClaimedBy=""
