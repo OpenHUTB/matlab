@@ -1,14 +1,9 @@
 function simRFV2NFTestbenchCallbackFcn(block,action)
 
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(get_param(top_sys,'BlockDiagramType'),'library')
         return;
     end
-
     idxMaskNames=simrfV2getblockmaskparamsindex(block);
     MaskWSValues=simrfV2getblockmaskwsvalues(block);
     simrfV2checkimpedance(MaskWSValues.Zs,0,'Impedance',0);
@@ -188,11 +183,6 @@ function simRFV2NFTestbenchCallbackFcn(block,action)
                         MaskVis{idxMaskNames.ShowResp}='on';
                         set_param(block,'MaskVisibilities',...
                         MaskVis)
-
-
-
-
-
                         checkedResp=strcmp(get_param(block,...
                         'ShowResp'),'on');
                         StimScopeConf=get_param([block...
@@ -258,8 +248,6 @@ function simRFV2NFTestbenchCallbackFcn(block,action)
         ,'correctly using RF budget calculations. For more '...
         ,'details, see the documentation.'];
         string_out{4}='';
-
-
         newInstText=sprintf(cell2mat(string_out));
         if(~strcmp(InstText.Prompt,newInstText))
             InstText.Prompt=newInstText;
