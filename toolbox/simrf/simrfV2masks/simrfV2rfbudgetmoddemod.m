@@ -1,13 +1,5 @@
 function simrfV2rfbudgetmoddemod(block,action)
 
-
-
-
-
-
-
-
-
     switch(action)
     case 'simrfInit'
         top_sys=bdroot(block);
@@ -15,8 +7,6 @@ function simrfV2rfbudgetmoddemod(block,action)
         if strcmpi(top_sys,'rfBudgetAnalyzer_lib')
             return
         end
-
-
         MaskVals=get_param(block,'MaskValues');
         idxMaskNames=simrfV2getblockmaskparamsindex(block);
 
@@ -48,9 +38,6 @@ function simrfV2rfbudgetmoddemod(block,action)
 
                 set_param(block,'SetFilters','off')
             end
-
-
-
             repBlkFullPath=find_system(block,'LookUnderMasks',...
             'all','FollowLinks','on','SearchDepth',1,'Name',...
             IRFilter);
@@ -59,15 +46,12 @@ function simrfV2rfbudgetmoddemod(block,action)
                 if((isfield(userData,'initIRFilter'))&&...
                     (userData.initIRFilter))
                     isNewFromLib=true;
-
-
                     userData.initIRFilter=false;
                     set_param(repBlkFullPath{1},'UserData',userData);
                 end
             end
         end
         if(isSetFilters||isNewFromLib)
-
 
             set_param([block,'/Mixer'],...
             'Source_linear_gain','Available power gain',...
@@ -88,7 +72,6 @@ function simrfV2rfbudgetmoddemod(block,action)
             'CarrierFreq',MaskVals{idxMaskNames.LOFreq},...
             'CarrierFreq_unit',MaskVals{idxMaskNames.LOFreq_unit})
 
-
             MaskEnables=get_param(block,'MaskEnables');
             if strcmpi(MaskVals{idxMaskNames.IRFilterOnInit},'off')
                 set_param(block,'IRFilterOn','off')
@@ -100,8 +83,6 @@ function simrfV2rfbudgetmoddemod(block,action)
             end
             MaskVals=get_param(block,'MaskValues');
             set_param(block,'MaskEnables',MaskEnables);
-
-
             repBlkFullPath=find_system(block,'LookUnderMasks',...
             'all','FollowLinks','on','SearchDepth',1,'Name',...
             IRFilter);
@@ -139,7 +120,6 @@ function simrfV2rfbudgetmoddemod(block,action)
                 'SparamZ0','50')
             end
         end
-
 
 
         if((isSetFilters||isNewFromLib)||...
@@ -268,8 +248,6 @@ function simrfV2rfbudgetmoddemod(block,action)
                 end
             else
                 if~isempty(repBlkFullPath)
-
-
                     phCSBlk=get_param(repBlkFullPath,'PortHandles');
 
                     simrfV2deletelines(get(phCSBlk{1}.LConn,'Line'));
