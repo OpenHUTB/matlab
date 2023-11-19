@@ -1,11 +1,5 @@
 function prSpar=prfSubSpar(s1,s2)
 
-
-
-
-
-
-
     polyLen=cellfun(@length,{s1,s2});
     padNum=max(polyLen)-polyLen;
     s1Pad=[zeros(1,padNum(1)),s1];
@@ -39,7 +33,5 @@ function prSpar=prfSubSpar(s1,s2)
     for i=1:length(jaxisRoots)
         prSpar=conv(prSpar,[1,-jaxisRoots(i)]);
     end
-
-
 
 end
