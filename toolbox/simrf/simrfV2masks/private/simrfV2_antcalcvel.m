@@ -1,8 +1,5 @@
 function[normFItheta,normFIphi]=simrfV2_antcalcvel(ant,sparam,dir,showBar)
 
-
-
-
     theta=dir(1);
     phi=dir(2);
     sinTh=sin(theta);
