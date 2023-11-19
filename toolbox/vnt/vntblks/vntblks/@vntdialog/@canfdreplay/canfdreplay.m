@@ -1,9 +1,5 @@
 function obj=canfdreplay(hBlock)
 
-
-
-
-
     obj=vntdialog.canfdreplay(hBlock);
 
 
@@ -20,7 +16,6 @@ function obj=canfdreplay(hBlock)
     end
 
     obj.Root=parent;
-
 
     obj.FullPathFileName=obj.Block.FullPathFileName;
     obj.VariableName=obj.Block.VariableName;
