@@ -1,6 +1,5 @@
 function simRFV2TestbenchIQ2IQCallbackFcn( block, action )
 
-
 top_sys = bdroot( block );
 if strcmpi( get_param( top_sys, 'BlockDiagramType' ), 'library' )
 return ;
@@ -17,8 +16,6 @@ case 'simrfInit'
 
 if ( ~isRunningorPaused )
 
-
-
 T_amp_dBm_scL = get_param( block, 'T_amp_dBm_scL' );
 T_amp_dBm_scU = get_param( block, 'T_amp_dBm_scU' );
 maskObj.Parameters( idxMaskNames.T_amp_dBm ).Range =  ...
@@ -26,8 +23,6 @@ maskObj.Parameters( idxMaskNames.T_amp_dBm ).Range =  ...
 maskObj.Parameters( idxMaskNames.T_amp_dBmV ).Range =  ...
 [ ( str2double( T_amp_dBm_scL ) + round( 30 + 10 * log10( 50 ) ) ) ...
 , ( str2double( T_amp_dBm_scU ) + round( 30 + 10 * log10( 50 ) ) ) ];
-
-
 
 blks = simrfV2_findConnected( [ block, '/Configuration' ],  ...
 'simrfV2util1/Inport' );
@@ -121,8 +116,6 @@ set_param( block, 'ModeStrShort', ModeStrLong )
 set_param( block, 'ModeStrLong', ModeStrLong )
 elseif ( ( ~uncheckedNoise ) && ( ~isVisLong ) )
 
-
-
 set_param( [ block, '/Configuration' ], 'AddNoise', 'on' )
 set_param( block, 'ModeStrLong', ModeStrShort )
 
@@ -200,13 +193,10 @@ set_param( gcb, 'ResetableRand', num2str( rand, '%.16e' ) )
 end 
 end 
 
-
-
 set_param( block, 'Mode', num2str( ModeNum ) )
 set_param( block, 'IPType', num2str( IPTypeNum ) )
 set_param( block, 'IQMeasureIn', num2str( IQMeasureInNum ) )
 set_param( block, 'IQMeasureOut', num2str( IQMeasureOutNum ) )
-
 
 EmptyText6 = maskObj.getDialogControl( 'EmptyText6' );
 EmptyText7 = maskObj.getDialogControl( 'EmptyText7' );
@@ -215,7 +205,6 @@ MaskVisibilities = get_param( block, 'MaskVisibilities' );
 InstText = maskObj.getDialogControl( 'InstText' );
 EmptyText10 = maskObj.getDialogControl( 'EmptyText10' );
 EmptyText11 = maskObj.getDialogControl( 'EmptyText11' );
-
 
 if any( strcmpi( get_param( bdroot( block ), 'SimulationStatus' ),  ...
 { 'running', 'paused' } ) )
@@ -229,7 +218,6 @@ suggestionStr1IP3 = '';
 suggestionStr2 = '';
 suggestionStr2IP3 = '';
 end 
-
 
 switch ModeNum
 case 1
@@ -425,6 +413,5 @@ InstText.Prompt = newInstText;
 end 
 set_param( block, 'MaskVisibilities', MaskVisibilities )
 end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp24QC4c.p.
-% Please follow local copyright laws when handling this file.
+
 
