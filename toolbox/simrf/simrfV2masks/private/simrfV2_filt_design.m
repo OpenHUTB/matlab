@@ -1,11 +1,4 @@
 function filterObj=simrfV2_filt_design(mwsv)
-
-
-
-
-
-
-
     responseStr=regexprep(lower(mwsv.ResponseType),...
     '(ow|igh|and|ass|top)','');
     constFiltPiece={...
