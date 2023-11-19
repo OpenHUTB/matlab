@@ -2,13 +2,8 @@ function[CarrFreqSorted,PhNoFreq,phNoLevIntNorm,...
     step,phNoOffFull,phNoLevFull,stepSource]=...
     simrfV2getphasenoise(block,MaskWSValues,CarrierFreq,step)
 
-
-
-
-
     if nargin<4
         MaskWSValues=simrfV2getblockmaskwsvalues(block);
-
 
         if isfield(MaskWSValues,'LOFreq')
             CarrierFreq=MaskWSValues.LOFreq;
@@ -59,8 +54,6 @@ function[CarrFreqSorted,PhNoFreq,phNoLevIntNorm,...
     sort(CarrierFreq(CarrierFreq~=0));
     carrNum=length(CarrFreqSorted);
 
-
-
     if((size(phNoOffFull,2)==1)&&(carrNum>1))
         phNoOffFull=repmat(phNoOffFull,1,carrNum);
         phNoLevFull=repmat(phNoLevFull,1,carrNum);
@@ -73,16 +66,11 @@ function[CarrFreqSorted,PhNoFreq,phNoLevIntNorm,...
         stepSource='Configuration block Envelope Bandwidth';
     end
 
-
-
     if(any(phNoLevFull(:)~=-inf))
 
         if(size(phNoOffFull,2)~=carrNum)
 
-
             if(carrNum==0)
-
-
                 error(message(['simrf:simrfV2errors:'...
                 ,'PhaseNoiseDataInDC'],block))
             else
@@ -258,6 +246,7 @@ function[CarrFreqSorted,PhNoFreq,phNoLevIntNorm,...
     end
 
 end
+
 
 function sampleRate=estimateSampleRate(freqOffsets)
     sampleRate=2.5*max(freqOffsets,[],'all');
