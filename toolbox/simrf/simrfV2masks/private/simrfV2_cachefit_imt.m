@@ -1,10 +1,5 @@
 function simrfV2_cachefit_imt(block,filename)
 
-
-
-
-
-
     if isempty(which(filename))
         fileInfo=dir(filename);
     else
