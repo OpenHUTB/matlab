@@ -1,9 +1,5 @@
 classdef nullsrcsink_block<wt.internal.uhd.clibgen.block
 
-
-
-
-
     methods(Access=protected)
         function control=getCustomBlockController(obj)
             control=obj.graph.get_block_uhd__rfnoc__null_block_control_(getID(obj));
