@@ -1,23 +1,9 @@
 function[out_freqs,transfer]=...
     simrfV2_amp_noise_src_setup(freqs,CholCovariance)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     [nport,~,~]=size(CholCovariance);
     validateattributes(CholCovariance,{'numeric'},{'nonempty','size',...
     [nport,nport,length(freqs)]},mfilename,'Covariance data')
-
 
     freqs=freqs(:)';
     assert(all(freqs>=0)&&issorted(freqs),...
@@ -30,7 +16,6 @@ function[out_freqs,transfer]=...
 
         CholCovariance(:,:,1)=real(CholCovariance(:,:,1));
     end
-
 
     transfer=cell(nport,nport);
     out_freqs=cell(nport,nport);
