@@ -1,12 +1,5 @@
 function simrfV2rfbudgetiqmod(block,action)
 
-
-
-
-
-
-
-
     switch(action)
     case 'simrfInit'
         top_sys=bdroot(block);
@@ -14,8 +7,6 @@ function simrfV2rfbudgetiqmod(block,action)
         if strcmpi(top_sys,'rfBudgetAnalyzer_lib')
             return
         end
-
-
         MaskVals=get_param(block,'MaskValues');
         idxMaskNames=simrfV2getblockmaskparamsindex(block);
 
@@ -34,11 +25,8 @@ function simrfV2rfbudgetiqmod(block,action)
             if(strcmpi(MaskVals{idxMaskNames.SetFilters},'on'))
                 isSetFilters=true;
 
-
                 set_param(block,'SetFilters','off');
             end
-
-
 
             repBlkFullPath=find_system(block,'LookUnderMasks',...
             'all','FollowLinks','on','SearchDepth',1,'Name',...
