@@ -1,18 +1,12 @@
 function spars = simrfV2_sparm_from_ratmodel( ratmod, nports, freqs )
 
-
-
-
-
 freqsLen = length( freqs );
-
 
 Poles = ratmod.A;
 Residues = ratmod.C;
 DF = ratmod.D;
 
 if isempty( Poles )
-
 
 Poles( 1:nports ^ 2, 1 ) = { 1 + 1i };
 Residues( 1:nports ^ 2, 1 ) = { 0 };
@@ -37,7 +31,6 @@ hRatMod = rfmodel.rational( 'A', Poles{ idx }, 'C', Residues{ idx },  ...
 spars( row_idx( idx ), col_idx( idx ), : ) = freqresp( hRatMod, freqs );
 end 
 
-end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpo5VWvi.p.
-% Please follow local copyright laws when handling this file.
+end
+
 
