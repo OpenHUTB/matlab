@@ -1,12 +1,4 @@
 function MaskWSVal=simrfV2getblockmaskwsvalues(block)
-
-
-
-
-
-
-
-
     mwsv=get_param(block,'MaskWSVariables');
     MaskWSNames={mwsv.Name};
     MaskWSValues={mwsv.Value};
