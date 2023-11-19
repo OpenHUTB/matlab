@@ -1,29 +1,5 @@
 function designData=simrfV2_filt_designpars(mwsv)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     validateattributes(mwsv.Rsrc,{'numeric'},...
     {'nonempty','scalar','finite','real','positive'},...
     mfilename,'Source impedance')
