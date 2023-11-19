@@ -1,17 +1,10 @@
 function simrfV2impedance(block,action)
 
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(get_param(top_sys,'BlockDiagramType'),'library')...
         &&strcmpi(top_sys,'simrfV2elements')
         return;
     end
-
-
-
 
     switch(action)
     case 'simrfInit'
@@ -20,12 +13,9 @@ function simrfV2impedance(block,action)
             {'running','paused'}))
             return
         end
-
-
         MaskVals=get_param(block,'MaskValues');
         idxMaskNames=simrfV2getblockmaskparamsindex(block);
         MaskWSValues=simrfV2getblockmaskwsvalues(block);
-
         simrfV2constants=simrfV2_constants();
         Rmin=value(simrfV2constants.Rmin,'Ohm');
 
