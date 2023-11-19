@@ -1,15 +1,8 @@
 classdef DeviceParameterValidator<handle
 
 
-
-
-
     methods(Static)
         function validateDeviceName(deviceName,funcName,varName)
-
-
-
-
             validateattributes(deviceName,{'char'},{'nonempty','row'},...
             funcName,varName);
         end
