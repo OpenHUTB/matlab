@@ -1,6 +1,5 @@
 function simRFV2TestbenchRF2RFCallbackFcn( block, action )
 
-
 top_sys = bdroot( block );
 if strcmpi( get_param( top_sys, 'BlockDiagramType' ), 'library' )
 return ;
@@ -14,10 +13,7 @@ isRunningorPaused = any( strcmpi( get_param( top_sys, 'SimulationStatus' ),  ...
 switch action
 case 'simrfInit'
 
-
 if ( ~isRunningorPaused )
-
-
 
 T_amp_dBm_scL = get_param( block, 'T_amp_dBm_scL' );
 T_amp_dBm_scU = get_param( block, 'T_amp_dBm_scU' );
@@ -55,10 +51,8 @@ IPTypeNum = strcmp( fullTypeOpts, IPTypeStr ) * [ 1, 2 ]';
 switch action
 case 'NoiseboxCallback'
 
-
 if ( ~isRunningorPaused )
 if ( ( uncheckedNoise ) && ( isVisLong ) )
-
 
 set_param( [ block, '/Configuration' ], 'AddNoise', 'off' )
 set_param( block, 'ModeStrShort', ModeStrLong )
@@ -83,7 +77,6 @@ set_param( block, 'ModeStrShort', ModeStrShort )
 end 
 end 
 case 'LongPulldownModeCallback'
-
 
 if ( ~isRunningorPaused )
 if strcmp( get_param( block, 'ModeStrLong' ), 'NF' )
@@ -137,11 +130,8 @@ set_param( gcb, 'ResetableRand', num2str( rand, '%.16e' ) )
 end 
 end 
 
-
-
 set_param( block, 'Mode', num2str( ModeNum ) )
 set_param( block, 'IPType', num2str( IPTypeNum ) )
-
 
 EmptyText6 = maskObj.getDialogControl( 'EmptyText6' );
 EmptyText7 = maskObj.getDialogControl( 'EmptyText7' );
@@ -149,7 +139,6 @@ ResetContainer = maskObj.getDialogControl( 'ResetContainer' );
 MaskVisibilities = get_param( block, 'MaskVisibilities' );
 InstText = maskObj.getDialogControl( 'InstText' );
 EmptyText10 = maskObj.getDialogControl( 'EmptyText10' );
-
 
 if any( strcmpi( get_param( bdroot( block ), 'SimulationStatus' ),  ...
 { 'running', 'paused' } ) )
@@ -163,7 +152,6 @@ suggestionStr1IP3 = '';
 suggestionStr2 = '';
 suggestionStr2IP3 = '';
 end 
-
 
 switch ModeNum
 case 1
@@ -357,6 +345,5 @@ InstText.Prompt = newInstText;
 end 
 set_param( block, 'MaskVisibilities', MaskVisibilities )
 end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp3pXdc8.p.
-% Please follow local copyright laws when handling this file.
+
 
