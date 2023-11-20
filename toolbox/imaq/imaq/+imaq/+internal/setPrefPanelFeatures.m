@@ -1,9 +1,5 @@
 function setPrefPanelFeatures()
 
-
-
-
-
     prefPropObj=PreferencePanelProperties.getOrResetInstance();
 
     imaqmex('feature','-gigeCommandPacketRetries',prefPropObj.getGigeCommandPacketRetries);
