@@ -1,14 +1,5 @@
 function diskLogger=handleDiskLoggerFileExists(this,filename,profileName)
 
-
-
-
-
-
-
-
-
-
     javaPeer=java(this.javaPeer);
     formatNodePanel=javaPeer.getFormatNodePanel();
     formatNodePanel.setMatlabUpdate(true);
@@ -16,8 +7,6 @@ function diskLogger=handleDiskLoggerFileExists(this,filename,profileName)
 
     browser=iatbrowser.Browser();
     vidObj=browser.currentVideoinputObject;
-
-
 
     dialog=iatbrowser.LogFilePresentDialog();
     choice=dialog.doDialog();
