@@ -1,11 +1,5 @@
 function handleIMAQRegister(this,obj,event)%#ok<INUSL>
 
-
-
-
-
-
-
     filename=event.JavaEvent;
 
     try
