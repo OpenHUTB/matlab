@@ -1,15 +1,4 @@
 function initialize(this,rootNode)
-
-
-
-
-
-
-
-
-
-
-
     this.javaPeer=handle(com.mathworks.toolbox.imaq.browser.HardwareInfoPanel.getInstance());
     connect(this,this.javaPeer,'down');
 
