@@ -1,30 +1,8 @@
 function showOptionDialogWithAdditionalMessage(this,parentFrame,optionDialogParameterName,messageToAppend,userData,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if isa(userData,'function_handle')
         error(message('imaq:imaqtool:dialogBadUserData','showOptionDialog'))
     end
-
     params=eval(['com.mathworks.toolbox.imaq.browser.dialogs.OptionDialogParameters.',optionDialogParameterName]);
     dialog=com.mathworks.toolbox.imaq.browser.dialogs.OptionDialog(parentFrame,params,userData,messageToAppend);
 
