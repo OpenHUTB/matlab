@@ -1,12 +1,5 @@
 function updateROIPanel(this)%#ok<INUSD>
 
-
-
-
-
-
-
-
     b=iatbrowser.Browser();
 
     vidObj=iatbrowser.Browser().currentVideoinputObject;
