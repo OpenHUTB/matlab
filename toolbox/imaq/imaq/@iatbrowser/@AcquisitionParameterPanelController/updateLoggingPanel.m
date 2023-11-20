@@ -1,11 +1,5 @@
 function updateLoggingPanel(this)
 
-
-
-
-
-
-
     javaPeer=java(this.javaPeer);
     formatNodePanel=javaPeer.getFormatNodePanel();
 
