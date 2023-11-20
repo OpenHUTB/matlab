@@ -1,13 +1,5 @@
 function initialize(this,refreshingHardwareTree)
 
-
-
-
-
-
-
-
-
     this.messageBus=iatbrowser.MessageBus();
 
     this.isClosing=false;
@@ -15,28 +7,21 @@ function initialize(this,refreshingHardwareTree)
 
     this.currentVideoinputObject=[];
 
-
     this.isRefreshingHardware=refreshingHardwareTree;
 
     desk=iatbrowser.getDesktop();
 
-
-
     closeCallback=handle(desk.getCloseCallback());
     this.closeListener=handle.listener(closeCallback,'delayed',@handleClose);
-
 
     this.treePanel=iatbrowser.HardwareTree;
     connect(this,this.treePanel,'down');
 
-
     this.infoPanel=iatbrowser.InfoPanelController(this.treePanel.rootNode);
     connect(this,this.infoPanel,'down');
 
-
     this.prevPanelController=iatbrowser.PreviewPanelController(this.treePanel.rootNode);
     connect(this,this.prevPanelController,'down');
-
 
     this.acqParamPanel=iatbrowser.AcquisitionParameterPanelController(this.treePanel.rootNode,this.prevPanelController);
     connect(this,this.acqParamPanel,'down');
