@@ -1,7 +1,5 @@
 function Parms=autoblksgetmaskparms(Block,ParmNames,Assign)
 
-
-
     MaskObject=get_param(Block,'MaskObject');
     MaskVarNames={MaskObject.getWorkspaceVariables.Name};
     MaskVarValues={MaskObject.getWorkspaceVariables.Value};
