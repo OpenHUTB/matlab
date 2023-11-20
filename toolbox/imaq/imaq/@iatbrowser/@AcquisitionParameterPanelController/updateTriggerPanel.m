@@ -1,12 +1,5 @@
 function updateTriggerPanel(this)
 
-
-
-
-
-
-
-
     javaPeer=java(this.javaPeer);
     formatNodePanel=javaPeer.getFormatNodePanel();
 
