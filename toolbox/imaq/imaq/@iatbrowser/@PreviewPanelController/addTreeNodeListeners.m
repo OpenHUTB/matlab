@@ -1,12 +1,5 @@
 function addTreeNodeListeners(this,node)
 
-
-
-
-
-
-
-
     [theEvent,nodeClass]=iatbrowser.generateNodeSelectedEventName(node);
     nodeHandler=eval(['@handle',nodeClass,'Selected']);
     if isempty(this.treeNodeListeners)
