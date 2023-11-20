@@ -1,19 +1,5 @@
 function displayString=toString(this)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     deviceNode=this.node;
 
     stringTemplate=...
