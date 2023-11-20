@@ -1,20 +1,9 @@
 function hardwareTreeNodeSelectedCallback(this,callbackObj,eventdata)%#ok<INUSL,INUSL>
 
-
-
-
-
-
-
-
-
-
     nodeObject=eventdata.JavaEvent.newNode;
     browser=iatbrowser.Browser;
 
     if isequal(nodeObject,this.currentNode)
-
-
 
         return;
     end
