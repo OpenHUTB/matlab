@@ -1,16 +1,5 @@
 function destroy(this,destroyJava)
 
-
-
-
-
-
-
-
-
-
-
-
     if~isempty(this.propertyUpdateTimer);
         this.stopPropertyUpdateTimer();
         delete(this.propertyUpdateTimer);
