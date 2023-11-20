@@ -1,9 +1,5 @@
 function handleStartPrevClickedCallback(this,obj,event)%#ok<INUSD,INUSD>
 
-
-
-
-
     if this.areFramesAvailableForExport
         od=iatbrowser.OptionDialog();
         od.showOptionDialog(...
