@@ -1,31 +1,21 @@
 function schema
 
-
-
-
-
     pk=findpackage('iatbrowser');
-
 
     className='Browser';
     browserClass=schema.class(pk,className);
     browserClass.JavaInterfaces={[pk.JavaPackage,'.',className]};
 
-
     messageBusProp=schema.prop(browserClass,'messageBus','MATLAB array');
     messageBusProp.AccessFlags.PublicSet='on';
     messageBusProp.AccessFlags.PublicGet='on';
-
-
     vidObjProp=schema.prop(browserClass,'currentVideoinputObject','MATLAB array');
     vidObjProp.AccessFlags.PublicSet='on';
     vidObjProp.AccessFlags.PublicGet='on';
 
-
     theProp=schema.prop(browserClass,'isRefreshingHardware','bool');
     theProp.AccessFlags.PublicSet='on';
     theProp.AccessFlags.PublicGet='on';
-
 
     treePanelProp=schema.prop(browserClass,'treePanel','handle vector');
     treePanelProp.AccessFlags.PublicSet='off';
@@ -69,25 +59,20 @@ function schema
     desktopListenerProp.AccessFlags.PublicSet='off';
     desktopListenerProp.AccessFlags.PublicGet='on';
 
-
     closeListenerProp=schema.prop(browserClass,'closeListener','handle');
     closeListenerProp.AccessFlags.PublicSet='off';
     closeListenerProp.AccessFlags.PublicGet='on';
-
 
     theProp=schema.prop(browserClass,'reopenListener','handle');
     theProp.AccessFlags.PublicSet='on';
     theProp.AccessFlags.PublicGet='on';
 
-
     refreshListenerProp=schema.prop(browserClass,'refreshListener','handle');
     refreshListenerProp.AccessFlags.PublicSet='off';
     refreshListenerProp.AccessFlags.PublicGet='on';
 
-
     theProp=schema.prop(browserClass,'imaqregisterListener','handle');
     theProp.AccessFlags.PublicSet='off';
     theProp.AccessFlags.PublicGet='on';
-
 
     schema.prop(browserClass,'isClosing','bool');
