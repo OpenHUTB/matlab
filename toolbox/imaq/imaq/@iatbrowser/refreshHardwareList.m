@@ -1,10 +1,5 @@
 function refreshHardwareList
 
-
-
-
-
-
     if com.mathworks.toolbox.imaq.browser.IATBrowserDesktop.hasInstance()
         mainFrame=iatbrowser.getDesktopFrame();
         browser=iatbrowser.Browser;
