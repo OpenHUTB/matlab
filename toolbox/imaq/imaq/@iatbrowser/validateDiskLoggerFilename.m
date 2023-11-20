@@ -1,11 +1,4 @@
 function[newFilename,fileExists]=validateDiskLoggerFilename(filename,profileName)
-
-
-
-
-
-
-
     [filePath,fileBase,fileExt]=fileparts(filename);
 
     profiles=VideoWriter.getProfiles();
