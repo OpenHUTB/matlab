@@ -1,12 +1,5 @@
 function updateGeneralPanel(this)
 
-
-
-
-
-
-
-
     javaPeer=java(this.javaPeer);
     formatNodePanel=javaPeer.getFormatNodePanel();
 
