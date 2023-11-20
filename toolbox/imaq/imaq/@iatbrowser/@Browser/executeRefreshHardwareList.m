@@ -1,9 +1,5 @@
 function executeRefreshHardwareList(this)
 
-
-
-
-
     glassPaneSentinel=iatbrowser.GlassPaneSentinel;%#ok<NASGU>
     desk=iatbrowser.getDesktop();
     desk.enableGlassPane(true);
