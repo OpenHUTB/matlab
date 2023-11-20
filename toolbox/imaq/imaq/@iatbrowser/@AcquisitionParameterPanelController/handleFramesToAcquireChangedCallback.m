@@ -1,9 +1,5 @@
 function handleFramesToAcquireChangedCallback(this,obj,event)%#ok<INUSL>
 
-
-
-
-
     vidObj=iatbrowser.Browser().currentVideoinputObject;
     framesPerTrigger=double(event.JavaEvent);
 
