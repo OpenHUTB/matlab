@@ -1,11 +1,6 @@
 function schema
 
-
-
-
-
     pk=findpackage('iatbrowser');
-
 
     className='GlassPaneSentinel';
     sentinelClass=schema.class(pk,className);
