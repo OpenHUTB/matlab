@@ -1,11 +1,6 @@
 function[im,pos]=iconImageUpdate(varargin)
 
 
-
-
-
-
-
     switch nargin
     case 1
         imageFile=varargin{1};
