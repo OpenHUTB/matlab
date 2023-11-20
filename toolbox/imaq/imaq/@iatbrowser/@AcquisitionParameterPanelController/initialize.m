@@ -1,14 +1,5 @@
 function initialize(this,rootNode,prevPanel)
 
-
-
-
-
-
-
-
-
-
     this.javaPeer=handle(com.mathworks.toolbox.imaq.browser.acquisitionParameters.AcquisitionParametersPanel.getInstance());
     connect(this,this.javaPeer,'down');
 
