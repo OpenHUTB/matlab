@@ -1,58 +1,12 @@
 function NewBlkHdl=autoblksreplaceblock(ParentBlk,OptionList,SelectedOptionIndex)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if ischar(ParentBlk)
         FullParentName=ParentBlk;
         ParentBlk=get_param(ParentBlk,'Handle');
     else
         FullParentName=getfullname(ParentBlk);
     end
-
 
     OldBlock=find_system(ParentBlk,'LookUnderMasks','all','SearchDepth',1,'FollowLinks','on','Name',OptionList{SelectedOptionIndex,2},'Parent',FullParentName);
     if~isempty(OldBlock)
@@ -69,7 +23,6 @@ function NewBlkHdl=autoblksreplaceblock(ParentBlk,OptionList,SelectedOptionIndex
 
     end
     OldConns=autoblksgetblockconn(OldBlock);
-
 
 
     for i=1:length(OldConns.Inports)
@@ -93,13 +46,11 @@ function NewBlkHdl=autoblksreplaceblock(ParentBlk,OptionList,SelectedOptionIndex
         delete_line(OldConns.RConns(i).LineHdl);
     end
 
-
     Position=get_param(OldBlock,'Position');
     delete_block(OldBlock);
     NewBlockName=[FullParentName,'/',OptionList{SelectedOptionIndex,2}];
     add_block(OptionList{SelectedOptionIndex,1},NewBlockName,'Position',Position);
     NewBlkHdl=get_param(NewBlockName,'Handle');
-
 
     autoblksreconnectblock(NewBlkHdl,OldConns)
 
