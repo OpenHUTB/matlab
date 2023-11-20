@@ -1,11 +1,4 @@
 function handleLoggingModeChangedCallback(this,~,event)
-
-
-
-
-
-
-
     vidObj=iatbrowser.Browser().currentVideoinputObject;
 
 
@@ -13,13 +6,10 @@ function handleLoggingModeChangedCallback(this,~,event)
     if strcmpi(vidObj.LoggingMode,loggingMode)
         return
     end
-
-
     set(vidObj,'LoggingMode',loggingMode);
 
     ed=iatbrowser.SessionLogEventData(vidObj,'vid.LoggingMode = ''%s'';\n\n',loggingMode);
     iatbrowser.Browser().messageBus.generateEvent('SessionLogEvent',ed);
-
 
 
     if strfind(lower(loggingMode),'disk')
