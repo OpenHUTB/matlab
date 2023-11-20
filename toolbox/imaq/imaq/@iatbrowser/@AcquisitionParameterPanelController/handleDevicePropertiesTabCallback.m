@@ -1,18 +1,7 @@
 function handleDevicePropertiesTabCallback(this,javaEvent)
 
 
-
-
-
-
-
-
-
-
     if javaEvent.javaEvent
-
-
-
 
         timerPeriod=round(propertyPanelUpdateRate()*2,3);
         if timerPeriod<1
@@ -58,8 +47,6 @@ function handleDevicePropertiesTabCallback(this,javaEvent)
             end
 
             propname=aprop.getName();
-
-
 
             javaMethodEDT('setValue',aprop,get(curSrc,char(propname)))
         end
