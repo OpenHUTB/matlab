@@ -1,17 +1,6 @@
 function initialize(this,rootNode)
 
-
-
-
-
-
-
-
-
-
-
     desk=iatbrowser.getDesktop();
-
 
     this.stopping=false;
     this.restartPreview=false;
@@ -73,9 +62,6 @@ function initialize(this,rootNode)
         prevPanelButtonPanel=java(this.prevPanel.prevPanelButtonPanel);
         exportCallback=handle(prevPanelButtonPanel.getExportCallback());
         this.widgetListeners=handle.listener(exportCallback,'delayed',@handleExport);
-
-
-
 
         this.widgetListeners.RecursionLimit=1000;
 
