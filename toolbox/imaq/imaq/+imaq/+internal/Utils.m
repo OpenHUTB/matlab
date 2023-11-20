@@ -1,7 +1,6 @@
 classdef(Hidden)Utils<handle
 
 
-
     methods(Static)
         function out=isCharOrScalarString(input)
 
