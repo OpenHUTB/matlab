@@ -1,13 +1,5 @@
 function this=GlassPaneSentinel
 
-
-
-
-
-
-
-
-
     this=iatbrowser.GlassPaneSentinel;
 
     this.listener=handle.listener(this,'ObjectBeingDestroyed',@cleanup);
