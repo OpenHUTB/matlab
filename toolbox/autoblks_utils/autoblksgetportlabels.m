@@ -1,29 +1,9 @@
 function PortLabelInfo=autoblksgetportlabels(Block,AliasNameList)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin<2
         AliasNameList={};
     end
-
 
     PortHdls=get_param(Block,'PortHandles');
     PortLabelInfo.lconn=autoblksgetblkportnames(Block,PortHdls,'LConn');
