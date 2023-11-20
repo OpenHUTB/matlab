@@ -1,26 +1,5 @@
 function displayString=toString(this)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     stringTemplate=...
     ['<html>'...
     ,'<h3>%s</h3>'...
