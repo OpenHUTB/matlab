@@ -1,11 +1,5 @@
 function handleMemoryLimitChangedCallback(~,~,event)
 
-
-
-
-
-
-
     memLimit=double(event.JavaEvent);
 
 
@@ -14,7 +8,6 @@ function handleMemoryLimitChangedCallback(~,~,event)
     if memLimit==getCurrentMemoryLimit()
         return
     end
-
 
     imaqmem(memLimit);
 
