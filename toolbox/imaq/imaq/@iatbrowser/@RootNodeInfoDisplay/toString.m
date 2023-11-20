@@ -1,19 +1,4 @@
 function displayString=toString(~)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     warnState=warning('off','imaq:imaqhwinfo:additionalVendors');
     info=imaqhwinfo;
     warning(warnState);
