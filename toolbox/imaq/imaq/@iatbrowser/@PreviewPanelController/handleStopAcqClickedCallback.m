@@ -1,10 +1,5 @@
 function handleStopAcqClickedCallback(this,~,~)
 
-
-
-
-
-
     desk=iatbrowser.getDesktop();
     desk.enableGlassPane(true);
     drawnow;
@@ -32,9 +27,5 @@ function handleStopAcqClickedCallback(this,~,~)
         [],...
         []);
     end
-
-
-
-
 
 end
