@@ -1,8 +1,5 @@
 classdef RemotableObject<handle
 
-
-
-
     properties(SetAccess=immutable)
 RemoteID
     end
