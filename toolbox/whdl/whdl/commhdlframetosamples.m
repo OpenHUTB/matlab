@@ -3,9 +3,6 @@ function[dataOut,ctrlOut]=commhdlframetosamples(inputFrame,...
     numOutputSamples,interleaveSamples...
     )
 
-
-
-
 %#codegen
     coder.allowpcode('plain');
 
@@ -55,18 +52,8 @@ function[dataOut,ctrlOut]=commhdlframetosamples(inputFrame,...
         data_iss(outIdx,:)=data_vld(:,:);
     end
 
-
     data_if=[data_iss;zeros(interFrameSpace,numOutputSamples,...
     'like',data_val)];
-
-
-
-
-
-
-
-
-
     [frame_start_if,frame_end_if]=deal(false(...
     numSubframes*(1+interSampleSpace)+interFrameSpace,...
     1));
