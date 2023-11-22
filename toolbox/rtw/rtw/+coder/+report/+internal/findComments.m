@@ -1,16 +1,9 @@
-
-
-
-
 function[startIdx,endIdx,lineToIndex]=findComments(s)
-
-
 
     LF=char(10);
     CR=char(13);
     s=[s,' '];
     len=length(s);
-
 
     startIdx=zeros(1,int64(len/2));
     endIdx=zeros(1,int64(len/2));
@@ -23,9 +16,6 @@ function[startIdx,endIdx,lineToIndex]=findComments(s)
     line=1;
     startLine=1;
     while(i<len)
-
-
-
 
         if(s(i)==LF||s(i)==CR)
             line=line+1;
