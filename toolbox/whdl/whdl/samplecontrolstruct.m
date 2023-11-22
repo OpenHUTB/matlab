@@ -1,15 +1,9 @@
 function samplecontrol=samplecontrolstruct(varargin)
 
 
-
-
-
-
 %#codegen
 
     narginchk(0,3);
-
-
     samplecontrol=struct('start',true,'end',false,...
     'valid',true);
 
