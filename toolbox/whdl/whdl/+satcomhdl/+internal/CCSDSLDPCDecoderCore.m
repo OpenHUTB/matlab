@@ -1,9 +1,6 @@
 classdef(StrictDefaults)CCSDSLDPCDecoderCore<matlab.System
 
 
-
-
-
 %#codegen
 
     properties(Nontunable)
