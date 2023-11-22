@@ -1,27 +1,16 @@
 classdef(StrictDefaults)DVBS2BCHDecoder<matlab.System
 
-
-
-
 %#codegen
-
 
     properties(Nontunable)
 
-
         FECFrameType='Normal';
-
-
 
         CodeRateSource='Property';
 
-
-
         CodeRateNormal='1/4';
 
-
         CodeRateShort='1/4';
-
 
         NumErrorsOutputPort(1,1)logical=false;
     end
