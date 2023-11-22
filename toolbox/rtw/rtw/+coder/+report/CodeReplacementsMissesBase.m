@@ -1,6 +1,3 @@
-
-
-
 classdef CodeReplacementsMissesBase<coder.report.ReportPageBase
     properties(Access=protected,Transient=true)
         TargetRegistry={};
