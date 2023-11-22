@@ -1,32 +1,10 @@
 function codeWasUpToDate=accelbuild_private(modelName,okToPushNags,codeExecProfTop,codeExecStackTop,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
     if nargin==2
         codeExecProfTop=false;
         codeExecStackTop=false;
     end
-
     codeWasUpToDate=LocalAccelbuildprivate(modelName,okToPushNags,codeExecProfTop,codeExecStackTop,varargin{:});
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -38,8 +16,6 @@ function codeWasUpToDate=accelbuild_private(modelName,okToPushNags,codeExecProfT
         p.addParameter('SILModelReferencesTopModel',[]);
         p.addParameter('PILModelReferencesTopModel',[]);
         p.parse(varargin{:});
-
-
 
         preserve_dirty=Simulink.PreserveDirtyFlag(modelName,'blockDiagram');
 
