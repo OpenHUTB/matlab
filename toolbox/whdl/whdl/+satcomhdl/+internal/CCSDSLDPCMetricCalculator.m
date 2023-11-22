@@ -1,8 +1,6 @@
 classdef(StrictDefaults)CCSDSLDPCMetricCalculator<matlab.System
 
 
-
-
 %#codegen
 
     properties(Nontunable)
