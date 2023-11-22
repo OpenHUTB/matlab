@@ -1,8 +1,5 @@
 classdef(StrictDefaults)CCSDSLDPCFunctionalUnit<matlab.System
 
-
-
-
 %#codegen
 
     properties(Nontunable)
