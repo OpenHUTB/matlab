@@ -1,9 +1,5 @@
 classdef(StrictDefaults)CCSDSLDPCFinalOutput<matlab.System
 
-
-
-
-
 %#codegen
 
     properties(Nontunable)
