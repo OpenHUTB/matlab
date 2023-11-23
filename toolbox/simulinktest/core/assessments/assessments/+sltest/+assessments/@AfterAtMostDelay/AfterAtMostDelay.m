@@ -1,6 +1,3 @@
-
-
-
 classdef(Sealed)AfterAtMostDelay<sltest.assessments.UnaryDuration
     methods
         function self=AfterAtMostDelay(duration,expr)
