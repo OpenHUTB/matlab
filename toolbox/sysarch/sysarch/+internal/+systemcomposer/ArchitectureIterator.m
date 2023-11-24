@@ -1,6 +1,5 @@
 classdef ArchitectureIterator<internal.systemcomposer.HierarchyIterator
 
-
     properties
         IncludeArchitecturePorts=false;
         FollowConnectivity=false;
@@ -8,8 +7,6 @@ classdef ArchitectureIterator<internal.systemcomposer.HierarchyIterator
 
     methods(Static,Access=private)
         function retComps=orderByConnectivity(comps)
-
-
             retComps=cell(1,length(comps));
 
             for k=1:length(comps)
@@ -17,8 +14,6 @@ classdef ArchitectureIterator<internal.systemcomposer.HierarchyIterator
                 comps(k).Processed=false;
                 comps(k).Visited=true;
             end
-
-
             compStack.nodes=cell(1,length(comps));
             compStack.used=0;
 
