@@ -1,8 +1,6 @@
 
 function rec=IEC61508_ProperUsage
 
-
-
     rec=Simulink.MdlAdvisorCheck;
     rec.Title=DAStudio.message('ModelAdvisor:iec61508:ProperUsageTitle');
     rec.TitleID='mathworks.iec61508.ProperUsage';
@@ -59,6 +57,5 @@ function rec=IEC61508_ProperUsage
         if~bResult
             checkResultPass=false;
         end
-
 
         mdladvObj.setCheckResultStatus(checkResultPass);
