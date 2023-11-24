@@ -1,8 +1,4 @@
-
-
 function RemoveProfileCB(archOrDD,profNames)
-
-
 
     prompt=message('SystemArchitecture:studio:ConfirmDeleteProfileModel',strjoin(profNames)).string;
     if ischar(archOrDD)
