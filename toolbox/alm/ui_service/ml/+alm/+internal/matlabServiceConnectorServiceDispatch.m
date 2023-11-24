@@ -1,9 +1,6 @@
 function result=matlabServiceConnectorServiceDispatch(...
     serviceName,serviceCall,serviceArgs,operationStatus)
 
-
-
-
     curProj=matlab.project.currentProject();
     if~isempty(curProj)
         projRootPath=curProj.RootFolder;
