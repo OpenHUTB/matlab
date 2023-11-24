@@ -1,13 +1,5 @@
 function customizationHISM()
 
-
-
-
-
-
-
-
-
     cm=DAStudio.CustomizationManager;
 
     cm.addModelAdvisorCheckFcn(@defineHismModelAdvisorChecks);
