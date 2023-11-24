@@ -1,6 +1,5 @@
 classdef StudioIntegManager<handle
 
-
     methods(Static=true)
 
         function openSpotlightInStudio(studioTag,url,spotlightObj)
@@ -21,13 +20,9 @@ classdef StudioIntegManager<handle
 
                     ZCStudio.StudioIntegManager.closeInvalidNotifInStudio(activeStudio);
 
-
                     ZCStudio.StudioIntegManager.closeLightViewFinder(studioTag);
 
-
-
                     ZCStudio.StudioIntegManager.resetPropertyInspectorToModel(activeStudio);
-
                     activeStudio.App.embedSpolightView(connector.getUrl(url),sources,relatedElems);
                 end
             else
@@ -59,10 +54,6 @@ classdef StudioIntegManager<handle
                 studio=studios(i);
                 editor=studio.App.getActiveEditor();
                 name=editor.getName();
-
-
-
-
                 modelName=strtok(name,'/');
 
                 if strcmp(modelName,appName)&&studio.App.hasSpotlightView()
@@ -85,9 +76,6 @@ classdef StudioIntegManager<handle
                     try
                         modelName=bdroot(name);
                     catch
-
-
-
                         modelName=strtok(name,'/');
                     end
 
@@ -103,14 +91,12 @@ classdef StudioIntegManager<handle
         function closeInvalidNotifInStudio(studio)
             editor=studio.App.getActiveEditor();
 
-
             topLevelDiagram=studio.App.topLevelDiagram;
             modelHandle=topLevelDiagram.handle;
             modelName=get_param(modelHandle,'Name');
 
             messageId=strcat(modelName,'SpotlightInvalidNotification');
             editor.closeNotificationByMsgID(messageId);
-
             nonExistElemMessageId=strcat(modelName,'SpotlightNonExistElement');
             editor.closeNotificationByMsgID(nonExistElemMessageId);
         end
@@ -121,7 +107,6 @@ classdef StudioIntegManager<handle
             for i=1:length(studios)
                 studio=studios(i);
                 editor=studio.App.getActiveEditor();
-
 
                 topLevelDiagram=studio.App.topLevelDiagram;
                 modelHandle=topLevelDiagram.handle;
@@ -135,7 +120,6 @@ classdef StudioIntegManager<handle
 
         function refreshSpotlights(appName)
             systemcomposer.internal.arch.internal.refreshSpotlights(appName);
-
 
             selections={};
             sysarch.highlightRequirement(selections);
