@@ -1,6 +1,3 @@
-
-
-
 classdef SLTestResolver<alm.internal.AbstractArtifactResolver
 
     properties
@@ -37,21 +34,7 @@ classdef SLTestResolver<alm.internal.AbstractArtifactResolver
             licPrev=alm.internal.sltest.SLTestLicenseCheckoutOverride();%#ok<NASGU> % RAII
 
             h.Loader.load(h.MainArtifact,h.Graph);
-
-
-
-
-
-
-
-
-
-
-
             redirectedArtifact=alm.Artifact.empty(0,1);
-
-
-
             assessmentUuid=extractBefore(convertedAddress,":");
             assNum=str2double(extractAfter(convertedAddress,":"));
 
@@ -59,11 +42,6 @@ classdef SLTestResolver<alm.internal.AbstractArtifactResolver
                 isempty(assNum)||isnan(assNum)
                 return;
             end
-
-
-
-
-
             assId=stm.internal.getTestIdFromUUIDAndTestFile(...
             convertedAddress,h.AbsoluteFileAddress);
 
@@ -85,11 +63,6 @@ classdef SLTestResolver<alm.internal.AbstractArtifactResolver
 
             tcUuid=tcObj.UUID;
 
-
-
-
-
-
             assNums=[];
             assInfo=stm.internal.getAssessmentsInfo(assId);
 
@@ -105,9 +78,6 @@ classdef SLTestResolver<alm.internal.AbstractArtifactResolver
                     end
                 end
             end
-
-
-
 
             if any(ismember(assNums,assNum))
                 redirectedArtifact=h.Graph.getArtifactByAddress(h.Storage.CustomId,...
