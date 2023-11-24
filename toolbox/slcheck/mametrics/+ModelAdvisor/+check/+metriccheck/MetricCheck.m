@@ -1,6 +1,3 @@
-
-
-
 classdef(CaseInsensitiveProperties=true)MetricCheck<ModelAdvisor.Check
 
     properties(SetAccess=protected)
