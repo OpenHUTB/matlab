@@ -1,10 +1,6 @@
 
 function rec=IEC61508_UnconnectedObjects
 
-
-
-
-
     rec=Simulink.MdlAdvisorCheck;
     rec.Title=DAStudio.message('ModelAdvisor:iec61508:UnconnectedObjectsTitle');
     rec.TitleID='mathworks.iec61508.UnconnectedObjects';
@@ -24,8 +20,6 @@ function rec=IEC61508_UnconnectedObjects
     rec.CSHParameters.TopicID='com.mw.slvnv.iec61508UnconnectedObjects';
     rec.SupportExclusion=true;
     rec.SupportLibrary=true;
-
-
 
 
 
