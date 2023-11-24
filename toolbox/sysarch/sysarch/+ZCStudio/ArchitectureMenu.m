@@ -1,8 +1,5 @@
 function schema=ArchitectureMenu(fcnName,cbinfo,varargin)
 
-
-
-
     fcn=str2func(fcnName);
 
     if nargout(fcn)
@@ -36,11 +33,7 @@ function children=generateArchitectureMenuChildren(cbinfo)
 
     im=DAStudio.InterfaceManagerHelper(cbinfo.studio,'Simulink');
 
-
-
     showBlockParams=false;
-
-
     block=SLStudio.Utils.getOneMenuTarget(cbinfo);
     if SLStudio.Utils.objectIsValidBlock(block)
         if systemcomposer.internal.isReferenceComponent(block.handle)
