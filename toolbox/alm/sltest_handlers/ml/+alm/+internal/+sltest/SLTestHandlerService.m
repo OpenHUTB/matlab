@@ -1,8 +1,5 @@
 classdef SLTestHandlerService<alm.internal.AbstractHandlerService
 
-
-
-
     methods
         function h=SLTestHandlerService(metaData)
             h=h@alm.internal.AbstractHandlerService(metaData);
