@@ -1,20 +1,5 @@
 function checkObj=getNewCheckObject(checkID,xmlstyle,hCallbackHandle,context)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     parts=strsplit(checkID,'.');
 
     guidelineID=parts{3};
