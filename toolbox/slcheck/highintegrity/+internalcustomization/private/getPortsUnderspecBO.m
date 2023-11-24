@@ -1,20 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function FlaggedPorts=getPortsUnderspecBO(system,hBusObjports)
 
     FlaggedPorts=cell(0,4);
@@ -33,7 +16,6 @@ function FlaggedPorts=getPortsUnderspecBO(system,hBusObjports)
             NumViolatingBusElements=0;
 
             for ni=1:size(UsedVars,1)
-
 
 
                 if existsInGlobalScope(system,UsedVars(ni,1).Name)
