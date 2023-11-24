@@ -1,8 +1,5 @@
 function das=getDirtyLinkSets()
 
-
-
-
     das=struct('Type',{},'Address',{},'ParentType',{},'ParentAddress',{});
 
     rss=slreq.find('type','LinkSet','Dirty',true);
