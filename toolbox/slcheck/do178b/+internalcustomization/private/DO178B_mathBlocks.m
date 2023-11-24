@@ -1,10 +1,4 @@
 function DO178B_mathBlocks
-
-
-
-
-
-
     rec=ModelAdvisor.Check('mathworks.do178.MathBlksUsage');
     rec.Title=DAStudio.message('ModelAdvisor:do178b:mathBlocksUsageTitle');
     rec.setCallbackFcn(@MathBlockUsageCallback,'None','StyleOne');
@@ -31,10 +25,6 @@ function DO178B_mathBlocks
         ft=ModelAdvisor.FormatTemplate('ListTemplate');
         ft.setSubBar(0);
         ft.setInformation(DAStudio.message([xlateTagPrefix,'mathBlocksUsageTip']));
-
-
-
-
         searchResult=find_system(system,'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,'LookUnderMasks','all','FollowLinks','on','BlockType','Math');
 
         mdladvObj=Simulink.ModelAdvisor.getModelAdvisor(system);
@@ -45,7 +35,6 @@ function DO178B_mathBlocks
             ResultDescription{end+1}=ft;
         else
             opType=get_param(searchResult,'Operator');
-
             elogErr=searchResult(strcmp(opType,'log'));
 
             log10Err=searchResult(strcmp(opType,'log10'));
@@ -91,7 +80,5 @@ function DO178B_mathBlocks
                 end
             end
         end
-
-
         mdladvObj.setCheckResultStatus(bResultStatus);
 
