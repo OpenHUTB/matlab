@@ -1,11 +1,6 @@
 
 function rec=IEC61508_ModelMetricsInfo
 
-
-
-
-
-
     rec=Simulink.MdlAdvisorCheck;
     rec.Title=DAStudio.message('ModelAdvisor:iec61508:ModelMetricsInfoTitle');
     rec.TitleID='mathworks.iec61508.MdlMetricsInfo';
