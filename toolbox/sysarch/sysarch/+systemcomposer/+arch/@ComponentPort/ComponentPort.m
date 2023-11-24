@@ -1,8 +1,5 @@
 classdef ComponentPort < systemcomposer.arch.BasePort
 
-
-
-
     properties ( SetAccess = private )
         Parent
         ArchitecturePort
@@ -84,31 +81,15 @@ classdef ComponentPort < systemcomposer.arch.BasePort
 
         function [ propExpr, propUnits ] = getProperty( this, qualifiedPropName )
 
-
-
-
-
-
-
             [ propExpr, propUnits ] = getProperty@systemcomposer.arch.Element( this.ArchitecturePort, qualifiedPropName );
         end
 
         function value = getEvaluatedPropertyValue( this, qualifiedPropName )
 
-
-
-
-
-
             value = getEvaluatedPropertyValue( this.ArchitecturePort, qualifiedPropName );
         end
 
         function setProperty( this, qualifiedPropName, propExpr, propUnit )
-
-
-
-
-
 
             if nargin < 4
                 propUnit = '';
@@ -117,10 +98,6 @@ classdef ComponentPort < systemcomposer.arch.BasePort
         end
 
         function val = getPropertyValue( this, qualifiedPropName )
-
-
-
-
 
             val = getPropertyValue( this.ArchitecturePort, qualifiedPropName );
         end
