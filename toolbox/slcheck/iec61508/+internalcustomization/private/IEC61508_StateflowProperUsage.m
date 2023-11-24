@@ -1,9 +1,6 @@
 
 function IEC61508_StateflowProperUsage
 
-
-
-
     rec=ModelAdvisor.Check('mathworks.iec61508.StateflowProperUsage');
     rec.Title=DAStudio.message('ModelAdvisor:iec61508:SFProperUsageTitle');
     rec.setCallbackFcn(@ProperSFUsageCallback,'PostCompile','StyleOne');
