@@ -30,7 +30,7 @@ classdef World < handle
         StepTimer;
         RateLimiter = [0, 0];
         % R2023b
-        Model = [  ]
+        Model = []
         OutputActors = [  ];
         ReceivedModelData = [  ];
         CoordinateSystem = '';
@@ -267,7 +267,15 @@ classdef World < handle
         
             self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.INITIALIZE ) );
             self.CommandWriter.write();
-            self.CommandReader.read();
+            try
+                self.CommandReader.read();
+            catch e
+
+                self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.STOP ) );
+                self.CommandWriter.write();
+                throw( e );
+            end
+            self.update();
             sim3d.engine.Engine.setState( sim3d.engine.EngineCommands.RUN );
             self.State = sim3d.engine.EngineCommands.RUN;
         end
@@ -278,6 +286,7 @@ classdef World < handle
                 newactor = self.Actors.( self.NewActorBuffer{ n } );
                 newactor.setup();  % 发送
                 newactor.reset();
+                self.NewActors{ end  + 1 } = newactor;
             end
             self.emptyActorBuffer();
         end
@@ -310,8 +319,8 @@ classdef World < handle
             end
             self.output(  );
             self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.RUN ) );
-            self.CommandWriter.write(  );
-            self.CommandReader.read(  );
+            self.CommandWriter.write();  % 48帧（47帧完成时）删101时Fatal error!
+            self.CommandReader.read();
             self.update(  );
             if ~isempty( self.UpdateImpl )
                 self.UpdateImpl( self )

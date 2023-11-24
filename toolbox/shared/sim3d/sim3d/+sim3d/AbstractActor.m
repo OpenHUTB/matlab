@@ -301,23 +301,24 @@ classdef (Hidden)AbstractActor < handle
         end
 
 
+        % 为什么能解决崩溃
         function remove( self, childFlag )
-            if ~isempty( self.RemoveActorPublisher )
-                self.RemoveActorPublisher.setActorName( self.getTag(  ) );
-                self.RemoveActorPublisher.setRemoveActorType( self.getActorType(  ) );
-                if ~isempty( self.ParentWorld )
+            if ~isempty( self.RemoveActorPublisher )  % 如果没有 RemoveActorPublisher 就进行初始化
+                self.RemoveActorPublisher.setActorName( self.getTag() );  % 被删除车辆的名称
+                self.RemoveActorPublisher.setRemoveActorType( self.getActorType() );  % 被删除车辆的类型
+                if ~isempty( self.ParentWorld )  % 参与者的父世界为场景
                     try
-                        self.RemoveActorPublisher.write( self.ParentWorld.Model );
+                        self.RemoveActorPublisher.write( self.ParentWorld.Model );  % 父世界为空则写父世界的模型数据
                     catch ex
                         disp(ex);
                     end
                 else
-                    self.RemoveActorPublisher.write(  );
+                    self.RemoveActorPublisher.write();
                 end
             end
-            self.ParentWorld = [  ];
+            self.ParentWorld = [];
             if ~childFlag
-                self.Parent = [  ];
+                self.Parent = [];
             end
 
             childList = self.getChildList();

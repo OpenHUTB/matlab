@@ -1,15 +1,15 @@
 classdef ( Hidden = true )WorldModel < handle
 
     properties
-        Reader = [  ]
-        Writer = [  ]
-        Model = [  ]
+        Reader = []
+        Writer = []
+        Model = []
         Name = ""
     end
 
     methods
         function self = WorldModel( name )
-            self.clear(  );
+            self.clear();
             self.Name = name;
         end
 
@@ -36,24 +36,26 @@ classdef ( Hidden = true )WorldModel < handle
 
         function clear( self )
             self.Model = [  ];
-            while ~isempty( self.receive(  ) )
+            while ~isempty( self.receive() )
             end
         end
 
         function setup( self )
+            % 先清除
             if ~isempty( self.Writer )
-                self.Writer.delete(  );
+                self.Writer.delete();
             end
             if ~isempty( self.Reader )
-                self.Reader.delete(  );
+                self.Reader.delete();
             end
             self.Reader = sim3d.io.Subscriber( self.Name + "_IN", 'QueueDepth', sim3d.World.MaxActorLimit );
         end
 
+
         function send( self )
             if ~isempty( self.Model )
                 if ~isempty( self.Writer )
-                    self.Writer.delete(  );
+                    self.Writer.delete();
                 end
                 self.Writer = sim3d.io.Publisher( self.Name + "_OUT", 'Packet', self.Model );
                 success = self.Writer.send( self.Model );
@@ -63,12 +65,14 @@ classdef ( Hidden = true )WorldModel < handle
             end
         end
 
+
         function model = receive( self )
             model = [  ];
             if ~isempty( self.Reader )
                 model = self.Reader.receive(  );
             end
         end
+
 
         function add( self, element, value, queue )
             arguments
@@ -95,6 +99,8 @@ classdef ( Hidden = true )WorldModel < handle
                 end
             end
         end
+
+        
     end
 end
 

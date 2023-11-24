@@ -25,8 +25,8 @@ classdef RemoveActor<handle
             actorNameLength=length(actorName);
             actorNameBuffer(1:actorNameLength)=actorName(1:actorNameLength);
             self.RemoveActorStruct=struct(...
-            'RemoveActorType',actorTypeBuffer,...
-            'ActorName',actorNameBuffer);
+                'RemoveActorType',actorTypeBuffer,...
+                'ActorName',actorNameBuffer);
         end
 
 
@@ -38,9 +38,15 @@ classdef RemoveActor<handle
         end
 
 
-        function write(self)
-            sim3d.engine.EngineReturnCode.assertObject(self.Writer);
-            self.Writer.send(self.RemoveActorStruct);
+        function write( self, model )
+            if nargin >= 2 && ~isempty( model )
+                model.add( "RemoveActor", self.RemoveActorStruct, true );
+            else
+                if isempty( self.Writer )
+                    self.Writer = sim3d.io.Publisher( 'RemoveActorTopic', 'QueueDepth', sim3d.utils.CreateActor.QueueDepth );
+                end
+                self.Writer.send( self.RemoveActorStruct );
+            end
         end
 
 
