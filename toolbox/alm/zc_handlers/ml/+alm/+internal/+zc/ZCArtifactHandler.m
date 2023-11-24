@@ -1,8 +1,6 @@
 classdef ZCArtifactHandler<alm.internal.AbstractArtifactHandler
 
 
-
-
     methods
 
         function h=ZCArtifactHandler(metaData,container,g)
@@ -19,18 +17,11 @@ classdef ZCArtifactHandler<alm.internal.AbstractArtifactHandler
 
         function analyze(h)
 
-
-
-
-
-
-
             import alm.internal.zc.ZCConstants;
 
             absolutPath=h.StorageHandler.getAbsoluteAddress(h.MainArtifact.Address);
             g=h.Graph;
             [~,modelName,~]=fileparts(absolutPath);
-
 
 
             a_bd=g.createArtifact(...
@@ -41,12 +32,9 @@ classdef ZCArtifactHandler<alm.internal.AbstractArtifactHandler
             a_bd.Label=modelName;
             a_bd.Type=ZCConstants.SL_BLOCK_DIAGRAM;
 
-
             resources=h.Loader.load(a_bd,h.Graph);%#ok<NASGU>
 
             h.startNestedAnalysis(a_bd);
-
-
 
             a_bd.Type=ZCConstants.ZC_BLOCK_DIAGRAM;
 
@@ -83,10 +71,7 @@ classdef ZCArtifactHandler<alm.internal.AbstractArtifactHandler
 
 
         function openFile(h)
-
-
             absolutPath=h.StorageHandler.getAbsoluteAddress(h.MainArtifact.Address);
-
 
             open_system(absolutPath);
         end
@@ -104,12 +89,10 @@ classdef ZCArtifactHandler<alm.internal.AbstractArtifactHandler
                 [~,modelname,~]=fileparts(h.SelfContainedArtifact.Address);
                 open_system(h.SelfContainedArtifact.Address);
 
-
                 selectedBlocks=find_system(modelname,...
                 'MatchFilter',@Simulink.match.allVariants,...
                 'Selected','on');
                 cellfun(@(x)set_param(x,'Selected','off'),selectedBlocks);
-
 
                 set_param(modelname+":"+h.MainArtifact.Address,'Selected','on');
             otherwise
