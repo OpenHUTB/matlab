@@ -1,9 +1,5 @@
 classdef MetricEngineManager<handle
 
-
-
-
-
     properties(Access=private)
         Engine;
     end
