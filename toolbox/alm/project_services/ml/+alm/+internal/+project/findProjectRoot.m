@@ -1,10 +1,4 @@
-
-
-
 function rootFolder=findProjectRoot(fileOrFolder)
-
-
-
 
     fileOrFolder=strtrim(fileOrFolder);
 
