@@ -1,6 +1,3 @@
-
-
-
 function labels=getLabelsForCategory(rootFolder,category)
 
     labels={};
@@ -8,13 +5,9 @@ function labels=getLabelsForCategory(rootFolder,category)
     if isempty(category)
         return;
     end
-
-
     proj=alm.internal.project.getProject(rootFolder);
 
-
     catObj=proj.findCategory(category);
-
 
     if~isempty(catObj)
         if~isempty(catObj.LabelDefinitions)
