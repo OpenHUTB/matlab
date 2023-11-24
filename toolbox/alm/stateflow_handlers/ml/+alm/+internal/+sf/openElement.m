@@ -1,15 +1,8 @@
-
-
-
 function openElement(absoluteFilePath,artifact,blockDiagramName)
 
 
     a_bd=artifact.ParentArtifact;
     alm.internal.sl.openElement(absoluteFilePath,a_bd,blockDiagramName);
-
-
-
-
     isBd=strcmp(blockDiagramName,artifact.Address)&&...
     artifact.isElement()&&artifact.IsNamespace;
 
