@@ -1,11 +1,5 @@
 function loadConfigurationFile(this,filename)%#ok<INUSL>
 
-
-
-
-
-
-
     browser=iatbrowser.Browser;
     browser.acqParamPanel.stopPropertyUpdateTimer();
 

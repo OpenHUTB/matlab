@@ -1,48 +1,6 @@
 classdef connection<handle&matlab.mixin.CustomDisplay
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private)
 
 CassandraHandle

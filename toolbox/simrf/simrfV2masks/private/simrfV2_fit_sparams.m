@@ -1,9 +1,5 @@
 function cacheData=simrfV2_fit_sparams(auxData,cacheData,block)
 
-
-
-
-
     freq=auxData.Spars.Frequencies;
     sparam=auxData.Spars.Parameters;
     nport=size(sparam,1);
@@ -82,8 +78,6 @@ function cacheData=simrfV2_fit_sparams(auxData,cacheData,block)
         DF=DF(:);
     end
     warning(w1)
-
-
 
     if iscell(Poles{1})
         Poles=Poles{:};

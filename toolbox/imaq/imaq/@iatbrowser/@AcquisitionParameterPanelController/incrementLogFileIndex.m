@@ -1,16 +1,8 @@
 function incrementLogFileIndex(this)
 
-
-
-
-
-
-
     warnState=warning('off','imaq:set:diskLogger:aviOnGT8bitFormat');
     oc=onCleanup(@()warning(warnState));
     glassPaneSentinel=iatbrowser.GlassPaneSentinel;%#ok<NASGU>
-
-
     vidObj=iatbrowser.Browser().currentVideoinputObject;
 
     if(~this.LogFileIndexIncrementProps.getAutoincrement(vidObj))

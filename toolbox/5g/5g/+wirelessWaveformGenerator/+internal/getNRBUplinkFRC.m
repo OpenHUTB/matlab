@@ -1,12 +1,5 @@
 function nrb=getNRBUplinkFRC(frNum,secNum,frcNum)
 
-
-
-
-
-
-
-
     commonFR1=[25,52,106,24,51,106,273];
     fr1NRB={[25,11,11,106,51,24,15,6,6],...
     [25,11,11,106,51,24],...
@@ -20,7 +13,6 @@ function nrb=getNRBUplinkFRC(frNum,secNum,frcNum)
     [repmat(commonFR2,1,2),30,30],...
     repmat(commonFR2,1,2),...
     commonFR2};
-
 
     if frNum==1
         nrb=fr1NRB{secNum}(frcNum);

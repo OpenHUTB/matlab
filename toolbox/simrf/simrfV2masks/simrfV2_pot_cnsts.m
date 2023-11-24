@@ -1,7 +1,6 @@
 function[Par1,Par2,Par3]=...
     simrfV2_pot_cnsts(CurveType_val,ron_val,roff_val,percent)
 
-
     opts=optimset('MaxIter',1e4,'MaxFunEvals',1e4,...
     'TolFun',1e-8,'TolX',1e-8);
     switch CurveType_val
@@ -35,9 +34,6 @@ function[Par1,Par2,Par3]=...
         Par3={cnsts(3),'Ohm'};
     end
 end
-
-
-
 
 
 function[sse,FittedCurve]=expfun2(pars,xdata,ydata)

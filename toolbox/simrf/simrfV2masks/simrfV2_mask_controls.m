@@ -1,7 +1,5 @@
 function simrfV2_mask_controls(block,switchType)
 
-
-
     switch lower(switchType)
     case 'pa_chartype'
         MaskNames=get_param(block,'MaskNames');

@@ -1,12 +1,5 @@
 function result=hdlfilterparameters(whichparams)
 
-
-
-
-
-
-
-
     hdl_parameters=PersistentHDLPropSet;
 
     if isempty(hdlgetparameter('target_language'))

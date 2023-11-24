@@ -1,8 +1,5 @@
 classdef device<handle
 
-
-
-
     properties(Access=private)
 blocks
 

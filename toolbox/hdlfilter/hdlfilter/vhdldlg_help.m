@@ -1,22 +1,11 @@
 function y=vhdldlg_help
 
-
-
-
-
     y.tag_mapping=@tag_mapping;
 
 
     function tag=tag_mapping(hFig,tag)
 
-
-
-
         [tag,tbx]=strtok(tag,filesep);
-
-
-
-
 
         switch tag
         case 'hdlgui_language_serialpartitionstr',

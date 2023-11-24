@@ -1,14 +1,5 @@
 function objs=getAllVideoinputObjects(this)
 
-
-
-
-
-
-
-
-
-
     root=this.treePanel.rootNode;
 
     objs=java.util.Vector();

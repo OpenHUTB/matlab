@@ -1,16 +1,5 @@
 function destroy(this,destroyJava)
 
-
-
-
-
-
-
-
-
-
-
-
     this.rootNode.destroy();
     this.rootNode=[];
 

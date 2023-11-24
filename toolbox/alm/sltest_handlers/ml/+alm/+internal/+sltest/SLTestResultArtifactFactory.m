@@ -1,8 +1,5 @@
 classdef SLTestResultArtifactFactory<alm.internal.AbstractArtifactFactory
 
-
-
-
     methods
 
         function h=SLTestResultArtifactFactory(metaData,storage,g)

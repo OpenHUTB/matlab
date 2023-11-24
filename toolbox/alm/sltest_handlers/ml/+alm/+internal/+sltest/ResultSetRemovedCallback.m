@@ -1,27 +1,13 @@
-
-
-
-
-
-
-
-
 function ResultSetRemovedCallback(~,resultSetRemovedEventData)
 
     try
-
-
         if~dig.isProductInstalled('Simulink Check')
             return;
         end
-
-
         project=matlab.project.currentProject();
         if isempty(project)
             return;
         end
-
-
         databaseFullFilePath=alm.internal.ArtifactService.getDatabaseLocation(project.RootFolder);
         if~isfile(databaseFullFilePath)
             return;
@@ -44,9 +30,6 @@ function ResultSetRemovedCallback(~,resultSetRemovedEventData)
             resultSetUuid=char(resultSetUuids(i));
             sessionFullFilePath=fullfile(databaseFilePath,'sltest',...
             [resultSetUuid,'.sltsrf']);
-
-
-
 
             filesToUpdate{end+1,1}=sessionFullFilePath;%#ok<AGROW>
 

@@ -1,18 +1,10 @@
 function simrfV2cubicamplifier(block,action)
 
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(top_sys,'simrfV2elements')&&...
         ~strcmpi(get_param(block,'Parent'),'simrfV2elements/Mixer')
         return
     end
-
-
-
-
 
     switch(action)
     case 'simrfInit'

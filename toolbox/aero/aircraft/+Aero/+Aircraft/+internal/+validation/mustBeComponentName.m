@@ -1,9 +1,4 @@
 function mustBeComponentName(obj,component)
-
-
-
-
-
     validComponentNames=Aero.Aircraft.internal.validation.getValidComponentNames(obj);
 
     mustBeMember(component,validComponentNames)

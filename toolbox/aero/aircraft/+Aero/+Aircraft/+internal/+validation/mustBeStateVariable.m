@@ -1,9 +1,4 @@
 function mustBeStateVariable(obj,stateOutput,stateVariable,component)
-
-
-
-
-
     validStateVariables=getValidStateVariables(obj,component);
 
     try

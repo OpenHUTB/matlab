@@ -22,12 +22,6 @@ projData
 
     methods
 
-
-
-
-
-
-
         function ids=parseCollectionsData(this,projName,rdf)
             collections=regexp(rdf,'<rdfs:member>(.+?)</rdfs:member>','tokens');
             ids=cell(numel(collections),1);

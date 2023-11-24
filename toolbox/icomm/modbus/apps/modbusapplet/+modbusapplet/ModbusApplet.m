@@ -1,12 +1,5 @@
 classdef ModbusApplet<matlab.hwmgr.internal.AppletBase
 
-
-
-
-
-
-
-
     properties(Access=public)
 AppletSpaceManager
 ModbusManager
@@ -15,8 +8,6 @@ DialogDisplayManager
 ToolstripTabManager
 MatFileManager
 GenerateScriptManager
-
-
 
 MasterGrid
 
@@ -78,50 +69,28 @@ OptionListener
 
             obj.ConnectionFailed=false;
 
-
-
             obj.Mediator=matlabshared.mediator.internal.Mediator;
-
-
 
             obj.DialogDisplayManager=modbusapplet.modules.DialogDisplayManager(obj.Mediator,obj.RootWindow,...
             obj.DisplayName);
             obj.createDialogListeners();
 
-
-
             obj.ToolstripTabManager=modbusapplet.modules.ToolstripTabManager(...
             obj.Mediator,obj.ToolstripTabHandle);
-
-
-
-
 
             obj.AppletSpaceManager=modbusapplet.modules.AppletSpaceManager(obj.Mediator,obj.RootWindow,...
             obj.DeviceInfo.CustomData);
 
-
-
-
-
             obj.ModbusManager=modbusapplet.modules.ModbusManager(obj.Mediator,obj.DeviceInfo.CustomData);
-
-
-
 
             obj.MatFileManager=modbusapplet.modules.MatFileManager(obj.Mediator,...
             obj.DeviceInfo.CustomData.ServerId);
-
-
-
 
             obj.GenerateScriptManager=modbusapplet.modules.GenerateScriptManager...
             (obj.Mediator,obj.DeviceInfo.CustomData);
         end
 
         function construct(obj)
-
-
             obj.ToolstripTabHandle.Title=...
             message('modbusapplet:modbusapplet:tabTitleName').getString;
 
@@ -129,32 +98,18 @@ OptionListener
             obj.Mediator.connect();
 
             try
-
-
-
-
                 obj.ModbusManager.connect();
             catch
-
-
-
                 obj.ConnectionFailed=true;
             end
 
-
             if~obj.ConnectionFailed
-
-
                 obj.ModbusManager.initializeTimer();
-
-
-
                 obj.AppletSpaceManager.connect();
             end
         end
 
         function run(obj)
-
 
             if obj.ConnectionFailed
                 closeReason=matlab.hwmgr.internal.AppletClosingReason.AppError;
@@ -164,11 +119,9 @@ OptionListener
 
         function destroy(obj)
 
-
             if~obj.ConnectionFailed
 
                 obj.AppletSpaceManager.clearRegisterTable();
-
 
                 obj.ModbusManager.disconnect();
             end

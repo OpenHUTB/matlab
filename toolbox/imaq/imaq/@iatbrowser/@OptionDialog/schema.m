@@ -1,12 +1,6 @@
 function schema
 
-
-
-
-
-
     pk=findpackage('iatbrowser');
-
 
     className='OptionDialog';
     dialogClass=schema.class(pk,className);

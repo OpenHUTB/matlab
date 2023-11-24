@@ -1,25 +1,10 @@
 classdef ( Abstract )BaseAnnotation < handle & matlab.mixin.Heterogeneous
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( Hidden, SetAccess = immutable )
         UUID
     end
 
     properties ( SetObservable )
-
-
-
 
         ParentPanel( 1, 1 )string{ mustBeMember( ParentPanel, { 'body', 'header' } ) } = "body";
     end
@@ -48,8 +33,6 @@ classdef ( Abstract )BaseAnnotation < handle & matlab.mixin.Heterogeneous
         end
 
         function id = getHtmlId( obj )
-
-
 
             id = "SequenceDiagramQuasiAnnotation_" + obj.UUID;
         end

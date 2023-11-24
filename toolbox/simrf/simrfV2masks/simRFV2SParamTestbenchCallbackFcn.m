@@ -1,8 +1,5 @@
 function simRFV2SParamTestbenchCallbackFcn( block, action )
 
-
-
-
 top_sys = bdroot( block );
 if strcmpi( get_param( top_sys, 'BlockDiagramType' ), 'library' )
 return ;
@@ -45,7 +42,6 @@ OldRFPortElems = find_system( block, 'LookUnderMasks', 'all',  ...
 'RegExp', 'on', 'Name', '[P|Gnd][\d*]' );
 
 
-
 if ( IndLastP == length( OldSPortElems ) ) &&  ...
 ( IndLastP == length( OldRFPortElems ) / 2 )
 
@@ -83,9 +79,6 @@ vecConDX = vecConPos( 3 ) - vecConPos( 1 );
 
 if IndLastP > NumPorts
 
-
-
-
 OldSPPortNums =  ...
 str2double( regexp( get_param( OldSPortElems,  ...
 'Name' ), '\d*', 'match', 'once' ) );
@@ -96,7 +89,6 @@ OldSPPort2Rem =  ...
 find( OldSPPortNums > NumPorts );
 OldRFPPort2Rem = OldRFPPortNums > NumPorts;
 if length( OldSPPort2Rem ) == 1
-
 
 ph = get_param(  ...
 OldSPortElems( OldSPPort2Rem ), 'PortHandles' );
@@ -119,8 +111,6 @@ delete( OldSPortElems( OldSPPort2Rem ) );
 delete( OldRFPortElems( OldRFPPort2Rem ) );
 delete_line( RFLines2Rem );
 delete_line( slLines2Rem );
-
-
 
 if numPLeft == 1
 set_param( [ block, '/Mux' ], 'Position',  ...
@@ -160,8 +150,6 @@ set_param( [ block, '/Vector Concatenate' ], 'Position',  ...
 vecConPos - [ 0, deltaYTotLeftRemoved, 0 ...
 , deltaYTotLeftRemoved ] );
 
-
-
 phVecCon = get_param( [ block, '/Vector Concatenate' ],  ...
 'PortHandles' );
 VecConOutLine = get_param( [ phVecCon.Outport ], 'Line' );
@@ -176,8 +164,6 @@ lPts( end  - 2:end  - 1, 2 ) = lPts( end  - 2:end  - 1, 2 ) -  ...
 deltaYTotLeftRemoved;
 end 
 set_param( VecConOutLine, 'Points', lPts );
-
-
 
 VecConInLines = get_param( [ phVecCon.Inport ], 'Line' );
 lPts1 = get_param( VecConInLines{ 1 }, 'Points' );

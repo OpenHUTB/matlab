@@ -1,6 +1,3 @@
-
-
-
 function fullFileName=createSessionResultFile(projectRootFolder,resultSet)
     fullFileName=[];
 

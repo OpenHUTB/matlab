@@ -1,23 +1,10 @@
 function updateVisualizations(pat,viewer,plotInViewer)
 
-
-
-
-
-
-
     if nargin<3
         plotInViewer=true;
     end
 
-
     scenario=pat.Scenario;
-
-
-
-
-
-
 
     patternGraphicID=pat.getGraphicID;
     if(~viewer.graphicExists(patternGraphicID))

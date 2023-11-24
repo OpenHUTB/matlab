@@ -1,6 +1,3 @@
-
-
-
 function name=getName(rootFolder)
     proj=alm.internal.project.getProject(rootFolder);
 

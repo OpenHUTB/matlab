@@ -1,13 +1,4 @@
 function handleTriggerRepeatChangedCallback(~,~,event)
-
-
-
-
-
-
-
-
-
     vidObj=iatbrowser.Browser().currentVideoinputObject;
 
     javaTriggerRepeat=double(event.JavaEvent);

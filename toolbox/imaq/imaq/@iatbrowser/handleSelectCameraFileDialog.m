@@ -1,20 +1,5 @@
 function handleSelectCameraFileDialog(oldNode,currentNode)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     persistent listeners;%#ok<PUSE>
 
     browser=iatbrowser.Browser;
@@ -61,9 +46,6 @@ function handleSelectCameraFileDialog(oldNode,currentNode)
                 browser.treePanel.selectNode(existingNode,true);
                 return;
             end
-
-
-
             newFormatNode=iatbrowser.FormatNode(deviceNode,format,false);
             newFormatNode.createDevice();
             newFormatNode.setToolTipText(iatbrowser.getResourceString('RES_DESKTOP','CameraFile.Tooltip'));

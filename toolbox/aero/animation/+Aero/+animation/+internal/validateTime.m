@@ -1,10 +1,4 @@
 function validateTime(time,timeTimeseries)
-
-
-
-
-
-
     minTime=min(timeTimeseries(isfinite(timeTimeseries)));
     maxTime=max(timeTimeseries(isfinite(timeTimeseries)));
 

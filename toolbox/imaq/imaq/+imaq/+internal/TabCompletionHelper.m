@@ -1,9 +1,6 @@
 classdef TabCompletionHelper<handle
 
 
-
-
-
     methods(Static)
 
         function adaptors=getInstalledAdaptors

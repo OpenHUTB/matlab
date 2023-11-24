@@ -1,8 +1,5 @@
 classdef Architecture
 
-
-
-
     enumeration
 Default
 Win64

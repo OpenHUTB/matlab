@@ -1,74 +1,8 @@
 classdef Requirement<sequencediagram.quasiannotation.internal.BaseAnnotation
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetObservable)
 
-
-
-
-
         Label(1,1)string{mustBeNonempty}="Sequence Diagram Requirement";
-
-
-
 
         Comment(1,1)string
 

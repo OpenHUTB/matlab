@@ -1,22 +1,5 @@
 function exportToWorkspace(varNames,vidObjs)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     for ii=1:length(varNames)
         newObject=copyObject(vidObjs(ii));
         assignin('base',varNames{ii},newObject);
@@ -24,17 +7,12 @@ function exportToWorkspace(varNames,vidObjs)
 
     function newObject=copyObject(oldObject)
 
-
-
         info=imaqhwinfo(oldObject);
         adaptorName=info.AdaptorName;
         deviceID=oldObject.DeviceID;
         format=oldObject.VideoFormat;
 
-
         newObject=videoinput(adaptorName,deviceID,format);
-
-
 
         oldProps=set(oldObject);
 

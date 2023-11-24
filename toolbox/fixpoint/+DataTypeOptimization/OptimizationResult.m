@@ -1,36 +1,5 @@
 classdef OptimizationResult<handle&matlab.mixin.CustomDisplay
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Dependent)
 Model
 SystemUnderDesign
@@ -93,53 +62,6 @@ progressTracer
 
         function solution=explore(this,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             scenarioIndex=1;
             keepOriginalModelParameters=false;
             if(nargin==2||nargin==3)&&all(cellfun(@(x)(isnumeric(x)),varargin))
@@ -188,12 +110,6 @@ progressTracer
         function allSolutions=getAllValidSolutions(this)
 
 
-
-
-
-
-
-
             allSolutions=[];
             if this.finalState.solutionOutcome~=DataTypeOptimization.SolutionOutcome.NoValidSolutionFound
 
@@ -207,22 +123,10 @@ progressTracer
 
         function failureRate=getFailureRateStatistics(this)
 
-
-
-
-
-
-
             failureRate=this.failureRateTable;
         end
 
         function revert(this)
-
-
-
-
-
-
 
             if~isempty(this.modelState)
                 this.revertSolution();
@@ -230,13 +134,6 @@ progressTracer
         end
 
         function openSimulationManager(this)
-
-
-
-
-
-
-
             allValidSolutions=this.getAllValidSolutions();
             allSimIn=[allValidSolutions.simIn];
             allSimOut=[allValidSolutions.simOut];

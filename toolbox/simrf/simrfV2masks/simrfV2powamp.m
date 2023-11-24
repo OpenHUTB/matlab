@@ -1,22 +1,13 @@
 function simrfV2powamp(block,action)
 
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(get_param(top_sys,'BlockDiagramType'),'library')...
         &&strcmpi(get_param(block,'Parent'),'simrfV2elements')
         return;
     end
 
-
-
-
-
     switch(action)
     case 'simrfInit'
-
         MaskVals=get_param(block,'MaskValues');
         idxMaskNames=simrfV2getblockmaskparamsindex(block);
         MaskWSValues=simrfV2getblockmaskwsvalues(block);

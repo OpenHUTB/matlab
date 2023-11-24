@@ -1,12 +1,5 @@
 function handleDiskParametersChangedCallback(this,~,event)
 
-
-
-
-
-
-
-
     warnState=warning('off','imaq:set:diskLogger:aviOnGT8bitFormat');
     oc=onCleanup(@()warning(warnState));
 
@@ -18,18 +11,13 @@ function handleDiskParametersChangedCallback(this,~,event)
         return
     end
 
-
     filename=char(event.JavaEvent.filename);
     origfilename=filename;
     autoincrement=logical(event.JavaEvent.autoincrement);
     profile=char(event.JavaEvent.profile);
     invalidFilename=logical(event.JavaEvent.invalidFilename);
 
-
-
-
     vidObj=browser.currentVideoinputObject;
-
 
 
     origProfile=this.videoWriterProfile;
@@ -48,7 +36,6 @@ function handleDiskParametersChangedCallback(this,~,event)
     diskLogger=vidObj.DiskLogger;
 
 
-
     if isempty(filename)
         vidObj.DiskLogger=[];
         status=iatbrowser.DiskParametersUpdatedEventData(false);
@@ -57,8 +44,6 @@ function handleDiskParametersChangedCallback(this,~,event)
     else
         [filename,fileExists]=iatbrowser.validateDiskLoggerFilename(filename,profile);
     end
-
-
 
     if(autoincrement&&~this.LogFileIndexIncrementProps.getAutoincrement(vidObj))
         [filePath,fileBase,fileExt]=fileparts(filename);
@@ -90,8 +75,6 @@ function handleDiskParametersChangedCallback(this,~,event)
         validateDiskLogger(diskLogger);
         return;
     end
-
-
 
     if(strcmp(filename,fullfile(diskLogger.Path,diskLogger.Filename))&&...
         strcmp(profile,this.videoWriterProfile))
@@ -126,7 +109,6 @@ function handleDiskParametersChangedCallback(this,~,event)
     if isempty(diskLogger)
         return;
     end
-
 
     if(strcmp(origfilename,fullfile(diskLogger.Path,diskLogger.Filename))&&...
         strcmp(profile,origProfile))

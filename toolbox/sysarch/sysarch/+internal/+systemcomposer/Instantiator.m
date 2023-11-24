@@ -1,8 +1,5 @@
 classdef Instantiator<systemcomposer.internal.mixin.CenterDialog
 
-
-
-
     properties
         Architecture;
         AnalysisFunction char;

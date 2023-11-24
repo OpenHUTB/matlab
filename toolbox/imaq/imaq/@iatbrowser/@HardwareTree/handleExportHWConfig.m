@@ -1,11 +1,5 @@
 function handleExportHWConfig(this,obj,theEvent,default)%#ok<INUSL,INUSD,INUSD,INUSD>
 
-
-
-
-
-
-
     browser=iatbrowser.Browser;
     vids=browser.getAllVideoinputObjects;
     frame=iatbrowser.getDesktopFrame();

@@ -1,8 +1,5 @@
 classdef DirectMetric<metric.Algorithm
 
-
-
-
     properties
     end
 

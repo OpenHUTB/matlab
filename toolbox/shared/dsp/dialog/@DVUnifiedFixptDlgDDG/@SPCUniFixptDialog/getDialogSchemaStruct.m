@@ -1,25 +1,9 @@
 function dtAttrsPanel=getDialogSchemaStruct(this,fixptBlurb)
-
-
-
-
-
-
-
-
-
-
-
     dtAttrsPanel=udtGetContainerWidgetBase('panel','','dtAttrsPanel');
     dtAttrsPanel.RowSpan=[1,1];
     dtAttrsPanel.ColSpan=[1,1];
     dtAttrsPanel.Tag='dtAttrsPanel';
     dtAttrsPanel.Source=this;
-
-
-
-
-
     roundingMode=udtGetLeafWidgetBaseID('combobox','dspshared:FixptDialog:roundingMode',...
     'roundingMode',this.controller,...
     'roundingMode');
@@ -60,9 +44,6 @@ function dtAttrsPanel=getDialogSchemaStruct(this,fixptBlurb)
     if isempty(this.DataTypeRows)
         items={fixptOperationalGroupBox};
     else
-
-
-
         if nargin<2
             fixptBlurb=1;
         end

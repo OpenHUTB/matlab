@@ -1,11 +1,6 @@
 function objIds=convertSSIDToObjectID(ssids)
 
 
-
-
-
-
-
     ssids=string(ssids);
     objIds=zeros(size(ssids),'int32');
 

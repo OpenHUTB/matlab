@@ -1,6 +1,3 @@
-
-
-
 classdef(Sealed)Abs<sltest.assessments.Unary
     methods
         function self=Abs(expr)

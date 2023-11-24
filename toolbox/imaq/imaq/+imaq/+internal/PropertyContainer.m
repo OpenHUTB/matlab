@@ -1,11 +1,5 @@
 classdef PropertyContainer<hgsetget&dynamicprops
 
-
-
-
-
-
-
     properties(SetAccess=protected,GetAccess=protected,Hidden)
         PerformingGet=false;
 PreGetListeners
@@ -17,38 +11,6 @@ PreSetListeners
     end
 
     methods(Access=public)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         function pInfo=propinfo(obj,propertyName,cached)
@@ -162,36 +124,8 @@ PreSetListeners
 
     methods(Access=protected)
 
-
-
-
-
-
         function prop=addDynamicProp(obj,property)
             prop=addprop(obj,property.Name);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             if strcmp(property.ReadOnly,'always')
                 prop.SetAccess='protected';

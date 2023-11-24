@@ -1,18 +1,8 @@
 function simrfV2plotparam(block,dialog)
 
-
-
-
     if strcmpi(get_param(bdroot(block),'BlockDiagramType'),'library')
         return;
     end
-
-
-
-
-
-
-
 
     auxData=get_param([block,'/AuxData'],'UserData');
     cacheData=get_param(block,'UserData');
@@ -22,7 +12,6 @@ function simrfV2plotparam(block,dialog)
     else
         dataSrc='notValidParameter';
     end
-
 
     sourceFreq=dialog.getComboBoxText('SourceFreq');
     if strcmpi(sourceFreq,'User-specified')

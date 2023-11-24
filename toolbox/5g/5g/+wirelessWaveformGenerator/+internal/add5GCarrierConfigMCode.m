@@ -1,22 +1,8 @@
-
-
-
-
-
-
-
 function varName=add5GCarrierConfigMCode(sw,cfgObj,mCodeConfig)
-
-
-
-
-
-
 
     if~iscell(mCodeConfig)
         mCodeConfig={mCodeConfig};
     end
-
 
     sectionHeader=string(mCodeConfig{1}.SectionHeader);
     for line=1:numel(sectionHeader)

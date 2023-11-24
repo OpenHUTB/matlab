@@ -1,16 +1,9 @@
 function schema
-
-
-
-
-
     dspdialogPackage=findpackage('dvdialog');
     findclass(dspdialogPackage,'DSPDDG');
 
     package=findpackage('DVUnifiedFixptDlgDDG');
     this=schema.class(package,'SPCUniFixptDTRow');
-
-
 
     schema.prop(this,'Block','handle');
     schema.prop(this,'Name','ustring');
@@ -53,9 +46,6 @@ function schema
     schema.prop(this,'DesignMin','ustring');
     schema.prop(this,'DesignMax','ustring');
     schema.prop(this,'ValBestPrecFLMaskPrm','ustring');
-
-
-
     schema.prop(this,'Controller','dvdialog.DSPDDG');
 
 

@@ -1,40 +1,14 @@
 classdef OptionDlg<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private)
-
-
         ReqSets;
-
         SupportedTypes={'.docx','.pdf','.html'};
-
 
         ReqSetListMap=containers.Map();
     end
 
     properties(Access=private)
-
-
-
         ReportFullPath;
-
-
-
         IncludedInReport=struct('rationale',true,...
         'keywords',true,...
         'customAttributes',true,...
@@ -47,9 +21,6 @@ classdef OptionDlg<handle
         'emptySection',false,...
         'toc',true,...
         'groupLinksBy','Artifact');
-
-
-
         Title=getString(message('Slvnv:slreq:ReportGenDefaultTitle'));
 
 

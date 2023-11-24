@@ -1,12 +1,6 @@
 function obj=canlog(hBlock)
 
-
-
-
-
-
     obj=vntdialog.canlog(hBlock);
-
 
     if isa(hBlock,'double')
         obj.Block=get_param(hBlock,'Object');
@@ -14,14 +8,12 @@ function obj=canlog(hBlock)
         obj.Block=hBlock;
     end
 
-
     parent=obj.Block.getParent;
     while~isa(parent,'Simulink.BlockDiagram')
         parent=parent.getParent;
     end
 
     obj.Root=parent;
-
 
     obj.FullPathFileName=obj.Block.FullPathFileName;
     obj.VariableName=obj.Block.VariableName;

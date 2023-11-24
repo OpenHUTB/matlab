@@ -1,25 +1,6 @@
 classdef(Sealed)OptimizationSolution<handle
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=private)
         Cost=Inf;
         Pass=false;

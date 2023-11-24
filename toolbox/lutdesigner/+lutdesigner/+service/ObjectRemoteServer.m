@@ -1,8 +1,5 @@
 classdef ObjectRemoteServer<handle
 
-
-
-
     properties(SetAccess=private)
 ObjectMap
     end

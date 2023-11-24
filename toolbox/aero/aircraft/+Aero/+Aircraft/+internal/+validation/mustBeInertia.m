@@ -1,10 +1,6 @@
 function mustBeInertia(inertia)
 
-
-
-
     if istable(inertia)
-
 
         if isempty(inertia.Properties.RowNames)||...
             ~all(inertia.Properties.RowNames==["X";"Y";"Z"])

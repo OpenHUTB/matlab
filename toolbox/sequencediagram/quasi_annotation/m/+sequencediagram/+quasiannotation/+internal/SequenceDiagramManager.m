@@ -1,11 +1,5 @@
 classdef SequenceDiagramManager<handle
 
-
-
-
-
-
-
     properties
 SequenceDiagramName
         Annotations=sequencediagram.quasiannotation.internal.BaseAnnotation.empty();

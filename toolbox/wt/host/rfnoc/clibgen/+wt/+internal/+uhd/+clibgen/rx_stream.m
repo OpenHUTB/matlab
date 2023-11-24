@@ -1,8 +1,6 @@
 classdef rx_stream<wt.internal.uhd.clibgen.stream
 
 
-
-
     properties(Access=protected)
 
 stream_cmd
@@ -47,17 +45,12 @@ stream_cmd
         function[data,num_samps,overflow]=receive(obj,len,timeout,varargin)
             import clib.wt_uhd.uhd.stream_cmd_t.*
 
-
-
             timeOffset=0.2;
             onexit_fn={};
-
             if~isempty(varargin)&&isstruct(varargin{1})
                 onexit_fn=obj.parseStreamCmds(varargin{1},timeOffset);
                 varargin(1)=[];
             end
-
-
 
             if~isempty(obj.stream_cmd)
                 if(isequal(obj.stream_cmd.stream_mode,stream_mode_t.STREAM_MODE_START_CONTINUOUS))
@@ -69,8 +62,6 @@ stream_cmd
                     obj.stream_handle.issue_stream_cmd(obj.stream_cmd);
                 end
             end
-
-
             switch(lower(obj.cpu_data_type))
             case{'uc16','uc8','sc8','u16','s16','s8','f32','f64'}
                 error(message("wt:rfnoc:host:InvalidDataFormat"));

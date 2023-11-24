@@ -1,21 +1,6 @@
 function saveFramesToMATFile(this,fileName,variableName)%#ok<INUSL>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     eval([variableName,' = this.prevPanel.data;']);
-
     oldWarningState=warning('error','MATLAB:save:sizeTooBigForMATFile');
     try
         save(fileName,variableName);

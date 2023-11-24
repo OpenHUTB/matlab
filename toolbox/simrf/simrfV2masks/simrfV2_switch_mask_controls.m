@@ -1,7 +1,5 @@
 function simrfV2_switch_mask_controls(block,switchType)
 
-
-
     switch lower(switchType)
     case 'potentiometer'
         MaskNames=get_param(block,'MaskNames');

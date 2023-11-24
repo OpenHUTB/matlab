@@ -1,24 +1,9 @@
 classdef Pattern<handle&matlabshared.satellitescenario.ScenarioGraphic
 
-
-
     properties(Dependent)
-
-
-
-
-
         Size(1,1)double{mustBeNonnegative,mustBeFinite}
 
-
-
-
-
         Colormap{validateColorMap(Colormap)}
-
-
-
-
         Transparency(1,1)double{mustBeGreaterThanOrEqual(Transparency,0),mustBeLessThanOrEqual(Transparency,1)}
     end
 

@@ -1,13 +1,5 @@
 function[freqList,BlkList]=simrfV2_read_freqs(block,blks,freqParamName,condParamName)
 
-
-
-
-
-
-
-
-
     freqList=[];
     BlkList={};
     for m=1:numel(blks)

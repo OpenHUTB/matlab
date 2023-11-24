@@ -1,27 +1,5 @@
 function rmiconvertlocationids(model,docname)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin~=2||~ischar(docname)
         error(message('Slvnv:reqmgt:rmidocrename:InvalidArgumentForIds'));
     end

@@ -1,15 +1,8 @@
 function openElement(absoluteFilePath,artifact,blockDiagramName)
 
-
-
-
-
     if bdIsLoaded(blockDiagramName)
         throwIfDifferentSource(blockDiagramName,absoluteFilePath);
     else
-
-
-
         load_system(absoluteFilePath);
 
         [~,ownerBDName]=fileparts(absoluteFilePath);
@@ -26,12 +19,6 @@ function openElement(absoluteFilePath,artifact,blockDiagramName)
             end
         end
     end
-
-
-
-
-
-
 
     bdTypes=[...
     "sl_block_diagram",...

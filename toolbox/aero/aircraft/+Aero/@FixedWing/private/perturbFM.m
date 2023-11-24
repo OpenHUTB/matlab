@@ -1,8 +1,5 @@
 function[dF,dM]=perturbFM(aircraft,state,stateName,nvpStruct)
 
-
-
-
     baseValue=state.getState(stateName);
     perturbX=nvpStruct.RelativePerturbation+1e-3*nvpStruct.RelativePerturbation*abs(baseValue);
 

@@ -1,15 +1,5 @@
 classdef AlgorithmResponse<handle
 
-
-
-
-
-
-
-
-
-
-
     properties
         Iterations;
         PerformanceVector;

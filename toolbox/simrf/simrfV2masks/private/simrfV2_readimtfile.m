@@ -1,9 +1,5 @@
 function simrfV2_readimtfile(filename,block)
 
-
-
-
-
     fileData=read(rfckt.mixer,filename);
     cacheData.filename=filename;
     if isempty(which(filename))
@@ -60,7 +56,6 @@ function simrfV2_readimtfile(filename,block)
         end
         cacheData.hasFileIMT=false;
     end
-
 
     set_param(block,'UserData',cacheData)
 

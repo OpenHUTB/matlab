@@ -1,9 +1,5 @@
 classdef(Abstract)Ctrl<Aero.Aircraft.internal.Common
 
-
-
-
-
     properties
         MaximumValue{mustBeNumeric,mustBeReal,mustBeNonNan}=inf;
         MinimumValue{mustBeNumeric,mustBeReal,mustBeNonNan}=-inf;

@@ -1,13 +1,5 @@
 function[filepath,query]=parseFileURL(fileURL)
 
-
-
-
-
-
-
-
-
     filepath='';
     query='';
 

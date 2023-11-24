@@ -1,9 +1,5 @@
 classdef(CompatibleInexactProperties=true,Abstract)Animation...
     <matlab.mixin.SetGet&matlab.mixin.Copyable
-
-
-
-
     properties(SetAccess=protected,Transient,SetObservable,Hidden)
         AnimationTimer=[];
     end

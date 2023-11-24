@@ -1,13 +1,4 @@
 function simrfV2_check_lossless(s11_num,s21_num,s22_num,den)
-
-
-
-
-
-
-
-
-
     polyLen=cellfun(@length,{s11_num,s21_num,s22_num,den});
     padNum=max(polyLen)-polyLen;
     s11_num=[zeros(1,padNum(1)),s11_num];
@@ -15,9 +6,7 @@ function simrfV2_check_lossless(s11_num,s21_num,s22_num,den)
     s22_num=[zeros(1,padNum(3)),s22_num];
     den=[zeros(1,padNum(4)),den];
 
-
     epsMult=1e4;
-
 
     t12p1=conv(s_conj(s11_num),s21_num);
     epsp1=epsMult*eps(t12p1);
@@ -43,12 +32,6 @@ function simrfV2_check_lossless(s11_num,s21_num,s22_num,den)
     validateattributes(abs(T21),{'numeric'},...
     {'nonempty','vector','nonnan','<=',epsMult*eps},...
     mfilename,'T21');
-
-
-
-
-
-
 
     D2=conv(s_conj(den),den);
 
@@ -98,10 +81,6 @@ function simrfV2_check_lossless(s11_num,s21_num,s22_num,den)
 end
 
 function poly_conj=s_conj(spoly)
-
-
-
-
     poly_conj=spoly;
     poly_conj(end-1:-2:1)=-poly_conj(end-1:-2:1);
 

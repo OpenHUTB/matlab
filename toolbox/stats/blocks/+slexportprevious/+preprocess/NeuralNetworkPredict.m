@@ -1,11 +1,6 @@
 function NeuralNetworkPredict(obj)
 
-
-
-
     if isR2021aOrEarlier(obj.ver)
-
-
         blks=findBlocksWithMaskType(obj,'ClassificationNeuralNetwork Predict');
         obj.replaceWithEmptySubsystem(blks);
 

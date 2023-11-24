@@ -1,9 +1,5 @@
 classdef(CompatibleInexactProperties=true)VideoAnimation<Aero.animation.internal.Animation
 
-
-
-
-
     properties(Transient,SetObservable)
         VideoRecord Aero.animation.internal.VideoRecordType='off';
         VideoFileName='temp';

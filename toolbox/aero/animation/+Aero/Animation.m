@@ -1,15 +1,4 @@
 classdef(CompatibleInexactProperties=true)Animation<Aero.animation.internal.VideoAnimation
-
-
-
-
-
-
-
-
-
-
-
     properties(Dependent,SetAccess=protected,Transient,SetObservable,Hidden)
         MLAnimTimer;
     end

@@ -1,22 +1,8 @@
 function autoblksreconnectblock(BlkHdl,OldConns)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     PortInfo=autoblksgetportinfo(BlkHdl);
     ParentBlkHdl=get_param(BlkHdl,'Parent');
-
 
     [InportKeepOld,InportMoveNewIndex,InportRemove,InportCreate]=PortNameIntersect({OldConns.Inports.Name},{PortInfo.Inports.Name});
     [OutportKeepOld,OutportMoveNewIndex,OutportRemove,OutportCreate]=PortNameIntersect({OldConns.Outports.Name},{PortInfo.Outports.Name});

@@ -1,15 +1,5 @@
 function destroy(this)
 
-
-
-
-
-
-
-
-
-
-
     this.messageBus=[];
 
     this.treePanel.destroy(true);

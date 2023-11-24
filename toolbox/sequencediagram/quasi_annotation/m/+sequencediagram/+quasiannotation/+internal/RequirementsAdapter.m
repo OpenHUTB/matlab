@@ -1,20 +1,5 @@
 classdef RequirementsAdapter<slreq.adapters.ExternalDomainAdapter
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Constant)
         Domain='linktype_rmi_sequenceDiagramQuasiAnnotation';
     end

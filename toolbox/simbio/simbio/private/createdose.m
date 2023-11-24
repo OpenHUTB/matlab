@@ -1,34 +1,5 @@
 function doseObj=createdose(name,time,amount,rate)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     assert(ischar(name),...
     message('SimBiology:createdose:InvalidName'));
     assert(isnumeric(time)&&isvector(time),...

@@ -1,11 +1,5 @@
 function hF=hdlcreatebiquadfilter(hS)
 
-
-
-
-
-
-
     biquadStructure=hS.Structure;
     switch biquadStructure
     case 'Direct form I'

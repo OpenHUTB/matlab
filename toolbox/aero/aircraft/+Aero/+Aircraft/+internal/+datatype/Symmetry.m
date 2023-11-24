@@ -1,8 +1,5 @@
 classdef Symmetry
 
-
-
-
     enumeration
 Symmetric
 Asymmetric

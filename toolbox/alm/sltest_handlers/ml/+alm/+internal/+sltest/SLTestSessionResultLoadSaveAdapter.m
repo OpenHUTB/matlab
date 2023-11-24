@@ -1,8 +1,5 @@
 classdef SLTestSessionResultLoadSaveAdapter<alm.internal.AbstractArtifactLoadSaveAdapter
 
-
-
-
     properties(Access=private)
         AbsoluteFileAddress string;
     end

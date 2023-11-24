@@ -1,8 +1,5 @@
 function ctrlState=getControlStates(obj)
 
-
-
-
     if obj.Controllable
         switch obj.Symmetry
         case "Symmetric"
@@ -12,9 +9,6 @@ function ctrlState=getControlStates(obj)
             "MaximumValue",obj.MaximumValue,"MinimumValue",obj.MinimumValue);
 
         case "Asymmetric"
-
-
-
 
             ctrlState=Aero.Aircraft.ControlState(1,3,...
             "MaximumValue",obj.MaximumValue,"MinimumValue",obj.MinimumValue);

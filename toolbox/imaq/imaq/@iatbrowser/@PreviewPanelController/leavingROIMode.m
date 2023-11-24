@@ -1,10 +1,4 @@
 function leavingROIMode(this)
-
-
-
-
-
-
     prevPanelButtonPanel=java(this.prevPanel.prevPanelButtonPanel);
     startAcqCallback=handle(prevPanelButtonPanel.getStartAcqCallback());
     this.startAcquisitionBtnListener=handle.listener(startAcqCallback,'delayed',@handleStartAcqClicked);

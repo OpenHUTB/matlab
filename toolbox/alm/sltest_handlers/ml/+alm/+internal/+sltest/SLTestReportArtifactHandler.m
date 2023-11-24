@@ -1,8 +1,5 @@
 classdef SLTestReportArtifactHandler<alm.internal.AbstractArtifactHandler
 
-
-
-
     methods
         function h=SLTestReportArtifactHandler(metaData,container,g)
             h=h@alm.internal.AbstractArtifactHandler(metaData,container,g);
@@ -18,9 +15,6 @@ classdef SLTestReportArtifactHandler<alm.internal.AbstractArtifactHandler
 
             h.MainArtifact.Derived=true;
             graph=ofContents.Graph;
-
-
-
             reportFile=graph.getAllArtifacts('sl_test_report_file');
             if reportFile.LastAnalysisStatus==alm.AnalysisStatusType.ERROR
                 error(message(...

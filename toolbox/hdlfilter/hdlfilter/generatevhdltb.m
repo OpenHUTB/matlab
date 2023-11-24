@@ -1,15 +1,4 @@
 function generatevhdltb(filterobj,varargin)
-
-
-
-
-
-
-
-
-
-
-
     if~(builtin('license','checkout','Filter_Design_HDL_Coder'))
         error(message('hdlfilter:generatevhdltb:nolicenseavailable'));
     end

@@ -1,8 +1,5 @@
 function openReqLinkElement(absoluteFileAddress,absoluteElementAddress)
 
-
-
-
     slreq.editor;
     slreq.load(fullfile(absoluteFileAddress));
     ls=slreq.utils.getLinkSet(fullfile(absoluteFileAddress));

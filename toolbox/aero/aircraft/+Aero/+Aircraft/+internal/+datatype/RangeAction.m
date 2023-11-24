@@ -1,8 +1,5 @@
 classdef RangeAction
 
-
-
-
     enumeration
 Ignore
 Limit

@@ -1,10 +1,5 @@
 function activateService()
 
-
-
-
-
-
     mlock();
 
     persistent SimulationCompletedListener;

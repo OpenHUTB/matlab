@@ -1,20 +1,12 @@
 function simrfV2sparam_freq_domain_blockinit(  ...
 block, sub1BlkName, MaskWSValues )
 
-
-
-
-
-
-
 [ envfreq, ~, simWithNoise, envTempK, ~, step ] =  ...
 simrfV2_find_solverparams( bdroot( block ), block );
 
 if ( isempty( envfreq ) || isempty( envTempK ) || isempty( step ) )
 return 
 end 
-
-
 
 if strcmpi( block, sub1BlkName )
 
@@ -25,9 +17,6 @@ end
 resampled = rfdata.data;
 resampled.Freq = Udata.Spars.Frequencies;
 resampled.S_Parameters = Udata.Spars.Parameters;
-
-
-
 
 impulse_length = 0;
 
@@ -53,13 +42,6 @@ if sum( variance( : ) ) < 1e-8
 impulse_length = 0;
 end 
 
-
-
-
-
-
-
-
 if impulse_length == 0
 new_freqs = envfreq;
 else 
@@ -68,11 +50,7 @@ new_freqs = unique( [ 0;resampled.Freq ] );
 end 
 analyze( resampled, new_freqs );
 
-
-
-
 resampled.Z0 = Udata.Spars.Impedance;
-
 
 dc_idx = find( abs( envfreq ) < 1e-3 );
 resampled.S_Parameters( :, :, dc_idx ) =  ...
@@ -114,11 +92,6 @@ else
 zo_vec = ones( 1, numPorts ) * resampled.Z0( 1 );
 end 
 
-
-
-
-
-
 if strcmpi( get_param( block, 'Classname' ), 'sparam_element' )
 
 isCorrNoiseBlk = strcmpi( get_param( sub1BlkName, 'BlockType' ), 'SubSystem' );
@@ -148,8 +121,6 @@ set_param( corrNoise,  ...
 'impulse_length', '0' );
 elseif MagModeling
 
-
-
 warning( message( 'simrf:simrfV2errors:MagSparamNotPassive',  ...
 block ) );
 set_param( corrNoise,  ...
@@ -175,9 +146,6 @@ else
 subBlkExt = '';
 end 
 
-
-
-
 load_system( 'simrfV2_lib' )
 set_param( [ sub1BlkName, subBlkExt ],  ...
 'ZO', simrfV2vector2str( zo_vec ), 'ZO_unit', 'Ohm',  ...
@@ -200,6 +168,5 @@ repBlk = sprintf( 'simrfV2_lib/Sparameters/F%sPORT_RF', blkName( 2 ) );
 end 
 replace_block( sub1BlkName, 'Name', blkName, repBlk, 'noprompt' )
 end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpb4j9pS.p.
-% Please follow local copyright laws when handling this file.
+
 

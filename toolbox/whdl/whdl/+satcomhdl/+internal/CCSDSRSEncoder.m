@@ -1,18 +1,10 @@
 classdef(StrictDefaults)CCSDSRSEncoder<matlab.System
 
-
-
-
-
-
 %#codegen
-
 
     properties(Nontunable)
 
-
         MessageLength='223';
-
 
         InterleavingDepth='1';
     end

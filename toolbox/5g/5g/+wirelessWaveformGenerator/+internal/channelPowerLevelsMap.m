@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 function[powerLevelMap,colorScale,cmap]=channelPowerLevelsMap()
 
     persistent pLevelMap scaling colorMap;

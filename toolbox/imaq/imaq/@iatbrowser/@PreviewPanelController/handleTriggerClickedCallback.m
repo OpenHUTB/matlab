@@ -1,10 +1,5 @@
 function handleTriggerClickedCallback(~,~,~)
 
-
-
-
-
-
     trigger(iatbrowser.Browser().currentVideoinputObject);
 
     ed=iatbrowser.SessionLogEventData(iatbrowser.Browser().currentVideoinputObject,...

@@ -1,16 +1,4 @@
-
-
-
 function s=getAllLabels(rootFolder)
-
-
-
-
-
-
-
-
-
     p=matlab.internal.project.api.makeProjectAvailable(rootFolder);
 
     ff=p.Files;

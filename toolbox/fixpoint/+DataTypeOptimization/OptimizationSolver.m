@@ -1,8 +1,5 @@
 classdef OptimizationSolver<handle
 
-
-
-
     properties
 queue
 problemPrototype

@@ -1,17 +1,10 @@
 function simrfV2junctions(block,action)
 
-
-
-
     top_sys=bdroot(block);
     if strcmpi(get_param(top_sys,'BlockDiagramType'),'library')&&...
         strcmpi(top_sys,'simrfV2junction1')
         return;
     end
-
-
-
-
 
     switch(action)
     case 'simrfInit'
@@ -20,14 +13,7 @@ function simrfV2junctions(block,action)
         if any(strcmpi(SimStatus,{'running','paused'}))
             return
         end
-
-
         MaskWSValues=simrfV2getblockmaskwsvalues(block);
-
-
-
-
-
         MaskWSValues=simrfV2_junction_spars(MaskWSValues,...
         strcmpi(SimStatus,'stopped'));
 
@@ -39,9 +25,6 @@ function simrfV2junctions(block,action)
             cacheData=simrfV2_process_rational_model(block,...
             MaskWSValues.Poles,MaskWSValues.Residues,MaskWSValues.DF);
         end
-
-
-
 
         if strcmpi(MaskWSValues.SparamRepresentation,...
             'Time domain (rationalfit)')||...
@@ -69,13 +52,6 @@ function simrfV2junctions(block,action)
         MaskDisplay=sprintf('simrfV2icon_%s',...
         lower(regexprep(deviceType,'[- ()=]','')));
         set_param(block,'MaskDisplay',MaskDisplay)
-
-
-
-
-
-
-
         RepBlk=simrfV2_find_repblk(block,...
         '^(([sd][1-4])|(f[1-9][0-9]?))port$');
         numOutputsRepBlk=str2double(regexp(RepBlk,'\d+','match','once'));

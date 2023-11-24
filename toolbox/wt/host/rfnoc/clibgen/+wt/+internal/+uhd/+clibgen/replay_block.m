@@ -1,8 +1,5 @@
 classdef replay_block<wt.internal.uhd.clibgen.block
 
-
-
-
     properties(Access=private)
         word_size;
         mem_size;
@@ -52,12 +49,9 @@ repeatedTransmissionChannels
             numChannels=numberOfPorts(streamer);
             channelSampleBytes=sampleBytes*numChannels;
 
-
             maxChannelAlignedPacketLength=floor(double(packetCapacity)/numChannels);
 
-
             maxReplayPacketLength=floor(maxChannelAlignedPacketLength/channelSampleBytes)*channelSampleBytes;
-
 
             isBurstAllowed=~mod(packetCapacity*sampleBytes,obj.word_size);
         end
@@ -72,16 +66,11 @@ repeatedTransmissionChannels
             rateReductionThreshold=20;
             successfulBurstCount=0;
 
-
-
             sampleBytes=bytesPerDeviceSample(streamer);
             totalBytes=totalLength*length(channelList)*sampleBytes;
             if(mod(totalBytes,obj.word_size))
                 warning(message("wt:rfnoc:host:ReplayDataUnaligned"));
             end
-
-
-
             [maxPacketLength,isBurstAllowed]=obj.getMaxReplayPacketLength(streamer);
             if isBurstAllowed
                 packetsPerBurstList=[250,100,50,25,10,5,2,1];
@@ -94,7 +83,6 @@ repeatedTransmissionChannels
 
             while currentSampleCount<totalLength
                 transmitAttemptCount=0;
-
 
                 chunkStart=currentSampleCount+1;
 

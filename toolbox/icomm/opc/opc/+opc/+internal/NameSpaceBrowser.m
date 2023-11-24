@@ -1,30 +1,11 @@
 classdef NameSpaceBrowser<handle
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Hidden,Access=private,Constant)
         GapX=10;
         GapY=5;
         EdgeX=10;
         EdgeY=10;
-
-
         IconEnabled=fullfile(fileparts(mfilename('fullpath')),'private','server_tag_normal.gif');
         IconDisabled=fullfile(fileparts(mfilename('fullpath')),'private','server_tag_disabled.gif');
-
-
         LoadingString=sprintf('<html>&lt;<i>%s...</i>&gt;</html>',...
         getString(message('opc:NameSpace:LoadingString')));
     end
@@ -47,10 +28,6 @@ ServerSelection
     methods(Hidden,Access=private)
         function this=NameSpaceBrowser(opcObj,fqidList,readAtOnce)
 
-
-
-
-
             this.OPCClient=opcObj;
             if isa(opcObj,'opcda')
                 this.GetNameSpaceFH=@(varargin)getnamespace(opcObj,varargin{:});
@@ -59,8 +36,6 @@ ServerSelection
             end
 
             this.buildGUI(get(opcObj,'Name'),fqidList);
-
-
             this.SelectedNodesMap=containers.Map();
             for k=1:numel(fqidList)
                 this.SelectedNodesMap(fqidList{k})=[];

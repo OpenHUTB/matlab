@@ -1,19 +1,5 @@
 classdef DataDefinitionDDGSource<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties
 UserData
     end
@@ -69,10 +55,6 @@ m_ddModificationListener
 
 
         function notifyOfDDModification(thisObj,~,evtData)
-
-
-
-
 
 
             dlgs=DAStudio.ToolRoot.getOpenDialogs(thisObj);

@@ -1,9 +1,6 @@
 function MaskDisplay=simrfV2_add_portlabel(MaskDisplay,numLConn,...
     namesLConn,numRConn,namesRConn,isgrounded)
 
-
-
-
     tempstr='';
     if isgrounded
         for ii=1:numLConn

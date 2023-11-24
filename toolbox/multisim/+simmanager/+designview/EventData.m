@@ -1,4 +1,3 @@
-
 classdef(ConstructOnLoad)EventData<event.EventData
     properties
 Data

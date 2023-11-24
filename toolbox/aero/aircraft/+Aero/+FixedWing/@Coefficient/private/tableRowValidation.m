@@ -1,9 +1,5 @@
 function tableRowValidation(obj,T)
 
-
-
-
-
     switch obj.ReferenceFrame
     case "Body"
         rows="C"+["X";"Y";"Z";"l";"m";"n"];

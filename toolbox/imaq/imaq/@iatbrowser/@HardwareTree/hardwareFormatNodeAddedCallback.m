@@ -1,15 +1,6 @@
 
 function hardwareFormatNodeAddedCallback(this,deviceNode,eventdata)
 
-
-
-
-
-
-
-
-
-
     formatNode=eventdata.FormatNode;
 
     javaTree=java(this.javaTreePeer);

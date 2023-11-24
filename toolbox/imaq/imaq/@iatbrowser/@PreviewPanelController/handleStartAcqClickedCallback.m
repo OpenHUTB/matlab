@@ -1,14 +1,7 @@
 function handleStartAcqClickedCallback(this,~,~)
 
-
-
-
-
-
     drawnow;
     if~this.diskLoggingValidState
-
-
         return;
     end
 
@@ -54,7 +47,6 @@ function handleStartAcqClickedCallback(this,~,~)
         formatNodePanel.selectLoggingTab();
         formatNodePanel.setInvalidFilenameSpecified(true);
         formatNodePanel.setFocusInFileNameField();
-
         status=iatbrowser.DiskParametersUpdatedEventData(false);
         iatbrowser.Browser().messageBus.generateEvent('DiskParametersUpdated',status);
 

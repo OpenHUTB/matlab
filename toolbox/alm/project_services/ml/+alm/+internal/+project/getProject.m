@@ -1,6 +1,3 @@
-
-
-
 function proj=getProject(rootFolder)
     loadedProjects=slproject.getCurrentProjects;
     idx=strcmp(rootFolder,{loadedProjects.RootFolder});

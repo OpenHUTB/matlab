@@ -1,9 +1,5 @@
 classdef Constraint<handle
 
-
-
-
-
     properties
         Name;
         Penalty=1;

@@ -1,24 +1,5 @@
 function opcslread(block)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     grp=[];
     itmudd=[];
 
@@ -39,17 +20,7 @@ function opcslread(block)
     setup(block);
 
 
-
-
-
-
-
-
-
-
-
     function setup(block)
-
 
         hostName=block.DialogPrm(1).Data;
         serverID=block.DialogPrm(2).Data;
@@ -62,11 +33,7 @@ function opcslread(block)
         block.NumInputPorts=0;
         block.NumOutputPorts=1+sum(showOutputs);
 
-
-
         block.SetPreCompOutPortInfoToDynamic;
-
-
 
         dtIDs={'double','single','int8','uint8','int16','uint16','int32','uint32','logical'};
         dtInd=find(strncmpi(dataType,dtIDs,length(dataType)))-1;
@@ -77,7 +44,6 @@ function opcslread(block)
         block.OutputPort(1).Dimensions=max(length(itemIDs),1);
 
         opInd=1;
-
 
         if showOutputs(1),
             opInd=opInd+1;
@@ -100,227 +66,41 @@ function opcslread(block)
         block.NumDialogPrms=8;
         block.DialogPrmsTunable=repmat({'Nontunable'},1,8);
 
-
-
-
-
-
-
-
         minorRate=0.0;
         block.SampleTimes=[updateRate,minorRate];
 
-
-
-
-
-
         block.SetAccelRunOnTLC(false);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         block.RegBlockMethod('CheckParameters',@CheckPrms);
-
-
-
-
-
-
-
-
-
         block.RegBlockMethod('SetInputPortSamplingMode',@SetInpPortFrameData);
-
-
-
-
-
-
-
-
         block.RegBlockMethod('SetInputPortDimensions',@SetInpPortDims);
-
-
-
-
-
-
-
-
         block.RegBlockMethod('SetOutputPortDimensions',@SetOutPortDims);
-
-
-
-
-
-
-
-
         block.RegBlockMethod('SetInputPortDataType',@SetInpPortDataType);
-
-
-
-
-
-
-
 
         block.RegBlockMethod('SetOutputPortDataType',@SetOutPortDataType);
 
-
-
-
-
-
-
-
         block.RegBlockMethod('SetInputPortComplexSignal',@SetInpPortComplexSig);
-
-
-
-
-
-
-
 
         block.RegBlockMethod('SetOutputPortComplexSignal',@SetOutPortComplexSig);
 
-
-
-
-
-
-
-
         block.RegBlockMethod('PostPropagationSetup',@DoPostPropSetup);
 
-
-
-
-
-
-
-
-
-
-
-
         block.RegBlockMethod('ProcessParameters',@ProcessPrms);
-
-
-
-
-
-
-
-
         block.RegBlockMethod('InitializeConditions',@InitializeConditions);
-
-
-
-
-
-
-
-
         block.RegBlockMethod('Start',@Start);
-
-
-
-
-
-
-
 
         block.RegBlockMethod('Outputs',@Outputs);
 
-
-
-
-
-
-
-
         block.RegBlockMethod('Update',@Update);
-
-
-
-
-
-
-
 
         block.RegBlockMethod('Derivatives',@Derivatives);
 
-
-
-
-
-
-
-
         block.RegBlockMethod('Projection',@Projection);
-
-
-
-
-
-
-
-
-
-
         block.RegBlockMethod('ZeroCrossings',@ZeroCrosssings);
 
-
-
-
-
-
-
-
         block.RegBlockMethod('SimStatusChange',@SimStatusChange);
-
-
-
-
-
-
-
         block.RegBlockMethod('Terminate',@Terminate);
-
-
-
-
-
-
-
-
-
-
-
         block.RegBlockMethod('WriteRTW',@WriteRTW);
     end
-
 
 
 

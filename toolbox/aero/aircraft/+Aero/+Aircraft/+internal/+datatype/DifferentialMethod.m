@@ -1,8 +1,5 @@
 classdef DifferentialMethod
 
-
-
-
     enumeration
 Forward
 Backward

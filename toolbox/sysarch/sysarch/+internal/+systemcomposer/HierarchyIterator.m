@@ -1,8 +1,5 @@
 classdef HierarchyIterator<internal.systemcomposer.AbstractIterator
 
-
-
-
     properties(Access=protected)
         CurrentElement;
         Root;

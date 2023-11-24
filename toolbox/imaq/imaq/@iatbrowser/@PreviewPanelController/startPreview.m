@@ -1,8 +1,5 @@
 function startPreview(this,acqStarting)
 
-
-
-
     try
         this.prevPanel.startPreview(iatbrowser.Browser().currentVideoinputObject,acqStarting);
         previewStartingEventData=iatbrowser.PreviewStartingEventData(this,acqStarting);

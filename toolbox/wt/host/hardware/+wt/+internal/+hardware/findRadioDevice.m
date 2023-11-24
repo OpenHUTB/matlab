@@ -1,8 +1,4 @@
 function[list,result]=findRadioDevice(varargin)
-
-
-
-
     uhd_bin_path=wt.internal.uhd.clibgen.setup();
     deviceCount=0;
     addr=[];
@@ -84,7 +80,6 @@ function[list,result]=findRadioDevice(varargin)
                                 r.SFP0IPAddress=mgmt_addr((~contains(mgmt_addr,addr(1))));
                                 r.ManagementIPAddress=r.SFP1IPAddress;
                             case 3
-
 
                                 r.SFP1IPAddress=addr(1);
                                 secondaryAddresses=mgmt_addr((~contains(mgmt_addr,addr(1))));

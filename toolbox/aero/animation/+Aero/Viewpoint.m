@@ -1,12 +1,6 @@
 classdef(CompatibleInexactProperties=true)Viewpoint...
     <matlab.mixin.SetGet&matlab.mixin.Copyable
 
-
-
-
-
-
-
     properties(Transient,SetObservable)
 
         Name='';
@@ -17,8 +11,6 @@ classdef(CompatibleInexactProperties=true)Viewpoint...
 
     methods
         function h=Viewpoint(varargin)
-
-
             if~builtin('license','test','Aerospace_Toolbox')
                 error(message('aero:licensing:noLicenseVP'));
             end
@@ -33,7 +25,6 @@ classdef(CompatibleInexactProperties=true)Viewpoint...
 
     methods
         function set.Name(obj,value)
-
 
             obj.Name=value;
         end

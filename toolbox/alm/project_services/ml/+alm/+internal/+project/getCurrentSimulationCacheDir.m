@@ -1,8 +1,4 @@
-
-
-
 function currentSimCache=getCurrentSimulationCacheDir()
-
 
     cp=currentProject;
     if isprop(cp,'SimulinkCacheFolder')

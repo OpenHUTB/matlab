@@ -1,8 +1,5 @@
 classdef ZCBlockDiagramLoadSaveAdapter<alm.internal.AbstractArtifactLoadSaveAdapter
 
-
-
-
     properties(Access=private)
         SLAdapter;
     end
@@ -20,9 +17,6 @@ classdef ZCBlockDiagramLoadSaveAdapter<alm.internal.AbstractArtifactLoadSaveAdap
 
 
         function postCreate(h)
-
-
-
             mgr=alm.internal.HandlerServiceManager.get();
             service=mgr.getService(alm.internal.zc.ZCConstants.SIMULINK_SERVICE_ID);
             g=alm.Graph;

@@ -1,33 +1,5 @@
 classdef Annotation<sequencediagram.quasiannotation.internal.BaseAnnotation
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetObservable)
         Text(1,1)string
         Position(1,2)double{mustBeReal,mustBeFinite,mustBeNonnegative}=[10,10];

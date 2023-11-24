@@ -1,8 +1,5 @@
 function[J1,J2]=perturb(aircraft,state,stateName,output,RelativePerturbation,DifferentialMethod)
 
-
-
-
     baseValue=state.getState(stateName);
     perturbX=RelativePerturbation+1e-3*RelativePerturbation*abs(baseValue);
 

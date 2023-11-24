@@ -1,8 +1,5 @@
 function ImportProfileCB(data,varargin)
 
-
-
-
     [file,path]=uigetfile('*.xml');
     if file==0
         return

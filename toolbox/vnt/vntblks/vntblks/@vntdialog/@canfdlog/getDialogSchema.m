@@ -1,20 +1,5 @@
 function dlgStruct=getDialogSchema(obj,~)
-
-
-
-
-
-
-
-
-
-
-
-
-
     [allDevices,objConstructors]=canslshared.internal.parseHardwareInfo('CAN FD');
-
-
     vntslshared.internal.setupDevice(obj,allDevices,objConstructors);
 
 
@@ -22,15 +7,11 @@ function dlgStruct=getDialogSchema(obj,~)
     colSpan=[1,20];
     descPane=tamslgate('privateslwidgetdescgrp',obj,rowSpan,colSpan);
 
-
     paramPane=localCreateParamGroup(obj,allDevices);
-
 
     dlgItems={descPane,paramPane};
     dlgStruct=tamslgate('privateslpanemaindlg',obj,dlgItems,...
     'vntslshared.internal.preApplyCallback','canslshared.internal.closeDialog');
-
-
     [isLibrary,isLocked]=obj.isLibraryBlock(obj.Block);
     if(isLibrary&&isLocked)||any(strcmp(obj.Root.SimulationStatus,{'running','paused'}))
         dlgStruct.DisableDialog=true;
@@ -44,12 +25,9 @@ function paramPane=localCreateParamGroup(obj,allDevices)
 
     rowInDialog=1;
 
-
     widgetTags=vntslshared.internal.getStrings('canlog');
 
-
     widgetPrompts=vntslshared.internal.getStrings('allprompts');
-
 
     colSpan=[1,3];
     FileNameText=tamslgate('privateslwidgettext',widgetPrompts.FileNamePrompt,...
@@ -62,12 +40,10 @@ function paramPane=localCreateParamGroup(obj,allDevices)
     FileNameField.HideName=true;
 
 
-
     colSpan=[15,20];
     BrowseButton=tamslgate('privateslwidgetpushbutton',...
     widgetPrompts.BrowsePrompt,widgetTags.Browse,...
     [rowInDialog,rowInDialog],colSpan,'vntslshared.internal.maskCallback');
-
 
     rowInDialog=rowInDialog+1;
     colSpan=[1,3];

@@ -1,16 +1,9 @@
 function simrfV2cwsource1(block,action)
 
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(top_sys,'simrfV2sources1')
         return
     end
-
-
-
 
     switch(action)
     case 'simrfInit'
@@ -19,8 +12,6 @@ function simrfV2cwsource1(block,action)
             {'running','paused'}))
             return
         end
-
-
         MaskVals=get_param(block,'MaskValues');
         idxMaskNames=simrfV2getblockmaskparamsindex(block);
         MaskWSValues=simrfV2getblockmaskwsvalues(block);
@@ -112,7 +103,6 @@ function simrfV2cwsource1(block,action)
             {{'Side','Right','Orientation','Left','Port','2'}})...
             ,block);
         end
-
 
         if replace_gnd_complete||replace_src_complete
             simrfV2connports(struct('DstBlk',SrcBlk,'DstBlkPortStr',...

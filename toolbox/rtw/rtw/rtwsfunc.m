@@ -1,15 +1,5 @@
 function displist=rtwsfunc(rtw_sf_name,block)
 
-
-
-
-
-
-
-
-
-
-
     if~strcmpi(get_param(bdroot,'RapidAcceleratorSimStatus'),'inactive')
 
         [srcCodeExists,~]=...
@@ -71,15 +61,10 @@ rtw_sf_name...
     list=regexprep(list,' ([^ ]*[\\/])[^ ]*','');
 
 
-
-
-
-
     if strcmp(get_param(bdroot(block),'SimulationStatus'),'initializing')&&...
         strcmp(get_param(block,'LinkStatus'),'none')
         set_param(block,'sfunctionmodules',list);
     end
-
 
     sflist=strrep(sfmodules,'.c','.c\n');
     sflist=strrep(sflist,'.obj','.c\n');

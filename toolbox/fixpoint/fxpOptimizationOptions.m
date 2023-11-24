@@ -1,68 +1,5 @@
 classdef fxpOptimizationOptions<handle&matlab.mixin.CustomDisplay
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=public)
 
         MaxIterations(1,1)double{mustBeNonNan,mustBeFinite,mustBeInteger,mustBeReal,mustBeNonnegative}
@@ -121,46 +58,6 @@ SessionID
         end
 
         function addTolerance(this,blockPath,portIndex,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             p=inputParser();
             p.KeepUnmatched=true;
@@ -224,49 +121,12 @@ SessionID
 
         function addSpecification(this,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             import DataTypeOptimization.Specifications.*;
             p=inputParser();
             p.KeepUnmatched=true;
             p.addParameter('BlockParameter',Simulink.Simulation.BlockParameter.empty(1,0));
             p.addParameter('Variable',Simulink.Simulation.Variable.empty(1,0));
             p.parse(varargin{:});
-
 
             blockParameters=p.Results.BlockParameter;
             validateattributes(blockParameters,{'Simulink.Simulation.BlockParameter'},{},'addSpecification','blockParameter');
@@ -302,17 +162,6 @@ SessionID
         end
 
         function showSpecifications(this)
-
-
-
-
-
-
-
-
-
-
-
 
 
             if~isempty(this)

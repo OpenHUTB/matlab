@@ -1,12 +1,5 @@
 function updateDevicePanel(this)
 
-
-
-
-
-
-
-
     javaPeer=java(this.javaPeer);
     formatNodePanel=javaPeer.getFormatNodePanel();
 

@@ -1,19 +1,10 @@
 function simrfV2gatewayin1(block,action)
 
-
-
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(get_param(top_sys,'BlockDiagramType'),'library')&&...
         strcmpi(top_sys,'simrfV2util1')
         return
     end
-
-
-
 
     switch(action)
     case 'simrfInit'
@@ -22,14 +13,9 @@ function simrfV2gatewayin1(block,action)
             {'running','paused'}))
             return
         end
-
-
-
-
         MaskVals=get_param(block,'MaskValues');
         idxMaskNames=simrfV2getblockmaskparamsindex(block);
         MaskWSValues=simrfV2getblockmaskwsvalues(block);
-
         internalGrounding=lower(MaskVals{idxMaskNames.InternalGrounding});
         simulinkInputSignalType=...
         lower(MaskVals{idxMaskNames.SimulinkInputSignalType});
@@ -45,9 +31,6 @@ function simrfV2gatewayin1(block,action)
         '^(updating|initializing)$');
 
         useSqWave=lower(MaskVals{idxMaskNames.UseSqWave});
-
-
-
 
         pc=get_param([block,'/RF+'],'PortConnectivity');
         if strcmpi('R',get_param(pc.DstBlock,'Name'))
@@ -77,15 +60,12 @@ function simrfV2gatewayin1(block,action)
         end
         sameUseSqWave=strcmpi(useSqWave,oldUseSqWave);
 
-
         if isempty(rfMinus)
             oldInternalGrounding='on';
         else
             oldInternalGrounding='off';
         end
         sameGrounding=strcmpi(internalGrounding,oldInternalGrounding);
-
-
 
         if~sameInput||~sameGrounding
 
@@ -121,31 +101,25 @@ function simrfV2gatewayin1(block,action)
         end
 
         if~sameInput
-
             replace_src_complete=simrfV2repblk(struct(...
             'RepBlk',RepBlk,...
             'SrcBlk',['simrfV2_lib/Sources/',SrcBlk],...
             'SrcLib','simrfV2_lib',...
             'DstBlk',SrcBlk),block);
-
-
             current_rseries=simrfV2_find_repblk(block,'^(Zis0|R)$');
             if isPower
-
                 replace_r_complete=simrfV2repblk(struct(...
                 'RepBlk',current_rseries,...
                 'SrcBlk','simrfV2_lib/Elements/R_RF',...
                 'SrcLib','simrfV2_lib',...
                 'DstBlk',replace_rseries),block);
             else
-
                 replace_r_complete=simrfV2repblk(struct(...
                 'RepBlk',current_rseries,...
                 'SrcBlk','simrfV2_lib/Elements/SHORT_RF',...
                 'SrcLib','simrfV2_lib',...
                 'DstBlk',replace_rseries),block);
             end
-
 
             if replace_src_complete
                 set_param([block,'/',SrcBlk],'Orientation',orientation)

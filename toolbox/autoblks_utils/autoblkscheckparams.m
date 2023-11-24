@@ -1,39 +1,5 @@
 function ParamStruct=autoblkscheckparams(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     Block=varargin{1};
     SrcBlock=get_param(Block,'Name');
     if ischar(varargin{2})

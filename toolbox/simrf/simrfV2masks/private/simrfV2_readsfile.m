@@ -1,11 +1,7 @@
 function auxData=simrfV2_readsfile(filename,block,minPorts,maxPorts)
 
-
-
-
     auxData=simrfV2_getauxdata(block);
     fileData=rf.file.touchstone.Data(filename);
-
 
     auxData.filename=filename;
     if isempty(which(filename))

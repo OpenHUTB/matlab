@@ -1,11 +1,4 @@
-
-
-
 function b=hasLabel(rootFolder,filepath,category,label)
-
-
-
-
     proj=alm.internal.project.getProject(rootFolder);
 
     b=false;

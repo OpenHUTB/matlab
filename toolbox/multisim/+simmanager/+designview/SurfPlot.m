@@ -1,7 +1,3 @@
-
-
-
-
 classdef SurfPlot<simmanager.designview.FigureObject
     properties(Dependent)
 XLabel
@@ -258,7 +254,6 @@ HoverInactive
         function yData=get.YData(obj)
             yData=obj.YDataActual;
         end
-
 
 
 

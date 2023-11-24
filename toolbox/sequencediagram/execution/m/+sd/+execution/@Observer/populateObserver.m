@@ -1,14 +1,8 @@
 function populateObserver(source,container,bdHandle,sourceModelName,diagramName,designPortHdls)
 
-
-
-
-
-
     observer=sd.execution.Observer(container);
     observer.sourceModelName=sourceModelName;
     observer.name=get_param(bdHandle,'name');
-
 
     dd=get_param(sourceModelName,'DataDictionary');
     if(~isempty(dd))

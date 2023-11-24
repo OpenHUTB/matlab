@@ -1,12 +1,5 @@
 function resetCurrentNode(this)
 
-
-
-
-
-
-
-
     if isa(this.currentNode,'iatbrowser.FormatNode')
         currentNode=this.CurrentNode;
         deleteDevice(this.currentNode);

@@ -1,9 +1,5 @@
 function aircraft=map06ToAircraft(aircraft,datcomStruct,build)
 
-
-
-
-
     datcomStruct.build=build;
 
 

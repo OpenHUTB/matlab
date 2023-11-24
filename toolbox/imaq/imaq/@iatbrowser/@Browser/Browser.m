@@ -1,13 +1,5 @@
 function this=Browser
 
-
-
-
-
-
-
-
-
     mlock;
     persistent browserInstance;
     if isempty(browserInstance)

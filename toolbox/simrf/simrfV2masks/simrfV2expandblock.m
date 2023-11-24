@@ -1,25 +1,17 @@
 function simrfV2expandblock(block,dialog)
 
-
-
-
     if strcmpi(get_param(bdroot(block),'BlockDiagramType'),'library')
         return;
     end
-
-
     if(~strcmp(fileparts(get_param(block,'ReferenceBlock')),'simrfV2systems'))
         blkName=regexprep(block,'\n','');
         error(message('simrf:simrfV2errors:NotLinkedToRFSystems',blkName));
     end
 
-
     if dialog.hasUnappliedChanges
         blkName=regexprep(block,'\n','');
         error(message('simrf:simrfV2errors:ApplyButton',blkName));
     end
-
-
 
     dialog.setEnabled('EditButton',0)
     [~,blkName]=fileparts(block);
@@ -79,6 +71,7 @@ function simrfV2expandblock(block,dialog)
 
 end
 
+
 function EditSystem(block)
     ClassName=get_param(block,'classname');
     ParamName=[ClassName,'Params'];
@@ -122,9 +115,6 @@ function EditSystem(block)
         intBlkfullNames=find_system(block,'SearchDepth','1',...
         'FollowLinks','on','LookUnderMasks','all',...
         'Name',intBlkName);
-
-
-
 
         if(~isempty(intBlkfullNames))
             intBlkfullName=intBlkfullNames{1};

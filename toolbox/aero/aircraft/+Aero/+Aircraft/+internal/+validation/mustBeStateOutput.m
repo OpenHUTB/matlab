@@ -1,9 +1,4 @@
 function mustBeStateOutput(obj,stateOutput,component)
-
-
-
-
-
     validStateOutputs=getValidStateOutputs(obj,component);
     stateOutput=string(stateOutput);
     try

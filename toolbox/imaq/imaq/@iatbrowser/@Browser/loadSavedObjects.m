@@ -1,11 +1,5 @@
 function loadSavedObjects(this,vidObjs)
 
-
-
-
-
-
-
     root=this.treePanel.rootNode;
 
     devices=getDevices(root);

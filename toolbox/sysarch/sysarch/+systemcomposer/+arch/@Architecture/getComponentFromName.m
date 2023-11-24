@@ -1,9 +1,5 @@
 function comp=getComponentFromName(this,compName)
 
-
-
-
-
     comp=compName;
     if ischar(compName)
         if isempty(compName)

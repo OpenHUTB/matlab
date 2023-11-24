@@ -1,11 +1,5 @@
 classdef(StrictDefaults)CCSDSLDPCDecoder<matlab.System
 
-
-
-
-
-
-
 %#codegen
 
 

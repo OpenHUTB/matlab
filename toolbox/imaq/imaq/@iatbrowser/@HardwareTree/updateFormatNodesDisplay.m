@@ -1,11 +1,5 @@
 function objs=updateFormatNodesDisplay(this)
 
-
-
-
-
-
-
     root=this.rootNode;
 
     objs=java.util.Vector();
@@ -25,6 +19,5 @@ function objs=updateFormatNodesDisplay(this)
             end
         end
     end
-
     javaMethodEDT('updateUI',java(this.javaTreePeer));
 end

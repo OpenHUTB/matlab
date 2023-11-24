@@ -1,14 +1,10 @@
 classdef ZCArtifactFactory<alm.internal.AbstractArtifactFactory
 
-
-
-
     methods
 
         function h=ZCArtifactFactory(metaData,storage,g)
             h=h@alm.internal.AbstractArtifactFactory(metaData,storage,g);
         end
-
 
 
         function type=getSelfContainedType(h,address)

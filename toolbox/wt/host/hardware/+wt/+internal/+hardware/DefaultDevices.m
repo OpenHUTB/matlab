@@ -1,9 +1,4 @@
 classdef DefaultDevices
-
-
-
-
-
     properties(Dependent,SetAccess=private)
 Product
     end
@@ -14,10 +9,7 @@ Product
 
     methods
         function obj=DefaultDevices()
-
-
             obj.DeviceParameters=containers.Map;
-
 
             params.Type='N310';
             params.Product=params.Type;

@@ -1,9 +1,6 @@
 function coeff=getCoefficientFromCoefficientObject(obj,stateOutput,stateVariable,state)
 
 
-
-
-
     coeff=[];
     r=find(obj.StateOutput==stateOutput);
     c=find(obj.StateVariables==stateVariable);

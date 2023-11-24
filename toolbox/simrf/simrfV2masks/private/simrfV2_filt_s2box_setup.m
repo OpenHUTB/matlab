@@ -1,13 +1,5 @@
 function simrfV2_filt_s2box_setup(blk,Rsrc,Rload,ratFcns)
 
-
-
-
-
-
-
-
-
     OldElems=find_system(blk,'LookUnderMasks','all',...
     'FollowLinks','on','SearchDepth',1,'FindAll','on',...
     'RegExp','on','Classname',...
@@ -25,8 +17,6 @@ function simrfV2_filt_s2box_setup(blk,Rsrc,Rload,ratFcns)
         SrcBlk='S2PORT_RF';
         add_block([libMod,'/Sparameters/',SrcBlk],[blk,'/S2PORT_RF'],...
         'Position',[180,167,245,223])
-
-
 
         hasUnderMaskGnd=~isempty(find_system(blk,...
         'LookUnderMasks','all','FollowLinks','on',...
@@ -52,16 +42,11 @@ function simrfV2_filt_s2box_setup(blk,Rsrc,Rload,ratFcns)
         end
     end
 
-
-
     ACellNames={'P11','P21','P12','P22'};
     CCellNames={'R11','R21','R12','R22'};
     D=cell(4,1);
     Poles=D;
     Residues=D;
-
-
-
 
     ratFuns=ratFcns.DesignData;
     [Residues{1},Poles{1},D{1}]=simrfV2_filt_polezerores(...
@@ -90,9 +75,6 @@ function simrfV2_filt_s2box_setup(blk,Rsrc,Rload,ratFcns)
     set_param([blk,'/S2PORT_RF'],sboxparam{:})
 
     function y=process_poles_residues(xin)
-
-
-
 
         x=xin;
         tempy=[real(x(:,1)),imag(x(:,1)),real(x(:,2)),imag(x(:,2))];

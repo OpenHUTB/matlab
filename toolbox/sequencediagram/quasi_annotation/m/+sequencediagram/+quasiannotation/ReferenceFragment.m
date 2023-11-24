@@ -1,58 +1,10 @@
 classdef ReferenceFragment<sequencediagram.quasiannotation.internal.BaseAnnotation
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetObservable)
-
-
-
-
 
         ParentModelName(1,1)string
 
-
-
         SequenceDiagramName(1,1)string
-
-
 
         Comment(1,1)string
 

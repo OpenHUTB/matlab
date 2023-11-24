@@ -1,22 +1,5 @@
 function[tones,harmonics]=simrfV2_fundamental_tones(input_freqs,...
     freqs_of_interest)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     input_freqs=prepare_freqs(input_freqs);
     freqs=prepare_freqs([input_freqs,freqs_of_interest(:)']);
 
@@ -32,9 +15,7 @@ function[tones,harmonics]=simrfV2_fundamental_tones(input_freqs,...
         return;
     end
 
-
     max_harmonics=[100,10,8,5];
-
 
     num_inputs=length(input_freqs);
     if num_inputs<15
@@ -47,7 +28,6 @@ function[tones,harmonics]=simrfV2_fundamental_tones(input_freqs,...
         max_num_fundamentals=1;
     end
     max_num_fundamentals=min(max_num_fundamentals,length(input_freqs));
-
 
     for num_fundamentals=1:max_num_fundamentals
         harms=max_harmonics(num_fundamentals);
@@ -65,13 +45,7 @@ function[tones,harmonics]=simrfV2_fundamental_tones(input_freqs,...
         end
     end
 
-
     if isempty(harmonics)
-
-
-
-
-
         if~isequal(input_freqs,freqs)
             [tones,harmonics]=simrfV2_fundamental_tones(freqs,freqs);
         else
@@ -79,10 +53,6 @@ function[tones,harmonics]=simrfV2_fundamental_tones(input_freqs,...
             harmonics=ones(size(freqs));
         end
     end
-
-
-
-
 
     switch numel(tones)
     case 1
@@ -95,22 +65,10 @@ function[tones,harmonics]=simrfV2_fundamental_tones(input_freqs,...
 
 end
 
+
 function n=num_carriers(harmonics)
     n=prod(2*harmonics+1);
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function[tones,harmonics]=fundamental_tones_n(input_freqs,...
@@ -131,9 +89,7 @@ function[tones,harmonics]=fundamental_tones_n(input_freqs,...
         end
         return;
     end
-
     all_harmonics=list_all_harmonics(num_fundamentals,max_harmonics);
-
     all_harmonics_weight=sum(abs(all_harmonics'));
     [~,order]=sort(all_harmonics_weight);
 
@@ -141,17 +97,10 @@ function[tones,harmonics]=fundamental_tones_n(input_freqs,...
 
     possible_fundamentals=nchoosek(input_freqs,num_fundamentals);
 
-
-
-
-
-
     for i=1:size(possible_fundamentals,1)
         current_tones=possible_fundamentals(i,:)';
 
         covered_freqs=abs(all_harmonics*current_tones);
-
-
 
         covered=true;
         for j=1:length(freqs)
@@ -166,10 +115,6 @@ function[tones,harmonics]=fundamental_tones_n(input_freqs,...
         if~covered
             continue;
         end;
-
-
-
-
 
         current_harmonics=zeros(size(harmonics));
         for j=1:length(freqs)
@@ -190,6 +135,7 @@ function[tones,harmonics]=fundamental_tones_n(input_freqs,...
     end
 end
 
+
 function f=prepare_freqs(freqs)
     f=unique(abs(freqs(:)'));
     if~isempty(f)&&f(1)==0
@@ -197,8 +143,8 @@ function f=prepare_freqs(freqs)
     end
 end
 
-function K=list_all_harmonics(ntones,max_harmonics)
 
+function K=list_all_harmonics(ntones,max_harmonics)
     harmonics=ones(1,ntones)*max_harmonics;
 
     allfreqs=prod(2*harmonics+1);

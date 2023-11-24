@@ -1,8 +1,5 @@
 classdef VideoRecordType
 
-
-
-
     enumeration
 off
 on

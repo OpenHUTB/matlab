@@ -1,8 +1,4 @@
 function cacheData=simrfV2_antcachefit(block,MaskWSValues)
-
-
-
-
     cacheData=simrfV2_getantcachedata(block);
     antSrc=get_param(block,'AntennaSource');
     prevAntSrc=get_param(block,'PrevAppliedAntSource');
@@ -49,9 +45,6 @@ function cacheData=simrfV2_antcachefit(block,MaskWSValues)
         else
             rDepRad=[];
         end
-
-
-
         showBar=strcmp(get_param(bdroot(block),'Shown'),'on');
         if antSrcCmp(1)
             antObjVal=get_param(block,'AntennaObj');

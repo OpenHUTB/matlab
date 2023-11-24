@@ -1,6 +1,3 @@
-
-
-
 classdef SLTestResultArtifactHandler<alm.internal.AbstractArtifactHandler
 
     properties(Constant)
@@ -26,25 +23,12 @@ classdef SLTestResultArtifactHandler<alm.internal.AbstractArtifactHandler
 
 
         function analyze(h)
-
-
             licPrev=alm.internal.sltest.SLTestLicenseCheckoutOverride();%#ok<NASGU>  
 
-
             h.MainArtifact.Derived=true;
-
-
-
             rscs=h.Loader.load(h.MainArtifact,h.Graph);%#ok<NASGU>
 
             if endsWith(h.AbsoluteFileAddress,'.mldatx')
-
-
-
-
-
-
-
                 release=string(stm.internal.getPkgRelease(h.AbsoluteFileAddress));
                 if release<"R2020b"
                     error(message('alm:sltest_handlers:TestResultFileIncompatible',h.AbsoluteFileAddress,"R2020b"));
@@ -53,14 +37,6 @@ classdef SLTestResultArtifactHandler<alm.internal.AbstractArtifactHandler
                 [resultSetUuidsOfFile,~]=...
                 stm.internal.getResultsFileLoadStatus(...
                 h.AbsoluteFileAddress);
-
-
-
-
-
-
-
-
                 nResults=numel(resultSetUuidsOfFile);
                 resultSetUuidsOfFile=unique(resultSetUuidsOfFile);
                 if numel(resultSetUuidsOfFile)<nResults
@@ -99,9 +75,6 @@ classdef SLTestResultArtifactHandler<alm.internal.AbstractArtifactHandler
                 v=alm.internal.sltest.visitor.TestResultHandler(h);
                 traverser=alm.internal.sltest.SLTestResultTraverser(v);
                 traverser.run(resultSets(i));
-
-
-
                 testCaseArts=h.Graph.getAllArtifacts("sl_test_case_result");
                 for testCaseArt=testCaseArts
                     if~testCaseArt.hasCustomProperty(...
@@ -126,8 +99,6 @@ classdef SLTestResultArtifactHandler<alm.internal.AbstractArtifactHandler
                 if release>="R2020b"
                     sltest.testmanager.importResults(...
                     h.AbsoluteFileAddress,'UniqueImport',true);
-
-
                     [loadedResultSetUUIDs,~]=...
                     stm.internal.getResultsFileLoadStatus(h.AbsoluteFileAddress);
 
@@ -135,17 +106,11 @@ classdef SLTestResultArtifactHandler<alm.internal.AbstractArtifactHandler
                         stm.internal.util.highlightTestResult(char(loadedResultSetUUIDs(1)));
                     end
                 else
-
-
                     sltest.testmanager.importResults(h.AbsoluteFileAddress);
                     rss=sltest.testmanager.getResultSets();
                     if~isempty(rss)
                         stm.internal.util.highlightTestResult(rss(end).getID());
                     end
-
-
-
-
                 end
             elseif endsWith(h.AbsoluteFileAddress,'.sltsrf')
                 [~,resultSetUuid,~]=fileparts(h.AbsoluteFileAddress);

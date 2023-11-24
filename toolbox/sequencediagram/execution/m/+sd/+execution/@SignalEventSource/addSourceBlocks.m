@@ -1,8 +1,4 @@
 function addSourceBlocks(obj,namePrefix,sourcePort)
-
-
-
-
     obj.signalGeneratorName=namePrefix+"_gen";
     hdl1=add_block('built-in/MATLABDiscreteEventSystem',string(obj.owner.name)+"/"+obj.signalGeneratorName);
     sg=get_param(hdl1,'Object');

@@ -1,11 +1,5 @@
 classdef FractionLengthScanHeuristic<DataTypeOptimization.AbstractHeuristic
 
-
-
-
-
-
-
     methods
         function this=FractionLengthScanHeuristic(problemPrototype,tracer)
             this.problemPrototype=problemPrototype;

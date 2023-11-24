@@ -1,12 +1,7 @@
 function[promptWidgets,comboxWidgets,shwBtnWidgets,hdeBtnWidgets,desMinWidgets,desMaxWidgets,dtaGUIWidgets]=getDialogSchemaCellArray(this)
 
-
-
-
     totNumDTypeRows=length(this);
     allUDTSpecs=cell(1,totNumDTypeRows);
-
-
 
     for ind=1:totNumDTypeRows
         dtRowStruct=this(ind);
@@ -14,15 +9,9 @@ function[promptWidgets,comboxWidgets,shwBtnWidgets,hdeBtnWidgets,desMinWidgets,d
         udtString=dtRowStruct.Block.(udtPrmStr);
         allUDTSpecs{ind}=udtCreateUDTSpecStruct(dtRowStruct,udtString);
     end
-
-
-
     [promptWidgets,comboxWidgets,shwBtnWidgets,hdeBtnWidgets,dtaGUIWidgets]=...
     Simulink.DataTypePrmWidget.getSPCDataTypeWidgets(...
     this(1).Block.getDialogSource,allUDTSpecs,-1,'');
-
-
-
 
     dtaPrmColIdx=1;
     dtaUDTColIdx=2;
@@ -37,9 +26,7 @@ function[promptWidgets,comboxWidgets,shwBtnWidgets,hdeBtnWidgets,desMinWidgets,d
         uDTypeRowIdx=(2*this(ind).Row)-2;
         dtaGUIRowIdx=uDTypeRowIdx+1;
 
-
         widgetVisible=this(ind).Visible;
-
 
         promptWidgets{ind}.RowSpan=[uDTypeRowIdx,uDTypeRowIdx];
         promptWidgets{ind}.ColSpan=[dtaPrmColIdx,dtaPrmColIdx];

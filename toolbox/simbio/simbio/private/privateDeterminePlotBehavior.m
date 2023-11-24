@@ -1,16 +1,7 @@
 function[addTocurrent,f,isCalledFromDesktop]=privateDeterminePlotBehavior(tag)
 
 
-
-
-
-
-
-
-
-
     isCalledFromDesktop=false;
-
 
     if(isempty(get(0,'children')))
         addTocurrent=false;

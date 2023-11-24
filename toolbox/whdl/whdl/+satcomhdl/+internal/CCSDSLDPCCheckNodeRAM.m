@@ -1,8 +1,5 @@
 classdef(StrictDefaults)CCSDSLDPCCheckNodeRAM<matlab.System
 
-
-
-
 %#codegen
 
     properties(Nontunable)

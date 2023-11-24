@@ -1,8 +1,4 @@
-
-
-
 function currentSimCache=getCurrentCodeCacheDir()
-
 
     cp=currentProject;
     if isprop(cp,'SimulinkCodeGenFolder')

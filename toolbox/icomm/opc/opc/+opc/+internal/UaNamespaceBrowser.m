@@ -1,17 +1,4 @@
 classdef UaNamespaceBrowser<handle
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Hidden,Access=private,Constant)
         GapX=10;
         GapY=5;
@@ -118,16 +105,12 @@ ServerSelection
             'Tooltip',getString(message('opc:NameSpace:AddBelowTooltipString')),...
             'ButtonPushedFcn',@(~,~)this.addSelectedChildrenToList,...
             'Tag','BtnAddChildren');
-
-
             removeButton=uibutton('Parent',figH,...
             'Text',getString(message('opc:NameSpace:RemoveString')),...
             'Enable','off',...
             'Tooltip',getString(message('opc:NameSpace:RemoveTooltipString')),...
             'ButtonPushedFcn',@(~,~)this.removeSelectedFromList,...
             'Tag','BtnRemove');%#ok<NASGU>
-
-
             treeTxtH=uilabel('Parent',figH,...
             'Text',getString(message('opc:NameSpace:NamespaceString')),...
             'Tag','TxtTree');
@@ -135,38 +118,27 @@ ServerSelection
 
             clientNode=uitreenode(treeH,'Text',clientName,'Icon',fullfile(this.IconPath,'opc_server.gif'));%#ok<NASGU>
             figH.UserData=treeH;
-
-
             listTxtH=uilabel('Parent',figH,'Text',getString(message('opc:NameSpace:SelectedItemsString')),'Tag','TxtList');
             listH=uilistbox('Parent',figH,'Items',fqidList,'Tag','LstSelected','Multiselect','on');
-
 
             this.UIHandles=guihandles(figH);
             this.UIHandles.UITree=treeH;
 
-
             ext=get(cancelButton,'OuterPosition');
-
-
-
-
             this.OKCancelWidth=ext(3)+4*this.GapX;
             this.BtnHeight=ext(4)+this.GapY;
             extAdd=get(addBelowButton,'OuterPosition');
 
             this.AddDelWidth=extAdd(3)+2*this.GapX;
 
-
             this.TxtTreeExtent=get(treeTxtH,'OuterPosition');
             this.TxtListExtent=get(listTxtH,'OuterPosition');
             this.TxtTreeExtent(3:4)=[90,22];
             this.TxtListExtent(3:4)=[90,22];
 
-
             listH.BackgroundColor='white';
             listH.ValueChangedFcn=@(~,~)this.listSelectionChanged;
             figH.Resize='on';
-
 
             this.UIHandles.UITree.NodeExpandedFcn=@(~,evt)nodeWillExpand(this,evt);
             this.UIHandles.UITree.Multiselect='on';
@@ -178,7 +150,6 @@ ServerSelection
         end
         function resize(this)
             figPos=get(this.UIHandles.NameSpaceBrowser,'Position');
-
 
             minWidth=2*this.EdgeX+2*this.OKCancelWidth+this.AddDelWidth+3*this.GapX+1;
             minHeight=2*this.EdgeY+3*this.BtnHeight+this.TxtTreeExtent(4)+3*this.GapY+1;

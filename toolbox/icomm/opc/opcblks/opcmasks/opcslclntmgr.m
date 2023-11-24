@@ -1,12 +1,6 @@
 function varargout=opcslclntmgr(varargin)
 
 
-
-
-
-
-
-
     gui_Singleton=0;
     gui_State=struct('gui_Name',mfilename,...
     'gui_Singleton',gui_Singleton,...
@@ -23,7 +17,6 @@ function varargout=opcslclntmgr(varargin)
     else
         gui_mainfcn(gui_State,varargin{:});
     end
-
 
 
 

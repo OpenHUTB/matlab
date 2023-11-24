@@ -1,19 +1,5 @@
 function linkType=linktype_rmi_sequenceDiagramQuasiAnnotation
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     linkType=ReqMgr.LinkType;
     linkType.Registration=mfilename;
 

@@ -1,18 +1,9 @@
 function simrfV2gatewayout1(block,action)
 
-
-
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(top_sys,'simrfV2util1')
         return
     end
-
-
-
 
     switch(action)
     case 'simrfInit'
@@ -21,23 +12,15 @@ function simrfV2gatewayout1(block,action)
             {'running','paused'}))
             return
         end
-
-
-
-
         MaskVals=get_param(block,'MaskValues');
         idxMaskNames=simrfV2getblockmaskparamsindex(block);
         MaskWSValues=simrfV2getblockmaskwsvalues(block);
-
         useInternalGnd=strcmpi(MaskVals{idxMaskNames.InternalGrounding},'on');
         sensorType=lower(MaskVals{idxMaskNames.SensorType});
         outputFormat=lower(MaskVals{idxMaskNames.OutputFormat});
         isPower=strcmpi(sensorType,'Power');
         isUpdating=regexpi(get_param(top_sys,'SimulationStatus'),...
         '^(updating|initializing)$');
-
-
-
 
         if getSimulinkBlockHandle([block,'/Res1'])>0
             oldSensorType='Power';
@@ -47,7 +30,6 @@ function simrfV2gatewayout1(block,action)
             oldSensorType='ideal current';
         end
         notSameSensor=~strcmpi(sensorType,oldSensorType);
-
 
         pc=get_param([block,'/Reshape'],'PortConnectivity');
         dst=get_param(pc(2).DstBlock,'Name');
@@ -72,9 +54,6 @@ function simrfV2gatewayout1(block,action)
             oldInternalGrounding=false;
         end
         notSameGrounding=(useInternalGnd~=oldInternalGrounding);
-
-
-
 
         if notSameSensor||notSameGrounding||notSameOutput
             if useInternalGnd
@@ -124,10 +103,7 @@ function simrfV2gatewayout1(block,action)
             'SrcLib','simrfV2_lib',...
             'DstBlk',SrcBlk),block);
 
-
-
             if replace_src_complete
-
                 set_param([block,'/',SrcBlk],'BlockMirror','off')
                 set_param([block,'/',SrcBlk],'BlockRotation','90')
                 simrfV2connports(struct(...
@@ -242,8 +218,6 @@ function simrfV2gatewayout1(block,action)
                 add_line(block,'Demux/2','RI_CP/2','autorouting','on')
                 add_line(block,'RI_CP/1','Gain/1','autorouting','on')
             end
-
-
             out1=simrfV2_find_repblk(block,'^(I|Mag|SL)$');
             out2=simrfV2_find_repblk(block,'^(Q|Ang)$');
             switch outputFormat

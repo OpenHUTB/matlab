@@ -1,10 +1,4 @@
 classdef OptimizationResultAnalyzer<handle
-
-
-
-
-
-
     properties(SetAccess=private,GetAccess=private)
 optimizationResult
     end
@@ -18,8 +12,6 @@ optimizationResult
         function state=analyze(this)
 
             bestSolution=this.optimizationResult.optimizationEngine.solutionsRepository.getBestSolution();
-
-
 
             errorIdentifiersMap=containers.Map();
             if~bestSolution.isValid||~bestSolution.isFullySpecified

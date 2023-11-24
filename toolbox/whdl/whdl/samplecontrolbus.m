@@ -1,7 +1,3 @@
-
-
-
-
 samplecontrol=Simulink.Bus;
 e1=Simulink.BusElement;
 e1.Name='start';

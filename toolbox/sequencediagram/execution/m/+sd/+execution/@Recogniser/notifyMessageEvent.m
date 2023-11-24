@@ -1,8 +1,4 @@
 function notifyMessageEvent(modelName,sdName,messageUuidToSend,valid)
-
-
-
-
     if~isempty(modelName)&&~strcmp(modelName,sdName)
         mdlHandle=get_param(modelName,'handle');
         instanceParents=[];

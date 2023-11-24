@@ -1,8 +1,4 @@
-
 classdef ModelingService<handle
-
-
-
 
     properties(SetAccess=private)
 environmentProxy

@@ -1,10 +1,5 @@
 function handleRefresh(this)
 
-
-
-
-
-
     if this.prevPanelController.areFramesAvailableForExport
 
         od=iatbrowser.OptionDialog();

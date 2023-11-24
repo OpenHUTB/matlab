@@ -1,17 +1,6 @@
 function[corrMatRatFitStr,freqs,isHerm]=...
     simrfV2corrnoise(cacheData,auxData,scale,block)
 
-
-
-
-
-
-
-
-
-
-
-
     if isfield(auxData,'Spars')&&isfield(auxData.Spars,'Frequencies')
         dataFreqs=auxData.Spars.Frequencies(:)';
     else
@@ -30,7 +19,6 @@ function[corrMatRatFitStr,freqs,isHerm]=...
 
     if isempty(Poles)
 
-
         Poles(1:nports^2,1)={1+1i};
         Residues(1:nports^2,1)={0};
     end
@@ -43,10 +31,7 @@ function[corrMatRatFitStr,freqs,isHerm]=...
 
     DFshape=reshape(DF,nports,[]).';
 
-
     spars=zeros(nports,nports,freqsLen);
-
-
     [row_idx,col_idx]=ind2sub([nports,nports],1:nports^2);
     for idx=1:nports^2
         hRatMod=rfmodel.rational('A',Poles{idx},'C',Residues{idx},...

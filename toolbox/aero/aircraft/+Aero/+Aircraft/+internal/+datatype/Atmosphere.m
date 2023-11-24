@@ -1,8 +1,5 @@
 classdef Atmosphere
 
-
-
-
     enumeration
 ISA
 COESA

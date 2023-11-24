@@ -1,8 +1,6 @@
 classdef OptimizationEngineFactory<handle
 
 
-
-
     methods(Static)
         function optimizationEngine=getEngine(model,sud,options,unsupportedBlocksExist)
             if nargin<4

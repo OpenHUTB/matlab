@@ -1,10 +1,5 @@
 classdef(Hidden)AbstractVarSizeEngine<matlab.System
 
-
-
-
-
-
 %#ok<*EMCLS>
 %#ok<*EMCA>
 %#codegen
@@ -12,7 +7,6 @@ classdef(Hidden)AbstractVarSizeEngine<matlab.System
     properties(Access=protected)
         pNumInputChannels=-1
     end
-
     properties(Access=protected,Nontunable)
 pValidatedNumInputChannels
     end

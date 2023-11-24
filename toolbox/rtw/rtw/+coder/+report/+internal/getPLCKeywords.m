@@ -1,13 +1,5 @@
 function out=getPLCKeywords(model)
 
-
-
-
-
-
-
-
-
     targetIDE='';
     if nargin>0&&~isempty(model)
         plcOptions=plcprivate('plc_options',model);

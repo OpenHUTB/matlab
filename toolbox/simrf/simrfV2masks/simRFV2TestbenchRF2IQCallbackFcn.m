@@ -1,6 +1,5 @@
 function simRFV2TestbenchRF2IQCallbackFcn( block, action )
 
-
 top_sys = bdroot( block );
 if strcmpi( get_param( top_sys, 'BlockDiagramType' ), 'library' )
 return ;
@@ -16,8 +15,6 @@ case 'simrfInit'
 
 
 if ( ~isRunningorPaused )
-
-
 
 T_amp_dBm_scL = get_param( block, 'T_amp_dBm_scL' );
 T_amp_dBm_scU = get_param( block, 'T_amp_dBm_scU' );
@@ -46,19 +43,15 @@ else
 CurrentModeStr = ModeStrShort;
 end 
 
-
 fullTypeOpts = { 'Gain', 'NF', 'IP3', 'IP2', 'DC Offset',  ...
 'Image Rejection Ratio' };
 ModeNum = strcmp( fullTypeOpts, CurrentModeStr ) * [ 1, 2, 3, 4, 5, 6 ]';
 
-
 fullTypeOpts = { 'Input referred', 'Output referred' };
 IPTypeNum = strcmp( fullTypeOpts, IPTypeStr ) * [ 1, 2 ]';
 
-
 fullTypeOpts = { 'I', 'Q' };
 IQMeasureNum = strcmp( fullTypeOpts, IQMeasureStr ) * [ 1, 2 ]';
-
 
 fullTypeOpts = { 'Low-side', 'High-side' };
 InjectionTypeNum = strcmp( fullTypeOpts, InjectionTypeStr ) * [ 1, 2 ]';
@@ -66,10 +59,8 @@ InjectionTypeNum = strcmp( fullTypeOpts, InjectionTypeStr ) * [ 1, 2 ]';
 switch action
 case 'NoiseboxCallback'
 
-
 if ( ~isRunningorPaused )
 if ( ( uncheckedNoise ) && ( isVisLong ) )
-
 
 set_param( [ block, '/Configuration' ], 'AddNoise', 'off' )
 set_param( block, 'ModeStrShort', ModeStrLong )
@@ -80,8 +71,6 @@ set_param( block, 'MaskVisibilities', MaskVisibilities )
 set_param( block, 'ModeStrShort', ModeStrLong )
 set_param( block, 'ModeStrLong', ModeStrLong )
 elseif ( ( ~uncheckedNoise ) && ( ~isVisLong ) )
-
-
 
 set_param( [ block, '/Configuration' ], 'AddNoise', 'on' )
 set_param( block, 'ModeStrLong', ModeStrShort )
@@ -94,7 +83,6 @@ set_param( block, 'ModeStrShort', ModeStrShort )
 end 
 end 
 case 'LongPulldownModeCallback'
-
 
 if ( ~isRunningorPaused )
 if strcmp( get_param( block, 'ModeStrLong' ), 'NF' )
@@ -153,13 +141,10 @@ set_param( gcb, 'ResetableRand', num2str( rand, '%.16e' ) )
 end 
 end 
 
-
-
 set_param( block, 'Mode', num2str( ModeNum ) )
 set_param( block, 'IPType', num2str( IPTypeNum ) )
 set_param( block, 'IQMeasure', num2str( IQMeasureNum ) )
 set_param( block, 'InjectionType', num2str( InjectionTypeNum ) )
-
 
 EmptyText6 = maskObj.getDialogControl( 'EmptyText6' );
 EmptyText7 = maskObj.getDialogControl( 'EmptyText7' );
@@ -168,7 +153,6 @@ MaskVisibilities = get_param( block, 'MaskVisibilities' );
 InstText = maskObj.getDialogControl( 'InstText' );
 EmptyText10 = maskObj.getDialogControl( 'EmptyText10' );
 EmptyText11 = maskObj.getDialogControl( 'EmptyText11' );
-
 
 if any( strcmpi( get_param( bdroot( block ), 'SimulationStatus' ),  ...
 { 'running', 'paused' } ) )
@@ -182,7 +166,6 @@ suggestionStr1IP3 = '';
 suggestionStr2 = '';
 suggestionStr2IP3 = '';
 end 
-
 
 switch ModeNum
 case 1
@@ -435,6 +418,4 @@ InstText.Prompt = newInstText;
 end 
 set_param( block, 'MaskVisibilities', MaskVisibilities )
 end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmp7On1P3.p.
-% Please follow local copyright laws when handling this file.
 

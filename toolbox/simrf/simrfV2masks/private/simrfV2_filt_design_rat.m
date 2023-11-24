@@ -1,36 +1,4 @@
 function designData=simrfV2_filt_design_rat(mwsv)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     designData=simrfV2_filt_designpars(mwsv);
     obj=rffilter('Zin',mwsv.Rsrc,'Zout',mwsv.Rload,...
     'ResponseType',mwsv.ResponseType,'Implementation','Transfer function');

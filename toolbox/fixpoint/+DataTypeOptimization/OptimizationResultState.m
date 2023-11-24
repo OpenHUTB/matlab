@@ -1,11 +1,5 @@
 classdef OptimizationResultState
 
-
-
-
-
-
-
     properties
 
 solutionOutcome

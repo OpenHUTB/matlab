@@ -1,8 +1,5 @@
 classdef Units
 
-
-
-
     properties
         UnitSystem(1,1)string{mustBeMember(UnitSystem,["Metric","English (kts)","English (ft/s)"])}="Metric";
         TemperatureSystem(1,1)Aero.internal.datatype.Temperature="Kelvin";

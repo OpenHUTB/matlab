@@ -1,12 +1,5 @@
 function handleExportCallback(this,~,eventdata)
 
-
-
-
-
-
-
-
     glassPaneSentinel=iatbrowser.GlassPaneSentinel;%#ok<NASGU>
 
     jDialog=eventdata.JavaEvent.dialog;
@@ -39,11 +32,6 @@ function handleExportCallback(this,~,eventdata)
     case 'com.mathworks.toolbox.imaq.browser.DataExporterDialog$DialogDataForIMWRITE'
         fileName=char(eventdata.JavaEvent.fileName);
         if~isempty(fileName)
-
-
-
-
-
             allowedExtensions={'j2c','j2k','jp2','jpf','jpx','jpg','jpeg','png','tif','tiff'};
             [~,~,fileExt]=fileparts(fileName);
 

@@ -1,11 +1,5 @@
 function handleSaveConfig(this,obj,event)%#ok<INUSD,INUSD>
 
-
-
-
-
-
-
     browser=iatbrowser.Browser;
     vids=browser.getAllVideoinputObjects;
 

@@ -1,26 +1,6 @@
 function PortInfo=autoblksgetportinfo(BlkHdl)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if strcmp(get_param(BlkHdl,'Type'),'block_diagram')
         InportBlkHdls=find_system(BlkHdl,'LookUnderMasks','all','FollowLinks','on','SearchDepth',1,'BlockType','Inport');
         OutportBlkHdls=find_system(BlkHdl,'LookUnderMasks','all','FollowLinks','on','SearchDepth',1,'BlockType','Outport');

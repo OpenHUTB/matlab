@@ -1,8 +1,5 @@
 classdef AddAssetsAndAnalyses %#codegen
 
-
-
-
     methods
         function obj=AddAssetsAndAnalyses
             coder.allowpcode('plain');

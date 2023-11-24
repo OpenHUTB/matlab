@@ -1,9 +1,5 @@
 function flags=generateScriptCommandFlags(h,operatingSystem)
 
-
-
-
-
     if h.DataFlow.contains("Send")
         sendFlag="--fdm=null --native-fdm=socket,in,30,"+...
         Aero.internal.flightgear.resolveAddress(h.DestinationIpAddress)+","+h.DestinationPort+",udp";

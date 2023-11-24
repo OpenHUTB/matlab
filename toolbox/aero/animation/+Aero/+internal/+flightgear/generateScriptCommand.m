@@ -1,8 +1,5 @@
 function lines=generateScriptCommand(~,operatingSystem)
 
-
-
-
     lines="";
 
     switch operatingSystem

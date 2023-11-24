@@ -1,12 +1,6 @@
 function[nl_params_str,SrcBlk,Srclib,DstBlk]=...
     simrfV2_compute_coeffs(block,isTimeDomainFit,TreatAsLinear,...
     Single_Sparam)
-
-
-
-
-
-
     MaskVals=get_param(block,'MaskValues');
     MaskWSValues=simrfV2getblockmaskwsvalues(block);
     idxMaskNames=simrfV2getblockmaskparamsindex(block);

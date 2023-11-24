@@ -1,8 +1,5 @@
 classdef HeuristicsFactory<handle
 
-
-
-
     methods(Static)
         function heuristic=getHeuristic(heuristicType,problemPrototype,tracer,options)
             if nargin<4

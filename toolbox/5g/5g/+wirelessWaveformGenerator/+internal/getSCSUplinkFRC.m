@@ -1,12 +1,5 @@
 function scs=getSCSUplinkFRC(frNum,secNum,frcNum)
 
-
-
-
-
-
-
-
     commonFR1=[15,15,15,30,30,30,30];
     fr1SCS={[15,30,60,15,30,60,15,30,60],...
     [15,30,60,15,30,60],...
@@ -20,7 +13,6 @@ function scs=getSCSUplinkFRC(frNum,secNum,frcNum)
     [repmat(commonFR2,1,2),60,120],...
     repmat(commonFR2,1,2),...
     commonFR2};
-
 
     if frNum==1
         scs=fr1SCS{secNum}(frcNum);

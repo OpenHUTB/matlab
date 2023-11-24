@@ -1,22 +1,7 @@
-
-
-
-
-
-
-
-
-
-
-
-
 function[gridset,msg,waveResources]=computeResourceGridPRB(wgc)
 
 
     [waveResources,csetInfo,msg]=computeChannelREIndices(wgc);
-
-
-
 
     [channelGrids,csetGrids]=markBWPGrids(wgc,waveResources,csetInfo);
 

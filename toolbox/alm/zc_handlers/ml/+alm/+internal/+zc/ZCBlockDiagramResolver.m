@@ -1,8 +1,5 @@
 classdef ZCBlockDiagramResolver<alm.internal.AbstractArtifactResolver
 
-
-
-
     methods
         function h=ZCBlockDiagramResolver(metaData,artifact,g,loader)
             h=h@alm.internal.AbstractArtifactResolver(metaData,artifact,g,loader);
@@ -16,9 +13,6 @@ classdef ZCBlockDiagramResolver<alm.internal.AbstractArtifactResolver
 
 
         function convertedAddress=convertAddressSpace(h,slot,index)
-
-
-
             address=slot.ContainedAddresses(index);
             address=string(address{1});
 
@@ -26,8 +20,6 @@ classdef ZCBlockDiagramResolver<alm.internal.AbstractArtifactResolver
                 convertedAddress="";
                 return;
             end
-
-
             [~,modelname]=fileparts(h.MainArtifact.Address);
             a_bd=h.Graph.getArtifactByAddress(...
             h.Storage.CustomId,h.SelfContainedArtifact.Address,...
@@ -38,21 +30,9 @@ classdef ZCBlockDiagramResolver<alm.internal.AbstractArtifactResolver
 
             h.Loader.load(a_bd,h.Graph);
 
-
-
-
-
-
-
-
-
-
             if startsWith(address,"ZC:")
                 address=erase(address,"ZC:");
             end
-
-
-
             archObj=systemcomposer.loadModel(modelname);
             if isempty(archObj)
                 archObj=autosar.arch.loadModel(modelname);
@@ -74,9 +54,6 @@ classdef ZCBlockDiagramResolver<alm.internal.AbstractArtifactResolver
                     return;
                 end
             end
-
-
-
             mgr=alm.internal.HandlerServiceManager.get();
             service=mgr.getService(alm.internal.zc.ZCConstants.SIMULINK_SERVICE_ID);
             resolver=service.createResolver(h.MainArtifact,h.Graph,h.Loader);
@@ -87,8 +64,6 @@ classdef ZCBlockDiagramResolver<alm.internal.AbstractArtifactResolver
 
 
         function redirectedArtifact=redirectAddress(h,convertedAddress,slot,index)
-
-
             mgr=alm.internal.HandlerServiceManager.get();
             service=mgr.getService(alm.internal.zc.ZCConstants.SIMULINK_SERVICE_ID);
             resolver=service.createResolver(h.MainArtifact,h.Graph,h.Loader);

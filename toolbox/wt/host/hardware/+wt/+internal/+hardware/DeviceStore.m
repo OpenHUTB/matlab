@@ -1,9 +1,5 @@
 classdef DeviceStore
 
-
-
-
-
     properties(Dependent)
 Names
     end
@@ -27,9 +23,6 @@ Names
             name,'getDeviceParameters','name');
 
             if isempty(obj.Names)
-
-
-
                 error(message('wt:radio:NoRadio'));
             end
 
@@ -51,13 +44,11 @@ Names
 
         function setDeviceParameters(obj,name,params)
 
-
             name=convertStringsToChars(name);
             wt.internal.hardware.DeviceParameterValidator.validateDeviceName(...
             name,'setDeviceParameters','name');
             wt.internal.hardware.DeviceParameterValidator.validateDeviceParameters(...
             params,'setDeviceParameters','params');
-
 
             devMap=getPreference(obj);
             if isempty(devMap)
@@ -85,9 +76,6 @@ Names
         end
 
         function deviceNames=get.Names(obj)
-
-
-
             try
                 devMap=getPreference(obj);
                 deviceNames=devMap.keys;

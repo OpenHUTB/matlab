@@ -1,7 +1,5 @@
 function serviceUrl=setProject(this,projName)
 
-
-
     if isempty(this.projCatalog)
 
         oslc.Project.getProjectNames();

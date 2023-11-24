@@ -1,15 +1,10 @@
 function schema
 
-
-
-
-
     pk=findpackage('iatbrowser');
 
     className='PreviewPanelController';
     prevPanelControllerClass=schema.class(pk,className);
     prevPanelControllerClass.JavaInterfaces={[pk.JavaPackage,'.',className]};
-
 
     schema.event(prevPanelControllerClass,'PreviewStarting');
     schema.event(prevPanelControllerClass,'PreviewStopping');
@@ -43,7 +38,6 @@ function schema
     aProp=schema.prop(prevPanelControllerClass,'startAcquisitionBtnListener','handle vector');
     aProp.AccessFlags.PublicSet='on';
     aProp.AccessFlags.PublicGet='on';
-
 
     aProp=schema.prop(prevPanelControllerClass,'widgetListeners','handle vector');
     aProp.AccessFlags.PublicSet='on';

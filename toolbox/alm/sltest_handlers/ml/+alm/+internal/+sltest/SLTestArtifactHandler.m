@@ -1,6 +1,3 @@
-
-
-
 classdef SLTestArtifactHandler<alm.internal.AbstractArtifactHandler
 
     properties
@@ -41,24 +38,7 @@ classdef SLTestArtifactHandler<alm.internal.AbstractArtifactHandler
             traverser=alm.internal.sltest.SLTestTraverser(v);
             traverser.run(tf);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             if feature('ALMSLTestSubfileChecksum')
-
 
                 aa=h.Graph.getAllContained(...
                 h.Graph.getContained(h.MainArtifact));
@@ -102,18 +82,12 @@ classdef SLTestArtifactHandler<alm.internal.AbstractArtifactHandler
 
 
 
-
     methods(Static,Access=private)
 
         function openBlocking(absoluteFilePath,uuid)
 
             function openSTM(varargin)
                 message.unsubscribe(sub);
-
-
-
-
-
                 stm.internal.openTestCase(absoluteFilePath,uuid);
             end
 
@@ -127,9 +101,6 @@ classdef SLTestArtifactHandler<alm.internal.AbstractArtifactHandler
             end
 
         end
-
-
-
 
     end
 end

@@ -1,15 +1,9 @@
 classdef Utils
 
-
-
-
     methods(Static)
 
         function retObj=getTestFileObj(absoluteFileAddress)
             retObj=[];
-
-
-
             tfs=sltest.testmanager.getTestFiles();
             for itf=1:numel(tfs)
                 tf=tfs(itf);

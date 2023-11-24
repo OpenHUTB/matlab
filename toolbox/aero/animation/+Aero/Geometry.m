@@ -1,12 +1,6 @@
 classdef(CompatibleInexactProperties=true)Geometry...
     <matlab.mixin.SetGet&matlab.mixin.Copyable
 
-
-
-
-
-
-
     properties(Transient,SetObservable)
         Name='';
         Source='Auto';
@@ -16,8 +10,6 @@ classdef(CompatibleInexactProperties=true)Geometry...
 
     methods
         function h=Geometry(varargin)
-
-
             if~builtin('license','test','Aerospace_Toolbox')
                 error(message('aero:licensing:noLicenseGeom'));
             end
@@ -99,8 +91,6 @@ end
 
 
 function v=fcnSetReader(h,v)
-
-
     if~strcmp(h.Source,'Custom')&&~isa(v,'function_handle')
         error(message('aero:Geometry:setReader'));
     end
@@ -183,25 +173,7 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
 function[newObj,mats,kline,prevkline]=loadObject(fid,kline)
-
-
-
-
-
-
-
-
-
 
     state='none';
     prevState='none';
@@ -209,22 +181,17 @@ function[newObj,mats,kline,prevkline]=loadObject(fid,kline)
     mats=[];
     newObj=[];
 
-
-
     prevkline=[];
 
     working=true;
 
     while working
 
-
         if working
-
 
             if~strmatch(state,'comment')
                 prevState=state;
             end
-
 
             tline=fgetl(fid);
             if(~ischar(tline)&&~isstring(tline))||feof(fid)
@@ -234,7 +201,6 @@ function[newObj,mats,kline,prevkline]=loadObject(fid,kline)
                 kline=kline+1;
             end
         end
-
 
         if isempty(tline)||tline(1)=='#'
             state='comment';

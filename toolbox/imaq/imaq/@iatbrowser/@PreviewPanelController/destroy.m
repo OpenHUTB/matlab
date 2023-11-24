@@ -1,16 +1,5 @@
 function destroy(this,destroyJava)
 
-
-
-
-
-
-
-
-
-
-
-
     this.prevPanel.destroy(destroyJava);
     this.prevPanel=[];
 

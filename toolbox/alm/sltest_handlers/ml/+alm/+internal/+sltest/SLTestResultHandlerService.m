@@ -1,6 +1,3 @@
-
-
-
 classdef SLTestResultHandlerService<alm.internal.AbstractHandlerService
 
     methods

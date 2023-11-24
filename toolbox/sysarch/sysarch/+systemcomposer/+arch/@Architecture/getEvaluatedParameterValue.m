@@ -1,9 +1,4 @@
 function[val,unit]=getEvaluatedParameterValue(this,paramFQN)
-
-
-
-
-
     valStruct=this.ElementImpl.getParamVal(paramFQN);
     val=[];
     unit=valStruct.units;

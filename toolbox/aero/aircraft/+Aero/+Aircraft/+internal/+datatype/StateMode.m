@@ -1,8 +1,5 @@
 classdef StateMode
 
-
-
-
     enumeration
 Scalar
 Exhaustive

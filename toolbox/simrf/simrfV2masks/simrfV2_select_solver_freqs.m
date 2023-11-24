@@ -1,10 +1,5 @@
 function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
 
-
-
-
-
-
     if isa(this,'simrfV2dialog.Solver')
         hBlk=get_param(this,'Handle');
         objBlk=get_param(this,'Object');
@@ -109,12 +104,8 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
                     end
                 end
             else
-
-
-
                 tones=evalin('base',this.Tones);
                 tones=simrfV2convert2baseunit(tones,this.Tones_unit);
-
                 harmonics=evalin('base',this.Harmonics);
 
 
@@ -185,8 +176,6 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
 
         maskWSValues=simrfV2getblockmaskwsvalues(hBlkParent);
         specifiedFreqs=maskWSValues.SimFreqs;
-
-
         if~isempty(Udata.tones)&&~isempty(Udata.harmonics)
             tones=Udata.tones;
             harmonics=Udata.harmonics;
@@ -198,18 +187,13 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
                 end
             end
         else
-
-
-
             idxMaskNames=simrfV2getblockmaskparamsindex(hBlk);
             maskStrings=get_param(hBlk,'MaskValues');
 
             tones=evalin('base',maskStrings{idxMaskNames.Tones});
             tones=simrfV2convert2baseunit(tones,...
             maskStrings{idxMaskNames.Tones_unit});
-
             harmonics=evalin('base',maskStrings{idxMaskNames.Harmonics});
-
 
             if length(tones)>1
                 ldcTones=(tones~=0);
@@ -289,8 +273,6 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
             hlisttones.Position=[0.05,0.54,0.22,0.33];
             hlistharm.Position=[0.3,0.54,0.22,0.33];
         end
-
-
         uicontrol('Parent',hfig,'Style','text','Units','Normalized',...
         'Position',[0.73,0.88,0.22,0.08],'String',...
         'Simulation frequencies (Hz)','Fontsize',8,'BackgroundColor',...
@@ -306,8 +288,6 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
             chosenFreqsInd=chosenFreqsInd(chosenFreqsInd~=0);
         end
         hlistfreq.Value=chosenFreqsInd;
-
-
         [freqsNoUnits,~,Units]=engunits(freqs);
         axes1=axes('Parent',hfig,'Position',[0.05,0.15,0.9,0.3]);
         box(axes1,'on');
@@ -338,23 +318,19 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
         set(hbutsel,'Callback',...
         {@mybutselfcn,freqsNoUnits,harmUsed,hlisttones,hlistharm,...
         hchkbox,hlistfreq,axes1,hBlk});
-
         hbutpop=uicontrol('Parent',hfig,'Style','pushbutton',...
         'Units','Normalized','Position',[0.79,0.005,0.20,0.06],...
         'String','Populate Mask','Fontsize',9,'BackgroundColor',...
         [0.8,0.8,0.8],'Tag','TbutPop');
         set(hbutpop,'Callback',...
         {@mybutpopfcn,freqs,hlistfreq,hBlkParent,hfig});
-
-        hbutcan=uicontrol('Parent',hfig,'Style','pushbutton',...
+       hbutcan=uicontrol('Parent',hfig,'Style','pushbutton',...
         'Units','Normalized','Position',[0.63,0.005,0.15,0.06],...
         'String','Cancel','Fontsize',9,'BackgroundColor',...
         [0.8,0.8,0.8],'Tag','TbutCan');
         set(hbutcan,'Callback',{@mybutcanfcn,hfig});
-
         wrnData=imread(fullfile(matlabroot,'toolbox','simrf',...
         'simrfV2masks','warning.png'),'BackgroundColor',axes1.Parent.Color);
-
         set(hlistfreq,'Callback',{@myselectfcn,freqsNoUnits,axes1});
 
         showWrn='off';
@@ -377,7 +353,6 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
         [0.055,0,0.5,0.05],'String',...
         'Changes in model detected - update diagram.',...
         'Fontsize',8,'Tag','TWarn','Visible',showWrn);
-
         Udata.AllHandlePop=[axes1,hlisttones,hlistharm,hchkbox,...
         hlistfreq,hbutsel,hbutpop,himgwrn,htxtwrn];
 
@@ -395,13 +370,6 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
         (strcmp(get_param(hBlk,'AutoFreq'),'on')...
         &&IPOPfreqsChanged))%#ok<ST2NM> % See E4 
 
-
-
-
-
-
-
-
         Udata.TonesPop=tones;
         Udata.HarmonicsPop=harmonics;
         [freqs,strTip,harmUsed]=simrfV2_sysfreqs(tones,harmonics);
@@ -415,8 +383,6 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
         hbutpop=Udata.AllHandlePop(7);
         himgwrn=Udata.AllHandlePop(8);
         htxtwrn=Udata.AllHandlePop(9);
-
-
         set(hlisttones,'String',tones.','Max',max(length(tones),3),...
         'Value',1:length(tones));
 
@@ -425,8 +391,6 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
         1:max(harmonics),'UniformOutput',false);
         harmStr=['Tones only',harmStr];
         set(hlistharm,'String',harmStr,'Max',1,'Value',1);
-
-
         [~,chosenFreqsInd]=freqIsMember(specifiedFreqs,freqs,1e-8);
         if isempty(chosenFreqsInd(chosenFreqsInd~=0))
             chosenFreqsInd=1;
@@ -479,14 +443,6 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
             BlkObj=get_param(hBlk,'Object');
             if~IPOPfreqsChanged
 
-
-
-
-
-
-
-
-
                 UdataTemp=Udata;
                 UdataTemp.FigHandlePop=[];
                 set_param(hBlk,'UserData',UdataTemp);
@@ -500,9 +456,6 @@ function simrfV2_select_solver_freqs(this,IPOPfreqsChanged)
                     showWrn='on';
                 end
             else
-
-
-
                 showWrn='off';
             end
             himgwrn.Visible=showWrn;
@@ -524,21 +477,10 @@ function mybutselfcn(~,~,freqsNoUnits,harmUsed,hlisttones,hlistharm,...
         toSelect=freqIsMember(str2num(hlistfreq.String).',...
         str2num(hlisttones.String(chosenTonesInd,:)),1e-8);%#ok<ST2NM>
     else
-
-
-
-
-
         unchosenTonesInd=setdiff(1+hasDC:size(hlisttones.String,1),...
         chosenTonesInd);
-
-
-
-
         harmUsedElim=cellfun(@(x)eliminateUnchosenTones(x),harmUsed,...
         'UniformOutput',false);
-
-
         toSelect=cellfun(@(x)any(max(abs(x))<=(hlistharm.Value-1)),...
         harmUsedElim);
     end
@@ -547,8 +489,6 @@ function mybutselfcn(~,~,freqsNoUnits,harmUsed,hlisttones,hlistharm,...
         x1(unchosenTonesInd-hasDC,x(unchosenTonesInd-hasDC,:)~=0)=...
         hlistharm.Value;
     end
-
-
 
     if chosenHarmOrd<=1&&~(hasDC&&chosenTonesInd(1)==1)
         toSelect(1)=false;

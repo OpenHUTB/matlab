@@ -1,6 +1,3 @@
-
-
-
 function createProject(folder,name,bForceShowUI)
 
 

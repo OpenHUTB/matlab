@@ -1,8 +1,5 @@
 function openReqElement(absoluteReqFilePath,sid)
 
-
-
-
     slreq.load(fullfile(absoluteReqFilePath));
 
     slreq.editor;

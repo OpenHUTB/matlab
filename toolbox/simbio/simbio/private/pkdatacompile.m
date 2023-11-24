@@ -1,23 +1,5 @@
 function pkdatacompile(data,compiledModelMap,dimensionalAnalysis,unitConversion)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     assert(isa(data,'PKData'));
     assert(isa(compiledModelMap,'struct'));
 
@@ -41,32 +23,20 @@ function pkdatacompile(data,compiledModelMap,dimensionalAnalysis,unitConversion)
     if~CheckUniqueDoses(data)
         error(message('SimBiology:PKDataCompile:DUPLICATE_DOSES'));
     end
-
-
     dosingTypes=compiledModelMap.DosingType;
     doseLabels=data.DoseLabel;
     rateLabels=data.RateLabel;
-
-
-
     if~isempty(rateLabels)&&(numel(doseLabels)~=numel(rateLabels))
         error(message('SimBiology:PKDataCompile:INVALID_RATELABELS'));
     end
-
-
-
     if~isempty(dosingTypes)&&(numel(dosingTypes)~=numel(doseLabels))
         error(message('SimBiology:PKDataCompile:INVALID_DOSELABELS'));
     end
-
-
 
     doseUnits=data.DoseUnits;
     if~isempty(doseUnits)&&(numel(doseUnits)~=numel(doseLabels))
         error(message('SimBiology:PKDataCompile:INVALID_DOSEUNITS'));
     end
-
-
 
     rateUnits=data.RateUnits;
     if~isempty(rateUnits)&&ischar(rateUnits)
@@ -93,10 +63,7 @@ function pkdatacompile(data,compiledModelMap,dimensionalAnalysis,unitConversion)
 
     if dimensionalAnalysis
 
-
         if unitConversion
-
-
 
             if isempty(data.IndependentVarUnits)
                 error(message('SimBiology:PKDataCompile:INVALID_INDEPENDENTVARUNITS'));
@@ -109,8 +76,6 @@ function pkdatacompile(data,compiledModelMap,dimensionalAnalysis,unitConversion)
 
         dependentVarUnits=data.DependentVarUnits;
         if~unitConversion&&isempty(dependentVarUnits)
-
-
 
             dependentVarUnits=repmat({''},1,numel(data.DependentVarLabel));
         elseif numel(compiledModelMap.ObservedUnits)~=numel(dependentVarUnits)
@@ -130,19 +95,7 @@ function pkdatacompile(data,compiledModelMap,dimensionalAnalysis,unitConversion)
             end
             error(message('SimBiology:PKDataCompile:INVALID_DEPENDENTVARUNITS2',[unitMessageCell{:}]));
         end
-
-
-
-
-
-
-
-
-
-
         if~unitConversion&&isempty(doseUnits)
-
-
 
             doseUnits=repmat({''},1,numel(doseLabels));
         elseif numel(doseLabels)~=numel(doseUnits)
@@ -155,21 +108,12 @@ function pkdatacompile(data,compiledModelMap,dimensionalAnalysis,unitConversion)
             if unitConversion&&isempty(doseUnits{i})
                 error('SimBiology:PKDataCompile:INVALID_DOSEUNITS','OBSERVEDDATA.DoseUnits must be specified for each dose column when simulating a model with UnitConversion on.');
             end
-
-
-
             match=verifyDoseUnitsMatch(dosedObj(i).InitialAmountUnits,doseUnits{i},unitConversion);
             if~match
                 error('SimBiology:PKDataCompile:INVALID_DOSEUNITS','OBSERVEDDATA.DoseUnits must be consistent with the units on MODELMAP.Dosed when simulating a model with DimensionalAnalysis on.');
             end
         end
-
-
-
-
         if~unitConversion&&isempty(rateUnits)
-
-
 
             rateUnits=repmat({''},1,numel(rateLabels));
         elseif(numel(rateLabels)~=numel(rateUnits))
@@ -182,13 +126,9 @@ function pkdatacompile(data,compiledModelMap,dimensionalAnalysis,unitConversion)
                 continue
             end
 
-
-
             if unitConversion&&isempty(rateUnits{i})
                 error('SimBiology:PKDataCompile:INVALID_RATEUNITS','OBSERVEDDATA.RateUnits must be specified for each rate column when simulating a model with UnitConversion on.');
             end
-
-
             match=verifyDoseUnitsMatch(dosedObj(i).InitialAmountUnits,rateUnits{i},unitConversion);
             if~match
                 error('SimBiology:PKDataCompile:INVALID_RATEUNITS','OBSERVEDDATA.RateUnits must be consistent with the units on MODELMAP.Dosed when simulating a model with DimensionalAnalysis on.');

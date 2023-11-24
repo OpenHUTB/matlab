@@ -1,9 +1,4 @@
 function FuzzyLogicControllerBlock(obj)
-
-
-
-
-
     flcBlocks=obj.findLibraryLinksTo(sprintf('fuzblock/Fuzzy Logic \nController'));
 
     if isR2017aOrEarlier(obj.ver)
@@ -33,10 +28,6 @@ function throwWarning(blk,param,refValue,errorID)
     try
         resolvedValue=slResolve(paramValue,blk);
     catch me %#ok<NASGU>
-
-
-
-
         resolvedValue=paramValue;
     end
 

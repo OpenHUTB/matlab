@@ -1,9 +1,5 @@
 function validatedAntenna=validateAntenna(antenna,numAssets,functionName)
 
-
-
-
-
 %#codegen
 
     coder.allowpcode('plain');

@@ -1,17 +1,9 @@
 function[F,M]=fixedwingForcesAndMoments(aircraft,state)
-
-
-
-
-
     F=state.InertialToBodyMatrix*([0;0;state.Environment.Gravity]*state.Mass);
     M=zeros(3,1);
-
-
     [F1,M1]=aircraft.Coefficients.forcesAndMoments(state,aircraft.ReferenceArea,aircraft.ReferenceSpan,aircraft.ReferenceLength);
     F=F+F1;
     M=M+M1;
-
 
     for s=aircraft.Surfaces
         [F1,M1]=s.forcesAndMoments(state,aircraft.ReferenceArea,aircraft.ReferenceSpan,aircraft.ReferenceLength);
@@ -19,13 +11,11 @@ function[F,M]=fixedwingForcesAndMoments(aircraft,state)
         M=M+M1;
     end
 
-
     for t=aircraft.Thrusts
         [F1,M1]=t.forcesAndMoments(state,aircraft.ReferenceArea,aircraft.ReferenceSpan,aircraft.ReferenceLength);
         F=F+F1;
         M=M+M1;
     end
-
 
     switch aircraft.DegreesOfFreedom
     case "PM4"

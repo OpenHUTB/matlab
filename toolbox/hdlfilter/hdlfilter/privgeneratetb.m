@@ -1,14 +1,8 @@
 function privgeneratetb(filterobj,tbtype,varargin)
 
-
-
-
-
     if~(builtin('license','checkout','Filter_Design_HDL_Coder'))
         error(message('hdlfilter:privgeneratetb:nolicenseavailable'));
     end
-
-
     position=strmatch('targetlang',varargin(1:2:end));
     if~isempty(position),
         tbtype=varargin{2*position};

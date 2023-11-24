@@ -1,42 +1,6 @@
 function[sample,ctrl,len]=commhdlMultipleFramesToSamples(frame,...
     idleCyclesBetweenSamples,idleCyclesBetweenFrames,outputSize,interleaveSamples)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     if coder.target('MATLAB')
@@ -50,8 +14,6 @@ function[sample,ctrl,len]=commhdlMultipleFramesToSamples(frame,...
 
     frameArg=1;
     interleavedSamplesArg=5;
-
-
     narginchk(frameArg,interleavedSamplesArg);
 
 
@@ -75,10 +37,6 @@ function[sample,ctrl,len]=commhdlMultipleFramesToSamples(frame,...
     end
 
     if nargin==interleavedSamplesArg
-
-
-
-
 
         if~isscalar(interleaveSamples)
             coder.internal.error('whdl:multiF2FoS:interleavedSamplesMustBeScalar');
@@ -106,8 +64,6 @@ function[sample,ctrl,len]=commhdlMultipleFramesToSamples(frame,...
             coder.internal.error('whdl:multiF2FoS:inputFrameData');
         end
     end
-
-
 
     validateattributes(idleCyclesBetweenSamples,{'numeric'},{'real'},'commhdlMultipleFramesToSamples',...
     'Idle cycles between samples');

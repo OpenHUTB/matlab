@@ -1,8 +1,5 @@
 function cacheData=simrfV2_cachefit(block,MaskWSValues)
 
-
-
-
     if isfield(MaskWSValues,'CacheLevel')
         levels=MaskWSValues.CacheLevel;
     else
@@ -11,13 +8,7 @@ function cacheData=simrfV2_cachefit(block,MaskWSValues)
     [cacheData,cacheBlock,cacheDataBase,blkNames]=...
     simrfV2_getcachedata(block,levels);
 
-
-
-
-
     auxData=get_param([block,'/AuxData'],'UserData');
-
-
     isTimeDomainFit=strcmpi(MaskWSValues.SparamRepresentation,...
     'Time domain (rationalfit)');
     if(isTimeDomainFit)
@@ -34,13 +25,6 @@ function cacheData=simrfV2_cachefit(block,MaskWSValues)
         {'scalar','>=',1,'<=',99},mfilename,...
         'Maximum number of poles')
     else
-
-
-
-
-
-
-
         internalFilename=[];
         internalTimestamp=[];
         if~isempty(auxData)
@@ -77,28 +61,6 @@ function cacheData=simrfV2_cachefit(block,MaskWSValues)
         if isempty(fileInfo)
             error(message('simrf:simrfV2errors:CannotOpenFile',filename))
         end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         if~isa(cacheData.timestamp,'double')
             cacheData.timestamp=0;
         end
@@ -212,8 +174,6 @@ function cacheData=simrfV2_cachefit(block,MaskWSValues)
         cacheData.Impedance=refImped;
         cacheData.NumPorts=numPorts;
 
-
-
         if strcmpi(MaskWSValues.classname,'amplifier')
             portSizes=[2,2];
         else
@@ -228,11 +188,6 @@ function cacheData=simrfV2_cachefit(block,MaskWSValues)
         [refitdata,hashcode]=getSParamsDataHash(auxData,cacheData);
 
     case 'xline'
-
-
-
-
-
 
         if(~isTimeDomainFit)
             freqs=simrfV2_find_solverparams(bdroot(block),block);

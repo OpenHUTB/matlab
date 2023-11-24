@@ -1,8 +1,5 @@
 function lines=generateScriptEnvironment(h,operatingSystem)
 
-
-
-
     lines=repmat(string,0);
 
     switch operatingSystem

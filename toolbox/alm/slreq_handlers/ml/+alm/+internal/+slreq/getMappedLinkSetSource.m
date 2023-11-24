@@ -1,17 +1,8 @@
 function srcFile=getMappedLinkSetSource(fullPathToLinkFile)
 
-
-
-
-
-
-
-
     status=true;
 
     mapper=rmimap.StorageMapper.getInstance();
-
-
     srcFile=mapper.getSourceFor(fullPathToLinkFile);
 
     if isempty(srcFile)

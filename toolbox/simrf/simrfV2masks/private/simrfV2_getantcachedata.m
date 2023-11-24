@@ -1,9 +1,4 @@
 function cacheData=simrfV2_getantcachedata(block)
-
-
-
-
-
     cacheData=get_param(block,'UserData');
 
     if isempty(cacheData)

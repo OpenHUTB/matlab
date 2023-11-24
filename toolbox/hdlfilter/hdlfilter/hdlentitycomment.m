@@ -1,10 +1,6 @@
 function comment=hdlentitycomment(nname,revisiontag,infostr,commentchars,...
     specstr,impstr)
 
-
-
-
-
     if nargin==3
         commentchars='--';
         specstr=[];

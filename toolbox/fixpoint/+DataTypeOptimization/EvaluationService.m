@@ -1,8 +1,5 @@
 classdef EvaluationService<DataTypeOptimization.ParallelEvaluationService
 
-
-
-
     methods
         function solutions=evaluateSolutions(this,solutions)
             for sIndex=1:numel(solutions)

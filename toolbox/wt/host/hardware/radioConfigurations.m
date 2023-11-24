@@ -1,23 +1,9 @@
 function varargout=radioConfigurations(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     p=inputParser;
     addParameter(p,'Hardware','');
     parse(p,varargin{:});
     hardware=p.Results.Hardware;
-
 
     d=wt.internal.hardware.DeviceStore;
     out=struct('Name','','Hardware','','IPAddress','');

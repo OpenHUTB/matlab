@@ -1,20 +1,5 @@
 function [ topconj, num_cmplx ] = simrfV2topconj( x, tol )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if isempty( x )
 topconj = x;
 num_cmplx = 0;
@@ -67,15 +52,10 @@ end
 xtemp = xtemp( cpxre_idx );
 xtemp_idx = xtemp_idx( cpxre_idx );
 
-
-
-
 validateattributes(  ...
 abs( real( xtemp( 1:2:num_cplx ) ) - real( xtemp( 2:2:num_cplx ) ) ) >  ...
 tol .* abs( xtemp( 1:2:num_cplx ) ), { 'logical' }, { 'even' },  ...
 mfilename, 'number of complex poles of the rational function' )
-
-
 
 nxt_row = 1;
 tol_vec = tol .* abs( xtemp );
@@ -89,14 +69,9 @@ re_len = length( equal_re_idx );
 validateattributes( re_len, { 'numeric' }, { 'integer', 'even' },  ...
 mfilename, 'number of complex poles of the rational function' )
 
-
-
-
 [ ~, cplxpair_idx ] = sort( imag( xtemp( equal_re_idx ) ), 'descend' );
 ximag = imag( xtemp( cplxpair_idx ) );
 xq = xtemp( equal_re_idx( cplxpair_idx ) );
-
-
 
 validateattributes( abs( ximag + ximag( re_len: - 1:1 ) ) > tol .* abs( xq ),  ...
 { 'logical' }, { 'even' }, mfilename,  ...
@@ -112,7 +87,4 @@ nxt_row = nxt_row + re_len;
 end 
 
 
-
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpq3UJh4.p.
-% Please follow local copyright laws when handling this file.
 

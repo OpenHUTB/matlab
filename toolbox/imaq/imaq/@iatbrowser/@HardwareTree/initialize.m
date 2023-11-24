@@ -1,33 +1,11 @@
 function initialize(this)
-
-
-
-
-
-
-
-
-
-
     this.rootNode=iatbrowser.RootNode('Image Acquisition Toolbox');
-
-
 
     this.refreshing=false;
 
-
     this.abortNodeSelectionChange=false;
-
-
-
-
     localConstructJavaTreeStructure(this.rootNode,this.rootNode.JavaPeer);
-
-
-
     localAddDeviceNodeListeners(this.rootNode);
-
-
     javaTreeModel=javaObjectEDT('javax.swing.tree.DefaultTreeModel',this.rootNode.JavaPeer);
     javaTree=javaObjectEDT('com.mathworks.mwswing.MJTree',javaTreeModel);
     javaTree.setName('hardwareTree');

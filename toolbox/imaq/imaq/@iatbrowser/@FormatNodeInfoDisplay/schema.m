@@ -1,9 +1,5 @@
 function schema
 
-
-
-
-
     pk=findpackage('iatbrowser');
     parent=pk.findclass('NodeInfoDisplay');
 

@@ -1,10 +1,5 @@
 classdef AlgorithmSettings
 
-
-
-
-
-
     properties
         SelectedSettings;
         ListOfObjectiveFunctions={};

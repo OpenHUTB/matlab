@@ -1,34 +1,22 @@
 function simrfV2attenuator(block,action)
 
-
-
-
-
     top_sys=bdroot(block);
     if strcmpi(get_param(top_sys,'BlockDiagramType'),'library')&&...
         (strcmpi(top_sys,'simrfV2junction1')||...
         strcmpi(top_sys,'simrfV2elements1'))
         return
     end
-
-
-
-
     SimStatus=get_param(top_sys,'SimulationStatus');
 
     if any(strcmpi(SimStatus,{'running','paused'}))
         return
     end
-
     MaskWSValues=simrfV2getblockmaskwsvalues(block);
     Zin=MaskWSValues.Zin;
     Zout=MaskWSValues.Zout;
     Z0=[simrfV2checkimpedance(Zin,1),simrfV2checkimpedance(Zout,1)];
     ratio=max(Z0(1),Z0(2))/min(Z0(1),Z0(2));
     k_min=2*ratio-1+2*sqrt(ratio*(ratio-1));
-
-
-
 
     RepBlk=simrfV2_find_repblk(block,...
     ['(ConstAttenuatorNoisy|'...
@@ -38,7 +26,6 @@ function simrfV2attenuator(block,action)
 
     switch(action)
     case 'simrfConstAttInit'
-
 
         Att=MaskWSValues.Att;
 
@@ -67,7 +54,6 @@ function simrfV2attenuator(block,action)
 
     case 'simrfVarAttInit'
 
-
         Attmin=MaskWSValues.Attmin;
 
         validateattributes(Attmin,{'numeric'},...
@@ -91,7 +77,6 @@ function simrfV2attenuator(block,action)
             'Attmax',num2str(Attmax),...
             ['Attmax&gt;Attmin=',num2str(Attmin)]));
         end
-
         MaskDisplay=sprintf('%s','port_label(''input'', 1,''Att'')');
         if(MaskWSValues.AddNoise)
             DstBlkLib='simrfV2private';
@@ -106,7 +91,6 @@ function simrfV2attenuator(block,action)
         'Attmax','Attmax'}};
 
     end
-
 
     SrcBlock=DstBlk;
     if(~strcmp(RepBlk,DstBlk))

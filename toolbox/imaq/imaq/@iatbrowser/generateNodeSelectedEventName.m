@@ -1,23 +1,5 @@
 function[eventName,nodeClass]=generateNodeSelectedEventName(nodeObject)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     nodeCompleteClass=class(nodeObject);
     nodeClass=regexp(nodeCompleteClass,'.*\.(.*)','tokens');
     nodeClass=nodeClass{1}{1};

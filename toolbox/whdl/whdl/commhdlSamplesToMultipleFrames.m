@@ -1,52 +1,6 @@
 function frames=commhdlSamplesToMultipleFrames(samples,ctrl,maxFrameSize,interleaveSamples)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     if coder.target('MATLAB')
@@ -129,8 +83,6 @@ function frames=commhdlSamplesToMultipleFrames(samples,ctrl,maxFrameSize,interle
     s2f=commhdl.internal.FrameOfSamplesToFrame('OutputSize',maxFrameSize,...
     'InterleaveSamples',interleaveSamples);
 
-
-
     ws=warning('off','whdl:FrameOfSamplesToFrame:FrameTooSmall');
 
 
@@ -141,7 +93,6 @@ function frames=commhdlSamplesToMultipleFrames(samples,ctrl,maxFrameSize,interle
         sample_startidx=((startidx-1)*sc_ratio)+1;
         sample_endidx=endidx*sc_ratio;
         samplein=validsamples(sample_startidx:sample_endidx);
-
 
         if~isreal(validsamples)&&isreal(samplein)
             samplein=complex(samplein,0);
@@ -168,8 +119,6 @@ function frames=commhdlSamplesToMultipleFrames(samples,ctrl,maxFrameSize,interle
 end
 
 function maxFrameSize=calculateFrameSizeFromInput(ctrl,sc_ratio)
-
-
 
 
     framestart=ctrl(:,1);

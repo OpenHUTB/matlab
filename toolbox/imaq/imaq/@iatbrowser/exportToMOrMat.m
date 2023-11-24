@@ -1,13 +1,5 @@
 function exportToMOrMat(filename,vidObjs,varNames,mfile)
 
-
-
-
-
-
-
-
-
     numVidObjs=length(vidObjs);
     errorFcn=cell(1,numVidObjs);
     framesAcquiredFcn=cell(1,numVidObjs);
@@ -18,11 +10,6 @@ function exportToMOrMat(filename,vidObjs,varNames,mfile)
     timerPeriod=cell(1,numVidObjs);
     triggerFcn=cell(1,numVidObjs);
     userdata=cell(1,numVidObjs);
-
-
-
-
-
 
     for j=1:numVidObjs
         errorFcn{j}=vidObjs(j).ErrorFcn;

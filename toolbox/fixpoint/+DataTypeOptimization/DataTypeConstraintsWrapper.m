@@ -1,14 +1,5 @@
 classdef DataTypeConstraintsWrapper<handle
 
-
-
-
-
-
-
-
-
-
     properties(SetAccess=private)
 originalConstraint
 isSigned
@@ -45,8 +36,6 @@ isSigned
 
                     fl=cell(numel(wl),1);
                 else
-
-
 
                     fl=arrayfun(@(x)(x),repmat(this.originalConstraint.SpecificFL,numel(wl),1),'UniformOutput',false);
                 end

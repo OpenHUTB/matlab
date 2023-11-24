@@ -1,12 +1,5 @@
 function simrfV2mixer(block,action)
 
-
-
-
-
-
-
-
     switch(action)
     case 'simrfInit'
         top_sys=bdroot(block);
@@ -15,7 +8,6 @@ function simrfV2mixer(block,action)
             {'running','paused'}))
             return
         end
-
         MaskVals=get_param(block,'MaskValues');
         idxMaskNames=simrfV2getblockmaskparamsindex(block);
         MaskWSValues=simrfV2getblockmaskwsvalues(block);
@@ -68,7 +60,6 @@ function simrfV2mixer(block,action)
                 'DstBlk','Gnd3','DstBlkPortStr','LConn',...
                 'DstBlkPortIdx',1),block);
             end
-
 
             reconnect_negterm=simrfV2repblk(struct('RepBlk','Out-',...
             'SrcBlk','simrfV2elements/Gnd','SrcLib',...
@@ -311,18 +302,6 @@ function simrfV2mixer(block,action)
 
             poly_coeffs=simrfV2vector2str(2*MaskWSValues.Poly_Coeffs);
 
-
-
-
-
-
-
-
-
-
-
-
-
             NF=MaskWSValues.NF;
             validateattributes(NF,{'numeric'},...
             {'nonempty','scalar','real','nonnegative','finite'},'',...
@@ -330,10 +309,6 @@ function simrfV2mixer(block,action)
             FactorMixer=10^(NF/10);
             FactorAmplifier=(FactorMixer+3)/4;
             NFAmplifier=10*log10(FactorAmplifier);
-
-
-
-
 
             MixerIp2=simrfV2_convert2watts(MaskWSValues.IP2,...
             MaskVals{idxMaskNames.IP2_unit});

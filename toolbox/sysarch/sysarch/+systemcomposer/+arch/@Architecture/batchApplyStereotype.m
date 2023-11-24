@@ -1,31 +1,9 @@
 function batchApplyStereotype(this,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(3,8);
     inputAsStr=string(varargin);
 
     keys=inputAsStr(1:2:end);
-
 
     isRecurse=false;
     foundMatch=arrayfun(@(x)strcmpi(x,'Recurse'),keys,'UniformOutput',false);

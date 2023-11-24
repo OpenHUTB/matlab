@@ -1,13 +1,5 @@
 function varargout=opcslconfigdlg(varargin)
 
-
-
-
-
-
-
-
-
     gui_Singleton=0;
     gui_State=struct('gui_Name',mfilename,...
     'gui_Singleton',gui_Singleton,...

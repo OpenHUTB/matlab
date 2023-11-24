@@ -1,9 +1,5 @@
 classdef SLTestTraverser<alm.internal.sltest.ITraverser
 
-
-
-
-
     methods
 
         function h=SLTestTraverser(visitor)

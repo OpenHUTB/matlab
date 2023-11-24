@@ -1,13 +1,5 @@
 classdef DefinitionDomain<handle
 
-
-
-
-
-
-
-
-
     properties(SetAccess=?DataTypeOptimization.DimensionalityReductionStrategies.DimensionalityReductionStrategy)
 signedness
 fractionWidthVector

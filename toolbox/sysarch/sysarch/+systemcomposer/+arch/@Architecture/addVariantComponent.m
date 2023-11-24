@@ -1,19 +1,4 @@
 function cVarList=addVariantComponent(this,varCompNames,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     this.validateAPISupportForAUTOSAR('addVariantComponent');
 
     compPos=[];

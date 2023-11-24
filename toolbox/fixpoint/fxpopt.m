@@ -1,20 +1,5 @@
 function result=fxpopt(model,sud,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(2,3);
 
 

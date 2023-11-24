@@ -1,10 +1,6 @@
 function outputTx=transmitter(asset,varargin)%#codegen
 
-
-
-
     coder.allowpcode('plain');
-
 
     if coder.target('MATLAB')
         scalarOrVector='vector';
