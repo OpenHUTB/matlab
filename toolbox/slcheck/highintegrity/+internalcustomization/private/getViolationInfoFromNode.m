@@ -1,19 +1,5 @@
 function violationObj=getViolationInfoFromNode(object,node,issue)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     violationObj=ModelAdvisor.ResultDetail;
     try
         nodeStrCell=strsplit(node.tree2str,newline);
