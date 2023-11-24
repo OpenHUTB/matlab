@@ -1,15 +1,10 @@
 classdef SLTestArtifactFactory<alm.internal.AbstractArtifactFactory
 
-
-
-
-
     methods
 
         function h=SLTestArtifactFactory(metaData,storage,g)
             h=h@alm.internal.AbstractArtifactFactory(metaData,storage,g);
         end
-
 
 
         function type=getSelfContainedType(h,address)
