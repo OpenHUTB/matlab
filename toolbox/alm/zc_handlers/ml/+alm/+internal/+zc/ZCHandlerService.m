@@ -1,8 +1,6 @@
 classdef ZCHandlerService<alm.internal.AbstractHandlerService
 
 
-
-
     methods
         function h=ZCHandlerService(metaData)
             h=h@alm.internal.AbstractHandlerService(metaData);
