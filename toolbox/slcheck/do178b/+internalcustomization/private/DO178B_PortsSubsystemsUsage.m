@@ -1,8 +1,6 @@
 
 function rec=DO178B_PortsSubsystemsUsage
 
-
-
     rec=ModelAdvisor.Check('mathworks.do178.PortsSubsystemsUsage');
     rec.Title=DAStudio.message('ModelAdvisor:do178b:PortsSubsystemsBlocksTitle');
     rec.setCallbackFcn(@PortsSubsystemsCallback,'None','StyleOne');
