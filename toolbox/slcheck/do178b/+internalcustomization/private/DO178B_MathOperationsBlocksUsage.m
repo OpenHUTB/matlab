@@ -1,7 +1,4 @@
 function DO178B_MathOperationsBlocksUsage
-
-
-
     rec=ModelAdvisor.Check('mathworks.do178.MathOperationsBlocksUsage');
     rec.Title=DAStudio.message('ModelAdvisor:do178b:MathOpsBlocksUsageTitle');
     rec.setCallbackFcn(@MathBlockCallback,'None','StyleOne');
@@ -51,8 +48,6 @@ function DO178B_MathOperationsBlocksUsage
 ...
     mdladvRoot=ModelAdvisor.Root;
     mdladvRoot.register(rec);
-
-
 
 
 
