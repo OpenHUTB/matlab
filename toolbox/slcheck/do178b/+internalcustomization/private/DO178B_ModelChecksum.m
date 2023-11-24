@@ -1,8 +1,6 @@
 
 function rec=DO178B_ModelChecksum
 
-
-
     rec=Simulink.MdlAdvisorCheck;
     rec.Title=DAStudio.message('ModelAdvisor:do178b:ModelChecksumTitle');
     rec.TitleID='mathworks.do178.MdlChecksum';
@@ -24,13 +22,10 @@ end
 
 
 
-
 function result=ModelChecksumCallback(system)
     xlateTagPrefix='ModelAdvisor:do178b:';
 
     [bResult,result]=ModelAdvisor.Common.modelAdvisorCheck_ModelVersionInfo(system,xlateTagPrefix);
-
-
     mdladvObj=Simulink.ModelAdvisor.getModelAdvisor(system);
     mdladvObj.setCheckResultStatus(bResult);
 end
