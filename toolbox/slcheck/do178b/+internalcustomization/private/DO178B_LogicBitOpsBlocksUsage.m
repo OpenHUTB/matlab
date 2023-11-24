@@ -1,7 +1,4 @@
 function rec=DO178B_LogicBitOpsBlocksUsage
-
-
-
     rec=ModelAdvisor.Check('mathworks.do178.LogicBlockUsage');
     rec.Title=DAStudio.message('ModelAdvisor:do178b:LogicBitOpsBlocksTitle');
     rec.setCallbackFcn(@LogicBlockCallback,'None','StyleOne');
