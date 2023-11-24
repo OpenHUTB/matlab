@@ -1,16 +1,8 @@
 function bSuccess=ProjectObserver(projectRoot,action)
 
-
-
-
-
-
-
-
     import com.mathworks.toolbox.slproject.project.extensions.listeners.MlProjectLabelListener;
 
     mlock;
-
 
     persistent LabelChangedListener;
     persistent AbsoluteRootFolder;
@@ -23,9 +15,7 @@ function bSuccess=ProjectObserver(projectRoot,action)
 
     case 'activate'
 
-
         jPrjMgr=getProjectManager(projectRoot);
-
 
 
         if isempty(jPrjMgr)
@@ -41,11 +31,6 @@ function bSuccess=ProjectObserver(projectRoot,action)
         bSuccess=true;
 
     case 'deactivate'
-
-
-
-
-
         jPrjMgr=getProjectManager(projectRoot);
         if~isempty(jPrjMgr)
             jPrjMgr.removeListener(LabelChangedListener);
