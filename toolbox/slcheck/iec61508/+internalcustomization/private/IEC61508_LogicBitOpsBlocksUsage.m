@@ -1,7 +1,4 @@
 function rec=IEC61508_LogicBitOpsBlocksUsage
-
-
-
     rec=ModelAdvisor.Check('mathworks.iec61508.LogicBlockUsage');
     rec.Title=DAStudio.message('ModelAdvisor:iec61508:LogicBitOpsBlocksTitle');
     rec.setCallbackFcn(@LogicBlockCallback,'None','StyleOne');
