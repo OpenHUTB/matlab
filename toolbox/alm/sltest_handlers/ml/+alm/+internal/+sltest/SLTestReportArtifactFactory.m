@@ -1,6 +1,3 @@
-
-
-
 classdef SLTestReportArtifactFactory<alm.internal.AbstractArtifactFactory
 
     methods
