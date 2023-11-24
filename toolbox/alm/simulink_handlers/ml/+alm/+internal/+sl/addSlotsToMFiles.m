@@ -1,20 +1,13 @@
 function addSlotsToMFiles(absoluteFilePath,art,graph)
 
-
-
-
     [~,bd,ext]=fileparts(art.Address);
 
     dgraph=getDependencyGraph(absoluteFilePath);
 
     for d=dgraph.Dependencies
-
-
         if~strcmp(d.UpstreamNode.Path,absoluteFilePath)
             continue
         end
-
-
 
         if~strcmp(d.UpstreamNode.Name,[bd,ext])
             continue
@@ -31,11 +24,7 @@ function addSlotsToMFiles(absoluteFilePath,art,graph)
             continue;
         end
 
-
         qualifiedTo=d.DownstreamNode.Name;
-
-
-
 
         to=erase(d.DownstreamNode.Name,'.m');
 
@@ -51,17 +40,12 @@ end
 
 function SID=pathToSID(path)
 
-
-
-
     if contains(path,':')
 
         pathPart=extractBefore(path,':');
 
 
         sidPart=extractAfter(path,':');
-
-
         converted=extractAfter(Simulink.ID.getSID(pathPart),':');
 
         SID=strcat(converted,':',sidPart);
@@ -72,8 +56,6 @@ end
 
 function from=findArtifact(graph,art,bd,component)
 
-
-
     SID=component.SID;
 
     from=graph.getArtifactByAddress("",...
@@ -81,7 +63,6 @@ function from=findArtifact(graph,art,bd,component)
 
     if isempty(from)
         if contains(SID,':')
-
 
             while isempty(from)
                 addr=strsplit(SID,':');
@@ -112,7 +93,6 @@ function from=findArtifact(graph,art,bd,component)
             end
         end
     end
-
 
 
     if(isempty(from))
