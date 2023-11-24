@@ -1,10 +1,6 @@
 
 function rec=IEC61508_QuestionableBlocks
 
-
-
-
-
     rec=Simulink.MdlAdvisorCheck;
     rec.Title=DAStudio.message('ModelAdvisor:iec61508:QuestionableBlocksTitle');
     rec.TitleID='mathworks.iec61508.QuestionableBlks';
