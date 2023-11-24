@@ -1,9 +1,4 @@
-
-
-
 function cats=getLabelCategories(rootFolder)
-
-
     proj=alm.internal.project.getProject(rootFolder);
 
     cats=[];
