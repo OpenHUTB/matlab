@@ -1,9 +1,4 @@
-
-
-
 function recordCellArray=defineIEC61508ModelAdvisorChecks
-
-
 
     recordCellArray={};
 
@@ -17,10 +12,5 @@ function recordCellArray=defineIEC61508ModelAdvisorChecks
     IEC61508_MathOperationsBlocksUsage;
     IEC61508_LogicBitOpsBlocksUsage;
     IEC61508_PortsSubsystemsUsage;
-
-
-
-
-
 
 end
