@@ -1,10 +1,5 @@
 function defineHismModelAdvisorChecks
 
-
-
-
-
-
     ?slcheck.subcheck;
 
     himl_0001;
