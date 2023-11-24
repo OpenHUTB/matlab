@@ -1,6 +1,4 @@
-
 function DO178B_OptionSet
-
 
     dataFilePath=[matlabroot,filesep,'toolbox',filesep,'slcheck',filesep,'do178b',filesep,'private',filesep];
 
