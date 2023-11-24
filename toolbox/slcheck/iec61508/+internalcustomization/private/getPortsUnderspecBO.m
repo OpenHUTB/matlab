@@ -1,20 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function FlaggedPorts=getPortsUnderspecBO(system,hBusObjports)
 
     FlaggedPorts=cell(0,4);
@@ -42,8 +25,6 @@ function FlaggedPorts=getPortsUnderspecBO(system,hBusObjports)
 
                     if isa(Bus,'Simulink.Bus')
                         for nii=1:size(Bus.Elements,1)
-
-
 
                             dataTypeStr=Bus.Elements(nii).DataType;
 
