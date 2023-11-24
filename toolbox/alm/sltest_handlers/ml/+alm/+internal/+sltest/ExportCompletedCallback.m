@@ -1,20 +1,8 @@
 function ExportCompletedCallback(~,eventInfo,isImplicit)
 
-
-
-
-
-
-
-
-
     if nargin==2
         isImplicit=false;
     end
-
-
-
-
     if~alm.internal.project.isArtifactTrackingActive()
         return;
     end
@@ -22,19 +10,9 @@ function ExportCompletedCallback(~,eventInfo,isImplicit)
 
     try
         prj=matlab.project.currentProject();
-
-
-
         as=alm.internal.ArtifactService.get(prj.RootFolder);
-
-
-
         r=alm.internal.GlobalProjectFactory.get().findProjectRoot(...
         fullfile(eventInfo.FilePath));
-
-
-
-
 
         if~strcmp(prj.RootFolder,r)
             as.notifyUser("warn",...
@@ -42,8 +20,6 @@ function ExportCompletedCallback(~,eventInfo,isImplicit)
             alm.internal.createRevealFileHyperlink(eventInfo.FilePath),prj.RootFolder));
             return;
         end
-
-
 
         try
             storageHandler=as.resolveStorageHandler(eventInfo.FilePath);
@@ -54,27 +30,13 @@ function ExportCompletedCallback(~,eventInfo,isImplicit)
             ME.message));
             return;
         end
-
-
-
-
-
-
-
-
         as.removeArtifact(eventInfo.FilePath);
-
-
-
 
         if endsWith(eventInfo.FilePath,".mldatx")
             resultSets=sltest.testmanager.importResults(fullfile(eventInfo.FilePath),...
             'UniqueImport',true,...
             'PartialLoad',true);
         elseif endsWith(eventInfo.FilePath,".sltsrf")
-
-
-
             [~,uuidName]=fileparts(eventInfo.FilePath);
             rsID=stm.internal.getResultSetIDsFromUUID(uuidName);
 
@@ -86,10 +48,6 @@ function ExportCompletedCallback(~,eventInfo,isImplicit)
             assert(~isempty(resultSets),"No in-memory result with matching UUID for file '"+...
             eventInfo.FilePath+"' found.");
         end
-
-
-
-
 
         if endsWith(eventInfo.FilePath,".mldatx")
             for iResultSet=1:numel(resultSets)
@@ -111,10 +69,7 @@ function ExportCompletedCallback(~,eventInfo,isImplicit)
             end
         end
 
-
         table=cell(0,2);
-
-
 
         for iResultSet=1:numel(resultSets)
             resultSet=resultSets(iResultSet);
