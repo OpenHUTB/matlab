@@ -1,22 +1,6 @@
 classdef CompositeModel<handle
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties
 PlotTypes
 PlotDescriptors
@@ -31,8 +15,6 @@ IDs
 
         function model=addGraphic(model,graphic,plotDescriptors)
             model.PlotTypes{end+1}=graphic;
-
-
 
             plotDescriptors.WaitForResponse=false;
             plotDescriptors.Animation='none';
