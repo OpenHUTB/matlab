@@ -1,13 +1,6 @@
 function addEllipse(writer,name,position,time,semiMajorAxis,...
     semiMinorAxis,varargin)
 
-
-
-
-
-
-
-
     p=inputParser;
     addRequired(p,'name');
     addRequired(p,'position');
@@ -165,64 +158,29 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
                 end
 
                 if length(semiMinorAxis)>1
-
-
-
-
-
-
-
-
                     semiMinorAxisStruct(idx).interval=intervalString;
                     semiMinorAxisStruct(idx).number=semiMinorAxis(idx);
                 end
 
                 if length(height)>1
 
-
-
-
-
-
-
                     heightStruct(idx).interval=intervalString;
                     heightStruct(idx).number=height(idx);
                 end
 
                 if length(extrudedHeight)>1
-
-
-
-
-
-
-
                     extrudedHeightStruct(idx).interval=intervalString;
                     extrudedHeightStruct(idx).number=extrudedHeight(idx);
                 end
 
                 if length(rotation)>1
-
-
-
-
-
-
-
                     rotationStruct(idx).interval=intervalString;
                     rotationStruct(idx).number=rotation(idx);
                 end
             end
         else
-
-
-
-
             epochTime=string(datetime(time(1),...
             'Format',writer.DateTimeFormat));
-
-
-
             timeDelta=seconds(time-time(1));
 
 
@@ -230,68 +188,32 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
             zeros(1,(sizeOfPosition(2)+1)*sizeOfPosition(1));
 
             if length(semiMajorAxis)>1
-
-
-
-
                 semiMajorAxisCell=zeros(1,2*length(semiMajorAxis));
             end
 
             if length(semiMinorAxis)>1
-
-
-
-
                 semiMinorAxisCell=zeros(1,2*length(semiMinorAxis));
             end
 
             if length(height)>1
-
-
-
-
                 heightCell=zeros(1,2*length(height));
             end
 
             if length(extrudedHeight)>1
-
-
-
-
                 extrudedHeightCell=zeros(1,2*length(extrudedHeight));
             end
 
             if length(rotation)>1
-
-
-
-
                 rotationCell=zeros(1,2*length(rotation));
             end
 
             for idx=1:sizeOfPosition(1)
-
-
-
-
-
-
-
-
                 idx1=((idx-1)*(sizeOfPosition(2)+1))+1;
                 idx2=idx1+sizeOfPosition(2);
                 positionCoordinates(idx1:idx2)=[timeDelta(idx),...
                 position(idx,1),position(idx,2),position(idx,3)];
 
                 if length(semiMajorAxis)>1
-
-
-
-
-
-
-
-
 
                     idx1=((idx-1)*2)+1;
                     idx2=idx1+1;
@@ -301,14 +223,6 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
 
                 if length(semiMinorAxis)>1
 
-
-
-
-
-
-
-
-
                     idx1=((idx-1)*2)+1;
                     idx2=idx1+1;
                     semiMinorAxisCell(idx1:idx2)=[timeDelta(idx),...
@@ -317,27 +231,12 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
 
                 if length(height)>1
 
-
-
-
-
-
-
-
-
                     idx1=((idx-1)*2)+1;
                     idx2=idx1+1;
                     heightCell(idx1:idx2)=[timeDelta(idx),height(idx)];
                 end
 
                 if length(extrudedHeight)>1
-
-
-
-
-
-
-
 
 
                     idx1=((idx-1)*2)+1;
@@ -348,22 +247,11 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
 
                 if length(rotation)>1
 
-
-
-
-
-
-
-
-
                     idx1=((idx-1)*2)+1;
                     idx2=idx1+1;
                     rotationCell(idx1:idx2)=[timeDelta(idx),rotation(idx)];
                 end
             end
-
-
-
             positionStruct=struct("epoch",epochTime,...
             "interpolationAlgorithm",interpolation,...
             "interpolationDegree",interpolationDegree,...
@@ -371,10 +259,6 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
             coordinateDefinition,{positionCoordinates});
 
             if length(semiMajorAxis)>1
-
-
-
-
                 semiMajorAxisStruct=struct("epoch",epochTime,...
                 "interpolationAlgorithm",interpolation,...
                 "interpolationDegree",interpolationDegree,...
@@ -382,10 +266,6 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
             end
 
             if length(semiMinorAxis)>1
-
-
-
-
                 semiMinorAxisStruct=struct("epoch",epochTime,...
                 "interpolationAlgorithm",interpolation,...
                 "interpolationDegree",interpolationDegree,...
@@ -393,9 +273,6 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
             end
 
             if length(height)>1
-
-
-
                 heightStruct=struct("epoch",epochTime,...
                 "interpolationAlgorithm",interpolation,...
                 "interpolationDegree",interpolationDegree,...
@@ -403,10 +280,6 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
             end
 
             if length(extrudedHeight)>1
-
-
-
-
                 extrudedHeightStruct=struct("epoch",epochTime,...
                 "interpolationAlgorithm",interpolation,...
                 "interpolationDegree",interpolationDegree,...
@@ -414,9 +287,6 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
             end
 
             if length(rotation)>1
-
-
-
                 rotationStruct=struct("epoch",epochTime,...
                 "interpolationAlgorithm",interpolation,...
                 "interpolationDegree",interpolationDegree,...
@@ -424,11 +294,6 @@ function addEllipse(writer,name,position,time,semiMajorAxis,...
             end
         end
     else
-
-
-
-
-
         positionStruct=struct("referenceFrame",referenceFrame,...
         coordinateDefinition,position);
     end
@@ -460,12 +325,9 @@ end
 function validatedInputs=validateInput(inputs)
 
 
-
-
     validateattributes(inputs.name,...
     {'char','string'},{'nonempty','scalartext'},...
     'addEllipse','name',1);
-
 
     validateattributes(inputs.position,...
     {'numeric'},{'nonempty','real','finite','ncols',3},...
@@ -482,9 +344,6 @@ function validatedInputs=validateInput(inputs)
         {'finite','vector','numel',size(inputs.position,1)},...
         'addEllipse','time',3);
     end
-
-
-
     validateattributes(inputs.semiMajorAxis,...
     {'numeric'},...
     {'nonempty','vector','real','nonnegative','finite'},...
@@ -494,8 +353,6 @@ function validatedInputs=validateInput(inputs)
         {'numeric'},{'numel',size(inputs.position,1)},...
         'addEllipse','semiMajorAxis',4);
     end
-
-
 
     validateattributes(inputs.semiMinorAxis,...
     {'numeric'},...
