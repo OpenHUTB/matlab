@@ -1,24 +1,5 @@
 classdef(Hidden)ImageViewer<globe.internal.VisualizationViewer
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
         function viewer=ImageViewer(globeController)
 
@@ -30,7 +11,6 @@ classdef(Hidden)ImageViewer<globe.internal.VisualizationViewer
             primitiveController=globe.internal.PrimitiveController(globeController);
             viewer.PrimitiveController=primitiveController;
         end
-
 
         function[IDs,plotDescriptors]=image(viewer,fileLoc,cornerLocations,varargin)
             [IDs,plotDescriptors]=viewer.buildPlotDescriptors(fileLoc,cornerLocations,varargin{:});
