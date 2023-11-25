@@ -1,11 +1,6 @@
 function addPath(writer,name,position,time,leadTime,trailTime,...
     varargin)
 
-
-
-
-
-
     p=inputParser;
     addRequired(p,'name');
     addRequired(p,'position');
@@ -53,33 +48,20 @@ function addPath(writer,name,position,time,leadTime,trailTime,...
     sizeOfPosition=size(position);
 
 
-
     positionCoordinates=zeros(1,(sizeOfPosition(2)+1)*sizeOfPosition(1));
 
-
     epochTime=string(datetime(time(1),'Format',writer.DateTimeFormat));
-
 
 
     timeDelta=seconds(time-time(1));
 
     for idx=1:sizeOfPosition(1)
-
-
-
-
-
-
-
-
         idx1=((idx-1)*(sizeOfPosition(2)+1))+1;
         idx2=idx1+sizeOfPosition(2);
 
         positionCoordinates(idx1:idx2)=[timeDelta(idx),...
         position(idx,1),position(idx,2),position(idx,3)];
     end
-
-
 
     positionStruct=struct("epoch",epochTime,...
     "interpolationAlgorithm",interpolation,...
@@ -111,8 +93,6 @@ end
 function validatedInputs=validateInput(inputs)
 
 
-
-
     validateattributes(inputs.name,...
     {'char','string'},{'nonempty','scalartext'},...
     'addPath','name',1);
@@ -127,12 +107,10 @@ function validatedInputs=validateInput(inputs)
     'addPath','number of rows in position');
 
 
-
     validateattributes(inputs.time,...
     {'datetime'},...
     {'finite','vector','numel',size(inputs.position,1)},...
     'addPath','time',3);
-
 
     validateattributes(inputs.leadTime,...
     {'numeric'},...
@@ -154,7 +132,6 @@ function validatedInputs=validateInput(inputs)
     {'numeric'},{'nonempty','scalar','finite','real','positive'},...
     'addPath','Width');
 
-
     validateattributes(inputs.Resolution,...
     {'numeric'},{'nonempty','scalar','finite','real','positive'},...
     'addPath','Resolution');
@@ -170,7 +147,6 @@ function validatedInputs=validateInput(inputs)
     inputs.Interpolation=...
     validatestring(upper(inputs.Interpolation),...
     {'LINEAR','LAGRANGE','HERMITE'},'addPath','Interpolation');
-
 
     validateattributes(inputs.InterpolationDegree,...
     {'numeric'},...
