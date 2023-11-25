@@ -1,31 +1,5 @@
 classdef LifeCycleManager<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Dependent)
 CurrentObject
 AllObjects
@@ -44,14 +18,6 @@ Objects
 
     methods
         function manager=LifeCycleManager(appDataName)
-
-
-
-
-
-
-
-
 
             if nargin>0
                 manager.AppdataName=appDataName;
