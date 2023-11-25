@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 classdef ( Sealed, ConstructOnLoad, UseClassDefaultsOnLoad )GeographicGlobe ...
         < matlab.graphics.primitive.world.Group ...
         & matlab.graphics.mixin.UIParentable ...
