@@ -1,26 +1,6 @@
 classdef GlobeGraphicsController<handle
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=protected)
         GlobeController globe.internal.GlobeController=globe.internal.GlobeController.empty
     end
@@ -33,14 +13,6 @@ classdef GlobeGraphicsController<handle
 
     methods
         function graphicsController=GlobeGraphicsController(globeController)
-
-
-
-
-
-
-
-
 
             if nargin>0
                 graphicsController.GlobeController=globeController;
