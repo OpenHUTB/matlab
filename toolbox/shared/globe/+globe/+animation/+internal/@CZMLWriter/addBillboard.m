@@ -1,11 +1,5 @@
 function addBillboard(writer,name,position,time,imageURL,varargin)
 
-
-
-
-
-
-
     p=inputParser;
     addRequired(p,'name');
     addRequired(p,'position');
