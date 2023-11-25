@@ -1,15 +1,6 @@
 function addRectangle(writer,name,coordinates,time,imageURL,varargin)
 
 
-
-
-
-
-
-
-
-
-
     p=inputParser;
     addRequired(p,'name');
     addRequired(p,'coordinates');
@@ -50,10 +41,6 @@ function addRectangle(writer,name,coordinates,time,imageURL,varargin)
         for idx=1:lengthOfTimes-1
 
 
-
-
-
-
             startInterval=string(datetime(time(idx),...
             'Format',writer.DateTimeFormat));
             endInterval=char(datetime(time(idx+1),...
@@ -88,9 +75,6 @@ end
 
 function validatedInputs=validateInput(inputs)
 
-
-
-
     validateattributes(inputs.name,...
     {'char','string'},{'nonempty','scalartext'},...
     'addRectangle','name',1);
@@ -99,9 +83,6 @@ function validatedInputs=validateInput(inputs)
     validateattributes(inputs.coordinates,...
     {'numeric'},{'nonempty','finite','real','ncols',4},...
     'addRectangle','coordinates',2);
-
-
-
 
     if isempty(inputs.time)
         validateattributes(inputs.coordinates,...
