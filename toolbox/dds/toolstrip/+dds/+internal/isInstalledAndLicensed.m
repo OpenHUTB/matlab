@@ -1,12 +1,5 @@
 function[value,msg]=isInstalledAndLicensed(varargin)
 
-
-
-
-
-
-
-
     if~dig.isProductInstalled('DDS Blockset')
         value=false;
         msg=message('dds:toolstrip:NotInstalled').getString();
