@@ -2,27 +2,15 @@ function addPositionReference(writer,name,position,time,...
     interpolation,interpolationDegree,referenceFrame,...
     coordinateDefinition)
 
-
-
-
-
-
     sizeOfPosition=size(position);
 
     if strcmp(interpolation,'NONE')
-
-
-
-
 
         positionStruct(1:sizeOfPosition(1)-1)=...
         struct("interval","","referenceFrame",referenceFrame,...
         coordinateDefinition,[]);
 
         for idx=1:sizeOfPosition(1)-1
-
-
-
 
             startInterval=string(datetime(time(idx),...
             'Format',writer.DateTimeFormat));
@@ -42,12 +30,8 @@ function addPositionReference(writer,name,position,time,...
         end
     else
 
-
-
-
         epochTime=string(datetime(time(1),...
         'Format',writer.DateTimeFormat));
-
 
 
         timeDelta=seconds(time-time(1));
@@ -58,19 +42,11 @@ function addPositionReference(writer,name,position,time,...
 
         for idx=1:sizeOfPosition(1)
 
-
-
-
-
-
-
-
             idx1=((idx-1)*(sizeOfPosition(2)+1))+1;
             idx2=idx1+sizeOfPosition(2);
             positionCoordinates(idx1:idx2)=[timeDelta(idx),...
             position(idx,1),position(idx,2),position(idx,3)];
         end
-
 
         positionStruct=struct("epoch",epochTime,...
         "interpolationAlgorithm",interpolation,...
@@ -78,7 +54,6 @@ function addPositionReference(writer,name,position,time,...
         "referenceFrame",referenceFrame,...
         coordinateDefinition,{positionCoordinates});
     end
-
 
     packetString=struct("id",name,"position",positionStruct);
 
