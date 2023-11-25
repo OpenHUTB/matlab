@@ -1,8 +1,6 @@
 classdef(Hidden)LabelCollectionViewer<globe.internal.VisualizationCollectionViewer...
     &globe.internal.VisualizationViewer
 
-
-
     properties
 Locations
 Labels
@@ -15,18 +13,6 @@ Labels
 
     methods
         function viewer=LabelCollectionViewer(globeController,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
 
             if nargin<1
                 globeController=globe.internal.GlobeController;
