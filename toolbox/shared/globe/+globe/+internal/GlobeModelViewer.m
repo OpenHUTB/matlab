@@ -1,70 +1,14 @@
 classdef(Hidden)GlobeModelViewer<matlab.mixin.SetGet
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Dependent)
-
-
-
-
-
-
-
-
 
 Parent
 
-
-
-
-
-
 Name
-
-
-
-
-
 
 Position
 
-
-
-
-
 Basemap
-
-
-
-
 
 Terrain
     end
@@ -72,14 +16,7 @@ Terrain
 
     properties(GetAccess=public,SetAccess=private,Dependent)
 
-
-
-
 Visible
-
-
-
-
 
 UseTerrain
     end
@@ -121,19 +58,6 @@ CesiumVersion
     methods
         function viewer=GlobeModelViewer(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             if nargin>0&&rem(length(varargin),2)
                 controller=varargin{1};
                 varargin(1)=[];
@@ -156,24 +80,14 @@ CesiumVersion
             catch e
                 throwAsCaller(e)
             end
-
-
             viewer.UseDebug=viewer.GlobeOptions.UseDebug;
-
-
             viewer.Controller.LaunchWebWindow=viewer.LaunchWebWindow;
-
-
 
             if viewer.LaunchWebWindow&&~isempty(viewer.Parent)
                 validateBasemapAccess(controller)
             end
 
-
             show(viewer)
-
-
-
             w=controller.WindowController;
             if isValidWindow(w)
                 addClosingCallback(w,@(evt,src)close(viewer))
