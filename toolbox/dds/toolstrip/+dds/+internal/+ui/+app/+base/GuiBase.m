@@ -1,7 +1,3 @@
-
-
-
-
 classdef(Abstract)GuiBase<handle
 
     properties
