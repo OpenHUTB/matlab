@@ -1,34 +1,5 @@
 classdef ( Sealed, Hidden )GlobeModel < matlab.mixin.SetGet
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties
         Name char{ validateName } = ''
     end
