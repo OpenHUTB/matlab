@@ -8,14 +8,6 @@ classdef(Hidden)LOSViewer<globe.internal.VisualizationViewer
     methods
         function viewer=LOSViewer(globeController)
 
-
-
-
-
-
-
-
-
             if nargin<1
                 globeController=globe.internal.GlobeController;
             end
