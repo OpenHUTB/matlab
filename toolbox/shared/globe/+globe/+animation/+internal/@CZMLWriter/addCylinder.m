@@ -1,12 +1,6 @@
 function addCylinder(writer,name,position,time,cylinderLength,...
     topRadius,bottomRadius,varargin)
 
-
-
-
-
-
-
     p=inputParser;
     addRequired(p,'name');
     addRequired(p,'position');
@@ -67,8 +61,6 @@ function addCylinder(writer,name,position,time,cylinderLength,...
         bottomRadiusStruct=bottomRadius;
     end
 
-
-
     if~isempty(orientation)&&isequal(sizeOfOrientation,[1,4])
         orientationStruct=struct("unitQuaternion",orientation);
     end
@@ -77,19 +69,11 @@ function addCylinder(writer,name,position,time,cylinderLength,...
 
 
         if strcmp(interpolation,'NONE')
-
-
-
-
-
-
             positionStruct(1:sizeOfPosition(1)-1)=...
             struct("interval","","referenceFrame",referenceFrame,...
             coordinateDefinition,[]);
 
             if sizeOfOrientation(1)>1
-
-
                 orientationStruct(1:sizeOfOrientation(1)-1)=...
                 struct("interval","","unitQuaternion",[]);
             end
@@ -103,7 +87,6 @@ function addCylinder(writer,name,position,time,cylinderLength,...
 
             if length(topRadius)>1
 
-
                 topRadiusStruct(1:sizeOfPosition(1)-1)=...
                 struct("interval","","number",[]);
             end
@@ -116,10 +99,6 @@ function addCylinder(writer,name,position,time,cylinderLength,...
             end
 
             for idx=1:sizeOfPosition(1)-1
-
-
-
-
 
                 startInterval=string(datetime(time(idx),'Format',...
                 writer.DateTimeFormat));
@@ -139,62 +118,30 @@ function addCylinder(writer,name,position,time,cylinderLength,...
 
                 if sizeOfOrientation(1)>1
 
-
-
-
-
-
-
                     orientationStruct(idx).interval=intervalString;
                     orientationStruct(idx).unitQuaternion=orientation(idx,:);
                 end
 
                 if length(cylinderLength)>1
 
-
-
-
-
-
-
-
                     lengthStruct(idx).interval=intervalString;
                     lengthStruct(idx).number=cylinderLength(idx);
                 end
 
                 if length(topRadius)>1
-
-
-
-
-
-
-
                     topRadiusStruct(idx).interval=intervalString;
                     topRadiusStruct(idx).number=topRadius(idx);
                 end
 
                 if length(bottomRadius)>1
-
-
-
-
-
-
-
                     bottomRadiusStruct(idx).interval=intervalString;
                     bottomRadiusStruct(idx).number=bottomRadius(idx);
                 end
             end
         else
 
-
-
-
             epochTime=string(datetime(time(1),...
             'Format',writer.DateTimeFormat));
-
-
 
             timeDelta=seconds(time-time(1));
 
@@ -235,31 +182,12 @@ function addCylinder(writer,name,position,time,cylinderLength,...
 
             for idx=1:sizeOfPosition(1)
 
-
-
-
-
-
-
-
                 idx1=((idx-1)*(sizeOfPosition(2)+1))+1;
                 idx2=idx1+sizeOfPosition(2);
                 positionCoordinates(idx1:idx2)=[timeDelta(idx),...
                 position(idx,1),position(idx,2),position(idx,3)];
 
                 if sizeOfOrientation(1)>1
-
-
-
-
-
-
-
-
-
-
-
-
 
                     idx1=((idx-1)*(sizeOfOrientation(2)+1))+1;
                     idx2=idx1+sizeOfOrientation(2);
@@ -271,13 +199,6 @@ function addCylinder(writer,name,position,time,cylinderLength,...
                 if length(cylinderLength)>1
 
 
-
-
-
-
-
-
-
                     idx1=((idx-1)*2)+1;
                     idx2=idx1+1;
                     lengthCell(idx1:idx2)=...
@@ -285,13 +206,6 @@ function addCylinder(writer,name,position,time,cylinderLength,...
                 end
 
                 if length(topRadius)>1
-
-
-
-
-
-
-
 
 
                     idx1=((idx-1)*2)+1;
@@ -303,21 +217,12 @@ function addCylinder(writer,name,position,time,cylinderLength,...
                 if length(bottomRadius)>1
 
 
-
-
-
-
-
-
-
                     idx1=((idx-1)*2)+1;
                     idx2=idx1+1;
                     bottomRadiusCell(idx1:idx2)=[timeDelta(idx),...
                     bottomRadius(idx)];
                 end
             end
-
-
 
             positionStruct=struct("epoch",epochTime,...
             "interpolationAlgorithm",interpolation,...
@@ -327,8 +232,6 @@ function addCylinder(writer,name,position,time,cylinderLength,...
 
             if sizeOfOrientation(1)>1
 
-
-
                 orientationStruct=struct("epoch",epochTime,...
                 "interpolationAlgorithm",interpolation,...
                 "interpolationDegree",interpolationDegree,...
@@ -336,10 +239,6 @@ function addCylinder(writer,name,position,time,cylinderLength,...
             end
 
             if length(cylinderLength)>1
-
-
-
-
                 lengthStruct=struct("epoch",epochTime,...
                 "interpolationAlgorithm",interpolation,...
                 "interpolationDegree",interpolationDegree,...
@@ -347,10 +246,6 @@ function addCylinder(writer,name,position,time,cylinderLength,...
             end
 
             if length(topRadius)>1
-
-
-
-
                 topRadiusStruct=struct("epoch",epochTime,...
                 "interpolationAlgorithm",interpolation,...
                 "interpolationDegree",interpolationDegree,...
@@ -358,10 +253,6 @@ function addCylinder(writer,name,position,time,cylinderLength,...
             end
 
             if length(bottomRadius)>1
-
-
-
-
                 bottomRadiusStruct=struct("epoch",epochTime,...
                 "interpolationAlgorithm",interpolation,...
                 "interpolationDegree",interpolationDegree,...
@@ -369,10 +260,6 @@ function addCylinder(writer,name,position,time,cylinderLength,...
             end
         end
     else
-
-
-
-
 
         positionStruct=struct("referenceFrame",referenceFrame,...
         coordinateDefinition,position);
