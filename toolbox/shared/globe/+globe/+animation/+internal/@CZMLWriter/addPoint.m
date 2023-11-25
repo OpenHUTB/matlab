@@ -1,10 +1,5 @@
 function addPoint(writer,name,position,time,varargin)
 
-
-
-
-
-
     p=inputParser;
     addRequired(p,'name');
     addRequired(p,'position');
@@ -57,21 +52,11 @@ function addPoint(writer,name,position,time,varargin)
 
 
         if strcmp(interpolation,'NONE')
-
-
-
-
-
-
             positionStruct(1:sizeOfPosition(1)-1)=...
             struct("interval","","referenceFrame",referenceFrame,...
             coordinateDefinition,[]);
 
             for idx=1:sizeOfPosition(1)-1
-
-
-
-
 
                 startInterval=string(datetime(time(idx),...
                 'Format',writer.DateTimeFormat));
@@ -90,14 +75,8 @@ function addPoint(writer,name,position,time,varargin)
                 end
             end
         else
-
-
-
-
             epochTime=string(datetime(time(1),...
             'Format',writer.DateTimeFormat));
-
-
 
             timeDelta=seconds(time-time(1));
 
@@ -106,22 +85,11 @@ function addPoint(writer,name,position,time,varargin)
             zeros(1,(sizeOfPosition(2)+1)*sizeOfPosition(1));
 
             for idx=1:sizeOfPosition(1)
-
-
-
-
-
-
-
-
                 idx1=((idx-1)*(sizeOfPosition(2)+1))+1;
                 idx2=idx1+sizeOfPosition(2);
                 positionCoordinates(idx1:idx2)=[timeDelta(idx),...
                 position(idx,1),position(idx,2),position(idx,3)];
             end
-
-
-
             positionStruct=struct("epoch",epochTime,...
             "interpolationAlgorithm",interpolation,...
             "interpolationDegree",interpolationDegree,...
@@ -129,15 +97,9 @@ function addPoint(writer,name,position,time,varargin)
             coordinateDefinition,{positionCoordinates});
         end
     else
-
-
-
-
-
         positionStruct=struct("referenceFrame",referenceFrame,...
         coordinateDefinition,position);
     end
-
 
     colorStruct=struct("rgba",color);
     outlineColorStruct=struct("rgba",outlineColor);
@@ -151,26 +113,18 @@ function addPoint(writer,name,position,time,varargin)
     struct("initiallyVisible",initiallyVisible,"showTooltip",showTooltip,"linkedGraphic",linkedGraphic));
 
 
-
     type="point";
     addPacket(writer,id,type,packetString);
 end
 
 function validatedInputs=validateInput(inputs)
 
-
-
-
     validateattributes(inputs.name,...
     {'char','string'},{'nonempty','scalartext'},...
     'addPoint','name',1);
-
-
     validateattributes(inputs.position,...
     {'numeric'},{'nonempty','finite','real','ncols',3},...
     'addPoint','position',2);
-
-
 
     if isempty(inputs.time)
         validateattributes(inputs.position,...
@@ -200,11 +154,9 @@ function validatedInputs=validateInput(inputs)
     'addPoint','OutlineColor');
     inputs.OutlineColor=inputs.OutlineColor*255;
 
-
     validateattributes(inputs.OutlineWidth,...
     {'numeric'},{'nonempty','scalar','real','positive','finite'},...
     'addPoint','OutlineWidth');
-
 
     validateattributes(inputs.PixelSize,...
     {'numeric'},...
@@ -218,11 +170,9 @@ function validatedInputs=validateInput(inputs)
     'addPoint','Interpolation');
 
 
-
     if size(inputs.position,1)==1
         inputs.Interpolation='LINEAR';
     end
-
 
     validateattributes(inputs.InterpolationDegree,...
     {'numeric'},...
