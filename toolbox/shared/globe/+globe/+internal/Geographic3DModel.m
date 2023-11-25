@@ -1,8 +1,5 @@
 classdef(Hidden)Geographic3DModel<matlab.mixin.SetGet
 
-
-
-
     properties
         Model{validateModel}
         VertexColors(:,3){mustBeNumeric}=[-1,-1,-1]
