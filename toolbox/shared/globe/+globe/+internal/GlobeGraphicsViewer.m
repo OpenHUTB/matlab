@@ -1,38 +1,10 @@
 classdef(Hidden)GlobeGraphicsViewer<handle
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(GetAccess=public,SetAccess=protected,Hidden)
         GraphicsController globe.internal.GlobeGraphicsController=globe.internal.GlobeGraphicsController.empty
     end
 
     methods
         function viewer=GlobeGraphicsViewer(globeController)
-
-
-
-
-
-
-
-
 
             if nargin<1
                 globeController=globe.internal.GlobeController;
