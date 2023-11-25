@@ -1,23 +1,6 @@
 classdef(Hidden)LineCollectionViewer<globe.internal.VisualizationCollectionViewer...
     &globe.internal.VisualizationViewer
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties
         Width=3
         HistoryDepth(1,1)double=0
@@ -35,13 +18,6 @@ classdef(Hidden)LineCollectionViewer<globe.internal.VisualizationCollectionViewe
 
     methods
         function viewer=LineCollectionViewer(globeController,varargin)
-
-
-
-
-
-
-
 
             if nargin<1
                 globeController=globe.internal.GlobeController;
