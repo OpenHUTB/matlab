@@ -1,23 +1,5 @@
 classdef(Hidden)EllipsoidViewer<globe.internal.VisualizationViewer
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
         function viewer=EllipsoidViewer(globeController)
 
