@@ -1,48 +1,11 @@
 classdef ConnectorServiceProvider<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=private)
-
-
-
 
         ChannelName char='globeviewer'
 
 
-
-
-
         ChannelID char=''
-
-
-
-
 
         RequestResponseChannel char=''
     end
@@ -50,14 +13,7 @@ classdef ConnectorServiceProvider<handle
 
     properties(SetAccess=private,Dependent)
 
-
-
-
 URL
-
-
-
-
 
 DebugURL
     end
