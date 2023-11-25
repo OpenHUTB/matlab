@@ -1,32 +1,7 @@
 classdef CompositeController<globe.internal.GlobeGraphicsController
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
         function CompositeController=CompositeController(varargin)
-
-
-
-
-
-
-
-
 
             CompositeController=CompositeController@globe.internal.GlobeGraphicsController(varargin{:});
         end
