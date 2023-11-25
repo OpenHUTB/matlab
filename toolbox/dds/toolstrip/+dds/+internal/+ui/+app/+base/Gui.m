@@ -1,7 +1,3 @@
-
-
-
-
 classdef Gui<handle
     properties
         ID=''
@@ -19,14 +15,6 @@ HelpArgs
 
     methods(Access=public)
         function obj=Gui(env,ID,guiTag,title)
-
-
-
-
-
-
-
-
 
             connector.ensureServiceOn;
 
@@ -46,8 +34,6 @@ HelpArgs
             obj.Env=env;
         end
         function showInDialog(obj)
-
-
 
             if~isa(obj.Dlg,'DAStudio.Dialog')
                 obj.Dlg=DAStudio.Dialog(obj);
@@ -69,11 +55,7 @@ HelpArgs
 
         function start(obj)
 
-
-
             obj.unsubscribe;
-
-
             message.publish(obj.ID,struct('Type','command','Value','clearMCOS'));
             obj.Subscriptions{end+1}=message.subscribe(obj.ID,@obj.receive);
 
@@ -380,10 +362,6 @@ HelpArgs
         end
         function onchange(obj)
 
-
-
-
-
             env=obj.Env;
             q=env.CurrentQuestion;
 
@@ -410,8 +388,6 @@ HelpArgs
         end
 
         function closeCallBack(gui)
-
-
 
             gui.cleanup;
         end
