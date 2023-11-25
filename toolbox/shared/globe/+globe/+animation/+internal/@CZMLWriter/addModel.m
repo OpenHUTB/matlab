@@ -1,10 +1,5 @@
 function addModel(writer,name,position,time,modelURL,varargin)
 
-
-
-
-
-
     p=inputParser;
     addRequired(p,'name');
     addRequired(p,'position');
@@ -60,28 +55,16 @@ function addModel(writer,name,position,time,modelURL,varargin)
 
 
         if strcmp(interpolation,'NONE')
-
-
-
-
-
-
             positionStruct(1:sizeOfPosition(1)-1)=...
             struct("interval","","referenceFrame",referenceFrame,...
             coordinateDefinition,[]);
 
             if sizeOfOrientation(1)>1
-
-
                 orientationStruct(1:sizeOfOrientation(1)-1)=...
                 struct("interval","","unitQuaternion",[]);
             end
 
             for idx=1:sizeOfPosition(1)-1
-
-
-
-
 
                 startInterval=string(datetime(time(idx),'Format',...
                 writer.DateTimeFormat));
@@ -100,29 +83,14 @@ function addModel(writer,name,position,time,modelURL,varargin)
                 end
 
                 if sizeOfOrientation(1)>1
-
-
-
-
-
-
-
                     orientationStruct(idx).interval=intervalString;
                     orientationStruct(idx).unitQuaternion=orientation(idx,:);
                 end
             end
         else
-
-
-
-
             epochTime=string(datetime(time(1),...
             'Format',writer.DateTimeFormat));
-
-
-
             timeDelta=seconds(time-time(1));
-
 
             positionCoordinates=...
             zeros(1,(sizeOfPosition(2)+1)*sizeOfPosition(1));
@@ -135,34 +103,12 @@ function addModel(writer,name,position,time,modelURL,varargin)
             end
 
             for idx=1:sizeOfPosition(1)
-
-
-
-
-
-
-
-
                 idx1=((idx-1)*(sizeOfPosition(2)+1))+1;
                 idx2=idx1+sizeOfPosition(2);
                 positionCoordinates(idx1:idx2)=[timeDelta(idx),...
                 position(idx,1),position(idx,2),position(idx,3)];
 
                 if sizeOfOrientation(1)>1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     idx1=((idx-1)*(sizeOfOrientation(2)+1))+1;
                     idx2=idx1+sizeOfOrientation(2);
                     unitQuaternion(idx1:idx2)=[timeDelta(idx),...
@@ -170,9 +116,6 @@ function addModel(writer,name,position,time,modelURL,varargin)
                     orientation(idx,3),orientation(idx,4)];
                 end
             end
-
-
-
             positionStruct=struct("epoch",epochTime,...
             "interpolationAlgorithm",interpolation,...
             "interpolationDegree",interpolationDegree,...
@@ -180,9 +123,6 @@ function addModel(writer,name,position,time,modelURL,varargin)
             coordinateDefinition,{positionCoordinates});
 
             if sizeOfOrientation(1)>1
-
-
-
                 orientationStruct=struct("epoch",epochTime,...
                 "interpolationAlgorithm",interpolation,...
                 "interpolationDegree",interpolationDegree,...
@@ -190,19 +130,11 @@ function addModel(writer,name,position,time,modelURL,varargin)
             end
         end
     else
-
-
-
-
-
         positionStruct=struct("referenceFrame",referenceFrame,...
         coordinateDefinition,position);
     end
-
-
     model=struct("gltf",modelURL,"scale",scale,...
     "minimumPixelSize",minimumPixelSize);
-
 
 
     if isempty(orientation)
