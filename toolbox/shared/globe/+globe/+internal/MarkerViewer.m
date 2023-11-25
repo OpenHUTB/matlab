@@ -1,25 +1,6 @@
 classdef(Hidden)MarkerViewer<globe.internal.VisualizationViewer
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Constant,Hidden)
         SquareIcon='/toolbox/shared/globe/globeviewer/release/globeviewer/images/square.svg'
         TriangleIcon='/toolbox/shared/globe/globeviewer/release/globeviewer/images/triangle.svg'
@@ -29,14 +10,6 @@ classdef(Hidden)MarkerViewer<globe.internal.VisualizationViewer
 
     methods
         function viewer=MarkerViewer(globeController)
-
-
-
-
-
-
-
-
 
             if nargin<1
                 globeController=globe.internal.GlobeController;
