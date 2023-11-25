@@ -1,7 +1,5 @@
 classdef(ConstructOnLoad)MouseEventData<event.EventData
 
-
-
     properties
 MouseData
     end
