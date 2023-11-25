@@ -2,7 +2,6 @@ classdef(Hidden)PointCollectionViewer<globe.internal.VisualizationCollectionView
     &globe.internal.VisualizationViewer
 
 
-
     properties
 Locations
         PixelSize(1,1)double=4
@@ -24,18 +23,6 @@ Locations
 
     methods
         function viewer=PointCollectionViewer(globeController,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
 
             if nargin<1
                 globeController=globe.internal.GlobeController;
