@@ -1,24 +1,5 @@
 classdef ( Hidden )Geographic3DModelViewer < globe.internal.VisualizationViewer
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     methods
         function viewer = Geographic3DModelViewer( globeController )
 
