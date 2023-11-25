@@ -1,20 +1,13 @@
 classdef CZMLWriter<handle
 
-
-
-
-
     properties
 FileName
 FilePath
         StartTime=datetime(-9999,8,21,0,0,0);
 
-
         EndTime=datetime(9999,8,21,1,0,0);
 
-
         CurrentTime=datetime(-9999,8,21,0,0,0);
-
 
 
 Speed
@@ -42,26 +35,6 @@ CurrentGraphics
     methods
         function writer=CZMLWriter(fileName,filePath,startTime,...
             endTime,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             p=inputParser;
@@ -111,12 +84,6 @@ CurrentGraphics
 
         function removeGraphic(writer,name)
 
-
-
-
-
-
-
             packetRemoved=false;
             for idx=1:length(writer.Packets)
                 if strcmp(name,writer.Packets(idx).Name)
@@ -124,7 +91,6 @@ CurrentGraphics
 
                     if~strcmp(writer.Packets(idx).Type,...
                         "position reference")
-
 
 
                         if strcmp(writer.Packets(idx).Type,"polyline")
