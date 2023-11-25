@@ -1,10 +1,5 @@
 function addPolyline(writer,name,positions,time,varargin)
 
-
-
-
-
-
     p=inputParser;
     addRequired(p,'name');
     addRequired(p,'positions');
@@ -42,20 +37,13 @@ function addPolyline(writer,name,positions,time,varargin)
         id=name;
     end
 
-
     createPositionReference=false;
-
 
     sizeOfPositions=size(positions);
 
-
-
     if~isempty(time)
 
-
-
         references=strings(1,sizeOfPositions(1));
-
 
         positionName=strings(1,sizeOfPositions(1));
 
@@ -63,26 +51,14 @@ function addPolyline(writer,name,positions,time,varargin)
 
             positionName(idx)=id+"PositionReference"+idx;
 
-
-
             references(idx)=positionName(idx)+"#position";
-
 
             createPositionReference=true;
         end
-
-
-
         positionStruct=struct("references",references);
     else
-
-
-
-
         positionCoordinates=reshape(positions',1,...
         sizeOfPositions(1)*sizeOfPositions(2));
-
-
 
         positionStruct=struct("referenceFrame",referenceFrame,...
         coordinateDefinition,positionCoordinates);
@@ -105,8 +81,6 @@ function addPolyline(writer,name,positions,time,varargin)
     packetIdx=findPacket(writer,name);
 
 
-
-
     if createPositionReference
         try
             for idx=1:sizeOfPositions(1)
@@ -116,11 +90,8 @@ function addPolyline(writer,name,positions,time,varargin)
                 time,interpolation,interpolationDegree,...
                 referenceFrame,coordinateDefinition);
 
-
                 writer.Packets(packetIdx).ReferencePackets{idx}=...
                 positionName(idx);
-
-
 
                 writer.NumGraphics=writer.NumGraphics-1;
             end
@@ -130,8 +101,6 @@ function addPolyline(writer,name,positions,time,varargin)
                 writer.Packets(packetIdx).ReferencePackets{idx2});
             end
             removePacket(writer,name);
-
-
             writer.NumGraphics=writer.NumGraphics-1;
             error(message('shared_globe:viewer:UnableToAddCZMLGraphic'));
         end
@@ -140,26 +109,17 @@ end
 
 function validatedInputs=validateInput(inputs)
 
-
-
-
     validateattributes(inputs.name,...
     {'char','string'},{'nonempty','scalartext'},...
     'addPolyline','name',1);
-
-
     validateattributes(inputs.positions,...
     {'numeric'},...
     {'nonempty','finite','real','size',[NaN,3,NaN]},...
     'addPolyline','positions',2);
 
-
-
     validateattributes(size(inputs.positions,1),...
     {'numeric'},{'scalar','>=',2},...
     'addPolyline','size of first dimension of positions');
-
-
 
 
     if isempty(inputs.time)||numel(inputs.time)==1
@@ -173,8 +133,6 @@ function validatedInputs=validateInput(inputs)
         {'finite','vector','numel',size(inputs.positions,3)},...
         'addPolyline','time',3);
     end
-
-
     validateattributes(inputs.Description,...
     {'char','string'},{'scalartext'},'addPolyline','Description');
 
@@ -189,8 +147,6 @@ function validatedInputs=validateInput(inputs)
     validateattributes(inputs.Width,...
     {'numeric'},{'nonempty','scalar','finite','real','positive'},...
     'addPolyline','Width');
-
-
     validateattributes(inputs.FollowSurface,{'logical'},...
     {'nonempty','scalar'},'addPolyline','FollowSurface');
 
@@ -199,8 +155,6 @@ function validatedInputs=validateInput(inputs)
     validatestring(upper(inputs.Interpolation),...
     {'NONE','LINEAR','LAGRANGE','HERMITE'},...
     'addPolyline','Interpolation');
-
-
 
     if ismatrix(inputs.positions)
         inputs.Interpolation='LINEAR';
