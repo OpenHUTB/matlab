@@ -1,79 +1,16 @@
 classdef(Hidden=true)UIContainerController...
     <globe.internal.WebWindowController...
     &matlab.mixin.SetGet
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(GetAccess=public,SetAccess=private)
-
-
-
-
-
-
-
 
         HTMLController matlab.ui.control.HTML=matlab.ui.control.HTML.empty
     end
 
     properties(Access=private)
 
-
-
-
-
-
-
-
 Visible
 
-
-
-
-
-
-
         HTMLControllerParentIsCreated logical=false
-
-
-
-
-
-
-
 
         HTMLControllerIsCreated logical=false
 
