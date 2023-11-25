@@ -1,8 +1,4 @@
 classdef SchemaVersionHandler<handle
-
-
-
-
     properties(Constant,GetAccess=private)
         singleton=dds.internal.SchemaVersionHandler();
     end
