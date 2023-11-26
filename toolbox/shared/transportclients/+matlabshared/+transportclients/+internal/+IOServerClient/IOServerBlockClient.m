@@ -1,19 +1,6 @@
 classdef IOServerBlockClient<handle&...
     matlabshared.transportclients.internal.CRC.J1850_CRC
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Constant,Hidden)
         DefaultWriteToken=uint8(170);
         DefaultReadToken=uint8(85);
@@ -31,8 +18,6 @@ classdef IOServerBlockClient<handle&...
     end
 
     properties(GetAccess=public,SetAccess=private)
-
-
         Connected(1,1)logical{mustBeNonempty}=false;
     end
 
@@ -40,30 +25,18 @@ classdef IOServerBlockClient<handle&...
 
         ReadStartToken(1,:)uint8{mustBeNonempty}=matlabshared.transportclients.internal.IOServerClient.IOServerBlockClient.DefaultReadToken;
 
-
         WriteStartToken(1,:)uint8{mustBeNonempty}=matlabshared.transportclients.internal.IOServerClient.IOServerBlockClient.DefaultWriteToken;
 
-
-
         EnableCRC(1,1){mustBeNumericOrLogical,mustBeBoolean(EnableCRC)}=true;
-
-
-
 
         MaxExpectedPayloadSize(1,1){mustBeNonzero,mustBeNumeric,mustBeInteger}=-1;
 
 
-
         NotifyOnDecodeFailure(1,1){mustBeNumericOrLogical,mustBeBoolean(NotifyOnDecodeFailure)}=true;
-
-
 
         IOServerBlockReadFcn=function_handle.empty();
 
-
-
         ErrorOccurredFcn=function_handle.empty();
-
 
 
         CallbackLimiter(1,1){mustBeNonempty,mustBeNumeric,mustBePositive}=.5;
@@ -73,25 +46,13 @@ classdef IOServerBlockClient<handle&...
     methods
         function obj=IOServerBlockClient(transport)
 
-
-
-
-
-
-
-
-
             narginchk(1,1);
-
-
             if~isa(transport,'matlabshared.transportlib.internal.ITransport')||...
                 ~isa(transport,'matlabshared.transportlib.internal.IFilterable')
                 throw(MException('transportclients:ioserverblock:invalidTransportType',...
                 message('transportclients:ioserverblock:invalidTransportType').getString()));
             end
             obj.Transport=transport;
-
-
 
             obj.Transport.ErrorOccurredFcn=@obj.ErrorOccurredCallback;
         end
@@ -114,7 +75,6 @@ classdef IOServerBlockClient<handle&...
         end
 
         function disconnect(obj)
-
 
             try
                 obj.Transport.removeInputFilter(obj.DecodeFilter);
@@ -140,13 +100,6 @@ classdef IOServerBlockClient<handle&...
 
         function write(obj,data)
 
-
-
-
-
-
-
-
             try
                 narginchk(2,2);
 
@@ -166,8 +119,6 @@ classdef IOServerBlockClient<handle&...
             end
 
             try
-
-
 
                 N=uint16(length(data));
                 N=typecast(N,'uint8');
@@ -189,11 +140,6 @@ classdef IOServerBlockClient<handle&...
 
         function data=read(obj,count)
 
-
-
-
-
-
             try
                 narginchk(1,2);
                 if nargin==1
@@ -208,7 +154,6 @@ classdef IOServerBlockClient<handle&...
             catch validationEx
                 throwAsCaller(validationEx);
             end
-
 
             if~isempty(obj.IOServerBlockReadFcn)
                 throw(MException(message('transportclients:ioserverblock:readWhileStreaming')));
@@ -225,8 +170,6 @@ classdef IOServerBlockClient<handle&...
         function value=get.NumBlocksAvailable(obj)
 
             obj.validateConnected();
-
-
             value=obj.Transport.NumBytesAvailable;
         end
 
@@ -239,14 +182,9 @@ classdef IOServerBlockClient<handle&...
             try
                 validateattributes(val,{'function_handle'},{},mfilename,'IOServerBlockReadFcn');
 
-
-
                 if~isequal(val,function_handle.empty())
                     nargin(val);
                 end
-
-
-
 
                 if~isempty(val)
                     obj.Transport.BytesAvailableEventCount=1;%#ok<MCSUP>
@@ -267,9 +205,6 @@ classdef IOServerBlockClient<handle&...
             end
             try
                 validateattributes(val,{'function_handle'},{},mfilename,'ErrorOccurredFcn');
-
-
-
                 if~isequal(val,function_handle.empty())
                     nargin(val);
                 end
@@ -281,12 +216,7 @@ classdef IOServerBlockClient<handle&...
 
         function set.EnableCRC(obj,val)
 
-
-
-
-
             obj.validateDisconnected();
-
 
             val=(val==1);
 
@@ -300,10 +230,6 @@ classdef IOServerBlockClient<handle&...
 
         function set.NotifyOnDecodeFailure(obj,val)
 
-
-
-
-
             obj.validateDisconnected();
 
             try
@@ -316,8 +242,6 @@ classdef IOServerBlockClient<handle&...
 
         function set.ReadStartToken(obj,val)
 
-
-
             obj.validateDisconnected();
 
             try
@@ -329,12 +253,6 @@ classdef IOServerBlockClient<handle&...
         end
 
         function set.MaxExpectedPayloadSize(obj,val)
-
-
-
-
-
-
 
             obj.validateDisconnected();
 
@@ -352,19 +270,6 @@ classdef IOServerBlockClient<handle&...
 
         function data=readRaw(obj,count,wait)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             data=[];
             try
                 blocksAvailable=obj.Transport.NumBytesAvailable;
@@ -379,9 +284,6 @@ classdef IOServerBlockClient<handle&...
         end
 
         function ErrorOccurredCallback(obj,~,evt)
-
-
-
 
             if isempty(obj.ErrorOccurredFcn)
                 return;
@@ -400,8 +302,6 @@ classdef IOServerBlockClient<handle&...
                     matlabshared.transportlib.internal.ErrorInfo(errorId,evt.Message));
                 end
             otherwise
-
-
                 if~isempty(obj.ErrorOccurredFcn)
                     obj.ErrorOccurredFcn(obj,...
                     matlabshared.transportlib.internal.ErrorInfo(errorId,message(errorId).getString()));
@@ -470,9 +370,6 @@ classdef IOServerBlockClient<handle&...
 
         function validateConnected(obj)
 
-
-
-
             if~obj.Connected
                 throwAsCaller(MException('transportlib:transport:invalidConnectionState',...
                 message('transportlib:transport:invalidConnectionState','IOServerBlockClient transport').getString()));
@@ -480,9 +377,6 @@ classdef IOServerBlockClient<handle&...
         end
 
         function validateDisconnected(obj)
-
-
-
 
             if obj.Connected
                 throwAsCaller(MException(message('transportlib:transport:cannotSetWhenConnected')));
@@ -492,9 +386,6 @@ classdef IOServerBlockClient<handle&...
 
     methods(Static=true,Hidden=true)
         function out=loadobj(s)
-
-
-
 
             out=[];
             if isstruct(s)
