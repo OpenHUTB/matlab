@@ -1,9 +1,5 @@
 classdef FilterImpl<handle
 
-
-
-
-
 %#codegen
 
     properties
