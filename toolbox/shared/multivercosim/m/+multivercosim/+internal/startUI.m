@@ -1,6 +1,3 @@
-
-
-
 function startUI()
     connector.ensureServiceOn;
     releasemanagerInstance=multivercosim.internal.releasemanager.getInstance();
