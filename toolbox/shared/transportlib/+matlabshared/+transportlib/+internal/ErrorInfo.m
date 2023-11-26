@@ -1,11 +1,5 @@
 classdef(Hidden)ErrorInfo<event.EventData
 
-
-
-
-
-
-
     properties(SetAccess=private)
 
 Message
