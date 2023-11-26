@@ -1,12 +1,5 @@
 classdef(Hidden)DataWrittenInfo<event.EventData
 
-
-
-
-
-
-
-
     properties(SetAccess=private)
 
 
