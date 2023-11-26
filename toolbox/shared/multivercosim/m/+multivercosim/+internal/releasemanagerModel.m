@@ -1,15 +1,11 @@
 classdef releasemanagerModel<handle
 
-
-
-
     properties(Constant)
         publishReleaseListChannelSTM='/STM/ReleaseList';
     end
 
 
     methods
-
 
         function obj=releasemanagerModel()
         end
