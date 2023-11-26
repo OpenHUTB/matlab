@@ -1,8 +1,5 @@
 classdef(Abstract)PropagationModel<matlab.mixin.Heterogeneous
 
-
-
-
     methods(Access=protected)
         function pathlossOverDistance(varargin)
             error(message('shared_channel:rfprop:PropagationModelNoPathlossOverDistance'));
