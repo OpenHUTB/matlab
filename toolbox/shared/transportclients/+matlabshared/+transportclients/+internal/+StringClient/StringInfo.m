@@ -1,13 +1,5 @@
 classdef(Hidden)StringInfo<event.EventData
 
-
-
-
-
-
-
-
-
     properties(SetAccess=private)
 
 Count
