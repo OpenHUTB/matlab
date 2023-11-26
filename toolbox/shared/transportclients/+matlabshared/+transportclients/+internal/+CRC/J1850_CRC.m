@@ -1,9 +1,5 @@
 classdef J1850_CRC<handle
 
-
-
-
-
     properties(Access=private)
         J1850_Table=zeros(1,256);
     end
@@ -16,14 +12,10 @@ classdef J1850_CRC<handle
 
     methods
         function valid=validateCRC(obj,crc,buffer)
-
-
             valid=isequal(crc,obj.calculateCRC(buffer));
         end
 
         function crc=calculateCRC(obj,buffer)
-
-
 
             crc=uint8(255);
             for i=1:length(buffer)
@@ -37,7 +29,6 @@ classdef J1850_CRC<handle
     methods(Access=private)
 
         function generateCRC8Table(obj)
-
 
             poly=0x1D;
 
