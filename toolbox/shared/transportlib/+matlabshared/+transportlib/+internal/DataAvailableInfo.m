@@ -1,12 +1,5 @@
 classdef(Hidden)DataAvailableInfo<event.EventData
 
-
-
-
-
-
-
-
     properties(SetAccess=private)
 
 Count
