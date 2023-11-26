@@ -1,9 +1,5 @@
 classdef(Abstract)ParameterInfoBase
 
-
-
-
-
     properties(Dependent)
 Name
 Component
