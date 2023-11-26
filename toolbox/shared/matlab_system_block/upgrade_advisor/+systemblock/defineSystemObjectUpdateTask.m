@@ -1,9 +1,5 @@
 function defineSystemObjectUpdateTask
 
-
-
-
-
     task=ModelAdvisor.Task('mathworks.design.CheckSystemObjectUpdate.task');
     task.DisplayName=DAStudio.message('MATLAB:system:Advisor:CheckSystemObject_title');
     task.Description=DAStudio.message('MATLAB:system:Advisor:CheckSystemObject_tip');
