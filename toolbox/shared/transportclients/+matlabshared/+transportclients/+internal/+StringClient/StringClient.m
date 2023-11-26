@@ -1,19 +1,11 @@
 classdef StringClient<handle
 
-
-
-
-
-
-
     properties(Access=private)
-
 
         Transport(1,1){mustBeNonempty};
     end
 
     properties(GetAccess=public,SetAccess=private,Hidden)
-
 
         UserTerminator=[]
     end
@@ -24,27 +16,11 @@ classdef StringClient<handle
 
     properties
 
-
-
-
-
-
         Terminator=uint8(10)
-
-
-
         StringReadFcn=function_handle.empty()
-
-
-
         ErrorOccurredFcn=function_handle.empty()
 
-
-
-
         CallbackLimiter(1,1){mustBeNonempty,mustBeNumeric,mustBePositive}=0.5
-
-
 
         LastCallbackIdx=0
     end
@@ -53,24 +29,11 @@ classdef StringClient<handle
     methods
         function obj=StringClient(varargin)
 
-
-
-
-
-
-
-
-
-
             narginchk(1,3);
-
-
             varargin=instrument.internal.stringConversionHelpers.str2char(varargin);
 
             try
                 transport=varargin{1};
-
-
                 if~isa(transport,'matlabshared.transportlib.internal.ITransport')||...
                     ~isa(transport,'matlabshared.transportlib.internal.ITokenReader')
                     throw(MException(message('transportclients:string:invalidTransportType')));
@@ -100,15 +63,6 @@ classdef StringClient<handle
 
         function write(varargin)
 
-
-
-
-
-
-
-
-
-
             try
                 narginchk(2,2);
 
@@ -137,7 +91,6 @@ classdef StringClient<handle
 
                 data=[uint8(data),obj.getWriteTerminator()];
 
-
                 obj.Transport.write(data,'uint8');
             catch ex
                 throwAsCaller(MException('transportclients:string:writeFailed',...
@@ -146,20 +99,6 @@ classdef StringClient<handle
         end
 
         function data=read(varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             try
                 narginchk(1,2);
@@ -182,8 +121,6 @@ classdef StringClient<handle
             try
 
                 data=obj.readRaw(true);
-
-
                 data=data(1:end-length(obj.getReadTerminator()));
                 data=char(data);
                 if strcmpi(precision,'string')
@@ -203,14 +140,9 @@ classdef StringClient<handle
             try
                 validateattributes(val,{'function_handle'},{},mfilename,'StringReadFcn');
 
-
-
                 if~isequal(val,function_handle.empty())
                     nargin(val);
                 end
-
-
-
 
                 if~isempty(val)
                     obj.Transport.BytesAvailableEventCount=1;
@@ -247,16 +179,7 @@ classdef StringClient<handle
         function set.Terminator(obj,value)
 
             try
-
-
                 oldValue=obj.UserTerminator;%#ok<*MCSUP>
-
-
-
-
-
-
-
 
 
                 if isempty(oldValue)
@@ -269,9 +192,6 @@ classdef StringClient<handle
 
 
                 validateattributes(value,{'char','string','numeric','cell'},{},mfilename,'Terminator');
-
-
-
 
                 if iscell(value)
                     [r,c]=size(value);
@@ -355,23 +275,6 @@ classdef StringClient<handle
 
         function data=readRaw(obj,wait)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             try
                 data=obj.Transport.readUntil(obj.getReadTerminator,wait);
             catch ex
@@ -387,27 +290,19 @@ classdef StringClient<handle
 
         function DataAvailableCallback(obj,~,~)
 
-
             if isempty(obj.StringReadFcn)
                 return;
             end
             startTic=tic;
             while true
 
-
                 idx=[];
                 errorId=[];
                 numBytesWritten=obj.Transport.getTotalBytesWritten();
                 try
-
-
-
                     if~isempty(numBytesWritten)
                         readTerminator=obj.getReadTerminator;
                         idx=obj.Transport.peekBytesFromEnd(obj.LastCallbackIdx,readTerminator);
-
-
-
 
                         if isequal(readTerminator,[13,10])
                             idx=idx+1;
@@ -416,8 +311,6 @@ classdef StringClient<handle
                 catch ex
                     errorId=ex.identifier;
                 end
-
-
 
                 if errorId
                     if~isempty(obj.ErrorOccurredFcn)
@@ -429,11 +322,7 @@ classdef StringClient<handle
                 end
 
                 if~isempty(idx)
-
-
                     numCallbacksToFire=length(idx);
-
-
                     obj.LastCallbackIdx=obj.LastCallbackIdx+idx(end);
 
 
@@ -447,7 +336,6 @@ classdef StringClient<handle
                     break;
                 end
 
-
                 if toc(startTic)>obj.CallbackLimiter
                     break;
                 end
@@ -455,7 +343,6 @@ classdef StringClient<handle
         end
 
         function errorId=getReadErrorId(~,ex)
-
 
             errorId=[];
             if contains(ex.message,'timeout','IgnoreCase',true)||...
@@ -467,15 +354,6 @@ classdef StringClient<handle
         end
 
         function recalculateLastCBIndex(obj)
-
-
-
-
-
-
-
-
-
             if~isempty(obj.Transport)&&obj.Transport.Connected
                 obj.LastCallbackIdx=...
                 obj.Transport.getTotalBytesWritten()-obj.Transport.NumBytesAvailable;
@@ -487,9 +365,6 @@ classdef StringClient<handle
 
     methods(Static=true,Hidden=true)
         function out=loadobj(s)
-
-
-
 
             out=[];
             if isstruct(s)
@@ -503,8 +378,6 @@ classdef StringClient<handle
 
             function value=getLoadObjTerminator(value)
 
-
-
                 if iscell(value)
                     value{1}=convertNumericCRLFTerminator(value{1});
                     value{2}=convertNumericCRLFTerminator(value{2});
@@ -513,7 +386,6 @@ classdef StringClient<handle
                 end
 
                 function value=convertNumericCRLFTerminator(value)
-
 
                     if isnumeric(value)
                         if~isscalar(value)&&value(1)==13&&value(2)==10
