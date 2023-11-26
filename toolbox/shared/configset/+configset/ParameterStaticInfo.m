@@ -1,12 +1,5 @@
 classdef ParameterStaticInfo<configset.ParameterInfoBase
 
-
-
-
-
-
-
-
     properties(Hidden)
 ParamInfo
     end
@@ -32,9 +25,6 @@ DependsOn
         function out=get.DependsOn(obj)
             out=obj.getDependsOn;
         end
-
-
-
 
         function out=getName(obj)
             out=obj.ParamInfo.Name;
