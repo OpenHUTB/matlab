@@ -1,6 +1,3 @@
-
-
-
 classdef(Hidden)SimulinkBusPropagation<handle
 %#codegen
 
