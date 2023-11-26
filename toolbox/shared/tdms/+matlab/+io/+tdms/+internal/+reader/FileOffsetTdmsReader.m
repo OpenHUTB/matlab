@@ -1,8 +1,4 @@
 classdef FileOffsetTdmsReader<matlab.mixin.Copyable
-
-
-
-
     methods
         function obj=FileOffsetTdmsReader(location,options,selectedChannelGroup,selectedChannels,readSize)
 
