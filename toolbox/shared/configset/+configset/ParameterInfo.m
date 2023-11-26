@@ -1,15 +1,5 @@
 classdef ParameterInfo<configset.ParameterStaticInfo
 
-
-
-
-
-
-
-
-
-
-
     properties(Hidden)
 CS
 Adp
