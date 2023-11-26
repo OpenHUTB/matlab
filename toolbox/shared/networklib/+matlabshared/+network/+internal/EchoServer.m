@@ -1,20 +1,9 @@
 classdef EchoServer<handle
 
-
-
-
-
-
-
     methods(Static)
 
         function manageTransportLifetime(varargin)
-
-
-
             narginchk(2,3);
-
-
             varargin=instrument.internal.stringConversionHelpers.str2char(varargin);
             type=varargin{1};
             action=varargin{2};
@@ -26,26 +15,18 @@ classdef EchoServer<handle
 
             type=validatestring(type,{'TCP','UDP'},mfilename,'type',1);
 
-
             action=validatestring(action,{'create','destroy'},mfilename,'action',2);
-
 
             persistent echoTcpipServer;
             persistent echoUdpServer;
 
             switch type
 
-
             case "TCP"
-
-
                 echoTcpipServer=matlabshared.network.internal.EchoServer...
                 .tcpHandler(echoTcpipServer,action,port);
 
-
             case "UDP"
-
-
                 echoUdpServer=matlabshared.network.internal.EchoServer...
                 .udpHandler(echoUdpServer,action,port);
             end
@@ -55,10 +36,6 @@ classdef EchoServer<handle
     methods(Static,Access='private')
 
         function echoServer=tcpHandler(echoServer,action,port)
-
-
-
-
             if strcmp(action,"create")
 
                 echoServer=...
@@ -71,10 +48,6 @@ classdef EchoServer<handle
         end
 
         function echoServer=udpHandler(echoServer,action,port)
-
-
-
-
             if strcmp(action,"create")
 
                 echoServer=...
@@ -87,8 +60,6 @@ classdef EchoServer<handle
         end
 
         function echoTcpipServer=createTcp(echoTcpipServer,port)
-
-
             try
 
                 validateattributes(port,{'numeric'},{'>=',1,'<=',...
@@ -123,11 +94,9 @@ classdef EchoServer<handle
             echoTcpipServer=[];
         end
 
+
         function echoUdpServer=createUdp(echoUdpServer,port)
-
-
             try
-
                 validateattributes(port,{'numeric'},{'>=',1,'<=',...
                 65535,'scalar','nonnegative','finite'},mfilename,...
                 'port number',3);
@@ -150,14 +119,12 @@ classdef EchoServer<handle
             end
         end
 
-        function echoUdpServer=destroyUdp(echoUdpServer)
 
+        function echoUdpServer = destroyUdp(echoUdpServer)
             if~isempty(echoUdpServer)
-
-
                 echoUdpServer.destroy();
             end
-            echoUdpServer=[];
+            echoUdpServer = [];
         end
     end
 end
