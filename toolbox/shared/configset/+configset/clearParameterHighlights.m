@@ -1,17 +1,5 @@
 function clearParameterHighlights(csOrModel,~)
 
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(1,2);
 
     if isa(csOrModel,'Simulink.ConfigSetRoot')
