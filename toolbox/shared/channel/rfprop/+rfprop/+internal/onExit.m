@@ -1,14 +1,4 @@
 classdef onExit<handle
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess='private',GetAccess='public',Transient)
         Task=@nop
         Cancelled=false
