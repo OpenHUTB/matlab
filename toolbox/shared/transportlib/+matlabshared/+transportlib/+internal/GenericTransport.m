@@ -1,12 +1,6 @@
 classdef GenericTransport<matlabshared.transportlib.internal.ITransport&...
     matlabshared.transportlib.internal.ITokenReader
 
-
-
-
-
-
-
     properties
 
         ByteOrder="little-endian"
