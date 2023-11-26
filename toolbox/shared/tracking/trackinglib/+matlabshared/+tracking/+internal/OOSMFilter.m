@@ -1,35 +1,7 @@
 classdef(Hidden,Abstract)OOSMFilter<handle
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     properties(Dependent)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 MaxNumOOSMSteps
     end
@@ -39,7 +11,6 @@ pMaxNumOOSMSteps
     end
 
     properties(Constant,Access=private)
-
 
         pOOSMVersion=1;
     end
@@ -67,8 +38,6 @@ pCorrectionDistributions
             NVPairNames={'MaxNumOOSMSteps'};
             pstruct=coder.internal.parseInputs(opArgs,NVPairNames,...
             poptions,varargin{:});
-
-
 
             if coder.target('MATLAB')||pstruct.MaxNumOOSMSteps>0
                 obj.MaxNumOOSMSteps=coder.internal.getParameterValue(...
@@ -116,7 +85,6 @@ pCorrectionDistributions
                 obj.pMaxNumOOSMSteps=0;
             end
 
-
         end
 
         function val=getMaxNumOOSMSteps(obj)
@@ -124,7 +92,6 @@ pCorrectionDistributions
         end
 
         function loadOOSMProperties(obj,s)
-
 
             if isfield(s,'pPredictionDeltaTFromLastCorrection')
                 obj.pPredictionDeltaTFromLastCorrection=s.pPredictionDeltaTFromLastCorrection;
@@ -141,7 +108,6 @@ pCorrectionDistributions
             if isfield(s,'pMaxNumOOSMSteps')
                 obj.pMaxNumOOSMSteps=s.pMaxNumOOSMSteps;
 
-
                 if~isfield(s,'pOOSMVersion')
                     fixMaxNumOOSMSteps(obj);
                 end
@@ -155,10 +121,6 @@ pCorrectionDistributions
 
             if obj.pMaxNumOOSMSteps~=0
                 obj.pMaxNumOOSMSteps=obj.pMaxNumOOSMSteps+1;
-
-
-
-
                 [~,ind]=min(obj.pCorrectionTimestamps);
                 obj.pCorrectionDistributions=[obj.pCorrectionDistributions,...
                 obj.pCorrectionDistributions(ind)];
@@ -218,8 +180,6 @@ pCorrectionDistributions
             assertMaxNumDefined(obj);
             if obj.pMaxNumOOSMSteps>0
                 if obj.pPredictionDeltaTFromLastCorrection==0
-
-
                     [~,maxInd]=max(obj.pCorrectionTimestamps);
                     obj.pCorrectionDistributions(maxInd)=getDistribution(obj);
                 else
@@ -242,8 +202,6 @@ pCorrectionDistributions
 
         function[success,dist,t]=fetchDistributionByTime(obj,time)
             [distTimes,I]=sort(obj.pCorrectionTimestamps);
-
-
             distTimes=round(distTimes*1e6)/1e6;
             time=round(time*1e6)/1e6;
 
