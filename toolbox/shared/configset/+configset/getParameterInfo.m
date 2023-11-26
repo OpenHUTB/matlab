@@ -1,24 +1,5 @@
 function info=getParameterInfo(csOrModel,paramName,component)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin<2
         error(message('Simulink:dialog:MissingInpArgs'));
     end
