@@ -1,25 +1,7 @@
 classdef BinBlockClient<handle&...
     matlabshared.transportlib.internal.ByteOrder
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private)
-
-
-
-
 
         ReadState=0;
 
@@ -47,11 +29,7 @@ classdef BinBlockClient<handle&...
 
         BinBlockReadFcn=function_handle.empty();
 
-
-
         ErrorOccurredFcn=function_handle.empty();
-
-
 
 
         CallbackLimiter(1,1){mustBeNonempty,mustBeNumeric,mustBePositive}=.5;
@@ -61,18 +39,7 @@ classdef BinBlockClient<handle&...
     methods
         function obj=BinBlockClient(transport)
 
-
-
-
-
-
-
-
-
             narginchk(1,1);
-
-
-
             if~isa(transport,'matlabshared.transportlib.internal.ITransport')||...
                 ~isa(transport,'matlabshared.transportlib.internal.ITokenReader')
                 throw(MException('transportclients:binblock:invalidTransportType',...
@@ -98,19 +65,6 @@ classdef BinBlockClient<handle&...
     methods
 
         function write(varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             try
                 narginchk(2,4);
@@ -174,14 +128,6 @@ classdef BinBlockClient<handle&...
         end
 
         function data=read(varargin)
-
-
-
-
-
-
-
-
 
             try
                 narginchk(1,2);
@@ -277,26 +223,9 @@ classdef BinBlockClient<handle&...
 
         function data=readRaw(obj,wait)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             data=[];
             errorId='';
             done=false;
-
-
-
-
 
             try
                 bytesAvailable=obj.Transport.NumBytesAvailable;
