@@ -1,8 +1,5 @@
 classdef releasemanagerHTML<handle
 
-
-
-
     properties(SetAccess=protected)
 cefObj
 clientID
