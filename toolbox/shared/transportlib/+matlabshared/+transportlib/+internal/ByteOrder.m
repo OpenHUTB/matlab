@@ -1,8 +1,5 @@
 classdef ByteOrder<handle
 
-
-
-
 %#codegen
 
     properties(Access=private)
