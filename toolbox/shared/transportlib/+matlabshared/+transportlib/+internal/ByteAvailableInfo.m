@@ -1,9 +1,5 @@
 classdef ByteAvailableInfo<handle
 
-
-
-
-
     properties
 BytesAvailableFcnCount
 AbsoluteTime
