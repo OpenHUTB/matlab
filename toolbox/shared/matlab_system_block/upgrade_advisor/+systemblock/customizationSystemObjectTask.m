@@ -1,8 +1,5 @@
 function customizationSystemObjectTask()
 
-
-
-
     cm=DAStudio.CustomizationManager;
 
     cm.addModelAdvisorCheckFcn(@systemblock.defineCheckSystemObjectUpdate);
