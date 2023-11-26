@@ -1,9 +1,3 @@
-
-
-
-
-
-
 function defineCheckSystemObjectUpdate()
     check=ModelAdvisor.Check('mathworks.design.CheckSystemObjectUpdate');
     check.Title=DAStudio.message('MATLAB:system:Advisor:CheckSystemObject_title');
