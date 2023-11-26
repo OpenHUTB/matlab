@@ -1,7 +1,5 @@
 classdef MessageViewerHMI<Simulink.HMI.BrowserDlg
 
-
-
     properties
         client=[];
     end
