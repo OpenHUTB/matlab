@@ -1,14 +1,5 @@
 function retValue=doesBusHaveAnonymousStructName(busObjectName,scope)
 
-
-
-
-
-
-
-
-
-
     if nargin==1
         scope=Simulink.data.BaseWorkspace;
     end
@@ -17,11 +8,7 @@ function retValue=doesBusHaveAnonymousStructName(busObjectName,scope)
     if nargin>2
         DAStudio.error('Simulink:tools:slbusInvalidNumInputs');
     end
-
-
-
     assert(~isempty(busObjectName)&&ischar(busObjectName));
-
 
     if ischar(scope)
         scope=Simulink.data.BaseWorkspace;
@@ -61,8 +48,8 @@ function retValue=doesBusHaveAnonymousStructName(busObjectName,scope)
     retValue=(strcmp(anonymousNameForBusType,busObjectName)==1);
 
 
-    function localCleanUp(tmpModelName)
 
+    function localCleanUp(tmpModelName)
 
         bdclose(tmpModelName);
 
