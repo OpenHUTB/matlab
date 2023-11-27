@@ -1,8 +1,5 @@
 
-
 function tunableVars = getTunableVariables( modelName )
-
-
 
 arguments
     modelName( 1, 1 )string
