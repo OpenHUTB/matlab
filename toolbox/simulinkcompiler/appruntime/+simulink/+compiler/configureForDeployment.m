@@ -1,16 +1,8 @@
 function simInput = configureForDeployment( simInput )
 
 
-
-
-
-
-
-
 %#function embedded.fi
 %#function numerictype
-
-
 
 arguments
     simInput Simulink.SimulationInput
@@ -36,10 +28,6 @@ arguments
 end
 modelName = simInput.ModelName;
 
-
-
-
-
 if ~isdeployed
     issueWarningIfModelIsNewerThanTarget( modelName );
 end
@@ -60,14 +48,10 @@ end
 end
 
 
-
-
 function issueWarningIfModelIsNewerThanTarget( modelName )
 arguments
     modelName( 1, 1 )string
 end
-
-
 
 if ~isdeployed && ~bdIsLoaded( modelName )
     return
