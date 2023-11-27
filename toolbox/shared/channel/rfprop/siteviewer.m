@@ -40,37 +40,9 @@ Visualizer
     end
 
     properties(SetAccess=immutable)
-
-
-
-
-
-
         Buildings=''
-
-
-
-
-
-
-
         CoordinateSystem=""
-
-
-
-
-
-
-
-
-
-
         SceneModel='none'
-
-
-
-
-
         ShowEdges(1,1)logical=true
     end
 
