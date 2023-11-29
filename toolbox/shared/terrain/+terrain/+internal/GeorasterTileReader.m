@@ -1,8 +1,6 @@
 classdef ( Sealed, Hidden )GeorasterTileReader < terrain.internal.ScatteredTileReader
 
 
-
-
     methods ( Access = protected )
         function [ Z, R, resampled ] = readTerrain( reader, terrainData )
 
@@ -30,7 +28,6 @@ classdef ( Sealed, Hidden )GeorasterTileReader < terrain.internal.ScatteredTileR
 
 
             [ Z, R, resampled ] = terrain.internal.GeorasterTileReader.convertRasterToWGS84( Zin, Rin );
-
 
 
             if R.ColumnsStartFrom == "north"
@@ -143,8 +140,6 @@ B = F( lonq, latq );
 end
 
 function [ latlim, lonlim ] = filledGeoquadrangle( lat, lon, AR )
-
-
 
 
 latMat = reshape( lat, AR.RasterSize );
