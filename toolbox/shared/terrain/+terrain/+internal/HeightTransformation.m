@@ -1,8 +1,5 @@
 classdef(Sealed,Hidden)HeightTransformation
 
-
-
-
     properties(Constant,Hidden)
         GeoidHeightInterpolant=map.geodesy.internal.egm96GeoidHeightInterpolant
     end
@@ -22,9 +19,6 @@ classdef(Sealed,Hidden)HeightTransformation
 
             N=geoidHeight(varargin{:});
             validateattributes(h,{'numeric'},{'real','nonsparse','size',size(N)});
-
-
-
 
 
             H=h-N;
@@ -65,7 +59,6 @@ function N=geoidHeight(varargin)
         lon=varargin{2};
         validateattributes(lat,{'numeric'},{'real','nonsparse'})
         validateattributes(lon,{'numeric'},{'real','nonsparse','size',size(lat)})
-
 
 
         N=zeros(size(lat));
