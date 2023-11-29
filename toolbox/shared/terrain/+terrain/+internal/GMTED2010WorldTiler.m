@@ -1,8 +1,5 @@
 classdef(Sealed,Hidden)GMTED2010WorldTiler<terrain.internal.Tiler
 
-
-
-
     properties(Constant)
         VoidValue=-32768
         TerrainName='gmted2010world'
@@ -203,8 +200,6 @@ SourceFileFolder
     methods(Static)
         function surfworld(zoomLevel,numLats,numLons,terrainName)
 
-
-
             if nargin<2
                 numLats=512;
                 numLons=1024;
@@ -217,7 +212,6 @@ SourceFileFolder
             if nargin<4
                 terrainName=terrain.internal.GMTED2010WorldTiler.TerrainName;
             end
-
 
             terrainSource=terrain.internal.TerrainSource.createFromSettings(terrainName);
             Z=terrainSource.query(lats,lons,'ZoomLevel',zoomLevel);
@@ -235,7 +229,6 @@ end
 
 function writeMergedFile(mergedFile,lowresFile,highresFile)
 
-
     lowresReader=terrain.internal.GeorasterTileReader(lowresFile);
     highresReader=terrain.internal.GeorasterTileReader(highresFile);
     tileLat=lowresReader.LatitudeLimits(1)+1;
@@ -251,11 +244,8 @@ function writeMergedFile(mergedFile,lowresFile,highresFile)
     lowresData=replaceVoidValue(lowresData);
 
 
-
     F=griddedInterpolant({lowresLatvs{1},lowresLonvs{1}},lowresData);
     lowresTerrainData=F({highresLatvs{1},highresLonvs{1}});
-
-
 
     mask=(terrainData(:)==0)&(lowresTerrainData(:)~=0);
     terrainData(mask)=lowresTerrainData(mask);
