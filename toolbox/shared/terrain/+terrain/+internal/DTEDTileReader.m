@@ -1,11 +1,7 @@
 classdef(Sealed,Hidden)DTEDTileReader<terrain.internal.ScatteredTileReader
 
-
-
-
     methods(Access=protected)
         function[Z,R,resampled]=readTerrain(~,terrainData)
-
 
             [Z,latlim,lonlim]=terrain.internal.dtedread(terrainData.Source);
             R.LatitudeLimits=latlim;
