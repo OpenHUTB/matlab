@@ -1,13 +1,6 @@
 classdef(Abstract,Hidden)ScatteredTileReader<terrain.internal.TerrainTileReader
 
 
-
-
-
-
-
-
-
     properties(SetAccess=immutable)
         LatitudeLimits(1,2)double
         LongitudeLimits(1,2)double
@@ -42,8 +35,6 @@ SingleTileReference
                 reader.MissingDataReplaceValue=missingDataReplaceValue;
             end
 
-
-
             if terrainData.IsFileSource
                 files=string(terrainData.Source);
             else
@@ -51,7 +42,6 @@ SingleTileReference
                 files="";
             end
             numfiles=numel(files);
-
 
             tileMinResolutions=zeros(numfiles,1);
             latlims=zeros(numfiles,2);
@@ -106,17 +96,12 @@ SingleTileReference
 
         function[tileCoordinates,ind]=findTiles(reader,latsq,lonsq)
 
-
-
             tileLatLim=reader.FileLatitudeLimits;
             tileLonLim=reader.FileLongitudeLimits;
             tileLatMins=tileLatLim(:,1);
             tileLatMaxs=tileLatLim(:,2);
             tileLonMins=tileLonLim(:,1);
             tileLonMaxs=tileLonLim(:,2);
-
-
-
 
             numLocations=numel(latsq);
             tileInds=zeros(numLocations,1);
@@ -134,21 +119,15 @@ SingleTileReference
                     tileInds(qind)=tileInd;
                 end
             end
-
-
-
             [tileCoordinates,~,ind]=unique(tileInds);
         end
 
         function[terrainData,latvs,lonvs]=readTiles(reader,tileCoordinates)
 
-
-
             numTiles=numel(tileCoordinates);
             terrainData=cell(numTiles,1);
             latvs=cell(numTiles,1);
             lonvs=cell(numTiles,1);
-
 
 
             if reader.FillMissing
@@ -205,8 +184,6 @@ SingleTileReference
     methods(Static,Hidden)
         function validateTileRegions(latlims,lonlims,fillMissing)
 
-
-
             fileShapes=polyshape.empty;
             fileShapesForOverlaps=polyshape.empty;
             for k=1:size(latlims,1)
@@ -216,8 +193,6 @@ SingleTileReference
                 polyy=[latlim(1),latlim(2),latlim(2),latlim(1)];
                 fileShapes=[fileShapes,polyshape(polyx,polyy)];%#ok<AGROW>
 
-
-
                 overlapTol=0.01;
                 latlim=latlim+[1,-1]*(overlapTol*diff(latlim));
                 lonlim=lonlim+[1,-1]*(overlapTol*diff(lonlim));
@@ -225,10 +200,6 @@ SingleTileReference
                 polyy=latlim(1,[1,2,2,1]);
                 fileShapesForOverlaps=[fileShapesForOverlaps,polyshape(polyx,polyy)];%#ok<AGROW>
             end
-
-
-
-
             fileOverlaps=overlaps(fileShapesForOverlaps)&~eye(numel(fileShapesForOverlaps));
             assert(~any(fileOverlaps,'all'),...
             message('shared_terrain:terrain:NonuniqueFileRegion'))
