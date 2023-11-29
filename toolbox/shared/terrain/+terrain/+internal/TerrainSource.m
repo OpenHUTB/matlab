@@ -1,8 +1,5 @@
 classdef(Sealed,Hidden)TerrainSource<handle
 
-
-
-
     properties(SetAccess=private)
 Name
 IsURLLocation
@@ -39,15 +36,6 @@ TileCache
     methods(Static)
         function choices=terrainchoices(option)
 
-
-
-
-
-
-
-
-
-
             if nargin<1
                 option='all';
             else
@@ -73,9 +61,6 @@ TileCache
         end
 
         function tf=isfullpath(file)
-
-
-
 
             file=char(file);
             fs=filesep;
@@ -179,9 +164,6 @@ TileCache
 
 
             cacheName=lower(name);
-
-
-
             instanceCache=terrain.internal.TerrainSource.InstanceCache;
             if isKey(instanceCache,cacheName)
                 terrainSource=instanceCache(cacheName);
@@ -278,10 +260,6 @@ TileCache
 
     methods
         function resm=get.IntrinsicResolutionArcLength(terrainSource)
-
-
-
-
             arcsec=terrainSource.IntrinsicResolution;
             switch(round(arcsec,2))
             case 0.33
