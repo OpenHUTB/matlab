@@ -1,15 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
 classdef FigureData<handle
     properties(Access=private)
 NameToValueMap
