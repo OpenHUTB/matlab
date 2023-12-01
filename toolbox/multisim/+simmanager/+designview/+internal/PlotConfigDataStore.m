@@ -1,14 +1,8 @@
 classdef(Abstract)PlotConfigDataStore<handle
 
-
-
-
-
-
     properties(Abstract,Constant)
 Config
     end
-
 
 
     methods(Abstract)
@@ -16,7 +10,5 @@ Config
         configRegistry=load(obj,dataModel)
         clear(obj)
     end
-
-
 
 end
