@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef(Abstract)ScatterPlotOverlayLayer<simmanager.designview.internal.ScatterPlotLayer
     properties(Access=protected)
 RunIdMap
