@@ -1,9 +1,3 @@
-
-
-
-
-
-
 classdef ScatterPlotMainLayer<simmanager.designview.internal.ScatterPlotLayer
     events
 RunSelected
