@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
 classdef ScatterPlotBlackLayer<simmanager.designview.internal.ScatterPlotOverlayLayer
 
     events
