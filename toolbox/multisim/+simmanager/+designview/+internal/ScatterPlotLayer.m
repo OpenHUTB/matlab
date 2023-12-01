@@ -1,9 +1,3 @@
-
-
-
-
-
-
 classdef(Abstract)ScatterPlotLayer<handle
     properties
 ScatterObject
