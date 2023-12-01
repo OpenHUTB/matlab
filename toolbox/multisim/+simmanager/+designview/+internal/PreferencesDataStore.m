@@ -1,25 +1,13 @@
 classdef PreferencesDataStore<simmanager.designview.internal.PlotConfigDataStore
 
 
-
-
-
-
-
-
-
-
-
     properties(Constant)
         Config=simmanager.designview.internal.PreferencesConfig
     end
 
 
-
     methods
         function obj=PreferencesDataStore()
-
-
 
             obj@simmanager.designview.internal.PlotConfigDataStore();
         end
