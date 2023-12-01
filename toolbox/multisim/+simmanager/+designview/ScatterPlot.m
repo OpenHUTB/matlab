@@ -1,18 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef ScatterPlot<simmanager.designview.FigureObject
     properties(Dependent)
 XLabel
