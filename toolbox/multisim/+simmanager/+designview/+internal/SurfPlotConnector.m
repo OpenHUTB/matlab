@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 classdef SurfPlotConnector<simmanager.designview.internal.FigureObjectConnector
     methods(Access=?simmanager.designview.SurfPlot)
         function obj=SurfPlotConnector(scatterPlot)
