@@ -1,8 +1,3 @@
-
-
-
-
-
 classdef(Abstract)FigureObjectConnector<handle
     properties(Access=private)
 FigureControlChannel
