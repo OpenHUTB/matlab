@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 classdef(Abstract)FigureObjectDataFormatter<handle
     properties(Access=protected)
 FigureData
