@@ -1,21 +1,13 @@
 classdef CustomPlot<simmanager.designview.FigureObject
 
-
-
-
-
-
-
     properties
         PlotInput="Simulation Output"
     end
 
 
-
     properties(Transient=true)
 FigureProperties
     end
-
 
 
     properties(Access=private)
@@ -25,15 +17,12 @@ CustomPlotObj
 RunsReportedToUpdateFcn
     end
 
-
-
     properties(Access=private,Transient=true)
 Listeners
 FigureManager
 
         SimulationOutputs=struct('runId',{},'Output',{});
     end
-
 
 
     events
