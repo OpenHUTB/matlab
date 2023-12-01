@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
 classdef ScatterPlotSelectedLayer<simmanager.designview.internal.ScatterPlotOverlayLayer
     events
 RunDeselected
