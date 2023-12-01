@@ -1,15 +1,5 @@
-
-
-
-
-
-
-
-
 classdef ScatterDataFormatter<simmanager.designview.internal.FigureObjectDataFormatter
     methods
-
-
 
 
         function obj=ScatterDataFormatter(figureData)
