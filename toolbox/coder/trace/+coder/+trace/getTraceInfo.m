@@ -1,6 +1,3 @@
-
-
-
 function traceInfo=getTraceInfo(sys,varargin)
 
     traceInfo=[];
