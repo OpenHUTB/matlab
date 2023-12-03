@@ -1,13 +1,5 @@
 function registered=registerTargetInfo(h,targetInfo,mode,requestedClass)
 
-
-
-
-
-
-
-
-
     if nargin<3
         mode='check';
     end
