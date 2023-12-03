@@ -1,7 +1,6 @@
 function unregisterListener(hThis,hListener)
 
 
-
     thisID=hListener.ListenerID;
     if thisID~=0
         oldListeners=hThis.Listeners;
