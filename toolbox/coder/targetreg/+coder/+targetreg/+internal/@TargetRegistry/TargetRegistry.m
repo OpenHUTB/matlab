@@ -1,8 +1,4 @@
 classdef TargetRegistry<handle
-
-
-
-
     properties(SetAccess=private,GetAccess=public)
         TargetFunctionLibraries=[];
         ConnectivityConfigs={};
@@ -143,12 +139,9 @@ classdef TargetRegistry<handle
         end
 
 
-
-
         function value=get.Listeners(~)
             value=coder.targetreg.internal.TargetRegistry.listeners();
         end
-
 
 
 
