@@ -1,20 +1,8 @@
 function[modelList,varargout]=getUniqueSubModels(modelName)
 
-
-
-
-
-
-
-
-
-
-
-
     assert(bdIsLoaded(modelName));
 
     normalMode=get_param(modelName,'ModelRefsNormal');
-
 
     mdlRefsAccel=get_param(modelName,'ModelRefsAccel');
     if~isempty(mdlRefsAccel)
