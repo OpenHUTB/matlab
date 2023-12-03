@@ -1,7 +1,5 @@
 function traceInfo=getTraceInfoByReportInfo(rptInfo)
 
-
-
     traceInfo=[];
     if isempty(rptInfo)
         return;
