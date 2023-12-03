@@ -1,7 +1,5 @@
 function registerListener(hThis,hListener)
 
-
-
     validateattributes(hListener,'RTW.TargetListener',{})
 
     if hListener.ListenerID==0
