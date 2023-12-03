@@ -1,13 +1,6 @@
 function refresh(h,requestedClass)
 
 
-
-
-
-
-
-
-
     assert(any(strcmp(requestedClass,...
     {'RTW.TflRegistry',...
     'rtw.connectivity.ConfigRegistry',...
