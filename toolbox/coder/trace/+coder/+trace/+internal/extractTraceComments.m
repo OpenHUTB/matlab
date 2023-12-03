@@ -1,7 +1,5 @@
 function result=extractTraceComments(str)
 
-
-
     result.openingComment='';
     result.closingComment='';
     result.content=regexprep(str,'/\*@[><\[\]][0-9a-f]*\*/','');
