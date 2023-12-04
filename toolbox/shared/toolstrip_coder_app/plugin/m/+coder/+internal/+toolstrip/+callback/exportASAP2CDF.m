@@ -1,8 +1,5 @@
 function exportASAP2CDF(cbinfo,~)
 
-
-
-
     model=cbinfo.model.Handle;
     modelName=get_param(model,'name');
 
@@ -25,8 +22,6 @@ function exportASAP2CDF(cbinfo,~)
     end
     instance=Simulink.ExportASAP2CDF.launchAsap2CdfApp(modelName);
     appASAP2GENAppInstanceMap(modelName)=instance;
-
-
 
     mlock;
 end
