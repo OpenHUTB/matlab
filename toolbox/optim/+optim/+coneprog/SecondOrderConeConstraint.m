@@ -1,13 +1,5 @@
 classdef(Sealed=true)SecondOrderConeConstraint
 
-
-
-
-
-
-
-
-
     properties
         A(:,:){mustBeNumeric}=[]
         b(:,:){mustBeNumeric}=[]
@@ -17,8 +9,6 @@ classdef(Sealed=true)SecondOrderConeConstraint
 
     methods
         function obj=SecondOrderConeConstraint(A,b,d,gamma)
-
-
 
             if nargin==0
                 return
