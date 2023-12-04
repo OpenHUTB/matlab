@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 function plotConeInSDI(expr,n,isContinuous,runID)
 
     if(isa(expr,'sltest.assessments.Expression'))
