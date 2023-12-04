@@ -1,9 +1,6 @@
 classdef CoderAppContext<dig.CustomContext
 
 
-
-
-
     properties(SetObservable=true)
         ShowCalAttributes=true
 
