@@ -1,10 +1,5 @@
 function checkInputType(f,socConstraints,A,b,Aeq,beq,lb,ub)
 
-
-
-
-
-
     msg=isoptimargdbl('CONEPROG',{'f','A','b','Aeq','beq','LB','UB'},...
     f,A,b,Aeq,beq,lb,ub);
     if~isempty(msg)
