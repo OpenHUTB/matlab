@@ -1,8 +1,5 @@
 function setDeploymentType(dpType,cbinfo)
 
-
-
-
     if~cbinfo.EventData
         return;
     end
