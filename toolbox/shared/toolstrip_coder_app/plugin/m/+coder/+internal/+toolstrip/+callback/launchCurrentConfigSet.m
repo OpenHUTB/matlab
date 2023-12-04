@@ -1,8 +1,4 @@
 function launchCurrentConfigSet(fcname,cbinfo)
-
-
-
-
     editor=cbinfo.studio.App.getActiveEditor;
     mdl=editor.blockDiagramHandle;
     cs=getActiveConfigSet(mdl);
