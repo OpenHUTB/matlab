@@ -1,11 +1,6 @@
 function showDefaultsSS(userdata,cbinfo)
 
-
-
-
-
     studio=cbinfo.studio;
-
 
     editor=studio.App.getActiveEditor;
     bdh=editor.blockDiagramHandle;
@@ -15,8 +10,6 @@ function showDefaultsSS(userdata,cbinfo)
     studio.showComponent(ss);
     ss.restore;
     studio.focusComponent(ss);
-
-
 
     tab=str2double(userdata);
     ss.setCurrentTab(tab);
