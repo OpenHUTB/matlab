@@ -1,6 +1,5 @@
 function openReport(input)
 
-
     if isa(input,'SLM3I.CallbackInfo')
         editor=input.studio.App.getActiveEditor;
         modelH=coder.internal.toolstrip.util.getCodeGenRoot(editor);
