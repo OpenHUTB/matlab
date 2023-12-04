@@ -1,4 +1,3 @@
-
 function plotResultsInSDI(expr,plotSubExpr,isContinuous,runId)
 
     if(isa(expr,'sltest.assessments.Expression'))
