@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 function plotConeAreaInSDI(expr,n,runID)
     if nargin<2
         n=1;
