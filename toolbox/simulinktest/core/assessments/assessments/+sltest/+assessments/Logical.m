@@ -1,12 +1,10 @@
-
-
-
 classdef Logical<int8
     enumeration
         Untested(-1)
         False(0)
         True(1)
     end
+
 
     methods(Hidden)
         function res=slTestResult(self)
