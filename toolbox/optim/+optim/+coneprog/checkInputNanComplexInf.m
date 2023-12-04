@@ -1,10 +1,4 @@
 function checkInputNanComplexInf(f,socConstraints,A,b,Aeq,beq,lb,ub)
-
-
-
-
-
-
     assert(~any(isnan(f)),message('optim:coneprog:InvalidElementInObjective','NaN'));
     assert(isreal(f),message('optim:coneprog:ComplexInObjective'));
     assert(~any(isinf(f)),message('optim:coneprog:InvalidElementInObjective','Inf'));
