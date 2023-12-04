@@ -1,8 +1,5 @@
 function launchConfigSet(fcname,cbinfo)
 
-
-
-
     editor=cbinfo.studio.App.getActiveEditor;
     mdl=coder.internal.toolstrip.util.getCodeGenRoot(editor);
     cs=getActiveConfigSet(mdl);
