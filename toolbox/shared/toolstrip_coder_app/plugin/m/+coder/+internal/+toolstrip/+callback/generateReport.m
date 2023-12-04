@@ -1,8 +1,4 @@
 function generateReport(cbinfo)
-
-
-
-
     if~coder.internal.toolstrip.license.isMATLABCoder
 
         DAStudio.error('SimulinkCoderApp:toolstrip:licenseForActionNotFound','MATLAB Coder');
