@@ -1,6 +1,5 @@
 function configPlatform(cbinfo)
 
-
     mdl=cbinfo.editorModel.handle;
     filter='*.sldd';
     title='Select Embedded Coder Dictionary';
