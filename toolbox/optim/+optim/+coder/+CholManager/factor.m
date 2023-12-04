@@ -1,16 +1,5 @@
 function obj=factor(obj,A,ndims,ldA)
 
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     coder.allowpcode('plain');
