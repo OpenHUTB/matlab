@@ -1,8 +1,5 @@
 function selectPlatform(platform,cbinfo)
 
-
-
-
     if~cbinfo.EventData
         return;
     end
