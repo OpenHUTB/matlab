@@ -1,8 +1,4 @@
 function launchCodeGenAdvisor(cbinfo)
-
-
-
-
     if~coder.internal.toolstrip.license.isMATLABCoder
 
         DAStudio.error('SimulinkCoderApp:toolstrip:licenseForActionNotFound','MATLAB Coder');
@@ -14,7 +10,6 @@ function launchCodeGenAdvisor(cbinfo)
     end
 
     if coder.internal.toolstrip.util.checkUseSlcoderOrEcoderFeaturesBasedOnTarget(cbinfo)
-
 
         preSelectedSystem=coder.internal.toolstrip.util.getSelectedSystem(cbinfo);
 
