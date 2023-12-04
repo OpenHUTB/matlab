@@ -1,8 +1,5 @@
 function appTab(cbInfo,action)
 
-
-
-
     if coderdictionary.data.feature.getFeature('CodeGenIntent')
         mdl=coder.internal.toolstrip.util.getCodeGenRoot(cbInfo.studio.App.getActiveEditor);
         if isempty(mdl)
