@@ -1,8 +1,4 @@
 function out=launchSTFBrowser(cbInfo)
-
-
-
-
     if~coder.internal.toolstrip.license.isMATLABCoder
 
         DAStudio.error('SimulinkCoderApp:toolstrip:licenseForActionNotFound','Matlab_Coder');
