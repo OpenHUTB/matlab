@@ -1,30 +1,5 @@
 function obj=factoryConstruct(MaxDims)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     coder.allowpcode('plain');
@@ -33,8 +8,6 @@ function obj=factoryConstruct(MaxDims)
     coder.internal.prefer_const(MaxDims);
 
     obj=struct();
-
-
     obj.FMat=coder.nullcopy(realmax*ones(MaxDims,'double'));
     obj.ldm=coder.internal.indexInt(MaxDims);
     obj.ndims=coder.internal.indexInt(0);
@@ -42,18 +15,9 @@ function obj=factoryConstruct(MaxDims)
     obj.scaleFactor=0.0;
     obj.ConvexCheck=true;
 
-
-
-
-
-
     obj.regTol_=coder.internal.inf;
     obj.workspace_=coder.internal.inf;
     obj.workspace2_=coder.internal.inf;
-
-
-
-
 
 end
 
