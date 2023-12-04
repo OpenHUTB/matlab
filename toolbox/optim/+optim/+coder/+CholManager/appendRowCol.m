@@ -1,17 +1,5 @@
 function obj=appendRowCol(obj,col)
 
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
 
     coder.allowpcode('plain');
