@@ -1,13 +1,8 @@
 function selectOutput(data,cbInfo)
 
-
-
-
     if~cbInfo.EventData
         return;
     end
-
-
     refresher=coder.internal.toolstrip.util.Refresher(cbInfo.studio);%#ok<NASGU>
 
     if slfeature('SDPToolStrip')
