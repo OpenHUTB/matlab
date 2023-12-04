@@ -1,6 +1,3 @@
-
-
-
 classdef(Sealed)WithNoDelay<sltest.assessments.Unary
     methods
         function self=WithNoDelay(expr)
