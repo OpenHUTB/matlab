@@ -1,9 +1,5 @@
 function checkMdlRef(cbinfo,action)
 
-
-
-
-
     if coderdictionary.data.feature.getFeature('CodeGenIntent')==0
 
         studio=cbinfo.studio;
