@@ -1,15 +1,5 @@
 function[x,fval,exitflag,output,lambda]=interiorPointMethod(f,socConstraints,Aineq,bineq,Aeq,beq,lb,ub,options,coneprogStartTime)
 
-
-
-
-
-
-
-
-
-
-
     import optim.coneprog.SecondOrderConeConstraint
     import optim.coneprog.checkInputType
     import optim.coneprog.checkInputNanComplexInf
