@@ -1,8 +1,5 @@
 function setNoCodeGen(cbinfo)
 
-
-
-
     if~cbinfo.EventData
         return;
     end
