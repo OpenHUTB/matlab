@@ -1,6 +1,3 @@
-
-
-
 classdef(Sealed)Until<sltest.assessments.BinaryInterval
     methods
         function self=Until(left,interval,right)
