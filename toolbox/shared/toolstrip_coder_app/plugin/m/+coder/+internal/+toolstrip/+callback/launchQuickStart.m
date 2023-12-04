@@ -1,8 +1,5 @@
 function launchQuickStart(cbinfo)
 
-
-
-
     if coder.internal.toolstrip.util.checkUseEmbeddedCoderFeatures(cbinfo)
         if strcmp(get_param(cbinfo.model.handle,'IsERTTarget'),'on')
             locCheckEmbeddedCoder();
