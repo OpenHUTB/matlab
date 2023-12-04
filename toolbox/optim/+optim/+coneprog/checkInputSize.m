@@ -1,13 +1,4 @@
 function[f,bineq,beq,lb,ub]=checkInputSize(f,socConstraints,Aineq,bineq,Aeq,beq,lb,ub)
-
-
-
-
-
-
-
-
-
     emptyProblem=isempty(f)&&isempty(socConstraints)&&...
     isempty(Aineq)&&isempty(bineq)&&...
     isempty(Aeq)&&isempty(beq)&&...
