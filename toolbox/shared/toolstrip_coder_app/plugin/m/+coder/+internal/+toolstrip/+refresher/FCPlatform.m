@@ -1,21 +1,5 @@
 function FCPlatform(data,cbinfo,action)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     mdl=cbinfo.editorModel.handle;
     ecd=get_param(mdl,'EmbeddedCoderDictionary');
     name=get_param(mdl,'PlatformDefinition');
