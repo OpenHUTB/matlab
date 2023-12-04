@@ -1,12 +1,5 @@
 function buildMenu(fcnName,cbinfo)
 
-
-
-
-
-
-
-
     if~coder.internal.toolstrip.license.isMATLABCoder
 
         DAStudio.error('SimulinkCoderApp:toolstrip:licenseForActionNotFound','MATLAB Coder');
@@ -77,12 +70,6 @@ end
 
 function generateCode(cbinfo)
 
-
-
-
-
-
-
     if slfeature('SDPToolStrip')
         buildCodeGenRoot(cbinfo);
     else
@@ -91,14 +78,6 @@ function generateCode(cbinfo)
 end
 
 function generateCodeAndBuild(cbinfo)
-
-
-
-
-
-
-
-
 
     if~bdIsLibrary(cbinfo.model.Handle)
         cs=getActiveConfigSet(cbinfo.model.Handle);
@@ -115,14 +94,6 @@ function generateCodeAndBuild(cbinfo)
 end
 
 function generateCodeOnly(cbinfo)
-
-
-
-
-
-
-
-
 
     cs=getActiveConfigSet(cbinfo.model.Handle);
     if~isa(cs,'Simulink.ConfigSetRef')
@@ -150,11 +121,8 @@ function buildTopModel(cbinfo)
     buildModel(cbinfo,cbinfo.studio.App.topLevelDiagram.handle);
 end
 
+
 function buildSelectedSystem(cbinfo)
-
-
-
-
     selectedSystem=coder.internal.toolstrip.util.getSelectedSystem(cbinfo);
     if isa(selectedSystem,'Simulink.SubSystem')
         subsystemBlock=SLM3I.SLDomain.handle2DiagramElement(selectedSystem.Handle);
@@ -167,6 +135,7 @@ function buildSelectedSystem(cbinfo)
     end
 
 end
+
 
 function buildCodeGenRoot(cbinfo)
     editor=cbinfo.studio.App.getActiveEditor;
