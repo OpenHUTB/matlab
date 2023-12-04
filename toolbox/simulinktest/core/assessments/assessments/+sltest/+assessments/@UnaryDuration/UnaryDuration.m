@@ -1,6 +1,3 @@
-
-
-
 classdef(Abstract,...
     AllowedSubclasses={
     ?sltest.assessments.AfterAtMostDelay
