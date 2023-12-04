@@ -1,7 +1,6 @@
 classdef OneCoderAppContext<dig.CustomContext
 
 
-
     properties
 studio
 listeners
