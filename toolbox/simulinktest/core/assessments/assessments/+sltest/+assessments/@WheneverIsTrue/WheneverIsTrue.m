@@ -1,6 +1,3 @@
-
-
-
 classdef(Sealed)WheneverIsTrue<sltest.assessments.Unary
     methods
         function self=WheneverIsTrue(expr)
