@@ -1,17 +1,5 @@
 classdef DiagnosticWidget<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private)
         WidgetHandle=[];
         Hint=[0,0,0,1];
