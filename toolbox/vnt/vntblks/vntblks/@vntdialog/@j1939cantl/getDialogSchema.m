@@ -1,17 +1,4 @@
 function dlgStruct=getDialogSchema(obj,~)
-
-
-
-
-
-
-
-
-
-
-
-
-
     [allDevices,objConstructors]=canslshared.internal.parseHardwareInfo('CAN');
     allDevices=[{'Select a device'},allDevices];
     objConstructors=[{'Select a constructor'},objConstructors];
