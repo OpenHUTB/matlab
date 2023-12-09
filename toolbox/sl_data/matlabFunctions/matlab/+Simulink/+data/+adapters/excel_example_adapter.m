@@ -1,9 +1,5 @@
 classdef excel_example_adapter<Simulink.data.adapters.BaseMatlabFileAdapter
 
-
-
-
-
     methods
         function name=getAdapterName(~)
             name='Excel Example Adapter';
