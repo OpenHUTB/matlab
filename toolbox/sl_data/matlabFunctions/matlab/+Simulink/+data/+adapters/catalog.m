@@ -1,8 +1,4 @@
 function varargout=catalog()
-
-
-
-
     classList=sl.data.adapter.AdapterManagerV2.getMCOSAdapterClasses;
     adptCount=numel(classList);
     structView=struct('ClassName',zeros(adptCount),...
