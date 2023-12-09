@@ -1,8 +1,5 @@
 classdef cdfx_value_src_adapter<Simulink.data.adapters.BaseMatlabFileAdapter
 
-
-
-
     properties
     end
 
