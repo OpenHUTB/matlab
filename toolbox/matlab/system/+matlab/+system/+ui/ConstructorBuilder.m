@@ -1,8 +1,5 @@
 classdef(Hidden)ConstructorBuilder<handle
 
-
-
-
     properties
         ClassName;
         ObjectName='sysobj';
@@ -204,11 +201,6 @@ classdef(Hidden)ConstructorBuilder<handle
 
         function s=buildWithValuesAssigned(obj)
 
-
-
-
-
-
             indent=repmat(' ',1,4*obj.IndentLevel);
             s=[indent,obj.ObjectName,' = ',obj.ClassName,'(); '];
             paramNames=obj.getParameterNames();
@@ -265,8 +257,6 @@ classdef(Hidden)ConstructorBuilder<handle
                 return;
             end
 
-
-
             if isempty(className)
                 builder=[];
                 return;
@@ -296,8 +286,6 @@ classdef(Hidden)ConstructorBuilder<handle
                 builder=[];
                 return;
             end
-
-
 
             groups=matlab.system.display.internal.Memoizer.getPropertyGroups(className,...
             'PropertyGroupsArgument',propertyGroupsArgument);
