@@ -1,8 +1,6 @@
 classdef(Sealed)BlockDialogManager<handle
 
 
-
-
     methods(Access=private)
         function this=BlockDialogManager
 
