@@ -1,9 +1,6 @@
 classdef DialogGenerator<handle
 
 
-
-
-
     properties
         Platform='Simulink';
         Renderer='DDG';
@@ -22,10 +19,6 @@ classdef DialogGenerator<handle
 
 
         function hDialogManager=getDialogManager(obj,arg3)
-
-
-
-
 
             switch obj.Renderer
             case 'DDG'
