@@ -1,8 +1,6 @@
 classdef DialogManager<handle
 
 
-
-
 %#ok<*AGROW>
 
 
