@@ -1,8 +1,5 @@
 classdef(Hidden)PositioningHandleBase<handle
 
-
-
-
 %#codegen 
 
     methods
@@ -32,11 +29,6 @@ classdef(Hidden)PositioningHandleBase<handle
             [navSuccess,sfttSuccess]=implementCheckoutLogic(@checkoutNav,@checkoutSFTT);
         end
         function[navSuccess,sfttSuccess]=testLicense
-
-
-
-
-
             [navSuccess,sfttSuccess]=implementCheckoutLogic(@testNav,@testSFTT);
         end
     end
@@ -44,30 +36,8 @@ end
 
 function[navSuccess,sfttSuccess]=implementCheckoutLogic(doNav,doSFTT)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     navSuccess=false;
     sfttSuccess=false;
-
-
     isSFTTUsed=~isempty(builtin('license','inuse',...
     'Sensor_Fusion_and_Tracking'));
     isNavUsed=~isempty(builtin('license','inuse',...
@@ -93,18 +63,6 @@ function[navSuccess,sfttSuccess]=implementCheckoutLogic(doNav,doSFTT)
 
     end
 end
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function navSuccess=checkoutNav
