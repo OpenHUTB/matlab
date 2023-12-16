@@ -1,14 +1,8 @@
 function linkType=linktype_rmi_matlab
 
-
-
-
     linkType=ReqMgr.LinkType;
     linkType.Registration=mfilename;
-
-
     linkType.Label=getString(message('Slvnv:rmiml:LinkableDomainLabel'));
-
 
     linkType.IsFile=0;
     linkType.Extensions={'.m'};
