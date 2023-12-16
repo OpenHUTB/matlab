@@ -1,8 +1,5 @@
 classdef SimulinkRequirementsProvider<matlab.internal.project.unsavedchanges.LoadedFileProvider
 
-
-
-
     methods(Access=public)
         function loadedFiles=getLoadedFiles(~)
             import matlab.internal.project.unsavedchanges.LoadedFile;
