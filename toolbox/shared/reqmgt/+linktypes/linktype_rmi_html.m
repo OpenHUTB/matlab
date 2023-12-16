@@ -1,14 +1,7 @@
 function linktype=linktype_rmi_html
 
-
-
-
-
-
     linktype=ReqMgr.LinkType;
     linktype.Registration=mfilename;
-
-
     linktype.Label=getString(message('Slvnv:reqmgt:linktype_rmi_simulink:HTMLFile'));
 
 
@@ -26,6 +19,7 @@ function linktype=linktype_rmi_html
     linktype.UrlLabelFcn=@UrlLabelFcn;
 
 end
+
 
 function NavigateFcn(filename,locationStr)
     url=filename;
@@ -56,6 +50,7 @@ function[labels,depths,locations]=ContentsFcn(filePath)
     depths=[];
 end
 
+
 function url=CreateURLFcn(doc,refSrc,locationStr)
     docPath=rmi.locateFile(doc,refSrc);
     if isempty(docPath)
@@ -67,6 +62,7 @@ function url=CreateURLFcn(doc,refSrc,locationStr)
         end
     end
 end
+
 
 function label=UrlLabelFcn(doc,docLabel,location)
     if~isempty(docLabel)
