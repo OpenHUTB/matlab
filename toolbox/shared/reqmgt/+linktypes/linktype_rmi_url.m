@@ -1,26 +1,14 @@
 function linktype=linktype_rmi_url
 
-
-
-
-
-
-
     linktype=ReqMgr.LinkType;
     linktype.Registration=mfilename;
-
-
     linktype.Label=getString(message('Slvnv:reqmgt:linktype_rmi_simulink:WebBrowserURL'));
-
 
     linktype.IsFile=0;
     linktype.Extensions={};
 
-
     linktype.LocDelimiters='@';
     linktype.Version='';
-
-
 
     linktype.NavigateFcn=@NavigateFcn;
     linktype.CreateURLFcn=@CreateURLFcn;
@@ -28,6 +16,7 @@ function linktype=linktype_rmi_url
     linktype.ResolveDocFcn=@ResolveDocFcn;
 
 end
+
 
 function NavigateFcn(target,locationStr)
 
@@ -42,6 +31,7 @@ function NavigateFcn(target,locationStr)
     web(target,'-browser','-display');
 end
 
+
 function url=CreateURLFcn(doc,~,locationStr)
     url=doc;
     if~isempty(locationStr)
@@ -54,6 +44,7 @@ function url=CreateURLFcn(doc,~,locationStr)
         end
     end
 end
+
 
 function label=UrlLabelFcn(doc,docLabel,locationStr)
     if isempty(docLabel)
@@ -68,6 +59,7 @@ function label=UrlLabelFcn(doc,docLabel,locationStr)
         label=docStr;
     end
 end
+
 
 function[docPath,isRel]=ResolveDocFcn(doc,~)
     [is_url,url]=rmiut.is_url(doc);
