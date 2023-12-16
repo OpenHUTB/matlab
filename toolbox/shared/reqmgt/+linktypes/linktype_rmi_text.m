@@ -1,36 +1,24 @@
 function linktype=linktype_rmi_text
 
-
-
-
-
-
-
     linktype=ReqMgr.LinkType;
     linktype.Registration=mfilename;
-
-
     linktype.Label=getString(message('Slvnv:rmiml:LinkableDomainLegacy'));
-
 
     linktype.IsFile=1;
     linktype.Extensions={'.txt'};
 
-
     linktype.LocDelimiters='?>';
     linktype.Version='';
-
 
     linktype.NavigateFcn=@NavigateFcn;
     linktype.CreateURLFcn=@CreateURLFcn;
     linktype.UrlLabelFcn=@UrlLabelFcn;
 end
 
+
 function NavigateFcn(filename,locationStr)
 
-
     lineNum=0;
-
 
     if~isempty(locationStr)
         findId=0;
@@ -62,9 +50,9 @@ function NavigateFcn(filename,locationStr)
         end
     end
 
-
     openTextFileToLine(filename,lineNum);
 end
+
 
 function openTextFileToLine(fileName,lineNum)
 
@@ -77,6 +65,7 @@ function openTextFileToLine(fileName,lineNum)
     end
 end
 
+
 function url=CreateURLFcn(doc,refSrc,locationStr)%#ok<INUSD>  Anchors not supported for TXT URLs
     url='';
     docPath=rmi.locateFile(doc,refSrc);
@@ -84,6 +73,7 @@ function url=CreateURLFcn(doc,refSrc,locationStr)%#ok<INUSD>  Anchors not suppor
         url=rmiut.filepathToUrl(docPath);
     end
 end
+
 
 function label=UrlLabelFcn(doc,docLabel,location)
     if~isempty(docLabel)
