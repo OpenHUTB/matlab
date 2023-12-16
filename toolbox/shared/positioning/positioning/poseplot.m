@@ -1,54 +1,6 @@
 function hh=poseplot(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     [parent,args]=axescheck(varargin{:});
-
 
     [navframe,args,nargs,extraArgs]=navframecheck(args{:});
 
@@ -116,8 +68,6 @@ function configureaxes(ax,navframe,isHoldOff)
         end
 
         view(ax,3);
-
-
 
         if~strcmpi(ax.NextPlot,'replacechildren')
             axis(ax,'equal');
