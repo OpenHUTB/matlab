@@ -1,38 +1,26 @@
 function linkType=linktype_rmi_testmgr
 
-
-
-
     linkType=ReqMgr.LinkType;
     linkType.Registration=mfilename;
-
-
     linkType.Label=getString(message('Slvnv:rmitm:LinkableDomainLabel'));
-
 
     linkType.IsFile=0;
     linkType.Extensions={'.mldatx'};
 
-
     linkType.LocDelimiters='@';
     linkType.Version='';
-
 
     linkType.NavigateFcn=@NavigateFcn;
     linkType.BrowseFcn=@BrowseObjects;
     linkType.ContentsFcn=@ContentsFcn;
 
-
-
     linkType.CreateURLFcn=@CreateURLFcn;
 
-
-
     linkType.ItemIdFcn=@ItemIdFcn;
-
     linkType.SelectionLinkFcn=@SelectionLinkFcn;
     linkType.SelectionLinkLabel=getString(message('Slvnv:rmitm:LinkToCurrent'));
 end
+
 
 function NavigateFcn(testFile,testID)
     if length(testID)>1&&testID(1)=='@'
@@ -41,12 +29,10 @@ function NavigateFcn(testFile,testID)
     rmitm.navigate(testFile,testID);
 end
 
+
 function req=SelectionLinkFcn(objH,make2way)
     req=[];
-
-
     [testFile,testID,~]=stm.internal.util.getCurrentTestCase();
-
 
     if isempty(testFile)||isempty(testID)
         errordlg(...
@@ -127,9 +113,8 @@ function[labels,depths,locations]=ContentsFcn(testFile)
             labels{i}=getString(message('Slvnv:slreq_import:PartInDoc',item.case,suites{index(i)}));
         end
     end
-
-
 end
+
 
 function url=CreateURLFcn(testFile,~,testCase)
 
@@ -139,9 +124,8 @@ function url=CreateURLFcn(testFile,~,testCase)
     url=sprintf('matlab:rmitm.navigate(''%s'', ''%s'')',testFile,testCase);
 end
 
+
 function out=ItemIdFcn(host,in,mode)
-
-
 
     if isempty(strtok(in))
         if mode
