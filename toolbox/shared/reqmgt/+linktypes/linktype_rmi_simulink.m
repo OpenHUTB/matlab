@@ -1,11 +1,7 @@
 function linkType=linktype_rmi_simulink
 
-
-
-
     linkType=ReqMgr.LinkType;
     linkType.Registration=mfilename;
-
 
     linkType.Label=getString(message('Slvnv:reqmgt:linktype_rmi_simulink:LinkableDomainLabel'));
 
@@ -50,7 +46,6 @@ function NavigateFcn(hostmodel,locationStr)
     elseif rmisl.isHarnessIdString(locationStr)
 
         open_system(hostmodel);
-
 
         [~,hostModelName]=fileparts(hostmodel);
         inHarnessSID=rmisl.harnessIdToEditorName([hostModelName,locationStr],true);
@@ -193,10 +188,6 @@ function req=SelectionLinkFcn(objH,make2way,allowMultiselect)
 
     if isempty(target)
         if~errorThrownAlready
-
-
-
-
             errordlg(...
             getString(message('Slvnv:reqmgt:linktype_rmi_simulink:SelectionLinkNoObjects')),...
             getString(message('Slvnv:reqmgt:linktype_rmi_simulink:RequirementsUseCurrent')));
@@ -252,14 +243,6 @@ function req=SelectionLinkFcn(objH,make2way,allowMultiselect)
 end
 
 function mdlName=BrowseObjects()
-
-
-
-
-
-
-
-
 
     extensions='*.mdl;*.slx;';
     [fileName,pathName]=uigetfile(...
