@@ -1,7 +1,5 @@
 function result=actxcheck(filenames,name)
 
-
-
     if~ispc
         disp('This is a Windows-only utility. Exit.');
         return;
@@ -10,8 +8,6 @@ function result=actxcheck(filenames,name)
     if nargin==0
 
         fprintf(1,'\nChecking registration for RMI ActiveX controls\n\n');
-
-
         buttons.SLRefButton={'mwSimulink1','mwSimulink'};
         buttons.SLRefButtonA={'mwSimulink2'};
 
