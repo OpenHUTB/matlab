@@ -1,8 +1,5 @@
 function[srcKey,selectedRange,selectedText]=getSelection()
 
-
-
-
     srcKey='';
     selectedRange=[];
     selectedText='';
