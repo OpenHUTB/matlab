@@ -5,19 +5,6 @@ classdef(ConstructOnLoad,Sealed)PosePatch<...
     &matlab.graphics.mixin.ColorOrderUser...
     &fusion.internal.PositioningHandleBase
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Hidden,Constant)
         Type matlab.internal.datatype.matlab.graphics.datatype.TypeName='PosePatch';
     end
