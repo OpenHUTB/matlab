@@ -1,8 +1,5 @@
 classdef(Hidden)PositioningSystemBase<matlab.System
 
-
-
-
 %#codegen 
 
     methods
