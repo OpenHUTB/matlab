@@ -1,29 +1,19 @@
 function linkType=linktype_rmi_data
 
-
-
-
     linkType=ReqMgr.LinkType;
     linkType.Registration=mfilename;
-
-
     linkType.Label=getString(message('Slvnv:rmide:LinkableDomainLabel'));
-
 
     linkType.IsFile=0;
     linkType.Extensions={'.sldd'};
 
-
     linkType.LocDelimiters='@';
     linkType.Version='';
-
 
     linkType.NavigateFcn=@NavigateFcn;
     linkType.SelectionLinkFcn=@SelectionLinkFcn;
     linkType.BrowseFcn=@BrowseObjects;
     linkType.ContentsFcn=@ContentsFcn;
-
-
 
     linkType.CreateURLFcn=@CreateURLFcn;
 
@@ -41,14 +31,10 @@ function NavigateFcn(dictFile,entryKey)
     rmiobjnavigate(dictFile,entryKey);
 end
 
+
 function req=SelectionLinkFcn(objH,make2way)
     req=[];
-
-
     [dfile,dpath,label]=rmide.getSelection();
-
-
-
 
     if isempty(dpath)&&...
         (strncmp(class(dfile),'Simulink.',9)||strncmp(class(dfile),'Stateflow.',9))
@@ -56,11 +42,9 @@ function req=SelectionLinkFcn(objH,make2way)
         return;
     end
 
-
     if ispc
         reqmgt('winFocus',['^',getString(message('Slvnv:reqmgt:rmidlg_mgr:LinkEditor',''))]);
     end
-
 
     if isempty(dfile)
 
@@ -163,8 +147,6 @@ function[labels,depths,locations]=ContentsFcn(dictName)
 end
 
 
-
-
 function req=linkSlOrSfObject(srcH,destObj,make2way)
     if make2way
         if isa(destObj,'Stateflow.Object')
@@ -178,9 +160,6 @@ function req=linkSlOrSfObject(srcH,destObj,make2way)
 end
 
 function out=ItemIdFcn(host,in,mode)
-
-
-
 
     if isempty(strtok(in))
         if mode
@@ -202,8 +181,6 @@ function out=ItemIdFcn(host,in,mode)
     else
         isNamedItem=false;
     end
-
-
 
     if mode
 
@@ -235,12 +212,14 @@ function out=ItemIdFcn(host,in,mode)
     end
 end
 
+
 function url=CreateURLFcn(ddfile,~,dditem)
     if~isempty(dditem)&&dditem(1)=='@';
         dditem=dditem(2:end);
     end
     url=sprintf('matlab:rmide.navigate(''%s'', ''%s'')',ddfile,dditem);
 end
+
 
 function[docPath,isRel]=ResolveDocFcn(doc,ref)
     if isempty(strfind(doc,'.sldd'))
@@ -249,6 +228,7 @@ function[docPath,isRel]=ResolveDocFcn(doc,ref)
     docPath=rmi.locateFile(doc,ref);
     isRel=(~isempty(docPath)&&~strcmp(docPath,doc));
 end
+
 
 function[docDate,docDateNum]=DocDateFcn(doc)
 
