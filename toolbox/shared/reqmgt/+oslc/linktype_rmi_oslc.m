@@ -1,48 +1,33 @@
 function linktype=linktype_rmi_oslc
 
-
-
-
-
-
     linktype=ReqMgr.LinkType;
     linktype.Registration=mfilename;
-
-
     linktype.Label=getString(message('Slvnv:oslc:LinkableDomainLabel'));
-
 
     linktype.IsFile=0;
     linktype.Extensions={};
 
-
     linktype.LocDelimiters='#';
     linktype.Version='';
 
-
     linktype.NavigateFcn=@NavigateFcn;
-
 
     linktype.CreateURLFcn=@CreateURLFcn;
     linktype.UrlLabelFcn=@UrlLabelFcn;
     linktype.HtmlViewFcn=@HtmlViewFcn;
     linktype.DocDateFcn=@DocDateFcn;
 
-
     linktype.BrowseFcn=@SelectProject;
     linktype.ContentsFcn=@ContentsFcn;
     linktype.ItemIdFcn=@ItemIdFcn;
-
-
     linktype.SelectionLinkLabel=getString(message('Slvnv:oslc:LinkToCurrent'));
     linktype.SelectionLinkFcn=@SelectionLinkFcn;
-
-
     linktype.BacklinkCheckFcn=@BacklinkCheckFcn;
     linktype.BacklinkInsertFcn=@BacklinkInsertFcn;
     linktype.BacklinkDeleteFcn=@BacklinkDeleteFcn;
     linktype.BacklinksCleanupFcn=@BacklinksCleanupFcn;
 end
+
 
 function NavigateFcn(doc,id)
 
@@ -50,9 +35,11 @@ function NavigateFcn(doc,id)
     web(target,'-browser','-display');
 end
 
+
 function url=CreateURLFcn(doc,~,id)
     url=oslc.getNavURL(doc,id);
 end
+
 
 function label=UrlLabelFcn(doc,~,id)
 
@@ -81,6 +68,7 @@ function label=UrlLabelFcn(doc,~,id)
     end
 end
 
+
 function dateStr=DocDateFcn(docId)
     try
         if inputIsNumericId(docId)
@@ -107,6 +95,7 @@ function dateStr=DocDateFcn(docId)
     end
 end
 
+
 function tf=inputIsNumericId(in)
     if isnumeric(in)
         tf=(floor(in)==in);
@@ -114,6 +103,7 @@ function tf=inputIsNumericId(in)
         tf=all(double(in)>=double('0')&double(in)<=double('9'));
     end
 end
+
 
 function html=HtmlViewFcn(doc,id)
     html='';
@@ -135,7 +125,6 @@ function html=HtmlViewFcn(doc,id)
 end
 
 
-
 function reqstruct=SelectionLinkFcn(callerObj,make2way,allowMultiselect)
 
     if nargin<3
@@ -145,7 +134,6 @@ function reqstruct=SelectionLinkFcn(callerObj,make2way,allowMultiselect)
     reqstruct=[];
 
     [id,label]=oslc.selection();%#ok<ASGLU>  We used to rely on LABEL 
-
 
     if isempty(id)
 
@@ -175,8 +163,6 @@ function reqstruct=SelectionLinkFcn(callerObj,make2way,allowMultiselect)
         getString(message('Slvnv:oslc:CurrentProjectNotSetDlg')));
         return;
     else
-
-
         try
             if~oslc.confirmContext(currentProjName)
                 return;
@@ -185,14 +171,8 @@ function reqstruct=SelectionLinkFcn(callerObj,make2way,allowMultiselect)
             contextMsg=getString(message('Slvnv:oslc:BrowserContextDefault'));
             rmiut.warnNoBacktrace([ex.message,newline,contextMsg]);
 
-
-
-
         end
     end
-
-
-
     reqstruct=rmi.createEmptyReqs(length(id));
 
     for i=1:length(id)
@@ -280,9 +260,6 @@ function[labels,depths,locations]=ContentsFcn(projectInfoString,options)
     if isempty(projectName)
         error('ContentsFcn() expects projectName in parenthesis.');
     end
-
-
-
     project=oslc.Project.get(projectName);
     if project.isUpdatedList()
         [labels,depths,locations]=project.listCollections();
@@ -290,11 +267,6 @@ function[labels,depths,locations]=ContentsFcn(projectInfoString,options)
     elseif~doRefresh&&isempty(project.itemIds)&&isempty(project.collectionIds)
         doRefresh=true;
     end
-
-
-
-
-
     progressMessage=getString(message('Slvnv:oslc:GettingContentsOf',projectName));
     rmiut.progressBarFcn('set',0.5,progressMessage,getString(message('Slvnv:oslc:PleaseWait')));
     myConnection=oslc.connection();
