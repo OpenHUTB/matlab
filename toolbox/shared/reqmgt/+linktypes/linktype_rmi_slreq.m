@@ -1,26 +1,14 @@
 function linkType=linktype_rmi_slreq
 
-
-
-
-
-
-
-
     linkType=ReqMgr.LinkType;
     linkType.Registration=mfilename;
-
-
     linkType.Label=getString(message('Slvnv:slreq:RequirementSetDomainLabel'));
-
 
     linkType.IsFile=0;
     linkType.Extensions={'.slreqx'};
 
-
     linkType.LocDelimiters='@';
     linkType.Version='';
-
 
     linkType.NavigateFcn=@Navigate;
     linkType.BrowseFcn=@Browse;
@@ -30,11 +18,8 @@ function linkType=linktype_rmi_slreq
     linkType.CreateURLFcn=@CreateURLFcn;
     linkType.DocDateFcn=@DocDateFcn;
     linkType.DetailsFcn=@DetailsFcn;
-
-
     linkType.SelectionLinkFcn=@SelectionLinkFcn;
     linkType.SelectionLinkLabel=getString(message('Slvnv:slreq:SelectionLinkLabel'));
-
 
     linkType.IsValidDocFcn=@IsValidDocFcn;
     linkType.IsValidIdFcn=@IsValidIdFcn;
@@ -43,8 +28,6 @@ function linkType=linktype_rmi_slreq
 
     function Navigate(reqSetNameOrOReqObj,id,caller)
         if ischar(reqSetNameOrOReqObj)
-
-
             [refUri,~]=slreq.internal.LinkUtil.getReqSetUri(reqSetNameOrOReqObj,id);
             reqSet=slreq.data.ReqData.getInstance.getReqSet(refUri);
             if isempty(reqSet)
@@ -65,8 +48,6 @@ function linkType=linktype_rmi_slreq
         reqSetPath='';
         r=slreq.data.ReqData.getInstance();
         reqSets=r.getLoadedReqSets();
-
-
 
         if~isempty(reqSets)
             selectionDlg=slreq.gui.DialogSelectRequirementSet({reqSets.filepath});
@@ -96,12 +77,9 @@ function linkType=linktype_rmi_slreq
             end
         end
 
-
-
         labels={reqSet.name};
         depths=0;
         locations={''};
-
 
         populateChildItems(reqSet.children,1,0);
 
@@ -141,9 +119,8 @@ function linkType=linktype_rmi_slreq
         locations(1)=[];
     end
 
+
     function label=ItemIdFcn(doc,id,mode)
-
-
         reqData=slreq.data.ReqData.getInstance;
         reqSet=reqData.getReqSet(doc);
         if isempty(reqSet)
@@ -202,13 +179,7 @@ function linkType=linktype_rmi_slreq
             html='';
             return;
         end
-
-
-
         html=reqSet.unpackImages(req.description);
-
-
-
         if~isempty(req.summary)&&~contains(req.description,req.summary)
             html=['<h3>',req.summary,'</h3>',newline,html];
         end
