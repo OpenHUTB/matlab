@@ -1,14 +1,7 @@
 function linktype=linktype_rmi_pdf
 
-
-
-
-
-
     linktype=ReqMgr.LinkType;
     linktype.Registration=mfilename;
-
-
     linktype.Label=getString(message('Slvnv:reqmgt:linktype_rmi_pdf:PDFDocument'));
 
 
