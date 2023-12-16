@@ -1,9 +1,5 @@
 function anchorsAndLabels=getLinkAnchorsAndLabels(editorId)
 
-
-
-
-
     anchorsAndLabels={};
 
     [canLink,fKey]=rmiml.canLink(editorId);
@@ -20,12 +16,7 @@ function anchorsAndLabels=getLinkAnchorsAndLabels(editorId)
     if~slreq.utils.loadLinkSet(artifactPath,false)
         return;
     end
-
-
-
     rangesAndLabels=slreq.utils.getRangesAndLabels(editorId);
-
-
 
     if~isempty(rangesAndLabels)
         anchorsAndLabels={rangesAndLabels(:,1),...
