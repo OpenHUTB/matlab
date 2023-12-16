@@ -1,13 +1,7 @@
 function linktype=linktype_rmi_word
 
-
-
-
-
     linktype=ReqMgr.LinkType;
     linktype.Registration=mfilename;
-
-
     linktype.Label=getString(message('Slvnv:reqmgt:linktype_rmi_word:MicrosoftWord'));
 
 
@@ -17,8 +11,6 @@ function linktype=linktype_rmi_word
 
     linktype.LocDelimiters='?@#';
     linktype.Version='';
-
-
 
     linktype.NavigateFcn=@NavigateFcn;
     linktype.ContentsFcn=@ContentsFcn;
