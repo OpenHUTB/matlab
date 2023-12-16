@@ -1,14 +1,8 @@
 function duplicate(sourceArtifact,sourceIds,destArtifact,destRanges)
 
-
-
-
-
-
     isMove=false(size(sourceIds));
     isSameArtifact=strcmp(sourceArtifact,destArtifact);
     if isSameArtifact
-
 
         for i=1:numel(sourceIds)
             range=rmiml.idToRange(sourceArtifact,sourceIds{1});
@@ -22,11 +16,8 @@ function duplicate(sourceArtifact,sourceIds,destArtifact,destRanges)
         rangeId=sourceIds{i};
         newRange=[destRanges(i).first,destRanges(i).last];
         if isMove(i)
-
             moveBookmark(destArtifact,rangeId,newRange);
         else
-
-
             success=rmiml.duplicateLinks(sourceArtifact,rangeId,destArtifact,newRange);
             if~success
                 rmiut.warnNoBacktrace(sprintf('Failed to duplicate links from %s:%s',sourceKey,rangeId));
@@ -34,6 +25,7 @@ function duplicate(sourceArtifact,sourceIds,destArtifact,destRanges)
         end
     end
 end
+
 
 function moveBookmark(artifact,rangeId,newRange)
     if isfile(artifact)
