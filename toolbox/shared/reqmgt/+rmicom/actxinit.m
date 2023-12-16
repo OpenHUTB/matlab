@@ -1,10 +1,5 @@
 function actxinit(interactive)
 
-
-
-
-
-
     persistent initialized
 
 mlock
