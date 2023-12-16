@@ -1,19 +1,12 @@
 function linktype=linktype_rmi_doors
 
-
-
-
-
     linktype=ReqMgr.LinkType;
     linktype.Registration=mfilename;
-
-
     linktype.Label=getString(message('Slvnv:reqmgt:linktype_rmi_doors:LinkableDomainLabel'));
 
 
     linktype.IsFile=0;
     linktype.Extensions={};
-
 
     linktype.LocDelimiters='#';
     linktype.Version='';
