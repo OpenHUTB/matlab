@@ -1,19 +1,10 @@
 function[installed,prodId]=actx_installed(buttonName)
 
-
-
     persistent buttons installok;
 
     if isempty(installok)
-
-
-
-
-
-
         installok.SLRefButton=0;
         buttons.SLRefButton={'mwSimulink1','mwSimulink'};
-
 
         installok.SLRefButtonA=0;
         buttons.SLRefButtonA={'mwSimulink2'};
@@ -66,17 +57,13 @@ function result=actx_check(filenames,buttonName)
     end
 end
 
+
 function result=actx_install(filenames)
 
     for i=1:length(filenames)
         filename=filenames{i};
-
-
-        cntrlDir=fullfile(matlabroot,'toolbox','shared','reqmgt','icons');
+       cntrlDir=fullfile(matlabroot,'toolbox','shared','reqmgt','icons');
         ocxFile=fullfile(cntrlDir,[filename,'.ocx']);
-
-
-
 
         [~,systemRoot]=dos('echo %SystemRoot%');
         systemRoot=systemRoot(1:end-1);
@@ -90,8 +77,6 @@ function result=actx_install(filenames)
             sysdir=[systemRoot,'\system32'];
             returnHere='';
         end
-
-
         [cmdStatus,messg]=copyfile(ocxFile,sysdir,'f');
         if cmdStatus==1
             ocxToRegister=[sysdir,'\',filename,'.ocx'];
@@ -100,12 +85,9 @@ function result=actx_install(filenames)
             ocxToRegister=ocxFile;
         end
 
-
         regcmd=['regsvr32 /c /s "',ocxToRegister,'"'];
 
-
         [cmdStatus,messg]=dos(regcmd);
-
 
         if~isempty(returnHere)
             cd(returnHere);
