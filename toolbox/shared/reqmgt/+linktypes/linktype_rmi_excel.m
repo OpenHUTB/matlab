@@ -1,25 +1,15 @@
 function linktype=linktype_rmi_excel
 
-
-
-
-
-
-
     linktype=ReqMgr.LinkType;
     linktype.Registration=mfilename;
-
-
     linktype.Label=getString(message('Slvnv:reqmgt:linktype_rmi_excel:MicrosoftExcel'));
 
 
     linktype.IsFile=1;
     linktype.Extensions={'.xls','.csv','.xlsx','.xlsm','.xlsb'};
 
-
     linktype.LocDelimiters='?@$';
     linktype.Version='';
-
 
     linktype.NavigateFcn=@NavigateFcn;
     linktype.IsValidIdFcn=@IsValidIdFcn;
@@ -29,15 +19,9 @@ function linktype=linktype_rmi_excel
     linktype.UrlLabelFcn=@UrlLabelFcn;
     linktype.DocDateFcn=@DocDateFcn;
     linktype.HtmlViewFcn=@HtmlViewFcn;
-
-
     linktype.SelectionLinkLabel=getString(message('Slvnv:rmisl:menus_rmi_object:LinkToSelectionInExcel'));
     linktype.SelectionLinkFcn=@SelectionLinkFcn;
-
-
     linktype.LinkedIdToImportedIdFcn=@LinkedIdToImportedIdFcn;
-
-
     linktype.BacklinkCheckFcn=@BacklinkCheckFcn;
     linktype.BacklinkInsertFcn=@BacklinkInsertFcn;
     linktype.BacklinkDeleteFcn=@BacklinkDeleteFcn;
@@ -181,20 +165,6 @@ function[depths,items]=DetailsFcn(document,locationStr,detailsLevel)
         items{1}=getSameRowContent(hRange);
     end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function content=getSameRowContent(startFromCell)
