@@ -1,14 +1,9 @@
 function imuSensor(obj)
 
-
-
-
     if isR2021aOrEarlier(obj.ver)
         blocks=obj.findBlocksWithMaskType('fusion.simulink.imuSensor');
         for blkIdx=1:numel(blocks)
             blk=blocks{blkIdx};
-
-
 
             numElements=9;
             accelVal=slResolve(get_param(blk,'AccelParamsAxesMisalignment'),blk);
