@@ -1,16 +1,5 @@
 function status=actxsetup(interactive)
 
-
-
-
-
-
-
-
-
-
-
-
     if~ispc
         disp(getString(message('Slvnv:reqmgt:actx_installed:ActiveXWindowsOnly')));
         return;
