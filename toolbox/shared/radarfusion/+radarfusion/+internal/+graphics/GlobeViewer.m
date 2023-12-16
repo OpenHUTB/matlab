@@ -1,8 +1,5 @@
 classdef(Sealed)GlobeViewer<matlab.mixin.SetGet
 
-
-
-
     properties
 ReferenceLocation
 PlatformHistoryDepth
@@ -99,7 +96,6 @@ QueueCleanUp
 
     methods
         function[obj,gl]=GlobeViewer(varargin)
-
 
             try
                 matlab.internal.lang.capability.Capability.require('LocalClient');
