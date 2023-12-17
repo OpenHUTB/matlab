@@ -1,8 +1,5 @@
 classdef ShapeView<handle
 
-
-
-
     properties
 PatchObj
 Id
@@ -24,10 +21,14 @@ Type
 PositionMarker
         Interactive=1;
     end
+
+
     methods
         function set.Transparency(self,val)
             self.Transparency=val;
         end
+
+
         function self=ShapeView(Canvas,info)
             self.Info=info;
             self.Id=info.Id;
@@ -47,8 +48,6 @@ PositionMarker
             end
 
             if any(strcmpi(self.Info.Type,{'feed','Via','Load'}))
-
-
                 p=self.Info.ShapeObj.Vertices;
                 n=size(p,1);
                 p=[p;mean(p)];
@@ -100,6 +99,7 @@ PositionMarker
 
         end
 
+
         function update(self,info)
             self.FaceColor=info.GroupInfo.Color;
             self.FaceColor=self.FaceColor;
@@ -112,8 +112,6 @@ PositionMarker
             end
             self.ShapeObj=sObj;
             if any(strcmpi(self.Info.Type,{'feed','Via','Load'}))
-
-
                 p=self.Info.ShapeObj.Vertices;
                 n=size(p,1);
                 p=[p;mean(p)];
@@ -142,7 +140,6 @@ PositionMarker
             objinf.Type=info.Type;
             objinf.Args=info.Args;
 
-
             if numel(bound)<numel(self.LineObj)
                 self.LineObj(numel(bound)+1:numel(self.LineObj)).delete;
                 self.LineObj(numel(bound)+1:numel(self.LineObj))=[];
@@ -163,7 +160,6 @@ PositionMarker
             if isfield(info,'EnableRotate')
                 objinf.EnableRotate=info.EnableRotate;
             end
-
             self.PatchObj.UserData=objinf;
 
             for i=1:numel(self.LineObj)
@@ -176,10 +172,12 @@ PositionMarker
             update(self.ResizeView)
         end
 
+
         function set.Selected(self,val)
             self.Selected=val;
             self.notify('SelectionChanged');
         end
+
 
         function generateLineObj(self)
             bound=generateBoundaries(self);
@@ -196,9 +194,9 @@ PositionMarker
             end
         end
 
+
         function bound=generateBoundaries(self)
             if any(strcmpi(self.Info.Type,{'feed','Via','Load'}))
-
 
                 boundval(:,1)=self.Info.ShapeObj.Vertices(:,1);
                 boundval(:,2)=self.Info.ShapeObj.Vertices(:,2);
@@ -217,6 +215,7 @@ PositionMarker
             self.Boundary=bound;
         end
 
+
         function hover(self)
             if~self.Interactive
                 return;
@@ -224,6 +223,7 @@ PositionMarker
             set(self.LineObj,'Color',self.SelectionColor);
             set(self.LineObj,'LineWidth',2);
         end
+
 
         function unhover(self)
             if~self.Interactive
@@ -235,6 +235,7 @@ PositionMarker
             end
         end
 
+
         function drag(self,evt1,evt2)
             if~self.Interactive
                 return;
@@ -242,7 +243,6 @@ PositionMarker
             if~self.Info.EnableMove
                 return;
             end
-
 
             try
                 meanVal=mean(self.ShapeObj.Vertices(~isnan(self.ShapeObj.Vertices(:,1)),:));
@@ -269,6 +269,7 @@ PositionMarker
             update(self.ResizeView);
         end
 
+
         function select(self)
             if~self.Interactive
                 return;
@@ -277,6 +278,8 @@ PositionMarker
             set(self.LineObj,'LineWidth',2);
             self.Selected=1;
         end
+
+
         function unselect(self)
             if~self.Interactive
                 return;
@@ -285,6 +288,8 @@ PositionMarker
             set(self.LineObj,'Color',[0,0,0]);
             set(self.LineObj,'LineWidth',0.5);
         end
+
+
         function delete(self)
             self.PatchObj.delete;
             self.PositionMarker.delete;
@@ -292,6 +297,7 @@ PositionMarker
                 self.LineObj(i).delete;
             end
         end
+
 
         function resize(self,bound)
             vert=self.Triangulation.Points;
@@ -303,7 +309,6 @@ PositionMarker
             vert=vert-boxcenter;
             xsize=xmax-xmin;
             ysize=ymax-ymin;
-
             boundysize=bound(2,2)-bound(2,1);
             boundxsize=bound(1,2)-bound(1,1);
             boundCenter=mean(bound');
@@ -325,11 +330,8 @@ PositionMarker
             end
         end
 
+
         function rotate(self,iniAngle,finAngle)
-
-
-
-
             vert=self.Triangulation.Points;
             angle=finAngle-90;
             rotmatrix=[cosd(angle),-1*sind(angle);sind(angle),cosd(angle)];
@@ -349,6 +351,7 @@ PositionMarker
             end
         end
 
+
         function val=getBounds(self)
 
             xmin=self.ResizeView.Xmin;
@@ -358,13 +361,16 @@ PositionMarker
             val=[xmin,xmax;ymin,ymax];
         end
 
+
         function patchDeleted(self,src)
         end
+
 
         function dragMarker(self,evt1,evt2)
             dragMarker(self.ResizeView,evt1,evt2);
         end
     end
+
 
     events
 SelectionChanged
