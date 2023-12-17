@@ -1,16 +1,5 @@
 classdef AddAction<cad.Actions
 
-
-
-
-
-
-
-
-
-
-
-
     methods
 
         function self=AddAction(Model,evt)
@@ -26,12 +15,8 @@ classdef AddAction<cad.Actions
 
                     self.ActionInfo.Vertices=evt.Data.Vertices;
                 end
-
-
                 self.ActionInfo.BBox=evt.Data.BBox;
             case 'Operation'
-
-
                 self.ActionInfo.Name=evt.ObjectType;
                 self.ActionInfo.ShapeIDval=evt.Data.ShapesId;
                 if strcmpi(self.ActionInfo.Name,'Move')
@@ -48,8 +33,6 @@ classdef AddAction<cad.Actions
                 self.ActionInfo.LayerType=evt.ObjectType;
                 self.ActionInfo.CurrentLayerId=self.Model.Group.Id;
             case 'Feed'
-
-
                 self.ActionInfo.FeedType=evt.ObjectType;
                 self.ActionInfo.CurrentLayerId=self.Model.Group.Id;
                 self.ActionInfo.BBox=evt.Data.BBox;
@@ -171,7 +154,6 @@ classdef AddAction<cad.Actions
                         self.ActionObject=self.Model.createNewShape(self.ActionInfo.ShapeType,...
                         self.ActionInfo.BBox);
                     end
-
 
                     self.ActionInfo.ObjectInfo=getInfo(self.ActionObject);
                 end
