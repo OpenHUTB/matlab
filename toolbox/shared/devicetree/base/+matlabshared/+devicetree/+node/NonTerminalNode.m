@@ -1,6 +1,5 @@
 classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
-
     properties ( SetAccess = protected )
 
         Label string
@@ -13,7 +12,6 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
     properties ( Dependent, Access = protected )
 
         PropertyNames
-
 
         ChildNodeNames
     end
@@ -32,26 +30,18 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
     properties ( Dependent, Hidden )
 
-
         AddressCells double
-
-
 
         SizeCells double
 
-
         RequiredAddressCells double
-
 
         RequiredSizeCells double
     end
 
+
     properties ( Constant, Access = protected )
-
-
         AddressCellsPropName = "#address-cells";
-
-
 
         SizeCellsPropName = "#size-cells";
     end
@@ -68,20 +58,6 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
 
             arguments
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 addressOptions.UnitAddress( :, : )double = [  ];
                 addressOptions.AddressLength( :, : )double = [  ];
             end
@@ -91,10 +67,6 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
 
             if ~isempty( addressOptions.UnitAddress )
-
-
-
-
                 hexAddrStr = compose( "%X", unitAddr( 1, : ) );
                 name = name + "@" + join( hexAddrStr, "," );
             end
@@ -107,22 +79,14 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
             end
 
-
             obj.UnitAddress = unitAddr;
             obj.AddressLength = addrLen;
-
-
-
-
 
             if ~isempty( obj.AddressLength ) && ( size( obj.UnitAddress, 1 ) ~= size( obj.AddressLength, 1 ) )
                 error( message( 'devicetree:base:InvalidAddressLength' ) );
             end
 
             if ~isempty( obj.UnitAddress )
-
-
-
                 regValue = [ obj.UnitAddress, obj.AddressLength ]';
                 obj.addProperty( "reg", num2cell( regValue( : )' ) );
             end
@@ -215,20 +179,15 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
     methods
         function hProp = addProperty( obj, prop, varargin )
 
-
-
             if isa( prop, 'matlabshared.devicetree.property.PropertyBase' )
                 hProp = prop;
             else
                 hProp = matlabshared.devicetree.property.Property( prop, varargin{ : } );
             end
-
-
             obj.addPropertyObject( hProp );
         end
 
         function hProp = addPropertyDeletion( obj, name )
-
 
             hProp = matlabshared.devicetree.property.DeleteProperty( name );
             obj.addPropertyObject( hProp );
@@ -236,20 +195,16 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
         function hNode = addNode( obj, node, varargin )
 
-
-
             if isa( node, 'matlabshared.devicetree.node.NodeBase' )
                 hNode = node;
             else
                 hNode = matlabshared.devicetree.node.Node( node, varargin{ : } );
             end
 
-
             obj.addNodeObject( hNode );
         end
 
         function hNode = addNodeDeletion( obj, name )
-
 
             hNode = matlabshared.devicetree.node.DeleteNode( name );
             obj.addNodeObject( hNode );
@@ -258,8 +213,6 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
     methods ( Hidden )
         function hNode = addEmptyNode( obj )
-
-
 
             hNode = matlabshared.devicetree.node.EmptyNode(  );
             obj.addNodeObject( hNode );
@@ -280,32 +233,23 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
         function propVal = getPropertyValue( obj, propName )
 
-
-
             hProp = obj.getProperty( propName );
             if isempty( hProp )
                 error( message( 'devicetree:base:InvalidPropertyName', propName, obj.Name ) );
             end
-
 
             propVal = hProp.Value;
         end
 
+
         function setPropertyValue( obj, propName, varargin )
-
-
 
             hProp = obj.getProperty( propName );
             if isempty( hProp )
                 error( message( 'devicetree:base:InvalidPropertyName', propName, obj.Name ) );
             end
 
-
-
-
-
             hPropNew = matlabshared.devicetree.property.Property( propName, varargin{ : } );
-
 
             propNameIdx = ismember( obj.PropertyNames, propName );
             obj.Properties( propNameIdx ) = hPropNew;
@@ -314,13 +258,9 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
         function removeNode( obj, nodeName )
 
-
-
             nodeNameIdx = ismember( obj.ChildNodeNames, nodeName );
 
-
             obj.ChildNodes( nodeNameIdx ).removeParentNode;
-
 
             obj.ChildNodes( nodeNameIdx ) = [  ];
         end
@@ -336,9 +276,6 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
         function addPropertyObject( obj, hProp )
 
-
-
-
             if ismember( hProp.Name, obj.PropertyNames )
                 error( message( 'devicetree:base:DuplicatePropertyName', hProp.Name, obj.Name ) );
             end
@@ -349,14 +286,7 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
 
         function addNodeObject( obj, hNode )
 
-
-
-
             if hNode.isAddressableNode
-
-
-
-
 
                 if ~isempty( obj.AddressCells ) && ( hNode.RequiredAddressCells ~= obj.AddressCells )
                     error( message( 'devicetree:base:NodeCellsMismatch', hNode.Name, hNode.RequiredAddressCells, obj.AddressCellsPropName, obj.Name, obj.AddressCells ) );
@@ -365,33 +295,19 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
                     error( message( 'devicetree:base:NodeCellsMismatch', hNode.Name, hNode.RequiredSizeCells, obj.SizeCellsPropName, obj.Name, obj.SizeCells ) );
                 end
 
-
-
-
-
-
-
             end
-
-
 
             if ismember( hNode.Name, obj.ChildNodeNames )
                 error( message( 'devicetree:base:DuplicateNodeName', hNode.Name, obj.Name ) );
             end
 
-
-
             if ~hNode.allowsParentNode
                 error( message( 'devicetree:base:InvalidChildNode', hNode.Name ) );
             end
 
-
-
             if hNode == obj
                 error( message( 'devicetree:base:InvalidChildNodeLoop', obj.Name ) );
             end
-
-
 
             if ~isempty( hNode.ParentNode )
                 error( message( 'devicetree:base:ExistingParentNode', hNode.Name, obj.Name, hNode.ParentNode.Name ) );
@@ -426,11 +342,9 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
     methods ( Access = protected )
         function printBody( obj, hDTPrinter, isOverlay, ~ )
 
-
             if isOverlay
 
                 hTargetNode = obj.getOverlayTargetNode;
-
 
                 if ~isempty( hTargetNode.Label )
                     targetLine = "target";
@@ -440,13 +354,11 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
                     targetReference = """" + hTargetNode.getNodePath + """";
                 end
 
-
                 targetLine = targetLine + " = " + targetReference + ";";
                 hDTPrinter.addLine( targetLine );
                 hDTPrinter.addLine( "__overlay__ {" );
                 hDTPrinter.indent;
             else
-
 
                 startNodeLine = obj.getSourceLabelPrefix;
                 startNodeLine = startNodeLine + obj.Name + " {";
@@ -455,19 +367,13 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
                 hDTPrinter.indent;
             end
 
-
-
             for hProp = obj.Properties
                 hProp.printObject( hDTPrinter );
             end
 
-
             for hNode = obj.ChildNodes
-
-
                 hNode.printObject( hDTPrinter );
             end
-
 
             hDTPrinter.unindent;
             hDTPrinter.addLine( "};" );
@@ -477,7 +383,6 @@ classdef ( Abstract )NonTerminalNode < matlabshared.devicetree.node.NodeBase
     methods ( Abstract, Access = protected )
 
         hTargetNode = getOverlayTargetNode( obj )
-
 
         labelPrefix = getSourceLabelPrefix( obj )
     end
