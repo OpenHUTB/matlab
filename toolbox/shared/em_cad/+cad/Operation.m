@@ -1,9 +1,5 @@
 classdef(Abstract)Operation<cad.TreeNode
 
-
-
-
-
     properties
 Name
 Type
@@ -11,6 +7,7 @@ Index
 
         CategoryType='Operation';
     end
+
 
     methods
         function self=Operation(name,type,Id)
@@ -20,30 +17,25 @@ Index
             self.Type=type;
         end
 
+
         function setIndex(self,val)
-
-
-
             self.Index=val;
         end
+
 
         function boolshape=performOperation(self,shape)
 
             boolshape=shape;
-
-
         end
 
-        function childUpdated(self,~)
 
+        function childUpdated(self,~)
             updated(self);
         end
 
+
         function info=getInfo(self)
-
-
             info=self.getInfo@cad.TreeNode();
-
 
             info.Type=self.Type;
             if~isempty(self.Parent)
