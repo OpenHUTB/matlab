@@ -1,11 +1,9 @@
 classdef DeleteAction<cad.Actions
 
-
-
-
     properties
 
     end
+
 
     methods
 
@@ -40,6 +38,7 @@ classdef DeleteAction<cad.Actions
             end
         end
 
+
         function undo(self)
 
             switch self.ActionObjectType
@@ -48,8 +47,6 @@ classdef DeleteAction<cad.Actions
                     self.ActionObject=getShapeObj(self.Model,self.ActionInfo.Id);
                 end
                 if~self.ActionInfo.TotalShape
-
-
                     tmp=self.ActionInfo.ChildrenChildrenId;
                     for i=1:numel(tmp)
                         for j=1:numel(tmp{i})
@@ -60,18 +57,10 @@ classdef DeleteAction<cad.Actions
                 end
                 if~(strcmpi(self.ActionInfo.ParentType,'Layer'))
                     if numel(self.ActionInfo.ParentChildrenId)==1
-
-
-
-
-
                         shapeObj=getShapeObj(self.Model,self.ActionInfo.ParentParentId);
                         shapeObj.addChild(self.ActionObject.Parent,self.ActionObject.Parent.Index);
 
                     elseif numel(self.ActionInfo.ParentChildrenId)>=1
-
-
-
                         opnObj=getOperationObj(self.Model,self.ActionObj.ParentId);
                         addChild(opnObj,self.ActionObject);
                     end
@@ -138,6 +127,7 @@ classdef DeleteAction<cad.Actions
             end
         end
 
+
         function execute(self)
             switch self.ActionObjectType
 
@@ -147,14 +137,10 @@ classdef DeleteAction<cad.Actions
                 end
                 infoval=getInfo(self.ActionObject);
                 if numel(self.ActionInfo.ParentChildrenId)==1
-
-
                     self.ActionObject.Parent.removeParent();
 
 
                 elseif numel(self.ActionInfo.ParentChildrenId)>=1
-
-
                     self.ActionObject.removeParent();
                 end
 
