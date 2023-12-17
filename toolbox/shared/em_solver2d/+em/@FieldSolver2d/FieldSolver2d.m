@@ -1,7 +1,5 @@
 classdef FieldSolver2d<matlab.mixin.SetGet&matlab.mixin.CustomDisplay&matlab.mixin.Copyable
 
-
-
     properties(Constant,Hidden)
 
         Equation=3
@@ -11,19 +9,14 @@ classdef FieldSolver2d<matlab.mixin.SetGet&matlab.mixin.CustomDisplay&matlab.mix
 
 Name
 
-
-
         codeSub(1,1)
 
-
         numSub(1,1)=1
-
 
         conductivity(1,1)=5.8e7
 
 
         groundPlaneWidth(1,1)
-
 
 groundPlaneCorner
     end
