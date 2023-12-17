@@ -1,11 +1,5 @@
 function addLineWithIntervals(writer,name,positions,intervals,varargin)
 
-
-
-
-
-
-
     p=inputParser;
     addRequired(p,'name');
     addRequired(p,'positions');
@@ -24,9 +18,7 @@ function addLineWithIntervals(writer,name,positions,intervals,varargin)
     addParameter(p,'DashLength',16);
     parse(p,name,positions,intervals,varargin{:});
 
-
     inputs=validateInput(p.Results);
-
 
     name=inputs.name;
     positions=inputs.positions;
@@ -44,54 +36,31 @@ function addLineWithIntervals(writer,name,positions,intervals,varargin)
     dashed=inputs.Dashed;
     dashLength=inputs.DashLength;
 
-
     createPositionReference=false;
-
 
     sizeOfPositions=size(positions);
 
-
-
     if~isempty(time)
-
-
-
         positionName=name+"PositionReference"+(1:sizeOfPositions(1));
-
-
-
         references=positionName+"#position";
 
-
         createPositionReference=true;
-
-
-
         positionStruct=struct("references",references);
     else
 
-
-
-
         positionCoordinates=reshape(positions',1,...
         sizeOfPositions(1)*sizeOfPositions(2));
-
-
 
         positionStruct=struct("referenceFrame",referenceFrame,...
         coordinateDefinition,positionCoordinates);
     end
 
-
     startTime=writer.StartTime;
     stopTime=writer.EndTime;
-
 
     numIntervals=size(intervals,1);
 
     if numIntervals==0
-
-
         startInterval=string(datetime(startTime,'Format',...
         writer.DateTimeFormat));
         endInterval=string(datetime(stopTime,'Format',...
@@ -101,8 +70,6 @@ function addLineWithIntervals(writer,name,positions,intervals,varargin)
         showStruct.boolean=false;
     else
 
-
-
         numShowStruct=2*numIntervals-1;
         if startTime<intervals(1,1)
             numShowStruct=numShowStruct+1;
@@ -110,14 +77,9 @@ function addLineWithIntervals(writer,name,positions,intervals,varargin)
         if stopTime>intervals(end,2)
             numShowStruct=numShowStruct+1;
         end
-
-
         showStruct(1:numShowStruct)=struct("interval",[],"boolean",[]);
 
-
         showStructIdx=1;
-
-
 
         if startTime<intervals(1,1)
             startInterval=string(datetime(startTime,'Format',...
@@ -131,8 +93,6 @@ function addLineWithIntervals(writer,name,positions,intervals,varargin)
             showStructIdx=showStructIdx+1;
         end
 
-
-
         if stopTime>intervals(end,2)
             startInterval=string(datetime(intervals(end,2),'Format',...
             writer.DateTimeFormat));
@@ -143,9 +103,7 @@ function addLineWithIntervals(writer,name,positions,intervals,varargin)
             showStruct(end).boolean=false;
         end
 
-
         for idx=1:size(intervals,1)
-
             indx=showStructIdx+(2*(idx-1));
             startInterval=string(datetime(intervals(idx,1),'Format',...
             writer.DateTimeFormat));
@@ -168,8 +126,6 @@ function addLineWithIntervals(writer,name,positions,intervals,varargin)
             end
         end
     end
-
-
     colorStruct=struct("rgba",round(color));
     if dashed
         dashStruct=struct("color",colorStruct,"dashLength",dashLength);
@@ -191,9 +147,6 @@ function addLineWithIntervals(writer,name,positions,intervals,varargin)
     addPacket(writer,name,type,packetString);
     packetIdx=findPacket(writer,name);
 
-
-
-
     if createPositionReference
         try
             for idx=1:sizeOfPositions(1)
@@ -207,8 +160,6 @@ function addLineWithIntervals(writer,name,positions,intervals,varargin)
                 writer.Packets(packetIdx).ReferencePackets{idx}=...
                 positionName(idx);
 
-
-
                 writer.NumGraphics=writer.NumGraphics-1;
             end
         catch
@@ -217,36 +168,26 @@ function addLineWithIntervals(writer,name,positions,intervals,varargin)
                 writer.Packets(packetIdx).ReferencePackets{idx2});
             end
             removePacket(writer,name);
-
-
             writer.NumGraphics=writer.NumGraphics-1;
             error(message('shared_globe:viewer:UnableToAddCZMLGraphic'));
         end
     end
 end
 
+
 function validatedInputs=validateInput(inputs)
-
-
-
 
     validateattributes(inputs.name,...
     {'char','string'},{'nonempty','scalartext'},...
     'addLineWithIntervals','name',1);
-
-
     validateattributes(inputs.positions,...
     {'numeric'},...
     {'nonempty','finite','real','size',[NaN,3,NaN]},...
     'addPolyline','positions',2);
 
-
-
     validateattributes(size(inputs.positions,1),...
     {'numeric'},{'scalar','>=',2},...
     'addPolyline','size of first dimension of positions');
-
-
 
 
     if isempty(inputs.time)||numel(inputs.time)==1
