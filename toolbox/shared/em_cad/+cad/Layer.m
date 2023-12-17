@@ -1,17 +1,5 @@
 classdef Layer<cad.TreeNode&cad.DependentObject
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties
         Color=[0,0,1]
         Transparency=0.2;
@@ -34,7 +22,6 @@ Load
         Thickness=0.60
 DielectricShape
 
-
 ModelListener
 
 PropertyChangedListener
@@ -42,9 +29,9 @@ PropertyChangedListener
         CategoryType='Layer';
     end
 
+
     methods
         function self=Layer(Model,Color,Transparency,Id,varargin)
-
 
             self.Model=Model;
             self.Color=Color;
@@ -63,30 +50,36 @@ PropertyChangedListener
             self.ObjectType=self.Type;
         end
 
+
         function set.Color(self,val)
 
             self.Color=val;
             self.notify('PropertyChanged');
         end
+
+
         function set.Transparency(self,val)
 
             self.Transparency=val;
             self.notify('PropertyChanged');
         end
+
+
         function set.Overlay(self,val)
 
             self.Overlay=val;
             self.notify('PropertyChanged');
         end
+
+
         function set.Name(self,val)
 
             self.Name=val;
             self.notify('PropertyChanged');
         end
 
+
         function addShape(self,shapeObj)
-
-
             if isempty(self.LayerShape)
                 self.LayerShape=shapeObj.AntennaShape;
             else
@@ -96,9 +89,8 @@ PropertyChangedListener
             self.notify('Updated');
         end
 
+
         function self=childUpdated(self,child)
-
-
             sout=[];
             for i=1:numel(self.Children)
                 if isempty(sout)
@@ -112,9 +104,11 @@ PropertyChangedListener
 
         end
 
+
         function childrenChanged(self)
             childUpdated(self,0);
         end
+
 
         function addFeed(self,feedobj)
 
@@ -129,6 +123,7 @@ PropertyChangedListener
             end
             self.notify('Updated');
         end
+
 
         function removeFeed(self,feedobj)
 
@@ -145,6 +140,7 @@ PropertyChangedListener
             self.notify('Updated');
         end
 
+
         function addVia(self,viaobj)
             if isempty(self.Via)
                 self.Via=viaobj;
@@ -157,6 +153,7 @@ PropertyChangedListener
             end
             self.notify('Updated');
         end
+
 
         function removeVia(self,viaobj)
             if isempty(self.Via)
@@ -171,6 +168,7 @@ PropertyChangedListener
             self.notify('Updated');
         end
 
+
         function addLoad(self,loadobj)
             if isempty(self.Load)
                 self.Load=loadobj;
@@ -183,6 +181,7 @@ PropertyChangedListener
             end
             self.notify('Updated');
         end
+
 
         function removeLoad(self,loadobj)
             if isempty(self.Load)
@@ -197,9 +196,8 @@ PropertyChangedListener
             self.notify('Updated');
         end
 
+
         function info=getInfo(self)
-
-
             info=getInfo@cad.TreeNode(self);
             info.CategoryType='Layer';
 
@@ -243,16 +241,11 @@ PropertyChangedListener
             info.LayerShape=self.LayerShape;
 
             info.ZVal=self.ZVal;
-
-
             info.NumChildren=numel(self.Children);
         end
 
+
         function info=getLayerInfo(self)
-
-
-
-
 
             info=getInfo(self);
             info.CategoryType='Layer';
@@ -273,9 +266,6 @@ PropertyChangedListener
             for i=1:numel(self.Load)
                 info.LoadInfo{i}=getInfo(self.Load(i));
             end
-
-
-
 
             if strcmpi(self.MaterialType,'Dielectric')
                 info.Args.Type='Dielectric';
@@ -312,21 +302,14 @@ PropertyChangedListener
         end
 
 
-
         function deleteListeners(self)
 
             deleteListeners@cad.TreeNode(self);
 
-
-
-
-
-
         end
 
+
         function obj=copy(self,varargin)
-
-
             obj=cad.Layer(self.Model,self.Color,self.Transparency,self.Id,self.Name);
 
             obj.Name=self.Name;
@@ -355,16 +338,15 @@ PropertyChangedListener
 
         end
 
+
         function addGroupToChildren(self,obj)
-
-
-
             childrenShapes=getChildrenShapes(obj);
             for i=1:numel(childrenShapes)
                 addGroupToChildren(self,childrenShapes(i))
             end
             obj.Group=self;
         end
+
 
         function d=createDielectric(self)
 
@@ -375,8 +357,8 @@ PropertyChangedListener
             d.Thickness=self.Thickness;
         end
 
-        function txt=genScript(self,varargin)
 
+        function txt=genScript(self,varargin)
 
             if~isempty(varargin)
                 startString=varargin{1};
@@ -417,6 +399,7 @@ PropertyChangedListener
 
         end
 
+
         function scriptval=getPropertyScript(self,propname,fact)
             if~isempty(self.PropertyValueMap.(propname))
                 if strcmpi(propname,'Thickness')
@@ -444,6 +427,7 @@ PropertyChangedListener
             end
         end
 
+
         function assignValueToProperty(self,propname,value,varname)
             valueOp=getValueOfProperty(self,propname,value,varname);
             if~isa(valueOp,'MException')
@@ -451,8 +435,9 @@ PropertyChangedListener
             end
         end
 
-
     end
+
+
     methods(Static=true,Hidden)
         function r=loadobj(obj)
             r=obj;
