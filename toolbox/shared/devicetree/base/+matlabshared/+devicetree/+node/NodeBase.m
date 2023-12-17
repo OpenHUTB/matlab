@@ -1,72 +1,12 @@
 classdef(Abstract)NodeBase<matlabshared.devicetree.util.Commentable&matlab.mixin.Heterogeneous
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=protected)
-
         Name string
     end
 
 
     methods
         function obj=NodeBase(name)
-
-
             obj.Name=name;
         end
     end
@@ -74,13 +14,11 @@ classdef(Abstract)NodeBase<matlabshared.devicetree.util.Commentable&matlab.mixin
 
     methods(Hidden)
         function isRoot=isRootNode(~)
-
-
             isRoot=false;
         end
 
-        function isAddressable=isAddressableNode(~)
 
+        function isAddressable=isAddressableNode(~)
             isAddressable=false;
         end
 
