@@ -6,12 +6,6 @@ classdef ( Sealed, ConstructOnLoad, UseClassDefaultsOnLoad )GeographicGlobe ...
     properties ( Access = public, Dependent, SetObservable, AbortSet, AffectsObject )
 
 
-
-
-
-
-
-
         Basemap( 1, 1 )string = globe.internal.GlobeModel.defaultBasemap
     end
 
