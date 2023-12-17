@@ -1,24 +1,23 @@
 classdef DependentObject < handle
 
-
-
     properties
-
-
         DependentMap( :, 1 )
 
     end
+
 
     properties ( Hidden = true )
         PropertyValueMap = struct( 'Property', [  ] );
         ObjectType = 'DependentObject';
     end
 
+
     properties ( Constant )
 
         NoValidationHandle = @( x )x;
         AdditionalValidation = @( x )validateattributes( x, { 'double' }, { 'nonnan', 'finite', 'real' } );
     end
+
 
     methods
 
@@ -28,15 +27,18 @@ classdef DependentObject < handle
             self.PropertyValueMap.( property ) = newhandle;
         end
 
+
         function newfcn = replaceVarInfcnHandle( self, fcnhandle, prevname, presentname )
             fcnstr = func2str( fcnhandle );
             fcnstr = regexprep( fcnstr, [ '\<', prevname, '\>' ], presentname );
             newfcn = str2func( fcnstr );
         end
 
+
         function self = DependentObject(  )
 
         end
+
 
         function additionalValidation( self, validationHandle, value )
 
@@ -46,25 +48,7 @@ classdef DependentObject < handle
         end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function addDependentMapToStack( self, varMapObj )
-
-
-
             arguments
                 self( 1, 1 )cad.DependentObject
                 varMapObj( 1, 1 )cad.VariableMap
@@ -76,16 +60,11 @@ classdef DependentObject < handle
                 return ;
             end
 
-
             self.DependentMap = [ self.DependentMap;varMapObj ];
         end
 
+
         function assignValueToProperty( self, PropertyName, Value, varname )
-
-
-
-
-
             arguments
                 self( 1, 1 )cad.DependentObject %#ok<INUSA>
                 PropertyName( 1, : )char
@@ -97,10 +76,8 @@ classdef DependentObject < handle
 
         end
 
+
         function removeDependentMapFromStack( self, varMapObj )
-
-
-
             arguments
                 self( 1, 1 )cad.DependentObject
                 varMapObj( 1, 1 )cad.VariableMap
@@ -117,27 +94,16 @@ classdef DependentObject < handle
             end
         end
 
+
         function delete( self )
-
-
-
-
-
             deleteDependentVariableMaps( self );
         end
 
+
         function deleteDependentVariableMaps( self )
-
-
-
-
-
-
-
 
             mapStack = self.DependentMap;
             for i = 1:numel( mapStack )
-
 
                 if ~isvalid( mapStack( i ) )
                     continue ;
@@ -146,17 +112,17 @@ classdef DependentObject < handle
             end
         end
 
+
         function expn = getExpressionWithoutInputs( self, functionHandle )
 
             expressionstring = func2str( functionHandle );
-
 
             indx = self.strfindfirst( expressionstring, ')' );
             expn = expressionstring( indx + 1:end  );
         end
 
-        function location = strfindfirst( self, lookin, lookfor )
 
+        function location = strfindfirst( self, lookin, lookfor )
 
             location = strfind( lookin, lookfor );
             if ~isempty( location )
@@ -164,13 +130,13 @@ classdef DependentObject < handle
             end
         end
 
+
         function validationHandleOut = getDefaultValidation( self, propName )
             validationHandleOut = self.NoValidationHandle;
         end
 
+
         function validationHandleOut = getValidation( self, propName, varname )
-
-
 
             arguments
                 self( 1, 1 )cad.DependentObject
@@ -178,24 +144,10 @@ classdef DependentObject < handle
                 varname( 1, : )char = ''
             end
 
-
-
-
-
-
             if ~any( strcmpi( propName, fields( self.PropertyValueMap ) ) )
                 error( message( 'MATLAB:noSuchMethodOrField', propName, self.ObjectType ) );
                 return ;
             end
-
-
-
-
-
-
-
-
-
 
             if isempty( varname ) || isempty( self.PropertyValueMap.( propName ) )
                 validationHandleOut = self.getDefaultValidation( propName );
@@ -214,9 +166,6 @@ classdef DependentObject < handle
                 idx = strcmpi( mapVarnames, varname );
 
                 if any( idx )
-
-
-
 
                     indexnum = find( idx );
                     nummaps = numel( self.DependentMap );
@@ -241,6 +190,7 @@ classdef DependentObject < handle
             end
         end
 
+
         function argsArray = generateArgsArray( self, maps )
 
             argsArray = cell( numel( maps ), 1 );
@@ -250,6 +200,7 @@ classdef DependentObject < handle
                 argsArray{ i } = maps( i ).getValue(  );
             end
         end
+
 
         function Opvalue = getValueOfProperty( self, propname, value, varname )
             if ~strcmpi( propname, fields( self.PropertyValueMap ) )
@@ -264,7 +215,6 @@ classdef DependentObject < handle
                     idx = strcmpi( propNames, propname );
                     propMaps = self.DependentMap( idx );
 
-
                     argsArray = generateArgsArray( self, propMaps );
                     Opvalue = self.PropertyValueMap.( propname )( argsArray{ : } );
                 catch me
@@ -272,6 +222,7 @@ classdef DependentObject < handle
                 end
             end
         end
+
 
         function copyPropertyValueMap( self, targetObj, vm )
             props = fields( self.PropertyValueMap );
