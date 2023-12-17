@@ -1,16 +1,13 @@
 classdef SelectionDeleteAction<cad.Actions
 
-
-
-
     properties
 
     end
 
+
     methods
 
         function self=SelectionDeleteAction(Model,evt)
-
 
             self.Type='Delete';
             self.Model=Model;
@@ -23,17 +20,10 @@ classdef SelectionDeleteAction<cad.Actions
             self.ActionInfo.OrphanOperationsId=[];
             self.ActionInfo.ConnectionLayerMap=[];
             if~strcmpi(self.ActionInfo.SelectionView,'Canvas')
-
-
-
                 self.ActionInfo.OrphanOperationsId=getOrphanOperationsId(self);
-
                 self.ActionInfo.OperationId=setdiff(self.ActionInfo.OperationId,self.ActionInfo.OrphanOperationsId);
             end
-
             layerIdx=strcmpi(self.Model.SelectedObj.CategoryType,'Layer');
-
-
             self.ActionInfo.FeedId=self.Model.SelectedObj.Id(strcmpi(self.Model.SelectedObj.Type,'Feed'));
             self.ActionInfo.ViaId=self.Model.SelectedObj.Id(strcmpi(self.Model.SelectedObj.Type,'Via'));
             self.ActionInfo.LoadId=self.Model.SelectedObj.Id(strcmpi(self.Model.SelectedObj.Type,'Load'));
@@ -46,7 +36,6 @@ classdef SelectionDeleteAction<cad.Actions
                         loadIds=self.ActionInfo.LoadId;
                         layerLoadIds=[layerObj.Load.Id];
 
-
                         loadIds=setdiff(loadIds,layerLoadIds);
 
                         loadIds=[loadIds;layerLoadIds];
@@ -56,13 +45,7 @@ classdef SelectionDeleteAction<cad.Actions
 
                     if~isempty(layerObj.Feed)
                         feedids=self.ActionInfo.FeedId;
-
-
-
                         deleteLayerFeedIds=[layerObj.Feed.Id];
-
-
-
                         feedids=setdiff(feedids,deleteLayerFeedIds);
                         feedids=[feedids;deleteLayerFeedIds];
 
@@ -72,12 +55,7 @@ classdef SelectionDeleteAction<cad.Actions
 
                     if~isempty(layerObj.Via)
                         viaids=self.ActionInfo.ViaId;
-
-
-
                         deleteLayerViaIds=[layerObj.Via.Id];
-
-
 
                         viaids=setdiff(viaids,deleteLayerViaIds);
                         viaids=[viaids;deleteLayerViaIds];
@@ -89,9 +67,8 @@ classdef SelectionDeleteAction<cad.Actions
             end
         end
 
+
         function orphanOperations=getOrphanOperationsId(self)
-
-
             shapeId=self.ActionInfo.ShapeId;
             orphanOperations=[];
             for i=1:numel(shapeId)
@@ -102,8 +79,6 @@ classdef SelectionDeleteAction<cad.Actions
                     orphanOperations=[orphanOperations,[object.Children.Id]];
                 end
                 if strcmpi(object.Parent.CategoryType,'Operation')
-
-
 
                     shapeObjNotDelete=setdiff([object.Parent.Children.Id],shapeId);
                     if isempty(shapeObjNotDelete)
@@ -117,15 +92,6 @@ classdef SelectionDeleteAction<cad.Actions
 
 
         function execute(self)
-
-
-
-
-
-
-
-
-
             objArr=[];
             infoArr=[];
             opnId=self.ActionInfo.OperationId;
@@ -237,12 +203,8 @@ classdef SelectionDeleteAction<cad.Actions
             end
         end
 
+
         function undo(self)
-
-
-
-
-
             LayerId=self.ActionInfo.LayerId;
             if~isempty(LayerId)
 
@@ -251,7 +213,6 @@ classdef SelectionDeleteAction<cad.Actions
                 self.ActionInfo.LayerInfo=self.ActionInfo.LayerInfo(indexidxval);
                 self.ActionInfo.LayerObj=self.ActionInfo.LayerObj(indexidxval);
             end
-
 
             for i=1:numel(LayerId)
                 LayerObj=self.ActionInfo.LayerObj(i);
@@ -272,14 +233,12 @@ classdef SelectionDeleteAction<cad.Actions
                 info=(self.ActionInfo.ViaInfo(i));
                 addViaObject(self,ViaObj,info);
             end
-
             LoadId=self.ActionInfo.LoadId;
             for i=1:numel(LoadId)
                 LoadObj=self.ActionInfo.LoadObj(i);
                 info=(self.ActionInfo.LoadInfo(i));
                 addLoadObject(self,LoadObj,info);
             end
-
             ShapeId=self.ActionInfo.ShapeId;
             for i=1:numel(ShapeId)
                 ShapeObj=self.ActionInfo.ShapeObj(i);
@@ -291,14 +250,12 @@ classdef SelectionDeleteAction<cad.Actions
                     restoreVarMaps(self.Model,ShapeObj);
                 end
             end
-
             OrphanOperationsId=self.ActionInfo.OrphanOperationsId;
             for i=1:numel(OrphanOperationsId)
                 OrphanOperationsObj=self.ActionInfo.OrphanOperationsObj(i);
                 info=(self.ActionInfo.OrphanOperationsInfo(i));
                 insertOperationObject(self,OrphanOperationsObj,info);
             end
-
             OperationId=self.ActionInfo.OperationId;
             for i=1:numel(OperationId)
                 OperationObj=self.ActionInfo.OperationObj(i);
@@ -308,12 +265,9 @@ classdef SelectionDeleteAction<cad.Actions
         end
 
 
-
         function removeOperationObject(self,opnObj,infoval)
-
             parentShapeObj=opnObj.Parent;
             finpar=parentShapeObj.Group;
-
 
             opnObj.removeParent();
             parentShapeObj.updateShape();
@@ -321,8 +275,6 @@ classdef SelectionDeleteAction<cad.Actions
             childId=[childShapes.Id];
             [~,idx]=setdiff(childId,self.ActionInfo.ShapeId);
             if~isempty(idx)
-
-
                 shapeObjNotDelete=opnObj.Children(idx);
 
                 for i=1:numel(shapeObjNotDelete)
@@ -331,8 +283,6 @@ classdef SelectionDeleteAction<cad.Actions
                     shapeParentChanged(self.Model,shapeObjNotDelete(i));
                 end
             end
-
-
             self.Model.removeOperationFromStack(opnObj.Id);
             operationDeleted(self.Model,infoval);
             if strcmpi(finpar.CategoryType,'Layer')
@@ -343,20 +293,13 @@ classdef SelectionDeleteAction<cad.Actions
 
         end
 
+
         function removeShapeObject(self,shapeobj,infoval)
-
-
-
-
-
 
             parentObj=shapeobj.Parent;
             if~isempty(shapeobj.Parent)
                 shapeobj.removeParent();
                 if strcmpi(parentObj.CategoryType,'Layer')
-
-
-
                     layerUpdated(self.Model,parentObj);
                 end
             end
@@ -370,20 +313,15 @@ classdef SelectionDeleteAction<cad.Actions
 
         end
 
+
         function insertShapeObject(self,shapeobj,infoval)
-
-
             groupLayer=getObject(self.Model,'Layer',infoval.GroupInfo.Id);
             addGroupToChildren(self.Model,shapeobj,groupLayer)
             if strcmpi(infoval.ParentType,'Layer')
-
                 layerobj=getObject(self.Model,'Layer',infoval.ParentId);
                 layerobj.addShape(shapeobj);
                 layerUpdated(self.Model,layerobj);
             elseif any(strcmpi(infoval.ParentType,{'Operation','Add','Subtract','Xor','Intersect'}))
-
-
-
                 opndeleted=setdiff(infoval.ParentId,self.ActionInfo.OperationId);
                 orphanOpnDeleted=setdiff(infoval.ParentId,self.ActionInfo.OrphanOperationsId);
                 if isempty(opndeleted)
@@ -396,7 +334,6 @@ classdef SelectionDeleteAction<cad.Actions
                 opnobj.addChild(shapeobj);
             end
 
-
             if strcmpi(self.ActionInfo.SelectionView,'Canvas')
 
                 self.Model.addShapeTreeToStack(shapeobj);
@@ -407,6 +344,7 @@ classdef SelectionDeleteAction<cad.Actions
             shapeAdded(self.Model,shapeobj);
 
         end
+
 
         function insertOperationObject(self,opnObj,infoval)
             if isempty(setdiff(infoval.ParentId,self.ActionInfo.ShapeId))
@@ -429,8 +367,6 @@ classdef SelectionDeleteAction<cad.Actions
         end
 
 
-
-
         function deleteLayerObject(self,layerobj,infoval)
             childShapes=layerobj.Children;
             if~isempty(childShapes)
@@ -442,6 +378,7 @@ classdef SelectionDeleteAction<cad.Actions
             layerobj.deleteDependentVariableMaps();
             layerDeleted(self.Model,infoval);
         end
+
 
         function addLayerObject(self,layerobj,infoval)
             insertLayer(self.Model,layerobj,infoval.Index);
@@ -455,11 +392,13 @@ classdef SelectionDeleteAction<cad.Actions
             end
         end
 
+
         function deleteFeedObject(self,feedobj,infoval)
             removeFeed(self.Model,feedobj.Id);
             feedobj.deleteDependentVariableMaps();
             feedDeleted(self.Model,infoval);
         end
+
 
         function deleteViaObject(self,viaobj,infoval)
             removeVia(self.Model,viaobj.Id);
@@ -467,11 +406,13 @@ classdef SelectionDeleteAction<cad.Actions
             viaDeleted(self.Model,infoval);
         end
 
+
         function deleteLoadObject(self,loadobj,infoval)
             removeLoad(self.Model,loadobj.Id);
             loadobj.deleteDependentVariableMaps();
             loadDeleted(self.Model,infoval);
         end
+
 
         function addFeedObject(self,feedobj,infoval)
             addFeed(self.Model,feedobj,infoval);
@@ -479,17 +420,20 @@ classdef SelectionDeleteAction<cad.Actions
             feedAdded(self.Model,feedobj);
         end
 
+
         function addViaObject(self,viaobj,infoval)
             addVia(self.Model,viaobj,infoval);
             restoreVarMaps(self,viaobj);
             viaAdded(self.Model,viaobj);
         end
 
+
         function addLoadObject(self,loadobj,infoval)
             addLoad(self.Model,loadobj,infoval);
             restoreVarMaps(self,loadobj);
             loadAdded(self.Model,loadobj);
         end
+
 
         function par=getFinalParent(self,obj)
             tmp=obj;
@@ -503,8 +447,11 @@ classdef SelectionDeleteAction<cad.Actions
             end
         end
 
+
         function delete(self)
         end
+
+
         function nodedepth=getNodeDepth(self,obj)
             nodedepth=0;
             tmp=obj;
@@ -513,6 +460,7 @@ classdef SelectionDeleteAction<cad.Actions
                 nodedepth=nodedepth+1;
             end
         end
+
 
         function restoreVarMaps(self,actObj)
             props=fields(actObj.PropertyValueMap);
@@ -525,6 +473,7 @@ classdef SelectionDeleteAction<cad.Actions
             end
 
         end
+
 
         function callDeletedOnAllChildren(self,actObj)
             childrenShapes=getChildrenShapes(actObj);
@@ -542,13 +491,13 @@ classdef SelectionDeleteAction<cad.Actions
             shapeDeleted(self.Model,infoval);
         end
 
+
         function callAddedOnAllChildren(self,actObj)
             childrenShapes=getChildrenShapes(actObj);
 
             infoval=getInfo(actObj);
             restoreVarMaps(self,actObj);
             shapeAdded(self.Model,actObj);
-
 
             opnChildren=actObj.Children;
             for i=1:numel(opnChildren)
