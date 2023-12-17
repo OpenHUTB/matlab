@@ -1,8 +1,5 @@
 classdef(Abstract)Actions<handle&matlab.mixin.Heterogeneous
 
-
-
-
     properties
 ActionInfo
 Type
