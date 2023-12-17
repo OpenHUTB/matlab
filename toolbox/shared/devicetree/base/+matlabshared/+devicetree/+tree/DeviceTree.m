@@ -1,45 +1,5 @@
 classdef DeviceTree < matlabshared.devicetree.util.Commentable
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( SetAccess = protected )
         Nodes matlabshared.devicetree.node.NodeBase
     end
@@ -58,7 +18,6 @@ classdef DeviceTree < matlabshared.devicetree.util.Commentable
 
         DefaultCompilerPath = "dtc";
 
-
     end
 
 
@@ -69,21 +28,12 @@ classdef DeviceTree < matlabshared.devicetree.util.Commentable
 
         function hNode = addRootNode( obj )
 
-
-
-
-
-
             hNode = matlabshared.devicetree.node.Node( "/" );
             hNode.ParentNode = hNode;
             obj.Nodes( end  + 1 ) = hNode;
         end
 
         function hNode = addReferenceNode( obj, node )
-
-
-
-
 
             if isa( node, 'matlabshared.devicetree.node.ReferenceNode' )
                 hNode = node;
@@ -96,7 +46,6 @@ classdef DeviceTree < matlabshared.devicetree.util.Commentable
 
         function hNode = addIncludeStatement( obj, fileName, folderName )
 
-
             hNode = matlabshared.devicetree.node.IncludeNode( fileName );
             obj.Nodes( end  + 1 ) = hNode;
             if nargin > 2
@@ -106,11 +55,6 @@ classdef DeviceTree < matlabshared.devicetree.util.Commentable
 
         function hNode = addNodeDeletion( obj, refName )
 
-
-
-
-
-
             matlabshared.devicetree.util.validateReferenceName( refName );
             hNode = matlabshared.devicetree.node.DeleteNode( refName );
             obj.Nodes( end  + 1 ) = hNode;
@@ -119,8 +63,6 @@ classdef DeviceTree < matlabshared.devicetree.util.Commentable
 
     methods ( Hidden )
         function hNode = addEmptyNode( obj )
-
-
 
             hNode = matlabshared.devicetree.node.EmptyNode(  );
             obj.Nodes( end  + 1 ) = hNode;
@@ -141,70 +83,13 @@ classdef DeviceTree < matlabshared.devicetree.util.Commentable
 
     methods ( Access = protected )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function printHeader( obj, hDTPrinter, isOverlay, isIncludeFile )
 
             printHeader@matlabshared.devicetree.util.Commentable( obj, hDTPrinter, isOverlay, isIncludeFile );
 
-
-
             if ~isempty( obj.Comments )
                 hDTPrinter.addEmptyLine;
             end
-
-
-
-
-
 
             if ~isIncludeFile
                 hDTPrinter.addLine( obj.Header );
@@ -217,19 +102,10 @@ classdef DeviceTree < matlabshared.devicetree.util.Commentable
 
         function printBody( obj, hDTPrinter, isOverlay, ~ )
 
-
-
-
-
-
-
             if isOverlay
 
                 hDTPrinter.addLine( "/ {" );
                 hDTPrinter.indent;
-
-
-
 
                 fragmentCount = 0;
                 for hNode = obj.Nodes
@@ -237,14 +113,11 @@ classdef DeviceTree < matlabshared.devicetree.util.Commentable
                     fragmentLine = "fragment@" + num2str( fragmentCount ) + " {";
                     hDTPrinter.addLine( fragmentLine );
                     hDTPrinter.indent;
-
-
                     hNode.printObject( hDTPrinter, isOverlay );
 
 
                     hDTPrinter.unindent;
                     hDTPrinter.addLine( "};" );
-
 
                     hDTPrinter.addEmptyLine;
 
