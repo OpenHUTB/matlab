@@ -6,8 +6,6 @@ classdef Cad2DCanvas < matlabshared.application.Canvas &  ...
         cad.KeyBoardBehaviour
 
 
-
-
     properties
         ObjectStack;
         HoverObject;
