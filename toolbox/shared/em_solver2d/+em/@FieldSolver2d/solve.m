@@ -5,9 +5,7 @@ function[TxParams,errorId]=solve(obj,dir)
     end
     filename=fullfile(dir,'linpar.in8');
 
-
     [RLGC,errorId]=em.FieldSolver2d.Linpar(filename,'BackDoor',int8(1),int8(sum(obj.numTrace)));
-
 
     unit='meter';
 
@@ -20,9 +18,7 @@ function[TxParams,errorId]=solve(obj,dir)
 
     TxParams.RLGC=RLGC;
 
-
     TxParams.Tpd=sqrt(TxParams.RLGC.L(1,1)*TxParams.RLGC.C(1,1));
-
 
     if sum(obj.numTrace)>1&&rem(sum(obj.numTrace),2)==0
         idx=(sum(obj.numTrace)+2)/2;
