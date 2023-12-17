@@ -1,7 +1,5 @@
 function Mesh=createMesh(obj)
 
-
-
     meshAccuracy=2;
     meshPower=2;
     nl=obj.numLayer;
@@ -32,13 +30,6 @@ function Mesh=createMesh(obj)
 
     groundplane.coordCorner=obj.groundPlaneCorner;
     groundplane.width=obj.groundPlaneWidth;
-
-
-
-
-
-
-
 
     minPulse=1e15;
     y0=0;
