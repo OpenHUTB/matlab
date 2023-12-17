@@ -1,8 +1,5 @@
 classdef KeyBoardBehaviour<handle
 
-
-
-
     properties
         KB_KeyStack={}
 KB_ParentFig
@@ -13,6 +10,8 @@ KB_Listeners
         KB_Left=0;
         KB_Right=0;
     end
+
+
     methods
         function set.KB_SelectMultiple(self,val)
             self.KB_SelectMultiple=val;
@@ -22,10 +21,13 @@ KB_Listeners
             KB_addListeners(self)
         end
 
+
         function KB_addListeners(self)
             self.KB_ParentFig.WindowKeyPressFcn=@(src,evt)self.notifyKeyFunc(src,evt);
             self.KB_ParentFig.WindowKeyReleaseFcn=@(src,evt)self.notifyKeyFunc(src,evt);
         end
+
+
         function notifyKeyFunc(self,src,evt)
 
             if any(strcmpi(evt.EventName,{'KeyPress','WindowKeyPress'}))
@@ -41,7 +43,6 @@ KB_Listeners
                 else
                     self.KB_SelectMultiple=0;
                 end
-
 
             elseif any(strcmpi(evt.EventName,{'KeyRelease','WindowKeyRelease'}))
 
@@ -73,12 +74,10 @@ KB_Listeners
 
             end
 
-
         end
 
+
         function pushKeyStack(self,KeyVal)
-
-
 
             if~isempty(self.KB_KeyStack)
                 self.KB_KeyStack{end+1}=KeyVal;
@@ -86,6 +85,7 @@ KB_Listeners
                 self.KB_KeyStack{1}=KeyVal;
             end
         end
+
 
         function triggerEventsForKey(self)
             if numel(self.KB_KeyStack)==1
@@ -146,26 +146,43 @@ KB_Listeners
             end
 
         end
+
+
         function selectAll(self)
         end
+
+
         function left(self)
         end
+
+
         function right(self)
         end
+
+
         function up(self)
         end
+
+
         function down(self)
         end
+
+
         function cut(self)
         end
 
+
         function copy(self)
         end
+
+
         function paste(self)
         end
 
+
         function deleteObj(self)
         end
+
 
         function escape(self)
         end
