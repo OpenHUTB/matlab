@@ -1,40 +1,27 @@
 classdef PasteAction<cad.Actions
 
-
-
-
-
     methods
 
         function self=PasteAction(Model,evt)
-
-
-
-
             self.Type='Paste';
             self.Model=Model;
             self.ActionObject=[];
             self.ActionInfo.LayerId=evt.Data.LayerId;
             self.ActionInfo.AxesLim=evt.Data.AxesLim;
-
-
             self.ActionInfo.ClipBoardType=self.Model.ClipBoardType;
             self.ActionInfo.ClipBoard=self.Model.ClipBoard;
         end
+
 
         function undo(self)
 
             pastedobj=self.ActionObject;
             for i=1:numel(pastedobj)
-
-
                 removeobject(self.Model,pastedobj(i));
                 removeDependentMapForTree(self.Model,pastedobj(i));
                 callDeletedOnAllChildren(self,pastedobj(i));
             end
             if strcmpi(self.ActionInfo.ClipBoardType,'Cut')
-
-
                 self.Model.ClipBoard=self.ActionInfo.ClipBoardObj;
             else
                 self.Model.PasteObjList(end-numel(self.Model.ClipBoard)+1:end,:)=[];
@@ -43,11 +30,10 @@ classdef PasteAction<cad.Actions
 
         end
 
-        function execute(self)
 
+        function execute(self)
             clipBoardObj=self.Model.ClipBoard;
             pastedobject=[];
-
             point1=[mean(self.ActionInfo.AxesLim'),0];
             cornerpt=[self.ActionInfo.AxesLim(1,2),self.ActionInfo.AxesLim(2,1),0];
             diffmove=cornerpt-point1;
@@ -61,7 +47,6 @@ classdef PasteAction<cad.Actions
                     else
                         actiontypes={''};
                     end
-
                     numcpy=strcmpi(actiontypes,'Paste');
                     indx=find(numcpy,1,'first');
                     indxotheract=find(~numcpy,1,"first");
@@ -77,14 +62,7 @@ classdef PasteAction<cad.Actions
                         indx=numel(actiontypes);
                     end
 
-
-
-
                     if isempty(self.ActionObject)
-
-
-
-
                         pasteobj=copyobject(self.Model,clipBoardObj(i));
 
 
@@ -94,9 +72,7 @@ classdef PasteAction<cad.Actions
                             addNewIdToShapeTree(self.Model,pasteobj);
                         end
 
-
                         self.Model.PasteObjList=[self.Model.PasteObjList;{clipBoardObj(i).Id,clipBoardObj(i).Name,clipBoardObj(i).CategoryType}];
-
 
                         previouslyCopiedInstancesWithSameId=[self.Model.PasteObjList{:,1}]==clipBoardObj(i).Id;
                         previouslyCopiedInstancesWithSameName=strcmpi(self.Model.PasteObjList(:,2),clipBoardObj(i).Name);
@@ -107,9 +83,6 @@ classdef PasteAction<cad.Actions
                         indx=sum(previousCopiedInstances);
 
                         namestr=['_Copy',num2str(indx)];
-
-
-
 
                         appendNameToTree(self,pasteobj,namestr);
 
@@ -123,12 +96,8 @@ classdef PasteAction<cad.Actions
                             self.ActionInfo.GroupId=[self.ActionInfo.GroupId;{pasteobj.getGroupId()}];
                         end
 
-
-
                         moveobject(self.Model,pasteobj,point1,point1+diffmove.*0.1.*(indx))
                     else
-
-
                         pasteobj=self.ActionObject(i);
                         if strcmpi(pasteobj.CategoryType,'Shape')
                             prevlayerobj=findlayerobj(self.Model,self.ActionInfo.GroupId{i});
@@ -139,7 +108,6 @@ classdef PasteAction<cad.Actions
                             pasteobj.StartLayer=prevlayerobj(1);
                             pasteobj.StopLayer=prevlayerobj(2);
                         end
-
                         self.Model.PasteObjList=[self.Model.PasteObjList;{clipBoardObj(i).Id,clipBoardObj(i).Name,clipBoardObj(i).CategoryType}];
 
 
@@ -147,9 +115,6 @@ classdef PasteAction<cad.Actions
                     end
 
                 else
-
-
-
                     pasteobj=clipBoardObj(i);
                     self.Model.pasteobject(pasteobj,layerobj);
                 end
@@ -159,24 +124,18 @@ classdef PasteAction<cad.Actions
                     pastedobject=[pastedobject,pasteobj];
                 end
 
-
                 callAddedOnAllChildren(self,pasteobj);
             end
-
-
-
 
             if strcmpi(self.ActionInfo.ClipBoardType,'Cut')
                 self.ActionInfo.ClipBoardObj=clipBoardObj;
                 clearClipboard(self.Model);
             end
-
-
             self.ActionObject=pastedobject;
         end
 
-        function appendNameToTree(self,actObj,namestr)
 
+        function appendNameToTree(self,actObj,namestr)
 
             if strcmpi(actObj.CategoryType,'Shape')
                 childrenShapes=getChildrenShapes(actObj);
@@ -186,6 +145,7 @@ classdef PasteAction<cad.Actions
             end
             actObj.Name=[actObj.Name,namestr];
         end
+
 
         function callDeletedOnAllChildren(self,actObj)
 
@@ -214,6 +174,7 @@ classdef PasteAction<cad.Actions
             end
         end
 
+
         function callAddedOnAllChildren(self,actObj)
 
             if strcmpi(actObj.CategoryType,'Shape')
@@ -222,8 +183,6 @@ classdef PasteAction<cad.Actions
                 infoval=getInfo(actObj);
                 self.Model.restoreVarMaps(actObj);
                 shapeAdded(self.Model,actObj);
-
-
                 opnChildren=actObj.Children;
                 for i=1:numel(opnChildren)
                     infoval=getInfo(opnChildren(i));
