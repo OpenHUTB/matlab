@@ -1,24 +1,9 @@
 classdef ReferencePropertyValue<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=protected)
         Name string
     end
+
 
     methods
         function obj=ReferencePropertyValue(name)
