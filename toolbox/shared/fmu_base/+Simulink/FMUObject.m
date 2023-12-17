@@ -1,7 +1,5 @@
 classdef FMUObject<handle
 
-
-
     properties(Access=private)
         fmuFile;
         fmuFullPathFileName;
