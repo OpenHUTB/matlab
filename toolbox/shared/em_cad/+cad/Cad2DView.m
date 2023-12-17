@@ -1,13 +1,12 @@
 classdef Cad2DView<cad.View
 
-
-
-
     properties
         Figure;
         Axes;
 InstructionalText
     end
+
+
     methods
         function self=Cad2DView(Parent)
             if isempty(Parent)
@@ -22,26 +21,25 @@ InstructionalText
         end
 
 
-
-
-
         function fig=getFigure(self)
             fig=self.Figure;
         end
+
 
         function ax=getAxes(self)
             ax=self.Axes;
 
         end
 
+
         function tag=getTag(self)
             tag=self.Figure.Tag;
         end
 
+
         function name=getName(self)
             name=self.Figure.Name;
         end
-
 
 
         function BBox=getBBoxFromAxLim(self)
@@ -55,6 +53,8 @@ InstructionalText
                 BBox=[center-(sizeVal/2),sizeVal];
             end
         end
+
+
         function decorateAxes(self)
 
             box(self.Axes,'on');
@@ -84,7 +84,6 @@ InstructionalText
             self.Controller=cad.Cad2DController(self,Model);
             addListeners(self.Controller);
         end
-
 
 
     end
