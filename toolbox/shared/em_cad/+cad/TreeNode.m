@@ -1,13 +1,5 @@
 classdef TreeNode<handle&matlab.mixin.Heterogeneous
 
-
-
-
-
-
-
-
-
     properties
 Id
 Parent
@@ -19,18 +11,15 @@ Children
 UniqId
     end
 
+
     methods
         function self=TreeNode
 
             self.UniqId=randn(1)*(1e10);
         end
 
+
         function addParent(self,Parent)
-
-
-
-
-
             if~isempty(self.Parent)&&self.Parent.UniqId==Parent.UniqId
                 return;
             end
@@ -39,9 +28,8 @@ UniqId
             addChild(self.Parent,self);
             parentChanged(self);
 
-
-
         end
+
 
         function par=getFinalParent(self)
             par=self;
@@ -50,15 +38,12 @@ UniqId
             end
         end
 
+
         function updated(self)
             if~self.TriggerUpdate
                 return;
             end
-
-
-
             if~isempty(self.Parent)&&isvalid(self.Parent)
-
                 childUpdated(self.Parent,self);
             end
 
@@ -70,6 +55,7 @@ UniqId
             end
         end
 
+
         function n=getNodeDepth(self)
             obj=self;
             n=1;
@@ -79,16 +65,14 @@ UniqId
             end
         end
 
+
         function removeParent(self)
-
-
 
             if isempty(self.Parent)
 
                 return;
             end
             if~isvalid(self.Parent)
-
 
                 self.Parent=[];
                 parentChanged(self);
@@ -98,9 +82,7 @@ UniqId
             parentObj=self.Parent;
 
             self.Parent=[];
-
             if~isempty(parentObj.Children)
-
                 removeChild(parentObj,self);
             end
 
@@ -109,28 +91,28 @@ UniqId
             parentChanged(self);
         end
 
+
         function childrenChanged(self)
 
         end
+
 
         function parentChanged(self)
 
         end
 
+
         function parentUpdated(self,childObj)
 
-
         end
+
 
         function childUpdated(self,childObj)
 
-
         end
 
+
         function addChild(self,newChild,varargin)
-
-
-
 
             indx=numel(self.Children)+1;
             if~isempty(varargin)
@@ -138,7 +120,6 @@ UniqId
                 indx=varargin{1};
             end
             if~isempty(self.Children)&&any([self.Children.UniqId]==newChild.UniqId)
-
 
                 return;
             end
@@ -160,20 +141,18 @@ UniqId
             updated(self);
         end
 
+
         function addTreeListeners(self)
 
             deleteListeners(self);
         end
 
+
         function removeChild(self,oldChild)
-
-
 
             if isempty(self.Children)
                 return;
             end
-
-
             idx=zeros(1,numel(self.Children));
             for j=1:numel(self.Children)
                 if~isvalid(self.Children(j))
@@ -189,15 +168,10 @@ UniqId
                     oldChild(i)=[];
                     continue;
                 end
-
-
-
                 indx=[self.Children.UniqId]==oldChild(i).UniqId;
                 if~any(indx)
                     continue;
                 end
-
-
                 oldChild(i).parentUpdated();
 
                 self.Children(indx)=[];
@@ -213,15 +187,12 @@ UniqId
             updated(self);
         end
 
+
         function deleteListeners(self)
-
-
-
         end
 
+
         function info=getInfo(self)
-
-
             try
                 info.Id=self.Id;
 
@@ -257,17 +228,19 @@ UniqId
             end
 
         end
-        function delete(self)
 
+
+        function delete(self)
             deleteNode(self);
         end
+
+
         function deleteNode(self)
             self.notify('BeingDeleted');
             deleteListeners(self);
             removeParent(self);
             removeChild(self,self.Children);
         end
-
 
     end
     events
