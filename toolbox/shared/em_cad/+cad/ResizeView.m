@@ -1,8 +1,5 @@
 classdef ResizeView<handle
 
-
-
-
     properties
 ResizeMarker
 ResizeLine
@@ -19,6 +16,7 @@ rotpoint
         RotAngle=90;
     end
 
+
     methods
 
         function set.Vertices(self,val)
@@ -27,32 +25,40 @@ rotpoint
             end
             self.Vertices=val;
         end
+
+
         function self=ResizeView(parent)
             self.Parent=parent;
             self.SelectedListener=addlistener(self.Parent,'SelectionChanged',@(src,evt)self.selectionChanged());
         end
 
+
         function set.Xmin(self,val)
             self.Xmin=val;
         end
+
 
         function set.Xmax(self,val)
             self.Xmax=val;
         end
 
+
         function set.Ymin(self,val)
             self.Ymin=val;
         end
 
+
         function set.Ymax(self,val)
             self.Ymax=val;
         end
+
 
         function set.RotAngle(self,val)
             updateRotateMarker(self,self.RotAngle,val)
             self.RotAngle=val;
 
         end
+
 
         function updateRotateMarker(self,iniAngle,finAngle)
             self.deleteResizeLine();
@@ -87,10 +93,10 @@ rotpoint
             rotate(self.Parent,iniAngle,finAngle);
         end
 
+
         function selectionChanged(self)
             deleteResizeMarker(self);
             deleteResizeLine(self);
-
             if~any(strcmpi(self.Parent.Type,{'feed','Load','Via'}))
                 deleteRotateMarker(self);
             end
@@ -113,6 +119,8 @@ rotpoint
                 end
             end
         end
+
+
         function updateBounds(self)
             self.Vertices=self.Parent.PatchObj.Vertices;
             self.Xmin=min(self.Vertices(:,1));
@@ -122,6 +130,7 @@ rotpoint
             updateMarkerAndLine(self)
 
         end
+
 
         function generateVertices(self)
             if~(isempty(self.Xmin)||isempty(self.Xmax)||isempty(self.Ymin)||isempty(self.Ymax))
@@ -135,6 +144,8 @@ rotpoint
                 (self.Xmin+self.Xmax)/2,self.Ymin];
             end
         end
+
+
         function createResizeMarker(self)
             objinf.Id=self.Parent.Info.Id;
             objinf.Type=self.Parent.Type;
@@ -148,6 +159,8 @@ rotpoint
                 self.ResizeMarker=[self.ResizeMarker,lobj];
             end
         end
+
+
         function createResizeLine(self)
             objinf.Id=self.Parent.Info.Id;
             objinf.Type=self.Parent.Type;
@@ -156,6 +169,8 @@ rotpoint
             'YData',[self.Bounds.Vertices(:,2);self.Bounds.Vertices(1,2)],'tag',objinf.Type,'UserData',objinf,'Color','k');
             self.ResizeLine=lobj;
         end
+
+
         function createRotateMarker(self)
             objinf.Id=self.Parent.Info.Id;
             objinf.Type=self.Parent.Type;
@@ -168,6 +183,7 @@ rotpoint
 
         end
 
+
         function deleteResizeMarker(self)
             if~isempty(self.ResizeMarker)
                 for i=1:8
@@ -176,18 +192,23 @@ rotpoint
                 self.ResizeMarker=[];
             end
         end
+
+
         function deleteResizeLine(self)
             if~isempty(self.ResizeLine)
                 self.ResizeLine.delete;
                 self.ResizeLine=[];
             end
         end
+
+
         function deleteRotateMarker(self)
             if~isempty(self.RotateMarker)
                 self.RotateMarker.delete;
                 self.RotateMarker=[];
             end
         end
+
 
         function dragMarker(self,evt1,evt2)
             rotateflag=0;
@@ -280,8 +301,8 @@ rotpoint
             end
         end
 
-        function fact=genfact(self,refpt,inipt,finpt)
 
+        function fact=genfact(self,refpt,inipt,finpt)
 
             fact=finpt/inipt;
             if isinf(fact)
@@ -290,6 +311,8 @@ rotpoint
                 fact=1;
             end
         end
+
+
         function resizeBoundsWithFact(self,fact,center)
 
             self.Xmax=resizeNumberWithFact(self,self.Xmax-center(1),fact)+center(1);
@@ -300,12 +323,8 @@ rotpoint
             updateMarkerAndLine(self)
         end
 
+
         function num=resizeNumberWithFact(self,num,fact)
-
-
-
-
-
             num=num*fact;
         end
 
@@ -317,6 +336,8 @@ rotpoint
             thetavalx=acosd(diffpt(1)/r);
             thetaval=thetavalx*(thetavaly/abs(thetavaly));
         end
+
+
         function updateMarkerAndLine(self)
             generateVertices(self);
             if~isempty(self.RotateMarker)
@@ -337,12 +358,14 @@ rotpoint
 
         end
 
+
         function delete(self)
             self.deleteResizeLine();
             self.deleteResizeMarker();
             self.deleteRotateMarker();
             self.SelectedListener.delete();
         end
+
 
         function update(self)
             updateBounds(self)
