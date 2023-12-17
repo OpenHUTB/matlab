@@ -1,21 +1,9 @@
 function insSensor(obj)
 
-
-
-
     if isR2021aOrEarlier(obj.ver)
         blocks=obj.findBlocksWithMaskType('fusion.internal.simulink.insSensor');
         for blkIdx=1:numel(blocks)
             blk=blocks{blkIdx};
-
-
-
-
-
-
-
-
-
 
             shouldRemove=false;
             shouldRemove=shouldRemove|strcmpi(get_param(blk,'TimeInput'),'on');
