@@ -1,12 +1,5 @@
 classdef CADModel<handle
 
-
-
-
-
-
-
-
     properties
 SelectionView
 ShapeStack
@@ -17,37 +10,22 @@ OperationsStack
 
 ClipBoard
 
-
-
-
-
 ShapeFactory
 
 OperationFactory
 
 Actions
 
-
 RedoStack
-
-
 
 Group
 
-
-
 SelectedObj
-
-
 
 SelectionViewType
 
 ClipBoardType
 ModelBusy
-
-
-
-
 
         Grid=struct('SnapToGrid',0,'GridSize',0.1);
         Units='mm';
@@ -57,9 +35,6 @@ ModelBusy
 
     methods
         function self=CADModel(ShapeFactoryObject,OperationFactoryObj)
-
-
-
             self.ShapeFactory=ShapeFactoryObject;
             self.OperationFactory=OperationFactoryObj;
             self.Group=cad.Layer(self,[0.2,0.2,0.2],0.3,1);
@@ -86,9 +61,8 @@ ModelBusy
             end
         end
 
+
         function shapeObj=getShapeObj(self,id)
-
-
 
             ids=[self.ShapeStack.Id];
             shapeObj=self.ShapeStack(ids==id);
@@ -96,43 +70,37 @@ ModelBusy
 
         function removeShapeFromStack(self,id)
 
-
             ids=[self.ShapeStack.Id];
             self.ShapeStack(ids==id)=[];
         end
 
+
         function opnObj=getOperationObj(self,id)
-
-
-
             ids=[self.OperationsStack.Id];
             opnObj=self.OperationsStack(ids==id);
         end
 
+
         function removeOperationFromStack(self,id)
-
-
             ids=[self.OperationsStack.Id];
             self.OperationsStack(ids==id)=[];
         end
 
-        function set.ModelBusy(self,val)
 
+        function set.ModelBusy(self,val)
             self.ModelBusy=val;
         end
+
+
         function FinalParent=getFinalParent(self,obj)
-
-
             FinalParent=obj;
             while~isempty(FinalParent.Parent)
                 FinalParent=FinalParent.Parent;
             end
         end
 
+
         function PrevParent=getFinalShapeParent(self,obj)
-
-
-
             FinalParent=obj;
             PrevParent=obj;
             while~isempty(FinalParent.Parent)
@@ -140,6 +108,7 @@ ModelBusy
                 FinalParent=FinalParent.Parent;
             end
         end
+
 
         function info=getInfo(self)
             args=getInfo(self.Group);
@@ -151,9 +120,6 @@ ModelBusy
 
 
         function add(self,evt)
-
-
-
             if self.ModelBusy
                 return;
             end
@@ -170,7 +136,6 @@ ModelBusy
             self.Actions=[actionObj;self.Actions];
 
 
-
             self.clearRedoStack();
             self.notify('ActionEnded');
             self.notify('ModelChanged',...
@@ -179,9 +144,8 @@ ModelBusy
             self.ModelBusy=0;
         end
 
+
         function addVariable(self,evt)
-
-
 
             if self.ModelBusy
                 return;
@@ -197,7 +161,6 @@ ModelBusy
             self.Actions=[actionObj;self.Actions];
 
 
-
             self.clearRedoStack();
             self.notify('ActionEnded');
             self.notify('ModelChanged',...
@@ -206,9 +169,8 @@ ModelBusy
             self.ModelBusy=0;
         end
 
+
         function changeVariable(self,evt)
-
-
 
             if self.ModelBusy
                 return;
@@ -236,11 +198,8 @@ ModelBusy
                 'Error','Value','',msg,getInfo(self)));
             end
 
-
-
             self.clearRedoStack();
             clearClipboard(self);
-
 
             self.notify('ActionEnded');
             self.notify('ModelChanged',...
@@ -249,9 +208,8 @@ ModelBusy
             self.ModelBusy=0;
         end
 
+
         function deleteVariable(self,evt)
-
-
 
             if self.ModelBusy
                 return;
@@ -266,8 +224,6 @@ ModelBusy
 
             self.Actions=[actionObj;self.Actions];
 
-
-
             self.clearRedoStack();
             clearClipboard(self);
 
@@ -279,25 +235,22 @@ ModelBusy
             self.ModelBusy=0;
         end
 
+
         function shapeObj=createNewShape(self,ShapeType,Args,varargin)
             if~isempty(varargin)
 
                 if size(varargin{1},2)==3
-
 
                     vert=varargin{1};
                     varargin=[];
                 else
                     if numel(varargin)==2
 
-
-
                         vert=varargin{2};
                     end
                 end
             end
             if isempty(varargin)
-
                 self.ShapeIDVal=self.ShapeIDVal+1;
                 idVal=self.ShapeIDVal;
             else
@@ -305,7 +258,6 @@ ModelBusy
                 info=varargin{1};
                 idVal=info.Id;
             end
-
 
             if strcmpi(ShapeType,'Polygon')
                 shapeObj=self.ShapeFactory.createShape(self.Group,ShapeType,Args,idVal,vert);
@@ -322,18 +274,19 @@ ModelBusy
             addShapeObjToStack(self,shapeObj);
         end
 
+
         function addShapeObjToStack(self,shapeObj)
 
             self.ShapeStack=[self.ShapeStack,shapeObj];
         end
 
-        function addOperationsObjToStack(self,opnObj)
 
+        function addOperationsObjToStack(self,opnObj)
             self.OperationsStack=[self.OperationsStack,opnObj];
         end
 
-        function shapePropertyChanged(self,shapeObj)
 
+        function shapePropertyChanged(self,shapeObj)
 
             infoVal=getInfo(shapeObj);
             if isvalid(self)
@@ -343,8 +296,8 @@ ModelBusy
             end
         end
 
-        function shapeAdded(self,shapeObj)
 
+        function shapeAdded(self,shapeObj)
 
             infoVal=getInfo(shapeObj);
             self.notify('ModelChanged',...
@@ -352,9 +305,8 @@ ModelBusy
             'ShapeChanged','Shape',infoVal.Type,infoVal,getInfo(self),[]));
             Data={{'Shape'},[infoVal.Id]};
 
-
-
         end
+
 
         function valueChanged(self,evt)
 
@@ -363,9 +315,6 @@ ModelBusy
             end
             self.ModelBusy=1;
             self.notify('ActionStarted');
-
-
-
             actionObj=cad.ValueChangedAction(self,evt);
             try
 
@@ -393,10 +342,8 @@ ModelBusy
             self.ModelBusy=0;
         end
 
+
         function opnObj=createNewOperation(self,OperationName,Shapes,varargin)
-
-
-
 
             if isempty(varargin)
                 self.OperationsIDVal=self.OperationsIDVal+1;
@@ -413,8 +360,8 @@ ModelBusy
             addOperationsObjToStack(self,opnObj);
         end
 
-        function operationAdded(self,opnObj)
 
+        function operationAdded(self,opnObj)
 
             infoVal=getInfo(opnObj);
             self.notify('ModelChanged',...
@@ -423,14 +370,16 @@ ModelBusy
             self.SelectedObj=[];
             self.SelectedObj.Data=[];
         end
-        function deleteNewShape(self,id)
 
+
+        function deleteNewShape(self,id)
             shapeObj=getShapeObj(self,id);
             removeShapeFromStack(self,id);
             shapeObj.delete();
         end
-        function shapeDeleted(self,infoVal)
 
+
+        function shapeDeleted(self,infoVal)
             self.notify('ModelChanged',...
             cad.events.ModelChangedEventData(...
             'ShapeDeleted','Shape',infoVal.Type,infoVal,getInfo(self),[]));
@@ -439,18 +388,21 @@ ModelBusy
 
         end
 
+
         function operationDeleted(self,infoVal)
 
             self.notify('ModelChanged',...
             cad.events.ModelChangedEventData(...
             'OperationDeleted','Operation',infoVal.Type,infoVal,getInfo(self)));
         end
-        function deleteNewOperation(self,id)
 
+
+        function deleteNewOperation(self,id)
             opnObj=getOperationObj(self,id);
             removeOperationFromStack(self,id);
             opnObj.delete();
         end
+
 
         function shapeParentChanged(self,shapeObj)
 
@@ -463,8 +415,8 @@ ModelBusy
 
         end
 
-        function deleteAct(self,evt)
 
+        function deleteAct(self,evt)
 
             if self.ModelBusy
                 return;
@@ -485,8 +437,6 @@ ModelBusy
 
 
         function undo(self)
-
-
 
             if self.ModelBusy
                 return;
@@ -511,8 +461,9 @@ ModelBusy
             'ActionEnded','','','',getInfo(self)));
             self.ModelBusy=0;
         end
-        function redo(self)
 
+
+        function redo(self)
 
             if self.ModelBusy
                 return;
@@ -538,9 +489,11 @@ ModelBusy
             self.ModelBusy=0;
         end
 
+
         function layerobj=findlayerobj(self,id)
             layerobj=self.Group;
         end
+
 
         function object=getObject(self,type,id)
             if strcmpi(type,'Shape')
@@ -551,6 +504,7 @@ ModelBusy
                 object=self.Group;
             end
         end
+
 
         function callOperationToSubTree(self,name,shapesObj,varargin)
             info=getInfo(shapesObj);
@@ -584,8 +538,8 @@ ModelBusy
             shapesObj.TriggerUpdate=1;
             shapePropertyChanged(self,shapesObj);
 
-
         end
+
 
         function selected(self,evt)
             self.SelectionViewType=evt.SelectionView;
@@ -609,7 +563,6 @@ ModelBusy
                     else
                         layerobj=[];
                     end
-
 
                 end
 
@@ -652,30 +605,27 @@ ModelBusy
             ModelChangedEventData('UpdateSelection','','',evt.Data,getInfo(self)));
         end
 
+
         function layerUpdated(self,layerobj)
             if~isvalid(self.Group)
                 return;
             end
             infoVal=getInfo(layerobj);
-
-
-
-
             self.notify('ModelChanged',...
             cad.events.ModelChangedEventData(...
             'LayerUpdated','Shape',infoVal.Type,getInfo(self),getInfo(self)));
 
         end
+
+
         function moveobject(self,object,pt1,pt2)
             if strcmpi(object.CategoryType,'Shape')
-
                 callOperationToSubTree(self,'Move',object,pt1,pt2)
             end
         end
 
+
         function clearRedoStack(self)
-
-
 
             if~isempty(self.RedoStack)
                 for i=1:numel(self.RedoStack)
@@ -684,6 +634,7 @@ ModelBusy
                 self.RedoStack=[];
             end
         end
+
 
         function clearActions(self)
 
@@ -695,8 +646,8 @@ ModelBusy
             end
         end
 
-        function move(self,evt)
 
+        function move(self,evt)
 
             if self.ModelBusy
                 return;
@@ -715,15 +666,14 @@ ModelBusy
 
         end
 
-        function moveShape(self,Id,FirstPt,LastPt)
 
+        function moveShape(self,Id,FirstPt,LastPt)
             shapeObj=self.getShapeObj(Id);
             translateShape(shapeObj,FirstPt,LastPt);
         end
 
 
         function cut(self,evt)
-
 
             if self.ModelBusy
                 return;
@@ -751,9 +701,8 @@ ModelBusy
             self.ModelBusy=0;
         end
 
+
         function clearClipboard(self)
-
-
 
             if strcmpi(self.ClipBoardType,'Copy')
                 for i=1:numel(self.ClipBoard)
@@ -764,8 +713,8 @@ ModelBusy
             self.ClipBoardType='';
         end
 
-        function copy(self,evt)
 
+        function copy(self,evt)
 
             if self.ModelBusy
                 return;
@@ -803,6 +752,7 @@ ModelBusy
             self.ModelBusy=0;
         end
 
+
         function removeDependentMapForTree(self,obj)
             obj.deleteDependentVariableMaps();
             shapes=[];
@@ -817,6 +767,7 @@ ModelBusy
             end
         end
 
+
         function restoreVarMaps(self,actObj)
             props=fields(actObj.PropertyValueMap);
             for i=1:numel(props)
@@ -829,11 +780,13 @@ ModelBusy
 
         end
 
+
         function c=copyobject(self,object)
             if strcmpi(object.CategoryType,'Shape')
                 c=copy(object);
             end
         end
+
 
         function pasteobject(self,object,varargin)
             if strcmpi(object.CategoryType,'Shape')
@@ -844,6 +797,7 @@ ModelBusy
             end
         end
 
+
         function removeobject(self,object)
             if strcmpi(object.CategoryType,'Shape')
                 removeShapeTreeFromStack(self,object);
@@ -851,6 +805,7 @@ ModelBusy
                 removeParent(object);
             end
         end
+
 
         function c=copyobjectTypeId(self,type,id,selectionview)
 
@@ -865,14 +820,7 @@ ModelBusy
         end
 
 
-
-
-
-
         function addNewIdToShapeTree(self,obj)
-
-
-
 
             for i=1:numel(obj.Children)
                 shapeobjChildren=obj.Children(i).Children;
@@ -886,8 +834,8 @@ ModelBusy
             obj.Id=self.ShapeIDVal;
         end
 
-        function addShapeTreeToStack(self,obj)
 
+        function addShapeTreeToStack(self,obj)
 
             for i=1:numel(obj.Children)
                 shapeobjChildren=obj.Children(i).Children;
@@ -899,9 +847,8 @@ ModelBusy
             addShapeObjToStack(self,obj);
         end
 
+
         function removeShapeTreeFromStack(self,obj)
-
-
             operationChildren=obj.Children;
             for i=1:numel(obj.Children)
                 shapeobjChildren=obj.Children(i).Children;
@@ -913,9 +860,8 @@ ModelBusy
             removeShapeFromStack(self,obj.Id);
         end
 
+
         function addGroupToChildren(self,obj,group)
-
-
             childrenShapes=getChildrenShapes(obj);
             for i=1:numel(childrenShapes)
                 addGroupToChildren(self,childrenShapes(i),group)
@@ -923,9 +869,8 @@ ModelBusy
             obj.Group=group;
         end
 
+
         function paste(self,evt)
-
-
 
             if self.ModelBusy
                 return;
@@ -951,6 +896,7 @@ ModelBusy
             self.ModelBusy=0;
         end
 
+
         function addObjToClipBoard(self,obj)
 
             self.ClipBoard=obj;
@@ -960,7 +906,6 @@ ModelBusy
         function delete(self)
 
         end
-
 
     end
     events
