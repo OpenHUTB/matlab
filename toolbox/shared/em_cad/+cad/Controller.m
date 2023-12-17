@@ -1,12 +1,11 @@
 classdef Controller<handle
 
-
-
-
     properties
 View
 Model
     end
+
+
     methods
         function self=Controller(View,Model)
             self.Model=Model;
@@ -16,6 +15,7 @@ Model
                 setModel(self.View(i),self.Model);
             end
         end
+
 
         function addTooltipHandler(self)
             addlistener(self.View,'Hover',@(src,evt)self.View.setCursorText(src,evt));
