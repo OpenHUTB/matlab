@@ -1,16 +1,5 @@
 classdef MoveAction<cad.Actions
 
-
-
-
-
-
-
-
-
-
-
-
     methods
 
         function self=MoveAction(Model,evt)
@@ -24,6 +13,7 @@ classdef MoveAction<cad.Actions
             self.ActionInfo.EndPoint=evt.Data.EndPoint;
         end
 
+
         function undo(self)
 
             for i=1:numel(self.ActionInfo.Selection{1})
@@ -34,6 +24,7 @@ classdef MoveAction<cad.Actions
             end
 
         end
+
 
         function execute(self)
 
