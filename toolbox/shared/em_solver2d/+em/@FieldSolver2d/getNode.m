@@ -9,7 +9,6 @@ function Node=getNode(obj,pulse)
         lossTangent=obj.lossTangentSub;
     end
 
-
     Node.numNode=pulse.groundplane+1;
 
     for iLayer=1:nl
@@ -20,8 +19,6 @@ function Node=getNode(obj,pulse)
                 Node.numNode=Node.numNode+pulse.widthTrace{iLayer}(iTrace)+1;
             end
         end
-
-
 
         if iLayer~=1&&(abs(epsilonR(iLayer)-epsilonR(iLayer-1))>eps||abs(lossTangent(iLayer)-lossTangent(iLayer-1))>eps)
             for iTrace=1:length(pulse.separationTrace{iLayer})
@@ -36,11 +33,6 @@ function Node=getNode(obj,pulse)
 
     if obj.codeSub>0
         Node.numNode=Node.numNode+pulse.excessLeftWidthSub(obj.numSub+1)+1;
-
-
-
-
-
     elseif obj.codeSub==0&&~obj.hasTraceOnTopLayer&&...
         (abs(epsilonR(obj.numSub)-1)>eps||abs(lossTangent(obj.numSub))>eps)
         Node.numNode=Node.numNode+pulse.excessLeftWidthSub(obj.numSub+1)+1;
