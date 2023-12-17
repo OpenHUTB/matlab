@@ -1,9 +1,5 @@
 classdef CopyAction<cad.Actions
 
-
-
-
-
     methods
 
         function self=CopyAction(Model,evt)
@@ -19,12 +15,14 @@ classdef CopyAction<cad.Actions
             self.Actioninfo.PreviousClipBoardType=self.Model.ClipBoardType;
         end
 
+
         function undo(self)
             cutobject=self.ActionObject;
             clearClipBoard(self.Model);
             self.ClipBoard=self.Actioninfo.PreviousClipBoard;
             self.ClipBoardType=elf.ActionInfo.PrevuiousClipBoardType;
         end
+
 
         function execute(self)
             cutobject=[];
@@ -46,6 +44,7 @@ classdef CopyAction<cad.Actions
             self.Model.ClipBoardType='Copy';
         end
 
+
         function removeDependentMapForTree(self,obj)
             obj.deleteDependentVariableMaps();
             shapes=[];
@@ -59,6 +58,7 @@ classdef CopyAction<cad.Actions
                 removeDependentMapForTree(self,shapes(i));
             end
         end
+
 
         function callDeletedOnAllChildren(self,actObj)
             if strcmpi(actObj.categoryType,'Shape')
@@ -86,14 +86,13 @@ classdef CopyAction<cad.Actions
             end
         end
 
+
         function callAddedOnAllChildren(self,actObj)
             if strcmpi(actObj.categoryType,'Shape')
                 childrenShapes=getChildrenShapes(actObj);
 
                 infoval=getInfo(actObj);
                 shapeAdded(self.Model,actObj);
-
-
                 opnChildren=actObj.Children;
                 for i=1:numel(opnChildren)
                     infoval=getInfo(opnChildren(i));
