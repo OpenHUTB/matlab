@@ -1,9 +1,5 @@
 classdef ShapeFactory<handle
 
-
-
-
-
     methods
         function shapeObj=createShape(self,Group,Type,BBox,Id,varargin)
             switch Type
