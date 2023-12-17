@@ -1,6 +1,5 @@
 classdef DeleteProperty<matlabshared.devicetree.property.PropertyBase
 
-
     methods
         function obj=DeleteProperty(name)
             obj=obj@matlabshared.devicetree.property.PropertyBase(name);
@@ -10,7 +9,6 @@ classdef DeleteProperty<matlabshared.devicetree.property.PropertyBase
 
     methods(Access=protected)
         function printBody(obj,hDTPrinter,~,~)
-
 
             hDTPrinter.addLine("/delete-property/ "+obj.Name+";");
         end
