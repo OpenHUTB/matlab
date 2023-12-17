@@ -1,6 +1,5 @@
 function savelinpar(obj,l)
 
-
     obj.Name=l.Name;
     obj.codeSub=l.codeSub;
     obj.numSub=l.numSub;
