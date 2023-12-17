@@ -1,10 +1,5 @@
 classdef Polygon<cad.Shape&cad.DependentObject
 
-
-
-
-
-
     properties
 DefaultShape
         Type='Polygon';
@@ -13,20 +8,10 @@ DefaultShape
 Args
         ResizeEqual=0;
 
-
-
 InitialArgs
 Group
 
-
-
-
-
-
-
-
 PropertyChangedListener
-
 
     end
 
@@ -49,11 +34,9 @@ PropertyChangedListener
 
             self.Group=Group;
 
-
             self.ObjectType=self.Type;
-
-
         end
+
 
         function gid=getGroupId(self)
 
@@ -64,30 +47,23 @@ PropertyChangedListener
             end
         end
 
-        function deleteListeners(self)
 
+        function deleteListeners(self)
             self.deleteListeners@cad.Shape();
             if~isempty(self.PropertyChangedListener)
                 self.PropertyChangedListener.delete;
             end
         end
+
+
         function sout=getShape(self)
-
             createGeometry(self.DefaultShape);
-
 
             sout=copy(self.DefaultShape);
         end
 
+
         function set.Args(self,val)
-
-
-
-
-
-
-
-
 
             self.Args=val;
             self.updateShape();
@@ -95,10 +71,8 @@ PropertyChangedListener
             self.notify('PropertyChanged');
         end
 
+
         function p=parseArgs(self,varargin)
-
-
-
 
             if strcmpi(self.Type,'Rectangle')
                 p=inputParser;
@@ -144,6 +118,7 @@ PropertyChangedListener
             self.InitialArgs=self.Args;
         end
 
+
         function generatePolygon(self)
 
             if strcmpi(self.Type,'Rectangle')
@@ -151,10 +126,6 @@ PropertyChangedListener
                 w=self.Args.Width;
                 c=self.Args.Center;
                 rectObj=antenna.Rectangle('Length',l,'Width',w,'Center',c);
-
-
-
-
                 vert=rectObj.ShapeVertices;
             elseif strcmpi(self.Type,'Circle')
                 r=self.Args.Radius;
@@ -175,16 +146,12 @@ PropertyChangedListener
                 theta=linspace(0,2*pi,p-1);
                 theta=theta';
 
-
-
-
                 ellipseObj=antenna.Ellipse('MajorAxis',r,'Center',c,'MinorAxis',r2);
                 vert=ellipseObj.ShapeVertices;
             elseif strcmpi(self.Type,'Polygon')
                 vert=self.Args.Vertices;
                 c=mean(vert);
             end
-
 
             if~isempty(self.DefaultShape)
                 poly=self.DefaultShape;
@@ -193,21 +160,13 @@ PropertyChangedListener
                 poly=antenna.Polygon('Vertices',vert);
             end
 
-
             for i=1:numel(self.Args.Angle)
                 if self.Args.Angle(i)==0
-
-
-
-
                     continue;
                 end
                 poly=rotate(poly,self.Args.Angle(i),[c(1),c(2),-1],[c(1),c(2),1]);
 
             end
-
-
-
 
             self.DefaultShape=poly;
             if~isempty(self.AntennaShape)
@@ -219,8 +178,8 @@ PropertyChangedListener
 
             end
 
-
         end
+
 
         function translateShape(self,pt1,pt2)
 
@@ -248,8 +207,6 @@ PropertyChangedListener
                 elseif strcmpi(self.Type,'Polygon')
                     vert=self.Args.Vertices;
                     if size(vert,2)==2
-
-
                         vert=[vert,zeros(size(vert,1),1)];
                     end
                     self.Args.Vertices(:,1:2)=vert(:,1:2)+diffMove(1:2);
@@ -258,10 +215,8 @@ PropertyChangedListener
 
         end
 
+
         function resizeShape(self,BoundsVal)
-
-
-
             initialBoundsVal=BoundsVal{1};
             FinalBoundsVal=BoundsVal{2};
             iniCenter=mean(initialBoundsVal');
@@ -305,8 +260,6 @@ PropertyChangedListener
             elseif strcmpi(self.Type,'Polygon')
                 vert=(self.Args.Vertices(~isnan(self.DefaultShape.Vertices(:,1)),:));
                 if size(vert,2)==2
-
-
                     vert=[vert,zeros(size(vert,1),1)];
                 end
                 vert=vert-[iniCenter,0];
@@ -315,33 +268,19 @@ PropertyChangedListener
                 vert=vert+[FinCenter,0];
                 if size(self.Args.Vertices,2)==2
 
-
                     self.Args.Vertices=[self.Args.Vertices,zeros(size(vert,1),1)];
                 end
                 self.Args.Vertices(~isnan(self.DefaultShape.Vertices(:,1)),:)=vert;
             end
         end
 
+
         function rotateShape(self,RotateVal,axis)
 
-
-
-
             args=self.Args;
-
             rotatediff=RotateVal{2}-RotateVal{1};
             rotshape=rotate(self.DefaultShape,rotatediff,[axis(1:2),-1],[axis(1:2),1]);
-
-
-
-
-
-
-
-
             newvert=rotshape.ShapeVertices;
-
-
 
             if strcmpi(self.Type,'Polygon')
                 args.Vertices=newvert;
@@ -382,27 +321,25 @@ PropertyChangedListener
             self.Args=args;
         end
 
+
         function changeValue(self,infoval)
-
-
 
             if strcmpi(infoval.Property,'Name')
                 self.Name=infoval.Value;
-
                 self.notify('PropertyChanged');
             else
                 self.Args.(infoval.Property)=infoval.Value;
             end
         end
 
+
         function revertShape(self)
 
             self.Args=self.InitialArgs;
         end
+
+
         function info=getInfo(self)
-
-
-
             info=self.getInfo@cad.TreeNode();
             info.Type=self.Type;
             if~isempty(self.Parent)
@@ -428,8 +365,6 @@ PropertyChangedListener
                     info.ChildrenChildrenType{i}={};
                 end
             end
-
-
             info.Args=self.generateArgsWithValueMap;
 
             info.ShapeObj=copy(self.AntennaShape);
@@ -439,7 +374,6 @@ PropertyChangedListener
             info.CategoryType=self.CategoryType;
             if(strcmpi(self.Type,'Circle')||~isempty(self.Children))
 
-
                 info.ResizeEqual=1;
             elseif((strcmpi(self.Type,'Rectangle')&&any(abs(self.Args.Angle)==[0,90,180,270,360])))||strcmpi(self.Type,'Polygon')
 
@@ -448,7 +382,6 @@ PropertyChangedListener
 
                 info.ResizeEqual=1;
             end
-
             info.PropertyValueMap=self.PropertyValueMap;
 
 
@@ -486,6 +419,7 @@ PropertyChangedListener
             end
         end
 
+
         function mapargs=generateArgsWithValueMap(self)
             props=fields(self.Args);
             for i=1:numel(props)
@@ -502,8 +436,8 @@ PropertyChangedListener
             end
         end
 
-        function txt=genScript(self,varargin)
 
+        function txt=genScript(self,varargin)
 
             if~isempty(varargin)
                 startString=varargin{1};
@@ -574,8 +508,8 @@ PropertyChangedListener
 
             end
 
-
         end
+
 
         function scriptval=getPropertyScript(self,propname,fact)
             if~isempty(self.PropertyValueMap.(propname))
@@ -588,10 +522,9 @@ PropertyChangedListener
                 end
             end
         end
+
+
         function obj=copy(self,varargin)
-
-
-
             obj=cad.Polygon(self.Group,self.Id,self.Type);
             obj.InitialArgs=self.InitialArgs;
             obj.Args=self.Args;
@@ -609,10 +542,8 @@ PropertyChangedListener
             updateShape(obj);
         end
 
+
         function obj=copyNode(self,varargin)
-
-
-
             obj=cad.Polygon(self.Group,self.Id,self.Type);
             obj.InitialArgs=self.InitialArgs;
             obj.Args=self.Args;
@@ -623,8 +554,6 @@ PropertyChangedListener
             end
             updateShape(obj);
         end
-
-
 
 
         function validationHandleOut=getDefaultValidation(self,propName)
@@ -647,8 +576,9 @@ PropertyChangedListener
 
         end
 
-
     end
+
+
     methods(Static=true,Hidden)
         function self=loadobj(self)
             if isfield(self.PropertyValueMap,'Property')
