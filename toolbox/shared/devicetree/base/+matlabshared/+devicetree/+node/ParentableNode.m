@@ -1,16 +1,6 @@
 classdef(Abstract)ParentableNode<handle
 
-
-
-
-
-
-
-
-
     properties(SetAccess={?matlabshared.devicetree.node.NonTerminalNode,?matlabshared.devicetree.tree.DeviceTree})
-
-
 
         ParentNode matlabshared.devicetree.node.NodeBase
     end
@@ -25,13 +15,6 @@ classdef(Abstract)ParentableNode<handle
 
     methods
         function set.ParentNode(obj,hNode)
-
-
-
-
-
-
-
             obj.validateParentNode(hNode);
             obj.ParentNode=hNode;
         end
@@ -48,9 +31,6 @@ classdef(Abstract)ParentableNode<handle
 
 
         function isRoot=isRootNode(obj)
-
-
-
             isRoot=(obj.ParentNode==obj);
         end
 
@@ -68,10 +48,6 @@ classdef(Abstract)ParentableNode<handle
                 error(message('devicetree:base:NoPathForNode',nodeName));
             end
 
-
-
-
-
             if obj.isRootNode
 
                 nodePath=nodeName;
@@ -79,8 +55,6 @@ classdef(Abstract)ParentableNode<handle
 
                 nodePath="/"+nodeName;
             else
-
-
                 nodePath=obj.ParentNode.getNodePath+"/"+nodeName;
             end
         end
@@ -90,7 +64,6 @@ classdef(Abstract)ParentableNode<handle
     methods(Access=protected)
 
         function validateParentNode(obj,hNode)%#ok<INUSD>
-
 
         end
     end
