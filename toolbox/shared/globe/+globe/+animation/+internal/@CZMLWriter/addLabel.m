@@ -1,11 +1,5 @@
 function addLabel(writer,name,position,time,labelText,varargin)
 
-
-
-
-
-
-
     p=inputParser;
     addRequired(p,'name');
     addRequired(p,'position');
