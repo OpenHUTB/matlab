@@ -1,10 +1,5 @@
 classdef OperationsFactory<handle
 
-
-
-
-
-
     methods
         function opnObj=createOperation(self,Type,varargin)
             switch Type
