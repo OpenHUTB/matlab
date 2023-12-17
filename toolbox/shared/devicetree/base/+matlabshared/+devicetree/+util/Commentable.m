@@ -1,14 +1,6 @@
 classdef Commentable<matlabshared.devicetree.util.Printable
 
-
-
-
-
     properties(SetAccess=protected)
-
-
-
-
         Comments string
     end
 
