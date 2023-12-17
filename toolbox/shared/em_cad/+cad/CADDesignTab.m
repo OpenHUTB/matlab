@@ -1,8 +1,5 @@
 classdef CADDesignTab<handle
 
-
-
-
     properties
 DesignTab
 FileSection
