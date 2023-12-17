@@ -1,10 +1,5 @@
 classdef(Abstract)Shape<cad.TreeNode
 
-
-
-
-
-
     properties
 Name
 
@@ -16,8 +11,8 @@ Triangulation
 Selected
 ReindexListener
 
-
     end
+
 
     methods
         function self=Shape(Id,varargin)
@@ -25,10 +20,12 @@ ReindexListener
             self.Id=Id;
         end
 
+
         function set.Triangulation(self,val)
 
             self.Triangulation=val;
         end
+
 
         function set.AntennaShape(self,val)
 
@@ -39,10 +36,13 @@ ReindexListener
             end
         end
 
+
         function childrenChanged(self)
 
             reindexOperations(self);
         end
+
+
         function addOperation(self,opnObj,varargin)
 
             indx=numel(self.Operations);
@@ -61,11 +61,8 @@ ReindexListener
                     reindexOperations(self);
                 end
 
-
                 updateShape(self);
             else
-
-
                 updateShape(self,opnObj);
             end
 
@@ -75,8 +72,6 @@ ReindexListener
         function updateShape(self,varargin)
 
             if isempty(varargin)
-
-
 
                 generatePolygon(self);
                 dummyShape=self.AntennaShape;
@@ -90,8 +85,6 @@ ReindexListener
                 for i=1:numel(boolOpns)
 
                     try
-
-
                         dummyShape=performOperation(boolOpns(i),dummyShape);
                     catch
                         error(['Cannot perform ',boolOpns(i).Name,...
@@ -99,15 +92,11 @@ ReindexListener
                     end
                 end
             else
-
-
                 if isa(varargin{1},'cad.BooleanOperation')
                     dummyShape=self.AntennaShape;
                     dummyShape=performOperation(varargin{1},dummyShape);
                 end
             end
-
-
 
             if isempty(dummyShape)
                 self.AntennaShape=self.getShape();
@@ -125,35 +114,41 @@ ReindexListener
 
         end
 
+
         function resizeShape(self)
 
         end
+
 
         function revertShape(self)
 
             self.AntennaShape=[];
         end
 
+
         function childUpdated(self,~)
 
             self.updateShape();
         end
 
-        function updateTriangulation(self)
 
+        function updateTriangulation(self)
             [p,t]=getInitialMesh(self.AntennaShape);
             tri=triangulation(t(:,1:3),p);
             self.Triangulation=tri;
         end
 
+
         function vert=genLineVertices(self)
             vert=self.Triangulation.Points;
         end
+
 
         function sout=getShape(self)
             sout=[];
 
         end
+
 
         function sout=getOperatedShape(self)
 
@@ -163,6 +158,7 @@ ReindexListener
                 sout=copy(self.AntennaShape);
             end
         end
+
 
         function val=getChildrenShapes(self)
 
@@ -174,6 +170,7 @@ ReindexListener
             end
         end
 
+
         function val=getChildrenOperations(self)
 
             val=[];
@@ -181,6 +178,7 @@ ReindexListener
                 val=self.Children;
             end
         end
+
 
         function removeChild(self,oldChild)
 
@@ -195,8 +193,8 @@ ReindexListener
             end
         end
 
-        function deleteListeners(self)
 
+        function deleteListeners(self)
             self.deleteListeners@cad.TreeNode();
         end
 
