@@ -1,6 +1,5 @@
 classdef DeleteNode<matlabshared.devicetree.node.TerminalNode&matlabshared.devicetree.node.ParentableNode
 
-
     methods
         function obj=DeleteNode(name)
             obj=obj@matlabshared.devicetree.node.TerminalNode(name);
@@ -11,10 +10,7 @@ classdef DeleteNode<matlabshared.devicetree.node.TerminalNode&matlabshared.devic
     methods(Access=protected)
         function printBody(obj,hDTPrinter,isOverlay,~)
 
-
-
             if isOverlay
-
 
                 error(message('devicetree:base:NoOverlayWithTopLevelDelete'));
             end
