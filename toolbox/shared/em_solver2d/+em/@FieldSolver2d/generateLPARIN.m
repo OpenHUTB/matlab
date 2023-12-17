@@ -3,7 +3,6 @@ function generateLPARIN(obj,mesh,dir)
     if nargin==2
         dir=pwd;
     end
-
     filename=fullfile(dir,'linpar.lparin');
 
     nl=obj.numLayer;
@@ -11,21 +10,12 @@ function generateLPARIN(obj,mesh,dir)
     tai=obj.idxTraceAtInterface;
     s=obj.separationTraceAtInterface;
 
-
     epsilonR=[obj.epsilonRSub,1.0];
     lossTangent=[obj.lossTangentSub,0.0];
 
-
-
-
     fileID=fopen(filename,'w');
-
-
     fprintf(fileID,'%d\n',mesh.Node.numNode);
-
-
     fprintf(fileID,'%d\n',sum(obj.numTrace));
-
 
     for iLayer=1:nl
         for iTrace=1:obj.numTrace(iLayer)
@@ -37,7 +27,6 @@ function generateLPARIN(obj,mesh,dir)
         end
     end
 
-
     if obj.codeSub<=0
         ngp=mesh.Pulse.groundplane;
     else
@@ -47,7 +36,6 @@ function generateLPARIN(obj,mesh,dir)
         end
     end
     fprintf(fileID,'%d\n',ngp);
-
 
     ndt=0;
     for iSub=2:obj.numSub
