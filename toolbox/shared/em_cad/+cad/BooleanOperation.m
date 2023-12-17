@@ -1,18 +1,7 @@
 classdef BooleanOperation<cad.Operation
 
-
-
-
-
-
-
-
-
-
     methods
         function self=BooleanOperation(name,shapes,Id)
-
-
             self@cad.Operation(name,name,Id);
             for i=1:numel(shapes)
                 addParent(shapes(i),self);
@@ -26,8 +15,6 @@ classdef BooleanOperation<cad.Operation
                 return;
             end
             if isempty(shape)
-
-
                 shape=getShape(self.Parent);
             end
 
@@ -63,24 +50,16 @@ classdef BooleanOperation<cad.Operation
             end
         end
 
-        function sout=shapeIntersect(self,s1,s2)
 
+        function sout=shapeIntersect(self,s1,s2)
 
             sout=s1&s2;
             return;
 
-
-
-
-
-
-
-
         end
 
+
         function obj=copy(self,varargin)
-
-
             obj=cad.BooleanOperation(self.Name,[],self.Id);
             for i=1:numel(self.Children)
                 shapeobj=copy(self.Children(i),varargin{:});
