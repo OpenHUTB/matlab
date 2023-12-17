@@ -1,11 +1,5 @@
 classdef PropertyType
 
-
-
-
-
-
-
     enumeration
 String
 Bytestring
