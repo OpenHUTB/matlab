@@ -1,8 +1,5 @@
 function ret=isAdminMode()
 
-
-
-
     if ispc()
         try
             perlScript=[tempname,'.pl'];
