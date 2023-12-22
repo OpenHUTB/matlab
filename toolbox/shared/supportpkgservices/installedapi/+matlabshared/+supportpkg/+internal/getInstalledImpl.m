@@ -1,27 +1,9 @@
 function installedPkgList=getInstalledImpl()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     installedPkgList=getInstalled_SSI();
 end
 
 function spList=getInstalled_SSI()
-
-
-
 
 
     try
