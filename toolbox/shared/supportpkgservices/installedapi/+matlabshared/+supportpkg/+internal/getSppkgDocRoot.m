@@ -1,15 +1,5 @@
 function spDocRoot=getSppkgDocRoot(sppkgInternalLocation,sppkgNameTag)
 
-
-
-
-
-
-
-
-
-
-
     validateattributes(sppkgNameTag,{'char'},{'nonempty'},'getSppkgDocRoot','sppkgNameTag');
     validateattributes(sppkgInternalLocation,{'char'},{'nonempty'},'getSppkgDocRoot','sppkgInternalLocation');
 
@@ -17,10 +7,6 @@ function spDocRoot=getSppkgDocRoot(sppkgInternalLocation,sppkgNameTag)
 
 
     function helpDir=getHelpDir(internalLocation,sppkgNameTag)
-
-
-
-
         matchIndx=regexp(internalLocation,regexptranslate('escape',[filesep,'toolbox']));
         for i=numel(matchIndx):-1:1
             dirPath=fullfile(internalLocation(1:matchIndx(i)));
