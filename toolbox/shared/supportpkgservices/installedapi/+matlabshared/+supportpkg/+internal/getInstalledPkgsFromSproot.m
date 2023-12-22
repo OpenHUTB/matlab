@@ -1,19 +1,9 @@
 function spList=getInstalledPkgsFromSproot(spRoot)
 
-
-
-
-
-
-
     spList=[];
     installedPkgs=matlabshared.supportpkg.internal.getInstalledMathWorksProducts(spRoot);
 
-
-
     for i=1:numel(installedPkgs)
-
-
         baseCode=char(installedPkgs(i).basecode);
 
         pluginInfo=matlabshared.supportpkg.internal.getSpPkgInfoForBaseCode(baseCode);
