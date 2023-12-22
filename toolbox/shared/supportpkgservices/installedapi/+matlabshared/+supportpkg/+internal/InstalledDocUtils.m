@@ -1,8 +1,5 @@
 classdef InstalledDocUtils
 
-
-
-
     properties(Constant)
         PROPERTIES_FILE="doccenter.properties";
         HELP_BASE=fullfile("help","supportpkg");
@@ -12,13 +9,7 @@ classdef InstalledDocUtils
     methods(Access=public,Static)
         function docInfo=getInstalledDocInfo(spRoot)
 
-
-
-
-
             docInfo=[];
-
-
             allHelpDirs=matlabshared.supportpkg.internal.InstalledDocUtils.getAllHelpDirs(spRoot);
 
             if isempty(allHelpDirs)
@@ -34,13 +25,11 @@ classdef InstalledDocUtils
         end
     end
 
+
     methods(Access=private,Static)
 
         function helpDirs=getAllHelpDirs(spRoot)
             helpDirs=[];
-
-
-
 
             if isempty(spRoot)||~exist(spRoot,'dir')
                 return;
@@ -50,11 +39,7 @@ classdef InstalledDocUtils
 
 
             helpDirs=dirContents([dirContents.isdir]);
-
-
             helpDirNames=convertCharsToStrings({helpDirs.name});
-
-
             helpDirs=helpDirs(helpDirNames~="."&helpDirNames~="..");
         end
 
@@ -63,9 +48,6 @@ classdef InstalledDocUtils
             spHelpData=[];
 
             fileToRead=fullfile(helpDir.folder,helpDir.name,matlabshared.supportpkg.internal.InstalledDocUtils.PROPERTIES_FILE);
-
-
-
 
             if~exist(fileToRead,'file')
                 return;
