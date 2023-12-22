@@ -1,23 +1,5 @@
 function info=checkForUpdate(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     p=inputParser;
     p.CaseSensitive=false;
     p.addParameter('BaseProduct',[],@locValidateBaseProduct);
