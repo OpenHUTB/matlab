@@ -1,29 +1,12 @@
 function info=getInstalled(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     p=inputParser;
     p.CaseSensitive=false;
     p.addParamValue('BaseProduct',[],@locValidateBaseProduct);
     p.parse(varargin{:});
 
     baseProductList=p.Results.BaseProduct;
-
-
     pkgInfo=locGetPkgInfo(baseProductList);
-
 
     if nargout==0
         if~isempty(pkgInfo)
