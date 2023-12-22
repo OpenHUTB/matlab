@@ -1,20 +1,8 @@
 classdef SmootherDefinition<handle
 
-
-
-
-
-
-
-
-
 %#codegen
 
-
     properties(Dependent)
-
-
-
 
 EnableSmoothing
     end
@@ -66,8 +54,6 @@ pSmoothing
 
         function setSmoothingValue(obj,val)
 
-
-
             if coder.target('MATLAB')
                 coder.internal.assert(~obj.pIsSmoothingLocked,'shared_smoothers:AbstractSmoother:nonTunableSmoothingML');
             else
@@ -81,8 +67,6 @@ pSmoothing
         end
 
         function lockSmoothingValue(obj)
-
-
 
             obj.pIsSmoothingLocked=true;
         end
