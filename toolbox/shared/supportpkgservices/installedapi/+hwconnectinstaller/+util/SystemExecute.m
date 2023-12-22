@@ -1,9 +1,4 @@
-
-
 classdef(Sealed=true)SystemExecute<handle
-
-
-
 
     properties(Access=private)
 WindowsPipeName
@@ -107,14 +102,6 @@ WindowsPipeName
                 if(hciStatus==0)
                     status=hciStatus;
                     if exist(hciMsg,'file')==2
-
-
-
-
-
-
-
-
                         numReadAttempts=5;
                         try
                             for attempt=1:numReadAttempts,
