@@ -9,7 +9,6 @@ function g=getDigraph(this)
     for kndx=1:length(roadArray)
         roadk=roadArray(kndx);
 
-
         if roadk.Direction==driving.roadnetwork.DirectionOfTravel.Forward
             s(kndx,1)=roadk.StartNode.ID;
             t(kndx,1)=roadk.EndNode.ID;
@@ -28,15 +27,12 @@ function g=getDigraph(this)
         end
     end
 
-
     missingIdxs=s=="";
     s(missingIdxs)=[];
     t(missingIdxs)=[];
     w(missingIdxs)=[];
 
-
     g=digraph(s,t,w);
-
 
     nodeVars=g.Nodes.Variables;
     numNodes=length(nodeVars);
@@ -44,9 +40,6 @@ function g=getDigraph(this)
     ydata=zeros(numNodes,1);
     zdata=zeros(numNodes,1);
     rnNodes=this.Nodes;
-
-
-
 
     for kndx=1:numNodes
         nodek=rnNodes.getByKey(uint64(str2double(nodeVars{kndx})));
@@ -58,7 +51,6 @@ function g=getDigraph(this)
         ydata(kndx)=pos(2);
         zdata(kndx)=pos(3);
     end
-
 
     g.Nodes.Position=[xdata,ydata,zdata];
 
