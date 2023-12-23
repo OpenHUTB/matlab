@@ -1,8 +1,5 @@
 classdef MultiSelectionGUI<handle
 
-
-
-
     properties
 
 availableObjs
@@ -24,6 +21,7 @@ currentConfig
         end
     end
 
+
     methods
         dialogCallback(obj,hDlg,tag)
         out=getDialogSchema(obj)
@@ -31,6 +29,7 @@ currentConfig
         generateHighlightObjDescription(obj,hDlg)
         [success,errMsg]=postApplyCallBack(obj)
     end
+
 
     methods(Access=private)
         init(obj,varargin)
