@@ -1,12 +1,6 @@
 function paramValuesStr=getSimParamValues(modelName)
 
-
-
-
-
     paramValuesStr='';
-
-
     names={'SimCompilerOptimization','SimCtrlC',...
     'IntegerOverflowMsg','IntegerSaturationMsg'};
 
