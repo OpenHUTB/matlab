@@ -1,9 +1,5 @@
 classdef CostEditorRowItem<handle
 
-
-
-
-
     properties
 ColumnNames
 Block
@@ -20,8 +16,8 @@ IsSim
         ClassPropertyNames={'Block','Auto','Cost','Ratio'};
     end
 
-    methods
 
+    methods
 
         function obj=CostEditorRowItem(srcObj,regionId,blockPath,cost,...
             userCost,overrideCostData,isSim)
@@ -68,6 +64,7 @@ IsSim
 
         end
 
+
         function propValue=getPropValue(obj,propName)
             classPropName=getClassPropName(obj,propName);
             propValue=obj.(classPropName);
@@ -76,9 +73,9 @@ IsSim
             end
         end
 
+
         function setPropValue(obj,propName,newVal)
             classPropName=getClassPropName(obj,propName);
-
             modelName=getModelName(obj.SourceObj.MappingData,obj.RegionId);
             mfModel=get_param(modelName,'MulticoreDataModel');
             mc=slmulticore.MulticoreConfig.getMulticoreConfig(mfModel);
@@ -118,6 +115,7 @@ IsSim
             end
         end
 
+
         function isHyperlink=propertyHyperlink(obj,propName,clicked)
             classPropName=getClassPropName(obj,propName);
             isHyperlink=false;
@@ -130,7 +128,6 @@ IsSim
                     removeAllHighlighting(obj.SourceObj.UIObj);
                     modelName=getModelName(obj.SourceObj.MappingData,obj.RegionId);
                     set_param(modelName,'HiliteAncestors','off');
-
                     modelPath=getModelPath(obj.SourceObj.MappingData,obj.RegionId);
                     bp=Simulink.BlockPath([modelPath,{obj.BlockPath}]);
                     hilite_system(bp);
@@ -202,9 +199,11 @@ IsSim
             end
         end
 
+
         function tf=isDragAllowed(~)
             tf=true;
         end
+
 
         function isReadOnly=isReadonlyProperty(obj,propName)
             classPropName=getClassPropName(obj,propName);
@@ -212,6 +211,7 @@ IsSim
             isReadOnly=obj.IsSim||~(strcmp(classPropName,'Auto')||...
             (strcmp(classPropName,'Cost')&&strcmp(obj.Auto,'0')));
         end
+
 
         function isEditable=isEditableProperty(obj,propName)
             classPropName=getClassPropName(obj,propName);
@@ -225,6 +225,7 @@ IsSim
             isHier=false;
         end
     end
+
 
     methods(Access=private)
         function classPropName=getClassPropName(obj,propName)
