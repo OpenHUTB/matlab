@@ -1,10 +1,5 @@
 function[isSupported]=compilerForCodegenSupports(modelName,api)
 
-
-
-
-
-
     isSupported=false;
     stf=get_param(modelName,'SystemTargetFile');
 
