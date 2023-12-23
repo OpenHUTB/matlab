@@ -1,7 +1,5 @@
 classdef MultithreadingAnalysis<handle
 
-
-
     properties
 SubsystemHandle
 TopModelHandle
