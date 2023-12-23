@@ -1,12 +1,5 @@
 function PrintMappingData(scope)
 
-
-
-
-
-
-
-
     try
         if nargin==0
             scope=[];
@@ -20,6 +13,7 @@ function PrintMappingData(scope)
     end
 
 end
+
 
 function mappingData=getMappingData(scope)
 
@@ -62,7 +56,6 @@ function mappingData=getMappingData(scope)
         return;
     end
 
-
     if isModel
         uiMappingData=ui.MappingData;
         subgraphMappingData=ui.SubgraphMappingData;
@@ -76,6 +69,7 @@ function mappingData=getMappingData(scope)
         mappingData=ui.getBlkMappingData(hSubsystem);
     end
 end
+
 
 function print(mappingData)
 
@@ -142,7 +136,6 @@ function print(mappingData)
         end
     end
 
-
     mappingDataAttributesStr='';
     for i=1:12
         if(bitget(mappingData.Attributes,i))
@@ -176,7 +169,6 @@ function print(mappingData)
             mappingDataAttributesStr=[mappingDataAttributesStr,attributeStr,', '];
         end
     end
-
 
     costDataAttributesStr='';
     for i=1:9
