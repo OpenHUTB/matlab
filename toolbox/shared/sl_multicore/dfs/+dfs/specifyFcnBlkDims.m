@@ -1,8 +1,6 @@
 function action_performed=specifyFcnBlkDims(theBlkPath,portIdx,isInput)
 
-
     action_performed='';
-
     blkHandle=getSimulinkBlockHandle(theBlkPath);
     chartId=sfprivate('block2chart',blkHandle);
     chartH=sf('IdToHandle',chartId);
