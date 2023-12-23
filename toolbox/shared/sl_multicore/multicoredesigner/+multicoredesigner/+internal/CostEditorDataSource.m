@@ -1,13 +1,8 @@
 classdef CostEditorDataSource<multicoredesigner.internal.MulticoreSpreadsheetDataSource
-
-
-
-
-
-
     properties(GetAccess=private,SetAccess=private)
 MaxGroupCost
     end
+
 
     methods
         function updateContents(obj)
@@ -67,12 +62,14 @@ MaxGroupCost
             obj.Data=data;
         end
 
+
         function totalCost=getMaxGroupCost(obj,idx)
             totalCost=0;
             if idx<=length(obj.MaxGroupCost)
                 totalCost=obj.MaxGroupCost(idx);
             end
         end
+
 
         function columns=getColumns(obj)
             if obj.MappingData.getCostMethod()==slmulticore.CostMethod.Estimation||...
@@ -94,8 +91,8 @@ MaxGroupCost
             direction=false;
         end
 
-        function updateAllRows(obj)
 
+        function updateAllRows(obj)
             obj.UIObj.getCostEditor.Component.setConfig('{"expandall":true, "disablepropertyinspectorupdate":true}');
             obj.UIObj.getCostEditor.Component.update(true);
         end
