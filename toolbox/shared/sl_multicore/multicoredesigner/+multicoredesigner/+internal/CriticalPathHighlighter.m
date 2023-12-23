@@ -1,8 +1,5 @@
 classdef CriticalPathHighlighter<handle
 
-
-
-
     properties
 MappingData
 HighlightedPaths
@@ -11,10 +8,12 @@ CostAnnotations
 UIObj
     end
 
+
     events
 HighlightingOnEvent
 HighlightingOffEvent
     end
+
 
     methods
         function obj=CriticalPathHighlighter(uiObj)
@@ -22,9 +21,11 @@ HighlightingOffEvent
             obj.HighlightedPaths=containers.Map('KeyType','double','ValueType','any');
         end
 
+
         function mappingData=get.MappingData(obj)
             mappingData=getMappingData(obj.UIObj);
         end
+
 
         function highlightAll(obj)
             removeAllHighlighting(obj);
@@ -42,6 +43,7 @@ HighlightingOffEvent
             end
         end
 
+
         function removeAllHighlighting(obj)
 
             keys=obj.HighlightedPaths.keys;
@@ -54,6 +56,7 @@ HighlightingOffEvent
         end
     end
 
+
     methods(Access=private)
 
         function highlightCriticalPath(obj,systemId,blocks,ports)
@@ -65,18 +68,13 @@ HighlightingOffEvent
 
             modelPath=getModelPath(obj.MappingData,systemId);
             [segments,blocks]=getHighlightPath(obj,blocks,ports,modelPath);
-
-
-
             obj.HighlightedPaths(systemId)=Simulink.Structure.Utils.highlightObjs(segments,blocks,options{:});
 
         end
 
+
         function removeHighlightByStyle(~,style)
             if~isempty(style)
-
-
-
                 style.handles=style.handles(ishandle(style.handles));
 
                 Simulink.SLHighlight.removeHighlight(style);
@@ -85,8 +83,6 @@ HighlightingOffEvent
 
 
         function[segmentsToHighlight,blocksToHighlight]=getHighlightPath(obj,blocks,ports,modelPath)
-
-
 
             segmentsToHighlight=[];
             blocksToHighlight=[];
@@ -106,8 +102,6 @@ HighlightingOffEvent
 
                 portIdx=ports{i};
                 if isempty(portIdx)
-
-
                     subsystems=multicoredesigner.internal.MappingData.getAllVirtualAncestors(blocks(i));
                     for j=1:length(subsystems)
                         parentSS=subsystems(j);
@@ -115,8 +109,6 @@ HighlightingOffEvent
                             blocksToHighlight=[blocksToHighlight,parentSS];
                             blockVisited(parentSS)=1;
                             if j==1
-
-
                                 bp=Simulink.BlockPath([modelPath,{getfullname(parentSS)}]);
                                 bp.open;
                             end
@@ -127,9 +119,6 @@ HighlightingOffEvent
                     ph=get_param(blocks(i),'PortHandles');
                     for j=1:length(portIdx)
                         line=get(ph.Inport(portIdx(j)+1),'line');
-
-
-
                         [segmentsToSrc,blocksToSrc]=getPathToSrc(obj,line,blockVisited);
                         blocksToHighlight=[blocksToHighlight,blocksToSrc];
                         segmentsToHighlight=[segmentsToHighlight,segmentsToSrc];
@@ -140,8 +129,6 @@ HighlightingOffEvent
 
 
         function[segmentsToSrc,blocksToSrc]=getPathToSrc(~,segment,blockVisited)
-
-
 
             segmentsToSrc=[];
             blocksToSrc=[];
