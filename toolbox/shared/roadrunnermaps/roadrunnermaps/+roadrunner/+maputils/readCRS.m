@@ -1,17 +1,9 @@
 function crs=readCRS(rrMap)
-
-
-
-
-
-
-
     projectionString=rrMap.getProjectionString();
     hasCRS=~isempty(projectionString);
     if(hasCRS)
         [wkt,crsinfo]=map.internal.crs.getCRS(projectionString);
         if startsWith(wkt,"BOUNDCRS")
-
             wkt=extractBetween(string(wkt),...
             "SOURCECRS["+whitespacePattern,...
             ","+whitespacePattern+"TARGETCRS[");
@@ -32,8 +24,6 @@ function crs=readCRS(rrMap)
                 "GEOGCRS[",","+whitespacePattern+"VERTCRS[");
             end
         end
-
-
 
         if crsinfo.IsGeographic
             crs=geocrs(wkt);
