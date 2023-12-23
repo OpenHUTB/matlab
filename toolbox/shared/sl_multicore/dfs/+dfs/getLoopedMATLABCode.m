@@ -1,13 +1,6 @@
 function out=getLoopedMATLABCode(script,repetitionCount,inputTokenSizes,...
     inputNumDims,outputNumDims)
 
-
-
-
-
-
-
-
     try
         mtOrig=mtree(script);
     catch
@@ -15,12 +8,8 @@ function out=getLoopedMATLABCode(script,repetitionCount,inputTokenSizes,...
         out=script;
         return;
     end
-
-
     fcnNodes=mtfind(mtOrig,'Kind','FUNCTION');
     mainFcnNode=fcnNodes.first;
-
-
     allFunctionNames=strings(Fname(mtOrig));
     userFunctionName=allFunctionNames{1};
     loopFunctionName=matlab.lang.makeUniqueStrings('fcn_dataflow_loop',allFunctionNames);
@@ -29,8 +18,6 @@ function out=getLoopedMATLABCode(script,repetitionCount,inputTokenSizes,...
     numFcnInputs=count(mainFcnNode.Ins.List);
     numParams=numFcnInputs-numInputs;
     numOutputs=count(mainFcnNode.Outs.List);
-
-
     inputNames=string(strings(mainFcnNode.Ins.List));
     paramNames=inputNames(numInputs+1:numInputs+numParams);
     inputNames=inputNames(1:numInputs);
