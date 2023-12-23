@@ -1,6 +1,5 @@
 function generateHighlightObjDescription(hObj,hDlg)
 
-
     lhsDescription='';
     lhsObjPositionArray=sort(hDlg.getWidgetValue('tag_Available'));
     if~isempty(lhsObjPositionArray)
@@ -17,6 +16,7 @@ function generateHighlightObjDescription(hObj,hDlg)
 
 end
 
+
 function desc=formatDescription(objs,objPositionArray)
     sizes=size(objPositionArray);
     numHighlight=sizes(2);
@@ -26,6 +26,7 @@ function desc=formatDescription(objs,objPositionArray)
         desc=appendDescription(objs(pos).Name,objs(pos).Description,desc);
     end
 end
+
 
 function desc=appendDescription(objName,objDescription,oldDesc)
     if isempty(objDescription)
