@@ -1,8 +1,4 @@
-
-
-
 classdef SubsystemPopup<handle
-
 
     properties(Access=private)
 
@@ -23,6 +19,7 @@ classdef SubsystemPopup<handle
 Dialog
     end
 
+
     methods(Access=public)
 
         function this=SubsystemPopup(badgeType,isGraph,hConfigBlock,evalLatency)
@@ -36,12 +33,9 @@ Dialog
             init(this);
         end
 
+
         function show(this,dlg)
-
-
             this.Dialog=dlg;
-
-
             if(this.IsGraphBadge)
                 dlg.position=Simulink.harness.internal.calcDialogGeometry(...
                 dlg.position(3),...
@@ -59,9 +53,8 @@ Dialog
             dlg.show();
         end
 
+
         function accept(this)
-
-
             set_param(this.HConfigBlock,'Latency',num2str(this.OptimumLatency));
 
             if~isempty(this.Dialog)
@@ -69,12 +62,9 @@ Dialog
             end
         end
 
+
         function openConfigBlkDialog(this)
-
-
             open_system(this.HConfigBlock,'parameter');
-
-
             blkName=get_param(this.HConfigBlock,'name');
             blkDlgTitle=DAStudio.message('Simulink:dialog:BlockParameters',blkName);
             blkDlg=findDDGByTitle(blkDlgTitle);
@@ -87,9 +77,8 @@ Dialog
             end
         end
 
+
         function findConfigBlk(this)
-
-
             hilite_system(this.HConfigBlock,'find');
 
             if~isempty(this.Dialog)
@@ -97,9 +86,8 @@ Dialog
             end
         end
 
+
         function updateModel(this)
-
-
             if~isempty(this.Dialog)
                 this.Dialog.hide();
             end
@@ -113,11 +101,8 @@ Dialog
 
         end
 
+
         function openHelp(this)
-
-
-
-
 
             if~isempty(this.Dialog)
                 this.Dialog.hide();
@@ -129,19 +114,9 @@ Dialog
     methods(Access=private)
 
         function init(this)
-
-
             if contains(this.PopupType,'Info')
-
-
-
                 stopped=strcmp(get_param(bdroot(this.HConfigBlock),"SimulationStatus"),"stopped");
-
-
-
                 this.ShowLatency=~contains(this.PopupType,'Limited');
-
-
                 ui=get_param(bdroot(this.HConfigBlock),'DataflowUI');
 
                 if~isempty(ui)
