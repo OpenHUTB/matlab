@@ -1,8 +1,5 @@
 classdef MulticoreContextManager<handle
 
-
-
-
     properties(Constant,Access=private)
         Instance=multicoredesigner.internal.MulticoreContextManager;
     end
@@ -11,11 +8,13 @@ classdef MulticoreContextManager<handle
         ContextMap;
     end
 
+
     methods(Access=private)
         function obj=MulticoreContextManager()
             mlock;
             obj.ContextMap=containers.Map('KeyType','double','ValueType','any');
         end
+
 
         function data=get(obj,modelHandle)
             if obj.ContextMap.isKey(modelHandle)
@@ -37,11 +36,13 @@ classdef MulticoreContextManager<handle
             end
         end
 
+
         function data=remove(obj,modelHandle)
             data=obj.ContextMap(modelHandle);
             obj.ContextMap.remove(modelHandle);
         end
     end
+
 
     methods(Static,Access=public)
         function ctx=getContext(modelHandle)
