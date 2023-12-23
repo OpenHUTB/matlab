@@ -1,9 +1,5 @@
 classdef MappingData<handle
 
-
-
-
-
     properties
 ModelH
 NumRegions
@@ -29,10 +25,12 @@ NumCores
 Status
     end
 
+
     events
 BlockRemovedEvent
 TaskRemovedEvent
     end
+
 
     methods
 
@@ -88,20 +86,16 @@ TaskRemovedEvent
             obj.BlockListeners=[];
         end
 
+
         function update(obj)
 
             [allMdls,modelBlocks,costMethod]=getAllModels(obj);
-
-
 
             if xor(obj.CostMethod==slmulticore.CostMethod.Simulation,costMethod==slmulticore.CostMethod.Simulation)
                 return;
             end
 
             clearMappingData(obj);
-
-
-
 
             globalRegionIdx=1;
             numInitialTasks=0;
@@ -110,11 +104,6 @@ TaskRemovedEvent
 
                 modelName=allMdls{end+1-modelIdx};
                 modelPath=multicoredesigner.internal.MappingData.findModelPath(modelName,modelBlocks,allMdls{end});
-
-
-
-
-
                 mfModel=get_param(modelName,'MulticoreDataModel');
                 mc=slmulticore.MulticoreConfig.getMulticoreConfig(mfModel);
                 if modelIdx==1
@@ -134,8 +123,6 @@ TaskRemovedEvent
                 end
 
                 for regionId=1:numRegionsInModel
-
-
                     regionInfoData=struct('ParentSystem',regionArray(regionId).parentSystem,...
                     'DisplayName',regionArray(regionId).displayName,...
                     'NumTasks',regionArray(regionId).numTasks,...
@@ -148,10 +135,7 @@ TaskRemovedEvent
                     'IsInsufficientWork',regionArray(regionId).isInsufficientWork,...
                     'TallPoleBlock',regionArray(regionId).tallPoleBlock,...
                     'TallPoleRatio',regionArray(regionId).tallPoleRatio);
-
-
                     obj.RegionCacheData{globalRegionIdx}=regionInfoData;
-
 
                     blockDataArr=[];
                     multiTaskBlocks=[];
