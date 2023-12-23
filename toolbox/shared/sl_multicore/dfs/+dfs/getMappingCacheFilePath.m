@@ -1,17 +1,11 @@
 function[fullPath,fullFilePath,slmcrtFilePath]=getMappingCacheFilePath(model,target,useAnchorDir)
-
-
-
-
     folders=Simulink.filegen.internal.FolderConfiguration(model);
-
 
     if strcmpi(target,'rtw')
         cacheRoot=folders.CodeGeneration.Root;
     else
         cacheRoot=folders.Simulation.Root;
     end
-
 
     if useAnchorDir&&Simulink.fileGenControl('GetParallelBuildInProgress')
         if strcmpi(target,'rtw')
@@ -22,8 +16,6 @@ function[fullPath,fullFilePath,slmcrtFilePath]=getMappingCacheFilePath(model,tar
     end
 
     filename=[model,'_DFCache.mat'];
-
-
     relativePath=fullfile('slprj','_cprj');
 
     if strcmpi(target,'simtarget')
@@ -40,15 +32,8 @@ function[fullPath,fullFilePath,slmcrtFilePath]=getMappingCacheFilePath(model,tar
 
         relativePath=fullfile(folders.CodeGeneration.ModelReferenceCode,'tmwinternal');
     end
-
-
     fullPath=fullfile(cacheRoot,relativePath);
-
-
     fullFilePath=fullfile(fullPath,filename);
-
-
-
 
     if isempty(Simulink.fileGenControl('getinternalvalue','CacheFolder'))
         slmcrtFilePath=fullfile(relativePath,filename);
