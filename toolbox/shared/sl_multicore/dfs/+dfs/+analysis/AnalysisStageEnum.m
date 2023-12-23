@@ -1,7 +1,5 @@
 classdef AnalysisStageEnum
 
-
-
     enumeration
 NotAnalyzing
 InitalUpdate
