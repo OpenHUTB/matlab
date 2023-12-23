@@ -1,12 +1,5 @@
 classdef InstanceCache<handle
 
-
-
-
-
-
-
-
     methods(Static)
         function instance=getInstance
             instance=dfs.analysis.InstanceCache.manageInstance(false);
