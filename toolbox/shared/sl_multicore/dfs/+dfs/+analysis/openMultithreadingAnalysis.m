@@ -1,8 +1,5 @@
 function openMultithreadingAnalysis(subsystem)
 
-
-
-
     if isempty(subsystem)
         return;
     end
