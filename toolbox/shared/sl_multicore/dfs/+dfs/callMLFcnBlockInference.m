@@ -1,9 +1,5 @@
 function size=callMLFcnBlockInference(blockHandle,inSizes)
 
-
-
-
-
     size=0;
     assert(slprivate('is_stateflow_based_block',blockHandle),...
     'Expected a MATLAB Function Block');
