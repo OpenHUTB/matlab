@@ -1,8 +1,4 @@
 function[isSupported,isOpenMP]=compilerSupportsOpenMP()
-
-
-
-
     selectedCompiler=mex.getCompilerConfigurations('C','Selected');
 
     if isempty(selectedCompiler)
