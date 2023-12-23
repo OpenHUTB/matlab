@@ -1,8 +1,5 @@
 classdef MultithreadingAnalysisDDG<handle
 
-
-
-
     properties
 SubsystemHandle
 TopModelHandle
@@ -11,6 +8,7 @@ Dialog
 PerformanceInfo
 AnalysisStage
     end
+
 
     methods
         function obj=MultithreadingAnalysisDDG(subsystemHandle,topModelHandle,modelRefPaths,performanceInfo)
