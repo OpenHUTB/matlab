@@ -1,17 +1,4 @@
 function initCloseMulticoreUI(method,modelH)
-
-
-
-
-
-
-
-
-
-
-
-
-
     appmgr=multicoredesigner.internal.UIManager.getInstance;
 
     switch(method)
