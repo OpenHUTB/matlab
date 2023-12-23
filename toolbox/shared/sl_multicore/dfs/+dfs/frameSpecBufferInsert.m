@@ -1,7 +1,5 @@
 function action_performed=frameSpecBufferInsert(theBlkPath,portIdx,frameSizeText)
 
-
-
     frameSize=str2double(frameSizeText);
     if~(isscalar(frameSize)&&isnumeric(frameSize)&&(frameSize>0)&&(fix(frameSize)==frameSize))
         error(message('dataflow:Multirate:InvalidPortSpec'));
@@ -27,11 +25,8 @@ function action_performed=frameSpecBufferInsert(theBlkPath,portIdx,frameSizeText
         'orientation',get_param(theBlkPath,'orientation'),...
         'position',bufferPos,...
         'ShowName','off');
-
-
         lineHandles=get_param(theBlkPath,'LineHandles');
         delete_line(lineHandles.Inport(portIdx));
-
 
         srcPort=portData(portIdx).SrcPort+1;
         hSrc=get_param([parentPath,'/',srcName],'PortHandles');
