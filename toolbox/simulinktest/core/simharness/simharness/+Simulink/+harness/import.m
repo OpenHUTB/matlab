@@ -1,40 +1,4 @@
 function import(harnessOwner,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     harnessOwner=convertStringsToChars(harnessOwner);
 
     if nargin>1
