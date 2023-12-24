@@ -1,18 +1,11 @@
 function[outData]=gatewayCacheForwardingTransform(inData)
 
-
-
-
-
-
     outData.NewBlockPath='';
     outData.NewInstanceData=[];
 
     [ParameterNames{1:length(inData.InstanceData)}]=inData.InstanceData.Name;
 
     if(~ismember('VideoFormatCache',ParameterNames))
-
-
         ParameterNames={'VideoFormatCache','ActivePixelsPerLineCache','ActiveVideoLinesCache','TotalPixelsPerLineCache','TotalVideoLinesCache','StartingActiveLineCache','FrontPorchCache'};
         for ii=1:1:numel(ParameterNames)
 
