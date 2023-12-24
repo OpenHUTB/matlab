@@ -11,31 +11,11 @@ pDaClean
 
     properties(Abstract,Constant,Access=protected)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 pBusPrefix
     end
 
+
     properties(Constant,Access=private)
-
-
         pKeywordList=iskeyword()
     end
 
