@@ -1,8 +1,5 @@
 function dataWriteNet=elabDataWrite(~,coreNet,blockInfo,sigInfo,dataRate)
 
-
-
-
     booleanT=pir_boolean_t();
     selT=sigInfo.selT;
 
@@ -12,7 +9,6 @@ function dataWriteNet=elabDataWrite(~,coreNet,blockInfo,sigInfo,dataRate)
 
     outPortNames={'SELR','SELG','SELB'};
     outPortTypes=[selT,selT,selT];
-
     dataWriteNet=pirelab.createNewNetwork(...
     'Network',coreNet,...
     'Name','dataWriteFSM',...
@@ -33,9 +29,6 @@ function dataWriteNet=elabDataWrite(~,coreNet,blockInfo,sigInfo,dataRate)
     fid=fopen(fullfile(matlabroot,'toolbox','visionhdl','visionhdlutilities',...
     '+visionhdlsupport','+internal','@Bayer','cgireml',[compName,'.m']));
     fcnBody=fread(fid,Inf,'char=>char');
-
-
-
 
     if strcmpi(blockInfo.Algorithm,'Gradient-corrected linear')
         if blockInfo.NumPixels==1
