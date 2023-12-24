@@ -1,8 +1,5 @@
 function varargout=blockCallback(varargin)
 
-
-
-
     if nargout==0
         feval(varargin{:});
     else
@@ -22,9 +19,6 @@ function simulationSetupCb(blkH)
         set_param(blkH,'MaskEnables',me);
     end
 
-
-
-
     simParams=i_getSimParams(blkH,blkP.simulationSetup);
     i_setSimParams(blkH,simParams);
 end
@@ -39,6 +33,7 @@ function thresholdMethodCb(blkH)
     end
 end
 
+
 function InitFcn(blkH)
 
     blkP=i_getDialogParams(blkH);
@@ -47,18 +42,13 @@ function InitFcn(blkH)
         cfg=wt.internal.preambledetector.Config(blkP.simulationSetup);
         [varData,constData,busInfo]=cfg.getDataForSimulation;
     else
-
         cfg=wt.internal.preambledetector.Config('Custom');
         preamble=blkP.workspaceNamePreamble;
         filterCoefficients=flipud(conj(preamble));
         inputSignal=blkP.workspaceSignalName;
-
         ParameterValidations(blkP,filterCoefficients);
-
         cfg.FilterCoefficients=filterCoefficients;
         cfg.generateHWCoefficients(filterCoefficients,1);
-
-
         cfg.ThresholdMethod=blkP.thresholdMethod;
         cfg.AdaptiveThresholdWindowLength=length(cfg.FilterCoefficients);
         cfg.AdaptiveThresholdScaler=blkP.adaptiveThresholdScaler;
@@ -69,7 +59,6 @@ function InitFcn(blkH)
         cfg.Ts=1/blkP.sampleRate;
         cfg.FilterArchitecture='serial';
         [cfg.WaitNum,cfg.DelayNum]=getTriggerDelay(blkP.triggerDelay);
-
         [varData,constData,busInfo]=cfg.getDataForSimulation(inputSignal);
     end
     assignin('base','Ts',cfg.Ts);
@@ -77,6 +66,7 @@ function InitFcn(blkH)
     assignin('base','ConstantData',constData);
     assignin('base','BusInfo',busInfo);
 end
+
 
 function ParameterValidations(blkParam,filterCoefficients)
 
@@ -105,7 +95,6 @@ function ParameterValidations(blkParam,filterCoefficients)
     catch
         error(message('wt:preambledetector:InvalidInputSignal'));
     end
-
     if(strcmp(blkParam.thresholdMethod,"Fixed"))
         try
             mustBeInRange(blkParam.fixedThresholdValue,0,4095);
@@ -141,11 +130,9 @@ end
 
 function MaskInitFcn(blkH)
 
-
     if i_IsLibContext(blkH)
         return;
     end
-
 
     blkP=i_getDialogParams(blkH);
     if isequal(blkP.simulationSetup,'Custom')
@@ -160,7 +147,6 @@ end
 
 function[waitNum,delayNum]=getTriggerDelay(delay)
 
-
     delay=delay-1;
     if(delay>0)
         delayNum=1;
@@ -173,6 +159,7 @@ function[waitNum,delayNum]=getTriggerDelay(delay)
         waitNum=2;
     end
 end
+
 
 function blkPath=i_getBlkPath(blkH)
     blkPath=[get(blkH,'Path'),'/',strrep(get(blkH,'Name'),'/','//')];
@@ -203,13 +190,13 @@ function[p,idxMap]=i_getDialogParams(blkH,varargin)
     end
     p=cell2struct(dpvalues,dpnames',2);
 
-
     pnames=get_param(blkH,'MaskNames');
     idxMap=containers.Map;
     for ii=1:length(pnames)
         idxMap(pnames{ii})=ii;
     end
 end
+
 
 function simParams=i_getSimParams(blkH,simulationSetup)
 
@@ -224,7 +211,6 @@ function simParams=i_getSimParams(blkH,simulationSetup)
             simParams=i_getSimParamsFromConfig('WLAN 20MHz');
         end
 
-
         fnames=fieldnames(simParams);
         for k=1:numel(fnames)
             f=fnames{k};
@@ -238,9 +224,8 @@ function simParams=i_getSimParams(blkH,simulationSetup)
     simParams.workspaceSignalName=get_param(blkH,'workspaceSignalName');
 end
 
+
 function simParams=i_getSimParamsFromConfig(waveformName)
-
-
     cfg=wt.internal.preambledetector.Config(waveformName);
     simParams.thresholdMethod='adaptive';
     simParams.adaptiveThresholdWindowLength=string(cfg.AdaptiveThresholdWindowLength);
@@ -251,6 +236,7 @@ function simParams=i_getSimParamsFromConfig(waveformName)
     simParams.sampleRate=string(cfg.SampleRate);
     simParams.triggerDelay=string(-cfg.DelayNum-1);
 end
+
 
 function i_setSimParams(blkH,simParams)
 
@@ -266,6 +252,7 @@ function i_setSimParams(blkH,simParams)
     'sampleRate',simParams.sampleRate,...
     'recordLength',simParams.recordLength);
 end
+
 
 function tf=i_IsLibContext(blkH)
     tf=any(strcmp(get(bdroot(blkH),'Name'),{'wtlib'}));
