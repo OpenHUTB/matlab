@@ -1,9 +1,5 @@
 function[injInBlks,injOutBlks]=addInjectorPortsForSignalsInInjectorSS(accHdls,injHdls,injSS,showAndSelect,varargin)
 
-
-
-
-
     if iscell(accHdls)
         blockPath=accHdls{1};
         accHdls=accHdls{2};
