@@ -1,9 +1,5 @@
 function interpRB3Net=elabRB3(~,coreNet,blockInfo,sigInfo,dataRate)%#ok<INUSL>
 
-
-
-
-
     inType=sigInfo.inType.BaseType;
     inputWL=sigInfo.inputWL;
     inputFL=sigInfo.inputFL;
@@ -21,10 +17,6 @@ function interpRB3Net=elabRB3(~,coreNet,blockInfo,sigInfo,dataRate)%#ok<INUSL>
     addT6=pir_sfixpt_t(inputWL+7,-(inputFL+1));
     addT7=pir_sfixpt_t(inputWL+8,-(inputFL+1));
     addT8=pir_ufixpt_t(inputWL+11,-(inputFL+4));
-
-
-
-
     inPortNames={'REG2IN','REG3IN','REG5IN','DATA3IN','REG7IN'...
     ,'REG9IN','REG10IN','REG12IN','REG14IN'};
     inPortTypes=[inType,inType,inType,inType,inType,inType,inType,inType,inType];
@@ -41,7 +33,6 @@ function interpRB3Net=elabRB3(~,coreNet,blockInfo,sigInfo,dataRate)%#ok<INUSL>
     'InportRates',inPortRates,...
     'OutportNames',outPortNames,...
     'OutportTypes',outPortTypes);
-
     inSignals=interpRB3Net.PirInputSignals;
     REG2IN=inSignals(1);
     REG3IN=inSignals(2);
@@ -52,10 +43,7 @@ function interpRB3Net=elabRB3(~,coreNet,blockInfo,sigInfo,dataRate)%#ok<INUSL>
     REG10IN=inSignals(7);
     REG12IN=inSignals(8);
     REG14IN=inSignals(9);
-
     outSignal=interpRB3Net.PirOutputSignals;
-
-
     Gain1Out=interpRB3Net.addSignal2('Type',negGainT,'Name','GAIN1');
     Gain2CAST=interpRB3Net.addSignal2('Type',shiftOneT,'Name','GAIN2CAST');
     Gain2Out=interpRB3Net.addSignal2('Type',shiftOneT,'Name','GAIN2');
