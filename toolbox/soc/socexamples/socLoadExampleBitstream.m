@@ -1,16 +1,5 @@
 function socLoadExampleBitstream( hw, modelName )
 
-
-
-
-
-
-
-
-
-
-
-
 demoModels = {  ...
 'soc_ADSB',  ...
 'soc_hwsw_stream_top',  ...
@@ -28,7 +17,6 @@ bitFileDir = fullfile( matlabroot, 'toolbox', 'soc', 'supportpackages', 'xilinxs
 end 
 bitFile = fullfile( bitFileDir, [ modelName, '-', boardId ] );
 matFile = fullfile( bitFileDir, [ modelName, '_socsysinfo-', boardId, '.mat' ] );
-
 
 i_programSOC( hw, bitFile, matFile );
 end 
@@ -56,6 +44,5 @@ jtagChainPosition = soc.internal.getJTAGChainPosition( hw.BoardName );
 soc.internal.programFPGA( 'Xilinx', bitFile, jtagChainPosition );
 end 
 end 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpcum1z1.p.
-% Please follow local copyright laws when handling this file.
+
 
