@@ -1,19 +1,11 @@
 function nComp=elaborate(this,hN,hC)
 
-
-
-
-
     blockInfo=getBlockInfo(this,hC);
-
 
     hCInSignal=hC.PirInputSignals;
     hCOutSignal=hC.PirOutputSignals;
-
     topNet=visionhdlsupport.internal.createNetworkWithComponent(hN,hC);
     topNet.addComment('Demosaic HDL Optimized');
-
-
     [inSig,outSig]=visionhdlsupport.internal.expandpixelcontrolbus(topNet);
 
     inportnames{1}='dataIn';
@@ -39,10 +31,5 @@ function nComp=elaborate(this,hN,hC)
     for ii=1:numel(outportnames)
         outSig(ii).Name=outportnames{ii};
     end
-
-
-
     this.elaborateDemosaic(topNet,blockInfo,inSig,outSig);
-
-
     nComp=pirelab.instantiateNetwork(hN,topNet,hC.PirInputSignals,hC.PirOutputSignals,hC.Name);
