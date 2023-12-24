@@ -1,12 +1,6 @@
 function libpath=visionhdllibpath(blk)
 
-
-
-
-
-
     visionhdlblks=['Vision',char(10),'HDL Toolbox/'];
-
 
     visionhdlio='I/O Interfaces';
     visionhdlfilter='Filtering';
