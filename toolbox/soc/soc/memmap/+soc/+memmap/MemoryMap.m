@@ -1,7 +1,5 @@
 classdef MemoryMap<matlab.mixin.Copyable
 
-
-
     properties(SetObservable)
         isMapValid=false;
 controllerInfo
@@ -10,9 +8,11 @@ controllerInfo
 map
     end
 
+
     properties(Access=private)
 
     end
+
 
     methods
         function[isValid,errStr]=checkMemoryMap(obj,varargin)
