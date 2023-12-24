@@ -1,14 +1,5 @@
 classdef BilateralFilter<visionhdlsupport.internal.AbstractVHT
 
-
-
-
-
-
-
-
-
-
     methods
         function this=BilateralFilter(block)
 
