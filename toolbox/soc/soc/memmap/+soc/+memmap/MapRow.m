@@ -1,23 +1,28 @@
 classdef MapRow<handle
 
-
-
-
     properties
 source
 isFixedMemMap
     end
+
+
     methods
         function this=MapRow(data,isFixedMemMap)
             this.source=data;
             this.isFixedMemMap=isFixedMemMap;
         end
+
+
         function label=getDisplayLabel(obj)
             label='objectname';
         end
+
+
         function iconFile=getDisplayIcon(~)
             iconFile='';
         end
+
+
         function propValue=getPropValue(obj,propName)
             switch propName
             case soc.memmap.MemUtil.strDevType
@@ -32,6 +37,8 @@ isFixedMemMap
                 propValue='';
             end
         end
+
+
         function isHyperlink=propertyHyperlink(obj,propName,clicked)
             isHyperlink=false;
             if strcmp(propName,soc.memmap.MemUtil.strDevName)&&...
@@ -41,14 +48,13 @@ isFixedMemMap
                 isHyperlink=true;
             end
             if clicked
-
-
-
                 hilited=find_system(gcs,'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,'BackgroundColor','yellow');
                 hilite_system(hilited,'off');
                 hilite_system(obj.source.path);
             end
         end
+
+
         function isValid=isValidProperty(~,propName)
             switch propName
             case soc.memmap.MemUtil.strDevType
@@ -63,6 +69,8 @@ isFixedMemMap
                 isValid=false;
             end
         end
+
+
         function isReadOnly=isReadonlyProperty(rowobj,propName)
             switch propName
             case soc.memmap.MemUtil.strDevType
@@ -83,6 +91,8 @@ isFixedMemMap
                 isReadOnly=false;
             end
         end
+
+
         function getPropertyStyle(this,propName,propertyStyle)
             if~strcmp(propName,soc.memmap.MemUtil.strDevBase)
 
