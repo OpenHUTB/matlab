@@ -1,48 +1,5 @@
 function move(harnessOwner,harnessName,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     harnessOwner=convertStringsToChars(harnessOwner);
-
     harnessName=convertStringsToChars(harnessName);
 
     if nargin>2
@@ -50,7 +7,6 @@ function move(harnessOwner,harnessName,varargin)
     end
 
     try
-
         Simulink.harness.internal.move(harnessOwner,harnessName,varargin{:});
 
     catch ME
