@@ -1,4 +1,3 @@
-
 e1=Simulink.BusElement;
 e2=Simulink.BusElement;
 e3=Simulink.BusElement;
