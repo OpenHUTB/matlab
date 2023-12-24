@@ -1,21 +1,26 @@
-
 classdef IPRow<handle
     properties
 source
 regAttributes
     end
 
+
     methods
         function this=IPRow(data)
             this.source=data;
-
         end
+
+
         function label=getDisplayLabel(obj)
             label='objectname';
         end
+
+
         function iconFile=getDisplayIcon(~)
             iconFile='toolbox/shared/dastudio/resources/info.png';
         end
+
+
         function propValue=getPropValue(obj,propName)
             switch propName
             case soc.memmap.MemUtil.strRegName
@@ -31,6 +36,7 @@ regAttributes
             end
         end
 
+
         function isHyperlink=propertyHyperlink(~,propName,clicked)
             isHyperlink=false;
             if strcmp(propName,'<hyperlink-column-name>')
@@ -40,6 +46,8 @@ regAttributes
 
             end
         end
+
+
         function isValid=isValidProperty(~,propName)
             switch propName
             case soc.memmap.MemUtil.strRegName
@@ -54,6 +62,8 @@ regAttributes
                 isValid=false;
             end
         end
+
+
         function isReadOnly=isReadonlyProperty(this,propName)
             switch propName
             case soc.memmap.MemUtil.strRegName
@@ -72,6 +82,8 @@ regAttributes
                 isReadOnly=false;
             end
         end
+
+
         function getPropertyStyle(this,propName,propertyStyle)
             if~strcmp(propName,soc.memmap.MemUtil.strRegOffset)
 
