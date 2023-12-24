@@ -1,11 +1,5 @@
 function[injSSHdl,injInHdls,injOutHdls]=createInjectorSSForBlockInInjector(blk,inj,showAndSelect,uiMode)
 
-
-
-
-
-
-
     blockPath=[];
     if iscell(blk)
         blockPath=blk{1};
