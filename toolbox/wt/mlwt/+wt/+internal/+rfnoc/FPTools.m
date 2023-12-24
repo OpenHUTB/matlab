@@ -1,8 +1,5 @@
 classdef FPTools
 
-
-
-
     methods(Static)
 
         function C=bitGet(data,lidx,ridx)
@@ -27,8 +24,8 @@ classdef FPTools
             bitshift(data,-(ridx-1)),bitMask);
         end
 
-        function C=bitConcat(data0,data1)
 
+        function C=bitConcat(data0,data1)
             if(isa(class(data0),class(data1)))
                 error("The input must have the same data type.");
             end
@@ -66,13 +63,8 @@ classdef FPTools
             end
         end
 
+
         function a=FPConvert(v,s,w,f)
-
-
-
-
-
-
             validateattributes(v,{'double','single'},{},'FPConvert','v');
             validateattributes(w,{'numeric'},{'scalar','>',1,'<=',64},'FPConvert','w');
             validateattributes(f,{'numeric'},{'scalar','>=',0,'<',max(w-1,50)},'FPConvert','f');
