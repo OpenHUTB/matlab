@@ -1,18 +1,5 @@
 function[insig,outsig]=expandpixelcontrolbus(hN)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     pirinsignals=hN.PirInputSignals;
     insig=[];
     for ii=1:numel(pirinsignals)
@@ -23,10 +10,6 @@ function[insig,outsig]=expandpixelcontrolbus(hN)
             insig=addsigtolist(pirinsignals(ii),insig);
         end
     end
-
-
-
-
 
     piroutsignals=hN.PirOutputSignals;
     outsig=[];
@@ -41,16 +24,11 @@ function[insig,outsig]=expandpixelcontrolbus(hN)
 
 end
 
+
 function siglist=addsigtolist(pirsig,siglist)
-
-
-
 
     siglist=[siglist,pirsig];
     return;
-
-
-
 
     if isempty(siglist)
         siglist=pirsig(1);
@@ -58,19 +36,13 @@ function siglist=addsigtolist(pirsig,siglist)
         siglist(end+1)=pirsig(1);
     end
 
-
     for ii=2:numel(pirsig)
         siglist(end+1)=pirsig(ii);
     end
 end
 
+
 function insig=expandbusinput(hN,pirinsignal,insig)
-
-
-
-
-
-
 
     pcbus=privpixelcontrolbus;
     ctlType=pir_boolean_t();
@@ -81,22 +53,16 @@ function insig=expandbusinput(hN,pirinsignal,insig)
         ctlbusin(ii).SimulinkRate=pirinsignal.SimulinkRate;%#ok<AGROW>
     end
     ct=pirinsignal.Type;
-
     indexArray=strjoin(ct.MemberNames,',');
 
     pirelab.getBusSelectorComp(hN,pirinsignal,ctlbusin,indexArray);
-
 
     insig=addsigtolist(ctlbusin,insig);
 
 end
 
+
 function outsig=formbusoutput(hN,piroutsignal,outsig)
-
-
-
-
-
 
     pcbus=privpixelcontrolbus;
     ctlType=pir_boolean_t();
@@ -107,13 +73,10 @@ function outsig=formbusoutput(hN,piroutsignal,outsig)
         ctlbusout(ii).SimulinkRate=piroutsignal.SimulinkRate;%#ok<AGROW>
     end
 
-
-
     busTypeStr='Bus:privpixelcontrolbus';
 
 
     pirelab.getBusCreatorComp(hN,ctlbusout,piroutsignal,busTypeStr,'on');
-
 
     outsig=addsigtolist(ctlbusout,outsig);
 
