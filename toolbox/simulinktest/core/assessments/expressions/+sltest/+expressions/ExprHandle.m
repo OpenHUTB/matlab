@@ -1,14 +1,12 @@
 classdef ExprHandle<sltest.expressions.mi.ExprHandle
 
-
-
-
     properties(Dependent)
 Template
 Args
 Value
 DataType
     end
+
 
     properties(Access=private)
 TemplateCached
@@ -23,11 +21,13 @@ DataTypeCached
         IsDataTypeCached=false
     end
 
+
     methods(Access=private)
         function obj=ExprHandle()
             obj@sltest.expressions.mi.ExprHandle();
         end
     end
+
 
     methods(Static)
 
@@ -40,6 +40,7 @@ DataTypeCached
         end
     end
 
+
     methods
         function template=get.Template(self)
             import sltest.expressions.*
@@ -48,6 +49,7 @@ DataTypeCached
             end
             template=self.TemplateCached;
         end
+
 
         function args=get.Args(self)
             import sltest.expressions.*
@@ -58,6 +60,7 @@ DataTypeCached
             args=self.ArgsCached;
         end
 
+
         function value=get.Value(self)
             if~self.IsValueCached
                 self.ValueCached=self.ValueImpl;
@@ -65,6 +68,7 @@ DataTypeCached
             end
             value=self.ValueCached;
         end
+
 
         function dataType=get.DataType(self)
             if~self.IsDataTypeCached
