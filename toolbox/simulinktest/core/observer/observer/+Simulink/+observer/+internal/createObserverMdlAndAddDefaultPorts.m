@@ -1,14 +1,6 @@
 function obsHdl=createObserverMdlAndAddDefaultPorts(obsRefBlkHdl,obsMdlName,openEditor)
 
-
-
-
-
-
-
-
     obsHdl=-1.0;%#ok<NASGU>
-
 
     if~ishandle(obsRefBlkHdl)
         DAStudio.error('Simulink:utility:invalidHandle');
@@ -20,7 +12,6 @@ function obsHdl=createObserverMdlAndAddDefaultPorts(obsRefBlkHdl,obsMdlName,open
         DAStudio.error('Simulink:SltBlkMap:CannotConfigureMapCtxBlkInLib',DAStudio.message('Simulink:SltBlkMap:Observer'),getfullname(mdlH));
     end
 
-
     if isempty(obsMdlName)
 
         [~,obsMdlName]=fileparts(tempname);
@@ -30,7 +21,6 @@ function obsHdl=createObserverMdlAndAddDefaultPorts(obsRefBlkHdl,obsMdlName,open
     catch ME
         rethrow(ME)
     end
-
 
     try
         oldStatusString=get_param(mdlH,'StatusString');
@@ -91,17 +81,9 @@ end
 
 
 function copyWorkspaceVariables(srcModelName,observerModelName)
-
-
-
-
-
     if~isempty(get_param(srcModelName,'DataDictionary'))
         return;
     end
-
-
-
     fromModelWksp=get_param(srcModelName,'ModelWorkspace');
     fromModelVars=fromModelWksp.whos;
     toModelWksp=get_param(observerModelName,'ModelWorkspace');
