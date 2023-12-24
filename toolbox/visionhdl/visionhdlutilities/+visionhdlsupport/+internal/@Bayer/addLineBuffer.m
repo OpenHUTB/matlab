@@ -1,9 +1,5 @@
 function lNet=addLineBuffer(~,topNet,blockInfo,inRate,inType)
 
-
-
-
-
     boolType=pir_boolean_t();
     if blockInfo.NumPixels==1
         lbufVType=pirelab.getPirVectorType(inType,blockInfo.KernelHeight);
@@ -26,7 +22,6 @@ function lNet=addLineBuffer(~,topNet,blockInfo,inRate,inType)
     outportnames{6}='validOut';
     outportnames{7}='processDataOut';
 
-
     lNet=pirelab.createNewNetwork(...
     'Network',topNet,...
     'Name','LineBuffer',...
@@ -36,7 +31,5 @@ function lNet=addLineBuffer(~,topNet,blockInfo,inRate,inType)
     'OutportNames',outportnames,...
     'OutportTypes',[lbufVType,boolType,boolType,boolType,boolType,boolType,boolType]...
     );
-
-
     lbufNet=visionhdlsupport.internal.LineBuffer;
     lbufNet.elaborateLineBuffer(lNet,blockInfo);
