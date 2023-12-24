@@ -1,78 +1,37 @@
 function constructRecogniserInterface(designHdl,obsMdlName,designPortHdls)
-
-
-
-
-
-
-
-
-
-
-
     assert(strcmp(get_param(designHdl,'SimulinkSubDomain'),'Architecture'));
 
     if~slfeature('SynthesizedObserver')||isempty(designPortHdls)||slsvTestingHook('SequenceDiagramGenerateRecogniser')<1
         return;
     end
 
-
     Simulink.BlockDiagram.deleteContents(obsMdlName);
 
-
     set_param(obsMdlName,'UnconnectedInputMsg','none','UnconnectedOutputMsg','none');
-
-
-
     obsHdls=flattenDesignPortHdlsStructure(designPortHdls);
 
     for i=1:length(obsHdls)
-
         [blkPathHdls,phObj]=extractStartingPoint(obsHdls(i).ParentBlockPath,...
         obsHdls(i).PortIndex+1,obsHdls(i).PortType);
-
-
-
-
-
-
-
-
-
-
-
         srcInfo=Simulink.observer.internal.determineObservableSrcAndResidualBusPath(phObj,obsHdls(i).InterfaceElement);
-
-
         portIdx=get_param(srcInfo.observedPort,'PortNumber');
         blkPathHdls(end)=get_param(srcInfo.observedPort,'ParentHandle');
 
         if obsHdls(i).IsMessage
             if strcmp(get_param(blkPathHdls(end),'BlockType'),'Queue')
-
-
                 opHdl=addObserverPortBlock(obsMdlName,i,'');
-
-
                 configureObserverPortForSend(blkPathHdls,opHdl,obsHdls(i).BackEndId,obsHdls(i).InterfaceElement);
             elseif strcmp(get_param(blkPathHdls(end),'BlockType'),'SubSystem')||...
                 strcmp(get_param(blkPathHdls(end),'BlockType'),'S-Function')
                 if(isempty(srcInfo.elems))
-
-
-
                     opHdl=addObserverPortBlock(obsMdlName,i,'');
                     Simulink.observer.internal.configureObserverPort(opHdl,'Outport',blkPathHdls,portIdx,false,get_param(designHdl,'Name'));
                     setTag(opHdl,'',obsHdls(i).BackEndId,obsHdls(i).InterfaceElement);
                 end
             end
         else
-
             opHdl=addObserverPortBlock(obsMdlName,i,'');
-
             Simulink.observer.internal.configureObserverPort(opHdl,'Outport',blkPathHdls,get_param(srcInfo.observedPort,'PortNumber'),false,get_param(designHdl,'Name'));
-
-
             subsysPath=Simulink.observer.internal.constructBusSelectorsForObserverPort(opHdl,srcInfo.elems);
 
             if isempty(subsysPath)
@@ -92,22 +51,16 @@ function constructRecogniserInterface(designHdl,obsMdlName,designPortHdls)
 end
 
 
-
-
 function configureObserverPortForSend(blkPathHdls,opHdl,backEndId,interfaceElement)
 
     queueBlk=blkPathHdls(end);
     assert(get_param(queueBlk,"BlockType")=="Queue");
-
     queuePH=get_param(queueBlk,'PortHandles');
     assert(isscalar(queuePH.Inport),"Expecting one input port");
-
-
     sourcePH=Simulink.observer.internal.traceSourceOfMessageSignal(queuePH.Inport);
     sourcePhObj=get_param(sourcePH,'Object');
     model=bdroot(sourcePhObj.Parent);
     Simulink.observer.internal.configureObserverPort(opHdl,'Outport',sourcePhObj.ParentHandle,sourcePhObj.PortNumber,false,model);
-
     setTag(opHdl,'',backEndId,interfaceElement);
 end
 
