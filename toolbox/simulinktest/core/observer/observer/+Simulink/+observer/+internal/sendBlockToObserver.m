@@ -1,11 +1,5 @@
 function sendBlockToObserver(blk,obs,showAndSelect)
 
-
-
-
-
-
-
     blk=getfullname(blk);
     blkH=get_param(blk,'Handle');
     parent=get_param(blk,'Parent');
@@ -21,21 +15,15 @@ function sendBlockToObserver(blk,obs,showAndSelect)
         end
     end
 
-
     parent=getfullname(bdroot(bpList(1)));
 
     pHandles=get_param(blk,'PortHandles');
     blkName=get_param(blk,'Name');
     blkName=strrep(blkName,newline,' ');
 
-
-
-
     if ismember(get_param(blk,'BlockType'),{'Outport','Goto','DataStoreWrite','ArgOut'})
         DAStudio.error('Simulink:Observer:CannotConvertToObserver');
     end
-
-
     prtArrayOut=[pHandles.Outport,pHandles.State];
     if~isempty(prtArrayOut)
         DAStudio.error('Simulink:Observer:CannotConvertBlockWithOutports',blkName);
@@ -45,8 +33,6 @@ function sendBlockToObserver(blk,obs,showAndSelect)
     if~isempty(prtArrayConn)
         DAStudio.error('Simulink:Observer:CannotConvertBlockWithConnectionPorts',blkName);
     end
-
-
     prtArrayIn=[pHandles.Inport,pHandles.Enable,pHandles.Trigger,pHandles.Ifaction,pHandles.Reset];
     if isempty(prtArrayIn)
         DAStudio.error('Simulink:Observer:CannotConvertBlockWithoutInports',blkName);
@@ -57,7 +43,6 @@ function sendBlockToObserver(blk,obs,showAndSelect)
         DAStudio.error('Simulink:Observer:CannotConvertBlockAlreadyInsideObserver',blkName);
     end
 
-
     if createNewObserver
         try
             Simulink.observer.internal.checkCanAddObserverInSubsystem(get_param(parent,'Handle'));
@@ -65,8 +50,6 @@ function sendBlockToObserver(blk,obs,showAndSelect)
             throwAsCaller(ME);
         end
     end
-
-
 
     if strcmp(get_param(blk,'BlockType'),'SubSystem')
         try
@@ -99,11 +82,6 @@ function sendBlockToObserver(blk,obs,showAndSelect)
     [~,fidx,ridx]=unique([blkHList,prtIdxList],'rows','stable');
     nObsPorts=numel(fidx);
 
-
-
-
-
-
     if isa(get_param(blk,'Object'),'Simulink.SubSystem')
         dp=DAStudio.DialogProvider;
         dp.questdlg(DAStudio.message('Simulink:Observer:ConfirmSendToObserverMsg',blkName,obs),...
@@ -122,8 +100,6 @@ function sendBlockToObserver(blk,obs,showAndSelect)
         end
 
         if createNewObserver
-
-
             [obsH,~]=Simulink.observer.internal.createObserverMdlAndAddSpecificPorts(parent,[],'off');
 
             if strcmp(get_param(parent,'Open'),'on')
@@ -173,8 +149,8 @@ function sendBlockToObserver(blk,obs,showAndSelect)
         insertObserverPorts();
     end
 
-    function insertObserverPorts()
 
+    function insertObserverPorts()
         currBound=get_param(obs,'SystemBounds');
         pos=get_param(blkH,'Position');
         xpos=pos(1)-200;
@@ -208,11 +184,9 @@ function sendBlockToObserver(blk,obs,showAndSelect)
             ypos=ypos-dy;
         end
 
-
         obsPrtBlks=zeros(1,nObsPorts);
         obsPrtLines=zeros(1,nPrtIn);
         for k=1:nPrtIn
-
             line0=get_param(prtArrayIn(k),'line');
             if line0~=-1
                 inpH=get_param(line0,'SrcPortHandle');
