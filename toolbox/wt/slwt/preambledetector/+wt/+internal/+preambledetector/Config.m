@@ -1,33 +1,5 @@
 classdef Config<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Constant,Access=protected)
         F=fimath('OverflowAction','Wrap','RoundingMethod','Nearest');
         T=numerictype(1,16,15)
@@ -38,40 +10,15 @@ FiltersetNum
     end
 
     properties
-
-
-
-
 WaveformName
-
 SampleRate
-
-
 Ts
-
 CenterFrequency
-
 ReceiverGain
-
 TransmitterGain
-
 Antennas
-
-
-
-
 FilterArchitecture
-
-
-
-
-
-
-
-
-
 FilterCoefficients
-
 ThresholdMethod
 FixedThreshold
 AdaptiveThresholdWindowLength
@@ -89,7 +36,6 @@ ReuseFactor
 FilterCoefficientsHW
 ReuseFactorHW
     end
-
 
 
     properties(Constant,Access=protected)
@@ -127,6 +73,7 @@ ReuseFactorHW
         0.1062+0.1557i,0.0375-0.0495i,0.1719-0.1470i,0.0706+0.1973i,-0.0091+0.2136i].';
     end
 
+
     methods
         function obj=Config(wavename)
             obj.WaveformName=wavename;
@@ -143,8 +90,6 @@ ReuseFactorHW
             if nargin<2
                 [sampleData,datalength]=obj.getSampleData();
             else
-
-
                 datalength=180+length(obj.FilterCoefficients);
             end
             dataIn=[sampleData;zeros(datalength,1)];
@@ -156,16 +101,6 @@ ReuseFactorHW
             simpar.CoeffGap=15;
             simpar.FilterStartGap=18;
             simpar.FilterTime=length(dataIn)*obj.ReuseFactor+200;
-
-
-
-
-
-
-
-
-
-
 
             t_coeff_axi=...
             [zeros(simpar.StartTime,1);...
