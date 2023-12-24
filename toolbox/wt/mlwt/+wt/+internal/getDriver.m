@@ -1,9 +1,5 @@
 function driver=getDriver(radioObj,appObj,packagebase)
 
-
-
-
-
     plugin=getPlugin(radioObj);
     radioType=plugin.DeviceType;
     switch(radioType)
