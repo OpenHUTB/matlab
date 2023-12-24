@@ -1,8 +1,5 @@
 function templateHandle=castTemplate
 
-
-
-
     import sltest.expressions.*
     persistent cachedTemplateHandle;
     if isempty(cachedTemplateHandle)
