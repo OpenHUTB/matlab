@@ -1,14 +1,5 @@
 function elaborateDemosaic(this,topNet,blockInfo,inSignals,outSignals)
 
-
-
-
-
-
-
-
-
-
     dataIn=inSignals(1);
     dataRate=dataIn.SimulinkRate;
     hStartIn=inSignals(2);
@@ -17,14 +8,12 @@ function elaborateDemosaic(this,topNet,blockInfo,inSignals,outSignals)
     vEndIn=inSignals(5);
     validIn=inSignals(6);
 
-
     RGB=outSignals(1);
     hStartOut=outSignals(2);
     hEndOut=outSignals(3);
     vStartOut=outSignals(4);
     vEndOut=outSignals(5);
     validOut=outSignals(6);
-
 
     inputWL=dataIn.Type.BaseType.WordLength;
     inputFL=dataIn.Type.BaseType.FractionLength;
@@ -35,16 +24,12 @@ function elaborateDemosaic(this,topNet,blockInfo,inSignals,outSignals)
     sigInfo.inputWL=inputWL;
     sigInfo.inputFL=inputFL;
 
-
     dI=struct(dataIn.Type);
     if isfield(dI,'Dimensions')
         blockInfo.NumPixels=double(dataIn.Type.Dimensions);
     else
         blockInfo.NumPixels=1;
     end
-
-
-
 
     lineBufferIn=[dataIn,hStartIn,hEndIn,vStartIn,vEndIn,validIn];
 
@@ -111,8 +96,6 @@ function elaborateDemosaic(this,topNet,blockInfo,inSignals,outSignals)
 
     lB=pirelab.instantiateNetwork(topNet,lineBufNet,lineBufferIn,lineBufferOut,'lineBuffer');
     lB.addComment('LineBuffer');
-
-
 
     if strcmpi(blockInfo.Algorithm,'Gradient-corrected linear')
         if blockInfo.NumPixels==1
