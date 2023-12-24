@@ -1,22 +1,13 @@
 function validate(obsModel)
-
-
-
-
     obsModel=string(get_param(obsModel,"Name"));
     obsH=get_param(obsModel,"Handle");
-
-
     conditionalObs=Simulink.observer.internal.getConditionalSubsystemObserverPortBlocks(obsH);
     assert(~isempty(conditionalObs));
-
-
     partitions=arrayfun(@(obs)getAperiodicPartition(obs,obsModel),conditionalObs);
-
-
     verifyOneObsPortPerAperiodicPartition(partitions);
     verifyUniquePartitionNames(partitions);
 end
+
 
 function partition=getAperiodicPartition(conditionalObs,obsModel)
     partition=[];
@@ -24,7 +15,6 @@ function partition=getAperiodicPartition(conditionalObs,obsModel)
     while block
         block=get_param(block,"Parent");
         if block==obsModel
-
             blockPath=getfullname(conditionalObs);
             error(message("Simulink:Observer:NoPartition",blockPath,bdroot(blockPath)));
         elseif get_param(block,"BlockType")=="SubSystem"&&...
@@ -35,8 +25,8 @@ function partition=getAperiodicPartition(conditionalObs,obsModel)
     end
 end
 
-function verifyOneObsPortPerAperiodicPartition(partitions)
 
+function verifyOneObsPortPerAperiodicPartition(partitions)
     [uniquePartitions,ia]=unique(partitions);
     if numel(partitions)~=numel(uniquePartitions)
         dupIdx=setdiff(1:numel(partitions),ia);
@@ -46,8 +36,8 @@ function verifyOneObsPortPerAperiodicPartition(partitions)
     end
 end
 
-function verifyUniquePartitionNames(partitions)
 
+function verifyUniquePartitionNames(partitions)
     partitionNames=string(get_param(partitions,"PartitionName"));
     [uniquePartitionNames,ia]=unique(partitionNames);
     if numel(partitionNames)~=numel(uniquePartitionNames)
