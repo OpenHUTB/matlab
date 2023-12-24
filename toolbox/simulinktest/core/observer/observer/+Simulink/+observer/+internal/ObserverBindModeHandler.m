@@ -1,11 +1,11 @@
 classdef ObserverBindModeHandler<handle
 
-
     properties
 bindModeSourceObj
 bindingsInfo
 observerPortBlockHandles
     end
+
 
     methods
 
@@ -30,13 +30,16 @@ observerPortBlockHandles
             end
         end
 
+
         function openModel(this)
             open_system(this.bindModeSourceObj.modelName);
         end
 
+
         function activate(this)
             BindMode.BindMode.enableBindMode(this.bindModeSourceObj);
         end
+
 
         function formattedData=getBindableData(this,selectionHandles,activeDropDownValue)
             signalRows=BindMode.utils.getSignalRowsInSelection(selectionHandles);
@@ -52,6 +55,7 @@ observerPortBlockHandles
             end
 
         end
+
 
         function success=onRadioSelectionChange(this,dropDownValue,bindableType,bindableName,bindableMetaData,isChecked)
             if isChecked
@@ -84,6 +88,7 @@ observerPortBlockHandles
         end
 
     end
+
 
     methods(Static)
         function activateBindMode(observerPortBlkH)
