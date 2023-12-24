@@ -1,6 +1,5 @@
 function out = isInvalidRegisterUseCase(blk, varargin)
 
-
 modelName = codertarget.utils.getModelForBlock(blk);
 % Prevent block registration under the following invalid use cases:
 out = ...
