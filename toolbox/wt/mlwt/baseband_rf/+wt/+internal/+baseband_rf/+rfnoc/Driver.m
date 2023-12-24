@@ -1,19 +1,11 @@
 classdef Driver<wt.internal.rfnoc.Driver
 
-
-
-
-
-
     methods
         function obj=Driver(radioObj,appObj)
             obj=obj@wt.internal.rfnoc.Driver(radioObj,appObj);
         end
 
         function[data,numSamps,overflow]=receive(obj,receiveLength,timeout)
-
-
-
             customStreamCommand=obj.getCustomStreamCommandSetSPP(receiveLength);
             [data,numSamps,overflow]=burstReceiveFromStream(obj,receiveLength,timeout,"0/RX_STREAM#0",customStreamCommand);
         end
@@ -25,6 +17,7 @@ classdef Driver<wt.internal.rfnoc.Driver
             overflow=false;
         end
 
+
         function transmitViaOnboardMemory(obj,waveform,mode)
             switch mode
             case wt.internal.TransmitModes.continuous
@@ -34,18 +27,17 @@ classdef Driver<wt.internal.rfnoc.Driver
             end
         end
 
+
         function stopTransmitViaOnboardMemory(obj)
             obj.stopTransmitRepeatViaReplayBlock("0/TX_STREAM#0");
         end
 
 
         function disconnect(obj)
-
-
-
             disconnect@wt.internal.rfnoc.Driver(obj);
         end
     end
+
 
     methods(Access=private)
         function[graph,rx_stream_list,tx_stream_list]=getGraphReceiver(obj,uhd_datatype_host_rx,uhd_datatype_host_tx,otw_datatype)
@@ -81,15 +73,14 @@ classdef Driver<wt.internal.rfnoc.Driver
                 ducChannel=RadioChannel;
                 graph=[graph(:)',{ducBlock},{ducChannel},{RadioBlock},{RadioChannel}];
 
-
                 graph=[graph(:)',{"0/Replay#0"},{antIdx-1},{ducBlock},{ducChannel}];
-
 
                 graph=[graph(:)',{"0/TX_STREAM#0"},{antIdx-1},{"0/Replay#0"},{(antIdx-1)}];
             end
             rx_stream_list=[];
             tx_stream_list=["0/TX_STREAM#0",uhd_datatype_host_tx,otw_datatype];
         end
+
         function[graph,rx_stream_list,tx_stream_list]=getGraphTransceiver(obj,uhd_datatype_host_rx,uhd_datatype_host_tx,otw_datatype)
             graph={};
             for antIdx=1:length(obj.App.ReceiveAntennas)
@@ -100,7 +91,6 @@ classdef Driver<wt.internal.rfnoc.Driver
                 ddcChannel=RadioChannel;
                 graph=[graph(:)',{RadioBlock},{RadioChannel},{farrowBlock},{0}];
                 graph=[graph(:)',{farrowBlock},{0},{ddcBlock},{ddcChannel}];
-
 
                 graph=[graph(:)',{ddcBlock},{ddcChannel},{"0/Replay#0"},{antIdx-1}];
 
@@ -113,12 +103,7 @@ classdef Driver<wt.internal.rfnoc.Driver
                 ducChannel=RadioChannel;
                 graph=[graph(:)',{ducBlock},{ducChannel},{RadioBlock},{RadioChannel}];
 
-
-
-
-
                 addEdge(obj.driverImpl,{"0/Replay#0",(antIdx-1+length(obj.App.ReceiveAntennas)),ducBlock,ducChannel},false);
-
 
                 graph=[graph(:)',{"0/TX_STREAM#0"},{antIdx-1},{"0/Replay#0"},{(antIdx-1+length(obj.App.ReceiveAntennas))}];
             end
@@ -127,9 +112,9 @@ classdef Driver<wt.internal.rfnoc.Driver
         end
     end
 
+
     methods(Access=protected)
         function[graph,rx_stream_list,tx_stream_list]=getGraph(obj)
-
             dataTypeMap=containers.Map(...
             ["int16","double","single"],...
             ["sc16","fc64","fc32"]);
@@ -137,7 +122,6 @@ classdef Driver<wt.internal.rfnoc.Driver
             uhd_datatype_host_rx=dataTypeMap(string(obj.App.CaptureDataType));
             uhd_datatype_host_tx=dataTypeMap(string(obj.App.TransmitDataType));
             otw_datatype="sc16";
-
             if~isstring(obj.App.TransmitAntennas)
 
                 [graph,rx_stream_list,tx_stream_list]=getGraphReceiver(obj,uhd_datatype_host_rx,uhd_datatype_host_tx,otw_datatype);
