@@ -1,14 +1,5 @@
 function subsysPath=constructBusSelectorsForObserverPort(obsPortBlkHdl,busElems)
 
-
-
-
-
-
-
-
-
-
     assert(ishandle(obsPortBlkHdl));
     subsysPath=[];
     if isempty(busElems)
@@ -25,13 +16,9 @@ function subsysPath=constructBusSelectorsForObserverPort(obsPortBlkHdl,busElems)
 
 
     add_block('built-in/Subsystem',subsysPath,'Position',subsysPos);
-
-
     set_param(subsysPath,'TreatAsAtomicUnit','on');
 
     add_block('built-in/Inport',[subsysPath,'/In']);
-
-
     ph=get_param(obsPortBlkHdl,'PortHandles');
     oPort=ph.Outport;
     ph=get_param(subsysPath,'PortHandles');
@@ -41,8 +28,6 @@ function subsysPath=constructBusSelectorsForObserverPort(obsPortBlkHdl,busElems)
     count=1;
     ph=get_param([subsysPath,'/In'],'PortHandles');
     srcPortH=ph.Outport;
-
-
 
     for i=1:length(busElems)
         if~isempty(busElems(i).name)
@@ -55,11 +40,10 @@ function subsysPath=constructBusSelectorsForObserverPort(obsPortBlkHdl,busElems)
             count=count+1;
         end
     end
-
-
     addBlock(srcPortH,subsysPath,count,'built-in/Outport');
 
 end
+
 
 function outPortHdl=addAndConfigureBusSelectorBlock(srcPortHdl,name,parentPath,count)
     bsPath=addBlock(srcPortHdl,parentPath,count,'built-in/BusSelector');
@@ -67,6 +51,7 @@ function outPortHdl=addAndConfigureBusSelectorBlock(srcPortHdl,name,parentPath,c
     ph=get_param(bsPath,'PortHandles');
     outPortHdl=ph.Outport;
 end
+
 
 function outPortHdl=addAndConfigureSelectorBlock(srcPortHdl,indexVec,parentPath,count)
 
@@ -83,6 +68,7 @@ function outPortHdl=addAndConfigureSelectorBlock(srcPortHdl,indexVec,parentPath,
     ph=get_param(selPath,'PortHandles');
     outPortHdl=ph.Outport;
 end
+
 
 function newPath=addBlock(srcPortHdl,parentPath,count,blkToAdd)
     leftBlkPos=get_param(get_param(srcPortHdl,'Parent'),'Position');
