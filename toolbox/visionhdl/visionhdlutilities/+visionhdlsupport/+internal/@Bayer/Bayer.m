@@ -1,14 +1,5 @@
 classdef Bayer<visionhdlsupport.internal.AbstractVHT
 
-
-
-
-
-
-
-
-
-
     methods
         function this=Bayer(block)
 
@@ -20,7 +11,6 @@ classdef Bayer<visionhdlsupport.internal.AbstractVHT
             if nargin==0
                 block='';
             end
-
 
             desc=struct(...
             'ShortListing','HDL Support for Demosaic HDL Optimized',...
