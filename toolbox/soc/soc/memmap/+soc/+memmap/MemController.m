@@ -10,13 +10,12 @@ classdef MemController<handle
         regAddrRange={'0',''};
         regBaseAddrMMU={0,'0'};
 
-
         regSize=4;
     end
 
+
     methods
         function obj=MemController(memoryMapInfo)
-
 
             switch memoryMapInfo.boardName
             case 'Xilinx Zynq ZC706 evaluation kit'
