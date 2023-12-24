@@ -1,8 +1,4 @@
 function templateHandle=orTemplate
-
-
-
-
     import sltest.expressions.*
     persistent cachedTemplateHandle;
     if isempty(cachedTemplateHandle)
