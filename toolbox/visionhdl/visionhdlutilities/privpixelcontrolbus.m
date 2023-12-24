@@ -1,8 +1,5 @@
 function pixelcontrolbusobj=privpixelcontrolbus
 
-
-
-
     pixelcontrolbusobj=Simulink.Bus;
     e1=Simulink.BusElement;
     e1.Name='hStart';
