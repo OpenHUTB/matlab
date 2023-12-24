@@ -1,20 +1,5 @@
 function configureInjectorPort(injPrtBlkH,injectedObjectType,blockHdlList,spec,uiMode)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin<5
         uiMode=false;
     end
