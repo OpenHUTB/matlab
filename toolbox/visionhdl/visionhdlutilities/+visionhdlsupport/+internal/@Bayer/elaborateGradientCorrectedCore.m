@@ -1,17 +1,5 @@
 function coreNet=elaborateGradientCorrectedCore(this,topNet,blockInfo,sigInfo,dataRate)
 
-
-
-
-
-
-
-
-
-
-
-
-
     inType=sigInfo.inType;
     booleanT=sigInfo.booleanT;
     if blockInfo.NumPixels==1
@@ -21,7 +9,6 @@ function coreNet=elaborateGradientCorrectedCore(this,topNet,blockInfo,sigInfo,da
         dataRType=sigInfo.dataRType;
     end
     sigInfo.selT=selT;
-
 
     inPortNames={'data1','data2','data3','data4','data5','hStartIn','hEndIn','vStartIn','vEndIn','validIn','processDataIn'};
     inPortRates=[dataRate,dataRate,dataRate,dataRate,dataRate,dataRate,dataRate,dataRate,dataRate,dataRate,dataRate];
@@ -59,7 +46,6 @@ function coreNet=elaborateGradientCorrectedCore(this,topNet,blockInfo,sigInfo,da
     validIn=inSignals(10);
     processDataIn=inSignals(11);
 
-
     outSignals=coreNet.PirOutputSignals;
     R=outSignals(1);
     G=outSignals(2);
@@ -69,7 +55,6 @@ function coreNet=elaborateGradientCorrectedCore(this,topNet,blockInfo,sigInfo,da
     vStartOut=outSignals(6);
     vEndOut=outSignals(7);
     validOut=outSignals(8);
-
 
     if blockInfo.NumPixels==1
         data1=coreNet.addSignal2('Type',inType,'Name','data1');
@@ -92,17 +77,14 @@ function coreNet=elaborateGradientCorrectedCore(this,topNet,blockInfo,sigInfo,da
         REG13OUT=coreNet.addSignal2('Type',inType,'Name','REG13OUT');
         REG14OUT=coreNet.addSignal2('Type',inType,'Name','REG14OUT');
 
-
         pirelab.getUnitDelayEnabledComp(coreNet,data1In,data1,processDataIn,'REG1');
         pirelab.getUnitDelayEnabledComp(coreNet,data1,REG1OUT,processDataIn,'REG1');
         pirelab.getUnitDelayEnabledComp(coreNet,REG1OUT,REG2OUT,processDataIn,'REG2');
-
 
         pirelab.getUnitDelayEnabledComp(coreNet,data2In,data2,processDataIn,'REG1');
         pirelab.getUnitDelayEnabledComp(coreNet,data2,REG3OUT,processDataIn,'REG3');
         pirelab.getUnitDelayEnabledComp(coreNet,REG3OUT,REG4OUT,processDataIn,'REG4');
         pirelab.getUnitDelayEnabledComp(coreNet,REG4OUT,REG5OUT,processDataIn,'REG5');
-
 
         pirelab.getUnitDelayEnabledComp(coreNet,data3In,data3,processDataIn,'REG1');
         pirelab.getUnitDelayEnabledComp(coreNet,data3,REG6OUT,processDataIn,'REG6');
@@ -110,12 +92,10 @@ function coreNet=elaborateGradientCorrectedCore(this,topNet,blockInfo,sigInfo,da
         pirelab.getUnitDelayEnabledComp(coreNet,REG7OUT,REG8OUT,processDataIn,'REG8');
         pirelab.getUnitDelayEnabledComp(coreNet,REG8OUT,REG9OUT,processDataIn,'REG9');
 
-
         pirelab.getUnitDelayEnabledComp(coreNet,data4In,data4,processDataIn,'REG1');
         pirelab.getUnitDelayEnabledComp(coreNet,data4,REG10OUT,processDataIn,'REG10');
         pirelab.getUnitDelayEnabledComp(coreNet,REG10OUT,REG11OUT,processDataIn,'REG11');
         pirelab.getUnitDelayEnabledComp(coreNet,REG11OUT,REG12OUT,processDataIn,'REG12');
-
 
         pirelab.getUnitDelayEnabledComp(coreNet,data5In,data5,processDataIn,'REG1');
         pirelab.getUnitDelayEnabledComp(coreNet,data5,REG13OUT,processDataIn,'REG13');
