@@ -1,8 +1,4 @@
 function reevaluateBindModeStatusForObserverContextSwitch(obsMdlH,isAddContext)
-
-
-
-
     bindModeObj=BindMode.BindMode.getInstance();
     obsCtxH=getSimulinkBlockHandle(get_param(obsMdlH,'ObserverContext'));
     if~isempty(bindModeObj)&&isvalid(bindModeObj)
