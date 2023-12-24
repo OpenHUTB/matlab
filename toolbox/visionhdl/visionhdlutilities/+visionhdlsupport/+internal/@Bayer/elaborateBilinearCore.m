@@ -1,15 +1,5 @@
 function coreNet=elaborateBilinearCore(this,topNet,blockInfo,sigInfo,dataRate)
 
-
-
-
-
-
-
-
-
-
-
     inType=sigInfo.inType;
     booleanT=sigInfo.booleanT;
     if blockInfo.NumPixels==1
@@ -19,8 +9,6 @@ function coreNet=elaborateBilinearCore(this,topNet,blockInfo,sigInfo,dataRate)
         dataRType=sigInfo.dataRType;
     end
     sigInfo.selT=selT;
-
-
     inPortNames={'data1','data2','data3','hStartIn','hEndIn','vStartIn','vEndIn','validIn','processDataIn'};
     inPortRates=[dataRate,dataRate,dataRate,dataRate,dataRate,dataRate,dataRate,dataRate,dataRate];
     outPortNames={'R','G','B','hStartOut','hEndOut','vStartOut','vEndOut','validOut'};
@@ -43,7 +31,6 @@ function coreNet=elaborateBilinearCore(this,topNet,blockInfo,sigInfo,dataRate)
     'OutportTypes',outPortTypes...
     );
 
-
     inSignals=coreNet.PirInputSignals;
     data1=inSignals(1);
     data2=inSignals(2);
@@ -55,7 +42,6 @@ function coreNet=elaborateBilinearCore(this,topNet,blockInfo,sigInfo,dataRate)
     validIn=inSignals(8);
     processDataIn=inSignals(9);
 
-
     outSignals=coreNet.PirOutputSignals;
     R=outSignals(1);
     G=outSignals(2);
@@ -66,7 +52,6 @@ function coreNet=elaborateBilinearCore(this,topNet,blockInfo,sigInfo,dataRate)
     vEndOut=outSignals(7);
     validOut=outSignals(8);
 
-
     if blockInfo.NumPixels==1
         REG1OUT=coreNet.addSignal2('Type',inType,'Name','REG1OUT');
         REG2OUT=coreNet.addSignal2('Type',inType,'Name','REG2OUT');
@@ -74,12 +59,8 @@ function coreNet=elaborateBilinearCore(this,topNet,blockInfo,sigInfo,dataRate)
         REG4OUT=coreNet.addSignal2('Type',inType,'Name','REG4OUT');
         REG5OUT=coreNet.addSignal2('Type',inType,'Name','REG5OUT');
         REG6OUT=coreNet.addSignal2('Type',inType,'Name','REG6OUT');
-
-
         pirelab.getUnitDelayEnabledComp(coreNet,data1,REG1OUT,processDataIn,'REG1');
         pirelab.getUnitDelayEnabledComp(coreNet,REG1OUT,REG2OUT,processDataIn,'REG2');
-
-
         pirelab.getUnitDelayEnabledComp(coreNet,data2,REG3OUT,processDataIn,'REG3');
         pirelab.getUnitDelayEnabledComp(coreNet,REG3OUT,REG4OUT,processDataIn,'REG4');
 
