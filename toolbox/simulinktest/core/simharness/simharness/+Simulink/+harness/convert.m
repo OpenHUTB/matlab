@@ -1,7 +1,4 @@
 function convert(modelName,varargin)
-
-
-
     modelName=convertStringsToChars(modelName);
 
     if nargin>1
