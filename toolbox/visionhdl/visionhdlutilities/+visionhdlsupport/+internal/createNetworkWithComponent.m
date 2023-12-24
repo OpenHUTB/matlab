@@ -1,15 +1,7 @@
 function hNewNet=createNetworkWithComponent(hN,hC)
-
-
-
-
-
-
     hNewNet=pirelab.createNewNetworkWithInterface(...
     'Network',hN,...
     'RefComponent',hC);
-
-
 
     for ii=1:length(hC.PirInputSignals)
         hNewNet.PirInputSignals(ii).SimulinkRate=hC.PirInputSignals(ii).SimulinkRate;
