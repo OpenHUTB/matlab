@@ -1,26 +1,5 @@
 function injSSData=InjectorPrototypeCompileHelper(topMdlH,operation)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     persistent cachedInjectorData;
 
     if operation==1
