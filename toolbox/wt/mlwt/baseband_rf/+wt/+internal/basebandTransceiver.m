@@ -1,16 +1,15 @@
 classdef basebandTransceiver < wt.internal.AppBase
 
-
-
-
     properties ( Access = protected )
         ApplicationID = 'basebandTransceiver'
         PackageBase = 'wt.internal.baseband_rf'
     end
 
+
     properties
         DroppedSamplesAction( 1, 1 ){ mustBeMember( DroppedSamplesAction, [ "error", "warning", "none" ] ) } = "error"
     end
+
 
     properties ( Nontunable )
         UseOnboardMemory( 1, 1 )logical = true
@@ -18,28 +17,29 @@ classdef basebandTransceiver < wt.internal.AppBase
         TransmitDataType( 1, 1 ){ mustBeMember( TransmitDataType, [ "int16", "double", "single" ] ) } = "int16"
     end
 
+
     properties ( SetAccess = immutable )
         AvailableReceiveAntennas
         AvailableTransmitAntennas
     end
+
 
     properties ( Access = private )
         pTransmitChannelsInUse = 0;
         pTransmitSamplesAllocated = 0;
     end
 
+
     methods ( Access = protected )
         function validateTransmitAntennas( obj, val )
-
-
-
             if ~isstring( val ) && val ==  - 1
             else
                 validateTransmitAntennas@wt.internal.AppBase( obj, val )
             end
         end
-        function validateReceiveAntennas( obj, val )
 
+
+        function validateReceiveAntennas( obj, val )
 
             if ~isstring( val ) && val ==  - 1
             else
@@ -47,6 +47,8 @@ classdef basebandTransceiver < wt.internal.AppBase
             end
         end
     end
+
+
     methods
         function obj = basebandTransceiver( RadioID, varargin )
             obj = obj@wt.internal.AppBase( RadioID, varargin{ : } );
@@ -54,11 +56,13 @@ classdef basebandTransceiver < wt.internal.AppBase
             obj.AvailableTransmitAntennas = obj.Radio.AvailableTransmitAntennas;
         end
 
+
         function destroy( obj )
             if ~isempty( obj.TransmitAntennas )
                 stopTransmitRepeat( obj )
             end
         end
+
 
         function transmit( obj, waveform, mode )
             arguments
@@ -67,17 +71,10 @@ classdef basebandTransceiver < wt.internal.AppBase
                 mode( 1, 1 )wt.internal.TransmitModes
             end
 
-
             [ waveform, farrowFactor ] = obj.Driver.prepareTxWaveform( waveform, obj.SampleRate, obj.TransmitAntennas, mode );
 
-
             [ waveformLength, numWaveforms ] = size( waveform );
-
-
-
-
             if rem( waveformLength, 2 )
-
 
                 error( message( 'wt:baseband_rf:TransmitEvenNoFarrow' ) )
             end
@@ -103,12 +100,14 @@ classdef basebandTransceiver < wt.internal.AppBase
             end
         end
 
+
         function stopTransmitRepeat( obj )
             if ~isempty( obj.Driver )
                 obj.Driver.stopTransmitViaOnboardMemory(  );
             end
             freeHardwareMemory( obj, obj.pTransmitChannelsInUse, obj.pTransmitSamplesAllocated );
         end
+
 
         function [ data, timestamp, droppedSamples ] = capture( obj, CaptureLength, timeout )
 
@@ -166,9 +165,9 @@ classdef basebandTransceiver < wt.internal.AppBase
         end
     end
 
+
     methods ( Access = protected )
         function checkUseOnboardMemoryValue( obj, numChannels, lengthSamples, desiredValue )
-
 
             canFit = canAllocateHardwareMemory( obj, numChannels, lengthSamples );
             if canFit && ~( obj.UseOnboardMemory == desiredValue )
@@ -179,6 +178,7 @@ classdef basebandTransceiver < wt.internal.AppBase
                 obj.UseOnboardMemory = false;
             end
         end
+
 
         function [ CaptureLengthSamples, CaptureLengthTime ] = getCaptureLengthSamples( obj, CaptureLength )
 
@@ -196,8 +196,6 @@ classdef basebandTransceiver < wt.internal.AppBase
                 end
             else
                 if isnumeric( CaptureLength )
-
-
 
                     if rem( CaptureLength, 1 ) == 0 && ( CaptureLength > 0 )
 
