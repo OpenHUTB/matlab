@@ -1,15 +1,6 @@
-
-
-
-
-
-
 function elems=extractSignalNames(signalString)
     splitElems=string(signalString).split('.');
-
-
     names=splitElems.extract(alphanumericsPattern+lookAheadBoundary("("|lineBoundary));
-
     indices=arrayfun(@extractIndex,splitElems,"UniformOutput",false);
     assert(length(names)==length(indices));
 
