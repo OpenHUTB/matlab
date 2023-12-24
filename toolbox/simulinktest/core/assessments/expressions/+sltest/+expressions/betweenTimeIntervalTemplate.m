@@ -1,8 +1,5 @@
 function templateHandle=betweenTimeIntervalTemplate
 
-
-
-
     import sltest.expressions.*
     persistent cachedTemplateHandle;
     if isempty(cachedTemplateHandle)
