@@ -1,38 +1,4 @@
 function close(harnessOwner,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     harnessOwner=convertStringsToChars(harnessOwner);
 
     if nargin>1
@@ -42,8 +8,6 @@ function close(harnessOwner,varargin)
     try
         if nargin==1
             openHarness=Simulink.harness.find(harnessOwner,'OpenOnly','on');
-
-
 
             if isempty(openHarness)
                 DAStudio.error('Simulink:Harness:NoHarnessForOwner',harnessOwner);
