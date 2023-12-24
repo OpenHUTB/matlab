@@ -1,12 +1,12 @@
 classdef InjectorBindModeHandler<handle
 
-
     properties
 bindModeSourceObj
 bindingsInfo
 injPrtHdls
 injMdlName
     end
+
 
     methods
 
