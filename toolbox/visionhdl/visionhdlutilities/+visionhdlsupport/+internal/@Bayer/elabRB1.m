@@ -1,9 +1,5 @@
 function interpRB1Net=elabRB1(~,coreNet,blockInfo,sigInfo,dataRate)%#ok<INUSL>
 
-
-
-
-
     inType=sigInfo.inType.BaseType;
     inputWL=sigInfo.inputWL;
     inputFL=sigInfo.inputFL;
@@ -52,10 +48,7 @@ function interpRB1Net=elabRB1(~,coreNet,blockInfo,sigInfo,dataRate)%#ok<INUSL>
     REG10IN=inSignals(9);
     REG12IN=inSignals(10);
     REG14IN=inSignals(11);
-
     outSignal=interpRB1Net.PirOutputSignals;
-
-
     Gain1CAST=interpRB1Net.addSignal2('Type',shiftOneRT,'Name','GAIN1CAST');
     Gain1Out=interpRB1Net.addSignal2('Type',shiftOneRT,'Name','GAIN1OUT');
     Gain2Out=interpRB1Net.addSignal2('Type',twosCompT,'Name','GAIN2OUT');
@@ -74,9 +67,6 @@ function interpRB1Net=elabRB1(~,coreNet,blockInfo,sigInfo,dataRate)%#ok<INUSL>
     Gain11OutD=interpRB1Net.addSignal2('Type',shiftOneRT,'Name','GAIN11OUTD');
     Gain12Out=interpRB1Net.addSignal2('Type',addT9,'Name','GAIN12OUT');
     Gain12OutD=interpRB1Net.addSignal2('Type',addT9,'Name','GAIN12OUTD');
-
-
-
     pirelab.getDTCComp(interpRB1Net,REG2IN,Gain1CAST);
     pirelab.getBitShiftComp(interpRB1Net,Gain1CAST,Gain1Out,'srl',1);
     pirelab.getGainComp(interpRB1Net,REG3IN,Gain2Out,fi(-1,1,2,0),1,1);
@@ -133,28 +123,16 @@ function interpRB1Net=elabRB1(~,coreNet,blockInfo,sigInfo,dataRate)%#ok<INUSL>
     pirelab.getAddComp(interpRB1Net,[ADD1D,ADD2D],ADD6,'Floor','Wrap');
     pirelab.getAddComp(interpRB1Net,[ADD3D,ADD4D],ADD7,'Floor','Wrap');
     pirelab.getAddComp(interpRB1Net,[ADD5D,Gain11OutD],ADD8,'Floor','Wrap');
-
-
     pirelab.getUnitDelayComp(interpRB1Net,ADD6,ADD6D);
     pirelab.getUnitDelayComp(interpRB1Net,ADD7,ADD7D);
     pirelab.getUnitDelayComp(interpRB1Net,ADD8,ADD8D);
 
-
-
     pirelab.getAddComp(interpRB1Net,[ADD6D,ADD7D],ADD9,'Floor','Wrap');
 
-
-
     pirelab.getAddComp(interpRB1Net,[ADD9,ADD8D],ADD10,'Floor','Wrap');
-
-
-
     pirelab.getDTCComp(interpRB1Net,ADD10,ADD11,'Nearest','Saturate');
     pirelab.getBitShiftComp(interpRB1Net,ADD11,Gain12Out,'srl',3);
-
-
     pirelab.getUnitDelayComp(interpRB1Net,Gain12Out,Gain12OutD);
-
     pirelab.getDTCComp(interpRB1Net,Gain12OutD,outSignal(1),'Nearest','Saturate');
 
 
