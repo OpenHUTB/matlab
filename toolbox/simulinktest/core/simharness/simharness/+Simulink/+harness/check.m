@@ -1,33 +1,5 @@
 function[CheckResult,CheckDetails]=check(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin>0
         [varargin{:}]=convertStringsToChars(varargin{:});
     end
