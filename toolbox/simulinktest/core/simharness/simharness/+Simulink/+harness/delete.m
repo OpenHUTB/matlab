@@ -1,25 +1,5 @@
 function delete(harnessOwner,harnessName)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     harnessOwner=convertStringsToChars(harnessOwner);
-
     harnessName=convertStringsToChars(harnessName);
 
     try
