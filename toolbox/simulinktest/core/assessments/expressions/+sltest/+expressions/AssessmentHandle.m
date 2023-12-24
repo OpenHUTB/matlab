@@ -1,29 +1,27 @@
 classdef AssessmentHandle<sltest.expressions.mi.AssessmentHandle
 
-
-
-
     properties(SetAccess=private)
-
-
-
 
 TestCase
     end
+
 
     properties(Dependent)
 Expr
     end
 
+
     properties(Access=private)
 ExprCached
     end
+
 
     methods(Access=private)
         function obj=AssessmentHandle()
             obj@sltest.expressions.mi.AssessmentHandle();
         end
     end
+
 
     methods(Static)
         function obj=makeMoveFrom(testCase,miAssessment)
