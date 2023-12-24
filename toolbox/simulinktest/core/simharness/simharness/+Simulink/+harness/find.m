@@ -1,38 +1,4 @@
 function harnessList=find(harnessOwner,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     harnessOwner=convertStringsToChars(harnessOwner);
 
     if nargin>1
