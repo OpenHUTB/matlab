@@ -1,7 +1,4 @@
-
 classdef IPCoreRegParams<handle
-
-
 
     properties(SetObservable)
 regblk
@@ -12,6 +9,7 @@ vectorlength
 type
         reserved(1,1)logical=false;
     end
+
 
     methods
         function this=IPCoreRegParams(varargin)
@@ -34,6 +32,7 @@ type
             end
         end
     end
+
 
     methods
 
