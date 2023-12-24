@@ -1,10 +1,5 @@
 function connectMessageToBusSelector(obsPortH)
 
-
-
-
-
-
     if isConnectedToBusSelector(obsPortH)
         return;
     end
@@ -17,20 +12,18 @@ function connectMessageToBusSelector(obsPortH)
     busH=add_block("simulink/Signal Routing/Bus Selector",modelName+"/Bus Selector",...
     "MakeNameUnique","on","Position",busPosition);
 
-
     obsPH=get_param(obsPortH,"PortHandles");
     busPH=get_param(busH,"PortHandles");
     add_line(modelName,obsPH.Outport,busPH.Inport);
 
-
     set_param(busH,"OutputSignals","OrigPayload,Metadata")
-
 
     for outport=busPH.Outport
         portPos=get_param(outport,"Position");
         add_line(modelName,[portPos;portPos+[80,0]]);
     end
 end
+
 
 function bool=isConnectedToBusSelector(obsPortH)
     bool=false;
@@ -42,7 +35,6 @@ function bool=isConnectedToBusSelector(obsPortH)
             bool=true;
             return;
         else
-
             delete_line(lineHandles.Outport);
         end
     end
