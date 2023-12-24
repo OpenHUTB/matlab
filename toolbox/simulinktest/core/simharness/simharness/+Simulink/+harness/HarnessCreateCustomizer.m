@@ -1,6 +1,5 @@
 classdef HarnessCreateCustomizer < handle
 
-
     properties ( SetAccess = private )
         Name( 1, 1 )string = "";
         PostCreateCallback( 1, 1 )string = "";
@@ -31,11 +30,13 @@ classdef HarnessCreateCustomizer < handle
             [ "Normal", "SIL", "PIL" ] ) } = "Normal";
     end
 
+
     properties ( SetAccess = private, Hidden = true )
         userDefinedProps = {  };
         activeCustomizationFile = "";
         slcFileDefaultsUpdatedbyAPI = false;
     end
+
 
     methods ( Hidden = true )
         function setDefaults( obj, harnessStruct )
@@ -110,6 +111,7 @@ classdef HarnessCreateCustomizer < handle
         end
     end
 
+
     methods ( Hidden = true )
         function reset( obj )
 
@@ -126,6 +128,7 @@ classdef HarnessCreateCustomizer < handle
     end
 end
 
+
 function validateArgumentVal( param, input, inputList )
 
 if ~any( strcmpi( input, inputList ) )
@@ -134,11 +137,13 @@ if ~any( strcmpi( input, inputList ) )
 end
 end
 
+
 function validateSources( input )
 validSources = Simulink.harness.internal.getTestingSourcesList(  ...
     "IncludeSigBuilder", false );
 validateArgumentVal( 'Source', input, validSources );
 end
+
 
 function validateSinks( input )
 validSinks =  ...
