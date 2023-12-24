@@ -1,12 +1,5 @@
 function configureInjectorSSTrigger(injSSHdl,trigOn,trigOff,trigData)
 
-
-
-
-
-
-
-
     hierElems=[];
     if strcmp(trigOn.TriggerType,'Signal')
         hierElemOn=struct('Type',trigOn.TriggerParams{1},'BlockNodeStr',trigOn.TriggerParams{2},'Spec',trigOn.TriggerParams{3});
