@@ -1,9 +1,5 @@
 function interpGreenNet=elabInterpGreen(~,coreNet,blockInfo,sigInfo,dataRate)%#ok<INUSL>
 
-
-
-
-
     inType=sigInfo.inType.BaseType;
     inputWL=sigInfo.inputWL;
     inputFL=sigInfo.inputFL;
@@ -47,8 +43,6 @@ function interpGreenNet=elabInterpGreen(~,coreNet,blockInfo,sigInfo,dataRate)%#o
     DATA3=inSignals(9);
 
     outSignal=interpGreenNet.PirOutputSignals;
-
-
     Gain1Out=interpGreenNet.addSignal2('Type',twosCompT,'Name','GAIN1OUT');
     Gain2Out=interpGreenNet.addSignal2('Type',twosCompT,'Name','GAIN2OUT');
     Gain3Out=interpGreenNet.addSignal2('Type',twosCompT,'Name','GAIN3OUT');
@@ -66,8 +60,6 @@ function interpGreenNet=elabInterpGreen(~,coreNet,blockInfo,sigInfo,dataRate)%#o
     Gain9OutD=interpGreenNet.addSignal2('Type',shiftOneT,'Name','GAIN9OUTD');
     Gain10Out=interpGreenNet.addSignal2('Type',addT8,'Name','GAIN10');
     Gain10OutD=interpGreenNet.addSignal2('Type',addT8,'Name','GAIN10D');
-
-
     pirelab.getGainComp(interpGreenNet,REG2IN,Gain1Out,fi(-1,1,2,0),1,1);
     pirelab.getGainComp(interpGreenNet,DATA3,Gain2Out,fi(-1,1,2,0),1,1);
     pirelab.getGainComp(interpGreenNet,REG9IN,Gain3Out,fi(-1,1,2,0),1,1);
