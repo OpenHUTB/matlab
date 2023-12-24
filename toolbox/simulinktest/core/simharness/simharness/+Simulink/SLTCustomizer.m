@@ -1,6 +1,5 @@
 classdef SLTCustomizer<handle
 
-
     properties(SetAccess=private)
 createHarnessDefaultsObj
     end
