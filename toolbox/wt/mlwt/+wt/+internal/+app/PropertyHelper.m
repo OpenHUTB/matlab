@@ -1,19 +1,17 @@
 classdef PropertyHelper<handle
 
-
-
-
     properties
 sysObj
     end
+
+
     methods
         function obj=PropertyHelper(sysObj)
             obj.sysObj=sysObj;
         end
 
+
         function applyAllProperties(obj)
-
-
 
             try
                 if~isLocked(obj.sysObj)
@@ -23,16 +21,9 @@ sysObj
                 throwAsCaller(ME);
             end
         end
+
+
         function setNontunable(obj,propertyName,value,canRelease,message)
-
-
-
-
-
-
-
-
-
 
             try
                 if isLocked(obj.sysObj)
@@ -55,8 +46,8 @@ sysObj
             end
         end
 
-        function applyTunable(obj,propertyName,value)
 
+        function applyTunable(obj,propertyName,value)
 
             try
                 set(obj.sysObj,propertyName,value);
@@ -68,11 +59,8 @@ sysObj
             end
         end
 
+
         function applyVectorTunable(obj,propertyName,value,expectedLength,canRelease,message)
-
-
-
-
             if~isscalar(value)&&length(value)~=expectedLength
                 obj.setNontunable(propertyName,value,canRelease,message);
             else
