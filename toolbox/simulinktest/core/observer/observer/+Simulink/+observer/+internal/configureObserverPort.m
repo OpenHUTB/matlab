@@ -1,23 +1,5 @@
 function configureObserverPort(obsPrtBlkH,observedObjectType,blockHdlList,objSpec,uiMode,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin==6
         topMdl=varargin{1};
     elseif nargin==5
