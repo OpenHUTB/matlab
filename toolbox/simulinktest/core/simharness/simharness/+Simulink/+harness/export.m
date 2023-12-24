@@ -1,32 +1,5 @@
 function export(harnessOwner,harnessName,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     harnessOwner=convertStringsToChars(harnessOwner);
-
     harnessName=convertStringsToChars(harnessName);
 
     if nargin>2
