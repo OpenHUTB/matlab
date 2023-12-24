@@ -1,7 +1,4 @@
 function DetectionConcatenation(obj)
-
-
-
     if isR2020bOrEarlier(obj.ver)
 
         if isfile(fullfile(matlabroot,'toolbox','driving','driving','drivinglib.slx'))
