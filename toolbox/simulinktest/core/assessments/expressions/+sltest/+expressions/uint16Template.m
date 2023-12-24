@@ -1,8 +1,4 @@
 function templateHandle=uint16Template
-
-
-
-
     import sltest.expressions.*
     persistent cachedTemplateHandle;
     if isempty(cachedTemplateHandle)
