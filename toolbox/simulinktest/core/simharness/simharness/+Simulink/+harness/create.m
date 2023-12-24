@@ -1,8 +1,6 @@
 function results=create(harnessOwner,varargin)
 
-
     results=[];
-
     useBatchMode=needToUseBatchMode(harnessOwner);
     if~useBatchMode
         harnessOwner=convertStringsToChars(harnessOwner);
@@ -13,9 +11,6 @@ function results=create(harnessOwner,varargin)
     end
     try
         topModel=getTopModelValue(varargin);
-
-
-
         params=removeTopModelFromVarargin(varargin);
         if~useBatchMode
             if~isempty(topModel)
@@ -24,10 +19,6 @@ function results=create(harnessOwner,varargin)
             results=Simulink.harness.internal.create(harnessOwner,false,true,params{:});
             warnMssgs=[];
         else
-
-
-
-
             if isempty(topModel)
                 error(message("Simulink:Harness:TopModelRequiredInBatchMode"));
             end
@@ -40,6 +31,7 @@ function results=create(harnessOwner,varargin)
     results=Simulink.harness.internal.processStructOutput(results,warnMssgs);
 end
 
+
 function res=needToUseBatchMode(harnessOwner)
     if~ischar(harnessOwner)
         res=numel(harnessOwner)>1;
@@ -48,6 +40,7 @@ function res=needToUseBatchMode(harnessOwner)
     end
 end
 
+
 function res=getTopModelValue(argsin)
     p=inputParser;
     p.KeepUnmatched=true;
@@ -55,6 +48,7 @@ function res=getTopModelValue(argsin)
     p.parse(argsin{:});
     res=p.Results.TopModel;
 end
+
 
 function res=removeTopModelFromVarargin(argsin)
     argin=argsin(1:2:end);
