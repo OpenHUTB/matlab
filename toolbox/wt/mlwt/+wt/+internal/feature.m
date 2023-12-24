@@ -1,12 +1,5 @@
 function retVal=feature(varargin)
 
-
-
-
-
-
-
-
     narginchk(1,2);
 
     mlock;
@@ -21,7 +14,6 @@ function retVal=feature(varargin)
 
     featureName=varargin{1};
 
-
     retVal=[];
     if featureMap.isKey(featureName)
         retVal=featureMap(featureName);
@@ -30,11 +22,7 @@ function retVal=feature(varargin)
     if nargin==2
 
         featureValue=varargin{2};
-
-
         featureMap(featureName)=featureValue;
     end
-
-
 
 end
