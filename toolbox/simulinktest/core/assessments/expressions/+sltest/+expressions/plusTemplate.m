@@ -1,8 +1,4 @@
 function templateHandle=plusTemplate
-
-
-
-
     import sltest.expressions.*
     persistent cachedTemplateHandle;
     if isempty(cachedTemplateHandle)
