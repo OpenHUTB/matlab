@@ -1,6 +1,5 @@
 classdef(Sealed)ObsPortDialog<handle
 
-
     properties(SetAccess=private)
         model;
         obsH;
@@ -15,19 +14,7 @@ classdef(Sealed)ObsPortDialog<handle
     end
 
 
-
-
-
-
-
-
-
-
-
-
-
     methods(Access=private)
-
 
         function this=ObsPortDialog()
 
@@ -39,15 +26,9 @@ classdef(Sealed)ObsPortDialog<handle
 
 
         function createDDGDialog(this,obsH)
-
-
-
-
-
             this.obsH=obsH;
 
             connector.ensureServiceOn();
-
 
             if this.isDebug()
                 fileName='index-debug.html';
@@ -59,10 +40,9 @@ classdef(Sealed)ObsPortDialog<handle
             if this.isDebug()
                 log(['URL: ',this.url]);
             end
-
-
             this.dialog=DAStudio.Dialog(this);
         end
+
 
         function checkMdlCompileLockStatus(this)
             obsMdl=get_param(this.obsH,'ObserverModelName');
@@ -78,9 +58,11 @@ classdef(Sealed)ObsPortDialog<handle
             end
         end
 
+
         function ret=getObservableAreaHierarchy(~,obsH)
             ret=Simulink.observer.internal.getObservableAreaHierarchy(obsH);
         end
+
 
         function ret=getObserverHierarchy(~,obsH)
             ret=Simulink.observer.internal.getObserverHierarchy(obsH);
