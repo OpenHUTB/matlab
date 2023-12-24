@@ -1,7 +1,4 @@
 function obsHier=getObservableAreaHierarchy(obsRefHdl)
-
-
-
     obsHier=Simulink.observer.internal.getObservableAreaHierarchyInternal(obsRefHdl);
 
     if slfeature('ObserverSFSupport')==0
@@ -34,9 +31,8 @@ function obsHier=getObservableAreaHierarchy(obsRefHdl)
 
 end
 
+
 function sfHier=getStateflowChartHierarchy(obsHier,obsRefHdl,parentPath,sfHdl,showSelf)
-
-
 
     sfHier=[];
     sfId=sfHdl.Id;
@@ -47,7 +43,6 @@ function sfHier=getStateflowChartHierarchy(obsHier,obsRefHdl,parentPath,sfHdl,sh
     localDataIds=sf('find',dataIds,'.scope','LOCAL_DATA');
     localDataIds=filterSimulinkStateData(localDataIds);
     localDataHdls=idToHandle(sfroot,localDataIds);
-
     idx=arrayfun(@(x)~strcmp(x.Name,'sf_internal_action_state_placeholder_data'),localDataHdls);
     localDataIds=localDataIds(idx);
     localDataHdls=localDataHdls(idx);
@@ -63,12 +58,9 @@ function sfHier=getStateflowChartHierarchy(obsHier,obsRefHdl,parentPath,sfHdl,sh
         end
     end
     sfHier=[sfHier;localDataStruct];
-
-
     paramIds=sf('find',dataIds,'.scope','PARAMETER');
     paramIds=filterSimulinkStateData(paramIds);
     paramHdls=idToHandle(sfroot,paramIds);
-
     paramStruct=struct('Path','','Handle',num2cell(paramIds'),'Type','');
     for j=1:numel(paramStruct)
         paramStruct(j).Path=[parentPath,newline,paramHdls(j).Name];
@@ -82,14 +74,9 @@ function sfHier=getStateflowChartHierarchy(obsHier,obsRefHdl,parentPath,sfHdl,sh
     end
     sfHier=[sfHier;paramStruct];
 
-
-
-
-
     if isa(sfHdl,'Stateflow.TruthTableChart')
         return;
     end
-
 
     if isa(sfHdl,'Stateflow.ReactiveTestingTableChart')
         if slfeature('ObserverSFChildLeafSupport')
@@ -98,7 +85,6 @@ function sfHier=getStateflowChartHierarchy(obsHier,obsRefHdl,parentPath,sfHdl,sh
         end
         return;
     end
-
 
     if showSelf
         sfHier=[sfHier;...
@@ -111,7 +97,6 @@ function sfHier=getStateflowChartHierarchy(obsHier,obsRefHdl,parentPath,sfHdl,sh
         getStateActivityStruct(obsHier,obsRefHdl,parentPath,sfHdl,'Leaf')];
     end
 
-
     stateIds=sf('SubstatesOfInSortedOrder',sfId);
     for j=1:numel(stateIds)
         sfHier=[sfHier;getStateflowStateHierarchy(obsHier,obsRefHdl,parentPath,idToHandle(sfroot,stateIds(j)))];%#ok<AGROW>
@@ -119,14 +104,8 @@ function sfHier=getStateflowChartHierarchy(obsHier,obsRefHdl,parentPath,sfHdl,sh
 
 end
 
+
 function sfHier=getStateflowStateHierarchy(obsHier,obsRefHdl,parentPath,sfHdl)
-
-
-
-
-
-
-
     sfHier=[];
     sfId=sfHdl.Id;
     newPath=[parentPath,newline,sfHdl.Name];
@@ -155,6 +134,7 @@ function sfHier=getStateflowStateHierarchy(obsHier,obsRefHdl,parentPath,sfHdl)
 
 end
 
+
 function sfHier=getStateActivityStruct(obsHier,obsRefHdl,parentPath,sfHdl,actType)
 
     switch actType
@@ -175,14 +155,12 @@ function sfHier=getStateActivityStruct(obsHier,obsRefHdl,parentPath,sfHdl,actTyp
         ssid='';
     elseif isa(sfHdl,'Stateflow.AtomicSubchart')
 
-
         chartBlkH=sfprivate('chart2block',sfHdl.Chart.Id);
         ssid=num2str(sfHdl.SSIdNumber);
     else
         chartBlkH=sfprivate('chart2block',sfHdl.Chart.Id);
         ssid=num2str(sfHdl.SSIdNumber);
     end
-
     mdlRefHdls=getMdlRefHdlsFromPath(obsHier,parentPath);
     if Simulink.observer.internal.isHierSFStateObservedInObserver(obsRefHdl,mdlRefHdls,chartBlkH,ssid,actType)
         typeStr=[typeStr,'-Observed'];
@@ -197,6 +175,7 @@ function sfHier=getStateActivityStruct(obsHier,obsRefHdl,parentPath,sfHdl,actTyp
 
 end
 
+
 function mdlRefHdls=getMdlRefHdlsFromPath(obsHier,path)
     newlines=strfind(path,newline);
     mdlRefHdls=[];
@@ -210,6 +189,7 @@ function mdlRefHdls=getMdlRefHdlsFromPath(obsHier,path)
         end
     end
 end
+
 
 function goodDataIds=filterSimulinkStateData(allDataIds)
     allDataHdls=idToHandle(sfroot,allDataIds);
