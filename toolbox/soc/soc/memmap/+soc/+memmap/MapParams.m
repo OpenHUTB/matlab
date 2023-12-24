@@ -1,4 +1,3 @@
-
 classdef MapParams<matlab.mixin.Copyable
     properties(SetObservable)
 type
@@ -8,6 +7,7 @@ range
 path
 regs
     end
+
 
     methods
         function this=MapParams(varargin)
@@ -34,12 +34,9 @@ regs
             end
         end
         function[isCompatible,isEqual]=compare(obj,other)
-
-
             minfo1={obj.type;obj.name;obj.range;obj.path}';
             minfo2={other.type;other.name;other.range;other.path}';
             isMemCompatible=isequal(minfo1,minfo2);
-
             isMemEqual=isMemCompatible&&...
             isequal(obj.baseAddr,other.baseAddr);
 
@@ -64,11 +61,13 @@ regs
             isEqual=isMemEqual&&isRegEqual;
         end
 
+
         function la=getLastAddress(obj)
             ba=l_hex2decAddr(obj.baseAddr);
             si=ceil(l_str2decRange(obj.range));
             la=ba+si;
         end
+
 
         function la=getLastRegAddress(obj,reg)
             REG_SIZE=4;
@@ -87,8 +86,8 @@ regs
             end
         end
 
-        function reconcile(obj,other)
 
+        function reconcile(obj,other)
             assert(isequal(obj.name,other.name)&&isequal(obj.type,other.type));
 
             obj.range=other.range;
@@ -96,9 +95,6 @@ regs
             if isempty(obj.regs)
                 obj.regs=other.regs;
             else
-
-
-
                 numEntries=length(obj.regs);
                 toKeepInCurr=zeros([numEntries,1],'logical');
                 highestAddress=0;
@@ -109,14 +105,11 @@ regs
                         toKeepInCurr(ii)=true;
                         currReg.type=autoReg.type;
                         currReg.vectorlength=autoReg.vectorlength;
-
                         highestAddress=obj.trackHighestAddress(highestAddress,currReg);
                         obj.regs(ii)=currReg;
                     end
                 end
                 obj.regs=obj.regs(toKeepInCurr);
-
-
                 numEntries=length(other.regs);
                 for ii=1:numEntries
                     autoReg=other.regs(ii);
@@ -132,12 +125,15 @@ regs
             end
         end
 
+
         function ha=trackHighestAddress(obj,ha,currReg)
             la=obj.getLastRegAddress(currReg);
             if la>ha
                 ha=la;
             end
         end
+
+
         function alignedAddress=calcNextAlignedRegAddress(obj,lastAddr)
             alignVal=4;
             alignedAddress=ceil((lastAddr+1)/alignVal)*alignVal;
@@ -147,6 +143,7 @@ regs
 
 end
 
+
 function hexAddr=l_dec2hexAddr(decAddr)
     hexAddr=['0x',dec2hex(decAddr,8)];
 end
@@ -154,6 +151,7 @@ end
 function decAddr=l_hex2decAddr(hexAddr)
     decAddr=uint64(hex2dec(hexAddr));
 end
+
 
 function decRange=l_str2decRange(strRange)
     switch strRange{2}
