@@ -1,22 +1,22 @@
 classdef ArgumentHandle<sltest.expressions.mi.ArgumentHandle
 
-
-
-
     properties(Dependent)
 Types
     end
+
 
     properties(Access=private)
 TypesCached
         IsTypesCached=false
     end
 
+
     methods(Access=private)
         function obj=ArgumentHandle()
             obj@sltest.expressions.mi.ArgumentHandle();
         end
     end
+
 
     methods(Static)
 
@@ -28,6 +28,7 @@ TypesCached
             obj.moveFrom(miArgumentHandle);
         end
     end
+
 
     methods
 
