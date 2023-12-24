@@ -1,7 +1,5 @@
 function[obsHandle,obsPortHandles]=createObserverMdlAndAddSpecificPorts(parentPath,prtHdls,showAndSelect)
 
-
-
     bpList=[];
     rootOfTheModel=bdroot(parentPath);
     if~isempty(prtHdls)
@@ -9,31 +7,19 @@ function[obsHandle,obsPortHandles]=createObserverMdlAndAddSpecificPorts(parentPa
         rootOfTheModel=getfullname(bdroot(bpList(1)));
     end
 
-
     if~strcmp(rootOfTheModel,parentPath)
         warnMsg={'Simulink:SltBlkMap:PathNotRootAddingAtRoot',DAStudio.message('Simulink:SltBlkMap:Observer'),parentPath,rootOfTheModel};
         Simulink.observer.internal.warn(warnMsg,true,'Simulink:Observer:ObserverCreateState',get_param(rootOfTheModel,'Name'));
         parentPath=rootOfTheModel;
     end
     mdlH=get_param(parentPath,'handle');
-
-
-
-
     sysBounds=get_param(parentPath,'SystemBounds');
     pos=[sysBounds(1)+5,sysBounds(4)+20,sysBounds(1)+90,sysBounds(4)+72];
 
-
     obsHandle=add_block('sltestlib/Observer',[parentPath,'/Observer'],'MakeNameUnique','on','Position',pos);
-
-
     uniqueObsMdlName=Simulink.sltblkmap.internal.getUniqueCtxMdlName([get_param(bdroot(parentPath),'Name'),'_Observer']);
-
-
     Simulink.observer.internal.validateObserverModelName(uniqueObsMdlName);
-
     set_param(obsHandle,'ObserverModelName',uniqueObsMdlName);
-
 
     try
         oldStatusString=get_param(mdlH,'StatusString');
@@ -71,19 +57,14 @@ function[obsHandle,obsPortHandles]=createObserverMdlAndAddSpecificPorts(parentPa
         rethrow(ME)
     end
 
-
     obsPortHandles=[];
     if~isempty(prtHdls)
         obsPortHandles=Simulink.observer.internal.addObserverPortsForSignalsInObserver({bpList(1:end-1),prtHdls},uniqueObsMdlName,showAndSelect);
         if strcmp(get_param(mdlH,'Open'),'on')
-
             Simulink.scrollToVisible(obsHandle);
             set_param(obsHandle,'Selected','on');
         end
     end
-
-
-
     Simulink.observer.internal.openObserverMdlFromObsRefBlk(obsHandle);
 
 end
