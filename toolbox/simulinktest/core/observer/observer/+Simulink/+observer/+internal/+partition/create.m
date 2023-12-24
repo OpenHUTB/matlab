@@ -1,7 +1,5 @@
 function aperiodicH=create(obsPort)
 
-
-
     obsModel=bdroot(obsPort);
     obsModel=string(get_param(obsModel,"Name"));
     aperiodicH=createSubsystem(obsModel);
@@ -9,16 +7,15 @@ function aperiodicH=create(obsPort)
     Simulink.observer.internal.partition.convertToAperiodicPartition(aperiodicH);
 end
 
+
 function subsystemH=createSubsystem(obsModel)
     pos=getMaxPos(obsModel);
 
-
     subsystemH=add_block("simulink/Commonly Used Blocks/Subsystem",obsModel+"/Partition",...
     "MakeNameUnique","on","Position",pos);
-
-
     Simulink.SubSystem.deleteContents(subsystemH);
 end
+
 
 function pos=getMaxPos(obsModel)
 
