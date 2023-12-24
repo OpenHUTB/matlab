@@ -1,8 +1,5 @@
 function obsPrtBlks=addObserverPortsForSignalsInObserver(prtHdls,obs,showAndSelect,varargin)
 
-
-
-
     if iscell(prtHdls)
         blockPath=prtHdls{1};
         prtHdls=prtHdls{2};
@@ -11,13 +8,11 @@ function obsPrtBlks=addObserverPortsForSignalsInObserver(prtHdls,obs,showAndSele
     end
     obsPrtBlks=zeros(1,numel(prtHdls));
     obsPrtLines=zeros(1,numel(prtHdls));
-
     existingObsPrtBlks=Simulink.observer.internal.getObserverPortsInsideObserverModel(get_param(bdroot(obs),'Handle'));
     for j=1:numel(existingObsPrtBlks)
         obj=get_param(existingObsPrtBlks(j),'Object');
         obj.hilite('none');
     end
-
     pos=getNewObserverPortStartingPosition(obs);
 
     for j=1:numel(prtHdls)
