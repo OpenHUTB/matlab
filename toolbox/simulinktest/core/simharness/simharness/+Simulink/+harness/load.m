@@ -1,22 +1,4 @@
 function load(harnessOwner,harnessName)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     harnessOwner=convertStringsToChars(harnessOwner);
 
     harnessName=convertStringsToChars(harnessName);
