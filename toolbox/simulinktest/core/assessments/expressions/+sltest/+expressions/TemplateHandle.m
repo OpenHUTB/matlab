@@ -1,19 +1,12 @@
 classdef TemplateHandle<sltest.expressions.mi.TemplateHandle
 
-
-
-
     properties(Dependent)
 Parent
-
 Definition
-
-
 OwnArgs
-
-
 AllArgs
     end
+
 
     properties(Access=private)
 ParentCached
@@ -29,11 +22,13 @@ AllArgsCached
         IsAllArgsCached=false
     end
 
+
     methods(Access=private)
         function obj=TemplateHandle()
             obj@sltest.expressions.mi.TemplateHandle();
         end
     end
+
 
     methods(Static)
         function obj=makeMoveFrom(miTemplateHandle)
@@ -44,6 +39,7 @@ AllArgsCached
             obj.moveFrom(miTemplateHandle);
         end
     end
+
 
     methods
 
