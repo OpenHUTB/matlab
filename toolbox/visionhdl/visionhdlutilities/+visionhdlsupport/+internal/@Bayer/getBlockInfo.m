@@ -1,10 +1,5 @@
 function blockInfo=getBlockInfo(this,hC)
 
-
-
-
-
-
     if isa(hC,'hdlcoder.sysobj_comp')
 
         sysObjHandle=hC.getSysObjImpl;
@@ -18,7 +13,6 @@ function blockInfo=getBlockInfo(this,hC)
         blockInfo.Algorithm=get_param(bfp,'Algorithm');
         blockInfo.SensorAlignment=get_param(bfp,'SensorAlignment');
         blockInfo.MaxLineSize=this.hdlslResolve('LineBufferSize',bfp);
-
 
     end
 
