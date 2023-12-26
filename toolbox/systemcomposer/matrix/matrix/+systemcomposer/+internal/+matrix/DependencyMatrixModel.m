@@ -1,21 +1,8 @@
 classdef DependencyMatrixModel<systemcomposer.internal.matrix.MatrixModel
 
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private)
 zcModel
     end
-
-
 
 
     methods
@@ -26,35 +13,20 @@ zcModel
         end
 
 
-
-
         function MatrixModelElement=toDependencyMatrixModel(this,matrixName,zcModel)
 
             this.MatrixName=matrixName;
             this.zcModel=zcModel;
-
-
-
-
-
-
             this.MatrixModelElement=systemcomposer.syntax.matrix.TreeTable.make(this.Model,this.MatrixName);
-
 
             metadata.rows=containers.Map;
             metadata.cols=containers.Map;
             metadata.isDeriveReferenceArch=false;
-
-
             this.generateMatrixRow(this.zcModel,this.MatrixModelElement,'',metadata);
-
 
             this.generateMatrixColumn(this.zcModel,this.MatrixModelElement,'',metadata);
 
-
-
             this.generatMatrixCell(zcModel,metadata);
-
 
             this.generatMatrixDisabledCell(metadata);
 
@@ -63,11 +35,7 @@ zcModel
     end
 
 
-
-
     methods(Access=private)
-
-
 
         function generatMatrixCell(this,elem,metadata)
 
