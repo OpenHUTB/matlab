@@ -1,38 +1,7 @@
 function[P,I,D,N,achievedPM]=slpidthreepoint(type,form,frequencies,responses,targetPM,K0,Ts,IF,DF)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
     coder.allowpcode('plain');
-
 
     datatype=class(frequencies);
     Zero=zeros(datatype);
@@ -40,25 +9,16 @@ function[P,I,D,N,achievedPM]=slpidthreepoint(type,form,frequencies,responses,tar
     IsDiscrete=Ts>Zero;
     TauPoints=20*One;
 
-
     wC=frequencies(2);
     w3=frequencies(1:3);
     gammaLow=w3(1);
 
-
-
-
     hL3=generateTargetLoop(w3,targetPM);
     gammaHigh=abs(hL3(3));
-
 
     LoopSign=estimateLoopSign(frequencies,responses,K0,Zero,One);
     responses=responses*LoopSign;
     K0=K0*LoopSign;
-
-
-
-
 
     hG3=responses(1:3);
     rG3=abs(hG3);
@@ -66,7 +26,6 @@ function[P,I,D,N,achievedPM]=slpidthreepoint(type,form,frequencies,responses,tar
     rFirst=K0;
     wLast=frequencies(4);
     rLast=abs(responses(4));
-
 
     wHighLeftBound=5*wC;
     wHighRightBound=wLast;
