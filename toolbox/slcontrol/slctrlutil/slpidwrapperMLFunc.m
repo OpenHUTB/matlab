@@ -1,9 +1,5 @@
 function[P,I,D,N,achievedPM]=slpidwrapperMLFunc(w4,hG4,K0,targetPM,Ts,typeidx,formidx,IFidx,DFidx,TimeDomain)
 
-
-
-
-
 %#codegen
     coder.allowpcode('plain');
     datatype=class(w4);
