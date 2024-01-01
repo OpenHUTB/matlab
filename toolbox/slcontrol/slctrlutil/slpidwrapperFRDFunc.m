@@ -1,10 +1,5 @@
 function[P,I,D,N,achievedPM,typeidx,formidx]=slpidwrapperFRDFunc(data,options,pidblk,TimeDomain)
 
-
-
-
-
-
     type=get_param(pidblk,'Controller');
     if contains(type,'D')&&strcmp(get_param(pidblk,'UseFilter'),'on')
         type=[type,'F'];
