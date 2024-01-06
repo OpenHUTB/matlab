@@ -1,83 +1,16 @@
 classdef OrderedSchedule
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( Dependent = true )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         Order( :, 3 )table
-
-
-
-
-
-
-
-
-
         RateSections( 1, : )simulink.schedule.RateSection
-
-
-
-
-
-
-
 
         Events( :, 1 )simulink.schedule.Event
     end
 
     properties
-
-
         Description char
     end
+
 
     properties ( Hidden = true )
 
@@ -104,19 +37,12 @@ classdef OrderedSchedule
         end
 
         function this = set.Order( this, eo )
-
-
-
-
-
             arguments
                 this( 1, 1 )simulink.schedule.OrderedSchedule
                 eo( :, 3 )table
             end
 
             simulink.schedule.internal.validateOrderTableProperties( eo );
-
-
             simulink.schedule.internal.validateNamesAgainst(  ...
                 eo.Partition, this.PartitionProperties.Partition, false );
 
@@ -144,9 +70,6 @@ classdef OrderedSchedule
 
 
             this.validateMovedIndexes( movedOldIdxs, movedNewIdxs );
-
-
-
 
             movedNewLocations = false( size( newProperties.Partition ) );
             movedNewLocations( newProperties.Index( moved ) ) = true;
@@ -203,38 +126,25 @@ classdef OrderedSchedule
             events = this.EventsInternal;
         end
 
+
         function this = set.Events( this, events )
             this.validateNewEvents( events );
             [ ~, index ] = sort( [ events.Name ] );
             this.EventsInternal = events( index );
         end
 
+
         function tf = eq( s1, s2 )
-
-
-
-
-
-
-
-
             tf = arrayfun( @( a, b )eqElement( a, b ), s1, s2 );
         end
 
+
         function tf = ne( s1, s2 )
-
-
-
-
-
-
-
-
             tf = ~eq( s1, s2 );
         end
 
-        function summary( this )
 
+        function summary( this )
 
             fprintf( '\n%s', message( 'SimulinkPartitioning:CLI:SummaryHeading', 'OrderedSchedule' ).getString );
 
@@ -261,11 +171,13 @@ classdef OrderedSchedule
         end
     end
 
+
     methods ( Hidden = true )
 
         function out = saveobj( this )
             out = simulink.schedule.internal.convertToStruct( this );
         end
+
 
         function this = OrderedSchedule( modelHandle )
 
@@ -274,8 +186,6 @@ classdef OrderedSchedule
             end
 
             if ~exist( 'sltp.TaskConnectivityGraph', 'class' )
-
-
 
                 return
             end
@@ -295,21 +205,19 @@ classdef OrderedSchedule
             this.EventsInternal = simulink.schedule.internal.createEventObjects( modelHandle );
         end
 
+
         function applyToModel( this, modelHandle )
 
             arguments
-
                 this( :, : )simulink.schedule.OrderedSchedule
                 modelHandle( 1, 1 )double
             end
-
 
             if ~strcmp( get_param( modelHandle, 'SimulationStatus' ), 'stopped' )
                 error( message( 'Simulink:Engine:SimCantChangeBDPropDuringSim',  ...
                     'Schedule',  ...
                     get_param( modelHandle, 'Name' ) ) );
             end
-
 
             if ~isscalar( this )
                 error( message( 'SimulinkPartitioning:CLI:UnexpectedScheduleValue' ) );
@@ -333,7 +241,6 @@ classdef OrderedSchedule
                 return ;
             end
 
-
             aperiodics = this.PartitionProperties.Type ==  ...
                 simulink.schedule.PartitionType.Aperiodic;
 
@@ -348,6 +255,7 @@ classdef OrderedSchedule
             end
         end
     end
+
 
     methods ( Access = private )
 
@@ -389,15 +297,6 @@ classdef OrderedSchedule
                 partitionProperties.Event( : ) = "";
             end
 
-
-
-
-
-
-
-
-
-
             hasHitTimes = strlength( partitionProperties.HitTimes ) > 0;
             hasEvent = strlength( partitionProperties.Event ) > 0;
             assert( ~any(  ...
@@ -437,14 +336,8 @@ classdef OrderedSchedule
             rateSections = arrayfun( @( x )createRateSection( x ), allRates );
         end
 
+
         function validateMovedIndexes( this, movedOldIdxs, movedNewIdxs )
-
-
-
-
-
-
-
 
             inRangeIndexes = movedNewIdxs >= 1 &  ...
                 movedNewIdxs <= length( this.PartitionProperties.Partition );
@@ -455,9 +348,6 @@ classdef OrderedSchedule
                     this.PartitionProperties.Partition{ movedOldIdxs( find( outOfRangeIndexes, 1 ) ) },  ...
                     string( length( this.PartitionProperties.Partition ) ) ) );
             end
-
-
-
 
             nonIntegerIndexes = ~isreal( movedNewIdxs ) | 0 ~= mod( real( movedNewIdxs ), 1 );
             if any( nonIntegerIndexes )
@@ -475,10 +365,8 @@ classdef OrderedSchedule
             end
         end
 
+
         function validateReadOnlyVariables( this, eo )
-
-
-
 
             oldTypes = this.PartitionProperties.Type;
             newTypes = eo.Type;
@@ -489,12 +377,11 @@ classdef OrderedSchedule
             end
         end
 
+
         function validateNewTriggers( this, eo )
 
             partitionsWithModifiedTriggers =  ...
                 eo.Trigger ~= this.PartitionProperties.Trigger;
-
-
 
             if this.IsExportFunction && any( partitionsWithModifiedTriggers )
                 msg = "SimulinkPartitioning:CLI:InvalidSetTriggerExportFunction";
@@ -502,8 +389,6 @@ classdef OrderedSchedule
                     this.PartitionProperties.Partition{ find(  ...
                     partitionsWithModifiedTriggers, 1 ) } ) );
             end
-
-
 
             aperiodics = this.PartitionProperties.Type ==  ...
                 simulink.schedule.PartitionType.Aperiodic;
@@ -531,9 +416,8 @@ classdef OrderedSchedule
             end
         end
 
+
         function [ events, eventPartitions ] = getNewEventsAndEventPartitionsFromOrder( this, eo )
-
-
 
             aperiodics = eo.Type == simulink.schedule.PartitionType.Aperiodic;
 
