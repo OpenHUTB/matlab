@@ -1,9 +1,5 @@
 function ValidateModel(obj)
 
-
-
-
-
     sys=obj.sys;
     prjDir=obj.ProjectDir;
     if~bdIsLoaded(sys)
