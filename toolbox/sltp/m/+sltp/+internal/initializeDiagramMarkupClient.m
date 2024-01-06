@@ -1,7 +1,5 @@
 function client=initializeDiagramMarkupClient(clientName)
 
-
-
     mlock;
     persistent persistentClient;
     if isempty(persistentClient)
