@@ -1,11 +1,5 @@
 function comp=blk2fpga(vendor,blk,varargin)
 
-
-
-
-
-
-
     switch soc.util.getRefBlk(blk)
     case 'socmemlib/Memory Channel'
         if any(strcmpi(get_param(blk,'ProtocolReader'),{'AXI4-Stream Software','AXI4-Stream'}))...
