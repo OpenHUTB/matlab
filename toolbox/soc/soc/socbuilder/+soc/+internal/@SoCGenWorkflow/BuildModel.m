@@ -1,8 +1,5 @@
 function BuildModel(obj)
 
-
-
-
     try
         if strcmpi(obj.ModelType,obj.ProcessorOnly)
             if~obj.isModelMultiCPU(obj.sys)
