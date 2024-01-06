@@ -1,7 +1,3 @@
-
-
-
-
 classdef(Hidden=true)ScheduleEditor<sltp.internal.ScheduleEditorInterface
     methods
 
@@ -18,10 +14,6 @@ classdef(Hidden=true)ScheduleEditor<sltp.internal.ScheduleEditorInterface
 
                 dlg.Icon=fullfile(matlabroot,'toolbox','sltp','m','resources','SchedulingEditor_16.ico');
             else
-
-
-
-
                 iconFile=fullfile(matlabroot,'toolbox','shared','dastudio','resources','glue','Toolbars','16px','SchedulingEditor_16.png');
                 dlg.Icon=iconFile;
             end
@@ -37,6 +29,7 @@ classdef(Hidden=true)ScheduleEditor<sltp.internal.ScheduleEditorInterface
         function hide(obj)
             obj.Dialog.hide;
         end
+
 
         function show(obj)
             if strcmpi(get_param(obj.modelHandle,'ExplicitPartitioning'),'on')&&...
@@ -61,9 +54,9 @@ classdef(Hidden=true)ScheduleEditor<sltp.internal.ScheduleEditorInterface
     end
 end
 
+
 function hideWindowAndClearModelHighlighting(dialog,modelHandle)
     dialog.hide();
-
 
     if ishandle(modelHandle)
         ge=sltp.GraphEditor(modelHandle);
