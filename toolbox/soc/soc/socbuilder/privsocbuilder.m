@@ -1,7 +1,5 @@
 function privsocbuilder(varargin)
 
-
-
     try
         narginchk(1,1);
         sys=varargin{1};
