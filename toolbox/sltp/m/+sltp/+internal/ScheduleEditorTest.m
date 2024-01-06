@@ -1,11 +1,9 @@
-
-
-
 classdef(Hidden=true)ScheduleEditorTest<sltp.internal.ScheduleEditorInterface
 
     properties(SetAccess=private)
 openState
     end
+
 
     methods
 
