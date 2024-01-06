@@ -9,8 +9,6 @@ end
 ge = sltp.GraphEditor( mdl );
 ge.configureModel( config );
 
-
-
 ret = '';
 
 end
