@@ -1,7 +1,5 @@
 function out=removeAllEventsFixit(model)
 
-
-
     out='';
 
     em=sltp.EventManager(model);
