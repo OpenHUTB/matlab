@@ -1,8 +1,5 @@
 classdef ExternalModeConnectivity<soc.ui.TemplateBaseWithSteps
 
-
-
-
     properties
 Description
 TaskManagerBlocks
@@ -18,24 +15,19 @@ Connectivity1
 Verbose
     end
 
+
     methods
         function this=ExternalModeConnectivity(varargin)
             this@soc.ui.TemplateBaseWithSteps(varargin{:});
-
-
             this.Description=matlab.hwmgr.internal.hwsetup.Label.getInstance(this.ContentPanel);
 
 
             this.setCurrentStep(1);
             this.Title.Text='External Mode Connectivity';
-
-
             this.Description.shiftVertically(260);
             this.Description.addWidth(350);
             this.Description.addHeight(20);
             this.Description.Text=message('soc:workflow:ExtModeConnectivity_Description').getString();
-
-
             TaskMgrBlocks=soc.internal.connectivity.getTaskManagerBlock(this.Workflow.sys);
 
             if~iscell(TaskMgrBlocks)
