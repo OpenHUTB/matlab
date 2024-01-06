@@ -1,13 +1,11 @@
 classdef BuildModel<soc.ui.TemplateWithValidation
 
-
-
-
     properties(Access=private)
 InternalStep
 TimingFailed
 TimerH
     end
+
 
     methods
         function this=BuildModel(varargin)
@@ -38,12 +36,14 @@ TimerH
             this.HelpText.AboutSelection='';
         end
 
+
         function delete(this)
             if isvalid(this.TimerH)
                 stop(this.TimerH);
                 delete(this.TimerH);
             end
         end
+
 
         function screen=getNextScreenID(this)
             if(this.Workflow.BuildAction==2)
@@ -54,8 +54,6 @@ TimerH
             elseif strcmpi(this.Workflow.ModelType,this.Workflow.FpgaOnly)
                 if soc.internal.hasProcessor(this.Workflow.sys)||...
                     (this.Workflow.HasReferenceDesign&&this.Workflow.ReferenceDesignInfo.HasProcessingSystem)
-
-
                     screen='soc.ui.ConnectHardware';
                 else
 
@@ -75,11 +73,13 @@ TimerH
             this.startBuildCB
         end
 
+
         function buildStatusTestCB(this,step)
             this.getBuildStatus(step)
         end
 
     end
+
 
     methods(Access=private)
         function steps=getListOfBuild(this)
@@ -131,7 +131,6 @@ TimerH
 
         function getBuildStatus(this,step)
 
-
             this.setBusy(step);
             this.InternalStep=step;
 
@@ -149,6 +148,7 @@ TimerH
             start(this.TimerH);
         end
 
+
         function parseProjectLog(this,TimerH,event)
             stopTimer=false;
             if isvalid(this)&&isvalid(this.NextButton)
@@ -158,14 +158,11 @@ TimerH
                 logFile=fileread(fullfile(this.Workflow.ProjectDir,statusNames.logName));
 
                 synthMatch=regexp(logFile,['[^\n]*',statusNames.synthesis,'[^\n]*'],'match');
-
                 if~isempty(synthMatch)&&~contains(synthMatch{1,end},'#')&&strcmp(listOfSteps{this.InternalStep},message('soc:workflow:BuildModel_Synthesis').getString())
                     this.setSuccess(this.InternalStep);
                     this.InternalStep=this.InternalStep+1;
                     this.setBusy(this.InternalStep);
                 end
-
-
                 synthFailMatch=regexp(logFile,['[^\n]*',statusNames.synthesisFail,'[^\n]*'],'match');
 
                 if~isempty(synthFailMatch)&&~contains(synthFailMatch{1,end},'#')&&strcmp(listOfSteps{this.InternalStep},message('soc:workflow:BuildModel_Synthesis').getString())
@@ -174,8 +171,6 @@ TimerH
                     this.InternalStep=this.InternalStep+1;
                     stopTimer=true;
                 end
-
-
                 timingFailMatch=regexp(logFile,['[^\n]*',statusNames.timingFail,'[^\n]*'],'match');
 
                 timingPassMatch=regexp(logFile,['[^\n]*',statusNames.timingPass,'[^\n]*'],'match');
@@ -195,9 +190,7 @@ TimerH
                         this.setBusy(this.InternalStep);
                     end
                 end
-
                 implFailMatch=regexp(logFile,['[^\n]*',statusNames.implementationFail,'[^\n]*'],'match');
-
                 if~isempty(implFailMatch)&&~contains(implFailMatch{1,end},'#')&&strcmp(listOfSteps{this.InternalStep},message('soc:workflow:BuildModel_Implementation').getString())
                     this.setFailure(this.InternalStep);
                     this.setValidationStatus('fail',message('soc:workflow:BuildModel_Status_ImplementFail',fullfile(this.Workflow.ProjectDir,statusNames.logName)).getString());
@@ -221,7 +214,6 @@ TimerH
                 end
 
                 bitFailMatch=regexp(logFile,['[^\n]*',statusNames.bitFail,'[^\n]*'],'match');
-
                 if~isempty(bitFailMatch)&&~contains(bitFailMatch{1,end},'#')&&strcmp(listOfSteps{this.InternalStep},message('soc:workflow:BuildModel_BitGen').getString())
                     this.setFailure(this.InternalStep);
                     this.setValidationStatus('fail',message('soc:workflow:BuildModel_Status_BitGenFail',fullfile(this.Workflow.ProjectDir,statusNames.logName)).getString());
@@ -239,6 +231,7 @@ TimerH
             end
         end
 
+
         function CleanupFun(this)
             if isprop(this,'Workflow')&&(this.Workflow.isvalid)
                 busyStatusIcon=matlab.hwmgr.internal.hwsetup.StatusIcon(5);
@@ -251,6 +244,7 @@ TimerH
                 end
             end
         end
+
 
         function startBuildCB(this,~,~)
             this.clearStatusTable();
