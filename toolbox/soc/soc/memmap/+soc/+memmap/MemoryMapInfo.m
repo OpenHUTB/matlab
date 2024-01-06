@@ -1,8 +1,5 @@
 classdef MemoryMapInfo<handle
 
-
-
-
     properties(SetAccess=private)
 boardName
 FPGAVendor
