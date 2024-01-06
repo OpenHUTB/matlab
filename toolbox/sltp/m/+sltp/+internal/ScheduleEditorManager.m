@@ -1,6 +1,3 @@
-
-
-
 classdef(Hidden=true)ScheduleEditorManager<handle
 
     methods(Static)
