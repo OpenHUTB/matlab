@@ -1,15 +1,7 @@
 classdef ConnectorRouting
 
-
-
-
     methods(Static=true)
         function path=computePath(sourceSID,targetSID)
-
-
-
-
-
 
             path=struct('source',{},...
             'target',{});
@@ -17,7 +9,6 @@ classdef ConnectorRouting
             if isequal(sourceSID,targetSID)
                 return;
             end
-
             sourcePath=Simulink.ID.getFullName(sourceSID);
             targetPath=Simulink.ID.getFullName(targetSID);
 
@@ -40,13 +31,9 @@ classdef ConnectorRouting
 
             sourceTokens=string(strsplit(sourcePath,'/'));
             targetTokens=string(strsplit(targetPath,'/'));
-
-
             numTokens=min(sourceTokens.length,targetTokens.length);
             compareSourceTokens=sourceTokens(1:numTokens);
             compareTargetTokens=targetTokens(1:numTokens);
-
-
             compare=compareSourceTokens==compareTargetTokens;
             diverge=find(compare==0,1);
 
