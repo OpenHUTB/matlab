@@ -1,7 +1,5 @@
 function edges=getRelocatedEdges(mdlHdl,tasks,newParent)
 
-
-
     tcg=sltp.TaskConnectivityGraph(get_param(mdlHdl,'name'));
     edges.added={};
     edges.deleted={};
