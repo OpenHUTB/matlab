@@ -1,9 +1,4 @@
 function socExportReferenceDesign(modelName,varargin)
-
-
-
-
-
     soc.internal.validateModelName(modelName);
     modelName=char(modelName);
 
