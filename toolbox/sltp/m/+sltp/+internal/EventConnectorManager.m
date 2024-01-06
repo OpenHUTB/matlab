@@ -1,8 +1,5 @@
 classdef EventConnectorManager
 
-
-
-
     properties ( SetAccess = private )
         ModelHandle double
         ModelName string
