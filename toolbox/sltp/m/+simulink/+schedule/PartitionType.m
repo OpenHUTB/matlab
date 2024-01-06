@@ -1,18 +1,5 @@
 classdef PartitionType
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     enumeration
 
 Unknown
