@@ -1,8 +1,5 @@
 function badgeClickResponse(blockHandle,partitionString)
 
-
-
-
     modelHandle=bdroot(blockHandle);
     if bdIsSubsystem(modelHandle)||bdIsLibrary(modelHandle)
         allStudios=DAS.Studio.getAllStudiosSortedByMostRecentlyActive;
@@ -22,6 +19,7 @@ function badgeClickResponse(blockHandle,partitionString)
         sltp.internal.open_partition(modelHandle,tasks);
     end
 end
+
 
 function isStopped=modelIsStopped(model)
     isStopped=strcmpi(get_param(model,'SimulationStatus'),'stopped');
