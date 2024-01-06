@@ -1,25 +1,9 @@
 function ret=removeSubsystemPartitionFixit(block)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     handle=get_param(block,'handle');
     model=bdroot(block);
     editor=sltp.GraphEditor(model);
     node=sltp.mm.modelHierarchy.SubsystemNode.empty;
-
 
     if editor.hasOpened
         root=editor.getModelHierarchyRoot;
@@ -36,7 +20,6 @@ function ret=removeSubsystemPartitionFixit(block)
         editor.processCommand(cmdData);
         ret='';
     else
-
         ret=set_param_action(block,'ScheduleAs','Sample time','SystemSampleTime','-1');
     end
 
