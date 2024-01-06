@@ -1,9 +1,5 @@
 classdef SoCGenWorkflow<handle
 
-
-
-
-
     properties
 
 Name
