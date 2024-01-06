@@ -1,55 +1,21 @@
 classdef RateSection
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( SetAccess = private )
 
         Rate string
     end
 
+
     properties ( Dependent = true )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         Order( :, 3 )table
     end
+
 
     properties ( Access = private )
         PartitionProperties( :, 8 )table
         Version = 1
     end
+
 
     methods ( Access = { ?simulink.schedule.OrderedSchedule } )
         function this = RateSection( rate, properties )
@@ -60,14 +26,14 @@ classdef RateSection
         end
     end
 
+
     methods
         function eo = get.Order( this )
             eo = this.PartitionProperties( :, 1:3 );
         end
 
+
         function this = set.Order( this, eo )
-
-
             arguments
                 this( 1, 1 )simulink.schedule.RateSection
                 eo( :, 3 )table
@@ -84,7 +50,6 @@ classdef RateSection
                 msg = 'SimulinkPartitioning:CLI:RateSectionPartitionMismatchExtra';
                 error( message( msg, sprintf( '\n%s', extraNames{ : } ) ) );
             end
-
 
             missingNames = setdiff( existingNames, names );
             if ~isempty( missingNames )
