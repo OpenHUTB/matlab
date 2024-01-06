@@ -1,7 +1,5 @@
 function serializedHitTimes=serializeHitTimes(hitTimesCellArray,bdhandle)
 
-
-
     mdlName=get_param(bdhandle,'Name');
 
     serializedHitTimes={};
@@ -10,8 +8,6 @@ function serializedHitTimes=serializeHitTimes(hitTimesCellArray,bdhandle)
     end
 
     [m,n]=size(hitTimesCellArray);
-
-
 
     assert(iscell(hitTimesCellArray));
     assert(n==2);
