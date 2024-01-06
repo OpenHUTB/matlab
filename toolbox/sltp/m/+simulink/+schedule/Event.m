@@ -1,73 +1,22 @@
 classdef Event
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( Access = private )
         Id( 1, 1 )int64 =  - 1
     end
 
     properties
-
-
-
-
-
-
-
-
-
         Name( 1, 1 )string
     end
 
     properties
-
-
-
-
-
-
-
-
-
         Scope( 1, 1 )simulink.schedule.EventScope
     end
 
     properties ( SetAccess = private )
-
-
-
-
-
         Broadcasters( :, 1 )string
     end
 
     properties
-
-
-
-
-
-
-
-
-
-
         Listeners( :, 1 )string
     end
 
@@ -78,28 +27,14 @@ classdef Event
 
     methods
         function tf = eq( s1, s2 )
-
-
-
-
-
-
-
-
             tf = arrayfun( @( a, b )eqElement( a, b ), s1, s2 );
         end
 
+
         function tf = ne( s1, s2 )
-
-
-
-
-
-
-
-
             tf = ~eq( s1, s2 );
         end
+
 
         function tf = isequal( s1, s2 )
             if size( s1 ) == size( s2 )
@@ -109,6 +44,7 @@ classdef Event
             end
         end
     end
+
 
     methods ( Hidden = true )
         function this = Event( name, id, modelHandle )
@@ -147,10 +83,6 @@ classdef Event
             end
 
             eventManager = sltp.EventManager( modelHandle );
-
-
-
-
             eventId = eventManager.getEvent( this.Name );
 
             internalScopeType = simulink.schedule.EventScope.toInternalScopeType( this.Scope );
@@ -183,10 +115,6 @@ classdef Event
             try
                 block = Simulink.ID.getFullName( [ get_param( model, 'Name' ), ':', char( sid ) ] );
             catch e
-
-
-
-
                 if strcmp( e.identifier, 'Simulink:utility:objectDestroyed' )
                     block = char;
                 else
@@ -195,9 +123,9 @@ classdef Event
             end
         end
 
+
         function obj = loadobj( in )
             obj = simulink.schedule.Event(  );
-
 
             if in.Version < 2.0
                 in.Scope = simulink.schedule.EventScope.Scoped;
