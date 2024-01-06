@@ -1,12 +1,11 @@
 classdef EventScope
 
     enumeration
-
-
         Scoped
 
         Global
     end
+
 
     methods ( Static = true, Hidden = true )
         function externalScopeType = toExternalScopeType( internalScopeType )
@@ -23,6 +22,7 @@ classdef EventScope
                     assert( false, "Internal error. Unsupported event scope type detected" );
             end
         end
+
 
         function internalScopeType = toInternalScopeType( externalScopeType )
             arguments
