@@ -1,8 +1,5 @@
 classdef MemoryMapView<handle
 
-
-
-
     properties(SetObservable=true)
 memoryMapInfo
 memPSCtrlBaseAddr
