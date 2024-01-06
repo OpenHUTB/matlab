@@ -1,14 +1,5 @@
 function out=renameSubsystemPartitionFixit(bd,partition,scheduleAsFilter,newName,sources)
 
-
-
-
-
-
-
-
-
-
     out='';
 
     for i=1:length(sources)
