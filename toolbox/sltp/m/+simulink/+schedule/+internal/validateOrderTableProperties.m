@@ -1,18 +1,8 @@
 function validateOrderTableProperties(eo)
 
-
-
-
-
     validTable=simulink.schedule.internal.createPartitionPropertiesTable(height(eo));
 
-
-
     validTable=validTable(:,1:3);
-
-
-
-
     validTable.Properties.RowNames=eo.Properties.RowNames;
 
     if~isequal(...
