@@ -1,20 +1,4 @@
 function[maxel,minel,growthRate]=calcMeshParamsCore(obj,lambda,Aboard,Alayer,k)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     layerId=find(cellfun(@(x)isa(x,'antenna.Shape'),obj.privateStack.Layers));
     metalLayers=find(cellfun(@(x)isa(x,'antenna.Shape'),obj.privateStack.Layers));
     Peri_phys=cellfun(@(x)perimeter(x.InternalPolyShape),obj.privateStack.Layers(metalLayers));
@@ -65,8 +49,6 @@ function[maxel,minel,growthRate]=calcMeshParamsCore(obj,lambda,Aboard,Alayer,k)
 
         minel=lambda/10;
 
-
-
         t(:,4)=0;
         P(:,3)=0;
         basis=em.solvers.RWGBasis;
@@ -77,10 +59,6 @@ function[maxel,minel,growthRate]=calcMeshParamsCore(obj,lambda,Aboard,Alayer,k)
         NumRWG=ceil((lambda/mean(geom.RWGDistance)));
 
         if lambda/6>max(Xdim,Ydim)
-
-
-
-
 
         end
         Peri_phys=cellfun(@(x)perimeter(x.InternalPolyShape),obj.privateStack.Layers(metalLayers));
@@ -99,25 +77,16 @@ function[maxel,minel,growthRate]=calcMeshParamsCore(obj,lambda,Aboard,Alayer,k)
 
     end
 
-
     minToMaxRatio=minel/maxel;
     setMeshMinToMaxEdgeRatio(obj,minToMaxRatio)
 
-
-
     growthRate=1+mean(Alayer./Aboard);
-
-
-
-
-
 
     if growthRate>1.95
         growthRate=1.95;
     elseif growthRate<1.05
         growthRate=1.05;
     end
-
 
     precision=1e2;
     growthRate=round(growthRate*precision)./precision;
@@ -127,15 +96,14 @@ function[maxel,minel,growthRate]=calcMeshParamsCore(obj,lambda,Aboard,Alayer,k)
     params.growthRate=growthRate;
 
 end
+
+
 function[Xa,Xp]=estimateLambdaFraction(Area,Peri,lambda)
 
     pe=mean(Peri.Elength);
     ae=mean(Area.Elength);
     Xp=ceil(sqrt(4*(lambda^2)/sqrt(3))./pe);
     Xa=ceil(sqrt(4*(lambda^2)/sqrt(3))./ae);
-
-
-
 end
 
 
