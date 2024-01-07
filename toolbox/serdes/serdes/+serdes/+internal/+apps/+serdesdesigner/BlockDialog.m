@@ -1,8 +1,5 @@
 classdef BlockDialog<handle
 
-
-
-
     properties
 Parent
 Panel
@@ -23,9 +20,11 @@ HeaderDescription
         NonSerdesElement=[];
     end
 
+
     properties(Dependent)
 Name
     end
+
 
     properties(Access=private)
 
@@ -49,6 +48,7 @@ simParameters
         sParameterFitHistory=[];
         CTLEFitHistory=[];
     end
+
 
     methods
 
@@ -104,8 +104,6 @@ simParameters
             if~isempty(block)
 
                 obj.DefaultName=block.DefaultName;
-
-
                 obj.ParameterNames=fieldnames(block);
                 if~isempty(obj.ParameterNames)
                     obj.TogglePairs_SeDiff=obj.get_ToggleParamPairs_SE_Diff(block);
@@ -113,23 +111,16 @@ simParameters
                         obj.ParameterValues{i}=block.(obj.ParameterNames{i});
                         obj.ParameterTooltips{i}=obj.get_ToolTip(block,obj.ParameterNames{i});
 
-
                         obj.ParameterNamesInGUI{i}=obj.get_NameInGUI(block,obj.ParameterNames{i});
                         if isempty(obj.ParameterNamesInGUI{i})
                             obj.ParameterNamesInGUI{i}=obj.ParameterNames{i};
                         end
                     end
                     if~isSerdesElement
-
                         obj.NonSerdesElement=block;
                     else
-
                         obj.SerdesElement=block;
-
-
                         obj.updateAmiAndSimParameterLists();
-
-
                         if~isempty(obj.amiParameters)
                             for i=1:numel(obj.amiParameters)
                                 for j=1:numel(obj.ParameterNames)
@@ -150,8 +141,8 @@ simParameters
             obj.addListeners();
         end
 
-        function deleteDialog(obj)
 
+        function deleteDialog(obj)
             obj.removeListeners();
             obj.deleteUIControls();
             delete(obj);
@@ -210,7 +201,6 @@ simParameters
                 allEdits{i}.Tooltip=obj.getParameterToolTip(text);
             end
 
-
             visibleEdits={};
             visibleValues={};
             visibleLabels={};
@@ -240,7 +230,6 @@ simParameters
                 visibleEdits{visibleLabelsCount}=edit_PKGain;
             end
 
-
             if obj.areScalarsOrVectorsOfSameLength(visibleValues,visibleLabels,visibleEdits)
                 obj.isMismatchedAcDcPeakingGainEtc=false;
                 obj.WarningLabel.Visible='off';
@@ -248,7 +237,6 @@ simParameters
                 obj.isMismatchedAcDcPeakingGainEtc=true;
                 obj.WarningLabel.Visible='on';
             end
-
 
             obj.WarningLabel2.Visible='off';
             if~obj.isMismatchedAcDcPeakingGainEtc&&...
@@ -271,12 +259,8 @@ simParameters
             if~isempty(obj.ConfigSelectEdit)&&isprop(obj.SerdesElement,'ConfigSelect')
 
                 wasChanged=obj.Parent.View.SerdesDesignerTool.Model.IsChanged;
-
-
                 configSelectValue=obj.SerdesElement.ConfigSelect;
                 obj.SerdesElement.ConfigSelect=0;
-
-
                 obj.updateAmiAndSimParameterLists();
                 configSelect=obj.getAmiParameter('ConfigSelect');
 
@@ -324,8 +308,6 @@ simParameters
                     allLabels{i}.FontWeight='normal';
                 end
             end
-
-
             allEdits={edit_TapWeights,edit_MinimumTap,edit_MaximumTap};
             for i=1:numel(allEdits)
                 text=obj.getParamNameOfUIControl(allEdits{i});
