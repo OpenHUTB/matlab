@@ -1,37 +1,20 @@
 function plotBlockResponse(block)
-
-
-
-
-
-
-
-
-
-
-
     type=serdes.internal.callbacks.getLibraryBlockType(block);
 
 
     switch type
     case 'FFE'
         flag=1;
-
         TapWeights=get_param(block,'TapWeights');
         Normalize=get_param(block,'Normalize');
-
-
         sysobj=serdes.FFE('TapWeights',str2num(TapWeights),...
         'Normalize',strcmp(Normalize,'on'));
     case 'SaturatingAmplifier'
         flag=1;
-
         spec=get_param(block,'Specification');
         Limit=get_param(block,'Limit');
         LinearGain=get_param(block,'LinearGain');
         VinVout=get_param(block,'VinVout');
-
-
         sysobj=serdes.SaturatingAmplifier('Specification',spec);
         switch spec
         case 'Limit and Linear Gain'
@@ -50,16 +33,12 @@ function plotBlockResponse(block)
         else
             wsSymbolTime=mws.getVariable('SymbolTime');
         end
-
-
         spec=get_param(block,'Specification');
         PeakingFrequency=get_param(block,'PeakingFrequency');
         DCGain=get_param(block,'DCGain');
         ACGain=get_param(block,'ACGain');
         PeakingGain=get_param(block,'PeakingGain');
         GPZ=get_param(block,'GPZ');
-
-
         sysobj=serdes.CTLE('Specification',spec,'SymbolTime',wsSymbolTime.Value);
         switch spec
         case 'DC Gain and Peaking Gain'
@@ -126,9 +105,7 @@ function plotBlockResponse(block)
     switch flag
     case 0
 
-
     case 1
-
         sysobjFigureTag=['plotBlockResponse',block];
         sysobjFigure=findobj(groot,'Tag',sysobjFigureTag);
         if isempty(sysobjFigure)
@@ -138,12 +115,10 @@ function plotBlockResponse(block)
             sysobjFigure.Tag=sysobjFigureTag;
         end
 
-
         plot(sysobj,sysobjFigure)
 
     case 2
         blockTitle=['Response of ',+block];
-
         analogChannelFig=findobj(groot,'Tag','figAnalogChannelResponses');
         if isempty(analogChannelFig)
             analogChannelFig=figure('Name',blockTitle,'NumberTitle','off','Tag','figAnalogChannelResponses');
@@ -153,7 +128,6 @@ function plotBlockResponse(block)
         tab1=uitab(tabgp,'Title','Impulse Response');
         tab2=uitab(tabgp,'Title','Step Response');
         tab3=uitab(tabgp,'Title','Pulse Response');
-
 
         ax1=axes(tab1);
         plot(ax1,times,channelImpulse);
@@ -167,7 +141,6 @@ function plotBlockResponse(block)
             legend(ax1,aggrLegend);
         end
 
-
         ax2=axes(tab2);
         plot(ax2,times,channelStep);
         title(ax2,'Analog Channel Step Response');
@@ -179,7 +152,6 @@ function plotBlockResponse(block)
         if wsAggressorsValue>0
             legend(ax2,aggrLegend);
         end
-
 
         ax3=axes(tab3);
         plot(ax3,times,channelPulse);
