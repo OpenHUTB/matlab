@@ -1,9 +1,3 @@
-
-
-
-
-
-
 function configurationPlotImpulse(model)
     mws=get_param(model,'ModelWorkspace');
     requiredMWSElements=["SymbolTime","SampleInterval","RowSize","Aggressors","Modulation","TargetBER","ChannelImpulse","EqualizedImpulse"];
@@ -23,17 +17,12 @@ function configurationPlotImpulse(model)
         tempChannelImpulse=mws.getVariable('ChannelImpulse');
         tempChannelImpulseValue=tempChannelImpulse.Value;
         tempEqualizedImpulseValue=mws.getVariable('EqualizedImpulse');
-
         uneqImpulse=reshape(tempChannelImpulseValue(1:tempRowSizeValue*(1+tempAggressorsValue)),...
         tempRowSizeValue,1+tempAggressorsValue);
         eqImpulse=reshape(tempEqualizedImpulseValue(1:tempRowSizeValue*(1+tempAggressorsValue)),...
         tempRowSizeValue,1+tempAggressorsValue);
-
         SamplesPerSymbol=round(tempSymbolTimeValue/tempSampleIntervalValue);
-
         tp=(0:length(uneqImpulse)-1)*tempSampleIntervalValue;
-
-
         p1=impulse2pulse(uneqImpulse,SamplesPerSymbol,tempSampleIntervalValue);
         p2=impulse2pulse(eqImpulse,SamplesPerSymbol,tempSampleIntervalValue);
         numberOfWaves=size(p2,2);
@@ -47,7 +36,6 @@ function configurationPlotImpulse(model)
         for stimIdx=1:127
             dataPattern(stimIdx)=step(stimulus);
         end
-
         w1=pulse2wave(p1,dataPattern,SamplesPerSymbol);
         w2=pulse2wave(p2,dataPattern,SamplesPerSymbol);
         tw=(0:length(w1)-1)*tempSampleIntervalValue;
@@ -73,8 +61,6 @@ function configurationPlotImpulse(model)
 
         RxGaussianNoise=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_GaussianNoise'),1);
         RxUniformNoise=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_UniformNoise'),1);
-
-
         TxDCDObj=SimpleJitter('Value',TxDCD,'Include',true,'Type',TxDCDUnit);
         TxRjObj=SimpleJitter('Value',TxRj,'Include',true,'Type',TxRjUnit);
         TxDjObj=SimpleJitter('Value',TxDj,'Include',true,'Type',TxDjUnit);
@@ -90,7 +76,6 @@ function configurationPlotImpulse(model)
         RxClockRecoveryDCDObj=SimpleJitter('Value',RxCRDCD,'Include',true,'Type',RxCRDCDUnit);
 
         utilitiesMaskNamesValues=serdes.internal.callbacks.getUtilitiesMaskValues(model,'Configuration');
-
 
         jitter=JitterAndNoise(...
         'Tx_DCD',TxDCDObj,...
@@ -109,8 +94,6 @@ function configurationPlotImpulse(model)
         'Rx_GaussianNoise',RxGaussianNoise,...
         'Rx_UniformNoise',RxUniformNoise,...
         'RxClockMode',utilitiesMaskNamesValues.EyeDiagramClockMode);
-
-
         channel=ChannelData('Impulse',eqImpulse,'dt',tempSampleIntervalValue);
 
         sys=SerdesSystem(...
@@ -122,20 +105,14 @@ function configurationPlotImpulse(model)
         'Signaling','Differential',...
         'BERtarget',tempTargetBERValue);
 
-
         localEye=sys.Eye;
         stateye=localEye.Stateye;
         localClockPDF=localEye.ClockPDF;
         vh=localEye.Vh;
         th2=localEye.Th2;
-
-
-
-
         [eyeLinearity,VEC,contours,bathtubs,EH,~,~,~,~,~,~,~,EW,~,eyeAreas,~,COM]=...
         serdes.utilities.calculatePAMnEye(tempModulationValue,tempTargetBERValue,...
         th2(1),th2(length(th2)),vh(1),vh(length(vh)),stateye);
-
 
         BERplotFloor=1e-20;
 
@@ -145,15 +122,12 @@ function configurationPlotImpulse(model)
         BERwaveFloor=log10(BERplotFloor/10);
         bathtubs(bathtubs==0)=BERwaveFloor;
         bathtubs(isnan(bathtubs))=BERwaveFloor;
-
-
         serdesAnalysisFigureTag=['SimulinkSerDesAnalysisFigure',model];
         serdesStatPanelTag=['SimulinkStatPlotPanel',model];
         serdesTDPanelTag=['SimulinkTDPlotPanel',model];
         serdesStatPanel=findobj(groot,'Tag',serdesStatPanelTag);
         serdesTDPanel=findobj(groot,'Tag',serdesTDPanelTag);
         if~isempty(serdesStatPanel)
-
             analysisFigure=serdesStatPanel.Parent;
 
             figure(analysisFigure)
@@ -165,7 +139,6 @@ function configurationPlotImpulse(model)
             end
             [pulseResAxes,prbsAxes,statEyeAxes,statReportAxes]=setupStatFigure(analysisFigure,serdesAnalysisFigureTag,serdesStatPanelTag);
         elseif~isempty(serdesTDPanel)
-
             analysisFigure=serdesTDPanel.Parent;
 
             figure(analysisFigure)
@@ -206,17 +179,13 @@ function configurationPlotImpulse(model)
         set(statEyeAxes,'YColor',linecolor)
         ylabel(statEyeAxes,'[Probability]')
 
-
         yyaxis(statEyeAxes,'left')
         hold(statEyeAxes,'on')
-
-
         [mincval,maxcval]=serdes.internal.colormapToScale(stateye,si_eyecmap,1e-18);
 
         imagesc(statEyeAxes,th2,vh,stateye,[mincval,maxcval]);
         axis(statEyeAxes,'xy');
         colormap(statEyeAxes,si_eyecmap)
-
         plot(statEyeAxes,th2,contours,'m-','linewidth',2)
         xlabel(statEyeAxes,['[',localEye.tprefix,']'])
         ylabel(statEyeAxes,'[V]')
@@ -252,7 +221,6 @@ function configurationPlotImpulse(model)
         else
             disptable=cell(5,2);
             disptable(:,1)={'Eye Height (V)','Eye Width (ps)','Eye Area (V*ps)','COM','VEC'};
-
             tableData={mat2str(EH',3);mat2str(EW',3);mat2str(eyeAreas',3);mat2str(COM,3);mat2str(VEC,3)};
             disptable(:,2)=tableData;
             tableDataWidth=max(cellfun(@length,tableData));
@@ -260,12 +228,10 @@ function configurationPlotImpulse(model)
             statReportAxes.Tooltip='Height, width, and area ordered from lower to upper eye';
         end
 
-
         statReportAxes.Data=disptable;
         statReportAxes.ColumnName={'Statistical Metric       ','Data'};
         statReportAxes.RowName={};
         statReportAxes.Tag='StatReport';
-
 
         StatResults=struct(...
         'th',th2,...
@@ -281,6 +247,8 @@ function configurationPlotImpulse(model)
 
     end
 end
+
+
 function legendCell=getWaveLegend(numberOfWaves,ChannelFlag)
 
     legendCell=cell(numberOfWaves,2);
@@ -303,6 +271,7 @@ function legendCell=getWaveLegend(numberOfWaves,ChannelFlag)
         end
     end
 end
+
 
 function[pulseResAxes,prbsAxes,statEyeAxes,statReportAxes]=setupStatFigure(existingAnalysisFigure,serdesAnalysisFigureTag,serdesStatPanelTag)
 
