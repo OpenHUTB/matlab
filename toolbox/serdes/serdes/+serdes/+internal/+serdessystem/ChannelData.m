@@ -1,16 +1,4 @@
 classdef ChannelData
-
-
-
-
-
-
-
-
-
-
-
-
     properties
 Impulse
 dt
@@ -18,7 +6,6 @@ dt
         ChannelLossdB=8;
         ChannelLossFreq=5e9;
         ChannelDifferentialImpedance=100;
-
 
         EnableCrosstalk=false;
         CrosstalkSpecification='CEI-28G-SR';
@@ -31,19 +18,21 @@ dt
         Tnt=9.6e-12;
     end
 
+
     properties(SetAccess=private)
         OptionSel=0;
     end
 
+
     methods
-
-
 
         function obj=set.EnableCrosstalk(obj,val)
             validateattributes(val,{'numeric','logical'},...
             {'scalar','binary'},'','EnableCrosstalk');
             obj.EnableCrosstalk=logical(val);
         end
+
+
         function obj=set.CrosstalkSpecification(obj,val)
             validateattributes(val,{'char','string'},...
             {'vector'},'','CrosstalkSpecification');
@@ -55,67 +44,90 @@ dt
             '"CEI-28G-SR" | "CEI-25G-LR" | "CEI-28G-VSR" | "100GBASE-CR4" | "Custom"');
             obj.CrosstalkSpecification=xSpec{ismemberTest};
         end
+
+
         function obj=set.fb(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite'},'','fb');
             obj.fb=double(val);
         end
+
+
         function obj=set.FEXTICN(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite'},'','FEXTICN');
             obj.FEXTICN=double(val);
         end
+
+
         function obj=set.Aft(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite'},'','Aft');
             obj.Aft=double(val);
         end
+
+
         function obj=set.Tft(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite'},'','Tft');
             obj.Tft=double(val);
         end
+
+
         function obj=set.NEXTICN(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite'},'','NEXTICN');
             obj.NEXTICN=double(val);
         end
+
+
         function obj=set.Ant(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite'},'','Ant');
             obj.Ant=double(val);
         end
+
+
         function obj=set.Tnt(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite'},'','Tnt');
             obj.Tnt=double(val);
         end
+
+
         function obj=set.Impulse(obj,val)
             validateattributes(val,{'numeric'},...
             {'2d','finite'},'','Impulse');
             obj.Impulse=double(val);
         end
+
+
         function obj=set.dt(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite'},'','dt');
             obj.dt=double(val);
         end
+
+
         function obj=set.ChannelLossFreq(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite','positive'},'','ChannelLossFreq');
             obj.ChannelLossFreq=double(val);
         end
+
+
         function obj=set.ChannelDifferentialImpedance(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite','positive'},'',...
             'ChannelDifferentialImpedance');
             obj.ChannelDifferentialImpedance=double(val);
         end
+
+
         function obj=set.ChannelLossdB(obj,val)
             validateattributes(val,{'numeric'},...
             {'scalar','finite','real'},'',...
             'ChannelLossdB');
-
 
             minLoss=1;
             coder.internal.errorIf(~(val==0||val>=minLoss),...
@@ -125,9 +137,8 @@ dt
             obj.ChannelLossdB=double(val);
         end
 
+
         function obj=ChannelData(varargin)
-
-
             p=inputParser;
             p.CaseSensitive=false;
             p.addParameter('Impulse',[]);
@@ -149,17 +160,7 @@ dt
 
             p.parse(varargin{:});
             args=p.Results;
-
-
-
-
-
-
-
-
-
             if(~isempty(args.Impulse))&&(~isempty(args.dt))
-
 
                 localImpulse=args.Impulse;
                 impulseSize=size(localImpulse);
@@ -169,16 +170,12 @@ dt
                 obj.dt=args.dt;
                 obj.OptionSel=1;
 
-
-
                 if impulseSize(2)>1
                     obj.EnableCrosstalk=true;
                 end
 
 
                 thisOptionStr='Impulse and dt';
-
-
                 if~isempty(args.ChannelLossdB)
                     coder.internal.warning('serdes:serdessystem:ChannelInputIgnored','ChannelLossdB',thisOptionStr);
                 elseif~isempty(args.ChannelLossFreq)
@@ -204,26 +201,6 @@ dt
                 elseif~isempty(args.EnableCrosstalk)
                     coder.internal.warning('serdes:serdessystem:ChannelInputIgnored','EnableCrosstalk',thisOptionStr);
                 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             else
 
@@ -264,8 +241,6 @@ dt
                     obj.Tnt=args.Tnt;
                 end
                 obj.OptionSel=3;
-
-
                 thisOptionStr='ChannelLossdB, ChannelLossFreq and ChannelDifferentialImpedance';
                 if~isempty(args.Impulse)
                     coder.internal.warning('serdes:serdessystem:ChannelInputIgnored','Impulse',thisOptionStr);
