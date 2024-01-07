@@ -1,14 +1,8 @@
-
-
-
-
-
 function configurationPlotTimeDomainUpdate(block)
     plotImpulse=get_param(block,'PlotImpulse');
     maskPlotImpulse=strcmp(plotImpulse,'on');
     plotTimeDomain=get_param(block,'PlotTimeDomain');
     maskPlotTimeDomain=strcmp(plotTimeDomain,'on');
-
     configurationPlotTDEyeFcn='serdes.internal.callbacks.configurationPlotTimeDomain(bdroot(gcb));';
     configurationPlotTDEyeFcnNoStat='serdes.internal.callbacks.configurationPlotTimeDomain(bdroot(gcb),true);';
     currentStopFcn=get_param(block,'StopFcn');
@@ -55,7 +49,6 @@ function configurationPlotTimeDomainUpdate(block)
             newStopFcn=erase(currentStopFcn,configurationPlotTDEyeFcnNoStat);
             set_param(block,'StopFcn',newStopFcn);
         end
-
         serdes.internal.callbacks.configurationDataLogging(bdroot(block),'off');
     end
 end
