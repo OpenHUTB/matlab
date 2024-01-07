@@ -1,39 +1,20 @@
-
-
-
-
-
-
-
 function datapathCopy(block)
     success=false;
     tree=serdes.internal.callbacks.getSerDesTree(block);
     if~isempty(tree)
         maskObj=Simulink.Mask.get(block);
         blockInstanceName=get_param(block,'Name');
-
-
         if~tree.containsBlock(blockInstanceName)
-
-
             systemObject=serdes.internal.callbacks.getSystemObject(block);
             if~isempty(systemObject)
                 amiParameters=systemObject.getAMIParameters();
                 tree.addBlock(blockInstanceName,amiParameters);
             end
         end
-
-
-
         libType=serdes.internal.callbacks.getLibraryBlockType(block);
         if~isempty(libType)
             success=true;
-
-
             set_param(block,'LinkStatus','none');
-
-
-
 
             if any(contains(["CTLE","DFECDR","FFE"],libType))
                 modeGetMap=containers.Map(...
@@ -44,8 +25,6 @@ function datapathCopy(block)
                 [0,1],...
                 {'Off','On'});
             end
-
-
 
             savedNameIdx=0;
             parameterNames={maskObj.Parameters.Name};
@@ -69,7 +48,6 @@ function datapathCopy(block)
                     end
                     if~strcmp(maskObj.Parameters(idx).Value,newValue)
 
-
                         if strcmp(parameterName,'ConfigSelect')
                             configList=maskObj.Parameters(idx).TypeOptions;
                             if any(contains(configList,newValue))
@@ -81,8 +59,6 @@ function datapathCopy(block)
                     end
                 end
             end
-
-
 
             if savedNameIdx>0&&...
                 ~strcmp(maskObj.Parameters(savedNameIdx).Value,blockInstanceName)
