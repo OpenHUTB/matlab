@@ -1,8 +1,5 @@
 classdef Model<handle
 
-
-
-
     properties(Hidden)
 Name
 SerdesDesign
@@ -10,18 +7,22 @@ SerdesDesign
 SerdesDesignerTool
     end
 
+
     properties(Constant,Access=private)
         DefaultName=getString(message('serdes:serdesdesigner:DefaultSerdesDesignName'));
     end
+
 
     properties(Access=private)
         MatFilePath=''
     end
 
+
     properties
 View
         IsAutoUpdate=true;
     end
+
 
     methods
 
@@ -34,6 +35,7 @@ View
         end
     end
 
+
     methods(Hidden)
         function setMainTitle(obj,designName)
             if~isempty(obj.View)
@@ -45,14 +47,13 @@ View
             end
         end
 
+
         function defaultSerdesDesign(obj)
             obj.SerdesDesign=serdesquicksimulation([]);
             obj.SerdesDesign.AutoUpdate=false;
             obj.SerdesDesign.View=obj.View;
-
-
-
         end
+
 
         function defaultModel(obj)
             obj.Name=obj.DefaultName;
@@ -61,12 +62,11 @@ View
             obj.setMainTitle(obj.Name);
         end
 
+
         function success=loadModel(obj,matfilepath)
             try
                 [~,obj.Name,~]=fileparts(matfilepath);
                 obj.setMainTitle(obj.Name);
-
-
                 temp=load(matfilepath,'-mat');
                 if obj.isValidSerdesDesignFile(temp)
                     serdesDesign=temp.serdesDesign;
@@ -77,8 +77,6 @@ View
                     obj.View.Canvas.setInputOutputLinesVisible();
                     obj.View.Parameters.JitterDialog.jitter=obj.SerdesDesign.Jitter;
                     obj.View.Parameters.JitterDialog.refreshDisplayedValues();
-
-
                     obj.MatFilePath=matfilepath;
                     success=true;
                 else
@@ -94,6 +92,7 @@ View
             end
         end
 
+
         function success=initialModel(obj,arg)
             obj.Name=obj.DefaultName;
             obj.setMainTitle(obj.Name);
@@ -105,13 +104,9 @@ View
                 else
                     filename=arg;
                 end
-
-
                 success=obj.loadModel(filename);
             else
                 if isa(arg,'serdesdesigner')
-
-
                     obj.SerdesDesign=clone(arg);
                 else
                     if isnumeric(arg)
@@ -136,9 +131,9 @@ View
         end
     end
 
+
     methods(Hidden)
         function isCanceled=processSerdesDesignSaving(obj)
-
 
             isCanceled=false;
 
@@ -167,8 +162,8 @@ View
             end
         end
 
-        function newPopupActions(obj,tag)
 
+        function newPopupActions(obj,tag)
             isCanceled=obj.processSerdesDesignSaving();
             if isCanceled
                 return;
@@ -191,17 +186,6 @@ View
                     obj.SerdesDesignerTool.setStatus(getString(message('serdes:serdesdesigner:BusyNewBlankCanvas')));
                     obj.SerdesDesign.Elements=[{tx},{ch},{rx}];
 
-
-
-
-
-
-
-
-
-
-
-
                 end
                 obj.IsChanged=false;
                 obj.setMainTitle(obj.Name);
@@ -209,14 +193,6 @@ View
                 obj.notify('NewModel',...
                 serdes.internal.apps.serdesdesigner.ModelChangedEventData(obj.Name,obj.SerdesDesign))
                 obj.View.Canvas.setInputOutputLinesVisible();
-
-
-
-
-
-
-
-
                 obj.View.PlotsDoc_Blank.Visible=true;
                 if~isempty(obj.View.PlotsFig_All_NonBlank)&&numel(obj.View.PlotsFig_All_NonBlank)>0
                     for i=1:numel(obj.View.PlotsDoc_All_NonBlank)
@@ -243,8 +219,8 @@ View
             obj.SerdesDesignerTool.setStatus('');
         end
 
-        function openAction(obj)
 
+        function openAction(obj)
             isCanceled=obj.processSerdesDesignSaving();
             if isCanceled
                 return;
@@ -285,10 +261,8 @@ View
                 obj.View.CanvasFig.Visible='off';
                 obj.View.CanvasFig.Visible='on';
 
-
                 obj.View.Toolstrip.AutoUpdateCheckbox.Value=obj.SerdesDesign.AutoAnalyze;
                 obj.IsAutoUpdate=obj.SerdesDesign.AutoAnalyze;
-
 
                 if obj.SerdesDesign.PlotVisible_PulseRes
                     serdesplot(obj.SerdesDesign,{'Pulse Response',obj.View});
@@ -327,8 +301,8 @@ View
             obj.SerdesDesignerTool.setStatus('');
         end
 
-        function matfilepath=getMatFilePath(obj)
 
+        function matfilepath=getMatFilePath(obj)
 
             if isempty(obj.MatFilePath)
                 [matfile,pathname]=...
@@ -346,6 +320,7 @@ View
             end
         end
 
+
         function canceled=saveAction(obj,matfilepath)
             canceled=false;
             if nargin<2
@@ -360,8 +335,6 @@ View
                     matfilepath=obj.MatFilePath;
                 end
             end
-
-
             if~obj.SerdesDesign.refreshValuesFromWorkspaceVariables()
                 canceled=true;
                 return;
@@ -400,6 +373,7 @@ View
             obj.SerdesDesignerTool.setStatus('');
         end
 
+
         function savePopupActions(obj,tag)
             switch tag
             case 'Save'
@@ -413,27 +387,24 @@ View
             end
         end
 
-        function exportAction(obj)
 
+        function exportAction(obj)
             if~obj.SerdesDesign.refreshValuesFromWorkspaceVariables()
                 return;
             end
-
-
             serdesSystem=clone(obj.SerdesDesign);
             serdesSystem.AutoUpdate=true;
             assignin('base','serdesSystem',serdesSystem)
             disp('Exported SERDES System to workspace variable <a href="matlab:disp(serdesSystem)">serdesSystem</a>.')
         end
 
-        function exportSimulinkAction(obj)
 
+        function exportSimulinkAction(obj)
             if~obj.SerdesDesign.refreshValuesFromWorkspaceVariables()
                 return;
             end
             design=clone(obj.SerdesDesign);
             design.AutoUpdate=false;
-
             [sdsys,~,mismatchedValuesBlocksCTLE,mismatchedValuesBlocksDFECDR]=design.computeQuickSimulation();
             if~isempty(mismatchedValuesBlocksCTLE)||~isempty(mismatchedValuesBlocksDFECDR)
                 serdes.internal.apps.serdesdesigner.Model.showMismatchedValuesDialog(mismatchedValuesBlocksCTLE,mismatchedValuesBlocksDFECDR);
@@ -472,6 +443,7 @@ View
             exporter.exportSimulink(false);
         end
 
+
         function exportAMIModelAction(obj)
 
             if~obj.SerdesDesign.refreshValuesFromWorkspaceVariables()
@@ -486,13 +458,10 @@ View
                 return;
             end
             exporter=serdes.internal.apps.serdesdesigner.TestbenchExport(sdsys);
-
             position=obj.View.Toolstrip.appContainer.WindowBounds;
-
-
-
             exporter.exportSimulink(true,position);
         end
+
 
         function exportPopupActions(obj,tag)
 
@@ -504,8 +473,6 @@ View
                 case 'SerDes Toolbox (Simulink)'
                     obj.SerdesDesignerTool.setStatus(getString(message('serdes:serdesdesigner:BusySerDesSystemToSimulink')));
                     exportSimulinkAction(obj);
-
-
 
                 case 'Generate MATLAB script'
                     obj.SerdesDesignerTool.setStatus(getString(message('serdes:serdesdesigner:BusySerDesSystemToMATLABscript')));
