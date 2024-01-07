@@ -1,8 +1,5 @@
 classdef View<handle
 
-
-
-
     properties
 PlotsDoc_Blank
 PlotsDoc_PulseRes
@@ -68,6 +65,7 @@ ParametersFig
 ParametersFigLayout
     end
 
+
     properties(Hidden)
 Parameters
 Canvas
@@ -87,6 +85,7 @@ ClientActionListener
         BusyClickingKeyBoard=false;
     end
 
+
     properties(Constant,Hidden)
         PPSS=get(0,'ScreenSize');
         DPSS=ismac*serdes.internal.apps.serdesdesigner.View.PPSS+...
@@ -96,20 +95,18 @@ ClientActionListener
         AppSize=[1100,1000]*serdes.internal.apps.serdesdesigner.View.PixelRatio;
     end
 
+
     methods
 
         function obj=View(name,serdesDesign)
             import matlab.ui.container.internal.AppContainer;
             import matlab.ui.internal.*;
-
             obj.Toolstrip=serdes.internal.apps.serdesdesigner.Toolstrip();
-
 
             group=FigureDocumentGroup();
             group.Title="Canvas";
             group.Tag="canvas";
             obj.Toolstrip.appContainer.add(group);
-
             documentOptions.Title=getString(message('serdes:serdesdesigner:SerdesSystemText'));
             documentOptions.DocumentGroupTag=group.Tag;
             documentOptions.Tag="CanvasFig";
@@ -118,11 +115,7 @@ ClientActionListener
             obj.Toolstrip.appContainer.add(obj.CanvasDoc);
             obj.CanvasFig=obj.CanvasDoc.Figure;
             obj.CanvasFig.AutoResizeChildren='off';
-
-
-
             obj.CanvasFigLayout=uigridlayout(obj.CanvasFig,'RowHeight',{'1x'},'ColumnWidth',{'1x'},'Scrollable','off');
-
 
             group=FigureDocumentGroup();
             group.Title="Parameters";
@@ -140,13 +133,11 @@ ClientActionListener
             obj.ParametersFigLayout=uigridlayout(obj.ParametersFig,'RowHeight',{'1x'},'ColumnWidth',{'1x'},...
             'RowSpacing',0,'ColumnSpacing',0,'Padding',[0,0,0,0],'Scrollable','on');
 
-
             group=FigureDocumentGroup();
             group.Title="Plots";
             group.Tag="plots";
             obj.Toolstrip.appContainer.add(group);
             obj.PlotsGroup=group;
-
             documentOptions.Title=getString(message('serdes:serdesdesigner:PlotsText'));
             documentOptions.DocumentGroupTag=group.Tag;
             documentOptions.Tag="PlotsFig_Blank";
@@ -338,17 +329,6 @@ ClientActionListener
             obj.Parameters=serdes.internal.apps.serdesdesigner.Parameters(obj);
             obj.Canvas=serdes.internal.apps.serdesdesigner.Canvas(obj);
 
-
-
-
-
-
-
-
-
-
-
-
             s=settings;
             screensize=get(0,'MonitorPositions');
             if~isempty(s)&&~isempty(screensize)&&...
@@ -358,7 +338,6 @@ ClientActionListener
                 isprop(s.serdes.SerDesDesigner,'Y')&&...
                 isprop(s.serdes.SerDesDesigner,'Width')&&...
                 isprop(s.serdes.SerDesDesigner,'Height')
-
 
                 X=s.serdes.SerDesDesigner.X.ActiveValue;
                 Y=s.serdes.SerDesDesigner.Y.ActiveValue;
@@ -380,7 +359,6 @@ ClientActionListener
                         end
                     end
                 end
-
 
                 if X<Xmin||X>=Xmax
                     X=s.serdes.SerDesDesigner.X.FactoryValue;
@@ -404,7 +382,6 @@ ClientActionListener
                 if Y+Height>Ymax
                     Y=Ymax-Height;
                 end
-
 
                 if~isempty(obj.Toolstrip)&&...
                     ~isempty(obj.Toolstrip.appContainer)&&...
@@ -483,22 +460,32 @@ ClientActionListener
         function busy=isBusyClickingBlock(obj)
             busy=obj.BusyClickingBlock;
         end
+
+
         function busy=isBusyClickingCanvas(obj)
             busy=obj.BusyClickingCanvas;
         end
+
+
         function busy=isBusyClickingKeyBoard(obj)
             busy=obj.BusyClickingKeyBoard;
         end
+
+
         function setBusyClickingBlock(obj,isBusy)
 
             obj.setWatchCursor(isBusy);
             obj.BusyClickingBlock=isBusy;
         end
+
+
         function setBusyClickingCanvas(obj,isBusy)
 
             obj.setWatchCursor(isBusy);
             obj.BusyClickingCanvas=isBusy;
         end
+
+
         function setBusyClickingKeyBoard(obj,isBusy)
 
             obj.setWatchCursor(isBusy);
