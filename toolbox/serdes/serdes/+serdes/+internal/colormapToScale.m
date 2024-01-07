@@ -1,11 +1,5 @@
 function[mincval,maxcval]=colormapToScale(eye,map,target)
 
-
-
-
-
-
-
     if any(isnan(eye(:)))||any(isinf(eye(:)))
 
         mincval=0;
