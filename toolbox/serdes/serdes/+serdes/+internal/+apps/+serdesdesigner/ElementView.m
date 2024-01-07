@@ -1,16 +1,11 @@
 classdef ElementView<handle&matlab.mixin.Heterogeneous
 
-
-
-
     properties
 Canvas
-
 Panel
 Picture
 StageText
 WireOrIBeam
-
 Layout
 Width
 Height
@@ -19,9 +14,11 @@ BlockType
         IsSelected=false;
     end
 
+
     properties(Dependent)
 Visible
     end
+
 
     properties(Constant)
         IconHeight=60
@@ -32,6 +29,7 @@ Visible
         BackGround1=[.85,.85,.85];
         BackGround2=[.945,.945,.945];
     end
+
 
     methods
 
@@ -75,13 +73,16 @@ Visible
             obj.createElementView(parentPanel,tag)
         end
 
+
         function val=get.Visible(obj)
             val=obj.Panel.Visible;
         end
 
+
         function set.Visible(obj,val)
             obj.Panel.Visible=val;
         end
+
 
         function createElementView(obj,parentPanel,tag)
             obj.Panel=uipanel(parentPanel,...
@@ -93,11 +94,11 @@ Visible
             'RowHeight',{85},'ColumnWidth',{24,60},...
             'RowSpacing',0,'ColumnSpacing',0,'Padding',[0,0,0,0],'BackgroundColor','w');
 
-
             obj.createPicture(tag)
 
             obj.Visible='off';
         end
+
 
         function createPicture(obj,tag)
             allowImageClickedFcn=~strcmpi(tag,'Channel:1')&&~strcmpi(tag,'AnalogIn:1');
@@ -136,6 +137,7 @@ Visible
             obj.Picture.Name.Layout.Column=1;
         end
 
+
         function unselectElement(obj)
             obj.IsSelected=false;
             obj.Picture.Block.ImageSource=obj.Icon;
@@ -144,6 +146,7 @@ Visible
 
             obj.Canvas.View.Toolstrip.DeleteBtn.Description=string(message('serdes:serdesdesigner:DeleteElement'));
         end
+
 
         function selectElement(obj,elem)
 
@@ -155,16 +158,13 @@ Visible
                 end
             end
 
-
             obj.Canvas.SelectIdx=elementIdx;
             obj.Canvas.updateSelectedTxOrRxIdx();
             obj.IsSelected=true;
             obj.Picture.Block.ImageSource=obj.highlight(3,obj.Canvas.ColorSelectedForeground);
-
-
-
             obj.Canvas.View.Parameters.ElementType=elem.getHeaderDescription();
         end
+
 
         function out=highlight(obj,width,clr)
             if isempty(obj.Icon)
