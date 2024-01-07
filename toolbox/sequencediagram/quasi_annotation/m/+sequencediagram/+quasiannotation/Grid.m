@@ -53,13 +53,6 @@ classdef Grid<sequencediagram.quasiannotation.internal.BaseAnnotation
         function addGridDiv(~,document,parent,gridSize,gridLineColor,lineThickness)
             gridDiv=document.createElement('div');
 
-
-
-
-
-
-
-
             gridBackgroundImageStyling=...
             "background-image: "+...
             "repeating-linear-gradient("+gridLineColor+" 0, "+gridLineColor+" "+lineThickness+"px, transparent "+lineThickness+"px, transparent 100%), "+...
