@@ -1,8 +1,5 @@
 classdef SimpleJitter<handle
 
-
-
-
     properties
         Include(1,1)logical=false;
         Type='Float';
@@ -10,10 +7,13 @@ classdef SimpleJitter<handle
         Flavor='Fixed';
     end
 
+
     properties(Hidden)
 
         Format{mustBeMember(Format,{'Value'})}='Value';
     end
+
+
     methods
         function obj=SimpleJitter(varargin)
 
@@ -26,7 +26,6 @@ classdef SimpleJitter<handle
             p.addParameter('Flavor',[]);
             p.parse(varargin{:});
             args=p.Results;
-
 
             if~isempty(args.Include)
                 obj.Include=args.Include;
@@ -44,6 +43,8 @@ classdef SimpleJitter<handle
                 obj.Flavor=args.Flavor;
             end
         end
+
+
         function set.Type(obj,val)
             validateattributes(val,...
             {'char','string'},...
@@ -55,6 +56,8 @@ classdef SimpleJitter<handle
             mustBeMember(val,{'Float','UI'})
             obj.Type=val;
         end
+
+
         function set.Flavor(obj,val)
             validateattributes(val,...
             {'char','string'},...
@@ -62,26 +65,15 @@ classdef SimpleJitter<handle
             mustBeMember(lower(val),lower({'DCD','DJ','SJ','RJ','Fixed'}))
             obj.Flavor=lower(val);
         end
+
+
         function distribution=pmf(obj,SymbolTime,t)
-
-
-
-
-
-
-
-
-
-
-
-
 
             narginchk(3,3)
             nargoutchk(0,1)
             fcnName='pmf';
             validateattributes(SymbolTime,{'numeric'},{'scalar','finite'},fcnName,'SymbolTime',2);
             validateattributes(t,{'numeric'},{'vector','finite','real'},fcnName,'t',3);
-
 
             if obj.Include&&obj.Value~=0
                 if strcmp(obj.Type,'UI')
