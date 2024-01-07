@@ -1,29 +1,11 @@
 function[utilitiesMaskNamesValues,utilitiesMaskObj]=getUtilitiesMaskValues(model,utilitiesBlockName,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin==2
         targetUtilitiesBlock=find_system(model,'SearchDepth',1,...
         'BlockType','SubSystem',...
         'ReferenceBlock',['serdesUtilities/',utilitiesBlockName]);
         targetUtilitiesBlockSize=size(targetUtilitiesBlock,1);
         if isempty(targetUtilitiesBlock)
-
-
             targetUtilitiesBlock=find_system(model,'SearchDepth',1,'BlockType','SubSystem','Name',utilitiesBlockName);
             if~isempty(targetUtilitiesBlock)&&size(targetUtilitiesBlock,1)==1
                 warning(message('serdes:callbacks:LinkedUtilitiesBlockNotFound',utilitiesBlockName))
@@ -33,7 +15,6 @@ function[utilitiesMaskNamesValues,utilitiesMaskObj]=getUtilitiesMaskValues(model
         elseif~isempty(targetUtilitiesBlock)&&targetUtilitiesBlockSize>1
             error(message('serdes:callbacks:UtilitiesBlockMoreThanOne',utilitiesBlockName));
         end
-
 
         if iscell(targetUtilitiesBlock)
             targetUtilitiesBlock=targetUtilitiesBlock{1};
@@ -46,9 +27,6 @@ function[utilitiesMaskNamesValues,utilitiesMaskObj]=getUtilitiesMaskValues(model
     utilitiesMaskTypes={utilitiesMaskObj.Parameters.Type};
     utilitiesMaskValues={utilitiesMaskObj.Parameters.Value};
     utilitiesVariablesAllowed=serdes.internal.callbacks.InitConstants.utilitiesVariablesAllowed;
-
-
-
 
     errorParameters={};
     for paramIdx=1:numel(utilitiesMaskNames)
