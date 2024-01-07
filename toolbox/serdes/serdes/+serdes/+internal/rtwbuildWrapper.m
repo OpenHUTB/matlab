@@ -1,11 +1,6 @@
 function rtwbuildWrapper(buildTargets,app)
 
-
-
-
-
     oldBdroot=bdroot;
-
     simulinkCoderLicenseAvailable=license('test','real-time_workshop');
     embeddedCoderLicenseAvailable=license('test','rtw_embedded_coder');
 
@@ -23,8 +18,6 @@ function rtwbuildWrapper(buildTargets,app)
 
     restoreSimulinkCoderState=false;
     restoreEmbeddedCoderState=false;
-
-
 
     if~embeddedCoderLicenseAvailable&&...
         strcmp(originalEmbeddedCoderState,'on')
@@ -48,7 +41,6 @@ function rtwbuildWrapper(buildTargets,app)
     end
 
     if ispc
-
 
         if regexp(pwd,'\s')
 
