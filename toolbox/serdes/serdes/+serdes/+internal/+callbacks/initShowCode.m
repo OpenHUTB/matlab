@@ -1,7 +1,3 @@
-
-
-
-
 function initShowCode(block)
 
     maskObj=Simulink.Mask.get(block);
