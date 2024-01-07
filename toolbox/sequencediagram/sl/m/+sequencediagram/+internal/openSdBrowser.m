@@ -1,19 +1,12 @@
 function openSdBrowser(studio,debugMode)
 
-
-
-
     narginchk(1,2);
     if nargin==1
         debugMode=false;
     end
-
-
     topLevelDiagram=studio.App.topLevelDiagram;
     modelHandle=topLevelDiagram.handle;
     modelName=get_param(modelHandle,'Name');
-
-
     browserId=builtin('_get_sequence_diagram_browser_id',modelName);
 
     connector.ensureServiceOn;
@@ -35,7 +28,6 @@ function openSdBrowser(studio,debugMode)
         if~SDBrowserComp.isVisible()
             studio.showComponent(SDBrowserComp);
         end
-
         studio.focusComponent(SDBrowserComp);
 
     end
