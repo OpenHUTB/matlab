@@ -1,8 +1,3 @@
-
-
-
-
-
 function configurationIbisAmiManager(block)
     managerHandle=serdes.internal.findMgrWithTag(bdroot(block),'IbisAmiManager');
     if~isempty(managerHandle)&&isvalid(managerHandle)
@@ -18,7 +13,6 @@ function configurationIbisAmiManager(block)
             mgrPos=mgr.ManagerFigure.Position;
             simulinkPos=get_param(bdroot(block),'location');
             screensize=get(0,'Screensize');
-
 
             padY=30;
             padX=9;
