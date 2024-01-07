@@ -1,15 +1,4 @@
-
-
-
-
-
-
-
 function configurationPlotTimeDomain(model,varargin)
-
-
-
-
 
     clearPlot=false;
     if~isempty(varargin)&&nargin==2
@@ -21,7 +10,6 @@ function configurationPlotTimeDomain(model,varargin)
     mws=get_param(model,'ModelWorkspace');
     requiredMWSElements=["SymbolTime","SampleInterval","Modulation","TargetBER","TxTree","RxTree"];
     if~isempty(mws)&&all(arrayfun(@(x)mws.hasVariable(x),requiredMWSElements))
-
         sampleInterval=mws.getVariable('SampleInterval');
         sampleIntervalValue=sampleInterval.Value;
         symbolTime=mws.getVariable('SymbolTime');
@@ -48,40 +36,28 @@ function configurationPlotTimeDomain(model,varargin)
             clockAvailable=false;
         end
 
-
-
-
-
         sps=symbolTimeValue/sampleIntervalValue;
         rxTDLength=length(rxTD);
         rxTDSymbols=rxTDLength/sps;
-
-
         ignoreSymbols=serdes.internal.callbacks.getIgnoreBits(mws);
         if ignoreSymbols>=rxTDSymbols
             warning(message('serdes:callbacks:IgnoreBitsGreaterThanTotalBits'));
             return
         end
 
-
         rxTree=mws.getVariable('RxTree');
         [RxDCD,RxDCDUnit]=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_DCD'));
         [RxDj,RxDjUnit]=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_Dj'));
         [RxSj,RxSjUnit]=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_Sj'));
         [RxRj,RxRjUnit]=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_Rj'));
-
         [RxCRDCD,RxCRDCDUnit]=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_Clock_Recovery_DCD'));
         [RxCRDj,RxCRDjUnit]=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_Clock_Recovery_Dj'));
         [RxCRSj,RxCRSjUnit]=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_Clock_Recovery_Sj'));
         [RxCRRj,RxCRRjUnit]=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_Clock_Recovery_Rj'));
         [RxCRMean,RxCRMeanUnit]=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_Clock_Recovery_Mean'));
-
         RxGaussianNoise=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_GaussianNoise'));
         RxUniformNoise=serdes.internal.callbacks.getJitterValues(rxTree.getReservedParameter('Rx_UniformNoise'));
-
         utilitiesMaskNamesValues=serdes.internal.callbacks.getUtilitiesMaskValues(model,'Configuration');
-
-
         waveMax=max([max(waveforms.rxTD),1e-3]);
         ea=serdes.EyeAnalyzer('SymbolTime',symbolTimeValue,...
         'SampleInterval',sampleIntervalValue,...
@@ -100,8 +76,6 @@ function configurationPlotTimeDomain(model,varargin)
         'MaxVoltage',waveMax,...
         'ClockMode',utilitiesMaskNamesValues.EyeDiagramClockMode,...
         'IgnoreSymbols',ignoreSymbols);
-
-
         Signaling=utilitiesMaskNamesValues.Signaling;
         if strcmpi(Signaling,'single-ended')
             waveMin=min(waveforms.rxTD);
@@ -127,8 +101,6 @@ function configurationPlotTimeDomain(model,varargin)
             ea.ThresholdIsInput=true;
             ea(waveforms.rxTD,thresholds);
         end
-
-
         [~,prefixstr,Y2]=serdes.utilities.num2prefix(symbolTimeValue);
 
         tBins=ea.EyeTime*Y2;
@@ -140,7 +112,6 @@ function configurationPlotTimeDomain(model,varargin)
         localClockPDF=ea.ClockPDF;
         localClockPDF=localClockPDF/sum(localClockPDF);
         localClockPDF(localClockPDF==0)=BERplotFloor/10;
-
 
         if all(histEyeSmooth(1)==histEyeSmooth(:))||all(isnan(histEyeSmooth(:)))
 
@@ -159,11 +130,9 @@ function configurationPlotTimeDomain(model,varargin)
             tBins(1),tBins(end),vBins(end),vBins(1),histEyeSmooth);
         end
 
-
         BERwaveFloor=log10(BERplotFloor/10);
         bathtubs(bathtubs==0)=BERwaveFloor;
         bathtubs(isnan(bathtubs))=BERwaveFloor;
-
 
         lowestBERCalculated=1/(rxTDSymbols-ignoreSymbols);
         if lowestBERCalculated>targetBERValue
@@ -171,8 +140,6 @@ function configurationPlotTimeDomain(model,varargin)
         else
             metricsBER=targetBERValue;
         end
-
-
         serdesAnalysisFigureTag=['SimulinkSerDesAnalysisFigure',model];
         serdesStatPanelTag=['SimulinkStatPlotPanel',model];
         serdesTDPanelTag=['SimulinkTDPlotPanel',model];
@@ -184,7 +151,6 @@ function configurationPlotTimeDomain(model,varargin)
             statEyeYLimit=statEyeAxes.YLim;
         end
         if~isempty(serdesStatPanel)&&~isempty(serdesTDPanel)
-
             analysisFigure=serdesStatPanel.Parent;
 
             figure(analysisFigure)
@@ -215,7 +181,6 @@ function configurationPlotTimeDomain(model,varargin)
             [tdEyeAxes,tdReportAxes]=setupTimeDomainFigure('',serdesAnalysisFigureTag,'',serdesTDPanelTag);
         end
 
-
         title(tdEyeAxes,'Time Domain Eye')
 
         yyaxis(tdEyeAxes,'right')
@@ -225,7 +190,6 @@ function configurationPlotTimeDomain(model,varargin)
         tBins,localClockPDF,'-',...
         'color',linecolor,'linewidth',2)
 
-
         ax=axis(tdEyeAxes);
         ax(3)=BERplotFloor;
         axis(tdEyeAxes,ax);
@@ -233,20 +197,14 @@ function configurationPlotTimeDomain(model,varargin)
         set(tdEyeAxes,'YColor',linecolor)
         ylabel(tdEyeAxes,'[Probability]')
 
-
         yyaxis(tdEyeAxes,'left')
         hold(tdEyeAxes,'on')
         displayVBins=flip(vBins');
-
-
         [mincval,maxcval]=serdes.internal.colormapToScale(...
         histEyeSmooth,serdes.utilities.SignalIntegrityColorMap,1e-18);
-
         imagesc(tdEyeAxes,tBins,displayVBins,histEyeSmooth,[mincval,maxcval]);
         axis(tdEyeAxes,'xy');
-
         colormap(tdEyeAxes,serdes.utilities.SignalIntegrityColorMap)
-
         plot(tdEyeAxes,tBins,contours,'m-','linewidth',2)
         xlabel(tdEyeAxes,"["+prefixstr+"]")
         ylabel(tdEyeAxes,'[V]')
@@ -255,7 +213,6 @@ function configurationPlotTimeDomain(model,varargin)
         if~isempty(statEyeYLimit)
             tdEyeAxes.YLim=statEyeYLimit;
         end
-
         tdEyeAxes.XLim=[min(tBins),max(tBins)];
         hold(tdEyeAxes,'off')
 
@@ -293,7 +250,6 @@ function configurationPlotTimeDomain(model,varargin)
             disptable=cell(8,2);
             disptable(:,1)={'Eye Height (V)','Eye Width (ps)','Eye Area (V*ps)','COM','VEC','Minimum BER',...
             'Ignore Symbols','Total Symbols'};
-
             tableData={mat2str(EH',3);mat2str(EW',3);mat2str(eyeAreas',3);mat2str(COM,3);mat2str(VEC,3);...
             mat2str(metricsBER,3);mat2str(ignoreSymbols,3);mat2str(rxTDSymbols,3)};
             disptable(:,2)=tableData;
@@ -306,7 +262,6 @@ function configurationPlotTimeDomain(model,varargin)
         tdReportAxes.ColumnName={'Time Domain Metric ','Data'};
         tdReportAxes.RowName={};
         tdReportAxes.Tag='TDReport';
-
 
         if mws.hasVariable('SerDesResults')
             results=mws.getVariable('SerDesResults');
@@ -331,13 +286,6 @@ end
 
 function waveforms=getWaveformsFromWS(model)
     waveforms='';
-
-
-
-
-
-
-
     simulation=Simulink.sdi.getCurrentSimulationRun(model);
     if isempty(simulation)
         return
@@ -346,7 +294,6 @@ function waveforms=getWaveformsFromWS(model)
     if isempty(simulation)
         return
     end
-
     rxTD=getWaveformFromSimulation(simulation,'rxOut','Rx');
     clockValidTD=getWaveformFromSimulation(simulation,'clockValidOnRising','Unknown');
     clockTimeTD=getWaveformFromSimulation(simulation,'clockTime','Unknown');
@@ -361,6 +308,7 @@ function waveforms=getWaveformsFromWS(model)
         waveforms.clockTimeTD=clockTimeTD;
     end
 end
+
 
 function waveform=getWaveformFromSimulation(simulation,signalName,blockName)
 
@@ -384,7 +332,6 @@ function waveform=getWaveformFromSimulation(simulation,signalName,blockName)
             error(message('serdes:callbacks:DuplicateSignalName',signalName))
         end
         waveform=signal.Values.Data;
-
 
         waveformDimensions=ndims(waveform);
 
@@ -426,11 +373,9 @@ function[tdEyeAxes,tdReportAxes]=setupTimeDomainFigure(existingAnalysisFigure,se
         if~isempty(serdesStatPanel)
             currentAnalysisFigurePosition=analysisFigure.Position;
 
-
             if currentAnalysisFigurePosition(4)<0.45
                 newAnalysisFigurePosition=currentAnalysisFigurePosition;
                 heightBump=0.45-currentAnalysisFigurePosition(4);
-
                 newAnalysisFigurePosition(2)=currentAnalysisFigurePosition(2)-heightBump;
                 newAnalysisFigurePosition(4)=currentAnalysisFigurePosition(4)+heightBump;
                 analysisFigure.Position=newAnalysisFigurePosition;
@@ -456,12 +401,10 @@ function[tdEyeAxes,tdReportAxes]=setupTimeDomainFigure(existingAnalysisFigure,se
             end
 
             tdPanelPosition=[0,0,1,1];
-
             analysisFigure.Name=getString(message('serdes:callbacks:SimulinkTDTitle'));
         end
     else
         analysisFigure=figure('Units','normalized');
-
         analysisFigure.Position=[0.2,0.5,0.3,0.15];
         analysisFigure.NumberTitle='off';
         analysisFigure.IntegerHandle='off';
