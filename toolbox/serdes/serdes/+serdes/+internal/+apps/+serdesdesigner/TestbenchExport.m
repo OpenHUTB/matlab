@@ -1,16 +1,12 @@
 classdef TestbenchExport<handle
 
-
-
-
-
-
     properties(Access=public)
 serdesSystem
 systemName
         customWorkflow=false;
         workspaceVariablesToSet=struct('position',{},'blockName',{},'parmeterName',{},'parameterValue',{});
     end
+
     properties(Constant,Access=public)
 
         mlSystemBlock='simulink/User-Defined Functions/MATLAB System';
@@ -42,11 +38,14 @@ systemName
         RxTree=[]
         modelHandle=[]
     end
+
+
     methods
 
         function obj=TestbenchExport(sdsys)
             obj.serdesSystem=sdsys;
         end
+
 
         function systemHandle=exportSimulink(obj,varargin)
 
@@ -55,8 +54,6 @@ systemName
             obj.modelHandle=systemHandle;
             warning(warnstate);
             load_system(systemHandle);
-
-
             serdes.internal.SetToolChain(systemHandle);
 
             coderTargetData=get_param(systemHandle,'CoderTargetData');
@@ -65,8 +62,6 @@ systemName
 
             obj.systemName=get_param(systemHandle,'Name');
             paramWorkspace=get_param(systemHandle,'ModelWorkspace');
-
-
             if~isempty(obj.workspaceVariablesToSet)
                 questdlg(message('serdes:export:WorkspaceVariables').getString,'Workspace variables','OK','OK');
             end
@@ -74,8 +69,6 @@ systemName
             codertarget.target.copyInactiveCodeMappingsIfNeeded(systemHandle);
 
             obj.createAmiTreesAndBlockVariables(paramWorkspace);
-
-
             maskConfig=Simulink.Mask.get([obj.systemName,'/Configuration']);
             maskConfigNames={maskConfig.Parameters.Name};
             tempSamplesPerSymbol=obj.serdesSystem.SymbolTime/obj.serdesSystem.dt;
