@@ -28,13 +28,12 @@ classdef(Sealed)EditorInterface<handle
 
     events
 
-
 EditorOpened
     end
 
+
     methods
         function fireEventWhenEditorIsLoaded(obj,modelName,sequenceDiagramName)
-
 
             t=timer;
             t.StartDelay=2;
@@ -51,6 +50,7 @@ EditorOpened
             t.start();
         end
 
+
         function isOpen=isEditorOpen(obj,modelName,sequenceDiagramName)
 
             isOpen=false;
@@ -64,59 +64,13 @@ EditorOpened
             end
         end
 
+
         function insertAnnotation(obj,modelName,sequenceDiagramName,panel,html,annotationId)
-
-
-
-
-
-
-
-
-
-
-
             panelSelector=obj.getPanelSelector(panel);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             jsCmd_PreventRaceConditionStart=...
             "existingAnnotation = document.getElementById('"+annotationId+"');"+newline+...
             "if (!existingAnnotation) {";
             jsCmd_PreventRaceConditionEnd="}";
-
-
-
-
-
-
-
-
-
-
 
             encodedHtml=strrep(html,'\','\\');
             encodedHtml=strrep(encodedHtml,'"','\"');
@@ -131,10 +85,6 @@ EditorOpened
             jsCmd_InsertAnnotation+newline+...
             jsCmd_PreventRaceConditionEnd;
 
-
-
-
-
             if obj.isEditorOpen(modelName,sequenceDiagramName)
                 window=obj.getSystemComposerViewsCEFWindow(modelName);
                 obj.executeJS(window,jsCmd);
@@ -142,9 +92,8 @@ EditorOpened
 
         end
 
+
         function removeAnnotation(obj,modelName,sequenceDiagramName,annotationId)
-
-
 
             jsCmd=...
             "annotationToRemove = document.getElementById('"+annotationId+"');"+newline+...
@@ -152,15 +101,12 @@ EditorOpened
             "annotationToRemove.remove();"+newline+...
             "}";
 
-
-
-
-
             if obj.isEditorOpen(modelName,sequenceDiagramName)
                 window=obj.getSystemComposerViewsCEFWindow(modelName);
                 obj.executeJS(window,jsCmd);
             end
         end
+
 
         function panelSelector=getPanelSelector(~,panel)
             switch panel
@@ -173,20 +119,8 @@ EditorOpened
             end
         end
 
+
         function openSequenceDiagram(obj,modelName,sequenceDiagramName)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             obj.openViews(modelName);
 
@@ -206,31 +140,18 @@ EditorOpened
         end
     end
 
+
     methods(Access=private)
         function obj=EditorInterface()
         end
+
 
         function window=getSystemComposerViewsCEFWindow(~,modelName)
             window=matlab.internal.webwindow.empty();
 
             if~bdIsLoaded(modelName)
-
-
-
-
-
                 return;
             end
-
-
-
-
-
-
-
-
-
-
             mdlHandle=get_param(modelName,'handle');
             app=Simulink.SystemArchitecture.internal.ApplicationManager.getAppMgrFromBDHandle(mdlHandle);
 
@@ -250,38 +171,8 @@ EditorOpened
 
         end
 
+
         function rawJson=executeJS_impl(obj,window,jsCmd)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             assert(~obj.ExecutingJS,...
             'SequenceDiagram:QuasiAnnotation:ReentrantExecuteJs',...
@@ -289,63 +180,24 @@ EditorOpened
             "diagram editor by the QuasiAnnotation feature has been detected.")
 
             obj.ExecutingJS=true;
-
-
-
             executingFlagCleanup=onCleanup(@()cleanupExecutingFlagFcn(obj));
             function cleanupExecutingFlagFcn(ei)
                 ei.ExecutingJS=false;
             end
-
-
-
-
-
-
-
-
-
 
             timeout=60;
 
             rawJson=window.executeJS(char(jsCmd),timeout);
         end
 
+
         function executeJS(obj,window,jsCmd)
-
-
-
-
             obj.executeJS_impl(window,jsCmd);
         end
 
+
         function out=executeJSAndDecode(obj,window,jsCmd)
-
-
-
-
-
-
-
-
-
-
-
             rawJson=obj.executeJS_impl(window,jsCmd);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             for ii=1:5
                 if isempty(rawJson)
@@ -369,6 +221,7 @@ EditorOpened
             out=jsondecode(rawJson);
         end
 
+
         function editorName=getCurrentEditorName(obj,window)
             jsCmd=...
             "currentTab = document.querySelector('#sysarch_editorDocumentContainer .tab.checkedTab .mwTabLabel');"+newline+...
@@ -387,8 +240,8 @@ EditorOpened
             hasGutter=obj.executeJSAndDecode(window,jsCmd);
         end
 
-        function fireEventWhenEditorIsLoadedImpl(obj,modelName,sequenceDiagramName,pollingTimer)
 
+        function fireEventWhenEditorIsLoadedImpl(obj,modelName,sequenceDiagramName,pollingTimer)
 
             if obj.ExecutingJS
                 return;
@@ -400,20 +253,14 @@ EditorOpened
             end
         end
 
+
         function fireOpenedEvent(obj,modelName,sequenceDiagramName)
             eventData=sequencediagram.quasiannotation.internal.EditorOpenedEventData(modelName,sequenceDiagramName);
             notify(obj,'EditorOpened',eventData);
         end
 
+
         function openViews(obj,modelName)
-
-
-
-
-
-
-
-
             window=obj.getSystemComposerViewsCEFWindow(modelName);
             if isempty(window)
                 app=systemcomposer.internal.arch.load(modelName);
@@ -425,34 +272,8 @@ EditorOpened
             end
         end
 
+
         function openSequenceDiagramWhenEditorHasLoaded(obj,modelName,sequenceDiagramName,pollingTimer)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             if obj.ExecutingJS
                 return;
@@ -462,7 +283,6 @@ EditorOpened
                 pollingTimer.stop();
                 return;
             end
-
             window=obj.getSystemComposerViewsCEFWindow(modelName);
 
             if~isempty(window)
