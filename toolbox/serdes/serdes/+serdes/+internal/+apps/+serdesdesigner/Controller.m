@@ -1,14 +1,12 @@
 classdef Controller<handle
 
-
-
-
     properties(Hidden)
 Model
 View
 AutoUpdateString
 Listeners
     end
+
 
     methods
         function obj=Controller(model,view)
@@ -70,24 +68,11 @@ Listeners
         end
     end
 
+
     methods(Access=private)
         function listenFileButtons(obj)
-
-
-
-
-
-
-
-
-
-
-
-
             addlistener(obj.View.Toolstrip.NewBtn,'ButtonPushed',...
             @(h,e)newPopupActions(obj.Model,'Blank canvas'));
-
-
             addlistener(obj.View.Toolstrip.OpenBtn,'ButtonPushed',...
             @(h,e)openAction(obj.Model));
 
@@ -100,46 +85,11 @@ Listeners
             end
         end
 
+
         function listenDefaultLayoutButtons(obj)
             addlistener(obj.View.Toolstrip.DefaultLayoutBtn,'ButtonPushed',...
             @(h,e)defaultLayoutAction(obj.View,'Default Layout'));
         end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         function listenConfiguration(obj)
@@ -150,6 +100,8 @@ Listeners
             addlistener(obj.View.Toolstrip.SignalingDropdown,'ValueChanged',@(h,e)obj.changeConfig('Signaling','SignalingDropdown'));
             addlistener(obj.View.Toolstrip.JitterBtn,'ButtonPushed',@(h,e)jitterAction(obj.Model,obj.View.Toolstrip.JitterBtn.Tag));
         end
+
+
         function changeConfig(obj,paramName,paramViewName)
             if strcmpi(paramName,'SymbolTime')&&str2double(obj.View.Toolstrip.(paramViewName).Value)>0
 
@@ -189,6 +141,7 @@ Listeners
             end
         end
 
+
         function listenAddButtons(obj)
             obj.View.Toolstrip.AgcBtn.ItemPushedFcn=@(h,e)addAction(obj.View,'AGC');
             obj.View.Toolstrip.FfeBtn.ItemPushedFcn=@(h,e)addAction(obj.View,'FFE');
@@ -201,20 +154,11 @@ Listeners
         end
 
 
-
-
-
-
-
-
-
-
-
-
         function listenDeleteButton(obj)
             addlistener(obj.View.Toolstrip.DeleteBtn,'ButtonPushed',...
             @(h,e)deleteAction(obj.View));
         end
+
 
         function listenPlotButton(obj)
             items=obj.View.Toolstrip.PlotBtn.Popup.getChildByIndex();
@@ -226,19 +170,26 @@ Listeners
             end
         end
 
+
         function listenAutoUpdateButton(obj)
             addlistener(obj.View.Toolstrip.AutoUpdateBtn,'ButtonPushed',...
             @(h,e)serdesplot(obj.Model.SerdesDesign,{'Update',obj.View}));
         end
+
+
         function listenAutoUpdateCheckbox(obj)
             obj.View.Toolstrip.AutoUpdateCheckbox.ValueChangedFcn=@(h,~)actionAutoUpdateCheckbox(obj,obj.View);
         end
+
+
         function listenAutoUpdateRadioButtons(obj)
             autoUpdateRadioBtn=obj.View.Toolstrip.AutoUpdateRadioBtn;
             manualUpdateRadioBtn=obj.View.Toolstrip.ManualUpdateRadioBtn;
             autoUpdateRadioBtn.ValueChangedFcn=@(h,e)actionAutoUpdateRadioBtn(obj,autoUpdateRadioBtn);
             manualUpdateRadioBtn.ValueChangedFcn=@(h,e)actionAutoUpdateRadioBtn(obj,manualUpdateRadioBtn);
         end
+
+
         function actionAutoUpdateRadioBtn(obj,radioBtn)
             if radioBtn==obj.View.Toolstrip.AutoUpdateRadioBtn
                 obj.View.Toolstrip.AutoUpdateCheckbox.Value=obj.View.Toolstrip.AutoUpdateRadioBtn.Value;
@@ -247,6 +198,8 @@ Listeners
             end
             obj.actionAutoUpdateCheckbox;
         end
+
+
         function actionAutoUpdateCheckbox(obj,~)
             obj.View.Toolstrip.toggleAutoUpdateButton();
             obj.Model.IsAutoUpdate=obj.View.Toolstrip.isAutoUpdate;
@@ -259,9 +212,8 @@ Listeners
             end
         end
 
+
         function listenExportButton(obj)
-
-
             items=obj.View.Toolstrip.ExportBtn.Popup.getChildByIndex();
             addlistener(obj.View.Toolstrip.ExportBtn,'ButtonPushed',...
             @(h,e)exportPopupActions(obj.Model,items(1).Tag));
@@ -271,6 +223,7 @@ Listeners
             end
         end
     end
+
 
     methods(Hidden)
         function newModel(obj,data)
