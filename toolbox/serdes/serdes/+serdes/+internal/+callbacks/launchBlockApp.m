@@ -1,11 +1,4 @@
 function launchBlockApp(block)
-
-
-
-
-
-
-
     type=serdes.internal.callbacks.getLibraryBlockType(block);
 
     switch type
