@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 function[inputPortNames,outputPortNames]=getPortNames(soHandle)
     soMaskObj=Simulink.Mask.get(soHandle);
     display=soMaskObj.Display;
@@ -22,7 +15,6 @@ function[inputPortNames,outputPortNames]=getPortNames(soHandle)
             outputPortNames{displayIdx-1}=rowSplit{4};
         end
     end
-
     inputPortNames=inputPortNames(~cellfun('isempty',inputPortNames));
     outputPortNames=outputPortNames(~cellfun('isempty',outputPortNames));
 end
