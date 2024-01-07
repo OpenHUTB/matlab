@@ -1,15 +1,10 @@
 classdef AnalogModel<handle
 
-
-
-
-
-
     properties
         R=50;
         C=1e-15;
-
     end
+
 
     methods
         function obj=AnalogModel(varargin)
@@ -30,6 +25,7 @@ classdef AnalogModel<handle
         end
     end
 
+
     methods
         function set.R(obj,val)
             validateattributes(val,...
@@ -38,6 +34,8 @@ classdef AnalogModel<handle
             '','R');
             obj.R=double(val);
         end
+
+
         function set.C(obj,val)
             validateattributes(val,...
             {'numeric'},...
