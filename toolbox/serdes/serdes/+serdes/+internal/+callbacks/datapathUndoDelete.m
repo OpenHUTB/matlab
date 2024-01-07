@@ -1,9 +1,3 @@
-
-
-
-
-
-
 function datapathUndoDelete(block)
     tree=serdes.internal.callbacks.getSerDesTree(block);
     if~isempty(tree)
