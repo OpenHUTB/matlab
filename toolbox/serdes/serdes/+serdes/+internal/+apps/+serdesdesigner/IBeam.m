@@ -1,7 +1,5 @@
 classdef IBeam<handle
 
-
-
     properties
         IconFilePath=[];
         Icon=[];
@@ -20,9 +18,11 @@ Layout
         AllowImageClickedFcn=true;
     end
 
+
     properties(Dependent)
 Visible
     end
+
 
     methods
 
@@ -49,10 +49,11 @@ Visible
             obj.Layout=uigridlayout(obj.Panel,'RowHeight',{85},'ColumnWidth',{24,24},'RowSpacing',0,'ColumnSpacing',0,'Padding',[0,0,0,0]);
             obj.Layout.BackgroundColor='w';
 
-
             obj.createPicture(tag)
             obj.IsSelected=false;
         end
+
+
         function createPicture(obj,tag)
             obj.Picture.Panel=uipanel(obj.Layout,...
             'Title','',...
@@ -63,7 +64,6 @@ Visible
             obj.Picture.Panel.Layout.Row=1;
             obj.Picture.Panel.Layout.Column=1;
             obj.Picture.Layout=uigridlayout(obj.Picture.Panel,'RowHeight',{29,2,29,25},'ColumnWidth',{24,24},'RowSpacing',0,'ColumnSpacing',0,'Padding',[0,0,0,0]);
-
             obj.Picture.IBeam=uiimage(obj.Picture.Layout,...
             'ImageSource',obj.Icon_IBeam,...
             'Tag',tag,...
@@ -135,8 +135,9 @@ Visible
                 end
             end
         end
-        function showWiresAndIBeam(obj)
 
+
+        function showWiresAndIBeam(obj)
             obj.Picture.Layout.ColumnWidth={24,0};
         end
         function showWiresOnly(obj)
@@ -153,7 +154,6 @@ Visible
                 return;
             end
 
-
             ibeamIdx=-1;
             if obj.Canvas.Cascade.IBeam==obj
 
@@ -167,7 +167,6 @@ Visible
                     end
                 end
             end
-
 
             obj.Canvas.removeIBeam();
             obj.Canvas.InsertIdx=ibeamIdx;
