@@ -1,13 +1,11 @@
 classdef(ConstructOnLoad)ModelChangedEventData<event.EventData
 
-
-
-
     properties
 Name
 SerdesDesign
 Index
     end
+
 
     methods
         function data=ModelChangedEventData(name,serdesDesign,index)
