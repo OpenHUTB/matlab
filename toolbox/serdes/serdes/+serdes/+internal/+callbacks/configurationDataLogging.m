@@ -1,12 +1,5 @@
-
-
-
-
-
 function configurationDataLogging(model,state)
     mws=get_param(model,'ModelWorkspace');
-
-
     requiredMWSElements=["TxTree","RxTree","SerdesIBIS"];
     if isempty(mws)||~all(arrayfun(@(x)mws.hasVariable(x),requiredMWSElements))
         return
@@ -21,40 +14,18 @@ function configurationDataLogging(model,state)
             enableLogging(rxPorts.Outport(1),'rxOut');
         end
     end
-
-
-
-
-
-
-
-
-
     clockBlockSFun=find_system(rxBlock,'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,'SearchDepth',4,'LookUnderMasks','all','FollowLinks','on','FunctionName','clock_times_writer');
-
     triggeredSubsystems=get_param(clockBlockSFun,'Parent');
     clockTimeBlocks=get_param(triggeredSubsystems,'Parent');
-
-
     isIBISAMIBlock=strcmp(cellfun(@serdes.internal.callbacks.getLibraryBlockType,clockTimeBlocks,'UniformOutput',false),'IBIS_clock');
-
-
-
 
     for clkBlockIdx=1:size(clockTimeBlocks)
         if clkBlockIdx==1
             if isIBISAMIBlock(clkBlockIdx)
 
-
-
-
                 if strcmp(state,'on')
                     modIBISAMIClockTimes(clockTimeBlocks{clkBlockIdx},'off');
                 end
-
-
-
-
                 modIBISAMIClockTimes(triggeredSubsystems{clkBlockIdx},state);
             else
                 modClockbus2Clocktime(clockTimeBlocks{clkBlockIdx},state);
@@ -69,11 +40,13 @@ function configurationDataLogging(model,state)
     end
 end
 
+
 function setLogging(port,state,mode,name)
     set_param(port,'DataLogging',state);
     set_param(port,'DataLoggingNameMode',mode);
     set_param(port,'DataLoggingName',name);
 end
+
 
 function[state,mode,name]=getLogging(port)
     state=get_param(port,'DataLogging');
@@ -81,15 +54,16 @@ function[state,mode,name]=getLogging(port)
     name=get_param(port,'DataLoggingName');
 end
 
+
 function disableLogging(port,name)
     [loggingState,loggingMode,loggingName]=getLogging(port);
-
 
     if strcmp(loggingState,'on')&&strcmp(loggingMode,'Custom')&&strcmp(loggingName,name)
 
         setLogging(port,'off','SignalName','');
     end
 end
+
 
 function enableLogging(port,name,varargin)
     if nargin>2
@@ -98,7 +72,6 @@ function enableLogging(port,name,varargin)
         suppressWarning=false;
     end
     [loggingState,loggingMode,loggingName]=getLogging(port);
-
 
     if strcmp(loggingState,'on')&&...
         (~strcmp(loggingMode,'Custom')||...
@@ -115,16 +88,9 @@ function enableLogging(port,name,varargin)
     setLogging(port,'on','Custom',name);
 end
 
+
 function modClockbus2Clocktime(block,state)
-
-
     busSelector=find_system(block,'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,'SearchDepth',2,'LookUnderMasks','all','FollowLinks','on','BlockType','BusSelector');
-
-
-
-
-
-
     lockedLibrary=strcmp(get_param(block,'LinkStatus'),'resolved');
     if size(busSelector,1)==1
         busSelectorPorts=get_param(busSelector{1},'PortHandles');
@@ -140,9 +106,8 @@ function modClockbus2Clocktime(block,state)
     end
 end
 
+
 function modIBISAMIClockTimes(block,state)
-
-
     inportConnectivity=get_param(block,'PortConnectivity');
 
     triggerPort=0;
@@ -158,10 +123,8 @@ function modIBISAMIClockTimes(block,state)
     if~isempty(inportConnectivity)
         clockSignalNames={'clockValidOnRising','clockTime'};
         for inportIdx=1:2
-
             clockConnectedBlock=inportConnectivity(inportIdx).SrcBlock;
             clockConnectedSrcPort=inportConnectivity(inportIdx).SrcPort+1;
-
 
             if~hasTrigger
                 clockSignalName=clockSignalNames{inportIdx};
@@ -173,7 +136,6 @@ function modIBISAMIClockTimes(block,state)
                     clockSignalName=clockSignalNames{2};
                 end
             end
-
             if~isempty(clockConnectedBlock)&&~isempty(clockConnectedSrcPort)
                 clockConnectedBlockPortHandles=get_param(clockConnectedBlock,'PortHandles');
                 if~isempty(clockConnectedBlockPortHandles)
