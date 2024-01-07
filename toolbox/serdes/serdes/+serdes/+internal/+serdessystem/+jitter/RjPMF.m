@@ -1,22 +1,5 @@
 function pmf=RjPMF(t,tRj)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(2,2)
     nargoutchk(0,1)
     fcnName='RjPMF';
