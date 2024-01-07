@@ -1,5 +1,3 @@
-
-
 classdef BaseClass
 
     methods
@@ -10,6 +8,7 @@ classdef BaseClass
             end
             other=this.copyTo(other);
         end
+
 
         function dest=copyTo(this,dest)
             assert(isa(dest,class(dest)));
@@ -33,6 +32,7 @@ classdef BaseClass
                 end
             end
         end
+
 
         function out=toStruct(this)
             clsInfo=metaclass(this);
