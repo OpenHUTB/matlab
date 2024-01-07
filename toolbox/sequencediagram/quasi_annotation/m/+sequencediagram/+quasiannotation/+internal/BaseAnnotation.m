@@ -25,6 +25,7 @@ classdef ( Abstract )BaseAnnotation < handle & matlab.mixin.Heterogeneous
         end
     end
 
+
     methods ( Hidden )
         function observableProps = getAllSetObservableProperties( obj )
             mc = metaclass( obj );
@@ -32,11 +33,13 @@ classdef ( Abstract )BaseAnnotation < handle & matlab.mixin.Heterogeneous
             observableProps = propertyList( [ propertyList.SetObservable ] );
         end
 
+
         function id = getHtmlId( obj )
 
             id = "SequenceDiagramQuasiAnnotation_" + obj.UUID;
         end
     end
+
 
     methods ( Sealed )
         function varargout = eq( obj, varargin )
