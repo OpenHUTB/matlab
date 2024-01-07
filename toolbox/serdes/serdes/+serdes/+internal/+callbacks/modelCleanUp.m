@@ -1,10 +1,4 @@
-
-
-
-
-
 function modelCleanUp(model)
-
     appHandle=serdes.internal.findMgrWithTag(model,'serdes.utilities.apps.sparameterfitter.sParameterFitter');
     if~isempty(appHandle)&&isvalid(appHandle)
         appHandle.delete;
@@ -13,14 +7,11 @@ function modelCleanUp(model)
     if~isempty(appHandle)&&isvalid(appHandle)
         appHandle.salida;
     end
-
     siLinkName=[getString(message('serdes:silink:AppName')),' - ',model];
     figure=findall(groot,'Name',siLinkName);
     if~isempty(figure)
         close(figure);
     end
-
-
     serdesStatPanelTag=['SimulinkStatPlotPanel',model];
     serdesTDPanelTag=['SimulinkTDPlotPanel',model];
     serdesStatPanel=findobj(groot,'Tag',serdesStatPanelTag);
