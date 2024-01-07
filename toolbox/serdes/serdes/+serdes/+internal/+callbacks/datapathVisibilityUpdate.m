@@ -1,23 +1,11 @@
-
-
-
-
-
-
 function datapathVisibilityUpdate(block,indepParamName)
     if~strcmp(get_param(bdroot(block),'SimulationStatus'),'stopped')
 
         return;
     end
-
-
-
-
-
     simStatus=get_param(bdroot(block),'SimulationStatus');
     systemObject=serdes.internal.callbacks.getSystemObject(block);
     if strcmp(simStatus,'stopped')&&~isempty(systemObject)
-
         indepValue=getSerDesSysObjValue(block,indepParamName);
         systemObject.(indepParamName)=indepValue;
 
@@ -39,8 +27,8 @@ function datapathVisibilityUpdate(block,indepParamName)
     end
 end
 
-function value=getSerDesSysObjValue(block,parameterName)
 
+function value=getSerDesSysObjValue(block,parameterName)
 
     strValue=get_param(block,parameterName);
     switch parameterName
