@@ -1,10 +1,5 @@
 function[noCodegen,noCompiler]=SetToolChain(systemHandle)
 
-
-
-
-
-
     noCodegen=false;
     noCompiler=false;
     if ismac
