@@ -1,8 +1,3 @@
-
-
-
-
-
 function engString=numberToEngString(number)
     if number==0
         engString='0';
@@ -14,10 +9,8 @@ function engString=numberToEngString(number)
 
         mantissa=power(10,lognum-exponent);
         if exponent==0
-
             engString=sprintf('%g',mantissa);
         else
-
             engString=sprintf('%ge%d',mantissa,exponent);
         end
     end
