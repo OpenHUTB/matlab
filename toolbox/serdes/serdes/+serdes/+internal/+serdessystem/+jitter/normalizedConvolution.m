@@ -1,20 +1,7 @@
 function pdf=normalizedConvolution(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(1,inf)
     nargoutchk(0,1)
-
 
     for ii=1:length(varargin)
         val=varargin{ii};
