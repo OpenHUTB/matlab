@@ -1,7 +1,3 @@
-
-
-
-
 function maskApply(block)
     dlgs=DAStudio.ToolRoot.getOpenDialogs;
     blkObject=get_param(block,'Object');
