@@ -1,7 +1,4 @@
 function aEnumValue=verifyEnumValue(aPropName,aStrValue,aEnumValue)
-
-
-
     aStrValue=convertStringsToChars(aStrValue);
     aEnumValue=convertStringsToChars(aEnumValue);
 
