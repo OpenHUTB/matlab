@@ -1,8 +1,3 @@
-
-
-
-
-
 function datapathInitialize(block)
     tree=serdes.internal.callbacks.getSerDesTree(block);
     if~isempty(tree)
