@@ -1,18 +1,9 @@
 function obj=coupledMicrostripLineDesign(obj,f,Zoe,Zoo)
 
-
     t=35e-6;
     h=obj.Height;
     er=obj.Substrate.EpsilonR;
     eta0=120*pi;
-
-
-
-
-
-
-
-
 
     testw=linspace(1e-6,15e-3,500);
     tests=linspace(1e-6,15e-3,500);
