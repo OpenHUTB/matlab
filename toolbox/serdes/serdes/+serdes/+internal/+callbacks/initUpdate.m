@@ -1,8 +1,3 @@
-
-
-
-
-
 function initUpdate(block,calledFrom)
     mws=get_param(bdroot(block),'ModelWorkspace');
     requiredMWSElements=["SampleInterval","ChannelImpulse","RowSize","Aggressors","ImpulseMatrix","SerdesIBIS"];
@@ -20,7 +15,6 @@ function initUpdate(block,calledFrom)
                 ~any(contains(maskNames,commentStepMaskParameterName))
                 return
             end
-
             initMaskExternalInit=maskObj.Parameters(strcmp(maskNames,externalInitMaskParameterName)).Value;
             if isempty(initMaskExternalInit)
                 return
@@ -43,7 +37,6 @@ function initUpdate(block,calledFrom)
                 ~any(contains(maskNames,commentStepMaskParameterName))
                 return
             end
-
             initMaskExternalInit=maskObj.Parameters(strcmp(maskNames,externalInitMaskParameterName)).Value;
             if isempty(initMaskExternalInit)
                 return
@@ -66,6 +59,7 @@ function initUpdate(block,calledFrom)
         end
     end
 end
+
 
 function hasExtInitCodeInInit=checkInitCode(blockPath)
     hasExtInitCodeInInit=false;
