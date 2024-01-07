@@ -1,13 +1,9 @@
 classdef WebWindowManager<handle
 
-
-
-
-
-
     properties
         webWindows;
     end
+
 
     methods(Access=private)
         function obj=WebWindowManager()
@@ -15,11 +11,8 @@ classdef WebWindowManager<handle
         end
     end
 
+
     methods
-
-
-
-
 
         function CEFWindow=createWebWindow(obj,windowId,props)
             assert(~obj.hasWebWindow(windowId),...
@@ -45,6 +38,7 @@ classdef WebWindowManager<handle
             obj.webWindows(windowId)=CEFWindow;
         end
 
+
         function CEFWindow=getWebWindow(obj,windowId)
             assert(obj.hasWebWindow(windowId),...
             "The web window with the ID "+windowId+" does not exist");
@@ -52,9 +46,11 @@ classdef WebWindowManager<handle
             CEFWindow=obj.webWindows(windowId);
         end
 
+
         function exist=hasWebWindow(obj,windowId)
             exist=obj.webWindows.isKey(windowId);
         end
+
 
         function destroyWebWindow(obj,windowId)
             if(obj.hasWebWindow(windowId))
@@ -68,6 +64,7 @@ classdef WebWindowManager<handle
         end
     end
 
+
     methods(Static)
         function obj=getInstance()
             persistent uniqueObj;
@@ -77,6 +74,7 @@ classdef WebWindowManager<handle
             obj=uniqueObj;
 
         end
+
 
         function closeWebWindow(windowId)
             webWindowMgr=sequencediagram.web.WebWindowManager.getInstance();
