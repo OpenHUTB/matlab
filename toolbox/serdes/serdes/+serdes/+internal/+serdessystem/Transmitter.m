@@ -1,29 +1,21 @@
 classdef Transmitter<serdes.internal.serdessystem.Transceiver
 
-
-
-
-
     properties
         RiseTime=1e-12;
         VoltageSwingIdeal=1;
     end
 
+
     methods
         function tx=Transmitter(varargin)
-
-
             names=varargin(1:2:nargin);
             ParamTest=ismember(names,{'RiseTime','VoltageSwingIdeal'});
 
             input1=varargin([ParamTest;ParamTest]);
             input2=varargin(~[ParamTest;ParamTest]);
-
-
             tx=tx@serdes.internal.serdessystem.Transceiver(input2{:});
 
             tx.Name='TX';
-
 
             p=inputParser;
             p.CaseSensitive=false;
@@ -31,7 +23,6 @@ classdef Transmitter<serdes.internal.serdessystem.Transceiver
             p.addParameter('VoltageSwingIdeal',[]);
             p.parse(input1{:});
             args=p.Results;
-
             if~isempty(args.VoltageSwingIdeal)
                 tx.VoltageSwingIdeal=args.VoltageSwingIdeal;
             end
@@ -41,6 +32,8 @@ classdef Transmitter<serdes.internal.serdessystem.Transceiver
 
         end
     end
+
+
     methods
         function set.RiseTime(obj,val)
             validateattributes(val,...
@@ -49,6 +42,8 @@ classdef Transmitter<serdes.internal.serdessystem.Transceiver
             '','RiseTime');
             obj.RiseTime=double(val);
         end
+
+
         function set.VoltageSwingIdeal(obj,val)
             validateattributes(val,...
             {'numeric'},...
