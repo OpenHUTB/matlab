@@ -1,10 +1,5 @@
 function appHandle=findMgrWithTag(model,appName)
 
-
-
-
-
-
     appHandle=[];
     if~isempty(model)
         h=get_param(model,'handle');
