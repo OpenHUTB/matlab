@@ -1,10 +1,5 @@
 function[Zeven,Zodd,EpsilonR_eff,epsilonRe,EpsilonRo]=coupledlineCalc(w,s,t,h,er,eta0)
 
-
-
-
-
-
     u=w/h;
     g=s/h;
     u1=(u*(20+g^2))/(10+g^2)+g*exp(-g);
