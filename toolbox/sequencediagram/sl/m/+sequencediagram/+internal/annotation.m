@@ -1,8 +1,5 @@
 classdef(Hidden)annotation
 
-
-
-
     methods(Hidden,Static)
         function enable()
 
@@ -11,6 +8,7 @@ classdef(Hidden)annotation
             slfeature('SequenceDiagramZCIntegAnnotationToolstrip',1);
         end
 
+
         function disable()
             sequencediagram.internal.annotation.loadLibraries();
             slfeature('SequenceDiagramAnnotation',0);
@@ -18,20 +16,9 @@ classdef(Hidden)annotation
         end
     end
 
+
     methods(Access=private,Static)
         function loadLibraries()
-
-
-
-
-
-
-
-
-
-
-
-
             sequencediagram.internal.sl.kernel.getSimulinkApp();
 
         end
