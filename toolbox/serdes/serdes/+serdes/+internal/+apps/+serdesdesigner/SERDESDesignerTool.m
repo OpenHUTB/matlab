@@ -1,7 +1,5 @@
 classdef SERDESDesignerTool<handle
 
-
-
     properties
 Model
 View
@@ -13,16 +11,10 @@ Controller
         StatusWidget;
     end
 
+
     methods
         function obj=SERDESDesignerTool(varargin)
-
-
             matlab.internal.lang.capability.Capability.require(matlab.internal.lang.capability.Capability.LocalClient);
-
-
-
-
-
             obj.Model=serdes.internal.apps.serdesdesigner.Model();
             obj.View=serdes.internal.apps.serdesdesigner.View();
             obj.Controller=serdes.internal.apps.serdesdesigner.Controller(obj.Model,obj.View);
@@ -38,10 +30,7 @@ Controller
                 openedExistingDesign=false;
             end
             newView(obj.View,obj.Model.Name,obj.Model.SerdesDesign);
-
-
             set(obj.appContainer,'CanCloseFcn',@(h,e)appCloseRequestFcn(obj));
-
 
             if~openedExistingDesign
                 obj.Model.newPopupActions('Blank canvas');
@@ -50,14 +39,7 @@ Controller
 
         function result=appCloseRequestFcn(obj)
 
-
-
-
-
-
             if~isvalid(obj)||~isvalid(obj.Model)
-
-
 
                 result=true;
                 return;
@@ -69,7 +51,6 @@ Controller
                     return;
                 end
             end
-
 
             s=settings;
             if~isempty(s)&&...
@@ -97,6 +78,7 @@ Controller
             result=true;
         end
 
+
         function setStatus(obj,statusText)
             if~isempty(obj.StatusWidget)
                 delete(obj.StatusWidget);
@@ -104,14 +86,6 @@ Controller
             if~isempty(statusText)
                 obj.StatusWidget=uiprogressdlg(obj.View.CanvasFig,'Message',statusText,'Title','Please Wait','Indeterminate','on');
             end
-
-
-
-
-
-
-
-
 
         end
     end
