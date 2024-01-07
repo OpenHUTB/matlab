@@ -1,11 +1,6 @@
 classdef JitterAndNoise<handle
 
-
-
-
     properties
-
-
         RxClockMode='clocked';
 
         Tx_DCD=SimpleJitter('Flavor','DCD');
@@ -18,21 +13,18 @@ classdef JitterAndNoise<handle
         Rx_Rj=SimpleJitter('Flavor','Rj');
         Rx_Dj=SimpleJitter('Flavor','Dj');
         Rx_Sj=SimpleJitter('Flavor','Sj');
-
         Rx_Clock_Recovery_Mean=SimpleJitter('Flavor','Fixed');
         Rx_Clock_Recovery_Rj=SimpleJitter('Flavor','Rj');
         Rx_Clock_Recovery_Dj=SimpleJitter('Flavor','Dj');
         Rx_Clock_Recovery_Sj=SimpleJitter('Flavor','Sj');
         Rx_Clock_Recovery_DCD=SimpleJitter('Flavor','DCD');
-
         Rx_Receiver_Sensitivity=SimpleJitter('Type','Float','Flavor','Fixed')
 
         Rx_GaussianNoise=SimpleJitter('Type','Float','Flavor','Rj')
         Rx_UniformNoise=SimpleJitter('Type','Float','Flavor','Dj')
 
-
-
     end
+
 
     methods
         function obj=JitterAndNoise(varargin)
@@ -59,7 +51,6 @@ classdef JitterAndNoise<handle
             p.addParameter('Rx_UniformNoise',[]);
             p.parse(varargin{:});
             args=p.Results;
-
 
             if~isempty(args.RxClockMode)
                 obj.RxClockMode=args.RxClockMode;
@@ -117,6 +108,7 @@ classdef JitterAndNoise<handle
             end
         end
 
+
         function set.RxClockMode(obj,val)
             validateattributes(val,{'char','string'},{},'','RxClockMode');
             val=lower(strtrim(val));
@@ -126,6 +118,7 @@ classdef JitterAndNoise<handle
             end
             obj.RxClockMode=val;
         end
+
 
         function set.Tx_DCD(obj,val)
 
@@ -137,6 +130,8 @@ classdef JitterAndNoise<handle
                 'Value',val,'Include',true,'Flavor','DCD');
             end
         end
+
+
         function set.Tx_Rj(obj,val)
 
             if isa(val,'SimpleJitter')
@@ -147,6 +142,8 @@ classdef JitterAndNoise<handle
                 'Value',val,'Include',true,'Flavor','Rj');
             end
         end
+
+
         function set.Tx_Dj(obj,val)
 
             if isa(val,'SimpleJitter')
@@ -157,6 +154,8 @@ classdef JitterAndNoise<handle
                 'Value',val,'Include',true,'Flavor','Dj');
             end
         end
+
+
         function set.Tx_Sj(obj,val)
 
             if isa(val,'SimpleJitter')
@@ -167,6 +166,8 @@ classdef JitterAndNoise<handle
                 'Value',val,'Include',true,'Flavor','Sj');
             end
         end
+
+
         function set.Tx_Sj_Frequency(obj,val)
 
 
@@ -182,6 +183,8 @@ classdef JitterAndNoise<handle
                 'Value',val,'Include',true,'Type','Float','Flavor','Fixed');
             end
         end
+
+
         function set.Rx_DCD(obj,val)
 
             if isa(val,'SimpleJitter')
@@ -192,6 +195,8 @@ classdef JitterAndNoise<handle
                 'Value',val,'Include',true,'Flavor','DCD');
             end
         end
+
+
         function set.Rx_Rj(obj,val)
 
             if isa(val,'SimpleJitter')
