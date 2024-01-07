@@ -1,13 +1,7 @@
-
-
-
-
-
 function initializeFunUpdate(block)
     if isstring(block)
         block=char(block);
     end
-
     constants=serdes.internal.callbacks.InitConstants;
 
     txOrRxBlockName=extractAfter(block,[bdroot(block),'/']);
@@ -33,11 +27,8 @@ function initializeFunUpdate(block)
         direction='Tx';
         oppositeDirection='Rx';
     end
-
     [isExternalInit,isCommentOutStep]=serdes.internal.callbacks.getRefreshInitOptions(block,direction,oppositeDirection);
-
     [nameHandleStruct,CDRInfo]=findAllBlocks(inport,outport,constants);
-
     [functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap,addToFunctionArgs,addToReturnArgs,suppressFunSignatureWarning]=...
     generateFunBodyStep(nameHandleStruct,CDRInfo,tree,mws,constants,direction);
     signatureLine=generateFunSignature(addToReturnArgs,addToFunctionArgs,constants,suppressFunSignatureWarning);
@@ -50,26 +41,20 @@ function initializeFunUpdate(block)
     if isCommentOutStep
         stepCall=commentStep(stepCall);
     end
-
     fcnCode=strjoin([signatureLine,functionBody,savedUserCode,stepCall,impulseOutLine],'\n');
 
     emChart.Script=fcnCode;
-
     serdes.utilities.externalinit.setupExternalInit(rootSystem,direction,~isExternalInit);
-
     setupMATLABFunInOut(emChart,mlFcnHandle,initFcnName,inOutOutMap,constants)
 
     set_param(initFcnName,'ZoomFactor','FitSystem');
-
-
     editor=GLUE2.Util.findAllEditors(mainSubSystem);
     if~isempty(editor)
         editor.closeNotificationByMsgID('serdes:callbacks:RefreshInitRequired');
     end
-
-
     serdes.internal.callbacks.maskApply(block);
 end
+
 
 function[nameHandleStruct,CDRInfo]=findAllBlocks(inport,outport,constants)
     nameHandleStruct=[];
@@ -93,8 +78,6 @@ function[nameHandleStruct,CDRInfo]=findAllBlocks(inport,outport,constants)
             atOutport=true;
         end
     end
-
-
 
 end
 
@@ -133,7 +116,6 @@ function[struct,hop,CDRInfo]=addHop(struct,hop,dstBlock,CDRInfo)
     blockOutport=find_system(dstBlock,'SearchDepth',1,'LookUnderMasks','all','FollowLinks','on','BlockType','Outport');
 
     if strcmp(blockLibraryName,'CDR')&&isempty(blockOutport)
-
         cdrSO=find_system(dstBlock,'SearchDepth',1,'LookUnderMasks','all','FollowLinks','on',...
         'BlockType','MATLABSystem',...
         'System','serdes.CDR');
@@ -145,7 +127,6 @@ function[struct,hop,CDRInfo]=addHop(struct,hop,dstBlock,CDRInfo)
     end
 
     soCount=length(blocksInOrder);
-
     soOtherContentCount=sum(~cellfun(@isempty,blocksInOrderOther),2);
     soOtherCount=length(blocksInOrderOther);
 
@@ -155,21 +136,11 @@ function[struct,hop,CDRInfo]=addHop(struct,hop,dstBlock,CDRInfo)
         nameIncrement=[];
     end
 
-
-
     for soIdx=1:soOtherCount
-
-
-
-
-
         currentOtherSO=blocksInOrderOther{soIdx};
         if~isempty(currentOtherSO)
             numCurrentSO=length(currentOtherSO);
             for otherSOIdx=1:numCurrentSO
-
-
-
                 if~isempty(struct)
                     previouslyAdded=any(ismember([struct.soHandle],currentOtherSO(otherSOIdx)));
                 else
@@ -186,7 +157,6 @@ function[struct,hop,CDRInfo]=addHop(struct,hop,dstBlock,CDRInfo)
                     struct(hop).initName=[nextBlockName,num2str(nameIncrement)];
                     struct(hop).hasOutput=false;
                     nameIncrement=nameIncrement+1;
-
                     [found,~]=findPAMReferences(dstBlock);
                     if found.PAM4||found.PAMN
                         CDRInfo.numberOfCDR=CDRInfo.numberOfCDR+1;
@@ -210,7 +180,6 @@ function[struct,hop,CDRInfo]=addHop(struct,hop,dstBlock,CDRInfo)
             struct(hop).soName=nextBlockSOName;
             struct(hop).initName=[nextBlockName,num2str(nameIncrement)];
             struct(hop).hasOutput=true;
-
             if~isempty(currentSO)&&~strcmp(commentStatus,'on')&&~strcmp(commentStatus,'through')&&strcmp(blockType,'MATLABSystem')
 
                 struct(hop).soHandle=currentSO;
@@ -239,7 +208,6 @@ function[struct,hop,CDRInfo]=addHop(struct,hop,dstBlock,CDRInfo)
         end
     end
 
-
     if soOtherCount==0&&soCount==0
         struct(hop).blockName=nextBlockName;
         struct(hop).blockHandle=dstBlock;
@@ -252,10 +220,8 @@ function[struct,hop,CDRInfo]=addHop(struct,hop,dstBlock,CDRInfo)
     end
 end
 
+
 function setupMATLABFunInOut(funHandle,mlFcnHandle,initFcnName,inOutOutMap,constants)
-
-
-
 
     inputs=funHandle.Inputs;
     functionOutputs=funHandle.Outputs;
@@ -265,10 +231,7 @@ function setupMATLABFunInOut(funHandle,mlFcnHandle,initFcnName,inOutOutMap,const
             input.Scope='Parameter';
         end
     end
-
     sizeFunctionOutputs=size(functionOutputs,1);
-
-
     existingDataStoreWrites=find_system(initFcnName,'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,'BlockType','DataStoreWrite');
     sizeExistingDataStoreWrites=size(existingDataStoreWrites,1);
     if sizeFunctionOutputs==0
@@ -281,15 +244,11 @@ function setupMATLABFunInOut(funHandle,mlFcnHandle,initFcnName,inOutOutMap,const
                 delete_block(existingDataStoreWrites(dataStoreIdx));
             else
                 impulse=existingDataStoreWrites(dataStoreIdx);
-
                 previousDataStoreHandle=get_param(impulse,'Handle');
                 previousPosition=get_param(previousDataStoreHandle{1},'Position');
                 foundImpulse=true;
             end
         end
-
-
-
         delete_line(find_system(initFcnName,'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,'FindAll','on','Type','line','Connected','off'));
 
         if~foundImpulse
@@ -341,10 +300,8 @@ function setupMATLABFunInOut(funHandle,mlFcnHandle,initFcnName,inOutOutMap,const
                     previousPosition(3)+deltaWidth,...
                     previousPosition(4)+deltaY+deltaHeight];
                     set_param(newFeedHandle,'Position',newPosition);
-
                     blockPortHandles=get_param(mlFcnHandle,'PortHandles');
                     feedPortHandles=get_param(newFeedHandle,'PortHandles');
-
                     blockPort=blockPortHandles.Outport;
                     feedPorts=feedPortHandles.Inport;
 
@@ -352,7 +309,6 @@ function setupMATLABFunInOut(funHandle,mlFcnHandle,initFcnName,inOutOutMap,const
 
                     if indxOfMatchingPort>1
                         matchingPortHandle=blockPort(indxOfMatchingPort);
-
                         feedPort=feedPorts(1);
 
                         add_line(initFcnName,matchingPortHandle,feedPort,'autorouting','on');
@@ -378,7 +334,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
     addedPAMAssignments=false;
     addPAMReturns=false;
     isRx=strcmp(direction,'Rx');
-
     modulationMWS=mws.getVariable(constants.modulationParamName);
     modulation=modulationMWS.Value;
     [isPAM,isLegacyPAM]=checkPAM(tree,modulation);
@@ -446,7 +401,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
             soMaskNames={soMaskObj.Parameters.Name};
             soMaskValues={soMaskObj.Parameters.Value};
         end
-
         [parameterStruct,signalStruct]=tree.simulinkStructs(blockName);
         if~isempty(parameterStruct)&&~isempty(fields(parameterStruct))
             blockParameterName=blockName+"Parameter";
@@ -462,8 +416,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
             initName=nameHandleStruct(blockIdx).initName+"Init";
             functionBody(end+1)="% Create instance of "+blockClass+" for "+blockName;
 
-
-
             try
                 waveTypeOptions=set(serdesBlockObj,'WaveType');
                 doWave=isprop(serdesBlockObj,constants.waveTypeParam)&&any(strcmp(waveTypeOptions(:),'Impulse'));
@@ -474,42 +426,31 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
             if doWave
                 functionBody(end)=initName+" = "+blockClass+"('"+constants.waveTypeParam+"', 'Impulse');";
             end
-
             haveParams=constants.waveTypeParam;
             haveParams(end+1)="BlockName";
             haveParams(end+1)="SimulateUsing";
             haveParams(end+1)="SavedName";
-
-
             globalParameters={constants.modulationParamName,constants.sampleIntervalParamName,constants.symbolTimeParamName};
             globalPositions=cellfun(@(x)find(strcmp(soMaskNames,x),1),globalParameters,'UniformOutput',false);
             globalHas=cellfun(@(x)~isempty(x),globalPositions);
             suppressFunSignatureWarning=suppressFunSignatureWarning|globalHas;
-
-
-
             printSetupSimulationComment=false;
             for globalParameterIdx=1:size(globalParameters,2)
                 if~isempty(globalPositions{globalParameterIdx})
                     missingGlobalParameter(blockName,globalParameters{globalParameterIdx},globalPositions{globalParameterIdx},soMaskObj);
-
                     blockParam=soMaskNames{globalPositions{globalParameterIdx}};
                     if blockParam~=haveParams
                         if~printSetupSimulationComment
                             functionBody(end+1)="% Setup simulation parameters";
                             printSetupSimulationComment=true;
                         end
-
-
                         functionBody(end+1)=initName+"."+blockParam+" = "+soMaskObj.Parameters(globalPositions{globalParameterIdx}).Value+";";
                         haveParams(end+1)=blockParam;
                     end
                 end
             end
 
-
             params=fields(parameterStruct);
-
             [inputPortNames,~]=serdes.internal.callbacks.getPortNames(soHandle);
             if~isempty(params)
                 functionBody(end+1)="% Setup "+blockName+" In and InOut AMI parameters";
@@ -522,9 +463,7 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                         [isNew,usage,~]=getAMITapsParameter(tree,blockName);
                     end
 
-
                     if strcmp(usage,"In")
-
                         portAndOn=findPortsAndOn(soMaskNames,soMaskValues);
                         paramAsAValueInSOMask=strcmp(soMaskValues,blockParameterName+"."+param);
 
@@ -545,7 +484,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                             [foundAMI,~]=scanPortsForAMI(soHandle,usage,isTaps,[],param);
 
                             if foundAMI.InOnIn
-
                                 reservedParameterName=inputPortNames{foundAMI.InOnInConnectIdx};
 
                                 if isNew
@@ -559,7 +497,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                                 end
                                 haveParams(end+1)=string(reservedParameterName);
                             else
-
 
                                 disconnectAMIParam(...
                                 blockParameterName+"."+param,...
@@ -585,8 +522,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                             haveParams(end+1)=string(soMaskName);
                             foundAMI.InOutOnIn=true;
                         elseif foundAMI.InOutOnIn
-
-
                             reservedParameterName=inputPortNames{foundAMI.InOutOnInConnectIdx};
 
                             if isNew
@@ -610,8 +545,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                             if~isNew
                                 lostAMIParameters(string(blockName)+param)="";
                             end
-
-
                         elseif~foundAMI.InOutOnIn&&foundAMI.InOutOnOut
                             disconnectAMIParam(...
                             blockParameterName+"."+param,...
@@ -636,9 +569,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                     end
                 end
             end
-
-
-
 
             printSetupBlockComment=false;
 
@@ -669,21 +599,12 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                 if blockParam~=haveParams
                     if~strcmp(soMaskObj.Parameters(maskParamIdx).Type,'checkbox')
 
-
-
-
-
-
-
-
-
                         addParameter=true;
                         if strcmp(blockParam,'TapWeights')
 
                             TapWeightsPortIdx=strcmp(soMaskNames,'TapWeightsPort');
                             if any(TapWeightsPortIdx)
                                 TapWeightsPortValue=soMaskValues{TapWeightsPortIdx};
-
                                 addParameter=strcmp(TapWeightsPortValue,'off');
                             end
                         end
@@ -709,9 +630,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                 end
             end
 
-
-
-
             if~isSatAmp
                 signals=fieldnames(signalStruct);
                 for nameIdx=1:length(signals)
@@ -719,17 +637,14 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                     signalName=blockName+field;
                     isTaps=strcmp(field,'TapWeights');
 
-
                     if~isTaps
                         [isNew,usage,currentValue]=getAMIParameter(tree,blockName,field);
                     else
                         [isNew,usage,currentValue]=getAMITapsParameter(tree,blockName);
                     end
 
-
                     if strcmp(usage,"Out")
                         [foundAMI,foundAMIOutOnOutputParamMap]=scanPortsForAMI(soHandle,usage,isTaps,foundAMIOutOnOutputParamMap,field);
-
 
                         if~foundAMI.OutOnOut
                             disconnectAMIParam(...
@@ -751,7 +666,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                         'DataStoreElements',char(blockSignalField)};
                     end
                 end
-
                 [~,outputPortNames]=serdes.internal.callbacks.getPortNames(soHandle);
                 outputNamesLC=lower(outputPortNames);
                 stepCall(end+1)="% Return impulse response and any Out or InOut AMI parameters for "+blockClass+" instance";
@@ -776,7 +690,6 @@ function[functionBody,stepCall,customAMIParameters,lostAMIParameters,inOutOutMap
                         "",...
 false...
                         );
-
 
                         if isRx&&isPAM&&found.generatedPAMCode&&pamReturnVars.isKey(outIndex)
                             pamCode=strrep(pamCode,pamReturnVars(outIndex),append(blockName,foundAMIInOutOnOutputParamMap(outIndex)));
@@ -827,7 +740,6 @@ false...
             end
         elseif isNoSO
 
-
             params=fields(parameterStruct);
             if~isempty(params)
                 for paramNum=1:length(params)
@@ -838,7 +750,6 @@ false...
                         [~,usage,~]=getAMITapsParameter(tree,blockName);
                     end
 
-
                     if strcmp(usage,"In")
                         customAMIParameters(blockParameterName+"."+param)=blockParameterName+"."+param+";";
                     elseif strcmp(usage,"InOut")
@@ -846,21 +757,16 @@ false...
                     end
                 end
             end
-
-
             if~isempty(signalStruct)&&~isempty(fields(signalStruct))&&~isSatAmp
                 signals=fieldnames(signalStruct);
                 for nameIdx=1:length(signals)
                     field=string(signals{nameIdx});
                     signalName=blockName+field;
-
-
                     if~strcmp(field,'TapWeights')
                         [~,usage,currentValue]=getAMIParameter(tree,blockName,field);
                     else
                         [~,usage,currentValue]=getAMITapsParameter(tree,blockName);
                     end
-
 
                     if strcmp(usage,"Out")
                         customAMIParameters(signalName)=signalName+"="+currentValue+";";
@@ -878,10 +784,6 @@ false...
     end
 
     if isRx&&isPAM&&isLegacyPAM&&~addedPAMAssignments
-
-
-
-
         functionBody(end+1)="% Setup default PAM4 thresholds"+newline+...
         "PAM4_UpperThreshold = 0.333;"+newline+...
         "PAM4_CenterThreshold = 0;"+newline+"PAM4_LowerThreshold = -0.333;";
@@ -920,9 +822,6 @@ false...
         addToReturnArgs(end+1)="PAM_Thresholds";
         inOutOutMap('PAM_Thresholds')={'DataStoreName',"PAM_Thresholds"};
     end
-
-
-
     reservedParameters=tree.getReservedParameters;
     for paraIdx=1:length(reservedParameters)
         reservedParameter=reservedParameters{paraIdx};
@@ -938,6 +837,7 @@ false...
             end
         end
     end
+
 
     function connectAMIParam(amiParameter,key,code,varargin)
 
@@ -958,12 +858,9 @@ false...
 
         connectedAMIParameters(amiParameter)=key;
 
-
-
-
-
-
     end
+
+
 
     function disconnectAMIParam(amiParameter,key,code)
 
@@ -975,11 +872,6 @@ false...
             customAMIParameters(key)=code;
             disconnectedAMIParameters(amiParameter)=key;
         end
-
-
-
-
-
 
     end
 end
@@ -998,6 +890,7 @@ function missingGlobalParameter(blockName,globalName,paramPosition,soMaskObj)
         end
     end
 end
+
 
 function[foundAMI,mapAMI]=scanPortsForAMI(soHandle,usage,isTaps,mapAMI,field)
     foundAMI.InOnIn=0;
@@ -1054,7 +947,6 @@ function[foundAMI,mapAMI]=scanPortsForAMI(soHandle,usage,isTaps,mapAMI,field)
                         end
                     elseif strcmp(currentBlockType,'DataStoreRead')
                         blockValue=get_param(currentPortAtIdx,'DataStoreElements');
-
                         if(isTaps&&startsWith(extractAfter(blockValue,'.'),field))||strcmp(extractAfter(blockValue,'.'),field)
                             foundAMI.InOutOnIn=1;
                             foundAMI.InOutOnInConnectIdx=connectIdx;
@@ -1082,6 +974,7 @@ function[foundAMI,mapAMI]=scanPortsForAMI(soHandle,usage,isTaps,mapAMI,field)
     end
 end
 
+
 function code=generateFunSignature(addToReturnArgs,addToFunctionArgs,constants,suppressFunSignatureWarning)
     code="% NOTE: The contents of this function will be regenerated when the 'Refresh Init' button"+newline+...
     "%   is pressed, with the exception of the custom user code area.  The custom user code area"+newline+...
@@ -1102,20 +995,17 @@ function code=generateFunSignature(addToReturnArgs,addToFunctionArgs,constants,s
     end
     code=code+")";
 
-
     if~all(suppressFunSignatureWarning)
         if~amiParameters&&~suppressFunSignatureWarning(3)
 
-
             code=code+" %#ok<INUSD>";
         elseif(~amiParameters&&~all(suppressFunSignatureWarning(1:2)))||amiParameters
-
-
 
             code=code+" %#ok<INUSL>";
         end
     end
 end
+
 
 function code=generateCustomUserCode(funHandle,customAMIParameters,lostAMIParameters,direction)
 
@@ -1173,11 +1063,7 @@ function code=generateCustomUserCode(funHandle,customAMIParameters,lostAMIParame
                                 isAComment=startsWith(wholeLine,'%');
                                 matchesCode=startsWith(wholeLine,amiValues{keyIdx});
                                 lineEndsWithAddedCodeFlag=endsWith(wholeLine,flag);
-
-
-
                                 if~isAComment&&~matchesCode&&lineEndsWithAddedCodeFlag
-
                                     if~askedUserPermissionToCommentOutCode
                                         userPermissionToCommentOutCode=commentOutCodeDialog;
                                         askedUserPermissionToCommentOutCode=1;
@@ -1242,6 +1128,7 @@ function code=generateCustomUserCode(funHandle,customAMIParameters,lostAMIParame
     end
 end
 
+
 function code=generateImpulseOut(constants)
 
     code="%% Impulse response reformating";
@@ -1263,6 +1150,7 @@ function value=determineValue(value,blockHandle)
     end
 end
 
+
 function logic=convertToLogic(onOff)
     if strcmp(onOff,'on')
         logic='true';
@@ -1270,6 +1158,7 @@ function logic=convertToLogic(onOff)
         logic='false';
     end
 end
+
 
 function code=customCodeToString(customCodeCellArray)
     code="";
@@ -1281,6 +1170,7 @@ function code=customCodeToString(customCodeCellArray)
     end
 end
 
+
 function code=addAMIParameterToCode(customAMIParametersCode,customAMIParameters,amiKeys,keyIdx,userAddedAMIText)
     if strcmp(customAMIParametersCode,"")
         code=customAMIParameters(amiKeys{keyIdx})+userAddedAMIText;
@@ -1289,6 +1179,7 @@ function code=addAMIParameterToCode(customAMIParametersCode,customAMIParameters,
         customAMIParameters(amiKeys{keyIdx})+userAddedAMIText;
     end
 end
+
 
 function proceed=commentOutCodeDialog
     userChoice=questdlg(message('serdes:callbacks:CommentOutCustomCode').getString,'Warning','Yes','No','No');
@@ -1299,6 +1190,7 @@ function proceed=commentOutCodeDialog
         proceed=false;
     end
 end
+
 
 function portAndOn=findPortsAndOn(soMaskNames,soMaskValues)
     soMaskValuesOn=strcmp(soMaskValues,"on");
@@ -1313,12 +1205,14 @@ function[isNew,usage,currentValue]=getAMIParameter(tree,blockName,param)
     currentValue=AMIParam.CurrentValueDisplay;
 end
 
+
 function[isNew,usage,currentValue]=getAMITapsParameter(tree,blockName)
     tapNode=tree.getTapNode(blockName);
     isNew=tapNode.New;
     usage=tree.getTapsUsageOfBlock(blockName);
     currentValue=mat2str(tree.getTapWeightsFromBlock(blockName));
 end
+
 
 function code=printValue(initName,blockParam,value)
     if ischar(value)
@@ -1328,21 +1222,17 @@ function code=printValue(initName,blockParam,value)
     end
 end
 
-function[found,pamReturnVars,pamCode]=findPAM(blockHandle,soHandle,isLegacyPAM)
 
+function[found,pamReturnVars,pamCode]=findPAM(blockHandle,soHandle,isLegacyPAM)
     constants=serdes.internal.callbacks.InitConstants;
 
     pamOutName='';
     pamCode="";
 
     pamReturnVars=containers.Map('KeyType','double','ValueType','char');
-
     [found,pamHookUps]=findPAMReferences(blockHandle);
     found.generatedPAMCode=true;
     if found.PAM4&&found.PAMN
-
-
-
         if isLegacyPAM
 
             if all(pamHookUps.isKey(constants.pamNSignals))
@@ -1350,7 +1240,6 @@ function[found,pamReturnVars,pamCode]=findPAM(blockHandle,soHandle,isLegacyPAM)
                 found.PAMN=false;
             end
         else
-
             pam4KeysFound=pamHookUps.isKey(constants.pam4Signals);
             if any(pam4KeysFound)
                 pamHookUps.remove(constants.pam4Signals(pam4KeysFound));
@@ -1380,12 +1269,6 @@ function[found,pamReturnVars,pamCode]=findPAM(blockHandle,soHandle,isLegacyPAM)
         uiwait(h);
         return
     end
-
-
-
-
-
-
 
     keys=pamHookUps.keys;
     for pamIdx=1:pamHookUps.length
@@ -1502,17 +1385,14 @@ function[found,pamReturnVars,pamCode]=findPAM(blockHandle,soHandle,isLegacyPAM)
     end
 end
 
-function[found,pamHookUps]=findPAMReferences(blockHandle)
 
+function[found,pamHookUps]=findPAMReferences(blockHandle)
     constants=serdes.internal.callbacks.InitConstants;
 
     found.PAM4=false;
     found.PAMN=false;
 
     pamHookUps=containers.Map;
-
-
-
     foundBlocks=find_system(getfullname(blockHandle),...
     'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
     'SearchDepth',2,...
@@ -1538,17 +1418,6 @@ function[found,pamHookUps]=findPAMReferences(blockHandle)
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
 function[blocksInOrder,blocksInOrderOther]=walkTheLine(startingBlock,endingBlock)
 
     isEnd=false;
@@ -1558,8 +1427,6 @@ function[blocksInOrder,blocksInOrderOther]=walkTheLine(startingBlock,endingBlock
     while~isEnd
         [blockHandle,isEnd]=nextBlock(blockHandle,false,startingBlock);
         if~isEnd
-
-
 
             if any([blocksInOrder{:}]==blockHandle)
                 blocksInOrder={};
@@ -1597,14 +1464,6 @@ function[blocksInOrder,blocksInOrderOther]=walkTheLine(startingBlock,endingBlock
 end
 
 
-
-
-
-
-
-
-
-
 function[nextBlockHandle,isEnd]=nextBlock(blockHandle,forward,endPoint)
     isEnd=false;
     nextBlockHandle=[];
@@ -1614,7 +1473,6 @@ function[nextBlockHandle,isEnd]=nextBlock(blockHandle,forward,endPoint)
     else
         connections=targetPortConnectivity.SrcBlock;
     end
-
     numOutportConnections=size(connections,2);
     for connectionIdx=1:numOutportConnections
         currentConnection=connections(connectionIdx);
@@ -1631,10 +1489,6 @@ function[nextBlockHandle,isEnd]=nextBlock(blockHandle,forward,endPoint)
         nextBlockHandle=connections;
     end
 end
-
-
-
-
 
 
 function targetPortConnectivity=findFirstPort(blockHandle,forward)
@@ -1659,6 +1513,7 @@ function targetPortConnectivity=findFirstPort(blockHandle,forward)
     targetPortConnectivity=blockPortConnectivity(targetPort);
 end
 
+
 function stepCall=commentStep(stepCall)
     if strcmp(stepCall,"")
         return
@@ -1672,12 +1527,11 @@ function stepCall=commentStep(stepCall)
     end
 end
 
+
 function[isPAM,isLegacyPAM]=checkPAM(tree,modulation)
     isLegacyPAM=false;
 
     isPAM=modulation>2;
-
-
     modulationParameter=tree.getReservedParameter("Modulation");
     if~isempty(modulationParameter)
         if isa(modulationParameter.Format,"serdes.internal.ibisami.ami.format.List")
