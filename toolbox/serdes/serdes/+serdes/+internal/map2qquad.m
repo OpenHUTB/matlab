@@ -1,37 +1,5 @@
 function QOSmatrix=map2qquad(SampleTime,poles,zeroz)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
     coder.allowpcode('plain')
 
@@ -91,18 +59,8 @@ function QOSmatrix=map2qquad(SampleTime,poles,zeroz)
         pz(np+1:end)=zeroz;
     end
 
-
-
-
     indx=1;
     while indx<=ntot
-
-
-
-
-
-
-
         yndx=indx;
         if imag(pz(indx))==0
             a=real(pz(indx));
@@ -158,18 +116,10 @@ function QOSmatrix=map2qquad(SampleTime,poles,zeroz)
         end
 
         if yndx<=np
-
-
             QOSmatrix(1:5)=conv(QOSmatrix(1:3),sos(1:3));
             QOSmatrix(6:10)=conv(QOSmatrix(6:8),sos(4:6));
 
         else
-
-
-
-
-
-
             if sos(1)==0
                 assert(sos(2)~=0,...
                 'Programming error. Z domain zero has too much delay.');
