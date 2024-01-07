@@ -1,13 +1,7 @@
 classdef Canvas<handle
 
-
-
-
     properties
         Elements=[]
-
-
-
 
         InstancesCreated_AGC=0;
         InstancesCreated_FFE=0;
@@ -19,6 +13,7 @@ classdef Canvas<handle
         InstancesCreated_Transparent=0;
         InstancesCreated_WireOrIBeam=0;
     end
+
 
     properties(Hidden)
 View
@@ -48,20 +43,22 @@ AxesRx
         InsertIdx=1
     end
 
+
     properties(Dependent)
 PanelPositionX
     end
 
+
     properties(Constant)
         InputIconFilePath=[fullfile('+serdes','+internal','+apps','+serdesdesigner'),filesep,'input.png'];
         InputIcon=imread([fullfile('+serdes','+internal','+apps','+serdesdesigner'),filesep,'input.png']);
-
         OutputIconFilePath=[fullfile('+serdes','+internal','+apps','+serdesdesigner'),filesep,'output.png'];
         OutputIcon=imread([fullfile('+serdes','+internal','+apps','+serdesdesigner'),filesep,'output.png']);
 
         ColorSelectedForeground=[0,153,255]./255;
 
     end
+
 
     methods
 
@@ -70,16 +67,10 @@ PanelPositionX
             obj.Figure=obj.View.CanvasFig;
 
             obj.createCanvas();
-
-
-
             set(obj.Figure,'WindowButtonUpFcn',@(~,e)windowMousePress(obj,e));
             set(obj.Figure,'WindowButtonMotionFcn',@(~,e)windowMouseMotion(obj,e));
             set(obj.Figure,'SizeChangedFcn',@(~,e)sizeChanged(obj,e));
         end
-
-
-
 
 
         function updateChannelIndex(obj)
@@ -94,6 +85,8 @@ PanelPositionX
                 end
             end
         end
+
+
         function updateSelectedTxOrRxIdx(obj)
 
             drawnow;
@@ -104,6 +97,8 @@ PanelPositionX
                 obj.SelectedRxIndex=obj.SelectIdx-obj.ChannelIndex;
             end
         end
+
+
         function updateIBeamTxOrRxIdx(obj)
 
             drawnow;
@@ -129,6 +124,8 @@ PanelPositionX
                 end
             end
         end
+
+
         function resizeAxes(obj,channelColumn)
 
             drawnow;
@@ -139,6 +136,8 @@ PanelPositionX
             obj.AxesTx.Visible='on';
             obj.AxesRx.Visible='on';
         end
+
+
         function colorAxes(obj,colorTx,colorRx)
 
             drawnow;
@@ -151,6 +150,7 @@ PanelPositionX
             obj.AxesRx.YColor=colorRx;
         end
 
+
         function x=get.PanelPositionX(obj)
             c=obj.Cascade.Elements;
             x=arrayfun(@(e)e.Panel.Position(1),c);
@@ -158,25 +158,13 @@ PanelPositionX
 
 
         function createCanvas(obj)
-
-
-
-
-
             panel=uipanel(obj.View.CanvasFigLayout,'Title','','BorderType','line','Visible','on');
-
-
-
-
-
             obj.Layout=uigridlayout(panel,...
             'RowHeight',{'1x',40,85,20,'1x'},'ColumnWidth',{'1x',70,12,'fit',12,70,'1x'},...
             'RowSpacing',0,'ColumnSpacing',0,'Padding',[0,0,0,0],'Scrollable','on','BackgroundColor','w');
             set(obj.Layout,'ScrollableViewportLocationChangedFcn',@(~,e)scrollbarChanged(obj,e));
 
-
             obj.createCascade();
-
 
             obj.AxesTx=axes('Parent',obj.Layout,'Box','on','XTick',[],'YTick',[],'Color','none','Visible','off','Units','pixels');
             obj.AxesRx=axes('Parent',obj.Layout,'Box','on','XTick',[],'YTick',[],'Color','none','Visible','off','Units','pixels');
@@ -188,8 +176,9 @@ PanelPositionX
             obj.AxesRx.Toolbar.Visible='off';
             obj.colorAxes('k','k');
         end
-        function createCascade(obj)
 
+
+        function createCascade(obj)
             obj.Cascade.Input=uipanel(obj.Layout,...
             'Title','',...
             'BorderType','none',...
@@ -207,18 +196,12 @@ PanelPositionX
             'Visible','on');
             obj.Cascade.InputImage.Layout.Row=1;
             obj.Cascade.InputImage.Layout.Column=3;
-
-
             obj.Cascade.Elements=serdes.internal.apps.serdesdesigner.ElementView.empty;
-
-
-            obj.Cascade.IBeam=serdes.internal.apps.serdesdesigner.IBeam(obj,obj.Layout,true);
+           obj.Cascade.IBeam=serdes.internal.apps.serdesdesigner.IBeam(obj,obj.Layout,true);
             obj.Cascade.IBeam.Panel.Layout.Row=3;
             obj.Cascade.IBeam.Panel.Layout.Column=3;
             obj.Cascade.IBeam.Panel.Visible='on';
             obj.Cascade.IBeam.setImageClickedFcn();
-
-
             obj.Cascade.Output=uipanel(obj.Layout,...
             'Title','',...
             'BorderType','none',...
@@ -239,13 +222,10 @@ PanelPositionX
         end
 
 
-
         function setInputOutputLinesVisible(obj)
             obj.Cascade.Input.Visible=obj.isConnectionLinesVisible;
             obj.Cascade.Output.Visible=obj.isConnectionLinesVisible;
         end
-
-
 
 
         function selectElement(obj,index)
@@ -285,6 +265,7 @@ PanelPositionX
         end
     end
 
+
     methods(Hidden)
 
         function idx=getSelectIdx(obj)
@@ -298,6 +279,8 @@ PanelPositionX
             end
             idx=0;
         end
+
+
         function idx=getInsertIdx(obj)
 
             if~isempty(obj.Cascade.IBeam)&&obj.Cascade.IBeam.IsSelected
@@ -314,6 +297,7 @@ PanelPositionX
             idx=-1;
         end
 
+
         function setSelectedElement(obj,idx)
             if~isempty(obj.Cascade)&&length(obj.Cascade.Elements)>=idx
                 for i=1:length(obj.Cascade.Elements)
@@ -327,7 +311,6 @@ PanelPositionX
 
 
         function removeIBeam(obj)
-
             if~isempty(obj.Cascade)&&obj.InsertIdx~=-1
                 if~isempty(obj.Cascade.IBeam)
                     obj.Cascade.IBeam.unselectIBeam();
@@ -341,6 +324,8 @@ PanelPositionX
                 drawnow;
             end
         end
+
+
         function addTxIBeam(obj)
 
             obj.updateChannelIndex();
@@ -351,6 +336,8 @@ PanelPositionX
                 obj.addIBeam(obj.ChannelIndex-1);
             end
         end
+
+
         function addRxIBeam(obj)
 
             obj.updateChannelIndex();
@@ -411,11 +398,8 @@ PanelPositionX
                 deletedColumnCnt=deletedColumnCnt+1;
             end
 
-
             obj.Elements{index}.delete;
             obj.Elements(index)=[];
-
-
             if~isempty(obj.Cascade.Elements)&&length(obj.Cascade.Elements)>=index
 
                 for i=index:length(obj.Cascade.Elements)
@@ -438,6 +422,8 @@ PanelPositionX
                 end
             end
         end
+
+
         function deleteElement(obj,serdesDesign,index)
 
             unselectElement(obj.Cascade.Elements(index));
@@ -468,6 +454,8 @@ PanelPositionX
 
             obj.updateAxes();
         end
+
+
         function deleteAllElements(obj)
 
             drawnow;
@@ -480,8 +468,6 @@ PanelPositionX
             if obj.SelectIdx>0
                 unselectElement(obj.Cascade.Elements(obj.SelectIdx));
             else
-
-
                 obj.View.Parameters.ElementType='';
             end
             for index=n:-1:1
@@ -493,12 +479,11 @@ PanelPositionX
             obj.InsertIdx=1;
             obj.addIBeam(obj.InsertIdx)
 
-
             obj.updateAxes();
         end
 
-        function insertAddElementView(obj,elem,index)
 
+        function insertAddElementView(obj,elem,index)
 
             switch class(lower(elem))
             case 'serdes.internal.apps.serdesdesigner.agc'
@@ -526,15 +511,10 @@ PanelPositionX
             otherwise
                 return;
             end
-
-
             elemView=serdes.internal.apps.serdesdesigner.BlockView(obj,obj.Layout,elem,iconFile);
             obj.Cascade.Elements=[obj.Cascade.Elements(1:index-1),...
             elemView,...
             obj.Cascade.Elements(index:end)];
-
-
-
             elementsColumnCnt=length(obj.Cascade.Elements)*3;
 
             obj.Layout.ColumnWidth{1}='1x';
@@ -576,6 +556,7 @@ PanelPositionX
             end
         end
 
+
         function isUnique=isUniqueName(~,serdesDesign,index)
             isUnique=true;
             if~isempty(serdesDesign)&&...
@@ -592,6 +573,8 @@ PanelPositionX
                 end
             end
         end
+
+
         function setUniqueName(obj,serdesDesign,index)
             if~isempty(serdesDesign)&&index>0&&index<=numel(serdesDesign.Elements)
                 name=serdesDesign.Elements{index}.Name;
@@ -605,9 +588,10 @@ PanelPositionX
                 end
             end
         end
+
+
         function insertElement(obj,serdesDesign,index)
             obj.setUniqueName(serdesDesign,index);
-
 
             obj.AxesTx.Visible='off';
             obj.AxesRx.Visible='off';
@@ -617,28 +601,22 @@ PanelPositionX
                 unselectElement(obj.Cascade.Elements(obj.SelectIdx))
             end
             obj.insertAddElementView(serdesDesign.Elements{index},index);
-
             obj.Cascade.Elements(index).Visible='on';
-
 
             obj.SelectIdx=index;
             selectElement(obj.Cascade.Elements(obj.SelectIdx),...
             serdesDesign.Elements{obj.SelectIdx});
 
-
-
             obj.SelectIdx=index;
             obj.updateSelectedTxOrRxIdx();
 
-
             obj.InsertIdx=obj.SelectIdx+1;
             obj.addIBeam(obj.InsertIdx);
-
-
             obj.Elements=serdesDesign.Elements;
 
             obj.updateAxes();
         end
+
 
         function unselectAllElements(obj)
             if~isempty(obj.Cascade)&&~isempty(obj.Cascade.Elements)
@@ -650,6 +628,8 @@ PanelPositionX
                 obj.SelectIdx=NaN;
             end
         end
+
+
         function insertAllElements(obj,serdesDesign)
             n=numel(serdesDesign.Elements);
             if n==0
@@ -668,24 +648,14 @@ PanelPositionX
                 obj.Cascade.Elements(index).Visible='on';
             end
 
-
             for index=1:n
                 selectElement(obj.Cascade.Elements(index),serdesDesign.Elements{index});
                 unselectElement(obj.Cascade.Elements(index));
             end
 
-
             obj.SelectIdx=1;
             selectElement(obj.Cascade.Elements(1),serdesDesign.Elements{1})
             obj.InsertIdx=n+1;
-
-
-
-
-
-
-
-
             obj.colorAxes(obj.ColorSelectedForeground,'k');
             obj.updateChannelIndex();
             obj.InsertIdx=obj.ChannelIndex-1;
@@ -716,25 +686,20 @@ PanelPositionX
 
             obj.adjustButtonsForScroll();
         end
+
+
         function scrollbarChanged(obj,e)
-
-
-
             obj.adjustButtonsForScroll();
         end
+
+
         function adjustButtonsForScroll(obj)
-
-
-
-
             drawnow;
             if obj.SelectIdx==obj.ChannelIndex
-
                 obj.View.enableInsertionActions(false);
                 obj.View.Toolstrip.DeleteBtn.Enabled=false;
                 return;
             end
-
 
             canvasItems=obj.Layout.Children;
             isVisible=obj.Layout.isInScrollView(canvasItems);
@@ -804,9 +769,11 @@ PanelPositionX
         end
     end
 
+
     events(Hidden)
 ElementSelected
     end
+
 
     methods(Access=private)
 
@@ -814,7 +781,6 @@ ElementSelected
             if~isvalid(obj)||~isvalid(obj.View)||~isvalid(obj.Figure)
                 return;
             end
-
 
             obj.Figure.CurrentPoint=e.Point;
 
@@ -824,7 +790,6 @@ ElementSelected
                 return;
             end
 
-
             drawnow;
             if~isempty(obj.HighlightIdx)
 
@@ -833,7 +798,6 @@ ElementSelected
                 end
                 obj.HighlightIdx=[];
             end
-
 
             if isempty(obj.Layout)||~isvalid(obj.Layout)||isempty(obj.Layout.ScrollableViewportLocation)
 
@@ -848,31 +812,25 @@ ElementSelected
                 pt(2)=pt(2)+obj.Layout.ScrollableViewportLocation(2)-1;
             end
 
-
             ep=c(1).Panel.Position;
             ep(2)=ep(2)+25;
             ep(4)=ep(4)-25;
             if pt(2)<ep(2)||ep(2)+ep(4)<pt(2)
                 return
             end
-
-
             xc=obj.PanelPositionX+c(1).Panel.Position(3)/2;
             [~,nearest]=min(abs(xc-pt(1)));
             if nearest==obj.SelectIdx
                 return
             end
 
-
             ep=c(nearest).Panel.Position;
             ep(1)=ep(1)+24;
             ep(3)=ep(3)-24;
             if ep(1)<=pt(1)&&pt(1)<=ep(1)+ep(3)
-
                 c(nearest).Picture.Block.ImageSource=highlight(c(nearest),3,[180,180,180]./255);
                 obj.HighlightIdx=nearest;
             else
-
                 c(nearest).Picture.Block.ImageSource=c(nearest).Icon;
             end
         end
@@ -895,11 +853,8 @@ ElementSelected
             end
 
             if~(obj.SelectIdx>0)
-
-
                 obj.View.Parameters.ElementType='';
             end
-
 
             pt=obj.Figure.CurrentPoint;
             if obj.Layout.ScrollableViewportLocation(1)~=1
@@ -910,7 +865,6 @@ ElementSelected
 
                 pt(2)=pt(2)+obj.Layout.ScrollableViewportLocation(2)-1;
             end
-
 
             obj.updateChannelIndex();
             x=pt(1);
@@ -961,8 +915,6 @@ ElementSelected
                 end
             elseif obj.AxesTx.Title.Color(3)||obj.AxesRx.Title.Color(3)
 
-
-
                 obj.colorAxes('k','k');
                 obj.removeIBeam();
                 obj.InsertIdx=-1;
@@ -983,9 +935,6 @@ ElementSelected
                     button.Description=string(message('serdes:serdesdesigner:AddElement',obj.View.Toolstrip.getButtonName(button)));
                 end
             elseif~(obj.SelectIdx>0)
-
-
-
                 obj.updateChannelIndex();
                 obj.SelectIdx=obj.ChannelIndex;
                 obj.notify('ElementSelected',serdes.internal.apps.serdesdesigner.ElementSelectedEventData(obj.SelectIdx));
@@ -993,10 +942,9 @@ ElementSelected
             obj.adjustButtonsForScroll();
             obj.View.setBusyClickingCanvas(false);
         end
+
+
         function isInside=isInAxes(~,axes,x,y)
-
-
-
             isInside=x>=axes.Position(1)+12&&x<=axes.Position(1)+12+axes.Position(3)&&...
             y>=axes.Position(2)+10&&y<=axes.Position(2)+10+axes.Position(4);
         end
