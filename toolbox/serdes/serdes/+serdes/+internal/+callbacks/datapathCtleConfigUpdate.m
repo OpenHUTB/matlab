@@ -1,13 +1,4 @@
-
-
-
-
-
-
 function datapathCtleConfigUpdate(block)
-
-
-
     DCGain=str2num(get_param(block,'DCGain'));%#ok<*ST2NM>
     ACGain=str2num(get_param(block,'ACGain'));
     PeakingGain=str2num(get_param(block,'PeakingGain'));
@@ -15,7 +6,6 @@ function datapathCtleConfigUpdate(block)
     GPZ=slResolve(get_param(block,'GPZ'),bdroot(block));
     lenvec=[length(PeakingFrequency),length(DCGain),...
     length(ACGain),length(PeakingGain),size(GPZ,1)];
-
     Specification=get_param(block,'Specification');
     switch Specification
     case 'DC Gain and Peaking Gain'
@@ -27,9 +17,6 @@ function datapathCtleConfigUpdate(block)
     otherwise
         lenvecMask=logical([0,0,0,0,1]);
     end
-
-
-
     ConfigCount=max([1,min(lenvec((lenvec~=1)&lenvecMask))]);
     newConfigSelect=cellstr(string((0:(ConfigCount-1))'));
 
