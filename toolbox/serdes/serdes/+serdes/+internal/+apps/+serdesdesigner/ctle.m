@@ -1,12 +1,9 @@
 classdef ctle<serdes.CTLE&serdes.internal.serdesquicksimulation.SERDESElement
 
-
-
     methods
         function obj=ctle(varargin)
             obj@serdes.internal.serdesquicksimulation.SERDESElement(varargin{:});
         end
-
 
 
         function value=get.myGPZ(obj)
@@ -15,6 +12,8 @@ classdef ctle<serdes.CTLE&serdes.internal.serdesquicksimulation.SERDESElement
             end
             value=obj.myGPZ;
         end
+
+
         function set.myGPZ(obj,value)
             if~obj.isWorkspaceVariable(value)
                 if~obj.isParameterWorkspaceValuesRestored&&ischar(value)
@@ -44,22 +43,20 @@ classdef ctle<serdes.CTLE&serdes.internal.serdesquicksimulation.SERDESElement
             end
             obj.setWorkspaceVariableValue('myGPZ',value);
         end
-        function testGPZ(obj,value)
 
+
+        function testGPZ(obj,value)
             h=matlabshared.application.IgnoreWarnings;
             h.RethrowWarning=false;
-
 
             warning1='';
             warning2='';
             try
-
                 a=serdes.CTLE('Specification','GPZ Matrix','GPZ',value);
                 [warning1,~]=lastwarn;
                 if~isempty(warning1)
                     obj.showWarning(warning1);
                 end
-
 
                 step(a,0);
                 [warning2,~]=lastwarn;
@@ -76,14 +73,17 @@ classdef ctle<serdes.CTLE&serdes.internal.serdesquicksimulation.SERDESElement
             end
             delete(h);
         end
+
+
         function showWarning(~,str)
             if~isempty(str)
-
                 opts=struct('WindowStyle','modal','Interpreter','tex');
                 h=warndlg(str,'Warning',opts);
                 uiwait(h);
             end
         end
+
+
         function isValid=isValidGPZWorkspaceVariable(obj,workspaceParamName)
             if~isempty(workspaceParamName)&&~isnumeric(workspaceParamName)
                 w=evalin('base','whos');
@@ -102,6 +102,7 @@ classdef ctle<serdes.CTLE&serdes.internal.serdesquicksimulation.SERDESElement
             end
         end
 
+
         function setIsLastEdited(obj,elements)
             if~isempty(elements)
                 for i=1:length(elements)
@@ -114,28 +115,34 @@ classdef ctle<serdes.CTLE&serdes.internal.serdesquicksimulation.SERDESElement
         end
     end
 
+
     properties
 myGPZ
 
-
         CTLEFitterButton='@ctlefitter';
     end
+
 
     properties(Hidden)
         IsLastEdited=false;
     end
 
+
     properties(Constant,Access=protected)
         HeaderDescription=getString(message('serdes:serdesdesigner:CtleHdrDesc'));
     end
+
+
     properties(Constant,Hidden)
         DefaultName='CTLE';
     end
+
 
     properties(Constant,Hidden)
         CTLEFitterButton_NameInGUI=getString(message('serdes:serdessystem:CTLEFitterButton_NameInGUI'));
         CTLEFitterButton_ToolTip=getString(message('serdes:serdessystem:CTLEFitterButton_ToolTip'));
     end
+
 
     methods(Hidden,Access=protected)
         function out=localClone(in)
