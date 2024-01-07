@@ -1,10 +1,4 @@
 function validateSubdomain(model)
-
-
-
-
-
-
     isSupported=Simulink.internal.isArchitectureModel(model);
 
     if~isSupported
