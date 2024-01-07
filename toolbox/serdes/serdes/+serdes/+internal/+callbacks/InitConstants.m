@@ -1,8 +1,3 @@
-
-
-
-
-
 classdef InitConstants<handle
 
     properties(Constant)
