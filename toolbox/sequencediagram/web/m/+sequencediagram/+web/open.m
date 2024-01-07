@@ -1,8 +1,5 @@
 function open(url,editorId,debugMode,debugPort)
 
-
-
-
     webWindowId=editorId;
     if debugMode
         web(url,'-browser')
