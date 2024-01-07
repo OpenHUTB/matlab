@@ -1,25 +1,15 @@
-
-
-
-
-
 function analogChannelUpdate(block,calledFrom)
     mws=get_param(bdroot(block),'ModelWorkspace');
     requiredMWSElements=["SampleInterval","ChannelImpulse","RowSize","Aggressors","ImpulseMatrix","SerdesIBIS"];
     switch(calledFrom)
     case "Open"
-
         simStatus=get_param(bdroot(block),'SimulationStatus');
 
         if strcmp(simStatus,'stopped')&&~isempty(mws)&&...
             all(arrayfun(@(x)mws.hasVariable(x),requiredMWSElements))
-
             maskObj=Simulink.Mask.get(block);
-
-
             maskNames={maskObj.Parameters.Name};
             serdesIBISObj=mws.getVariable('SerdesIBIS');
-
             engTxC=serdes.internal.callbacks.numberToEngString(serdesIBISObj.CapacitanceTx);
             engRxC=serdes.internal.callbacks.numberToEngString(serdesIBISObj.CapacitanceRx);
             engRiseTime=serdes.internal.callbacks.numberToEngString(serdesIBISObj.RiseTime);
@@ -32,20 +22,15 @@ function analogChannelUpdate(block,calledFrom)
         end
         open_system(block,'mask');
     case "Initialization"
-
         if~isempty(mws)&&all(arrayfun(@(x)mws.hasVariable(x),requiredMWSElements))
             [maskNamesValues,maskObj]=serdes.internal.callbacks.getUtilitiesMaskValues(bdroot(block),'',block);
             serdesIBISObj=mws.getVariable('SerdesIBIS');
             channelType=maskNamesValues.ChannelType;
-
-
             wsSampleInterval=mws.getVariable('SampleInterval');
             wsSymbolTime=mws.getVariable('SymbolTime');
             wsModulation=mws.getVariable('Modulation');
 
             if strcmp(channelType,'Loss model')
-
-
 
                 if serdesIBISObj.Differential
                     convertedZc=maskNamesValues.Zc;
@@ -53,9 +38,7 @@ function analogChannelUpdate(block,calledFrom)
                     convertedZc=2*maskNamesValues.Zc;
                 end
 
-
                 fb=1/wsSymbolTime.Value/wsModulation.Value;
-
 
                 if strcmp('off',maskNamesValues.IncludeCrosstalkCheckBox)
                     channel=serdes.ChannelLoss(...
@@ -106,8 +89,6 @@ function analogChannelUpdate(block,calledFrom)
 
                     variantControlLabel='2 Aggressor';
                 end
-
-
                 if~strcmp(get_param(block,'LabelModeActiveChoice'),variantControlLabel)
                     warning('off','Simulink:Commands:SetParamLinkChangeWarn')
                     aOldLinkData=get_param(block,'LinkData');
@@ -119,21 +100,13 @@ function analogChannelUpdate(block,calledFrom)
                 impulseRawInput=channel.impulse;
                 impulseSampleIntervalRawInput=wsSampleInterval.Value;
 
-
-
-
-
-
                 if maskNamesValues.ConvertedZc~=convertedZc
                     maskObj.Parameters(strcmp(fields(maskNamesValues),'ConvertedZc')).Value=num2str(convertedZc);
                 end
 
             else
-
-
                 maskImpulse=maskNamesValues.ImpulseResponse;
                 [maskImpulseRows,maskImpulseColumns]=size(maskImpulse);
-
                 includeXtalk=strcmp('on',maskNamesValues.IncludeCrosstalkCheckBox);
 
                 if maskImpulseRows==1
@@ -155,7 +128,6 @@ function analogChannelUpdate(block,calledFrom)
                     end
                 end
 
-
                 if includeXtalk
                     variantControlLabel=sprintf('%i Aggressor',maskImpulseColumns-1);
                 else
@@ -168,19 +140,11 @@ function analogChannelUpdate(block,calledFrom)
                     set_param(block,'LinkData',aOldLinkData);
                     warning('on','Simulink:Commands:SetParamLinkChangeWarn')
                 end
-
-
                 impulseSampleIntervalRawInput=maskNamesValues.ImpulseSampleInterval;
 
             end
 
-
-
-
-
-
             if abs(impulseSampleIntervalRawInput-wsSampleInterval.Value)<eps
-
                 impulseRawInputResampled=impulseRawInput;
             else
 
@@ -190,23 +154,17 @@ function analogChannelUpdate(block,calledFrom)
                 wsSampleInterval.Value,0);
             end
 
-
             requiredImpulseLength=8388608;
             [rawImpulseRows,rawImpulseColumns]=size(impulseRawInputResampled);
             if rawImpulseRows*rawImpulseColumns>requiredImpulseLength
                 error(message('serdes:callbacks:ImpulseResponsesExceedsMaxSize'));
             end
             rawAggressorCount=rawImpulseColumns-1;
-
-
             impulseStacked=zeros(requiredImpulseLength,1);
             impulseStacked(1:rawImpulseRows*rawImpulseColumns,:)=impulseRawInputResampled(:);
-
-
             tempChannelImpulse=mws.getVariable('ChannelImpulse');
             if~isequal(tempChannelImpulse.Value,impulseStacked)
                 tempChannelImpulse.Value=impulseStacked;
-
                 tempRowSize=mws.getVariable('RowSize');
                 tempAggressors=mws.getVariable('Aggressors');
                 tempRowSize.Value=rawImpulseRows;
@@ -270,14 +228,6 @@ function analogChannelUpdate(block,calledFrom)
                     'Order',str2double(maskNamesValues.("Order"+propSuffix{ndx})));
                 end
             end
-
-
-
-
-
-
-
-
             findStimulus=find_system(block,...
             'LookUnderMasks','all','FollowLinks','on',...
             'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
