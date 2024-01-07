@@ -1,11 +1,10 @@
 classdef(ConstructOnLoad)AddOrDeleteRequestedEventData<event.EventData
 
-
-
     properties
 Index
 Type
     end
+
 
     methods
         function data=AddOrDeleteRequestedEventData(index,type)
