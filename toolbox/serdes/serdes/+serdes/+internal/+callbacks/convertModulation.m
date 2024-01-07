@@ -1,7 +1,3 @@
-
-
-
-
 function to=convertModulation(from)
     to=[];
     for fromIdx=1:length(from)
