@@ -1,7 +1,5 @@
 function aStr=verifyStringValue(aPropName,aStr)
 
-
-
     aStr=convertStringsToChars(aStr);
 
     if~ischar(aStr)||size(aStr,1)>1
