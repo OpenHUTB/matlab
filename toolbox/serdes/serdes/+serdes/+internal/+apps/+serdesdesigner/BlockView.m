@@ -1,14 +1,12 @@
 classdef BlockView<serdes.internal.apps.serdesdesigner.ElementView
 
-
-
-
     properties
 IconFilePath
 Icon
 Type
 HeaderDescription
     end
+
 
     methods
 
@@ -28,6 +26,7 @@ HeaderDescription
             obj.HeaderDescription=elem{1}.getHeaderDescription();
         end
 
+
         function unselectElement(obj)
             if~obj.IsSelected
                 return;
@@ -35,21 +34,18 @@ HeaderDescription
             unselectElement@serdes.internal.apps.serdesdesigner.ElementView(obj);
         end
 
+
         function selectElement(obj,elem)
             if obj.IsSelected||obj.Canvas.View.isBusyClickingBlock()
                 return;
             end
             obj.Canvas.View.setBusyClickingBlock(true);
 
-
             if isempty(obj.Picture.Block.ImageClickedFcn)
                 set(obj.Picture.Block,'ImageClickedFcn',@(h,e)selectElement(obj,elem));
             end
-
-
             obj.Canvas.unselectAllElements();
             selectElement@serdes.internal.apps.serdesdesigner.ElementView(obj,elem);
-
 
             if isprop(elem,'BlockName')
 
@@ -63,7 +59,6 @@ HeaderDescription
                     end
                 end
             end
-
 
             try
                 dlg=obj.Canvas.View.Parameters.ElementDialog;
@@ -80,30 +75,6 @@ HeaderDescription
             if~isempty(dlg.getNonSerdesElement())
                 dlg.setNonSerdesElement(elem);
             end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             allElementProps=properties(elem);
             missingPropNames=setdiff(allElementProps,elem.ParameterNames,'stable');
             tmpParameterNames=allElementProps;
@@ -115,8 +86,6 @@ HeaderDescription
                 ['myGPZ';elem.ParameterNames],'stable');
                 tmpParameterNames=allElementProps(2:end);
             end
-
-
             tmpParameterValues=cell(1,length(tmpParameterNames));
             for ii=1:length(elem.ParameterNames)
                 paramName=elem.ParameterNames{ii};
@@ -145,8 +114,6 @@ HeaderDescription
             end
             elem.ParameterNames=tmpParameterNames;
             elem.ParameterValues=tmpParameterValues;
-
-
             dlg.setParameterValues(elem.ParameterValues);
             setListenersEnable(dlg,true)
 
