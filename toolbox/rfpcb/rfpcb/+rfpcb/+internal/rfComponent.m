@@ -4,195 +4,58 @@ classdef rfComponent < em.PCBStructures &  ...
         em.SharedPortAnalysis &  ...
         rfpcb.SurfaceAnalysis
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties
-
         Name
-
-
         Revision
-
-
         BoardShape
-
-
         FeedDiameter
-
-
         ViaDiameter
-
-
-
-
-
-
-
-
-
-
-
         FeedViaModel = 'strip'
     end
+
 
     properties ( Access = protected )
         privateSubstrate = dielectric( 'Name', 'Air' )
     end
 
+
     properties ( Dependent, SetObservable )
-
         Layers
-
-
         BoardLength
-
-
         BoardWidth
-
-
         BoardThickness
-
-
-
-
         FeedLocations
-
-
         ViaLocations
-
-
         FeedVoltage
-
-
         FeedPhase
     end
+
 
     properties ( Dependent, Access = protected )
         NumFeeds
     end
 
+
     properties ( GetAccess = public, SetAccess = protected )
 
         FeedWidth
-
-
         FeedLocation
     end
 
+
     properties ( Hidden, Dependent )
-
         MetalLayers
-
         Substrate
-
         LayerZCoordinates
-
         NumFeedViaModelSides = 6
     end
 
+
     properties ( Hidden )
         IsRefiningPolygon
-
-
         PortConnections = containers.Map
     end
+
 
     methods
         function obj = rfComponent( varargin )
@@ -200,6 +63,7 @@ classdef rfComponent < em.PCBStructures &  ...
             obj.SolverStruct.Source.type = 'voltage';
         end
     end
+
 
     methods
         function set.Name( obj, propVal )
@@ -211,12 +75,14 @@ classdef rfComponent < em.PCBStructures &  ...
             end
         end
 
+
         function set.Revision( obj, propVal )
             validateattributes( propVal, { 'char', 'string' }, { 'nonempty', 'scalartext' } );
             if isPropertyChanged( obj, obj.Revision, propVal )
                 obj.Revision = propVal;
             end
         end
+
 
         function set.BoardShape( obj, propVal )
             if ~isa( propVal, 'antenna.Shape' )
@@ -238,6 +104,7 @@ classdef rfComponent < em.PCBStructures &  ...
                 setHasStructureChanged( obj );
             end
         end
+
 
         function set.BoardLength( obj, propVal )
             validateattributes( propVal, { 'numeric' },  ...
