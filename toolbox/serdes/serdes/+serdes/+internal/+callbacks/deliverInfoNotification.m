@@ -1,9 +1,3 @@
-
-
-
-
-
-
 function deliverInfoNotification(block,msgid,varargin)
     editor=GLUE2.Util.findAllEditors(block);
     while isempty(editor)&&~isempty(block)
