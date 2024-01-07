@@ -1,19 +1,12 @@
-
-
-
-
-
 function configurationUpdate(block,calledFrom)
     mws=get_param(bdroot(block),'ModelWorkspace');
     requiredMWSElements=["SampleInterval","SymbolTime","TargetBER","Modulation","TxTree","RxTree","SerdesIBIS"];
     switch(calledFrom)
     case "Open"
-
         simStatus=get_param(bdroot(block),'SimulationStatus');
 
         if strcmp(simStatus,'stopped')&&~isempty(mws)&&...
             all(arrayfun(@(x)mws.hasVariable(x),requiredMWSElements))
-
             maskObj=Simulink.Mask.get(block);
             maskNames={maskObj.Parameters.Name};
             serdesIBISObj=mws.getVariable('SerdesIBIS');
@@ -38,10 +31,8 @@ function configurationUpdate(block,calledFrom)
             else
                 maskObj.Parameters(strcmp(maskNames,'Signaling')).Value='Single-ended';
             end
-
             ignoreBits=serdes.internal.callbacks.getIgnoreBits(mws);
             maskObj.Parameters(strcmp(maskNames,'IgnoreBitsDisplay')).Value=num2str(ignoreBits);
-
             dctrl=maskObj.getDialogControl('SILinkButton');
             if~isempty(dctrl)
                 if builtin('license','test','signal_integrity_toolbox')...
@@ -56,15 +47,12 @@ function configurationUpdate(block,calledFrom)
         end
         open_system(block,'mask');
     case "Initialization"
-
         if~isempty(mws)&&all(arrayfun(@(x)mws.hasVariable(x),requiredMWSElements))
             maskObj=Simulink.Mask.get(block);
             maskNames={maskObj.Parameters.Name};
             maskTypes={maskObj.Parameters.Type};
             maskEnables={maskObj.Parameters.Enabled};
             maskValues={maskObj.Parameters.Value};
-
-
 
             errorParameters={};
             for paramIdx=1:numel(maskNames)
@@ -123,66 +111,46 @@ function configurationUpdate(block,calledFrom)
                     error(message('serdes:callbacks:ModelWorkspaceLocked',"Configuration"));
                 end
             end
-
-
             maskModulation=string(maskNamesValues.Modulation);
             tempModulationValue=serdes.internal.callbacks.convertModulation(maskModulation);
 
-
             if tempModulationValue~=tempModulation.Value||...
                 (tempModulation.Value==3&&~mws.hasVariable('PAM_Thresholds'))
-
-
                 txTree=mws.getVariable('TxTree');
                 rxTree=mws.getVariable('RxTree');
                 if~isempty(rxTree.getReservedParameter("Modulation"))
-
                     if~(tempModulationValue==3||tempModulationValue>4)
-
                         checkAMIList(txTree,'Modulation',maskModulation,'ModulationNotInListLegacy');
                         checkAMIList(rxTree,'Modulation',maskModulation,'ModulationNotInListLegacy');
                         txTree.setReservedParameterCurrentValue('Modulation',maskModulation);
                         rxTree.setReservedParameterCurrentValue('Modulation',maskModulation);
                     else
-
-
-
                         h=warndlg(...
                         message('serdes:callbacks:LegacyPAM4ModelUsingPAMn',maskModulation).getString,...
                         message('serdes:callbacks:LegacyPAM4ModelUsingPAMnTitle').getString);
                         uiwait(h);
-
                         txTree.removeLegacyModulationParameters;
                         rxTree.removeLegacyModulationParameters;
-
                         txTree.addModulationParameters;
                         rxTree.addModulationParameters;
-
                         txTree.setReservedParameterCurrentValue('Modulation_Levels',tempModulationValue);
                         rxTree.setReservedParameterCurrentValue('Modulation_Levels',tempModulationValue);
-
                         if~mws.hasVariable('PAM_Thresholds')
-
                             simulinkSignal=Simulink.Signal;
-
                             simulinkSignal.InitialValue='zeros(31,1)';
-
                             simulinkSignal.DataType='double';
                             simulinkSignal.DimensionsMode='Fixed';
                             simulinkSignal.Dimensions=[31,1];
                             simulinkSignal.Complexity='real';
-
                             mws.assignin('PAM_Thresholds',simulinkSignal);
                         end
                     end
                 elseif~isempty(rxTree.getReservedParameter("Modulation_Levels"))
-
                     checkAMIList(txTree,'Modulation_Levels',tempModulationValue,'ModulationNotInList');
                     checkAMIList(rxTree,'Modulation_Levels',tempModulationValue,'ModulationNotInList');
                     txTree.setReservedParameterCurrentValue('Modulation_Levels',tempModulationValue);
                     rxTree.setReservedParameterCurrentValue('Modulation_Levels',tempModulationValue);
                 end
-
                 tempModulation.Value=tempModulationValue;
                 try
                     mws.assignin('Modulation',tempModulation);
@@ -208,15 +176,11 @@ function configurationUpdate(block,calledFrom)
                 updateImpedance=true;
             end
 
-
-
             if updateChannel||updateStimulus
                 updatedStimulus=false;
                 updatedChannel=false;
-
                 currentTopLevelBlocks=find_system(extractBefore(block,'Configuration'),'SearchDepth',1,'BlockType','SubSystem');
                 for idxBlocks=1:size(currentTopLevelBlocks,1)
-
                     blockOrigLibraryAndName=get_param(currentTopLevelBlocks{idxBlocks},'ReferenceBlock');
                     if strcmp(blockOrigLibraryAndName,'serdesUtilities/Analog Channel')&&updateChannel
 
@@ -226,7 +190,6 @@ function configurationUpdate(block,calledFrom)
                             analogChannelMaskValues={analogChannelMaskObj.Parameters.Value};
                             analogChannelMaskNamesValues=cell2struct(analogChannelMaskValues,analogChannelMaskNames,2);
                             previousZc=str2double(analogChannelMaskNamesValues.Zc);
-
 
                             if maskDifferential
                                 scaledZc=previousZc*2;
@@ -255,6 +218,7 @@ function configurationUpdate(block,calledFrom)
         end
     end
 end
+
 
 function checkAMIList(tree,paramName,paramValue,errorKey)
     if strcmp(tree.getReservedParameter(paramName).Format.Name,"List")
