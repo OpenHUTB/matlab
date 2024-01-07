@@ -1,8 +1,5 @@
 classdef JitterDialog<handle
 
-
-
-
     properties
 Parent
 Panel
@@ -16,6 +13,7 @@ unitSeconds_Text
 unitUI_Text
 unitOptions
     end
+
 
     properties(Constant)
 
