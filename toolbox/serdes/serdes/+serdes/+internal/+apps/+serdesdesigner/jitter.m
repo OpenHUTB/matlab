@@ -1,8 +1,5 @@
 classdef jitter<handle
 
-
-
-
     properties
 
         isModeClocked=true;
@@ -68,37 +65,27 @@ classdef jitter<handle
 
     end
 
-    properties(Constant,Hidden)
 
+    properties(Constant,Hidden)
         isModeClocked_NameInGUI=getString(message('serdes:serdesdesigner:ModeClocked'));
         isModeIdeal_NameInGUI=getString(message('serdes:serdesdesigner:ModeIdeal'));
-
-
         TxDCD_NameInGUI=getString(message('serdes:serdesdesigner:ParameterTxDCD'));
         TxRj_NameInGUI=getString(message('serdes:serdesdesigner:ParameterTxRj'));
         TxDj_NameInGUI=getString(message('serdes:serdesdesigner:ParameterTxDj'));
         TxSj_NameInGUI=getString(message('serdes:serdesdesigner:ParameterTxSj'));
         TxSjFrequency_NameInGUI=getString(message('serdes:serdesdesigner:ParameterTxSjFrequency'));
-
-
         RxDCD_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxDCD'));
         RxRj_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxRj'));
         RxDj_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxDj'));
         RxSj_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxSj'));
-
-
         RxClockRecoveryMean_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxClockRecoveryMean'));
         RxClockRecoveryRj_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxClockRecoveryRj'));
         RxClockRecoveryDj_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxClockRecoveryDj'));
         RxClockRecoverySj_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxClockRecoverySj'));
         RxClockRecoveryDCD_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxClockRecoveryDCD'));
-
-
         RxReceiverSensitivity_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxReceiverSensitivity'));
         RxGaussianNoise_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxGaussianNoise'));
         RxUniformNoise_NameInGUI=getString(message('serdes:serdesdesigner:ParameterRxUniformNoise'));
-
-
         ColumnName_Text=getString(message('serdes:serdesdesigner:ColumnName'));
         ColumnValue_Text=getString(message('serdes:serdesdesigner:ColumnValue'));
         ColumnUnit_Text=getString(message('serdes:serdesdesigner:ColumnUnit'));
@@ -108,11 +95,10 @@ classdef jitter<handle
         UnitsVolts_Text=getString(message('serdes:serdesdesigner:UnitsVolts'));
     end
 
+
     methods
 
-
         function jitter=getJitterObject(obj)
-
 
             if obj.isModeIdeal==1
                 jitter=JitterAndNoise('RxClockMode','ideal');
