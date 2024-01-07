@@ -1,8 +1,3 @@
-
-
-
-
-
 function ignoreBits=getIgnoreBits(mws)
     txTree=mws.getVariable('TxTree');
     txIgnoreBits=txTree.getReservedParameter('Ignore_Bits');
