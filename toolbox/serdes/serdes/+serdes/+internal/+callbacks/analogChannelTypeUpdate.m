@@ -1,23 +1,14 @@
-
-
-
-
-
 function analogChannelTypeUpdate(block)
     channelType=get_param(block,'ChannelType');
     includeXtalk=get_param(block,'IncludeCrosstalkCheckBox');
     xtalkSpec=get_param(block,'CrosstalkSpecification');
-
     isImpulseResponse=strcmp(channelType,'Impulse response');
     isXtalk=strcmp(includeXtalk,'on');
     isCustom=strcmp(xtalkSpec,'Custom');
 
-
     maxNumberOfColumns=7;
 
     if isImpulseResponse&&isXtalk
-
-
         impStr=get_param(block,'ImpulseResponse');
         paramAsDouble=str2double(impStr);
         if isnan(paramAsDouble)
@@ -31,17 +22,14 @@ function analogChannelTypeUpdate(block)
             impMat=paramAsDouble;
         end
 
-
         [dim1,dim2]=size(impMat);
 
         if dim1==1&&dim2>1
 
             crosstalkCount=0;
         elseif dim2>maxNumberOfColumns
-
             error(message('serdes:callbacks:ImpulseMax7Columns'));
         else
-
             crosstalkCount=dim2-1;
         end
     else
@@ -49,7 +37,6 @@ function analogChannelTypeUpdate(block)
     end
 
     offoncell={'off','on'};
-
 
     propertyVisibilityTest=[
     true;
@@ -130,8 +117,6 @@ function analogChannelTypeUpdate(block)
             panelProps.setVisible(newVisibility);
         end
     end
-
-
     userNote=blockProps.getDialogControl('NoteToUser');
     if isXtalk&&isImpulseResponse&&crosstalkCount==0
         newVisibility='on';
@@ -141,6 +126,5 @@ function analogChannelTypeUpdate(block)
     if~isequal(userNote.Visible,newVisibility)
         userNote.setVisible(newVisibility);
     end
-
 
 end
