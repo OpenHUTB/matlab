@@ -1,8 +1,3 @@
-
-
-
-
-
 function configurationPlotImpulseUpdate(block)
     plotImpulse=get_param(block,'PlotImpulse');
 
@@ -24,16 +19,11 @@ function configurationPlotImpulseUpdate(block)
                 set_param(block,'StopFcn',combinedStopFcn);
             end
         end
-
         set_param(terminateFun,'Commented','off');
     else
-
         removedStopFcn=erase(currentStopFcn,configurationPlotImpulseFcn);
         set_param(block,'StopFcn',removedStopFcn);
-
         set_param(terminateFun,'Commented','on');
     end
-
-
     serdes.internal.callbacks.configurationPlotTimeDomainUpdate(block);
 end
