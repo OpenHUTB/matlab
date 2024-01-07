@@ -1,7 +1,5 @@
 function aCellOfStr=verifyCellOfStrings(aPropName,aCellOfStr)
 
-
-
     if~(iscellstr(aCellOfStr)||isstring(aCellOfStr))
         me=MException('Simulink:tools:CGFEPropertyValueNotCellStr',...
         message('Simulink:tools:CGFEPropertyValueNotCellStr',...
@@ -14,11 +12,7 @@ function aCellOfStr=verifyCellOfStrings(aPropName,aCellOfStr)
     if~isempty(aCellOfStr)
 
         aCellOfStr=aCellOfStr(:)';
-
-
         aCellOfStr(cellfun(@isempty,aCellOfStr))=[];
-
-
         aCellOfStr=unique(aCellOfStr,'stable');
     end
 
