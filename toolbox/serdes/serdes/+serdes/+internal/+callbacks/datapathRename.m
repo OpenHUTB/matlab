@@ -1,12 +1,4 @@
-
-
-
-
-
-
 function datapathRename(block)
-
-
     blockHandle=getSimulinkBlockHandle(block);
     newBlockName=get_param(blockHandle,'Name');
     oldBlockName=get_param(blockHandle,'SavedName');
@@ -35,12 +27,6 @@ function datapathRename(block)
             parameter=maskObj.getParameter('SavedName');
             parameter.set('Value',newBlockName);
             renamed=false;
-
-
-
-
-
-
             blocks=find_system(blockHandle,...
             'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
             'FindAll','on','LookUnderMasks','on',...
@@ -50,8 +36,6 @@ function datapathRename(block)
                 blockObj=get_param(blockHdl,'Object');
                 blockType=blockObj.get('BlockType');
                 if strcmp(blockType,'Constant')
-
-
                     value=blockObj.get('Value');
                     newValue=regexprep(value,...
                     ['^',oldBlockName],...
@@ -60,7 +44,6 @@ function datapathRename(block)
                         blockObj.set('Value',newValue);
                         renamed=true;
                     end
-
                     name=blockObj.get('Name');
                     newName=regexprep(name,...
                     ['^',oldBlockName],...
@@ -70,8 +53,6 @@ function datapathRename(block)
                         renamed=true;
                     end
                 elseif strcmp(blockType,'DataStoreRead')||strcmp(blockType,'DataStoreWrite')
-
-
                     value=blockObj.get('DataStoreName');
                     newValue=regexprep(value,...
                     ['^',oldBlockName],...
