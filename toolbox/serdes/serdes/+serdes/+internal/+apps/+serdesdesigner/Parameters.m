@@ -1,7 +1,5 @@
 classdef Parameters<handle
 
-
-
     properties
 View
 Fig
@@ -27,6 +25,7 @@ Layout
     properties(Dependent)
 ElementType
     end
+
 
     methods
 
@@ -193,15 +192,18 @@ ElementType
         end
     end
 
+
     methods
         function systemParameterInvalid(obj,data)
             obj.SystemDialog.(data.Name)=data.Value;
         end
 
+
         function elementParameterInvalid(obj,data)
             obj.ElementDialog.(data.Name)=data.Value;
         end
     end
+
 
     events
 SystemParameterChanged
