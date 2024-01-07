@@ -1,5 +1,3 @@
-
-
 classdef Target<cgfe.HwInfo
 
     methods
