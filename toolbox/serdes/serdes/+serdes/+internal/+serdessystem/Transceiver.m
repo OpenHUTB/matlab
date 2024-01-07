@@ -1,15 +1,11 @@
 classdef(Abstract)Transceiver<handle
 
-
-
-
-
-
     properties(SetAccess=protected)
         Blocks={}
 Name
         AnalogModel=serdes.internal.serdessystem.AnalogModel;
     end
+
 
     methods
         function obj=Transceiver(varargin)
@@ -33,6 +29,8 @@ Name
             end
         end
     end
+
+
     methods
         function set.AnalogModel(obj,val)
             coder.internal.errorIf(~isa(val,'serdes.internal.serdessystem.AnalogModel'),...
@@ -40,6 +38,8 @@ Name
             'AnalogModel');
             obj.AnalogModel=val;
         end
+
+
         function set.Blocks(obj,val)
             validateattributes(val,...
             {'cell'},...
