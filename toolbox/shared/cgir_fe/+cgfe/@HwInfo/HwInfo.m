@@ -1,6 +1,3 @@
-
-
-
 classdef HwInfo<cgfe.util.BaseClass
 
     properties(Constant,GetAccess=public,Hidden)
@@ -129,12 +126,14 @@ function hw=get_generic16()
     hw.PointerNumBits=16;
 end
 
+
 function hw=get_generic8()
     hw=cgfe.HwInfo();
     hw.ShortNumBits=8;
     hw.IntNumBits=16;
     hw.PointerNumBits=8;
 end
+
 
 function hw=get_x86_64()
     hw=cgfe.HwInfo();
