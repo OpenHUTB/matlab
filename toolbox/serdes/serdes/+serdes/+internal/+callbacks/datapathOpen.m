@@ -1,22 +1,10 @@
-
-
-
-
-
-
 function datapathOpen(block,varargin)
     tree=serdes.internal.callbacks.getSerDesTree(block);
     if~isempty(tree)
         maskObj=Simulink.Mask.get(block);
         blockInstanceName=get_param(block,'Name');
-
-
-
         libType=serdes.internal.callbacks.getLibraryBlockType(block);
         if~isempty(libType)
-
-
-
 
             if any(contains(["CTLE","DFECDR","FFE"],libType))
                 modeGetMap=containers.Map(...
@@ -27,9 +15,6 @@ function datapathOpen(block,varargin)
                 [0,1],...
                 {'Off','On'});
             end
-
-
-
             parameterNames={maskObj.Parameters.Name};
             for idx=1:size(parameterNames,2)
                 parameterName=char(cellstr(parameterNames{idx}));
@@ -42,9 +27,6 @@ function datapathOpen(block,varargin)
                 elseif strcmp(parameterName,'SavedName')
                     continue
                 elseif endsWith(parameterName,'AMI')
-
-
-
                     nodeName=parameterName(1:end-3);
                     if strcmp(nodeName,'TapWeights')
                         node=tree.getTapNode(blockInstanceName);
