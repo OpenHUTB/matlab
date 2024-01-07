@@ -1,28 +1,5 @@
 function[y,state]=stepFilter(x,num,den,state)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
     coder.allowpcode('plain')
 
