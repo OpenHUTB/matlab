@@ -1,11 +1,4 @@
-
 function addLifeline(fullPath,sequencediagramName)
-
-
-
-
-
-
 
     try
         load_system(fullPath);
@@ -13,7 +6,6 @@ function addLifeline(fullPath,sequencediagramName)
     catch ME
         ME.throwAsCaller();
     end
-
     sequencediagram.internal.validateSubdomain(modelName);
 
     name=get_param(fullPath,'Name');
@@ -21,12 +13,9 @@ function addLifeline(fullPath,sequencediagramName)
     parentPath=get_param(fullPath,'Parent');
     parentType=get_param(parentPath,'Type');
 
-
-
     if~strcmp(parentType,'block')
         parentPath='';
     end
-
     builtin('_add_lifeline',sequencediagramName,name,fullPath,parentPath);
 end
 
