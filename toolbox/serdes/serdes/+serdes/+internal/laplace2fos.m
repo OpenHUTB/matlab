@@ -1,44 +1,5 @@
 function fos=laplace2fos(Poles,Zeros,Tau)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
     coder.allowpcode('plain')
 
@@ -55,11 +16,6 @@ function fos=laplace2fos(Poles,Zeros,Tau)
     np=size(Poles,1);
     nz=size(Zeros,1);
     if nz>np
-
-
-
-
-
         coder.internal.errorIf(nz>=np,...
         'serdes:utilities:NotLessZerosThanPoles',...
         nz,np);
@@ -69,19 +25,11 @@ function fos=laplace2fos(Poles,Zeros,Tau)
     zsect=cell(nsections,1);
     fos=zeros(nsections,10);
 
-
-
-
     psorted=cplxpair(-Poles,1e-8);
     for indx=1:nsections
         if 2*indx<=np
 
             if(imag(-psorted(2*indx-1))>=pi/Tau)
-
-
-
-
-
             end
             psect{indx}=[-psorted(2*indx-1);-psorted(2*indx)];
         else
@@ -96,12 +44,6 @@ function fos=laplace2fos(Poles,Zeros,Tau)
         if 2*indx<=nz
 
             if(imag(-zsorted(2*indx-1))>=pi/Tau)
-
-
-
-
-
-
             end
             zsect{indx}=[-zsorted(2*indx-1);-zsorted(2*indx)];
         elseif 2*indx-1==nz
@@ -110,10 +52,6 @@ function fos=laplace2fos(Poles,Zeros,Tau)
             zsect{indx}=[];
         end
     end
-
-
-
-
 
     for indx=1:nsections
         yndx=indx;
@@ -144,8 +82,6 @@ function fos=laplace2fos(Poles,Zeros,Tau)
             zsect{yndx}=tmp;
         end
     end
-
-
 
     for indx=1:nsections
         fos(indx,:)=serdes.internal.map2qquad(...
