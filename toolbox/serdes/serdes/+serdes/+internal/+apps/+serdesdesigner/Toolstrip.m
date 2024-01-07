@@ -1,7 +1,5 @@
 classdef Toolstrip<matlab.ui.internal.toolstrip.TabGroup
 
-
-
     properties(Transient=true)
 appContainer
 statusBar
@@ -14,6 +12,8 @@ statusLabel
         ModulationValues=[{'NRZ'};{'PAM3'};{'PAM4'};{'PAM8'};{'PAM16'}];
         SignalingValues=[{'Differential'};{'Single-ended'}];
     end
+
+
     properties
 AnalysisTabGroup
 AnalysisTab
@@ -24,7 +24,6 @@ SaveBtn
 DeleteBtn
 
 DefaultLayoutBtn
-
 
 SymbolTimeLabel
 SymbolTimeEdit
@@ -37,18 +36,6 @@ ModulationDropdown
 SignalingLabel
 SignalingDropdown
 JitterBtn
-
-
-
-
-
-
-
-
-
-
-
-
 
 AgcBtn
 FfeBtn
@@ -69,6 +56,8 @@ ManualUpdateRadioBtn
 
 ExportBtn
     end
+
+
     properties(Access=private)
 IconRoot
 TrashIcon
@@ -92,6 +81,7 @@ ExportScriptIcon
 ExportAmiIcon
     end
 
+
     methods
 
         function obj=Toolstrip()
@@ -99,7 +89,6 @@ ExportAmiIcon
             import matlab.ui.internal.*;
             import matlab.ui.internal.toolstrip.*
             import matlab.ui.internal.statusbar.*;
-
             title=strcat({getString(message('serdes:serdesdesigner:SerdesDesignerText'))},...
             {' - '},...
             {getString(message('serdes:serdesdesigner:DefaultSerdesDesignName'))});
@@ -109,7 +98,6 @@ ExportAmiIcon
             obj.appContainer=AppContainer(appOptions);
             obj.appContainer.UserDocumentTilingEnabled=0;
 
-
             obj.statusBar=StatusBar();
             obj.statusBar.Tag="TestStatusBar";
             obj.statusLabel=StatusLabel();
@@ -118,7 +106,6 @@ ExportAmiIcon
             obj.appContainer.add(obj.statusBar);
 
             createIcons(obj);
-
 
             createAnalysisTab(obj);
             createFileSection(obj);
@@ -147,6 +134,7 @@ ExportAmiIcon
             obj.appContainer.Visible=true;
         end
 
+
         function name=getButtonName(obj,button)
             switch button
             case obj.AgcBtn
@@ -171,6 +159,7 @@ ExportAmiIcon
         end
     end
 
+
     methods
         function setInitialLayout(obj)
 
@@ -180,8 +169,6 @@ ExportAmiIcon
             newLayout.columnWeights=[0.29,0.71];
             newLayout.rowWeights=[0.38,0.62];
             newLayout.tileCoverage=[1,1;2,3];
-
-
             document1State.id="canvas_CanvasFig";
             document2State.id="parameters_ParametersFig";
             document3State.id="plots_PlotsFig_Blank";
@@ -217,19 +204,15 @@ ExportAmiIcon
 
             obj.appContainer.ToolstripEnabled=1;
         end
+
+
         function setTestLayout(obj)
-
-
-
-
             newLayout.gridDimensions.w=2;
             newLayout.gridDimensions.h=2;
             newLayout.tileCount=3;
             newLayout.columnWeights=[0.29,0.71];
             newLayout.rowWeights=[0.38,0.62];
             newLayout.tileCoverage=[1,1;2,3];
-
-
             document1State.id="canvas_CanvasFig";
             document2State.id="parameters_ParametersFig";
             document3State.id="plots_PlotsFig_Blank";
@@ -260,7 +243,6 @@ ExportAmiIcon
             tile2Occupancy.children=tile2Children;
             tile3Occupancy.children=tile3Children;
             newLayout.tileOccupancy=[tile1Occupancy,tile3Occupancy,tile2Occupancy];
-
             obj.appContainer.DocumentLayout=newLayout;
 
             obj.appContainer.ToolstripEnabled=1;
@@ -270,7 +252,6 @@ ExportAmiIcon
             import matlab.ui.internal.toolstrip.*
 
             obj.IconRoot=fullfile(matlabroot,'toolbox','serdes','serdes','+serdes','+internal','+apps','+serdesdesigner');
-
             obj.TrashIcon=Icon(fullfile(obj.IconRoot,'trash_24.png'));
             obj.AgcIcon=Icon(fullfile(obj.IconRoot,'agc_24.png'));
             obj.FfeIcon=Icon(fullfile(obj.IconRoot,'ffe_24.png'));
@@ -284,24 +265,15 @@ ExportAmiIcon
             obj.LayoutIcon=Icon(fullfile(obj.IconRoot,'layout_24.png'));
             obj.JitterIcon=Icon(fullfile(obj.IconRoot,'jitter_24.png'));
             obj.PlotIcon=Icon(fullfile(obj.IconRoot,'plot_24.png'));
-
             obj.AutoUpdateIcon=Icon(fullfile(obj.IconRoot,'AutoUpdateBlock_24.png'));
             obj.UpdateIcon=Icon(fullfile(obj.IconRoot,'Run_24.png'));
-
             obj.ExportScriptIcon=Icon(fullfile(obj.IconRoot,'exportMatlabScript_16.png'));
             obj.ExportAmiIcon=Icon(fullfile(obj.IconRoot,'exportIbisAmi_16.png'));
         end
 
+
         function createAnalysisTab(obj)
             import matlab.ui.internal.toolstrip.*
-
-
-
-
-
-
-
-
             obj.AnalysisTab=Tab(getString(message('serdes:serdesdesigner:SerdesDesignerText')));
             obj.AnalysisTab.Tag="tab1";
 
@@ -311,54 +283,20 @@ ExportAmiIcon
 
         end
 
+
         function createFileSection(obj)
             import matlab.ui.internal.toolstrip.*
-
-
             section=obj.AnalysisTab.addSection(getString(message('serdes:serdesdesigner:FileSection')));
             section.Tag='File';
 
-
             column=addColumn(section);
-
             button=Button(getString(message('serdes:serdesdesigner:NewBtn')),Icon.NEW_24);
             button.Tag='NewBtn';
             obj.NewBtn=button;
             button.Description=getString(message('serdes:serdesdesigner:NewDesign'));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             button.Enabled=false;
             add(column,button);
-
 
             column=addColumn(section);
             button=Button(getString(message('serdes:serdesdesigner:OpenBtn')),Icon.OPEN_24);
@@ -368,23 +306,19 @@ ExportAmiIcon
             button.Enabled=false;
             add(column,button);
 
-
             column=addColumn(section);
             button=SplitButton(getString(message('serdes:serdesdesigner:SaveBtn')),Icon.SAVE_24);
             button.Tag='SaveBtn';
             obj.SaveBtn=button;
             button.Description=getString(message('serdes:serdesdesigner:SaveDesign'));
 
-
             popup=PopupList();
             button.Popup=popup;
             button.Popup.Tag='SaveBtn_Popup';
-
             item=ListItem(getString(message('serdes:serdesdesigner:SaveSave')),Icon.SAVE_16);
             item.Tag='Save';
             item.ShowDescription=false;
             add(popup,item);
-
             item=ListItem(getString(message('serdes:serdesdesigner:SaveSaveAs')),Icon.SAVE_AS_16);
             item.Tag='Save as';
             item.ShowDescription=false;
@@ -393,6 +327,7 @@ ExportAmiIcon
             button.Enabled=false;
             add(column,button);
         end
+
 
         function createDefaultLayoutSection(obj)
             import matlab.ui.internal.toolstrip.*
