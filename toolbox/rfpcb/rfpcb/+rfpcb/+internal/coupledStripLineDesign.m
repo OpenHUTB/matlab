@@ -1,9 +1,5 @@
 function obj=coupledStripLineDesign(obj,f,Zoe,Zoo)
 
-
-
-
-
     er=obj.Substrate.EpsilonR;
     c=3e8;
     b=round(sum(obj.Substrate.Thickness),12);
