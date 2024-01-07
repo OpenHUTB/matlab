@@ -1,32 +1,9 @@
 classdef PrintedLine<handle&matlab.mixin.Copyable&em.MeshGeometry
 
-
-
-
     properties(Access=protected)
 privateStack
 privateShapesPerLayer
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     methods(Access=protected)
@@ -61,8 +38,6 @@ privateShapesPerLayer
             elseif nargin==6
                 EnableVia=0;
             end
-
-
 
             tempLayers=metallayers;
             layerSubId=find(cellfun(@(x)isempty(x),tempLayers));
@@ -100,25 +75,12 @@ privateShapesPerLayer
                 obj.privateStack.ViaLocations=ViaLoc;
                 obj.privateStack.ViaDiameter=obj.ViaDiameter;
             end
-
-
-
-
-
-
-
-
-
             obj.privateStack.FeedViaModel='strip';
             obj.privateStack.FeedDiameter=obj.FeedDiameter;
             obj.privateStack.Conductor=obj.Conductor;
 
-
-
-
-
-
         end
+
 
         function temp=saveStackGeom(obj)
             createGeometry(obj.privateStack);
@@ -127,12 +89,8 @@ privateShapesPerLayer
             temp=geom;
         end
 
+
         function temp=meshStack(obj,s,gr,smin)
-
-
-
-
-
             [~]=mesh(obj.privateStack,'MaxEdgeLength',s,...
             'GrowthRate',gr-1,'MinEdgeLength',smin);
 
@@ -143,19 +101,10 @@ privateShapesPerLayer
             end
 
             partobj=getPartMesh(obj.privateStack);
-
-
             Parts=em.internal.makeMeshPartsStructure(...
             'Gnd',[partobj.GroundPlanes.p,partobj.GroundPlanes.t],...
             'Feed',[partobj.Feeds.p,partobj.Feeds.t],...
             'Rad',[partobj.Radiators.p,partobj.Radiators.t]);
-
-
-
-
-
-
-
             Mesh=getPrintedMesh(obj.privateStack);
 
             temp.Parts=Parts;
@@ -163,80 +112,10 @@ privateShapesPerLayer
 
             temp.Mesh=Mesh;
         end
-
         [maxel,minel,growthRate]=calcMeshParamsCore(obj,lambda,Aboard,Alayer,k);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     end
+
 
     methods(Hidden)
         function p=getPrintedStack(obj)
@@ -248,10 +127,6 @@ privateShapesPerLayer
         end
 
         function[ef,tf,ev,tv]=getFeedAndViaState(obj)
-
-
-
-
             [ef,tf]=getFeedState(obj.privateStack);
             if~isempty(obj.privateStack.ViaLocations)
                 [ev,tv]=getViaState(obj.privateStack);
@@ -261,13 +136,16 @@ privateShapesPerLayer
             end
         end
 
+
         function nlayers=getNumMetalLayers(obj)
             nlayers=numel(obj.privateStack.MetalLayers);
         end
 
+
         function setPortConnections(obj,portmap)
             obj.privateStack.PortConnections=portmap;
         end
+
 
         function flag=hasLumpedComponent(obj)
             if isprop(obj,'Capacitor')
@@ -278,6 +156,7 @@ privateShapesPerLayer
 
         end
     end
+
 
     methods
         S=shapes(obj)
