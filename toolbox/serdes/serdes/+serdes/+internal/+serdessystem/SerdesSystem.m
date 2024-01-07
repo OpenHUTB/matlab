@@ -1,11 +1,5 @@
 classdef SerdesSystem<handle
 
-
-
-
-
-
-
     properties
         TxModel=serdes.internal.serdessystem.Transmitter(...
         'Blocks',{},...
