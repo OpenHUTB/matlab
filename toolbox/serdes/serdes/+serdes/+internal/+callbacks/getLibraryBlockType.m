@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 function type=getLibraryBlockType(block)
     type=[];
     maskObj=get_param(block,'MaskObject');
