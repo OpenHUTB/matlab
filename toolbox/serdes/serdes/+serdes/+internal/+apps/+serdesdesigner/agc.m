@@ -1,12 +1,11 @@
 classdef agc<serdes.AGC&serdes.internal.serdesquicksimulation.SERDESElement
 
-
-
     methods
         function obj=agc(varargin)
             obj@serdes.internal.serdesquicksimulation.SERDESElement(varargin{:});
         end
     end
+
 
     properties(Constant,Access=protected)
         HeaderDescription=getString(message('serdes:serdesdesigner:AgcHdrDesc'));
@@ -14,6 +13,7 @@ classdef agc<serdes.AGC&serdes.internal.serdesquicksimulation.SERDESElement
     properties(Constant,Hidden)
         DefaultName='AGC';
     end
+
 
     methods(Hidden,Access=protected)
         function out=localClone(in)
