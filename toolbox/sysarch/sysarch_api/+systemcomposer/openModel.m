@@ -1,12 +1,6 @@
 function zcModel=openModel(modelName)
 
-
-
-
-
-
     try
-
         if~systemcomposer.internal.isSystemComposerModel(modelName)
             msgObj=message('SystemArchitecture:API:ModelNotSystemComposer');
             exception=MException('systemcomposer:API:ModelNotSystemComposer',msgObj.getString);
