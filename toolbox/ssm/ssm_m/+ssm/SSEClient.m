@@ -1,8 +1,5 @@
 classdef SSEClient<handle
 
-
-
-
     properties(Hidden,Access=private)
         instanceID;
         artifactLocation;
