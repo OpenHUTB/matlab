@@ -1,8 +1,5 @@
 classdef(Abstract,Hidden)Element<dynamicprops&matlab.mixin.SetGet&matlab.mixin.Heterogeneous
 
-
-
-
     properties(Access=protected,Hidden)
 Impl
 MFModel
@@ -12,9 +9,11 @@ MFModel
 UUID
     end
 
+
     properties(Dependent=true)
 ExternalUID
     end
+
 
     methods
         function b=isequal(this,other)
@@ -22,17 +21,21 @@ ExternalUID
             b=isequal(this.UUID,other.UUID);
         end
 
+
         function delete(this)
             this.Impl=mf.zero.ModelElement.empty;
         end
+
 
         function uuid=get.UUID(this)
             uuid=this.getImpl().UUID;
         end
 
+
         function ExternalUID=get.ExternalUID(this)
             ExternalUID=this.getImpl.getExternalUID;
         end
+
 
         function set.ExternalUID(this,newID)
             t=this.MFModel.beginTransaction;
@@ -40,9 +43,8 @@ ExternalUID
             t.commit;
         end
 
+
         function setTypeFromString(~,~)
-
-
             a=1;
         end
     end
@@ -54,19 +56,20 @@ ExternalUID
             this.MFModel=mf.zero.getModel(this.Impl);
         end
 
+
         function impl=getImpl(this)
             impl=this.Impl;
         end
+
 
         function mfmodel=getMFModel(this)
             mfmodel=this.MFModel;
         end
     end
 
+
     methods(Static,Hidden)
         function elem=getObjFromImpl(impl)
-
-
             if(isempty(impl))
                 elem=[];
                 return;
@@ -88,6 +91,7 @@ ExternalUID
             end
         end
     end
+
 
     methods(Hidden)
         function wrapperObj=getWrapperForImpl(~,impl,wrapperClassName)
