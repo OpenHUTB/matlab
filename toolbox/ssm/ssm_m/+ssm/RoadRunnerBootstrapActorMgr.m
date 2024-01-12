@@ -1,9 +1,3 @@
-
-
-
-
-
-
 function RoadRunnerBootstrapActorMgr(apiPortStr,coSimPortStr,requsted_client_id)
     try
         apiPort=str2double(apiPortStr);
