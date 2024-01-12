@@ -1,7 +1,3 @@
-
-
-
-
 classdef Overlay<handle
     properties
         stylerName='MathWorks.CoverageHighlight';
@@ -26,6 +22,7 @@ classdef Overlay<handle
         tag='';
     end
 
+
     methods
         function this=Overlay(modelH,covResults)
             this.colorTable=cvi.Informer.getHighlightingColorTable;
@@ -35,9 +32,11 @@ classdef Overlay<handle
             this.create(covResults);
         end
 
+
         function delete(this)
             this.clearAll();
         end
+
 
         function makeTag(this,~)
             this.tag='SlCoverage_';
@@ -87,6 +86,7 @@ classdef Overlay<handle
             end
         end
 
+
         function show(this)
             if~isempty(this.slFadeStyleGroup)
                 this.slFadeStyleGroup.show();
@@ -105,6 +105,7 @@ classdef Overlay<handle
             end
         end
 
+
         function hide(this)
             if~isempty(this.slFadeStyleGroup)
                 this.slFadeStyleGroup.hide();
@@ -122,6 +123,7 @@ classdef Overlay<handle
                 this.slJustifiedCovStyleGroup.hide();
             end
         end
+
 
         function update(this,covResults,append)
             if(nargin<3)
@@ -143,12 +145,14 @@ classdef Overlay<handle
             end
         end
 
+
         function removeBlock(this,blockH)
             this.slFullCovStyleGroup.removeItem(blockH);
             this.slMissingCovStyleGroup.removeItem(blockH);
             this.slFilteredCovStyleGroup.removeItem(blockH);
             this.slJustifiedCovStyleGroup.removeItem(blockH);
         end
+
 
         function clearAll(this)
             if~isempty(this.slFadeStyleGroup)
@@ -173,15 +177,15 @@ classdef Overlay<handle
             end
         end
 
+
         function styler=getStyler(this)
-
-
             styler=diagram.style.getStyler(this.stylerName);
             if isempty(styler)
                 diagram.style.createStyler(this.stylerName);
                 styler=diagram.style.getStyler(this.stylerName);
             end
         end
+
 
         function style=createSlFullCovStyle(this)
             style=diagram.style.Style;
@@ -190,6 +194,7 @@ classdef Overlay<handle
             style.set('StrokeColor',this.colorTable.slGreenStroke);
             style.set('StrokeWidth',this.colorTable.slStrokeWidth);
         end
+
 
         function style=createSlMissingCovStyle(this)
             style=diagram.style.Style;
@@ -205,6 +210,7 @@ classdef Overlay<handle
             style.set('StrokeWidth',this.colorTable.slStrokeWidth);
         end
 
+
         function style=createSlFilteredCovStyle(this)
             style=diagram.style.Style;
             style.set('FillColor',this.colorTable.slGray);
@@ -213,6 +219,7 @@ classdef Overlay<handle
             style.set('StrokeWidth',this.colorTable.slStrokeWidth);
             style.set('StrokeStyle','DashLine');
         end
+
 
         function style=createSlJustifiedCovStyle(this)
             style=diagram.style.Style;
