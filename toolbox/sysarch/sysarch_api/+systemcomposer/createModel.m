@@ -1,23 +1,5 @@
 function zcModel=createModel(modelname,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(1,3);
 
     if nargin==1
@@ -35,10 +17,7 @@ function zcModel=createModel(modelname,varargin)
         architectureType=varargin{1};
         openFlag=varargin{2};
     end
-
-
     systemcomposer.internal.validateArchitectureType(architectureType);
-
 
     validateattributes(openFlag,{'logical','double'},{'scalar'},'','OPENFLAG');
 
