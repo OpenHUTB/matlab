@@ -1,8 +1,4 @@
 classdef DataInterface<systemcomposer.base.StereotypableElement&systemcomposer.base.BaseElement
-
-
-
-
     properties(Dependent=true,SetAccess=private)
 
         Owner{mustBeA(Owner,["systemcomposer.interface.Dictionary",...
@@ -20,10 +16,12 @@ classdef DataInterface<systemcomposer.base.StereotypableElement&systemcomposer.b
 Model
     end
 
+
     properties(Hidden,SetAccess=private)
 
 Dictionary
     end
+
 
     methods(Hidden)
         function this=DataInterface(impl)
@@ -35,10 +33,12 @@ Dictionary
             impl.cachedWrapper=this;
         end
 
+
         function tf=isAnonymous(this)
             tf=this.getImpl.isAnonymous();
         end
     end
+
 
     methods(Static,Hidden)
         function incheck(inval)
@@ -49,6 +49,7 @@ Dictionary
             end
             parse(p,inval);
         end
+
 
         function setPropVal(elemImpl,prop,val)
             switch prop
@@ -70,21 +71,12 @@ Dictionary
         end
     end
 
+
     methods
 
         function m=get.Model(this)
-
-
-
             m=systemcomposer.arch.Model.empty;
             if(this.getImpl.isAnonymous)
-
-
-
-
-
-
-
                 containerModel=mf.zero.getModel(this.getImpl);
                 zcModel=systemcomposer.architecture.model.SystemComposerModel.getSystemComposerModel(containerModel);
                 modelName=zcModel.getName;
@@ -101,10 +93,12 @@ Dictionary
             end
         end
 
+
         function dictionary=get.Dictionary(this)
             warning(message('SystemArchitecture:API:DeprecatedProperty','Dictionary','Owner'));
             dictionary=systemcomposer.internal.getWrapperForImpl(this.getImpl().getCatalog(),'systemcomposer.interface.Dictionary');
         end
+
 
         function owner=get.Owner(this)
             if this.isAnonymous
@@ -119,25 +113,27 @@ Dictionary
             owner=systemcomposer.internal.getWrapperForImpl(this.getImpl.getCatalog);
         end
 
+
         function name=get.Name(this)
             name=this.getImpl().getName;
         end
 
+
         function setName(this,name)
             systemcomposer.interface.DataInterface.incheck(name);
-
             if(this.isAnonymous()&&~isempty(name))
                 error('SystemArchitecture:API:InvalidRenameOpOnAnonymousInterface',message('SystemArchitecture:API:InvalidRenameOpOnAnonymousInterface').getString);
             end
-
             isModelContext=isempty(this.Owner.ddConn);
             sourceName=this.Owner.getSourceName;
             systemcomposer.BusObjectManager.RenameInterface(sourceName,isModelContext,this.Name,name);
         end
 
+
         function desc=get.Description(this)
             desc=this.getImpl().getDescription;
         end
+
 
         function setDescription(this,desc)
             systemcomposer.interface.DataInterface.incheck(desc);
@@ -145,7 +141,6 @@ Dictionary
             if this.isAnonymous()
                 return;
             end
-
             isModelContext=isempty(this.Owner.ddConn);
             sourceName=this.Owner.getSourceName;
             systemcomposer.BusObjectManager.SetInterfaceDescription(sourceName,isModelContext,this.Name,desc);
