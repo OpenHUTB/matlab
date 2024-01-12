@@ -1,7 +1,3 @@
-
-
-
-
 classdef Session<handle
     properties
         modelH=[];
@@ -9,10 +5,12 @@ classdef Session<handle
         sfTextOverlay=[];
     end
 
+
     methods
         function this=Session(modelH)
             this.modelH=modelH;
         end
+
 
         function revertAllHighlighting(this)
             if~isempty(this.overlay)
@@ -26,12 +24,14 @@ classdef Session<handle
             end
         end
 
+
         function revertBlockHighlighting(this,blockH)
             if~isempty(this.overlay)
                 this.overlay.removeBlock(blockH);
             end
 
         end
+
 
         function applyHighlighting(this,covResults,append)
             if(nargin<3)
