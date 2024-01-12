@@ -1,9 +1,4 @@
 function[archModel,custIdUUIDTableContainer,importLog,errorLog]=importModel(mdlInfo,compTable,portTable,connxnTable,portInterfaceTable,requirementLinksTable)
-
-
-
-
-
     domain=getString(message('SystemArchitecture:Import:SystemDomain'));
     functionsTable=cell2table(cell(0,4),'VariableNames',{'Name','ExecutionOrder','CompID','Period'});
     if isstruct(compTable)
