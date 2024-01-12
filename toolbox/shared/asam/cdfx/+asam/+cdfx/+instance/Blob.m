@@ -1,13 +1,7 @@
 classdef Blob<asam.cdfx.instance.Instance
 
-
-
-
     methods
         function obj=Blob(root,sys,inst)
-
-
-
             obj=obj@asam.cdfx.instance.Instance(root,sys,inst);
 
 
@@ -18,12 +12,8 @@ classdef Blob<asam.cdfx.instance.Instance
             obj.Value=obj.PhysicalValue;
         end
 
+
         function setValue(obj,value,~)
-
-
-
-
-
             if~isstring(value)&&~ischar(value)
                 error(message('asam_cdfx:CDFX:CategoryValueTypeMismatch',obj.Category));
             end
