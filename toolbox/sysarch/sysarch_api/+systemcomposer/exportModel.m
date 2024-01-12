@@ -1,8 +1,5 @@
 function[exportedSet,errorLog,changedSet]=exportModel(modelInfo,refModelInfo)
 
-
-
-
     if(nargin<2)
         obj=systemcomposer.internal.exportModelClass(modelInfo);
     else
