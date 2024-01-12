@@ -1,10 +1,5 @@
 function zcModel=loadModel(modelName)
 
-
-
-
-
-
     try
         bdH=load_system(modelName);
     catch ex
