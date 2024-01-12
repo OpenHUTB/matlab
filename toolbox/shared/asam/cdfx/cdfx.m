@@ -1,25 +1,12 @@
 function cdfxObj=cdfx(file)
 
-
-
-
-
-
-
-
-
-
-
     try
 
         narginchk(1,1);
 
-
         file=convertCharsToStrings(file);
 
-
         validateattributes(file,{'string'},{'nonempty','row'});
-
 
         try
             cdfxObj=asam.CDFX(file);
@@ -32,7 +19,6 @@ function cdfxObj=cdfx(file)
             end
         end
     catch ME
-
         throwAsCaller(ME);
     end
 end
