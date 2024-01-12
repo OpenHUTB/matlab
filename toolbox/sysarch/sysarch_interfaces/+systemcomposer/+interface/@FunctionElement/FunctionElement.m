@@ -1,9 +1,5 @@
 classdef FunctionElement < systemcomposer.interface.Element
 
-
-
-
-
     properties
         Interface
         Name
@@ -11,6 +7,7 @@ classdef FunctionElement < systemcomposer.interface.Element
         FunctionArguments
         Asynchronous
     end
+
 
     methods ( Hidden )
         function this = FunctionElement( impl )
@@ -23,6 +20,7 @@ classdef FunctionElement < systemcomposer.interface.Element
         end
     end
 
+
     methods ( Static, Hidden )
         function incheck( inval )
             persistent p
@@ -33,6 +31,7 @@ classdef FunctionElement < systemcomposer.interface.Element
             parse( p, inval );
         end
 
+
         function incheckDescription( inval )
             persistent pDescription
             if isempty( pDescription )
@@ -41,6 +40,7 @@ classdef FunctionElement < systemcomposer.interface.Element
             end
             parse( pDescription, inval );
         end
+
 
         function incheckAsynchronous( inval )
             persistent p
@@ -52,18 +52,22 @@ classdef FunctionElement < systemcomposer.interface.Element
         end
     end
 
+
     methods
         function interface = get.Interface( this )
             interface = this.getWrapperForImpl( this.getImpl(  ).getInterface(  ), 'systemcomposer.interface.ServiceInterface' );
         end
 
+
         function name = get.Name( this )
             name = this.getImpl(  ).getName(  );
         end
 
+
         function prototype = get.FunctionPrototype( this )
             prototype = this.getImpl(  ).getFunctionPrototype(  );
         end
+
 
         function args = get.FunctionArguments( this )
             implArguments = this.getImpl(  ).getFunctionArguments(  );
@@ -73,9 +77,11 @@ classdef FunctionElement < systemcomposer.interface.Element
             end
         end
 
+
         function synchronicity = get.Asynchronous( this )
             synchronicity = this.getImpl(  ).getAsynchronous(  );
         end
+
 
         function argument = getFunctionArgument( this, argName )
             arguments
@@ -91,6 +97,7 @@ classdef FunctionElement < systemcomposer.interface.Element
             end
         end
 
+
         function setName( this, name )
             systemcomposer.interface.FunctionElement.incheck( name );
 
@@ -100,6 +107,7 @@ classdef FunctionElement < systemcomposer.interface.Element
                 sourceName, isModelContext, this.Interface.Name, this.Name, name );
         end
 
+
         function setFunctionPrototype( this, prototype )
             arguments
                 this( 1, 1 )systemcomposer.interface.FunctionElement
@@ -108,20 +116,21 @@ classdef FunctionElement < systemcomposer.interface.Element
             this.setElementProperty( 'Prototype', prototype );
         end
 
+
         function setAsynchronous( this, isAsync )
             arguments
                 this( 1, 1 )systemcomposer.interface.FunctionElement
                 isAsync{ mustBeNumericOrLogical }
             end
-
             systemcomposer.interface.FunctionElement.incheckAsynchronous( isAsync );
             this.setElementProperty( 'Asynchronous', isAsync );
         end
 
-        function destroy( ~ )
 
+        function destroy( ~ )
         end
     end
+
 
     methods ( Access = private )
         function setElementProperty( this, propName, propVal )
