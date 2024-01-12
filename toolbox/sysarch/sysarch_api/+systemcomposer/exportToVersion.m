@@ -1,20 +1,10 @@
 function exportToVersion(mdlName,dirName,version)
 
-
-
-
-
-
-
-
-
-
     [~,name,ext]=fileparts(mdlName);
     if isempty(ext)
         ext='.slx';
     end
     mdlName=[name,ext];
-
 
     if(exist(dirName,'dir')~=7)
         mkdir(dirName);
@@ -23,8 +13,6 @@ function exportToVersion(mdlName,dirName,version)
     if~isDirEmpty(dirName)
         error('Target directory must be empty');
     end
-
-
 
     dependencies=systemcomposer.internal.DependencyAnalyzer.getDependencies(mdlName);
 
