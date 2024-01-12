@@ -1,10 +1,6 @@
 classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.base.BaseElement
 
-
-
-
     properties ( Dependent = true )
-
         Name
         DataType
         Dimensions
@@ -15,21 +11,26 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
         Description
     end
 
+
     properties ( Dependent = true, SetAccess = private )
         Owner
     end
+
 
     properties ( GetAccess = private, SetAccess = private )
         ParameterOwner
     end
 
+
     properties ( Hidden, SetAccess = private )
         Type
     end
 
+
     properties ( Dependent = true, SetAccess = private )
         Model
     end
+
 
     methods ( Hidden )
         function this = ValueType( impl, varargin )
@@ -51,30 +52,25 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             this.setDataType( type );
         end
 
+
         function setTypeFromString( this, typeStr )
             this.setDataType( typeStr );
         end
+
 
         function tf = isAnonymous( this )
             tf = this.getImpl.isAnonymous(  );
         end
     end
 
+
     methods
 
         function m = get.Model( this )
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
 
-
-
                 m = systemcomposer.arch.Model.empty;
                 if ( this.getImpl.isAnonymous )
-
-
-
-
-
-
 
                     containerModel = mf.zero.getModel( this.getImpl );
                     zcModel = systemcomposer.architecture.model.SystemComposerModel.getSystemComposerModel( containerModel );
@@ -97,6 +93,7 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             end
         end
 
+
         function owner = get.Owner( this )
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
                 if this.getImpl.isAnonymous
@@ -114,13 +111,16 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             end
         end
 
+
         function name = get.Name( this )
             name = this.getImpl(  ).getName(  );
         end
 
+
         function set.Name( this, name )
             this.setName( name );
         end
+
 
         function setName( this, name )
             arguments
@@ -131,9 +131,11 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             this.setImplProperty( 'Name', name );
         end
 
+
         function type = get.Type( this )
             type = this.DataType;
         end
+
 
         function type = get.DataType( this )
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
@@ -143,9 +145,11 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             end
         end
 
+
         function set.DataType( this, type )
             this.setDataType( type );
         end
+
 
         function setDataType( this, type )
             arguments
@@ -155,6 +159,7 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
 
             this.setImplProperty( 'Type', type );
         end
+
 
         function dimensions = get.Dimensions( this )
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
@@ -169,18 +174,20 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             end
         end
 
+
         function set.Dimensions( this, dimensions )
             this.setDimensions( dimensions );
         end
+
 
         function setDimensions( this, dimensions )
             arguments
                 this systemcomposer.ValueType
                 dimensions{ mustBeTextScalar }
             end
-
             this.setImplProperty( 'Dimensions', dimensions );
         end
+
 
         function units = get.Units( this )
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
@@ -193,9 +200,11 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             end
         end
 
+
         function set.Units( this, units )
             this.setUnits( units );
         end
+
 
         function setUnits( this, units )
             arguments
@@ -206,6 +215,7 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             this.setImplProperty( 'Units', units );
         end
 
+
         function complexity = get.Complexity( this )
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
                 complexity = this.getImpl(  ).p_Complexity;
@@ -214,18 +224,20 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             end
         end
 
+
         function set.Complexity( this, complexity )
             this.setComplexity( complexity );
         end
+
 
         function setComplexity( this, complexity )
             arguments
                 this systemcomposer.ValueType
                 complexity{ mustBeMember( complexity, { 'real', 'complex', 'auto' } ) }
             end
-
             this.setImplProperty( 'Complexity', complexity );
         end
+
 
         function minimum = get.Minimum( this )
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
@@ -239,9 +251,11 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             end
         end
 
+
         function set.Minimum( this, minimum )
             this.setMinimum( minimum );
         end
+
 
         function setMinimum( this, minimum )
             arguments
@@ -251,6 +265,7 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
 
             this.setImplProperty( 'Minimum', minimum );
         end
+
 
         function maximum = get.Maximum( this )
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
@@ -264,9 +279,11 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             end
         end
 
+
         function set.Maximum( this, maximum )
             this.setMaximum( maximum );
         end
+
 
         function setMaximum( this, maximum )
             arguments
@@ -277,6 +294,7 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             this.setImplProperty( 'Maximum', maximum );
         end
 
+
         function description = get.Description( this )
             description = '';
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
@@ -284,18 +302,20 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
             end
         end
 
+
         function set.Description( this, description )
             this.setDescription( description );
         end
+
 
         function setDescription( this, description )
             arguments
                 this systemcomposer.ValueType
                 description{ mustBeTextScalar }
             end
-
             this.setImplProperty( 'Description', description );
         end
+
 
         function destroy( this )
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
@@ -312,6 +332,7 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
         end
     end
 
+
     methods ( Access = private )
         function setImplProperty( this, propName, propVal )
             if isa( this.getImpl, 'systemcomposer.architecture.model.interface.ValueTypeInterface' )
@@ -320,6 +341,7 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
                 setSLParameter( this, propName, propVal );
             end
         end
+
 
         function setSLProperty( this, propName, propVal )
             if strcmpi( propName, 'name' )
@@ -349,6 +371,7 @@ classdef ValueType < systemcomposer.base.StereotypableElement & systemcomposer.b
                 end
             end
         end
+
 
         function setSLParameter( this, propName, propVal )
             blockOrModelHandle = this.ParameterOwner.SimulinkHandle;
