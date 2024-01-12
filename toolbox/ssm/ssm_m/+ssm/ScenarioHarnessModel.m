@@ -1,6 +1,5 @@
 classdef ScenarioHarnessModel<handle
 
-
     properties(Access=private)
         fMF0ModelObj;
         fSystem;
