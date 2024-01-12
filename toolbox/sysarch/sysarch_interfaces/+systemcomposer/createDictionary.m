@@ -1,10 +1,4 @@
 function idict=createDictionary(dictionaryName)
-
-
-
-
-
-
     ddConn=Simulink.data.dictionary.create(dictionaryName);
     idictImplMF0Model=Simulink.SystemArchitecture.internal.DictionaryRegistry.FetchInterfaceSemanticModel(...
     ddConn.filepath());
