@@ -1,14 +1,11 @@
 classdef DataTableClient<handle
 
-
-
-
-
     properties(Hidden,Access=private)
         modelHandle;
         allReaderIDs;
         allWriterIDs;
     end
+
 
     methods
         function obj=DataTableClient(varargin)
@@ -17,6 +14,7 @@ classdef DataTableClient<handle
             obj.allWriterIDs=[];
         end
     end
+
 
     methods(Access=protected,Sealed)
 
