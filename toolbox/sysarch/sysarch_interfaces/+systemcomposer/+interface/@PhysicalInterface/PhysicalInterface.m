@@ -1,69 +1,14 @@
 classdef PhysicalInterface < systemcomposer.base.StereotypableElement & systemcomposer.base.BaseElement
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( Dependent )
 
         Name{ mustBeValidVariableName }
-
         Description{ mustBeValidVariableName }
     end
 
+
     properties ( SetAccess = private, Dependent )
-
         Owner systemcomposer.interface.Dictionary
-
         Elements( 1, : )systemcomposer.interface.PhysicalElement
 
         Model
