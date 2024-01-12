@@ -1,7 +1,3 @@
-
-
-
-
 classdef SFTextOverlay<handle
     properties
         styler=[];
@@ -16,6 +12,7 @@ classdef SFTextOverlay<handle
         tag='';
     end
 
+
     methods
         function this=SFTextOverlay(modelH,covResults)
             this.modelH=modelH;
@@ -25,9 +22,11 @@ classdef SFTextOverlay<handle
             this.create(covResults,false);
         end
 
+
         function delete(this)
             this.clearAll();
         end
+
 
         function addPartialCoverageStylingForMALCharts(this)
             for i=1:length(this.sfIds)
@@ -36,11 +35,13 @@ classdef SFTextOverlay<handle
             end
         end
 
-        function triggerExtents=get_transition_trigger_extents(~,~)
 
+        function triggerExtents=get_transition_trigger_extents(~,~)
 
             triggerExtents=[];
         end
+end
+
         function conditionExtents=get_transition_condition_extents(~,sfId)
 
             conditionExtents=[];
@@ -51,6 +52,7 @@ classdef SFTextOverlay<handle
                 conditionExtents=[r1.treeStart,r1.treeEnd];
             end
         end
+
 
         function styleVector=getStyleVectorForCALChartObject(this,partialCovSFObj)
             sfId=partialCovSFObj.sfId;
@@ -99,12 +101,6 @@ classdef SFTextOverlay<handle
 
 
         function addPartialCoverageStylingForCALCharts(this,sfCovResults)
-
-
-
-
-
-
             if(isfield(sfCovResults,'partialCovSFObjs'))
                 for i=1:length(sfCovResults.partialCovSFObjs)
                     styleVector=this.getStyleVectorForCALChartObject(sfCovResults.partialCovSFObjs(i));
@@ -123,7 +119,6 @@ classdef SFTextOverlay<handle
                 existingCvIds=[];
             end
 
-
             if isfield(sfCovResults.sfMissing,'cvIds')
                 newSfIds=[sfCovResults.sfMissing.sfIds(:);sfCovResults.sfCovered.sfIds(:)];
                 newCvIds=[sfCovResults.sfMissing.cvIds(:);sfCovResults.sfCovered.cvIds(:)];
@@ -136,15 +131,16 @@ classdef SFTextOverlay<handle
             this.cvIds=[existingCvIds;newCvIds];
             this.cvIds=this.cvIds(uIdx);
             this.fixUnsetCvIds();
-
             addPartialCoverageStylingForMALCharts(this);
             addPartialCoverageStylingForCALCharts(this,sfCovResults);
         end
+
 
         function update(this,covResults,append)
             this.clearAll();
             this.create(covResults,append);
         end
+
 
         function clearAll(this)
             for i=1:length(this.sfIds)
@@ -152,6 +148,7 @@ classdef SFTextOverlay<handle
             end
             this.styler.clearDisabledHighlights();
         end
+
 
         function setupStyleMap(this)
             this.styleMap=containers.Map('KeyType','double','ValueType','any');
@@ -169,6 +166,7 @@ classdef SFTextOverlay<handle
             style.backgroundColor=backgroundColor;
             this.styleMap(styleIdx)=style;
         end
+
 
         function fixUnsetCvIds(this)
 
@@ -189,6 +187,7 @@ classdef SFTextOverlay<handle
             end
         end
 
+
         function styleIdx=getStyleVectorForMALChartObject(~,cvId)
             styleIdx=[];
             if cvId~=0
@@ -198,6 +197,7 @@ classdef SFTextOverlay<handle
                 end
             end
         end
+
 
         function applyStyleVectorToSFObject(this,sfId,styleIdx)
 
@@ -220,6 +220,7 @@ classdef SFTextOverlay<handle
                 lastStyle=curStyle;
             end
         end
+
 
         function applySFStyle(this,sfId,styleStartIdx,textLength,styleId)
             if(this.styleMap.isKey(styleId))
