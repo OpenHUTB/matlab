@@ -1,52 +1,16 @@
 classdef PhysicalElement < systemcomposer.interface.Element
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( Dependent )
-
         Name
-
-
         Type
     end
+
 
     properties ( Dependent, SetAccess = private )
 
         Interface
     end
+
 
     methods ( Hidden )
         function this = PhysicalElement( impl )
@@ -59,19 +23,23 @@ classdef PhysicalElement < systemcomposer.interface.Element
         end
     end
 
+
     methods
         function interface = get.Interface( this )
             interface = this.getWrapperForImpl(  ...
                 this.getImpl(  ).getInterface(  ), 'systemcomposer.interface.PhysicalInterface' );
         end
 
+
         function name = get.Name( this )
             name = this.getImpl(  ).getName(  );
         end
 
+
         function set.Name( this, name )
             this.setName( name );
         end
+
 
         function setName( this, name )
             arguments
@@ -85,6 +53,7 @@ classdef PhysicalElement < systemcomposer.interface.Element
                 sourceName, isModelContext, this.Interface.Name, this.Name, name );
         end
 
+
         function type = get.Type( this )
             typeImpl = this.getImpl(  ).getTypeAsInterface(  );
             if this.isImplUntyped( typeImpl )
@@ -94,9 +63,11 @@ classdef PhysicalElement < systemcomposer.interface.Element
             end
         end
 
+
         function set.Type( this, type )
             this.setType( type );
         end
+
 
         function destroy( this )
             isModelContext = isempty( this.Interface.Owner.ddConn );
@@ -106,10 +77,10 @@ classdef PhysicalElement < systemcomposer.interface.Element
         end
     end
 
+
     methods ( Hidden )
         function setType( this, type )
             if isa( type, 'systemcomposer.interface.PhysicalInterface' )
-
                 this.setTypeFromString( type.Name );
             elseif isa( type, 'char' ) || isStringScalar( type )
                 this.setTypeFromString( type );
@@ -118,13 +89,12 @@ classdef PhysicalElement < systemcomposer.interface.Element
             end
         end
 
+
         function setTypeFromString( this, typeStr )
             arguments
                 this
                 typeStr{ mustBeTextScalar }
             end
-
-
 
             typeStr = strrep( typeStr, 'Connection: ', '' );
             typeStr = strrep( typeStr, 'Bus: ', '' );
@@ -138,6 +108,7 @@ classdef PhysicalElement < systemcomposer.interface.Element
         end
     end
 
+
     methods ( Access = private )
         function setTypeInSimulink( this, propVal )
             isModelContext = isempty( this.Interface.Owner.ddConn );
@@ -146,6 +117,7 @@ classdef PhysicalElement < systemcomposer.interface.Element
                 sourceName, isModelContext, this.Interface.Name, this.Name,  ...
                 'Type', propVal );
         end
+
 
         function is = isImplUntyped( ~, impl )
             is = isa( impl, 'systemcomposer.architecture.model.interface.AtomicPhysicalInterface' ) &&  ...
