@@ -1,8 +1,5 @@
 classdef IteratorDirection<uint32
 
-
-
-
     enumeration
         PreOrder(0)
         PostOrder(1)
