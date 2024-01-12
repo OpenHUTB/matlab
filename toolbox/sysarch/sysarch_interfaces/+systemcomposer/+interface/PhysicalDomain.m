@@ -1,61 +1,20 @@
 classdef PhysicalDomain < systemcomposer.base.BaseElement
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( Dependent )
-
         Domain
     end
 
-    properties ( Dependent, SetAccess = private )
 
+    properties ( Dependent, SetAccess = private )
         Owner
     end
+end
+
     properties ( Dependent = true, SetAccess = private )
 
         Model
     end
+
 
     methods
         function obj = PhysicalDomain( implObj )
@@ -69,15 +28,14 @@ classdef PhysicalDomain < systemcomposer.base.BaseElement
             implObj.cachedWrapper = obj;
         end
 
+
         function mdl = get.Model( this )
             mdl = this.Owner.Model;
         end
 
+
         function set.Domain( this, val )
             domain = systemcomposer.interface.PhysicalDomain.resolveDomain( val );
-
-
-
 
             owner = this.getOwner(  );
             if ~isempty( owner )
@@ -92,19 +50,23 @@ classdef PhysicalDomain < systemcomposer.base.BaseElement
             end
         end
 
+
         function val = get.Domain( this )
             val = this.getImpl(  ).p_Type;
             val = strtrim( strrep( val, 'Connection: ', '' ) );
         end
 
+
         function owner = get.Owner( this )
             owner = this.getOwner(  );
         end
+
 
         function destroy( ~ )
 
         end
     end
+
 
     methods ( Hidden )
         function setType( this, val )
@@ -112,6 +74,7 @@ classdef PhysicalDomain < systemcomposer.base.BaseElement
             this.Domain = val;
         end
     end
+
 
     methods ( Hidden, Static )
         function resolvedDomain = resolveDomain( domainStr )
@@ -127,8 +90,6 @@ classdef PhysicalDomain < systemcomposer.base.BaseElement
                 return ;
             end
 
-
-
             idx = strcmp( availDomains, domainStr );
             if any( idx )
                 match = availDomains( idx );
@@ -141,7 +102,6 @@ classdef PhysicalDomain < systemcomposer.base.BaseElement
             else
 
                 if length( match ) > 1
-
 
                     matchStr = "";
                     for idx = 1:length( match )
@@ -156,10 +116,9 @@ classdef PhysicalDomain < systemcomposer.base.BaseElement
         end
     end
 
+
     methods ( Access = private )
         function owner = getOwner( this )
-
-
 
             owner = [  ];
             implObj = this.getImpl(  );
