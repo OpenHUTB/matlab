@@ -1,8 +1,5 @@
 classdef DataElement < systemcomposer.interface.Element
 
-
-
-
     properties ( Dependent = true, SetAccess = private )
         Interface( 1, 1 )systemcomposer.interface.DataInterface
         Name( 1, 1 ){ mustBeTextScalar }
@@ -11,6 +8,7 @@ classdef DataElement < systemcomposer.interface.Element
         Description( 1, 1 ){ mustBeTextScalar }
         Dimensions( 1, 1 ){ mustBeTextScalar }
     end
+
 
     methods ( Hidden )
         function this = DataElement( impl )
@@ -22,10 +20,8 @@ classdef DataElement < systemcomposer.interface.Element
             impl.cachedWrapper = this;
         end
 
+
         function setTypeFromString( this, typeStr )
-
-
-
             model = this.Interface.Model;
             if ~isempty( model )
                 dict = model.getImpl.getPortInterfaceCatalog;
@@ -37,13 +33,13 @@ classdef DataElement < systemcomposer.interface.Element
             if isShared
                 this.setType( typeObjOrName );
             elseif ( ~this.getImpl.hasOwnedType )
-
                 this.createOwnedType( 'DataType', typeObjOrName );
             else
                 this.Type.DataType = typeObjOrName;
             end
         end
     end
+
 
     methods ( Static, Hidden )
         function incheck( inval )
@@ -55,6 +51,7 @@ classdef DataElement < systemcomposer.interface.Element
             parse( p, inval );
         end
 
+
         function incheckDescription( inval )
             persistent pDescription
             if isempty( pDescription )
@@ -65,14 +62,17 @@ classdef DataElement < systemcomposer.interface.Element
         end
     end
 
+
     methods
         function interface = get.Interface( this )
             interface = this.getWrapperForImpl( this.getImpl(  ).getInterface(  ) );
         end
 
+
         function name = get.Name( this )
             name = this.getImpl(  ).getName(  );
         end
+
 
         function setName( this, name )
             systemcomposer.interface.DataElement.incheck( name );
@@ -89,9 +89,11 @@ classdef DataElement < systemcomposer.interface.Element
             end
         end
 
+
         function type = get.Type( this )
             type = systemcomposer.internal.getWrapperForImpl( this.getImpl(  ).getTypeAsInterface(  ) );
         end
+
 
         function setType( this, type )
             arguments
@@ -108,6 +110,7 @@ classdef DataElement < systemcomposer.interface.Element
 
             this.setElementProperty( 'Type', typeStr );
         end
+
 
         function type = createOwnedType( this, nameValuePairs )
             arguments
@@ -129,14 +132,17 @@ classdef DataElement < systemcomposer.interface.Element
             type = this.Type;
         end
 
+
         function dims = get.Dimensions( this )
             dims = this.getImpl(  ).getDimensions(  );
         end
+
 
         function setDimensions( this, dimensions )
             systemcomposer.interface.DataElement.incheck( dimensions );
             this.setElementProperty( 'Dimensions', dimensions );
         end
+
 
         function setUnits( this, units )
             arguments
@@ -146,39 +152,45 @@ classdef DataElement < systemcomposer.interface.Element
             this.setElementProperty( 'Units', units );
         end
 
+
         function setComplexity( this, complexity )
             p = inputParser;
             validComplexities = { 'real', 'complex', 'auto' };
             addRequired( p, 'complexity', @( x )any( validatestring( x, validComplexities ) ) );
             parse( p, complexity );
-
             systemcomposer.interface.DataElement.incheck( complexity );
             this.setElementProperty( 'Complexity', complexity );
         end
+
 
         function setMinimum( this, minimum )
             systemcomposer.interface.DataElement.incheck( minimum );
             this.setElementProperty( 'Minimum', minimum );
         end
 
+
         function setMaximum( this, maximum )
             systemcomposer.interface.DataElement.incheck( maximum );
             this.setElementProperty( 'Maximum', maximum );
         end
 
+
         function desc = get.Description( this )
             desc = this.getImpl(  ).getDescription(  );
         end
+
 
         function setDescription( this, description )
             systemcomposer.interface.DataElement.incheckDescription( description );
             this.setElementProperty( 'Description', description );
         end
 
+
         function destroy( this )
             this.Interface.removeElement( this.Name );
         end
     end
+
 
     methods ( Access = { ?systemcomposer.ValueType } )
         function setElementProperty( this, propName, propVal )
