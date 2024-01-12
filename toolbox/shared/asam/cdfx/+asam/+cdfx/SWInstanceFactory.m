@@ -1,19 +1,11 @@
 function instance=SWInstanceFactory(root,sys,inst)
 
-
-
-
-
-
     category=inst.CATEGORY.elementValue;
-
 
     switch category
     case "VALUE"
-
         instance=asam.cdfx.instance.Value(root,sys,inst);
     case "BOOLEAN"
-
         instance=asam.cdfx.instance.Boolean(root,sys,inst);
     case "BLOB"
 
