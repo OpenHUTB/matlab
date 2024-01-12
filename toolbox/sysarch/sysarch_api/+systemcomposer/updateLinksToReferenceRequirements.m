@@ -1,10 +1,5 @@
 function updateLinksToReferenceRequirements(modelName,linkDomain,documentPathOrID)
 
-
-
-
-
-
     load_system(modelName);
     if isstring(linkDomain)
         linkDomain=linkDomain.char;
@@ -13,7 +8,6 @@ function updateLinksToReferenceRequirements(modelName,linkDomain,documentPathOrI
         assert(numel(documentPathOrID)==1,'Multiple document IDs found');
         documentPathOrID=documentPathOrID.char;
     end
-
 
     switch linkDomain
     case 'linktype_rmi_doors'
