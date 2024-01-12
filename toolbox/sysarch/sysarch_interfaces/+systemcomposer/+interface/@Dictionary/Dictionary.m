@@ -1,20 +1,20 @@
 classdef Dictionary < systemcomposer.interface.Element
 
-
-
-
     properties ( SetAccess = private )
         Interfaces
         Profiles
     end
 
+
     properties ( Hidden, SetAccess = private, Dependent = true )
         References
     end
 
+
     properties ( Hidden, SetAccess = private )
         ddConn
     end
+
 
     methods ( Hidden )
         function this = Dictionary( impl )
@@ -30,16 +30,10 @@ classdef Dictionary < systemcomposer.interface.Element
         end
     end
 
+
     methods
 
         function interface = addInterface( this, interfaceName, varargin )
-
-
-
-
-
-
-
 
             persistent p
             if isempty( p )
@@ -70,6 +64,7 @@ classdef Dictionary < systemcomposer.interface.Element
             interface = this.getWrapperForImpl( interfaceImpl );
         end
 
+
         function interface = addPhysicalInterface( this, interfaceName, SimulinkConnBus )
             arguments
                 this systemcomposer.interface.Dictionary
@@ -90,6 +85,7 @@ classdef Dictionary < systemcomposer.interface.Element
             interface = this.getWrapperForImpl( interfaceImpl, 'systemcomposer.interface.PhysicalInterface' );
         end
 
+
         function interface = addServiceInterface( this, interfaceName )
             arguments
                 this systemcomposer.interface.Dictionary
@@ -97,7 +93,6 @@ classdef Dictionary < systemcomposer.interface.Element
             end
             sourceName = this.getSourceName;
             isModelContext = isempty( this.ddConn );
-
             systemcomposer.BusObjectManager.AddServiceInterface( sourceName, isModelContext, convertStringsToChars( interfaceName ) );
 
             catalogImpl = this.getImpl(  );
@@ -130,24 +125,16 @@ classdef Dictionary < systemcomposer.interface.Element
             interface = this.getWrapperForImpl( interfaceImpl, 'systemcomposer.ValueType' );
         end
 
+
         function removeInterface( this, interfaceName )
-
-
-
 
             sourceName = this.getSourceName;
             isModelContext = isempty( this.ddConn );
             systemcomposer.BusObjectManager.DeleteInterface( sourceName, isModelContext, interfaceName );
         end
 
+
         function interface = getInterface( this, interfaceName, nameValArgs )
-
-
-
-
-
-
-
 
             arguments
                 this
@@ -179,6 +166,7 @@ classdef Dictionary < systemcomposer.interface.Element
             end
         end
 
+
         function profArray = get.Profiles( this )
             profimplArray = this.getImpl.getProfiles;
 
@@ -189,23 +177,21 @@ classdef Dictionary < systemcomposer.interface.Element
             end
         end
 
+
         function flag = isEmpty( this )
 
             flag = isempty( getInterfaceNamesInClosure( this ) );
         end
 
+
         function interfaceNames = getInterfaceNames( this )
-
-
 
             catalogImpl = this.getImpl(  );
             interfaceNames = catalogImpl.getPortInterfaceNamesInClosure(  );
         end
 
+
         function save( this )
-
-
-
             catalogImpl = this.getImpl(  );
             storageContext = 'Model';
             if ( catalogImpl.getStorageContext(  ) == systemcomposer.architecture.model.interface.Context.DICTIONARY )
@@ -214,10 +200,8 @@ classdef Dictionary < systemcomposer.interface.Element
             systemcomposer.InterfaceEditor.saveInterfaces( catalogImpl.getStorageSource(  ), storageContext );
         end
 
+
         function saveToDictionary( this, dictionaryName, varargin )
-
-
-
 
             catalogImpl = this.getImpl(  );
             if ( catalogImpl.getStorageContext(  ) == systemcomposer.architecture.model.interface.Context.DICTIONARY )
