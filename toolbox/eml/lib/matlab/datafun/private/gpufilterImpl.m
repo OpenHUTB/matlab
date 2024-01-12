@@ -1,33 +1,19 @@
 function[y,zf]=gpufilterImpl(b,a,x,zi,ISCONSTFIR)%#codegen
 
-
-
     coder.allowpcode('plain');
 
     coder.gpu.internal.kernelfunImpl(false);
 
-
-
-
-
     kernel=reshape(b,length(b),1);
     if length(a)>length(b)
-
-
-
         kernel1D=[kernel;zeros((length(a)-length(b)),1)];
     else
         kernel1D=kernel;
     end
 
-
     zfSize=size(x);
 
-
     zfSize(1)=size(kernel1D,1)-1;
-
-
-
 
     if isempty(x)
         if isa(b,'single')||isa(a,'single')||isa(x,'single')||isa(zi,'single')
@@ -75,7 +61,6 @@ function[y,zf]=gpufilterImpl(b,a,x,zi,ISCONSTFIR)%#codegen
             end
         end
 
-
         if nargout==2
             if ISCONSTFIR
                 zf=reshape(convOut(size(x,1)+1:end,:),zfSize);
@@ -91,8 +76,6 @@ function[y,zf]=gpufilterImpl(b,a,x,zi,ISCONSTFIR)%#codegen
                 zf=reshape(zfIIR,zfSize);
             end
         end
-
-
         y=reshape(convOut(1:size(x,1),:),size(x));
     end
 end
