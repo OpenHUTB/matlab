@@ -1,11 +1,5 @@
 function object=create(objectName)
 
-
-
-
-
-
-
     permittedObjects={...
     'CommunicationModeSupportedInfoInterleaved',...
     'CommunicationModeSupportedInfoBlock',...
@@ -31,7 +25,6 @@ function object=create(objectName)
         objectName,...
         strjoin(permittedObjects,', ')));
     end
-
     object=asam.mcd2mc.ObjectFactory.create(objectName);
 
 end
