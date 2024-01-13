@@ -1,5 +1,3 @@
-
-
 function fileName=makeFileNameUnique(fileName)
 
     if exist(fileName,'file')
