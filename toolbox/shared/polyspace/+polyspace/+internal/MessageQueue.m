@@ -1,6 +1,3 @@
-
-
-
 classdef MessageQueue<handle
     properties(Access=private,Constant=true)
         MSGQUEUE_OPEN=1;
@@ -12,11 +9,13 @@ classdef MessageQueue<handle
         MSGQUEUE_REMOVE=7;
     end
 
+
     properties(Access=private)
 message_queue_name
 msgqueue
 closeOnly
     end
+
 
     methods(Access=public)
         function this=MessageQueue(message_queue_name,varargin)
@@ -31,12 +30,14 @@ closeOnly
             message_queue_name,varargin{:});
         end
 
+
         function delete(this)
             if~isempty(this.msgqueue)
                 msgqueue_mex(polyspace.internal.MessageQueue.MSGQUEUE_CLOSE,...
                 this.message_queue_name,this.msgqueue,this.closeOnly);
             end
         end
+
 
         function varargout=sendMessage(this,msg,varargin)
             varargout=cell(1,nargout);
@@ -45,6 +46,7 @@ closeOnly
             this.msgqueue,msg,varargin{:});
         end
 
+
         function varargout=receiveMessage(this,varargin)
             varargout=cell(1,nargout);
             [varargout{:}]=...
@@ -52,16 +54,19 @@ closeOnly
             this.msgqueue,varargin{:});
         end
 
+
         function n=getNumberOfMessages(this)
             n=msgqueue_mex(polyspace.internal.MessageQueue.MSGQUEUE_GET_NUM_MSG,...
             this.msgqueue);
         end
+
 
         function n=getMaximumNumberOfMessages(this)
             n=msgqueue_mex(polyspace.internal.MessageQueue.MSGQUEUE_GET_MAX_MSG,...
             this.msgqueue);
         end
     end
+
 
     methods(Access=public,Static=true)
         function removeQueue(message_queue_name)
