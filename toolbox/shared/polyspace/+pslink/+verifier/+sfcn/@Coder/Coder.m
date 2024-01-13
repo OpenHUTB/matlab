@@ -1,8 +1,5 @@
 classdef Coder<pslink.verifier.Coder
 
-
-
-
     properties(Constant,GetAccess=public)
         CODER_NAME='S-Function';
         CODER_ID='sfcn';
@@ -12,11 +9,11 @@ classdef Coder<pslink.verifier.Coder
         'int16','int32','uint8','uint16','uint32'};
     end
 
+
     properties(Constant,GetAccess=private)
-
-
         PRODUCT_NAME='Polyspace';
     end
+
 
     properties
 SFunctionInfo
@@ -26,14 +23,14 @@ GeneratedWrapperInfo
 ExtraLinksDataSources
     end
 
+
     methods(Static=true)
-
-
 
         function str=getCoderName()
             str=pslink.verifier.sfcn.Coder.CODER_NAME;
         end
     end
+
 
     methods
 
@@ -44,7 +41,6 @@ ExtraLinksDataSources
             self@pslink.verifier.Coder(sfcnPath);
             self.SFunctionName=get_param(sfcnPath,'FunctionName');
             self.sysDirInfo=pslink.util.Helper.getConfigDirInfo(self.slSystemName,pslink.verifier.sfcn.Coder.CODER_ID);
-
             resultDir=pslinkOptions.ResultDir;
             self.cgName=fullfile(resultDir,'pslink');
             self.cgDirStatus=exist(self.sysDirInfo.SystemCodeGenDir,'dir');
@@ -54,17 +50,11 @@ ExtraLinksDataSources
         end
 
 
-
-
-
         function extractAllInfo(self,opts)
             sfcnPath=self.slSystemName;
             sfcnName=self.SFunctionName;
 
-
             tmpDir=self.cgName;
-
-
 
             [~,~,~]=mkdir(tmpDir);
 
@@ -74,8 +64,7 @@ ExtraLinksDataSources
 
             db=reader.getDb();
             [sourcePaths,includeDirs]=self.getSources(db,sfcnName);
-
-            cxxfe=internal.cxxfe.util.getMexFrontEndOptions('lang',self.SFunctionInfo.Language);
+           cxxfe=internal.cxxfe.util.getMexFrontEndOptions('lang',self.SFunctionInfo.Language);
             defines=self.SFunctionInfo.FrontEndOptions.Defines;
 
             varPrefix='_';
