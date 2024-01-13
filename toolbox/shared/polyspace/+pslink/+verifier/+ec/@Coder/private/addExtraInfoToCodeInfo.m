@@ -1,20 +1,13 @@
 function addExtraInfoToCodeInfo(self,linkDataOnly)
 
-
-
-
-
     needUpdate=isempty(self.traceInfo)||self.inputFullRange==false||self.outputFullRange==false||self.paramFullRange==false;
     needTermination=false;
-
     sess=Simulink.CMI.EIAdapter(Simulink.EngineInterfaceVal.byFiat);%#ok<NASGU>
 
     try
 
-
         if needUpdate
             if~strcmpi(get_param(self.slModelName,'SimulationStatus'),'initializing')
-
                 evalc('feval(self.slModelName, [],[], [], ''compileForRTW'')');
                 needTermination=true;
             end
@@ -23,7 +16,6 @@ function addExtraInfoToCodeInfo(self,linkDataOnly)
         if isempty(self.traceInfo)
             self.dlinkInfo=pslink.util.LinksData.ExtractLinksData(self.slModelName,true,self.slModelFileName,self.slModelVersion);
         end
-
         if~linkDataOnly&&~isempty(self.codeInfo)
 
             for ii=1:numel(self.codeInfo.Types)
@@ -44,9 +36,6 @@ function addExtraInfoToCodeInfo(self,linkDataOnly)
                     end
                 end
             end
-
-
-
             signalResolutionControl=get_param(self.slModelName,'SignalResolutionControl');
             noSignalResolution=strcmp(signalResolutionControl,'None');
             slResolveExplicitOnly=strcmp(signalResolutionControl,'UseLocalSettings');
@@ -72,7 +61,6 @@ function addExtraInfoToCodeInfo(self,linkDataOnly)
                     continue;
                 end
 
-
                 hasMustResolvedObject=false;
                 for jj=1:numel(lines)
                     mustResolveToSigObject=get(lines(jj),'MustResolveToSignalObject');
@@ -86,7 +74,6 @@ function addExtraInfoToCodeInfo(self,linkDataOnly)
                 if slResolveExplicitOnly&&~hasMustResolvedObject
                     continue
                 end
-
 
                 try
                     slObj=slResolve(self.codeInfo.InternalData(ii).GraphicalName,self.slSystemName);
@@ -106,8 +93,6 @@ function addExtraInfoToCodeInfo(self,linkDataOnly)
                 pslink.verifier.ec.Coder.addAllDynamicProperties(self.codeInfo.Inports(ii));
                 nSetDataUsageInCode(self.codeInfo.Inports(ii));
                 if self.codeInfo.Inports(ii).UsageKind==0
-
-
                     self.mustWriteAllData=true;
                 end
                 blkH=pslink.util.SimulinkHelper.getHandleFromID(self.codeInfo.Inports(ii).SID);
@@ -165,13 +150,8 @@ function addExtraInfoToCodeInfo(self,linkDataOnly)
                                 continue
                             end
                         end
-
-
                     else
-
                         try
-
-
                             paramName=self.codeInfo.Parameters(ii).GraphicalName;
                             [slObj,~]=slResolve(paramName,self.slModelName,'variable');
                             if isa(slObj,'Simulink.Parameter')
@@ -236,13 +216,8 @@ function addExtraInfoToCodeInfo(self,linkDataOnly)
 
     nCleanup();
 
+
     function nSetDataUsageInCode(data)
-
-
-
-
-
-
         uKind=0;
         if isa(data.Implementation,'RTW.Variable')||isa(data.Implementation,'RTW.StructExpression')
             if~isa(data.Implementation,'RTW.PointerVariable')&&data.Implementation.isDefined
@@ -264,7 +239,6 @@ function addExtraInfoToCodeInfo(self,linkDataOnly)
                     uKind=2;
                 end
             end
-
         elseif isa(data.Implementation,'RTW.Argument')||...
             isa(data.Implementation,'coder.types.Argument')
             uKind=2;
@@ -276,8 +250,6 @@ function addExtraInfoToCodeInfo(self,linkDataOnly)
             uKind=3;
 
         elseif isa(data.Implementation,'RTW.AutosarClientServer')
-
-
         else
 
         end
@@ -285,9 +257,8 @@ function addExtraInfoToCodeInfo(self,linkDataOnly)
         data.UsageKind=uKind;
     end
 
+
     function nCleanup()
-
-
         if needTermination
             evalc('feval(self.slModelName, [],[], [], ''term'')');
             needTermination=false;
