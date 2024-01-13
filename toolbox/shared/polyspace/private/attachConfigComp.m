@@ -1,5 +1,3 @@
-
-
 function attachConfigComp(systemH,silentMode)
 
     narginchk(1,2);
@@ -13,14 +11,7 @@ function attachConfigComp(systemH,silentMode)
         warning(message('polyspace:gui:pslink:modelIsLib',getfullname(modelH)))
         return
     end
-
-
-
-
-
-
     [pslinkcc,configSet,configSetRefVarName]=getConfigComp(modelH);
-
 
     if strcmpi(get_param(modelH,'SimulationStatus'),'stopped')
         if~isa(pslinkcc,'pslink.ConfigComp')
@@ -39,7 +30,6 @@ function attachConfigComp(systemH,silentMode)
                     return
                 end
             end
-
             pslinkcc=pslink.ConfigComp(systemH);
             attachComponent(configSet,pslinkcc);
         end
