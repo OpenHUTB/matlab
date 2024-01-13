@@ -1,4 +1,3 @@
-
 function updatebuildinfo(buildInfo)
     if(ispc())
         emlrtPath=fullfile(matlabroot,'extern','lib','win64','microsoft');
