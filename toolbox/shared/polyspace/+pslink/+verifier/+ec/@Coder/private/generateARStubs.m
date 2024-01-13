@@ -1,7 +1,5 @@
 function generateARStubs(self,pslinkOptions)
 
-
-
     cFile=fullfile(pslinkOptions.cfgDir,['__',self.slModelName,'_pststubs_ar.c']);
 
     if exist(cFile,'file')
@@ -18,11 +16,9 @@ function generateARStubs(self,pslinkOptions)
     for ii=1:numel(self.arInfo.fcn)
         fcn=self.arInfo.fcn(ii);
 
-
         if isempty(fcn.arg)
             continue
         end
-
 
         notFullRange=true;
         hasInDirection=false;
@@ -35,8 +31,6 @@ function generateARStubs(self,pslinkOptions)
                 end
             else
                 hasFieldNotFullRange=false;
-
-
                 if~isempty(fcn.arg(jj).field)&&~self.outputFullRange
                     for kk=1:size(fcn.arg(jj).field,1)
                         [minStr,maxStr]=pslink.util.Helper.getMinMaxStr(fcn.arg(jj).field{kk,2}{1},fcn.arg(jj).field{kk,2}{2});
@@ -63,7 +57,6 @@ function generateARStubs(self,pslinkOptions)
 
         [cFid,cErr]=fopen(cFile,'wt','n',self.SourceEncoding);
 
-
         if isempty(cErr)
             cleanObj=onCleanup(@()nCleanup(cFid,cFile));
 
@@ -72,8 +65,6 @@ function generateARStubs(self,pslinkOptions)
             fprintf(cFid,' *\n');
             fprintf(cFid,' * C source code generated on : %s\n',datestr(now));
             fprintf(cFid,' */\n\n');
-
-
 
             fprintf(cFid,'/* #ifdef _POLYSPACE_STUB_AUTOSAR_H_ */\n\n');
 
@@ -85,7 +76,6 @@ function generateARStubs(self,pslinkOptions)
 
             fprintf(cFid,'/* #endif */\n\n');
 
-
             self.stubFile={cFile};
 
         else
@@ -93,9 +83,8 @@ function generateARStubs(self,pslinkOptions)
         end
     end
 
+
     function stubbed=nGenerateStub(fcn)
-
-
         stubbed=false;
         decl='';
         body='';
@@ -123,7 +112,6 @@ function generateARStubs(self,pslinkOptions)
                 fcnStub=sprintf('%s%s%s %s',fcnStub,sep,typeName,argName);
                 sep=', ';
             end
-
 
             for zz=1:numel(fcn.arg)
                 argStr='u';
@@ -159,7 +147,6 @@ function generateARStubs(self,pslinkOptions)
                         end
                     end
                 else
-
                     argStr=sprintf('%s[i%d]',argStr,zz);
                     if~fcn.arg(zz).isStruct
                         if~fcn.arg(zz).isFullDataTypeRange
@@ -198,6 +185,7 @@ function generateARStubs(self,pslinkOptions)
         end
     end
 
+
     function structType=nFindStructType(structName)
 
         structType=[];
@@ -212,14 +200,11 @@ function generateARStubs(self,pslinkOptions)
         end
     end
 
+
     function chkStr=nGenerateStructCheck(chkStr,structType,parentExpr,depth,extraSpace)
-
-
         if nargin<5
             extraSpace='';
         end
-
-
         if~isfield(self.drsInfo.busInfo,structType.Identifier)
             return
         end
@@ -251,7 +236,6 @@ function generateARStubs(self,pslinkOptions)
 
             bottomType=pslink.verifier.ec.Coder.getUnderlyingType(sE.Type);
             if isa(bottomType,'embedded.structtype')
-
                 fChkStr=nGenerateStructCheck('',bottomType,fullExpr,depth+1,extraSpace);
             else
 
@@ -274,8 +258,6 @@ function generateARStubs(self,pslinkOptions)
             if~isempty(fChkStr)
                 incr=depth+1;
                 if hasLoop
-
-
                     chkStr=sprintf('%s%s%s{\n',chkStr,extraSpace,nSpace(incr));
                     incr=incr+1;
                     chkStr=sprintf('%s%s%sint i_%d;\n',chkStr,extraSpace,nSpace(incr),depth+1);
@@ -295,9 +277,11 @@ function generateARStubs(self,pslinkOptions)
         end
     end
 
+
     function str=nSpace(incr)
         str=repmat('  ',1,incr);
     end
+
 
     function chkStr=nGenerateArgCheck(arg,minVal,maxVal)
 
@@ -323,6 +307,7 @@ function generateARStubs(self,pslinkOptions)
         end
     end
 
+
     function type=nGenerateType(arg)
         type=arg.typeName;
         if arg.width>1&&~(pslinkprivate('compareMatlabVersion',8,0)&&self.arInfo.ver(1)=='4')
@@ -340,6 +325,7 @@ function generateARStubs(self,pslinkOptions)
             type=[type,'*'];
         end
     end
+
 
     function nCleanup(cFid,filename)
 
