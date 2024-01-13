@@ -1,8 +1,5 @@
 function[execMap,className]=extractExecutionInfo(self,unused)%#ok<INUSD>
 
-
-
-
     execMap=containers.Map({1},{{}});
     execMap.remove(1);
 
@@ -14,8 +11,6 @@ function[execMap,className]=extractExecutionInfo(self,unused)%#ok<INUSD>
         end
         execMap(key)={{},{}};
     end
-
-
     if~isempty(self.codeInfo.InitializeFunctions)
         nAddFunctionToMap(self.codeInfo.InitializeFunctions(1),true);
     end
@@ -33,11 +28,10 @@ function[execMap,className]=extractExecutionInfo(self,unused)%#ok<INUSD>
         className=self.configInfo.CppInterfaceClassName;
     end
 
-
-
     if self.mustWriteAllData
         return
     end
+
 
     function nAddFunctionToMap(fcn,isInit)
         if isempty(fcn.Timing)
@@ -59,6 +53,7 @@ function[execMap,className]=extractExecutionInfo(self,unused)%#ok<INUSD>
         mVal{1}=[mVal{1},{fcn.Prototype.Name}];
         execMap(stKey)=mVal;
     end
+
 
     function key=nGetSampleTimeAsKey(timingProperty)
         if isempty(timingProperty)
