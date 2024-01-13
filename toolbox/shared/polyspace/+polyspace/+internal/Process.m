@@ -1,6 +1,3 @@
-
-
-
 classdef Process<handle
     properties(Access=private,Constant=true)
         PROCESS_SPAWN=1;
@@ -10,19 +7,20 @@ classdef Process<handle
         PROCESS_GET_ENVIRONMENT=5;
     end
 
+
     properties(Access=private)
 pid
 exitStatus
 outStr
     end
 
+
     methods(Access=public,Static=true)
         function envVars=getEnvironment()
-
-
             envVars=process_mex(polyspace.internal.Process.PROCESS_GET_ENVIRONMENT);
         end
     end
+
 
     methods(Access=public)
         function this=Process(varargin)
@@ -32,6 +30,7 @@ outStr
             this.outStr='';
         end
 
+
         function delete(this)
             if~isempty(this.pid)
                 this.kill();
@@ -39,10 +38,12 @@ outStr
             end
         end
 
+
         function outStr=readAvailableOutput(this)
             outStr=process_mex(polyspace.internal.Process.PROCESS_READ_AVAILABLE_OUTPUT,...
             this.pid);
         end
+
 
         function varargout=getExitStatus(this,noHang,flushToMATLABConsole)
             if isnan(this.exitStatus)
@@ -63,6 +64,7 @@ outStr
                 this.outStr='';
             end
         end
+
 
         function kill(this)
             if isnan(this.exitStatus)
