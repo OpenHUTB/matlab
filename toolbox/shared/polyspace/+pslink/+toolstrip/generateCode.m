@@ -1,7 +1,3 @@
-
-
-
-
 function generateCode(sysToAnalyse)
 
     sysDirInfo=pslink.util.Helper.getConfigDirInfo(getfullname(sysToAnalyse),pslink.verifier.ec.Coder.CODER_ID);
@@ -22,8 +18,6 @@ function generateCode(sysToAnalyse)
         end
         if strcmpi(get_param(sysToAnalyse,'Type'),'block_diagram')
             try
-
-
                 [~,systemChecksum]=evalc('Simulink.BlockDiagram.getChecksum(bdroot(sysToAnalyse))');
             catch Me %#ok<NASGU> 
                 systemChecksum=[];
