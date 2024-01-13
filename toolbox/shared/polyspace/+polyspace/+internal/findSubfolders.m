@@ -1,5 +1,3 @@
-
-
 function filePaths=findSubfolders(filePath)
 
     narginchk(0,1);
