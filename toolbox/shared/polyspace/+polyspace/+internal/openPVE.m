@@ -1,7 +1,5 @@
 function openPVE(resDir)
 
-
-
     if nargin<1
         resDir='';
     end
