@@ -1,14 +1,8 @@
-
-
 classdef polyspaceObfuscation
 
     properties(Access=protected)
         encryptionKey='';
     end
-
-
-
-
 
 
     methods(Access=public)
@@ -19,13 +13,11 @@ classdef polyspaceObfuscation
         end
 
 
-
         function dst=encrypt(self,src)
             src=unicode2native(src,'UTF-8');
             dst=polyspace_obfuscation_mex(src,self.encryptionKey);
             dst=sprintf('%02x',dst);
         end
-
 
 
         function dst=decrypt(self,src)
