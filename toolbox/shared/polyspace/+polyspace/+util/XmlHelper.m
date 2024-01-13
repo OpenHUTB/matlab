@@ -1,11 +1,6 @@
 classdef XmlHelper
 
-
-
-
     methods(Static=true)
-
-
 
         function str=getURIpath(str,escapeSpecialChars)
             if nargin<2
@@ -28,8 +23,6 @@ classdef XmlHelper
         end
 
 
-
-
         function path=getPathFromURI(uri)
 
             obj=matlab.net.URI(uri);
@@ -41,8 +34,6 @@ classdef XmlHelper
             end
             path=urldecode(path);
         end
-
-
 
 
         function str=escapeCharacterForXml(str,isURI)
@@ -63,8 +54,6 @@ classdef XmlHelper
         end
 
 
-
-
         function str=unEscapeCharacterForXml(str,isURI)
             if nargin<2
                 isURI=false;
@@ -80,8 +69,6 @@ classdef XmlHelper
             str=strrep(str,'&quot;','"');
             str=strrep(str,'&apos;','''');
         end
-
-
 
 
         function nodeList=getNodesList(parentNode,nodeTag,nodeAttribName,nodeAttribValue)
@@ -122,8 +109,6 @@ classdef XmlHelper
                 end
             end
         end
-
-
 
 
         function selectedNode=selectNode(parentNode,nodeTag,nodeAttribName,nodeAttribValue)
@@ -168,8 +153,6 @@ classdef XmlHelper
         end
 
 
-
-
         function newNode=getOrAddNode(parentNode,nodeTag,nodeValue,nodeAttribName,nodeAttribValue,allowDuplicate)
             import matlab.io.xml.dom.*
 
@@ -177,14 +160,11 @@ classdef XmlHelper
                 allowDuplicate=false;
             end
 
-
             useAttrib=~isempty(nodeAttribName);
             newNode=polyspace.util.XmlHelper.selectNode(parentNode,nodeTag,nodeAttribName,nodeAttribValue);
             if~isempty(newNode)&&(allowDuplicate==false)
                 return
             end
-
-
             xmlDoc=parentNode.getOwnerDocument();
             newNode=createElement(xmlDoc,nodeTag);
             if useAttrib
@@ -197,12 +177,8 @@ classdef XmlHelper
         end
 
 
-
-
         function existingList=getNamedElements(node,eName)
             import matlab.io.xml.dom.*
-
-
             elementsList=polyspace.util.XmlHelper.getNodesList(node,eName);
             existingList=cell(1,numel(elementsList));
             for kk=1:numel(elementsList)
@@ -210,8 +186,6 @@ classdef XmlHelper
                 existingList{kk}=thisElementItem.getTextContent();
             end
         end
-
-
 
 
         function ret=isXML(fileName)
@@ -230,8 +204,6 @@ classdef XmlHelper
         end
 
 
-
-
         function xmlDoc=readXmlFile(fileName)
             import matlab.io.xml.dom.*
 
@@ -245,8 +217,6 @@ classdef XmlHelper
                 throwAsCaller(newMe);
             end
         end
-
-
 
 
         function prettyWrite(xmlDoc,fileName)
