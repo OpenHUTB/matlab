@@ -1,14 +1,9 @@
 function fillDataRangeInfo(self)
 
-
-
-
-
     filteredIdx=0;
     if self.paramFullRange
         filteredIdx=3;
     end
-
     srcField={'Inports','Outports','Parameters','DataStores'};
     dstField={'input','output','param','dsm'};
 
@@ -26,8 +21,6 @@ function fillDataRangeInfo(self)
             nFillData(data(jj),dstField{ii});
         end
     end
-
-
     fcnField={'OutputFunctions','UpdateFunctions'};
     for ii=1:numel(fcnField)
         fcns=self.codeInfo.(fcnField{ii});
@@ -35,20 +28,16 @@ function fillDataRangeInfo(self)
             nFillFunction(fcns(jj));
         end
     end
-
-
     pimMap=containers.Map('KeyType','char','ValueType','logical');
     cs=self.getConfigSet();
     aiObject=[];
     arPropObject=[];
     arMapObject=[];
     if cs.hasProp('AutosarSchemaVersion')
-
         self.arInfo.ver=get_param(cs,'AutosarSchemaVersion');
         self.arInfo.idMaxLength=get_param(cs,'AutosarMaxShortNameLength');
         self.arInfo.compName=self.codeInfo.Name;
         aiObject=self.getAutosarInterface();
-
 
         if exist('autosar.api.getAUTOSARProperties','class')==8
             try
@@ -62,12 +51,9 @@ function fillDataRangeInfo(self)
             end
         end
 
-
         for ii=1:numel(self.codeInfo.InternalData)
             nComputeSpecifiedMinMax(self.codeInfo.InternalData(ii));
         end
-
-
         fcnField={'InitializeFunctions','OutputFunctions'};
         for ii=1:numel(fcnField)
             fcns=self.codeInfo.(fcnField{ii});
@@ -90,21 +76,17 @@ function fillDataRangeInfo(self)
         end
     end
 
+
     function receiver=getReceiverFromErrorStatus(errorStatusImpl)
         if~isempty(self.expInports)
-
-
             graphicalPortIndex=str2double(errorStatusImpl.ReceiverPortNumber);
             codeInfoIdx=self.expInports(graphicalPortIndex).Index;
         else
-
-
-
-
             codeInfoIdx=str2double(errorStatusImpl.ReceiverPortNumber);
         end
         receiver=self.codeInfo.Inports(codeInfoIdx);
     end
+
 
     function shortName=getRunnableName(symbolName)
         shortName=symbolName;
@@ -120,6 +102,7 @@ function fillDataRangeInfo(self)
         catch
         end
     end
+
 
     function isEndToEnd=isEndToEndProtection(var,isInput)
         isEndToEnd=false;
@@ -138,10 +121,10 @@ function fillDataRangeInfo(self)
         end
     end
 
+
     function isQueued=isQueuedOutputDataAccess(var)
 
         isQueued=[];
-
 
         if~isempty(arMapObject)
             try
@@ -151,8 +134,6 @@ function fillDataRangeInfo(self)
             end
             return
         end
-
-
 
         if~isempty(aiObject)
             try
@@ -169,15 +150,13 @@ function fillDataRangeInfo(self)
                     end
                 end
             catch
-
-
                 return
             end
         end
     end
 
-    function nFillAutosarFunction(fcn,var,isRead,compName)
 
+    function nFillAutosarFunction(fcn,var,isRead,compName)
 
         switch class(var.Implementation)
         case 'RTW.AutosarErrorStatus'
@@ -212,7 +191,6 @@ function fillDataRangeInfo(self)
         case 'RTW.Variable'
             if isprop(var,'SLObj')&&isa(var.SLObj,'AUTOSAR.Signal')&&...
                 strcmpi(var.SLObj.RTWInfo.CustomStorageClass,'PerInstanceMemory')
-
                 name=sprintf('Rte_Pim_%s',var.Implementation.Identifier);
                 if~pimMap.isKey(name)
                     nAddAutosarFunction(name);
@@ -224,11 +202,9 @@ function fillDataRangeInfo(self)
                 end
             end
             return
-
         otherwise
             return
         end
-
 
         switch var.Implementation.DataAccessMode
         case 'ImplicitReceive'
@@ -241,8 +217,6 @@ function fillDataRangeInfo(self)
             nFillAutosarArgument(var,var.Implementation,-1,'ret',false,'input');
 
         case{'ExplicitReceive','QueuedExplicitReceive'}
-
-
             errStatus=nFindErrorStatus(fcn,var);
 
             startStr='Rte_';
@@ -256,10 +230,8 @@ function fillDataRangeInfo(self)
             end
             endStr=sprintf('%s_%s',...
             var.Implementation.Port,var.Implementation.DataElement);
-
             name=sprintf('%s_%s',startStr,endStr);
             drsName=sprintf('%s_%s_%s',startStr,compName,endStr);
-
             nAddAutosarFunction(name,drsName);
             nFillAutosarArgument(var,var.Implementation,1,'out',false,'input');
             if~isempty(errStatus)
@@ -273,24 +245,18 @@ function fillDataRangeInfo(self)
             startStr='Rte_IWrite';
             endStr=sprintf('%s_%s_%s',getRunnableName(fcn.Prototype.Name),...
             var.Implementation.Port,var.Implementation.DataElement);
-
             name=sprintf('%s_%s',startStr,endStr);
             drsName=sprintf('%s_%s_%s',startStr,compName,endStr);
             nAddAutosarFunction(name,drsName);
             nFillAutosarArgument(var,var.Implementation,1,'in',false,'output');
-
         case{'ExplicitSend','QueuedExplicitSend'}
             if self.outputFullRange||~pslinkprivate('pslinkattic','getBinMode','autosarFinalAssert')
                 return
             end
             isE2EPW=false;
             if strcmpi(var.Implementation.DataAccessMode,'ExplicitSend')
-
-
                 isQueued=isQueuedOutputDataAccess(var);
                 if isempty(isQueued)
-
-
                     return
                 end
                 isE2EPW=isEndToEndProtection(var,false);
@@ -307,7 +273,6 @@ function fillDataRangeInfo(self)
                 end
             end
             endStr=sprintf('%s_%s',var.Implementation.Port,var.Implementation.DataElement);
-
             name=sprintf('%s_%s',startStr,endStr);
             drsName=sprintf('%s_%s_%s',startStr,compName,endStr);
             nAddAutosarFunction(name,drsName);
@@ -343,7 +308,6 @@ function fillDataRangeInfo(self)
                 nAddAutosarFunction(name,drsName);
                 nFillAutosarArgument(var,var.Implementation,-1,'ret',false,'input');
 
-
                 if self.arInfo.fcn(end).return.isPtr
                     self.arInfo.fcn(end).arg=self.arInfo.fcn(end).return;
                     self.arInfo.fcn(end).arg.direction='out';
@@ -364,7 +328,6 @@ function fillDataRangeInfo(self)
 
         case 'BasicSoftwarePort'
 
-
         case 'Calibration'
             if self.arInfo.ver(1)=='4'
                 proc='Prm';
@@ -375,7 +338,6 @@ function fillDataRangeInfo(self)
             endStr=sprintf('%s_%s',var.Implementation.Port,var.Implementation.ElementName);
             name=sprintf('%s_%s',startStr,endStr);
             drsName=sprintf('%s_%s_%s',startStr,compName,endStr);
-
             nAddAutosarFunction(name,drsName);
             nFillAutosarArgument(var,var.Implementation,-1,'ret',true,'param');
 
@@ -393,8 +355,8 @@ function fillDataRangeInfo(self)
 
     end
 
-    function nAddAutosarFunction(fcnName,drsName)
 
+    function nAddAutosarFunction(fcnName,drsName)
         fcnInfo=pslink.verifier.Coder.createARFcnInfoStruct();
         if nargin>0
             fcnInfo.name=fcnName;
@@ -410,6 +372,7 @@ function fillDataRangeInfo(self)
             self.arInfo.fcn(end+1)=fcnInfo;
         end
     end
+
 
     function errStatus=nFindErrorStatus(fcn,var)
 
@@ -429,16 +392,14 @@ function fillDataRangeInfo(self)
         end
     end
 
-    function nFillAutosarArgument(data,dataImp,pos,direction,useTypeAlias,kind)
 
+    function nFillAutosarArgument(data,dataImp,pos,direction,useTypeAlias,kind)
 
         if pos>0
             category='arg';
         else
             category='return';
         end
-
-
         argInfo=pslink.verifier.Coder.createARFcnArgInfoStruct();
         argInfo.pos=pos;
         if pos>0
@@ -474,10 +435,7 @@ function fillDataRangeInfo(self)
 
         argInfo.min=minVal;
         argInfo.max=maxVal;
-
-
         argInfo.width=dataImp.Type.getWidth();
-
         baseType=pslink.verifier.ec.Coder.getUnderlyingType(dataImp.Type);
         if isa(baseType,'embedded.structtype')
             argInfo.isStruct=true;
@@ -488,16 +446,13 @@ function fillDataRangeInfo(self)
             end
         end
 
-
         if useTypeAlias
             argInfo.typeName=baseType.Name;
         else
             argInfo.typeName=nGetCoderTypeName(baseType);
         end
 
-
         argInfo.isPtr=(argInfo.width>1)||argInfo.isStruct||strcmpi(argInfo.direction,'out');
-
 
         if isempty(self.arInfo.fcn(end).(category))
             self.arInfo.fcn(end).(category)=argInfo;
@@ -506,6 +461,7 @@ function fillDataRangeInfo(self)
         end
 
     end
+
 
     function typeName=nGetCoderTypeName(type)
         if isa(type,'embedded.numerictype')
@@ -527,11 +483,9 @@ function fillDataRangeInfo(self)
         end
     end
 
+
     function nFillFunction(fcn)
-
-
         if isempty(fcn.ActualArgs)&&isempty(fcn.ActualReturn)
-
             return
         end
 
@@ -549,22 +503,17 @@ function fillDataRangeInfo(self)
             nFillArgument(fcn,-1);
         end
 
-
         if isempty(self.drsInfo.fcn(end).arg)&&isempty(self.drsInfo.fcn(end).return)
             self.drsInfo.fcn(end)=[];
         end
     end
 
+
     function nFillData(data,category)
-
-
-
         if isprop(data,'UsageKind')&&data.UsageKind==2
 
             return
         end
-
-
 
         exprInCode='';
         if~isempty(data.Implementation)
@@ -587,14 +536,11 @@ function fillDataRangeInfo(self)
 
             return
         end
-
-
         dataInfo=pslink.verifier.Coder.createDataRangeInfoStruct();
         dataType=data.Implementation.Type;
         dataType=pslink.verifier.ec.Coder.getCoderType(dataType);
         if isa(dataType,'embedded.pointertype')
             dataInfo.isPtr=true;
-
 
             ptrDataType=data.Type;
             ptrDataType=pslink.verifier.ec.Coder.getCoderType(ptrDataType);
@@ -607,7 +553,6 @@ function fillDataRangeInfo(self)
         else
             dataInfo.width=dataType.getWidth();
         end
-
         baseType=pslink.verifier.ec.Coder.getUnderlyingType(dataType);
         if isa(baseType,'embedded.structtype')
             dataInfo.isStruct=true;
@@ -644,13 +589,10 @@ function fillDataRangeInfo(self)
         if isa(data.Implementation,'RTW.Variable')
             dataInfo.sourceFile=data.Implementation.DefinitionFile;
         elseif isa(data.Implementation,'RTW.StructExpression')
-
             currBaseRegion=data.Implementation.BaseRegion;
             while~isempty(currBaseRegion.findprop('BaseRegion'))
                 currBaseRegion=currBaseRegion.BaseRegion;
             end
-
-
             if~isempty(currBaseRegion.findprop('DefinitionFile'))
                 dataInfo.sourceFile=currBaseRegion.DefinitionFile;
             else
@@ -669,10 +611,8 @@ function fillDataRangeInfo(self)
 
     end
 
+
     function nFillArgument(fcn,pos)
-
-
-
         doEmit=true;
         if pos>0
             category='arg';
@@ -684,17 +624,11 @@ function fillDataRangeInfo(self)
             formalArg=fcn.Prototype.Return;
             effectiveArg=fcn.ActualReturn;
         end
-
-
-
-
-
         argInfo=pslink.verifier.Coder.createDataRangeInfoStruct();
         argInfo.emit=doEmit;
         argInfo.pos=pos;
         argInfo.expr=formalArg.Name;
         argInfo.mode='init';
-
         if~isprop(effectiveArg,'FromModel')||~effectiveArg.FromModel
             argInfo.isExtraData=true;
         else
@@ -726,7 +660,6 @@ function fillDataRangeInfo(self)
             argInfo.isPtr=dataType.isPointer;
             argInfo.width=dataType.getWidth();
         end
-
         baseType=pslink.verifier.ec.Coder.getUnderlyingType(formalArg.Type);
         if isa(baseType,'embedded.structtype')
             argInfo.isStruct=true;
@@ -734,7 +667,6 @@ function fillDataRangeInfo(self)
                 argInfo.field=nExtractFieldInfo(effectiveArg,baseType,'');
             end
         end
-
 
         if isempty(self.drsInfo.fcn(end).(category))
             self.drsInfo.fcn(end).(category)=argInfo;
@@ -744,13 +676,8 @@ function fillDataRangeInfo(self)
 
     end
 
+
     function nComputeSpecifiedMinMax(data)
-
-
-
-
-
-
         if isprop(data,'SLObj')&&~isempty(data.SLObj)&&~strcmpi(data.SLObj.slWorkspaceType,'none')
 
 
@@ -760,7 +687,6 @@ function fillDataRangeInfo(self)
                 minVal=data.BlkMinMax{1};
                 maxVal=data.BlkMinMax{2};
             end
-
 
         else
 
@@ -776,12 +702,12 @@ function fillDataRangeInfo(self)
         end
     end
 
+
     function fieldInfo=nExtractFieldInfo(data,structType,parentName,isForAutosar)
 
         if nargin<4
             isForAutosar=false;
         end
-
 
         busObj=[];
         numBusElements=0;
@@ -797,8 +723,6 @@ function fillDataRangeInfo(self)
             bE=[];
             if pp<=numBusElements
                 bE=busObj.Elements(pp);
-
-
                 if~strcmp(bE.Name,sE.Identifier)
                     bE=[];
                 end
@@ -809,10 +733,8 @@ function fillDataRangeInfo(self)
             else
                 fullName=sE.Identifier;
             end
-
             bottomType=pslink.verifier.ec.Coder.getUnderlyingType(sE.Type);
             if isa(bottomType,'embedded.structtype')
-
                 infoCell=nExtractFieldInfo(data,bottomType,fullName,isForAutosar);
             else
                 fMinVal=[];
