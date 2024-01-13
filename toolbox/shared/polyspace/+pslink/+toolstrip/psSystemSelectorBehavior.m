@@ -1,8 +1,4 @@
 function[state,message]=psSystemSelectorBehavior(obj,~)
-
-
-
-
     result=isa(obj,'Simulink.BlockDiagram')||...
     isa(obj,'Simulink.SubSystem')||...
     isa(obj,'Simulink.SFunction');
