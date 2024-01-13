@@ -1,5 +1,3 @@
-
-
 function[pslinkcc,configSet,configSetRefVarName]=getConfigComp(modelH)
 
     narginchk(1,1);
