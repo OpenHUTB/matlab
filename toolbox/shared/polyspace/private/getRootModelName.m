@@ -1,9 +1,5 @@
 function modelName=getRootModelName(systemH,checkLib)
 
-
-
-
-
     if nargin<2
         checkLib=false;
     end
