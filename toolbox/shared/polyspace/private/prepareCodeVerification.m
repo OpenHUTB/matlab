@@ -1,8 +1,5 @@
 function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTopMdlRefAnalysis)
 
-
-
-
     if nargin<4||isempty(isTopMdlRefAnalysis)
         isTopMdlRefAnalysis=false;
     end
@@ -11,17 +8,11 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
         coderID=getCoderID(systemH);
     end
     coderName=getCoderName(coderID);
-
-
     blocker=SLStudio.internal.ScopedStudioBlocker(message('polyspace:gui:pslink:VerificationRunning').getString());%#ok<NASGU>
 
-
     fprintf(1,'### %s\n',message('polyspace:gui:pslink:packAndGoBannerTxt',coderName).getString());
-
-
     modelName=getRootModelName(systemH,true);
     systemName=getfullname(systemH);
-
 
     if isTopMdlRefAnalysis
         if~strcmp(modelName,systemName)
@@ -35,8 +26,6 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
     if strcmpi(coderID,pslink.verifier.tl.Coder.CODER_ID)&&~isTlInstalled()
         error('pslink:targetLinkNotAvailable',message('polyspace:gui:pslink:targetLinkNotAvailable').getString())
     end
-
-
     sysDirInfo=pslink.util.Helper.getConfigDirInfo(systemName,coderID);
     if isTopMdlRefAnalysis
         if isempty(sysDirInfo.ModelRefCodeGenDir)||~isfolder(sysDirInfo.ModelRefCodeGenDir)||...
@@ -53,15 +42,11 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
     end
 
     if nargin<2||isempty(pslinkOptions)
-
         pslinkOptions=pslink.Options(modelName);
     end
 
-
-
     pslinkOptions=pslinkOptions.deepCopy();
     pslinkOptions=get(pslinkOptions);
-
 
     pslinkOptions.ResultDir=tempname;
     modelNameForResultDir=sysDirInfo.SystemCodeGenName;
@@ -70,26 +55,17 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
     end
     pslinkOptions.ResultDir=strrep(pslinkOptions.ResultDir,'$ModelName$',modelNameForResultDir);
     pslinkOptions.ResultDir=getOrCreateDir(pslinkOptions.ResultDir);
-
-
     sysCdrObj=pslink.verifier.Coder.createCoderObject(coderID,systemName,isTopMdlRefAnalysis);
     verifOptionSetObj=pslink.verifier.OptionSet.createOptionSetObject(coderID);
     verifOptionSetObj.coderObj=sysCdrObj;
     verifOptionSetObj.getTypeInfo(systemName,sysDirInfo);
     verifOptionSetObj.packageName=verifOptionSetObj.getPackageName();
-
-
     pslinkOptions.cfgDir=pslinkOptions.ResultDir;
-
-
     hasError=verifOptionSetObj.checkConfiguration(systemName,pslinkOptions);
     if hasError
         error('pslink:cannotCreateDir',message('polyspace:gui:pslink:checkOptFailure').getString())
     end
-
-
     verifOptionSetObj.printConfiguration(systemName,pslinkOptions);
-
 
     extraSrc=[];
     if pslinkOptions.EnableAdditionalFileList
@@ -101,7 +77,6 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
     end
 
     extraSrc=extraSrc(:)';
-
 
     mdlRefs={};
     if strcmpi(pslinkOptions.ModelRefVerifDepth,'Current model only')
@@ -118,12 +93,10 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
         end
     end
 
-
     nbMdlRefs=numel(mdlRefs);
     if nbMdlRefs==0
         pslinkOptions.ModelRefByModelRefVerif=false;
     end
-
 
     sysCdrObj.extractAllInfo(pslinkOptions);
     sysDrsInfo=sysCdrObj.getDataRangeInfo();
@@ -132,24 +105,18 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
     sysFcnInfo=sysCdrObj.getFcnExecutionInfo();
     sysDataLinkInfo=sysCdrObj.getLinkDataInfo();
     if~isempty(sysDataLinkInfo)&&isstruct(sysDataLinkInfo)
-
-
         sysDataLinkInfo.sourcefile=sysFileInfo.source;
     end
     sysARInfo=sysCdrObj.getAutosarInfo();
 
-
     mdlRefResultInfo=cell(0,3);
     allMdlRefInfo=cell(0,2);
-
-
     oldSysModName=sysCdrObj.sysDirInfo.SystemCodeGenName;
     sysModName=oldSysModName;
     if nbMdlRefs&&pslinkOptions.ModelRefByModelRefVerif
         sysModName=genvarname(sysModName,mdlRefs);
     end
     sysResDir=fullfile(pslinkOptions.ResultDir,sysModName);
-
 
     try
         sysResDir=getOrCreateDir(sysResDir);
@@ -160,7 +127,6 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
     end
 
     for ii=1:nbMdlRefs
-
         mdlRefCdrObj=pslink.verifier.Coder.createCoderObject(coderID,mdlRefs{ii},true);
 
         if isempty(mdlRefCdrObj.cgDir)||~exist(mdlRefCdrObj.cgDir,'dir')
@@ -168,16 +134,12 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
             fprintf(1,'### %s\n',message('polyspace:gui:pslink:launchVerifSkipAnalysisTxt',mdlRefCdrObj.slModelName));
             continue
         end
-
-
         pslinkOptions.extractLinksDataOnly=true;
         mdlRefCdrObj.extractAllInfo(pslinkOptions);
         pslinkOptions.extractLinksDataOnly=false;
         mdlRefFileInfo=mdlRefCdrObj.getFileInfo();
         mdlRefDataLinkInfo=mdlRefCdrObj.getLinkDataInfo();
         if~isempty(mdlRefDataLinkInfo)&&isstruct(mdlRefDataLinkInfo)
-
-
             mdlRefDataLinkInfo.sourcefile=mdlRefFileInfo.source;
         end
 
@@ -187,10 +149,7 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
             mdlRefDrsInfo=mdlRefCdrObj.getDataRangeInfo();
             mdlRefARInfo=mdlRefCdrObj.getAutosarInfo();
             mdlRefFcnInfo=mdlRefCdrObj.getFcnExecutionInfo();
-
-
             mdlRefResDir=fullfile(pslinkOptions.ResultDir,mdlRefCdrObj.slModelName);
-
 
             try
                 mdlRefResDir=getOrCreateDir(mdlRefResDir);
@@ -199,18 +158,12 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
                 fprintf(1,'### %s\n',message('polyspace:gui:pslink:launchVerifSkipAnalysisTxt',mdlRefCdrObj.slModelName));
                 continue
             end
-
-
             checkSum=mdlRefCdrObj.getCheckSum();
             mdlRefResultInfo=[...
             mdlRefResultInfo;...
             {mdlRefCdrObj.slModelName,mdlRefResDir,checkSum}...
             ];%#ok<AGROW>
-
-
             mdlRefFileInfo.source=RTW.unique([mdlRefFileInfo.source,extraSrc]);
-
-
             verifOptionSetObj.coderObj=mdlRefCdrObj;
             verifOptionSetObj.mdlRefInfo=cell(0,2);
             verifOptionSetObj.drsInfo=mdlRefDrsInfo;
@@ -219,27 +172,19 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
             verifOptionSetObj.fcnInfo=mdlRefFcnInfo;
             verifOptionSetObj.dataLinkInfo=mdlRefDataLinkInfo;
             verifOptionSetObj.resultDir=mdlRefResDir;
-
             verifOptionSetObj.prepareOptions(pslinkOptions);
             verifOptionSetObj.appendToArchive(pslinkOptions,true);
         else
 
             allMdlRefInfo=[allMdlRefInfo;{mdlRefCdrObj.slModelName,mdlRefCdrObj.slModelVersion}];%#ok<AGROW>
-
-
             sysFileInfo.source=[sysFileInfo.source,mdlRefFileInfo.source];
             sysFileInfo.include=[sysFileInfo.include,mdlRefFileInfo.include];
-
-
             sysDataLinkInfo=[sysDataLinkInfo,mdlRefDataLinkInfo];%#ok<AGROW>
         end
 
     end
-
-
     sysFileInfo.source=RTW.unique(sysFileInfo.source);
     sysFileInfo.include=RTW.unique(sysFileInfo.include);
-
 
     verifOptionSetObj.coderObj=sysCdrObj;
     verifOptionSetObj.mdlRefInfo=allMdlRefInfo;
@@ -252,6 +197,7 @@ function packageName=prepareCodeVerification(systemH,pslinkOptions,coderID,isTop
 
     verifOptionSetObj.prepareOptions(pslinkOptions);
     packageName=verifOptionSetObj.appendToArchive(pslinkOptions,false);
+
 
     function hasSources=dirContainsSources(srcDir)
         hasSources=~isempty(dir(fullfile(srcDir,'*.c')))||...
