@@ -1,10 +1,5 @@
 function[meObj,systemH]=checkSystemValidity(obj,strict,coder)
 
-
-
-
-
-
     if nargin<2
         strict=false;
     end
