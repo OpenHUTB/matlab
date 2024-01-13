@@ -1,9 +1,6 @@
 classdef Coder<pslink.verifier.Coder
 
 
-
-
-
     properties(Constant,GetAccess=public)
         CODER_NAME='MATLAB Coder';
         CODER_ID='codegen';
@@ -20,13 +17,10 @@ cgStdLang
 supportNonFinite
     end
 
+
     methods(Access=public)
 
-
-
-
         function self=Coder(codeGenFolder)
-
             self=self@pslink.verifier.Coder('-codegenfolder',codeGenFolder);
 
             self.buildInfo=[];
@@ -35,20 +29,16 @@ supportNonFinite
             self.mustWriteAllData=false;
             self.booleanTypes=[];
             self.fcnToStub=[];
-
             self.sysDirInfo=pslink.util.Helper.getConfigDirInfo('-codegenfolder',pslink.verifier.codegen.Coder.CODER_ID,codeGenFolder);
             self.cgName=self.sysDirInfo.SystemCodeGenName;
 
             self.cgDir=codeGenFolder;
-
             self.cgDirStatus=exist(self.cgDir,'dir');
             self.cgLanguage=self.getCodeLang();
             self.cgStdLang=self.getLangStandard();
             self.supportNonFinite=self.getNonfiniteSupportState();
 
         end
-
-
 
 
         function checkSum=getCheckSum(self)
@@ -58,9 +48,6 @@ supportNonFinite
                 checkSum=self.codeInfo.Checksum();
             end
         end
-
-
-
 
 
         function extractAllInfo(self,~)
@@ -82,9 +69,6 @@ supportNonFinite
 
 
 
-
-
-
         function extractDrsInfo(self,pslinkOptions)
             if nargin<2
                 pslinkOptions=pslink.Options();
@@ -93,7 +77,6 @@ supportNonFinite
                 pslinkOptions.OutputRangeMode='None';
                 pslinkOptions.ParamRangeMode='None';
             end
-
 
             if strcmpi(pslinkOptions.InputRangeMode,'DesignMinMax')
                 self.inputFullRange=false;
@@ -117,8 +100,6 @@ supportNonFinite
 
 
 
-
-
         function fileInfo=getFileInfo(self,opts)%#ok<INUSD>
             self.loadBuildInfo();
             if~isempty(self.buildInfo)
@@ -130,21 +111,15 @@ supportNonFinite
 
 
 
-
-
         function dlinkInfo=getLinkDataInfo(self)
             dlinkInfo=self.dlinkInfo;
         end
-
-
 
 
         function booleanTypes=getBooleanType(self)
             self.booleanTypes={};
             booleanTypes=self.booleanTypes;
         end
-
-
 
 
         function fcnToStub=getFcnToStub(self)
@@ -156,8 +131,6 @@ supportNonFinite
             };
             fcnToStub=self.fcnToStub;
         end
-
-
 
 
         function codeLang=getCodeLang(self)
@@ -174,8 +147,6 @@ supportNonFinite
                 codeLang='C++ (Encapsulated)';
             end
         end
-
-
 
 
         function langStd=getLangStandard(self)
@@ -198,8 +169,6 @@ supportNonFinite
                         langStd='cpp11';
                     end
                 else
-
-
                     switch langStd
                     case 'C99 (ISO)'
                         langStd='c99';
@@ -213,9 +182,6 @@ supportNonFinite
         end
 
 
-
-
-
         function isSupported=getNonfiniteSupportState(self)
             isSupported=false;
 
@@ -224,8 +190,6 @@ supportNonFinite
                 isSupported=self.configInfo.SupportNonFinite;
             end
         end
-
-
 
 
         function hardwareInfo=getHWInfo(self)
@@ -295,9 +259,8 @@ supportNonFinite
         end
     end
 
+
     methods(Access=private)
-
-
 
         function loadCodeInfo(self)
             if self.cgDirStatus
@@ -315,8 +278,6 @@ supportNonFinite
         end
 
 
-
-
         function loadBuildInfo(self)
             if self.cgDirStatus
                 buildInfoFile=fullfile(self.cgDir,'buildInfo.mat');
@@ -330,10 +291,9 @@ supportNonFinite
         end
     end
 
+
     methods(Static=true)
         [resultDescription,resultDetails,resultType,hasError,resultId]=checkOptions(codeGenFolder,opts)
-
-
 
 
         function str=getCoderName()
@@ -341,14 +301,9 @@ supportNonFinite
         end
 
 
-
-
         function str=getCoderVersion()
             str=ver('embeddedcoder');
         end
-
-
-
 
 
         function codegenID=getCodegenID(codeGenFolder)
@@ -368,6 +323,7 @@ supportNonFinite
 
     end
 
+
     methods(Static=true,Access=private)
 
 
@@ -381,7 +337,6 @@ supportNonFinite
         end
 
 
-
         function addDynamicProperty(uddObj,propName,propType,defaultValue)%#ok<INUSL>
 
             if~isprop(uddObj,propName)
@@ -392,15 +347,12 @@ supportNonFinite
         end
 
 
-
-
         function embeddedObj=getUnderlyingType(embeddedObj)
             embeddedObj=pslink.verifier.codegen.Coder.getCoderType(embeddedObj);
             if isa(embeddedObj,'embedded.matrixtype')||isa(embeddedObj,'embedded.pointertype')
                 embeddedObj=pslink.verifier.codegen.Coder.getUnderlyingType(embeddedObj.BaseType);
             end
         end
-
 
 
         function embeddedObj=getCoderType(embeddedObj)
