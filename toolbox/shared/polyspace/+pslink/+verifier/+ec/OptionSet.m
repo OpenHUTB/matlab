@@ -1,12 +1,6 @@
 classdef OptionSet<pslink.verifier.OptionSet
 
-
-
-
     methods(Access=public)
-
-
-
 
         function self=OptionSet(varargin)
             self=self@pslink.verifier.OptionSet(varargin{:});
@@ -15,13 +9,8 @@ classdef OptionSet<pslink.verifier.OptionSet
         end
 
 
-
-
         function delete(~)
         end
-
-
-
 
         function[ovwOpts,archiveInfo]=fixSrcFiles(self,ovwOpts,pslinkOptions)
 
@@ -30,8 +19,6 @@ classdef OptionSet<pslink.verifier.OptionSet
             tempFolder=tempname;
             mkdir(tempFolder);
             cd(tempFolder);
-
-
             archiveFiles=unzip(self.packageName);
             archiveInfo=struct();
             archiveInfo.Files=archiveFiles;
@@ -43,8 +30,6 @@ classdef OptionSet<pslink.verifier.OptionSet
                     currFile=fullfile('..','..',archiveFiles{ii});
                     self.fileInfo.source{idx}=currFile;
                 else
-
-
                     [archivePath,baseName,ext]=fileparts(archiveFiles{ii});
                     fileName=[baseName,ext];
                     idx=endsWith(self.fileInfo.source,[filesep,fileName]);
@@ -52,7 +37,6 @@ classdef OptionSet<pslink.verifier.OptionSet
                     if sum(idx)==1
                         origFile=self.fileInfo.source{idx};
                         origPath=fileparts(origFile);
-
 
                         if isempty(archiveInfo.PathMap)
                             archiveInfo.PathMap=containers.Map('KeyType','char','ValueType','char');
@@ -64,7 +48,6 @@ classdef OptionSet<pslink.verifier.OptionSet
                     end
                 end
             end
-
 
             if pslinkOptions.EnableAdditionalFileList&&numel(pslinkOptions.AdditionalFileList)>0
                 for ii=1:numel(pslinkOptions.AdditionalFileList)
@@ -83,7 +66,6 @@ classdef OptionSet<pslink.verifier.OptionSet
                 end
             end
         end
-
 
 
 
@@ -120,14 +102,10 @@ classdef OptionSet<pslink.verifier.OptionSet
         end
 
 
-
-
         function getTypeInfo(self,systemName,sysDirInfo)
             self.typeInfo=pssharedprivate('getTypeInfo',systemName,...
             pslink.verifier.ec.Coder.CODER_ID,sysDirInfo.SystemCodeGenDir,sysDirInfo.ModelRefCodeGenDir);
         end
-
-
 
 
         function getTplFlags(self,modelLang)
@@ -155,10 +133,7 @@ classdef OptionSet<pslink.verifier.OptionSet
 
 
 
-
-
         function hasError=checkConfiguration(self,systemName,pslinkOptions)
-
 
             if~isempty(self.coderObj)
                 opts.isMdlRef=self.coderObj.isMdlRef;
@@ -167,9 +142,6 @@ classdef OptionSet<pslink.verifier.OptionSet
             [ResultDescription,ResultDetails,ResultType,hasError]=pslink.verifier.ec.Coder.checkOptions(systemName,opts);
             pssharedprivate('printCheckOptionsResults',ResultDescription,ResultDetails,ResultType);
         end
-
-
-
 
 
         function packageName=getPackageName(self)
@@ -181,7 +153,6 @@ classdef OptionSet<pslink.verifier.OptionSet
 
             packageName=get_param(configSet,'PackageName');
             if isempty(packageName)
-
                 sysDirInfo=pslink.util.Helper.getConfigDirInfo(self.coderObj.slSystemName,pslink.verifier.ec.Coder.CODER_ID);
                 packageName=[sysDirInfo.SystemCodeGenName,'.zip'];
             end
@@ -198,23 +169,17 @@ classdef OptionSet<pslink.verifier.OptionSet
         end
 
 
-
-
         function packageName=appendToArchive(self,pslinkOptions,isMdlRef)
             packageName=self.packageName;
             polyspaceFolder='polyspace';
-
 
             originalFolder=pwd;
             cObj=onCleanup(@()cd(originalFolder));
             tempFolder=tempname;
             mkdir(tempFolder);
             cd(tempFolder);
-
-
             [~,baseFolder]=fileparts(fileparts(packageName));
             startFolder=fullfile(tempFolder,baseFolder);
-
 
             psFiles={...
             self.optionsFileName,...
@@ -227,7 +192,6 @@ classdef OptionSet<pslink.verifier.OptionSet
                 psFolderName=fullfile(startFolder,polyspaceFolder);
             end
 
-
             archiveFiles=unzip(packageName);
             extractFolders={};
             for ii=1:numel(archiveFiles)
@@ -238,7 +202,6 @@ classdef OptionSet<pslink.verifier.OptionSet
                 end
             end
             extractFolders=unique(extractFolders);
-
 
             if~isfolder(psFolderName)
                 mkdir(psFolderName);
@@ -256,7 +219,6 @@ classdef OptionSet<pslink.verifier.OptionSet
                 end
             end
 
-
             if pslinkOptions.EnableAdditionalFileList&&numel(pslinkOptions.AdditionalFileList)>0
                 for ii=1:numel(pslinkOptions.AdditionalFileList)
                     if exist(pslinkOptions.AdditionalFileList{ii},'file')==2
@@ -270,9 +232,8 @@ classdef OptionSet<pslink.verifier.OptionSet
         end
     end
 
+
     methods(Access=protected)
-
-
 
         function writeLinksDataFile(self)
             if~isempty(self.dataLinkInfo)
@@ -281,10 +242,8 @@ classdef OptionSet<pslink.verifier.OptionSet
         end
     end
 
+
     methods(Static=true)
-
-
-
 
         function ovwOpts=fixOptsFromSettings(ovwOpts,pslinkOptions)
             if pslinkOptions.AutoStubLUT
