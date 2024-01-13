@@ -1,5 +1,3 @@
-
-
 function psSystemSelectorRF(userdata,cbinfo,action)
     action.enabled=false;
 
