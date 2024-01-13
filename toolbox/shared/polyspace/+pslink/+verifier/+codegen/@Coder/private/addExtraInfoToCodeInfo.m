@@ -1,7 +1,5 @@
 function addExtraInfoToCodeInfo(self)
 
-
-
     try
         if~isempty(self.codeInfo)
 
@@ -89,22 +87,13 @@ function addExtraInfoToCodeInfo(self)
 
     nCleanup();
 
+
     function nSetDataUsageInCode(data)
-
-
-
-
-
-
         uKind=0;
         switch class(data.Implementation)
         case{'RTW.Variable','RTW.StructExpression','RTW.TypedCollection'}
             dataImpl=data.Implementation;
             if isa(dataImpl,'RTW.TypedCollection')
-
-
-
-
                 dataImpl=dataImpl.Elements(1);
             end
             if~isa(dataImpl,'RTW.PointerVariable')&&dataImpl.isDefined
@@ -124,22 +113,20 @@ function addExtraInfoToCodeInfo(self)
                     uKind=2;
                 end
             end
-
         case{'RTW.Argument','coder.types.Argument'}
             uKind=2;
-
         case{'RTW.AutosarSenderReceiver','RTW.AutosarInterRunnable',...
             'RTW.AutosarErrorStatus','RTW.AutosarCalibration'}
             uKind=3;
 
         case 'RTW.AutosarClientServer'
 
-
         otherwise
 
         end
         data.UsageKind=uKind;
     end
+
 
     function nCleanup()
 
