@@ -1,8 +1,4 @@
 classdef Coder<handle
-
-
-
-
     properties(Hidden=true,SetAccess=protected,GetAccess=public)
 slSystemName
 slModelName
@@ -36,9 +32,6 @@ SourceEncoding
     end
 
     methods(Access=public)
-
-
-
 
         function self=Coder(arg1,arg2)
             if nargin<1
@@ -110,8 +103,6 @@ SourceEncoding
         end
 
 
-
-
         function delete(self)
             if self.needUnload
                 try
@@ -123,15 +114,9 @@ SourceEncoding
         end
 
 
-
-
-
         function arInfo=getAutosarInfo(self)
             arInfo=self.arInfo;
         end
-
-
-
 
 
         function drsInfo=getDataRangeInfo(self)
@@ -139,15 +124,9 @@ SourceEncoding
         end
 
 
-
-
-
         function fcnInfo=getFcnExecutionInfo(self)
             fcnInfo=self.fcnInfo;
         end
-
-
-
 
 
         function fileInfo=getFileInfo(self,unused)%#ok<INUSD>
@@ -155,21 +134,13 @@ SourceEncoding
         end
 
 
-
-
-
         function dlinkInfo=getLinkDataInfo(self)
             dlinkInfo=self.dlinkInfo;
         end
 
-
-
-
         function booleanTypes=getBooleanType(self)
             booleanTypes=self.booleanTypes;
         end
-
-
 
 
         function fcnToStub=getFcnToStub(self)
@@ -177,6 +148,7 @@ SourceEncoding
         end
 
     end
+
 
     methods(Abstract)
 
