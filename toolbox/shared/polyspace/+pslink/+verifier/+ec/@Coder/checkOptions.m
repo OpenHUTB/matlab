@@ -1,8 +1,5 @@
 function[resultDescription,resultDetails,resultType,hasError,resultId]=checkOptions(systemName,opts)
 
-
-
-
     if nargin<2
         opts=struct();
     end
@@ -19,10 +16,8 @@ function[resultDescription,resultDetails,resultType,hasError,resultId]=checkOpti
         haltOnWarn=strcmpi(opts.CheckConfigBeforeAnalysis,'OnHalt');
     end
 
-
     modelName=bdroot(systemName);
     currentCS=getActiveConfigSet(modelName);
-
 
     resultDescription={};
     resultDetails={};
@@ -30,7 +25,6 @@ function[resultDescription,resultDetails,resultType,hasError,resultId]=checkOpti
     resultId={};
     hasError=false;
     hasWarning=false;
-
 
     resultDescription{end+1}=message('polyspace:gui:pslink:chkOptsDescGenCodeFolder').getString();
     resultDetails{end+1}={};
@@ -64,20 +58,12 @@ function[resultDescription,resultDetails,resultType,hasError,resultId]=checkOpti
             end
 
             if~isempty(codeInfo)
-
-
                 codeChecksum=codeInfo.Checksum;
 
                 if strcmpi(get_param(systemName,'Type'),'block_diagram')
                     errStr='';
                     try
-
-
                         [unused,systemChecksum]=evalc('Simulink.BlockDiagram.getChecksum(modelName)');%#ok<ASGLU>
-
-
-
-
 
                     catch Me
                         systemChecksum=[];
@@ -108,7 +94,6 @@ function[resultDescription,resultDetails,resultType,hasError,resultId]=checkOpti
         end
     end
 
-
     resultDescription{end+1}=message('polyspace:gui:pslink:chkOptsDescResultsFolder').getString();
     resultDetails{end+1}={};
     resultType{end+1}={};
@@ -124,7 +109,6 @@ function[resultDescription,resultDetails,resultType,hasError,resultId]=checkOpti
         resultType{end}{end+1}='Error';
         hasError=true;
     end
-
 
     resultDescription{end+1}=message('polyspace:gui:pslink:chkOptsDescCodeGenOpts').getString();
     resultDetails{end+1}={};
@@ -150,7 +134,6 @@ function[resultDescription,resultDetails,resultType,hasError,resultId]=checkOpti
             hasError=true;
         end
     end
-
 
     bInfoFile=fullfile(sysDirInfo.ModelRefCodeGenDir,'tmwinternal','binfo.mat');
     if exist(bInfoFile,'file')==2
