@@ -1,10 +1,5 @@
 function schema=psProductSelectionActionRF(callbackInfo)
 
-
-
-
-
-
     schema=sl_action_schema;
     opts=pslinkoptions(callbackInfo.model.Handle);
     if strcmpi(opts.VerificationMode,'CodeProver')
