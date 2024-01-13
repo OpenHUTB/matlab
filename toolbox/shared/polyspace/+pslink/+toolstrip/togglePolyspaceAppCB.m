@@ -1,9 +1,5 @@
 function togglePolyspaceAppCB(userdata,callbackInfo)
 
-
-
-
-
     if isempty(callbackInfo.EventData)
         show=true;
     else
@@ -16,7 +12,6 @@ function togglePolyspaceAppCB(userdata,callbackInfo)
     if isempty(app)
         return;
     end
-
 
     studio=callbackInfo.studio;
     sa=studio.App;
