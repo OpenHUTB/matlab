@@ -1,17 +1,5 @@
 function ret=isTlTarget(systemH,allowTopModel)
 
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin<2
         allowTopModel=false;
     end
@@ -24,17 +12,12 @@ function ret=isTlTarget(systemH,allowTopModel)
     if isempty(which('dsdd'))
         return
     end
-
-
-
     tlDlgBlk=find_system(get_param(modelName,'Handle'),...
     'LookUnderMasks','all','MaskType','TL_MainDialog');
     if~isempty(tlDlgBlk)
         ret=true;
         return
     end
-
-
     prjFile=dsdd_manage_project('GetProjectFile',modelName);
     if~isempty(prjFile)
         ret=true;
