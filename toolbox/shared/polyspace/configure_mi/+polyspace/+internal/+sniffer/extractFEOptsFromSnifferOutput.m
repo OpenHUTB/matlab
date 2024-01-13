@@ -1,13 +1,9 @@
-
-
 function feOpts=extractFEOptsFromSnifferOutput(psOutputDumpFile,psDefaultOptions)
 
     feOpts=containers.Map('KeyType','char','ValueType','any');
     if~exist(psOutputDumpFile,'file')
         return;
     end
-
-
     fine(polyspace.internal.logging.Logger.getLogger('CompilerCmd'),...
     'Extracting the front-end options from the ''polyspace-configure'' output dump file...\n');
     fid=fopen(psOutputDumpFile,'rt');
@@ -45,8 +41,6 @@ function feOpts=extractFEOptsFromSnifferOutput(psOutputDumpFile,psDefaultOptions
             tmp=tmp{1};
             switch tmp{1}
             case 'compilation unit'
-
-
 
                 [~,f,e]=fileparts(tmp{2});
                 fileName=[f,e];
@@ -104,7 +98,6 @@ function feOpts=extractFEOptsFromSnifferOutput(psOutputDumpFile,psDefaultOptions
             end
         end
 
-
         tmp=regexp(tline,'cu[0-9]+\s+target: (.*?): (.*?)\s*$','tokens');
         if~isempty(tmp)
             tmp=tmp{1};
@@ -121,10 +114,7 @@ function feOpts=extractFEOptsFromSnifferOutput(psOutputDumpFile,psDefaultOptions
 
     clear closeOutputDumpFile;
 
-
-
     for i=1:length(compilation_units)
-
         compilation_unit=compilation_units{i};
 
         compInfo=struct('targetSettings',struct(),...
@@ -136,9 +126,6 @@ function feOpts=extractFEOptsFromSnifferOutput(psOutputDumpFile,psDefaultOptions
         'preIncludes',{preincludes(compilation_unit)},...
         'languageExtra',{{}},...
         'compilerFlags',{compiler_semantic_options(compilation_unit)});
-
-
-
         target_options_l=target_options(compilation_unit);
         if target_options_l.isKey('endianness')&&~strcmpi(target_options_l('endianness'),'unknown')
             compInfo.targetSettings.Endianness=target_options_l('endianness');
@@ -200,7 +187,6 @@ function feOpts=extractFEOptsFromSnifferOutput(psOutputDumpFile,psDefaultOptions
         else
             lang='c';
         end
-
         compInfo.targetSettings.AllowShortLong=target_options_l.isKey('sizeof_short_long');
         compInfo.targetSettings.AllowLongLong=target_options_l.isKey('sizeof_long_long');
         compInfo.targetSettings.MinStructAlignment=psGetNumericOption('alignof_struct',...
@@ -224,12 +210,10 @@ function feOpts=extractFEOptsFromSnifferOutput(psOutputDumpFile,psDefaultOptions
                 checkTypeKindAndSize(target_options_l,'wchar_t',compInfo.targetSettings.WcharTypeKind,target_options_l('sizeof_wchar_t'));
             end
         end
-
         compInfo.targetSettings.AllowMultibyteChars=true;
         compInfo.targetSettings.PlainCharsAreSigned=strcmp(target_options_l('signed_char'),'1');
 
         compInfo.targetSettings.PlainBitFieldsAreSigned=true;
-
 
         if any(strncmp(compInfo.sysCompDefines,'__GNUC__=',9))
             declspecIdx=strcmp(compInfo.sysCompDefines,'__declspec=__declspec');
@@ -242,8 +226,6 @@ function feOpts=extractFEOptsFromSnifferOutput(psOutputDumpFile,psDefaultOptions
         end
 
         if strncmp(dialect,'gnu',3)
-
-
             gnu_version=sscanf(dialect,'gnu%d.%d');
             gnucMajorIdx=strncmp(compInfo.sysCompDefines,'__GNUC__=',9);
             if~any(gnucMajorIdx)&&(numel(gnu_version)>=1)
@@ -254,8 +236,6 @@ function feOpts=extractFEOptsFromSnifferOutput(psOutputDumpFile,psDefaultOptions
                 compInfo.sysCompDefines{end+1}=sprintf('__GNUC_MINOR__=%d',gnu_version(2));
             end
         elseif strncmp(dialect,'visual',6)
-
-
             mscVerIdx=strncmp(compInfo.sysCompDefines,'_MSC_VER=',9);
             if~any(mscVerIdx)
                 switch dialect
