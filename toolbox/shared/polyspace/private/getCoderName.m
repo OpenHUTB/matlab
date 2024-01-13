@@ -1,7 +1,5 @@
 function str=getCoderName(coderID)
 
-
-
     if strcmpi(coderID,pslink.verifier.codegen.Coder.CODER_ID)
         str=pslink.verifier.codegen.Coder.getCoderName();
     elseif strcmpi(coderID,pslink.verifier.ec.Coder.CODER_ID)
