@@ -1,19 +1,13 @@
 function[codeTypeInfo,mdlTypeInfo]=getTypeInfo(systemName,coderID,sysCodeGenDir,sysSlprjDir)
 
-
-
-
     modelName=bdroot(systemName);
     configSet=getActiveConfigSet(modelName);
     mdlTypeInfo=iGetTypeInfo(configSet,coderID);
-
 
     codeTypeInfo=mdlTypeInfo;
 
     if nargin==4&&strcmp(coderID,pslink.verifier.ec.Coder.CODER_ID)
         hasError=false;
-
-
         typeInfo=fullfile(sysCodeGenDir,'rtwtypeschksum.mat');
         if exist(typeInfo,'file')
             try
@@ -43,8 +37,6 @@ function[codeTypeInfo,mdlTypeInfo]=getTypeInfo(systemName,coderID,sysCodeGenDir,
                 return
             end
         end
-
-
         bInfo=fullfile(sysSlprjDir,'tmwinternal','binfo.mat');
         if exist(bInfo,'file')
             try
@@ -103,7 +95,6 @@ function[codeTypeInfo,mdlTypeInfo]=getTypeInfo(systemName,coderID,sysCodeGenDir,
                 mdlTypeInfo=iGetTypeInfoFromFrontEndOptions(feOpts);
                 return
             end
-
             extraFlag=~strcmpi(get_param(configSet,'TargetHWDeviceType'),'Unspecified');
             if configSet.isValidParam('TargetUnknown')&&strcmp(get_param(configSet,'TargetUnknown'),'on')
                 extraFlag=false;
