@@ -1,9 +1,5 @@
 classdef Coder<pslink.verifier.Coder
 
-
-
-
-
     properties(Constant,GetAccess=public)
         CODER_NAME='Embedded Coder';
         CODER_ID='ec';
@@ -20,10 +16,8 @@ cgStdLang
 sharedCodeManager
     end
 
+
     methods(Access=public)
-
-
-
 
         function self=Coder(slSystemName,isMdlRef)
             if nargin<2
@@ -56,8 +50,6 @@ sharedCodeManager
         end
 
 
-
-
         function checkSum=getCheckSum(self)
             checkSum=[];
             self.loadCodeInfo();
@@ -67,12 +59,7 @@ sharedCodeManager
         end
 
 
-
-
-
         function extractAllInfo(self,pslinkOptions)
-
-
             if nargin<2
                 pslinkOptions=pslink.Options();
                 pslinkOptions=get(pslinkOptions);
@@ -86,7 +73,6 @@ sharedCodeManager
                 end
             end
 
-
             if strcmpi(pslinkOptions.InputRangeMode,'DesignMinMax')
                 self.inputFullRange=false;
             end
@@ -96,7 +82,6 @@ sharedCodeManager
             if strcmpi(pslinkOptions.ParamRangeMode,'DesignMinMax')
                 self.paramFullRange=false;
             end
-
 
             if self.cgDirStatus
                 traceInfoFile=fullfile(self.cgDir,'html','traceInfo.mat');
@@ -108,7 +93,6 @@ sharedCodeManager
                         rptObj.generate('GenerateTraceInfo','on');
                     catch Me %#ok<NASGU>
                     end
-
 
                     cd(currentFolder);
                 end
@@ -135,9 +119,6 @@ sharedCodeManager
                     self.dlinkInfo.info(ii).path=self.traceInfo(ii).pathname;
                     self.dlinkInfo.info(ii).sid=self.traceInfo(ii).sid;
                 end
-
-
-
 
                 try
                     traceData=coder.trace.getTraceInfo(self.slSystemName);
@@ -172,9 +153,6 @@ sharedCodeManager
                 self.getFcnToStub();
                 self.loadCodeInfo();
                 self.fcnInfo.codeLanguage=self.cgLanguage;
-
-
-
                 addExtraInfoToCodeInfo(self,false);
 
                 if~isempty(self.codeInfo)
@@ -187,13 +165,8 @@ sharedCodeManager
                         if pslinkprivate('pslinkattic','getBinMode','autosarFinalAssert')
                             generateARStubs(self,pslinkOptions);
                         end
-
-
-
                         self.booleanTypes=[self.booleanTypes,{'Boolean'}];
                     end
-
-
                     [execMap,className]=extractExecutionInfo(self,[]);
                     fillFcnInfo(self,execMap,className);
 
@@ -203,9 +176,6 @@ sharedCodeManager
                 end
             end
         end
-
-
-
 
 
         function fileInfo=getFileInfo(self,opts)
@@ -228,14 +198,9 @@ sharedCodeManager
         end
 
 
-
-
-
         function dlinkInfo=getLinkDataInfo(self)
             dlinkInfo=self.dlinkInfo;
         end
-
-
 
 
         function booleanTypes=getBooleanType(self)
@@ -251,8 +216,6 @@ sharedCodeManager
             booleanTypes=self.booleanTypes;
 
         end
-
-
 
 
         function fcnToStub=getFcnToStub(self)
@@ -273,9 +236,8 @@ sharedCodeManager
 
     end
 
+
     methods(Access=private)
-
-
 
         function loadCodeInfo(self)
             if self.cgDirStatus
@@ -294,9 +256,6 @@ sharedCodeManager
                 end
             end
         end
-
-
-
 
 
         function configSet=getConfigSet(self)
@@ -318,9 +277,6 @@ sharedCodeManager
         end
 
 
-
-
-
         function ai=getAutosarInterface(self)
             ai=[];
             try
@@ -336,8 +292,6 @@ sharedCodeManager
 
             end
         end
-
-
 
 
         function codeLang=getCodeLang(self)
@@ -379,17 +333,12 @@ sharedCodeManager
             mInfoExists=findBInfoMInfoMAT(self,'minfo.mat')||...
             findBInfoMInfoMAT(self,'minfo_mdlref.mat');
 
-
             if bInfoExists&&mInfoExists
                 out=false;
                 return;
             end
-
-
             out=true;
         end
-
-
 
 
         function langStd=getLangStandard(self)
@@ -401,7 +350,6 @@ sharedCodeManager
 
                 if strncmpi(self.cgLanguage,'C++',3)
 
-
                     switch langStd
                     case 'C++11 (ISO)'
                         langStd='cpp11';
@@ -411,8 +359,6 @@ sharedCodeManager
                         langStd='cpp11';
                     end
                 else
-
-
                     switch langStd
                     case 'C99 (ISO)'
                         langStd='c99';
@@ -426,14 +372,7 @@ sharedCodeManager
         end
 
 
-
-
         function loadBuildInfo(self)
-
-
-
-
-
             candidates={...
             'binfo.mat',...
             'binfo_mdlref.mat',...
@@ -475,11 +414,7 @@ sharedCodeManager
         end
 
 
-
-
-
         function loadSharedCodeManager(self)
-
             sharedFile=fullfile(self.sysDirInfo.SharedUtilsDir,'shared_file.dmr');
             scm='';
             if exist(sharedFile,'file')
@@ -501,18 +436,15 @@ sharedCodeManager
         end
     end
 
+
     methods(Static=true)
         [resultDescription,resultDetails,resultType,hasError,resultId]=checkOptions(systemName,opts)
         cgDirInfo=getCodeGenerationDir(systemName)
 
 
-
-
         function str=getCoderName()
             str=pslink.verifier.ec.Coder.CODER_NAME;
         end
-
-
 
 
         function str=getCoderVersion()
@@ -521,8 +453,8 @@ sharedCodeManager
 
     end
 
-    methods(Static=true,Access=private)
 
+    methods(Static=true,Access=private)
 
         function addAllDynamicProperties(uddObj)
             pslink.verifier.ec.Coder.addDynamicProperty(uddObj,'MinMax','mxArray',{[],[]});
@@ -534,7 +466,6 @@ sharedCodeManager
         end
 
 
-
         function addDynamicProperty(uddObj,propName,propType,defaultValue)%#ok<INUSL>
             if~isprop(uddObj,propName)
                 prop=addprop(uddObj,propName);
@@ -544,9 +475,8 @@ sharedCodeManager
         end
     end
 
+
     methods(Static=true)
-
-
 
         function embeddedObj=getUnderlyingType(embeddedObj)
             embeddedObj=pslink.verifier.ec.Coder.getCoderType(embeddedObj);
@@ -556,14 +486,11 @@ sharedCodeManager
         end
 
 
-
         function embeddedObj=getCoderType(embeddedObj)
             if isa(embeddedObj,'coder.types.Type')
                 embeddedObj=embeddedObj.getEmbeddedType;
             end
         end
-
-
 
 
         function ret=embeddedTypeIsFixedPoint(embeddedObj)
@@ -584,8 +511,6 @@ sharedCodeManager
         end
 
 
-
-
         function dtRange=getDataTypeRange(embeddedObj,useRawValue)
             embeddedObj=pslink.verifier.ec.Coder.getCoderType(embeddedObj);
             assert(isa(embeddedObj,'embedded.type'),'Argument must be an embedded.type object.');
@@ -593,7 +518,6 @@ sharedCodeManager
             if nargin<2
                 useRawValue=false;
             end
-
 
             dtRange={[],[]};
 
@@ -628,10 +552,7 @@ sharedCodeManager
             else
 
             end
-
         end
-
-
 
 
         function minMax=computeDataMinMax(data,type,minVal,maxVal)
