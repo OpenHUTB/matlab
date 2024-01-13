@@ -1,22 +1,15 @@
 function[execMap,className]=extractExecutionInfo(self,unused)%#ok<INUSD>
 
-
-
-
-
     execMap=containers.Map({1},{{}});
     execMap.remove(1);
 
     for ii=1:numel(self.codeInfo.TimingProperties)
         key=nGetSampleTimeAsKey(self.codeInfo.TimingProperties(ii));
         if isempty(key)
-
             continue
         end
         execMap(key)={{},{}};
     end
-
-
     if~isempty(self.codeInfo.InitializeFunctions)
         nAddFunctionToMap(self.codeInfo.InitializeFunctions(1),true);
     end
@@ -39,12 +32,9 @@ function[execMap,className]=extractExecutionInfo(self,unused)%#ok<INUSD>
         end
     end
 
-
-
     if self.mustWriteAllData
         return
     end
-
 
     for ii=1:numel(self.codeInfo.Inports)
         if self.codeInfo.Inports(ii).UsageKind==1
@@ -67,11 +57,9 @@ function[execMap,className]=extractExecutionInfo(self,unused)%#ok<INUSD>
         end
     end
 
-
     if self.mustWriteAllData
         return
     end
-
 
     for ii=1:numel(self.codeInfo.DataStores)
         if self.codeInfo.DataStores(ii).UsageKind==1
@@ -92,13 +80,11 @@ function[execMap,className]=extractExecutionInfo(self,unused)%#ok<INUSD>
         end
     end
 
-
     if self.paramFullRange==true||...
         isempty(self.codeInfo.Parameters)||...
         isempty(self.codeInfo.InitializeFunctions)
         return
     end
-
 
     for ii=1:numel(self.codeInfo.Parameters)
         if self.codeInfo.Parameters(ii).UsageKind==1
@@ -137,6 +123,7 @@ function[execMap,className]=extractExecutionInfo(self,unused)%#ok<INUSD>
         execMap(stKey)=mVal;
     end
 
+
     function exprInCode=nGetExprInCode(data)
         exprInCode='';
         if data.Implementation.isDefined&&~isa(data.Implementation,'RTW.PointerVariable')
@@ -149,6 +136,7 @@ function[execMap,className]=extractExecutionInfo(self,unused)%#ok<INUSD>
             end
         end
     end
+
 
     function key=nGetSampleTimeAsKey(timingProperty)
 
