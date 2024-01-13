@@ -1,6 +1,3 @@
-
-
-
 classdef Coder<pslink.verifier.Coder
 
     properties(Constant,GetAccess=public)
@@ -16,14 +13,14 @@ Dialect
 TargetInfo
     end
 
+
     methods(Static=true)
-
-
 
         function str=getCoderName()
             str=pslink.verifier.slcc.Coder.CODER_NAME;
         end
     end
+
 
     methods
 
@@ -31,7 +28,6 @@ TargetInfo
             if nargin<2
                 pslinkOptions=pslink.Options(blockPath);
             end
-
             self@pslink.verifier.Coder(blockPath);
             resultDir=pslinkOptions.ResultDir;
             self.sysDirInfo=pslink.util.Helper.getConfigDirInfo(self.slSystemName,pslink.verifier.slcc.Coder.CODER_ID);
@@ -44,22 +40,18 @@ TargetInfo
         end
 
 
-
         function extractAllInfo(self,opts)
             blockPath=self.slSystemName;
 
             tmpDir=self.cgName;
 
-
             [~,~,~]=mkdir(tmpDir);
 
             [sourceFiles,wrapperInfo,feOptions]=...
             self.generateFilesAndExtractDrs(tmpDir,opts,blockPath);
-
             compilerInfo=sldv.code.internal.getCompilerInfo(feOptions);
             self.Dialect=compilerInfo.dialect;
             self.TargetInfo=self.computeTargetInfo(feOptions);
-
             self.fcnInfo.codeLanguage=wrapperInfo.Language;
             self.fileInfo.source=sourceFiles;
             self.fileInfo.include=[feOptions.Preprocessor.SystemIncludeDirs(:);...
@@ -68,7 +60,6 @@ TargetInfo
             if~isempty(feOptions.Preprocessor.UnDefines)
                 self.fileInfo.undefine=feOptions.Preprocessor.UnDefines;
             end
-
             self.fcnInfo.step=pslink.verifier.Coder.createFcnInfoStruct();
             self.fcnInfo.step.fcn=wrapperInfo.StepFcns;
             self.fcnInfo.step.var=wrapperInfo.StepVars;
@@ -90,15 +81,9 @@ TargetInfo
         end
 
 
-
-
-
         function language=getLanguage(self)
             language=self.fcnInfo.codeLanguage;
         end
-
-
-
 
 
         function dialect=getDialect(self)
@@ -106,23 +91,22 @@ TargetInfo
         end
 
 
-
         function targetInfo=getTargetInfo(self)
             targetInfo=self.TargetInfo;
         end
+
 
         function wrappersFile=getWrappersFile(self)
             wrappersFile=self.WrappersFile;
         end
     end
 
+
     methods(Access=private)
 
         function name=getLinkName(~,blockH)
             sid=Simulink.ID.getSID(blockH);
             fullName=Simulink.ID.getFullName(sid);
-
-
             slashIndexes=strfind(fullName,'/');
             if~isempty(slashIndexes)
                 startIndex=slashIndexes(1);
@@ -131,7 +115,6 @@ TargetInfo
                 name='<Root>';
             end
         end
-
 
 
         function targetInfo=computeTargetInfo(~,feOpts)
@@ -169,15 +152,10 @@ TargetInfo
         end
 
 
-
-
-
         function[sourceFiles,wrapperInfo,feOptions]=generateFilesAndExtractDrs(self,...
             tmpDir,...
             pslinkOptions,...
             blockH)
-
-
 
 
 
@@ -241,16 +219,11 @@ TargetInfo
             writeParamValues=~strcmp(pslinkOptions.ParamRangeMode,'DesignMinMax');
             [self.WrappersFile,wrappersHeader]=self.createWrappersFiles(tmpDir,customCodeInfo);
 
-
-
-
             [modelInfo,ccVars]=self.getCustomCodeModelInfo(modelName);
 
             if isempty(modelInfo)
                 modelHandle=get_param(modelName,'Handle');
                 customCodeInfo=CGXE.CustomCode.CustomCodeSettings.createFromModel(modelHandle);
-
-
 
                 if~customCodeInfo.hasCustomCode()
                     throw(MSLException(modelHandle,...
@@ -351,18 +324,12 @@ TargetInfo
         end
 
 
-
         function[modelInfo,customCodeVars]=getCustomCodeModelInfo(self,mainModelName)
             modelInfo=containers.Map('KeyType','double','ValueType','any');
             customCodeVars={};
-
-
-
-
             modelRefs=find_mdlrefs(mainModelName,'MatchFilter',@Simulink.match.internal.filterOutCodeInactiveVariantSubsystemChoices);
             for modelIndex=1:numel(modelRefs)
                 modelName=modelRefs{modelIndex};
-
 
                 modelObj=get_param(modelName,'Object');
                 sfcharts=find(modelObj,'-isa','Stateflow.Chart');
@@ -378,8 +345,6 @@ TargetInfo
                         end
                     end
                 end
-
-
                 ccallers=find(modelObj,'-isa','Simulink.CCaller');
                 for ii=1:numel(ccallers)
                     callerHandle=ccallers(ii).Handle;
@@ -388,8 +353,6 @@ TargetInfo
                         modelInfo(callerHandle)=callInfo;
                     end
                 end
-
-
                 cscripts=find(modelObj,'-isa','Simulink.CFunction');
                 for ii=1:numel(cscripts)
                     cscriptHandle=cscripts(ii).Handle;
