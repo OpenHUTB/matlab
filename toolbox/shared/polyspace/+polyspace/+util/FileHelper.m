@@ -1,11 +1,6 @@
 classdef FileHelper
 
-
-
-
     methods(Static=true)
-
-
 
         function checkWriteRights(fileName)
             [status,values]=fileattrib(fileName);
@@ -13,8 +8,6 @@ classdef FileHelper
                 error(message('polyspace:pscore:noWriteRights',fileName))
             end
         end
-
-
 
 
         function path=normalizeFolderPath(path)
