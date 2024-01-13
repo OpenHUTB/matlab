@@ -1,15 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
 function s=encodeURIComponent(s)
     s=unicode2native(s,'UTF-8');
 
@@ -34,6 +22,7 @@ function s=encodeURIComponent(s)
 
     s=char([t{:}]);
 end
+
 
 function c=encode_byte(c)
     c=[uint8('%'),uint8(sprintf('%02X',c))];
