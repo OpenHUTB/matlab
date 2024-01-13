@@ -1,8 +1,5 @@
 function fileList=readAdditionalSourceListFile(fileName)
 
-
-
-
     fileList={};
     if exist(fileName,'file')
         [fid,errmsg]=fopen(fileName,'rt','native','UTF-8');
