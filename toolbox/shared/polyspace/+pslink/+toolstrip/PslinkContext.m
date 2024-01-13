@@ -1,11 +1,5 @@
 classdef PslinkContext<dig.CustomContext
 
-
-
-
-
-
-
     properties(SetAccess=immutable)
         ModelHandle(1,1)double;
     end
@@ -19,6 +13,7 @@ classdef PslinkContext<dig.CustomContext
         IsTargetLink(1,1)logical;
         RefreshAnnotations(1,1)logical;
     end
+
 
     methods
         function obj=PslinkContext(modelHandle)
@@ -39,13 +34,16 @@ classdef PslinkContext<dig.CustomContext
             end
         end
 
+
         function toggleTargetLink(obj)
             obj.IsTargetLink=~obj.IsTargetLink;
         end
 
+
         function setVerificationMode(obj,verificationMode)
             obj.VerificationMode=verificationMode;
         end
+
 
         function setCodeAsMode(obj,codeAsMode)
             obj.CodeAs=codeAsMode;
@@ -63,6 +61,7 @@ classdef PslinkContext<dig.CustomContext
                 obj.CodeAsCustomCode=true;
             end
         end
+
 
         function toggleRefreshAnnotations(obj)
             obj.RefreshAnnotations=~obj.RefreshAnnotations;
