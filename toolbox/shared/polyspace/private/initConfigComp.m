@@ -1,5 +1,3 @@
-
-
 function[pslinkcc,configSet,oldSysToAnalyze]=initConfigComp(systemH,silentMode)
 
     narginchk(1,2);
@@ -11,7 +9,6 @@ function[pslinkcc,configSet,oldSysToAnalyze]=initConfigComp(systemH,silentMode)
     modelH=bdroot(systemH);
 
     oldSysToAnalyze=[];
-
     [pslinkcc,configSet]=getConfigComp(modelH);
     if isempty(pslinkcc)
         dirty=get_param(modelH,'Dirty');
