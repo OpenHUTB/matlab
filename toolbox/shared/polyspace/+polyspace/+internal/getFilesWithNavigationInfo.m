@@ -1,5 +1,3 @@
-
-
 function filesList=getFilesWithNavigationInfo(xml_navig_file)
 
     filesList=cell(1,0);
