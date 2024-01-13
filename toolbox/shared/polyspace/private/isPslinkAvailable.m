@@ -1,8 +1,5 @@
 function ret=isPslinkAvailable()
 
-
-
-
     persistent isAvailable;
 
     if isempty(isAvailable)
@@ -14,9 +11,6 @@ function ret=isPslinkAvailable()
         if isempty(psbfVersion)
             isAvailable=false;
         else
-
-
-
             mVersion=ver('matlab');
             isAvailable=strcmpi(mVersion.Release,psbfVersion.Release);
         end
