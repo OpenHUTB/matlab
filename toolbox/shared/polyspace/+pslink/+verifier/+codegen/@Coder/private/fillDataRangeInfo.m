@@ -1,9 +1,5 @@
 function fillDataRangeInfo(self)
 
-
-
-
-
     filteredIdx=0;
     if self.paramFullRange
         filteredIdx=3;
@@ -32,6 +28,7 @@ function fillDataRangeInfo(self)
         end
     end
 
+
     function nFillFunction(fcn)
 
 
@@ -54,22 +51,18 @@ function fillDataRangeInfo(self)
             nFillArgument(fcn,-1);
         end
 
-
         if isempty(self.drsInfo.fcn(end).arg)&&isempty(self.drsInfo.fcn(end).return)
             self.drsInfo.fcn(end)=[];
         end
     end
 
+
     function nFillData(data,category)
-
-
 
         if isprop(data,'UsageKind')&&data.UsageKind==2
 
             return
         end
-
-
 
         exprInCode='';
         dataImpl=isprop(data,'Implementation');
@@ -97,16 +90,12 @@ function fillDataRangeInfo(self)
         end
 
         if isempty(exprInCode)
-
             return
         end
-
-
         dataInfo=pslink.verifier.Coder.createDataRangeInfoStruct();
         dataType=pslink.verifier.ec.Coder.getCoderType(dataImpl.Type);
         if isa(dataType,'embedded.pointertype')
             dataInfo.isPtr=true;
-
 
             ptrDataType=data.Type;
             ptrDataType=pslink.verifier.codegen.Coder.getCoderType(ptrDataType);
@@ -119,7 +108,6 @@ function fillDataRangeInfo(self)
         else
             dataInfo.width=dataType.getWidth();
         end
-
         baseType=pslink.verifier.codegen.Coder.getUnderlyingType(dataType);
         if isa(baseType,'embedded.structtype')
             dataInfo.isStruct=true;
@@ -170,10 +158,8 @@ function fillDataRangeInfo(self)
 
     end
 
+
     function nFillArgument(fcn,pos)
-
-
-
         doEmit=true;
         if pos>0
             category='arg';
@@ -185,11 +171,6 @@ function fillDataRangeInfo(self)
             formalArg=fcn.Prototype.Return;
             effectiveArg=fcn.ActualReturn;
         end
-
-
-
-
-
         argInfo=pslink.verifier.Coder.createDataRangeInfoStruct();
         argInfo.emit=doEmit;
         argInfo.pos=pos;
@@ -207,7 +188,6 @@ function fillDataRangeInfo(self)
             argInfo.min=[];
             argInfo.max=[];
         end
-
         dataType=pslink.verifier.codegen.Coder.getCoderType(formalArg.Type);
 
         switch class(dataType)
@@ -228,7 +208,6 @@ function fillDataRangeInfo(self)
             argInfo.isPtr=dataType.isPointer;
             argInfo.width=dataType.getWidth();
         end
-
         baseType=pslink.verifier.codegen.Coder.getUnderlyingType(formalArg.Type);
         if isa(baseType,'embedded.structtype')
             argInfo.isStruct=true;
@@ -236,7 +215,6 @@ function fillDataRangeInfo(self)
                 argInfo.field=nExtractFieldInfo(effectiveArg,baseType,'');
             end
         end
-
 
         if isempty(self.drsInfo.fcn(end).(category))
             self.drsInfo.fcn(end).(category)=argInfo;
@@ -246,12 +224,12 @@ function fillDataRangeInfo(self)
 
     end
 
+
     function fieldInfo=nExtractFieldInfo(data,structType,parentName,isForAutosar)
 
         if nargin<4
             isForAutosar=false;
         end
-
 
         busObj=[];
         numBusElements=0;
@@ -267,8 +245,6 @@ function fillDataRangeInfo(self)
             bE=[];
             if pp<=numBusElements
                 bE=busObj.Elements(pp);
-
-
                 if~strcmp(bE.Name,sE.Identifier)
                     bE=[];
                 end
@@ -279,10 +255,8 @@ function fillDataRangeInfo(self)
             else
                 fullName=sE.Identifier;
             end
-
             bottomType=pslink.verifier.codegen.Coder.getUnderlyingType(sE.Type);
             if isa(bottomType,'embedded.structtype')
-
                 infoCell=nExtractFieldInfo(data,bottomType,fullName,isForAutosar);
             else
                 fMinVal=[];
