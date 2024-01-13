@@ -1,8 +1,5 @@
 function printCheckOptionsResults(ResultDescription,ResultDetails,ResultType)
 
-
-
-
     strBuff='';
     for descIdx=1:numel(ResultDescription)
         if~isempty(ResultDetails{descIdx})
