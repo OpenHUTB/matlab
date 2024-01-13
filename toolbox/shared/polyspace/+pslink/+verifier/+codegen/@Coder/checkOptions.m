@@ -1,8 +1,5 @@
 function[resultDescription,resultDetails,resultType,hasError,resultId]=checkOptions(codeGenFolder,opts)
 
-
-
-
     if nargin<2
         opts=struct();
     end
@@ -14,23 +11,18 @@ function[resultDescription,resultDetails,resultType,hasError,resultId]=checkOpti
         haltOnWarn=strcmpi(opts.CheckConfigBeforeAnalysis,'OnHalt');
     end
 
-
     resultDescription={};
     resultDetails={};
     resultType={};
     resultId={};
     hasError=false;
     hasWarning=false;
-
-
     codeInfoFile=fullfile(codeGenFolder,'codeInfo.mat');
-
 
     resultDescription{end+1}=DAStudio.message('polyspace:gui:pslink:chkOptsDescGenCodeFolder');
     resultDetails{end+1}={};
     resultType{end+1}={};
     resultId{end+1}={};
-
 
     if~disableWarnings
 
@@ -52,7 +44,6 @@ function[resultDescription,resultDetails,resultType,hasError,resultId]=checkOpti
             hasWarning=true;
         end
     end
-
 
     if haltOnWarn&&hasWarning
         hasError=true;
