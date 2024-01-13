@@ -1,15 +1,5 @@
 classdef opcountbase<handle
 
-
-
-
-
-
-
-
-
-
-
     properties(Hidden,Access=protected)
         verbose='off';
         inst_level=1;
@@ -98,6 +88,7 @@ classdef opcountbase<handle
             end
         end
 
+
         function exec_generation(obj)
             try
                 if strcmp(obj.verbose,'on')
@@ -116,6 +107,7 @@ classdef opcountbase<handle
                 rethrow(ME);
             end
         end
+
 
         function varargout=db_generation(obj)
             try
@@ -139,6 +131,7 @@ classdef opcountbase<handle
             end
         end
 
+
         function result=db_postprocessing(obj)
             try
                 result={};
@@ -146,7 +139,6 @@ classdef opcountbase<handle
                     msg=message('shared_opcount:base:PostprocessingDB');
                     disp(msg.getString);
                 end
-
                 db_open(obj,obj.nidb.Filename);
 
                 obj.data_collection();
@@ -155,6 +147,7 @@ classdef opcountbase<handle
             end
             result=obj.result_data;
         end
+
 
         function report=report_generation(obj)
             try
@@ -176,11 +169,8 @@ classdef opcountbase<handle
                 a_method=obj.method;
                 src_file=[obj.input_name,obj.input_ext];
                 save(fullfile(obj.build_dir,[obj.input_name,'.mat']),'title','gen_date','src_type','src_file','a_method');
-
                 [drs,dr]=obj.detailed_report();
-
                 [ohrs,ohr]=obj.operator_hierarchical_report();
-
                 [oars,oar]=obj.operator_aggregated_report();
 
                 [phrs,phr]=obj.path_hierarchical_report();
@@ -194,7 +184,6 @@ classdef opcountbase<handle
                     end
                     return;
                 end
-
                 if~strcmp(obj.verbose,'quiet')
                     msg=message('shared_opcount:base:SavingReport',obj.output_dir);
                     disp(msg.getString);
@@ -238,6 +227,7 @@ classdef opcountbase<handle
 
     end
 
+
     methods(Hidden,Access=protected)
         function setup_nidb(obj)
             x=internal.cgir.Debug;
@@ -260,10 +250,9 @@ classdef opcountbase<handle
 
             obj.nidb.clearNodeInfo;
 
-
-
-
         end
+
+
         function mex_generation(obj)
 
             config=coder.config('mex');
@@ -274,15 +263,11 @@ classdef opcountbase<handle
             config.IntegrityChecks=false;
             config.PreserveVariableNames='UserNames';
             config.PreserveArrayDimensions=true;
-
-
-
             feature=coder.internal.FeatureControl;
             feature.EnableBLAS=0;
             featureCleanup=onCleanup(@()internal.cgir.Debug.disable);
 
             if 1
-
                 coder.internal.generateAlgorithmAnalyzer(obj.input_name,'-args',obj.input_arg,'-config',config,'-feature',feature,'-O','disable:inline','tpb3379334_563d_4394_b05f_26c58924749e');
             else
                 codegen(obj.input_name,'-g','-args',obj.input_arg,'-config',config,'-feature',feature,'-O','disable:inline');
@@ -290,6 +275,7 @@ classdef opcountbase<handle
             obj.nidb.writeNodeInfo;
             obj.noutput_arg=nargout(obj.input_name);
         end
+
 
         function varargout=mex_execution(obj)
 
@@ -307,8 +293,6 @@ classdef opcountbase<handle
                 pause(1);
                 timeout=timeout-1;
             end
-
-
             origEnv=getenv('CGIR_PROFILING_DETAILED');
             envCleanup=onCleanup(@()setenv('CGIR_PROFILING_DETAILED',origEnv));
             setenv('CGIR_PROFILING_DETAILED','1');
@@ -316,7 +300,6 @@ classdef opcountbase<handle
             [varargout{1:end}]=feval([obj.input_name,'_mex'],obj.input_arg{:});
 
             timeout=10;
-
             while~exist(obj.nidb.Filename,'file')
                 if timeout<=0
                     error(message('shared_opcount:base:NoDB'));
@@ -327,6 +310,7 @@ classdef opcountbase<handle
 
             clear([obj.input_name,'_mex']);
         end
+
 
         function sl_generation(obj)
 
@@ -350,7 +334,6 @@ classdef opcountbase<handle
                 setActiveConfigSet(mdl.name,mdl.newConfigSet.Name);
                 obj.mdlMap(name)=mdl;
             end
-
             cfCleanup=onCleanup(@()restore_model(obj));
 
             for kk=keys(obj.mdlMap)
@@ -386,13 +369,9 @@ classdef opcountbase<handle
                 end
 
             end
-
             featureCleanup=onCleanup(@()internal.cgir.Debug.disable);
 
             buildCleanup=onCleanup(@()cleanup_builddir(obj));
-
-
-
             cmd=['rtwbuild(''',obj.input_name,''')'];
             try
                 s='';
@@ -406,6 +385,7 @@ classdef opcountbase<handle
                 disp(s);
             end
         end
+
 
         function sl_execution(obj)
 
@@ -423,8 +403,6 @@ classdef opcountbase<handle
                 pause(1);
                 timeout=timeout-1;
             end
-
-
             origEnv=getenv('CGIR_PROFILING_DETAILED');
             envCleanup=onCleanup(@()setenv('CGIR_PROFILING_DETAILED',origEnv));
             setenv('CGIR_PROFILING_DETAILED','1')
@@ -448,6 +426,7 @@ classdef opcountbase<handle
                 delete(fullfile(obj.build_dir,[obj.input_name,'.mat']));
             end
         end
+
 
         function data_collection(obj)
             if strcmp(obj.nidb.Mode,'STATIC')
@@ -577,7 +556,6 @@ classdef opcountbase<handle
                         link='';
                     end
                 end
-
 
                 if~isempty(obj.incl_path)
                     if all(cellfun(@isempty,cellfun(@(x)regexp(path,['^',x,'$|^',x,'(?=\/)|(?<=\/)',x,'$|(?<=\/)',x,'(?=\/)']),obj.incl_path_regexp,'UniformOutput',false)))
@@ -760,8 +738,6 @@ classdef opcountbase<handle
             if isempty(obj.result_data)
                 return;
             end
-
-
             entrytbl=table(cell(size(obj.result_data,1),1),cell(size(obj.result_data,1),1),obj.result_data(:,2),obj.result_data(:,3),obj.result_data(:,4),obj.result_data(:,5),...
             'VariableNames',{'FileName','Path','Count','Operator','DataType','Link'});
             for i=1:size(entrytbl,1)
@@ -779,6 +755,7 @@ classdef opcountbase<handle
             status=true;
 
         end
+
 
         function db_open(obj,dbname)
             obj.db_connect=matlab.depfun.internal.database.SqlDbConnector;
@@ -799,6 +776,7 @@ classdef opcountbase<handle
             cols=size(data{1},2);
             cells=reshape([data{:}],cols,rows)';
         end
+
 
         function copy_output(obj)
             obj.db_connect.disconnect();
@@ -826,6 +804,7 @@ classdef opcountbase<handle
                 movefile(fullfile(obj.build_dir,[obj.input_name,'.xlsx']),fullfile(obj.output_dir,[obj.input_name,'.xlsx']));
             end
         end
+
 
         function setup_outputdir(obj)
 
@@ -870,6 +849,7 @@ classdef opcountbase<handle
             end
         end
 
+
         function setup_builddir(obj)
 
             if strcmp(obj.verbose,'on')
@@ -888,12 +868,14 @@ classdef opcountbase<handle
             obj.build_dir=pwd;
         end
 
+
         function cleanup_builddir(obj)
             try
                 rmdir(fullfile(obj.output_dir,'opcount_build','*'),'s');
             catch
             end
         end
+
 
         function restore_model(obj)
 
