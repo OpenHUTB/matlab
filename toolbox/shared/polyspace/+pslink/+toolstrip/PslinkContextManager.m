@@ -1,8 +1,5 @@
 classdef PslinkContextManager<handle
 
-
-
-
     properties(Constant,Access=private)
         Instance=pslink.toolstrip.PslinkContextManager;
     end
@@ -11,12 +8,14 @@ classdef PslinkContextManager<handle
         ContextMap;
     end
 
+
     methods
         function obj=PslinkContextManager()
             mlock;
             obj.ContextMap=containers.Map('KeyType','double','ValueType','any');
         end
     end
+
 
     methods(Access=private)
         function data=get(obj,modelHandle)
@@ -36,17 +35,18 @@ classdef PslinkContextManager<handle
                     'CloseEvent',...
                     @i_closeCallback);
                 end
-
                 data=struct('Context',context,'CloseListener',listenr);
                 obj.ContextMap(modelHandle)=data;
             end
         end
+
 
         function data=remove(obj,modelHandle)
             data=obj.ContextMap(modelHandle);
             obj.ContextMap.remove(modelHandle);
         end
     end
+
 
     methods(Static,Access=public)
         function ctx=getContext(modelHandle)
@@ -55,10 +55,12 @@ classdef PslinkContextManager<handle
             ctx=data.Context;
         end
 
+
         function result=hasContext(modelHandle)
             manager=pslink.toolstrip.PslinkContextManager.Instance;
             result=manager.ContextMap.isKey(modelHandle);
         end
+
 
         function refresh
             manager=pslink.toolstrip.PslinkContextManager.Instance;
@@ -70,6 +72,7 @@ classdef PslinkContextManager<handle
     end
 
 end
+
 
 function i_closeCallback(eventSrc,~)
     manager=pslink.toolstrip.PslinkContextManager.Instance;
