@@ -1,5 +1,3 @@
-
-
 function[srcCS,origCS]=getMdlConfigSet(modelH)
 
     modelObj=get_param(modelH,'Object');
