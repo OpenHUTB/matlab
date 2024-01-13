@@ -1,5 +1,3 @@
-
-
 function isAbsolute=isAbsolutePath(filePath)
 
     narginchk(1,1);
