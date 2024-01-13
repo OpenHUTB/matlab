@@ -1,8 +1,5 @@
 function fillFileInfo(self)
 
-
-
-
     cgDir=self.cgDir;
 
     try
@@ -13,19 +10,12 @@ function fillFileInfo(self)
     end
 
     try
-
-
-
         evalc('self.buildInfo.updateFilePathsAndExtensions()');
         evalc('self.buildInfo.updateFileSeparator(filesep)');
-
-
         evalc('self.buildInfo.findIncludeFiles()');
 
     catch Me %#ok<NASGU>
     end
-
-
     srcFiles=self.buildInfo.getFullFileList('source');
     srcFiles=RTW.unique(srcFiles);
     badIdx=[];
@@ -43,8 +33,6 @@ function fillFileInfo(self)
     end
     srcFiles(badIdx)=[];
     self.fileInfo.source=srcFiles;
-
-
     incPaths=self.buildInfo.getFullFileList('include');
     for ii=1:numel(incPaths)
         incP=fileparts(incPaths{ii});
@@ -54,8 +42,6 @@ function fillFileInfo(self)
         incPaths{ii}=incP;
     end
     self.fileInfo.include=RTW.unique(incPaths);
-
-
     compFlags=self.buildInfo.getDefines('','');
     for ii=1:numel(compFlags)
         compFlags{ii}=regexprep(compFlags{ii},'^-D','');
