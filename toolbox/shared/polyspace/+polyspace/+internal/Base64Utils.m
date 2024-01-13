@@ -1,8 +1,3 @@
-
-
-
-
-
 classdef(Hidden=true)Base64Utils
     methods(Static=true)
         function outStr=encode(obj)
