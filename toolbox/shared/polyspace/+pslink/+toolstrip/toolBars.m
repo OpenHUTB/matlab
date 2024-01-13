@@ -1,7 +1,3 @@
-
-
-
-
 function schema=toolBars(funcname,cbinfo,eventData)
     fnc=str2func(funcname);
     if nargout(fnc)
@@ -14,8 +10,6 @@ function schema=toolBars(funcname,cbinfo,eventData)
             fnc(cbinfo);
         end
     end
-
-
 
 
 
