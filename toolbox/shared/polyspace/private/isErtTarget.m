@@ -1,17 +1,5 @@
 function ret=isErtTarget(systemH)
 
-
-
-
-
-
-
-
-
-
-
-
-
     try
         cfgSet=getMdlConfigSet(bdroot(systemH));
         sysTgt=get_param(cfgSet,'IsERTTarget');
