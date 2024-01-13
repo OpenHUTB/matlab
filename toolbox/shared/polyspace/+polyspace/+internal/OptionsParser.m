@@ -1,39 +1,28 @@
 classdef(Hidden=true)OptionsParser<handle
-
-
-
-
-
-
-
-
-
-
     properties(SetAccess=private,GetAccess=public)
         Results=struct();
         ExtraArguments={};
     end
+
 
     properties(Access=private)
         OptionsDefinitions;
         OptionsSynonyms;
     end
 
+
     properties(Access=public)
         FunctionName='';
         AllowExtraArguments=false;
     end
 
+
     methods(Access=public)
-
-
 
         function this=OptionsParser()
             this.OptionsDefinitions=containers.Map('KeyType','char','ValueType','any');
             this.OptionsSynonyms=containers.Map('KeyType','char','ValueType','char');
         end
-
-
 
 
         function addSwitch(this,optName,fieldName,dependentOptions,defaultValue,value)
@@ -55,8 +44,6 @@ classdef(Hidden=true)OptionsParser<handle
         end
 
 
-
-
         function addOptional(this,optName,fieldName,defaultValue,dependentOptions)
             if nargin<5
                 dependentOptions={};
@@ -67,8 +54,6 @@ classdef(Hidden=true)OptionsParser<handle
             'defaultValue',defaultValue,...
             'dependentOptions',{dependentOptions});
         end
-
-
 
 
         function addMultiOptional(this,optName,fieldName,dependentOptions)
@@ -82,16 +67,12 @@ classdef(Hidden=true)OptionsParser<handle
         end
 
 
-
-
         function addRequired(this,optName,fieldName)
             this.OptionsDefinitions(optName)=struct('isSwitch',false,...
             'fieldName',fieldName,...
             'isMulti',false,...
             'dependentOptions',{{}});
         end
-
-
 
 
         function setIncompatibleOptions(this,varargin)
@@ -113,13 +94,9 @@ classdef(Hidden=true)OptionsParser<handle
         end
 
 
-
-
         function setOptionSynonym(this,optName,otherOptName)
             this.OptionsSynonyms(otherOptName)=optName;
         end
-
-
 
 
         function parse(this,varargin)
@@ -193,9 +170,6 @@ classdef(Hidden=true)OptionsParser<handle
                 end
             end
 
-
-
-
             allOptNames=this.OptionsDefinitions.keys();
             depsSatisfied=false(1,numel(allOptNames));
             for ii=1:numel(allOptNames)
@@ -222,14 +196,10 @@ classdef(Hidden=true)OptionsParser<handle
                 end
             end
 
-
             for ii=1:numel(allOptNames)
                 optDef=this.OptionsDefinitions(allOptNames{ii});
-
                 if~isfield(this.Results,optDef.fieldName)
-
                     if~isfield(optDef,'defaultValue')&&~optDef.isMulti
-
                         error(message('polyspace:pscore:missingRequiredOption',allOptNames{ii}));
                     elseif depsSatisfied(ii)
 
