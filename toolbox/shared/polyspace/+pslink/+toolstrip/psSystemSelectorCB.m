@@ -1,5 +1,3 @@
-
-
 function psSystemSelectorCB(actionName,cbinfo)
     pinned=cbinfo.EventData;
 
