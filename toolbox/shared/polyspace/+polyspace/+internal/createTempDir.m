@@ -1,6 +1,3 @@
-
-
-
 function p=createTempDir(varargin)
 
     numRetries=0;
@@ -22,8 +19,6 @@ function p=createTempDir(varargin)
                 break
             end
         else
-
-
             error(msgId,msg);
         end
     end
