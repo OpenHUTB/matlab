@@ -1,7 +1,4 @@
 function mustBeChannelsOf(selectedChannels,selectedChannelGroup,channelList)
-
-
-
     import matlab.io.tdms.internal.*
     try
         if utility.isEmptyString(selectedChannels)
