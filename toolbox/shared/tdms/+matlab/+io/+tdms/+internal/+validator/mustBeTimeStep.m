@@ -1,7 +1,4 @@
 function mustBeTimeStep(value)
-
-
-
     try
         mustBeScalarOrEmpty(value);
         mustBeA(value,["duration","calendarDuration"]);
