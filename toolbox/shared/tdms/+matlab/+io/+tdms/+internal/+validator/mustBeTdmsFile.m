@@ -1,7 +1,4 @@
 function mustBeTdmsFile(value)
-
-
-
     try
         value=convertCharsToStrings(value);
         mustBeScalarOrEmpty(value);
