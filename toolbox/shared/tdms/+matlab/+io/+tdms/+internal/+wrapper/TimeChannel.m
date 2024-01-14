@@ -1,7 +1,4 @@
 classdef TimeChannel
-
-
-
     enumeration
 none
 single
