@@ -1,7 +1,5 @@
 function mustBeAChannel(value)
 
-
-
     try
         mustBeTextScalar(value);
     catch ME
