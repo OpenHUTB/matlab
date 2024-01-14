@@ -1,7 +1,4 @@
 function mustBeReadSize(value)
-
-
-
     try
         if isnumeric(value)
             mustBePositive(value)
