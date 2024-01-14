@@ -1,7 +1,4 @@
 function mustBePropertyValues(value)
-
-
-
     try
         mustBeVector(value);
     catch ME
