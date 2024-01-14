@@ -1,7 +1,5 @@
 function mustBeAChannelGroupOf(selectedChannelGroup,channelList)
 
-
-
     import matlab.io.tdms.internal.*
     try
         if utility.isEmptyString(selectedChannelGroup)
