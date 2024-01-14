@@ -1,7 +1,5 @@
 classdef WaveformLayout
 
-
-
     enumeration
 NoTimeChannel
 SingleTimeChannel
