@@ -1,7 +1,4 @@
 function mustBePropertiesOf(propertiesA,propertiesB)
-
-
-
     try
         mustBeMember(propertiesA,propertiesB);
     catch ME
