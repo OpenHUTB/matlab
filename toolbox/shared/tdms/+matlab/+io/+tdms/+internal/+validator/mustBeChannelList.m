@@ -1,7 +1,4 @@
 function mustBeChannelList(value)
-
-
-
     try
         mustBeA(value,'table');
     catch ME
