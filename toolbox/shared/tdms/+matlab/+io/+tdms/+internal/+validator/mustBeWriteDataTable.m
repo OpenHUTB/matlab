@@ -1,8 +1,4 @@
 function mustBeWriteDataTable(value)
-
-
-
-
     try
         mustBeA(value,["table","timetable"]);
         mustBeNonempty(value.Properties.VariableNames);
