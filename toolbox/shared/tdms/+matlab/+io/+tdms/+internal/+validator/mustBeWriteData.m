@@ -1,7 +1,4 @@
 function mustBeWriteData(value)
-
-
-
     try
         mustBeA(value,["cell","table","timetable"]);
         if iscell(value)
