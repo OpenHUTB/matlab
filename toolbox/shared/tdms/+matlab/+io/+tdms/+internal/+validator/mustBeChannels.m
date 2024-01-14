@@ -1,7 +1,4 @@
 function mustBeChannels(value)
-
-
-
     try
         mustBeText(value);
     catch ME
