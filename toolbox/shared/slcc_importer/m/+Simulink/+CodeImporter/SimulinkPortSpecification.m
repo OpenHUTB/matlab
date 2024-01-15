@@ -1,33 +1,8 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef SimulinkPortSpecification < handle
 
     properties
         InputArguments( 1, : )Simulink.CustomCode.FunctionArgument
-
         ReturnArgument( 1, : )Simulink.CustomCode.FunctionArgument
-
         GlobalArguments( 1, : )Simulink.CustomCode.FunctionArgument
     end
 
@@ -42,6 +17,7 @@ classdef SimulinkPortSpecification < handle
             obj.ReturnArgument = functionPortSpecification.ReturnArgument;
             obj.GlobalArguments = functionPortSpecification.GlobalArguments;
         end
+
 
         function ret = getGlobalArg( obj, argName )
             arguments
