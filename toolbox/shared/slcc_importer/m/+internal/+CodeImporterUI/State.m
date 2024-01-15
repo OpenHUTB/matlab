@@ -1,10 +1,5 @@
-
-
 classdef State
     properties
-
-
-
         OverwriteLibraryModel=false;
         FilterEntryFunctions=true;
         OverwriteSandbox=false;
@@ -13,9 +8,9 @@ classdef State
         ProcessedOutputFolder="";
     end
 
+
     methods
         function obj=State()
-
         end
     end
 end
