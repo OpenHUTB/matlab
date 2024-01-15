@@ -1,103 +1,16 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef CodeImporter < handle
 
     properties
-
-
-
-
         LibraryFileName( 1, 1 )string = "untitled";
-
-
-
-
-
         OutputFolder( 1, 1 )string = "";
 
     end
 
+
     properties ( SetAccess = private )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         CustomCode( 1, 1 )Simulink.CodeImporter.CustomCode;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         ParseInfo( 1, 1 )Simulink.CodeImporter.ParseInfo;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         Options( 1, 1 )Simulink.CodeImporter.Options;
     end
@@ -115,6 +28,7 @@ classdef CodeImporter < handle
         MetadataInfo polyspace.internal.codeinsight.utils.Metadata = [  ];
         FunctionSettings( 1, : )
     end
+
 
     properties ( Hidden, Transient )
 
@@ -151,7 +65,6 @@ classdef CodeImporter < handle
 
     methods ( Hidden )
 
-
         function updateCustomCodeRootFolder( obj, src )
             obj.CustomCode.updateRootFolder( src );
         end
@@ -165,6 +78,7 @@ classdef CodeImporter < handle
             updateCustomCodeRootFolder( obj, obj.OutputFolder );
         end
 
+
         function set.LibraryFileName( obj, src )
             src = strip( src );
             if ~isvarname( src )
@@ -174,12 +88,13 @@ classdef CodeImporter < handle
             obj.LibraryFileName = src;
         end
 
+
         function set.FunctionsToImport( obj, srcs )
             srcs = strip( srcs );
 
-
             obj.FunctionsToImport = srcs;
         end
+
 
         function set.TypesToImport( obj, srcs )
             srcs = strip( srcs );
@@ -192,19 +107,20 @@ classdef CodeImporter < handle
 
     methods ( Hidden )
 
-
-
         function initializeParseInfo( obj )
             obj.ParseInfo = Simulink.CodeImporter.ParseInfo( obj );
         end
+
 
         function tf = isSLTest( obj )
             tf = isa( obj, 'sltest.CodeImporter' );
         end
 
+
         function tf = isSLUnitTest( obj )
             tf = obj.isSLTest && obj.isUnitTest;
         end
+
 
         function filePath = verifySaveFilePath( obj, fileName, isOverwrite )
             if ~isempty( char( fileName ) )
@@ -242,6 +158,7 @@ classdef CodeImporter < handle
                 throw( errmsg );
             end
         end
+
 
         function saveData = prepareSaveData( obj )
             obj.cacheFunctionSettings(  );
@@ -303,12 +220,14 @@ classdef CodeImporter < handle
             end
         end
 
+
         function saveToJSON( ~, saveData, filePath )
             propToBeSaved = jsonencode( saveData, 'PrettyPrint', true );
             fid = fopen( filePath, 'wt' );
             fprintf( fid, '%s', propToBeSaved );
             fclose( fid );
         end
+
 
         function performCleanup( obj )
             obj.LibraryFileName = "untitled";
@@ -325,14 +244,12 @@ classdef CodeImporter < handle
             obj.CodeInsight = polyspace.internal.codeinsight.CodeInsight;
             obj.MetadataFileChecksum = [  ];
             obj.MetadataInfo = [  ];
-
-
         end
+
 
         function restoreSavedData( obj, savedData )
 
             obj.performCleanup(  );
-
 
             if isfield( savedData, 'LibraryFileName' )
                 obj.LibraryFileName = savedData.LibraryFileName;
@@ -401,6 +318,7 @@ classdef CodeImporter < handle
             end
         end
 
+
         function savedData = loadSavedDataFromFile( obj, file )
             if isempty( char( file ) )
                 errmsg = MException( message( 'Simulink:CodeImporter:NoFileToLoad' ) );
@@ -433,16 +351,19 @@ classdef CodeImporter < handle
             end
         end
 
+
         function startWizard( obj )
             obj.view;
             disp( obj.Wizard.Gui.DebugURL );
         end
+
 
         function delete( obj )
             if ~isempty( obj.Wizard )
                 obj.Wizard.delete(  );
             end
         end
+
 
         function validateFileOnAbsolutePath( ~, srcs, specs )
             for i = 1:length( srcs )
@@ -457,6 +378,7 @@ classdef CodeImporter < handle
             end
         end
 
+
         function validateAbsolutePath( ~, srcs, specs )
             for i = 1:length( srcs )
                 if srcs( i ) == ""
@@ -468,6 +390,7 @@ classdef CodeImporter < handle
                 end
             end
         end
+
 
         function qualifyProjectLibrarySettings( obj )
             rootFolder = strip( obj.OutputFolder, '"' );
@@ -494,14 +417,11 @@ classdef CodeImporter < handle
                 obj.qualifiedSettings.OutputFolder );
         end
 
+
         function qualifyCustomCodeSettings( obj, isInferHeader )
             if nargin < 2
-
-
-
                 isInferHeader = false;
             end
-
             obj.CustomCode.SourceFiles( obj.CustomCode.SourceFiles == "" ) = [  ];
             obj.CustomCode.InterfaceHeaders( obj.CustomCode.InterfaceHeaders == "" ) = [  ];
             obj.CustomCode.IncludePaths( obj.CustomCode.IncludePaths == "" ) = [  ];
@@ -518,8 +438,6 @@ classdef CodeImporter < handle
                 errmsg = MException( message( 'Simulink:CodeImporter:EmptySourceFile' ) );
                 throw( errmsg );
             end
-
-
             obj.qualifiedSettings.CustomCode.SourceFiles = [  ];
             for idx = 1:length( obj.CustomCode.SourceFiles )
                 obj.qualifiedSettings.CustomCode.SourceFiles( idx ) =  ...
@@ -538,8 +456,6 @@ classdef CodeImporter < handle
                 errmsg = MException( message( 'Simulink:CodeImporter:InferringHdrWithEmptySrc' ) );
                 throw( errmsg );
             end
-
-
             obj.qualifiedSettings.CustomCode.IncludePaths = [  ];
             for idx = 1:length( obj.CustomCode.IncludePaths )
                 obj.qualifiedSettings.CustomCode.IncludePaths( idx ) =  ...
@@ -558,15 +474,12 @@ classdef CodeImporter < handle
 
                 return ;
             end
-
-
             obj.qualifiedSettings.CustomCode.Libraries = [  ];
             for idx = 1:length( obj.CustomCode.Libraries )
                 obj.qualifiedSettings.CustomCode.Libraries( idx ) =  ...
                     internal.CodeImporter.Tools.processDollarsAnsSep(  ...
                     obj.CustomCode.Libraries( idx ) );
             end
-
             validateFileOnAbsolutePath( obj,  ...
                 internal.CodeImporter.Tools.convertToFullPath(  ...
                 obj.qualifiedSettings.CustomCode.Libraries,  ...
@@ -574,13 +487,9 @@ classdef CodeImporter < handle
                 string( obj.CustomCode.Libraries ) );
             obj.qualifiedSettings.CustomCode.Libraries =  ...
                 unique( obj.qualifiedSettings.CustomCode.Libraries, 'stable' );
-
-
             obj.qualifiedSettings.CustomCode.MetadataFile =  ...
                 internal.CodeImporter.Tools.processDollarsAnsSep(  ...
                 obj.CustomCode.MetadataFile );
-
-
             obj.qualifiedSettings.CustomCode.MetadataFile =  ...
                 internal.CodeImporter.Tools.convertToFullPath(  ...
                 obj.qualifiedSettings.CustomCode.MetadataFile,  ...
@@ -606,13 +515,9 @@ classdef CodeImporter < handle
                     end
                 end
             else
-
-
-                error( message( 'Simulink:CodeImporter:CannotFindMetadataFile',  ...
+               error( message( 'Simulink:CodeImporter:CannotFindMetadataFile',  ...
                     obj.qualifiedSettings.CustomCode.MetadataFile ) );
             end
-
-
             obj.qualifiedSettings.CustomCode.InterfaceHeaders = [  ];
             for idx = 1:length( obj.CustomCode.InterfaceHeaders )
                 obj.qualifiedSettings.CustomCode.InterfaceHeaders( idx ) =  ...
@@ -621,16 +526,6 @@ classdef CodeImporter < handle
             end
             obj.qualifiedSettings.CustomCode.InterfaceHeaders =  ...
                 unique( obj.qualifiedSettings.CustomCode.InterfaceHeaders, 'stable' );
-
-
-
-
-
-
-
-
-
-
 
             if ~obj.isSLUnitTest && ~isempty( obj.qualifiedSettings.CustomCode.InterfaceHeaders )
                 includeDirs = internal.CodeImporter.Tools.convertToFullPath(  ...
@@ -664,23 +559,18 @@ classdef CodeImporter < handle
             else
                 obj.qualifiedSettings.CustomCode.Defines = {  };
             end
-
-
             obj.qualifiedSettings.CustomCode.CompilerFlags =  ...
                 obj.CustomCode.CompilerFlags;
 
 
             obj.qualifiedSettings.CustomCode.LinkerFlags =  ...
                 obj.CustomCode.LinkerFlags;
-
-
             obj.qualifiedSettings.CustomCode.Language =  ...
                 obj.CustomCode.Language;
 
 
             obj.qualifiedSettings.CustomCode.GlobalVariableInterface =  ...
                 obj.CustomCode.GlobalVariableInterface;
-
 
             obj.qualifiedSettings.CustomCode.FunctionArrayLayout =  ...
                 obj.CustomCode.FunctionArrayLayout;
