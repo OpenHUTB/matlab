@@ -1,87 +1,21 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef Options<handle
 
     properties
-
-
-
-
-
-
-
-
         PassByPointerDefaultSize(1,1)string="-1";
-
-
-
-
-
-
-
-
-
         CreateTestHarness(1,1)logical=true;
 
-
-
-
-
-
-
-
-
-
-
-
         LibraryBrowserName(1,1)string="";
-
-
-
-
-
-
-
-
-
         SimulateInSeparateProcess(1,1)logical=false;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         UndefinedFunctionHandling(1,1)internal.CodeImporter.UndefinedFunctionHandling=internal.CodeImporter.UndefinedFunctionHandling.FilterOut;
     end
+
 
     properties(Hidden)
         ImportTypesToFile(1,1)logical=false;
         ValidateBuild(1,1)logical=true;
         BuildForIPProtection(1,1)logical=false;
     end
+
 
     properties(Hidden,Access=private)
         HasSLTest(1,1)logical=false;
@@ -107,6 +41,7 @@ classdef Options<handle
             obj.PassByPointerDefaultSize=src;
         end
 
+
         function obj=set.CreateTestHarness(obj,src)
             if~obj.HasSLTest&&src
                 warning(message('Simulink:CodeImporter:GenerateTestHarnessIgnored'));
@@ -114,6 +49,7 @@ classdef Options<handle
             end
             obj.CreateTestHarness=src;
         end
+
 
         function obj=set.LibraryBrowserName(obj,src)
             src=strip(src);
