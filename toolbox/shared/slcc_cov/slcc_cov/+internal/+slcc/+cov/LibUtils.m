@@ -1,21 +1,12 @@
 classdef(Hidden=true)LibUtils
 
-
-
-
-
     methods(Static)
-
-
-
 
         function ret=isCoverageCompatible(libPath)
             narginchk(1,1);
             validateattributes(libPath,{'string','char'},{'scalartext','nonempty'},1);
             ret=internal.slcc.cov.slcc_cov_mgr_mex('isCoverageCompatible',char(libPath));
         end
-
-
 
 
         function ret=getTraceabilityDb(libPath)
@@ -25,15 +16,11 @@ classdef(Hidden=true)LibUtils
         end
 
 
-
-
         function clearCoverage(libPath)
             narginchk(1,1);
             validateattributes(libPath,{'string','char'},{'scalartext','nonempty'},1);
             internal.slcc.cov.slcc_cov_mgr_mex('clearCoverage',char(libPath));
         end
-
-
 
 
         function initCoverage(libPath,varargin)
@@ -43,15 +30,11 @@ classdef(Hidden=true)LibUtils
         end
 
 
-
-
         function termCoverage(libPath)
             narginchk(1,1);
             validateattributes(libPath,{'string','char'},{'scalartext','nonempty'},1);
             internal.slcc.cov.slcc_cov_mgr_mex('termCoverage',char(libPath));
         end
-
-
 
 
         function res=uploadCoverage(libPath)
@@ -61,8 +44,6 @@ classdef(Hidden=true)LibUtils
         end
 
 
-
-
         function loadLibrary(libPath)
             narginchk(1,1);
             validateattributes(libPath,{'string','char'},{'scalartext','nonempty'},1);
@@ -70,15 +51,11 @@ classdef(Hidden=true)LibUtils
         end
 
 
-
-
         function unloadLibrary(libPath)
             narginchk(1,1);
             validateattributes(libPath,{'string','char'},{'scalartext','nonempty'},1);
             internal.slcc.cov.slcc_cov_mgr_mex('unloadLibrary',char(libPath));
         end
-
-
 
 
         function res=isLibraryLoaded(libPath)
