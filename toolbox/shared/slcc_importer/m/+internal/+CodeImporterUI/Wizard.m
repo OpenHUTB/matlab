@@ -1,6 +1,3 @@
-
-
-
 classdef Wizard<handle
     properties
 QuestionMap
@@ -22,15 +19,18 @@ IsSLTest
 saveSettingsChecksum
         isDirty=false
     end
+
+
     properties(Transient=true)
 GuiEntry
     end
+
+
     methods
         function env=Wizard(firstQuestionId)
             if nargin<2
                 firstQuestionId='Start';
             end
-
             env.State=internal.CodeImporterUI.State();
             env.Gui=internal.CodeImporterUI.Gui(env);
             env.FirstQuestionId=firstQuestionId;
@@ -41,6 +41,7 @@ GuiEntry
             end
         end
 
+
         function registerQuestion(env,q)
             env.QuestionMap(q.Id)=q;
             if~isempty(q.Topic)&&~ismember(q.Topic,env.QuestionTopics)
@@ -48,9 +49,12 @@ GuiEntry
             end
         end
 
+
         function registerOption(env,o)
             env.OptionMap(o.Id)=o;
         end
+
+
         function out=getOptionAnswer(env,option_id)
             out=-1;
             if env.OptionMap.isKey(option_id)
