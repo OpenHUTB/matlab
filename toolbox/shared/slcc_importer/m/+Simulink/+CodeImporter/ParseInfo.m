@@ -1,25 +1,21 @@
 classdef ParseInfo < handle
 
     properties ( SetAccess = protected )
-
         Success( 1, 1 )logical;
-
         AvailableFunctions( 1, : )string;
-
         EntryFunctions( 1, : )string;
-
         AvailableTypes( 1, : )string;
-
         Errors = [  ];
-
         BuildInfo( 1, 1 )Simulink.CodeImporter.BuildInfo;
     end
+
 
     properties ( Hidden )
         CodeInfo( 1, 1 );
         FunctionInfoMap;
         TypeInfoMap;
     end
+
 
     properties ( Hidden, Access = private )
         CodeImportObject( 1, 1 );
@@ -28,10 +24,11 @@ classdef ParseInfo < handle
         oldUndefinedFunctionHandling( 1, 1 )internal.CodeImporter.UndefinedFunctionHandling = internal.CodeImporter.UndefinedFunctionHandling.FilterOut;
     end
 
-    properties ( Hidden, Transient )
 
+    properties ( Hidden, Transient )
         Functions( 1, : )Simulink.CodeImporter.Function;
     end
+
 
     methods
 
@@ -47,6 +44,7 @@ classdef ParseInfo < handle
                 obj.BuildInfo = Simulink.CodeImporter.BuildInfo;
             end
         end
+
 
         function ret = getFunctions( obj, fcnNames )
 
@@ -79,8 +77,6 @@ classdef ParseInfo < handle
                 else
                     if isempty( availableFcnObjectNames )
 
-
-
                         missingFcns = fcnNames;
                     else
                         missingFcns = setdiff( fcnNames, availableFcnObjectNames, 'stable' );
@@ -101,11 +97,13 @@ classdef ParseInfo < handle
 
     end
 
+
     methods ( Hidden )
 
         function delete( obj )
             obj.clearFunctionObjects(  );
         end
+
 
         function computeFunctions( obj, isInterfaceHeader )
             isSLUnitTest = obj.CodeImportObject.isSLUnitTest;
@@ -119,7 +117,6 @@ classdef ParseInfo < handle
 
                     continue ;
                 end
-
 
                 if ~isInterfaceHeader &&  ...
                         isSLUnitTest &&  ...
@@ -141,7 +138,6 @@ classdef ParseInfo < handle
                 fcnInfo.IsStub = false;
                 fcnInfo.Function = f;
 
-
                 if ~isInterfaceHeader &&  ...
                         isSLUnitTest &&  ...
                         fi.IsDefined &&  ...
@@ -160,6 +156,7 @@ classdef ParseInfo < handle
             obj.EntryFunctions = obj.AvailableFunctions( entryFunctionIdx );
         end
 
+
         function computeTypes( obj, isInterfaceHeader )
             if ~isInterfaceHeader
 
@@ -176,7 +173,6 @@ classdef ParseInfo < handle
                 typeClass = class( types.Type( idx ) );
                 typeInfo.Class = obj.stripTypeClass( typeClass );
                 typeInfo.computeSpecialType(  );
-
                 obj.TypeInfoMap( typeInfo.Name ) = typeInfo;
             end
 
@@ -189,6 +185,7 @@ classdef ParseInfo < handle
             specialTypeList = compliantTypeList( [ compliantTypeList.IsSpecialType ] == true );
             obj.AvailableTypes = [ specialTypeList.Name ];
         end
+
 
         function types = computeTypesUsedByFunctions( obj, functions )
             types = string( [  ] );
@@ -208,6 +205,7 @@ classdef ParseInfo < handle
             types = unique( types );
         end
 
+
         function res = hasGlobalVariable( obj )
             res = false;
             if obj.Success
@@ -216,9 +214,11 @@ classdef ParseInfo < handle
             end
         end
 
+
         function invalidateFunctions( obj )
             obj.Functions = obj.Functions.empty;
         end
+
 
         function updateTypesUsingMetadataInfo( obj, functionObj )
             if isempty( functionObj.PortSpecification.GlobalArguments )
@@ -238,9 +238,9 @@ classdef ParseInfo < handle
 
         end
 
+
         function ret = getFunctionObjects( obj )
             [ hMdl, tmpMdlPath ] = internal.CodeImporter.createTempModel( obj.CodeImportObject );
-
 
             function rmTmpLib( mdl, mdlPath )
                 close_system( mdl, 0 );
@@ -248,11 +248,9 @@ classdef ParseInfo < handle
             end
             modelCleaner = onCleanup( @(  )rmTmpLib( hMdl, tmpMdlPath ) );
 
-
             slcc( 'parseCustomCode', hMdl, true );
 
             availableFcns = obj.AvailableFunctions;
-
 
             symbols = slcc( 'getExportedSymbols', hMdl );
             availableFcns = intersect( availableFcns, symbols.functions );
@@ -265,12 +263,10 @@ classdef ParseInfo < handle
                 ret( i ) = Simulink.CodeImporter.Function( hMdl, availableFcns{ i },  ...
                     obj.CodeImportObject.Options.PassByPointerDefaultSize );
 
-
                 if ~isempty( obj.CodeImportObject.MetadataInfo ) &&  ...
                         ~obj.CodeImportObject.MetadataInfo.isempty(  )
                     obj.updateTypesUsingMetadataInfo( ret( i ) );
                 end
-
 
                 fcnSettings = obj.CodeImportObject.getCachedFunctionSettings( availableFcns{ i } );
                 if ~isempty( fcnSettings )
@@ -287,14 +283,13 @@ classdef ParseInfo < handle
                 ret( i ).setIsDefined( fcnInfo.IsDefined );
                 ret( i ).setIsStub( fcnInfo.IsStub );
             end
-
             obj.settingChecksumOfLockedccScope = slcc( 'getModelCustomCodeChecksum', hMdl, false );
-
             assert( ~isempty( char( obj.settingChecksumOfLockedccScope ) ) );
             slcc( 'lockSLCCScope', char( obj.settingChecksumOfLockedccScope ), true );
         end
 
-        function clearFunctionObjects( obj )
+  
+      function clearFunctionObjects( obj )
             obj.Functions = obj.Functions.empty;
             if ~isempty( char( obj.settingChecksumOfLockedccScope ) )
 
@@ -304,6 +299,7 @@ classdef ParseInfo < handle
         end
 
     end
+
 
     methods ( Static, Hidden )
         function typeName = stripTypeClass( fullTypeClass )
@@ -315,6 +311,7 @@ classdef ParseInfo < handle
             end
         end
     end
+
 
     methods ( Hidden )
         function setSuccess( obj, val )
