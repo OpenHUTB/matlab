@@ -1,5 +1,3 @@
-
-
 classdef Gui<handle
     properties
 URL
@@ -21,6 +19,7 @@ Title
         Dlg=[]
         DlgPosition=[100,100,1000,600]
     end
+
 
     methods
         function obj=Gui(env)
@@ -47,11 +46,10 @@ Title
             obj.Dlg.position=p;
         end
 
+
         function start(obj)
             obj.unSubscribe;
             message.publish(obj.ID,struct('Type','command','Value','clearMCOS'));
-
-
             obj.SubScriptions{end+1}=message.subscribe(obj.ID,@obj.receive);
             obj.show();
         end
@@ -67,6 +65,7 @@ Title
             obj.unSubscribe;
         end
 
+
         function back(obj)
             env=obj.getEnvObj;
             if~isempty(env.CurrentQuestion.PreviousQuestionId)
@@ -76,10 +75,10 @@ Title
         end
 
 
-
         function clearMCOS(obj)
             obj.delete;
         end
+
 
         function switchTopic(obj,topic_id)
             if ischar(topic_id)
@@ -102,14 +101,15 @@ Title
             env.CurrentQuestion=q;
             obj.send_question(q);
         end
+
+
         function clickNext(obj)
 
             obj.onNext;
         end
+
+
         function onchange(obj)
-
-
-
             env=obj.getEnvObj;
             q=env.CurrentQuestion;
             refresh=q.applyOnChange();
@@ -117,6 +117,8 @@ Title
                 obj.send_question(q);
             end
         end
+
+
         function receive(obj,msg)
             try
                 type=msg.Type;
@@ -162,6 +164,8 @@ Title
                 obj.Env.Gui.back;
             end
         end
+
+
         function browseFile(obj,optionName,multiSelect)
             env=obj.getEnvObj;
             q=env.CurrentQuestion;
@@ -204,11 +208,6 @@ Title
                         end
                         relPathFun=@(x)internal.CodeImporter.computeRelativePath(x,rootFolderChar);
                         if strcmpi(optionName,'ConfigCodeLibrary_IncludeFiles')
-
-
-
-
-
                             [includeDir,headerFile,extn]=...
                             fileparts(fileToken);
 
@@ -216,29 +215,15 @@ Title
 
                                 includeDir={includeDir};
                             end
-
-
-
-
                             relPathIncludeDir=cellfun(relPathFun,includeDir,'UniformOutput',false);
-
-
-
-
                             removeIdx=strcmp(relPathIncludeDir,'.');
                             relPathIncludeDir(removeIdx)=[];
-
-
-
                             env.CodeImporter.CustomCode.IncludePaths=...
                             unique([env.CodeImporter.CustomCode.IncludePaths,string(relPathIncludeDir)]);
-
                             includeFiles=strcat(headerFile,extn);
                             if~isempty(includeFiles)&&~iscell(includeFiles)
-
                                 includeFiles={includeFiles};
                             end
-
                             includeFiles=[currToken,includeFiles];%#ok
                             includeFiles=unique(includeFiles,'stable');
                             o.Answer=strjoin(includeFiles,'\n');
@@ -255,7 +240,6 @@ Title
                         fullfile(folder,files),rootFolder.char);
                         o.Answer=relMetadafilePath;
                     otherwise
-
                         assert(~multiSelect&&ischar(files));
                         o.Answer=fullfile(folder,files);
                     end
@@ -265,6 +249,8 @@ Title
             end
             env.Gui.send_question(q);
         end
+
+
         function browsePath(obj,optionName)
             env=obj.getEnvObj;
             q=env.CurrentQuestion;
@@ -285,7 +271,6 @@ Title
                             currPathToken=internal.CodeImporter.tokenize(o.Answer);
                             pathToken=[currPathToken,pathToken];%#ok
                         end
-
 
                         for idx=1:length(pathToken)
 
@@ -310,6 +295,7 @@ Title
             env.Gui.send_question(q);
         end
 
+
         function pickProjectFile(obj)
             env=obj.Env;
             dlgTitle=message('Simulink:CodeImporterUI:ProjectDialogTitle').getString;
@@ -325,6 +311,7 @@ Title
                 msgbox(successMsg,successDlgTitle);
             end
         end
+
 
         function inferHeaderDependencies(obj)
             env=obj.Env;
@@ -358,6 +345,7 @@ Title
             env.Gui.send_question(q);
         end
 
+
         function onNext(obj)
             env=obj.getEnvObj;
             env.onNext();
@@ -375,17 +363,15 @@ Title
                 obj.send_question(next_q);
             end
         end
+
+
         function success=pushAnswer(obj,msg)
             env=obj.getEnvObj;
             success=true;
             options=msg.Value;
 
-
             q_id='';
             if~isa(options,'struct')||isempty(options(1).option)
-
-
-
                 success=false;
                 return;
             end
@@ -426,6 +412,8 @@ Title
                 end
             end
         end
+
+
         function send_command(obj,command,msg)
             s.Type='command';
             s.Value=command;
@@ -434,6 +422,8 @@ Title
             end
             message.publish(obj.ID,s);
         end
+
+
         function send_question(obj,q)
             q.preShow();
             obj.send_command('reset_log');
@@ -459,8 +449,6 @@ Title
             s.ID=q.Id;
             s.HasPrevious=q.PreviousQuestionId;
 
-
-
             if strcmp(q.Id,'ConfigCodeImporter')
                 if obj.Env.IsSLTest
                     s.IsSLTest=obj.Env.IsSLTest;
@@ -472,7 +460,6 @@ Title
                     end
                 end
             end
-
 
             if strcmp(q.Id,'ConfigSandbox')
                 s.SandboxOptions.CopySource=...
@@ -491,21 +478,26 @@ Title
             s.DisplayConfigDiff=q.DisplayConfigDiff;
             message.publish(obj.ID,s);
         end
+
+
         function init(obj,~)
             env=obj.getEnvObj;
             env.start;
             obj.send_question(env.CurrentQuestion);
             env.updateHeight();
         end
+
+
         function out=getEnvObj(obj)
             out=obj.Env;
         end
+
+
         function dlgstruct=getDialogSchema(obj,~)
             dlgstruct.DialogTitle=obj.Title;
             dlgstruct.CloseCallback='internal.CodeImporterUI.Gui.closeCallBack';
             dlgstruct.CloseArgs={obj};
             dlgstruct.IsScrollable=false;
-
 
             env=obj.getEnvObj;
             if env.Debug
@@ -538,10 +530,14 @@ Title
 
         end
     end
+
+
     methods(Static=true)
         function out=specialCharToJSON(str)
             out=strrep(str,newline,'<br/>');
         end
+
+
         function closeCallBack(gui)
             env=gui.getEnvObj;
             if~isempty(env)
@@ -549,12 +545,18 @@ Title
                 env.delete;
             end
         end
+
+
         function out=getWarningImage()
             out='<img style="height:1em" src="./release/wizard/images/dialog_info_32.png"/>';
         end
+
+
         function out=getLightBulbImage()
             out='<img style="height:1em" src="./release/wizard/images/lightbulb.png"/>';
         end
+
+
         function out=getWandImage()
             out='<div class="autoFillDiv"></div>';
         end
