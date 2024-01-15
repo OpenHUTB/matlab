@@ -1,23 +1,10 @@
-
-
-
-
-
-
-
-
-
-
-
 classdef BuildInfo<handle
 
     properties(SetAccess=protected)
-
-
         Success(1,1)logical;
-
         Errors=[];
     end
+
 
     methods
         function obj=BuildInfo()
@@ -26,6 +13,7 @@ classdef BuildInfo<handle
         end
     end
 
+
     methods(Hidden)
         function setSuccess(obj,val)
             obj.Success=val;
@@ -33,6 +21,7 @@ classdef BuildInfo<handle
                 obj.Errors=[];
             end
         end
+
 
         function setErrors(obj,val)
             obj.Errors=val;
