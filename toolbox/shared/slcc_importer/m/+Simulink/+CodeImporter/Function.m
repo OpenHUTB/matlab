@@ -1,31 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef Function<handle
 
     properties(Hidden,SetAccess=protected)
@@ -36,56 +8,17 @@ classdef Function<handle
         defaultPortSpecChecksum(1,1)string
     end
 
+
     properties(SetAccess=protected)
-
-
         Name(1,1)string
-
-
-
-        CPrototype(1,1)string
-
-
-
-
-
-
-
-
-        PortSpecification(1,1)Simulink.CodeImporter.SimulinkPortSpecification
-
-
-
-
-
+        CPrototype(1,1)string        PortSpecification(1,1)Simulink.CodeImporter.SimulinkPortSpecification
         IsEntry(1,1)logical=false;
-
-
-
-
-
         IsDefined(1,1)logical=false;
-
-
-
-
-
         IsStub(1,1)logical=false;
     end
 
-    properties
 
-
-
-        ArrayLayout(1,1)internal.CodeImporter.FunctionArrayLayout=internal.CodeImporter.FunctionArrayLayout.NotSpecified;
-
-
-
-
-
-
-
-
+    properties        ArrayLayout(1,1)internal.CodeImporter.FunctionArrayLayout=internal.CodeImporter.FunctionArrayLayout.NotSpecified;
         IsDeterministic(1,1)logical=false;
     end
 
@@ -121,30 +54,16 @@ classdef Function<handle
             end
         end
 
-        function gotoDeclaration(obj)
 
-
-
-
-
-
-
-            location=obj.DeclarationLocation;
+        function gotoDeclaration(obj)            location=obj.DeclarationLocation;
             if~isempty(location)
                 SLCC.Utils.OpenFileAndHighlight(location.path,...
                 location.line,location.column,location.length);
             end
         end
 
+
         function gotoDefinition(obj)
-
-
-
-
-
-
-
-
             location=obj.DefinitionLocation;
             if~isempty(location)
                 SLCC.Utils.OpenFileAndHighlight(location.path,...
@@ -153,18 +72,22 @@ classdef Function<handle
         end
     end
 
+
     methods(Hidden)
         function setIsEntry(obj,val)
             obj.IsEntry=val;
         end
 
+
         function setIsDefined(obj,val)
             obj.IsDefined=val;
         end
 
+
         function setIsStub(obj,val)
             obj.IsStub=val;
         end
+
 
         function ret=getPortSpecDataStruct(obj)
             ret=struct('ArgName',{},'PortName',{},'Scope',{},...
@@ -180,6 +103,7 @@ classdef Function<handle
             end
         end
 
+
         function setPassByPointerDefaultSize(obj,passByPointerDefaultSize)
             allArguments=[obj.PortSpecification.ReturnArgument...
             ,obj.PortSpecification.InputArguments...
@@ -192,6 +116,7 @@ classdef Function<handle
         end
 
     end
+
 
     methods(Static,Hidden)
         function ret=getArgDataStruct(arg,isGlobal)
