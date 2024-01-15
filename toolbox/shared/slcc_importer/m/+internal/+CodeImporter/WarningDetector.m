@@ -1,16 +1,15 @@
 classdef WarningDetector<handle
     properties(Dependent,SetAccess=private)
-
-
-
         DetectedWarnings;
     end
+
 
     properties(Transient,Access=private)
 Logger
 Logging
         LocalDetectedWarnings=matlab.internal.diagnostic.Warning.empty;
     end
+
 
     methods
         function detector=WarningDetector()
@@ -21,15 +20,14 @@ Logging
             detector.openWarningLog;
         end
 
+
         function warnings=get.DetectedWarnings(detector)
-
-
-
             detector.makeWarningsLocal();
             warnings=detector.LocalDetectedWarnings;
         end
 
     end
+
 
     methods(Hidden)
         function closeWarningLog(detector)
@@ -43,6 +41,7 @@ Logging
         end
     end
 
+
     methods(Access=private)
 
         function makeWarningsLocal(detector)
@@ -55,6 +54,7 @@ Logging
             detector.resetLogger();
             detector.LocalDetectedWarnings=[detector.LocalDetectedWarnings,newWarnings];
         end
+
 
         function resetLogger(detector)
             import matlab.unittest.internal.constraints.WarningLogger;
