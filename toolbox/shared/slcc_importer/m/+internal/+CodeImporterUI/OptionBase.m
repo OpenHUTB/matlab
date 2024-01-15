@@ -1,6 +1,3 @@
-
-
-
 classdef OptionBase<handle
 
     properties
@@ -27,10 +24,10 @@ Env
 
     methods(Hidden)
         function res=extractProjDefFromUI(~,field)
-
             res=internal.CodeImporter.tokenize(field);
         end
     end
+
 
     methods
         function obj=OptionBase(id_str,env)
@@ -39,6 +36,8 @@ Env
 
             env.registerOption(obj);
         end
+
+
         function initValue(obj)
             if~isempty(obj.Property)
                 if isprop(obj.Env.CodeImporter,obj.Property)
@@ -52,24 +51,30 @@ Env
                 end
             end
         end
+
+
         function onChange(obj)
-
-
-
         end
+
+
         function onNext(obj)
-
-
-
         end
+
+
         function onPostCompile(~)
         end
+
+
         function out=isEnabled(obj)
             out=~obj.Disabled;
         end
+
+
         function out=isHidden(obj)
             out=obj.HideWidget;
         end
+
+
         function out=getOptionMessage(obj)
             if isempty(obj.OptionMessage)
                 if obj.HasMessage
@@ -86,15 +91,18 @@ Env
             end
             out=obj.OptionMessage;
         end
+
+
         function out=getSummaryMessage(obj)
             if obj.HasSummaryMessage
                 msg_id=['Simulink:CodeImporterUI:OptionSummary_',obj.Id];
-
                 out=message(msg_id).getString;
             else
                 out='';
             end
         end
+
+
         function out=getOptionHintMessage(obj)
             msg_id=['Simulink:CodeImporterUI:OptionHint_',obj.Id];
             if obj.HasHintMessage
@@ -103,12 +111,18 @@ Env
                 out='';
             end
         end
+
+
         function out=getNextQuestionId(obj)
             out=obj.NextQuestion_Id;
         end
+
+
         function setNextQuestionId(obj,q_id)
             obj.NextQuestion_Id=q_id;
         end
+
+
         function applyOnNext(obj)
             if(~obj.isHidden)
                 if strcmp(obj.Type,'radio')||strcmp(obj.Type,'checkbox')
@@ -127,6 +141,8 @@ Env
                 end
             end
         end
+
+
         function applyOnPostCompile(obj)
             if(~obj.isHidden)
                 if strcmp(obj.Type,'radio')||strcmp(obj.Type,'checkbox')
@@ -138,6 +154,8 @@ Env
                 end
             end
         end
+
+
         function out=getPostCompileAction(obj)
             out={};
             action=obj.PostCompileActionCheck;
@@ -151,6 +169,8 @@ Env
                 end
             end
         end
+
+
         function out=getSummary(obj)
             out='';
             if(~obj.isHidden)
@@ -163,6 +183,8 @@ Env
                 end
             end
         end
+
+
         function setAnswer(obj,value)
             if~obj.isHidden
                 if strcmp(obj.Type,'radio')||strcmp(obj.Type,'checkbox')
@@ -186,12 +208,16 @@ Env
                 obj.Answer=reply;
             end
         end
+
+
         function out=isAnswered(obj)
             out=true;
             if isa(obj.Answer,'double')&&obj.Answer==-1
                 out=false;
             end
         end
+
+
         function preShow(~)
         end
     end
