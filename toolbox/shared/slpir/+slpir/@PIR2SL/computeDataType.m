@@ -1,8 +1,5 @@
 function sltype=computeDataType(~,hT,forceFixdtType)
 
-
-
-
     if nargin==2
         forceFixdtType=false;
     end
