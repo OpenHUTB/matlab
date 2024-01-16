@@ -1,69 +1,21 @@
 classdef SurrogateFitter<handle&matlab.mixin.SetGet&matlab.mixin.internal.FunctionObject
 
-
-
     properties
 
         SamplingState=struct("Sobol",[],"Halton",[],"LHS",[],"Random",[]);
 
-
     end
+
+
     properties(Dependent)
-
-
-
-
 Range
-
 GradientSupport
-
 HessianSupport
     end
 
+
     methods(Abstract)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         designs=fitImpl(obj,expensiveDataStorageOrHandle,varargin);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         designs=updateImpl(obj,newDataIndexOrRange,...
         expensiveDataStorageOrHandle,varargin);
     end
@@ -71,33 +23,7 @@ HessianSupport
 
     methods
 
-
         function designs=fit(obj,expensiveDataStorageOrHandle,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             p=inputParser;
             addRequired(p,"Surrogate",...
@@ -105,9 +31,6 @@ HessianSupport
             addRequired(p,"DataStorageOrHandle",...
             @(x)validateattributes(x,{'APIs.DataStorage','APIs.ExpensiveHandle'},{'scalar'}));
             parse(p,obj,expensiveDataStorageOrHandle);
-
-
-
 
             if isa(expensiveDataStorageOrHandle,'APIs.DataStorage')
                 surrogateNames=expensiveDataStorageOrHandle.getResponseNames();
@@ -123,12 +46,10 @@ HessianSupport
             end
             set(obj,"NumberIndependentVariables",numberIndependentVariables);
 
-
             if isempty(obj.SurrogateEvaluator)
                 error(message("shared_surrogatelib:SurrogateFitter:InvalidEvaluator"));
             end
             set(obj.SurrogateEvaluator,"Names",surrogateNames);
-
 
             try
                 designs=obj.fitImpl(expensiveDataStorageOrHandle,varargin{:});
@@ -142,32 +63,6 @@ HessianSupport
 
 
         function designs=update(obj,expensiveDataStorageOrHandle,newDataIndexOrRange,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             p=inputParser;
             addRequired(p,"Surrogate",...
@@ -193,24 +88,8 @@ HessianSupport
             end
         end
 
+
         function evaluatorObj=getEvaluator(obj)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             p=inputParser;
             addRequired(p,"Surrogate",...
@@ -220,7 +99,6 @@ HessianSupport
             evaluatorObj=copy(obj.SurrogateEvaluator);
 
         end
-
 
 
         function set.Range(obj,range)
@@ -238,7 +116,6 @@ HessianSupport
         function range=get.Range(obj)
             range=get(obj.SurrogateEvaluator,"Range");
         end
-
 
 
         function gradientSupport=get.GradientSupport(obj)
@@ -259,38 +136,6 @@ HessianSupport
 
         function samples=drawSamples(obj,numSamples,range,samplingMethod,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             p=inputParser;
             addRequired(p,"Surrogate",...
             @(x)validateattributes(x,{'APIs.SurrogateFitter'},{'scalar'}));
@@ -307,7 +152,6 @@ HessianSupport
             end
             switch lower(samplingMethod)
             case "sobol"
-
                 samples=obj.drawSobolSamplesImpl(numSamples,range,varargin{:});
             case "halton"
 
@@ -322,8 +166,9 @@ HessianSupport
                 error(method("shared_surrogatelib:SurrogateFitter:UnsupportedSamplingMethod",samplingMethod));
             end
         end
-        function samples=drawSobolSamplesImpl(obj,numSamples,range,varargin)
 
+
+        function samples=drawSobolSamplesImpl(obj,numSamples,range,varargin)
 
             numParams=size(range,1);
             if isempty(obj.SamplingState.Sobol)
@@ -337,13 +182,13 @@ HessianSupport
                 numExistingSamples=p.Skip;
             end
             samples=net(p,numSamples);
-
             samples=samples.*diff(range,1,2)'+range(:,1)';
             p.Skip=numExistingSamples+numSamples;
             obj.SamplingState.Sobol=p;
         end
-        function samples=drawHaltonSamplesImpl(obj,numSamples,range,varargin)
 
+
+        function samples=drawHaltonSamplesImpl(obj,numSamples,range,varargin)
 
             numParams=size(range,1);
             if isempty(obj.SamplingState.Halton)
@@ -364,7 +209,6 @@ HessianSupport
         end
         function samples=drawLHSSamplesImpl(obj,numSamples,range,varargin)
 
-
             numParams=size(range,1);
             globalStream=RandStream.getGlobalStream();
             if isempty(obj.SamplingState.LHS)
@@ -379,8 +223,9 @@ HessianSupport
             samples=samples.*diff(range,1,2)'+range(:,1)';
             delete(cleanupObj);
         end
-        function samples=drawRandomUniformSamplesImpl(obj,numSamples,range,varargin)
 
+
+        function samples=drawRandomUniformSamplesImpl(obj,numSamples,range,varargin)
 
             numParams=size(range,1);
             globalStream=RandStream.getGlobalStream();
@@ -397,10 +242,8 @@ HessianSupport
             delete(cleanupObj);
         end
 
+
         function obj=resetSamplingState(obj,samplingMethod)
-
-
-
 
             if nargin<=1
                 obj.SamplingState.Sobol={};
@@ -426,6 +269,8 @@ HessianSupport
                 error(method("shared_surrogatelib:SurrogateFitter:UnsupportedSamplingMethod",samplingMethod));
             end
         end
+
+
         function set.SamplingState(obj,val)
             if~isempty(val.Sobol)&&~isa(val.Sobol,"sobolset")&&~isscalar(val.Sobol)
                 error(method("shared_surrogatelib:SurrogateFitter:UnsupportedSamplingState","Sobol","sobolset","sobolset"));
@@ -442,45 +287,9 @@ HessianSupport
             obj.SamplingState=val;
         end
     end
+
+
     methods
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         function varargout=parenReference(obj,x,varargin)
 
@@ -489,108 +298,45 @@ HessianSupport
             parse(p,obj);
 
             varargout=cell(1,nargout);
-
-
-
             [varargout{:}]=obj.SurrogateEvaluator(x,varargin{:});
         end
+
+
         function grad=gradient(obj,x,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             p=inputParser;
             addRequired(p,"Surrogate",@(x)validateattributes(x,{'APIs.SurrogateFitter'},{'scalar'}));
             parse(p,obj);
-
-
             grad=obj.SurrogateEvaluator.gradient(x,varargin{:});
 
         end
 
+
         function hess=hessian(obj,x,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             p=inputParser;
             addRequired(p,"Surrogate",@(x)validateattributes(x,{'APIs.SurrogateFitter'},{'scalar'}));
             parse(p,obj);
-
-
             hess=obj.SurrogateEvaluator.hessian(x,varargin{:});
 
         end
     end
+
     properties(GetAccess=protected,SetAccess=protected)
 
         NumberIndependentVariables;
     end
+
     properties(GetAccess=public,SetAccess=protected)
 
 NumberRequiredPoints
     end
-    properties(GetAccess=protected,SetAccess=protected)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+   properties(GetAccess=protected,SetAccess=protected)
         SurrogateEvaluator(1,1)
     end
+
+
     methods
         function set.SurrogateEvaluator(obj,value)
             if~isvalid(value)||~isa(value,"APIs.SurrogateEvaluator")
