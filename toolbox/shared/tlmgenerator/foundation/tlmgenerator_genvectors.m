@@ -1,23 +1,5 @@
 function tlmgenerator_genvectors(subsysPath,subsysName,tbDir)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     savedDir=pwd;
 
     try
