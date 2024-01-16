@@ -1,24 +1,11 @@
 classdef(Hidden,Abstract)Neo4jConnect<handle
-
-
-
-
-
-
     properties(SetAccess=protected,GetAccess=public)
 
-
         URL;
-
-
-
         UserName;
-
-
-
-
         Message;
     end
+
 
     methods(Abstract)
         close(this)
@@ -40,6 +27,7 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
         result=executeCypher(this,query)
     end
 
+
     methods(Access=protected,Hidden)
         function relFlag=checkForNodesWithRelations(this,nodes)
             relFlag=false;
@@ -54,21 +42,20 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
         end
     end
 
+
     methods(Access=protected,Static,Hidden)
         function nodeInfo=nodeObjToTable(nodeObj)
-
-
             nodeInfo=table({nodeObj(:).NodeLabels}',{nodeObj(:).NodeData}',nodeObj(:),'VariableNames',{'NodeLabels','NodeData','NodeObject'});
             nodeInfo.Properties.RowNames=strtrim(cellstr(num2str([nodeObj(:).NodeID]')));
         end
 
+
         function relationInfo=relationObjToTable(relationObj)
-
-
             relationInfo=table([relationObj(:).StartNodeID]',{relationObj(:).RelationType}',[relationObj(:).EndNodeID]',{relationObj(:).RelationData}',relationObj(:),...
             'VariableNames',{'StartNodeID','RelationType','EndNodeID','RelationData','RelationObject'});
             relationInfo.Properties.RowNames=strtrim(cellstr(num2str([relationObj(:).RelationID]')));
         end
+
 
         function validateStringInput(x,varName)
 
@@ -84,9 +71,8 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             end
         end
 
+
         function query=buildSearchNodeByIDQuery(parameterName,node)
-
-
             query="MATCH(n) WHERE ID(n) ";
             if isscalar(node)
                 query=query+"=";
@@ -95,6 +81,7 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             end
             query=query+" $"+parameterName+newline;
         end
+
 
         function query=buildSearchNodeQuery(label,propertyParameterName,propertyKey)
 
@@ -117,8 +104,8 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
 
         end
 
-        function query=buildSearchRelationByIDQuery(relationIDParameterName,relationID)
 
+        function query=buildSearchRelationByIDQuery(relationIDParameterName,relationID)
 
             query="MATCH ()-[r]->()"+newline;
             query=query+"WHERE ID(r) ";
@@ -129,6 +116,7 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             end
             query=query+" $"+relationIDParameterName+newline;
         end
+
 
         function query=buildSearchRelationQuery(direction,distance,relationTypes)
             nodeIDParameterName="nodeID";
@@ -154,6 +142,7 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             query=query+"WHERE ID(n) = $"+nodeIDParameterName+newline;
         end
 
+
         function query=buildSearchGraphLabelQuery(labelsToSearch,direction)
             labelsToSearch="`"+labelsToSearch+"`";
             query="MATCH(node1)";
@@ -171,6 +160,7 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             query=query+whereClause+newline;
         end
 
+
         function query=buildSearchGraphLabelNoRelQuery(labelsToSearch)
 
             labelsToSearch="`"+labelsToSearch+"`";
@@ -179,8 +169,8 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             query="MATCH (node1) WHERE NOT (node1)-[]-() AND ("+labelClause+")";
         end
 
-        function query=buildSearchGraphTypeQuery(relationTypesToSearch)
 
+        function query=buildSearchGraphTypeQuery(relationTypesToSearch)
 
             relationTypesToSearch="`"+relationTypesToSearch+"`";
             query="MATCH(node1)-[relation:";
@@ -189,13 +179,9 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
         end
 
 
-
         function[labelsToAdd,uniqueLabels,newOrder,originalOrder]=getUniqueLabels(labels,properties)
 
-
-
             if iscell(labels)
-
 
                 labelsToAdd=cellfun(@(x)join(plus(plus("`",x),"`"),":"),labels);
             else
@@ -203,11 +189,11 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
                 labelsToAdd=join("`"+labels+"`",":");
                 labelsToAdd=repmat(labelsToAdd,length(properties),1);
             end
-
             [labelGroups,uniqueLabels]=findgroups(labelsToAdd);
             [~,newOrder]=sort(labelGroups);
             [~,originalOrder]=sort(newOrder);
         end
+
 
         function query=buildCreateNodeQuery(parameterName,labels)
 
@@ -227,8 +213,8 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             [~,originalOrder]=sort(newOrder);
         end
 
-        function query=buildCreateRelationQuery(startNodeParameterName,startNode,endNodeParameterName,type,propsParameterName)
 
+        function query=buildCreateRelationQuery(startNodeParameterName,startNode,endNodeParameterName,type,propsParameterName)
 
             query="";
             if~isscalar(startNode)
@@ -246,8 +232,8 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             query=query+"SET r = $"+propsParameterName+subscript+newline;
         end
 
-        function query=buildDeleteNodeQuery(nodeIDParameterName,node,deleteRelationsFlag)
 
+        function query=buildDeleteNodeQuery(nodeIDParameterName,node,deleteRelationsFlag)
 
             query="MATCH(n)"+newline;
             query=query+"WHERE ID(n) ";
@@ -265,8 +251,8 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             end
         end
 
-        function query=buildDeleteRelationQuery(relationIDParameterName,relation)
 
+        function query=buildDeleteRelationQuery(relationIDParameterName,relation)
 
             query="MATCH ()-[r]-()"+newline;
             query=query+"WHERE ID(r) ";
@@ -281,13 +267,9 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
 
         function[labelRemoveSection,labelSetSection,uniqueLabelSections,originalOrder,node,properties]=processUpdateLabels(labels,oldNodes,node,properties)
 
-
-
-
             labelRemoveSection="";
             labelSetSection="";
             if~isnumeric(labels)
-
 
                 oldLabels=string.empty;
                 for n=1:length(oldNodes)
@@ -324,6 +306,7 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             end
         end
 
+
         function query=buildUpdateNodeQuery(nodeIDParameterName,node,labelRemoveSection,labelSetSection,propsParameterName,propertiesInitial,propertyValues)
 
             query="";
@@ -352,8 +335,6 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
 
         function query=buildUpdateRelationQuery(relationIDParameterName,relation,propsParameterName)
 
-
-
             query="";
             if~isscalar(relation)
                 query=query+"WITH range(0,size($"+relationIDParameterName+")-1) AS idxList"+newline;
@@ -370,10 +351,7 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
 
 
         function query=buildAddNodeLabelQuery(labels,nodeIDParameterName,node)
-
-
             labelsToAdd=database.neo4j.Neo4jConnect.combineLabels(labels);
-
 
             query="MATCH (n)"+newline;
             query=query+"WHERE id(n) ";
@@ -386,8 +364,8 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             query=query+"SET n"+labelsToAdd+newline;
         end
 
-        function query=buildRemoveNodeLabelQuery(labels,nodeIDParameterName,node)
 
+        function query=buildRemoveNodeLabelQuery(labels,nodeIDParameterName,node)
 
             labelsToRemove=database.neo4j.Neo4jConnect.combineLabels(labels);
 
@@ -404,7 +382,6 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
         end
 
         function query=buildSetNodePropertyQuery(props,propsParameterName,nodeIDParameterName,node)
-
 
             query="";
             subscript="";
@@ -423,8 +400,8 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             query=query+"SET "+join(propSets,", ")+newline;
         end
 
-        function query=buildRemoveNodePropertyQuery(propertyNames,nodeIDParameterName,node)
 
+        function query=buildRemoveNodePropertyQuery(propertyNames,nodeIDParameterName,node)
 
             propertyNames=database.neo4j.Neo4jConnect.processPropertyNames(propertyNames);
 
@@ -443,8 +420,8 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             query=query+"REMOVE "+propSpecs+newline;
         end
 
-        function query=buildSetRelationPropertyQuery(props,propsParameterName,relationIDParameterName,relation)
 
+        function query=buildSetRelationPropertyQuery(props,propsParameterName,relationIDParameterName,relation)
 
 
             query="";
@@ -464,9 +441,8 @@ classdef(Hidden,Abstract)Neo4jConnect<handle
             query=query+"SET "+join(propSets,", ")+newline;
         end
 
+
         function query=buildRemoveRelationPropertyQuery(propertyNames,relationIDParameterName,relation)
-
-
 
             propertyNames=database.neo4j.Neo4jConnect.processPropertyNames(propertyNames);
 
