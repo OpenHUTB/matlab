@@ -1,6 +1,5 @@
 function preUninstallCmds()
 
-
     try
         if matlabshared.supportpkg.internal.ssi.util.isProductInstalled('Simulink')
             matlabshared.supportpkg.internal.ssi.util.closeSimulinkSystem();
