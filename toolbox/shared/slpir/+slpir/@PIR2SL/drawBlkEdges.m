@@ -1,11 +1,6 @@
 function drawBlkEdges(this,mdlFile,hN)
 
-
-
-
     this.genmodeldisp(sprintf('Drawing block edges...'),3);
-
-
     slAutoRoute=strcmpi(this.AutoRoute,'yes')&&strcmpi(this.AutoPlace,'yes');
     pathName=mdlFile;
     vSignals=hN.Signals;
@@ -42,14 +37,9 @@ function drawBlkEdges(this,mdlFile,hN)
                 drvPortName=hDrvPOwner.Name;
                 drvPortIdx=hDrvP.PortIndex+1;
 
-
-
                 if hDrvPOwner.getGMHandle>0
                     op=get_param(hDrvPOwner.getGMHandle,'Ports');
                     op=op(2);
-
-
-
                     if(hDrvPOwner.NumberOfPirOutputPorts~=op)&&hDrvP.didPIRPortNumChange
                         drvPortIdx=hDrvP.getOrigPIRPortNum+1;
                         pirPortIdx=hDrvP.PortIndex+1;
@@ -63,8 +53,6 @@ function drawBlkEdges(this,mdlFile,hN)
                         if pirPortIdx==hDrvPOwner.NumberOfPirOutputPorts&&hDrvPOwner.SimulinkHandle>0
                             numSLPorts=get_param(hDrvPOwner.SimulinkHandle,'Ports');
                             numSLPorts=numSLPorts(2);
-
-
 
                             for portIdx=drvPortIdx+1:numSLPorts
                                 addTerminator(this,drvPortName,portIdx,pathName,slAutoRoute);
@@ -97,8 +85,6 @@ function drawBlkEdges(this,mdlFile,hN)
                 end
 
                 try
-
-
                     hasPropIOType=isprop(get_param(hDrvPOwner.SimulinkHandle,'Object'),'IOType');
                 catch
                     hasPropIOType=false;
@@ -121,6 +107,7 @@ function drawBlkEdges(this,mdlFile,hN)
     end
 end
 
+
 function addTerminator(this,drvPortName,portIdx,pathName,slAutoRoute)
 
     prefix=[pathName,'/'];
@@ -140,6 +127,7 @@ function addTerminator(this,drvPortName,portIdx,pathName,slAutoRoute)
 
 end
 
+
 function flag=isSimulinkFunctionTrigger(hC)
 
     flag=false;
@@ -154,7 +142,6 @@ function flag=isSimulinkFunctionTrigger(hC)
     if hN.SimulinkHandle<0
         return;
     end
-
 
     for i=1:numComps
         curcmp=comps(i);
@@ -186,7 +173,6 @@ function receiverPortName=getRecvPortName(this,hRcvPOwner,hRcvP)
             rcvPortIdx='Reset';
         elseif hRcvP.isSubsystemTrigger
             if this.isSFNetwork(hRcvPOwner.SimulinkHandle)&&hRcvPOwner.isNetworkInstance
-
                 rcvPortIdx=sprintf('%d',numel(hRcvPOwner.PirInputPorts));
             else
                 rcvPortIdx='Trigger';
@@ -210,8 +196,6 @@ function signalWithConflictingNames=addLine(this,pathName,hRcvPOwner,hRcvP,...
     srcPort=sprintf('%s/%d',drvPortName,drvPortIdx);
     dstPort=getRecvPortName(this,hRcvPOwner,hRcvP);
 
-
-
     signalWithConflictingNames=[];
 
     if slAutoRoute
@@ -220,9 +204,7 @@ function signalWithConflictingNames=addLine(this,pathName,hRcvPOwner,hRcvP,...
         lineh=add_line(pathName,srcPort,dstPort);
     end
 
-
     if isBusCreatorComp(hRcvPOwner)&&~isBusSelectorComp(hDrvPOwner)
-
 
         if isa(hRcvPOwner.PirOutputSignals.Type,'hdlcoder.tp_record')
             if isempty(hRcvPOwner.PirOutputSignals.Type.MemberNames)
@@ -258,7 +240,6 @@ end
 function busSelector=isBusSelectorComp(hC)
     busSelector=false;
 
-
     if isa(hC,'hdlcoder.busselector_comp')
         busSelector=true;
     elseif isa(hC,'hdlcoder.black_box_comp')||isa(hC,'hdlcoder.block_comp')
@@ -268,6 +249,7 @@ function busSelector=isBusSelectorComp(hC)
         end
     end
 end
+
 
 function valid=isValidHandle(slbh)
 
@@ -297,9 +279,9 @@ function portIdx=getExternalEnablePortIdx(hC)
     else
         delayType=hdldelaytypeenum.Delay;
     end
-
     [~,portIdx,~]=delayType.getEnbSignals(hC.PirInputSignals);
 end
+
 
 function portIdx=getExternalSyncResetPortIdx(hC)
     assert(isa(hC,'hdlcoder.unitdelayenabledresettable_comp')||...
@@ -318,7 +300,6 @@ function portIdx=getExternalSyncResetPortIdx(hC)
     else
         delayType=hdldelaytypeenum.Delay;
     end
-
     [~,portIdx]=delayType.getRstSignal(hC.PirInputSignals);
 end
 
