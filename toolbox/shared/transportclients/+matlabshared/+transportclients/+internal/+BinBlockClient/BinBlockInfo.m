@@ -3,9 +3,7 @@ classdef(Hidden)BinBlockInfo<event.EventData
     properties(SetAccess=private)
 
 Data
-
 Count
-
 AbsTime
     end
 
