@@ -1,16 +1,5 @@
 function allPhlEntries=readAllPhlFiles(spRoot)
 
-
-
-
-
-
-
-
-
-
-
-
     validateattributes(spRoot,{'char'},{'nonempty'},'readAllPhlFiles','spRoot',1);
     assert(logical(exist(spRoot,'dir')),sprintf('spRoot directory: %s does not exist',spRoot));
     pathToPhlFiles=fullfile(spRoot,'toolbox','local','path');
@@ -19,15 +8,10 @@ function allPhlEntries=readAllPhlFiles(spRoot)
     if~exist(pathToPhlFiles,'dir')
         return;
     end
-
-
     phlFiles=dir(fullfile(pathToPhlFiles,'*.phl'));
     for i=1:numel(phlFiles)
         [fid,message]=fopen(fullfile(pathToPhlFiles,phlFiles(i).name),'r');
         if(fid<=0)
-
-
-
             warning('Unable to open PHL files: %s',message);
             continue;
         end
