@@ -1,17 +1,11 @@
 function postModelgenTasks(this,hPir,mpd)
 
-
-
-
     hiliters=initHiliteMap(this);
 
     if~havePostModelgenTasks(hiliters)
         return;
     end
-
     hiliters=setupFiles(this,hiliters,mpd.firstModel);
-
-
 
     nets=hPir.Networks;
     for i=1:length(nets)
@@ -21,12 +15,9 @@ function postModelgenTasks(this,hPir,mpd)
     end
 
     if mpd.genModel
-
-
         if this.genmodelgetparameter('StaticLatencyPathAnalysis')
             hiliteLatencyPathComp(this,hPir,mpd,hiliters('feedback').clearHighlightingFileid);
         end
-
         generateCPEHtmlReport(this,hiliters,mpd);
     end
     cleanupTasks(this,hiliters,mpd);
@@ -35,11 +26,9 @@ end
 
 
 
-
 function hiliters=initHiliteMap(this)
 
     hiliters=containers.Map;
-
 
     hiliters('feedback')=struct(...
     'param','HighlightFeedbackLoops',...
@@ -97,7 +86,6 @@ function hiliters=initHiliteMap(this)
     'portfcn',[],...
     'compfcn',@hiliteDistributedPipeliningBarriers);
 
-
     if this.genmodelgetparameter('LUTMapToRAM')&&~isempty(this.genmodelgetparameter('SynthesisTool'))
         toolName=this.genmodelgetparameter('SynthesisTool');
 
@@ -135,6 +123,7 @@ function hiliters=initHiliteMap(this)
     'netfcn',@setupStreamingNetwork);
 end
 
+
 function val=havePostModelgenTasks(hiliters)
     values=hiliters.values;
 
@@ -146,10 +135,9 @@ function val=havePostModelgenTasks(hiliters)
             val=true;
             return;
         end
-
     end
-
 end
+
 
 function generateAnnotateHelperFunction()
     hDrv=hdlcurrentdriver;
@@ -178,12 +166,12 @@ function generateAnnotateHelperFunction()
     end
 end
 
+
 function hiliters=setupFiles(this,hiliters,firstModel)
     keys=hiliters.keys;
 
     outMdlFile=this.OutModelFile;
     inMdlFile=this.InModelFile;
-
     clearHighlightingFid=setupClearHighlightingFile(this,inMdlFile,outMdlFile,firstModel);
 
     for i=1:length(keys)
@@ -201,11 +189,11 @@ function hiliters=setupFiles(this,hiliters,firstModel)
             fid=openFile(fname,inMdlFile,outMdlFile,firstModel,bothModels);
             paraminfo.fid=fid;
         end
-
         paraminfo.clearHighlightingFileid=clearHighlightingFid;
         hiliters(sid)=paraminfo;
     end
 end
+
 
 function fid=setupClearHighlightingFile(this,inMdlFile,outMdlFile,firstModel)
     fname=getClearHighlightingFileName(this);
@@ -222,16 +210,17 @@ function fid=setupClearHighlightingFile(this,inMdlFile,outMdlFile,firstModel)
     end
 
     fid=fopen(fname,mode);
-
     fprintf(fid,'SLStudio.Utils.RemoveHighlighting(get_param(''%s'', ''handle''));\n',inMdlFile);
     if~isempty(outMdlFile)
         fprintf(fid,'SLStudio.Utils.RemoveHighlighting(get_param(''%s'', ''handle''));\n',outMdlFile);
     end
 end
 
+
 function fname=getClearHighlightingFileName(this)
     fname=getFileName(this,'ClearHighlightingFile',true);
 end
+
 
 function cleanupTasks(this,hiliters,mpd)
     values=hiliters.values;
@@ -244,7 +233,6 @@ function cleanupTasks(this,hiliters,mpd)
         if paraminfo.fid>0
             fclose(paraminfo.fid);
         end
-
         if(isfield(paraminfo,'clearHighlightingFileid')&&clearHighlightingFid==0)
             clearHighlightingFid=paraminfo.clearHighlightingFileid;
         end
@@ -255,16 +243,15 @@ function cleanupTasks(this,hiliters,mpd)
             showClearHiliteMsg=true;
         end
     end
-
     outputClearHighlightingFile(this,clearHighlightingFid,mpd,showClearHiliteMsg);
 
 end
+
 
 function outputClearHighlightingFile(this,fid,mpd,showClearHiliteMsg)
     if(fid>0)
         fclose(fid);
     end
-
     filename=getClearHighlightingFileName(this);
 
     if(isempty(mpd.highlightMessages))
@@ -285,14 +272,12 @@ function outputClearHighlightingFile(this,fid,mpd,showClearHiliteMsg)
         end
         this.genmodeldisp(msg);
     end
-
 end
+
 
 function fid=openFile(filename,inMdlFile,outMdlFile,firstModel,bothModels)
 
     if isempty(outMdlFile)&&~bothModels
-
-
         fid=-1;
         return
     end
@@ -318,6 +303,7 @@ function fid=openFile(filename,inMdlFile,outMdlFile,firstModel,bothModels)
     end
 end
 
+
 function fullname=getFileName(this,fileparam,addExtension,baseCodegenDir)
     if nargin<4
         baseCodegenDir=true;
@@ -326,7 +312,6 @@ function fullname=getFileName(this,fileparam,addExtension,baseCodegenDir)
     if nargin<3
         addExtension=false;
     end
-
     filename=this.genmodelgetparameter(fileparam);
     hDrv=hdlcurrentdriver;
 
@@ -342,14 +327,11 @@ function fullname=getFileName(this,fileparam,addExtension,baseCodegenDir)
 end
 
 
-
 function hiliteNetwork(this,hiliters,srcParentPath,hN,mpd)
-
     tgtParentPath=getTargetModelPath(this,srcParentPath);
 
     hIns=hN.PirInputPorts;
     hOuts=hN.PirOutputPorts;
-
     hiliters=runNetworkFcn(this,hiliters,hN,mpd,true);
 
     this.genmodeldisp(sprintf('Highlighting input ports...'),3);
@@ -360,7 +342,6 @@ function hiliteNetwork(this,hiliters,srcParentPath,hN,mpd)
 
     this.genmodeldisp(sprintf('Highlighting components...'),3);
     hiliteComps(hiliters,srcParentPath,tgtParentPath,hN,mpd);
-
     runNetworkFcn(this,hiliters,hN,mpd,false);
 end
 
@@ -427,7 +408,6 @@ function hiliteCompInModels(hiliters,srcParentPath,tgtParentPath,hC,mpd)
             hiliters(keys{i})=paraminfo;
         end
     end
-
 end
 
 
@@ -532,7 +512,6 @@ function hiliteCRPPort(paraminfo,srcParentPath,tgtParentPath,hP,useInput)
 
     hGMBlock=hP.getGMHandle;
     hiliteComp(hP,fid,tgtParentPath,hiliteId,hGMBlock,paraminfo.clearHighlightingFileid,message(desc).getString,useInput);
-
     hiliteComp(hP,fid,srcParentPath,hiliteId,[],paraminfo.clearHighlightingFileid,message(desc).getString,useInput);
 
 end
@@ -555,12 +534,10 @@ end
 
 
 function generateCPEHtmlReport(this,hiliters,mpd)
-
     if(~hdlgetparameter('CriticalPathEstimation')||...
         ~mpd.lastModel)
         return;
     end
-
 
     offendingBlocksFileName={};
     if(hiliters.isKey('ncc'))
@@ -577,7 +554,6 @@ function generateCPEHtmlReport(this,hiliters,mpd)
     cpeReportFile=fullfile(hDriver.hdlGetBaseCodegendir(),'criticalpathestimationsummary.html');
     cpehighlightscript=getFileName(this,'CriticalPathEstimationFile');
     qoroptimizations.printCPESummary(topModelName,cpeDelaysMap,cpeReportFile,cpehighlightscript,offendingBlocksFileName);
-
 
 end
 
@@ -604,7 +580,6 @@ function highlighted=hiliteCriticalPathComp(paraminfo,~,tgtParentPath,phC,mpd)
         else
             hiliteId=getHiliteSchemeWithColor(fid,'lightblue',2);
         end
-
         hiliteComp(hC,fid,tgtParentPath,hiliteId,hGMBlock,paraminfo.clearHighlightingFileid);
 
         numOfDelays=hC.getNumberOfCriticalPathDelays();
@@ -624,138 +599,85 @@ function highlighted=hiliteCriticalPathComp(paraminfo,~,tgtParentPath,phC,mpd)
 end
 
 
-
-
-
-
-
 function generateGMMapMatFile(this,hPir)
-
-
     load_system(this.OutModelFile);
 
-
     ntwks=hPir.Networks;
-
-
     fname=[getFileName(this,'SLPAGMMapMATFile',false,false),'_',this.OutModelFile,'.mat'];
-
-
-
 
     needToLoadFromMAT=true;
 
-
     res=cell(size(ntwks));
-
 
     for ntwkIdx=1:length(ntwks)
 
-
         localNtwk=ntwks(ntwkIdx);
 
-
         gmHandles=struct('comp',{cell(size(localNtwk.Components))},'inport',{cell(size(localNtwk.PirInputPorts))},'outport',{cell(size(localNtwk.PirOutputPorts))});
-
 
         for compIdx=1:length(localNtwk.Components)
             currComp=localNtwk.Components(compIdx);
 
-
             if(currComp.getGMHandle~=-1)
 
-
-
                 needToLoadFromMAT=false;
-
 
                 gmHandles.comp{compIdx}=[get_param(currComp.getGMHandle,'Parent'),'/',get_param(currComp.getGMHandle,'Name')];
             end
         end
 
-
         for inportIdx=1:length(localNtwk.PirInputPorts)
             currInport=localNtwk.PirInputPorts(inportIdx);
 
-
             if(currInport.getGMHandle~=-1)
 
-
-
                 needToLoadFromMAT=false;
-
 
                 gmHandles.inport{inportIdx}=[get_param(currInport.getGMHandle,'Parent'),'/',get_param(currInport.getGMHandle,'Name')];
             end
         end
 
-
         for outportIdx=1:length(localNtwk.PirOutputPorts)
             currOutport=localNtwk.PirOutputPorts(outportIdx);
 
-
             if(currOutport.getGMHandle~=-1)
 
-
-
                 needToLoadFromMAT=false;
-
-
                 gmHandles.outport{outportIdx}=[get_param(currOutport.getGMHandle,'Parent'),'/',get_param(currOutport.getGMHandle,'Name')];
             end
         end
 
-
         res{ntwkIdx}=gmHandles;
     end
-
 
     if needToLoadFromMAT&&exist(fname,'file')
 
         load(fname,'res');
 
-
-
         if(length(res)~=length(ntwks))
             return
         end
 
-
         for ntwkIdx=1:length(ntwks)
-
-
-
             if(length(res{ntwkIdx}.comp)~=length(hPir.Networks(ntwkIdx).Components))||...
                 (length(res{ntwkIdx}.inport)~=length(hPir.Networks(ntwkIdx).PirInputPorts))||...
                 (length(res{ntwkIdx}.outport)~=length(hPir.Networks(ntwkIdx).PirOutputPorts))
                 return
             end
 
-
             for compIdx=1:length(hPir.Networks(ntwkIdx).Components)
-
-
-
                 if~isempty(res{ntwkIdx}.comp{compIdx})
                     hPir.Networks(ntwkIdx).Components(compIdx).setGMHandle(get_param(res{ntwkIdx}.comp{compIdx},'Handle'));
                 end
             end
 
-
             for inportIdx=1:length(hPir.Networks(ntwkIdx).PirInputPorts)
-
-
-
                 if~isempty(res{ntwkIdx}.inport{inportIdx})
                     hPir.Networks(ntwkIdx).PirInputPorts(inportIdx).setGMHandle(get_param(res{ntwkIdx}.inport{inportIdx},'Handle'));
                 end
             end
 
-
             for outportIdx=1:length(hPir.Networks(ntwkIdx).PirOutputPorts)
-
-
-
                 if~isempty(res{ntwkIdx}.outport{outportIdx})
                     hPir.Networks(ntwkIdx).PirOutputPorts(outportIdx).setGMHandle(get_param(res{ntwkIdx}.outport{outportIdx},'Handle'));
                 end
@@ -773,23 +695,16 @@ function hiliteLatencyPathComp(this,hPir,mpd,clearHighlightingFileid)
 
     generateGMMapMatFile(this,hPir);
 
-
     hDriver=hdlcurrentdriver;
-
     topLevelModel=strcmp(hDriver.hdlGetCodegendir(),hDriver.hdlGetBaseCodegendir());
-
 
     if~topLevelModel
         return
     end
 
-
     res=hPir.doStaticLatencyAnalysis();
-
-
     clearfilename=getClearHighlightingFileName(this);
     [~,clearfilename,clearfileext]=fileparts(clearfilename);
-
 
     tempRes=res{1};
 
@@ -799,21 +714,13 @@ function hiliteLatencyPathComp(this,hPir,mpd,clearHighlightingFileid)
         newRes(1).fname=getFileName(this,'SLPAFile',false,false);
         fid=openFile([newRes(1).fname,'.m'],[],this.OutModelFile,true,false);
 
-
         if topLevelModel
             fprintf(fid,'run(''%s'');\n',[clearfilename,clearfileext]);
         end
-
         hiliteId=getHiliteSchemeWithColor(fid,'green',1);
 
         comps=tempRes(1).Path;
-
-
-
-
-
         latency=round(tempRes(1).LongestLatency);
-
         tRes=writeCompDetailsToFile(fid,comps,hiliteId,1,clearHighlightingFileid,latency);
 
         newRes(1).firstComp=tRes.firstComp;
@@ -825,34 +732,24 @@ function hiliteLatencyPathComp(this,hPir,mpd,clearHighlightingFileid)
 
     res{1}=newRes;
 
-
-
     tempRes=res{2};
 
     if~isempty(tempRes)
-
         backEdgeFileName=getFileName(this,'SLPABackEdgeFile',true,false);
         [~,tempRes(1).backEdgeFileName,~]=fileparts(backEdgeFileName);
-
-
         generateBackEdgeHighlightFunction(tempRes(1).backEdgeFileName,backEdgeFileName);
     end
 
     for idx=1:length(tempRes)
-
         tempRes(idx).fname=[getFileName(this,'SLPALoopsFile',false,false),num2str(idx)];
-
         fid=openFile([tempRes(idx).fname,'.m'],[],this.OutModelFile,true,false);
-
 
         if topLevelModel
             fprintf(fid,'run(''%s'');\n',[clearfilename,clearfileext]);
         end
-
         hiliteId=getHiliteSchemeWithColor(fid,'yellow',idx);
 
         comps=tempRes(idx).Components;
-
         writeCompDetailsToFile(fid,comps,hiliteId,0);
 
         for bidx=1:length(tempRes(idx).BackEdges)
@@ -865,7 +762,6 @@ function hiliteLatencyPathComp(this,hPir,mpd,clearHighlightingFileid)
 
     res{2}=tempRes;
 
-
     tempRes=res{3};
 
     for idx=1:length(tempRes)
@@ -876,14 +772,9 @@ function hiliteLatencyPathComp(this,hPir,mpd,clearHighlightingFileid)
 
     res{end+1}=getClearHighlightingFileName(this);
 
-
-
     topModelName=hDriver.getStartNodeName;
     staticLatReportFile=fullfile(hDriver.hdlGetCodegendir(),'staticlatencypathanalysissummary.html');
-
     qoroptimizations.printStaticLatencyPathSummary(topModelName,staticLatReportFile,res,this.OutModelFile,topLevelModel,hDriver.hdlGetCodegendir());
-
-
 
     if topLevelModel
         if this.HyperlinksInLog
@@ -894,6 +785,7 @@ function hiliteLatencyPathComp(this,hPir,mpd,clearHighlightingFileid)
         end
     end
 end
+
 
 function generateBackEdgeHighlightFunction(backEdgeFunctionName,backEdgeFileName)
 
@@ -947,12 +839,12 @@ function generateBackEdgeHighlightFunction(backEdgeFunctionName,backEdgeFileName
     fclose(fid);
 end
 
+
 function[compPath,modelRef,modelrefStack]=getCompPathFromStack(compStack)
 
     modelRef=false;
     modelrefStack=cell(0);
     blockPath='';
-
 
     compStack=compStack(compStack~=-1);
 
@@ -983,7 +875,6 @@ function[compPath,modelRef,modelrefStack]=getCompPathFromStack(compStack)
         end
     end
 
-
     if skipComp
         compPath='';
     else
@@ -993,27 +884,21 @@ function[compPath,modelRef,modelrefStack]=getCompPathFromStack(compStack)
     compPath=strrep(compPath,newline,' ');
 end
 
+
 function res=writeCompDetailsToFile(fid,compsIn,hiliteId,annotateWeightFlag,clearHighlightingFileid,latency)
 
     comps=cell(length(compsIn),1);
     modelRef=cell(length(compsIn),1);
     modelrefStack=cell(length(compsIn),1);
 
-
     if~isempty(compsIn)
-
-
         for compIdx=1:length(compsIn)
             [comps{compIdx},modelRef{compIdx},tempStack]=getCompPathFromStack(compsIn{compIdx});
-
-
-
 
             if compIdx>1&&modelRef{compIdx-1}&&modelRef{compIdx}
 
                 tempStackPrev=modelrefStack{compIdx-1};
                 toRemove=0;
-
 
                 for modelRefStackIdx=1:min(length(tempStackPrev),length(tempStack))
                     if strcmp(tempStackPrev{modelRefStackIdx},tempStack{modelRefStackIdx})
@@ -1035,7 +920,6 @@ function res=writeCompDetailsToFile(fid,compsIn,hiliteId,annotateWeightFlag,clea
         if annotateWeightFlag
             res.Latency=latency(end);
         end
-
         [comps,~,compPosition]=unique(comps);
 
         for compIdx=1:length(comps)
@@ -1049,18 +933,14 @@ function res=writeCompDetailsToFile(fid,compsIn,hiliteId,annotateWeightFlag,clea
             fprintf(fid,'hilite_system(''%s'', ''%s'');\n',compName,hiliteId);
 
             if annotateWeightFlag
-
                 latIndex=(compPosition==compIdx);
 
                 if strcmp(get_param(compName,'BlockType'),'ModelReference')
                     latIndexShifted=[latIndex(2:end);0];
                     latIndexShifted=latIndexShifted&latIndex;
-
                     latIndex=xor(latIndex,latIndexShifted);
                 end
-
                 compWeight=latency(latIndex);
-
                 compWeightStr=num2str(abs(compWeight),'%d,');
                 compWeightStr(end)=[];
 
@@ -1073,12 +953,9 @@ function res=writeCompDetailsToFile(fid,compsIn,hiliteId,annotateWeightFlag,clea
 
                     fprintf(fid,'hilite_system(''%s'', ''%s'');\n',compName,hiliteId);
                 end
-
                 annotatePort(fid,compName,false,portIdx,compWeightStr,clearHighlightingFileid);
             end
         end
-
-
         modelrefStack(isempty(modelrefStack))=[];
 
         for modelRefStackIdx=1:length(modelrefStack)
@@ -1159,6 +1036,7 @@ function highlighted=hiliteDistributedPipeliningBarriers(paraminfo,srcParentPath
     highlighted=true;
 end
 
+
 function highlighted=hiliteLUTPipelines(paraminfo,srcParentPath,tgtParentPath,hC,~)
     highlighted=false;
     origHandle=hC.OrigModelHandle;
@@ -1167,21 +1045,17 @@ function highlighted=hiliteLUTPipelines(paraminfo,srcParentPath,tgtParentPath,hC
         return;
     end
 
-
     if~ismethod(hC,'getBlockName')||~contains(hC.getBlockName,'Lookup')...
         ||~ismethod(hC,'getMapToRAM')
         return;
     end
 
-
     if(hC.getAdaptivePipelinesInserted()<=0)
         hilite=false;
-
 
         if strcmpi(class(hC),'hdlcoder.lookuptable_comp')&&hC.getInterpVal()>0
             return;
         end
-
 
         outsignal=hC.PirOutputSignals;
         if(numel(outsignal)==1)
@@ -1216,7 +1090,6 @@ function highlighted=hiliteLUTPipelines(paraminfo,srcParentPath,tgtParentPath,hC
     if fid<=0
         return;
     end
-
     desc='hdlcoder:optimization:lutpipeline';
     hiliteId=getHiliteScheme(fid,id);
 
@@ -1250,22 +1123,15 @@ function highlighted=hiliteCompsWithNoCharacterization(paraminfo,srcParentPath,t
 
     desc=hC.getCPEDescription;
 
-
     useInput=true;
-
-
     if~isempty(desc)&&hC.NumberOfPirInputPorts<=0
-
 
         if hC.NumberOfPirOutputPorts>0
             useInput=false;
         else
-
-
             desc=[];
         end
     end
-
 
     hiliteMessage=[];
     if~isempty(desc)
@@ -1303,7 +1169,6 @@ function highlighted=hiliteSharingGroups(paraminfo,srcParentPath,tgtParentPath,h
     if id<0
         return;
     end
-
     if(hC.isNetworkInstance&&~hC.ReferenceNetwork.isShared)
         hN=hC.ReferenceNetwork;
         vComps=hN.Components;
@@ -1317,7 +1182,6 @@ function highlighted=hiliteSharingGroups(paraminfo,srcParentPath,tgtParentPath,h
         desc=['Sharing Group ',num2str(id+1)];
         hGMBlock=hC.getGMHandle;
         hiliteComp(hC,paraminfo.fid,tgtParentPath,hiliteId,hGMBlock,paraminfo.clearHighlightingFileid,desc);
-
         group1=hC.getStreamingOrigCompsHandles;
         group2=hC.getSharingOrigCompsHandles;
         hiliteOrigCompsByGroup({group1,group2},hC,paraminfo,srcParentPath,hiliteId,desc);
@@ -1358,7 +1222,6 @@ function highlighted=hiliteStreamingGroups(paraminfo,srcParentPath,tgtParentPath
             hiliteStreamingGroups(paraminfo,srcParentPath,tgtParentPath,hComp,mpd);
         end
     end
-
     hiliteId=getHiliteSchemeStreamingSharing(paraminfo.fid,id);
 
     desc=['Streaming Group ',num2str(id+1)];
@@ -1453,12 +1316,8 @@ function slBlockName=getBlockNameFromHandle(hC,path,hBlk)
 
     if~isempty(hBlk)&&hBlk>0
         slBlockName=getfullname(hBlk);
-
-
-
         slBlockName=regexprep(slBlockName,'\r\n|\n|\r',' ');
     end
-
 end
 
 
@@ -1470,7 +1329,6 @@ function hiliteComp(hC,fid,path,id,hBlk,clearHighlightingFid,desc,useInput)
     if nargin<=7
         useInput=false;
     end
-
     slBlockName=getBlockNameFromHandle(hC,path,hBlk);
 
     if~isempty(slBlockName)
