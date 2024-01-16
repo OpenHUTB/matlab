@@ -1,13 +1,9 @@
 function tlmgenerator_packaging
 
-
-
     try
 
         SystemInfo=tlmgenerator_getcodeinfo();
         cfg=tlmgenerator_getconfigset(SystemInfo.Name);
-
-
 
         load buildInfo;
         packNGoFileName=[SystemInfo.Name,'_pNg','.zip'];
@@ -27,7 +23,6 @@ function tlmgenerator_packaging
         copyfile('*.h',packNGoTmpDir,'f');
         [~,~,~]=copyfile('*.hpp',packNGoTmpDir,'f');
 
-
         tlmg_build=getappdata(0,'tlmg_build');
 
         for i=1:numel(tlmg_build.IncListNoPath)
@@ -36,12 +31,6 @@ function tlmgenerator_packaging
         for i=1:numel(tlmg_build.SrcListNoPath)
             copyfile(fullfile(packNGoTmpDir,tlmg_build.SrcListNoPath{i}),'.','f');
         end
-
-
-
-
-
-
         savedWarn=warning('query','MATLAB:MKDIR:DirectoryExists');
         warning('off','MATLAB:MKDIR:DirectoryExists');
 
@@ -80,8 +69,6 @@ function tlmgenerator_packaging
         copyfile(fullfile('tlm','*.xml'),compDirs{1},'f');
         copyfile(fullfile('tlm','*.cpp'),compDirs{2},'f');
         copyfile(fullfile('tlm','*.h'),compDirs{3},'f');
-
-
         if(strcmp(cfg.tlmgGenerateTestbenchOnOff,'on'))
 
             tbDirs=strcat(['..',filesep],...
