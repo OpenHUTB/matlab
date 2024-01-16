@@ -1,7 +1,5 @@
 classdef PIR2SL<handle
 
-
-
     properties
 hPir
 Verbose
@@ -39,6 +37,7 @@ nonTopDut
 SamplesPerCycle
     end
 
+
     methods
         function this=PIR2SL(hPir,varargin)
             if~isa(hPir,'hdlcoder.pirctx')
@@ -50,30 +49,22 @@ SamplesPerCycle
 
             this.hPir=hPir;
 
-
             this.SaveTemps='no';
-
 
             this.AutoRoute='on';
 
-
             this.AutoPlace='on';
-
 
             this.UseArrangeSystem='off';
 
-
             this.SLEngineDebug='off';
-
 
             this.UseModelReference='no';
 
             this.TotalRunTime='0.0';
             this.SolverName='FixedStepDiscrete';
             this.FixedStepSize='auto';
-
             this.subsystemCache=containers.Map();
-
 
             this.OutModelFile='';
             this.TopOutModelFile='';
@@ -81,28 +72,6 @@ SamplesPerCycle
             this.ShowModel='yes';
             this.MLMode=false;
             this.HyperlinksInLog=true;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             this.RootNetworkName='';
             this.SourceModelValid=0;
@@ -112,14 +81,12 @@ SamplesPerCycle
 
             this.OverrideSampleTime=false;
 
-
             this.SetDataTypesFromPir='no';
 
             for n=1:2:length(varargin)
                 this.(varargin{n})=varargin{n+1};
             end
         end
-
         connectNtwkGenericPorts(this,hN,tgtParentPath);
         [blkName,slHandle]=addBlock(this,hC,blkType,blkNameWithPath,makeNameUnique);
         handleMaskParams(this,slBlockName,slHandle,hRefNtwk,isPort,newPortNum);
@@ -179,31 +146,39 @@ SamplesPerCycle
         drawTest(this);
         drawStreamedTestBench(this);
 
+
         function newSlBlockName=drawSerializerComp(~,~,~)
             newSlBlockName='';
         end
+
 
         function newSlBlockName=drawTappedDelayEnabledResettableComp(~,~,~)
             newSlBlockName='';
         end
 
+
         function newSlBlockName=drawDeserializerComp(~,~,~)
             newSlBlockName='';
         end
+
 
         function newSlBlockName=drawRecipSqrtNewtonComp(~,~,~)
             newSlBlockName='';
         end
 
+
         function newSlBlockName=drawSqrtNewtonComp(~,~,~)
             newSlBlockName='';
         end
 
+
         function drawReciCompNewtonImp(~,~,~)
         end
 
+
         function modelgenset_param(~,varargin)
         end
+
 
         function chevrontrigport=isChevronTriggPort(~,hC)
             chevrontrigport=false;
@@ -216,8 +191,8 @@ SamplesPerCycle
             end
         end
 
-
     end
+
 
     methods(Abstract)
         notdraw=shouldDrawComp(~,hC);
@@ -225,23 +200,16 @@ SamplesPerCycle
         valid=isValidPort(~,hP);
     end
 
+
     methods(Static)
         initOutputModel(srcModelName,targetModelName);
-
-
-
         drawTunableConstBlocks(tunablePorts,DUTName,subsystemOnDUT);
-
-
         connectTestpoints(dummy,gmDUT,gmTop);
-
-
         drawCordicTrigBlocks(hC,originalBlkPath,newSlSubsystemName,fcn,iterNum,usePipelines,customLatency,latencyStrategy)
 
         clearNameMap(~);
 
         rMap=getNameMapSingletonInstance(~);
-
         uniqueName=getUniqueName(slBlockName);
     end
 end
