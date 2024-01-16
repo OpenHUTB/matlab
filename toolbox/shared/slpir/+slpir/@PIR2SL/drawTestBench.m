@@ -1,11 +1,5 @@
 function drawTestBench(this,includeDut,emitMessage,convertModel)
 
-
-
-
-
-
-
     if this.isDutWholeModel
         return;
     end
@@ -26,10 +20,7 @@ function drawTestBench(this,includeDut,emitMessage,convertModel)
 
     inFileName=this.InModelFile;
     outFileName=this.OutModelFile;
-
-
     srcMdlObj=get_param(inFileName,'Object');
-
 
     topLevelBlks=srcMdlObj.Blocks;
 
@@ -37,7 +28,6 @@ function drawTestBench(this,includeDut,emitMessage,convertModel)
 
     for ii=1:numel(topLevelBlks)
         srcBlk=fixBlockName(topLevelBlks{ii});
-
         [isValid,isDut]=isValidTestBenchBlock(this,srcBlk,includeDut);
         if~isValid
             if isDut
@@ -52,34 +42,20 @@ function drawTestBench(this,includeDut,emitMessage,convertModel)
         copyOrigBlk(srcBlkPath,tgtBlkPath);
         copyTestpointTags(srcBlkPath,tgtBlkPath);
     end
-
     strTestbenchBlocks=string(testbenchBlocks);
     for ii=1:numel(strTestbenchBlocks)
         srcBlk=strTestbenchBlocks(ii);
         fullBlkName=strcat(outFileName,'/',srcBlk);
         slpir.PIR2SL.connectTestpoints(this,fullBlkName,outFileName);
     end
-
-
     addTopLevelAnnotationBlock(inFileName,outFileName);
-
-
-
-
-
-
-
-
-
     if(strcmp(hdlget_param(srcMdlObj.Path,'HDLDTO'),'s2h')&&convertModel)
         topLevelLines=this.insertDTCBlocksForHDLDTO;
     else
         topLevelLines=srcMdlObj.Lines;
     end
 
-
     if~isempty(topLevelLines)
-
 
         if any(arrayfun(@(line)strcmp(get_param(line.Handle,'object').linetype,'connection'),...
             topLevelLines))
@@ -104,46 +80,33 @@ end
 
 
 function addTopLevelAnnotationBlock(inFileName,outFileName)
-
     topLevelAnnoHandles=find_system(inFileName,'SearchDepth',1,...
     'FindAll','on','type','annotation');
 
     for ii=1:numel(topLevelAnnoHandles)
         hSrcAnno=topLevelAnnoHandles(ii);
         annoName=fixBlockName(get(hSrcAnno,'Name'));
-
         notPlainText=~strcmp(get(hSrcAnno,'Interpreter'),'off');
         if notPlainText
             annoName=fixBlockName(get(hSrcAnno,'PlainText'));
         end
 
-
         if isempty(annoName)
             continue;
         end
-
-
         dupHandle=find_system(outFileName,'SearchDepth',1,...
         'FindAll','on','Name',annoName);
         if~isempty(dupHandle)
             continue;
         end
-
-
         srcAnnoPath=[inFileName,'/',annoName];
         tgtAnnoPath=[outFileName,'/',annoName];
 
-
         add_block('built-in/Note',tgtAnnoPath);
-
-
         srcHA=get_param(hSrcAnno,'HorizontalAlignment');
         set_param(tgtAnnoPath,'HorizontalAlignment',srcHA);
-
-
         set_param(tgtAnnoPath,'Position',get_param(hSrcAnno,'Position'));
         set_param(tgtAnnoPath,'Interpreter',get_param(hSrcAnno,'Interpreter'));
-
         srcVA=get_param(hSrcAnno,'VerticalAlignment');
         set_param(tgtAnnoPath,'VerticalAlignment',srcVA);
 
@@ -158,7 +121,6 @@ end
 
 function addTBLines(this,srcPort,line,lineProps)
     if~isempty(line.DstBlock)&&line.DstBlock~=-1
-
         dstPort=[fixBlockName(get_param(line.DstBlock,'Name')),'/',fixPortName(this,line)];
         drawTBLine(this,srcPort,dstPort,lineProps);
     else
@@ -215,9 +177,7 @@ function[valid,isDut]=isValidTestBenchBlock(this,tbBlk,includeDut)
     tbBlkName=[this.InModelFile,'/',tbBlk];
     blkname=hdlfixblockname(tbBlkName);
 
-
     if~includeDut
-
         dutname=hdlfixblockname(this.RootNetworkName);
         if strcmp(blkname,dutname)
 
@@ -226,39 +186,28 @@ function[valid,isDut]=isValidTestBenchBlock(this,tbBlk,includeDut)
         end
     end
 
-
-
     if strcmp(get_param(blkname,'MaskType'),'System Requirement Item')
         valid=0;
         return;
     end
 
-
-
-
-
     o=get_param(blkname,'Object');
     fn=fieldnames(o);
-
     if~isempty(find(strncmp('AncestorBlock',fn,13),1))&&...
         strcmpi(o.AncestorBlock,'powerlib/powergui')
         if~isempty(find_system(this.OutModelFile,'Name',tbBlk))
-
             delete_block([this.OutModelFile,'/',tbBlk]);
         end
     end
 end
 
 
-function blkName=fixBlockName(name)
-
-
-
+function blkName = fixBlockName(name)
     blkName=strrep(name,'/','//');
 end
 
-function port=fixPortName(this,line)
 
+function port=fixPortName(this,line)
     port=line.DstPort;
     if strcmp(hdlfeature('HDLBlockAsDUT'),'on')&&this.needFullMdlGen&&...
         strcmp(getfullname(line.DstBlock),this.RootNetworkName)...
@@ -270,8 +219,6 @@ end
 
 
 function copyOrigBlk(srcBlkPath,tgtBlkPath)
-
-
     zorder=get_param(srcBlkPath,'ZOrder');
     if strcmp(get_param(srcBlkPath,'BlockType'),'InportShadow')
         add_block(srcBlkPath,tgtBlkPath,'copyoption','duplicate','ZOrder',zorder);
@@ -283,11 +230,7 @@ function copyOrigBlk(srcBlkPath,tgtBlkPath)
 end
 
 
-function copyTestpointTags(srcBlkPath,tgtBlkPath)
-
-
-
-    allPorts=get_param(srcBlkPath,'PortHandles');
+function copyTestpointTags(srcBlkPath,tgtBlkPath)    allPorts=get_param(srcBlkPath,'PortHandles');
     allOutports=allPorts.Outport;
     allTestpointports=[];
     for jj=1:numel(allOutports)
