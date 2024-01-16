@@ -1,18 +1,5 @@
 function spRoot=getSupportPackageRootNoCreate()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     try
         rootHandler=matlabshared.supportpkg.internal.SupportPackageRootHandler.getHandler();
         spRoot=rootHandler.getInstallRootNoCreate(struct('ErrorIfDefaultsMaxed',false));
