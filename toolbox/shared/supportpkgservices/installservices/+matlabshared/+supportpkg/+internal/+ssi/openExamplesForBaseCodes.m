@@ -1,14 +1,4 @@
 function openExamplesForBaseCodes(baseCodeArray,spRoot)
-
-
-
-
-
-
-
-
-
-
     baseCodeArray=cellstr(string(baseCodeArray));
     assert(iscellstr(baseCodeArray),'Expected baseCodeArray to be a cell array of strings');
     validateattributes(spRoot,{'char'},{'nonempty'},'addInstalledDirsToPath','spRoot',1);
