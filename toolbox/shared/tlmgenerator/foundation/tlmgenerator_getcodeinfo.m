@@ -1,6 +1,5 @@
 function SystemInfo=tlmgenerator_getcodeinfo()
 
-
     try
 
         load codeInfo;
@@ -46,16 +45,12 @@ function SystemInfo=tlmgenerator_getcodeinfo()
                     SystemInfo.RTMStruct=l_getStructInfo(iH);
                 otherwise
 
-
-
-
                 end
             catch ME
                 l_me=MException('','parsing %s %s',gName,ME.message);
                 throw(l_me);
             end
         end
-
 
         SystemInfo.PortRate=0;
         for i=1:SystemInfo.InStruct.NumPorts
@@ -106,12 +101,6 @@ function SystemInfo=tlmgenerator_getcodeinfo()
                 break;
             end
         end
-
-
-
-
-
-
         SystemInfo.AllocateFcn=l_getFuncInfo(codeInfo.AllocationFunction);
         SystemInfo.InitializeFcn=l_getFuncInfo(codeInfo.InitializeFunctions);
         SystemInfo.OutputFcn=l_getFuncInfo(codeInfo.OutputFunctions);
@@ -125,7 +114,6 @@ function SystemInfo=tlmgenerator_getcodeinfo()
             SystemInfo.SetParamFcn(i).ArgsType=SystemInfo.ParamStruct.Port(i).DataType;
         end
 
-
     catch ME
         l_me=MException('TLMGenerator:build','TLMG getcodeinfo: %s',ME.message);
         SystemInfo=struct([]);
@@ -136,10 +124,7 @@ function SystemInfo=tlmgenerator_getcodeinfo()
 end
 
 
-
-
 function structInfo=l_getStructInfo(rtwVarInfo)
-
 
     structInfo.Name=rtwVarInfo.Identifier;
     structInfo.pName=['p_',rtwVarInfo.Identifier];
@@ -155,8 +140,8 @@ function structInfo=l_getStructInfo(rtwVarInfo)
     end
 end
 
-function portInfo=l_getPortInfo(rtwVarInfo)
 
+function portInfo=l_getPortInfo(rtwVarInfo)
 
     if rtwVarInfo.isNumeric
         portInfo.DataType=rtwVarInfo.Identifier;
@@ -196,8 +181,8 @@ function portInfo=l_getPortInfo(rtwVarInfo)
     portInfo.SampleOffset=0;
 end
 
-function dim=l_getScalarDim(dimArray)
 
+function dim=l_getScalarDim(dimArray)
 
     dim=1;
     for i=1:length(dimArray)
@@ -245,6 +230,7 @@ function dim=l_getTypeDim(type)
     end
 end
 
+
 function fcn=l_getFuncInfo(codeInfoFcn)
     if isempty(codeInfoFcn)
         fcn={};
@@ -263,7 +249,6 @@ function fcn=l_getFuncInfo(codeInfoFcn)
         else
             fcn.ArgsType=codeInfoFcn.ActualArgs.Implementation.Type.BaseType.Identifier;
         end
-
 
     end
 end
