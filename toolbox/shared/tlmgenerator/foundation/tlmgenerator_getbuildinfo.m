@@ -1,21 +1,10 @@
 function bi=tlmgenerator_getbuildinfo(modelName,buildInfo)
 
-
-
     try
-
-
-
-
 
         [~,incList]=buildInfo.getFullFileList('include');
         [~,srcList]=buildInfo.getFullFileList('source');
-
-
         cfg=tlmgenerator_getconfigset(modelName);
-
-
-
 
         modelIncList=incList;
 
@@ -36,8 +25,6 @@ function bi=tlmgenerator_getbuildinfo(modelName,buildInfo)
         bi.IncListWin=sprintf('include\\%s ',modelIncList{:});
         bi.SrcListWin=sprintf('src\\%s ',modelSrcList{:});
         bi.ObjListWin=sprintf('obj\\%s ',modelObjListWin{:});
-
-
         bi.OrigMdlSubsystemPath=getappdata(0,'tlmgSubsystemPath');
         bi.OrigMdlSubsystemName=getappdata(0,'tlmgSubsystemName');
         if(~isempty(bi.OrigMdlSubsystemPath))
