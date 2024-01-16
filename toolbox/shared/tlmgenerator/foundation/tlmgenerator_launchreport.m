@@ -1,16 +1,11 @@
 function tlmgenerator_launchreport
 
-
-
     try
 
         SystemInfo=tlmgenerator_getcodeinfo();
         cfg=tlmgenerator_getconfigset(SystemInfo.Name);
 
         if(strcmp(cfg.GenerateReport,'on'))
-
-
-
             savedWarn=warning('query','MATLAB:MKDIR:DirectoryExists');
             warning('off','MATLAB:MKDIR:DirectoryExists');
 
