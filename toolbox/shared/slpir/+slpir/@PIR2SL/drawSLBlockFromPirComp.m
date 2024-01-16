@@ -1,18 +1,11 @@
 function drawSLBlockFromPirComp(this,tgtParentPath,hC)
 
-
-
-
-
     if isempty(hC.Name)
         blkname='t';
     else
         blkname=hC.Name;
     end
-
-
     slBlockName=hdlfixblockname(['',tgtParentPath,'/',blkname,'']);
-
     aOriginalValue=slfeature('ReportMaskEditTimeErrorsFromSetParam',0);
 
     try
@@ -26,7 +19,6 @@ function drawSLBlockFromPirComp(this,tgtParentPath,hC)
                     drawSyntheticRamComp(this,slBlockName,hC,syntheticRamType)
                 otherwise
 
-
                     assert(false,['unsupported synthetic RAM type: ',syntheticRamType]);
                 end
             elseif hC.isSyntheticCordicBlock
@@ -36,29 +28,24 @@ function drawSLBlockFromPirComp(this,tgtParentPath,hC)
                 switch fcn
                 case{'sin','cos','sincos'}
                     srcBlock='hdlsllib/Math Operations/Trigonometric Function';
-
                     newSlSubsystemName=drawPirSubsystem(this,slBlockName,hC);
-
                     slpir.PIR2SL.drawCordicTrigBlocks(hC,srcBlock,newSlSubsystemName,fcn,iterNum,usePipelines);
                 otherwise
 
                     assert(false,['unsupported synthetic CORDIC function: ',fcn]);
                 end
             else
-
                 drawNtwkInstanceComp(this,slBlockName,hC)
             end
         elseif hC.isCtxReference
             drawCtxRefComp(this,slBlockName,hC)
         else
-
             drawPirNativeComp(this,slBlockName,hC);
         end
     catch exp
         slfeature('ReportMaskEditTimeErrorsFromSetParam',aOriginalValue);
         rethrow(exp);
     end
-
     slfeature('ReportMaskEditTimeErrorsFromSetParam',aOriginalValue);
 
 end
