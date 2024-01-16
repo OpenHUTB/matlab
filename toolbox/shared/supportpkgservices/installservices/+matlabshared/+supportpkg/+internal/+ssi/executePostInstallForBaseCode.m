@@ -1,21 +1,7 @@
 function executePostInstallForBaseCode(baseCode)
 
-
-
-
-
-
-
-
-
-
-
-
-
     validateattributes(baseCode,{'char'},{'nonempty'},'executePreUninstallForBaseCode','baseCode',1);
-
     spPkgInfo=matlabshared.supportpkg.internal.getSpPkgInfoForBaseCode(baseCode);
-
 
     if isempty(spPkgInfo)||isempty(spPkgInfo.PostInstallCmd)
         return;
