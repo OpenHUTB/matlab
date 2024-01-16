@@ -1,15 +1,8 @@
 function spPkgList=findAllRegistryPlugins()
 
-
-
-
-
-
     packageName='matlabshared.supportpkg.internal.sppkglegacy';
 
     superClassName='matlabshared.supportpkg.internal.sppkglegacy.SupportPackageRegistryPluginBase';
-
-
     packages=meta.package.fromName(packageName);
     spPkgList=meta.class.empty;
     classIndices=[];
