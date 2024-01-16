@@ -1,11 +1,5 @@
 function loadMsgCatResourcesIfAvailable(spRoot)
 
-
-
-
-
-
-
     validateattributes(spRoot,{'char'},{'nonempty'});
     if isdir(fullfile(spRoot,'resources'))
         try
