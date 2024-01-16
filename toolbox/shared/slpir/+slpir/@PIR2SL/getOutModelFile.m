@@ -1,8 +1,5 @@
 function outMdlFile=getOutModelFile(this,forceClose)
 
-
-
-
     thisOutMdlFile=this.OutModelFile;
     if this.DUTMdlRefHandle>0||this.nonTopDut
         thisOutMdlFile='';
