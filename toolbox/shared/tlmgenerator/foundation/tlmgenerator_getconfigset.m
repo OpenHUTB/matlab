@@ -1,31 +1,4 @@
-function cfg=tlmgenerator_getconfigset(modelName,sysName)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function cfg = tlmgenerator_getconfigset(modelName,sysName)
 
     try
 
@@ -42,11 +15,6 @@ function cfg=tlmgenerator_getconfigset(modelName,sysName)
         tlmg_props{end+1}='tlmgCrossTargetOnOff';
         tlmg_vals{end+1}=tlmcc.getProp('tlmgCrossTargetOnOff');
         cfg=cell2struct(tlmg_vals,tlmg_props,1);
-
-
-
-
-
 
         if(strcmp(cfg.tlmgComponentSocketMapping,'One combined TLM socket for input data, output data, and control'))
             if(strcmp(cfg.tlmgComponentAddressing,'No memory map'))
@@ -114,9 +82,6 @@ function cfg=tlmgenerator_getconfigset(modelName,sysName)
 
         cfg.tlmgTbExt=[cfg.tlmgExt,'_tb'];
         cfg.tlmgDocExt=[cfg.tlmgExt,'_doc'];
-
-
-
         if(~isempty(cfg.tlmgUserTagForNaming)),prefix='_';
         else prefix='';
         end
@@ -128,9 +93,6 @@ function cfg=tlmgenerator_getconfigset(modelName,sysName)
         cfg.tlmgTlmCompName=[modelName,userExt];
         cfg.tlmgTbCompName=[modelName,userTbExt];
         cfg.tlmgDocCompName=[modelName,userDocExt];
-
-
-
         cfg.tlmgMatlabIncludePath=fullfile(matlabroot,'extern','include');
         cfg.tlmgSimulinkIncludePath=fullfile(matlabroot,'simulink','include');
         cfg.tlmgRTWIncludePath=fullfile(matlabroot,'rtw','c','src');
@@ -146,14 +108,11 @@ function cfg=tlmgenerator_getconfigset(modelName,sysName)
             cfg.tlmgWinMachine='X86';
             cfg.tlmgWinPlatform='Win32';
         end
-
         if(strcmp(cfg.tlmgVerboseTbMessagesOnOff,'on'))
             cfg.tlmgTbVerbosity='tlmgPrintAll';
         else
             cfg.tlmgTbVerbosity='tlmgPrintTerse';
         end
-
-
         cfg.tlmgOutDir=[cfg.tlmgRtwCompName,'_VP'];
 
         cfg.tlmgCoreOutDir=fullfile(cfg.tlmgOutDir,cfg.tlmgRtwCompName);
@@ -178,8 +137,6 @@ function cfg=tlmgenerator_getconfigset(modelName,sysName)
 
         cfg.tlmgDocOutDir=fullfile(cfg.tlmgOutDir,cfg.tlmgDocCompName);
         cfg.tlmgDocHtmlDir=fullfile(cfg.tlmgDocOutDir,'html');
-
-
         cfg.ProdWordSize=cs.getProp('ProdWordSize');
         cfg.RTWVerbose=cs.getProp('RTWVerbose');
         cfg.GenerateReport=cs.getProp('GenerateReport');
