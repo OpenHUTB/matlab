@@ -1,124 +1,13 @@
 function Mapping=tlmgenerator_ipxactparser(SystemInfo,ConfigInfo,Mapping,structSocket,structInfoBank,structInfoReg,structInfoBitField,structPort)
 
-
     try
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         filename=ConfigInfo.tlmgIPXactPath;
 
-
-
-
-
         if~isempty(which(filename))
-
-
             filename=which(filename);
         end
         root=parseFile(matlab.io.xml.dom.Parser,filename);
-
         compList=root.getElementsByTagName('spirit:component');
 
         if compList.getLength==0
@@ -139,10 +28,6 @@ function Mapping=tlmgenerator_ipxactparser(SystemInfo,ConfigInfo,Mapping,structS
 
         busList=component.getElementsByTagName('spirit:busInterface');
 
-
-
-
-
         for ii=0:busList.getLength-1
 
             busCurr=busList.item(ii);
@@ -151,14 +36,12 @@ function Mapping=tlmgenerator_ipxactparser(SystemInfo,ConfigInfo,Mapping,structS
             if~MWMap.isMWMap
                 continue;
             end
-
             name=l_getFirstLevelUniqueElement(busCurr,'spirit:name');
             if numel(name)==0
                 l_me=MException('','spirit:busInterface without spirit:name');
                 throw(l_me);
             end
             busName=char(name.getFirstChild.getData);
-
             portMapList=busCurr.getElementsByTagName('spirit:portMap');
             if portMapList.getLength==1
                 portMap=portMapList.item(0);
@@ -176,13 +59,10 @@ function Mapping=tlmgenerator_ipxactparser(SystemInfo,ConfigInfo,Mapping,structS
             else
                 SockName=busName;
             end
-
-
             slave=l_getFirstLevelUniqueElement(busCurr,'spirit:slave');
             if numel(slave)==0
                 error(message('TLMGenerator:TLMTargetCC:BusNotSlave',busName));
             end
-
             endianness=l_getFirstLevelUniqueElement(busCurr,'spirit:endianness');
             if numel(endianness)~=0
                 BusEndianness=char(endianness.getFirstChild.getData);
@@ -190,7 +70,6 @@ function Mapping=tlmgenerator_ipxactparser(SystemInfo,ConfigInfo,Mapping,structS
                     error(message('TLMGenerator:TLMTargetCC:BusNotLittleEndian',busName));
                 end
             end
-
             bitsInLau=l_getFirstLevelUniqueElement(busCurr,'spirit:bitsInLau');
             if numel(bitsInLau)~=0
                 BusBitsInLau=int32(sscanf(char(bitsInLau.getFirstChild.getData),'%i'));
@@ -198,10 +77,7 @@ function Mapping=tlmgenerator_ipxactparser(SystemInfo,ConfigInfo,Mapping,structS
                     error(message('TLMGenerator:TLMTargetCC:BusBitsInLau',busName));
                 end
             end
-
-
             memoryMapRef=l_getFirstLevelUniqueElement(slave,'spirit:memoryMapRef');
-
             if(numel(MWMap.MWMapInput)~=0)||...
                 (numel(MWMap.MWMapOutput)~=0)||...
                 (numel(MWMap.MWMapParam)~=0)
@@ -249,8 +125,6 @@ function Mapping=tlmgenerator_ipxactparser(SystemInfo,ConfigInfo,Mapping,structS
 
             end
         end
-
-
         model=l_getFirstLevelUniqueElement(component,'spirit:model');
         if~numel(model)==0
             portList=model.getElementsByTagName('spirit:port');
@@ -363,9 +237,6 @@ function Mapping=tlmgenerator_ipxactparser(SystemInfo,ConfigInfo,Mapping,structS
                     if found==0
                         error(message('TLMGenerator:TLMTargetCC:InputNotFoundSig',MWMap.MWMapInput{1},PortName));
                     end
-
-
-
                     Mapping.PortList(Mapping.PortNum).MW.InputName=SystemInfo.InStruct.Port(jj).Name;
                     Mapping.PortList(Mapping.PortNum).MW.InputPos=int32(jj-1);
                     Mapping.PortList(Mapping.PortNum).MW.InputType=SystemInfo.InStruct.Port(jj).DataType;
@@ -506,8 +377,8 @@ function Element=l_getFirstLevelUniqueElement(parentNode,tagName)
 
 end
 
-function ListElement=l_getFirstLevelListElements(parentNode,tagName)
 
+function ListElement=l_getFirstLevelListElements(parentNode,tagName)
     nodeList=parentNode.getElementsByTagName(tagName);
 
     ListElement={};
@@ -524,18 +395,15 @@ function ListElement=l_getFirstLevelListElements(parentNode,tagName)
     end
 end
 
-function ret=l_FindPortMWMap(parentNode)
 
+function ret=l_FindPortMWMap(parentNode)
     vendorExtensions=l_getFirstLevelUniqueElement(parentNode,'spirit:vendorExtensions');
     if numel(vendorExtensions)==0
 
 
         ret=l_FindMWMap(parentNode);
     else
-
-
         ret=l_FindMWMap(vendorExtensions);
-
 
         if~ret.isMWMap
             ret=l_FindMWMap(parentNode);
@@ -543,20 +411,16 @@ function ret=l_FindPortMWMap(parentNode)
     end
 end
 
+
 function ret=l_FindMWMap(parentNode)
-
-
     ret=struct('isMWMap',false,...
     'MWMapInput','',...
     'MWMapOutput','',...
     'MWMapParam','');
-
     params=l_getFirstLevelUniqueElement(parentNode,'spirit:parameters');
     if numel(params)==0
         return;
     end
-
-
     paramList=l_getFirstLevelListElements(params,'spirit:parameter');
     if numel(paramList)==0
         return;
@@ -598,14 +462,13 @@ function ret=l_FindMWMap(parentNode)
 
 end
 
+
 function ret=l_FindFalseMWMap(parentNode)
     ret=struct('isMWMap',true);
-
     params=l_getFirstLevelUniqueElement(parentNode,'spirit:parameters');
     if numel(params)==0
         return;
     end
-
     paramList=l_getFirstLevelListElements(params,'spirit:parameter');
     if numel(paramList)==0
         return;
@@ -623,19 +486,14 @@ end
 
 
 function ret=l_FindMWInfo(parentNode)
-
-
     ret=struct('MWVendor','',...
     'MWVersion','',...
     'MWModel','',...
     'MWBlock','');
-
     params=l_getFirstLevelUniqueElement(parentNode,'spirit:parameters');
     if numel(params)==0
         return;
     end
-
-
     paramList=l_getFirstLevelListElements(params,'spirit:parameter');
     if numel(paramList)==0
         return;
@@ -671,6 +529,7 @@ function ret=l_FindMWInfo(parentNode)
 
 end
 
+
 function[type,byte]=l_FindSCMLType(ByteDim)
     type='';
     byte=int32(0);
@@ -698,6 +557,7 @@ function[type,byte]=l_FindSCMLType(ByteDim)
     end
 end
 
+
 function[ByteDimAlign]=l_FindByteDimAlign(ByteDim)
     ByteDimAlign=int32(0);
     if(ByteDim<=1)
@@ -716,6 +576,7 @@ function[ByteDimAlign]=l_FindByteDimAlign(ByteDim)
         ByteDimAlign=int32(64);
     end
 end
+
 
 function[Sock,SystemInfo]=l_BuildSockNoMem(Sock,SystemInfo,ConfigInfo,MWMap,structInfoBank,structInfoReg)
     BankAddr=int32(0);
@@ -878,6 +739,7 @@ function[Sock,SystemInfo]=l_BuildSockNoMem(Sock,SystemInfo,ConfigInfo,MWMap,stru
     Sock.ByteDim=int32(BankAddr);
 end
 
+
 function[Sock,SystemInfo]=l_BuildSockMem(Sock,SystemInfo,ConfigInfo,memoryMap,structInfoBank,structInfoReg,structInfoBitField)
     name=l_getFirstLevelUniqueElement(memoryMap,'spirit:name');
     if numel(name)==0
@@ -885,7 +747,6 @@ function[Sock,SystemInfo]=l_BuildSockMem(Sock,SystemInfo,ConfigInfo,memoryMap,st
         throw(l_me);
     end
     MemoryMapName=char(name.getFirstChild.getData);
-
     addressUnitBits=l_getFirstLevelUniqueElement(memoryMap,'spirit:addressUnitBits');
     if numel(addressUnitBits)~=0
         MemoryMapAddressUnitBits=int32(sscanf(char(addressUnitBits.getFirstChild.getData),'%i'));
@@ -893,8 +754,6 @@ function[Sock,SystemInfo]=l_BuildSockMem(Sock,SystemInfo,ConfigInfo,memoryMap,st
             error(message('TLMGenerator:TLMTargetCC:MemoryMapAddressUnitBits',MemoryMapName));
         end
     end
-
-
     addressBlockList=memoryMap.getElementsByTagName('spirit:addressBlock');
     if addressBlockList.getLength==0
         error(message('TLMGenerator:TLMTargetCC:MemapNoAddrBlock',MemoryMapName));
@@ -903,20 +762,16 @@ function[Sock,SystemInfo]=l_BuildSockMem(Sock,SystemInfo,ConfigInfo,memoryMap,st
     for ll=0:addressBlockList.getLength-1
 
         addressBlockCurr=addressBlockList.item(ll);
-
-
         addressBlockMWMap=l_FindFalseMWMap(addressBlockCurr);
         if~addressBlockMWMap.isMWMap
             continue;
         end
-
         name=l_getFirstLevelUniqueElement(addressBlockCurr,'spirit:name');
         if numel(name)==0
             l_me=MException('','In spirit:memoryMap %s spirit:addressBlock without spirit:name',MemoryMapName);
             throw(l_me);
         end
         BlockName=char(name.getFirstChild.getData);
-
         baseAddress=l_getFirstLevelUniqueElement(addressBlockCurr,'spirit:baseAddress');
         if numel(baseAddress)==0
             l_me=MException('','In spirit:memoryMap %s spirit:addressBlock %s without spirit:baseAddress',MemoryMapName,BlockName);
@@ -926,7 +781,6 @@ function[Sock,SystemInfo]=l_BuildSockMem(Sock,SystemInfo,ConfigInfo,memoryMap,st
         if BlockAddr<0
             error(message('TLMGenerator:TLMTargetCC:BlockAddrMin',MemoryMapName,BlockName));
         end
-
         range=l_getFirstLevelUniqueElement(addressBlockCurr,'spirit:range');
         if numel(range)==0
             l_me=MException('','In spirit:memoryMap %s spirit:addressBlock %s without spirit:range',MemoryMapName,BlockName);
@@ -936,7 +790,6 @@ function[Sock,SystemInfo]=l_BuildSockMem(Sock,SystemInfo,ConfigInfo,memoryMap,st
         if BlockRange<1
             error(message('TLMGenerator:TLMTargetCC:BlockRangeMin',MemoryMapName,BlockName));
         end
-
         width=l_getFirstLevelUniqueElement(addressBlockCurr,'spirit:width');
         if numel(width)==0
             l_me=MException('','In spirit:memoryMap %s spirit:addressBlock %s without spirit:width',MemoryMapName,BlockName);
@@ -947,10 +800,7 @@ function[Sock,SystemInfo]=l_BuildSockMem(Sock,SystemInfo,ConfigInfo,memoryMap,st
         registerList=addressBlockCurr.getElementsByTagName('spirit:register');
 
         for ii=0:registerList.getLength-1
-
             registerCurr=registerList.item(ii);
-
-
             MWMap=l_FindFalseMWMap(registerCurr);
             if~MWMap.isMWMap
                 continue;
@@ -974,7 +824,6 @@ function[Sock,SystemInfo]=l_BuildSockMem(Sock,SystemInfo,ConfigInfo,memoryMap,st
                     error(message('TLMGenerator:TLMTargetCC:BlockSCMLTypeNotFound',MemoryMapName,BlockName));
                 end
             end
-
             Sock.BankNum=int32(Sock.BankNum+1);
             BankNum=Sock.BankNum;
             Sock.Bank(BankNum)=structInfoBank;
@@ -993,10 +842,7 @@ function[Sock,SystemInfo]=l_BuildSockMem(Sock,SystemInfo,ConfigInfo,memoryMap,st
         end
 
         for ii=0:registerList.getLength-1
-
             registerCurr=registerList.item(ii);
-
-
             MWMap=l_FindFalseMWMap(registerCurr);
             if~MWMap.isMWMap
                 continue;
@@ -1008,14 +854,12 @@ function[Sock,SystemInfo]=l_BuildSockMem(Sock,SystemInfo,ConfigInfo,memoryMap,st
                     continue;
                 end
             end
-
             name=l_getFirstLevelUniqueElement(registerCurr,'spirit:name');
             if numel(name)==0
                 l_me=MException('','In spirit:memoryMap %s spirit:register without spirit:name',MemoryMapName);
                 throw(l_me);
             end
             RegisterName=char(name.getFirstChild.getData);
-
             addressOffset=l_getFirstLevelUniqueElement(registerCurr,'spirit:addressOffset');
             if numel(addressOffset)==0
                 l_me=MException('','In spirit:memoryMap %s spirit:register %s without spirit:addressOffset',MemoryMapName,RegisterName);
