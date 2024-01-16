@@ -1,18 +1,5 @@
 function needsFullModelGen=needsFullModelGenForDut(this)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     needsFullModelGen=false;
     hPir=this.hPir;
 
@@ -20,7 +7,6 @@ function needsFullModelGen=needsFullModelGenForDut(this)
         needsFullModelGen=true;
         return;
     end
-
 
     vNetworks=hPir.Networks;
     for i=1:length(vNetworks)
@@ -43,8 +29,6 @@ function needsFullModelGen=needsFullModelGenForDut(this)
                 if hC.optimizeBBoxModelGen||hC.isTimingController||hC.Synthetic
                     needsFullModelGen=false;
                 else
-
-
                     needsFullModelGen=true;
                 end
             elseif hC.getIsPipelineReg
