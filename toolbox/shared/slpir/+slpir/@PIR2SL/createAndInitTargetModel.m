@@ -1,8 +1,5 @@
 function createAndInitTargetModel(this,isInterfaceModel)
 
-
-
-
     if nargin<2
         isInterfaceModel=false;
     end
@@ -25,10 +22,6 @@ function createAndInitTargetModel(this,isInterfaceModel)
         outModelFile,outModelFile);
         this.genmodeldisp(message('hdlcoder:hdldisp:GeneratingNewModel',link));
     end
-
-
-
-
 
     if~isempty(inMdlFile)
         simMode=get_param(inMdlFile,'SimulationMode');
