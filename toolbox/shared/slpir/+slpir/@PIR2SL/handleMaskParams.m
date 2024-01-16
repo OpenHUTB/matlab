@@ -1,8 +1,4 @@
-
 function handleMaskParams(this,slBlockName,slHandle,hRefNtwk,isPort,newPortNum)
-
-
-
 
     if nargin<6
         newPortNum='';
@@ -15,11 +11,6 @@ function handleMaskParams(this,slBlockName,slHandle,hRefNtwk,isPort,newPortNum)
                 if~isempty(pv{i,2})
                     if~isempty(hRefNtwk)&&(hRefNtwk.renderCodegenPir||hRefNtwk.shouldDraw)
 
-
-
-
-
-
                         pv{i,2}=getUpdatedMaskInitScript(this,slHandle,hRefNtwk);
 
                         if isstring(pv{i,2})
@@ -29,17 +20,12 @@ function handleMaskParams(this,slBlockName,slHandle,hRefNtwk,isPort,newPortNum)
                 end
             end
 
-
-
             if strcmp(pv{i,1},'MaskStyles')
                 pv{i,2}=regexprep(pv{i,2},'promote(.*)','edit');
             end
         end
         [success,statusMsg]=setMaskParams(this,slBlockName,pv);
         if~success
-
-
-
             warnObj=message('hdlcoder:engine:MdlGenMaskInfoWarn',...
             hdlMsgWithLink(getfullname(slHandle)),statusMsg);
             this.reportCheck('Warning',warnObj);
@@ -74,7 +60,6 @@ function setResolvedRuntimeMaskValues(this,slHandle,slBlockName)
     for ii=1:length(dialogParamNames)
         idx(ii)=find(strcmpi(maskParamNames,dialogParamNames{ii}),1);
     end
-
     maskParamTypes=get_param(slHandle,'MaskStyles');
     if~isempty(maskParamTypes)
         for ii=1:length(idx)
@@ -111,14 +96,11 @@ function setResolvedRuntimeMaskValues(this,slHandle,slBlockName)
 
                             maskValue=['''',maskValue,''''];%#ok<AGROW>
                         elseif isa(maskValue,'Simulink.Signal')||isa(maskValue,'Simulink.Bus')
-
-
                             maskValue=maskVariable;
                         else
                             maskValue=formatMaskVal(this,maskValue,false);
                         end
                     end
-
                     set_param(slBlockName,maskParamName,maskValue);
                 end
             end
@@ -128,13 +110,6 @@ end
 
 
 function maskInitScript=getUpdatedMaskInitScript(this,slHandle,hN)
-
-
-
-
-
-
-
 
     maskInitScript='';
     if hN.isMaskedSubsystemLibBlock||hN.isMaskedSubsystem
@@ -175,6 +150,7 @@ function retval=formatMaskVal(this,val,isUsedInEval)
     end
 end
 
+
 function retval=formatStructVal(this,val,isUsedInEval)
     narginchk(3,3);
     retval='struct(';
@@ -188,7 +164,6 @@ function retval=formatStructVal(this,val,isUsedInEval)
         end
         fieldvalue=val.(names{ii});
         if ischar(fieldvalue)
-
             fieldvalue=strrep(fieldvalue,'''','''''');
             fieldval=sprintf('''%s''',fieldvalue);
         elseif isstring(fieldvalue)
