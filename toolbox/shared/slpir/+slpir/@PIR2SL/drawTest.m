@@ -1,11 +1,5 @@
 function drawTest(this,includeDut,emitMessage)
 
-
-
-
-
-
-
     if this.isDutWholeModel
         return;
     end
@@ -21,13 +15,9 @@ function drawTest(this,includeDut,emitMessage)
     if emitMessage
         this.genmodeldisp(sprintf('Drawing test bench...'),3);
     end
-
     inFileName=get_param(this.RootNetworkName,'Parent');
     outFileName=[this.OutModelFilePrefix,inFileName];
-
-
     srcMdlObj=get_param(inFileName,'Object');
-
 
     topLevelBlks=srcMdlObj.Blocks;
 
@@ -35,7 +25,6 @@ function drawTest(this,includeDut,emitMessage)
 
     for ii=1:numel(topLevelBlks)
         srcBlk=fixBlockName(topLevelBlks{ii});
-
         [isValid,isDut]=isValidTestBenchBlock(this,srcBlk,includeDut);
         if~isValid
             if isDut
@@ -44,7 +33,6 @@ function drawTest(this,includeDut,emitMessage)
             end
         end
     end
-
     strTestbenchBlocks=string(testbenchBlocks);
     for ii=1:numel(strTestbenchBlocks)
         srcBlk=strTestbenchBlocks(ii);
@@ -55,7 +43,6 @@ function drawTest(this,includeDut,emitMessage)
     topLevelLines=srcMdlObj.Lines;
 
     if~isempty(topLevelLines)
-
 
         if any(arrayfun(@(line)strcmp(get_param(line.Handle,'object').linetype,'connection'),...
             topLevelLines))
@@ -82,7 +69,6 @@ end
 
 function addTBLines(this,srcPort,line,lineProps,outFileName)
     if~isempty(line.DstBlock)&&line.DstBlock~=-1
-
         dstPort=[fixBlockName(get_param(line.DstBlock,'Name')),'/',fixPortName(this,line)];
         drawTBLine(this,srcPort,dstPort,lineProps,outFileName);
     else
