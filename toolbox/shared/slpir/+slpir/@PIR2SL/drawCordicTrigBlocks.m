@@ -1,14 +1,5 @@
 function drawCordicTrigBlocks(hC,originalBlkPath,newSlSubsystemName,fcn,iterNum,usePipelines,customLatency,latencyStrategy)
 
-
-
-
-
-
-
-
-
-
     if nargin<7
         customLatency=0;
     end
@@ -63,11 +54,8 @@ function drawCordicTrigBlocks(hC,originalBlkPath,newSlSubsystemName,fcn,iterNum,
 
     xpos=220;
     ypos=65;
-
-
     newSlBlockName=add_block(originalBlkPath,[newSlSubsystemName,'/',hC.Name],...
     'Position',[xpos,ypos,xpos+30,ypos+40]);
-
     set_param(newSlBlockName,'Operator',fcn);
     if strcmpi(fcn,'atan2')
         set_param(newSlBlockName,'NumberOfIterations',int2str(iterNum-3));
@@ -107,7 +95,6 @@ function drawCordicTrigBlocks(hC,originalBlkPath,newSlSubsystemName,fcn,iterNum,
             add_line(newSlSubsystemName,[hC.Name,'/2'],'Delay3/1','autorouting','on');
             add_line(newSlSubsystemName,'Delay3/1',[outportNames{2},'/1'],'autorouting','on');
         end
-
 
     else
 
