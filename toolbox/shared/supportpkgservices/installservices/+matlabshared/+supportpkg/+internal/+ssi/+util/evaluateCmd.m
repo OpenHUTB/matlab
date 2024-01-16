@@ -1,31 +1,11 @@
 function[returnCmd,cmdOutput]=evaluateCmd(cmd)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     validateattributes(cmd,{'char'},{'nonempty'},'evaluateCmd','cmd',1);
     cmdOutput=[];
     [mlst,mlend]=regexp(cmd,'\<matlab:','start','end');
     if~isempty(mlst)
 
         commandToExecute=cmd(mlend+1:end);
-
-
-
-
 
         parseTree=mtree(commandToExecute);
         hasReturn=mtfind(parseTree,'Kind','EQUALS');
@@ -34,11 +14,6 @@ function[returnCmd,cmdOutput]=evaluateCmd(cmd)
 
             eval([commandToExecute,';']);
         else
-
-
-
-
-
             stringParts=regexp(commandToExecute,'\s*=\s*','split','once');
 
             if length(stringParts)~=2
