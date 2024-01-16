@@ -1,32 +1,5 @@
 function registryDataObj=getSpPkgInfoForBaseCode(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     switch nargin
     case 1
         basecode=varargin{1};
@@ -57,9 +30,6 @@ function registryDataObj=getSpPkgInfoForBaseCode(varargin)
         for i=1:numel(basecode)
             currBaseCode=basecode{i};
             dataForBaseCode=getRegistryDataFromPlugin(currBaseCode,allPluginClasses);
-
-
-
             registryDataObj=[registryDataObj;dataForBaseCode];%#ok<AGROW>
         end
     catch ex
@@ -72,22 +42,13 @@ end
 
 
 function registryDataObj=getRegistryDataFromPlugin(basecode,pluginMetaClasses)
-
-
-
-
-
-
     foundPluginClass=matlabshared.supportpkg.internal.sppkglegacy.SupportPackageRegistryPluginBase.findSpPkgPluginForBaseCode(basecode,pluginMetaClasses);
-
 
     if isempty(foundPluginClass)
         registryDataObj=matlabshared.supportpkg.internal.LegacySupportPackageRegistryInfo.empty;
         return
     end
-
     foundPluginObj=matlabshared.supportpkg.internal.sppkglegacy.SupportPackageRegistryPluginBase.constructPluginClasses(foundPluginClass);
-
     registryFileDir=foundPluginObj.getRegistryFileDir();
     registryDataObj=foundPluginObj.readSpPkgRegistry(fullfile(registryFileDir,...
     matlabshared.supportpkg.internal.sppkglegacy.SupportPackageRegistryPluginBase.XmlFileName));
