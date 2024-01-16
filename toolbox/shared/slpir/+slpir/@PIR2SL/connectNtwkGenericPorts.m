@@ -1,14 +1,8 @@
 function connectNtwkGenericPorts(this,hN,tgtParentPath)
 
-
     numMdlRefGenericPorts=hN.NumberOfPirGenericPorts;
     slbh=hN.SimulinkHandle;
     if slbh>0
-
-
-
-
-
         if hN.isBusExpansionSubsystem
             blkType=get_param(hN.FullPath,'Type');
         else
