@@ -1,39 +1,22 @@
 function defaultDirValue=getDefaultSprootDir()
-
-
-
-
-
-
-
-
     overrideDefaultDir=matlabshared.supportpkg.internal.getOverrideDefaultSprootDir();
     if~isempty(overrideDefaultDir)
         defaultDirValue=overrideDefaultDir;
         return;
     end
-
     mlrelease=matlabshared.supportpkg.internal.getCurrentRelease();
     relTag=matlabshared.supportpkg.internal.util.getReleaseTag(mlrelease,'matchcase');
-
-
 
     spPkgLabel='SupportPackages';
 
     if ispc
-
         spRootSubPath=fullfile('MATLAB',spPkgLabel,relTag);
-
 
         programData=getenv('PROGRAMDATA');
 
         if~isempty(programData)
-
-
             defaultDirValue=fullfile(programData,spRootSubPath);
         else
-
-
             driveLetter=localGetDriveLetter(localGetTmpLoc());
             defaultDirValue=localConstructDefaultRootWithDriveLetter(driveLetter,spRootSubPath);
         end
@@ -45,8 +28,6 @@ function defaultDirValue=getDefaultSprootDir()
         upath(cellfun(@isempty,upath))=[];
 
         if numel(upath)~=1||~isdir(upath{1})
-
-
             defaultDirValue=fullfile(system_dependent('getuserworkfolder','default'),spFolder_unix);
         else
             defaultDirValue=fullfile(upath{1},spFolder_unix);
@@ -56,18 +37,6 @@ end
 
 
 function tmp_dir=localGetTmpLoc()
-
-
-
-
-
-
-
-
-
-
-
-
 
     if ispc
         tmp_dir=getenv('TEMP');
@@ -92,8 +61,8 @@ function tmp_dir=localGetTmpLoc()
     end
 end
 
-function value=localGetDriveLetter(inputDir)
 
+function value=localGetDriveLetter(inputDir)
 
     validateattributes(inputDir,{'char','string'},{'nonempty','scalartext'});
     value='';
@@ -102,9 +71,8 @@ function value=localGetDriveLetter(inputDir)
     end
 end
 
+
 function defaultRoot=localConstructDefaultRootWithDriveLetter(driveLetter,spRootSubPath)
-
-
 
     validateattributes(driveLetter,{'char','string'},{'scalartext'});
     validateattributes(spRootSubPath,{'char','string'},{'nonempty','scalartext'});
