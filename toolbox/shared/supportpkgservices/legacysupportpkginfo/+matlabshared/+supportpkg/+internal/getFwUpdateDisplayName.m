@@ -1,10 +1,4 @@
 function fwupdateDisplayName=getFwUpdateDisplayName(sppkg,spDisplayName)
-
-
-
-
-
-
     fwupdateDisplayName=sppkg.FwUpdateDisplayName;
     if isempty(spDisplayName)
         spDisplayName=sppkg.Name;
