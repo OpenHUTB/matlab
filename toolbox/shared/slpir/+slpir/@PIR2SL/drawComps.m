@@ -1,15 +1,9 @@
-
 function drawComps(this,tgtParentPath,hN)
-
-
-
     this.genmodeldisp(message('hdlcoder:engine:MsgLayout').getString(),3);
 
     if(rootNetwork(this,hN))
         addInportBlocks(this,tgtParentPath,hN,~(this.DUTMdlRefHandle>0));
         addOutportBlocks(this,tgtParentPath,hN);
-
-
         tgtParentHandle=get_param(tgtParentPath,'handle');
         type=get_param(tgtParentHandle,'Type');
         if strcmp(type,'block')
@@ -36,8 +30,6 @@ end
 
 
 function markPortsAsTestpoints(~,tgtParentHandle,hN)
-
-
     tgtParentPorts=get_param(tgtParentHandle,'PortHandles');
     tgtParentOutports=tgtParentPorts.Outport;
     for ii=1:numel(hN.PirOutputPorts)
