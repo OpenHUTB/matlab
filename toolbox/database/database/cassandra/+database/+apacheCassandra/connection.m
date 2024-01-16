@@ -1,14 +1,11 @@
 classdef connection<handle&matlab.mixin.CustomDisplay
 
-
     properties(Access=private)
 
 CassandraHandle
     end
 
     properties(Access=private,Hidden,Constant)
-
-
         ConsistencyLevels=["ALL","ANY","EACH_QUORUM","LOCAL_ONE","LOCAL_QUORUM",...
         "LOCAL_SERIAL","ONE","QUORUM","SERIAL","THREE","TWO"];
     end
@@ -16,35 +13,25 @@ CassandraHandle
     properties(GetAccess=public,SetAccess=private)
 
         Cluster string
-
-
         HostAddresses string
-
-
         LocalDataCenter string
-
-
         RequestTimeout int32
-
     end
 
-    properties(Dependent,SetAccess=private)
 
+    properties(Dependent,SetAccess=private)
         Keyspaces string
     end
 
     properties(Hidden,GetAccess=public,SetAccess=private)
-
         CassandraVersion string
     end
+
 
     methods
         function this=connection(varargin)
 
-            narginchk(3,inf);
-
-
-            [varargin{:}]=convertCharsToStrings(varargin{:});
+            narginchk(3,inf);            [varargin{:}]=convertCharsToStrings(varargin{:});
 
             if nargin==3
 
@@ -115,14 +102,9 @@ CassandraHandle
                 loginTimeout=p.Results.LoginTimeout;
                 this.RequestTimeout=p.Results.RequestTimeout;
             end
-
-
-
             this.CassandraHandle=apachecassandra.internal.Connection();
             this.CassandraHandle.openConnection(contactPoints,username,password,portNumber,enableSSL,loginTimeout*1000,this.RequestTimeout*1000);
-
-
-            stmt=apachecassandra.internal.Statement();
+           stmt=apachecassandra.internal.Statement();
             stmt.createStatement("SELECT rpc_address FROM system.local",0);
             stmt.setConsistency("ONE");
             localAddressResultset=this.CassandraHandle.fetch(stmt);
@@ -136,15 +118,16 @@ CassandraHandle
             peerAddressResultset.parse();
             peerAddresses=string(fetchData(peerAddressResultset,1));
             this.HostAddresses=sort([localAddress;peerAddresses]);
-
             this.LocalDataCenter=this.CassandraHandle.getLocalDataCenter();
             this.Cluster=this.CassandraHandle.getClusterName();
             this.CassandraVersion=this.CassandraHandle.getCassandraVersion();
         end
 
+
         function delete(this)
             close(this)
         end
+
 
         function close(this)
 
@@ -153,14 +136,13 @@ CassandraHandle
             end
         end
 
-        function val=isopen(this)
 
+        function val=isopen(this)
             val=isvalid(this)&&isopen(this.CassandraHandle);
         end
 
+
         function keyspaces=get.Keyspaces(this)
-
-
             if~isopen(this)
                 keyspaces="";
                 return;
@@ -169,31 +151,8 @@ CassandraHandle
             keyspaces=string(this.CassandraHandle.getKeyspaces());
         end
 
+
         function t=tablenames(this,keyspace)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             if~isopen(this)
                 error(message('database:cassandra:InvalidCassandraConnection'));
             end
@@ -209,51 +168,14 @@ CassandraHandle
 
                 validateattributes(keyspace,{'char','string'},{'scalartext'},'tablenames','keyspace');
                 keyspace=convertCharsToStrings(keyspace);
-
-
                 if~any(lower(keyspace)==lower(this.Keyspaces))
                     error(message("database:cassandra:KeyspaceDoesNotExist",keyspace));
                 end
-
-
                 t=string(this.CassandraHandle.getTableNames(keyspace));
             end
         end
 
         function[columnMetaData,keyValues]=columninfo(this,keyspace,tableName)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             if~isopen(this)
                 error(message('database:cassandra:InvalidCassandraConnection'));
             end
