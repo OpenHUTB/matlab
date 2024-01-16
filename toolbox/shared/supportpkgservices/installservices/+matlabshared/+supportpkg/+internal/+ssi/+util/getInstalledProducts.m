@@ -1,21 +1,6 @@
 function out=getInstalledProducts(productid)
 
-
-
-
-
-
-
-
-
-
-
-
     validateattributes(productid,{'char'},{'nonempty'},'getInstalledProducts','productid',1);
-
-
-
-
 
     persistent productNames
 
