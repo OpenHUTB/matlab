@@ -1,38 +1,23 @@
 function generateModel(this)
-
-
-
-
     showGeneratedModel=strcmp(this.ShowModel,'yes');
-
     hdldisp(message('hdlcoder:hdldisp:BeginModelgen'));
 
     hPir=this.hPir;
-
 
     if~validatePir(this,hPir)
         return;
     end
 
-
     this.createAndInitTargetModel;
 
     if this.nonTopDut
-
         generateOrigModel(this);
 
     end
-
     set_param(this.OutModelFile,'InheritedTsInSrcMsg','off');
 
     if this.needFullMdlGen
-
-
         removeForEachBlackBoxGenericComps(this,hPir);
-
-
-
-
         removeForIteratorBlackBoxes(this,hPir)
 
         this.preparePirForModelGen;
@@ -43,8 +28,6 @@ function generateModel(this)
             this.AutoPlace='no';
             this.AutoRoute='no';
         end
-
-
 
         if strcmpi(this.AutoPlace,'yes')
             try
@@ -57,15 +40,11 @@ function generateModel(this)
             end
         end
 
-
         this.getUniqueEmlParamNum(true);
-
 
         this.startLayout;
 
-
         drawSLBlocks(this,hPir);
-
 
         fixTopLevelSubsystem(this);
     else
@@ -73,44 +52,29 @@ function generateModel(this)
         copyDut(this);
     end
 
-
-
-
     if this.nonTopDut
         this.drawTest;
     else
         this.drawTestBench(false,true,true);
     end
 
-
-
     topN=this.hPir.getTopNetwork;
     if streamingmatrix.hasStreamedIOPorts(topN)&&~this.isDutWholeModel
         dutPath=[this.OutModelFilePrefix,this.RootNetworkName];
-
         obj=streamingmatrix.GeneratedModelHelper.getGMHelper(topN,dutPath);
         obj.drawGMInputOutputSubsystems;
     end
 
-
     finalizeModel(this);
-
 
     if showGeneratedModel
         openOutputModel(this);
     end
-
     hdldisp(message('hdlcoder:hdldisp:ModelgenComplete'));
 
     cleanupBE(this);
 
 end
-
-
-
-
-
-
 
 
 function removeForEachBlackBoxGenericComps(~,hPir)
@@ -137,20 +101,11 @@ function removeForEachBlackBoxGenericComps(~,hPir)
 end
 
 
-
-
-
-
-
-
-
-
 function removeForIteratorBlackBoxes(~,hPir)
 
     ntwks=hPir.Networks;
     for i=1:numel(ntwks)
         hN=ntwks(i);
-
         if~hN.Synthetic&&hN.hasForIterDataTag
             fidt=hN.getForIterDataTag;
 
@@ -181,7 +136,6 @@ end
 
 
 function cleanupBE(this)
-
     this.pirLayout=[];
 end
 
@@ -199,9 +153,6 @@ function valid=validatePir(this,hPir)
     valid=1;
 
     if isempty(hPir.Networks)||isempty(hPir.getTopNetwork.Name)
-
-
-
         warnObj=message('hdlcoder:engine:invalidpir');
         warning(warnObj);
         reportCheck('Error',warnObj);
@@ -210,17 +161,9 @@ function valid=validatePir(this,hPir)
         return;
     end
 
-
-
-
-
-
     ntwkName=hPir.getTopNetwork.Name;
 
-
-
     this.RootNetworkName=ntwkName;
-
 
     modelName=strtok(ntwkName,'/');
     searchInputMdl=find_system('type','block_diagram','name',modelName);
@@ -233,8 +176,6 @@ end
 
 
 function cacheInputModelParams(this,mdlName)
-
-
 
     try
         load_system(mdlName);
@@ -269,8 +210,6 @@ function fixTopLevelSubsystem(this)
     inDut=this.RootNetworkName;
 
     if strcmp(inDut,this.InModelFile)
-
-
         return;
     end
 
@@ -279,11 +218,9 @@ function fixTopLevelSubsystem(this)
     srcBlkh=get_param(inDut,'Handle');
     srcPos=get_param(srcBlkh,'Position');
     srcOrientation=get_param(srcBlkh,'Orientation');
-
     set_param(outDut,'Position',srcPos,'Orientation',srcOrientation);
 
     this.handleMaskParams(outDut,srcBlkh,[],false);
-
     atomicParam=get_param(outDut,'TreatAsAtomicUnit');
     if strcmp(atomicParam,'on')
         set_param(outDut,'SystemSampleTime','-1');
@@ -306,8 +243,6 @@ function finalizeModel(this)
                 gm_target=gm_machine.find('-isa','Stateflow.Target','Name','sfun');
 
                 if~isempty(gm_target)
-
-
                     gm_machine.Debug.RunTimeCheck.StateInconsistencies=src_machine.Debug.RunTimeCheck.StateInconsistencies;
                     gm_machine.Debug.RunTimeCheck.DataRangeChecks=src_machine.Debug.RunTimeCheck.DataRangeChecks;
                     gm_machine.Debug.RunTimeCheck.CycleDetection=src_machine.Debug.RunTimeCheck.CycleDetection;
@@ -317,8 +252,6 @@ function finalizeModel(this)
                     gm_machine.Debug.BreakOn.ChartEntry=src_machine.Debug.BreakOn.ChartEntry;
                     gm_machine.Debug.Animation.Delay=src_machine.Debug.Animation.Delay;
                     gm_machine.Debug.Animation.Enabled=src_machine.Debug.Animation.Enabled;
-
-
                     gm_target.ApplyToAllLibs=src_target.ApplyToAllLibs;
                     gm_target.ApplyToAllLibs=src_target.ApplyToAllLibs;
                     gm_target.CustomCode=src_target.CustomCode;
