@@ -4,48 +4,16 @@ classdef ExpensiveHandle<handle&matlab.mixin.internal.FunctionObject
     properties(GetAccess=public,SetAccess=public)
 
         Names;
-
         NumberIndependentVariables;
     end
 
+
     methods(Abstract)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         varargout=evaluateImpl(obj,x,varargin);
     end
-    methods
 
+
+    methods
         function varargout=parenReference(obj,x,varargin)
             if isempty(obj.NumberIndependentVariables)
                 error(message("shared_surrogatelib:ExpensiveHandle:MissingNumberOfIndependentVariables"));
