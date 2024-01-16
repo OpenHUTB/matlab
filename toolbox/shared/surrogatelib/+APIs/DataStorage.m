@@ -1,12 +1,6 @@
 classdef DataStorage
 
-
-
-
-
-
     methods
-
 
         function names = getResponseNames( obj )
             if ~isscalar( obj )
@@ -28,8 +22,6 @@ classdef DataStorage
                 error( message( "shared_surrogatelib:DataStorage:IndependentVariableNamesMustBeVector" ) );
             end
         end
-
-
 
 
         function names = getIndependentVariableNamesImpl( obj )%#ok<MANU,STOUT>
@@ -88,19 +80,19 @@ classdef DataStorage
 
         names = getResponseNamesImpl( obj );
 
-
-
         x = getIndependentVariableImpl( obj, names, groups );
-
-
 
         varargout = getResponsesImpl( obj, names, groups );
     end
+
+
     methods ( Access = protected )
         function groups = getGroupsImpl( obj )%#ok<MANU,STOUT>
             error( message( "shared_surrogatelib:DataStorage:GroupsNotSupported" ) );
         end
     end
+
+
     methods ( Access = private )
         function validateGroups( obj, groups )
             if isempty( groups )
