@@ -1,17 +1,13 @@
 function initOutputModel(srcModelName,targetModelName)
 
-
     if isempty(srcModelName)
         return;
     end
 
     copyModelWorkSpace(srcModelName,targetModelName);
     setModelParam(srcModelName,targetModelName);
-
-
     dd=get_param(srcModelName,'DataDictionary');
     set_param(targetModelName,'DataDictionary',dd);
-
 
     if~isempty(srcModelName)
         nfpMode=targetcodegen.targetCodeGenerationUtils.isNFPMode();
@@ -21,18 +17,13 @@ function initOutputModel(srcModelName,targetModelName)
         end
     end
 
-
-
     sobj=get_param(srcModelName,'Object');
     configSet=sobj.getActiveConfigSet;
     configSet2=copy(configSet);
 
-
-
     [lwarn_msg,lwarn_id]=lastwarn;
     wstatus=warning;
     slwstatus=sllastwarning;
-
 
     configSet2.setPropEnabled('Name',1);
     configSet2.Name='ElaboratedModelConfiguration';
@@ -40,8 +31,6 @@ function initOutputModel(srcModelName,targetModelName)
     setActiveConfigSet(targetModelName,'ElaboratedModelConfiguration');
     processSimscape(targetModelName,configSet2);
     setGeneratedModelParameters(targetModelName);
-
-
 
     warning(wstatus);
     lastwarn(lwarn_msg,lwarn_id);
@@ -76,11 +65,7 @@ function[]=copyModelWorkSpace(srcModelName,targetModelName)
     for idx=1:length(data),
         assignin(targetWorkSpace,data(idx).Name,data(idx).Value);
     end
-
-
-
     set_param(targetModelName,'ParameterArgumentNames','');
-
     copySfMachineParentedData(srcModelName,targetModelName);
 end
 
@@ -119,7 +104,6 @@ function setModelParam(srcModelName,targetModelName)
                         if~isempty(val)
                             newHDLParams.mdlProps=val.mdlProps;
 
-
                             index=find(cellfun(@(x)isequal(x,'HDLSubsystem'),newHDLParams.mdlProps));
                             if~isempty(index)
                                 newHDLParams.mdlProps{index+1}='';
@@ -136,12 +120,8 @@ function setModelParam(srcModelName,targetModelName)
             end
         end
     end
-
-
     pos=get_param(targetModelName,'Location');
     set_param(targetModelName,'Location',pos+20);
-
-
 
     try
         hws=get_param(targetModelName,'modelworkspace');
@@ -152,10 +132,6 @@ function setModelParam(srcModelName,targetModelName)
 end
 
 
-
-
-
-
 function processSimscape(targetModelName,configSet)
     a=configSet.getComponent('Simscape');
     if~isempty(a)&&strcmp(get_param(targetModelName,'EditingMode'),'Restricted')
@@ -164,16 +140,8 @@ function processSimscape(targetModelName,configSet)
 end
 
 
-
 function setGeneratedModelParameters(targetModelName)
-
-
-
     set_param(targetModelName,'CloseFcn','');
-
-
-
-
     set_param(targetModelName,'LoggingToFile','off');
 end
 
