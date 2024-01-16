@@ -1,8 +1,4 @@
 function uniqueName=getUniqueName(slBlockName)
-
-
-
-
     nMap=slpir.PIR2SL.getNameMapSingletonInstance;
     if~nMap.isKey(slBlockName)
         nMap(slBlockName)=int32(1);%#ok<NASGU>
