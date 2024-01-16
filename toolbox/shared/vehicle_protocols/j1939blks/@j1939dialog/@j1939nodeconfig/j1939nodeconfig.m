@@ -2,12 +2,10 @@ function obj=j1939nodeconfig(hBlock)
 
     obj=j1939dialog.j1939nodeconfig(hBlock);
 
-
     if isa(hBlock,'double')
         hBlock=get_param(hBlock,'object');
     end
     obj.Block=hBlock;
-
 
     parent=obj.Block.getParent;
     while~isa(parent,'Simulink.BlockDiagram')
@@ -15,7 +13,6 @@ function obj=j1939nodeconfig(hBlock)
     end
 
     obj.Root=parent;
-
 
     obj.ConfigName=obj.Block.ConfigName;
     obj.NodeID=obj.Block.NodeID;
