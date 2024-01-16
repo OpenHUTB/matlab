@@ -1,8 +1,5 @@
 function drawSLBlocks(this,hPir)
 
-
-
-
     hRootN=hPir.getTopNetwork;
     if this.DUTMdlRefHandle>0
         srcParentPath=this.RootNetworkName;
