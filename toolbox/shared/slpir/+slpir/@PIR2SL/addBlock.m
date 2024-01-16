@@ -1,18 +1,10 @@
 function[uniqueName,slHandle]=addBlock(~,hC,blkType,blkNameWithPath,makeNameUnique)
 
-
-
-
     if nargin<5
         makeNameUnique=true;
     end
-
     blkNameWithPath=convertStringsToChars(blkNameWithPath);
-
-
-
     blkNameWithPath=hdlfixblockname(blkNameWithPath);
-
     uniqueName=slpir.PIR2SL.getUniqueName(blkNameWithPath);
 
     if makeNameUnique
@@ -30,6 +22,7 @@ function[uniqueName,slHandle]=addBlock(~,hC,blkType,blkNameWithPath,makeNameUniq
     end
 
 end
+
 
 function charOut=convertStringsToChars(argIn)
     if isstring(argIn)
