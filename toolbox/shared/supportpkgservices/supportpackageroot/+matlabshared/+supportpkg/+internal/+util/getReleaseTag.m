@@ -1,11 +1,5 @@
 function relTag=getReleaseTag(release,opt)
 
-
-
-
-
-
-
     validateattributes(release,{'char','string'},{'nonempty','scalartext'});
     validateattributes(opt,{'char','string'},{});
     relTag=regexprep(release,'[\s|(|)]','');
