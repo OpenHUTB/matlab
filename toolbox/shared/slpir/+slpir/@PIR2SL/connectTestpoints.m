@@ -1,17 +1,5 @@
 function connectTestpoints(this,gmDUT,~)
 
-
-
-
-
-
-
-
-
-
-
-
-
     gmTop=this.hPir.getTopNetwork;
 
     if~testpointsPresent(gmTop)
@@ -19,19 +7,14 @@ function connectTestpoints(this,gmDUT,~)
     end
 
     posOfDut=get_param(gmDUT,'Position');
-
-
     tpScopeMap=containers.Map('KeyType','double','ValueType','double');
 
     outFileName=char(fileparts(gmDUT));
     for ii=1:numel(gmTop.PirOutputPorts)
         if(gmTop.PirOutputPorts(ii).isTestpoint())
-
             portYDiff=(posOfDut(4)-posOfDut(2))/numel(gmTop.PirOutputPorts);
             portYLoc=(ii-1)*portYDiff+portYDiff/2;
             outPortLocation=[posOfDut(3),posOfDut(2)+portYLoc,posOfDut(3),posOfDut(2)+portYLoc];
-
-
             portType=getDutOutportType(gmTop,ii);
             if portType.isRecordType&&...
                 get_param(gmTop.getOutputPortSignal(ii-1).SimulinkHandle,'CompiledBusType')=="VIRTUAL_BUS"
@@ -46,11 +29,7 @@ function connectTestpoints(this,gmDUT,~)
             else
 
                 simRate=gmTop.PirOutputPorts(ii).Signal.SimulinkRate;
-
-
                 [new_scope,portID,tpScopeMap]=getScopeFor(tpScopeMap,outFileName,simRate,outPortLocation);
-
-
                 src_scope=[char(get_param(new_scope,'Name')),'/',char(num2str(portID))];
                 blkPort=[char(get_param(gmDUT,'Name')),'/',char(num2str(ii))];
                 add_line(outFileName,blkPort,src_scope,'autorouting','on');
@@ -58,10 +37,6 @@ function connectTestpoints(this,gmDUT,~)
         end
     end
 end
-
-
-
-
 
 
 function[new_scope,portID,tpScopeMap]=getScopeFor(tpScopeMap,gmTop,simRate,refPortLoc)
@@ -84,23 +59,14 @@ function[new_scope,portID,tpScopeMap]=getScopeFor(tpScopeMap,gmTop,simRate,refPo
     portID=totalPortsScoped+1;
 
     if portID>95
-
-
         remove(tpScopeMap,simRate);
     end
 end
 
 
-
-
-
-
 function blkH=addBlockUnique(blkType,tgtBlkPath)
     blkH=add_block(blkType,tgtBlkPath,'MakeNameUnique','on');
 end
-
-
-
 
 
 function outType=getDutOutportType(hn,idx)
@@ -110,9 +76,6 @@ function outType=getDutOutportType(hn,idx)
         outType=hs.Type;
     end
 end
-
-
-
 
 
 function retval=testpointsPresent(top)
