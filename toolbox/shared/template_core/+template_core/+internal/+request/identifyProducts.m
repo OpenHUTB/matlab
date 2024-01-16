@@ -1,10 +1,5 @@
 function products=identifyProducts(varargin)
 
-
-
-
-
-
     products=i_makeStr(cell(0,1),cell(0,1));
     if nargin==0
         return;
@@ -24,6 +19,7 @@ function products=identifyProducts(varargin)
     products=products(idx);
 
 end
+
 
 function str=i_makeStr(basecode,name)
     str=struct("basecode",basecode,"name",name);
