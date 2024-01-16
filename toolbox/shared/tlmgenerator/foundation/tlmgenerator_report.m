@@ -1,12 +1,9 @@
 function tlmgenerator_report
 
-
-
     try
 
         SystemInfo=tlmgenerator_getcodeinfo();
         cfg=tlmgenerator_getconfigset(SystemInfo.Name);
-
 
         if(strcmp(cfg.GenerateReport,'on'))
             LaunchReportPrev=get_param(SystemInfo.Name,'LaunchReport');
@@ -33,24 +30,10 @@ function tlmgenerator_report
                 coder.internal.slcoderReport('addFileInfo',SystemInfo.Name,...
                 h_list(i).name,'interface','header',inc_path);
             end
-
-
-
-
-
-
-
-
-
-
-
-
             if(strcmp(cfg.tlmgGenerateTestbenchOnOff,'on'))
 
                 src_tb_path=fullfile(pwd(),cfg.tlmgTbSrcDir);
                 inc_tb_path=fullfile(pwd(),cfg.tlmgTbIncDir);
-
-
                 cpp_tb_list=dir(fullfile(src_tb_path,['*',cfg.tlmgTbExt,'*.cpp']));
                 for i=1:numel(cpp_tb_list)
                     coder.internal.slcoderReport('addFileInfo',SystemInfo.Name,...
@@ -62,14 +45,6 @@ function tlmgenerator_report
                     coder.internal.slcoderReport('addFileInfo',SystemInfo.Name,...
                     h_tb_list(i).name,'main','header',inc_tb_path);
                 end
-
-
-
-
-
-
-
-
 
             end
 
