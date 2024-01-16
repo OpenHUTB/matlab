@@ -1,34 +1,22 @@
-
 function slBlockName=drawSLSubsystem(this,slBlockName,hC)
-
-
 
     slHandle=hC.SimulinkHandle;
     hRefNtwk=hC.ReferenceNetwork;
 
-
-
-
     if hRefNtwk.NumberOfPirGenericPorts>0
         hRefNtwk.prepareNetworkForModelGen(slHandle,hC);
     end
-
     [slBlockName,newslHandle]=addBlock(this,hC,'built-in/SubSystem',slBlockName);
     setProperties(this,hC,newslHandle);
     addSubSystemPorts(this,slBlockName,hRefNtwk);
-
-
-
 
     if~shouldDrawMask(hC)
         return;
     end
 
-
     if isDynamicStateSpaceBlock(hC)
         return;
     end
-
     if~this.isSFNetwork(hC.SimulinkHandle)&&~isMatlabSystemBlk(hC.SimulinkHandle)
         handleMaskParams(this,slBlockName,slHandle,hRefNtwk,false)
     end
@@ -43,8 +31,6 @@ end
 function drawMask=shouldDrawMask(hNic)
     slbh=hNic.SimulinkHandle;
     drawMask=hasmaskdlg(slbh);
-
-
 
     if drawMask||~isempty(get_param(slbh,'MaskInitialization'))
 
