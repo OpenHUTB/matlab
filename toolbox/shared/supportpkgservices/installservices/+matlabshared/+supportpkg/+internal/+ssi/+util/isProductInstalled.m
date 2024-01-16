@@ -1,9 +1,5 @@
 function retVal=isProductInstalled(productName)
 
-
-
-
-
     validateattributes(productName,{'char'},{'nonempty'},'isProductInstalled','spRoot',1);
 
     verInfo=ver;
