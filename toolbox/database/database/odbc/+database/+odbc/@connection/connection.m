@@ -2,84 +2,42 @@ classdef(CaseInsensitiveProperties=true,Sealed=true)...
     connection<database.relational.connection&...
     matlab.mixin.CustomDisplay
 
-
     properties(Constant,Access='private')
-
         DEFAULT_LOGINTIMEOUT=0;
-
-
         DEFAULT_AUTOCOMMIT='on';
-
-
         DEFAULT_READONLY='off';
     end
 
     properties(SetAccess=private,GetAccess=public)
 
         DataSource='';
-
-
         UserName='';
-
-
-
-
 Message
-
-
         Type='ODBC Connection Object'
     end
 
+
     properties(Access=public)
-
-
-
-
-
-
         AutoCommit='';
-
-
-
-
-
-
         ReadOnly='';
     end
 
+
     properties(SetAccess=protected)
-
         Catalogs={};
-
-
         Schemas={};
     end
 
     properties(SetAccess=private,GetAccess=public)
-
-
-
-
         LoginTimeout=0;
-
-
         MaxDatabaseConnections=-1;
-
-
         DefaultCatalog='';
-
-
         DatabaseProductName='';
-
-
         DatabaseProductVersion='';
-
-
         DriverName='';
-
-
         DriverVersion='';
     end
+
 
     properties(Access=protected)
         SupportsPreparedStatements=false;
@@ -89,24 +47,18 @@ Message
     end
 
     properties(SetAccess=private,Hidden=true)
-
-
-
         Instance='';
-
         ErrorHandling='';
     end
 
     properties(SetAccess=private,Hidden=true,Transient=true)
-
         Handle=0;
     end
 
     properties(SetAccess=private,Hidden=true)
-
-
         TimeOut=0;
     end
+
 
     methods
 
@@ -122,10 +74,8 @@ Message
             case 'off'
                 connection.Handle.setAutoCommit(0);
             end
-
             checkval=connection.Handle.getAutoCommit;
             if(strcmpi('on',toggle)&&checkval~=true)||(strcmpi('off',toggle)&&checkval~=false)
-
                 wb=warning('off','backtrace');
                 warning(message('database:database:nonConfiguredParameter','AutoCommit',connection.DatabaseProductName));
                 connection.AutoCommit=database.odbc.connection.DEFAULT_AUTOCOMMIT;
@@ -137,6 +87,7 @@ Message
             connection.AutoCommit=toggle;
 
         end
+
 
         function connection=set.ReadOnly(connection,newvalue)
 
@@ -150,11 +101,8 @@ Message
             case 'off'
                 connection.Handle.setReadOnly(0);
             end
-
             checkval=connection.Handle.isReadOnly();
-
             if(strcmpi('on',toggle)&&checkval~=1)||(strcmpi('off',toggle)&&checkval~=0)
-
                 wb=warning('off','backtrace');
                 warning(message('database:database:nonConfiguredParameter','ReadOnly',connection.DatabaseProductName));
                 connection.ReadOnly=database.odbc.connection.DEFAULT_READONLY;
@@ -169,6 +117,7 @@ Message
 
     end
 
+
     methods(Access=public,Hidden=true)
 
         p=ping(connect)
@@ -180,11 +129,11 @@ Message
         curs=exec(conn,sqlQuery,varargin);
     end
 
+
     methods(Hidden=true)
         function connectObj=connection(instance,username,password,varargin)
 
             narginchk(3,13);
-
             connectObj.ErrorHandling=setdbprefs('ErrorHandling');
             try
                 if~isempty(find(cellfun(@(x)strcmpi(x,'ErrorHandling'),varargin),1))
@@ -196,22 +145,6 @@ Message
             catch
             end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             p=inputParser;
             p.addRequired('instance',@(x)validateattributes(x,{'char','string'},{'scalartext'}));
             p.addRequired('username',@(x)validateattributes(x,{'char','string'},{'scalartext'}));
@@ -220,11 +153,9 @@ Message
             p.addParameter('ReadOnly',database.odbc.connection.DEFAULT_READONLY,@(x)validateattributes(x,{'char','string'},{'scalartext'}));
             p.addParameter('LoginTimeout',database.odbc.connection.DEFAULT_LOGINTIMEOUT,@(x)validateattributes(x,{'numeric'},{'nonempty','scalar','nonnegative'}));
             p.addParameter('ErrorHandling','',@(x)validateattributes(x,{'char','string'},{'scalartext'}))
-
             p.addParameter('DSNLessConnection',false,@(x)validateattributes(x,{'logical'},{'scalar'}));
             p.addParameter('ByPassUnixCheck',false,@(x)validateattributes(x,{'logical'},{'scalar'}));
             p.addParameter('PasswordToken',false,@(x)validateattributes(x,{'logical'},{'scalar'}));
-
 
             try
                 p.parse(instance,username,password,varargin{:});
@@ -244,14 +175,11 @@ Message
                 database.internal.utilities.DatabaseUtils.errorhandling(connectObj.Message,connectObj.ErrorHandling);
                 return;
             end
-
             instance=char(p.Results.instance);
             username=char(p.Results.username);
             password=char(p.Results.password);
             autocommit=char(p.Results.AutoCommit);
             readonly=char(p.Results.ReadOnly);
-
-
             connHandle=database.internal.ODBCConnectHandle();
             try
                 if p.Results.DSNLessConnection
@@ -261,19 +189,15 @@ Message
                 else
                     connHandle.openConnection(instance,username,password,p.Results.LoginTimeout);
                 end
-
                 connectObj.Handle=connHandle;
-
 
                 if p.Results.DSNLessConnection
                     connectObj.DataSource='';
                 else
                     connectObj.DataSource=instance;
                 end
-
                 connectObj.Instance=instance;
                 connectObj.UserName=username;
-
                 connectObj.DefaultCatalog=connectObj.Handle.getCatalog();
                 dbmetadata=connectObj.Handle.getDatabaseMetadata();
 
@@ -294,15 +218,12 @@ Message
                 else
                     connectObj.Schemas=t;
                 end
-
                 connectObj.AutoCommit=autocommit;
-
                 connectObj.MaxDatabaseConnections=dbmetadata.getMaxConnections();
                 connectObj.DatabaseProductName=dbmetadata.getDatabaseProductName();
                 connectObj.DatabaseProductVersion=dbmetadata.getDatabaseProductVersion();
                 connectObj.DriverName=dbmetadata.getDriverName();
                 connectObj.DriverVersion=dbmetadata.getDriverVersion();
-
                 timeout=connectObj.Handle.getLoginTimeout;
                 if p.Results.LoginTimeout~=0&&(timeout~=p.Results.LoginTimeout)
                     wb=warning('off','backtrace');
@@ -312,12 +233,10 @@ Message
                 else
                     connectObj.LoginTimeout=timeout;
                 end
-
                 connectObj.TimeOut=connectObj.LoginTimeout;
                 connectObj.ReadOnly=readonly;
 
             catch e
-
                 connectObj.Message=e.message;
                 database.internal.utilities.DatabaseUtils.errorhandling(connectObj.Message,connectObj.ErrorHandling);
                 return;
@@ -327,6 +246,7 @@ Message
 
     end
 
+
     methods(Hidden=true)
         function delete(obj)
             close(obj);
@@ -334,17 +254,6 @@ Message
 
 
         function p=getColumns(connect,varargin)
-
-
-
-
-
-
-
-
-
-
-
 
             p=inputParser;
             p.addRequired("connect",@(x)validateattributes(x,"database.odbc.connection",{"scalar"}));
@@ -362,13 +271,11 @@ Message
             schema=char(p.Results.schema);
             table=char(p.Results.table);
 
-
             if~isopen(connect)
                 error(message('database:database:invalidConnection'))
             end
 
             try
-
                 if nargin==1
 
                     p=[];
@@ -429,58 +336,25 @@ Message
                 end
 
             catch e
-
                 error(message('database:odbc:driverError',e.message))
-
 
             end
         end
 
 
-
         function curs=hexec(conn,sqlQuery,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             curs=database.odbc.cursor();
-
-
             p=inputParser;
-
             p.addRequired('conn',@(x)validateattributes(x,{'database.odbc.connection'},{'scalar'}));
             p.addRequired('sqlQuery',@(x)validateattributes(x,{'char','string'},{'scalartext'}));
             p.addOptional('qTimeOut',0,@(x)validateattributes(x,{'numeric'},{'scalar','integer','nonnegative'}));
             p.addOptional('cursorType','forward_only',@(x)validateattributes(x,{'char','string'},{'scalartext'}));
-
             p.addOptional('maxRows',0,@(x)validateattributes(x,{'numeric'},{'scalar','integer','nonnegative'}));
 
             try
-
                 p.parse(conn,sqlQuery,varargin{:});
-
                 cursortype=validatestring(p.Results.cursorType,{'forward_only','scrollable'});
             catch e
-
 
                 if strcmpi(setdbprefs('ErrorHandling'),'report')
 
@@ -489,14 +363,10 @@ Message
                 curs.Message=e.message;
 
                 return;
-
             end
 
-
             if(~isempty(conn.Message))
-
                 m=message('database:database:connectionFailure',conn.Message);
-
 
                 if strcmpi(setdbprefs('ErrorHandling'),'report')
                     error(m);
@@ -508,15 +378,12 @@ Message
             end
 
             try
-
                 curs.SQLQuery=char(sqlQuery);
-
 
                 connHandle=conn.Handle;
                 stmtObj=connHandle.createStatement();
                 curs.Statement=stmtObj;
                 curs.DatabaseConnection=conn;
-
 
                 if p.Results.maxRows>0
                     stmtObj.setMaxRows(p.Results.maxRows);
@@ -528,37 +395,25 @@ Message
                 if nargin==3
                     qtimeout=varargin{1};
                 end
-
                 stmtObj.setQueryTimeout(qtimeout);
-
-
                 stmtObj.setCursorType(upper(cursortype));
-
 
                 if strcmpi(cursortype,'scrollable')
                     curs.Scrollable=true;
                 end
-
                 if(database.internal.utilities.isSingleDeleteQuery(curs.SQLQuery)||...
                     database.internal.utilities.isSingleInsertQuery(curs.SQLQuery)||...
                     database.internal.utilities.isSingleUpdateQuery(curs.SQLQuery))
-
-
                     curs.Resultset=stmtObj.executeQueryV3(curs.SQLQuery);
 
                 else
-
-
                     curs.Resultset=stmtObj.executeQueryV2(curs.SQLQuery,conn.DatabaseProductName);
                 end
-
                 curs.ResultsetMetadata=curs.Resultset.getResultsetMetadata();
-
 
                 stmtObj.setMaxRows(0);
 
             catch e
-
 
                 if strcmpi(setdbprefs('ErrorHandling'),'report')
 
@@ -566,13 +421,10 @@ Message
                     e.rethrow();
                 end
                 curs.Message=e.message;
-
                 return;
-
             end
-
-
         end
+
 
         function OK=qtimeoutCheck(QTimeOut)
 
@@ -581,9 +433,7 @@ Message
             else
                 OK=true;
             end
-
         end
-
     end
 
 
