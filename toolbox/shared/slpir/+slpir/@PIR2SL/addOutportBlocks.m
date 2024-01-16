@@ -1,8 +1,4 @@
 function addOutportBlocks(this,tgtParentPath,hNtwk)
-
-
-
-
     numOutports=hNtwk.NumberOfPirOutputPorts;
     vOutports=hNtwk.PirOutputPorts;
 
@@ -38,15 +34,9 @@ function addOutportBlocks(this,tgtParentPath,hNtwk)
 
         hP.setGMHandle(portHandle);
 
-
-
         initVal='0';
 
         if~hN.Synthetic
-
-
-
-
 
             if hN.isBusExpansionSubsystem
                 outportPath=find_system(hN.FullPath,...
@@ -73,25 +63,17 @@ function addOutportBlocks(this,tgtParentPath,hNtwk)
         else
             hS=hP.Signal;
 
-
             if isa(hS,'hdlcoder.signal')&&~hS.Type.BaseType.isRecordType
                 sltype=computeDataType(this,hS.Type);
                 setDataType(this,slBlockName,sltype);
             end
 
-
             bt=hS.Type.BaseType;
-
-
 
             if bt.isEnumType
                 initVal='[]';
             end
         end
-
-
-
-
         setPortSampleTime(this,hN.PirOutputSignals(i),hP.Component,...
         portHandle,isInTriggeredNet);
 
