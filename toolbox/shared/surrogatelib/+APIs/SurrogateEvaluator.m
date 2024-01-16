@@ -1,128 +1,33 @@
 classdef SurrogateEvaluator<handle&matlab.mixin.SetGet&matlab.mixin.internal.FunctionObject&matlab.mixin.Copyable
 
-
-
     properties(GetAccess=public,SetAccess=public)
 
         Names;
-
-
     end
+
+
     properties(GetAccess=public,SetAccess=?APIs.SurrogateFitter)
-
-
-
-
-
-
-
-
         Range;
     end
-    properties(GetAccess=public,SetAccess=protected)
-
-
+ 
+   properties(GetAccess=public,SetAccess=protected)
 
 GradientSupport
-
-
-
 HessianSupport
     end
 
-    methods(Abstract)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        varargout=evaluateImpl(obj,x,responseIndicesOrNames,varargin);
+    methods(Abstract)        varargout=evaluateImpl(obj,x,responseIndicesOrNames,varargin);
     end
+
+
     methods(Access=protected)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         function grad=gradientImpl(obj,x,responseIndicesOrNames,varargin)%#ok<INUSD,STOUT>
             assert(isscalar(obj.GradientSupport)&&islogical(obj.GradientSupport)&&~obj.GradientSupport,...
             "Property 'GradientSupport' must be initialized to false if no gradient implementation is provided.");
             error(message("shared_surrogatelib:SurrogateEvaluator:UnsupportedGradientMethod"));
         end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         function hess=hessianImpl(obj,x,responseIndicesOrNames,varargin)%#ok<INUSD,STOUT>
@@ -135,72 +40,11 @@ HessianSupport
 
 
     methods
-
-
         function varargout=parenReference(obj,x,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             p=inputParser;
             addRequired(p,"Surrogate",@(x)validateattributes(x,{'APIs.SurrogateEvaluator'},{'scalar'}));
             parse(p,obj);
-
-
-
-
-
-
 
             varargout=cell(1,nargout);
             if isempty(varargin)
@@ -230,7 +74,6 @@ HessianSupport
                 end
             end
 
-
             try
                 [varargout{:}]=evaluateImpl(obj,x,responseIndicesOrNames,varargin{2:end});
             catch causeException
@@ -238,7 +81,6 @@ HessianSupport
                 baseException=addCause(baseException,causeException);
                 throw(baseException);
             end
-
 
             if numel(varargout)>=1&&~isempty(varargout{1})
                 validateResponseValues(obj,x,varargout{1},responseIndicesOrNames);
@@ -252,42 +94,8 @@ HessianSupport
 
         end
 
+
         function grad=gradient(obj,x,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             p=inputParser;
             addRequired(p,"Surrogate",@(x)validateattributes(x,{'APIs.SurrogateEvaluator'},{'scalar'}));
@@ -319,7 +127,6 @@ HessianSupport
                     error(message("shared_surrogatelib:SurrogateEvaluator:UnknownResponseName.",strjoin(responseIndicesOrNames(~tfValidName),', ')));
                 end
             end
-
 
             try
                 grad=gradientImpl(obj,x,varargin{2:end});
@@ -332,41 +139,8 @@ HessianSupport
 
         end
 
+
         function hess=hessian(obj,x,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             p=inputParser;
             addRequired(p,"Surrogate",@(x)validateattributes(x,{'APIs.SurrogateEvaluator'},{'scalar'}));
@@ -398,8 +172,6 @@ HessianSupport
                     error(message("shared_surrogatelib:SurrogateEvaluator:UnknownResponseName.",strjoin(responseIndicesOrNames(~tfValidName),', ')));
                 end
             end
-
-
 
             try
                 hess=hessianImpl(obj,x,responseIndicesOrNames,varargin{2:end});
@@ -423,42 +195,26 @@ HessianSupport
             if dimY(1)~=size(x,1)
                 error(message("shared_surrogatelib:SurrogateEvaluator:InvalidNumberOfEvaluations",size(x,1),dimY(1)));
 
-
-
-
             end
-
-
-
         end
+
+
         function validateGradients(~,x,grad,responseIndicesOrNames)
 
             dimGrad=size(grad);
             if dimGrad(1)~=size(x,1)
                 error(message("shared_surrogatelib:SurrogateEvaluator:InvalidNumberOfGradients",size(x,1),dimGrad(1)));
 
-
-
-
-
-
-
             end
 
-
-
         end
+
+
         function validateHessians(~,x,hessians,responseIndicesOrNames)
 
             dimHess=size(hessians);
             if dimHess(1)~=size(x,1)
                 error(message("shared_surrogatelib:SurrogateEvaluator:InvalidNumberOfHessians",size(x,1),dimHess(1)));
-
-
-
-
-
-
 
             end
             if any(isnan(hessians),"all")
