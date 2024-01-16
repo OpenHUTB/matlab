@@ -1,8 +1,4 @@
-
 function mdlPath=getTargetModelPath(this,srcParentPath)
-
-
-
 
     if~isempty(this.InModelFile)
         infile=this.InModelFile;
