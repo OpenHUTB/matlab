@@ -1,4 +1,3 @@
-
 function retval=formatCell(this,val,isUsedInEval)
     retval=[];
     for ii=1:numel(val)
