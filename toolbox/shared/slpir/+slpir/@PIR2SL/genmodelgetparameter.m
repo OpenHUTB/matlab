@@ -1,8 +1,5 @@
 function paramvalue=genmodelgetparameter(~,param)
 
-
-
-
     hDriver=hdlcurrentdriver;
     if isempty(hDriver)||~isa(hDriver,'slhdlcoder.HDLCoder')
 
