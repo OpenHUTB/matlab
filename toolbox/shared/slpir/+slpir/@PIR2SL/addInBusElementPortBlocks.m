@@ -1,14 +1,4 @@
-
 function portAdded=addInBusElementPortBlocks(this,hP,slBlockName,tgtParentPath,hNtwkSlHandle)
-
-
-
-
-
-
-
-
-
 
     portAdded=false;
     BusPortHandle=find_system(get_param(hNtwkSlHandle,'Handle'),...
@@ -37,11 +27,9 @@ function portAdded=addInBusElementPortBlocks(this,hP,slBlockName,tgtParentPath,h
     end
     if any(contains(get_param(BusPortHandle,'Element'),"."))
 
-
         portAdded=false;
         return;
     end
-
 
     if nPorts==1
         uniqueBusPortHandles=BusPortHandle;
@@ -50,7 +38,6 @@ function portAdded=addInBusElementPortBlocks(this,hP,slBlockName,tgtParentPath,h
         uniqueBusPortHandles=BusPortHandle(IA);
         nPorts=numel(uniqueBusPortHandles);
     end
-
     slAutoRoute=strcmpi(this.AutoRoute,'yes')&&strcmpi(this.AutoPlace,'yes');
     [~,gmPortHandle]=addBlock(this,[],'simulink/Signal Routing/Bus Creator',slBlockName);
     set_param(gmPortHandle,'Inputs',num2str(nPorts));
@@ -59,14 +46,10 @@ function portAdded=addInBusElementPortBlocks(this,hP,slBlockName,tgtParentPath,h
     needsToSetAttributes=true;
 
     for ii=1:nPorts
-
         obj=get_param(uniqueBusPortHandles(ii),'Object');
         elementName=obj.Name;
         elementPath=slpir.PIR2SL.getUniqueName([tgtParentPath,'/',elementName]);
         busPortName=slpir.PIR2SL.getUniqueName([obj.PortName,'InBus']);
-
-
-
 
         if ii==1
             bepH=add_block(getfullname(uniqueBusPortHandles(ii)),elementPath,...
@@ -85,7 +68,6 @@ function portAdded=addInBusElementPortBlocks(this,hP,slBlockName,tgtParentPath,h
             'CreateNewPort','off','Element',obj.Element);
         end
 
-
         if slAutoRoute
             add_line(tgtParentPath,[elementName,'/1'],...
             [hP.Name,'/',num2str(ii)],'autorouting','on');
@@ -93,7 +75,6 @@ function portAdded=addInBusElementPortBlocks(this,hP,slBlockName,tgtParentPath,h
             add_line(tgtParentPath,[elementName,'/1'],...
             [hP.Name,'/',num2str(ii)]);
         end
-
 
         if needsToSetAttributes
             setBusElementPortAttributes(this,obj,bepH,setMqAttributes);
