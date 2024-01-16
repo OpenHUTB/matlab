@@ -1,11 +1,4 @@
 function addMLPathEntries(mlPathEntries)
-
-
-
-
-
-
-
     matlabPathEntriesCellArr=cell(mlPathEntries(:));
 
     if(~isempty(matlabPathEntriesCellArr))
