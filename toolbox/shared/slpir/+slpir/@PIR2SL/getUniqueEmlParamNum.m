@@ -1,7 +1,5 @@
 function u=getUniqueEmlParamNum(this,clear)%#ok<INUSL>
 
-
-
     if(nargin<2)
         clear=false;
     end
