@@ -1,45 +1,5 @@
 function getExtensionUpdate(hObj,event)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     cs=hObj.getConfigSet();
     if isempty(cs),return;end
     model=cs.getModel();
@@ -58,35 +18,13 @@ function getExtensionUpdate(hObj,event)
         set_param(model,'Dirty',dirtyBit);
 
     case{'switch_target','activate'}
-
-
-
-
-
-
-
         dirtyBit=get_param(model,'Dirty');
-
-
-
-
         setValAndEn(cs,'GenerateCodeInfo','on',false);
-
-
-
-
-
-
-
-
 
         setValAndEn(cs,'MaxIdLength',256,true);
 
-
         setValAndEn(cs,'SolverType','Fixed-step',false);
         setValAndEn(cs,'EnableMultiTasking','off',false);
-
-
 
         setValAndEn(cs,'InlineParams','on',true);
 
@@ -94,25 +32,10 @@ function getExtensionUpdate(hObj,event)
         setValAndEn(cs,'OptimizeBlockIOStorage','off',true);
         setValAndEn(cs,'RTWCAPISignals','on',true);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         Porting=isempty(model)||...
         (strcmp(get_param(model,'Toolchain'),'Mentor Graphics QuestaSim/Modelsim (32-bit Windows)')||...
         (ispc&&(strcmp(get_param(model,'Toolchain'),'Mentor Graphics QuestaSim/Modelsim (64-bit Linux)')||...
         strcmp(get_param(model,'Toolchain'),'Cadence Xcelium (64-bit Linux)'))));
-
-
 
         if strcmp(event,'switch_target')||~Porting
             wl=rtwhostwordlengths;
@@ -126,7 +49,6 @@ function getExtensionUpdate(hObj,event)
             setValAndEnForce(cs,'TargetBitPerPointer',wl.PointerNumBits,true);
             setValAndEnForce(cs,'TargetBitPerSizeT',wl.SizeTNumBits,true);
             setValAndEnForce(cs,'TargetBitPerPtrDiffT',wl.PtrDiffTNumBits,true);
-
 
             if(wl.LongLongMode)
                 setValAndEnForce(cs,'TargetLongLongMode','on',true);
@@ -153,34 +75,20 @@ function getExtensionUpdate(hObj,event)
             setValAndEnForce(cs,'TargetUnknown','off',true);
         end
 
-
-
         setValAndEn(cs,'TargetLang','C',false);
         set_param(cs,'TargetLangStandard','C89/C90 (ANSI)');
         setValAndEn(cs,'GenerateMakefile','on',false);
         setValAndEnForce(cs,'MakeCommand','make_rtw',false);
 
         setValAndEnForce(cs,'UseToolchainInfoCompliant','on',true);
-
-
-
         setValAndEnForce(cs,'RTWCompilerOptimization','off',false);
 
         setValAndEn(cs,'CombineSignalStateStructs','on',false);
-
-
-
-
-
         setValAndEnForce(cs,'SuppressErrorStatus','off',true);
         setValAndEn(cs,'PurelyIntegerCode','off',false);
         setValAndEn(cs,'SupportNonFinite','on',false);
         setValAndEn(cs,'SupportComplex','on',false);
         setValAndEn(cs,'SupportAbsoluteTime','on',false);
-
-
-
-
         setValAndEn(cs,'CodeInterfacePackaging','Reusable function',false);
 
         setValAndEnForce(cs,'MultiInstanceErrorCode','Error',true);
@@ -189,13 +97,8 @@ function getExtensionUpdate(hObj,event)
             setValAndEn(cs,'CombineOutputUpdateFcns','off',true);
         end
         setValAndEn(cs,'GRTInterface','off',false);
-
-
-
         setValAndEnForce(cs,'ZeroExternalMemoryAtStartup','on',false);
         setValAndEnForce(cs,'ZeroInternalMemoryAtStartup','on',false);
-
-
 
         set_param(model,'Dirty',dirtyBit);
     end
@@ -203,19 +106,15 @@ end
 
 
 
-
-
 function setValAndEn(cs,prop,val,en)
     if(cs.getPropEnabled(prop))
-
-
-
         set_param(cs,prop,val);
         cs.setPropEnabled(prop,en);
     else
         assert(en==false);
     end
 end
+
 
 function setValAndEnForce(cs,prop,val,en)
     cs.setPropEnabled(prop,true);
