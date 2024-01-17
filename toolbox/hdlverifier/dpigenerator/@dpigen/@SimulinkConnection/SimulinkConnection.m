@@ -1,25 +1,5 @@
 function this=SimulinkConnection(subsysPath,subsysName)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     this=dpigen.SimulinkConnection;
 
     if(~isempty(subsysPath))
@@ -36,13 +16,8 @@ function this=SimulinkConnection(subsysPath,subsysName)
 
         system=getfullname(system);
     else
-
-
         error(message('HDLLink:SimulinkConnection:invalidconstruction'));
     end
-
-
-
 
     try
         this.ModelName=bdroot(system);
