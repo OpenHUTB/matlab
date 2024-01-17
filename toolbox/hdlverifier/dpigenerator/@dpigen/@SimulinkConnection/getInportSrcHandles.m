@@ -2,11 +2,7 @@ function inportHandles=getInportSrcHandles(this)
 
     subsystemName=this.System;
 
-
     hSubsystem=get_param(subsystemName,'handle');
-
-
-
     ul={'TriggerPort','EnablePort','ActionPort'};
     ulh=cellfun(@(x)(find_system(hSubsystem,...
     'SearchDepth',1,...
@@ -30,6 +26,5 @@ function inportHandles=getInportSrcHandles(this)
 
         inportHandles(ii)=curH.Outport;
     end
-
 
 end
