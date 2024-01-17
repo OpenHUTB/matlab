@@ -1,8 +1,5 @@
 function h=DPIERTTargetCC(varargin)
 
-
-
-
     if nargin>0
         h=[];%#ok<NASGU>
 
@@ -10,9 +7,6 @@ function h=DPIERTTargetCC(varargin)
     end
 
     h=dpigen.DPIERTTargetCC;
-
-
-
 
     set(h,'IsERTTarget','on');
     set(h,'ModelReferenceCompliant','on');
@@ -39,8 +33,5 @@ function h=DPIERTTargetCC(varargin)
     h.postSetListener=handle.listener(h,h.propsThatCanDirtyModel,...
     'PropertyPostSet',@propValueChangeCallback);
     h.postSetListener.CallbackTarget=h;
-
-
-
 
 end
