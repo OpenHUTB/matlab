@@ -6,6 +6,7 @@ ScaleViewEditor
 Figure
     end
 
+
     properties(Access=protected)
 
     end
@@ -16,11 +17,7 @@ Figure
         function this=PreScaleTool(sys,xfocus)
 
             ni=nargin;
-
-
             build(this)
-
-
 
             MinWidth=110;
             MinHeight=4*8;
@@ -32,10 +29,7 @@ Figure
             Pos(2)=Pos(2)-(Pos(4)-Pos0(4));
             set(this.Figure,'Position',Pos);
 
-
-
             layout(this)
-
 
             if ni>1&&~isempty(xfocus)
 
@@ -43,7 +37,6 @@ Figure
             else
                 this.ScaleViewPanel.setSystem(sys);
             end
-
 
             set(this.Figure,'Visible','on')
         end
@@ -70,13 +63,10 @@ Figure
                 PanelWidth=fw;
             end
 
-
-
             y0=vBorder;
             P1Height=7.2;
             set(this.ScaleViewEditor.HG.Panel,'Position',[hBorder,y0,PanelWidth,P1Height])
             this.ScaleViewEditor.layout;
-
 
             y0=y0+P1Height+vGap;
             set(this.ScaleViewPanel.HG.Panel,'Position',[hBorder,y0,PanelWidth,max(fh-y0-vBorder,1)])
@@ -99,9 +89,7 @@ Figure
 
     methods(Access=private)
 
-
         function build(this)
-
             Color=get(0,'DefaultUIControlBackground');
             fig=figure(...
             'Parent',groot,...
@@ -122,16 +110,8 @@ Figure
             set(fig,'PaperPositionMode','auto')
 
             this.Figure=fig;
-
-
-
-
             setappdata(this.Figure,'PreScaleToolObj',this)
-
-
             t=uitoolbar(this.Figure,'HandleVisibility','off');
-
-
             z(1)=uitoolfactory(t,'Standard.PrintFigure');
             z(2)=uitoolfactory(t,'Exploration.ZoomIn');
             set(z(2),'Separator','on');
@@ -140,14 +120,8 @@ Figure
             z(5)=uitoolfactory(t,'Annotation.InsertLegend');
             set(z(5),'ClickedCallback',@(es,ed)localLegendCallback(fig))
             set(z(5),'Separator','on');
-
-
-
-
             this.ScaleViewPanel=scalingtool.ScalingViewPanel(fig);
             this.ScaleViewEditor=scalingtool.ScalingViewEditor(this.ScaleViewPanel,fig);
-
-
             set(this.ScaleViewEditor.HG.Save,'Callback',{@localSaveDialogCallback,this})
             set(this.ScaleViewEditor.HG.Close,'Callback',@(x,y)close(this,x))
             set(this.ScaleViewEditor.HG.Help,'Callback',{@localHelpCallback})
@@ -156,12 +130,9 @@ Figure
 
 
         function exportDialog(this)
-
-
             checkLabels={ctrlMsgUtils.message('Control:scalegui:SaveDialogLabel1'),...
             ctrlMsgUtils.message('Control:scalegui:SaveDialogLabel2')};
             varNames={'ScaledSys','ScaledInfo'};
-
             ScaleFocus=this.ScaleViewPanel.getScaleFocus;
             if isempty(ScaleFocus)
                 [ScaledModel,ScaledInfo]=prescale(this.ScaleViewPanel.System);
@@ -170,13 +141,11 @@ Figure
             end
 
             items={ScaledModel,ScaledInfo};
-
-
             export2wsdlg(checkLabels,varNames,items,ctrlMsgUtils.message('Control:scalegui:SaveDialogTitle'));
         end
 
-
     end
+
 
     methods(Static,Hidden)
 
@@ -204,12 +173,14 @@ function localSaveDialogCallback(~,~,this)
 
 end
 
+
 function localHelpCallback(~,~)
 
     MapFile=ctrlguihelp;
     helpview(MapFile,'ScalingTool','CSHelpWindow')
 
 end
+
 
 function localLegendCallback(fig)
 
