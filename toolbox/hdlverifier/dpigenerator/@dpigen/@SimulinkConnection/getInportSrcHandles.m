@@ -1,9 +1,5 @@
 function inportHandles=getInportSrcHandles(this)
 
-
-
-
-
     subsystemName=this.System;
 
 
