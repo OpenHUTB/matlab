@@ -1,13 +1,9 @@
 function chg=getDependentChanges(hObj,propName,propVal)
 
-
-
     cbName=str2func(['l_',propName,'_cb']);
-
-
     chg=cbName(hObj,propVal);
-
 end
+
 
 function chg=l_DPICustomizeSystemVerilogCode_cb(~,propVal)%#ok<DEFNU>
 
