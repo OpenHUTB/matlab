@@ -4,7 +4,6 @@ function[T,ChangedBlock]=zeroFeedthrough(...
     nf=numel(tInfo.iFree);
     x0=zeros(nf,1);
 
-
     TB=tInfo.TunedBlocks;
     nblk=numel(TB);
     ADB=cell(nblk,1);
@@ -12,11 +11,9 @@ function[T,ChangedBlock]=zeroFeedthrough(...
         ADB{k}=false(TB(k).ny,TB(k).nu);
     end
 
-
     for ct=1:numel(SPECDATA)
         RD=SPECDATA(ct);
         if RD.Type==2
-
 
             SD=SYSDATA(RD.Model,RD.Config);
             [D,DS]=NSOptUtil.analyzeFeedthrough(SD,RD,tInfo,x0);
@@ -30,9 +27,6 @@ function[T,ChangedBlock]=zeroFeedthrough(...
             nfb=ny+nu+nwU+nzU+2*nL;
             [~,~,~,~,isActive]=smreal(DS(nz+1:nz+nfb,nw+1:nw+nfb),...
             DS(nz+1:nz+nfb,1:nw),DS(1:nz,nw+1:nw+nfb),[]);
-
-
-
 
             ir=nz+nfb-nu;ic=nw+nL+nzU;
             DCS=DS(ir+1:ir+nu,ic+1:ic+ny);
@@ -52,24 +46,15 @@ function[T,ChangedBlock]=zeroFeedthrough(...
         end
     end
 
-
     TunedBlocks=T.Blocks;
     ChangedBlock=false;
     for k=1:nblk
         if any(ADB{k}(:))
-
-
-
-
-
-
-
             blkData=TB(k).Data;
             TunedBlocks.(blkData.Name)=zeroThru(blkData,ADB{k});
             ChangedBlock=true;
         end
     end
-
 
     if ChangedBlock
         T.Blocks=TunedBlocks;
