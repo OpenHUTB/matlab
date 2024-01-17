@@ -1,21 +1,11 @@
 function[iph,oph]=getTopPortBlockHandles(this)
 
-
-
-
-
-
     iph={};
     oph={};
-
-
-
-
     inputPortBlks=find_system(this.System,...
     'SearchDepth',1,...
     'LookUnderMasks','all',...
     'BlockType','Inport');
-
     outputPortBlks=find_system(this.System,...
     'SearchDepth',1,...
     'LookUnderMasks','all',...
