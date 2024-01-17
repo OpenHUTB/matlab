@@ -1,7 +1,5 @@
 function dialogExtensionCallback(hObj,hDlg,value,tag)
 
-
-
     propName=hObj.getPropFromTag(tag);
 
     switch propName

@@ -8,14 +8,6 @@ function[heigs,w_acc]=HamGainTest(a,b,c,d,e,Ts,gam,UseExplicit)
 
     if UseExplicit&&Ts==0&&isempty(e)
 
-
-
-
-
-
-
-
-
         if isinf(gam)
             J=zeros(2*nx);
         else
@@ -27,7 +19,6 @@ function[heigs,w_acc]=HamGainTest(a,b,c,d,e,Ts,gam,UseExplicit)
         w_acc=hnorm*[rtol,1/rtol];
 
     else
-
         sqrt_gam=sqrt(gam);
         if isempty(e)
             e=eye(nx);
@@ -37,12 +28,8 @@ function[heigs,w_acc]=HamGainTest(a,b,c,d,e,Ts,gam,UseExplicit)
         GQ=zeros(nx);
 
         if Ts==0
-
-
             t=ltipack.scalePencil(norm(a,1),norm(b,1)/sqrt_gam,1);
             tg=t/sqrt_gam;
-
-
             [alpha,beta,w_acc]=ltipack.eigSHH(t^2*a,t^2*e,GQ,GQ,...
             R,[tg*b,zeros(nx,ny)],[zeros(nx,nu),tg*c']);
 
@@ -50,19 +37,12 @@ function[heigs,w_acc]=HamGainTest(a,b,c,d,e,Ts,gam,UseExplicit)
             idx=find(beta~=0);
             heigs=alpha(idx)./beta(idx);
         else
-
-
             t=ltipack.scalePencil(norm(a,1)+norm(e,1),norm(b,1)/sqrt_gam,1);
             tg=t/sqrt_gam;
-
 
             BF=[tg*b,zeros(nx,ny)];
             [alpha,beta,w_acc]=ltipack.eigSHH(t^2*(a-e),t^2*(a+e),GQ,GQ,...
             R,BF,[zeros(nx,nu),tg*c'],BF);
-
-
-
-
 
             Ts=abs(Ts);
             idx=find(abs(beta)>100*eps*abs(alpha)&beta+alpha~=0&beta-alpha~=0);
