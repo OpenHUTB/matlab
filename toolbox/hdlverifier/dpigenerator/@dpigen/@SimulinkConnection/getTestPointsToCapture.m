@@ -1,15 +1,7 @@
 function[TestPointsToCaptureKeys,TestPointsLoggingSignalNames,TestPointLoggingFlatNames,TestPointLoggingRawNames]=getTestPointsToCapture(this)
 
-
     TestPointContainer=dpigenerator_getvariable('TestPointContainer');
-
-
     UniqueBaseRate=min(dpigenerator_getvariable('InputAndOutputSamplePeriods'));
-
-
-
-
-
 
     OutportSrcSID=l_getOutportSrcSID(this);
 
@@ -21,38 +13,15 @@ function[TestPointsToCaptureKeys,TestPointsLoggingSignalNames,TestPointLoggingFl
     idx_num=1;
     for idx=keys(TestPointContainer)
         keyval=idx{1};
-
-
-
         SrcBlockPortHandles=get_param(Simulink.ID.getHandle(TestPointContainer(keyval).SID),'PortHandles');
-
-
-
-
-
-
-
-
-
-
-
         if~strcmp(get_param(SrcBlockPortHandles.Outport(str2double(keyval(end))),'TestPoint'),'on')
-
             warning(message('HDLLink:DPIG:MaskedOrLibSusysNotLogged',Simulink.ID.getFullName(TestPointContainer(keyval).SID)));
             continue;
         end
-
         if~strcmp(get_param(SrcBlockPortHandles.Outport(str2double(keyval(end))),'DataLogging'),'on')
 
             continue;
         end
-
-
-
-
-
-
-
 
         if TestPointContainer(keyval).SamplePeriod~=UniqueBaseRate
 
@@ -61,17 +30,10 @@ function[TestPointsToCaptureKeys,TestPointsLoggingSignalNames,TestPointLoggingFl
             continue;
         end
 
-
-
-
         if any(strcmp(TestPointContainer(keyval).SID,OutportSrcSID))
             warning(message('HDLLink:DPIG:TestPointLogSameAsBlockIO'));
             continue;
         end
-
-
-
-
 
         TestPointsToCaptureKeys{idx_num}=keyval;%#ok<AGROW>
 
@@ -80,8 +42,6 @@ function[TestPointsToCaptureKeys,TestPointsLoggingSignalNames,TestPointLoggingFl
         else
             TestPointsLoggingSignalNames{idx_num}=TestPointContainer(keyval).RawSignalName;%#ok<AGROW>
         end
-
-
         if~isempty(TestPointContainer(keyval).StructInfo)
             for idx2=1:length(TestPointContainer(keyval).StructInfo)
                 n_getFlatName(TestPointContainer(keyval).StructInfo(num2str(idx2)));
@@ -93,6 +53,7 @@ function[TestPointsToCaptureKeys,TestPointsLoggingSignalNames,TestPointLoggingFl
         TestPointLoggingRawNames{idx_num}=TestPointContainer(keyval).RawSignalName;%#ok<AGROW>
         idx_num=idx_num+1;
     end
+
 
     function n_getFlatName(testPointInfo)
         if~isempty(testPointInfo.StructInfo)
