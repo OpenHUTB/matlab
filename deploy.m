@@ -45,21 +45,22 @@ for i = 1 : numel(all_files)
 end
 
 
+%%
 % 删除.p文件，使.m生效
-sim_3d_dir = fullfile( toolboxdir('shared'),  'sim3d', 'sim3d', '+sim3d');
-if exist(fullfile(sim_3d_dir, 'World.p'), 'file')
-    delete(fullfile(sim_3d_dir, 'World.p'));
-    addpath(fullfile(toolboxdir('shared'),  'sim3d', 'sim3d'));
-    rehash toolboxcache
-end
-
-drivingscenario_dir = fullfile(toolboxdir('shared'), 'drivingscenario');
-scenario_player_path = fullfile(drivingscenario_dir, '+driving', '+internal', '+scenarioApp', 'ScenarioPlayer.p');
-if exist(scenario_player_path, 'file')
-    delete(scenario_player_path);
-    addpath(fullfile(drivingscenario_dir));
-    rehash toolboxcache
-end
+% sim_3d_dir = fullfile( toolboxdir('shared'),  'sim3d', 'sim3d', '+sim3d');
+% if exist(fullfile(sim_3d_dir, 'World.p'), 'file')
+%     delete(fullfile(sim_3d_dir, 'World.p'));
+%     addpath(fullfile(toolboxdir('shared'),  'sim3d', 'sim3d'));
+%     rehash toolboxcache
+% end
+% 
+% drivingscenario_dir = fullfile(toolboxdir('shared'), 'drivingscenario');
+% scenario_player_path = fullfile(drivingscenario_dir, '+driving', '+internal', '+scenarioApp', 'ScenarioPlayer.p');
+% if exist(scenario_player_path, 'file')
+%     delete(scenario_player_path);
+%     addpath(fullfile(drivingscenario_dir));
+%     rehash toolboxcache
+% end
 
 
 % D:\work\matlab\toolbox\shared\drivingscenario\+driving\+internal\+scenarioApp
