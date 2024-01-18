@@ -1,6 +1,5 @@
 function objH=sidToHandle(model,objId)
 
-
     if ischar(model)
         modelH=get_param(model,'Handle');
         modelName=model;
