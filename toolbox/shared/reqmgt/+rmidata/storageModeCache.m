@@ -1,8 +1,5 @@
 function varargout=storageModeCache(method,modelH,value)
 
-
-
-
     persistent rmiStorageModes transientModes
     mlock;
     if isempty(rmiStorageModes)
@@ -17,13 +14,6 @@ function varargout=storageModeCache(method,modelH,value)
     switch method
     case 'get'
         if~isKey(rmiStorageModes,modelH)
-
-
-
-
-
-
-
 
             if isempty(get_param(modelH,'FileName'))
                 varargout{1}=false;
@@ -80,6 +70,5 @@ function varargout=storageModeCache(method,modelH,value)
     otherwise
         error(message('Slvnv:rmipref:InvalidArgument',method));
     end
-
 
 end
