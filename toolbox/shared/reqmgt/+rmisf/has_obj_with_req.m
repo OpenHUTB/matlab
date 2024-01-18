@@ -1,21 +1,14 @@
 function out=has_obj_with_req(apiObj)
 
-
-
-
-
-
     out=false;
 
     if rmisf.has_req(apiObj,false)
         out=true;
         return;
     end
-
     if~rmi.settings_mgr('get','reportSettings','followLibraryLinks')&&objIsFromLib(apiObj);
         return;
     end
-
 
     sfFilter=rmisf.sfisa('isaFilter');
     testObjs=apiObj.find(sfFilter);
@@ -26,7 +19,6 @@ function out=has_obj_with_req(apiObj)
             return;
         end
 
-
         if isa(obj,'Stateflow.AtomicSubchart')
             if rmisf.has_obj_with_req(obj.Subchart)
                 out=true;
@@ -36,6 +28,7 @@ function out=has_obj_with_req(apiObj)
     end
 
 end
+
 
 function result=objIsFromLib(apiObj)
     try
