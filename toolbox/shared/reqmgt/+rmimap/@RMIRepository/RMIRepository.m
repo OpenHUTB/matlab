@@ -1,37 +1,16 @@
 classdef RMIRepository<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties
 graph
 proxies
     end
 
 
-
     methods(Access='private')
-
-
 
         function this=RMIRepository()
 
             this.graph=rmidd.Graph;
-
-
-
-
 
             t1=M3I.Transaction(this.graph);
             this.graph.uri=fullfile(pwd,'empty.req');
@@ -39,10 +18,8 @@ proxies
             this.proxies=containers.Map('KeyType','char','ValueType','any');
         end
 
+
         function srcRoot=loadIfExists(this,srcKey)
-
-
-
             [storageName,usingDefault]=rmimap.StorageMapper.getInstance.getStorageFor(srcKey);
             if exist(storageName,'file')==2
                 srcRoot=this.addRoot(srcKey,storageName);
@@ -54,9 +31,6 @@ proxies
                 srcRoot=[];
             end
         end
-
-
-
         newRoot=readRoot(this,reqFileName,srcName)
         currentModel=readGraph(this,reqFileName,modelName)
         node=addNode(this,model,id)
@@ -66,20 +40,16 @@ proxies
         appendLink(this,srcRoot,dependentNode,linkData,reuse)
         clearLinks(this,elt,deleteIncoming)
 
-
         root=ensureRoot(this,name)
         updateTextNodeData(this,mdlRoot,textRoot)
         [subRootsArray,textNodeIndex]=extractSubRoots(this,parentRoot)
         dealLinkData(this,parentRoot,childRootsArray)
-
-
         updateHarnessNodeData(this,mdlRoot,harnessData)
 
     end
 
 
     methods
-
         wasRemoved=removeNode(this,rootName,nodeId)
         wasRemoved=removeRoot(this,rootName,force)
         renameRoot(this,currentName,newName,varargin)
@@ -96,9 +66,6 @@ proxies
         nodeIds=getNodesForRoot(this,rootName,linkedOnly)
         propValue=rootProp(this,rootName,varargin)
         [success,cutObjs,cutReqs]=saveSubrootToFile(this,subrootName,saveAsName,reqFilePath)
-
-
-
         srcRoot=addRoot(this,srcName,reqFileName)
         subrootIds=getSubrootIds(this,mdlName,varargin)
         data=getAll(this,varargin)
@@ -107,6 +74,7 @@ proxies
         mdlName=updateRanges(this,srcName,newIds,newStarts,newEnds)
         [isModified,lostIds]=verifyTextRanges(this,srcName)
         result=removeId(this,srcName,id)
+
 
         function rangeIds=getRangeIds(this,fPath)
             srcRoot=rmimap.RMIRepository.getRoot(this.graph,fPath);
@@ -118,13 +86,10 @@ proxies
             end
         end
 
+
         function range=idToRange(this,fPath,id)
-
-
             srcRoot=rmimap.RMIRepository.getRoot(this.graph,fPath);
             if isempty(srcRoot)
-
-
                 error(message('Slvnv:rmigraph:FailedToFindID',id,fPath));
             end
             ids=srcRoot.getProperty('rangeLabels');
@@ -139,7 +104,6 @@ proxies
         end
 
 
-
         function reset(this)
 
             t1=M3I.Transaction(this.graph);
@@ -150,39 +114,30 @@ proxies
             t2=M3I.Transaction(this.graph);
             this.graph.uri=fullfile(pwd,'empty.req');
             t2.commit();
-
             rmimap.RMIRepository.getRoot([],'');
         end
 
     end
 
 
-
     methods(Static=true)
-
 
         function singleObj=getInstance()
             mlock;
             persistent repository;
             if isempty(repository)||~isvalid(repository)
-
-
                 repository=rmimap.RMIRepository();
 
             end
             singleObj=repository;
         end
-
-
         [docs,items,reqsys]=getLinkedItems(linkSource)
         populateLinkData(link)
         reqStruct=populateReqData(graphLink,reqStruct)
         writeM3I(reqFileName,srcRoot)
 
-
         clear();
     end
-
 
 
     methods(Static=true,Access='private')
@@ -204,7 +159,6 @@ proxies
                 return;
             end
 
-
             for r=1:myGraph.roots.size
                 root=myGraph.roots.at(r);
                 if rmiut.cmp_paths(root.url,sourceUrl)
@@ -215,6 +169,7 @@ proxies
             end
             latestFound={sourceUrl,[]};
         end
+
 
         function node=getNode(root,id)
             if isempty(id)
@@ -253,8 +208,6 @@ proxies
                 end
             end
         end
-
-
         [source,matched]=findSource(myGraph,sourceName,sourceType,isLoading)
         oldModel=oldModelFromGraph(oldGraph)
         yesno=isSimulinkSubroot(ndData)
