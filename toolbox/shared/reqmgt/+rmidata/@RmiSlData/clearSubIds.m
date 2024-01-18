@@ -1,8 +1,5 @@
 function clearSubIds(this,sid)
 
-
-
-
     [mdlName,id]=strtok(sid,':');
     try
         childIds=rmidata.RmiSlData.getNestedIDs(mdlName,id);
