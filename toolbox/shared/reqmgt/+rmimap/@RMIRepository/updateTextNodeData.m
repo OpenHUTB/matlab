@@ -1,15 +1,9 @@
 function updateTextNodeData(this,mdlRoot,textRoot)
 
-
-
-
-
-
     sid=textRoot.url;
     [txtName,id]=strtok(sid,':');
     mdlName=mdlRoot.url;
     assert(strcmp(txtName,mdlName));
-
     mfNode=rmimap.RMIRepository.getNode(mdlRoot,id);
     if isempty(mfNode)
         mfNode=this.addNode(mdlRoot,id);
@@ -22,7 +16,6 @@ function updateTextNodeData(this,mdlRoot,textRoot)
             nodeData=mfNode.addData();
         end
     end
-
     textRootDataLength=textRoot.data.names.size;
     for i=1:textRootDataLength
         name=textRoot.data.names.at(i);
