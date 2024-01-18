@@ -1,10 +1,5 @@
 function result=getmodelh(obj)
 
-
-
-
-
-
     [isSf,objH,~]=rmi.resolveobj(obj);
 
     if isSf
