@@ -1,13 +1,5 @@
 function childIds=getChildIds(this,modelName,idPrefix)
-
-
-
-
-
-
-
     model=rmimap.RMIRepository.getRoot(this.graph,modelName);
-
 
     if isempty(model)
         if isempty(idPrefix)
@@ -16,18 +8,14 @@ function childIds=getChildIds(this,modelName,idPrefix)
             error(message('Slvnv:rmigraph:UnmatchedModelName',modelName));
         end
     else
-
         childIds=findChildIdsFor(model,idPrefix);
     end
 end
 
+
 function matchedIds=findChildIdsFor(model,idPrefix)
 
-
-
-
     matchedIds={};
-
 
     prefixLength=length(idPrefix);
     for i=1:model.nodes.size
@@ -36,7 +24,6 @@ function matchedIds=findChildIdsFor(model,idPrefix)
             matchedIds{end+1}=element.id;%#ok<AGROW>
         end
     end
-
 
     if~isempty(matchedIds)&&prefixLength>0
         isExactMatch=strcmp(matchedIds,idPrefix);
