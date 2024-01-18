@@ -1,8 +1,5 @@
 function hasLinks=rootHasMatchingLinks(this,srcName,filters)
 
-
-
-
     hasLinks=false;
     srcRoot=rmimap.RMIRepository.getRoot(this.graph,srcName);
     if~isempty(srcRoot)
