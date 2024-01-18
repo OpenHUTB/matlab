@@ -1,6 +1,5 @@
 function yesno=isHarnessIdString(id)
 
-
     id=convertStringsToChars(id);
 
     if ischar(id)
