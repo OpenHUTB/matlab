@@ -1,54 +1,36 @@
 function schemas=menus_rmi_tools(callbackInfo)
 
-
-
-
-
     modelH=callbackInfo.model.Handle;
-
 
     [installed,licensed]=rmi.isInstalled();
     licensed=installed&&licensed;
-
 
     if licensed&&rmisl.menus_UpdateDataBeforeUse(modelH)
         schemas={@rmisl.menus_UpdateDataBeforeUse};
         return;
     end
 
-
     if rmiut.isBuiltinNoRmi(modelH)
-
-
         schemas={@rmisl.menus_BuildInLib};
         return
     end
-
-
-
-
     isHarness=rmisl.isComponentHarness(modelH);
     isHarnessOpen=~isHarness&&hasActiveHarness(modelH);
     function yesno=hasActiveHarness(modelH)
         yesno=strcmp(get_param(modelH,'lock'),'on')&&Simulink.harness.internal.hasActiveHarness(modelH);
     end
     if isHarnessOpen
-
-
         im=DAStudio.InterfaceManagerHelper(callbackInfo.studio,'Simulink');
         schemas=[{im.getSubmenu('Simulink:SysRequirementsMenu')}...
         ,'SEPARATOR',{@RmiSettingsMenu}];
         return;
     end
 
-
     schemas={};
-
 
     if licensed
         schemas=[schemas,{@SwitchReqPerspective},{@OpenStandaloneEditor},'SEPARATOR'];
     end
-
 
     if licensed
         reports_schema={@Reports,{modelH,isHarness}};
@@ -57,15 +39,11 @@ function schemas=menus_rmi_tools(callbackInfo)
         schemas=[schemas,{@HighlightMenu},'SEPARATOR'];
     end
 
-
     if licensed&&~isHarness...
         &&ispc&&rmi.settings_mgr('get','isDoorsSetup')...
         &&~SLStudio.Utils.isLockedSystem(callbackInfo)
         schemas=[schemas,{@SyncMenu},'SEPARATOR'];
     end
-
-
-
     if~slreq.utils.selectionHasMarkup(callbackInfo)
         im=DAStudio.InterfaceManagerHelper(callbackInfo.studio,'Simulink');
         schemas=[schemas,{im.getSubmenu('Simulink:SysRequirementsMenu')}];
@@ -76,16 +54,15 @@ function schemas=menus_rmi_tools(callbackInfo)
         schemas=[schemas,'SEPARATOR'];
     end
 
-
     if~isHarness&&rmidata.isExternal(modelH)
         storage_schema={@Storage,{modelH,licensed}};
         schemas=[schemas,{storage_schema},'SEPARATOR'];
     end
 
-
     schemas=[schemas,{@RmiSettingsMenu}];
 
 end
+
 
 function schema=Reports(callbackInfo)
     schema=DAStudio.ContainerSchema;
@@ -96,6 +73,7 @@ function schema=Reports(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
+
 function schemas=ReportMenus(callbackInfo)
     schemas={@MdlAdvMenu,@ReportMenu};
     isHarness=callbackInfo.userdata{2};
@@ -103,6 +81,7 @@ function schemas=ReportMenus(callbackInfo)
         schemas=[schemas,{@WebViewMenu}];
     end
 end
+
 
 function schema=Storage(callbackInfo)
     schema=DAStudio.ContainerSchema;
@@ -114,8 +93,8 @@ function schema=Storage(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
-function schemas=StorageMenus(callbackInfo)
 
+function schemas=StorageMenus(callbackInfo)
     studioHelper=slreq.utils.DAStudioHelper.createHelper(callbackInfo.studio);
     modelH=studioHelper.ActiveModelHandle;
 
@@ -139,6 +118,7 @@ function schemas=StorageMenus(callbackInfo)
     end
 end
 
+
 function tf=isLinkSetEmbedded(modelH)
     modelPath=get_param(modelH,'Filename');
     if isempty(modelPath)
@@ -161,6 +141,8 @@ function schema=MoveToFile_schema(callbackInfo)
     schema.callback=@MoveToFile_callback;
     schema.autoDisableWhen='Busy';
 end
+
+
 function MoveToFile_callback(callbackInfo)
     studioHelper=slreq.utils.DAStudioHelper.createHelper(callbackInfo.studio);
     modelH=studioHelper.ActiveModelHandle;
@@ -170,6 +152,7 @@ function MoveToFile_callback(callbackInfo)
     end
 end
 
+
 function state=getStorageMenuState(userdata)
     modelH=userdata{1};
     if isLinkSetEmbedded(modelH)
@@ -178,12 +161,9 @@ function state=getStorageMenuState(userdata)
         if isLicensed&&~isLocked
             state='Enabled';
         else
-
-
             state='Disabled';
         end
     else
-
         state='Enabled';
     end
 end
@@ -214,6 +194,8 @@ function schema=Save_schema(callbackInfo)
     end
     schema.autoDisableWhen='Busy';
 end
+
+
 function Save_callback(callbackInfo)
     studioHelper=slreq.utils.DAStudioHelper.createHelper(callbackInfo.studio);
     modelH=studioHelper.ActiveModelHandle;
@@ -233,6 +215,8 @@ function schema=SaveAs_schema(callbackInfo)
     end
     schema.autoDisableWhen='Busy';
 end
+
+
 function SaveAs_callback(callbackInfo)
     studioHelper=slreq.utils.DAStudioHelper.createHelper(callbackInfo.studio);
     modelH=studioHelper.ActiveModelHandle;
@@ -250,9 +234,7 @@ function schema=CopyToModel_schema(callbackInfo)
     schema.tag='Simulink:ReqCopyToMdl';
     schema.callback=@CopyToModel_callback;
     studioHelper=slreq.utils.DAStudioHelper.createHelper(callbackInfo.studio);
-    modelH=studioHelper.ActiveModelHandle;
-
-    if~rmidata.bdHasExternalData(modelH,false)
+    modelH=studioHelper.ActiveModelHandle;    if~rmidata.bdHasExternalData(modelH,false)
         schema.state='Disabled';
     end
     schema.autoDisableWhen='Busy';
@@ -272,9 +254,11 @@ function schema=RmiSettingsMenu(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
+
 function RmiSettingsMenu_callback(callbackInfo)
     rmi_settings_dlg;
 end
+
 
 function schema=HighlightMenu(callbackInfo)
     schema=DAStudio.ActionSchema;
@@ -298,14 +282,13 @@ function schema=HighlightMenu(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
+
 function HighlightMenu_highlight_callback(callbackInfo)
     modelH=callbackInfo.model.Handle;
     if~strcmp(get_param(modelH,'ReqHilite'),'on')
-
         SLStudio.Utils.RemoveHighlighting(modelH);
 
         set_param(modelH,'ReqHilite','on');
-
         [installed,licensed]=rmi.isInstalled();
         if installed&&licensed&&...
             rmipref('ShowDetailsWhenHighlighted')&&...
@@ -318,12 +301,12 @@ function HighlightMenu_highlight_callback(callbackInfo)
     end
 end
 
+
 function HighlightMenu_unhighlight_callback(callbackInfo)
     modelH=callbackInfo.model.Handle;
-
-
     SLStudio.Utils.RemoveHighlighting(modelH);
 end
+
 
 function schema=ReportMenu(callbackInfo)%#ok<*INUSD>
     schema=DAStudio.ActionSchema;
@@ -333,11 +316,13 @@ function schema=ReportMenu(callbackInfo)%#ok<*INUSD>
     schema.autoDisableWhen='Busy';
 end
 
+
 function ReportMenu_callback(callbackInfo)
 
     modelH=callbackInfo.model.Handle;
     rmi('report',modelH,true);
 end
+
 
 function schema=WebViewMenu(callbackInfo)%#ok<*INUSD>
     schema=DAStudio.ActionSchema;
@@ -347,11 +332,13 @@ function schema=WebViewMenu(callbackInfo)%#ok<*INUSD>
     schema.autoDisableWhen='Busy';
 end
 
+
 function WebViewMenu_callback(callbackInfo)
 
     modelH=callbackInfo.model.Handle;
     slwebview_req(modelH);
 end
+
 
 function schema=MdlAdvMenu(callbackInfo)
     schema=DAStudio.ActionSchema;
@@ -361,10 +348,12 @@ function schema=MdlAdvMenu(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
+
 function MdlAdvMenu_callback(callbackInfo)
     modelH=callbackInfo.model.Handle;
     rmi('check',modelH,'modeladvisor');
 end
+
 
 function schema=SyncMenu(callbackInfo)
     schema=DAStudio.ActionSchema;
@@ -374,6 +363,7 @@ function schema=SyncMenu(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
+
 function SyncMenu_callback(callbackInfo)
     modelH=callbackInfo.model.Handle;
     diaH=rmidoors.sync_dlg_mgr('add',modelH);
@@ -382,24 +372,20 @@ function SyncMenu_callback(callbackInfo)
     end
 end
 
+
 function schema=OpenStandaloneEditor(callbackInfo)
     schema=DAStudio.ActionSchema;
     schema.label=getString(message('Slvnv:slreq:RequirementsEditor'));
     schema.tag='Simulink:OpenSLReqEditor';
     schema.callback=@OpenStandaloneEditor_callback;
     schema.autoDisableWhen='Busy';
-
-
-
-
 end
-
-
 
 
 function OpenStandaloneEditor_callback(callbackInfo)
     slreq.app.MainManager.getInstance.openRequirementsEditor();
 end
+
 
 function schema=SwitchReqPerspective(callbackInfo)
     schema=DAStudio.ToggleSchema;
@@ -407,14 +393,10 @@ function schema=SwitchReqPerspective(callbackInfo)
 
     studioHelper=slreq.utils.DAStudioHelper.createHelper(callbackInfo.studio);
     canvasModelH=studioHelper.ActiveModelHandle;
-
-
-
     schema.label=getString(message('Slvnv:slreq:RequirementsPerspective'));
     schema.tag='Simulink:OpenSLReqPerspective';
     schema.callback=@SwitchReqPerspective_callback;
     schema.autoDisableWhen='Busy';
-
 
     if isempty(get_param(canvasModelH,'FileName'))
         schema.state='Disabled';
@@ -425,12 +407,6 @@ function schema=SwitchReqPerspective(callbackInfo)
         schema.checked='Unchecked';
     end
 end
-
-
-
-
-
-
 
 
 function SwitchReqPerspective_callback(callbackInfo)
