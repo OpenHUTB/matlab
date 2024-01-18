@@ -2,7 +2,6 @@ function propValue=rootProp(this,rootName,varargin)
 
     myRoot=rmimap.RMIRepository.getRoot(this.graph,rootName);
 
-
     if isempty(myRoot)
         warning(message('Slvnv:rmigraph:UnmatchedModelName',rootName));
     else
@@ -14,19 +13,15 @@ function propValue=rootProp(this,rootName,varargin)
             else
                 propValue=locGetPropValue(myRoot,varargin{1});
 
-
             end
-
         else
-
             t=M3I.Transaction(this.graph);
             propValue=locSetPropValue(myRoot,varargin{1},varargin{2});
             t.commit;
-
-
         end
     end
 end
+
 
 function value=locGetPropValue(theRoot,propName)
     value=[];
@@ -37,6 +32,7 @@ function value=locGetPropValue(theRoot,propName)
         end
     end
 end
+
 
 function origValue=locSetPropValue(theRoot,propName,newValue)
     origValue=[];
@@ -55,6 +51,7 @@ function origValue=locSetPropValue(theRoot,propName,newValue)
     theRoot.data.names.append(propName);
     theRoot.data.values.append(newValue);
 end
+
 
 function props=getAllValues(theRoot)
     totalItems=theRoot.data.names.size;
