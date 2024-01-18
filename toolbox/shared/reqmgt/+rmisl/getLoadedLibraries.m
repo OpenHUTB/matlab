@@ -1,25 +1,14 @@
 function[libList,ownerBlocksToLibBlock,mapFromLibBlockToRefBlock]=getLoadedLibraries(modelName)
 
-
-
-
-
-
     if ishandle(modelName)
         modelName=getfullname(modelName);
     end
-
-
     mapFromLibBlockToRefBlock=containers.Map('KeyType','char','ValueType','any');
     libNames=containers.Map('KeyType','char','ValueType','logical');
-
     ownerBlocksToLibBlock=containers.Map('KeyType','char','ValueType','char');
     modelPath=get_param(modelName,'Filename');
     filestatus=exist(modelPath,'File');
     if(filestatus~=4&&filestatus~=2)||hasMdlLibLoaded()
-
-
-
 
         allLibs=libinfo(modelName);
 
@@ -37,8 +26,6 @@ function[libList,ownerBlocksToLibBlock,mapFromLibBlockToRefBlock]=getLoadedLibra
             end
         end
     else
-
-
         modelInfo=Simulink.MDLInfo(modelPath);
 
         if~isempty(modelInfo.Interface)
@@ -64,7 +51,6 @@ function[libList,ownerBlocksToLibBlock,mapFromLibBlockToRefBlock]=getLoadedLibra
         allOwnerBlocks=ownerBlocksToLibBlock.keys;
         for index=1:length(allOwnerBlocks)
             cOwnerBlock=allOwnerBlocks{index};
-
             ownerBlockHandle=getSimulinkBlockHandle(cOwnerBlock);
             if ownerBlockHandle==-1
                 continue;
@@ -93,53 +79,8 @@ function[libList,ownerBlocksToLibBlock,mapFromLibBlockToRefBlock]=getLoadedLibra
             end
         end
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
+
 
 function out=hasMdlLibLoaded()
     allLibs=Simulink.allBlockDiagrams('library');
