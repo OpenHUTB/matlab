@@ -1,17 +1,5 @@
 function yesno=bdHasExternalData(slModelHandle,orIsPackaged)
 
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin<2
         orIsPackaged=true;
     end
