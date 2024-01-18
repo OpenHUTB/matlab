@@ -1,6 +1,5 @@
 function[navcmd,dispstr,bitmap]=targetInfo(target,type)
 
-
     switch type
     case 'simulink'
         if ischar(target)&&any(target=='|')&&rmisl.isSidString(target)
