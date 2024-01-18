@@ -1,10 +1,5 @@
 function result=filterChars(input,allowCR,allowHTab)
 
-
-
-
-
-
     if isempty(input)
         result='';
         return;
@@ -18,7 +13,6 @@ function result=filterChars(input,allowCR,allowHTab)
         allowHTab=false;
     end
 
-
     if allowCR&&allowHTab
         badChars=[0:8,11:31,127,160,255];
     elseif allowCR
@@ -28,7 +22,6 @@ function result=filterChars(input,allowCR,allowHTab)
     else
         badChars=[0:31,127,160,255];
     end
-
 
     isBadChar=ismember(input,badChars);
     input(isBadChar)=32;
