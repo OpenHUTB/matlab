@@ -1,17 +1,13 @@
 function url=filepathToUrl(filePath)
 
-
-
     if exist(filePath,'file')==0
         rmiut.warnNoBacktrace('Slvnv:reqmgt:StorageMapper:FileNotExist',filePath);
         url=encodeSomeChars(['file://',strrep(filePath,'\','/')]);
-
 
         return;
     elseif~rmiut.isCompletePath(filePath)
         filePath=which(filePath);
     end
-
 
     if rmipref('ReportUseRelativePath')
         reqDocBase=rmipref('ReqDocPathBase');
@@ -24,16 +20,16 @@ function url=filepathToUrl(filePath)
         url=absolutePathUrl(filePath);
     end
 
-
-
     url=encodeSomeChars(url);
 end
+
 
 function url=encodeSomeChars(url)
     url=strrep(url,'%','%25');
     url=strrep(url,'#','%23');
     url=strrep(url,' ','%20');
 end
+
 
 function url=relativePathUrl(filePath,refPath)
     [relPath,isRelative]=rmiut.relative_path(filePath,refPath);
@@ -47,6 +43,7 @@ function url=relativePathUrl(filePath,refPath)
         url=absolutePathUrl(filePath);
     end
 end
+
 
 function url=absolutePathUrl(filePath)
     if strncmp(filePath,'/',1)
