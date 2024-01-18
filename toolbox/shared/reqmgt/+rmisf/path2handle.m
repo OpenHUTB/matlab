@@ -1,18 +1,12 @@
 function result=path2handle(sfPathName)
 
-
-
-
     result=-1;
 
-
     sfObj=resolveState(sfPathName);
-
 
     if isempty(sfObj)
         sfObj=resolveTransition(sfPathName);
     end;
-
 
     if~isempty(sfObj)
         result=sfObj(1).Id;
@@ -21,14 +15,10 @@ end
 
 
 function result=resolveTransition(transPath)
-
-
     [labelStr,fromStr,toStr]=rmisf.parse_trans_path(transPath);
-
 
     fromObj=resolveState(fromStr);
     toObj=resolveState(toStr);
-
 
     fromID=-1;
     toID=-1;
@@ -38,7 +28,6 @@ function result=resolveTransition(transPath)
     if~isempty(toObj)
         toID=toObj.Id;
     end
-
 
     resolvedChart=[];
     if~isempty(fromObj)
@@ -51,7 +40,6 @@ function result=resolveTransition(transPath)
         return;
     end;
 
-
     if isempty(resolvedChart)
         searchRoot=sfroot;
     else
@@ -63,19 +51,15 @@ function result=resolveTransition(transPath)
     result=find(searchRoot,'-isa','Stateflow.Transition','-and','-function',func);%#ok<GTARG>
 
     if isempty(result)
-
-
         func=@(obj)transFindFunc(obj,labelStr,fromID,toID,false);
         result=find(searchRoot,'-isa','Stateflow.Transition','-and','-function',func);%#ok<GTARG>
     end
 end
 
+
 function result=transFindFunc(obj,labelStr,fromID,toID,strict)
-
-
     objFromID=-1;
     objToID=-1;
-
 
     if~isempty(obj.Source)
         objFromID=obj.Source.Id;
@@ -83,15 +67,7 @@ function result=transFindFunc(obj,labelStr,fromID,toID,strict)
     if~isempty(obj.Destination)
         objToID=obj.Destination.Id;
     end;
-
-
     objLabelStr=strtrim(strrep(obj.LabelString,char(10),' '));
-
-
-
-
-
-
     fromMatch=isSuperState(fromID,objFromID);
     toMatch=isSuperState(toID,objToID);
     labelMatch=strcmp(objLabelStr,labelStr);
@@ -101,6 +77,7 @@ function result=transFindFunc(obj,labelStr,fromID,toID,strict)
         result=(fromMatch||toMatch)&&labelMatch;
     end
 end
+
 
 function result=isSuperState(topId,downId)
     result=false;
@@ -125,23 +102,15 @@ function result=isSuperState(topId,downId)
     end
 end
 
+
 function result=resolveState(statePath)
-
-
     result=[];
-
-
     rt=sfroot;
-
-
     [sfMachineName]=strtok(statePath,'/');
     sfMachine=rt.find('-isa','Stateflow.Machine','-and','Name',sfMachineName);
     if isempty(sfMachine)
         return;
     end
-
-
-
 
     matchPath=[statePath,'/'];
     sfCharts=sfMachine.find('-isa','Stateflow.Chart','-or',...
@@ -159,8 +128,6 @@ function result=resolveState(statePath)
 
     [~,sortIdx]=sort(chartPathL);
     resolvedChart=[];
-
-
 
     match=regexp(statePath,'\(#(\d+)\)$','tokens');
     if~isempty(match)
@@ -189,6 +156,7 @@ function result=resolveState(statePath)
     end
 end
 
+
 function chartSID=findMyChart(allCharts,myPath)
 
     slashIdx=find(myPath=='/');
@@ -203,7 +171,6 @@ function chartSID=findMyChart(allCharts,myPath)
         end
         if~isempty(strfind(myPath,thisChart.Path))
             chartSID=Simulink.ID.getSID(chartBlockH);
-
 
         end
     end
