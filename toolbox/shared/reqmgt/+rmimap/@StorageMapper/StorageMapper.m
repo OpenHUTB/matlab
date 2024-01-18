@@ -1,24 +1,12 @@
 classdef(Sealed=true)StorageMapper<handle
 
-
-
-
-
-
-
-
-
-
-
-
-
     properties
         storageMap;
         mapfilename;
     end
 
-    methods(Access='private')
 
+    methods(Access='private')
 
         function obj=StorageMapper()
             obj.mapfilename=rmimap.StorageMapper.storageMapFile();
@@ -39,19 +27,16 @@ classdef(Sealed=true)StorageMapper<handle
 
     end
 
+
     methods(Access='private',Static=true)
         function extension=getLinkfileExtension()
-
-
-
 
             extension='.slmx';
         end
     end
 
+
     methods
-
-
         function store(this,newMap)
             if~iscell(newMap)
                 error(message('Slvnv:reqmgt:StorageMapper:InvalidNewMapCellArrayNeeded'));
@@ -67,8 +52,6 @@ classdef(Sealed=true)StorageMapper<handle
 
 
         function set(this,srcName,storageName)
-
-
             if ispc
                 srcMatch=strcmpi(this.storageMap(:,1),srcName);
             else
@@ -133,8 +116,6 @@ classdef(Sealed=true)StorageMapper<handle
         end
 
         function[storageName,usingDefault]=getStorageForModel(this,model)
-
-
             modelH=get_param(model,'Handle');
             [storageName,usingDefault]=this.getStorageFor(modelH);
         end
@@ -144,7 +125,6 @@ classdef(Sealed=true)StorageMapper<handle
             if nargin<3
                 asVersion='';
             end
-
 
             if~ischar(srcPath)
                 srcPath=get_param(srcPath,'FileName');
@@ -176,6 +156,7 @@ classdef(Sealed=true)StorageMapper<handle
                 sourceFile=this.storageMap(matches,1);
             end
         end
+
 
         function result=promptForReqFile(this,src,shouldExist)
             [storage,wasDefault]=this.getStorageFor(src);
@@ -209,8 +190,8 @@ classdef(Sealed=true)StorageMapper<handle
         end
     end
 
-    methods(Static=true)
 
+    methods(Static=true)
 
         function singleObj=getInstance
             persistent localStorageMap;
@@ -219,16 +200,6 @@ classdef(Sealed=true)StorageMapper<handle
             end
             singleObj=localStorageMap;
         end
-
-
-
-
-
-
-
-
-
-
 
 
         function linkPath=defaultLinkPath(artPath,artBase,artExt,asVersion)
@@ -274,6 +245,7 @@ classdef(Sealed=true)StorageMapper<handle
             end
         end
 
+
         function linkPaths=legacyLinkPaths(artPath,artBase,artExt)
             if reqmgt('rmiFeature','IncArtExtInLinkFile')
                 switch(artExt)
@@ -293,10 +265,10 @@ classdef(Sealed=true)StorageMapper<handle
             end
         end
 
+
         function reqPath=legacyReqPath(artPath,artBase,artExt)
             reqPath=fullfile(artPath,[artBase,'.req']);
         end
-
 
 
         function defaultPath=getDefaultStorageName(srcPath,asVersion)
@@ -307,8 +279,6 @@ classdef(Sealed=true)StorageMapper<handle
             end
 
             if strcmp(srcPath,'clear')
-
-
 
                 if~isempty(defaults)
                     defaultPath=defaults.Count;
@@ -341,14 +311,15 @@ classdef(Sealed=true)StorageMapper<handle
                         end
                     end
                 end
-
                 defaults(srcPath)=defaultPath;
             end
         end
 
+
         function clearAll()
             rmimap.StorageMapper.getInstance.clear();
         end
+
 
         function cellArray=listAll()
             singletonObj=rmimap.StorageMapper.getInstance();
@@ -365,29 +336,24 @@ classdef(Sealed=true)StorageMapper<handle
 
     end
 
-    methods(Static=true,Access='private')
 
+    methods(Static=true,Access='private')
 
         function out=storageMapFile()
             out=fullfile(prefdir,'rmi_storage.mat');
         end
 
+
         function loadedMap=loadFromFile(filename)
-
-
-
-
 
             fileinfo=dir(filename);
             if fileinfo.datenum<datenum('01-May-2011')
                 rmimap.StorageMapper.removeDefaultMappings(filename);
             end
 
-
             loaded=load(filename);
             loadedMap=loaded.storageMap;
         end
-
 
 
         function removeDefaultMappings(filename)
@@ -396,8 +362,6 @@ classdef(Sealed=true)StorageMapper<handle
             storageMap=cell(0,3);%#ok<*PROP>
             for i=1:size(loadedMap,1)
                 row=loadedMap(i,:);
-
-
                 if~strcmp(row{1,1},strrep(row{1,2},'.req','.mdl'))
                     storageMap=[loadedMap(i,:);storageMap];%#ok<AGROW>
                 end
