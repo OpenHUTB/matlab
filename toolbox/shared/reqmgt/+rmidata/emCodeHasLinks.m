@@ -1,14 +1,9 @@
 function result=emCodeHasLinks(chartObj)
 
-
-
-
     sid=Simulink.ID.getSID(chartObj);
     if rmisl.isComponentHarness(strtok(sid,':'))
         sid=rmiml.harnessToModelRemap(sid);
     end
-
-
 
     [mainMdlName,harnessBoundId]=strtok(sid,':');
     try
@@ -21,6 +16,7 @@ function result=emCodeHasLinks(chartObj)
     end
 
 end
+
 
 function hasLinks=slreqTextItemHasLinks(artifactPath,textItemID)
     linkSet=slreq.data.ReqData.getInstance.getLinkSet(artifactPath);
