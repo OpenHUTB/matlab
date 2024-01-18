@@ -1,12 +1,5 @@
 function updateHarnessNodeData(this,mdlRoot,harnessData)
 
-
-
-
-
-
-
-
     [~,id]=strtok(harnessData.id,':');
 
     chNode=rmimap.RMIRepository.getNode(mdlRoot,id);
@@ -31,14 +24,6 @@ function updateHarnessNodeData(this,mdlRoot,harnessData)
         chNode.setProperty('source','linktype_rmi_simulink');
         chNode.setProperty('id',id);
     end
-
-
-
-
-
-
-
-
 
     mdlName=mdlRoot.url;
     if dig.isProductInstalled('Simulink')&&bdIsLoaded(mdlName)
