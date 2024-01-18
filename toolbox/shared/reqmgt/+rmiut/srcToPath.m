@@ -1,8 +1,5 @@
 function resolvedPath=srcToPath(src)
 
-
-
-
     if isa(src,'char')
 
         fPath=strtok(src,'|');
