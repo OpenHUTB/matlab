@@ -1,10 +1,5 @@
 function renameRoot(this,currentName,newName,varargin)
 
-
-
-
-
-
     if~ischar(newName)
         newName=get_param(newName,'Name');
     end
@@ -22,12 +17,7 @@ function renameRoot(this,currentName,newName,varargin)
                 rmiml.RmiMlData.rename(currentName,newName);
             end
 
-
-
-
-
         end
-
 
         rmimap.RMIRepository.getRoot([],'');
     end
