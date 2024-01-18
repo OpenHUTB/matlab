@@ -1,22 +1,5 @@
 function[domainName,mwItem]=resolveType(obj)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if ischar(obj)
         [artifact,suffix]=strtok(obj,'|');
         mwItem.artifact=artifact;
@@ -62,7 +45,6 @@ function[domainName,mwItem]=resolveType(obj)
         [mdlName,mwItem.id]=rmidata.getRmiKeys(objH,isSf);
         mwItem.artifact=get_param(mdlName,'FileName');
     end
-
     mwItem.domain=['linktype_rmi_',domainName];
 
 end
