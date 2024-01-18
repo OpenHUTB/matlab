@@ -1,10 +1,5 @@
 function yesno=isTest(obj)
 
-
-
-
-
-
     obj=convertStringsToChars(obj);
 
     if ischar(obj)
