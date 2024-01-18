@@ -1,12 +1,10 @@
 classdef RmiSlDataEvent<event.EventData
 
-
-
-
     properties
 model
 id
     end
+
 
     methods
         function this=RmiSlDataEvent(model,id)
