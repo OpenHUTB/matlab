@@ -1,195 +1,9 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef LinkSet < slreq.internal.BaseSet
 
     properties ( Dependent )
         Description
     end
+
 
     properties ( Dependent, GetAccess = public, SetAccess = private )
         Filename
@@ -211,35 +25,43 @@ classdef LinkSet < slreq.internal.BaseSet
             name = this.dataObject.filepath;
         end
 
+
         function value = get.Artifact( this )
             value = this.dataObject.artifact;
         end
+
 
         function type = get.Domain( this )
             type = this.dataObject.domain;
         end
 
+
         function dirty = get.Dirty( this )
             dirty = this.dataObject.dirty;
         end
 
+
         function value = get.Revision( this )
             value = this.dataObject.revision;
         end
+
 
         function names = get.CustomAttributeNames( this )
 
             names = this.dataObject.CustomAttributeNames;
         end
 
+
         function value = get.Description( this )
             value = this.dataObject.description;
         end
+
 
         function set.Description( this, value )
             value = convertStringsToChars( value );
             this.dataObject.description = value;
         end
+
 
         function result = save( this, varargin )
             this.errorIfVectorOperation(  )
@@ -250,6 +72,7 @@ classdef LinkSet < slreq.internal.BaseSet
                 result = this.dataObject.save( varargin{ : } );
             end
         end
+
 
         function count = redirectLinksToImportedReqs( this, reqSet, showInfo )
             this.errorIfVectorOperation(  )
@@ -262,6 +85,7 @@ classdef LinkSet < slreq.internal.BaseSet
             count = this.dataObject.redirectLinksToImportedContent( reqSet, showInfo );
         end
 
+
         function result = sources( this )
             this.errorIfVectorOperation(  )
             linkedItems = this.dataObject.getLinkedItems(  );
@@ -272,16 +96,16 @@ classdef LinkSet < slreq.internal.BaseSet
             end
         end
 
+
         function result = getLinks( this )
             this.errorIfVectorOperation(  );
             dataLinks = this.dataObject.getAllLinks(  );
             result = slreq.utils.wrapDataObjects( dataLinks );
         end
 
+
         function result = find( this, varargin )
             this.errorIfVectorOperation(  );
-
-
 
             if ~( isempty( varargin ) ||  ...
                     ( numel( varargin ) == 2 && strcmpi( varargin{ 1 }, 'type' ) ) )
@@ -294,28 +118,27 @@ classdef LinkSet < slreq.internal.BaseSet
                 resultDataLink = slreq.utils.filterByProperties( dataLinks, varargin{ : } );
                 result = slreq.utils.wrapDataObjects( resultDataLink );
             catch ex
-
-
-
                 throwAsCaller( ex );
             end
         end
+
 
         function count = updateDocUri( this, origPath, newPath )
             this.errorIfVectorOperation(  )
             count = this.dataObject.updateDocUri( origPath, newPath );
         end
 
+
         function updateRegisteredReqSets( this )
             this.errorIfVectorOperation(  )
             this.dataObject.updateRegisteredReqSets( true );
         end
 
+
         function success = exportToVersion( this, targetFileName, release )
             targetFileName = convertStringsToChars( targetFileName );
             if slreq.utils.VersionHandler( release ).isSLReqVersion(  )
                 targetFileName = slreq.uri.getLinkSetFilePath( targetFileName, false );
-
 
                 if reqmgt( 'rmiFeature', 'IncArtExtInLinkFile' )
                     targetFileName = regexprep( targetFileName, '~\w*\.slmx$', '.slmx' );
@@ -359,10 +182,12 @@ classdef LinkSet < slreq.internal.BaseSet
             end
         end
 
+
         function reqSetNames = getRegisteredReqSets( this )
             this.errorIfVectorOperation(  );
             reqSetNames = this.dataObject.getRegisteredRequirementSets(  );
         end
+
 
         function [ numChecked, numAdded, numRemoved ] = updateBacklinks( this, doRemoveUnmatched )
             this.errorIfVectorOperation(  );
@@ -375,7 +200,6 @@ classdef LinkSet < slreq.internal.BaseSet
 
 
         function linksWithChangedSource = getLinksWithChangedSource( this )
-
 
             this.errorIfVectorOperation(  );
             dataLinkSet = this.dataObject;
@@ -390,12 +214,10 @@ classdef LinkSet < slreq.internal.BaseSet
             linksWithChangedSource =  ...
                 slreq.utils.getLinksFromUUIDs( linkUuidsWithSrcFail );
 
-
         end
 
 
         function linksWithChangedDestination = getLinksWithChangedDestination( this )
-
 
             this.errorIfVectorOperation(  );
             dataLinkSet = this.dataObject;
@@ -436,7 +258,6 @@ classdef LinkSet < slreq.internal.BaseSet
                 ct.refreshLinkSet( dataLinkSet )
             end
 
-
             if clearDst
                 linkUuidsWithDstFail = dataLinkSet.changedDestination.keys;
                 linksWithChangedDestination =  ...
@@ -449,10 +270,10 @@ classdef LinkSet < slreq.internal.BaseSet
 
                 linksWithChangedSource =  ...
                     slreq.utils.getLinksFromUUIDs( linkUuidsWithSrcFail );
-
                 linksWithChangedSource.clearChangeIssues( comment, "Source" )
             end
         end
+
 
         function importProfile( this, profileName )
             this.errorIfVectorOperation(  );
@@ -462,17 +283,20 @@ classdef LinkSet < slreq.internal.BaseSet
             end
         end
 
+
         function profiles = profiles( this )
             this.errorIfVectorOperation(  );
             prfs = this.dataObject.getAllProfiles(  );
             profiles = prfs.toArray(  );
         end
 
+
         function tf = removeProfile( this, profileName )
             this.errorIfVectorOperation(  );
             profileName = convertStringsToChars( profileName );
             tf = this.dataObject.removeProfile( profileName );
         end
+
 
         function textRange = getTextRange( this, varargin )
             switch numel( varargin )
@@ -487,6 +311,7 @@ classdef LinkSet < slreq.internal.BaseSet
             end
             textRange = this.getTextRanges( textId, line );
         end
+
 
         function textRanges = getTextRanges( this, varargin )
             switch numel( varargin )
@@ -514,6 +339,7 @@ classdef LinkSet < slreq.internal.BaseSet
             end
         end
 
+
         function textRange = createTextRange( this, textId, lines )
             if nargin < 3
 
@@ -526,6 +352,7 @@ classdef LinkSet < slreq.internal.BaseSet
             textRange = slreq.TextRange( dataTextRange );
         end
     end
+
 
     methods ( Access = private )
         function result = slreqFind( this, varargin )
