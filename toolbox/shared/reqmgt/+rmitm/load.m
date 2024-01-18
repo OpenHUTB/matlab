@@ -1,14 +1,9 @@
 function success=load(testSuite,force)
-
-
-
-
     testSuite=convertStringsToChars(testSuite);
 
     if nargin==1
         force=false;
     end
-
 
     tPath=rmitm.getFilePath(testSuite);
 
