@@ -1,7 +1,5 @@
 function navigateToSigbuilder(blockH,tabIdx)
 
-
-
     try
         open_system(blockH);
         signalbuilder(blockH,'activegroup',tabIdx);
