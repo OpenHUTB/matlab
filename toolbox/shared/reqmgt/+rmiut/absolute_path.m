@@ -1,11 +1,5 @@
 function filePath=absolute_path(relPath,refPath)
 
-
-
-
-
-
-
     if rmiut.isCompletePath(relPath)
         filePath=relPath;
     elseif nargin==1||isempty(refPath)
