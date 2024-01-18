@@ -1,6 +1,4 @@
 function msystemsWithLinks=getMSystemBlocksWithLinks(modelH,filterSettings)
-
-
     if nargin<2
         filterSettings=rmi.settings_mgr('get','filterSettings');
     end
@@ -19,13 +17,10 @@ function msystemsWithLinks=getMSystemBlocksWithLinks(modelH,filterSettings)
                 msystemsWithLinks=[msystemsWithLinks;mlObjs(i).Handle];%#ok<AGROW>
             end
         else
-
             reqPath=rmimap.StorageMapper.getInstance.getStorageFor(msPath);
             if exist(reqPath,'file')==2
                 msystemsWithLinks=[msystemsWithLinks;mlObjs(i).Handle];%#ok<AGROW>
             else
-
-
                 reqPath=regexprep(reqPath,'.slmx','.req');
                 if exist(reqPath,'file')==2
                     msystemsWithLinks=[msystemsWithLinks;mlObjs(i).Handle];%#ok<AGROW>
