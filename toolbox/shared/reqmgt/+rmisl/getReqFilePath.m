@@ -1,17 +1,11 @@
 function out=getReqFilePath(slModel,isInteractive)
 
-
-
     out={};
     reqFile=[];
 
     if nargin<2
         isInteractive=false;
     end
-
-
-
-
 
     [mdlDir,mdlName]=fileparts(slModel);
 
@@ -35,8 +29,6 @@ function out=getReqFilePath(slModel,isInteractive)
         reqFile=checkForReqFile(slModel);
     end
 
-
-
     if~isempty(reqFile)
         if isInteractive
             rmidata.saveIfHasChanges(mdlName);
@@ -47,8 +39,6 @@ function out=getReqFilePath(slModel,isInteractive)
                     MSLDiagnostic('Slvnv:rmidata:map:DependencyOutOfDate',reqFile,mdlName).reportAsWarning;
                 end
             catch ex %#ok<NASGU>
-
-
 
             end
         end
@@ -61,6 +51,7 @@ function out=getReqFilePath(slModel,isInteractive)
     end
 end
 
+
 function linkFile=checkForReqFile(mdlPath)
     linkPath=rmimap.StorageMapper.getInstance.getStorageFor(mdlPath);
 
@@ -70,9 +61,6 @@ function linkFile=checkForReqFile(mdlPath)
     else
         if(strcmpi(linkPath((end-4):end),'.slmx'))
             [fDir,fName,fExt]=fileparts(mdlPath);
-
-
-
             oldReqFile=rmimap.StorageMapper.legacyReqPath(fDir,fName,fExt);
             if exist(oldReqFile,'file')==2
                 linkFile=oldReqFile;
@@ -81,11 +69,8 @@ function linkFile=checkForReqFile(mdlPath)
     end
 end
 
+
 function linkSets=checkExternalMATLABCode(modelName)
-
-
-
-
     linkSets={};
     try
         info=sfprivate('getRebuildInfoForMFiles',modelName,'rtw');
