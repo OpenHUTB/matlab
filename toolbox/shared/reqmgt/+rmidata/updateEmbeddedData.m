@@ -1,16 +1,10 @@
 function updateEmbeddedData(modelH,force)
 
-
-
-
-
-
     if nargin<2
         force=false;
     end
 
     if~rmisl.modelHasEmbeddedReqInfo(modelH)
-
 
         if force
             rmidata.storageModeCache('set',modelH,true);
@@ -18,14 +12,9 @@ function updateEmbeddedData(modelH,force)
         return;
     end
 
-
-
     artifact=get_param(modelH,'FileName');
     slreq.data.DataModelObj.checkLicense(['allow ',artifact]);
     cll=onCleanup(@()slreq.data.DataModelObj.checkLicense('clear'));
-
-
-
 
     if~rmi.isInstalled
         msg1=getString(message('Slvnv:slreq:UnableToMigrateData'));
@@ -38,12 +27,8 @@ function updateEmbeddedData(modelH,force)
         return;
     end
 
-
-
-
     slreq.uri.getPreferredPath(false);
     clp=onCleanup(@()slreq.uri.getPreferredPath(true));
-
     [~,~,objs2clean]=rmidata.export(modelH,false);
 
     lockState='off';
@@ -69,10 +54,7 @@ function updateEmbeddedData(modelH,force)
     if(bdIsLibrary(modelH))
         set_param(modelH,'Lock',lockState);
     end
-
-
     rmidata.storageModeCache('set',modelH,true);
-
 
     if slreq.app.MainManager.exists()
         appmgr=slreq.app.MainManager.getInstance;
@@ -80,7 +62,6 @@ function updateEmbeddedData(modelH,force)
             appmgr.perspectiveManager.removeFromDisabledModelList(modelH);
         end
     end
-
 
     rmisl.notify(modelH,'');
 
