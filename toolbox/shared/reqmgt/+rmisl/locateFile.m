@@ -1,17 +1,9 @@
 function filePath=locateFile(relPath,ref)
 
-
-
-
-
-
-
-
     if rmiut.isCompletePath(relPath)
         filePath=relPath;
 
     elseif isempty(ref)
-
         filePath=rmiut.full_path(relPath,pwd);
 
     elseif ischar(ref)
@@ -24,17 +16,15 @@ function filePath=locateFile(relPath,ref)
             filePath='';
         end
     else
-
         filePath=rmiut.full_path(relPath,getModelDir(ref));
     end
 end
+
 
 function modelDir=getModelDir(mdl)
     try
         modelFileName=get_param(mdl,'FileName');
     catch ex %#ok<NASGU>
-
-
         modelFileName=which(mdl);
     end
     modelDir=fileparts(modelFileName);
