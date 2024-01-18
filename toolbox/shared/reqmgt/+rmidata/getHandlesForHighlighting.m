@@ -1,8 +1,5 @@
 function[slHs,sfHs,sfFade,indirectHs]=getHandlesForHighlighting(modelH,filterSettings)
 
-
-
-
     if nargin<2
         filterSettings=rmi.settings_mgr('get','filterSettings');
     end
@@ -17,9 +14,6 @@ function[slHs,sfHs,sfFade,indirectHs]=getHandlesForHighlighting(modelH,filterSet
     end
 
     modelName=get_param(modelH,'Name');
-
-
-
     artifactPath=get_param(modelH,'FileName');
     linkSet=slreq.data.ReqData.getInstance.getLinkSet(artifactPath);
     if~isempty(linkSet)
@@ -28,8 +22,6 @@ function[slHs,sfHs,sfFade,indirectHs]=getHandlesForHighlighting(modelH,filterSet
             for i=1:length(textItemIds)
                 textItemSID=[modelName,textItemIds{i}];
                 if rmisl.isHarnessIdString(textItemSID)
-
-
 
                     continue;
                 else
@@ -57,16 +49,11 @@ function[slHs,sfHs,sfFade,indirectHs]=getHandlesForHighlighting(modelH,filterSet
         end
     end
 
-
-
-
     modelObj=get_param(modelH,'Object');
     linkedReferencedBlocks=rmisl.getIndirectlyLinkedHandles(modelObj,filterSettings);
     if~isempty(linkedReferencedBlocks)
         indirectHs=[indirectHs(:);linkedReferencedBlocks];
     end
-
-
 
     if rmisf.isStateflowLoaded()
         sfFilter=rmisf.sfisa('isaFilter');
