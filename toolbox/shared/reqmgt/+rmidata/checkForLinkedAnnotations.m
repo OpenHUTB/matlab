@@ -1,10 +1,6 @@
 function result=checkForLinkedAnnotations(objects,shouldWarn,isGUI)
 
-
-
-
     if length(objects)==1
-
         [slHs,~,slFlags]=rmisl.getAllObjectsAndRmiFlags(objects);
         slWithLinks=slHs(slFlags);
     else
@@ -26,6 +22,7 @@ function result=checkForLinkedAnnotations(objects,shouldWarn,isGUI)
         warnAboutLostLinks(isGUI);
     end
 end
+
 
 function warnAboutLostLinks(isGUI)
     if isGUI
