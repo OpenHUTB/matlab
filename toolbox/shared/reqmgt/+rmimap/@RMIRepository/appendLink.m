@@ -1,13 +1,7 @@
 function appendLink(this,srcRoot,dependentNode,linkData,reuse)
 
-
-
-
-
     link=rmidd.Link(this.graph);
     link.dependentNode=dependentNode;
-
-
     description=linkData.getValue('description');
     isDescrModified=false;
     destType=linkData.getValue('source');
@@ -29,7 +23,6 @@ function appendLink(this,srcRoot,dependentNode,linkData,reuse)
     dependeeNode=this.findOrAddNode(targetUrl,targetId,destType);
     link.dependeeNode=dependeeNode;
 
-
     srcRoot.links.append(link);
 
     if reuse
@@ -39,10 +32,6 @@ function appendLink(this,srcRoot,dependentNode,linkData,reuse)
             link.setProperty('description',description);
         end
     else
-
-
-
-
         link.setProperty('description',description);
         link.setProperty('linked',linkData.getValue('linked'));
         link.setProperty('keywords',linkData.getValue('keywords'));
