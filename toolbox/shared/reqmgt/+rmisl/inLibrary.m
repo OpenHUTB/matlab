@@ -1,10 +1,5 @@
 function result=inLibrary(obj,isSf)
 
-
-
-
-
-
     if nargin<2
         [isSf,objH,errMsg]=rmi.resolveobj(obj);
         if~isempty(errMsg)
@@ -14,12 +9,10 @@ function result=inLibrary(obj,isSf)
         objH=obj;
     end
 
-
     if rmifa.isFaultInfoObj(objH)
         result=false;
         return;
     end
-
 
     if isSf
         slH=rmisf.sfinstance(objH);
@@ -35,9 +28,6 @@ function result=inLibrary(obj,isSf)
     elseif strcmpi(blockType,'port')&&sysarch.isZCPort(slH)
         result=checkParent(slH);
     else
-
-
-
         linkStatus=get_param(slH,'StaticLinkStatus');
         switch linkStatus
         case 'none'
@@ -51,6 +41,7 @@ function result=inLibrary(obj,isSf)
         end
     end
 end
+
 
 function out=checkParent(slH)
 
