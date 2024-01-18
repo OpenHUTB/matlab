@@ -1,17 +1,13 @@
-
-
-
 classdef(Sealed=true)RmiSlData<rmidata.RmiData
 
     properties
-
-
-
     end
+
 
     events
 RmiSlDataUpdate
     end
+
 
     methods(Static=true)
 
@@ -26,32 +22,31 @@ RmiSlDataUpdate
             singleObj=localRMIData;
         end
 
+
         function reset()
-
-
             if rmidata.RmiSlData.isInitialized()
                 data=rmidata.RmiSlData.getInstance;
                 delete(data);
             end
         end
 
+
         function result=isInitialized()
             result=~isempty(rmidata.RmiSlData.getInstance('dontinit'));
         end
-
-
-
 
 
         function ids=getNestedIDs(mdlName,parentId)
             ids=rmimap.RMIRepository.getInstance.getChildIds(mdlName,parentId);
         end
 
+
         function ids=getSubrootIDs(mdlName,varargin)
             ids=rmimap.RMIRepository.getInstance.getSubrootIds(mdlName,varargin{:});
         end
 
     end
+
 
     methods(Access='private')
 
@@ -60,6 +55,7 @@ RmiSlDataUpdate
             obj.statusMap=containers.Map('KeyType','double','ValueType','logical');
         end
     end
+
 
     methods
 
@@ -81,6 +77,7 @@ RmiSlDataUpdate
             end
             this.statusMap(modelH)=false;
         end
+
 
         function unregister(this,slModelH)
             if isKey(this.statusMap,slModelH)
@@ -106,6 +103,7 @@ RmiSlDataUpdate
             end
         end
 
+
         function setSubGroups(this,sigbH,reqs,grps)
 
             uniqueGroups=unique(grps);
@@ -116,12 +114,12 @@ RmiSlDataUpdate
             end
         end
 
+
         function writeToStorage(this,modelH,storageName)
-
-
             this.repository.saveRoot(modelH,storageName);
             this.statusMap(modelH)=false;
         end
+
 
         function result=hasData(this,modelH)
             if isKey(this.statusMap,modelH)
@@ -131,6 +129,7 @@ RmiSlDataUpdate
             end
         end
 
+
         function result=hasChanges(this,modelH)
             if isKey(this.statusMap,modelH)
                 result=this.statusMap(modelH);
@@ -138,6 +137,7 @@ RmiSlDataUpdate
                 result=false;
             end
         end
+
 
         function result=removeItem(this,modelH,sid)
             if ischar(modelH)
@@ -148,17 +148,13 @@ RmiSlDataUpdate
             result=this.repository.removeNode(modelName,sid);
         end
 
+
         function varargout=load(this,modelH,reqFile)
             try
-
-
                 this.repository.addRoot(modelH,reqFile);
                 this.statusMap(modelH)=false;
                 varargout{1}=true;
-
-
                 this.notify('RmiSlDataUpdate',rmidata.RmiSlDataEvent(modelH,0));
-
 
                 if strcmp(get_param(modelH,'ReqHilite'),'on')
                     rmisl.highlight(modelH,true);
@@ -176,6 +172,7 @@ RmiSlDataUpdate
             end
         end
 
+
         function discard(this,modelH,force)
             if nargin<3
                 force=false;
@@ -185,8 +182,6 @@ RmiSlDataUpdate
                     modelName=get_param(modelH,'Name');
                     this.repository.removeRoot(modelName,force);
                 catch
-
-
                 end
                 remove(this.statusMap,modelH);
             end
@@ -201,15 +196,14 @@ RmiSlDataUpdate
             end
         end
 
+
         function close(this,modelH)
             this.promptToSave(modelH);
             this.discard(modelH);
         end
 
+
         function data=getRawData(this,sid)
-
-
-
             [mdlName,id]=strtok(sid,':');
             try
                 data=this.repository.getData(mdlName,id);
@@ -217,6 +211,7 @@ RmiSlDataUpdate
                 data=[];
             end
         end
+
 
         function setRawData(this,sid,data)
             [mdlName,id]=strtok(sid,':');
@@ -234,6 +229,7 @@ RmiSlDataUpdate
             end
         end
 
+
         function clearRawData(this,sid)
             [mdlName,id]=strtok(sid,':');
             try
@@ -242,6 +238,7 @@ RmiSlDataUpdate
                 error('ERROR in RmiSlData: Unable to clearRawData for %s',sid);
             end
         end
+
 
         function varargout=diagProp(this,modelH,varargin)
             mdlName=get_param(modelH,'Name');
