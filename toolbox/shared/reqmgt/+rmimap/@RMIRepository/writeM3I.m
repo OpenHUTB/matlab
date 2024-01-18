@@ -1,6 +1,4 @@
 function writeM3I(reqFileName,srcRoot)
-
-
     wf=M3I.XmiWriterFactory();
     wrt=wf.createXmiWriter();
     try
