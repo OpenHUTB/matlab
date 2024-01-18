@@ -1,8 +1,5 @@
 function data=getAll(this,varargin)
 
-
-
-
     data=cell(0,5);
     srcName=varargin{1};
     if exist(srcName,'file')~=2
@@ -10,8 +7,6 @@ function data=getAll(this,varargin)
         [isMatlabFunction,mdlName]=rmisl.isSidString(srcName,false);
         if isMatlabFunction
             try
-
-
                 load_system(mdlName);
             catch
                 error('Invalid srcName in call to RMIRepository:getAll(): %s',srcName);
@@ -20,7 +15,6 @@ function data=getAll(this,varargin)
             return;
         end
     end
-
     srcRoot=rmimap.RMIRepository.getRoot(this.graph,srcName);
     if~isempty(srcRoot)
         ids=srcRoot.getProperty('rangeLabels');
@@ -61,8 +55,6 @@ function data=getAll(this,varargin)
             for i=1:totalItems
                 data(i,2:3)={matchingStarts(i),matchingEnds(i)};
                 if data{i,3}==0
-
-
                     isRemoved(i)=true;
                     continue;
                 end
@@ -75,23 +67,18 @@ function data=getAll(this,varargin)
                     allEnabled=true(1,links.size);
                     if~isempty(links)&&links.size~=0
 
-
                         for j=1:links.size
                             link=links.at(j);
                             description=link.getProperty('description');
                             if isempty(description)
                                 description=getString(message('Slvnv:reqmgt:NoDescriptionEntered'));
                             else
-
-
-
                                 description(description==9)=' ';
                                 description(description==10)=' ';
                             end
                             description=strtrim(description);
                             if filters.enabled&&~userTagMatch(link,filters.tagsRequire,filters.tagsExclude)
                                 allEnabled(j)=false;
-
                                 description=[' ',description];%#ok<AGROW>
                             end
                             allLabels=sprintf('%s\n%s',allLabels,description);
@@ -99,8 +86,6 @@ function data=getAll(this,varargin)
                     end
                 end
                 if isempty(allLabels)
-
-
                     data{i,4}=char(com.mathworks.toolbox.simulink.slvnv.RmiUtils.NO_LINKS_TAG);
                     data{i,5}=[];
                 else
@@ -115,9 +100,8 @@ function data=getAll(this,varargin)
     end
 end
 
+
 function result=userTagMatch(link,filter_in,filter_out)
-
-
     keywordsString=strtrim(link.getProperty('keywords'));
     if isempty(keywordsString)
         result=isempty(filter_in);
