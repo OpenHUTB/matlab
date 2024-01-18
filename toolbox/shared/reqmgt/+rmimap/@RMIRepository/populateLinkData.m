@@ -1,9 +1,5 @@
 function populateLinkData(link)
 
-
-
-
-
     dependeeNode=link.dependeeNode;
     if isa(dependeeNode,'rmidd.Root')
         destType=dependeeNode.getProperty('source');
