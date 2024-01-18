@@ -1,30 +1,17 @@
 function[success,cutObjs,cutReqs]=saveSubrootToFile(this,subrootName,saveAsName,reqFilePath)
 
-
-
-
-
-
-
     success=false;
     cutObjs={};
     cutReqs={};
-
-
     subRoot=rmimap.RMIRepository.getRoot(this.graph,subrootName);
     if isempty(subRoot)
         return;
     end
 
-
     t1=M3I.Transaction(this.graph);
-
-
-
 
     for i=1:subRoot.links.size
         if isempty(subRoot.links.at(i).getProperty('dependentUrl'))
-
             rmimap.RMIRepository.populateLinkData(subRoot.links.at(i));
         end
     end
@@ -35,7 +22,6 @@ function[success,cutObjs,cutReqs]=saveSubrootToFile(this,subrootName,saveAsName,
         for i=1:subRoot.links.size
             stripHarnessIds(subRoot.links.at(i),harnessId);
         end
-
         harnesses=Simulink.harness.find(parentName);
         harnessesIDs={harnesses(:).uuid};
         harnessInfo=harnesses(strcmp(harnessesIDs,harnessId(2:end)));
@@ -47,7 +33,6 @@ function[success,cutObjs,cutReqs]=saveSubrootToFile(this,subrootName,saveAsName,
                 continue;
             end
             objH=Simulink.ID.getHandle([parentName,oneNode.id]);
-
 
             if isa(objH,'Stateflow.Object')
                 sfChart=obj_chart(objH.Id);
@@ -65,10 +50,6 @@ function[success,cutObjs,cutReqs]=saveSubrootToFile(this,subrootName,saveAsName,
                 end
             end
         end
-
-
-
-
 
     end
 
@@ -88,6 +69,7 @@ function[success,cutObjs,cutReqs]=saveSubrootToFile(this,subrootName,saveAsName,
 
 end
 
+
 function stripHarnessIds(link,harnessId)
     dependentUrl=link.getProperty('dependentUrl');
     if contains(dependentUrl,harnessId)
@@ -101,6 +83,7 @@ function stripHarnessIds(link,harnessId)
     end
 end
 
+
 function updatedPath=replaceDiagramName(objPath,harnessOwner,saveAsName)
     if length(objPath)>length(harnessOwner)
         localPath=objPath(length(harnessOwner)+1:end);
@@ -109,7 +92,6 @@ function updatedPath=replaceDiagramName(objPath,harnessOwner,saveAsName)
     end
     sfMatch=regexp(localPath,'(.*) SID_([\d\:]+)','tokens');
     if isempty(sfMatch)
-
         ownerName=get_param(harnessOwner,'Name');
         updatedPath=[saveAsName,'/',ownerName,localPath];
     else
