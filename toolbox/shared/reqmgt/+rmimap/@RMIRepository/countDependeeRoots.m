@@ -1,8 +1,5 @@
 function[docs,sys,counts]=countDependeeRoots(this,srcKey)
 
-
-
-
     docs={};
     sys={};
     counts=[];
