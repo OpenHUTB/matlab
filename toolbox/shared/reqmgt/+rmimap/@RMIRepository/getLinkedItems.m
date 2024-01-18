@@ -1,16 +1,10 @@
 function[docs,items,reqsys]=getLinkedItems(linkSource)
-
-
-
-
-
     graph=rmimap.RMIRepository.getInstance.graph;
     docs={};
     if nargout>1
         items={};
         reqsys={};
     end
-
 
     myRoot=[];
     for i=1:graph.roots.size
@@ -20,10 +14,7 @@ function[docs,items,reqsys]=getLinkedItems(linkSource)
         end
     end
 
-
     if~isempty(myRoot)&&myRoot.links.size>0
-
-
         filters=rmi.settings_mgr('get','filterSettings');
         if filters.enabled
             dummyReq=rmi.createEmptyReqs(1);
@@ -53,6 +44,7 @@ function[docs,items,reqsys]=getLinkedItems(linkSource)
         end
     end
 end
+
 
 function ids=appendId(ids,id)
     match=strcmp(ids(:,1),id);
