@@ -1,12 +1,10 @@
 classdef RmiTmEvent<event.EventData
 
-
-
-
     properties
 testFile
 testId
     end
+
 
     methods
         function data=RmiTmEvent(file,id)
