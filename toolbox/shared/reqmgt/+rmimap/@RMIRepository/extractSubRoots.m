@@ -1,12 +1,5 @@
 function[subRootsArray,subRootIdx]=extractSubRoots(this,parentRoot)
 
-
-
-
-
-
-
-
     subRootsArray={};
     subRootIdx=[];
     parentName=parentRoot.url;
@@ -14,7 +7,6 @@ function[subRootsArray,subRootIdx]=extractSubRoots(this,parentRoot)
     for i=1:nodeDataSize
         ndData=parentRoot.nodeData.at(i);
         if rmimap.RMIRepository.isSimulinkSubroot(ndData)
-
             newSubRoot=rmidd.Root(this.graph);
             this.graph.roots.append(newSubRoot);
             newSubRoot.url=[parentName,ndData.getValue('id')];
@@ -22,16 +14,6 @@ function[subRootsArray,subRootIdx]=extractSubRoots(this,parentRoot)
 
                 rmiml.RmiMlData.getInstance.register(newSubRoot.url);
             else
-
-
-
-
-
-
-
-
-
-
 
             end
 
