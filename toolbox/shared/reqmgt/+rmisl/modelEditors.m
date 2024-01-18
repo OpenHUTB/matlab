@@ -4,13 +4,6 @@ function out=modelEditors(model,activeEdtrOnly,includeHarness)
         activeEdtrOnly=false;
     end
 
-
-
-
-
-
-
-
     if nargin<3
         includeHarness=false;
     end
@@ -21,10 +14,6 @@ function out=modelEditors(model,activeEdtrOnly,includeHarness)
         else
             modelName=get_param(model,'Name');
         end
-
-
-
-
         studios=DAS.Studio.getAllStudiosSortedByMostRecentlyActive;
         modelHandle=get_param(model,'Handle');
 
@@ -52,7 +41,6 @@ function out=modelEditors(model,activeEdtrOnly,includeHarness)
 
             end
         else
-
             ownerHandle=modelHandle;
 
             harnessHandle=-1;
@@ -68,8 +56,6 @@ function out=modelEditors(model,activeEdtrOnly,includeHarness)
         end
 
         if(isempty(allEdtrs))
-
-
             dgm=SLM3I.Util.getDiagram(modelName);
             if~isempty(dgm)
                 out=GLUE2.AbstractDomain.findLastActiveEditorForDiagram(dgm.diagram);
@@ -79,8 +65,6 @@ function out=modelEditors(model,activeEdtrOnly,includeHarness)
                 out=GLUE2.AbstractDomain.findLastActiveEditor();
             end
         elseif(numel(allEdtrs)>1&&activeEdtrOnly)
-
-
             edrLastAct=GLUE2.AbstractDomain.findLastActiveEditor();
             if ismember(edrLastAct,allEdtrs)
                 out=edrLastAct;
