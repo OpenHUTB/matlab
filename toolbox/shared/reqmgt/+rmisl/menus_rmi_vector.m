@@ -1,26 +1,16 @@
 function schemas=menus_rmi_vector(callbackInfo)
 
-
-
-
-
     licensed=rmiLicenseAvailable();
     installed=rmi.isInstalled();
 
     schemas=cell(0);
 
-
     if licensed&&installed
-
-
-
-
         modelH=callbackInfo.model.Handle;
         if installed&&licensed&&rmisl.menus_UpdateDataBeforeUse(modelH)
             schemas={@rmisl.menus_UpdateDataBeforeUse};
             return;
         end
-
         objects=getSelectedObjects(callbackInfo);
         if isempty(objects)
             return;
@@ -49,18 +39,15 @@ function schemas=menus_rmi_vector(callbackInfo)
                 schemas=[schemas,intraLinkMenus(objects),'separator'];
             end
         end
-
-
         schemas=[schemas,{@RequirementVectorAdd}];
         if~library_object_present(objects)
             schemas=[schemas,{@RequirementVectorDelete},'separator'];
         end
-
-
         schemas=[schemas,{@CopyUrlToClipboard}];
     end
 
 end
+
 
 function selectionMenus=skipDataLink(selectionMenus)
     takeIdx=true(size(selectionMenus));
@@ -73,6 +60,7 @@ function selectionMenus=skipDataLink(selectionMenus)
     selectionMenus=selectionMenus(takeIdx);
 end
 
+
 function objs=getSelectedObjects(cbInfo)
     if~isempty(cbInfo.userdata)
         objs=cbInfo.userdata;
@@ -81,6 +69,7 @@ function objs=getSelectedObjects(cbInfo)
         objs=vectorSelection(selection);
     end
 end
+
 
 function result=library_object_present(objs)
     for i=1:length(objs)
@@ -92,6 +81,7 @@ function result=library_object_present(objs)
     result=false;
 end
 
+
 function result=signalbuilder_present(objs)
     for i=1:length(objs)
         if is_signalbuilder(objs(i))
@@ -101,6 +91,7 @@ function result=signalbuilder_present(objs)
     end
     result=false;
 end
+
 
 function result=annotation_present(objs)
     for i=1:length(objs)
@@ -112,11 +103,13 @@ function result=annotation_present(objs)
     result=false;
 end
 
+
 function out=is_signalbuilder(obj)
     [isSf,objH]=rmi.resolveobj(obj);
     out=~isempty(objH)&&~isSf&&strcmp(get_param(objH,'Type'),'block')...
     &&strcmp(get_param(objH,'MaskType'),'Sigbuilder block');
 end
+
 
 function schema=RequirementVectorAdd(callbackInfo)
     schema=DAStudio.ActionSchema;
@@ -126,6 +119,7 @@ function schema=RequirementVectorAdd(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
+
 function schema=RequirementVectorDelete(callbackInfo)
     schema=DAStudio.ActionSchema;
     schema.label=getString(message('Slvnv:rmisl:menus_rmi_object:DeleteAllLinks'));
@@ -134,10 +128,12 @@ function schema=RequirementVectorDelete(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
+
 function RequirementVectorAdd_callback(callbackInfo)
     select=callbackInfo.getSelection;
     rmi('edit',vectorSelection(select));
 end
+
 
 function RequirementVectorDelete_callback(callbackInfo)
     if builtin('_license_checkout','Simulink_Requirements','quiet')
@@ -152,6 +148,7 @@ function RequirementVectorDelete_callback(callbackInfo)
     end
 end
 
+
 function obj=vectorSelection(select)
     row=size(select,1);
     obj=[];
@@ -163,9 +160,11 @@ function obj=vectorSelection(select)
     end
 end
 
+
 function intraLinkSchemas=intraLinkMenus(obj)
     intraLinkSchemas=rmisl.intraLinkMenus(obj);
 end
+
 
 function schema=ExternalStorageRequired(callbackInfo)%#ok<*INUSD>
     schema=DAStudio.ActionSchema;
@@ -174,6 +173,7 @@ function schema=ExternalStorageRequired(callbackInfo)%#ok<*INUSD>
     schema.callback=@ExternalStorageRequired_callback;
     schema.autoDisableWhen='Busy';
 end
+
 
 function ExternalStorageRequired_callback(callbackInfo)
     objs=getSelectedObjects(callbackInfo);
@@ -189,6 +189,7 @@ function ExternalStorageRequired_callback(callbackInfo)
         rmi_settings_dlg();
     end
 end
+
 
 function schema=CopyUrlToClipboard(callbackInfo)
     schema=DAStudio.ActionSchema;
@@ -207,8 +208,8 @@ function CopyUrlToClipboard_callback(callbackInfo)
     end
 end
 
-function result=rmiLicenseAvailable()
 
+function result=rmiLicenseAvailable()
     result=license('test','Simulink_Requirements');
 end
 
