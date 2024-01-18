@@ -1,20 +1,8 @@
 function success=exportHarnessLinksToFile(mainModel,harnessID,destinationBaseName)
 
-
-
-
-
-
-
-
-
-
-
     persistent outName cutObjs cutReqs
 
     if nargin==1
-
-
         success=strcmp(outName,mainModel);
         if success&&~isempty(cutObjs)
             try
@@ -43,13 +31,10 @@ function success=exportHarnessLinksToFile(mainModel,harnessID,destinationBaseNam
             end
         end
 
-
         outName='';
         cutObjs={};
         cutReqs={};
-
     else
-
         success=false;
         try
             if ischar(mainModel)
@@ -69,7 +54,6 @@ function success=exportHarnessLinksToFile(mainModel,harnessID,destinationBaseNam
             else
                 reqFilePath='';
             end
-
             [success,cutObjs,cutReqs]=slreq.utils.exportMatchedItems(mainModel,harnessID,artifactName,reqFilePath);
             if success
                 if~isempty(reqFilePath)
