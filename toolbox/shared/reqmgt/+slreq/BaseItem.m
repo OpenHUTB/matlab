@@ -1,15 +1,4 @@
-
-
-
-
-
-
 classdef(Abstract)BaseItem<matlab.mixin.Heterogeneous&handle
-
-
-
-
-
     properties(Transient=true,Access=protected)
 dataObject
     end
@@ -28,11 +17,12 @@ Comments
 Index
     end
 
-    properties(Hidden,Constant)
 
+    properties(Hidden,Constant)
         READONLY_PROPERTIES={'createdon','createdby','modifiedon','modifiedby',...
         'sid','filerevision','dirty'};
     end
+
 
     methods(Hidden,Access=?slreq.data.ReqData)
         function d=getDataObj(this)
@@ -40,12 +30,15 @@ Index
         end
     end
 
+
     methods(Static,Hidden)
         function obj=loadobj(s)
             obj=s;
             rmiut.warnNoBacktrace('Slvnv:slreq:illegalDataForMATFile',class(obj));
         end
     end
+
+
     methods(Hidden)
         function sobj=saveobj(obj)
             rmiut.warnNoBacktrace('Slvnv:slreq:illegalDataForMATFile',class(obj));
@@ -53,32 +46,39 @@ Index
         end
     end
 
+
     methods(Access=protected)
         function this=BaseItem(dataObject)
             this.dataObject=dataObject;
         end
     end
 
+
     methods
         function index=get.Index(this)
             index=this.dataObject.index;
         end
 
+
         function sid=get.SID(this)
             sid=this.dataObject.sid;
         end
+
 
         function value=get.ModifiedOn(this)
             value=this.dataObject.modifiedOn;
         end
 
+
         function value=get.FileRevision(this)
             value=this.dataObject.revision;
         end
 
+
         function value=get.Dirty(this)
             value=this.dataObject.dirty;
         end
+
 
         function parentApi=parent(this)
             this.errorIfVectorOperation();
@@ -90,6 +90,7 @@ Index
             end
         end
 
+
         function childrenApi=children(this)
             this.errorIfVectorOperation();
             childObjs=this.dataObject.children;
@@ -100,6 +101,7 @@ Index
             end
         end
 
+
         function thisComment=addComment(this,text)
             this.errorIfVectorOperation();
             if~(ischar(text)||isstring(text))
@@ -109,6 +111,7 @@ Index
             comment.Text=text;
             thisComment=this.Comments(end);
         end
+
 
         function value=get.Comments(this)
 
@@ -122,11 +125,13 @@ Index
             end
         end
 
+
         function reqSet=reqSet(this)
             this.errorIfVectorOperation();
             reqSetDataObj=slreq.data.ReqData.getInstance.getParentReqSet(this.dataObject);
             reqSet=slreq.utils.dataToApiObject(reqSetDataObj);
         end
+
 
         function links=inLinks(this)
             this.errorIfVectorOperation();
@@ -137,6 +142,7 @@ Index
             end
         end
 
+
         function links=outLinks(this)
             this.errorIfVectorOperation();
             links=slreq.Link.empty();
@@ -145,6 +151,7 @@ Index
                 links(end+1)=slreq.utils.dataToApiObject(linkData(i));%#ok<AGROW>
             end
         end
+
 
         function result=find(this,varargin)
             this.errorIfVectorOperation();
@@ -157,14 +164,13 @@ Index
             end
         end
 
+
         function value=getAttribute(this,name)
             this.errorIfVectorOperation();
             name=convertStringsToChars(name);
             if strcmp(name,'dataObject')
-
                 error(message('Slvnv:slreq:NoSuchAttribute'));
             elseif this.dataObject.hasRegisteredAttribute(name)
-
 
                 try
                     value=this.dataObject.getAttribute(name,true);
@@ -188,6 +194,7 @@ Index
             end
         end
 
+
         function setAttribute(this,name,value)
             this.errorIfVectorOperation();
             name=convertStringsToChars(name);
@@ -196,7 +203,6 @@ Index
 
                 error(message('Slvnv:slreq:NoSuchAttribute'));
             elseif this.dataObject.hasRegisteredAttribute(name)
-
 
                 try
                     this.dataObject.setAttributeWithTypeCheck(name,value);
@@ -218,9 +224,9 @@ Index
             end
         end
 
+
         function count=remove(this,varargin)
             this.errorIfVectorOperation();
-
             if~isempty(this.reqSet.getParentModel())
                 error(message('Slvnv:slreq:SFTableNotAllowed','remove',this.reqSet.getParentModel));
             end
@@ -244,6 +250,7 @@ Index
                 end
             end
         end
+
 
         function success=moveUp(this)
             this.errorIfVectorOperation();
