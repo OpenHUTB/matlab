@@ -1,10 +1,4 @@
 function root=ensureRoot(this,name)
-
-
-
-
-
-
     root=rmimap.RMIRepository.getRoot(this.graph,name);
     if isempty(root)
         switch exist(name,'file')
@@ -23,8 +17,6 @@ function root=ensureRoot(this,name)
         try
             modelH=get_param(name,'Handle');
             root=this.addModel(modelH);
-
-
             rmidata.RmiSlData.getInstance.register(modelH);
         catch
             error('RMIRepository:ensureRoot() failed for "%s"',name);
