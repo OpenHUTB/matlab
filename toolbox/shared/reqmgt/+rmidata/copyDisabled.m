@@ -1,11 +1,5 @@
 function copyDisabled(objH,modelH,isSf,srcSID,skipEmpty)
 
-
-
-
-
-
-
     if rmidata.isExternal(modelH)
         toExt=true;
     else
@@ -25,16 +19,11 @@ function copyDisabled(objH,modelH,isSf,srcSID,skipEmpty)
                 fromExt=false;
             end
         catch ME %#ok<NASGU>
-
-
-
             libPath=which(srcMdl);
             if~isempty(libPath)&&any(strcmp(libPath(end-3:end),{'.mdl','.slx'}))
                 libReqs=rmimap.StorageMapper.getInstance.getStorageFor(libPath);
                 if exist(libReqs,'file')==2
                     fromExt=true;
-
-
                     load_system(srcMdl);
                 else
                     fromExt=false;
@@ -45,7 +34,6 @@ function copyDisabled(objH,modelH,isSf,srcSID,skipEmpty)
         end
     end
 
-
     if isSf
         isSigBuilder=false;
     elseif strcmp(get_param(objH,'MaskType'),'Sigbuilder block')
@@ -53,7 +41,6 @@ function copyDisabled(objH,modelH,isSf,srcSID,skipEmpty)
     else
         isSigBuilder=false;
     end
-
 
     if fromExt
         [reqs,grps]=rmidata.getDataForSid(srcSID,isSigBuilder);
@@ -78,10 +65,6 @@ function copyDisabled(objH,modelH,isSf,srcSID,skipEmpty)
         end
         isSlLink=[];
     else
-
-
-
-
         isSlLink=strcmp({reqs.reqsys},'linktype_rmi_simulink');
         if any(isSlLink)
             if~fromExt
@@ -93,15 +76,8 @@ function copyDisabled(objH,modelH,isSf,srcSID,skipEmpty)
         end
     end
 
-
-
     if toExt
         rmidata.setDataForSlObj(objH,reqs,grps);
-
-
-
-
-
 
         if~fromExt&&~isempty(reqs)
             setStructReqs(objH,isSf,modelH,[]);
@@ -109,8 +85,6 @@ function copyDisabled(objH,modelH,isSf,srcSID,skipEmpty)
     else
         if fromExt
             if isSigBuilder
-
-
                 sigbInfo=rmisl.sigb_get_info(objH);
                 total_groups=sigbInfo.groupCnt;
                 groupReqCnt=rmidata.convertSigbGrpInfo(total_groups,grps);
@@ -119,25 +93,14 @@ function copyDisabled(objH,modelH,isSf,srcSID,skipEmpty)
                 setStructReqs(objH,isSf,modelH,reqs);
             end
         else
-
-
-
-
             if any(isSlLink)
                 setStructReqs(objH,isSf,modelH,reqs);
             end
         end
-
-
-
-
-
         if~isempty(reqs)&&strcmp(get_param(modelH,'hasReqInfo'),'off')
             rmidata.storageModeCache('mark_from_lib',modelH);
         end
     end
-
-
 
     if fromExt&&~skipEmpty&&~isempty(reqs)
         rmidata.setDataForSlObj(srcSID,[],grps);
@@ -147,18 +110,14 @@ end
 
 function setStructReqs(objH,isSf,modelH,structArray,varargin)
 
-
     reqstr=rmi.reqs2str(structArray);
 
-
     GUID=rmi.guidGet(objH);
-
 
     if isempty(reqstr)
         reqstr='{} ';
     end
     reqstr=[reqstr,' %',GUID];
-
 
     rmi.setRawReqs(objH,isSf,reqstr,modelH);
 
