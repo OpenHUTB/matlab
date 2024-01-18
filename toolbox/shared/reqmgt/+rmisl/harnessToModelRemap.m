@@ -1,7 +1,5 @@
 function objh=harnessToModelRemap(objh)
 
-
-
     if isa(objh,'Simulink.BlockDiagram')
         harnessInfo=Simulink.harness.internal.getHarnessInfoForHarnessBD(objh.Name);
         objh=get_param(harnessInfo.ownerFullPath,'Object');
