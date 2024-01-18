@@ -1,7 +1,5 @@
 function[slHs,sfHs,crossDomainItems]=getHandlesWithRequirements(model,filterSettings)
 
-
-
     if ischar(model)
         modelName=model;
         modelH=rmisl.getmodelh(model);
@@ -18,34 +16,16 @@ function[slHs,sfHs,crossDomainItems]=getHandlesWithRequirements(model,filterSett
         [slHs,sfHs]=rmidata.getLinkedHandles(modelH,filterSettings);
         crossDomainItems=slreq.utils.getIDsForLinkedText(modelName,filterSettings);
     else
-
-
-
-
-
-
-
-
-
-
-
         [slAllHs,sfAllHs,slFlags,sfFlags,indirectObjHs]=rmisl.getAllObjectsAndRmiFlags(modelH,filterSettings);
         slHs=slAllHs(slFlags);
         sfHs=sfAllHs(sfFlags);
 
         if nargout==3
-
-
-
             crossDomainItems={};
-
-
 
             if~rmisf.isStateflowLoaded()
                 return;
             end
-
-
 
             if isempty(indirectObjHs)
                 return;
@@ -58,23 +38,10 @@ function[slHs,sfHs,crossDomainItems]=getHandlesWithRequirements(model,filterSett
                 else
                     chartObj=indirectObjHs(i);
                 end
-
-
-
-
-
-
-
                 if~isempty(sfRoot)&&~isempty(chartObj)&&chartObj~=0
                     key=Simulink.ID.getSID(sfRoot.idToHandle(chartObj));
                     if rmiml.hasLinks(key)
                         crossDomainItems{end+1}=key;%#ok<AGROW>
-
-
-
-
-
-
                         isIncluded=(sfHs==chartObj);
                         if any(isIncluded)&&isempty(rmi.getReqs(chartObj))
                             sfHs(isIncluded)=[];
