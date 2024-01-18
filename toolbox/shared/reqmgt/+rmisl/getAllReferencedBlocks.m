@@ -1,10 +1,4 @@
-
 function out=getAllReferencedBlocks(modelNames,libName,libSID)
-
-
-
-
-
 
     if isempty(modelNames)
         modelNames=getfullname(Simulink.allBlockDiagrams('model'));
