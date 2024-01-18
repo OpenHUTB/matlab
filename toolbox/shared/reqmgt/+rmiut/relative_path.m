@@ -1,21 +1,13 @@
 function[relPath,success]=relative_path(fullFilePath,refPath)
 
-
-
-
-
-
-
     if ispc
         fullFilePath=strrep(fullFilePath,'/','\');
         refPath=strrep(refPath,'/','\');
     end
 
-
     if refPath(end)==filesep
         refPath(end)=[];
     end
-
     [myPath,name,ext]=fileparts(fullFilePath);
 
     first=true;
@@ -57,10 +49,9 @@ function[relPath,success]=relative_path(fullFilePath,refPath)
         end
         break;
     end
-
-
     success=length(relPath)>2&&~(relPath(1)==filesep||relPath(2)==':');
 end
+
 
 function prefix=upPrefix(count)
     upOne={['..',filesep]};
