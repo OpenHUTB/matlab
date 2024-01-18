@@ -1,7 +1,5 @@
 function result=isAppRunning(message_type)
 
-
-
     if nargin>0
         message_type=convertStringsToChars(message_type);
     end
