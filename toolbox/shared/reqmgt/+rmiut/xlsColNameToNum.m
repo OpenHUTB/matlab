@@ -1,16 +1,4 @@
 function out=xlsColNameToNum(in)
-
-
-
-
-
-
-
-
-
-
-
-
     n=0;
     out=0;
     for code=double(reverse(in))
