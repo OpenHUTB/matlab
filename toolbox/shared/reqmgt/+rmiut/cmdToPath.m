@@ -1,11 +1,6 @@
 function pathToMatlabFile=cmdToPath(cmd)
 
-
-
-
-
     pathToMatlabFile=which(cmd);
-
 
     if isempty(pathToMatlabFile)
         allDots=find(cmd=='.');
