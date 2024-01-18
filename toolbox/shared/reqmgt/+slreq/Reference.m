@@ -1,184 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef Reference<slreq.BaseItem
-
-
-
     properties(Dependent,GetAccess=public,SetAccess=private)
 Id
 CustomId
@@ -193,6 +13,7 @@ ModifiedBy
 IsLocked
     end
 
+
     properties(Dependent)
 Summary
 Description
@@ -203,10 +24,9 @@ Type
 
     properties(Dependent,Hidden,GetAccess=public,SetAccess=private)
 
-
-
 SynchronizedOn
     end
+
 
     methods(Access=private)
         function tf=isAllowedToChangeHierarchy(this)
@@ -215,8 +35,6 @@ SynchronizedOn
             tf=cbInfo.isCallbackRunning;
 
             if tf
-
-
                 rootImportNode=this.getRootImportNode();
                 currentRootItemsForCallback=cbInfo.getCurrentImportNodes();
                 for callbackRootItem=currentRootItemsForCallback
@@ -228,6 +46,7 @@ SynchronizedOn
             tf=false;
         end
 
+
         function rootImportNode=getRootImportNode(this)
             rootImportNode=this;
             while~rootImportNode.dataObject.isImportRootItem
@@ -237,10 +56,9 @@ SynchronizedOn
         end
     end
 
+
     methods
         function out=getPreImportFcn(this)
-
-
             this.errorIfVectorOperation();
             dataReq=this.dataObject;
             if~dataReq.isImportRootItem()
@@ -248,13 +66,10 @@ SynchronizedOn
             end
 
             out=dataReq.preImportFcn;
-
         end
 
+
         function out=getPostImportFcn(this)
-
-
-
             this.errorIfVectorOperation();
             dataReq=this.dataObject;
 
@@ -265,30 +80,27 @@ SynchronizedOn
             out=dataReq.postImportFcn;
         end
 
+
         function setPreImportFcn(this,value)
             this.errorIfVectorOperation();
             dataReq=this.dataObject;
             if~dataReq.isImportRootItem()
                 error(message('Slvnv:slreq:CallbackErrorNotForNonRootImport'));
             end
-
             value=convertStringsToChars(value);
             dataReq.preImportFcn=value;
         end
 
+
         function count=remove(this,varargin)
-
-
-
-
 
             if isa(this.parent,'slreq.ReqSet')||this.isAllowedToChangeHierarchy()
                 count=remove@slreq.BaseItem(this,varargin{:});
                 return
             end
-
             error(message('Slvnv:slreq:APIRemoveNonRootReference'))
         end
+
 
         function success=moveUp(this)
             this.errorIfVectorOperation();
@@ -298,9 +110,9 @@ SynchronizedOn
                 success=moveUp@slreq.BaseItem(this);
                 return;
             end
-
             error(message('Slvnv:slreq:PropertyIsNotSettable','moveUp'))
         end
+
 
         function success=moveDown(this)
             this.errorIfVectorOperation();
@@ -309,7 +121,6 @@ SynchronizedOn
                 success=moveDown@slreq.BaseItem(this);
                 return;
             end
-
             error(message('Slvnv:slreq:PropertyIsNotSettable','moveDown'))
         end
 
@@ -326,32 +137,31 @@ SynchronizedOn
             error(message('Slvnv:slreq:PropertyIsNotSettable','parent'));
         end
 
+
         function setPostImportFcn(this,value)
             this.errorIfVectorOperation();
             dataReq=this.dataObject;
             if~dataReq.isImportRootItem()
                 error(message('Slvnv:slreq:CallbackErrorNotForNonRootImport'));
             end
-
             value=convertStringsToChars(value);
             dataReq.postImportFcn=value;
         end
-
-
 
 
         function this=Reference(dataObject)
             this@slreq.BaseItem(dataObject);
         end
 
+
         function artifact=get.Artifact(this)
             artifact=this.dataObject.artifactUri;
         end
 
+
         function artifact=get.ArtifactId(this)
             artifact=this.dataObject.artifactId;
         end
-
 
 
         function id=get.Id(this)
@@ -363,13 +173,16 @@ SynchronizedOn
             id=this.dataObject.customId;
         end
 
+
         function out=get.IsLocked(this)
             out=this.dataObject.locked;
         end
 
+
         function value=get.Summary(this)
             value=this.dataObject.summary;
         end
+
 
         function set.Summary(this,value)
             try
@@ -379,9 +192,11 @@ SynchronizedOn
             end
         end
 
+
         function value=get.Description(this)
             value=this.dataObject.description;
         end
+
 
         function set.Description(this,value)
             try
@@ -391,9 +206,11 @@ SynchronizedOn
             end
         end
 
+
         function value=get.Rationale(this)
             value=this.dataObject.rationale;
         end
+
 
         function set.Rationale(this,value)
             try
@@ -403,6 +220,7 @@ SynchronizedOn
             end
         end
 
+
         function domain=get.Domain(this)
             domain=this.dataObject.domain;
 
@@ -411,30 +229,37 @@ SynchronizedOn
             end
         end
 
+
         function timestamp=get.CreatedOn(this)
             timestamp=this.dataObject.createdOn;
         end
+
 
         function timestamp=get.CreatedBy(this)
             timestamp=this.dataObject.createdBy;
         end
 
+
         function timestamp=get.ModifiedBy(this)
             timestamp=this.dataObject.modifiedBy;
         end
 
+
         function timestamp=get.UpdatedOn(this)
             timestamp=this.dataObject.synchronizedOn;
         end
+
 
         function timestamp=get.SynchronizedOn(this)
 
             timestamp=this.dataObject.synchronizedOn;
         end
 
+
         function value=get.Keywords(this)
             value=this.dataObject.keywords;
         end
+
 
         function set.Keywords(this,value)
             try
@@ -444,9 +269,11 @@ SynchronizedOn
             end
         end
 
+
         function value=get.Type(this)
             value=this.dataObject.typeName;
         end
+
 
         function set.Type(this,value)
             try
@@ -472,7 +299,6 @@ SynchronizedOn
         end
 
 
-
         function childItem=add(this,varargin)
             this.errorIfVectorOperation();
             if isempty(varargin)
@@ -492,10 +318,12 @@ SynchronizedOn
             childItem=slreq.utils.dataToApiObject(addedItem);
         end
 
+
         function unlock(this)
             this.errorIfVectorOperation();
             this.dataObject.unlock();
         end
+
 
         function unlockAll(this)
             this.errorIfVectorOperation();
@@ -516,17 +344,9 @@ SynchronizedOn
             try
                 dasReq=this.dataObject.getDasObject();
                 if~isempty(dasReq)
-
-
-
-
-
                     [status,changelog]=dasReq.synchronize(false);
                 else
-
-
                     [statusData,changelog]=slreq.internal.synchronize(this.dataObject);
-
                     status=statusData.message;
                 end
             catch ex
@@ -534,6 +354,7 @@ SynchronizedOn
                 [this.dataObject.artifactUri,': ',newline,ex.message]));
             end
         end
+
 
         function link=justifyImplementation(this,justification)
             this.errorIfVectorOperation();
@@ -549,6 +370,7 @@ SynchronizedOn
             end
         end
 
+
         function link=justifyVerification(this,justification)
             this.errorIfVectorOperation();
             if~isa(justification,'slreq.Justification')
@@ -563,6 +385,7 @@ SynchronizedOn
             end
         end
 
+
         function tf=isJustifiedFor(this,linkType)
             this.errorIfVectorOperation();
             if nargin<2
@@ -570,52 +393,41 @@ SynchronizedOn
             end
             linkType=convertStringsToChars(linkType);
             try
-
-
                 tf=this.dataObject.isHierarchicallyJustified(linkType);
             catch ex
                 throwAsCaller(ex);
             end
         end
 
+
         function status=getImplementationStatus(this,varargin)
             this.errorIfVectorOperation();
             rollupTypeName=slreq.analysis.ImplementationVisitor.getName();
             try
-
-
                 status=this.dataObject.handlePublicAPICall(rollupTypeName,varargin{:});
             catch ex
                 throwAsCaller(ex);
             end
         end
+
 
         function status=getVerificationStatus(this,varargin)
             this.errorIfVectorOperation();
             rollupTypeName=slreq.analysis.VerificationVisitor.getName();
             try
-
-
                 status=this.dataObject.handlePublicAPICall(rollupTypeName,varargin{:});
             catch ex
                 throwAsCaller(ex);
             end
         end
 
+
         function navigateToExternalArtifact(this)
             this.errorIfVectorOperation();
             if rmi.isInstalled
                 if this.isReqIF()||this.isOSLC()
-
-
-
-
                     slreq.internal.navigateToExternalSource(this.dataObject);
                 else
-
-
-
-
                     domainType=rmi.linktype_mgr('resolveByRegName',this.Domain);
                     if isempty(domainType)
                         error(message('Slvnv:rmi:navigate:TargetTypeNotRegistered',this.Domain));
@@ -628,12 +440,6 @@ SynchronizedOn
                     try
                         domainType.NavigateFcn(this.Artifact,this.ArtifactId);
                     catch ex
-
-
-
-
-
-
 
                         if domainType.IsFile&&~rmiut.isCompletePath(this.Artifact)
                             resolvedFilePath=rmi.locateFile(this.Artifact,this.reqSet.Filename);
@@ -650,6 +456,7 @@ SynchronizedOn
             end
         end
 
+
         function tf=hasNewUpdate(this)
             this.errorIfVectorOperation();
             dataReq=this.dataObject;
@@ -661,6 +468,7 @@ SynchronizedOn
             tf=dataReq.getPendingUpdateStatus()==slreq.dataexchange.UpdateDetectionStatus.Detected;
         end
     end
+
 
     methods(Hidden)
 
@@ -678,10 +486,12 @@ SynchronizedOn
             end
         end
 
+
         function tf=isReqIF(this)
             this.errorIfVectorOperation();
             tf=this.dataObject.isReqIF();
         end
+
 
         function tf=isOSLC(this)
             this.errorIfVectorOperation();
