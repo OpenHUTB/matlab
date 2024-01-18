@@ -1,14 +1,10 @@
 function[is_url,varargout]=is_url(doc)
 
-
-
     doc=convertStringsToChars(doc);
 
     is_url=false;
 
     if nargout>1
-
-
 
         if~isempty(regexp(doc,'^\w\w+\.\w\w+\.\w\w+($|/)','once'))
             doc=['http://',doc];
