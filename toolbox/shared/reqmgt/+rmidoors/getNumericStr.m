@@ -1,14 +1,11 @@
 function numberString=getNumericStr(objId,moduleIdStr)
 
-
-
     if ischar(objId)
         if objId(1)=='#'
             numberString=objId(2:end);
         else
             numberString=objId;
         end
-
         prefix=rmidoors.getModulePrefix(moduleIdStr);
         if isempty(prefix)
             prefix='<empty>';
@@ -19,9 +16,6 @@ function numberString=getNumericStr(objId,moduleIdStr)
             end
         end
         if hasNonDigits(numberString)
-
-
-
             fprintf(1,'%s\n',getString(message('Slvnv:reqmgt:doors_obj_open:UnmatchedPrefix',objId,prefix)));
             numberString=getNumericSuffix(numberString);
         end
@@ -30,9 +24,11 @@ function numberString=getNumericStr(objId,moduleIdStr)
     end
 end
 
+
 function yesno=hasNonDigits(str)
     yesno=any(str<48|str>57);
 end
+
 
 function out=getNumericSuffix(in)
     toks=regexp(in,'(\d+)$','tokens');
