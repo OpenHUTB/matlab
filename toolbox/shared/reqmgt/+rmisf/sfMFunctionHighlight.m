@@ -7,9 +7,6 @@ function sfMFunctionHighlight(sid,hasLinks)
             style=sf_style('none');
         end
         sf_set_style(mfHandle.Id,style);
-
-
-
         chartH=sf('Private','chart2block',mfHandle.Chart.Id);
         if hasLinks
             if strcmp(get_param(chartH,'HiliteAncestors'),'fade')
