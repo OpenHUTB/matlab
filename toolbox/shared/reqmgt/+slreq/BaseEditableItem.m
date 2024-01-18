@@ -1,6 +1,5 @@
 classdef BaseEditableItem<slreq.BaseItem
 
-
     properties(Dependent)
 Id
 Summary
@@ -15,9 +14,11 @@ CreatedBy
 ModifiedBy
     end
 
+
     properties(Constant,GetAccess=private)
         supportedDestMap=containers.Map({'under','before','after'},{'on','before','after'});
     end
+
 
     methods(Access=protected)
         function this=BaseEditableItem(dataObject)
@@ -25,28 +26,34 @@ ModifiedBy
         end
     end
 
+
     methods
         function id=get.Id(this)
             id=this.dataObject.id;
         end
+
 
         function set.Id(this,value)
             value=convertStringsToChars(value);
             this.dataObject.customId=value;
         end
 
+
         function value=get.Summary(this)
             value=this.dataObject.summary;
         end
+
 
         function set.Summary(this,value)
             value=convertStringsToChars(value);
             this.dataObject.summary=value;
         end
 
+
         function value=get.Description(this)
             value=this.dataObject.description;
         end
+
 
         function set.Description(this,value)
             if isempty(this.dataObject.descriptionEditorType)
@@ -54,7 +61,6 @@ ModifiedBy
                 this.dataObject.description=value;
                 if~slreq.cpputils.hasHtmlTags(value)&&contains(value,'<')
 
-
                     rmiut.warnNoBacktrace('Slvnv:slreq:IncompatibleCharForRichEditor')
                 end
             else
@@ -62,17 +68,17 @@ ModifiedBy
             end
         end
 
+
         function value=get.Rationale(this)
             value=this.dataObject.rationale;
         end
+
 
         function set.Rationale(this,value)
             if isempty(this.dataObject.rationaleEditorType)
                 value=convertStringsToChars(value);
                 this.dataObject.rationale=value;
                 if~slreq.cpputils.hasHtmlTags(value)&&contains(value,'<')
-
-
                     rmiut.warnNoBacktrace('Slvnv:slreq:IncompatibleCharForRichEditor')
                 end
             else
@@ -80,30 +86,35 @@ ModifiedBy
             end
         end
 
+
         function value=get.Keywords(this)
             value=this.dataObject.keywords;
         end
+
 
         function set.Keywords(this,value)
             value=convertStringsToChars(value);
             this.dataObject.keywords=value;
         end
 
+
         function value=get.CreatedOn(this)
             value=this.dataObject.createdOn;
         end
+
 
         function value=get.CreatedBy(this)
             value=this.dataObject.createdBy;
         end
 
+
         function value=get.ModifiedBy(this)
             value=this.dataObject.modifiedBy;
         end
 
+
         function success=promote(this)
             this.errorIfVectorOperation();
-
             if~isempty(this.reqSet.getParentModel)
                 error(message('Slvnv:slreq:SFTableNotAllowed','promote',this.reqSet.getParentModel));
             end
@@ -113,6 +124,7 @@ ModifiedBy
                 throwAsCaller(ex);
             end
         end
+
 
         function success=demote(this)
             this.errorIfVectorOperation();
@@ -125,6 +137,7 @@ ModifiedBy
                 throwAsCaller(ex);
             end
         end
+
 
         function success=move(this,location,dstReq)
             this.errorIfVectorOperation();
@@ -164,6 +177,7 @@ ModifiedBy
             end
         end
 
+
         function success=copy(this,location,dstReq)
             this.errorIfVectorOperation();
             if numel(dstReq)>1
@@ -180,7 +194,6 @@ ModifiedBy
                     error(message('Slvnv:slreq:RequirementCopyError'));
                 end
             end
-
             if~isempty(dstReq.reqSet.getParentModel)
                 error(message('Slvnv:slreq:SFTableNotAllowed','copy',dstReq.reqSet.getParentModel));
             end
