@@ -1,6 +1,5 @@
 function notify(modelH,msgObj,varargin)
 
-
     if(nargin<2||isempty(msgObj))
 
         postHTML(modelH,'');
@@ -11,9 +10,6 @@ function notify(modelH,msgObj,varargin)
 
     for idx=1:(nargin-2)
         cbObj=varargin{idx};
-
-
-
         cbFcnMethod=fliplr(strtok(fliplr(cbObj.Identifier),':'));
         modelName=get_param(modelH,'Name');
         linkText=cbObj.getString();
@@ -40,11 +36,9 @@ function postHTML(modelH,htmlStr)
     for idx=1:numel(edtrs)
         ed=edtrs(idx);
 
-
         ed.closeNotificationByMsgID(msgId);
 
         if~isempty(htmlStr)
-
             ed.deliverInfoNotification(msgId,htmlStr);
         end
     end
