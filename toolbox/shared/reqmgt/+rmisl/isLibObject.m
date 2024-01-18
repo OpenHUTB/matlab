@@ -1,10 +1,5 @@
 function result=isLibObject(obj)
 
-
-
-
-
-
     result=false;
     for i=1:length(obj)
         theObj=obj(i);
@@ -22,14 +17,12 @@ function result=isLibObject(obj)
             return;
         end
 
-
         if isSf
             if objIsLibObject(rmisf.sfinstance(objH))
                 result=true;
                 return;
             end
         else
-
             if~strcmp(get_param(objH,'type'),'block_diagram')&&objIsLibObject(objH)
                 result=true;
                 return;
@@ -37,6 +30,7 @@ function result=isLibObject(obj)
         end
     end
 end
+
 
 function out=objIsLibObject(objH)
     out=false;
