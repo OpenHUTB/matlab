@@ -32,6 +32,7 @@ function javaArray=cellToJava(cellArray,force2D)
     end
 end
 
+
 function out=loc_logicalToString(in)
     out=char(double('T')*ones(size(in)));
     if any(~in)
