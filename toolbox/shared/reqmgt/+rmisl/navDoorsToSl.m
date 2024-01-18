@@ -1,8 +1,5 @@
 function msg=navDoorsToSl(objString)
 
-
-
-
     msg='';
     transFromStr=' from "';
     startIdx=strfind(objString,transFromStr);
@@ -11,7 +8,6 @@ function msg=navDoorsToSl(objString)
 
         modelName=strtok(objString,'/');
     else
-
         [~,fromStr,toStr]=rmisf.parse_trans_path(objString);
 
         if~isempty(fromStr)
@@ -23,7 +19,6 @@ function msg=navDoorsToSl(objString)
         end
     end
 
-
     try
         open_system(modelName);
         modelH=get_param(modelName,'Handle');
@@ -31,9 +26,6 @@ function msg=navDoorsToSl(objString)
         modelH=[];
 
         if~isempty(startIdx)
-
-
-
             altModelName=strtok(objString,'/');
             if~isempty(altModelName)
                 modelName=altModelName;
@@ -52,8 +44,6 @@ function msg=navDoorsToSl(objString)
         return;
     end
 
-
-
     if strcmp(get_param(modelH,'ReqHilite'),'on')
         set_param(modelH,'ReqHilite','off');
     else
@@ -64,16 +54,10 @@ function msg=navDoorsToSl(objString)
         handle=get_param(objString,'Handle');
     catch Mex %#ok<NASGU>
 
-
-
-
         handle=[];
     end
 
     if~isempty(handle)
-
-
-
 
         if Stateflow.SLUtils.isChildOfStateflowBlock(handle)
             subsysUddH=get_param(objString,'Object');
@@ -83,12 +67,10 @@ function msg=navDoorsToSl(objString)
             highlightInSimulink(handle,modelName);
         end
     else
-
         handle=rmisf.path2handle(objString);
         if sf('ishandle',handle)
             highlightInStateflow(handle);
         else
-
             [handle,groupIndex]=rmisl.sigbPath2handle(objString);
             if ishandle(handle)&&(groupIndex>=1)
                 highlightInSigBuilder(handle,groupIndex);
@@ -100,8 +82,8 @@ function msg=navDoorsToSl(objString)
     end
 end
 
-function highlightInSimulink(handle,modelName)
 
+function highlightInSimulink(handle,modelName)
 
     parent=get_param(handle,'Parent');
     if isempty(parent)
@@ -124,6 +106,7 @@ function highlightInSimulink(handle,modelName)
     end
 end
 
+
 function highlightInStateflow(handle)
     [autogen,srcHandle]=sf('get',handle,'.autogen.isAutoCreated','.autogen.source');
 
@@ -134,10 +117,10 @@ function highlightInStateflow(handle)
     end
     sf('Open',objSfHandle);
     target_chart=action_highlight_sf('req',objSfHandle);
-
     chartBlock=sf('Private','chart2block',target_chart);
     set_param(chartBlock,'HiliteAncestors','reqInside');
 end
+
 
 function yesno=isReactiveTestingTable(id)
     if sf('get',id,'.isa')==1
@@ -148,6 +131,7 @@ function yesno=isReactiveTestingTable(id)
         yesno=false;
     end
 end
+
 
 function highlightInSigBuilder(handle,groupIndex)
     parent=get_param(handle,'Parent');
