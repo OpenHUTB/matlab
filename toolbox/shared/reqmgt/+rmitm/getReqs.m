@@ -1,12 +1,5 @@
 function reqs=getReqs(varargin)
-
-
-
-
     [testSuite,id,ext]=rmitm.resolve(varargin{:});
-
-
-
 
     if~slreq.hasData(testSuite)
         slreq.utils.loadLinkSet(testSuite);
@@ -14,29 +7,17 @@ function reqs=getReqs(varargin)
 
     switch ext
     case '.mldatx'
-
         reqs=slreq.getReqs(testSuite,id,'linktype_rmi_testmgr');
     case '.m'
-
-
-
-
-
-
         bookmark=rmiml.RmiMUnitData.getBookmarkForTest(testSuite,id,rmiml.RmiMUnitData.NO_CREATE_BOOKMARK);
         if~isempty(bookmark)
             reqs=rmiml.getReqs(testSuite,bookmark);
         else
-
-
             reqs=[];
         end
     end
 
     if~isempty(reqs)
-
-
-
         isSlreq=strcmp({reqs.reqsys},'linktype_rmi_slreq');
         if any(isSlreq)
             adapter=slreq.adapters.AdapterManager.getInstance.getAdapterByDomain('linktype_rmi_slreq');
