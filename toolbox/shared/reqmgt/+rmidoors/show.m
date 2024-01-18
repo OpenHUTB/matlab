@@ -1,26 +1,5 @@
 function show(moduleIdStr,objNum,option)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     persistent doorsVerNum;
 
     if~rmidoors.isAppRunning()
@@ -28,11 +7,9 @@ function show(moduleIdStr,objNum,option)
         return;
     end
 
-
     if nargin<2||isempty(objNum)
         objNum=-1;
     end
-
 
     if nargin<3
         option=false;
@@ -50,13 +27,11 @@ function show(moduleIdStr,objNum,option)
         end
     end
 
-
     if ischar(objNum)
         objid=objNum;
     else
         objid=num2str(objNum);
     end
-
 
     switch class(option)
 
@@ -85,7 +60,6 @@ function show(moduleIdStr,objNum,option)
     if strncmp(commandResult,'DMI Error:',10)
         error(message('Slvnv:reqmgt:DoorsApiError',commandResult));
     end
-
 
     if ispc()
         if(doorsVerNum>=8.2)
