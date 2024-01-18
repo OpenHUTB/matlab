@@ -1,17 +1,7 @@
 function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
 
-
-
-
-
-
-
-
-
-
     anyExtIn=false;
     anyExtOut=false;
-
 
     if rmisl.inLibrary(slH,false)
         return;
@@ -22,12 +12,9 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
         return;
     end
 
-
     if nargin<4
         srcSID=get_param(slH,'BlockCopiedFrom');
     end
-
-
 
     try
         if Simulink.ID.getHandle(srcSID)==slH
@@ -41,12 +28,7 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
 
         srcIsExternal=false;
     else
-
-
         srcMdl=strtok(srcSID,':');
-
-
-
         try
             hostDiagramType=get_param(srcMdl,'BlockDiagramType');
         catch Ex1
@@ -55,9 +37,6 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
                 load_system(srcMdl);
                 hostDiagramType=get_param(srcMdl,'BlockDiagramType');
             catch Ex2
-
-
-
                 if~strcmp(Ex2.identifier,'Simulink:Commands:OpenSystemUnknownSystem')
                     warning(message('Slvnv:rmidata:duplicate:GetDiagramTypeFailed',...
                     srcSID,[Ex1.message,', ',Ex2.message]));
@@ -65,9 +44,6 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
                 return;
             end
         end
-
-
-
         refBlock=get_param(slH,'ReferenceBlock');
         if isempty(refBlock)&&strcmp(hostDiagramType,'library')
             if strcmp(get_param(bdroot(slH),'Name'),srcMdl)
@@ -76,13 +52,11 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
                 return;
             end
         end
-
         [srcIsExternal,srcH]=rmidata.isExternal(srcMdl);
         srcIsExternal=(srcIsExternal&&rmidata.bdHasExternalData(srcH,true));
     end
 
     if isMATLABFunction(slH)
-
 
         if slreq.internal.mlfbHasLinkData(srcSID)
             destSID=Simulink.ID.getSID(slH);
@@ -93,7 +67,6 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
         return;
     end
 
-
     states=sf('get',sfH,'.states');
     trans=sf('get',sfH,'.transitions');
     allObjs=[sfH,states,trans];
@@ -103,9 +76,6 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
 
         srcRootName=strtok(srcSID,':');
         if rmisl.isComponentHarness(srcRootName)
-
-
-
             harnessInfo=Simulink.harness.internal.getHarnessInfoForHarnessBD(srcRootName);
             if isempty(harnessInfo)
                 return;
@@ -116,41 +86,26 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
         keys=getNestedWithLinks(srcSID);
         ids=zeros(1,length(keys));
 
-
-
-
-
         stripGUIDs=false;
 
         if~isempty(keys)
 
             try
                 if~isempty(refBlock)
-
-
                     [anyExtIn,anyExtOut,ids]=copyFromLibToMdl(modelH,slH,srcSID,keys,ids);
                 else
-
                     ancBlock=get_param(slH,'AncestorBlock');
                     if~isempty(ancBlock)&&strncmp(ancBlock,destMdlName,length(destMdlName))
-
-
                         [anyExtIn,anyExtOut,ids]=copyFromMdlToLib(modelH,slH,srcSID,keys,ids);
                     else
-
                         [anyExtIn,anyExtOut,ids,stripGUIDs]=copyFromMdlToMdl(modelH,slH,srcSID,keys,ids);
                     end
                 end
 
             catch ME %#ok<NASGU>
 
-
-
-
-
             end
         end
-
 
         if stripGUIDs
             remainingObjs=setdiff(allObjs,ids);
@@ -158,18 +113,7 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
                 rmi.setRawReqs(remainingObjs(i),true,'',modelH);
             end
         end
-
-
-
-
-
-
         slreqCleanupUnmatchedItems(slH,srcSID,keys);
-
-
-
-
-
         if~stripGUIDs&&srcIsExternal&&~rmidata.isExternal(modelH)
             remainingObjs=setdiff(allObjs,ids);
             for i=1:length(remainingObjs)
@@ -184,7 +128,6 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
 
     elseif strcmp(get_param(srcMdl,'hasReqInfo'),'on')
 
-
         toExt=false(1,length(allObjs));
         for i=1:length(allObjs)
             if allObjs(i)==sfH
@@ -195,21 +138,13 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
         anyExtOut=any(toExt);
 
         if anyExtOut&&rmidata.bdHasExternalData(modelH)
-
-
-
             try
                 mdlBlockH=Simulink.ID.getHandle(srcSID);
             catch ME %#ok<NASGU>
-
-
-
                 return;
             end
             ancestorBlock=get_param(mdlBlockH,'AncestorBlock');
             if~isempty(ancestorBlock)
-
-
                 origMdlName=strtok(ancestorBlock,'/');
                 if strcmp(origMdlName,destMdlName)
                     ancChartSID=Simulink.ID.getSID(ancestorBlock);
@@ -223,16 +158,14 @@ function[anyExtIn,anyExtOut]=duplicateChart(sfH,modelH,slH,srcSID)
     end
 end
 
+
 function tf=isMATLABFunction(slH)
     chartType=rmisf.sfBlockType(slH);
     tf=strcmp(chartType,'MATLAB Function');
 end
 
+
 function[anyExtIn,anyExtOut,ids]=copyFromLibToMdl(modelH,slH,srcSID,keys,ids)
-
-
-
-
 
     if rmidata.bdHasExternalData(modelH,true)
         destSID=Simulink.ID.getSID(slH);
@@ -242,20 +175,12 @@ function[anyExtIn,anyExtOut,ids]=copyFromLibToMdl(modelH,slH,srcSID,keys,ids)
         end
     end
 
-
     destMdlName=get_param(modelH,'Name');
     anyExtIn=false;
     anyExtOut=false;
-
-
-
-
-
     sfMachine=find(sfroot,'-isa','Stateflow.Machine','Name',destMdlName);
     destChart=sfMachine.find('-isa','Stateflow.Chart','Name',get_param(slH,'Name'));
     for i=1:length(keys)
-
-
         sid=strrep(keys{i},[srcSID,':'],'');
         destObj=destChart.find('SSIdNumber',str2num(sid));%#ok<ST2NM>
         ids(i)=destObj.Id;
@@ -265,16 +190,13 @@ function[anyExtIn,anyExtOut,ids]=copyFromLibToMdl(modelH,slH,srcSID,keys,ids)
     end
 end
 
+
 function[anyExtIn,anyExtOut,ids]=copyFromMdlToLib(modelH,slH,srcSID,keys,ids)
     anyExtIn=false;
     anyExtOut=false;
 
-
-
     mdlBlockH=Simulink.ID.getHandle(srcSID);
     destChartSID=get_param(mdlBlockH,'BlockCopiedFrom');
-
-
 
     if~rmidata.isExternal(modelH)
         destSID=Simulink.ID.getSID(slH);
@@ -282,12 +204,7 @@ function[anyExtIn,anyExtOut,ids]=copyFromMdlToLib(modelH,slH,srcSID,keys,ids)
         destSID='';
     end
 
-
     for i=1:length(keys)
-
-
-
-
         reqs=localGetReqs(keys{i});
         anyExtIn=anyExtIn|~isempty(reqs);
         if isempty(destSID)
@@ -303,12 +220,10 @@ function[anyExtIn,anyExtOut,ids]=copyFromMdlToLib(modelH,slH,srcSID,keys,ids)
         end
     end
 
-
-
-
     cleanupStaleKeys(keys);
 
 end
+
 
 function[anyExtIn,anyExtOut,ids,stripGUIDs]=copyFromMdlToMdl(modelH,slH,srcSID,keys,ids)
     anyExtIn=false;
@@ -317,7 +232,6 @@ function[anyExtIn,anyExtOut,ids,stripGUIDs]=copyFromMdlToMdl(modelH,slH,srcSID,k
     tmpSidPrefix=getTempSubspacePrefix(srcSID,destSID);
     stripGUIDs=false;
     for i=1:length(keys)
-
         destKey=strrep(keys{i},srcSID,destSID);
         destObj=Simulink.ID.getHandle(destKey);
         ids(i)=destObj.Id;
@@ -328,15 +242,13 @@ function[anyExtIn,anyExtOut,ids,stripGUIDs]=copyFromMdlToMdl(modelH,slH,srcSID,k
     end
 end
 
+
 function tmpSidPrefix=getTempSubspacePrefix(srcSID,destSID)
     tmpSidPrefix='';
     destDiag=strtok(destSID,':');
     if strcmp(get_param(destDiag,'BlockDiagramType'),'library')
         srcDiag=strtok(srcSID,':');
         if strcmp(get_param(srcDiag,'BlockDiagramType'),'model')
-
-
-
 
             comaIdx=find(destSID==':');
             if numel(comaIdx)>=2
@@ -345,6 +257,7 @@ function tmpSidPrefix=getTempSubspacePrefix(srcSID,destSID)
         end
     end
 end
+
 
 function cleanupStaleKeys(keys)
     if~isempty(keys)
@@ -358,6 +271,7 @@ function cleanupStaleKeys(keys)
     end
 end
 
+
 function count=adjustLibKeys(ancChartSID,destChartSID)
     keys=getNestedWithLinks(ancChartSID);
     count=length(keys);
@@ -370,6 +284,7 @@ function count=adjustLibKeys(ancChartSID,destChartSID)
     end
 end
 
+
 function sids=getNestedWithLinks(parentSid)
     [host,parentId]=strtok(parentSid,':');
     ids=slreq.utils.getIDsUnder(host,parentId);
@@ -380,26 +295,22 @@ function sids=getNestedWithLinks(parentSid)
     end
 end
 
+
 function reqs=localGetReqs(sid)
     [model,id]=strtok(sid,':');
     reqs=slreq.getReqs(get_param(model,'FileName'),id,'linktype_rmi_simulink');
 end
+
 
 function localSetReqs(sid,reqs)
 
     [model,src.id]=strtok(sid,':');
     src.artifact=get_param(model,'FileName');
     src.domain='linktype_rmi_simulink';
-
-
-
-
-
     reqs=slreq.uri.correctDestinationUriAndId(reqs);
-
-
     slreq.internal.setLinks(src,reqs);
 end
+
 
 function slreqCleanupUnmatchedItems(slH,srcSID,srcKeys)
     destSID=Simulink.ID.getSID(slH);
@@ -411,8 +322,6 @@ function slreqCleanupUnmatchedItems(slH,srcSID,srcKeys)
 
             matchKey=strrep(dstKeys{i},destSID,srcSID);
             if~any(strcmp(matchKey,srcKeys))
-
-
                 [~,src.id]=strtok(dstKeys{i},':');
                 slreq.internal.setLinks(src,[]);
             end
