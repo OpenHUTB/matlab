@@ -1,9 +1,5 @@
 function out=sfisa(in)
 
-
-
-
-
     persistent sfIsaStruct;
     persistent sfObjTypes;
     persistent isaFilter;
@@ -37,7 +33,6 @@ function out=sfisa(in)
         'Stateflow.SimulinkBasedState',...
         };
 
-
         isaFilter=makeFilter(sfObjTypes);
     end
 
@@ -49,6 +44,7 @@ function out=sfisa(in)
         out=isaFilter;
     end
 end
+
 
 function filter=makeFilter(allTypes)
     totalTypes=length(allTypes);
