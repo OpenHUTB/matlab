@@ -1,20 +1,9 @@
 function state=reqMenuState(cbInfo,ctxId)
 
-
-
-
-
-
-
-
-
     if slreq.utils.selectionHasMarkup(cbInfo)
         state='Disabled';
         return;
     end
-
-
-
 
     selection=cbInfo.getSelection;
     if isempty(selection)
@@ -22,8 +11,6 @@ function state=reqMenuState(cbInfo,ctxId)
         sfRt=Stateflow.Root;
         selection=sfRt.idToHandle(ctxId);
     elseif length(selection)==1&&selection.Id~=ctxId
-
-
 
         sfRt=Stateflow.Root;
         selection=sfRt.idToHandle(ctxId);
@@ -42,7 +29,6 @@ function state=reqMenuState(cbInfo,ctxId)
             state='Disabled';
             return;
         end
-
         systemBD=Simulink.harness.internal.getHarnessOwnerBD(cbInfo.model.Name);
         if~Simulink.harness.internal.isReqLinkingSupportedForExtHarness(systemBD)
             state='Disabled';
@@ -65,7 +51,6 @@ function state=reqMenuState(cbInfo,ctxId)
         state='Disabled';
         return;
     end
-
     [rmiInstalled,rmiLicenseAvailable]=rmi.isInstalled();
     if rmiInstalled&&rmiLicenseAvailable
         state='Enabled';
@@ -79,6 +64,7 @@ function state=reqMenuState(cbInfo,ctxId)
         end
     end
 end
+
 
 function yesno=objectIsOpenedInActiveHarness(modelName,objh)
     modelH=get_param(modelName,'Handle');
