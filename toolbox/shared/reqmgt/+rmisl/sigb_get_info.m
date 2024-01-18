@@ -1,10 +1,5 @@
 function blkInfo=sigb_get_info(blkHandle)
 
-
-
-
-
-
     fromWsH=find_system(blkHandle,'FollowLinks','on'...
     ,'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices...
     ,'LookUnderMasks','all'...
