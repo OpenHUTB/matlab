@@ -1,6 +1,4 @@
 function yesno=isSimulinkSubroot(ndData)
-
-
     sourceType=ndData.getValue('source');
     if strcmp(sourceType,'linktype_rmi_matlab')
         yesno=true;
