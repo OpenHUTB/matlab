@@ -1,11 +1,5 @@
 function saveRoot(this,myRoot,reqFileName)
 
-
-
-
-
-
-
     prevFileName='';
     if ischar(myRoot)
         rootName=myRoot;
@@ -26,13 +20,10 @@ function saveRoot(this,myRoot,reqFileName)
         prevName='';
     end
 
-
     if isempty(srcRoot)
         error(message('Slvnv:rmigraph:UnmatchedModelName',rootName));
     else
         isSimulinkRoot=strcmp(srcRoot.getProperty('source'),'linktype_rmi_simulink');
-
-
 
         t1=M3I.Transaction(this.graph);
 
@@ -43,16 +34,11 @@ function saveRoot(this,myRoot,reqFileName)
         remappedIDs=[];
 
         if isSimulinkRoot
-
-
-
             ownLinkDataCount=srcRoot.linkData.size;
             hasAddedLinkData=false;
             nodeDataCount=srcRoot.nodeData.size;
             allChildNames={};
             for i=nodeDataCount:-1:1
-
-
                 ndData=srcRoot.nodeData.at(i);
                 if rmimap.RMIRepository.isSimulinkSubroot(ndData)
                     sourceType=ndData.getValue('source');
@@ -60,13 +46,10 @@ function saveRoot(this,myRoot,reqFileName)
 
                     if isRename
 
-
                         if strncmp(id,':urn:uuid:',10)
 
                             [childId,newId]=rmisl.getUpdatedHarnessId(rootName,id);
                         else
-
-
                             childId=[rootName,id];
                             newId='';
                         end
@@ -80,10 +63,6 @@ function saveRoot(this,myRoot,reqFileName)
                         remappedIDs(prevChildId)=childId;
 
                         if~isempty(newId)
-
-
-
-
                             chNode=this.addNode(srcRoot,newId);
                             nodeData=chNode.addData();
                             nodeData.names.append('source');
@@ -106,7 +85,6 @@ function saveRoot(this,myRoot,reqFileName)
                         for j=1:childLinks.size
                             childLink=childLinks.at(j);
 
-
                             if(isRename&&~isempty(newId))...
                                 ||isempty(childLink.getProperty('dependentUrl'))
                                 rmimap.RMIRepository.populateLinkData(childLink);
@@ -120,9 +98,6 @@ function saveRoot(this,myRoot,reqFileName)
             end
         end
 
-
-
-
         for i=1:srcRoot.links.size
             if shouldPopulateLinkData(srcRoot.links.at(i),prevName,remappedIDs)
 
@@ -133,18 +108,8 @@ function saveRoot(this,myRoot,reqFileName)
             [srcTrim,destTrim,descrTrim]=trimSelfName(srcRoot);
         end
 
-
-
-
-
-
-
-
-
         t1.commit();
-
         rmimap.RMIRepository.writeM3I(reqFileName,srcRoot);
-
 
         if isSimulinkRoot
             if hasAddedLinkData||any(srcTrim)||any(destTrim)||any(descrTrim)
@@ -167,6 +132,7 @@ function saveRoot(this,myRoot,reqFileName)
     end
 end
 
+
 function yesno=shouldPopulateLinkData(link,prevName,remappedIDs)
     dependentUrl=link.getProperty('dependentUrl');
     if isempty(dependentUrl)
@@ -183,7 +149,6 @@ function yesno=shouldPopulateLinkData(link,prevName,remappedIDs)
 end
 
 
-
 function data=copyLinkData(link)
     data=rmidd.LinkData(link.modelM3I);
     for i=1:link.data.names.size
@@ -193,7 +158,6 @@ function data=copyLinkData(link)
 end
 
 
-
 function trimLinkDataSequence(root,keepCount)
     last=root.linkData.size;
     while last>keepCount
@@ -201,7 +165,6 @@ function trimLinkDataSequence(root,keepCount)
         last=last-1;
     end
 end
-
 
 
 function[srcTrim,destTrim,descrTrim]=trimSelfName(root)
@@ -234,6 +197,7 @@ function[srcTrim,destTrim,descrTrim]=trimSelfName(root)
         end
     end
 end
+
 
 function wasModified=macroNamePrefix(selfName,linkDatum,j)
     original=linkDatum.values.at(j);
@@ -277,6 +241,7 @@ function untrimSelfName(root,srcTrim,destTrim,descrTrim)
         end
     end
 end
+
 
 function unmacroNamePrefix(selfName,linkDatum,j)
     trimmed=linkDatum.values.at(j);
