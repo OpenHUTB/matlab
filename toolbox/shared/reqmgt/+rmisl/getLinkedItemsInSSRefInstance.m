@@ -1,15 +1,7 @@
 function linkedItemsHandles=getLinkedItemsInSSRefInstance(ssRefDiagram,mainModel)
 
-
-
-
-
-
-
-
     reqData=slreq.data.ReqData.getInstance;
     cLinkSet=reqData.getLinkSet(ssRefDiagram);
-
 
     linkedItemsHandles=zeros(64,1);
     currentIndex=1;
