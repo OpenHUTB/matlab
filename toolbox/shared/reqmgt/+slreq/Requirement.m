@@ -1,183 +1,22 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef Requirement<slreq.BaseEditableItem
 
     properties(Dependent)
 Type
     end
 
-    methods
 
+    methods
 
         function this=Requirement(dataObject)
             this@slreq.BaseEditableItem(dataObject);
         end
 
 
-
-
-
-
         function value=get.Type(this)
             this.errorIfVectorOperation();
             value=this.dataObject.typeName;
         end
+
 
         function set.Type(this,value)
             try
@@ -187,6 +26,7 @@ Type
                 throwAsCaller(ex);
             end
         end
+
 
         function childReq=add(this,varargin)
             this.errorIfVectorOperation();
@@ -212,6 +52,7 @@ Type
             end
         end
 
+
         function success=promote(this)
             this.errorIfVectorOperation();
 
@@ -225,6 +66,7 @@ Type
                 throw(ex);
             end
         end
+
 
         function success=demote(this)
             this.errorIfVectorOperation();
@@ -240,6 +82,7 @@ Type
             end
         end
 
+
         function link=justifyImplementation(this,justification)
             this.errorIfVectorOperation();
             if~isa(justification,'slreq.Justification')
@@ -253,6 +96,7 @@ Type
                 throwAsCaller(ex);
             end
         end
+
 
         function link=justifyVerification(this,justification)
             this.errorIfVectorOperation();
@@ -268,6 +112,7 @@ Type
             end
         end
 
+
         function tf=isJustifiedFor(this,linkType)
             this.errorIfVectorOperation();
             if nargin<2
@@ -275,38 +120,36 @@ Type
             end
             linkType=convertStringsToChars(linkType);
             try
-
-
                 tf=this.dataObject.isHierarchicallyJustified(linkType);
             catch ex
                 throwAsCaller(ex);
             end
         end
 
+
         function status=getImplementationStatus(this,varargin)
             this.errorIfVectorOperation();
             rollupTypeName=slreq.analysis.ImplementationVisitor.getName();
             try
-
-
                 status=this.dataObject.handlePublicAPICall(rollupTypeName,varargin{:});
             catch ex
                 throwAsCaller(ex);
             end
         end
 
+
         function status=getVerificationStatus(this,varargin)
             this.errorIfVectorOperation();
             rollupTypeName=slreq.analysis.VerificationVisitor.getName();
             try
-
-
                 status=this.dataObject.handlePublicAPICall(rollupTypeName,varargin{:});
             catch ex
                 throwAsCaller(ex);
             end
         end
     end
+
+
     methods(Hidden)
 
         function link=addLink(this,srcData)
