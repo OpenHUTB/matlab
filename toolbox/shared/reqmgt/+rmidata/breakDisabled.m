@@ -1,10 +1,4 @@
 function breakDisabled(obj)
-
-
-
-
-
-
     [modelH,objH,isSf,isSigBuilder]=rmisl.resolveObj(obj);
     if rmidata.isExternal(modelH)&&~isSf
 
@@ -12,7 +6,6 @@ function breakDisabled(obj)
         if isempty(srcSID)
             return;
         else
-
             [reqs,grps]=rmidata.getDataForSid(srcSID,isSigBuilder);
 
             if~isempty(reqs)
@@ -29,10 +22,6 @@ function breakDisabled(obj)
                     end
                 else
 
-
-
-
-
                     if isSigBuilder
                         slreq.utils.clearAllForSrc(srcSID,true);
                     else
@@ -44,8 +33,6 @@ function breakDisabled(obj)
     end
 
     if~rmidata.isExternal(modelH)
-
-
         set_param(modelH,'GUIDTable',[]);
     end
 end
