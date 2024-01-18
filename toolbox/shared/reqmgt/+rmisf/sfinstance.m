@@ -1,8 +1,5 @@
 function instanceHandle=sfinstance(sfObj)
 
-
-
-
     chartId=sfGetChartId(sfObj);
 
     activeInstance=sf('get',chartId,'chart.activeInstance');
@@ -14,7 +11,6 @@ function instanceHandle=sfinstance(sfObj)
 
 
     function chart_handle=sfGetChartId(sfObj)
-
         chart_isa=sf('get','default','chart.isa');
         handle_isa=sf('get',sfObj,'.isa');
         if(chart_isa==handle_isa)
