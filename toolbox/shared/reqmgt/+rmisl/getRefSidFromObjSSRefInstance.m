@@ -1,13 +1,5 @@
 function refSid=getRefSidFromObjSSRefInstance(objH,isSf,doesConsiderTop)
 
-
-
-
-
-
-
-
-
     if nargin<3
         doesConsiderTop=false;
     end
@@ -23,12 +15,6 @@ function refSid=getRefSidFromObjSSRefInstance(objH,isSf,doesConsiderTop)
     end
 
     if isSf
-
-
-
-
-
-
         if isa(objH,'double')
 
             objId=objH;
@@ -52,10 +38,8 @@ function refSid=getRefSidFromObjSSRefInstance(objH,isSf,doesConsiderTop)
         end
 
         chartPath=rmisf.sfinstance(objId);
-
         chartSidInMain=Simulink.ID.getSID(chartPath);
         chartSidInSSR=slInternal('getSourceBlockFromSSRefInstanceBlock',chartPath);
-
         refSid=strrep(sidInMain,chartSidInMain,chartSidInSSR);
     else
         refSid=slInternal('getSourceBlockFromSSRefInstanceBlock',objH);
@@ -64,13 +48,11 @@ function refSid=getRefSidFromObjSSRefInstance(objH,isSf,doesConsiderTop)
                 refSid=get_param(objH,'ReferencedSubsystem');
             catch ex %#ok<NASGU>
 
-
             end
         end
     end
 
     if isempty(refSid)
-
         refSid='';
     end
 end
