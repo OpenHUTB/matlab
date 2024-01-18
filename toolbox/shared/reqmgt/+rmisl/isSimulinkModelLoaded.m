@@ -1,8 +1,5 @@
 function tf=isSimulinkModelLoaded(mdlName)
 
-
-
-
     mdlName=convertStringsToChars(mdlName);
 
     if dig.isProductInstalled('Simulink')&&is_simulink_loaded()
