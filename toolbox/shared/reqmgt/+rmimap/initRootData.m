@@ -1,8 +1,5 @@
 function rootData=initRootData(srcName)
 
-
-
-
     [~,~,ext]=fileparts(srcName);
     switch ext
     case '.m'
@@ -22,7 +19,6 @@ function rootData=initRootData(srcName)
         'lastDay',num2str(floor(now))...
         };
     otherwise
-
         [isMatlabInSl,mdlName]=rmisl.isSidString(srcName,false);
         if isMatlabInSl&&rmidata.isExternal(mdlName)
             rootData={...
