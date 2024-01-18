@@ -1,8 +1,5 @@
 function result=validateReqFile(fname)
 
-
-
-
     result='';
 
     if exist(fname,'file')~=2
