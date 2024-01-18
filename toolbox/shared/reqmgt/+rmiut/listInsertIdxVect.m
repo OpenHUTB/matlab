@@ -11,7 +11,6 @@ function[origIdx,insIdx]=listInsertIdxVect(pts,cnts,lng)
         inc=zeros(1,lng);
     end
 
-
     for i=1:length(pts)
         inc(pts(i))=inc(pts(i))+cnts(i);
     end
