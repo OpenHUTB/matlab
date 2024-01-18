@@ -1,16 +1,5 @@
 function out=xlsColNumToName(in)
 
-
-
-
-
-
-
-
-
-
-
-
     remainder=mod(in,26);
     [out,in]=convertOneChar(remainder,'',in);
     while in>0
@@ -18,6 +7,7 @@ function out=xlsColNumToName(in)
         [out,in]=convertOneChar(remainder,out,in);
     end
 end
+
 
 function[out,in]=convertOneChar(last,out,in)
     if last==0
