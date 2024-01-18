@@ -1,7 +1,5 @@
 function hiliteAndFade(blkHOrSID)
 
-
-
     if ischar(blkHOrSID)
         blkH=Simulink.ID.getHandle(blkHOrSID);
     elseif length(blkHOrSID)>1
