@@ -1,8 +1,5 @@
 function[yesno,mdlName]=isSidString(in,doLoad)
 
-
-
-
     in=convertStringsToChars(in);
 
     yesno=false;
