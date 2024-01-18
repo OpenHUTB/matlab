@@ -1,7 +1,5 @@
 function yesno=isFaultTableOpen(obj)
 
-
-
     yesno=false;
 
     topMdlH=rmifa.getTopModelFromObj(obj);
