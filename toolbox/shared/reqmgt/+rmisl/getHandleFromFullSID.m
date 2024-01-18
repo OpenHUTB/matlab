@@ -1,25 +1,11 @@
 function handle=getHandleFromFullSID(sid,getSFId)
 
-
-
-
-
-
     if nargin<2
         getSFId=false;
     end
-
     handle=slreq.internal.slutils.getSLHandleFromSID(sid);
 
     if handle==-1
-
-
-
-
-
-
-
-
         if~isempty(Simulink.ID.checkSyntax(sid))
             return;
         end
@@ -32,10 +18,12 @@ function handle=getHandleFromFullSID(sid,getSFId)
     end
 end
 
+
 function out=isBdLoaded(sid)
     bdname=strtok(sid,':');
     out=dig.isProductInstalled('Simulink')&&bdIsLoaded(bdname);
 end
+
 
 function handle=getSFObjFromSID(sid,getSFId)
     handle=-1;
