@@ -1,14 +1,6 @@
 function type=sfBlockType(obj)
 
-
-
-
-
     try
-
-
-
-
         slObj=get_param(obj,'Object');
         switch class(slObj)
         case 'Stateflow.EMChart'
@@ -33,8 +25,8 @@ function type=sfBlockType(obj)
     end
 end
 
-function result=legacySfBlockType(myObj)
 
+function result=legacySfBlockType(myObj)
 
     try
         result=myObj.SFBlockType;
@@ -42,7 +34,6 @@ function result=legacySfBlockType(myObj)
         case 'Chart'
             result='Stateflow diagram';
         otherwise
-
 
         end
     catch ex %#ok<NASGU,CTCH>
