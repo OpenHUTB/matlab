@@ -1,23 +1,11 @@
 function out=internalConfigVal(name,value)
 
-
-
-
-
-
-
-
-
-
-
-
     out=[];
     prefD=prefdir;
 
     if~exist(prefD,'dir')
         return;
     end
-
     configMatFile=fullfile(prefD,'slreq_config.mat');
 
     if exist(configMatFile,'file')
@@ -37,7 +25,6 @@ function out=internalConfigVal(name,value)
     if nargin<1
         return;
     end
-
     if~isempty(allVals)&&isstruct(allVals)&&isfield(allVals,name)
         out=allVals.(name);
     end
