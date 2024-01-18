@@ -1,9 +1,5 @@
 function setDataForSlObj(objH,reqs,grps)
 
-
-
-
-
     if~isempty(grps)
 
         grpNum=unique(grps);
@@ -18,6 +14,7 @@ function setDataForSlObj(objH,reqs,grps)
 
 end
 
+
 function slreqInternalSetReqs(objH,reqs,grp)
 
     src=slreq.utils.getRmiStruct(objH);
@@ -25,15 +22,11 @@ function slreqInternalSetReqs(objH,reqs,grp)
 
         src.id=sprintf('%s.%d',src.id,grp);
     end
-
-
-
-
-
     reqs=slreq.uri.correctDestinationUriAndId(reqs);
 
     slreqInternalSetLinks(src,reqs);
 end
+
 
 function slreqInternalSetLinks(src,linkInfo)
     r=slreq.data.ReqData.getInstance;
@@ -47,14 +40,11 @@ function slreqInternalSetLinks(src,linkInfo)
             linkSet=r.createLinkSet(src.artifact,src.domain);
         end
     else
-
-
         oldLinks=linkSet.getLinks(src);
         for i=1:length(oldLinks)
             linkSet.removeLink(oldLinks(i));
         end
     end
-
 
     if~isempty(linkInfo)
         for i=1:length(linkInfo)
