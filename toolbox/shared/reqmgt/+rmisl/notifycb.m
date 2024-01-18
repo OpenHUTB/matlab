@@ -1,9 +1,5 @@
 function notifycb(method,modelName)
 
-
-
-
-
     modelH=get_param(modelName,'Handle');
 
     switch(method)
