@@ -1,8 +1,3 @@
-
-
-
-
-
 classdef RmiData<handle
 
     properties
@@ -10,14 +5,14 @@ repository
 statusMap
     end
 
+
     methods(Access='protected')
 
         function obj=RmiData
-
-
             obj.repository=rmimap.RMIRepository.getInstance;
         end
     end
+
 
     methods(Abstract)
         close(this,srcRoot)
@@ -31,6 +26,7 @@ statusMap
         set(this,srcObj,newData,varargin)
         writeToStorage(this,rootObj,storageName)
     end
+
 
     methods(Static,Abstract)
         singleObj=getInstance(varargin)
