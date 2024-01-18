@@ -1,7 +1,5 @@
 function result=is_signal_builder_block(obj)
 
-
-
     if isempty(obj)
         result=false;
         return;
