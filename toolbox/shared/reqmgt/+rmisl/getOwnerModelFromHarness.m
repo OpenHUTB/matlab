@@ -1,7 +1,5 @@
 function outModelH=getOwnerModelFromHarness(inHandle)
 
-
-
     outModelH=[];
     try
         outModelH=get_param(bdroot(inHandle),'Handle');
