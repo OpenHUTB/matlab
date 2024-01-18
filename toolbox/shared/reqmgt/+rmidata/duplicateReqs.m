@@ -1,20 +1,6 @@
 function[fromExt,toExt]=duplicateReqs(objH,modelH,isSf,fromKey,extraArg)
 
-
-
-
-
-
-
-
-
-
-
-
     if nargin<5
-
-
-
         extraArg='';
     end
 
@@ -37,17 +23,9 @@ function[fromExt,toExt]=duplicateReqs(objH,modelH,isSf,fromKey,extraArg)
         isSigBuilder=false;
     end
 
-
-
-
-
-
     reqStr=getEmbeddedReqString(objH,isSf);
 
     if~isempty(fromKey)&&hasExternalData(fromKey)
-
-
-
         [reqs,grps]=rmidata.getDataForSid(fromKey,isSigBuilder);
         if~isempty(reqs)
             fromExt=true;
@@ -81,9 +59,6 @@ function[fromExt,toExt]=duplicateReqs(objH,modelH,isSf,fromKey,extraArg)
     end
 
     if~isempty(reqs)
-
-
-
         isSlLink=strcmp({reqs.reqsys},'linktype_rmi_simulink');
         if any(isSlLink)
             if~fromExt&&~isempty(fromKey)
@@ -96,8 +71,6 @@ function[fromExt,toExt]=duplicateReqs(objH,modelH,isSf,fromKey,extraArg)
         end
     end
 
-
-
     if dstIsExternal
         if isSigBuilder&&~isempty(grps)
             toExt=rmidata.objCopy(objH,reqs,modelH,false,grps);
@@ -109,21 +82,13 @@ function[fromExt,toExt]=duplicateReqs(objH,modelH,isSf,fromKey,extraArg)
             rmi.setRawReqs(objH,isSf,'',modelH);
         end
     else
-
-
         reqStr=rmi.reqs2str(reqs);
         hadReqInfo=strcmp(get_param(modelH,'HasReqInfo'),'on');
         rmi.objCopy(objH,reqStr,modelH,isSf);
         if~hadReqInfo&&~isempty(reqs)
-
-
-
             rmi_sl_callback('markForMigration',modelH);
         end
         if isSigBuilder
-
-
-
             blkInfo=rmisl.sigb_get_info(objH);
             blkInfo.groupReqCnt=rmidata.convertSigbGrpInfo(blkInfo.groupCnt,grps);
             blkInfo.blockH=objH;
@@ -131,7 +96,6 @@ function[fromExt,toExt]=duplicateReqs(objH,modelH,isSf,fromKey,extraArg)
         end
     end
 end
-
 
 
 function reqStr=getEmbeddedReqString(objH,isSf)
@@ -143,8 +107,8 @@ function reqStr=getEmbeddedReqString(objH,isSf)
     end
 end
 
-function isImplicit=is_an_implicit_link(blockH)
 
+function isImplicit=is_an_implicit_link(blockH)
     parentH=get_param(get_param(blockH,'parent'),'handle');
     if~strcmp(get_param(parentH,'type'),'block_diagram')&&...
         (~isempty(get_param(parentH,'referenceblock'))||~isempty(get_param(parentH,'templateblock')))
@@ -154,8 +118,8 @@ function isImplicit=is_an_implicit_link(blockH)
     end
 end
 
-function result=hasExternalData(srcKey)
 
+function result=hasExternalData(srcKey)
 
     srcModelName=strtok(srcKey,':');
     try
@@ -167,12 +131,14 @@ function result=hasExternalData(srcKey)
     end
 end
 
+
 function[reqs,grps]=excludeSurrogateLinks(reqs,grps)
     if any(~[reqs.linked])
         grps=grps([reqs.linked]);
         reqs=reqs([reqs.linked]);
     end
 end
+
 
 function yesno=isCutPasteOrUndo(objH,fromKey)
     if isempty(fromKey)
