@@ -1,10 +1,4 @@
 function highlightReqChanges(objH,isSf,reqs,rmi_highlighting_on)
-
-
-
-
-
-
     filterSettings=rmi.settings_mgr('get','filterSettings');
     if filterSettings.enabled
         reqs=rmi.filterTags(reqs,filterSettings.tagsRequire,filterSettings.tagsExclude);
@@ -14,19 +8,13 @@ function highlightReqChanges(objH,isSf,reqs,rmi_highlighting_on)
 
         if isempty(reqs)||~any([reqs.linked])
 
-
             if rmi_highlighting_on
-
 
                 if sf('get',objH,'.isa')~=1
                     sf_update_style(objH,'off');
                 end
 
             end
-
-
-
-
 
             unhighlight_parent_block=true;
             chartId=obj_chart(objH);
@@ -36,7 +24,6 @@ function highlightReqChanges(objH,isSf,reqs,rmi_highlighting_on)
             elseif rmi.objHasReqs(chartId,filterSettings)
                 unhighlight_parent_block=false;
             else
-
                 sfFilter=rmisf.sfisa('isaFilter');
                 sfr=sfroot;
                 chartObj=sfr.idToHandle(chartId);
@@ -57,12 +44,8 @@ function highlightReqChanges(objH,isSf,reqs,rmi_highlighting_on)
 
         else
 
-
             if rmi_highlighting_on
-
                 target_chart=sf_update_style(objH,'req');
-
-
                 chartBlock=sf('Private','chart2block',target_chart);
                 if~rmi.objHasReqs(chartBlock,filterSettings)
                     set_param(chartBlock,'HiliteAncestors','reqInside');
@@ -96,8 +79,6 @@ function highlightReqChanges(objH,isSf,reqs,rmi_highlighting_on)
             slInSf=SlInSf(objH);
             if~isempty(slInSf)
 
-
-
                 try
                     slInSfObject=get_param(slInSf,'Object');
                     sfBox=Stateflow.SLUtils.getStateflowUddH(slInSfObject);
@@ -116,13 +97,12 @@ function highlightReqChanges(objH,isSf,reqs,rmi_highlighting_on)
     end
 end
 
+
 function slInSf=SlInSf(myPath)
     slInSf='';
     if~ischar(myPath)
         parentPath=get_param(myPath,'Parent');
     else
-
-
         tmpPath=strrep(myPath,'//','^^');
         separators=strfind(tmpPath,'/');
         if length(separators)>1
