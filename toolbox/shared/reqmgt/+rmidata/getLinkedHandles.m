@@ -1,8 +1,5 @@
 function[slHs,sfHs]=getLinkedHandles(modelH,filters)
 
-
-
-
     if ischar(modelH)
         [~,slDiagram]=fileparts(modelH);
     else
@@ -21,11 +18,6 @@ function[slHs,sfHs]=getLinkedHandles(modelH,filters)
             allIDs{i}=linkedItems(i).id;
         end
     end
-
-
-
-
-
     surrogateCheck=doCheckSurrogateLinks(slDiagram);
     filterCheck=isTagFilterEnabled(filters);
 
@@ -35,13 +27,6 @@ function[slHs,sfHs]=getLinkedHandles(modelH,filters)
         srcStruct.artifact=get_param(modelH,'FileName');
         for i=1:length(allIDs)
             srcStruct.id=allIDs{i};
-
-
-
-
-
-
-
             links=slreq.utils.getLinks(srcStruct);
             if isempty(links)
                 skipIdx(i)=true;
@@ -74,20 +59,18 @@ function[slHs,sfHs]=getLinkedHandles(modelH,filters)
             allIDs(skipIdx)=[];
         end
     end
-
     [slHs,sfHs]=getHandles(modelH,slDiagram,allIDs);
-
-
-
 
     slHs=unique(slHs);
 
 end
 
+
 function yesno=isTagFilterEnabled(filters)
     yesno=~isempty(filters)&&filters.enabled&&...
     (~isempty(filters.tagsRequire)||~isempty(filters.tagsExclude));
 end
+
 
 function yesno=doCheckSurrogateLinks(slModel)
     if rmi.settings_mgr('get','filterSettings','linkedOnly')
@@ -107,11 +90,10 @@ function yesno=doCheckSurrogateLinks(slModel)
     end
 end
 
+
 function[slHs,sfHs]=getHandles(modelH,slDiagram,allIDs)
     slHs=[];
     sfHs=[];
-
-
 
     modelName=get_param(modelH,'Name');
     if strcmp(modelName,slDiagram)
@@ -119,7 +101,6 @@ function[slHs,sfHs]=getHandles(modelH,slDiagram,allIDs)
         mainModelName=modelName;
         harnessID='';
     else
-
         [mainModelName,harnessID]=strtok(slDiagram,':');
     end
     for i=1:length(allIDs)
@@ -127,13 +108,11 @@ function[slHs,sfHs]=getHandles(modelH,slDiagram,allIDs)
             continue;
         end
 
-
         if any(allIDs{i}=='~')
             continue;
         end
 
         sid=[mainModelName,allIDs{i}];
-
 
         [sid,rest]=strtok(sid,'.');
         if~isempty(harnessID)
@@ -169,6 +148,7 @@ function[slHs,sfHs]=getHandles(modelH,slDiagram,allIDs)
         end
     end
 end
+
 
 function handle=protectedSidToHandle(sid)
     try
