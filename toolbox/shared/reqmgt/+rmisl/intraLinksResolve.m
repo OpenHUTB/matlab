@@ -1,11 +1,5 @@
 function reqs=intraLinksResolve(reqs,source)
 
-
-
-
-
-
-
     if ischar(source)
         modelName=strtok(source,'/');
     else
@@ -13,11 +7,8 @@ function reqs=intraLinksResolve(reqs,source)
     end
 
     if rmisl.isComponentHarness(modelName)
-
-
         [~,modelName]=fileparts(get_param(source,'FileName'));
     end
-
     isSameModel=strncmp({reqs.doc},'$ModelName$',length('$ModelName$'));
     if any(isSameModel)
         for i=find(isSameModel)
