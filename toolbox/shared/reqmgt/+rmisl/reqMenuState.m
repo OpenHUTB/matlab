@@ -1,20 +1,10 @@
 function out=reqMenuState(callbackInfo,isSys)
-
-
-
-
-
-
-
-
-
     if~any(strcmp(callbackInfo.model.BlockDiagramType,{'model','library','subsystem'}))
         out='Hidden';
         return;
     end
 
     objh=getObj(isSys,callbackInfo);
-
 
     if rmisl.isComponentHarness(callbackInfo.model.Name)
         if length(objh)~=1
@@ -49,7 +39,6 @@ function out=reqMenuState(callbackInfo,isSys)
         return;
     end
 
-
     [installed,licensed]=rmi.isInstalled();
     if installed&&licensed
         if~isSys&&isempty(vectorSelection(callbackInfo.getSelection))
@@ -70,6 +59,7 @@ function out=reqMenuState(callbackInfo,isSys)
 
 end
 
+
 function objh=getObj(isSys,callbackInfo)
     if isSys
         objh=cbUiObject(callbackInfo);
@@ -85,10 +75,10 @@ end
 function objh=cbSelection(callbackInfo)
     objh=callbackInfo.getSelection;
     if isempty(objh)
-
         objh=find(cbUiObject(callbackInfo),'-isa','Simulink.Line','-and','Selected','on');%#ok<*GTARG>
     end
 end
+
 
 function objh=cbUiObject(callbackInfo)
     objh=callbackInfo.uiObject;
@@ -96,6 +86,7 @@ function objh=cbUiObject(callbackInfo)
         objh=objh.getVariable;
     end
 end
+
 
 function obj=vectorSelection(select)
     row=size(select,1);
@@ -107,6 +98,7 @@ function obj=vectorSelection(select)
         end
     end
 end
+
 
 function yesno=objectIsOpenedInActiveHarness(modelName,objh)
     modelH=get_param(modelName,'Handle');
