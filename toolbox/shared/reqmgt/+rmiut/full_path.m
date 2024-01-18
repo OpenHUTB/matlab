@@ -1,18 +1,9 @@
 function filePath=full_path(relPath,refPath)
 
-
-
-
-
-
-
-
     if rmiut.isCompletePath(relPath)
         filePath=relPath;
         return;
     end
-
-
 
     if isempty(fileparts(relPath))
         try
@@ -24,7 +15,6 @@ function filePath=full_path(relPath,refPath)
         catch Mex %#ok<NASGU>
         end
     end
-
 
     if ispc
         relPath(relPath=='/')=filesep;
@@ -38,7 +28,6 @@ function filePath=full_path(relPath,refPath)
         end
     end
 
-
     if nargin==2
         constructedPath=fullfile(refPath,relPath);
         constructedPath=rmiut.simplifypath(constructedPath,filesep);
@@ -48,15 +37,11 @@ function filePath=full_path(relPath,refPath)
         end
     end
 
-
-
     if exist(relPath,'file')
         currPath=pwd;
         filePath=rmiut.simplifypath(fullfile(currPath,relPath),filesep);
         return;
     end
-
-
     rmiut.warnNoBacktrace('Slvnv:reqmgt:full_path:UnresolvedPath',relPath);
     filePath='';
 end
