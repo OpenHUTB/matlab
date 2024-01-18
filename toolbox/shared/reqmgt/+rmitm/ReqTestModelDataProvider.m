@@ -1,8 +1,5 @@
 classdef ReqTestModelDataProvider<handle
 
-
-
-
     properties(Access=public)
 
         reqFileName2IdxMap;
@@ -26,25 +23,25 @@ Test
 Simulation
     end
 
+
     properties(Access=public)
         modelList;
         testFilePath;
     end
 
+
     properties(Access=private)
 
         reqIdx;
 reqFileIdx
-
-
 linkFileIdx
         implIdx;
         verifIdx;
         testIdx;
         simIdx;
-
         modelsForcedLoaded;
     end
+
 
     methods
 
@@ -52,6 +49,7 @@ linkFileIdx
 
             this.init();
         end
+
 
         function init(this)
             this.reqFullID2IdxMap=containers.Map('KeyType','char','ValueType','double');
@@ -83,6 +81,7 @@ linkFileIdx
             this.modelsForcedLoaded={};
         end
 
+
         function populateData(this)
             this.preprocessModelList();
             this.loadModelIfNeeded();
@@ -90,18 +89,12 @@ linkFileIdx
 
             this.populateRequirementsData();
 
-
-
-
-
             this.populateLinksData();
 
-
-
             this.resolveCrossReference();
-
             this.unloadModelIfForcedLoaded();
         end
+
 
         function info=getInfoStructure(this)
             info.ReqFile=this.ReqFile;
@@ -115,6 +108,7 @@ linkFileIdx
             info.modelItemMap=this.modelSID2IdxMap;
             info.testUuid2IdxMap=this.testCaseID2IdxMapWithDesc;
         end
+
 
         function loadModelIfNeeded(this)
             if isempty(this.modelList)
@@ -130,11 +124,13 @@ linkFileIdx
             end
         end
 
+
         function unloadModelIfForcedLoaded(this)
             for n=1:length(this.modelsForcedLoaded)
                 close_system(this.modelsForcedLoaded{n},0);
             end
         end
+
 
         function preprocessModelList(this)
 
@@ -148,12 +144,11 @@ linkFileIdx
             assert(isa(this.modelList,'cell'),'modelList must be a cell array');
         end
 
+
         function includeLibraries(this)
             mList=this.modelList;
             mListWithLibs=this.modelList;
             for n=1:length(mList)
-
-
                 libs=libinfo(mList{n},'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices);
                 for m=1:length(libs)
                     mListWithLibs{end+1}=libs(m).Library;%#ok<AGROW>
@@ -161,6 +156,7 @@ linkFileIdx
             end
             this.modelList=unique(mListWithLibs);
         end
+
 
         function populateRequirementsData(this)
             dataReqSets=slreq.data.ReqData.getInstance().getLoadedReqSets;
@@ -175,6 +171,7 @@ linkFileIdx
                 this.reqFileIdx=this.reqFileIdx+1;
             end
         end
+
 
         function populateLinksData(this)
             dataLinkSets=slreq.data.ReqData.getInstance().getLoadedLinkSets();
@@ -196,11 +193,8 @@ linkFileIdx
             end
         end
 
+
         function resolveCrossReference(this)
-
-
-
-
 
             for n=1:length(this.Requirement)
                 req=this.Requirement(n);
@@ -218,11 +212,12 @@ linkFileIdx
         end
     end
 
+
     methods(Access=private)
         function populateRequirements(this,dataReqSet)
-
             dataReqs=dataReqSet.getAllItems();
             populateReqs(this,dataReqs);
+
 
             function populateReqs(this,dataReqs)
                 for j=1:length(dataReqs)
@@ -231,16 +226,15 @@ linkFileIdx
                     id=num2str(dataReq.sid);
                     url=getURL('linktype_rmi_slreq',doc,id);
                     fullId=dataReq.getFullID;
-
                     rq=struct('Label',dataReq.summary,'URL',url,'fileIdx',this.reqFileIdx,...
                     'ImplementInd',[],'VerifyInd',[],'FullID',fullId);
-
                     this.Requirement=append(this.Requirement,rq);
                     this.reqFullID2IdxMap(fullId)=this.reqIdx;
                     this.reqIdx=this.reqIdx+1;
                 end
             end
         end
+
 
         function populateLinks(this,dataLinkSet)
             links=dataLinkSet.getAllLinks();
@@ -267,15 +261,12 @@ linkFileIdx
                 reqId=dstItem.getFullID;
                 if isSimulink&&slreq.app.LinkTypeManager.isa(dataLink.type,...
                     slreq.custom.LinkType.Implement,dataLink.getLinkSet())
-
-
                     impl=this.getImplementLinkStruct(dataLink,srcItem,reqId);
                     this.ImplementLink=append(this.ImplementLink,impl);
                     this.reqFullID2ImplIndexMap=appendInMap(this.reqFullID2ImplIndexMap,reqId,this.implIdx);
                     this.implIdx=this.implIdx+1;
                 elseif isTestManager&&slreq.app.LinkTypeManager.isa(...
                     dataLink.type,slreq.custom.LinkType.Verify,dataLink.getLinkSet())
-
                     verif=this.getVerificationLinkStruct(dataLink,srcItem,reqId);
                     this.VerifyLink=append(this.VerifyLink,verif);
                     this.reqFullID2VerifIndexMap=appendInMap(this.reqFullID2VerifIndexMap,reqId,this.verifIdx);
@@ -284,6 +275,7 @@ linkFileIdx
 
             end
         end
+
 
         function impl=getImplementLinkStruct(this,dataLink,srcItem,reqId)
 
@@ -294,11 +286,11 @@ linkFileIdx
             else
                 impl.RequirementIdx=[];
             end
-
             this.populateModelItem(srcItem,this.implIdx);
             impl.ModelItemIdx=this.modelSID2IdxMap(srcItem.getSID);
             impl.fileIdx=this.linkFileIdx;
         end
+
 
         function populateModelItem(this,srcItem,nImpl)
             sid=srcItem.getSID();
@@ -316,6 +308,7 @@ linkFileIdx
             end
         end
 
+
         function verif=getVerificationLinkStruct(this,dataLink,srcItem,reqId)
             verif.Label=dataLink.description;
             if isKey(this.reqFullID2IdxMap,reqId)
@@ -323,7 +316,6 @@ linkFileIdx
             else
                 verif.RequirementIdx=[];
             end
-
             this.populateTest(srcItem,this.verifIdx);
             verif.URL=getURLToLink(dataLink);
             if isKey(this.testCaseID2IdxMap,srcItem.id)
@@ -331,6 +323,7 @@ linkFileIdx
                 verif.fileIdx=this.linkFileIdx;
             end
         end
+
 
         function populateTest(this,srcItem,nVerif)
             if~isKey(this.testCaseID2IdxMap,srcItem.id)
@@ -346,14 +339,13 @@ linkFileIdx
                 this.addTestObjWithDescendentsToMap(getTestObj(srcItem),tIdx)
                 this.testIdx=this.testIdx+1;
             else
-
                 tIdx=this.testCaseID2IdxMap(srcItem.id);
                 testItem=this.Test(tIdx);
                 testItem.VerifyInd=append(testItem.VerifyInd,nVerif);
                 this.Test(tIdx)=testItem;
             end
-
         end
+
 
         function addTestObjWithDescendentsToMap(this,testObjects,tIdx)
             for toIdx=1:length(testObjects)
@@ -364,7 +356,6 @@ linkFileIdx
                 else
                     uuid=testObj.UUID;
                 end
-
                 if~this.appendToTestIdxMap(uuid,tIdx)
 
                     return;
@@ -393,6 +384,7 @@ linkFileIdx
             end
         end
 
+
         function added=appendToTestIdxMap(this,uuid,testIdx)
             added=false;
             if isKey(this.testCaseID2IdxMapWithDesc,uuid)
@@ -416,7 +408,6 @@ linkFileIdx
                     tf=true;
                 else
                     [~,modelName]=fileparts(dataLinkSet.artifact);
-
                     tf=any(contains(this.modelList,modelName));
                 end
             end
@@ -427,10 +418,8 @@ linkFileIdx
             if strcmp(dataLinkSet.domain,'linktype_rmi_testmgr')
                 if isempty(this.testFilePath)
 
-
                     tf=true;
                 else
-
                     tf=any(contains(this.testFilePath,dataLinkSet.artifact));
                 end
             end
@@ -438,32 +427,33 @@ linkFileIdx
     end
 end
 
+
 function url=getURL(domain,artifact,id)
     navCmd=sprintf('rmi.navigate(''%s'',''%s'',''%s'',''%s'')',...
     domain,artifact,id,'');
     url=sprintf('matlab:%s',navCmd);
 end
 
+
 function url=getURLToLink(dataLink)
     navCmd=sprintf('slreq.app.CallbackHandler.selectObjectByUuid(''%s'',''standalone'')',dataLink.getUuid);
     url=sprintf('matlab:%s',navCmd);
 end
 
+
 function map=appendInMap(map,id,value)
     if isKey(map,id)
-
         v=map(id);
         v=[v,value];
         map(id)=v;
     else
-
         map(id)=value;
     end
 end
 
+
 function lhs=append(lhs,in)
     if isempty(lhs)
-
         lhs=in;
     else
         lhs=[lhs,in];
@@ -490,7 +480,6 @@ function testObj=getTestObj(srcItem)
             tc=sltest.testmanager.TestCase([],iterProps.testCaseId);
             testObj=tc.getIterations(iterProps.name);
         case 'assessments'
-
             tcId=stm.internal.getAssessmentsTestCaseID(itemId);
             tc=sltest.testmanager.TestCase([],tcId);
             tciAll=tc.getIterations;
@@ -515,10 +504,8 @@ function testObj=getTestObj(srcItem)
     end
 end
 
+
 function res=checkIterationHasAssessment(iteration,assessmentName)
-
-
-
     res=false;
     tp=iteration.TestParams;
     assessmentParamIdx=cellfun(@(x)strcmpi(x{1},'Assessments'),tp);
