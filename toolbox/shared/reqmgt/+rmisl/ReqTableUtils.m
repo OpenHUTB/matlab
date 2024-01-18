@@ -1,10 +1,5 @@
 classdef ReqTableUtils<handle
 
-
-
-
-
-
     methods(Static)
         function tf=isEmbeddedReqIdString(id)
             [mdlName,tableSID,reqSID]=rmis.ReqTableUtils.splitEmbeddedReqIdString(id);
@@ -23,18 +18,13 @@ classdef ReqTableUtils<handle
 
                 tokens=split(id,'~');
                 if length(tokens)>1
-
                     reqSID=tokens{end};
-
-
                     reqSetNameWithExt=strjoin(tokens(1:end-1),'~');
 
                     [~,reqSetName,fExt]=fileparts(reqSetNameWithExt);
                     if strcmp(fExt,'.slreqx')
-
                         nameTokens=split(reqSetName,'_');
                         if length(nameTokens)>1
-
                             tableSID=nameTokens{end};
                             modelName=strjoin(nameTokens(1:end-1),'_');
                         end
