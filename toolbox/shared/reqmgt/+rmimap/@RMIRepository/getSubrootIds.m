@@ -1,8 +1,5 @@
 function subrootIds=getSubrootIds(this,mdlName,varargin)
 
-
-
-
     if isempty(varargin)
         rootType='linktype_rmi_matlab';
     else
