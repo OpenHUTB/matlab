@@ -1,10 +1,6 @@
 function result=highlightHarnessObjects(harnessName)
 
-
-
-
     [slReq,sfReq,reqInside,sfFade]=rmisl.getHarnessObjectsWithReqs(harnessName);
-
 
     cutH=get_param([harnessName,':1'],'Handle');
     cutColor=get_param(cutH,'HiliteAncestors');
@@ -18,8 +14,6 @@ function result=highlightHarnessObjects(harnessName)
     if~isempty(cutColors)
         restoreCutColors(cutObjs,cutColors);
     end
-
-
     harnessH=get_param(harnessName,'Handle');
     for i=1:length(slReq)
         if slReq(i)~=harnessH
@@ -27,11 +21,9 @@ function result=highlightHarnessObjects(harnessName)
         end
     end
 
-
     if~isempty(sfReq)||~isempty(sfFade)
         rmisf.highlight(sfReq,sfFade,harnessName,'req');
     end
-
 
     for i=1:length(reqInside)
         if~strcmp(get_param(reqInside(i),'HiliteAncestors'),'reqHere')
@@ -42,6 +34,7 @@ function result=highlightHarnessObjects(harnessName)
     result=~isempty(slReq)||~isempty(sfReq)||~isempty(reqInside);
 
 end
+
 
 function[coloredObjs,colors]=cacheCutColors(cutH)
     cutObj=get_param(cutH,'Object');
@@ -63,6 +56,7 @@ function[coloredObjs,colors]=cacheCutColors(cutH)
     coloredObjs=cutBlocks(isColored);
     colors(~isColored)=[];
 end
+
 
 function restoreCutColors(cutObjs,colors)
     for i=1:length(cutObjs)
