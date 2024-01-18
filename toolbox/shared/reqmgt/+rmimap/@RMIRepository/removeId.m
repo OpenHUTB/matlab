@@ -1,8 +1,5 @@
 function result=removeId(this,srcName,id)
 
-
-
-
     result=false;
     root=rmimap.RMIRepository.getRoot(this.graph,srcName);
     if isempty(root)
