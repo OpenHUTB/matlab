@@ -1,8 +1,5 @@
 function nodeIds=getNodesForRoot(this,rootName,linkedOnly)
 
-
-
-
     nodeIds={};
     srcRoot=rmimap.RMIRepository.getRoot(this.graph,rootName);
     if isempty(srcRoot)
@@ -21,7 +18,6 @@ function nodeIds=getNodesForRoot(this,rootName,linkedOnly)
             nodeIds(skipIdx)=[];
         end
     end
-
 
     if srcRoot.dependeeLinks.size>0
         nodeIds=[{''},nodeIds];
