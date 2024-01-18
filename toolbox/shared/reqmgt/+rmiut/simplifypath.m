@@ -1,12 +1,5 @@
 function out=simplifypath(in,sep)
 
-
-
-
-
-
-
-
     if nargin<2
         sep='/';
     end
@@ -14,13 +7,11 @@ function out=simplifypath(in,sep)
     upDirStr=[sep,'..',sep];
     currDirStr=[sep,'.',sep];
 
-
     out=strrep(in,currDirStr,sep);
 
     if((length(out)>=2)&&(strcmp(out(1:2),['.',sep])))
         out(1:2)=[];
     end
-
 
     prefix='';
     if((length(out)>=3)&&(strcmp(out(2:3),[':',sep])))
@@ -42,7 +33,6 @@ function out=simplifypath(in,sep)
         startAt=sepIdx(sepIdx<upIdx);
         if isempty(startAt)
 
-
             if(strcmp(out(1:upIdx),['..',sep]))
                 break;
             else
@@ -57,6 +47,5 @@ function out=simplifypath(in,sep)
         out(remove)=[];
         updirIdx=strfind(out,upDirStr);
     end
-
 
     out=[prefix,out];
