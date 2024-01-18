@@ -1,14 +1,6 @@
 function newId=newRangeId(this,srcName,range)
 
-
-
-
-
-
-
     isNewRoot=false;
-
-
     [isMatlabFunction,mdlName]=rmisl.isSidString(srcName);
     if isMatlabFunction
 
@@ -24,14 +16,7 @@ function newId=newRangeId(this,srcName,range)
         isNewRoot=true;
     end
 
-
-
-
-
-
-
     t=M3I.Transaction(this.graph);
-
 
     if isNewRoot
         ids='{  }';
@@ -50,7 +35,6 @@ function newId=newRangeId(this,srcName,range)
         end
     end
 
-
     lastDay=srcRoot.getProperty('lastDay');
     major=floor(now);
     if str2num(lastDay)==major %#ok<*ST2NM>
@@ -62,7 +46,6 @@ function newId=newRangeId(this,srcName,range)
     srcRoot.setProperty('lastId',num2str(minor));
     newId=sprintf('%d.%d',major,minor);
 
-
     if strcmp(ids,'{  }')
         [starts,ends,ids]=rmiut.RangeUtils.convert(range(1),range(2),{newId});
     else
@@ -71,14 +54,11 @@ function newId=newRangeId(this,srcName,range)
     srcRoot.setProperty('rangeStarts',starts);
     srcRoot.setProperty('rangeEnds',ends);
     srcRoot.setProperty('rangeLabels',ids);
-
-
     cache=rmiut.escapeForXml(rmiml.getText(srcName));
     srcRoot.setProperty('cache',cache);
     if isMatlabFunction
         this.updateTextNodeData(parentRoot,srcRoot);
     end
-
 
     t.commit();
 end
