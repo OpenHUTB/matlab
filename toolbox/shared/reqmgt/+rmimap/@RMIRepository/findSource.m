@@ -1,8 +1,5 @@
 function[source,proxies]=findSource(myGraph,srcName,srcType,isLoading)
 
-
-
-
     [~,sName,sExt]=fileparts(srcName);
     sourceName=[sName,sExt];
 
@@ -37,8 +34,6 @@ function[source,proxies]=findSource(myGraph,srcName,srcType,isLoading)
     case 0
         source=[];
     otherwise
-
-
         source=findBestMatch(sources,isLoading);
         if isempty(source)
             fprintf(1,'RMI: %s\n',getString(message('Slvnv:rmiml:RepositoryCantChoose',sourceName)));
@@ -48,18 +43,12 @@ function[source,proxies]=findSource(myGraph,srcName,srcType,isLoading)
     end
 end
 
+
 function src=findBestMatch(roots,isLoading)
     best=1;
     value=whenLastLoaded(roots(best));
     for i=2:length(roots)
         current=whenLastLoaded(roots(i));
-
-
-
-
-
-
-
 
         if isLoading&&current<value
             value=current;
@@ -77,6 +66,7 @@ function src=findBestMatch(roots,isLoading)
         src=roots(best);
     end
 end
+
 
 function timeNum=whenLastLoaded(root)
     timeStr=root.getProperty('lastLoaded');
