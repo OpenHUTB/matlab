@@ -1,9 +1,5 @@
 function resultOut=progressBarFcn(varargin)
 
-
-
-
-
     persistent waitH;
 
     nvarargin=length(varargin);
@@ -19,8 +15,6 @@ function resultOut=progressBarFcn(varargin)
     method=varargin{1};
 
     if~ischar(method)
-
-
         if~isempty(waitH)&&ishandle(waitH)
             delete(waitH);
             drawnow;
@@ -49,16 +43,6 @@ function resultOut=progressBarFcn(varargin)
             waitH=waitbar(varargin{2},msg,...
             'Name',winTitle,...
             'CreateCancelBtn',@rmiut.progressBarFcn);
-
-
-
-
-
-
-
-
-
-
 
         end
 
