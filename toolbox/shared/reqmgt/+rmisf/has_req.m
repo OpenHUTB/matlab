@@ -1,14 +1,6 @@
 function out=has_req(apiObj,skipChart)
 
-
-
-
-
-
     out=false;
-
-
-
 
     if nargin<2
         skipChart=true;
@@ -21,8 +13,6 @@ function out=has_req(apiObj,skipChart)
         filterSettings=rmi.settings_mgr('get','filterSettings');
         out=rmi('hasrequirements',apiObj,filterSettings);
     end
-
-
 
     if~out&&any(strcmp(class(apiObj),{'Stateflow.EMChart','Stateflow.EMFunction'}))
         sid=Simulink.ID.getSID(apiObj);
