@@ -1,8 +1,5 @@
 function[testSuite,id,ext]=resolve(varargin)
 
-
-
-
     source=varargin{1};
 
     if any(source=='|')
@@ -19,8 +16,6 @@ function[testSuite,id,ext]=resolve(varargin)
 
     testSuite=rmitm.getFilePath(srcName);
     if nargout==3
-
-
         [~,~,ext]=fileparts(testSuite);
     else
         ext='';
