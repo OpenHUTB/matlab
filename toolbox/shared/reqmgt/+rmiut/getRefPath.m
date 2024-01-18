@@ -1,9 +1,5 @@
 function refPath=getRefPath(sourceObj)
 
-
-
-
-
     if isa(sourceObj,'Simulink.DDEAdapter')
         dName=sourceObj.getPropValue('DataSource');
         refPath=fileparts(rmide.resolveDict(dName));
@@ -13,16 +9,12 @@ function refPath=getRefPath(sourceObj)
             refPath=fileparts(which(refName));
         end
     elseif isa(sourceObj,'slreq.das.Requirement')
-
         reqSetPath=sourceObj.RequirementSet.Filepath;
         refPath=fileparts(reqSetPath);
         if isempty(refPath)
-
-
             refPath=pwd;
         end
     elseif isa(sourceObj,'slreq.data.Requirement')
-
         reqSetPath=sourceObj.getReqSet.filepath;
         refPath=fileparts(reqSetPath);
         if isempty(refPath)
