@@ -1,11 +1,4 @@
 function subroots=getSubrootIds(modelName,filters)
-
-
-
-
-
-
-
     subrootIds=rmimap.RMIRepository.getInstance.getSubrootIds(modelName);
 
     if isempty(subrootIds)
