@@ -1,228 +1,9 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef ReqSet < slreq.internal.BaseSet
 
     properties ( Dependent )
         Description;
     end
+
 
     properties ( Dependent, GetAccess = public, SetAccess = private )
         Name
@@ -237,38 +18,40 @@ classdef ReqSet < slreq.internal.BaseSet
         ModifiedOn
     end
 
-    methods
 
+    methods
 
         function this = ReqSet( dataObject )
             this.dataObject = dataObject;
         end
 
+
         function name = get.Name( this )
             name = this.dataObject.name;
         end
+
 
         function name = get.Filename( this )
             name = this.dataObject.filepath;
         end
 
+
         function value = get.Revision( this )
             value = this.dataObject.revision;
         end
 
+
         function text = getPreSaveFcn( this )
-
-
             this.errorIfVectorOperation(  );
             text = this.dataObject.preSaveFcn;
         end
 
+
         function text = getPostLoadFcn( this )
-
-
             this.errorIfVectorOperation(  );
             text = this.dataObject.postLoadFcn;
         end
+
 
         function setPreSaveFcn( this, value )
             this.errorIfVectorOperation(  );
@@ -276,40 +59,49 @@ classdef ReqSet < slreq.internal.BaseSet
             this.dataObject.preSaveFcn = value;
         end
 
+
         function setPostLoadFcn( this, value )
             this.errorIfVectorOperation(  );
             value = convertStringsToChars( value );
             this.dataObject.postLoadFcn = value;
         end
 
+
         function value = get.Description( this )
             value = this.dataObject.description;
         end
+
 
         function set.Description( this, value )
             value = convertStringsToChars( value );
             this.dataObject.description = value;
         end
 
+
         function value = get.CreatedBy( this )
             value = this.dataObject.createdBy;
         end
+
 
         function value = get.CreatedOn( this )
             value = this.dataObject.createdOn;
         end
 
+
         function value = get.ModifiedBy( this )
             value = this.dataObject.modifiedBy;
         end
+
 
         function value = get.ModifiedOn( this )
             value = this.dataObject.modifiedOn;
         end
 
+
         function dirty = get.Dirty( this )
             dirty = this.dataObject.dirty;
         end
+
 
         function result = children( this )
             this.errorIfVectorOperation(  );
@@ -327,6 +119,7 @@ classdef ReqSet < slreq.internal.BaseSet
             end
         end
 
+
         function importProfile( this, profileName )
             this.errorIfVectorOperation(  );
             if reqmgt( 'rmiFeature', 'SupportProfile' )
@@ -335,17 +128,20 @@ classdef ReqSet < slreq.internal.BaseSet
             end
         end
 
+
         function profiles = profiles( this )
             this.errorIfVectorOperation(  );
             prfs = this.dataObject.getAllProfiles(  );
             profiles = prfs.toArray(  );
         end
 
+
         function tf = removeProfile( this, profileName )
             this.errorIfVectorOperation(  );
             profileName = convertStringsToChars( profileName );
             tf = this.dataObject.removeProfile( profileName );
         end
+
 
         function save( this, varargin )
             this.errorIfVectorOperation(  );
@@ -359,13 +155,6 @@ classdef ReqSet < slreq.internal.BaseSet
                 if isempty( rDir )
                     newFileName = fullfile( pwd, newFileName );
                 end
-
-
-
-
-
-
-
                 slreq.uri.getPreferredPath( false );
                 clp = onCleanup( @(  )slreq.uri.getPreferredPath( true ) );
                 isRename = ~strcmp( newFileName, this.dataObject.filepath );
@@ -385,10 +174,12 @@ classdef ReqSet < slreq.internal.BaseSet
             end
         end
 
+
         function explore( this )
             this.errorIfVectorOperation(  );
             slreq.open( this );
         end
+
 
         function close( this, varargin )
             this.errorIfVectorOperation(  );
@@ -411,22 +202,20 @@ classdef ReqSet < slreq.internal.BaseSet
             end
         end
 
+
         function discard( this )
             this.errorIfVectorOperation(  );
             this.dataObject.discard(  );
         end
 
+
         function result = find( this, varargin )
-
-
 
             this.errorIfVectorOperation(  );
             if isempty( this )
                 result = [  ];
                 return ;
             end
-
-
 
             if ~( isempty( varargin ) ||  ...
                     ( numel( varargin ) == 2 && strcmpi( varargin{ 1 }, 'type' ) ) )
@@ -481,6 +270,7 @@ classdef ReqSet < slreq.internal.BaseSet
             end
         end
 
+
         function result = add( this, varargin )
             this.errorIfVectorOperation(  );
 
@@ -510,6 +300,7 @@ classdef ReqSet < slreq.internal.BaseSet
             end
         end
 
+
         function count = importFromDocument( this, pathToDoc, varargin )
             this.errorIfVectorOperation(  );
             pathToDoc = convertStringsToChars( pathToDoc );
@@ -519,6 +310,7 @@ classdef ReqSet < slreq.internal.BaseSet
             count = slreq.import( pathToDoc, 'ReqSet', this, 'AsReference', false, varargin{ : } );
         end
 
+
         function count = createReferences( this, docPathOrType, varargin )
             this.errorIfVectorOperation(  );
             docPathOrType = convertStringsToChars( docPathOrType );
@@ -527,6 +319,7 @@ classdef ReqSet < slreq.internal.BaseSet
             end
             count = slreq.import( docPathOrType, 'ReqSet', this, 'AsReference', true, varargin{ : } );
         end
+
 
         function [ status, changelist ] = updateReferences( this, artifactData )
             this.errorIfVectorOperation(  );
@@ -549,12 +342,14 @@ classdef ReqSet < slreq.internal.BaseSet
             [ status, changelist ] = refObj.updateFromDocument(  );
         end
 
+
         function updateSrcFileLocation( this, storedDocName, newDocPathName )
             this.errorIfVectorOperation(  );
             storedDocNameChar = strtrim( convertStringsToChars( storedDocName ) );
             newDocPathNameChar = strtrim( convertStringsToChars( newDocPathName ) );
             this.dataObject.updateSrcArtifactUri( storedDocNameChar, newDocPathNameChar );
         end
+
 
         function updateSrcArtifactUri( this, storedDocName, newDocPathName )
             this.errorIfVectorOperation(  );
@@ -563,10 +358,12 @@ classdef ReqSet < slreq.internal.BaseSet
             this.dataObject.updateSrcArtifactUri( storedArtifactUri, updatedArtifactUri, false );
         end
 
+
         function names = get.CustomAttributeNames( this )
 
             names = this.dataObject.CustomAttributeNames;
         end
+
 
         function justification = addJustification( this, varargin )
             this.errorIfVectorOperation(  );
@@ -581,6 +378,7 @@ classdef ReqSet < slreq.internal.BaseSet
             justification = slreq.Justification( dataJust );
         end
 
+
         function updateImplementationStatus( this )
             this.errorIfVectorOperation(  );
             this.dataObject.updateImplementationStatus(  );
@@ -588,6 +386,7 @@ classdef ReqSet < slreq.internal.BaseSet
                 slreq.app.MainManager.getInstance(  ).update(  );
             end
         end
+
 
         function updateVerificationStatus( this )
             this.errorIfVectorOperation(  );
@@ -597,42 +396,40 @@ classdef ReqSet < slreq.internal.BaseSet
             end
         end
 
+
         function status = runTests( this, params )
             arguments
                 this slreq.ReqSet
                 params.select char{ slreq.data.ResultManager.validateSelectors( params.select ) } = slreq.data.ResultManager.SELECT_RUN_ALL;
             end
             this.errorIfVectorOperation(  );
-
-
             this.dataObject.runTests( slreq.data.ResultManager.SELF_STATUS_ALL, params.select );
             this.updateVerificationStatus(  );
             status = this.getVerificationStatus( slreq.data.ResultManager.SELF_STATUS_ALL );
         end
 
+
         function status = getImplementationStatus( this, varargin )
             this.errorIfVectorOperation(  );
             rollupTypeName = slreq.analysis.ImplementationVisitor.getName(  );
             try
-
-
                 status = this.dataObject.handlePublicAPICall( rollupTypeName, varargin{ : } );
             catch ex
                 throwAsCaller( ex );
             end
         end
+
 
         function status = getVerificationStatus( this, varargin )
             this.errorIfVectorOperation(  );
             rollupTypeName = slreq.analysis.VerificationVisitor.getName(  );
             try
-
-
                 status = this.dataObject.handlePublicAPICall( rollupTypeName, varargin{ : } );
             catch ex
                 throwAsCaller( ex );
             end
         end
+
 
         function success = exportToVersion( this, targetFileName, release )
             this.errorIfVectorOperation(  );
@@ -658,11 +455,13 @@ classdef ReqSet < slreq.internal.BaseSet
             end
         end
 
+
         function parentModel = getParentModel( obj )
             obj.errorIfVectorOperation(  );
             parentModel = obj.dataObject.parent;
         end
     end
+
 
     methods ( Hidden )
 
@@ -679,6 +478,8 @@ classdef ReqSet < slreq.internal.BaseSet
                 cnt = numel( refItems );
             end
         end
+
+
         function rename( this, newName )
             this.errorIfVectorOperation(  );
             slreq.uri.getPreferredPath( false );
@@ -695,6 +496,7 @@ classdef ReqSet < slreq.internal.BaseSet
             end
         end
     end
+
 
     methods ( Access = private )
         function result = slreqFind( this, varargin )
@@ -714,8 +516,6 @@ classdef ReqSet < slreq.internal.BaseSet
 
             for i = 1:length( r )
                 if r( i ).reqSet.dataObject == this.dataObject
-
-
 
                     result( end  + 1 ) = r( i );
                 end
