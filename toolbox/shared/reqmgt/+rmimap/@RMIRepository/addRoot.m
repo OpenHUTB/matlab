@@ -1,8 +1,5 @@
 function srcRoot=addRoot(this,srcName,reqFileName)
 
-
-
-
     if~ischar(srcName)
 
         if nargin>2
@@ -11,7 +8,6 @@ function srcRoot=addRoot(this,srcName,reqFileName)
             srcRoot=this.addModel(srcName);
         end
     else
-
         if nargin>2
 
             if exist(reqFileName,'file')~=2
@@ -19,8 +15,6 @@ function srcRoot=addRoot(this,srcName,reqFileName)
             end
             srcRoot=this.readRoot(reqFileName,srcName);
         else
-
-
             rootDataArray=rmimap.initRootData(srcName);
             if isempty(rootDataArray)
                 error('Unsupported source type: %s',srcName);
@@ -36,7 +30,6 @@ function srcRoot=addRoot(this,srcName,reqFileName)
             tr.commit;
         end
     end
-
 
     rmimap.RMIRepository.getRoot([],'');
 end
