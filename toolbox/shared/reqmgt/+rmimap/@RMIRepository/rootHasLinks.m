@@ -1,18 +1,11 @@
 function[hasLinks,hasLinkedItems]=rootHasLinks(this,rootName)
 
-
-
-
     hasLinks=false;
 
-
     if~ischar(rootName)
-
-
         [~,rootName]=rmisl.modelFileParts(rootName);
     end
     srcRoot=rmimap.RMIRepository.getRoot(this.graph,rootName);
-
 
     if isempty(srcRoot)
         error(message('Slvnv:rmigraph:UnmatchedModelName',rootName));
@@ -28,9 +21,6 @@ function[hasLinks,hasLinkedItems]=rootHasLinks(this,rootName)
             end
         end
     end
-
-
-
 
     hasLinkedItems=false;
     for i=2:srcRoot.nodeData.size
