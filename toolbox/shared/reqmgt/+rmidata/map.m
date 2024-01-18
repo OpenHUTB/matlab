@@ -1,6 +1,4 @@
 function[varargout]=map(model,varargin)
-
-
     model=convertStringsToChars(model);
 
     if nargin>1
