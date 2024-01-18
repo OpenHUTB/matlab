@@ -1,9 +1,5 @@
 function[isModified,lostIds]=verifyTextRanges(this,srcName)
 
-
-
-
-
     isModified=false;
     lostIds=[];
     status=rmiml.RmiMlData.getInstance.getStatus(srcName);
@@ -17,7 +13,6 @@ function[isModified,lostIds]=verifyTextRanges(this,srcName)
     [isMatlabInSl,mdlName]=rmisl.isSidString(srcName);
 
     contents=rmiml.getText(srcName);
-
     cached=rmiut.unescapeFromXml(root.getProperty('cache'));
     if strcmp(contents,cached)
         return;
@@ -26,14 +21,11 @@ function[isModified,lostIds]=verifyTextRanges(this,srcName)
     end
 
     if isempty(cached)
-
-
         tr=M3I.Transaction(this.graph);
         root.setProperty('cache',contents);
         tr.commit();
         return;
     end
-
 
     ids=root.getProperty('rangeLabels');
     if length(ids)<=length('{  }')
@@ -43,7 +35,6 @@ function[isModified,lostIds]=verifyTextRanges(this,srcName)
         tr.commit();
         return;
     end
-
 
     if isMatlabInSl
         disp(getString(message('Slvnv:rmigraph:AnalyzingStaleChild',srcName,mdlName)));
