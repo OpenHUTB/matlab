@@ -1,8 +1,5 @@
 function tableString=arrayToHtmlTable(varargin)
 
-
-
-
     tableData=varargin{1};
     numCols=size(tableData,2);
 
