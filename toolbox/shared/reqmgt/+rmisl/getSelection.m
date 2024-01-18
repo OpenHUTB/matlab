@@ -1,19 +1,13 @@
 function[objH,isSf]=getSelection()
 
-
-
-
-
     objH=[];
     isSf=false;
 
     try
-
         currentSys=gcs;
         if isempty(currentSys)||rmiut.isBuiltinNoRmi(currentSys)
             return;
         end
-
         editor=GLUE2.AbstractDomain.findLastActiveEditor();
         if isempty(editor)
             return;
@@ -47,6 +41,7 @@ function[objH,isSf]=getSelection()
 
 end
 
+
 function result=selectionToSfHandles(sel)
     result=[];
     if slreq.utils.selectionHasMarkup(sel)
@@ -56,6 +51,7 @@ function result=selectionToSfHandles(sel)
         result=[result,double(sel.at(i).backendId)];%#ok<AGROW>
     end
 end
+
 
 function result=selectionToSlHandles(sel)
     result=[];
@@ -74,6 +70,7 @@ function result=selectionToSlHandles(sel)
     end
 end
 
+
 function selectionInMLFB=checkForSelectionInMLFBEditor(daEditor)
     selectionInMLFB=[];
     mlEditor=slmle.api.getActiveEditor();
@@ -82,7 +79,6 @@ function selectionInMLFB=checkForSelectionInMLFBEditor(daEditor)
         if all(jsRangeData(1:2)==jsRangeData(3:4))
             return;
         else
-
             selectionInMLFB.srcKey=Simulink.ID.getSID(mlEditor.blkH);
             selectionInMLFB.selectedRange=convertLinePosToAbsRange(mlEditor,jsRangeData);
             selectionInMLFB.selectedText=mlEditor.SelectedText;
@@ -90,9 +86,8 @@ function selectionInMLFB=checkForSelectionInMLFBEditor(daEditor)
     end
 end
 
+
 function absRange=convertLinePosToAbsRange(mlEditor,rangeData)
-
-
     firstCharPos=mlEditor.positionInLineToIndex(rangeData(1),rangeData(2));
     lastCharPos=mlEditor.positionInLineToIndex(rangeData(3),rangeData(4));
     absRange=[firstCharPos,lastCharPos];
