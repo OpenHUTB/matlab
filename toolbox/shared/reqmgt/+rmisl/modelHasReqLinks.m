@@ -1,12 +1,5 @@
 function[result,storage,isDefault,hasLinkedBlocks]=modelHasReqLinks(modelH,checkLibRefs,checkModelRefs)
 
-
-
-
-
-
-
-
     if nargin<2
         checkLibRefs=false;
     end
@@ -59,10 +52,9 @@ function[result,storage,isDefault,hasLinkedBlocks]=modelHasReqLinks(modelH,check
     end
 end
 
+
 function result=libRefsHaveLinks(modelH)
     result=false;
-
-
     slObjs=find_system(modelH,'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,'FindAll','on','LookUnderMasks','on','FollowLinks','on','type','block');
     for i=1:length(slObjs)
         myObj=get_param(slObjs(i),'Object');
@@ -80,7 +72,6 @@ function result=libRefsHaveLinks(modelH)
                 break;
             end
 
-
             if slprivate('is_stateflow_based_block',libObjPath)
                 if sfRefHasRmiLinks(libObjPath)
                     result=true;
@@ -94,6 +85,7 @@ function result=libRefsHaveLinks(modelH)
     end
 end
 
+
 function libObjPath=getLibObj(mdlObj)
     libObjPath=mdlObj.ReferenceBlock;
 
@@ -104,6 +96,7 @@ function libObjPath=getLibObj(mdlObj)
     end
 end
 
+
 function result=sfRefHasRmiLinks(chartObj)
     result=false;
     chartId=sf('Private','block2chart',chartObj);
@@ -112,6 +105,7 @@ function result=sfRefHasRmiLinks(chartObj)
     end
     result=sfCheckDescendents(chartId);
 end
+
 
 function result=sfCheckDescendents(parentId)
     result=false;
