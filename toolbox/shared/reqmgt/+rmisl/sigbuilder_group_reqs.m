@@ -1,14 +1,11 @@
 function[offset,cnt,groupReqCnt]=sigbuilder_group_reqs(obj,groupIdx)
 
-
-
     offset=1;
     cnt=0;
     groupReqCnt=[];
 
     if rmisl.is_signal_builder_block(obj)
         blkInfo=rmisl.sigb_get_info(obj);
-
         if(isfield(blkInfo,'groupCnt')&&~isempty(blkInfo.groupCnt)&&...
             isfield(blkInfo,'groupReqCnt')&&~isempty(blkInfo.groupReqCnt))
 
