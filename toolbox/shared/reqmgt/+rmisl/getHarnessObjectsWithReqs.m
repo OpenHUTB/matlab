@@ -1,8 +1,5 @@
 function[slReq,sfReq,reqInside,sfFade]=getHarnessObjectsWithReqs(harnessName)
 
-
-
-
     slReq=[];
     sfReq=[];
     reqInside=[];
@@ -17,7 +14,6 @@ function[slReq,sfReq,reqInside,sfFade]=getHarnessObjectsWithReqs(harnessName)
     '-isa','Simulink.BlockDiagram',...
     '-or','-isa','Simulink.Block',...
     '-depth',1);%#ok<GTARG>
-
     filterSettings=rmi.settings_mgr('get','filterSettings');
 
     for i=1:length(itemsToCheck)
@@ -31,10 +27,7 @@ function[slReq,sfReq,reqInside,sfFade]=getHarnessObjectsWithReqs(harnessName)
             slReq(end+1,1)=obj.Handle;%#ok<AGROW>
         end
 
-
         if isa(obj,'Simulink.SubSystem')
-
-
             children=find_system(obj.handle,'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,'type','block');
             for j=1:length(children)
                 child=get_param(children(j),'object');
@@ -45,7 +38,6 @@ function[slReq,sfReq,reqInside,sfFade]=getHarnessObjectsWithReqs(harnessName)
                 end
             end
         end
-
 
         if slprivate('is_stateflow_based_block',obj.Handle)
             if strcmp(rmisf.sfBlockType(obj.Handle),'MATLAB Function')
@@ -72,13 +64,10 @@ function[slReq,sfReq,reqInside,sfFade]=getHarnessObjectsWithReqs(harnessName)
             end
         end
     end
-
-
     linkedReferencedBlocks=rmisl.getIndirectlyLinkedHandles(harnessObj,filterSettings);
     if~isempty(linkedReferencedBlocks)
         reqInside=[reqInside(:);linkedReferencedBlocks];
     end
-
 
 end
 
