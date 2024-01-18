@@ -1,8 +1,4 @@
 function[ssRefDiagramHandles,ssRefDiagramNames]=getLoadedSSRefFromModel(modelName)
-
-
-
-
     ssRefDiagramHandles=slInternal('getChildSubsystemBDs',modelName);
     if isempty(ssRefDiagramHandles)
 
