@@ -1,8 +1,5 @@
 function varargout=embeddedObjCache(method,modelH,value)
 
-
-
-
     persistent EmbeddedObjArrays
     mlock;
     if isempty(EmbeddedObjArrays)
