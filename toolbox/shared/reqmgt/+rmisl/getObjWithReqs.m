@@ -1,15 +1,6 @@
 function[objs,otherItems]=getObjWithReqs(modelH,varargin)
 
-
-
-
-
     [slHs,sfHs,otherItems]=rmisl.getHandlesWithRequirements(modelH,varargin{:});
-
-
-
-
-
     if~isempty(slHs)&&~isempty(sfHs)&&rmidata.isExternal(modelH)
         removeIdx=false(size(sfHs));
         sfRoot=Stateflow.Root;
@@ -25,7 +16,6 @@ function[objs,otherItems]=getObjWithReqs(modelH,varargin)
             sfHs(removeIdx)=[];
         end
     end
-
 
     objs=[slHs(:);sfHs(:)];
 end
