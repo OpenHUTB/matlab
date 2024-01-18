@@ -1,9 +1,5 @@
 function str=getModuleAttribute(moduleIdStr,attribute,varargin)
 
-
-
-
-
     if nargin==3&&strcmp(varargin,'get')
         hDoors=rmidoors.comApp('get');
     else
@@ -13,7 +9,6 @@ function str=getModuleAttribute(moduleIdStr,attribute,varargin)
     if isempty(hDoors)
         error(message('Slvnv:rmiref:DocCheckDoors:DoorsNotRunning'));
     end
-
     cmdStr=['dmiModuleGet_("',moduleIdStr,'","',attribute,'")'];
     rmidoors.invoke(hDoors,cmdStr);
     commandResult=hDoors.Result;
@@ -24,10 +19,6 @@ function str=getModuleAttribute(moduleIdStr,attribute,varargin)
     else
         doEval=any(strcmpi(attribute,{'objectIDs','SlRefObjects','SlRefLinks','columns'}));
         if strcmpi(attribute,'last modified on')
-
-
-
-
             str=erase(commandResult,'HH:mm:ss ');
         elseif doEval
             str=eval(strrep(commandResult,char(10),' '));
