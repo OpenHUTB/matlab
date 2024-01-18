@@ -1,8 +1,4 @@
 function[yesno,inLibSID]=isActiveLibRefSID(sid)
-
-
-
-
     yesno=false;
     inLibSID='';
 
