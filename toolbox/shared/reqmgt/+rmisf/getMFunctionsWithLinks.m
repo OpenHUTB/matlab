@@ -1,6 +1,5 @@
 function[mfunctionHandlesWithLinks,isSfMFnc]=getMFunctionsWithLinks(sfObjs)
 
-
     mfunctionHandlesWithLinks=[];
     isSfMFnc=false(size(sfObjs));
 
