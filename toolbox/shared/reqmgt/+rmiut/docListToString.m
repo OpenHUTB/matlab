@@ -1,8 +1,5 @@
 function result=docListToString(docsArray,ref,stripHtml)
 
-
-
-
     result='';
 
     for i=1:length(docsArray)
