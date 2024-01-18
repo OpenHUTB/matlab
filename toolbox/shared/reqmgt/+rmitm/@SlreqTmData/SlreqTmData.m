@@ -1,10 +1,9 @@
 classdef SlreqTmData<handle
 
-
-
     properties
 reqData
     end
+
 
     methods
         function this=SlreqTmData()
@@ -12,9 +11,9 @@ reqData
         end
     end
 
+
     methods
         function out=get(this,testFile,id)
-
             linkset=this.reqData.getLinkSet(testFile);
             if isempty(linkset)
                 linkset=this.loadFromFile(testFile);
@@ -38,6 +37,7 @@ reqData
             slreq.internal.setLinks(source,newData);
         end
 
+
         function writeToStorage(this,testSuite,storageName)
             linkset=this.reqData.getLinkSet(testSuite);
             if~isempty(linkset)
@@ -46,10 +46,12 @@ reqData
             end
         end
 
+
         function result=hasData(this,testSuite)
             linkset=this.reqData.getLinkSet(testSuite);
             result=~isempty(linkset);
         end
+
 
         function result=hasChanges(this,testSuite)
             result=false;
@@ -59,9 +61,11 @@ reqData
             end
         end
 
+
         function timestamp=getStatus(this,testSuite)
             timestamp='none';
         end
+
 
         function varargout=load(this,testSuite,reqFile)
             linkset=this.reqData.loadLinkSet(testSuite,reqFile);
@@ -70,6 +74,7 @@ reqData
                 varargout{2}='';
             end
         end
+
 
         function discard(this,testSuite)
             linkset=this.reqData.getLinkSet(testSuite);
@@ -83,17 +88,16 @@ reqData
             newReq='';
         end
 
+
         function storagePath=saveStorage(this,testSuite,varargin)
             if isempty(varargin)
-
                 storagePath=rmimap.StorageMapper.getInstance.getStorageFor(testSuite);
             else
-
                 storagePath=varargin{1};
             end
-
             this.writeToStorage(testSuite,storagePath);
         end
+
 
         function linkset=loadFromFile(this,testFile)
             linkset=[];
@@ -103,10 +107,12 @@ reqData
             end
         end
 
+
         function result=hasLinks(this,testSuite)
             linkset=this.reqData.getLinkSet(testSuite);
             result=~isempty(linkset.getLinkedItems());
         end
+
 
         function wasSaved=close(this,testSuite)
             wasSaved=false;
