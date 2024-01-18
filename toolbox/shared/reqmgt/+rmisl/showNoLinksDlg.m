@@ -1,7 +1,5 @@
 function result=showNoLinksDlg(modelH,dlgTitle,storageLocation,usingDefault)
 
-
-
     modelName=get_param(modelH,'Name');
     isLibrary=strcmp(get_param(modelH,'BlockDiagramType'),'library');
 
@@ -9,9 +7,6 @@ function result=showNoLinksDlg(modelH,dlgTitle,storageLocation,usingDefault)
         if nargin==2
             [storageLocation,usingDefault]=rmimap.StorageMapper.getInstance.getStorageFor(modelH);
         end
-
-
-
         if~usingDefault&&exist(storageLocation,'file')~=2
             dlgTitle=getString(message('Slvnv:reqmgt:requirementsFileNotFound'));
             if isLibrary
