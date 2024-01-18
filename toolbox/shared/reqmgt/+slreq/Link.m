@@ -1,145 +1,9 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 classdef Link < handle
-
-
 
     properties ( Access = private, Transient )
         dataObject
     end
+
 
     properties ( Dependent )
         Type
@@ -147,6 +11,7 @@ classdef Link < handle
         Keywords
         Rationale
     end
+
 
     properties ( Dependent, GetAccess = public, SetAccess = private )
         CreatedOn
@@ -158,12 +23,15 @@ classdef Link < handle
         Comments
     end
 
+
     methods ( Static )
         function obj = loadobj( ~ )
             obj = slreq.Link.empty(  );
             rmiut.warnNoBacktrace( 'Slvnv:slreq:illegalDataForMATFile', class( obj ) );
         end
     end
+
+
     methods
         function sobj = saveobj( obj )
             rmiut.warnNoBacktrace( 'Slvnv:slreq:illegalDataForMATFile', class( obj ) );
@@ -171,11 +39,13 @@ classdef Link < handle
         end
     end
 
+
     methods ( Hidden, Access = ?slreq.data.ReqData )
         function d = getDataObj( this )
             d = this.dataObject;
         end
     end
+
 
     methods
 
@@ -183,57 +53,80 @@ classdef Link < handle
             this.dataObject = dataObject;
         end
 
+
         function value = get.Type( this )
             value = this.dataObject.type;
         end
+
+
         function set.Type( this, value )
             value = convertStringsToChars( value );
             this.dataObject.type = value;
         end
 
+
         function value = get.Description( this )
             value = this.dataObject.description;
         end
+
+
         function set.Description( this, value )
             value = convertStringsToChars( value );
             this.dataObject.description = value;
         end
 
+
         function value = get.Keywords( this )
             value = this.dataObject.keywords;
         end
+
+
         function set.Keywords( this, value )
             value = convertStringsToChars( value );
             this.dataObject.keywords = value;
         end
 
+
         function value = get.Rationale( this )
             value = this.dataObject.rationale;
         end
+
+
         function set.Rationale( this, value )
             value = convertStringsToChars( value );
             this.dataObject.rationale = value;
         end
 
+
         function value = get.CreatedOn( this )
             value = this.dataObject.createdOn;
         end
+
+
         function value = get.CreatedBy( this )
             value = this.dataObject.createdBy;
         end
+
+
         function value = get.ModifiedOn( this )
             value = this.dataObject.modifiedOn;
         end
+
+
         function value = get.ModifiedBy( this )
             value = this.dataObject.modifiedBy;
         end
+
+
         function value = get.Revision( this )
             value = this.dataObject.revision;
         end
 
+
         function sid = get.SID( this )
             sid = this.dataObject.sid;
         end
+
 
         function value = get.Comments( this )
 
@@ -248,15 +141,18 @@ classdef Link < handle
             end
         end
 
+
         function apiObj = linkSet( this )
             this.errorIfVectorOperation(  );
             dataObj = this.dataObject.getLinkSet(  );
             apiObj = slreq.utils.dataToApiObject( dataObj );
         end
 
+
         function tf = isResolved( this )
             tf = this.isResolvedSource(  ) && this.isResolvedDestination(  );
         end
+
 
         function tf = isResolvedSource( this )
             this.errorIfVectorOperation(  );
@@ -269,32 +165,31 @@ classdef Link < handle
             tf = slreq.utils.isValidItem( srcInfo.domain, srcInfo.artifact, id );
         end
 
+
         function tf = isResolvedDestination( this )
             this.errorIfVectorOperation(  );
             tf = slreq.utils.hasValidDest( this.dataObject );
         end
 
+
         function remove( this )
             this.errorIfVectorOperation(  );
             dataObj = this.dataObject;
-
-
 
             [ srcAdapter, srcArtifactUri, srcArtifactId ] = dataObj.source.getAdapter(  );
 
             dataObj.remove(  );
             this.dataObject = [  ];
-
-
-
             srcAdapter.refreshLinkOwner( srcArtifactUri, srcArtifactId, rmi.createEmptyReqs( 1 ), [  ] );
 
         end
+
 
         function src = source( this )
             this.errorIfVectorOperation(  );
             src = slreq.utils.resolveSrc( this.dataObject );
         end
+
 
         function dest = destination( this )
             this.errorIfVectorOperation(  );
@@ -306,14 +201,15 @@ classdef Link < handle
             end
         end
 
+
         function refInfo = getReferenceInfo( this )
             this.errorIfVectorOperation(  );
             refInfo = struct( 'domain', this.dataObject.destDomain,  ...
                 'artifact', this.dataObject.destUri,  ...
                 'id', this.dataObject.destId );
 
-
         end
+
 
         function thisComment = addComment( this, text )
             this.errorIfVectorOperation(  );
@@ -325,6 +221,7 @@ classdef Link < handle
             thisComment = this.Comments( end  );
         end
 
+
         function setSource( this, newSrc )
             this.errorIfVectorOperation(  );
             dataLink = this.dataObject;
@@ -334,7 +231,6 @@ classdef Link < handle
                     srcInfo.artifact = newSrc.reqSet.Filename;
                     srcInfo.id = num2str( newSrc.SID );
                 end
-
                 dataLink.updateSource( srcInfo );
             catch ex
                 me = MException( message( 'Slvnv:slreq:APIFailedToSetSource' ) );
@@ -342,6 +238,7 @@ classdef Link < handle
                 throwAsCaller( mec );
             end
         end
+
 
         function setDestination( this, newDst )
             this.errorIfVectorOperation(  );
@@ -356,6 +253,7 @@ classdef Link < handle
             end
         end
 
+
         function value = getAttribute( this, name )
             this.errorIfVectorOperation(  );
             name = convertStringsToChars( name );
@@ -363,7 +261,6 @@ classdef Link < handle
 
                 error( message( 'Slvnv:slreq:NoSuchAttribute' ) );
             elseif this.dataObject.hasRegisteredAttribute( name )
-
 
                 try
                     value = this.dataObject.getAttribute( name, true );
@@ -375,17 +272,16 @@ classdef Link < handle
                 try
                     value = this.dataObject.getStereotypeAttr( name, true );
                 catch ex
-
                     error( message( 'Slvnv:slreq:NoSuchAttribute' ) );
                 end
             elseif any( strcmp( name, { 'source', 'destination', 'Keywords', 'Description', 'Rationale', 'Type', 'SID' } ) )
-
 
                 value = this.( name );
             else
                 error( message( 'Slvnv:slreq:NoSuchAttribute' ) );
             end
         end
+
 
         function setAttribute( this, name, value )
             this.errorIfVectorOperation(  );
@@ -395,7 +291,6 @@ classdef Link < handle
 
                 error( message( 'Slvnv:slreq:NoSuchAttribute' ) );
             elseif this.dataObject.hasRegisteredAttribute( name )
-
 
                 try
                     this.dataObject.setAttributeWithTypeCheck( name, value );
@@ -418,26 +313,15 @@ classdef Link < handle
         end
 
 
-
         function value = hasChangedSource( this )
 
-
-
             this.errorIfVectorOperation(  );
-
-
-
-
-
-
 
             value = this.dataObject.sourceChangeStatus.isFail(  );
         end
 
 
-
         function value = hasChangedDestination( this )
-
 
             this.errorIfVectorOperation(  );
 
@@ -445,9 +329,7 @@ classdef Link < handle
         end
 
 
-
         function changeInformation = getChangeInformation( this )
-
 
             outputsize = length( this );
             changeInformation = struct( 'source', repmat( { [  ] }, 1, outputsize ),  ...
@@ -496,7 +378,6 @@ classdef Link < handle
                 clearSrc = false;
             end
 
-
             ct = slreq.analysis.ChangeTracker.getInstance;
             for index = 1:length( this )
                 cDataLink = this( index ).dataObject;
@@ -516,6 +397,7 @@ classdef Link < handle
 
         end
 
+
         function tf = isFilteredIn( this )
             tf = false( 0, length( this ) );
             for i = 1:length( this )
@@ -523,6 +405,7 @@ classdef Link < handle
             end
         end
     end
+
 
     methods ( Access = private )
         function errorIfVectorOperation( this )
@@ -532,6 +415,7 @@ classdef Link < handle
         end
     end
 
+
     methods ( Hidden )
 
         function propValue = getInternalAttribute( this, propName )
@@ -539,11 +423,9 @@ classdef Link < handle
         end
         function setInternalAttribute( this, propName, propValue )
 
-
-
-
             this.dataObject.setProperty( propName, propValue )
         end
+
 
         function generateTraceDiagram( this )
 
