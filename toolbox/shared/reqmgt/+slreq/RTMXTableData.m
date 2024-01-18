@@ -1,27 +1,14 @@
 classdef RTMXTableData
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private)
 InternalRTMXTableData
     end
 
+
     properties(Hidden=true)
         AutoOpenReport=false;
     end
+
 
     methods(Hidden=true)
         function obj=RTMXTableData(slrtmxData)
