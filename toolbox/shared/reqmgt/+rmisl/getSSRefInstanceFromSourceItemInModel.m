@@ -1,15 +1,5 @@
 function out=getSSRefInstanceFromSourceItemInModel(blkOrModel,mainModel)
 
-
-
-
-
-
-
-
-
-
-
     if isa(mainModel,'double')
         mainModel=getfullname(mainModel);
     end
@@ -20,8 +10,6 @@ function out=getSSRefInstanceFromSourceItemInModel(blkOrModel,mainModel)
     else
         allInstances=slInternal('getActiveSSRefInstancesFromSourceBlock',blkOrModel);
         if isempty(allInstances)
-
-
             sepLocations=strfind(blkOrModel,':');
 
             for index=flip(sepLocations)
@@ -36,9 +24,6 @@ function out=getSSRefInstanceFromSourceItemInModel(blkOrModel,mainModel)
             end
         end
 
-
-
-
         out=[];
         for index=1:length(allInstances)
             cInstance=allInstances{index};
@@ -48,9 +33,7 @@ function out=getSSRefInstanceFromSourceItemInModel(blkOrModel,mainModel)
             end
         end
 
-
         out=out';
-
 
     end
 end
@@ -59,9 +42,6 @@ end
 function out=isModelName(objNameHandleOrSID)
     out=false;
     if isvarname(objNameHandleOrSID)
-
-
-
         out=true;
         return;
     end
@@ -74,6 +54,5 @@ function out=isModelName(objNameHandleOrSID)
         catch
         end
     end
-
 
 end
