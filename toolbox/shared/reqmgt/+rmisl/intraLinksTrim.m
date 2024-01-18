@@ -1,7 +1,4 @@
 function reqs=intraLinksTrim(reqs,modelName)
-
-
-
     isSameModel=strcmp({reqs.doc},modelName);
     if any(isSameModel)
         pattern=['^',modelName,'/'];
