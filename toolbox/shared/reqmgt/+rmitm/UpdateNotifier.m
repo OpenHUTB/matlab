@@ -1,29 +1,26 @@
 classdef(Sealed)UpdateNotifier<handle
 
-
-
-
-
-
-
-
     methods(Access=private)
         function this=UpdateNotifier()
             this.tmData=this;
         end
+
 
         function h=add(this,handlerFnc)
             h=addlistener(this.tmData,'ReqUpdate',handlerFnc);
         end
     end
 
+
     properties(Access=private)
 tmData
     end
 
+
     events
 ReqUpdate
     end
+
 
     methods(Static,Access=private)
         function instance=getInstance()
@@ -34,6 +31,7 @@ ReqUpdate
             instance=singleObj;
         end
     end
+
 
     methods(Static)
 
@@ -53,6 +51,7 @@ ReqUpdate
                 handlers{end+1}=instance.add(handlerFnc);
             end
         end
+
 
         function notifyReqUpdate(testSuite,caseId)
             instance=rmitm.UpdateNotifier.getInstance();
