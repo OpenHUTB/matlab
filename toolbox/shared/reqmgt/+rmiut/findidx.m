@@ -1,14 +1,5 @@
 function[match,idx]=findidx(part,whole)
 
-
-
-
-
-
-
-
-
-
     partCnt=length(part);
     [~,Iwhole,Ipart]=intersect(whole,part,'legacy');
 
