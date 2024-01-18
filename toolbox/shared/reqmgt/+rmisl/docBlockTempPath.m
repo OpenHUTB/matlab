@@ -1,15 +1,9 @@
 function dPath=docBlockTempPath(name,check)
 
-
-
-
-
-
     SID=strtok(name,'.');
     try
         docBlockHandle=Simulink.ID.getHandle(SID);
     catch Mex %#ok<*NASGU>
-
 
         try
             namePrefix=strtok(name,':');
@@ -26,7 +20,6 @@ function dPath=docBlockTempPath(name,check)
         dPath='';
         return;
     else
-
         try
             mType=get_param(docBlockHandle,'MaskType');
             if isempty(mType)
@@ -44,20 +37,12 @@ function dPath=docBlockTempPath(name,check)
             return;
         end
     end
-
     docBlockObject=get_param(docBlockHandle,'Object');
     docBlockFullName=docBlockObject.getFullName();
 
     if nargin>1&&check
-
-
-
         word_state=rmi.mdlAdvState('word');
         if word_state==0
-
-
-
-
             [success,msg]=rmicheck.rmicheckitem_pre('word');
             if success
                 hWord=rmicom.wordRpt('init');
@@ -68,19 +53,12 @@ function dPath=docBlockTempPath(name,check)
 
             hWord=rmicom.wordRpt('get');
         else
-
-
             error(message('Slvnv:reqmgt:com_word_check_app:ExternalSession'));
         end
 
     else
-
-
         hWord=rmicom.wordApp();
     end
-
-
-
     docblock('edit_document',docBlockFullName);
     hDoc=hWord.ActiveDocument;
     dPath=hDoc.FullName;
