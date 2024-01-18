@@ -1,8 +1,5 @@
 function myPath=findInEditor(mName,useFullPath)
 
-
-
-
     if nargin<2
         useFullPath=false;
     end
@@ -12,8 +9,6 @@ function myPath=findInEditor(mName,useFullPath)
     for i=1:length(openFiles)
         thisPath=char(openFiles{i});
         if isSID
-
-
             if contains(thisPath,mName)
                 myPath=thisPath;
                 return;
