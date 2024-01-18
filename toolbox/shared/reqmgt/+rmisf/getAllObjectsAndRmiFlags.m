@@ -1,7 +1,5 @@
 function[sfHs,sfFlags,sfObjs]=getAllObjectsAndRmiFlags(modelObj,filterSettings,slHs)
 
-
-
     sfFilter=rmisf.sfisa('isaFilter');
     sfObjs=find(modelObj,sfFilter);
 
@@ -16,10 +14,6 @@ function[sfHs,sfFlags,sfObjs]=getAllObjectsAndRmiFlags(modelObj,filterSettings,s
             sfFlags(i)=true;
         end
     end
-
-
-
-
 
     if nargin>2&&~isempty(slHs)
         slfObjs=find(modelObj,'-isa','Stateflow.SLFunction');
