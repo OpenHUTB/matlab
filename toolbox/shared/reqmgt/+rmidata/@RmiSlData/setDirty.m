@@ -5,8 +5,6 @@ function setDirty(this,mdlName,state)
             if islogical(state)
                 this.statusMap(modelH)=state;
             else
-
-
                 editorId=state;
                 try
                     if strcmp(get_param(mdlName,'ReqHilite'),'on')
@@ -31,8 +29,6 @@ function setDirty(this,mdlName,state)
 
                 catch Mex
                     if strcmp(Mex.identifier,'Simulink:utility:objectDestroyed')
-
-
 
                         return;
                     else
