@@ -1,16 +1,8 @@
 function hasReqs=objCopy(objH,reqs,modelH,isSf,optArg)
 
-
-
-
-
-
-
     tempSidPrefix='';
     grps=[];
     if nargin==5
-
-
         if isSf
             tempSidPrefix=optArg;
         elseif~isempty(optArg)
@@ -24,17 +16,9 @@ function hasReqs=objCopy(objH,reqs,modelH,isSf,optArg)
         reqs=reqs([reqs.linked]);
     end
     hasReqs=~isempty(reqs);
-
-
-
     if~hasReqs&&isempty(rmidata.getReqs(objH))
         return;
     end
-
-
-
-
-
 
     if~isSf
         try
@@ -48,13 +32,7 @@ function hasReqs=objCopy(objH,reqs,modelH,isSf,optArg)
         catch
         end
     end
-
-
-
-
     reqsCopied=setReqsInternalAPI(objH,reqs,grps,tempSidPrefix);
-
-
     if~isempty(modelH)&&strcmp(get_param(modelH,'ReqHilite'),'on')
         if isSf
             if sf('get',objH,'.isa')~=1
@@ -75,6 +53,7 @@ function hasReqs=objCopy(objH,reqs,modelH,isSf,optArg)
         end
     end
 end
+
 
 function success=setReqsInternalAPI(objH,reqs,grps,tempSidPrefix)
 
