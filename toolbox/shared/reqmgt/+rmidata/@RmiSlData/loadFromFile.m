@@ -1,13 +1,11 @@
 function loadFromFile(this,modelH)
 
-
     hasLoadedData=this.hasData(modelH);
     if hasLoadedData
         prevStorage=rmimap.StorageMapper.getInstance.getStorageFor(modelH);
     else
         prevStorage='';
     end
-
     if~isempty(prevStorage)&&this.hasChanges(modelH)
         reply=questdlg({...
         getString(message('Slvnv:rmidata:RmiSlData:LoadedLinksHaveChanges')),...
@@ -23,9 +21,6 @@ function loadFromFile(this,modelH)
             this.writeToStorage(modelH,prevStorage);
         end
     end
-
-
-
     fileToLoadFrom=rmimap.StorageMapper.getInstance.promptForReqFile(modelH,true);
     if~isempty(fileToLoadFrom)
         if hasLoadedData
@@ -35,15 +30,12 @@ function loadFromFile(this,modelH)
         [success,msg]=this.load(modelH,fileToLoadFrom);
         if success
             if isempty(prevStorage)
-
                 rmidata.storageModeCache('set',modelH,true);
             end
         else
             errordlg(msg,...
             getString(message('Slvnv:rmidata:RmiSlData:ErrorLoadingFromFile')),...
             'modal');
-
-
             if~strcmp(fileToLoadFrom,prevStorage)
                 rmimap.StorageMapper.getInstance.forget(modelH,false);
                 if~isempty(prevStorage)
