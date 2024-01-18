@@ -1,16 +1,9 @@
 function duplicateDisabled(varargin)
 
-
-
-
-
     if nargin==0
-
-
         isFromLibrary();
         return;
     elseif ischar(varargin{1})
-
         diagName=varargin{1};
         isFromLibrary(diagName);
         return;
@@ -18,15 +11,8 @@ function duplicateDisabled(varargin)
 
     objH=varargin{1};
     srcSID=get_param(objH,'BlockCopiedFrom');
-
-
-
     if~isempty(srcSID)&&isFromLibrary(srcSID)
-
-
         rmidata.copyDisabled(objH,bdroot(objH),false,srcSID,true);
-
-
 
         if strcmp(get_param(objH,'BlockType'),'SubSystem')
             chartType=rmisf.sfBlockType(objH);
@@ -38,6 +24,7 @@ function duplicateDisabled(varargin)
     end
 end
 
+
 function varargout=isFromLibrary(sid)
     persistent libNameMap
     if isempty(libNameMap)||nargin==0
@@ -47,7 +34,6 @@ function varargout=isFromLibrary(sid)
         end
     end
     if any(sid==':')
-
         diagName=strtok(sid,':');
         if isKey(libNameMap,diagName)
             result=libNameMap(diagName);
@@ -56,16 +42,11 @@ function varargout=isFromLibrary(sid)
                 result=strcmp(get_param(diagName,'BlockDiagramType'),'library');
                 libNameMap(diagName)=result;
             catch %#ok<CTCH>  
-
-
-
                 result=false;
             end
         end
         varargout{1}=result;
     else
-
-
         if isKey(libNameMap,sid)
             remove(libNameMap,sid);
         end
