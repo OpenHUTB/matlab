@@ -1,11 +1,6 @@
 function rmischemas=menus_rmi_object(callbackInfo)
 
-
-
-
-
     [installed,licensed]=rmi.isInstalled();
-
 
     isSys=callbackInfo.userdata;
     if(isSys)
@@ -20,7 +15,6 @@ function rmischemas=menus_rmi_object(callbackInfo)
 
     isData=rmide.isDataEntry(objh(1));
 
-
     isSysComp=sysarch.isSysArchObject(objh);
 
     if length(objh)==1&&~isData&&~isSysComp...
@@ -30,30 +24,16 @@ function rmischemas=menus_rmi_object(callbackInfo)
             objh=rmisl.harnessToModelRemap(objh);
         end
     end
-
-
-
-
     isInSubsystemReference=rmisl.inSubsystemReference(objh);
     refSid='';
     if isa(objh,'Simulink.SubSystem')
         try
-
             refSid=get_param(objh.Handle,'ReferencedSubsystem');
         catch ex %#ok<NASGU>
 
         end
     end
-
     isSusystemReferenceInstanceBlock=~isempty(refSid);
-
-
-
-
-
-
-
-
 
     if isInSubsystemReference||isSusystemReferenceInstanceBlock
         [rmischemas,hasItsOwnLinks]=create_requirement_links_forSSRef(objh);
@@ -61,25 +41,17 @@ function rmischemas=menus_rmi_object(callbackInfo)
         [rmischemas,hasItsOwnLinks]=create_requirement_links(objh);
     end
 
-
     isStateflow=isStateflowObject(objh);
 
     isInLibrary=false;
 
-
-
-
     if isInSubsystemReference||isSusystemReferenceInstanceBlock
-
-
         ssRefObj=rmisl.getRefSidFromObjSSRefInstance(objh,'',true);
 
         ssRefName=strtok(ssRefObj,':');
-
         linksFromSSRef_schema={@LinksFromSSRef,{ssRefName,ssRefObj}};
         rmischemas=[rmischemas,{linksFromSSRef_schema},'separator'];
     elseif~isData&&~isSysComp&&(~isStateflow||(isa(objh,'Stateflow.AtomicSubchart')&&objh.isLink))
-
 
         libObj=[];
         if isStateflow
@@ -87,17 +59,10 @@ function rmischemas=menus_rmi_object(callbackInfo)
         elseif rmisl.inLibrary(objh)
             isInLibrary=true;
 
-
-
-
-
             libObj=objh.ReferenceBlock;
-
 
             rmischemas=cell(0);
         elseif isa(objh,'Simulink.SubSystem')
-
-
 
             if strcmp(objh.LinkStatus,'resolved')
                 libObj=objh.ReferenceBlock;
@@ -105,10 +70,6 @@ function rmischemas=menus_rmi_object(callbackInfo)
                 libObj=objh.AncestorBlock;
             end
         elseif isa(objh,'Simulink.Block')&&~strcmp(objh.LinkStatus,'none')
-
-
-
-
 
             if strcmp(objh.LinkStatus,'resolved')
                 libObj=objh.ReferenceBlock;
@@ -123,12 +84,8 @@ function rmischemas=menus_rmi_object(callbackInfo)
         end
     end
 
-
-
     if~isData&&~isSysComp
         modelH=callbackInfo.model.Handle;
-
-
 
         if installed&&licensed&&rmisl.menus_UpdateDataBeforeUse(modelH)
             if isempty(rmischemas)
@@ -138,18 +95,10 @@ function rmischemas=menus_rmi_object(callbackInfo)
             end
             return;
         elseif rmiut.isBuiltinNoRmi(modelH)
-
-
             rmischemas={@rmisl.menus_BuildInLib};
             return;
         end
     end
-
-
-
-
-
-
 
     if isStateflow&&...
         any(strcmp(class(callbackInfo.uiObject),...
@@ -158,8 +107,6 @@ function rmischemas=menus_rmi_object(callbackInfo)
         'Stateflow.ReactiveTestingTableChart'}))...
         &&sf('get',objh.Id,'.isa')==sf('get','default','chart.isa')
         chartBlock=sf('Private','chart2block',callbackInfo.uiObject.Id);
-
-
 
         if isempty(rmischemas)||rmidata.isExternal(modelH)
             objh=get_param(chartBlock,'Object');
@@ -170,8 +117,6 @@ function rmischemas=menus_rmi_object(callbackInfo)
             return
         end
     end
-
-
 
     if isStateflow&&any(strcmp(class(objh),{'Stateflow.SLFunction','Stateflow.SimulinkBasedState'}))
         subSys=objh.getDialogProxy();
@@ -185,7 +130,6 @@ function rmischemas=menus_rmi_object(callbackInfo)
         end
     end
 
-
     if licensed&&installed&&(~isInLibrary&&~isInSubsystemReference)&&~rmisl.is_signal_builder_block(objh)
         sLinkMenus=rmi.menus_selection_links(objh);
         if~rmiut.isMeOpen()||...
@@ -193,8 +137,6 @@ function rmischemas=menus_rmi_object(callbackInfo)
             sLinkMenus=skipDataLink(sLinkMenus);
         end
         if rmifa.isFaultLinkingEnabled()&&isData&&rmiut.isFaultTableOpen(objh)
-
-
             sLinkMenus=[sLinkMenus,{@LinkToFaultTable}];
         end
         if~isempty(sLinkMenus)
@@ -204,8 +146,6 @@ function rmischemas=menus_rmi_object(callbackInfo)
             rmischemas=[rmischemas,intraLinkMenus(objh),'separator'];
         end
     end
-
-
 
     if isSys
         if hasItsOwnLinks&&licensed&&installed&&~isInLibrary&&~isInSubsystemReference
@@ -243,10 +183,10 @@ function rmischemas=menus_rmi_object(callbackInfo)
 end
 
 
-
 function result=isStateflowObject(objh)
     result=strncmp(class(objh),'Stateflow.',length('Stateflow.'));
 end
+
 
 function selectionMenus=skipDataLink(selectionMenus)
     takeIdx=true(size(selectionMenus));
@@ -269,6 +209,7 @@ function[link_schemas,hasLinks]=create_requirement_links(objh,tagPrefix)
     link_schemas=getLinkSchemaFromDescription(objH,descriptions,enabled,tagPrefix);
     hasLinks=~isempty(link_schemas);
 end
+
 
 function link_schemas=getLinkSchemaFromDescription(handle,descriptions,enabled,tagPrefix)
     if nargin<4
@@ -298,14 +239,11 @@ function link_schemas=getLinkSchemaFromDescription(handle,descriptions,enabled,t
     end
 end
 
+
 function[link_schemas,hasLinks]=create_requirement_links_forSSRef(objh)
-
-
-
 
     allReqs=rmidata.getReqs(objh);
     descriptions=cell(length(allReqs),1);
-
 
     enabled=true(length(allReqs),1);
 
@@ -320,10 +258,10 @@ function[link_schemas,hasLinks]=create_requirement_links_forSSRef(objh)
     else
         handle=objh.Handle;
     end
-
     link_schemas=getLinkSchemaFromDescription(handle,descriptions,enabled);
     hasLinks=~isempty(link_schemas);
 end
+
 
 function labels=create_requirement_labels(descriptions)
     reqCnt=length(descriptions);
@@ -343,15 +281,14 @@ function labels=create_requirement_labels(descriptions)
     end
 end
 
+
 function objh=cbSelection(callbackInfo)
     objh=callbackInfo.getSelection;
 
     if isempty(objh)
-
         objh=find(cbUiObject(callbackInfo),'-isa','Simulink.Line','-and','Selected','on');%#ok<*GTARG>
     end
 end
-
 
 
 function objh=cbSelectionToRmiObj(callbackInfo)
@@ -361,19 +298,17 @@ function objh=cbSelectionToRmiObj(callbackInfo)
             objh=rmisl.harnessToModelRemap(objh);
         end
     end
-
-
     if~isempty(callbackInfo.userdata)&&rmifa.isFaultInfoObj(callbackInfo.userdata{1})
         objh=callbackInfo.userdata{1};
         return;
     end
     if isempty(objh)
-
         objh=find(cbUiObject(callbackInfo),'-isa','Simulink.Line','-and','Selected','on');%#ok<*GTARG>
     elseif any(strcmp(class(objh),{'Stateflow.SLFunction','Stateflow.SimulinkBasedState'}))
         objh=objh.getDialogProxy();
     end
 end
+
 
 function objh=cbUiObject(callbackInfo)
     objh=callbackInfo.uiObject;
@@ -388,7 +323,6 @@ function objh=cbUiObject(callbackInfo)
         objh=objh.getMCOSObjectReference;
     end
 end
-
 
 
 function objh=cbUiObjectToRmiObj(callbackInfo)
@@ -410,7 +344,6 @@ function objh=cbUiObjectToRmiObj(callbackInfo)
 end
 
 
-
 function schema=CopyUrlToClipboardSys(callbackInfo)
     schema=DAStudio.ActionSchema;
     schema.label=getString(message('Slvnv:rmisl:menus_rmi_object:CopyURL'));
@@ -418,12 +351,12 @@ function schema=CopyUrlToClipboardSys(callbackInfo)
     schema.callback=@CopyUrlToClipboardSys_callback;
     schema.autoDisableWhen='Busy';
 
-
     if~callbackInfo.userdata{2}&&guidYok(callbackInfo)
 
         schema.state='Disabled';
     end
 end
+
 
 function yesno=guidYok(callbackInfo)
     if isempty(callbackInfo.model)
@@ -436,12 +369,11 @@ function yesno=guidYok(callbackInfo)
         if~isempty(obj.RequirementInfo)
             yesno=false;
         else
-
-
             yesno=strcmp(get_param(callbackInfo.model.Name,'lock'),'on');
         end
     end
 end
+
 
 function CopyUrlToClipboardSys_callback(callbackInfo)
     if builtin('_license_checkout','Simulink_Requirements','quiet')
@@ -452,6 +384,7 @@ function CopyUrlToClipboardSys_callback(callbackInfo)
         clipboard('copy',url);
     end
 end
+
 
 function schema=CopyUrlToClipboardBlk(callbackInfo)
     schema=DAStudio.ActionSchema;
@@ -464,6 +397,7 @@ function schema=CopyUrlToClipboardBlk(callbackInfo)
     end
 end
 
+
 function CopyUrlToClipboardBlk_callback(callbackInfo)
     if builtin('_license_checkout','Simulink_Requirements','quiet')
         rmi.licenseErrorDlg();
@@ -474,6 +408,7 @@ function CopyUrlToClipboardBlk_callback(callbackInfo)
     end
 end
 
+
 function schema=LinkToFaultTable(callbackInfo)%#ok<*INUSD>
     schema=DAStudio.ActionSchema;
     schema.label=getString(message('Slvnv:reqmgt:linktype_rmi_simulink:LinkToSelectedFaultObj'));
@@ -482,14 +417,15 @@ function schema=LinkToFaultTable(callbackInfo)%#ok<*INUSD>
     schema.autoDisableWhen='Busy';
 end
 
+
 function LinkToFaultTable_callback(callbackInfo)
     obj=rmi.currentObj();
-
 
     objH=rmi.canlink(obj);
     req=rmifa.selectionLink('',false);
     rmi.catReqs(objH,req);
 end
+
 
 function schema=EditAddBlk(callbackInfo)%#ok<*INUSD>
     schema=DAStudio.ActionSchema;
@@ -499,10 +435,12 @@ function schema=EditAddBlk(callbackInfo)%#ok<*INUSD>
     schema.autoDisableWhen='Busy';
 end
 
+
 function EditAddBlk_callback(callbackInfo)
     obj=cbSelectionToRmiObj(callbackInfo);
     rmi('edit',obj);
 end
+
 
 function schema=EditAddSys(callbackInfo)
     schema=DAStudio.ActionSchema;
@@ -512,10 +450,12 @@ function schema=EditAddSys(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
+
 function EditAddSys_callback(callbackInfo)
     obj=cbUiObjectToRmiObj(callbackInfo);
     rmi('edit',obj);
 end
+
 
 function schema=CreateDynamicReqMenu(callbackInfo)
     schema=DAStudio.ActionSchema;
@@ -528,6 +468,7 @@ function schema=CreateDynamicReqMenu(callbackInfo)
     schema.callback=@CreateDynamicReqMenu_callback;
     schema.autoDisableWhen='Busy';
 end
+
 
 function CreateDynamicReqMenu_callback(callbackInfo)
     rmi('view',callbackInfo.userdata{:});
@@ -542,6 +483,7 @@ function schema=DeleteAllBlk(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
+
 function DeleteAllBlk_callback(callbackInfo)
     if builtin('_license_checkout','Simulink_Requirements','quiet')
         rmi.licenseErrorDlg();
@@ -555,6 +497,7 @@ function DeleteAllBlk_callback(callbackInfo)
     end
 end
 
+
 function schema=DeleteAllSys(callbackInfo)
     schema=DAStudio.ActionSchema;
     schema.label=getString(message('Slvnv:rmisl:menus_rmi_object:DeleteAllLinks'));
@@ -562,6 +505,7 @@ function schema=DeleteAllSys(callbackInfo)
     schema.callback=@DeleteAllSys_callback;
     schema.autoDisableWhen='Busy';
 end
+
 
 function DeleteAllSys_callback(callbackInfo)
     if builtin('_license_checkout','Simulink_Requirements','quiet')
@@ -585,6 +529,7 @@ function chart_schema=MoveChartReqs(callbackInfo)
     chart_schema.callback=@MoveChartReqs_callback;
     chart_schema.autoDisableWhen='Busy';
 end
+
 
 function MoveChartReqs_callback(callbackInfo)
     objs=callbackInfo.userdata;
@@ -612,6 +557,7 @@ function MoveChartReqs_callback(callbackInfo)
     end
 end
 
+
 function slfunc_schema=MoveSLFunctionReqs(callbackInfo)
     slfunc_schema=DAStudio.ActionSchema;
     slfunc_schema.label=getString(message('Slvnv:rmisl:menus_rmi_deprecated:DeprecatedLinksDetected'));
@@ -635,7 +581,6 @@ function MoveSLFunctionReqs_callback(callbackInfo)
 end
 
 
-
 function schema=SaveDataDictionary(callbackInfo)
     schema=DAStudio.ActionSchema;
     schema.label=getString(message('Slvnv:rmide:SaveTraceabilityForDD'));
@@ -650,8 +595,6 @@ function SaveDataDictionary_callback(callbackInfo)
 end
 
 
-
-
 function schema=LinksFromSSRef(callbackInfo)
 
 
@@ -664,11 +607,8 @@ function schema=LinksFromSSRef(callbackInfo)
 
     if isvarname(ssRefName)&&dig.isProductInstalled('Simulink')&&bdIsLoaded(ssRefName)
 
-
-
         if rmi.objHasReqs(libObj,[])
             schema.userdata=libObj;
-
             schema.generateFcn=@create_library_requirement_links;
         else
             schema.label=getString(message('Slvnv:rmisl:menus_rmi_object:NoSSRefBlockRequirements'));
@@ -685,10 +625,7 @@ function schema=LinksFromSSRef(callbackInfo)
 end
 
 
-
 function schema=LinksFromLib(callbackInfo)
-
-
     schema=DAStudio.ContainerSchema;
     schema.tag='Simulink:LibraryBlockRequirements';
     schema.label=getString(message('Slvnv:rmisl:menus_rmi_object:LibraryBlockRequirements'));
@@ -714,9 +651,11 @@ function schema=LinksFromLib(callbackInfo)
     schema.autoDisableWhen='Busy';
 end
 
+
 function link_schemas=create_library_requirement_links(callbackInfo)
     link_schemas=create_requirement_links(callbackInfo.userdata,'Lib');
 end
+
 
 function intraLinkSchemas=intraLinkMenus(obj)
     intraLinkSchemas=rmisl.intraLinkMenus(obj);
