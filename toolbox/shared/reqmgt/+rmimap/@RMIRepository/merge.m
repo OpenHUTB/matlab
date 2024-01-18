@@ -1,12 +1,5 @@
 function merge(this,srcRoot)
 
-
-
-
-
-
-
-
     nodeDataCount=srcRoot.nodeData.size;
     for i=2:nodeDataCount
         ndData=srcRoot.nodeData.at(i);
@@ -21,14 +14,9 @@ function merge(this,srcRoot)
             end
         end
     end
-
-
-
     totalLinkDataItems=srcRoot.linkData.size;
     for i=1:totalLinkDataItems
         linkDatum=srcRoot.linkData.at(i);
-
-
         dependentId=linkDatum.getValue('dependentId');
         if isempty(dependentId)
 
@@ -39,8 +27,6 @@ function merge(this,srcRoot)
                 dependentNode=this.addNode(srcRoot,dependentId);
             end
         end
-
-
         this.appendLink(srcRoot,dependentNode,linkDatum,true);
     end
 end
