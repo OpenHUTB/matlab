@@ -1,8 +1,4 @@
 function varargout=rangeIdRecycler(this,src,varargin)
-
-
-
-
     srcRoot=rmimap.RMIRepository.getRoot(this.graph,src);
 
     switch length(varargin)
@@ -17,6 +13,7 @@ function varargout=rangeIdRecycler(this,src,varargin)
     end
 end
 
+
 function recycledIds=getRecycledIds(srcRoot)
     recycledIdsString=srcRoot.getProperty('lostLabels');
     if isempty(recycledIdsString)
@@ -26,11 +23,13 @@ function recycledIds=getRecycledIds(srcRoot)
     end
 end
 
+
 function setRecycledIds(myGraph,srcRoot,recycledIds)
     storedIds=getRecycledIds(srcRoot);
     allRecycledIds=unique([storedIds,recycledIds]);
     setLostLabels(myGraph,srcRoot,allRecycledIds);
 end
+
 
 function setLostLabels(myGraph,srcRoot,recycledIds)
     t=M3I.Transaction(myGraph);
@@ -42,6 +41,7 @@ function setLostLabels(myGraph,srcRoot,recycledIds)
     srcRoot.setProperty('lostLabels',recycledIdsString);
     t.commit();
 end
+
 
 function restoreId(myGraph,srcRoot,id,range)
 
