@@ -1,31 +1,11 @@
 function[anyExtIn,anyExtOut]=duplicate(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     anyExtIn=false;
     anyExtOut=false;
 
     if nargin==2
         objH=varargin{1};
         srcSID={get_param(objH,'BlockCopiedFrom')};
-
 
         if~isempty(srcSID{1})&&~shouldContinueCopy(srcSID{1},objH)
             return;
@@ -45,7 +25,6 @@ function[anyExtIn,anyExtOut]=duplicate(varargin)
                 return;
 
             end
-
         else
 
             if modelH==0
@@ -55,11 +34,6 @@ function[anyExtIn,anyExtOut]=duplicate(varargin)
                     modelH=bdroot(objH);
                     srcSid=Simulink.ID.getSID(srcH);
                     rmidata.duplicateReqs(objH,modelH,false,srcSid);
-
-
-
-
-
                     src.domain='linktype_rmi_simulink';
                     [src.artifact,src.id]=strtok(srcSid,':');
                     slreq.internal.setLinks(src,[]);
@@ -110,31 +84,24 @@ function[anyExtIn,anyExtOut]=duplicate(varargin)
         sfisa=rmisf.sfisa;
         typesWithReqs=[sfisa.chart,sfisa.state,sfisa.transition];
     end
-
-
-
     artifactPath=get_param(modelH,'FileName');
     slreq.data.DataModelObj.checkLicense(['allow ',artifactPath]);
 
     for i=1:length(objH)
         if objH(i)==0
-
-
             continue;
         end
         if~isSf||any(typesWithReqs==sf('get',objH(i),'.isa'))
             [fromExt(i),toExt(i)]=rmidata.duplicateReqs(objH(i),modelH,isSf,srcSID{i});
         end
     end
-
-
     slreq.data.DataModelObj.checkLicense('clear');
-
 
     anyExtIn=any(fromExt);
 
     anyExtOut=any(toExt);
 end
+
 
 function sids=idsToFullSIDs(chartId,objIds)
     count=length(objIds);
@@ -144,9 +111,8 @@ function sids=idsToFullSIDs(chartId,objIds)
     end
 end
 
+
 function handles=idsToHandles(chartId,objIds)
-
-
     count=length(objIds);
     handles=zeros(count,1);
     for i=1:count
@@ -160,6 +126,7 @@ function handles=idsToHandles(chartId,objIds)
         end
     end
 end
+
 
 function result=validSfArgs(srcChartSID,srcIds,dstChartSID,dstIds)
 
@@ -180,9 +147,9 @@ function result=validSfArgs(srcChartSID,srcIds,dstChartSID,dstIds)
     end
 end
 
+
 function result=isLibrary(sid,isSrc)
     if~ischar(sid)
-
         diagramType=get_param(bdroot(sid),'BlockDiagramType');
     elseif isSrc
         mdlName=strtok(sid,':');
@@ -195,15 +162,10 @@ function result=isLibrary(sid,isSrc)
                 diagramType=get_param(mdlName,'BlockDiagramType');
             catch Ex0 %#ok<NASGU>
 
-
-
                 try
                     load_system(mdlName);
                     diagramType=get_param(mdlName,'BlockDiagramType');
                 catch Ex1
-
-
-
                     if~strcmp(Ex1.identifier,'Simulink:Commands:OpenSystemUnknownSystem')
                         warning(message('Slvnv:rmidata:duplicate:GetDiagramTypeFailed',sid,Ex1.message));
                     end
@@ -230,17 +192,11 @@ function out=isSubsystemReference(blockSid)
     out=bdIsSubsystem(mdlName);
 end
 
+
 function out=shouldContinueCopy(src,dst)
-
-
-
-
     out=true;
     if isLibrary(src,true)&&~isLibrary(dst,false)
         out=false;
-
-
-
         return;
     end
 
@@ -251,21 +207,17 @@ function out=shouldContinueCopy(src,dst)
 
 end
 
-function setReqsAsObjAttr(objH,structArray,modelH)
 
+function setReqsAsObjAttr(objH,structArray,modelH)
 
     reqstr=rmi.reqs2str(structArray);
 
-
     GUID=rmi.guidGet(objH);
-
 
     if isempty(reqstr)
         reqstr='{} ';
     end
     reqstr=[reqstr,' %',GUID];
-
-
     rmi.setRawReqs(objH,false,reqstr,modelH);
 
 end
