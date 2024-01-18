@@ -1,13 +1,5 @@
 function mCommand=pathToCmd(fPath)
-
-
-
-
-
     [fDir,mCommand,ext]=fileparts(fPath);
-
-
-
 
     if~strcmp(ext,'.m')
 
@@ -16,28 +8,21 @@ function mCommand=pathToCmd(fPath)
     end
 
     if isempty(fDir)
-
         return;
     end
 
     if ispc
-
         fDir(fDir=='/')=filesep;
     end
 
     if fDir(end)==filesep
-
-
         return;
     end
-
 
     allFileSeps=find(fDir==filesep);
     if isempty(allFileSeps)
-
         return;
     end
-
 
     for i=length(allFileSeps):-1:1
         position=allFileSeps(i);
