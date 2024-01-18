@@ -1,20 +1,11 @@
 function[id,isNew]=rangeToId(this,srcName,selection,shouldCreate)
 
-
-
-
     id='';
     isNew=false;
-
-
-
-
 
     if length(selection)==1
         selection(2)=selection(1);
     end
-
-
     [isMatlabFunction,mdlName]=rmisl.isSidString(srcName,shouldCreate);
     if isMatlabFunction&&shouldCreate
 
@@ -40,7 +31,6 @@ function[id,isNew]=rangeToId(this,srcName,selection,shouldCreate)
         starts='[  ]';
         ends='[  ]';
     else
-
         ids=srcRoot.getProperty('rangeLabels');
         if isempty(ids)
             ids='{  }';
@@ -53,11 +43,7 @@ function[id,isNew]=rangeToId(this,srcName,selection,shouldCreate)
         end
     end
 
-
-
     if isempty(id)&&shouldCreate
-
-
         selection=rmiut.RangeUtils.completeToLines(srcName,selection);
         if isempty(selection)
 
@@ -92,7 +78,6 @@ function[id,isNew]=rangeToId(this,srcName,selection,shouldCreate)
             this.updateTextNodeData(parentRoot,srcRoot);
         end
         t.commit();
-
         rmiml.RmiMlData.getInstance.setDirty(srcRoot.url,true);
 
         isNew=true;
