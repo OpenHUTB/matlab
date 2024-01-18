@@ -1,21 +1,13 @@
 function setData(this,srcName,elementId,linkData)
 
-
-
-
-
     if~ischar(srcName)
         isSlModel=true;
         srcHandle=srcName;
-
         [~,srcName]=rmisl.modelFileParts(srcHandle);
     else
         isSlModel=false;
     end
-
-
     rootObj=rmimap.RMIRepository.getRoot(this.graph,srcName);
-
 
     if isempty(rootObj)
         if isSlModel
@@ -31,10 +23,7 @@ function setData(this,srcName,elementId,linkData)
     end
 
     t1=M3I.Transaction(this.graph);
-
-
     elt=rmimap.RMIRepository.getNode(rootObj,elementId);
-
 
     if isempty(elt)
         elt=this.addNode(rootObj,elementId);
@@ -43,10 +32,7 @@ function setData(this,srcName,elementId,linkData)
         this.clearLinks(elt,false);
     end
 
-
     for i=1:length(linkData)
-
-
 
         description=linkData(i).description;
         reqsys=linkData(i).reqsys;
@@ -67,8 +53,6 @@ function setData(this,srcName,elementId,linkData)
             targetNode=this.findOrAddNode(targetDoc,linkData(i).id,reqsys);
         end
         link=elt.addLink(targetNode);
-
-
         link.setProperty('description',description);
         link.setProperty('linked',num2str(linkData(i).linked));
         link.setProperty('keywords',linkData(i).keywords);
