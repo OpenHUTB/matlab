@@ -1,8 +1,5 @@
 function[result,libSid]=isLibObject(obj,host)
 
-
-
-
     if isa(obj,'double')
         sfRoot=Stateflow.Root;
         sfObj=sfRoot.idToHandle(obj);
@@ -20,7 +17,6 @@ function[result,libSid]=isLibObject(obj,host)
         host=convertStringsToChars(host);
         mdlName=host;
     end
-
 
     result=~strcmp(mdlName,libName);
 
