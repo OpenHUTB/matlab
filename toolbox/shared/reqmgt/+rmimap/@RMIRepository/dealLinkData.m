@@ -1,8 +1,4 @@
 function dealLinkData(this,parentRoot,childRootsArray)
-
-
-
-
     childRootNames=cell(size(childRootsArray));
     for i=1:length(childRootNames)
         childRootNames{i}=childRootsArray{i}.url;
