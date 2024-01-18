@@ -1,16 +1,8 @@
 function[total_linked,total_links]=copyToModel(this,modelH,varargin)
 
-
-
-
-
     if~this.hasData(modelH)
         error(message('Slvnv:rmidata:RmiSlData:NoDataForModel',get_param(modelH,'Name')));
     end
-
-
-
-
     filterSettings=rmi.settings_mgr('get','filterSettings');
     if~isfield(filterSettings,'linkedOnly')
         filterSettings.linkedOnly=true;
@@ -20,11 +12,9 @@ function[total_linked,total_links]=copyToModel(this,modelH,varargin)
     filterSettings.linkedOnly=false;
     rmi.settings_mgr('set','filterSettings',filterSettings);
 
-
     allObjs=rmisl.getObjWithReqs(modelH);
     total_linked=length(allObjs);
     total_links=0;
-
 
     staleHarnessHandles=[];
     total_linked_in_harness=0;
@@ -32,13 +22,11 @@ function[total_linked,total_links]=copyToModel(this,modelH,varargin)
     if Simulink.harness.internal.hasActiveHarness(modelH)
         error(message('Slvnv:rmidata:export:CantExportWhenHarnessOpen',openHarnessInfo(1).name));
     end
-
     harnessInfo=Simulink.harness.find(modelH);
 
     for i=1:length(harnessInfo)
         total_linked_in_harness=total_linked_in_harness+countLinkedItemsInHarness(harnessInfo(i));
     end
-
 
     if total_linked==0&&total_linked_in_harness==0
         rmi.settings_mgr('set','filterSettings',originalFilters);
@@ -49,9 +37,6 @@ function[total_linked,total_links]=copyToModel(this,modelH,varargin)
         return;
     end
 
-
-
-
     if isempty(varargin)
         otherModel='';
         isGUI=true;
@@ -60,8 +45,6 @@ function[total_linked,total_links]=copyToModel(this,modelH,varargin)
         isGUI=varargin{2};
         thisModelName=get_param(modelH,'Name');
     end
-
-
 
     annotationAction=0;
     linkedAnnotations=rmidata.checkForLinkedAnnotations(modelH,false,isGUI);
@@ -111,22 +94,14 @@ function[total_linked,total_links]=copyToModel(this,modelH,varargin)
         end
     end
 
-
     for i=1:total_linked
-
-
-
         objH=allObjs(i);
         if isa(objH,'double')&&floor(objH)==objH
             isSf=true;
         else
             isSf=false;
         end
-
-
         [reqs,groupReqCnt]=getReqsForItem(this,objH,isSf,modelH);
-
-
         if isempty(otherModel)
             targetObjH=objH;
         else
@@ -138,18 +113,10 @@ function[total_linked,total_links]=copyToModel(this,modelH,varargin)
         end
     end
 
-
     if~isempty(harnessInfo)
         [staleHarnessHandles,total_links]=moveHarnessLinks(this,modelH,harnessInfo,total_links,annotationAction);
     end
-
-
-
-
     rmi.settings_mgr('set','filterSettings',originalFilters);
-
-
-
 
     if isempty(otherModel)
         set_param(modelH,'hasReqInfo','on');
@@ -174,15 +141,16 @@ function[total_linked,total_links]=copyToModel(this,modelH,varargin)
             rmisl.highlight(modelH);
         end
     end
-
     total_linked=total_linked+total_linked_in_harness;
 end
+
 
 function count=countLinkedItemsInHarness(harnessInfo)
     myID=[harnessInfo.model,':',harnessInfo.uuid];
     linkedIds=rmimap.getNodeIds(myID,true);
     count=length(linkedIds);
 end
+
 
 function[staleHarnessHandles,total_links]=moveHarnessLinks(this,modelH,harnessInfo,total_links,annotationAction)
     staleHarnessHandles=[];
@@ -224,7 +192,6 @@ function[staleHarnessHandles,total_links]=moveHarnessLinks(this,modelH,harnessIn
                     end
                 end
 
-
                 sigBuilderDone=sigBuilderId;
 
             else
@@ -234,7 +201,6 @@ function[staleHarnessHandles,total_links]=moveHarnessLinks(this,modelH,harnessIn
             end
 
             if~isempty(reqs)
-
 
                 if isempty(sigBuilderId)
                     sid=rmisl.harnessIdToEditorName([harnessID,oneId],false);
@@ -254,7 +220,6 @@ function[staleHarnessHandles,total_links]=moveHarnessLinks(this,modelH,harnessIn
                     continue;
                 end
 
-
                 if setReqsForItem(objH,isSf,harnessH,reqs,groupReqCnt,annotationAction)
                     total_links=total_links+length(reqs);
                 end
@@ -268,6 +233,7 @@ function[staleHarnessHandles,total_links]=moveHarnessLinks(this,modelH,harnessIn
     end
 end
 
+
 function[reqs,groupReqCnt]=getReqsForItem(this,objH,isSf,modelH)
     if~isSf&&rmisl.is_signal_builder_block(objH)
         [groupReqCnt,~,reqs]=this.getSubGroups(objH);
@@ -278,6 +244,7 @@ function[reqs,groupReqCnt]=getReqsForItem(this,objH,isSf,modelH)
     end
 end
 
+
 function success=setReqsForItem(targetObjH,isSf,modelH,reqs,groupReqCnt,annotationAction)
     success=true;
     if~isSf
@@ -285,25 +252,22 @@ function success=setReqsForItem(targetObjH,isSf,modelH,reqs,groupReqCnt,annotati
             setStructReqs(targetObjH,false,modelH,reqs,-1,-1,groupReqCnt);
         elseif annotationAction~=0&&strcmp(get_param(targetObjH,'type'),'annotation')
             if annotationAction>0
-
                 targetParentDiagram=get_param(targetObjH,'Parent');
                 targetParentH=get_param(targetParentDiagram,'Handle');
                 targetParentReqsStr=rmi.getRawReqs(targetParentH,isSf);
                 targetParentReqs=rmi.parsereqs(targetParentReqsStr);
                 setStructReqs(targetParentH,false,modelH,[targetParentReqs;reqs]);
             else
-
                 success=false;
             end
         else
-
             setStructReqs(targetObjH,false,modelH,reqs);
         end
     else
-
         setStructReqs(targetObjH,true,modelH,reqs);
     end
 end
+
 
 function[ownerPath,harnessName,isExternal,ownerType]=openHarnessById(allHarnessInfo,harnessID)
     match=find(strcmp({allHarnessInfo(:).uuid},harnessID(2:end)));
@@ -336,30 +300,19 @@ function dstObj=findMatchingObj(srcH,isSf,srcMdlName,dstMdlName)
         dstObj=dstObj.Id;
     end
 
-
-
-
-
-
-
-
 end
 
 
 function setStructReqs(objH,isSf,modelH,structArray,varargin)
 
-
     reqstr=rmi.reqs2str(structArray);
 
-
     GUID=rmi.guidGet(objH);
-
 
     if isempty(reqstr)
         reqstr='{} ';
     end
     reqstr=[reqstr,' %',GUID];
-
 
     rmi.setRawReqs(objH,isSf,reqstr,modelH);
 
