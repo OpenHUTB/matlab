@@ -1,12 +1,4 @@
 function[totalBookmarks,totalLinks]=duplicateMLFB(srcSID,destSID,isPush)
-
-
-
-
-
-
-
-
     [sourceDiagram,srcID]=strtok(srcSID,':');
     [srcRangeData,dataLinks]=getLinkedRanges(sourceDiagram,srcID);
     totalBookmarks=size(srcRangeData,1);
@@ -33,17 +25,14 @@ function[totalBookmarks,totalLinks]=duplicateMLFB(srcSID,destSID,isPush)
         totalLinks=updateSources(dataLinks,destDiagramName,destID);
     elseif isMdlToLib(sourceDiagram,destDiagramName)
 
-
-
         totalLinks=0;
     elseif isLibToMdl(sourceDiagram,destDiagramName)
-
-
         totalLinks=duplicateLinks(dataLinks,destDiagramFile,destID,true);
     else
         totalLinks=duplicateLinks(dataLinks,destDiagramFile,destID,false);
     end
 end
+
 
 function clearLinks(parentDiagram,destID)
     dataLinkSet=slreq.data.ReqData.getInstance.getLinkSet(parentDiagram);
@@ -61,6 +50,7 @@ function clearLinks(parentDiagram,destID)
         end
     end
 end
+
 
 function updateRanges(parentDiagram,destID,rangeData)
     dataLinkSet=slreq.data.ReqData.getInstance.getLinkSet(parentDiagram);
@@ -82,6 +72,7 @@ function updateRanges(parentDiagram,destID,rangeData)
     end
 end
 
+
 function count=updateSources(dataLinkBunches,parentDiagram,destID)
     count=0;
     destArtifact=get_param(parentDiagram,'FileName');
@@ -90,8 +81,6 @@ function count=updateSources(dataLinkBunches,parentDiagram,destID)
         if isempty(linksInBunch)
             continue;
         end
-
-
         srcInfoStruct=slreq.utils.resolveSrc(linksInBunch(1));
         srcInfoStruct.artifact=destArtifact;
         srcInfoStruct.parent=destID;
@@ -104,9 +93,9 @@ function count=updateSources(dataLinkBunches,parentDiagram,destID)
     end
 end
 
+
 function count=duplicateLinks(dataLinkBunches,destArtifactPath,destID,doClone)
     count=0;
-
     reqData=slreq.data.ReqData.getInstance();
     dataLinkSet=reqData.getLinkSet(destArtifactPath,'linktype_rmi_simulink');
     if isempty(dataLinkSet)
@@ -118,12 +107,9 @@ function count=duplicateLinks(dataLinkBunches,destArtifactPath,destID,doClone)
         if isempty(linksInBunch)
             continue;
         end
-
-
         srcInfoStruct=slreq.utils.resolveSrc(linksInBunch(1));
         srcInfoStruct.artifact=destArtifactPath;
         srcInfoStruct.parent=destID;
-
         dataRange=reqData.addLinkableRange(dataLinkSet,srcInfoStruct);
 
         for j=1:numel(linksInBunch)
@@ -137,17 +123,20 @@ function count=duplicateLinks(dataLinkBunches,destArtifactPath,destID,doClone)
     end
 end
 
+
 function tf=isMdlToLib(srcSID,destSID)
     srcType=get_param(strtok(srcSID,':'),'BlockDiagramType');
     destType=get_param(strtok(destSID,':'),'BlockDiagramType');
     tf=strcmp(srcType,'model')&&strcmp(destType,'library');
 end
 
+
 function tf=isLibToMdl(srcSID,destSID)
     srcType=get_param(strtok(srcSID,':'),'BlockDiagramType');
     destType=get_param(strtok(destSID,':'),'BlockDiagramType');
     tf=strcmp(srcType,'library')&&strcmp(destType,'model');
 end
+
 
 function[rangeData,allLinks]=getLinkedRanges(parentDiagram,mlfbID)
     rangeData=cell(0,2);
