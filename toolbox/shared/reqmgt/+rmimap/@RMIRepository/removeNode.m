@@ -1,10 +1,4 @@
 function wasRemoved=removeNode(this,rootName,nodeId)
-
-
-
-
-
-
     myRoot=rmimap.RMIRepository.getRoot(this.graph,rootName);
     if isempty(myRoot)
         wasRemoved=false;
