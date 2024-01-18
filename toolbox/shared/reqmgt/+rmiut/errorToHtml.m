@@ -1,8 +1,5 @@
 function[error_string,missing_doc]=errorToHtml(obj,req,Mex,check)
 
-
-
-
     switch check
     case 'doc'
         error_string=processDocError(obj,req,Mex);
@@ -15,13 +12,12 @@ function[error_string,missing_doc]=errorToHtml(obj,req,Mex,check)
         error_string=processPathError(obj,req,Mex);
         missing_doc=0;
 
-
-
     otherwise
         error_string='';
         missing_doc=0;
     end
 end
+
 
 function this_error=processDocError(obj,req,Mex)
     if strcmp(Mex.identifier,'Slvnv:reqmgt:linktype_rmi_doors:IsValidDocFcn')
@@ -34,6 +30,7 @@ function this_error=processDocError(obj,req,Mex)
         this_error='';
     end
 end
+
 
 function[this_error,missing_doc]=processIdError(obj,req,Mex)
     missing_doc=0;
@@ -57,7 +54,6 @@ function[this_error,missing_doc]=processIdError(obj,req,Mex)
         missing_doc=1;
     elseif strcmp(Mex.identifier,'Simulink:utility:objectDestroyed')
 
-
         if strcmp(req.reqsys,'linktype_rmi_matlab')
             this_error=[req.doc,req.id,': ',Mex.message];
             missing_doc=1;
@@ -70,8 +66,6 @@ function[this_error,missing_doc]=processIdError(obj,req,Mex)
 
         if~ispc
 
-
-
             [~,~,fExt]=fileparts(req.doc);
             if~isempty(fExt)&&any(strcmpi(fExt,...
                 {'.doc','.docx','.rtf','.xls','.xlsx','.pdf'}))
@@ -83,6 +77,7 @@ function[this_error,missing_doc]=processIdError(obj,req,Mex)
         end
     end
 end
+
 
 function[this_error,missing_doc]=processLabelError(obj,req,Mex)
     missing_doc=0;
@@ -122,8 +117,6 @@ function[this_error,missing_doc]=processLabelError(obj,req,Mex)
 
         if~ispc
 
-
-
             [~,~,fExt]=fileparts(req.doc);
             if~isempty(fExt)&&any(strcmpi(fExt,...
                 {'.doc','.docx','.rtf','.xls','.xlsx','.pdf'}))
@@ -135,6 +128,7 @@ function[this_error,missing_doc]=processLabelError(obj,req,Mex)
         end
     end
 end
+
 
 function this_error=processPathError(obj,req,Mex)
     if strcmp(Mex.identifier,'Slvnv:reqmgt:getLinktype:UnregisteredTarget')||...
@@ -148,12 +142,8 @@ function this_error=processPathError(obj,req,Mex)
     end
 end
 
+
 function[this_error,missing_doc]=processBacklinkError(obj,req,Mex)
-
-
-
-
-
     [this_error,missing_doc]=processLabelError(obj,req,Mex);
     if~isempty(this_error)
         return;
@@ -165,8 +155,8 @@ function[this_error,missing_doc]=processBacklinkError(obj,req,Mex)
     expectedError1=['Module ID ''',strtok(req.doc),''' does not exist'];
     missing_doc=contains(this_error,expectedError1);
 
-
 end
+
 
 function sid=highlightError(obj)
     if ischar(obj)
@@ -179,6 +169,7 @@ function sid=highlightError(obj)
     end
 end
 
+
 function sid=handleToSid(objH)
     if floor(objH)==objH
         sfRoot=Stateflow.Root;
@@ -188,6 +179,7 @@ function sid=handleToSid(objH)
     end
 end
 
+
 function errorMessage=invalidOrMissingDocError(obj,doc)
     if isempty(strtrim(doc))
         sid=highlightError(obj);
@@ -196,6 +188,7 @@ function errorMessage=invalidOrMissingDocError(obj,doc)
         errorMessage=getString(message('Slvnv:consistency:errorUnableToResolveType',['<b>',doc,'</b>']));
     end
 end
+
 
 function errorMessage=unsupportedDocumentType(fExt)
     switch fExt
