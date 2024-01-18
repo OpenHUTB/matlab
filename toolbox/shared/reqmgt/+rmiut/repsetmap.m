@@ -1,7 +1,5 @@
 function[omatch,idx,fmatch]=repsetmap(from,onto)
 
-
-
     [uFrom,~,fIdx]=unique(from);
     [omatch,umdx,ufmatch]=rmiut.setmap(uFrom,onto);
 
