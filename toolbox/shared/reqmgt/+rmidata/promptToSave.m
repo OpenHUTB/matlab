@@ -1,6 +1,5 @@
 function wasSaved=promptToSave(modelH)
 
-
     wasSaved=false;
     artifactPath=slreq.resolveArtifactPath(modelH,'linktype_rmi_simulink');
     if~isempty(artifactPath)
