@@ -1,20 +1,11 @@
 function indirectlyFlaggedHs=getIndirectlyLinkedHandles(modelObj,filterSettings)
 
-
-
-
-
-
     indirectlyFlaggedHs=[];
 
     if~isa(modelObj,'Simulink.BlockDiagram')
 
         modelObj=get_param(modelObj,'Object');
     end
-
-
-
-
     refBlockHandles=find_system(modelObj.handle,'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,'LookUnderMasks','on','type','block','StaticLinkStatus','resolved');
     for i=1:length(refBlockHandles)
         refBlock=get_param(refBlockHandles(i),'object');
@@ -25,11 +16,6 @@ function indirectlyFlaggedHs=getIndirectlyLinkedHandles(modelObj,filterSettings)
             continue;
         elseif~any(strcmp(find_system('SearchDepth',0),libName))
             if rmi.settings_mgr('get','reportSettings','toolsReqReport')
-
-
-
-
-
                 disp(getString(message('Slvnv:reqmgt:getReqs:LibraryNotLoaded',libPath,libName)));
             end
             continue;
@@ -51,17 +37,9 @@ function indirectlyFlaggedHs=getIndirectlyLinkedHandles(modelObj,filterSettings)
         else
             implicitBlocks=find(refBlock,'StaticLinkStatus','implicit');
             for j=1:length(implicitBlocks)
-
-
-
-
                 libBlockPath=implicitBlocks(j).ReferenceBlock;
                 myLibName=strtok(libBlockPath,'/');
                 if~strcmp(myLibName,libName)
-
-
-
-
 
                 elseif rmi.objHasReqs(libBlockPath,filterSettings)
                     indirectlyFlaggedHs=[indirectlyFlaggedHs;implicitBlocks(j).Handle];%#ok<AGROW>
@@ -69,8 +47,6 @@ function indirectlyFlaggedHs=getIndirectlyLinkedHandles(modelObj,filterSettings)
             end
         end
     end
-
-
     mdlBlocks=find(modelObj,'-isa','Simulink.ModelReference');
     for i=1:length(mdlBlocks)
         try
