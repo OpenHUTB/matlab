@@ -1,12 +1,6 @@
-
-
-
-
 classdef(Sealed=true)RmiTmData<rmidata.RmiData
 
     properties
-
-
 
     end
     events
@@ -15,7 +9,6 @@ ReqUpdate
 
 
     methods(Static=true)
-
 
         function singleObj=getInstance(varargin)
             mlock;
@@ -38,7 +31,6 @@ ReqUpdate
         end
 
 
-
         function reset()
             if rmitm.RmiTmData.isInitialized()
                 data=rmitm.RmiTmData.getInstance;
@@ -47,8 +39,8 @@ ReqUpdate
         end
     end
 
-    methods(Access='private')
 
+    methods(Access='private')
 
         function obj=RmiTmData
             obj=obj@rmidata.RmiData();
@@ -57,14 +49,12 @@ ReqUpdate
 
     end
 
+
     methods
 
         function out=get(this,testSuite,id)
 
             if~this.hasData(testSuite)
-
-
-
                 if isempty(testSuite)
                     out=[];
                     return;
@@ -84,23 +74,23 @@ ReqUpdate
 
 
         function set(this,testSuite,id,newData)
-
             this.repository.setData(testSuite,id,newData);
             this.statusMap(testSuite)=num2str(now);
             notify(this,'ReqUpdate',rmitm.RmiTmEvent(testSuite,id));
         end
 
+
         function writeToStorage(this,testSuite,storageName)
-
-
             this.repository.saveRoot(testSuite,storageName);
             this.statusMap(testSuite)='saved';
         end
+
 
         function result=hasData(this,testSuite)
 
             result=isKey(this.statusMap,testSuite);
         end
+
 
         function result=hasChanges(this,testSuite)
 
@@ -111,6 +101,7 @@ ReqUpdate
             end
         end
 
+
         function timestamp=getStatus(this,testSuite)
 
             if isKey(this.statusMap,testSuite)
@@ -120,10 +111,10 @@ ReqUpdate
             end
         end
 
+
         function varargout=load(this,testSuite,reqFile)
 
             try
-
                 this.repository.addRoot(testSuite,reqFile);
                 this.statusMap(testSuite)='loaded';
                 varargout{1}=true;
@@ -138,6 +129,7 @@ ReqUpdate
                 end
             end
         end
+
 
         function discard(this,testSuite)
 
@@ -157,18 +149,14 @@ ReqUpdate
             else
                 this.repository.renameRoot(oldTestFile,newTestFile,'linktype_rmi_testmgr');
                 this.statusMap(newTestFile)=num2str(now);
-
-
-
                 remove(this.statusMap,oldTestFile);
-
                 newReq=this.saveStorage(newTestFile);
             end
         end
 
+
         function storagePath=saveStorage(this,testSuite,varargin)
             if isempty(varargin)
-
                 storagePath=rmimap.StorageMapper.getInstance.getStorageFor(testSuite);
             else
 
@@ -176,30 +164,22 @@ ReqUpdate
                 this.statusMap(testSuite)=num2str(now);
             end
 
-
             if any(this.statusMap(testSuite)=='.')
                 this.writeToStorage(testSuite,storagePath);
             end
         end
 
-        function loadFromFile(this,testSuite)
 
+        function loadFromFile(this,testSuite)
             hasLoadedData=this.hasData(testSuite);
             if hasLoadedData
                 prevStorage=rmimap.StorageMapper.getInstance.getStorageFor(testSuite);
             else
                 prevStorage='';
             end
-
             if~isempty(prevStorage)&&this.hasChanges(testSuite)
 
-
-
-
             end
-
-
-
             fileToLoadFrom=rmimap.StorageMapper.getInstance.promptForReqFile(testSuite,true);
             if~isempty(fileToLoadFrom)
                 if hasLoadedData
@@ -221,6 +201,7 @@ ReqUpdate
             end
         end
 
+
         function result=hasLinks(this,testSuite)
             if this.hasData(testSuite)
                 result=this.repository.rootHasLinks(testSuite);
@@ -228,6 +209,7 @@ ReqUpdate
                 result=false;
             end
         end
+
 
         function wasSaved=close(this,testSuite)
             wasSaved=false;
