@@ -1,6 +1,5 @@
 function prefix=getModulePrefix(moduleId)
 
-
     persistent localMap;
     if isempty(localMap)||isempty(moduleId)
         localMap=containers.Map('KeyType','char','ValueType','char');
