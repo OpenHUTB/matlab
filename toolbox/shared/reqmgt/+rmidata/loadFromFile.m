@@ -1,13 +1,10 @@
 function loadFromFile(modelH)
-
-
     hasLoadedData=rmidata.bdHasExternalData(modelH,false);
     if hasLoadedData
         prevStorage=rmimap.StorageMapper.getInstance.getStorageFor(modelH);
     else
         prevStorage='';
     end
-
     if~isempty(prevStorage)&&slreq.hasChanges(modelH)
         reply=questdlg({...
         getString(message('Slvnv:rmidata:RmiSlData:LoadedLinksHaveChanges')),...
@@ -23,23 +20,17 @@ function loadFromFile(modelH)
             rmidata.save(modelH,prevStorage);
         end
     end
-
-
-
     fileToLoadFrom=rmimap.StorageMapper.getInstance.promptForReqFile(modelH,true);
     if~isempty(fileToLoadFrom)
-
         modelPath=get_param(modelH,'FileName');
 
         if hasLoadedData
-
             dataLinkSet=slreq.data.ReqData.getInstance.getLinkSet(modelPath);
             if~isempty(dataLinkSet)&&slreq.internal.isSharedSlreqInstalled()
                 slreq.linkmgr.LinkSetManager.getInstance.clearAllReferencesForLinkSet(dataLinkSet);
             end
             slreq.discardLinkSet(modelPath);
         end
-
         success=slreq.utils.loadLinkSet(modelPath,true);
         if success
             msg='';
