@@ -1,9 +1,4 @@
 function out=annotationMenuState(callbackInfo)
-
-
-
-
-
     [rmiInstalled,rmiLicenseAvailable]=rmi.isInstalled();
     if rmiInstalled&&rmiLicenseAvailable
         out=annotationLinkState(callbackInfo);
@@ -15,8 +10,8 @@ function out=annotationMenuState(callbackInfo)
             out='Disabled';
         end
     end
-
 end
+
 
 function result=annotationLinkState(callbackInfo)
     objh=callbackInfo.getSelection();
