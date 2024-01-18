@@ -1,8 +1,5 @@
 function result=shorterPath(filePath)
 
-
-
-
     result=filePath;
 
     maxLength=50;
