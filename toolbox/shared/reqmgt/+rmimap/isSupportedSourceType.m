@@ -1,14 +1,5 @@
 function yesno=isSupportedSourceType(srcName)
 
-
-
-
-
-
-
-
-
-
     srcName=convertStringsToChars(srcName);
 
     switch exist(srcName,'file')
