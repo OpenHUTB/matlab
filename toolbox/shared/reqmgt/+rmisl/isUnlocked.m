@@ -1,7 +1,5 @@
 function unlocked=isUnlocked(modelH,interactive)
 
-
-
     isLocked=strcmpi(get_param(modelH,'lock'),'on');
     if isLocked
         unlocked=0;
