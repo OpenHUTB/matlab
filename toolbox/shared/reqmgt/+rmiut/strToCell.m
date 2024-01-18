@@ -1,9 +1,5 @@
 function cell_array=strToCell(string)
 
-
-
-
-
     if isempty(strtrim(string))
         cell_array={};
     else
