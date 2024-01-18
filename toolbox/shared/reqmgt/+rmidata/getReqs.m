@@ -1,11 +1,5 @@
 function result=getReqs(varargin)
 
-
-
-
-
-
-
     if slreq.data.ReqData.exists()
         links=slreq.utils.getLinks(varargin{:});
         if isempty(links)
@@ -14,7 +8,6 @@ function result=getReqs(varargin)
             result=slreq.utils.linkToStruct(links);
         end
     else
-
         result=[];
     end
 
