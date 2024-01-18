@@ -1,8 +1,5 @@
 function result=getEmbeddedReqs(objH,isSf,isSigBuilder,varargin)
 
-
-
-
     if nargin==1||isempty(isSf)
         [modelH,objH,isSf,isSigBuilder]=rmisl.resolveObj(objH);
     else
@@ -16,12 +13,9 @@ function result=getEmbeddedReqs(objH,isSf,isSigBuilder,varargin)
         end
     end
 
-
     reqsStr=rmi.getRawReqs(objH,isSf);
 
-
     reqs=rmi.parsereqs(reqsStr);
-
 
     if~isempty(reqs)
         switch length(varargin)
@@ -42,8 +36,6 @@ function result=getEmbeddedReqs(objH,isSf,isSigBuilder,varargin)
         end
     end
 
-
-
     if isempty(reqs)
         result=[];
     elseif isSf&&isDisabledLibLink(objH)
@@ -52,6 +44,7 @@ function result=getEmbeddedReqs(objH,isSf,isSigBuilder,varargin)
         result=rmisl.intraLinksResolve(reqs,modelH);
     end
 end
+
 
 function yesno=isDisabledLibLink(h)
 
