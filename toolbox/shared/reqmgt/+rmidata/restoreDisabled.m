@@ -1,10 +1,4 @@
 function[fromExt,toExt]=restoreDisabled(objH)
-
-
-
-
-
-
     srcSID=get_param(objH,'BlockCopiedFrom');
     if isempty(srcSID)
         fromExt=false;
@@ -17,19 +11,12 @@ function[fromExt,toExt]=restoreDisabled(objH)
         end
     end
 
-
     modelH=get_param(bdroot(objH),'Handle');
     toExt=rmidata.isExternal(modelH);
 
     if fromExt||toExt
 
-
-
-
-
         dstObj=get_param(objH,'Object');
-
-
 
         if fromExt
             srcH=Simulink.ID.getHandle(srcSID);
@@ -39,8 +26,6 @@ function[fromExt,toExt]=restoreDisabled(objH)
         else
             srcObjSID='';
         end
-
-
         slObjs=find(dstObj,'-isa','Simulink.Block');
         for i=2:length(slObjs)
             slObj=slObjs(i);
@@ -52,7 +37,6 @@ function[fromExt,toExt]=restoreDisabled(objH)
                     srcObjSID=getSrcSidForObj(slObj,dstFullName,srcFullName);
                     if rmisl.inSubsystemReference(srcObjSID)
 
-
                         continue;
                     end
                 catch Mex %#ok<NASGU>
@@ -62,18 +46,12 @@ function[fromExt,toExt]=restoreDisabled(objH)
             end
             rmidata.copyDisabled(slObj.Handle,modelH,false,srcObjSID,slObj.isLinked);
         end
-
-
-
-
         if~(isa(dstObj,'Simulink.SubSystem')&&strcmp(dstObj.SFBlockType,'Chart'))
             sfFilter=rmisf.sfisa('isaFilter');
             sfObjs=find(dstObj,sfFilter(3:end));
             for i=1:length(sfObjs)
                 sfObj=sfObjs(i);
                 if isa(sfObj,'Stateflow.EMChart')
-
-
                     srcSID=get_param(sfObj.Path,'BlockCopiedFrom');
                     destSID=Simulink.ID.getSID(sfObj);
                     rmidata.duplicateMLFB(srcSID,destSID,true);
@@ -92,6 +70,7 @@ function[fromExt,toExt]=restoreDisabled(objH)
         end
     end
 end
+
 
 function srcSid=getSrcSidForObj(obj,dstFullName,srcFullName)
     dstObjFullName=obj.getFullName();
