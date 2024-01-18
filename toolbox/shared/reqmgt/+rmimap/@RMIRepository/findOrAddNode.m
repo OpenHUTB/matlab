@@ -1,8 +1,4 @@
 function node=findOrAddNode(this,rootUrl,nodeId,docKind)
-
-
-
-
     myRoot=this.findOrAddRoot(rootUrl,docKind);
 
     if isempty(nodeId)
