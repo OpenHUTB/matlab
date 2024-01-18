@@ -1,10 +1,5 @@
 function[reqs,groups]=getSubIds(this,srcName,id)
 
-
-
-
-
-
     if nargin<3
 
         [srcName,id]=strtok(srcName,':');
