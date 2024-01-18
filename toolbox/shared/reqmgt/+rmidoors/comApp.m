@@ -1,40 +1,29 @@
 function out=comApp(method,varargin)
 
-
-
-
-
     persistent hDOORS;
 
     out=[];
 
-
     if rmisync.syncTestMode()
         return;
     end
-
 
     if isempty(hDOORS)
         hDOORS=initServer();
 
     elseif nargin==1&&strcmp(method,'get')
 
-
     elseif isServerValid(hDOORS)
 
-
     else
-
         hDOORS=initServer();
     end
-
 
     if isempty(hDOORS)
         out=[];
 
     elseif nargin==0||strcmp(method,'get')
         out=hDOORS;
-
     else
         switch method
 
@@ -64,7 +53,6 @@ function out=comApp(method,varargin)
 end
 
 
-
 function server=initServer()
     try
         server=actxserver('DOORS.Application');
@@ -76,6 +64,7 @@ function server=initServer()
     end
 end
 
+
 function result=isServerValid(hDOORS)
 
     result=1;
@@ -86,13 +75,10 @@ function result=isServerValid(hDOORS)
     end
 end
 
+
 function status=apiVersionCheck(hDOORS)
-
-
     expectedVer='R2021b';
-
     status=0;
-
 
     try
         rmidoors.invoke(hDOORS,'dmiVersionNumber();');
@@ -103,7 +89,6 @@ function status=apiVersionCheck(hDOORS)
         ' ',...
         getString(message('Slvnv:reqmgt:com_doors_app:IfYouSeeLoginDlg'))},...
         getString(message('Slvnv:reqmgt:com_doors_app:DoorsApiError')));
-
 
         return;
     end
@@ -116,10 +101,8 @@ function status=apiVersionCheck(hDOORS)
         getString(message('Slvnv:reqmgt:com_doors_app:TerminateAndRestart'))},...
         getString(message('Slvnv:reqmgt:com_doors_app:DoorsApiError')));
 
-
         return;
     end
-
 
     try
         expected=versionStrToNum(expectedVer);
@@ -135,14 +118,9 @@ function status=apiVersionCheck(hDOORS)
     end
 
     if~status
-
-
         if strcmp(actualVer,'3.19')
-
-
             actualVer=[actualVer,' (R2014b)'];
         elseif length(actualVer)>4
-
             actualVer=['R',actualVer(1:4),char(96+str2num(actualVer(6)))];%#ok<ST2NM>
         end
 
@@ -160,11 +138,9 @@ function status=apiVersionCheck(hDOORS)
     end
 end
 
+
 function versionNumber=versionStrToNum(versionString)
-    if versionString(1)=='R'
-
-
-        versionNumber=str2double(versionString(2:5))+((versionString(6)-'a')+1)/10;
+    if versionString(1)=='R'        versionNumber=str2double(versionString(2:5))+((versionString(6)-'a')+1)/10;
     else
         versionNumber=str2double(versionString);
     end
