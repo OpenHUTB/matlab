@@ -1,20 +1,6 @@
 function groups=convertSigbGrpInfo(varargin)
 
-
-
-
-
-
-
-
-
-
     if isstruct(varargin{1})
-
-
-
-
-
 
         blkInfo=varargin{1};
         expectedReqCnt=varargin{2};
@@ -25,8 +11,6 @@ function groups=convertSigbGrpInfo(varargin)
                 warning(message('Slvnv:reqmgt:convertSigbGrpInfo:UnmatchedGroupsInfo',get_param(blkInfo.blockH,'Name')));
             end
         else
-
-
             groups=[];
         end
 
@@ -43,11 +27,6 @@ function groups=convertSigbGrpInfo(varargin)
                 warning(message('Slvnv:reqmgt:convertSigbGrpInfo:UnmatchedGroupsInfo',get_param(gcb,'Name')));
             end
         else
-
-
-
-
-
             total_groups=varargin{1};
             groupsIdx=varargin{2};
             groups=zeros(1,total_groups);
@@ -57,6 +36,7 @@ function groups=convertSigbGrpInfo(varargin)
         end
     end
 end
+
 
 function groups=groupReqCntToGroupIndex(groupReqCnt,expectedReqCnt)
     nonEmpty=find(groupReqCnt);
