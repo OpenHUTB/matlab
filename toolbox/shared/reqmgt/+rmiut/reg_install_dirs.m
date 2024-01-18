@@ -1,7 +1,5 @@
 function[names,dirs]=reg_install_dirs(masterKey,subKey,varargin)
 
-
-
     if isempty(varargin)
         names={};
         dirs={};
