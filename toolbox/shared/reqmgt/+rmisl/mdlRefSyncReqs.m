@@ -1,13 +1,5 @@
 function mdlRefSyncReqs(src,destination)
 
-
-
-
-
-
-
-
-
     if ischar(src)
 
         [~,srcName]=fileparts(src);
@@ -22,7 +14,6 @@ function mdlRefSyncReqs(src,destination)
         reqs=rmi.getReqs(src);
     end
 
-
     if isempty(reqs)||all(~[reqs.linked])
         return;
     end
@@ -32,12 +23,9 @@ function mdlRefSyncReqs(src,destination)
         reqStr=rmi.reqs2str(reqs);
         newMdlH=get_param(destination,'Handle');
         rmi.objCopy(newMdlH,reqStr,newMdlH,false);
-
         set_param(newMdlH,'hasReqInfo','on');
-
         rmidata.storageModeCache('set',newMdlH,false);
     else
-
         dstMdlH=rmisl.getmodelh(destination);
         if rmidata.isExternal(dstMdlH)
             rmidata.objCopy(destination,reqs,dstMdlH,false);
