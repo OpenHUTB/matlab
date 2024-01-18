@@ -1,14 +1,5 @@
 function status=setup()
 
-
-
-
-
-
-
-
-
-
     status=0;
     if~ispc
         disp('DOORS integration is only supported on Windows machines.');
@@ -37,6 +28,7 @@ function status=setup()
     end
 end
 
+
 function enableDoorsIntegration()
     rmi.settings_mgr('set','isDoorsSetup',true);
     rmipref('SelectionLinkDoors',true);
@@ -44,6 +36,7 @@ function enableDoorsIntegration()
     rmi.menus_selection_links([]);
     rmiml.selectionLink([]);
 end
+
 
 function doors_welcome()
     disp(' ')
@@ -54,6 +47,7 @@ function doors_welcome()
     disp('NOTE: You should close DOORS before continuing with')
     disp('this installation.')
 end
+
 
 function[names,dirs]=find_in_registry()
     names={};
@@ -78,6 +72,7 @@ function[names,dirs]=find_in_registry()
         end
     end
 end
+
 
 function[doorsDir]=doors_select(names,dirs)
     i=0;
@@ -142,6 +137,7 @@ function doorsDir=get_from_user()
     end
 end
 
+
 function result=validate_dir(doorsRoot)
     if exist(fullfile(doorsRoot,'lib','dxl','startup.dxl'),'file')==2
         result=true;
@@ -161,7 +157,6 @@ function status=doors_install(doorsRoot)
     addinsDir=fullfile(dxlDir,'addins');
     dmiDir=fullfile(addinsDir,'dmi');
     backupDir=fullfile(dmiDir,'originals');
-
 
     disp(' ')
     if~exist(dmiDir,'dir')
@@ -184,10 +179,7 @@ function status=doors_install(doorsRoot)
     else
         backupExisted=1;
     end
-
-
     rmiDir=fullfile(mlRoot,'toolbox','shared','reqmgt','dxl');
-
 
     if dmiExisted&&backupExisted
         installedFileInfo=dir(fullfile(dmiDir,'dmi.inc'));
@@ -198,16 +190,12 @@ function status=doors_install(doorsRoot)
             return;
         end
     end
-
-
-
     uninstallFile=fullfile(dxlDir,'addins','uninstall_dmi.bat');
     uninstallFid=fopen(uninstallFile,'w');
     if uninstallFid==-1
         throwError('Slvnv:reqmgt:setup_doors:CouldNotCreateFile',uninstallFile);
     end
     uninstall_head(uninstallFid,uninstallFile);
-
 
     disp('Backing up existing file versions');
     backup_file(fullfile(dmiDir,'dmi.hlp'),backupDir,uninstallFid);
@@ -220,7 +208,6 @@ function status=doors_install(doorsRoot)
     backup_file(fullfile(dxlDir,'startup.dxl'),backupDir,uninstallFid);
     backup_file(fullfile(dmiDir,'install_log.txt'),backupDir,uninstallFid);
 
-
     if~backupExisted
         fprintf(uninstallFid,'rmdir /s /q "%s"\n',backupDir);
     end
@@ -228,13 +215,11 @@ function status=doors_install(doorsRoot)
         fprintf(uninstallFid,'rmdir /s /q "%s"\n',dmiDir);
     end
     fclose(uninstallFid);
-
     logFilePath=fullfile(dmiDir,'install_log.txt');
     installLogFile=fopen(logFilePath,'w');
     if installLogFile==-1
         throwError('Slvnv:reqmgt:setup_doors:CouldNotCreateFile',logFilePath);
     end
-
 
     log_head(installLogFile,backupDir);
 
@@ -270,7 +255,6 @@ function status=doors_install(doorsRoot)
     install_msg('Updating Startup registration',installLogFile);
     startupFile=fullfile(dxlDir,'startup.dxl');
 
-
     if~exist(startupFile,'file')
         install_msg(['Error: could not locate startup file: ',startupFile],installLogFile);
     else
@@ -292,7 +276,6 @@ function status=doors_install(doorsRoot)
         disp('    !!    Please restart IBM Rational DOORS    !!');
         disp('    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
     end
-
 end
 
 
@@ -305,6 +288,7 @@ function log_head(logFile,backupDir)
     fprintf(logFile,'Backup versions of original files saved in %s\n',backupDir);
 end
 
+
 function log_tail(logFile,uninstallFile)
     fprintf(logFile,'\n');
     fprintf(logFile,'Installation succeeded\n');
@@ -314,10 +298,12 @@ function log_tail(logFile,uninstallFile)
     fprintf(logFile,'%s\n\n',uninstallFile);
 end
 
+
 function install_msg(str,logFile)
     disp(str);
     fprintf(logFile,'\n%s\n',str);
 end
+
 
 function copy_single_file(srcPath,destPath,logFile)
     [status,msg]=copyfile(srcPath,destPath,'f');
@@ -329,8 +315,8 @@ function copy_single_file(srcPath,destPath,logFile)
     fprintf(logFile,'%s ==> %s\n',srcPath,destPath);
 end
 
-function add_line_if_needed(filePath,precedingLine,line2add,logFile)
 
+function add_line_if_needed(filePath,precedingLine,line2add,logFile)
 
     fprintf(logFile,'Checking %s for required contents.\n',filePath);
     fid=fopen(filePath,'r');
@@ -346,7 +332,6 @@ function add_line_if_needed(filePath,precedingLine,line2add,logFile)
             contents=[contents,line2add,newline,newline];
             fprintf(logFile,'Adding "%s" to the end of the file.\n',line2add);
         else
-
             insertPos=precedePos+length(precedingLine)-1;
             if insertPos==length(contents)
                 contents=[contents(1:insertPos),newline,line2add,newline];
@@ -366,7 +351,6 @@ function add_line_if_needed(filePath,precedingLine,line2add,logFile)
 
         fprintf(newFid,'%s',contents);
         fclose(newFid);
-
         [status,msg]=movefile(tempFile,filePath,'f');
         if status==0
             install_msg(['Could not move ',tempFile,' to ',filePath,': ',msg],logFile);
@@ -378,6 +362,7 @@ function add_line_if_needed(filePath,precedingLine,line2add,logFile)
     end
 end
 
+
 function uninstall_head(uninstallId,location)
     fprintf(uninstallId,'rem MATLAB-DOORS Interface Uninstall script\n');
     fprintf(uninstallId,'rem This batch file restore the DXL folder to\n');
@@ -388,21 +373,19 @@ function uninstall_head(uninstallId,location)
     fprintf(uninstallId,'rem Generated: %s \n',datestr(now));
 end
 
+
 function backup_file(filePath,backupDir,uninstallFile)
     [~,name,ext]=fileparts(filePath);
     backupFile=fullfile(backupDir,[name,ext]);
 
     if exist(filePath,'file')
-
-
         [status,msg,id]=copyfile(filePath,backupFile,'f');%#ok
         fprintf(uninstallFile,'copy "%s" "%s"\n',backupFile,filePath);
     else
-
-
         fprintf(uninstallFile,'del "%s"\n',filePath);
     end
 end
+
 
 function throwError(ID,offendingPath)
     messageString=getString(message(ID,offendingPath));
