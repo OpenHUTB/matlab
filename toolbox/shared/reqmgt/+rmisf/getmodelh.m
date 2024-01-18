@@ -1,8 +1,4 @@
 function result=getmodelh(handle)
-
-
-
-
     chart_isa=sf('get','default','chart.isa');
     handle_isa=sf('get',handle,'.isa');
     if chart_isa==handle_isa
