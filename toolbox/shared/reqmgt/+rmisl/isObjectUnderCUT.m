@@ -1,10 +1,5 @@
 function yesorno=isObjectUnderCUT(objh)
 
-
-
-
-
-
     yesorno=false;
     if sysarch.isSysArchObject(objh)||rmifa.isFaultInfoObj(objh)
         return;
