@@ -1,8 +1,4 @@
 function obsParams=getClientParameters(this,obsParams,varargin)
-
-
-
-
     dataProcStrategy='slwebscope_time_data_strategy';
     obsParams.TimeBased=true;
     this.IsTimeBased=true;
@@ -19,7 +15,6 @@ function obsParams=getClientParameters(this,obsParams,varargin)
 'trigger_filter'...
     };
 
-
     clientID=this.ClientID;
     wsBlock=matlabshared.scopes.WebScope.getInstance(clientID);
     block=wsBlock.FullPath;
@@ -29,7 +24,6 @@ function obsParams=getClientParameters(this,obsParams,varargin)
     else
         magPhaseData=true;
     end
-
 
     propertyArray=obsParams.clientProperties;
     numSignals=varargin{5};
@@ -41,7 +35,6 @@ function obsParams=getClientParameters(this,obsParams,varargin)
     propertyArray=this.addCustomProperties(propertyArray,'dataProcessingStrategy',dataProcStrategy,'string',false);
     propertyArray=this.addCustomProperties(propertyArray,'PlotType','Stem','string',false);
     propertyArray=this.addCustomProperties(propertyArray,'needsInterleavedComplex',true,'bool',false);
-
 
     obsParams.clientProperties=propertyArray;
 end
