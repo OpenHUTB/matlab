@@ -1,7 +1,3 @@
-
-
-
-
 function status=isATSCodeCovFeatureOn()
 
     persistent hasCoderConnectivity
