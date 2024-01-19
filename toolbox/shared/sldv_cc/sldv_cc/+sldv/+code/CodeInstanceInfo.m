@@ -1,59 +1,28 @@
-
-
-
-
 classdef CodeInstanceInfo<handle
 
     properties(Access=public)
-
 StaticChecksum
-
-
 InputPortInfo
-
-
 OutputPortInfo
-
-
 ParameterPortInfo
-
-
-
 DialogParameterInfo
-
-
 DWorkInfo
-
-
 DiscStateInfo
-
-
 DataStoreInfo
     end
 
+
     properties(Hidden=true)
-
-
-
-
 IRMapping
     end
 
     properties(GetAccess=public,SetAccess=protected)
 
-
-
-
-
-
-
-
 SID
     end
 
+
     methods(Access=public)
-
-
 
         function obj=CodeInstanceInfo(checksum)
             if nargin<1
@@ -75,22 +44,16 @@ SID
         end
 
 
-
-
         function addInput(obj,type,dims)
             portInfo=sldv.code.CodeInstanceInfo.portInfo(type,dims);
             obj.InputPortInfo=[obj.InputPortInfo,portInfo];
         end
 
 
-
-
         function addOutput(obj,type,dims)
             portInfo=sldv.code.CodeInstanceInfo.portInfo(type,dims);
             obj.OutputPortInfo=[obj.OutputPortInfo,portInfo];
         end
-
-
 
 
         function addParameter(obj,type,dims,value)
@@ -101,19 +64,6 @@ SID
             end
             obj.ParameterPortInfo=[obj.ParameterPortInfo,paramInfo];
         end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         function[compatible,parameterCount]=isValidDescriptionFor(obj,instance)
             if strcmp(obj.StaticChecksum,instance.StaticChecksum)&&...
