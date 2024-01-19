@@ -1,16 +1,7 @@
 function[simControlsState,updateSimulationControlsMsg]=getSimControlsState(clientId,varargin)
-
-
-
-
-
-
-
     modelH=bdroot(matlabshared.scopes.clientIDToHandle(clientId));
 
-
     isInModelReference=false;
-
 
     simModeDisableSchemas=false;
     if(nargin>1)&&(varargin{1})
@@ -22,7 +13,6 @@ function[simControlsState,updateSimulationControlsMsg]=getSimControlsState(clien
             modelH=topModelH;
         end
     end
-
     simState=get_param(modelH,'SimulationStatus');
     sim_mode=get_param(modelH,'SimulationMode');
     pacingEnabled=strcmp(get_param(modelH,'EnablePacing'),'on');
@@ -39,15 +29,12 @@ function[simControlsState,updateSimulationControlsMsg]=getSimControlsState(clien
         pacingEnabled=false;
         simModeDisableSchemas=true;
     end
-
     stepBackSchema=getStepBackSchema(modelH,simState,isSimSteppingEnabled,...
     isSimSteppingAvailable,isSimRunningCallback);
     startSchema=getStartSchema(modelH,simState,isSimSteppingEnabled,isSimRunningCallback,pacingEnabled);
     stepForwardSchema=getStepForwardSchema(modelH,simState,isSimSteppingEnabled,...
     isSimSteppingAvailable,isSimRunningCallback);
     stopSchema=getStopSchema(modelH);
-
-
 
     if any(strcmpi(simState,{'compiling','initializing'}))||...
         (isInModelReference&&simModeDisableSchemas)
@@ -56,7 +43,6 @@ function[simControlsState,updateSimulationControlsMsg]=getSimControlsState(clien
         stepForwardSchema.state='Disabled';
         stopSchema.state='Disabled';
     end
-
     params.stepBackState=stepBackSchema.state;
     params.stepBackLabel=stepBackSchema.label;
     params.stepBackIcon=stepBackSchema.icon;
@@ -70,12 +56,11 @@ function[simControlsState,updateSimulationControlsMsg]=getSimControlsState(clien
     updateSimulationControlsMsg.action=['updateSimulationControls',clientId];
     updateSimulationControlsMsg.params=params;
 
-
-
     paramsCell=struct2cell(params);
     simControlsState=[paramsCell{:}];
 
 end
+
 
 function schema=getStepBackSchema(modelH,simState,isSimSteppingEnabled,...
     isSimSteppingAvailable,isSimRunningCallback)
@@ -88,7 +73,6 @@ function schema=getStepBackSchema(modelH,simState,isSimSteppingEnabled,...
     else
         schema.state='Enabled';
     end
-
     enabled=get_param(modelH,'EnableRollback');
     compliance=get_param(modelH,'SimulationRollbackCompliance');
     if(isequal(compliance,'noncompliant-fatal'))
@@ -120,6 +104,7 @@ function schema=getStepBackSchema(modelH,simState,isSimSteppingEnabled,...
     end
 end
 
+
 function schema=getStartSchema(modelH,simState,isSimSteppingEnabled,...
     isSimRunningCallback,pacingEnabled)
     schema.state='Enabled';
@@ -150,6 +135,7 @@ function schema=getStartSchema(modelH,simState,isSimSteppingEnabled,...
     end
 end
 
+
 function schema=getStepForwardSchema(modelH,simState,isSimSteppingEnabled,...
     isSimSteppingAvailable,isSimRunningCallback)
     schema.label='stepForward';
@@ -171,6 +157,7 @@ function schema=getStepForwardSchema(modelH,simState,isSimSteppingEnabled,...
         schema.label='stepForwardTerminate';
     end
 end
+
 
 function schema=getStopSchema(modelH)
     schema.state='Enabled';
