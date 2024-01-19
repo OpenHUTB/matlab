@@ -1,11 +1,4 @@
 function openVisual(this)
-
-
-
-
-
-
-
     isDSP_InstalledAndLic=dig.isProductInstalled('DSP System Toolbox');
     isSoCB_InstalledAndLic=dig.isProductInstalled('SoC Blockset');
 
@@ -15,22 +8,18 @@ function openVisual(this)
         getString(message('Spcuilib:logicanalyzer:installError')));
     end
 
-
     if isDSP_InstalledAndLic&&~isSoCB_InstalledAndLic
         if~builtin('license','checkout','Signal_Blocks')
             error('Spcuilib:logicanalyzer:licenseError',...
             getString(message('Spcuilib:logicanalyzer:licenseError')));
         end
     end
-
-
     if~isDSP_InstalledAndLic&&isSoCB_InstalledAndLic
         if~builtin('license','checkout','SoC_Blockset')
             error('Spcuilib:logicanalyzer:licenseError',...
             getString(message('Spcuilib:logicanalyzer:licenseError')));
         end
     end
-
 
     if isDSP_InstalledAndLic&&isSoCB_InstalledAndLic
 
@@ -42,13 +31,6 @@ function openVisual(this)
 
     connector.ensureServiceOn;
     clientID=this.ClientID;
-
-
-
-
-
-
-
     URL=Simulink.scopes.LAScope.getURL(clientID);
     feature=slfeature('slLogicAnalyzerApp');
 
@@ -57,8 +39,6 @@ function openVisual(this)
         hWebWindow=this.WebWindow;
         isObjectValid=isa(hWebWindow,'matlab.internal.webwindow')&&isvalid(hWebWindow);
         if~(isObjectValid&&hWebWindow.isWindowValid)
-
-
 
             if isObjectValid
                 delete(hWebWindow);
