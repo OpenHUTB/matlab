@@ -1,19 +1,16 @@
 classdef EventChainInfoTab<swarch.internal.spreadsheet.AbstractSoftwareModelingTab
 
-
-
-
-
     properties(Access=private)
 HighlightingOn
     end
+
 
     methods
         function this=EventChainInfoTab(spreadSheetObj)
             this=this@swarch.internal.spreadsheet.AbstractSoftwareModelingTab(spreadSheetObj);
             this.HighlightingOn=false;
-
         end
+
 
         function columns=getColumnNames(~)
             columns{1}=getString(message('SoftwareArchitecture:ArchEditor:EventChainNameColumn'));
@@ -22,19 +19,20 @@ HighlightingOn
             end
         end
 
+
         function tabName=getTabName(~)
             tabName=getString(...
             message('SoftwareArchitecture:ArchEditor:EventChainTabName'));
 
         end
 
+
         function refreshChildren(this)
             this.pChildren=this.getDataSources();
         end
 
+
         function addChildToArchitecture(this)
-
-
             timingTrait=this.getRootArchitecture().getTrait(systemcomposer.architecture.model.traits.TimingTrait.StaticMetaClass);
             if isempty(timingTrait)
                 timingTrait=this.getRootArchitecture().addTrait(systemcomposer.architecture.model.traits.TimingTrait.StaticMetaClass);
@@ -44,13 +42,13 @@ HighlightingOn
             timingTrait.createEventChain('EC');
         end
 
+
         function removeChildFromArchitecture(this,~)
             cellfun(@(s)s.get().destroy(),this.getCurrentSelection());
         end
 
 
         function dlgStruct=getDialogSchema(this,~)
-
             addEventChainButton.Type='pushbutton';
             addEventChainButton.FilePath=this.getIconPath('plusIcon_16.png');
             addEventChainButton.MatlabMethod='swarch.internal.spreadsheet.addEventChainToArchitecture';
@@ -59,8 +57,6 @@ HighlightingOn
             addEventChainButton.ToolTip=getString(...
             message('SoftwareArchitecture:ArchEditor:addEventChainToolTip'));
             addEventChainButton.Alignment=2;
-
-
             removeEventChainButton.Type='pushbutton';
             removeEventChainButton.FilePath=this.getIconPath('minusIcon_16.png');
             removeEventChainButton.ObjectMethod='removeEventChainRow';
@@ -70,8 +66,6 @@ HighlightingOn
             removeEventChainButton.Alignment=2;
             removeEventChainButton.Enabled=this.isOwnedChainSelected()||...
             (this.isReferenceChainSelected()&&this.isEditableChainSelected());
-
-
             addSubChainButton.Type='pushbutton';
             addSubChainButton.FilePath=this.getIconPath('addSubChain_16.png');
             addSubChainButton.ObjectMethod='addSubChainToSelection';
@@ -80,8 +74,6 @@ HighlightingOn
             message('SoftwareArchitecture:ArchEditor:addSubChainToolTip'));
             addSubChainButton.Alignment=2;
             addSubChainButton.Enabled=isOwnedChainSelected(this);
-
-
             highlightChainToggleButton.Type='togglebutton';
             highlightChainToggleButton.FilePath=[matlabroot,'/toolbox/simulink/ui/studio/config/icons/highlightBlock_16.png'];
             highlightChainToggleButton.ObjectMethod='toggleHighlightChains';
@@ -90,7 +82,6 @@ HighlightingOn
             highlightChainToggleButton.ToolTip=getString(...
             message('SoftwareArchitecture:ArchEditor:toggleEventChainHighlightingTooltip'));
             highlightChainToggleButton.Alignment=2;
-
 
             buttonPanel.Type='panel';
             buttonPanel.Items={addEventChainButton,removeEventChainButton,...
@@ -101,7 +92,6 @@ HighlightingOn
             buttonPanel.RowSpan=[1,1];
             buttonPanel.ColSpan=[1,1];
 
-
             dlgStruct.DialogTitle='';
             dlgStruct.IsScrollable=false;
             dlgStruct.DialogMode='Slim';
@@ -110,6 +100,7 @@ HighlightingOn
             dlgStruct.StandaloneButtonSet={''};
             dlgStruct.EmbeddedButtonSet={''};
         end
+
 
         function removeEventChainRow(this)
             if this.isReferenceChainSelected()
@@ -120,6 +111,7 @@ HighlightingOn
             end
         end
 
+
         function addSubChainToSelection(this)
             assert(this.isOwnedChainSelected());
             sel=this.getCurrentSelection;
@@ -127,6 +119,7 @@ HighlightingOn
             this,sel{1}.get()));
             this.pParentSpreadSheet.getComponent().update(true);
         end
+
 
         function tf=isReferenceChainSelected(this)
             tf=false;
@@ -137,6 +130,7 @@ HighlightingOn
             end
         end
 
+
         function tf=isEditableChainSelected(this)
             tf=false;
 
@@ -146,6 +140,7 @@ HighlightingOn
             end
         end
 
+
         function tf=isOwnedChainSelected(this)
             tf=false;
 
@@ -154,6 +149,7 @@ HighlightingOn
                 tf=~sel{1}.isEventChainReference();
             end
         end
+
 
         function requiresUpdate=processChangeReport(this,changeReport)
             if this.hasDestroyedChildren(changeReport)||...
@@ -166,24 +162,19 @@ HighlightingOn
             end
         end
 
+
         function hierChange=hasHierarchyChange(~,changeReport)
             hierChange=false;
             if isempty(changeReport.Modified)
 
                 return;
             end
-
-
-
             modifiedElems={changeReport.Modified.Element};
             isModifiedEC=cellfun(@(el)isa(el,...
             'systemcomposer.architecture.model.traits.EventChain'),modifiedElems);
             if all(~isModifiedEC)
                 return
             end
-
-
-
             modifiedECs=changeReport.Modified(isModifiedEC);
             for ec=modifiedECs
                 if any(strcmp('subChains',{ec.ModifiedProperties.name}))
@@ -193,33 +184,32 @@ HighlightingOn
             end
         end
 
+
         function created=hasCreatedChildren(~,changeReport)
-
-
             allCreatedElems=changeReport.Created;
             isChild=@(el)isa(el,'systemcomposer.architecture.model.traits.EventChain');
             created=any(arrayfun(isChild,allCreatedElems));
         end
 
-        function modified=hasModifiedChildren(this,changeReport)
 
+        function modified=hasModifiedChildren(this,changeReport)
 
             if isempty(changeReport.Modified)
                 modified=false;
                 return;
             end
-
             allModifiedElems=[changeReport.Modified.Element];
             allModifiedUUIDs={allModifiedElems.UUID};
             isModified=@(child)containsModifiedChild(child.get(),allModifiedUUIDs);
             modified=any(arrayfun(isModified,this.pChildren));
         end
 
-        function destroyed=hasDestroyedChildren(this,~)
 
+        function destroyed=hasDestroyedChildren(this,~)
             isDestroyed=@(child)~isvalid(child.get());
             destroyed=any(arrayfun(isDestroyed,this.pChildren));
         end
+
 
         function handleSelectionChanged(this)
             this.getSpreadsheet().ActiveTabData=[];
@@ -230,9 +220,9 @@ HighlightingOn
                     this.getSpreadsheet().ActiveTabData=swarch.internal.spreadsheet.EventChainHighlighter(sel{1}.get());
                 end
             end
-
             this.refreshTitleDialog();
         end
+
 
         function toggleHighlightChains(this)
             this.getSpreadsheet().ActiveTabData=[];
@@ -249,6 +239,7 @@ HighlightingOn
         end
     end
 
+
     methods(Access=private)
         function dataSources=getDataSources(this)
 
@@ -261,7 +252,6 @@ HighlightingOn
                     ,swarch.internal.spreadsheet.EventChainInfoDataSource(this,ec)];%#ok<AGROW>
                 end
             end
-
             swComponents=swarch.utils.getAllSoftwareComponents(rootArch);
             for swComp=swComponents
                 arch=swComp.getArchitecture();
@@ -272,7 +262,6 @@ HighlightingOn
                     end
                 end
             end
-
 
             for i=1:length(dataSources)
                 ec=dataSources(i).get();
@@ -285,16 +274,16 @@ HighlightingOn
             end
         end
 
-        function refreshTitleDialog(this)
 
+        function refreshTitleDialog(this)
             ss=this.getSpreadsheet();
             comp=ss.getComponent();
             titleDlg=comp.getTitleView();
             titleDlg.refresh;
         end
     end
-
 end
+
 
 function modified=containsModifiedChild(mfEventChain,allModifiedUUIDs)
 
