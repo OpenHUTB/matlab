@@ -1,12 +1,10 @@
 classdef EventChainInfoDataSource<handle
 
-
-
-
     properties(Constant)
         EventChainNameCol=getString(message('SoftwareArchitecture:ArchEditor:EventChainNameColumn'));
         EventChainDurationCol=getString(message('SoftwareArchitecture:ArchEditor:EventChainDurationColumn'));
     end
+
 
     properties(Access=private)
 pEventChain
@@ -15,11 +13,11 @@ pChildren
 pMimeData
     end
 
+
     methods
         function this=EventChainInfoDataSource(parentTab,ecObj)
             this.pEventChain=ecObj;
             this.pParent=parentTab;
-
 
             columns=[...
             this.EventChainNameCol,'<*>'...
@@ -33,6 +31,7 @@ pMimeData
             this.pMimeData=kvPairsList;
         end
 
+
         function ref=makeReference(this,parentEC)
             ref=swarch.internal.spreadsheet.EventChainRefDataSource(...
             this.pParent,parentEC,this,false);
@@ -42,7 +41,6 @@ pMimeData
         function tObj=get(this)
             tObj=this.pEventChain;
         end
-
 
 
         function propValue=getPropValue(this,propName)
@@ -58,6 +56,7 @@ pMimeData
             end
         end
 
+
         function setPropValue(this,propName,propValue)
             switch propName
             case this.EventChainDurationCol
@@ -72,9 +71,11 @@ pMimeData
             end
         end
 
+
         function isValid=isValidProperty(~,~)
             isValid=true;
         end
+
 
         function isEditable=isEditableProperty(this,propName)
             switch propName
@@ -87,38 +88,47 @@ pMimeData
             end
         end
 
+
         function isHyperlink=propertyHyperlink(~,~,~)
             isHyperlink=false;
         end
+
 
         function tf=isHierarchical(~)
             tf=true;
         end
 
+
         function children=getHierarchicalChildren(this)
             children=this.pChildren;
         end
+
 
         function children=getChildren(this)
             children=this.pChildren;
         end
 
+
         function isAllowed=isDragAllowed(~)
             isAllowed=false;
         end
 
+
         function isAllowed=isDropAllowed(~)
             isAllowed=false;
         end
+
 
         function schema=getPropertySchema(this)
             schema=swarch.internal.propertyinspector.EventChainSchema(...
             this.pParent.getSpreadsheet().getStudio(),this.pEventChain);
         end
 
+
         function allowed=performDrag(~,~)
             allowed=false;
         end
+
 
         function allowed=performDrop(~,~)
             allowed=false;
@@ -135,10 +145,10 @@ pMimeData
         end
 
 
-
         function addChildElement(this,dataSource)
             this.pChildren=[this.pChildren,dataSource];
         end
+
 
         function tf=isEventChainReference(~)
             tf=false;
