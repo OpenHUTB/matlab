@@ -1,24 +1,17 @@
 classdef AbstractSoftwareModelingTab<handle
 
-
-
-
-
     properties(Access=protected)
         pParentSpreadSheet;
         pChildren;
     end
 
+
     methods(Abstract)
-
         getColumnNames(this);
-
-
         getTabName(this);
-
-
         refreshChildren(this);
     end
+
 
     methods(Access=public)
         function this=AbstractSoftwareModelingTab(spreadSheetObj)
@@ -26,13 +19,11 @@ classdef AbstractSoftwareModelingTab<handle
         end
 
 
-
         function requiresUpdate=processChangeReport(this,changeReport)%#ok<INUSD>
 
             this.refreshChildren();
             requiresUpdate=true;
         end
-
 
 
         function children=getChildren(this,evtData,x,y)%#ok<INUSD>
@@ -43,8 +34,10 @@ classdef AbstractSoftwareModelingTab<handle
             children=this.pChildren;
         end
 
+
         function initForCurrentEditor(~)
         end
+
 
         function destroyLastChild(this)
             if isempty(this.pChildren)
@@ -52,6 +45,7 @@ classdef AbstractSoftwareModelingTab<handle
             end
             this.pChildren(end).get().destroy();
         end
+
 
         function delete(this)
             if~isempty(this.pChildren)
@@ -70,21 +64,24 @@ classdef AbstractSoftwareModelingTab<handle
             arch=this.pParentSpreadSheet.getBdHandle();
         end
 
+
         function ss=getSpreadsheet(this)
             ss=this.pParentSpreadSheet;
         end
 
-        function sel=getCurrentSelection(this)
 
+        function sel=getCurrentSelection(this)
             sel=this.pParentSpreadSheet.getComponent().imSpreadSheetComponent.getSelection();
             if isempty(sel)||isempty(sel{:})
                 sel={};
             end
         end
 
+
         function refresh=refreshButtonsOnSelectionChange(~)
             refresh=false;
         end
+
 
         function handleSelectionChanged(~)
         end
@@ -98,12 +95,15 @@ classdef AbstractSoftwareModelingTab<handle
         end
     end
 
+
     methods(Access=protected)
 
         function fullPath=getIconPath(~,fname)
             fullPath=swarch.internal.spreadsheet.getIconPath(fname);
         end
+
     end
+
 end
 
 
