@@ -1,7 +1,3 @@
-
-
-
-
 function mode=getMcdcMode(h)
 
     mode=SlCov.McdcMode.UniqueCause;
