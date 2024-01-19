@@ -1,8 +1,5 @@
 classdef EventChainSchema<swarch.internal.propertyinspector.SoftwareElementPropertySchema
 
-
-
-
     properties(Constant)
         StimulusPortTitleId='Swarch:StimulusPortTitle';
         ResponsePortTitleId='Swarch:ResponsePortTitle';
@@ -13,10 +10,13 @@ classdef EventChainSchema<swarch.internal.propertyinspector.SoftwareElementPrope
         TimingConstraintsTitleId='Swarch:TimingConstraints';
         DurationId='Swarch:DurationId';
     end
+
+
     properties
 pBDHandle
 pEventChain
     end
+
 
     methods
         function this=EventChainSchema(studio,trObj)
@@ -25,17 +25,21 @@ pEventChain
             this.pEventChain=trObj;
         end
 
+
         function typeStr=getObjectType(~)
             typeStr='EventChain';
         end
+
 
         function setPrototypableName(this,value)
             this.getPrototypable().setName(value);
         end
 
+
         function name=getPrototypableName(this)
             name=this.getPrototypable().getName();
         end
+
 
         function subProps=subProperties(this,prop)
             subProps=...
@@ -55,6 +59,7 @@ pEventChain
             end
         end
 
+
         function tf=hasSubProperties(this,prop)
             tf=...
             hasSubProperties@swarch.internal.propertyinspector.SoftwareElementPropertySchema(this,prop)||...
@@ -62,6 +67,7 @@ pEventChain
             strcmp(prop,this.ResponsePortTitleId)||...
             strcmp(prop,this.TimingConstraintsTitleId);
         end
+
 
         function setPropertyValue(this,prop,value)
             if strcmp(prop,this.StimulusPortId)
@@ -79,6 +85,7 @@ pEventChain
                 setPropertyValue@swarch.internal.propertyinspector.SoftwareElementPropertySchema(this,prop,value);
             end
         end
+
 
         function editor=propertyEditor(this,prop)
             if strcmp(prop,this.StimulusPortId)||strcmp(prop,this.ResponsePortId)
@@ -113,6 +120,7 @@ pEventChain
                 propertyEditor@swarch.internal.propertyinspector.SoftwareElementPropertySchema(this,prop);
             end
         end
+
 
         function value=propertyValue(this,prop)
 
@@ -172,10 +180,12 @@ pEventChain
             end
         end
 
+
         function tooltip=propertyTooltip(this,prop)
             tooltip=...
             propertyTooltip@swarch.internal.propertyinspector.SoftwareElementPropertySchema(this,prop);
         end
+
 
         function mode=propertyRenderMode(this,prop)
             if strcmp(prop,this.StimulusPortId)||strcmp(prop,this.ResponsePortId)
@@ -210,6 +220,7 @@ pEventChain
             end
         end
 
+
         function tf=isPropertyEditable(this,prop)
             tf=...
             isPropertyEditable@swarch.internal.propertyinspector.SoftwareElementPropertySchema(this,prop)||...
@@ -219,6 +230,7 @@ pEventChain
             strcmp(prop,this.ResponsePortElementId)||...
             strcmp(prop,this.DurationId);
         end
+
 
         function tf=isPropertyEnabled(this,prop)
 
@@ -250,6 +262,7 @@ pEventChain
             end
         end
 
+
         function name=getFullPortName(~,port)
 
             prefix='';
@@ -267,6 +280,7 @@ pEventChain
             name=[prefix,port.getName()];
         end
 
+
         function performPropertyAction(this,prop,~)
             if strcmp(prop,this.StimulusPortElementId)||strcmp(prop,this.ResponsePortElementId)
                 dlg=swarch.internal.portrelationship.Dialog.dialogFor(this.getPrototypable());
@@ -283,6 +297,8 @@ pEventChain
             end
         end
     end
+
+
     methods(Access=private)
         function setPortEvent(this,portEventType,value)
             ec=this.pEventChain;
@@ -312,6 +328,7 @@ pEventChain
             end
             swarch.utils.addPortEvent(ec,p,portEventType);
         end
+
 
         function tf=isPortEvent(~,event)
             tf=event.eventType==...
