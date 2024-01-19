@@ -1,9 +1,5 @@
 function slcoverage_callback(method,modelH)
 
-
-
-
-
     persistent covInstalledAndLicensed
     if isempty(covInstalledAndLicensed)||strcmp(method,'reset')
         covInstalledAndLicensed=exist('cv','file')==3&&license('test',SlCov.CoverageAPI.getLicenseName());
@@ -18,16 +14,11 @@ function slcoverage_callback(method,modelH)
 
     switch(method)
 
-
     case{'postLoad'}
 
         refreshInformer(modelH);
 
     case 'preSave'
-
-
-
-
         modelcovId=get_param(modelH,'CoverageId');
         topModelCovId=cv('get',modelcovId,'.topModelcovId');
         topModelH=cv('get',topModelCovId,'.handle');
@@ -50,10 +41,9 @@ function slcoverage_callback(method,modelH)
     end
 end
 
+
 function handleHarnessInformer(modelH)
     [~,mexFiles]=inmem;
-
-
 
     if~any(strcmp(mexFiles,'cv'))
         return;
@@ -64,17 +54,16 @@ function handleHarnessInformer(modelH)
     end
 end
 
+
 function refreshInformer(modelH)
     [~,mexFiles]=inmem;
-
-
 
     if~any(strcmp(mexFiles,'cv'))
         return;
     end
-
     cvi.Informer.refreshReopenedRefModel(modelH);
 end
+
 
 function removeCoverage(modelH)
     modelcovId=get_param(modelH,'CoverageId');
