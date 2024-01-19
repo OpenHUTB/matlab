@@ -1,8 +1,4 @@
 function displayPropsGroup=createDisplayPropertiesGroup(this,hDlg)
-
-
-
-
     [selectedDisplay_lbl,selectedDisplay]=getSelectedDisplayWidgetSchema(this,1,1);
     [title_lbl,title]=getSelectedDisplayPropertyWidgetSchema(this,'Title','edit',2,1);
     legend=getSelectedDisplayPropertyWidgetSchema(this,'Legend','checkbox',3,1);
@@ -12,8 +8,6 @@ function displayPropsGroup=createDisplayPropertiesGroup(this,hDlg)
     [minylim_lbl,minylim]=getSelectedDisplayPropertyWidgetSchema(this,'MinYLimReal','edit',5,1);
     [maxylim_lbl,maxylim]=getSelectedDisplayPropertyWidgetSchema(this,'MaxYLimReal','edit',6,1);
     [ylabel_lbl,ylabel]=getSelectedDisplayPropertyWidgetSchema(this,'YLabelReal','edit',7,1);
-
-
 
     if isa(this.Application.DataSource,'Simulink.scopes.source.WiredSource')
         ytip=getString(message('Spcuilib:scopes:YLabelRealLabelToolTip'));
