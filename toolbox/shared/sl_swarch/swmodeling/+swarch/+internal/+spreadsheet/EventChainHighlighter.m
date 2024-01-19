@@ -1,9 +1,5 @@
 classdef EventChainHighlighter<handle
 
-
-
-
-
     properties(Access=private)
 EventChain
 StimulusSLPort
@@ -12,6 +8,7 @@ StyledSegments
 StyledBlocks
 Style
     end
+
 
     methods
         function this=EventChainHighlighter(ec)
@@ -22,21 +19,16 @@ Style
             options={'HighLightColor',purple,'HighlightStyle','SolidLine',...
             'HighlightWidth',3,'tag','EventChain',...
             'HighlightSelectedBlocks',1};
-
-
             if~isempty(this.StyledSegments)||~isempty(this.StyledBlocks)
                 this.Style=Simulink.Structure.Utils.highlightObjs(unique(this.StyledSegments),unique(this.StyledBlocks),options{:});
             end
-
             styler=swarch.internal.spreadsheet.EventChainHighlighter.getOrCreatePortEventStyler();
             swarch.internal.spreadsheet.EventChainHighlighter.styleAllPortEvents([this.StimulusSLPort,this.ResponseSLPort])
         end
 
+
         function delete(this)
             if~isempty(this.Style)
-
-
-
                 this.Style.handles=this.Style.handles(ishandle(this.Style.handles));
 
                 try
@@ -47,6 +39,7 @@ Style
 
             swarch.internal.spreadsheet.EventChainHighlighter.clearAllPortEventStyles([this.StimulusSLPort,this.ResponseSLPort])
         end
+
 
         function port=getRealPort(~,port)
             if strcmpi(get(port,'Type'),'block')
@@ -61,7 +54,6 @@ Style
                         port=ph.Outport(pidx);
                     end
                 else
-
                     ph=get_param(port,'PortHandles');
                     if strcmpi(get(port,'BlockType'),'outport')
 
@@ -86,7 +78,6 @@ Style
                     stimulusPort=getRealPort(this,stimulusPort);
                 end
             end
-
             response=this.EventChain.response;
             if~isempty(response)&&...
                 isPortEvent(this,response)
@@ -99,8 +90,9 @@ Style
         end
 
     end
-    methods(Access=private)
 
+
+    methods(Access=private)
         function[segments,blocks]=findAllObjectsInChain(this)
             segments=[];
             blocks=[];
@@ -142,13 +134,13 @@ Style
             end
         end
 
+
         function getBlocksAndSegmentsBetweenPorts(this,port,endPort,segments,blocks,paths)
 
             if port==endPort
                 paths(paths.length()+1)={segments,blocks};
                 return
             end
-
             if(strcmpi(get(port,'Type'),'port')&&strcmpi(get(port,'PortType'),'inport'))
                 blk=get_param(get(port,'Parent'),'Handle');
                 blocks=[blocks,blk];
@@ -171,6 +163,7 @@ Style
             end
         end
 
+
         function findConnectedPorts(this,lines,paths)
 
             line=lines(end);
@@ -188,6 +181,7 @@ Style
             end
         end
 
+
         function tf=isPortEvent(~,event)
             tf=event.eventType==...
             systemcomposer.architecture.model.traits.EventTypeEnum.MESSAGE_RECEIVE||...
@@ -195,6 +189,7 @@ Style
             systemcomposer.architecture.model.traits.EventTypeEnum.MESSAGE_SEND;
         end
     end
+
 
     methods(Static)
         function styler=getOrCreatePortEventStyler()
@@ -214,12 +209,12 @@ Style
                 glow.Gain=1;
                 style.set('Trace',trace);
                 style.set('Glow',glow);
-
                 selector=diagram.style.ClassSelector('PortEventClass');
 
                 rule=styler.addRule(style,selector);
             end
         end
+
 
         function styleAllPortEvents(ports)
             styler=swarch.internal.spreadsheet.EventChainHighlighter.getOrCreatePortEventStyler();
@@ -235,6 +230,7 @@ Style
                 styler.applyClass(do,'PortEventClass')
             end
         end
+
 
         function clearAllPortEventStyles(ports)
             styler=swarch.internal.spreadsheet.EventChainHighlighter.getOrCreatePortEventStyler();
