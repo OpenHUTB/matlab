@@ -1,5 +1,3 @@
-
-
 function mexPath=getInstrumentedSFcnMex(sfcnPath,isLoaded)
 
     persistent isSlCovInstalled
@@ -15,12 +13,9 @@ function mexPath=getInstrumentedSFcnMex(sfcnPath,isLoaded)
     try
         sfcnName=SlCov.Utils.fixSFunctionName(get_param(sfcnPath,'FunctionName'));
     catch
-
-
         mexPath=[];
         return
     end
-
 
     modelsList=find_system('type','block_diagram');
     if~any(strcmpi(get_param(modelsList,'SimulationStatus'),'initializing')&...
@@ -31,26 +26,19 @@ function mexPath=getInstrumentedSFcnMex(sfcnPath,isLoaded)
         mexPath=[];
         return
     end
-
-
     fGenObj=Simulink.fileGenControl('getConfig');
     fDir=fullfile(fGenObj.CacheFolder,'slprj','sim','_slcov');
     mexPath=fullfile(fDir,[sfcnName,'.',mexext]);
 
     if isLoaded&&SlCov.Utils.isfile(mexPath)
-
-
         mexPath='';
     else
-
-
         try
             buf=feval(sfcnName,'getInstrumentedMex');
             if~exist(fDir,'dir')
                 mkdir(fDir);
             end
         catch
-
             mexPath=[];
             return
         end
