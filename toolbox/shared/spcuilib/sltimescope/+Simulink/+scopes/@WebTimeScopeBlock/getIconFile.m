@@ -1,8 +1,4 @@
 function iconFile=getIconFile(~)
-
-
-
-
     if ispc
         iconFile='';
     else
