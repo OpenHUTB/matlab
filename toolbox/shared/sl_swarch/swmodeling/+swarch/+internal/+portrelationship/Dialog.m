@@ -1,9 +1,6 @@
 classdef Dialog<systemcomposer.internal.mixin.ModelClose&...
     systemcomposer.internal.mixin.CenterDialog
 
-
-
-
     properties(Access=private)
 pModelH
 pEventChain
@@ -17,10 +14,12 @@ styledObjs
 
     end
 
+
     properties(Constant)
         styleClass='EventChainStyleClass'
         stylerName='EventChainStyle'
     end
+
 
     methods(Static)
         function dlg=dialogFor(pr,dlg)
@@ -47,6 +46,7 @@ styledObjs
         end
     end
 
+
     methods
         function this=Dialog(ec,isStimulus,modelH)
 
@@ -61,12 +61,10 @@ styledObjs
             end
             assert(~isempty(this.pPortEvent),'Must have a port event.');
             assert(~isempty(this.getPortInterface()),'Port must have interface applied to open dialog.');
-
-
             this.registerCloseListener(modelH);
-
             this.TreeModel=this.createTreeModel();
         end
+
 
         function dlgstruct=getDialogSchema(this)
 
@@ -93,14 +91,12 @@ styledObjs
             portValue.Tag='portValue';
             portValue.RowSpan=[2,2];
             portValue.ColSpan=[2,3];
-
             portInterfaceInfoGrp.Name=getEventTitle(this.pPortEvent);
             portInterfaceInfoGrp.Type='group';
             portInterfaceInfoGrp.Tag='portRelationshipPortMappingsGrpTag';
             portInterfaceInfoGrp.Items={componentLabel,componentValue,portLabel,portValue};
             portInterfaceInfoGrp.Expand=true;
             portInterfaceInfoGrp.LayoutGrid=[2,3];
-
             interfaceElementsTree.Type='tree';
             interfaceElementsTree.TreeModel=getTreeModel(this);
             interfaceElementsTree.TreeMultiSelect=false;
@@ -154,26 +150,21 @@ styledObjs
             dlgstruct.MinMaxButtons=false;
             dlgstruct.ShowGrid=false;
 
-
-
-
-
             dlgstruct.Sticky=true;
         end
 
-        function cbHandleClickHelp(~)
 
+        function cbHandleClickHelp(~)
             helpview(fullfile(docroot,'systemcomposer','helptargets.map'),'portrelationship');
         end
 
-        function cbHandleOpenDialog(this,dlg)
 
+        function cbHandleOpenDialog(this,dlg)
             this.positionDialog(dlg,this.pModelH);
         end
 
+
         function cbHandleCloseDialog(this,dlg,action)
-
-
 
             if strcmpi(action,'ok')&&this.changesAreValid()
                 this.doCommit(dlg);
@@ -182,6 +173,7 @@ styledObjs
             end
             swarch.internal.portrelationship.Dialog.dialogFor(this.pEventChain,[]);
         end
+
 
         function cbPreApply(this,dlg)
 
@@ -198,18 +190,18 @@ styledObjs
             end
         end
 
-        function cbSelectAllPressed(this,dlg)
 
+        function cbSelectAllPressed(this,dlg)
 
             if all(cellfun(@isChecked,this.TreeModel))
 
                 return;
             end
 
-
             this.setDirty(dlg,true);
             cellfun(@(node)node.setChecked(dlg,'interfaceElementsTreeTag'),this.TreeModel);
         end
+
 
         function cbTreeValueChanged(this,dlg,id,state)
             this.setDirty(dlg,true);
@@ -218,6 +210,7 @@ styledObjs
         end
     end
 
+
     methods(Access=private)
         function setDirty(this,dlg,val)
 
@@ -225,11 +218,11 @@ styledObjs
             dlg.enableApplyButton(val);
         end
 
+
         function doCommit(this,dlg)
             portEvent=this.pPortEvent;
 
             if all(cellfun(@isChecked,this.TreeModel))
-
                 portEvent.addNestedInterfaceElements(...
                 systemcomposer.architecture.model.interface.InterfaceElement.empty);
             else
@@ -242,16 +235,16 @@ styledObjs
             this.setDirty(dlg,false);
         end
 
+
         function interf=getPortInterface(this)
-
-
             interf=this.pPortEvent.port.getPortInterface();
         end
 
-        function name=getPortName(this)
 
+        function name=getPortName(this)
             name=this.pPortEvent.port.getName();
         end
+
 
         function name=getPortOwnerName(this)
 
@@ -266,31 +259,29 @@ styledObjs
             name=portOwner.getName();
         end
 
+
         function treeModel=getTreeModel(this)
             treeModel=this.TreeModel;
         end
 
+
         function valid=changesAreValid(this)
-
-
             valid=true;
             if~this.pDirty
                 return;
             end
-
             allNodes=this.NodeIdMap.values();
             for idx=1:numel(allNodes)
                 if allNodes{idx}.isChecked()
                     return;
                 end
             end
-
             valid=false;
         end
 
+
         function highlightElement(this,el)
             sobj=systemcomposer.utils.getSimulinkPeer(el);
-
             this.styler=diagram.style.getStyler(this.stylerName);
             if isempty(this.styler)
                 diagram.style.createStyler(this.stylerName);
@@ -308,13 +299,13 @@ styledObjs
             style=diagram.style.Style;
             style.set('Trace',trace);
             style.set('Glow',glow);
-
             selector=diagram.style.ClassSelector(this.styleClass);
             this.styler.addRule(style,selector);
             do=diagram.resolver.resolve(sobj);
             this.styler.applyClass(do,this.styleClass);
             this.styledObjs=[this.stylesObjs,do];
         end
+
 
         function removeAllStyles(this)
             for idx=1:length(this.styledObjs)
@@ -323,10 +314,8 @@ styledObjs
             end
         end
 
+
         function elements=pathToInterfaceElements(this,qualifiedName)
-
-
-
 
             pi=this.getPortInterface();
             elements=[];
@@ -339,36 +328,29 @@ styledObjs
             end
         end
 
+
         function treeModel=createTreeModel(this)
             remove(this.NodeIdMap,keys(this.NodeIdMap));
 
             id=1;
             treeModel={};
-
             elements=this.getPortInterface().getElements();
             emptyParent=[];
             for idx=1:numel(elements)
                 node=this.createInterfaceElementNode(id,elements(idx),emptyParent);
                 treeModel{end+1}=node;%#ok<AGROW>
 
-
-
                 id=node.nextSiblingID();
             end
         end
     end
 
+
     methods(Access={?swarch.internal.portrelationship.InterfaceElementNode})
         function node=createInterfaceElementNode(this,id,interfaceElements,parentNode)
-
-
-
             checked=this.pPortEvent.containsNestedInterfaceElement(interfaceElements);
-
             node=swarch.internal.portrelationship.InterfaceElementNode(...
             id,interfaceElements,parentNode,checked);
-
-
             childElements=interfaceElements(end).getTypeAsInterface().getElements();
             children=cell(1,length(childElements));
 
@@ -384,6 +366,7 @@ styledObjs
         end
     end
 end
+
 
 function name=getEventTitle(event)
     import systemcomposer.architecture.model.traits.EventTypeEnum;
