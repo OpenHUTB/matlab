@@ -1,24 +1,16 @@
 classdef DialogSchema
 
-
-
-
     methods(Static)
         function pGroup=getSystemWidget(hDlgSource,systemTag,systemVal,systemID)
-
-
             hBlock=get(hDlgSource.getBlock,'Handle');
             pGroup=getSystemWidgetPanel(hBlock,systemTag,systemVal,systemID);
-
-
 
             pGroup.RowSpan=[1,1];
             pGroup.ColSpan=[1,1];
         end
 
+
         function s=getSpecifySystemObject(obj)
-
-
 
             isDesSystem=false;
             hBlock=obj.Platform.BlockHandle;
@@ -26,7 +18,6 @@ classdef DialogSchema
             if strcmp(bType,'MATLABDiscreteEventSystem')
                 isDesSystem=true;
             end
-
 
             if isDesSystem
                 dscptID='SystemBlock:MATLABSystem:SL_DSCPT_MATLAB_DES_SYSTEM';
@@ -40,12 +31,9 @@ classdef DialogSchema
             hGroup=struct('Type','group','Name',grpName,...
             'Tag','MATLABSystemBlock_Description');
             hGroup.Items={hText};
-
-
             systemVal=get_param(hBlock,'System');
             pGroup=getSystemWidgetPanel(hBlock,'System',systemVal);
             pGroup.Type='group';
-
 
             if isDesSystem
                 dialogTag='MATLABDiscreteEventSystemBlock_SpecifySystemObject';
@@ -62,18 +50,15 @@ classdef DialogSchema
             s.OpenCallback=@onOpenSpecifySystemObjectDialog;
         end
 
-        function onBrowseSystem(hBlock,dlg,systemEditTag,isImmediateApplyMode)
 
+        function onBrowseSystem(hBlock,dlg,systemEditTag,isImmediateApplyMode)
             [fileName,pathName]=uigetfile({'*.m;*.p;*.mlx',...
             message('SystemBlock:MATLABSystem:SystemBlockDialogBrowseDialogFilter').getString},...
             message('SystemBlock:MATLABSystem:SystemBlockDialogBrowseDialogTitle').getString);
 
-
             if(fileName==0)
                 return;
             end
-
-
             fullFileName=fullfile(pathName,fileName);
             systemName=matlab.system.editor.internal.getClassNameFromFile(fullFileName);
             if isempty(which(fullFileName))
@@ -81,13 +66,9 @@ classdef DialogSchema
                     return;
                 end
             end
-
-
             if~strcmp(which(fullFileName),which(systemName))
                 error(message('SystemBlock:MATLABSystem:SystemBlockDialogSelectedFilePrecedence',fullFileName));
             end
-
-
             if~matlab.system.display.isSystem(systemName)
                 error(message('SystemBlock:MATLABSystem:SystemBlockDialogSelectedFileInvalid',systemName));
             end
@@ -98,6 +79,7 @@ classdef DialogSchema
                 dlg.setWidgetValue(systemEditTag,systemName);
             end
         end
+
 
         function onNewSystem(hBlock,dlg,actionTag,systemEditTag,isImmediateApplyMode)
             filePathChangeFcn=getFilePathChangeFcn(hBlock,dlg,systemEditTag,isImmediateApplyMode);
@@ -118,17 +100,12 @@ end
 
 function pGroup=getSystemWidgetPanel(hBlock,systemTag,systemVal,systemID)
 
-
-
-
     isImmediateApplyMode=(nargin>3);
-
 
     isDesSystem=false;
     if strcmp(get_param(hBlock,'BlockType'),'MATLABDiscreteEventSystem')
         isDesSystem=true;
     end
-
 
     if isDesSystem
         promptId='SystemBlock:MATLABSystem:DiscreteEventSystemObjectName';
@@ -148,13 +125,10 @@ function pGroup=getSystemWidgetPanel(hBlock,systemTag,systemVal,systemID)
     nameW.Name='';
     nameW.Tag=systemTag;
     if isImmediateApplyMode
-
-
         nameW.ObjectMethod='handleEditEvent';
         nameW.MethodArgs={'%value',systemID,'%dialog'};
         nameW.ArgDataTypes={'mxArray','int32','handle'};
     else
-
         nameW.ObjectProperty='System';
     end
     nameW.Editable=true;
@@ -164,7 +138,6 @@ function pGroup=getSystemWidgetPanel(hBlock,systemTag,systemVal,systemID)
     nameW.ColSpan=[2,2];
     nameW.RowSpan=[1,1];
     nameW.Enabled=~(Simulink.harness.internal.isHarnessCUT(hBlock)&&~Simulink.harness.internal.isActiveHarnessCUTPropEditable(hBlock));
-
 
     if isDesSystem
         toolTipId='SystemBlock:MATLABSystem:DiscreteEventSystemBlockDialogBrowseTooltip';
@@ -204,9 +177,6 @@ function pGroup=getSystemWidgetPanel(hBlock,systemTag,systemVal,systemID)
     newW.ToolTip=message(toolTipId).getString;
     newW.ColSpan=[2,3];
     newW.RowSpan=[2,2];
-
-
-
     isLockedModel=strcmp(get(bdroot(hBlock),'lock'),'on');
     linkStatus=get_param(hBlock,'StaticLinkStatus');
     if isLockedModel||strcmp(linkStatus,'resolved')||strcmp(linkStatus,'implicit')
@@ -223,6 +193,7 @@ function pGroup=getSystemWidgetPanel(hBlock,systemTag,systemVal,systemID)
     pGroup.ColStretch=[1,1,1];
 end
 
+
 function name=getSystemObjectName(name)
 
     if strcmp(name,'<Enter System Class Name>')||strcmp(name,'MATLAB_System')
@@ -230,18 +201,15 @@ function name=getSystemObjectName(name)
     end
 end
 
+
 function isSuccess=openOffPathDialog(pathName,fileName)
 
-
-
     isSuccess=false;
-
     questDlgMsg=message('SystemBlock:MATLABSystem:SystemBlockDialogSelectedFileNotOnPathQString',...
     fullfile(pathName,fileName)).getString;
     questDlgTitle=message('SystemBlock:MATLABSystem:SystemBlockDialogPathDialogTitle').getString;
     addPathMsg=message('SystemBlock:MATLABSystem:SystemBlockDialogBrowseAddPathLabel').getString;
     cancelMsg=message('SystemBlock:MATLABSystem:SystemBlockDialogBrowseCancelLabel').getString;
-
     choice=questdlg(questDlgMsg,questDlgTitle,addPathMsg,cancelMsg,cancelMsg);
 
     if strcmp(choice,addPathMsg)
@@ -250,26 +218,22 @@ function isSuccess=openOffPathDialog(pathName,fileName)
     end
 end
 
+
 function fcn=getFilePathChangeFcn(hBlock,dlg,systemTag,isImmediateApplyMode)
     fcn=@(filePath)onFilePathChanged(filePath,hBlock,dlg,systemTag,isImmediateApplyMode);
 end
+
 
 function onFilePathChanged(filePath,hBlock,dlg,systemTag,isImmediateApplyMode)
 
     if ishandle(dlg)
         sysobjName=matlab.system.editor.internal.getClassNameFromFile(filePath);
         if isImmediateApplyMode
-
-
             sysobjPath=which(sysobjName);
             if isempty(sysobjPath)||~exist(sysobjPath,'file')
                 fschange(fileparts(filePath));
                 sysobjPath=which(sysobjName);
             end
-
-
-
-
             if~strcmp(which(filePath),sysobjPath)
                 return;
             end
@@ -281,19 +245,15 @@ function onFilePathChanged(filePath,hBlock,dlg,systemTag,isImmediateApplyMode)
                 return;
             end
         else
-
-
             dlg.setWidgetValue(systemTag,sysobjName);
         end
     else
-
         matlab.system.editor.internal.DocumentAction.setFilePathChangeFcn(filePath,[]);
     end
 end
 
+
 function onOpenSpecifySystemObjectDialog(dlg)
-
-
     dlg.setFocus('System');
 end
 
