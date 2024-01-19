@@ -1,12 +1,7 @@
 function connectCopiedSignal(blkHandle,portIndex,isStatePort)
-
-
-
     if~Simulink.scopes.LAScope.isLogicAnalyzerAvailable()
         return;
     end
-
-
     instSig=getInstSigWithBlockPath(blkHandle);
     if validInstSigRebound(instSig)&&instSig.isGivenPortObserved(blkHandle,portIndex)
         sigSpec=instSig.get(1);
@@ -35,6 +30,7 @@ function connectCopiedSignal(blkHandle,portIndex,isStatePort)
 
 end
 
+
 function instSig=getInstSigWithBlockPath(blkHandle)
     instSig=Simulink.HMI.InstrumentedSignals(get_param(bdroot(blkHandle),'Name'));
     instSignals=get_param(bdroot(blkHandle),'InstrumentedSignals');
@@ -57,6 +53,7 @@ function instSig=getInstSigWithBlockPath(blkHandle)
         end
     end
 end
+
 
 function validInstSig=validInstSigRebound(instSig)
     validInstSig=~isempty(instSig)&&instSig.Count>0;
