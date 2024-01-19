@@ -1,31 +1,17 @@
-
-
-
-
 classdef CodeCovUtils<SlCov.Utils
 
     methods(Static)
 
-
-
-
-
         function out=isXILCoverageEnabled(topModelName,modelName,isSIL,varargin)
-
-
             if~any(strcmp(topModelName,find_system('type','block_diagram','name',topModelName)))
                 load_system(topModelName);
                 clr=onCleanup(@()close_system(topModelName,0));
             end
-
-
-
             covSettings=slprivate('getCodeCoverageSettings',topModelName);
             if~strcmpi(covSettings.CoverageTool,SlCov.getCoverageToolName())
                 out=false;
                 return
             end
-
 
             if strcmp(modelName,topModelName)
 
@@ -41,27 +27,19 @@ classdef CodeCovUtils<SlCov.Utils
                             strcmp(modelName,get_param(topModelName,'XILModelName'))
                             out=true;
                         else
-
-
                             out=false;
                         end
                         return
                     end
                 end
-
-
                 if~strcmpi(covSettings.ReferencedModelCoverage,'on')
                     out=false;
                     return
                 end
-
-
                 if~strcmpi(get_param(topModelName,'CovModelRefEnable'),'filtered')
                     out=true;
                     return
                 end
-
-
                 modelInfo=SlCov.Utils.extractExcludedModelInfo(get_param(topModelName,'CovModelRefExcluded'));
                 if isSIL
                     fName='sil';
@@ -74,14 +52,10 @@ classdef CodeCovUtils<SlCov.Utils
         end
 
 
-
-
         function ret=isAtomicSubsystem(model)
             ret=SlCov.isATSCodeCovFeatureOn()&&...
             coder.connectivity.XILSubsystemUtils.isAtomicSubsystem(model);
         end
-
-
 
 
         function ret=isReusableLibrarySubsystem(model)
