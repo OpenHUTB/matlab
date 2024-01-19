@@ -1,22 +1,16 @@
-
-
-
-
-
 classdef CodeInfoDataDictionary<sldv.code.internal.CodeInfoFile
 
     properties(Constant=true,Access=protected)
         RootDataGroupName='Other'
     end
 
-    properties(Access=protected)
 
+    properties(Access=protected)
 Connection
     end
 
+
     methods(Access=public)
-
-
 
         function this=CodeInfoDataDictionary(fileName,fileInfo)
             this@sldv.code.internal.CodeInfoFile(fileName,fileInfo);
@@ -29,17 +23,12 @@ Connection
         end
 
 
-
-
         function close(this)
             this.Connection.close();
         end
 
 
-
-
         function hasInfo=readDb(this)
-
             path=[this.RootDataGroupName,'.',this.getDataMemberName()];
 
             if this.Connection.entryExists(path,false)
@@ -56,8 +45,6 @@ Connection
                 hasInfo=false;
             end
         end
-
-
 
 
         function writeDb(this)
@@ -77,13 +64,9 @@ Connection
 
     methods(Access=protected)
 
-
-
         function beginTransaction(this)
             this.Connection.beginTransaction();
         end
-
-
 
 
         function commitTransaction(this)
@@ -91,20 +74,14 @@ Connection
         end
 
 
-
-
-
         function saveChanges(this)
             this.Connection.saveChanges();
         end
 
 
-
         function out=getDataMemberName(this)
             out=this.FileInfo.getDataMemberName();
         end
-
-
 
 
         function out=getInstanceDbClassName(this)
