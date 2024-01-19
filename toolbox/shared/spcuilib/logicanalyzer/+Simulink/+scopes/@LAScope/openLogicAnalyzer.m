@@ -1,8 +1,4 @@
 function openLogicAnalyzer(modelName,varargin)
-
-
-
-
     laScope=Simulink.scopes.LAScope.getLogicAnalyzer(modelName);
     if nargin<2||(nargin>=2&&varargin{1})
         hWebWindow=laScope.WebWindow;
