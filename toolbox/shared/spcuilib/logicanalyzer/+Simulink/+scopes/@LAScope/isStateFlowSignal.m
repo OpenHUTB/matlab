@@ -1,7 +1,5 @@
 function isSF=isStateFlowSignal(signal)
 
-
-
     if~isempty(signal)
         if isfield(signal,'isSF')
 
