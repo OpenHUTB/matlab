@@ -1,24 +1,19 @@
 classdef InterfaceElementNode<handle
 
-
-
-
     properties
         ElementId;
         InterfaceElements;
         ParentNode;
         ChildNodes;
-
-
-
-
         CheckState;
     end
+
 
     properties
         CHECKED='checked';
         UNCHECKED='unchecked';
     end
+
 
     methods
         function this=InterfaceElementNode(id,elements,parentNode,checked)
@@ -35,41 +30,36 @@ classdef InterfaceElementNode<handle
             end
         end
 
+
         function setChildren(this,children)
             this.ChildNodes=children;
         end
 
-        function checked=isChecked(this)
 
+        function checked=isChecked(this)
             checked=strcmpi(this.CheckState,this.CHECKED);
         end
 
-        function setChecked(this,dlg,tag)
 
+        function setChecked(this,dlg,tag)
             this.setCheckState(dlg,tag,this.CHECKED);
         end
 
+
         function setCheckState(this,dlg,tag,checkState)
-
-
-
-
-
             assert(strcmpi(checkState,this.CHECKED)||strcmpi(checkState,this.UNCHECKED));
-
             this.setCheckedInternal(dlg,tag,checkState);
             this.setChildrenChecked(dlg,tag,checkState);
             this.setParentCheckState(dlg,tag);
         end
 
-        function label=getDisplayLabel(this)
 
+        function label=getDisplayLabel(this)
             label=this.InterfaceElements(end).getName();
         end
 
+
         function id=nextSiblingID(this)
-
-
             if isempty(this.ChildNodes)
                 id=this.ElementId+1;
             else
@@ -77,41 +67,38 @@ classdef InterfaceElementNode<handle
             end
         end
 
+
         function id=getID(this)
             id=this.ElementId;
         end
 
-        function num=getNumChildren(this)
 
+        function num=getNumChildren(this)
             num=numel(this.ChildNodes);
         end
 
+
         function has=hasChildren(this)
-
-
             has=this.getNumChildren()>0;
         end
 
-        function children=getHierarchicalChildren(this)
 
+        function children=getHierarchicalChildren(this)
             children=this.ChildNodes;
         end
 
-        function tf=isCheckable(~)
 
+        function tf=isCheckable(~)
             tf=true;
         end
 
+
         function state=getCheckState(this)
-
-
             state=this.CheckState;
         end
 
+
         function addInterfaceIfSelected(this,portEvent)
-
-
-
             if this.isChecked
                 portEvent.addNestedInterfaceElements(this.InterfaceElements);
             else
@@ -122,29 +109,23 @@ classdef InterfaceElementNode<handle
         end
     end
 
+
     methods(Access=private)
         function setCheckedInternal(this,dlg,tag,checked)
-
-
             this.CheckState=checked;
-
-
             dlg.setItemCheckState(tag,this.ElementId,checked);
         end
 
+
         function setChildrenChecked(this,dlg,tag,checked)
-
-
             for idx=1:numel(this.ChildNodes)
                 this.ChildNodes{idx}.setChildrenChecked(dlg,tag,checked);
                 this.ChildNodes{idx}.setCheckedInternal(dlg,tag,checked);
             end
         end
 
+
         function setParentCheckState(this,dlg,tag)
-
-
-
             if isempty(this.ParentNode)
                 return;
             end
