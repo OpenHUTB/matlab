@@ -1,9 +1,3 @@
-
-
-
-
-
-
 classdef CodeAnalyzer<handle
 
     properties(Constant=true,Hidden)
@@ -11,49 +5,27 @@ classdef CodeAnalyzer<handle
         AnalysisInstance='Instance'
     end
 
+
     properties
-
-
-
 Instances
-
-
 Architecture
-
-
 ModelName
-
-
-
 AnalysisOptions
-
-
 AnalysisMode
-
-
 AnalysisVersion
-
-
         SimulationMode SlCov.CovMode=SlCov.CovMode.Normal
     end
 
+
     properties(Hidden=true)
-
         FullIR=[]
-
-
         FullLog=[]
-
-
         SummaryIR=[]
-
-
         SummaryLog=[]
     end
 
+
     methods
-
-
 
         function this=CodeAnalyzer(instances)
             if nargin<1
@@ -68,8 +40,6 @@ AnalysisVersion
         end
 
 
-
-
         function that=shallowCopy(this)
             that=feval(class(this));
             that.Architecture=this.Architecture;
@@ -78,8 +48,6 @@ AnalysisVersion
             that.AnalysisMode=this.AnalysisMode;
             that.SimulationMode=this.SimulationMode;
         end
-
-
 
 
         function setAnalysisOptions(this,options)
