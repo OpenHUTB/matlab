@@ -1,15 +1,10 @@
 function varargout=vnv_assert_mgr(method,objHandle,varargin)
 
-
-
-
-
     persistent RefreshEnabled;
 
     if isempty(RefreshEnabled)
         RefreshEnabled=true;
     end
-
 
     if strcmp(method(1:3),'mdl')
         modelH=objHandle;
@@ -38,25 +33,16 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
     case 'mdlPostLoad'
         preserve_dirty_flag=Simulink.PreserveDirtyFlag(...
         mdlInfoStruct.modelH,'blockDiagram');
-
-
-
-
         mdlInfoStruct=mdl_refresh_sigbuild_list(mdlInfoStruct);
-
-
         mdlInfoStruct=mdl_post_load(mdlInfoStruct);
         set_param(modelH,'VnvDirty','on');
 
         delete(preserve_dirty_flag);
 
     case 'mdlPostLoadSigb'
-
-
         mdlInfoStruct=mdl_post_load_sigb(mdlInfoStruct);
 
     case 'mdlPreSave'
-
 
         if isempty(mdlInfoStruct.sigbuildHandles)
             return;
@@ -76,7 +62,6 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
         mdlInfoStruct=mdl_update_display_info(mdlInfoStruct);
         set_param(modelH,'VnvDirty','off');
 
-
     case 'mdlForceRefresh'
 
         if RefreshEnabled
@@ -87,21 +72,18 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
 
     case 'mdlVnvDirty'
 
-
         for blkH=mdlInfoStruct.sigbuildHandles
             vnv_panel_mgr('sbEnableRefresh',blkH);
         end
 
     case 'sbBlkLoad'
         if~ismember(blockH,mdlInfoStruct.sigbuildHandles)
-
             mdlInfoStruct.sigbuildHandles(end+1)=blockH;
         else
             return;
         end
 
     case 'sbBlkCopy'
-
 
         blkInfo=sigb_get_info(blockH);
         if isempty(blkInfo)
@@ -111,9 +93,6 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
                 mdlInfoStruct=sigb_add_overide_counts(mdlInfoStruct,blkInfo);
                 blkInfo.blockH=blockH;
             else
-
-
-
                 origGrpReqCnts=[];
                 if isfield(blkInfo,'groupReqCnt')...
                     &&~isempty(blkInfo.groupReqCnt)...
@@ -143,8 +122,6 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
         update_changed_blocks(mdlInfoStruct,origOveride)
 
     case 'sbBlkGroupChange'
-
-
         vnv_assert_mgr('disableRefresh',blockH);
         newGroupIdx=varargin{1};
         mdlInfoStruct=sigb_group_change(mdlInfoStruct,blockH,newGroupIdx);
@@ -158,7 +135,6 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
             sigb_write_info(blkInfo);
             return;
         end
-
 
         if util_is_library(mdlInfoStruct.modelH)
             blkInfo.blockH=blockH;
@@ -187,7 +163,6 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
             return;
         end
 
-
         if util_is_library(mdlInfoStruct.modelH)
             blkInfo.blockH=blockH;
             blkInfo.modelH=mdlInfoStruct.modelH;
@@ -201,7 +176,6 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
         blkInfo=sigb_remap_groups(blkInfo,newIdx,origIdx,deleteIdx);
         sigb_write_info(blkInfo);
 
-
     case 'sbBlkGroupMove'
 
         blkInfo=sigb_get_info(blockH);
@@ -210,7 +184,6 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
             sigb_write_info(blkInfo);
             return;
         end
-
 
         if util_is_library(mdlInfoStruct.modelH)
             blkInfo.blockH=blockH;
@@ -225,7 +198,6 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
 
         blkInfo=sigb_remap_groups(blkInfo,old2newIdx,origIdx);
         sigb_write_info(blkInfo);
-
 
     case 'sbGetDoorsLabel'
         if util_is_a_link(blockH)
@@ -287,7 +259,6 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
             blkInfo.groupDOORSid=cell(1,blkInfo.groupCnt);
         end
 
-
         if nargin>3
             idx=varargin{2};
             blkInfo.groupDOORSid{idx}=varargin{1};
@@ -302,23 +273,13 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
 
         sigb_write_info(blkInfo);
 
-
-
-
-
-
-
     case 'sbAssertHier'
-
-
-
         varargout{1}=mdlInfoStruct.dispHierarchy;
         varargout{2}=mdlInfoStruct.dispDepth;
         varargout{3}=(mdlInfoStruct.dispAssertIdx~=-1);
         varargout{4}=mdlInfoStruct.assertHandles;
 
     case 'sbGroupValues'
-
 
         blkInfo=sigb_get_info(blockH);
 
@@ -339,13 +300,11 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
 
     case 'sbBlkEdit'
 
-
         visibleBlkH=varargin{1};
         newValue=varargin{2};
         blkInfo=sigb_get_info(blockH);
         [mdlInfoStruct,blkInfo]=sigb_assert_set(mdlInfoStruct,blkInfo,visibleBlkH,newValue);
         sigb_write_info(blkInfo);
-
 
     case 'asBlkHasOveride'
         out=assert_mask_has_overide(mdlInfoStruct,blockH);
@@ -357,46 +316,15 @@ function varargout=vnv_assert_mgr(method,objHandle,varargin)
 
     otherwise
     end
-
     if(util_is_library(mdlInfoStruct.modelH))
         return;
     end
-
-
-
     set_param(modelH,'VnvToolData',mdlInfoStruct);
 
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function mdl_update_primitive_asserts(mdlInfoStruct)
-
-
 
     handleVect=mdlInfoStruct.assertHandles;
     overideFlags=(mdlInfoStruct.overideCnts>0);
@@ -418,6 +346,7 @@ function mdl_update_primitive_asserts(mdlInfoStruct)
         end
     end
 end
+
 
 function mdlInfoStruct=sigb_add_overide_counts(mdlInfoStruct,blkInfo,ignoreTot)
     if isempty(blkInfo)||isempty(blkInfo.overideSettings)
@@ -441,6 +370,7 @@ function mdlInfoStruct=sigb_add_overide_counts(mdlInfoStruct,blkInfo,ignoreTot)
     end
 end
 
+
 function mdlInfoStruct=sigb_subtract_overide_counts(mdlInfoStruct,blkInfo,ignoreTot)
     if isempty(blkInfo)||isempty(blkInfo.overideSettings)
         return;
@@ -451,7 +381,6 @@ function mdlInfoStruct=sigb_subtract_overide_counts(mdlInfoStruct,blkInfo,ignore
     end
 
     blkGroupOverides=blkInfo.overideSettings(:,blkInfo.activeGroup);
-
     delta=zeros(1,length(mdlInfoStruct.overideCnts));
     delta(blkInfo.vnvMgrIdx)=blkGroupOverides;
 
@@ -463,9 +392,11 @@ function mdlInfoStruct=sigb_subtract_overide_counts(mdlInfoStruct,blkInfo,ignore
     end
 end
 
+
 function reqOffset=util_req_cnts_to_offset(reqCnts)
     reqOffset=[1,1+cumsum(reqCnts(1:(end-1)))];
 end
+
 
 function blkInfo=sigb_remap_groups(blkInfo,remapIndex,origIdx,deletedGrp)
     grpCnt=blkInfo.groupCnt;
@@ -478,8 +409,6 @@ function blkInfo=sigb_remap_groups(blkInfo,remapIndex,origIdx,deletedGrp)
 
     if rmidata.isExternal(blkInfo.modelH)
         if rmidata.bdHasExternalData(blkInfo.modelH,true)
-
-
 
             if nargin==4
                 sigb_group_delete_external(blkInfo.blockH,deletedGrp);
@@ -506,11 +435,6 @@ function blkInfo=sigb_remap_groups(blkInfo,remapIndex,origIdx,deletedGrp)
 
         blkInfo.groupReqCnt=newReqCnt;
 
-
-
-
-
-
         if~isequal(remapIdx,1:oldReqCnt)
             if(length(remapIdx)<oldReqCnt)
 
@@ -524,9 +448,11 @@ function blkInfo=sigb_remap_groups(blkInfo,remapIndex,origIdx,deletedGrp)
     end
 end
 
+
 function sigb_group_remap_external(sigbH,remapIndex)
     slreq.remapSigbGroups(sigbH,remapIndex);
 end
+
 
 function sigb_group_delete_external(sigbH,deletedGroup)
     [groupReqCnt,origGroups]=slreq.getSigbGrpData(sigbH,true);
@@ -556,13 +482,11 @@ function mdlInfoStruct=sigb_group_change(mdlInfoStruct,blockH,newGroupIdx)
     mdlInfoStruct=sigb_add_overide_counts(mdlInfoStruct,blkInfo,1);
     sigb_write_info(blkInfo);
 
-
     update_changed_blocks(mdlInfoStruct,origOveride);
 end
 
 
 function update_changed_blocks(mdlInfoStruct,origOveride)
-
     displayChanged=find((origOveride~=0)~=(mdlInfoStruct.overideCnts~=0));
     if~isempty(displayChanged)
 
@@ -572,8 +496,6 @@ function update_changed_blocks(mdlInfoStruct,origOveride)
             primH=mdlInfoStruct.assertHandles(idx);
             overide=mdlInfoStruct.overideCnts(idx)~=0;
             try
-
-
                 util_update_mask(maskH,primH,overide);
             catch UpdateMaskEx
             end
@@ -581,9 +503,8 @@ function update_changed_blocks(mdlInfoStruct,origOveride)
     end
 end
 
+
 function mdlInfoStruct=mdl_post_load(mdlInfoStruct)
-
-
 
     sigbuildH=mdlInfoStruct.sigbuildHandles;
     if isempty(sigbuildH)
@@ -612,7 +533,6 @@ function mdlInfoStruct=mdl_post_load(mdlInfoStruct)
         return;
     end
 
-
     allBlocks=[];
     for blkH=mdlInfoStruct.sigbuildHandles
         blkInfo=sigb_get_info(blkH);
@@ -627,15 +547,10 @@ function mdlInfoStruct=mdl_post_load(mdlInfoStruct)
 
     allBlocks=allBlocks(:)';
 
-
     mdlInfoStruct.assertHandles=allBlocks;
     mdlInfoStruct.parentMasks=assert_parent_masks(allBlocks);
     mdlInfoStruct.overideCnts=zeros(1,length(allBlocks));
     mdlInfoStruct.crossGroupCnts=zeros(1,length(allBlocks));
-
-
-
-
 
     for sigBuildH=mdlInfoStruct.sigbuildHandles
         blkInfo=sigb_get_info(sigBuildH);
@@ -656,11 +571,8 @@ function mdlInfoStruct=mdl_post_load(mdlInfoStruct)
     mdlInfoStruct.initialized=true;
 end
 
+
 function mdlInfoStruct=mdl_post_load_sigb(mdlInfoStruct)
-
-
-
-
     preserve_dirty_flag=Simulink.PreserveDirtyFlag(...
     mdlInfoStruct.modelH,'blockDiagram');
 
@@ -675,9 +587,9 @@ function mdlInfoStruct=mdl_post_load_sigb(mdlInfoStruct)
         sigb_write_info(blkInfo);
     end
 
-
     delete(preserve_dirty_flag);
 end
+
 
 function mdlInfoStruct=mdl_pre_save(mdlInfoStruct)
     mdlInfoStruct=mdl_force_update_if_needed(mdlInfoStruct);
@@ -685,8 +597,6 @@ function mdlInfoStruct=mdl_pre_save(mdlInfoStruct)
     if isempty(mdlInfoStruct.sigbuildHandles)
         return;
     end
-
-
 
     for i=length(mdlInfoStruct.sigbuildHandles):-1:1
         sigBuildH=mdlInfoStruct.sigbuildHandles(i);
@@ -717,6 +627,7 @@ function mdlInfoStruct=mdl_pre_save(mdlInfoStruct)
     end
 end
 
+
 function mdlInfoStruct=mdl_refresh_all(mdlInfoStruct)
     mdlInfoStruct=mdl_refresh_sigbuild_list(mdlInfoStruct);
     needsRemap=~isempty(mdlInfoStruct.assertHandles);
@@ -745,6 +656,7 @@ function mdlInfoStruct=mdl_refresh_all(mdlInfoStruct)
     end
 end
 
+
 function mdlInfoStruct=mdl_refresh_sigbuild_list(mdlInfoStruct)
     opts=Simulink.FindOptions('LoadFullyIfNeeded',false);
     opts.SkipLinks=true;
@@ -752,8 +664,6 @@ function mdlInfoStruct=mdl_refresh_sigbuild_list(mdlInfoStruct)
     'PreSaveFcn','sigbuilder_block(''preSave'');',...
     opts);
     mdlInfoStruct.sigbuildHandles=sigbuildH(:)';
-
-
     preserve_dirty=Simulink.PreserveDirtyFlag(mdlInfoStruct.modelH,'blockDiagram');
     for blkH=sigbuildH
         if~util_is_a_link(blkH)
@@ -772,16 +682,14 @@ function mdlInfoStruct=mdl_refresh_sigbuild_list(mdlInfoStruct)
     end
 end
 
+
 function mdlInfoStruct=mdl_force_update_if_needed(mdlInfoStruct)
     if~strcmp(get_param(mdlInfoStruct.modelH,'VnvDirty'),'on')
         return;
     end
-
     mdlInfoStruct=mdl_refresh_all(mdlInfoStruct);
     mdlInfoStruct=mdl_update_display_info(mdlInfoStruct);
     set_param(mdlInfoStruct.modelH,'VnvDirty','off');
-
-
     set_param(mdlInfoStruct.modelH,'VnvToolData',mdlInfoStruct);
 
 
@@ -790,6 +698,7 @@ function mdlInfoStruct=mdl_force_update_if_needed(mdlInfoStruct)
     end
 end
 
+
 function blkInfo=sigb_prune_stale_asserts(blkInfo)
 
     modelName=get_param(blkInfo.modelH,'Name');
@@ -797,28 +706,23 @@ function blkInfo=sigb_prune_stale_asserts(blkInfo)
     removeFlag=(handles==-1);
     handles(removeFlag)=[];
     blkInfo.verifyBlkHandles=handles;
-
-
     blkInfo.overideSettings(removeFlag,:)=[];
     blkInfo.verifyBlkPaths(removeFlag)=[];
     blkInfo.vnvMgrIdx(removeFlag)=[];
 end
 
+
 function[mdlInfoStruct,blkInfo]=sigb_assert_set(mdlInfoStruct,blkInfo,visibleH,newValue)
-
-
 
     if isempty(blkInfo.activeGroup)||isempty(blkInfo.groupCnt)
         blkInfo=sigb_update_group_info(blkInfo);
     end
-
     thisIdx=find(visibleH==mdlInfoStruct.assertHandles);
     primitiveH=visibleH;
     if isempty(thisIdx)
         thisIdx=find(primitiveH==mdlInfoStruct.parentMasks);
         primitiveH=mdlInfoStruct.assertHandles(thisIdx);
     end
-
     overideRow=find(thisIdx==blkInfo.vnvMgrIdx);
     groupIdx=blkInfo.activeGroup;
     updateIcon=-1;
@@ -835,7 +739,6 @@ function[mdlInfoStruct,blkInfo]=sigb_assert_set(mdlInfoStruct,blkInfo,visibleH,n
         blkInfo.verifyBlkHandles(overideRow)=primitiveH;
         blkInfo.vnvMgrIdx(overideRow)=thisIdx;
     end
-
     if(blkInfo.overideSettings(overideRow,groupIdx)==newValue)
 
     else
@@ -859,13 +762,13 @@ function[mdlInfoStruct,blkInfo]=sigb_assert_set(mdlInfoStruct,blkInfo,visibleH,n
         end
     end
 
-
     if(updateIcon~=-1)
 
         set_param(mdlInfoStruct.modelH,'VnvToolData',mdlInfoStruct);
         util_update_mask(visibleH,primitiveH,newValue);
     end
 end
+
 
 function util_update_mask(maskBlockH,primitiveH,newValue)
 
@@ -890,14 +793,13 @@ function util_update_mask(maskBlockH,primitiveH,newValue)
 
 end
 
-function mdlInfoStruct=mdl_update_display_info(mdlInfoStruct)
 
+function mdlInfoStruct=mdl_update_display_info(mdlInfoStruct)
 
     assertblkH=mdlInfoStruct.assertHandles;
     treeDispH=mdlInfoStruct.parentMasks;
     primitiveBlk=(treeDispH==-1);
     treeDispH(primitiveBlk)=assertblkH(primitiveBlk);
-
     [dispHierarchy,depth,dispAssertIdx]=util_block_list_tree(treeDispH);
 
     [idx,sortMap]=sort(dispAssertIdx);
@@ -911,23 +813,7 @@ end
 
 
 
-
-
 function mdlInfoStruct=create_mdl_info(modelH)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     sigbuildH=find_system(modelH,...
     'LoadFullyIfNeeded','off',...
@@ -938,10 +824,6 @@ function mdlInfoStruct=create_mdl_info(modelH)
     'BlockType','SubSystem',...
     'PreSaveFcn','sigbuilder_block(''preSave'');');
     sigbuildH=sigbuildH(:)';
-
-
-
-
 
     mdlInfoStruct=struct('assertHandles',[],...
     'modelH',modelH,...
@@ -954,6 +836,7 @@ function mdlInfoStruct=create_mdl_info(modelH)
     'assertDispIdx',[],...
     'sigbuildHandles',sigbuildH);
 end
+
 
 function blkInfo=create_blk_info(blockH,modelH)
     if nargin<2
@@ -974,14 +857,15 @@ function blkInfo=create_blk_info(blockH,modelH)
     ,'overideSettings',[]);
 end
 
+
 function blkInfo=sigb_update_group_info(blkInfo)
     [activeGroup,groupCnt]=sigbuilder('assertApi',blkInfo.blockH,'groupIndex');
     blkInfo.activeGroup=activeGroup;
     blkInfo.groupCnt=groupCnt;
 end
 
-function blkInfo=sigb_get_info(blkHandle)
 
+function blkInfo=sigb_get_info(blkHandle)
 
     fromWsH=find_system(blkHandle,...
     'FollowLinks','on',...
@@ -996,9 +880,6 @@ function blkInfo=sigb_get_info(blkHandle)
         blkInfo.modelH=bdroot(blkHandle);
         if~isempty(blkInfo.activeGroup)&&isempty(blkInfo.groupCnt)
 
-
-
-
             [~,blkInfo.groupCnt]=sigbuilder('assertApi',blkHandle,'groupIndex');
         end
         if~isfield(blkInfo,'groupDOORSid')
@@ -1011,8 +892,8 @@ function blkInfo=sigb_get_info(blkHandle)
     end
 end
 
-function sigb_write_info(blkInfo,shouldClearHandles)
 
+function sigb_write_info(blkInfo,shouldClearHandles)
 
     fromWsH=find_system(blkInfo.blockH,...
     'FollowLinks','on',...
@@ -1020,9 +901,7 @@ function sigb_write_info(blkInfo,shouldClearHandles)
     'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
     'IncludeCommented','on',...
     'BlockType','FromWorkspace');
-
     if~strcmp(get_param(fromWsH,'StaticLinkStatus'),'implicit')
-
 
         blkInfo.blockH=[];
         blkInfo.modelH=[];
@@ -1036,9 +915,6 @@ function sigb_write_info(blkInfo,shouldClearHandles)
 end
 
 
-
-
-
 function parentMasks=assert_parent_masks(assertBlks)
     masks=get_param(assertBlks,'ShadowObject');
     if iscell(masks)
@@ -1046,9 +922,6 @@ function parentMasks=assert_parent_masks(assertBlks)
     else
         parentMasks=masks;
     end
-
-
-
 
     primIdx=(parentMasks==-1);
     if~isempty(primIdx)
@@ -1077,14 +950,12 @@ function parentMasks=assert_parent_masks(assertBlks)
         end
     end
 
-
-
     parentMasks(parentMasks==assertBlks)=-1;
 end
 
+
 function blks=assert_find_blks(modelH)
     blks=[];
-
 
     paths=find_system(modelH,...
     'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
@@ -1105,6 +976,7 @@ function blks=assert_find_blks(modelH)
     end
 end
 
+
 function out=assert_mask_has_overide(mdlInfoStruct,blockH)
     blkIdx=find(blockH==mdlInfoStruct.parentMasks);
     if isempty(blkIdx)
@@ -1114,6 +986,7 @@ function out=assert_mask_has_overide(mdlInfoStruct,blockH)
     end
 end
 
+
 function out=assert_mask_is_overide(mdlInfoStruct,blockH)
     blkIdx=find(blockH==mdlInfoStruct.parentMasks);
     if isempty(blkIdx)
@@ -1122,9 +995,6 @@ function out=assert_mask_is_overide(mdlInfoStruct,blockH)
         out=(mdlInfoStruct.overideCnts(blkIdx)>0);
     end
 end
-
-
-
 
 
 function out=util_relative_paths_2_handles(modelName,paths)
@@ -1146,6 +1016,7 @@ function out=util_relative_paths_2_handles(modelName,paths)
     end
 end
 
+
 function blockH=util_load_lib_path(blockPath)
     blockH=-1;
     mustBreak=0;
@@ -1161,6 +1032,7 @@ function blockH=util_load_lib_path(blockPath)
     blockH=get_param(blockPath,'Handle');
 end
 
+
 function paths=util_relative_full_names(handles)
     if isempty(handles)
         paths=[];
@@ -1175,30 +1047,16 @@ function paths=util_relative_full_names(handles)
         paths={paths};
     end
 
-
     for i=1:length(paths)
         paths{i}(removeIdx)=[];
     end
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
 function mdlInfoStruct=sigb_transform_index(mdlInfoStruct,old2NewIdx)
     if isempty(old2NewIdx)||isempty(mdlInfoStruct.sigbuildHandles)
         return;
     end
-
-
     preserve_dirty=Simulink.PreserveDirtyFlag(mdlInfoStruct.modelH,'blockDiagram');
     for sigBuildH=mdlInfoStruct.sigbuildHandles
         blkInfo=sigb_get_info(sigBuildH);
@@ -1214,6 +1072,7 @@ function mdlInfoStruct=sigb_transform_index(mdlInfoStruct,old2NewIdx)
     end
 end
 
+
 function isLink=util_is_a_link(blockH)
     if isempty(get_param(blockH,'ReferenceBlock'))
         isLink=0;
@@ -1222,6 +1081,7 @@ function isLink=util_is_a_link(blockH)
     end
 end
 
+
 function isLib=util_is_library(modelH)
     if bdIsLibrary(modelH)
         isLib=1;
@@ -1229,6 +1089,7 @@ function isLib=util_is_library(modelH)
         isLib=0;
     end
 end
+
 
 function isImplicit=util_is_implicit_link(blockH)
     parentH=get_param(get_param(blockH,'parent'),'handle');
@@ -1240,10 +1101,8 @@ function isImplicit=util_is_implicit_link(blockH)
     end
 end
 
+
 function[list,depth,outPos]=util_block_list_tree(blockList)
-
-
-
 
     if isempty(blockList)
         list=[];
@@ -1251,7 +1110,6 @@ function[list,depth,outPos]=util_block_list_tree(blockList)
         outPos=[];
         return;
     end
-
 
     inputIdx=1:length(blockList);
     ancestorStack=bdroot(blockList(1));
@@ -1268,7 +1126,6 @@ function[list,depth,outPos]=util_block_list_tree(blockList)
 
         if isempty(blockDepth)
 
-
             newBlocks=[];
             while(isempty(blockDepth))
                 newBlocks=[parentH,newBlocks];%#ok<*AGROW>
@@ -1276,12 +1133,10 @@ function[list,depth,outPos]=util_block_list_tree(blockList)
                 blockDepth=find(ancestorStack==parentH);
             end
 
-
             newBlkCnt=length(newBlocks);
             list=[list,newBlocks];
             depth=[depth,blockDepth-1+(1:newBlkCnt)];
             outPos=[outPos,-1*ones(1,newBlkCnt)];
-
 
             ancestorStack=[ancestorStack(1:blockDepth),newBlocks];
             blockDepth=blockDepth+newBlkCnt;
