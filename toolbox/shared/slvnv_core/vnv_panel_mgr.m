@@ -1,24 +1,5 @@
 function varargout=vnv_panel_mgr(method,blockH,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     modelH=bdroot(blockH);
     if strncmp(method,'jcb',3)
         jPanel=varargin{1};
@@ -88,8 +69,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
         if~isempty(jPanel)
             if jPanel.verificationEnabled()
                 if strcmp(get_param(modelH,'VnvDirty'),'on')
-
-
                     vnv_assert_mgr('mdlReloadAsserts',modelH);
                     vnv_assert_mgr('mdlForceRefresh',modelH);
                 else
@@ -162,8 +141,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                 sigb_refresh_requirements(blkInfo,jPanel);
             end
             jpanel_restore_view(jPanel,blockH);
-
-
             [rmiInstalled,rmiLicensed]=rmi.isInstalled();
             rmiAvailable=rmiInstalled&&rmiLicensed;
 
@@ -176,6 +153,7 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
             function tf=bdIsHarness(modelH)
                 tf=strcmpi(get_param(modelH,'IsHarness'),'on');
 
+
                 function tf=bdHasExternalData(modelH,true)
                     tf=rmidata.bdHasExternalData(modelH,true);
                     if~tf&&bdIsHarness(modelH)
@@ -184,6 +162,7 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                         mainModelName=harnessInfo.model;
                         tf=rmidata.bdHasExternalData(mainModelName,true);
                     end
+
 
                     function jpanel_close(jPanel,blockH)
                         blkInfo=sigb_get_info(blockH);
@@ -235,7 +214,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                 if isempty(displayHierarchy)
                                     jNodes=jPanel.populate_tree([],[],[],[]);%#ok<NASGU>
 
-
                                     if~isempty(jPanel.verifyPane)&&~isempty(jPanel.verifyPane.handle.ContextMenu)
                                         jPanel.verifyPane.handle.ContextMenu=[];
                                     end
@@ -245,7 +223,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                     allnames=get_param(displayHierarchy,'Name');
                                     allnames=strrep(allnames,newline,' ');
                                     jNodes=jPanel.populate_tree(displayHierarchy,dispDepth+1,iconIdx,allnames);%#ok<NASGU>
-
 
                                     if~isempty(jPanel.verifyPane)&&~isempty(jPanel.verifyPopup)&&isempty(jPanel.verifyPane.handle.ContextMenu)
                                         jPanel.verifyPane.handle.ContextMenu=jPanel.verifyPopup.uicontxtmenu;
@@ -309,10 +286,8 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                     if groupRelativeIdx>=0&&offset+groupRelativeIdx>0
                                                         rmi.setReqs(blockH,[],offset+groupRelativeIdx,1);
 
-
                                                         blkInfo.groupReqCnt(activeGroup)=blkInfo.groupReqCnt(activeGroup)-1;
                                                         sigb_write_info(blkInfo);
-
 
                                                         sigb_refresh_requirements(blkInfo,jPanel);
                                                     end
@@ -348,7 +323,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                     if~isempty(selected)&&selected<=activeGroupReqsCnt
                                                         rmi('view',blockH,activeGroupReqsIdx(selected));
                                                     end
-
                                                 case 'addModify'
                                                     if isempty(activeGroupReqsIdx)
                                                         numReqsBeforeActiveGroup=length(find(groupIdx<activeGroup));
@@ -435,7 +409,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                             vnv_assert_mgr('mdlForceRefresh',modelH);
                                                             return;
                                                         end
-
                                                         vnv_assert_mgr('disableRefresh',blockH);
                                                         try
                                                             for i=1:length(leafDescendents)
@@ -482,10 +455,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                                             blkInfo.groupReqCnt(activeGroup)=newCnt;
                                                                         else
 
-
-
-
-
                                                                             if baseIdx>0
                                                                                 allOffsets=util_req_cnts_to_offset(blkInfo.groupReqCnt);
                                                                                 possibleGroups=find(allOffsets==baseIdx);
@@ -515,8 +484,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                                             blkInfo.groupReqCnt(end+1:activeGroup)=0;
                                                                             sigb_write_info(blkInfo);
 
-
-
                                                                         end
                                                                         if(~isfield(blkInfo,'groupReqCnt')||isempty(blkInfo.groupReqCnt)...
                                                                             ||blkInfo.groupReqCnt(activeGroup)==0)
@@ -531,10 +498,7 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                                         function sigb_refresh_requirements_extern(blockH,jPanel)
                                                                             [~,grpIdx]=slreq.getSigbGrpData(blockH);
                                                                             if any(grpIdx==-1)
-
-
                                                                                 jPanel.setAllReqStrs({});
-
                                                                                 t=timer('TimerFcn',@delayed_sigb_refresh_requirements,'StartDelay',1);
                                                                                 userData.blockH=blockH;
                                                                                 t.UserData=userData;
@@ -554,7 +518,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                                                 blockH=userData.blockH;
                                                                                 stop(timerobj);
                                                                                 delete(timerobj);
-
                                                                                 if ishandle(blockH)
                                                                                     vnv_panel_mgr('sbUpdateReq',blockH);
                                                                                 end
@@ -565,8 +528,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                                                         reqCnts=blkInfo.groupReqCnt;
                                                                                         totalCnt=rmi('count',blkInfo.blockH);
                                                                                         if sum(reqCnts)>totalCnt
-
-
                                                                                             cs_cnts=cumsum(reqCnts);
                                                                                             newReqCnts=zeros(size(reqCnts));
                                                                                             newReqCnts(cs_cnts<totalCnt)=reqCnts(cs_cnts<totalCnt);
@@ -575,9 +536,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                                                             newReqCnts(exceedIdx(1))=lastCnt;
                                                                                             blkInfo.groupReqCnt=newReqCnts;
                                                                                             sigb_write_info(blkInfo)
-
-
-
                                                                                             if totalCnt>0||rmipref('DuplicateOnCopy')
                                                                                                 blockName=getfullname(blkInfo.blockH);
                                                                                                 title=getString(message('Slvnv:vnv_panel_mgr:InconsistentTitle'));
@@ -592,7 +550,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                                                         end
                                                                                     end
 
-
                                                                                     function jPanel=sigb_get_jpanel(blockH)
                                                                                         jPanel=[];
                                                                                         dialogH=get_param(blockH,'UserData');
@@ -602,7 +559,6 @@ function varargout=vnv_panel_mgr(method,blockH,varargin)
                                                                                                 jPanel=UD.verify.jVerifyPanel;
                                                                                             end
                                                                                         end
-
 
 
                                                                                         function blkInfo=sigb_get_info(blkHandle)
