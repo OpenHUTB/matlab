@@ -1,24 +1,18 @@
 function vnvcallback(method,modelH,isLib)
 
-
-
-
     if strcmp(method,'reset')
         rmi_sl_callback('reset',[]);
         slcoverage_callback('reset',[]);
         return;
     end
 
-
     if any(strcmp(method,{'postLoad','init','preSave','close','forceClose','resolveLink','open'}))
         rmi_sl_callback(method,modelH);
     end
 
-
     if any(strcmp(method,{'init','close','forceClose','postLoad'}))
         exectime_profiling_callback(method,modelH);
     end
-
 
     if nargin<3
         isLib=strcmpi(get_param(modelH,'BlockDiagramType'),'library');
@@ -27,13 +21,9 @@ function vnvcallback(method,modelH,isLib)
         return;
     end
 
-
     if any(strcmp(method,{'postLoad','preSave','unhighlight','init','open','close','forceClose'}))
         slcoverage_callback(method,modelH);
     end
-
-
-
 
     switch(method)
 
@@ -51,18 +41,12 @@ function vnvcallback(method,modelH,isLib)
         vnv_assert_mgr('mdlPreSave',modelH);
 
     case 'vnvForceRefresh'
-
-
         vnv_assert_mgr('mdlForceRefresh',modelH);
 
     case 'vnvDirty'
         vnv_assert_mgr('mdlVnvDirty',modelH);
 
     case{'close','forceClose'}
-
-
-
-
 
     case 'unhighlight'
 
