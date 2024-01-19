@@ -1,12 +1,5 @@
 function isAvailable=isLogicAnalyzerAvailable()
 
-
-
-
-
-
-
-
     persistent isFirstCall;
     if isempty(isFirstCall)
         isFirstCall=(slfeature('slLogicAnalyzerApp')>0)&&...
