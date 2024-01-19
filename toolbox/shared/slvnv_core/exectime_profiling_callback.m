@@ -1,8 +1,5 @@
 function exectime_profiling_callback(method,modelH)
 
-
-
-
     persistent isActive;
 
     mlock;
