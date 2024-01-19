@@ -1,29 +1,9 @@
 function[signalData,lastTimeStamp]=getStreamedRunData(this,blkSigIds,portIndices,saveformat,lastLoggedTime)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     runIDs=Simulink.sdi.getAllRunIDs();
     dsr=Simulink.sdi.DatasetRef(runIDs(end));
     dsrSigIds=dsr.getSortedSignalIDs();
     [~,dsrIndices]=intersect(dsrSigIds,blkSigIds);
-
     [ds,lastTimeStamp]=createDataset(this,dsrIndices,portIndices,dsr,lastLoggedTime);
     switch lower(saveformat)
     case 'dataset'
@@ -36,6 +16,7 @@ function[signalData,lastTimeStamp]=getStreamedRunData(this,blkSigIds,portIndices
     end
 
 end
+
 
 function ds=updateDataTypeForDataset(ds)
     numElements=ds.numElements;
@@ -65,6 +46,7 @@ function ds=updateDataTypeForDataset(ds)
     end
 end
 
+
 function[ds,lastTimeStamp]=createDataset(this,dsrIndices,portIndices,dsr,lastLoggedTime)
 
     ds=Simulink.SimulationData.Dataset;
@@ -88,8 +70,6 @@ function[ds,lastTimeStamp]=createDataset(this,dsrIndices,portIndices,dsr,lastLog
         slsig=Simulink.SimulationData.Signal;
         slsig.Name=sdisig.Name;
 
-
-
         if~isequal(lastLoggedTime,0)
             origValues=sdisig.Values;
             newValues=reduceData(origValues,lastLoggedTime);
@@ -104,6 +84,7 @@ function[ds,lastTimeStamp]=createDataset(this,dsrIndices,portIndices,dsr,lastLog
     end
 end
 
+
 function lastTS=getLastTimeStamp(sigValues)
     if isa(sigValues,'timeseries')&&~isempty(sigValues.Time)
         lastTS=sigValues.Time(end);
@@ -117,6 +98,7 @@ function lastTS=getLastTimeStamp(sigValues)
     end
 end
 
+
 function emptyData=simDataIsEmpty(sdiSigValues)
     if isfield(sdiSigValues,'Time')
         emptyData=isempty(sdiSigValues.Time);
@@ -126,6 +108,7 @@ function emptyData=simDataIsEmpty(sdiSigValues)
         emptyData=isa(firstVal,'timeseries')&&isempty(firstVal.Time);
     end
 end
+
 
 function newData=reduceData(origData,lastLoggedTime)
     if isa(origData,'timeseries')
@@ -143,10 +126,12 @@ function newData=reduceData(origData,lastLoggedTime)
     end
 end
 
+
 function newData=reduceDataInTimeSeries(origData,lastLoggedTime)
     tsevent=tsdata.event('',lastLoggedTime);
     newData=origData.gettsafterevent(tsevent);
 end
+
 
 function retarray=createArray(ds)
     retarray=Simulink.sdi.internal.convertToFormat(ds,'array');
@@ -157,11 +142,10 @@ function retarray=createArray(ds)
     retarray=[time,retarray];
 end
 
+
 function retstruct=createStructure(block,ds,structFormat)
     retstruct=Simulink.sdi.internal.convertToFormat(ds,structFormat);
     multipleDisplayCache=jsondecode(get_param(block.FullPath,'MultipleDisplayCache'));
-
-
     if~isfield(retstruct,'blockName')&&numel(retstruct.signals)>0
 
         if isfield(retstruct.signals(1),'blockName')
@@ -173,12 +157,7 @@ function retstruct=createStructure(block,ds,structFormat)
     end
     for idx=1:numElements(ds)
 
-
-
-
         if isempty(multipleDisplayCache)
-
-
             retstruct.signals(idx).label=ds.getElement(idx).Values.Name;
             retstruct.signals(idx).title='';
             if~isempty(retstruct.signals(idx).label)
@@ -194,11 +173,9 @@ function retstruct=createStructure(block,ds,structFormat)
             retstruct.signals(idx).title=title;
         end
 
-
         if isequal(prod(retstruct.signals(idx).dimensions),1)
             retstruct.signals(idx).dimensions=1;
         end
-
         plotStyleDims=retstruct.signals(idx).dimensions;
         if isscalar(plotStyleDims)
             plotStyleDims=[1,plotStyleDims];%#ok
@@ -207,10 +184,6 @@ function retstruct=createStructure(block,ds,structFormat)
         if~strcmpi(ds.getElement(idx).Values.DataInfo.Interpolation.Name,'linear')
             retstruct.signals(idx).plotStyle=ones(plotStyleDims);
         end
-
-
-
-
 
         if isfi(retstruct.signals(idx).values)||any(strcmp(class(retstruct.signals(idx).values),{'int64','uint64','half'}))
             retstruct.signals(idx).values=double(retstruct.signals(idx).values);
