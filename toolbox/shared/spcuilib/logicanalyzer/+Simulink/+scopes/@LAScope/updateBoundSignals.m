@@ -1,11 +1,8 @@
 function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelLoad,isSF)
 
-
     if(nargin<4)
-
         updateOnly=false;
     end
-
 
     if(nargin<5)
         inModelLoad=false;
@@ -19,7 +16,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
 
     if~isempty(addedSignals)
 
-
         if updateOnly
             actionFcn='updateSignal';
 
@@ -29,14 +25,12 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
         else
             actionFcn='addSignal';
         end
-
         addSignalMsg=addSignals(this,addedSignals,actionFcn,inModelLoad,isSF);
         if(this.VisualOpen||webWindow.isvalid)&&~isempty(addSignalMsg)
 
             message.publish('/logicanalyzer',addSignalMsg);
         end
     end
-
 
     if~isempty(removedSignals)
         removeSignalMsg.action=['removeSignal',this.ClientID];
@@ -53,10 +47,10 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
         end
     end
 
+
     function sigSerialized=isSigSerialized(sig,serializedUUIDs)
         sigUUID=sig.UUID;
         sigSerialized=any(strcmpi(sigUUID,serializedUUIDs));
-
         function[isBoolean,isFloatingPoint,isComplex,wordLength,isEnumeration,enumInfo,isMultirate,busElementNames]=getDefaultSignalValues()
             isBoolean=false;
             isFloatingPoint=false;
@@ -67,6 +61,7 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
             isMultirate=false;
             busElementNames={};
 
+
             function addSignalMsg=addSignals(this,addedSignals,actionFcn,inModelLoad,isSF)
                 clientId=this.ClientID;
                 hBlock=str2double(clientId);
@@ -74,7 +69,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                 modelName=get_param(hModel,'Name');
 
                 skipWorkAtCompile=~this.VisualLaunched&&strcmpi(get_param(modelName,'SimulationStatus'),'initializing');
-
                 isMdlRefNormalModeCopy=uiservices.onOffToLogical(...
                 get_param(hModel,'ModelReferenceMultiInstanceNormalModeCopy'));
 
@@ -83,7 +77,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                     addSignalMsg=[];
                     return;
                 end
-
                 addSignalMsg.action=[actionFcn,clientId];
                 numSignals=length(addedSignals);
                 initStructValues=cell(1,numSignals);
@@ -94,10 +87,8 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                 signalOrdering='';
                 if inModelLoad
                     hasTrace=~isempty(get_param(hModel,'LogicAnalyzerGraphicalSettings'));
-
                     signalOrdering=this.RawSignalOrdering;
                 end
-
                 serializedSigs=this.SerializedInstrumentedSignals;
                 serializedUUIDs={};
                 if~isempty(serializedSigs)
@@ -109,15 +100,7 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                 if~isSF&&numSignals>1
                     portHs=arrayfun(@(x)x.PortHandle,addedSignals);
                     if all(portHs~=-1)
-
-
-
-
-
-
                         sigPos=cell2mat(get(portHs,'position'));
-
-
 
                         [~,sigIndexes]=sortrows(sigPos);
                     else
@@ -126,15 +109,11 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                 else
                     sigIndexes=1:numSignals;
                 end
-
-
-
                 isMdlRef=~strcmpi(get_param(hModel,'ModelReferenceTargetType'),'none');
                 mdlRefBlockPath=[];
                 if isMdlRef
                     mdlRefBlockPath=get_param(hModel,'ModelReferenceNormalModeVisibilityBlockPath');
                 end
-
 
                 if isempty(mdlRefBlockPath)
                     mdlRefBlockPath=Simulink.BlockPath();
@@ -149,16 +128,12 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                 end
                 updateSFsigsOnce=true;
                 for i=1:numSignals
-
                     sig=addedSignals(sigIndexes(i));
-
-
 
                     isSerialized=false;
                     if~isempty(serializedUUIDs)
                         isSerialized=isSigSerialized(sig,serializedUUIDs);
                     end
-
                     blockPath=sig.BlockPath_;
                     if isempty(blockPath)
                         continue;
@@ -207,9 +182,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                             signalWidth=1;
                             signalDims=[1,1];
                         else
-
-
-
                             if~any(strcmpi(get_param(modelName,'StrictBusMsg'),{'None','warning'}))
                                 busType=get_param(portHandle,'CompiledBusType');
                             end
@@ -224,7 +196,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                         isCommented=strcmp(get_param(blkh,'Commented'),'on');
                         outputPortIdx=sig.OutputPortIndex;
                     end
-
 
                     if isempty(name)
                         continue;
@@ -261,17 +232,15 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                 end
                 addSignalMsg.params.signals=sigs;
 
-                function iSig=getInstrumentedSignal(this,uuid)
 
+                function iSig=getInstrumentedSignal(this,uuid)
                     [~,iSigs]=Simulink.scopes.LAScope.getInstrumentedSignals(this.ModelName);
                     iSig=iSigs(cell2mat(arrayfun(@(x)strcmp(x.UUID,uuid),iSigs,'UniformOutput',false)));
 
+
                     function sigWidth=computePortWidth(portHandle,modelName,busType)
 
-
-
                         portWidth=get_param(portHandle,'CompiledPortWidth');
-
 
                         if strcmpi(busType,'NON_VIRTUAL_BUS')&&strcmpi(get_param(modelName,'SimulationStatus'),'initializing')
                             busDataTypeName=get_param(portHandle,'CompiledPortDataType');
@@ -283,10 +252,8 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
 
                         end
 
+
                         function busWidth=computeVirtualBusWidth(modelName,portHandle)
-
-
-
                             busStruct=get_param(portHandle,'CompiledBusStruct');
                             busWidth=0;
                             if isfield(busStruct,'signals')
@@ -316,7 +283,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                 isBoolean=zeros(1,0);
                                 isFloatingPoint=zeros(1,0);
                                 isComplex=zeros(1,0);
-
                                 wordLength=zeros(1,0);
                                 isEnumeration=zeros(1,0);
                                 enumInfo=cell(1,0);
@@ -329,8 +295,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
 
                                     compBusStruct=get_param(portHandle,'CompiledBusStruct');
                                     dataTypes=cell(1,0);
-
-
 
                                     if isempty(compBusStruct)
                                         compPortComplex=get_param(portHandle,'CompiledPortComplexSignal');
@@ -439,8 +403,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                     if~(isempty(dataType)||isBoolean||isFloatingPoint||isBus)
                                         [wordLength,baseType]=getWordLength(dataType,1,modelName);
                                         if(wordLength==0)
-
-
                                             isBoolean=strcmpi('boolean',baseType);
                                             isFloatingPoint=isempty(baseType)||any(strcmpi({'double','single'},baseType));
                                             if~(isFloatingPoint||isBoolean)
@@ -482,10 +444,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
 
                                 function[isMultirate,sampleTimes]=getIsMultirate(sampleTimes,value)
 
-
-
-
-
                                     if isempty(value)
                                         isMultirate=false;
                                         sampleTimes=Inf;
@@ -511,10 +469,11 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                         end
                                     end
 
-                                    function[wordLength,baseType]=getWordLength(dataType,indx,modelName)
+                                    
+
+function[wordLength,baseType]=getWordLength(dataType,indx,modelName)
 
                                         dataType=indexIntoCellOrVector(dataType,indx);
-
                                         persistent wordLengthMap baseTypeMap;
                                         if isempty(wordLengthMap)
                                             wordLengthMap=containers.Map;
@@ -527,7 +486,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                         end
 
                                         baseType=dataType;
-
 
                                         try
                                             temp=numerictype(dataType);
@@ -569,7 +527,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                             end
 
 
-
                                             function[isEnum,enumInfo]=getEnumerationInfo(dataType)
 
                                                 yTickInfo=uiservices.getYTickInfoForEnum(dataType);
@@ -584,7 +541,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
 
                                                 function busWidth=computeNonVirtualBusWidth(modelName,busDataTypeName,portWidth)
 
-
                                                     mDFSElements=slInternal('busDiagnostics','getDFSElementsInBus',modelName,busDataTypeName,portWidth);
                                                     busWidth=0;
                                                     mNumDFSElements=length(mDFSElements);
@@ -594,18 +550,12 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                             busWidth=busWidth+mDFSElements(idx).width;
                                                         end
                                                     end
+
                                                     function[datatypes,isComplex,isMultirate,sampleTimes,busElementNames]=getLeafElementInfoForBus(compBusStruct,datatypes,isComplex,isMultirate,sampleTimes,busElementNames,displayBusElementNames)
-
-
-
-
-
 
                                                         if(isempty(compBusStruct.signals))
                                                             compiledSigObj=get_param(compBusStruct.src,'Object');
                                                             srcPort=compBusStruct.srcPort+1;
-
-
                                                             if(isempty(compiledSigObj.CompiledPortDataTypes))
                                                                 return;
                                                             end
@@ -616,7 +566,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                                 sampleTime=get_param(portHandle,'CompiledSampleTime');
                                                                 [isMultirate,sampleTimes]=getIsMultirate(sampleTimes,sampleTime);
                                                             end
-
                                                             compPortWidth=compiledSigObj.CompiledPortWidths.Outport(srcPort);
                                                             for pIndx=1:compPortWidth
                                                                 datatypes=[datatypes,compiledPortDatatype];
@@ -738,35 +687,20 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                                     end
                                                                 end
 
+
                                                                 function busElementNames=convertToChar(busElementNames,compBusElementNames)
                                                                     busElementNames=char(busElementNames);
                                                                     compBusElementNames=char(compBusElementNames);
                                                                     busElementNames=char(busElementNames,compBusElementNames);
 
-                                                                    function compBusElementName=getCompBusElementName(compBusStruct)
+                                                                    
+
+function compBusElementName=getCompBusElementName(compBusStruct)
                                                                         compBusElementName=compBusStruct.name;
 
-                                                                        function[sigName,shortName]=getFullyQualifiedSignalName(sig)
+                                                                        
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function[sigName,shortName]=getFullyQualifiedSignalName(sig)
                                                                             blockPathStr=sig.BlockPath_;
                                                                             delimiters=strfind(blockPathStr,'/');
                                                                             firstDelimiter=delimiters(1);
@@ -795,12 +729,8 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                                             else
                                                                                 delimiters=strfind(regexprep(blockPathStr,'//','**'),'/');
                                                                                 if isempty(delimiters)
-
-
-
                                                                                     sigName=lineName;
                                                                                 else
-
                                                                                     finalDelimiter=delimiters(length(delimiters));
                                                                                     blockPathStr=blockPathStr(1:finalDelimiter);
                                                                                     blockPathStr=regexprep(blockPathStr,'//','/');
@@ -808,7 +738,9 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                                                 end
                                                                                 shortName=lineName;
                                                                             end
-                                                                            function[sigName,shortName]=getFullyQualifiedSFSignalName(sfSig,sig)
+                                                                            
+
+function[sigName,shortName]=getFullyQualifiedSFSignalName(sfSig,sig)
                                                                                 shortName=[];
                                                                                 sigName=[];
                                                                                 if~isempty(sfSig)
@@ -823,7 +755,9 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                                                     shortName=[sfSig.Name,':',sigActName];
                                                                                     sigName=[sfSig.Path,'.',shortName];
                                                                                 end
-                                                                                function[sfSig,blkh,isInvalid]=getvalidSFSig(signal)
+                                                                                
+
+function[sfSig,blkh,isInvalid]=getvalidSFSig(signal)
                                                                                     try
                                                                                         blkPath=signal.BlockPath_;
                                                                                         sfSubSys=get_param(blkPath,'Object');
@@ -858,13 +792,13 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                                                         isInvalid=isempty(sfSig)||(strcmp(signal.DomainParams_.Activity,'Child')&&(~strcmp(sfSig.Decomposition,'EXCLUSIVE_OR')||...
                                                                                         isempty(sf('SubstatesOf',sfSig.id))));
                                                                                     catch me
-
-
                                                                                         blkh='';
                                                                                         sfSig='';
                                                                                         isInvalid=true;
                                                                                     end
-                                                                                    function signals=UpdateSFsigsInAddedSignals(model,signals)
+     
+
+                                                                               function signals=UpdateSFsigsInAddedSignals(model,signals)
                                                                                         instr_signals=get_param(model,'InstrumentedSignals');
 
                                                                                         [signals.SFSig]=deal([]);
@@ -880,8 +814,8 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                                                             end
                                                                                         end
 
-                                                                                        function[isBoolean,isFloatingPoint,isComplex,wordLength,isEnumeration,enumInfo,isMultirate,busElementNames]=computeSFDataType(sfSig,signal)
-
+                                         
+                                               function[isBoolean,isFloatingPoint,isComplex,wordLength,isEnumeration,enumInfo,isMultirate,busElementNames]=computeSFDataType(sfSig,signal)
                                                                                             isFloatingPoint=false;
                                                                                             isBoolean=false;
                                                                                             isComplex=0;
@@ -899,7 +833,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                                                                     enumType=extractAfter(sfSig.OutputData.DataType,': ');
                                                                                                     [isEnumeration,enumInfo{1}]=getEnumerationInfo(enumType);
                                                                                                 else
-
                                                                                                     [isEnumeration,enumInfo{1}]=fgetStateNames(sfSig);
                                                                                                 end
                                                                                             else
@@ -907,7 +840,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                                                             end
 
                                                                                             function[isEnumeration,enumInfo]=fgetStateNames(chart)
-
 
                                                                                                 literals=[];
                                                                                                 enumInfo=cell(1,0);
@@ -917,7 +849,6 @@ function updateBoundSignals(this,addedSignals,removedSignals,updateOnly,inModelL
                                                                                                         literals=[literals,{states(i).Name}];
                                                                                                     end
                                                                                                 end
-
                                                                                                 literals=[{'none'},literals];
                                                                                                 isEnumeration=true;
                                                                                                 values=0:length(literals)-1;
