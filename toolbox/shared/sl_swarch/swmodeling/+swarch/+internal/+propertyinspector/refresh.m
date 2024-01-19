@@ -1,12 +1,5 @@
 function refresh(studio,protoElem)
 
-
-
-
-
-
-
-
     import swarch.internal.propertyinspector.*;
 
     propInspector=studio.getComponent('GLUE2:PropertyInspector','Property Inspector');
