@@ -1,5 +1,3 @@
-
-
 classdef Utils
 
     properties(Constant,Hidden=true)
@@ -13,15 +11,12 @@ classdef Utils
         MAX_PATH_LENGTH=260
     end
 
+
     methods(Static)
-
-
-
 
         function modelInfo=extractExcludedModelInfo(excludedModelStr)
 
             narginchk(1,1);
-
 
             modelInfo=struct('normal',{{}},'sil',{{}},'pil',{{}},'accel',{{}});
 
@@ -31,7 +26,6 @@ classdef Utils
                 validateattributes(excludedModelStr,...
                 {'char'},{'nrows',1},'extractExcludedModelInfo','',1);
             end
-
 
             modelList=regexp(excludedModelStr,'([^\s,]+)[\s,]*','tokens');
             modelList=[modelList{:}];
@@ -52,12 +46,10 @@ classdef Utils
                     modelName=name{1}{1};
                 end
 
-
                 for jj=1:numel(fNames)
                     modelInfo.(fNames{jj}){end+1}=modelName;
                 end
             end
-
 
             for f=allModeNames
                 val=modelInfo.(f{1});
@@ -66,7 +58,6 @@ classdef Utils
                 end
             end
         end
-
 
 
 
@@ -97,7 +88,6 @@ classdef Utils
                 simMode=get_param(modelName,'SimulationMode');
             end
 
-
             normalSimModeStr=SlCov.Utils.SIM_NORMAL_MODE_STR;
             accelSimModeStr=SlCov.Utils.SIM_ACCEL_MODE_STR;
             silSimModeStr=SlCov.Utils.SIM_SIL_MODE_STR;
@@ -111,10 +101,7 @@ classdef Utils
                 return
             end
 
-
             visitedMdls=containers.Map('KeyType','char','valueType','logical');
-
-
 
             if coder.connectivity.XILSubsystemUtils.isAtomicSubsystem(modelName)
 
@@ -126,7 +113,6 @@ classdef Utils
                 xilMdlSimModeIdx=find(...
                 strcmpi(get_param(xilMdlBlk,'SimulationMode'),allowedSimModeStr),1);
 
-
                 if(xilMdlSimModeIdx>2)&&strcmpi(get_param(xilMdlBlk,'CodeInterface'),'top model')
                     xilSimModeOffSet=2;
                 end
@@ -136,44 +122,30 @@ classdef Utils
                 recurseIntoModelBlocks(modelName,simModeIdx);
             end
 
-
             if~keepLoadedModels
                 cellfun(@(x)close_system(x,0),modelsToClose);
             end
 
+
             function recurseIntoModelBlocks(pModelName,pSimModeIdx)
-
-
-
-
                 mdlBlks=find_system(pModelName,'FollowLinks','on',...
                 'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
                 'LookUnderMasks','all','BlockType','ModelReference');
-
-
                 mdlBlks(strcmpi(get_param(mdlBlks,'ProtectedModel'),'on'))=[];
-
-
 
                 for ii=1:numel(mdlBlks)
                     mdlName=get_param(mdlBlks{ii},'ModelName');
                     simModeOffSet=0;
                     if pSimModeIdx>2
-
-
                         mdlSimModeIdx=pSimModeIdx;
                     else
-
-
                         mdlSimModeIdx=find(...
                         strcmpi(get_param(mdlBlks{ii},'SimulationMode'),allowedSimModeStr),1);
-
 
                         if(mdlSimModeIdx>2)&&strcmpi(get_param(mdlBlks{ii},'CodeInterface'),'top model')
                             simModeOffSet=2;
                         end
                     end
-
 
                     key=sprintf('%s_%d',mdlName,mdlSimModeIdx+simModeOffSet);
                     if visitedMdls.isKey(key)
@@ -183,12 +155,11 @@ classdef Utils
 
 
                     modelInfo.(modeFieldNames{mdlSimModeIdx+simModeOffSet}){end+1}=mdlName;
-
-
                     loadModelIfRequired(mdlName);
                     recurseIntoModelBlocks(mdlName,mdlSimModeIdx);
                 end
             end
+
 
             function loadModelIfRequired(mdlName)
                 if~any(strcmp(mdlName,loadedModels))
@@ -202,19 +173,12 @@ classdef Utils
 
 
 
-
         function status=isfile(fileName)
-
 
             info=dir(fileName);
             status=(numel(info)==1)&&(info.isdir==0);
 
-
-
-
         end
-
-
 
 
 
@@ -227,8 +191,6 @@ classdef Utils
                 end
             end
         end
-
-
 
 
 
