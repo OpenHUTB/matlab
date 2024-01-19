@@ -1,19 +1,16 @@
 classdef Adapter<handle
 
-
-
-
     properties(Access=protected)
 DialogParameterProperties
 PropertyNameToParameterName
     end
+
 
     methods
         function obj=Adapter(systemName)
 
             paramMap=struct();
             nameMap=struct();
-
             groups=matlab.system.display.internal.Memoizer.getBlockPropertyGroups(systemName,...
             'DefaultIfError',true);
             dialogProps=matlab.system.ui.getPropertyList(systemName,groups);
@@ -26,28 +23,29 @@ PropertyNameToParameterName
             obj.PropertyNameToParameterName=nameMap;
         end
 
-        function sysObj=set(obj,sysObj,paramName,v)
 
+        function sysObj=set(obj,sysObj,paramName,v)
             sysObj=obj.DialogParameterProperties.(paramName).setValue(sysObj,v);
         end
 
-        function v=get(obj,sysObj,paramName)
 
+        function v=get(obj,sysObj,paramName)
 
             v=obj.DialogParameterProperties.(paramName).getValue(sysObj);
         end
 
-        function v=isVisible(obj,sysObj,paramName)
 
+        function v=isVisible(obj,sysObj,paramName)
 
             v=obj.DialogParameterProperties.(paramName).isVisible(sysObj);
         end
 
-        function v=isActive(obj,sysObj,paramName)
 
+        function v=isActive(obj,sysObj,paramName)
 
             v=obj.DialogParameterProperties.(paramName).isActive(sysObj);
         end
+
 
         function vis=updateVisibilityForDataTypesTablePanel(obj,maskObj,controls)
             vis='off';
@@ -62,6 +60,7 @@ PropertyNameToParameterName
             end
         end
 
+
         function updateVisibilityOfDataTypeControl(obj,hBlock,maskObject,controlName,visibility)
             dlgControl=maskObject.getDialogControl(controlName);
             if~isempty(dlgControl)
@@ -72,25 +71,11 @@ PropertyNameToParameterName
 
 
         function updateAttributes(obj,hBlock,sysObj,paramNames)
-
-
-
-
-
-
-
-
-
-
             matlab.system.ui.ImplementSystemObjectUsingMask.registerBlock(hBlock);
-
-
             maskObject=matlab.system.ui.SimulinkDescriptor.getBlockMaskObject(hBlock);
             for pInd=1:numel(paramNames)
                 paramName=paramNames{pInd};
-
                 maskParam=maskObject.getParameter(paramName);
-
 
                 if strcmpi(maskParam.Hidden,'off')
                     if obj.isVisible(sysObj,paramName)
@@ -98,7 +83,6 @@ PropertyNameToParameterName
                     else
                         vis='off';
                     end
-
 
                     if strcmp(paramName,"LockScale")&&~matlab.system.ui.hasOwnAutoscaler(hBlock)
                         vis='off';
@@ -110,11 +94,9 @@ PropertyNameToParameterName
                         updateVisibilityOfDataTypeControl(obj,hBlock,maskObject,[paramName,'MaxLabel'],vis);
                     end
                 end
-
                 updateDependentPopups(obj,hBlock,sysObj,paramName);
             end
-
-            systemName=get_param(hBlock,'System');
+           systemName=get_param(hBlock,'System');
             filepath=which(systemName);
             xmlFilePath=[filepath(1:end-2),'_mask','.xml'];
             if~isfile(xmlFilePath)
@@ -133,10 +115,8 @@ PropertyNameToParameterName
                 end
             end
 
-
             if sysObj.showFiSettings(class(sysObj))
                 inputFimathParam=maskObject.getParameter('InputFimath');
-
 
                 if strcmp(get_param(hBlock,'BlockDefaultFimath'),'Specify Other')
                     inputFimathParam.Enabled='on';
@@ -144,10 +124,9 @@ PropertyNameToParameterName
                     inputFimathParam.Enabled='off';
                 end
             end
-
-
             matlab.system.ui.ImplementSystemObjectUsingMask.updateActionsEnabled(hBlock);
         end
+
 
         function vis=updateContainerVisibility(obj,hBlock,dialogControl)
             maskObj=matlab.system.ui.SimulinkDescriptor.getBlockMaskObject(hBlock);
@@ -185,9 +164,8 @@ PropertyNameToParameterName
             end
         end
 
+
         function failed=initializeDynamicMaskParameters(obj,sysObj,maskObject,paramNames,paramValues)
-
-
             parametersToSet=dynamicPopupParameterSearch(obj,paramNames);
             failed={};
             for n=1:numel(parametersToSet)
@@ -199,15 +177,7 @@ PropertyNameToParameterName
                 parameterValue=paramValues{idx};
 
                 try
-
-
-
-
-
-
-
                     maskParam=maskObject.getParameter(paramName);
-
                     if~property.IsEnumerationDynamic
 
                         if property.IsLogical
@@ -225,7 +195,6 @@ PropertyNameToParameterName
                         allMembers=property.StringSetValues;
                         activeMembers=allMembers(getActiveEnumerationMemberIndices(sysObj,paramName));
                         assert(any(strcmp(activeMembers,parameterValue)));
-
                         maskParam.TypeOptions=activeMembers;
                         maskParam.Value=parameterValue;
                     end
@@ -235,23 +204,20 @@ PropertyNameToParameterName
             end
         end
 
+
         function v=getCodegenScriptType(obj,sysObj,paramName)
 
 
             v=obj.DialogParameterProperties.(paramName).getCodegenScriptType(sysObj);
         end
 
+
         function v=getConstructorString(obj,sysObj,paramNames)
 
             systemName=class(sysObj);
 
             builder=matlab.system.ui.ConstructorBuilder(systemName);
-
-
             builder.addLiteralParameterValue('isInMATLABSystemBlock','true');
-
-
-
 
             numIn=getNumInputs(sysObj);
             numOut=getNumOutputs(sysObj);
@@ -276,8 +242,6 @@ PropertyNameToParameterName
                 end
 
                 if strcmp(sts.Type,'Controllable')
-
-
                     builder.addLiteralParameterValue('sampleTime',...
                     num2str(sts.TickTime,'%22.18g\n'));
                     builder.addLiteralParameterValue('offsetTime',...
@@ -287,13 +251,10 @@ PropertyNameToParameterName
                     builder.addLiteralParameterValue('offsetTime','1');
                 end
             end
-
             builder.addLiteralParameterValue('fxpDataTypeOverride',...
             num2str(sysObj.getFixptDataTypeOverride()));
             builder.addLiteralParameterValue('fxpDataTypeOverrideAppliesTo',...
             num2str(sysObj.getFixptDataTypeOverrideAppliesTo()));
-
-
 
             numIn=getNumInputs(sysObj);
             if numIn>0
@@ -307,8 +268,6 @@ PropertyNameToParameterName
                 szStr=[szStr,'}'];
                 builder.addLiteralParameterValue('propInputSize',szStr);
             end
-
-
             paramNames=addDynamicPopupDependents(obj,paramNames);
             for pInd=1:numel(paramNames)
                 paramName=paramNames{pInd};
@@ -318,18 +277,13 @@ PropertyNameToParameterName
         end
     end
 
+
     methods(Access=private)
         function updateDependentPopups(obj,hBlock,sysObj,paramName)
-
-
             property=obj.DialogParameterProperties.(paramName);
             if property.IsControllingAnEnumeration
                 maskObject=matlab.system.ui.SimulinkDescriptor.getBlockMaskObject(hBlock);
                 maskParam=maskObject.getParameter(paramName);
-
-
-
-
 
                 if property.IsLogical
                     if get(obj,sysObj,paramName)
@@ -340,42 +294,21 @@ PropertyNameToParameterName
                 elseif property.IsEnumeration
                     maskParam.Value=get(obj,sysObj,paramName);
                 end
-
                 parametersToUpdate=property.ControlledPropertyList;
 
                 for n=1:numel(parametersToUpdate)
                     updatePropertyName=parametersToUpdate{n};
-
-
                     updateParameterName=obj.PropertyNameToParameterName.(updatePropertyName);
-
                     updateProperty=obj.DialogParameterProperties.(updateParameterName);
                     updateParam=maskObject.getParameter(updateParameterName);
                     allMembers=updateProperty.StringSetValues;
                     activeMembers=allMembers(getActiveEnumerationMemberIndices(sysObj,updatePropertyName));
-
-
-
-
-
-
-
-
-
-
-
                     if~isequal(updateParam.TypeOptions,activeMembers)
-
                         updateParam.TypeOptions=activeMembers;
-
-
                         dialog=getDialogHandle(maskObject);
                         if~isempty(dialog)
                             updateParam.Value=activeMembers{1};
-
-
                             set(obj,sysObj,updateParameterName,activeMembers{1});
-
                             block=get_param(hBlock,'Object');
                             dialogSource=getDialogSource(block);
                             slSetEnumMaskDialogValue(dialogSource,...
@@ -388,43 +321,24 @@ PropertyNameToParameterName
             end
         end
 
+
         function paramNames=addDynamicPopupDependents(obj,paramNames)
-
-
-
-
-
-
-
-
-
             extraParams=dynamicPopupParameterSearch(obj,paramNames);
-
-
             paramNames=unique([paramNames,extraParams],'stable');
         end
 
+
         function paramNames=dynamicPopupParameterSearch(obj,startNames)
 
-
-
-
-
             paramNames={};
-
-
-
             paramsToSearch=string(startNames(:));
             searchIndex=1;
-
-
 
             doSort=false;
 
             while numel(paramsToSearch)>=searchIndex
                 paramName=paramsToSearch{searchIndex};
                 searchIndex=searchIndex+1;
-
                 prop=obj.DialogParameterProperties.(paramName);
 
                 if prop.IsControllingAnEnumeration
@@ -432,16 +346,11 @@ PropertyNameToParameterName
                         propGraph=digraph;
                         doSort=true;
                     end
-
-
                     controlledParameterList=prop.ControlledPropertyList;
                     for n=1:numel(controlledParameterList)
                         controlledParameterList{n}=obj.PropertyNameToParameterName.(controlledParameterList{n});
                     end
-
-
                     paramsToSearch=unique([paramsToSearch;controlledParameterList],'stable');
-
 
                     for n=1:numel(controlledParameterList)
                         propGraph=addedge(propGraph,prop.BlockParameterName,controlledParameterList{n});
