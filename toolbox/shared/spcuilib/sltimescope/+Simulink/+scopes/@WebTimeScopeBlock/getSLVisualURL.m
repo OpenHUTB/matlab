@@ -1,8 +1,5 @@
 function URL=getSLVisualURL(this,varargin)
 
-
-
-
     clientID=this.ClientID;
     featureFlag=this.getSLFeature();
 
@@ -37,7 +34,6 @@ function URL=getSLVisualURL(this,varargin)
     if featureFlag<2||featureFlag>3
         URL=[URL,'-debug'];
     end
-
 
     URL=connector.getUrl([URL,postFix]);
 end
