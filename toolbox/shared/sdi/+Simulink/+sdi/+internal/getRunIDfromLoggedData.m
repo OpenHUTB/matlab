@@ -1,17 +1,10 @@
 function runID=getRunIDfromLoggedData(var)
 
-
-
-
-
     runID=0;
-
 
     if iscell(var)&&length(var)==1
         var=var{1};
     end
-
-
 
     if isa(var,'Simulink.SimulationOutput')
         runID=locFindRunIDinSimOutput(var);
@@ -20,8 +13,6 @@ function runID=getRunIDfromLoggedData(var)
     elseif isa(var,'simscape.logging.Node')
         runID=locFindRunIDinSimscapeLog(var);
     end
-
-
 
     if~Simulink.sdi.isValidRunID(runID)
         eng=Simulink.sdi.Instance.engine();
