@@ -1,13 +1,5 @@
 function pushRunMetaDataFromWorker(varargin)
 
-
-
-
-
-
-
-
-
     if Simulink.sdi.internal.isParallelPoolSetup()
         Simulink.sdi.internal.flushStreamingBackend();
         eng=Simulink.sdi.Instance.engine;
@@ -26,7 +18,6 @@ function locPushRunMetaDataFromWorker(eng,varargin)
 
     msg.Type='update_runs';
     bCopyDMR=false;
-
 
     idxToRemove=[];
     runsToDelete=int32.empty();
@@ -50,12 +41,10 @@ function locPushRunMetaDataFromWorker(eng,varargin)
         end
         if~msg.Runs(idx).IsStreaming
 
-
             bCopyDMR=true;
             runsToDelete(end+1)=runIDs(idx);%#ok<AGROW>
         end
     end
-
 
     if isfield(msg,'Runs')
         msg.Runs(idxToRemove)=[];
@@ -63,10 +52,6 @@ function locPushRunMetaDataFromWorker(eng,varargin)
             Simulink.sdi.internal.sendMsgFromPCTWorker(msg,bCopyDMR,eng);
         end
     end
-
-
-
-
     if~isempty(runsToDelete)&&~locIsLocalPool()
         if length(runsToDelete)==length(runIDs)
             Simulink.sdi.clear();
