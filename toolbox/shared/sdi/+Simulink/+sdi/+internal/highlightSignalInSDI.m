@@ -1,8 +1,5 @@
 function highlightSignalInSDI(runID,sigID)
 
-
-
-
     if runID&&sigID
         eng=Simulink.sdi.Instance().engine;
         if~isValidRunID(eng,runID)
@@ -12,13 +9,11 @@ function highlightSignalInSDI(runID,sigID)
             error(message('SDI:sdi:InvalidSignalID'));
         end
 
-
         s=Simulink.sdi.getSignal(sigID);
         children=s.Children;
         if~isempty(children)
             s=children(1);
         end
-
 
         try
             s.Checked=true;
@@ -40,8 +35,6 @@ function highlightSignalInSDI(runID,sigID)
 
             return
         end
-
-
         Simulink.sdi.view(Simulink.sdi.GUITabType.InspectSignals,s.ID);
     end
 end
