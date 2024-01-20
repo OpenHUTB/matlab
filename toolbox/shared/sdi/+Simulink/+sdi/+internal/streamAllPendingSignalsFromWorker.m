@@ -1,8 +1,5 @@
 function streamAllPendingSignalsFromWorker()
 
-
-
-
     if Simulink.sdi.internal.isParallelPoolSetup()
         Simulink.sdi.internal.flushStreamingBackend();
         eng=Simulink.sdi.Instance.engine;
@@ -18,7 +15,6 @@ function locStreamAllPendingSignalsFromWorker(eng)
     numSigs=getCount(sigMap);
     for idx=1:numSigs
         msg=getDataByIndex(sigMap,idx);
-
 
         startTime=msg.EndTime;
         if isfinite(startTime)
