@@ -1,9 +1,5 @@
-
-
-
 function result=fixedPointConversion(dataType)
     result=[];
-
     sw=warning('off','fixed:numerictype:invalidMinWordLength');
     tmp=onCleanup(@()warning(sw));
 
