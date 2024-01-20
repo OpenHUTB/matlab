@@ -1,9 +1,4 @@
-
-
-
 classdef ExportDialog<handle
-
-
 
     methods(Static)
 
@@ -18,20 +13,15 @@ classdef ExportDialog<handle
             persistent ctrlObj;
             mlock;
             if isempty(ctrlObj)||~isvalid(ctrlObj)
-
-
-
                 assert(nargin<=2&&isa(varargin{1},'Simulink.sdi.internal.controllers.Dispatcher'));
                 dispatcherObj=varargin{1};
                 ctrlObj=Simulink.sdi.internal.controllers.ExportDialog(dispatcherObj);
             end
-
             ret=ctrlObj;
         end
 
 
         function cb_HelpButton(arg)
-
             if(isfield(arg,'data')&&isfield(arg.data,'activeApp')&&strcmp(arg.data.activeApp,'siganalyzer'))
                 if isfield(arg.data,'helpType')
                     signal.analyzer.controllers.SignalAnalyzerHelp(arg.data.helpType);
@@ -89,8 +79,6 @@ classdef ExportDialog<handle
 
         function cb_OKButton(this,arg)
 
-
-
             import Simulink.sdi.internal.controllers.ExportDialog;
             info=arg.data;
             assert(strcmpi(info.exportDestination,'exportDataBaseWorkspace')||...
@@ -105,22 +93,13 @@ classdef ExportDialog<handle
             runIDs=info.runIDs;
             signalIDs=info.signalIDs;
             if strcmp(info.activeApp,'siganalyzer')
-
                 varInfo=Simulink.sdi.internal.signalanalyzer.Utilities.getSelectedSignalHierarchyFromViewIndices(this.Engine,info.idArray,info.clientID,info.activeApp);
-
-
-
-
                 [varInfo,validFlag]=Simulink.sdi.internal.signalanalyzer.Utilities.verifyValidHierarchy(this.Engine,varInfo);
                 varInfo=Simulink.sdi.internal.signalanalyzer.Utilities.convertSigNamesToVarNames(this.Engine,varInfo);
                 baseWorkspace_VarName=varInfo;
                 matFile_VarName=varInfo;
                 signalIDs=[varInfo.signalID];
                 if~validFlag
-
-
-
-
                     this.BaseWorkspace_VarName=varInfo;
                     this.Data=info;
                     this.SignalIDs=signalIDs;
@@ -141,7 +120,6 @@ classdef ExportDialog<handle
                 this.exportSelectedDataToMatFile(...
                 runIDs,signalIDs,info.activeApp,matFile_VarName,matFile_FileName,arg.clientID);
             case 'exportDataToFile'
-
                 if~isfield(info,'exportToFileOptions')
                     info.exportToFileOptions=struct();
                 end
@@ -159,8 +137,6 @@ classdef ExportDialog<handle
 
         function cb_ExcelExport(this,arg)
 
-
-
             import Simulink.sdi.internal.controllers.ExportDialog;
             ImportDialogCtrlObj=Simulink.sdi.internal.controllers.ImportDialog(this.Dispatcher);
             info=arg.data;
@@ -172,8 +148,6 @@ classdef ExportDialog<handle
             matFile_VarName='data';
             switch info.exportDestination
             case 'exportDataBaseWorkspace'
-
-
                 [runID,~,signalIDs]=Simulink.sdi.createRun('temp','file',info.file_Location);
                 this.exportSelectedDataToBaseWorkspace(...
                 runID,signalIDs,info.activeApp,info.baseWorkspace_VarName,arg.clientID);
@@ -191,16 +165,12 @@ classdef ExportDialog<handle
                 if~isfield(info,'exportToFileOptions')
                     info.exportToFileOptions=struct();
                 end
-
-
                 [runID,~,signalIDs]=Simulink.sdi.createRun('temp','file',info.file_Location);
                 this.exportSelectedDataToFile(...
                 runID,signalIDs,info.activeApp,matFile_VarName,...
                 info.file_FileName,arg.clientID,info.exportToFileOptions);
                 Simulink.sdi.deleteRun(runID);
             case 'exportDataMatFileForceOverWrite'
-
-
                 [runID,~,signalIDs]=Simulink.sdi.createRun('temp','file',info.file_Location);
                 this.exportSelectedDataToMatFile(...
                 runID,signalIDs,info.activeApp,matFile_VarName,info.file_FileName,arg.clientID,true);
@@ -230,16 +200,6 @@ classdef ExportDialog<handle
             data.signalIDs=signalIDs;
             data.runIDs=runIDs;
             data=this.updateSupportedFileTypes(data);
-
-
-
-
-
-
-
-
-
-
             this.Dispatcher.publishToClient(arg.clientID,...
             this.ControllerID,'setSelectedSignalAndRunIDs',data);
         end
@@ -293,8 +253,6 @@ classdef ExportDialog<handle
 
         function cb_OverwriteVariableInBaseWorkspace(this,arg)
 
-
-
             import Simulink.sdi.internal.controllers.ExportDialog;
             try
                 if strcmp(this.ActiveApp,'siganalyzer')
@@ -302,8 +260,6 @@ classdef ExportDialog<handle
                     [],this.SignalIDs,this.ActiveApp,...
                     this.BaseWorkspace_VarName,false);
                 else
-
-
                     assignin('base',this.BaseWorkspace_VarName,this.Data);
                 end
             catch me
@@ -356,18 +312,12 @@ classdef ExportDialog<handle
 
         function cb_ExportToIndividualSignals(this,arg)
 
-
-
             import Simulink.sdi.internal.controllers.ExportDialog;
             try
                 info=this.Data;
                 signalIDs=this.SignalIDs;
                 baseWorkspace_VarName=this.BaseWorkspace_VarName;
                 matFile_VarName=this.BaseWorkspace_VarName;
-
-
-
-
 
                 varInfo=baseWorkspace_VarName;
                 individualSignalNameExists=length(unique({varInfo.varName}))~=length(varInfo);
@@ -376,7 +326,6 @@ classdef ExportDialog<handle
                     titleStr=getString(message('SDI:sdi:ExportError'));
                     msgStr=getString(message('SDI:sigAnalyzer:mgExportAsIndividualSignalsNamingError'));
                     okStr=getString(message('SDI:sdi:OKShortcut'));
-
                     Simulink.sdi.internal.controllers.SessionSaveLoad.displayMsgBox(...
                     arg.data.appName,...
                     titleStr,...
@@ -387,10 +336,6 @@ classdef ExportDialog<handle
                     []);
                     return;
                 end
-
-
-
-
                 this.BaseWorkspace_VarName='';
                 this.Data='';
                 this.SignalIDs=[];
@@ -423,8 +368,8 @@ classdef ExportDialog<handle
         end
     end
 
-    methods(Hidden)
 
+    methods(Hidden)
 
         function exportSelectedDataToBaseWorkspace...
             (this,runIDs,signalIDs,activeApp,baseWorkspace_VarName,clientID)
@@ -433,8 +378,6 @@ classdef ExportDialog<handle
 
             message.publish('/sdi2/progressUpdate',struct('dataIO','begin','appName','sdi'));
             tmp=onCleanup(@()message.publish('/sdi2/progressUpdate',struct('dataIO','end','appName','sdi')));
-
-
             Simulink.SimulationData.utValidSignalOrCompositeData([],true);
             tmp2=onCleanup(@()Simulink.SimulationData.utValidSignalOrCompositeData([],false));
 
@@ -444,9 +387,7 @@ classdef ExportDialog<handle
                 runIDs,signalIDs,activeApp,baseWorkspace_VarName);
                 delete(tmp);
 
-
                 if variableExist
-
                     this.BaseWorkspace_VarName=baseWorkspace_VarName;
                     this.Data=data;
                     this.ActiveApp=activeApp;
@@ -455,9 +396,6 @@ classdef ExportDialog<handle
                     ExportDialog.ControllerID,'confirmOverwriteVariable',struct('varName',baseWorkspace_VarName));
                     return;
                 elseif strcmp(activeApp,'labeler')
-
-
-
                     this.Dispatcher.publishToClient(clientID,...
                     ExportDialog.ControllerID,'confirmOverwriteVariableOk',struct('varName',baseWorkspace_VarName));
                     return;
@@ -477,7 +415,6 @@ classdef ExportDialog<handle
                     -1,...
                     []);
                 case 'MATLAB:assigninInvalidVariable'
-
                     msgStr=getString(message('SDI:sdi:InvalidVarNameForExportErr',...
                     baseWorkspace_VarName));
                     this.Dispatcher.publishToClient(clientID,...
@@ -496,8 +433,6 @@ classdef ExportDialog<handle
                     return;
                 end
             end
-
-
             this.helperCloseDialogOnOK(clientID);
         end
 
@@ -510,12 +445,10 @@ classdef ExportDialog<handle
             end
 
             try
-
                 [~,~,fext]=fileparts(matFile_FileName);
                 if~strcmpi(fext,'.mat')
                     matFile_FileName=[matFile_FileName,'.mat'];
                 end
-
 
                 if exist(matFile_FileName,'file')>0&&~forceOverWrite
                     exportInfo={};
@@ -532,7 +465,6 @@ classdef ExportDialog<handle
                     return;
                 elseif strcmp(activeApp,'labeler')
 
-
                     exportInfo={};
                     exportInfo.runIDs=runIDs;
                     exportInfo.signalIDs=signalIDs;
@@ -540,7 +472,6 @@ classdef ExportDialog<handle
                     exportInfo.matFile_VarName=matFile_VarName;
                     exportInfo.matFile_FileName=matFile_FileName;
                     exportInfo.clientID=clientID;
-
                     this.Dispatcher.publishToClient(clientID,...
                     ExportDialog.ControllerID,'confirmOverWriteExistingFileOk',...
                     struct('data',exportInfo));
@@ -549,8 +480,6 @@ classdef ExportDialog<handle
                 this.Engine.exportToMatFile(...
                 runIDs,signalIDs,activeApp,matFile_VarName,matFile_FileName);
             catch me
-
-
                 this.Dispatcher.publishToClient(clientID,...
                 ExportDialog.ControllerID,'matFile_FileNameError',...
                 me.message);
@@ -561,20 +490,7 @@ classdef ExportDialog<handle
                 end
                 return;
 
-
-
-
-
-
-
-
-
-
-
-
             end
-
-
             this.helperCloseDialogOnOK(clientID);
         end
 
@@ -601,15 +517,12 @@ classdef ExportDialog<handle
                     if strcmpi(ext,'.xlsx')
                         if strcmpi(exportInfo.exportToFileOptions.overwrite,'file')
 
-
                             this.Dispatcher.publishToClient(clientID,...
                             ExportDialog.ControllerID,...
                             'confirmOverwriteExistingFile',exportInfo);
                             return;
                         end
                     else
-
-
                         this.Dispatcher.publishToClient(clientID,...
                         ExportDialog.ControllerID,...
                         'confirmOverwriteExistingFile',exportInfo);
@@ -632,8 +545,6 @@ classdef ExportDialog<handle
 
 
         function cb_BrowseFolderDialogRequest(this,arg)
-
-
 
             fileName='';
             activeApp='';
@@ -729,6 +640,7 @@ classdef ExportDialog<handle
         ActiveApp;
         SignalIDs;
     end
+
 
     properties
         BaseWorkspace_VarName;
