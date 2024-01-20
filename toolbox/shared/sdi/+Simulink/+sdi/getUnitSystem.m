@@ -1,9 +1,4 @@
 function[unitSystem,overrideUnits]=getUnitSystem()
-
-
-
-
-
     unitSystemInfo=Simulink.sdi.getUnitSystemAndOverrides();
     unitSystem=unitSystemInfo.UnitSystem;
     overrideUnits=[];
