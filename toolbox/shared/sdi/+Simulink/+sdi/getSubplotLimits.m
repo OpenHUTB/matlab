@@ -1,9 +1,5 @@
 function[tMin,tMax,yMin,yMax]=getSubplotLimits(r,c,varargin)
 
-
-
-
-
     try
         inputResults=locParseInput(r,c,varargin{:});
         limits=getClientLimits(inputResults);
