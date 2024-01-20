@@ -1,10 +1,6 @@
 function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
 
-
-
-
     nargoutchk(0,6)
-
 
     if nargin>2&&any(cellfun(@(x)ischar(x)&~isempty(x),varargin))
         narginchk(4,16)
@@ -34,7 +30,6 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
     freq=freq(:);
     rows=numel(freq);
 
-
     rfValidateFreq(freq)
     rfValidateData(data)
     rfValidateTolerance(args.Tolerance)
@@ -48,7 +43,6 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
     'IterationLimit')
     validateattributes(args.WaitBar,{'logical','numeric'},...
     {'nonempty','scalar'},'','WaitBar')
-
 
     if ndims(data)>3
         error(message('rf:rationalfit:Not2Dor3D'))
@@ -102,7 +96,6 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
     end
     data=data(i,:);
     args.Weight=args.Weight(i,:);
-
 
     w=2*pi*freq;
     s=1j*w;
@@ -174,7 +167,6 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
             best_c{numtry}=c;
             best_d{numtry}=d;
             best_errdb(numtry)=max(errdb);
-
             err=Inf(args.IterationLimit(2),1);
             for iter=1:args.IterationLimit(2)
                 [errdb,d,c,poles,polesU]=rationalfit_iter(data,s,opts,poles);
@@ -186,7 +178,6 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
                     best_d{numtry}=d;
                     best_errdb(numtry)=err(iter);
                 end
-
 
                 if iter>=max(4,args.IterationLimit(1))&&...
                     min(err(1:iter-3))<=min(err(iter-2:iter))
@@ -221,8 +212,6 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
     if args.WaitBar&&ishghandle(barhandle)
         delete(barhandle)
     end
-
-
     succeeded=find(best_errdb<=args.Tolerance);
     if~isempty(succeeded)
         [~,temp]=min(best_np(succeeded));
@@ -231,11 +220,9 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
         [~,best_try]=min(best_errdb);
     end
 
-
     a=best_a{best_try};
     aU=best_aU{best_try};
     c=best_c{best_try};
-
 
     posRealPoles=a==real(a);
     numRealPoles=sum(posRealPoles);
@@ -284,40 +271,29 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
         end
     end
 
+
     function poles=guesspoles(np,w,data)
-
-
-
-
-
 
         if np==1
             poles=-w(ceil(numel(w)/2))/sqrt(3);
             return;
         end
 
-
         cost=compute_cost(data,np);
         samples=(1:length(w))';
         energy=integrate_piecewise_linear(samples,cost);
         num_pairs=floor(np/2);
 
-
         bounds=resample(energy*(num_pairs/energy(end)),samples,(0:num_pairs)');
-
 
         samples1=unique([samples;bounds]);
         cost1=resample(samples,cost,samples1);
         w1=resample(samples,w,samples1);
-
-
-
         integral_cost=integrate_piecewise_linear(samples1,cost1);
         integral_w_cost=integrate_piecewise_linear2(samples1,cost1,w1);
         numer=resample(samples1,integral_w_cost,bounds);
         denom=resample(samples1,integral_cost,bounds);
         pair_freqs=diff(numer)./diff(denom);
-
 
         imagpart=pair_freqs;
         realpart=-distance(pair_freqs)/sqrt(3);
@@ -326,6 +302,7 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
         if mod(np,2)
             poles(np)=mean(real(poles));
         end
+
 
         function d=distance(pair_freqs)
 
@@ -340,12 +317,14 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
                 d=pair_freqs;
             end
 
+
             function int=integrate_piecewise_linear(t,x)
 
                 a=x(1:end-1);
                 b=x(2:end);
                 average=(a+b)/2;
                 int=[0;cumsum(average.*diff(t))];
+
 
                 function int=integrate_piecewise_linear2(t,x,y)
 
@@ -359,6 +338,7 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
                     function y=resample(t,x,t1)
 
                         y=interp1(t,x,t1,'linear','extrap');
+
 
                         function c=compute_cost(data,np)
 
@@ -423,8 +403,6 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
                                     warning(warn2)
                                     warning(warn1)
                                     x(~isfinite(x))=0;
-
-
                                     A2=zeros(np,np);
                                     b2=zeros(np,1);
                                     k=1;
@@ -462,7 +440,6 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
                                     lowerrows=1:rows;
                                     upperrows=(rows+1):(2*rows);
                                     lowercols=1:npo;
-
                                     DF=residuematrix(poles,s,opts.offset);
                                     errdb=NaN(1,cols);
                                     d=zeros(1,cols);
@@ -498,8 +475,6 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
                                             col_norm=max(abs(A3));
                                             col_norm(col_norm==0)=1;
                                             A3=A3./col_norm;
-
-
                                             warn1=warning('off','MATLAB:rankDeficientMatrix');
                                             xc=(A3\opts.rhs(:,col))./col_norm';
                                             warning(warn1)
@@ -538,6 +513,7 @@ function[a,c,d,delay,outsize,errdb]=rationalfitcore(freq,data,varargin)
                                             errdb(col)=20*log10(numer/norm(opts.weight(:,col).*data(:,col)));
                                         end
                                     end
+
 
                                     function DF=residuematrix(poles,s,offset)
                                         np=numel(poles);
