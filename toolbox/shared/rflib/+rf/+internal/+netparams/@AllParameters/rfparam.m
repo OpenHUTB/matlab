@@ -1,6 +1,5 @@
 function data=rfparam(obj,m,n)
 
-
     narginchk(3,3)
     validateattributes(m,{'numeric'},...
     {'integer','scalar','positive','<=',obj.NumPorts},'rfparam','I',2)
