@@ -1,8 +1,5 @@
 function pushSignalDataFromWorker(requestMsg,startTime)
 
-
-
-
     if Simulink.sdi.internal.isParallelPoolSetup()
         Simulink.sdi.internal.flushStreamingBackend();
         eng=Simulink.sdi.Instance.engine;
@@ -13,7 +10,6 @@ end
 
 function locPushSignalDataFromWorker(eng,requestMsg,startTime)
 
-
     try
         vals=getSignalDataValues(eng,requestMsg.WorkerSignalID,startTime);
     catch me %#ok<NASGU>
@@ -22,18 +18,15 @@ function locPushSignalDataFromWorker(eng,requestMsg,startTime)
         return
     end
 
-
     if isempty(vals.Time)
         return
     end
-
 
     msg=requestMsg;
     msg.Type='stream_data';
     msg.Values=vals;
     msg.EndTime=vals.Time(end);
     Simulink.sdi.internal.sendMsgFromPCTWorker(msg,false);
-
 
     msg=rmfield(msg,'Values');
     if isempty(eng.PCTRequestedSignalStreams)
