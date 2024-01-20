@@ -1,27 +1,5 @@
 function varargout=smithplot(obj,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     OtherInfo='';
     Zs='';
     Z0='';
@@ -42,7 +20,6 @@ function varargout=smithplot(obj,varargin)
         varargin={};
     elseif nargin>1&&((ismatrix(m)&&~isscalar(m)&&isnumeric(m))...
         ||ischar(m)||isstring(m))
-
 
         if ischar(m)||isstring(m)
             v=[1:obj.NumPorts,1:obj.NumPorts];
@@ -97,7 +74,6 @@ function varargout=smithplot(obj,varargin)
         hlgnd=get(hlgnd,'String');
     end
 
-
     if~any(strcmp(varargin,'LegendLabels'))
         lgndtext=arrayfun(@calculateLegendText,obj_new,ports(:,1),ports(:,2),...
         'UniformOutput',false);
@@ -116,7 +92,6 @@ function varargout=smithplot(obj,varargin)
             tipcell=p.LegendLabels;
         end
     end
-
 
     if~iscell(tipcell)
         tipcell={tipcell};
