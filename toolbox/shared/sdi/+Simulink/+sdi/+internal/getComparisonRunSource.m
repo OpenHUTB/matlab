@@ -1,9 +1,5 @@
 function ret=getComparisonRunSource(compareRunID,type)
 
-
-
-
-
     ret=0;
 
     repo=sdi.Repository(1);
