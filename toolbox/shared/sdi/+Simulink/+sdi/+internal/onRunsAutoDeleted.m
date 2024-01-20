@@ -1,10 +1,6 @@
 function onRunsAutoDeleted(deletedRunIDs)
 
-
-
-
     eng=Simulink.sdi.Instance.engine;
-
 
     if~Simulink.sdi.getRunCount()
         eng.DiffRunResult=Simulink.sdi.DiffRunResult(0,eng);
