@@ -1,43 +1,10 @@
 function setCursorOptions(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     try
         inputResults=locParseInput(varargin{:});
     catch ex
         throwAsCaller(MException(ex.identifier,ex.message));
     end
-
-
-
-
-
-
-
-
 
     appType='sdi';
     if strcmpi(inputResults.type,'compare')
@@ -60,19 +27,16 @@ function inputResults=locParseInput(varargin)
     cursorOptionsInspect=cursorOptions.cursorOptionsInspectView;
     cursorOptionsComparison=cursorOptions.cursorOptionsComparisonView;
     defaultType='inspect';
-
     defaultEmphasize=strcmpi(cursorOptionsInspect.shadeType,'emphasize');
     defaultShadeArea=cursorOptionsInspect.shadeArea;
     defaultShadeColorRGB=lochex2rgb(cursorOptionsInspect.shadeColor);
     defaultShadeOpacity=cursorOptionsInspect.shadeOpacity;
-
     if~isempty(find(cellfun(@(x)strcmpi(x,'compare'),varargin)==1))%#ok
         defaultEmphasize=cursorOptionsComparison.shadeType;
         defaultShadeArea=cursorOptionsComparison.shadeArea;
         defaultShadeColorRGB=lochex2rgb(cursorOptionsComparison.shadeColor);
         defaultShadeOpacity=cursorOptionsComparison.shadeOpacity;
     end
-
     addParameter(cursorOptionsInput,'type',defaultType,@typeValidationFcn);
     addParameter(cursorOptionsInput,'emphasize',defaultEmphasize,...
     @emphasizeValidationFcn);
