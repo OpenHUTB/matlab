@@ -1,29 +1,5 @@
 function ds=exportRun(runID,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     eng=Simulink.sdi.Instance.engine;
     try
         inputResults=Simulink.sdi.internal.parseExportOptions(varargin{:});
