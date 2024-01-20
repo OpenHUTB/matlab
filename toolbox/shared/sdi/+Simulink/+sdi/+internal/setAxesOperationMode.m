@@ -1,46 +1,5 @@
 function setAxesOperationMode(clientID,mode,value)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     switch mode
     case{'ZoomMarquee','ZoomT','ZoomY'}
         if~islogical(value)
