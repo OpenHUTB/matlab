@@ -1,9 +1,5 @@
 function[sig,opts]=getTrigger()
 
-
-
-
-
     sig=Simulink.sdi.Signal.empty();
     opts=struct.empty();
 
