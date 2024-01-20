@@ -1,22 +1,5 @@
 function setPosition(pos)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     try
         validateattributes(pos,"numeric",{'size',[1,4],'finite','real'});
 
