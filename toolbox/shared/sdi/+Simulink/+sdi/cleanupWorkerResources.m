@@ -1,11 +1,4 @@
 function cleanupWorkerResources()
-
-
-
-
-
-
-
     pool=Simulink.sdi.internal.getCurrentParallelPool();
 
     if~isempty(pool)
