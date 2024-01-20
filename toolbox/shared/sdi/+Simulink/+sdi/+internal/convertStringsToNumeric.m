@@ -1,8 +1,5 @@
 function[nVals,uniqueStrs]=convertStringsToNumeric(strData,origStrs)
 
-
-
-
     nVals=zeros(size(strData),'uint32');
     strMap=containers.Map;
 
@@ -10,7 +7,6 @@ function[nVals,uniqueStrs]=convertStringsToNumeric(strData,origStrs)
     for idx=1:length(origStrs)
         strMap(origStrs{idx})=uint32(idx-1);
     end
-
 
     numVals=numel(strData);
     for idx=1:numVals
@@ -22,7 +18,6 @@ function[nVals,uniqueStrs]=convertStringsToNumeric(strData,origStrs)
             strMap(curStr)=nVals(idx);
         end
     end
-
 
     strKeys=keys(strMap);
     numStrs=length(strKeys);
