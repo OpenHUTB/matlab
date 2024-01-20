@@ -1,13 +1,4 @@
 function sendWorkerRunToClient(run)
-
-
-
-
-
-
-
-
-
     if~Simulink.sdi.isPCTDataTransferSupported()
         error(message('SDI:sdi:PCTTransferNotSupported'));
     end
@@ -25,7 +16,6 @@ function sendWorkerRunToClient(run)
         run=run.ID;
     end
     validateattributes(run,{'numeric'},{'scalar','>=',0});
-
     Simulink.sdi.internal.flushStreamingBackend();
     eng=Simulink.sdi.Instance.engine();
     if Simulink.sdi.internal.isParallelPoolSetup()
@@ -40,7 +30,6 @@ end
 
 function locCleanupDMR(eng,runToSend)
 
-
     if~locIsLocalPool()
 
         runIDs=Simulink.sdi.getAllRunIDs();
@@ -51,7 +40,6 @@ function locCleanupDMR(eng,runToSend)
                 runsToDelete(end+1)=curRunID;%#ok<AGROW>
             end
         end
-
 
         for idx=1:length(runsToDelete)
             Simulink.sdi.deleteRun(runsToDelete(idx));
