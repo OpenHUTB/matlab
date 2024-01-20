@@ -1,16 +1,5 @@
 function save(filename,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
     if nargin>0
         filename=convertStringsToChars(filename);
     end
@@ -26,13 +15,9 @@ function save(filename,varargin)
     [~,~,extension]=fileparts(filename);
     if~isempty(extension)&&~strcmp(extension,'.mldatx')&&~strcmp(extension,'.mat')
 
-
-
-
         filename=[filename,'.mldatx'];
         Simulink.sdi.internal.warning(message('SDI:sdi:SessionSaveInvalidExtension',extension,filename));
     end
-
     Simulink.sdi.internal.flushStreamingBackend();
     Simulink.sdi.Instance.engine.save(filename,'',true,varargin{:});
 end
