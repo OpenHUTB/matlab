@@ -1,8 +1,5 @@
 function varargout=rfplot(obj,varargin)
 
-
-
-
     if nargin>1
         [varargin{:}]=convertStringsToChars(varargin{:});
     end
@@ -179,17 +176,14 @@ function varargout=rfplot(obj,varargin)
         end
     end
 
-
     freq=obj.Frequencies;
     if isscalar(freq)&&isempty(mkr)
         lspec=['o',lspec];
     end
 
-
     if strcmpi(fcnstr,'db')
         fcnstr='dB';
     end
-
     plotvar=zeros(numel(obj.Frequencies),numel(rrng));
     newlgndtxt=cell(1,numel(rrng));
     idx=1;
@@ -203,14 +197,11 @@ function varargout=rfplot(obj,varargin)
         idx=idx+1;
     end
 
-
     if axisHasBeenSpecified
         [freq,~,freqUnit]=engunits(freq);
     end
     newlines=plot(hax,freq,func(plotvar),lspec);
     rfstruct.Lines=[rfstruct.Lines;newlines(:)];
-
-
     if~all(strcmpi(rfstruct.FcnType{1},rfstruct.FcnType))
         ystr='';
     end
@@ -222,7 +213,6 @@ function varargout=rfplot(obj,varargin)
     else
         xlabel(hax,horzcat('Frequency (Hz)'))
     end
-
     lgd=legend(rfstruct.Lines,horzcat(oldlgndtxt,newlgndtxt),'AutoUpdate','off');
     ilegend=numel(get(lgd,'PlotChildren'))>1;
     if ilegend
@@ -247,15 +237,8 @@ function varargout=rfplot(obj,varargin)
     end
 end
 
+
 function mb_Dispatch(fig,~)
-
-
-
-
-
-
-
-
     if~getappdata(fig,'ShownInteractiveBehaviorBanner')
         setappdata(fig,'ShownInteractiveBehaviorBanner',true);
         c=internal.BannerMessage(fig);
