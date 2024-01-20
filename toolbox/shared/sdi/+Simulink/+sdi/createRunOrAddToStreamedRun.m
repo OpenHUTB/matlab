@@ -1,13 +1,5 @@
 function runID=createRunOrAddToStreamedRun(mdl,runName,varNames,varValues)
 
-
-
-
-
-
-
-
-
     if nargin>0
         mdl=convertStringsToChars(mdl);
     end
@@ -22,13 +14,10 @@ function runID=createRunOrAddToStreamedRun(mdl,runName,varNames,varValues)
         end
     end
 
-
     Simulink.sdi.internal.flushStreamingBackend();
-
 
     eng=Simulink.sdi.Instance.engine();
     runID=eng.getCurrentStreamingRunID(mdl);
-
 
     if runID
         addToRunFromNamesAndValues(eng,runID,varNames,varValues,mdl);
