@@ -1,24 +1,6 @@
 function setUnitSystem(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     unitSys=varargin{1};
-
-
     allowedUnitSystems=["Default","SI","USCustomary"];
     validatestring(unitSys,allowedUnitSystems);
     defaultOverrides=[];
@@ -32,6 +14,7 @@ function setUnitSystem(varargin)
     end
     Simulink.sdi.setUnitSystemAndOverrides(unitSys,overridesCell);
 end
+
 
 function overrideValidationFcn(overrides)
     validateattributes(overrides,{'string'},{'vector'});
