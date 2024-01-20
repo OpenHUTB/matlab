@@ -1,36 +1,15 @@
 function varargout=plot(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(0,2);
     [varargin{:}]=convertStringsToChars(varargin{:});
-
 
     for idx=nargout:-1:1
         varargout{idx}=[];
     end
 
-
     if nargin==1&&isstruct(varargin{1})
         varargin{2}=inputname(1);
     end
-
 
     dataToImport=[];
     runName='';
@@ -46,11 +25,9 @@ function varargout=plot(varargin)
         end
     end
 
-
     runIDs=[];
     sigIDs=[];
     if~isempty(dataToImport)
-
 
         if isempty(runName)
             if isscalar(dataToImport)&&isobject(dataToImport)&&isprop(dataToImport,'Name')
@@ -60,36 +37,27 @@ function varargout=plot(varargin)
             end
         end
 
-
         if isempty(runName)
             runName='unnamed';
         end
-
-
         runIDs=Simulink.sdi.internal.getRunIDfromLoggedData(dataToImport);
         if runIDs
             sigIDs=locGetSignalIDsForExistingRun(runIDs);
         else
-
             [runIDs,sigIDs]=locCreateRuns(runName,dataToImport);
         end
     end
 
-
     sigToSelect=locPlotSignals(sigIDs);
-
 
     varargout{1}=Simulink.sdi.Run.empty;
     for idx=1:length(runIDs)
         varargout{1}=[varargout{1},Simulink.sdi.getRun(runIDs(idx))];
     end
 
-
     if~sigToSelect
         sigToSelect=locFindSignalToSelect(varargout{1});
     end
-
-
     Simulink.sdi.view(Simulink.sdi.GUITabType.InspectSignals,sigToSelect);
     locWaitForSDI();
 end
@@ -118,7 +86,6 @@ end
 
 function sigToSelect=locPlotSignals(sigIDs)
 
-
     sigToSelect=0;
     MAX_SIGNALS_TO_PLOT=8;
     if~isempty(sigIDs)&&length(sigIDs)<=MAX_SIGNALS_TO_PLOT
@@ -126,16 +93,12 @@ function sigToSelect=locPlotSignals(sigIDs)
         Simulink.sdi.clearAllSubPlots();
         Simulink.sdi.setSubPlotLayout(length(sigIDs),1);
 
-
-
         sdi_visuals.removeAllVisuals();
-
 
         for idx=1:length(sigIDs)
             sig=Simulink.sdi.getSignal(sigIDs(idx));
             sig.plotOnSubPlot(idx,1,true);
         end
-
 
         sigToSelect=sigIDs(1);
     else
