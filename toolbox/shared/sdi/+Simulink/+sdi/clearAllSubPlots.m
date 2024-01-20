@@ -1,17 +1,10 @@
 function clearAllSubPlots(varargin)
 
-
-
-
-
-
-
-
-
     eng=Simulink.sdi.Instance.engine();
     [appName,~]=Simulink.sdi.internal.controllers.SessionSaveLoad.parseAppName(varargin{:});
     safeTransaction(eng,@locClearPlots,eng,appName);
 end
+
 
 function locClearPlots(eng,appName)
     if strcmp(appName,'sdi')
