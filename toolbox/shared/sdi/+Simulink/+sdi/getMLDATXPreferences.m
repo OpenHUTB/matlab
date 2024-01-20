@@ -1,10 +1,4 @@
 function[compression,memLimit]=getMLDATXPreferences()
-
-
-
-
-
-
     [cv,memLimit]=Simulink.sdi.getMLDATXPreferencesImpl();
 
     switch cv
