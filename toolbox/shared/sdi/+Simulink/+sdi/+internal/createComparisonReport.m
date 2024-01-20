@@ -1,9 +1,5 @@
 function createComparisonReport(varargin)
 
-
-
-
-
     indentSize=4;
     singleFile=true;
 
@@ -18,24 +14,17 @@ function createComparisonReport(varargin)
         error('Incorrect number of arguments.  Please try again.');
     end
 
-
     compareRunID=Simulink.sdi.getRecentValidComparisonRunID();
     drr=Simulink.sdi.DiffRunResult(compareRunID);
-
-
     imageDir=fullfile(tempname,'sdireports');
-
-
     reportPath=fullfile(matlabroot,'toolbox','shared','sdi','web','Report');
     groupIconsPath=fullfile(matlabroot,'toolbox','shared','sdi','web','MainView','SDI2','icons','widgets');
     reportRelPath=fullfile(reportPath,'release');
     reportCmprPath=fullfile(reportPath,'comparison');
-
     originalCmprReport=fullfile(reportCmprPath,'CompareReportTemplate.html');
     jsMainFile=fullfile(reportCmprPath,'js','cmprReportMain.js');
     cssMainFile=fullfile(reportCmprPath,'css','cmprReport.css');
     combinedCmprReport=fullfile(reportRelPath,'CompareReportTemplateCombined.html');
-
 
     if~singleFile
         createFolderStructure(reportDir);
@@ -61,7 +50,6 @@ function createComparisonReport(varargin)
     if isempty(columnInfo)
         columnInfo=initCompareData(false);
     end
-
     imgCount=cmprImgCapture(columnInfo,drr,imageDir,singleFile,743,869);
     imgJs=imgFileCreate(imgCount,imageDir,singleFile,indentSize,groupIconsPath);
     jsonJs=createJsonTxt(columnInfo,groupedColumnInfo,reportDir,singleFile,indentSize);
@@ -73,6 +61,7 @@ function createComparisonReport(varargin)
         mergeFiles(combinedCmprReport,imgJs,dataJs,jsonJs,reportDir,reportName,reportCmprPath);
     end
 end
+
 
 function jsonJsTxt=createJsonTxt(columnInfo,groupedColumnInfo,reportDir,singleFile,indentSize)
     if singleFile
@@ -100,10 +89,8 @@ function jsonJsTxt=createJsonTxt(columnInfo,groupedColumnInfo,reportDir,singleFi
         fclose(fid);
     end
 
-
     jsonJsTxt=jsonStr;
     groupJsonJsTxt=groupJsonStr;
-
 
     lftStr='[';
     baseSpc=blanks(indentSize*2);
@@ -119,7 +106,6 @@ function jsonJsTxt=createJsonTxt(columnInfo,groupedColumnInfo,reportDir,singleFi
     groupJsonJsTxt=[groupJsonJsTxt(1:first-1),[spcStr,lftStr],groupJsonJsTxt(first+length(lftStr):end)];
     groupJsonJsTxt=regexprep(groupJsonJsTxt,'[\n\r]+',['\r',spcStr]);
 
-
     preText=sprintf('%sfunction getJSON() {\n%s    var dataJSON =\n',space,space);
     postText=sprintf(';\n%s    return dataJSON;\n%s}',space,space);
     jsonJsTxt=sprintf([preText,'%s',postText],jsonJsTxt);
@@ -127,9 +113,7 @@ function jsonJsTxt=createJsonTxt(columnInfo,groupedColumnInfo,reportDir,singleFi
     groupPreText=sprintf('%sfunction getGroupJSON() {\n%s    var dataGroupJSON =\n',space,space);
     groupPostText=sprintf(';\n%s    return dataGroupJSON;\n%s}',space,space);
     groupJsonJsTxt=sprintf([groupPreText,'%s',groupPostText],groupJsonJsTxt);
-
     jsonJsTxt=append(jsonJsTxt,groupJsonJsTxt);
-
 
     if~singleFile
         fileNameJs=sprintf('cmprJsonData.js');
@@ -139,6 +123,7 @@ function jsonJsTxt=createJsonTxt(columnInfo,groupedColumnInfo,reportDir,singleFi
         fclose(fid);
     end
 end
+
 
 function columnInfo=getCompareData(drr)
 
@@ -177,8 +162,6 @@ function columnInfo=getCompareData(drr)
         columnInfo(n).SignalName=comparisonSig.Name;
         columnInfo(n).Result=char(dsr.Status);
         columnInfo(n).MaxDifference=dsr.MaxDifference;
-
-
         columnInfo(n).BlockPath1=baselineSig.BlockPath;
         columnInfo(n).ComparisonSignalID=comparisonSig.ID;
         columnInfo(n).DataSource1=baselineSig.DataSource;
@@ -217,7 +200,6 @@ function columnInfo=getCompareData(drr)
         string({getString(message('SDI:sdi:mgOptionNo')),...
         getString(message('SDI:sdi:mgOptionYes'))}));
 
-
         if~isempty(compareTo)
             compareToSig=Simulink.sdi.getSignal(compareTo);
             columnInfo(n).BlockPath2=compareToSig.BlockPath;
@@ -253,6 +235,7 @@ function columnInfo=getCompareData(drr)
     end
 end
 
+
 function initCol=initCompareData(initFlag)
     if initFlag
         signalName='';
@@ -261,7 +244,6 @@ function initCol=initCompareData(initFlag)
         signalName=getString(message('SDI:sdi:NoSignals'));
         defaultValue='';
     end
-
 
     initCol.Index=0;
     initCol.SignalName=signalName;
@@ -323,15 +305,11 @@ function initCol=initCompareData(initFlag)
     initCol.OverrideGlobalTol2=false;
 end
 
+
 function groupedColumnInfo=getGroupingInfo()
     firstRow=Simulink.sdi.internalGetTableRows('comparison',0,1);
 
-
     groupedColumnInfo=jsondecode(firstRow);
-
-
-
-
 
     if Simulink.sdi.enableComparisonReportGrouping
         assert(~isempty(firstRow),'Empty Grouping Information found');
@@ -357,6 +335,7 @@ function groupedColumnInfo=getGroupingInfo()
     end
 end
 
+
 function imgCount=cmprImgCapture(columnInfo,drr,imageDir,singleFile,imgHeight,imgWidth)
     if(numel(columnInfo)==1)&&(columnInfo.Index==0)
         imgCount=0;
@@ -381,6 +360,7 @@ function imgCount=cmprImgCapture(columnInfo,drr,imageDir,singleFile,imgHeight,im
         end
     end
 end
+
 
 function imgJsTxt=imgFileCreate(imgCount,imageDir,singleFile,indentSize,groupIconsPath)
     if singleFile
@@ -456,6 +436,7 @@ function imgJsTxt=imgFileCreate(imgCount,imageDir,singleFile,indentSize,groupIco
         fclose(fid);
     end
 end
+
 
 function dataJsTxt=genReportData(...
     drr,reportName,reportDir,reportTitle,reportAuthor,...
@@ -710,6 +691,7 @@ function charArray=enumArrayToChar(enumArray)
     end
 end
 
+
 function out=getTitle(str,drr)
     if strcmp(str,'Default')
 
@@ -737,6 +719,7 @@ function out=getTitle(str,drr)
     end
     out=Simulink.sdi.internal.controllers.ReportDialog.jsUpdateStr(out);
 end
+
 
 function out=getAuthor(str)
     if strcmp(str,'Default')
@@ -767,13 +750,13 @@ function tooltips=buildTooltips()
     tooltips.EmptyBaseline=getString(message('SDI:sdi:EmptyBaselineTooltip'));
 end
 
+
 function labels=buildLabels(space)
     labels.ComparisonLabel=getString(message('SDI:dialogs:Comparisons'));
     labels.Compare=getString(message('SDI:dialogs:Compare'));
     labels.PropertiesLabel=getString(message('SDI:sdi:SPProperties'));
     labels.BaselineLabel=getString(message('SDI:sdi:mgRun1'));
     labels.CompareToLabel=getString(message('SDI:sdi:mgRun2'));
-
     labels.UnitsMismatchStatus=getString(message('SDI:sdi:UnitsMismatchStatus'));
     labels.DatatypesMismatchStatus=getString(message('SDI:sdi:DatatypesMismatchStatus'));
     labels.UnalignedStatus=getString(message('SDI:sdi:UnalignedStatus','Arg1','Arg2'));
@@ -783,7 +766,6 @@ function labels=buildLabels(space)
     labels.UnsupportedStatus=getString(message('SDI:sdi:UnsupportedStatus'));
     labels.EmptySyncedStatus=getString(message('SDI:sdi:EmptySyncedStatus'));
     labels.EmptySignalsStatus=getString(message('SDI:sdi:EmptySignalsStatus'));
-
     baseLbl=getString(message('SDI:sdi:mgRun1Short'));
     cmprLbl=getString(message('SDI:sdi:mgRun2Short'));
     nameLbl=getString(message('SDI:sdi:mgNameLabel'));
@@ -905,19 +887,19 @@ function labels=buildLabels(space)
     labels.Printable=reportPrintableLbl;
 end
 
+
 function base64str=file2base64(file)
     base64str=Simulink.sdi.getCanvasURL(file);
 end
+
 
 function status=copyFiles(reportDir,reportName,htmlPathSrc,jsPathSrc,cssPathSrc)
     [~,~,~]=fileparts(htmlPathSrc);
     [~,nameJs,extJs]=fileparts(jsPathSrc);
     [~,nameCss,extCss]=fileparts(cssPathSrc);
-
     htmlPathDst=fullfile(reportDir,'sdicmprrpt',reportName);
     jsPathDst=fullfile(reportDir,'sdicmprrpt','js',[nameJs,extJs]);
     cssPathDst=fullfile(reportDir,'sdicmprrpt','css',[nameCss,extCss]);
-
     [status1,~]=copyfile(htmlPathSrc,htmlPathDst);
     [status2,~]=copyfile(jsPathSrc,jsPathDst);
     [status3,~]=copyfile(cssPathSrc,cssPathDst);
@@ -928,6 +910,7 @@ function status=copyFiles(reportDir,reportName,htmlPathSrc,jsPathSrc,cssPathSrc)
         status=0;
     end
 end
+
 
 function status=createFolderStructure(reportDir)
     [status1,~]=mkdir(fullfile(reportDir,'sdicmprrpt','css'));
@@ -942,6 +925,7 @@ function status=createFolderStructure(reportDir)
     end
 end
 
+
 function mergeFiles(reportTmpCmb,imgJs,reportJs,jsonJs,reportDir,reportName,reportCmprPath)
 
     dataReportTmpCmb=fileread(reportTmpCmb);
@@ -950,12 +934,9 @@ function mergeFiles(reportTmpCmb,imgJs,reportJs,jsonJs,reportDir,reportName,repo
     dataImgJs=sprintf('<script type="text/javascript">\n%s\n    </script>\n',imgJs);
     dataReportJs=sprintf('<script type="text/javascript">\n%s\n    </script>\n',reportJs);
     dataJsonJs=sprintf('<script type="text/javascript">\n%s\n    </script>\n',jsonJs);
-
-
     dataReportTmpCmb=strrep(dataReportTmpCmb,'<script type="text/javascript" src="js/cmprJsonData.js"></script>',dataJsonJs);
     dataReportTmpCmb=strrep(dataReportTmpCmb,'<script type="text/javascript" src="js/cmprReportData.js"></script>',dataReportJs);
     dataReportTmpCmb=strrep(dataReportTmpCmb,'<script type="text/javascript" src="js/cmprImageData.js"></script>',dataImgJs);
-
 
     if Simulink.sdi.enableComparisonReportSorting
         sortFlag=sprintf(...
@@ -989,12 +970,11 @@ function mergeFiles(reportTmpCmb,imgJs,reportJs,jsonJs,reportDir,reportName,repo
         );
         dataReportTmpCmb=strrep(dataReportTmpCmb,'</head>',dataSortCss);
     end
-
-
     fid=fopen(fullfile(reportDir,reportName),'w','n','UTF-8');
     fprintf(fid,'%s',dataReportTmpCmb);
     fclose(fid);
 end
+
 
 function out=subResult(inputValue,inputMap,outputMap)
     index=find(inputValue==inputMap);
@@ -1006,9 +986,8 @@ function out=subResult(inputValue,inputMap,outputMap)
     end
 end
 
+
 function jsonStrFmt=jsonFormat(varargin)
-
-
     parser=inputParser;
     addRequired(parser,'JSON',@(x)validateattributes(x,{'char','string'},{'scalartext'}));
     addParameter(parser,'Format','pretty',@(x)validateattributes(x,{'char','string'},{'scalartext'}));
@@ -1018,7 +997,6 @@ function jsonStrFmt=jsonFormat(varargin)
     jsonStr=parser.Results.JSON;
     format=validatestring(parser.Results.Format,{'compact','pretty'});
     indent=parser.Results.Indent;
-
 
     expression=[...
     '(?<NAME>"[a-zA-Z]{1}[a-zA-Z0-9_]*"(?=:))|',...
@@ -1036,7 +1014,6 @@ function jsonStrFmt=jsonFormat(varargin)
     '(?<INT>-?\d+)|',...
     '($<OTHER>.*)'];
     tokens=regexp(jsonStr,expression,'match');
-
 
     if strcmp(format,'pretty')
         try
