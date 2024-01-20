@@ -1,22 +1,4 @@
 function pos=getPosition()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     pos=[0,0,0,0];
     if Simulink.sdi.Instance.isSDIRunning()
         gui=Simulink.sdi.Instance.gui;
