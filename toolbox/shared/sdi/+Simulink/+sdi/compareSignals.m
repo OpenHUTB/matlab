@@ -1,9 +1,5 @@
 function diff=compareSignals(signalID1,signalID2)
 
-
-
-
-
     engine=Simulink.sdi.Instance.engine;
     [~,comparisonSignalID1,comparisonSignalID2]=Simulink.sdi.internal.compareSignalsAndAddToRun(...
     engine.sigRepository,signalID1,signalID2,[]);
