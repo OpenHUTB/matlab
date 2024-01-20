@@ -1,13 +1,5 @@
 function out=useSignalColorForBaseline(varargin)
 
-
-
-
-
-
-
-
-
     persistent baselineColor;
     currentBaselineColor=Simulink.sdi.getComparisonColor('baselineColor');
     if nargin==0
@@ -22,7 +14,6 @@ function out=useSignalColorForBaseline(varargin)
         boolValue=varargin{1};
         if boolValue
             out=true;
-
             Simulink.sdi.setComparisonColor('baselineColor',[-1.0,-1.0,-1.0]);
         else
             out=false;
