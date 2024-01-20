@@ -1,8 +1,5 @@
 function pushSignalListFromWorker(requestMsg)
 
-
-
-
     if Simulink.sdi.internal.isParallelPoolSetup()
         Simulink.sdi.internal.flushStreamingBackend();
         eng=Simulink.sdi.Instance.engine;
