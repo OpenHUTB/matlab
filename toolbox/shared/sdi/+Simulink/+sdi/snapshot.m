@@ -1,29 +1,8 @@
 function[hFig,img_data]=snapshot(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     try
         FROM_OPTIONS={'opened','active','comparison','custom'};
         TO_OPTIONS={'clipboard','file','image','figure'};
-
 
         p=inputParser;
         p.addParameter('from','opened',@(x)any(validatestring(x,FROM_OPTIONS)));
@@ -34,7 +13,6 @@ function[hFig,img_data]=snapshot(varargin)
         p.addParameter('figure',[]);
         p.parse(varargin{:});
         params=p.Results;
-
         params.filename=validateAndUpdateFileExt(params.filename);
 
         [hFig,img_data]=doSnapshot(params);
@@ -77,7 +55,6 @@ function[clientID,client]=getClientID(params)
         client=params.settings.getClient();
     end
 
-
     if~isempty(client)
         clientID=int64(str2double(client.ClientID));
     end
@@ -89,23 +66,15 @@ function[hFig,img_data]=doSnapshot(params)
     img_data=[];
     eng=Simulink.sdi.Instance.engine;
 
-
     if strcmpi(params.from,'opened')||strcmpi(params.from,'active')
         waitForClientToOpen(params);
     end
 
-
     [clientID,client]=getClientID(params);
-
-
-
-
 
     if~strcmpi(params.from,'custom')
         locWaitForPlottingToComplete(params,client,clientID);
     end
-
-
     bCopyActiveOnly=strcmpi(params.from,'active');
     if bCopyActiveOnly
         copyType='copySubplot';
@@ -114,7 +83,6 @@ function[hFig,img_data]=doSnapshot(params)
     end
 
     argList={};
-
 
     if strcmpi(params.from,'comparison')
         sigID=getPlottedComparisonSignal(eng.sigRepository);
@@ -131,23 +99,18 @@ function[hFig,img_data]=doSnapshot(params)
         end
     end
 
-
     if strcmpi(params.to,'figure')
         hFig=eng.exportPlotToFigure(...
         num2str(clientID),0,copyType,argList{:},'figureProps',params.props);
         return
     end
 
-
     if strcmpi(params.to,'image')
         params.filename=[tempname,'.png'];
     elseif strcmpi(params.to,'clipboard')
         params.filename='';
     end
-
-
     Simulink.sdi.createSnapshot(clientID,bCopyActiveOnly,char(params.filename));
-
 
     if strcmpi(params.to,'file')
         sw=warning('off','MATLAB:imagesci:png:tooManyIDATsData');
@@ -169,7 +132,6 @@ function[hFig,img_data]=doSnapshot(params)
             end
         end
     end
-
 
     if strcmpi(params.to,'image')
         pause(0.1);
@@ -213,8 +175,6 @@ end
 
 
 function[hFig,img_data]=getImageFromFile(fname,props,hFig)
-
-
     warning('off','MATLAB:imagesci:png:tooManyIDATsData');
     MAX_TRIES=20;
     for idx=1:MAX_TRIES
@@ -235,9 +195,6 @@ function[hFig,img_data]=getImageFromFile(fname,props,hFig)
     end
     hAxes=axes('Parent',hFig,'Visible',hFig.Visible);
 
-
-
-
     sw=warning('off','all');
     tmp=onCleanup(@()warning(sw));
     hImg=imshow(img_data,'Parent',hAxes);%#ok<NASGU>
@@ -245,45 +202,7 @@ function[hFig,img_data]=getImageFromFile(fname,props,hFig)
         hFig.Visible=isVisible;
     end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function locWaitForPlottingToComplete(params,client,clientID)
