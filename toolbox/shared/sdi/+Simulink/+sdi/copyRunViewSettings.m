@@ -10,12 +10,10 @@ function[alignedSigs,unalignedSigs]=copyRunViewSettings(sourceRun,destinationRun
         destinationRun=destinationRun.id;
     end
 
-
     eng=Simulink.sdi.Instance.engine;
     [alignedSigs,unalignedSigs,plottedSigs,removedSigs]=eng.sigRepository.copyRunViewSettings(...
     sourceRun,destinationRun,moveCheckboxes);
     eng.dirty=true;
-
 
     for idx=1:length(alignedSigs)
         clr=eng.sigRepository.getSignalLineColor(alignedSigs(idx));
@@ -26,7 +24,6 @@ function[alignedSigs,unalignedSigs]=copyRunViewSettings(sourceRun,destinationRun
         notify(eng,'treeSignalPropertyEvent',...
         Simulink.sdi.internal.SDIEvent('treeSignalPropertyEvent',alignedSigs(idx),style,'linestyle'));
     end
-
 
     if~isempty(removedSigs)
         Simulink.sdi.clearSignalsFromCanvas(removedSigs);
