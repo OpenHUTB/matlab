@@ -1,8 +1,5 @@
 function sendMsgFromPCTWorker(msg,copyDMR,eng)
 
-
-
-
     if nargin<3
         eng=Simulink.sdi.Instance.engine;
     end
@@ -12,8 +9,6 @@ function sendMsgFromPCTWorker(msg,copyDMR,eng)
             msg=locAddDMRCopyToMsg(msg);
         end
         send(eng.PCTDataQueueFromWorker,msg);
-
-
 
         if strcmpi(msg.Type,'update_runs')
             Simulink.sdi.internal.getSetWorkerRunSentToClient(true);
@@ -30,14 +25,12 @@ function msg=locAttachWorkerInfo(msg,eng)
     msg.TaskName='';
     msg.TaskID=0;
 
-
     w=getCurrentWorker();
     if isprop(w,'Host')
         msg.HostName=w.Host;
     elseif isprop(w,'Name')
         msg.HostName=w.Name;
     end
-
 
     t=getCurrentTask();
     if~isempty(t)
