@@ -1,20 +1,5 @@
 function diff=compareRuns(runID1,runID2,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     try
         validateattributes(runID1,{'numeric'},{'scalar','>',0},'Simulink.sdi.compareRuns','runID1');
         validateattributes(runID2,{'numeric'},{'scalar','>',0},'Simulink.sdi.compareRuns','runID2');
@@ -35,9 +20,7 @@ function[alignment,selectedSig,tolerance,options]=locGetOptions(varargin)
     selectedSig=[];
     tolerance=[];
     options=struct();
-
     [varargin{:}]=convertStringsToChars(varargin{:});
-
 
     if~isempty(varargin)
         if isa(varargin{1},'Simulink.sdi.AlignType')||isempty(varargin{1})
@@ -45,7 +28,6 @@ function[alignment,selectedSig,tolerance,options]=locGetOptions(varargin)
             varargin(1)=[];
         end
     end
-
 
     if~isempty(varargin)
         if~ischar(varargin{1})||isempty(varargin{1})
@@ -58,10 +40,8 @@ function[alignment,selectedSig,tolerance,options]=locGetOptions(varargin)
         return
     end
 
-
     expectedConstraintsValues="MustMatch";
     expectedStopOnFirstMismatchValues=["Metadata","Any"];
-
 
     p=inputParser;
     p.addParameter('abstol',0,@(x)validateattributes(x,{'numeric'},{'scalar','>=',0}));
@@ -83,11 +63,7 @@ function[alignment,selectedSig,tolerance,options]=locGetOptions(varargin)
         alignment=int32(params.align);
     end
 
-
-
     selectedSig=params.selectedsig;
-
-
     tolerance=struct('absolute',0,'relative',0,'lagging',0,'leading',0);
     if params.abstol>0
         tolerance.absolute=params.abstol;
