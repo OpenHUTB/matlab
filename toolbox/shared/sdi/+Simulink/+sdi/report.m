@@ -1,48 +1,8 @@
 function report(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin>0
         [varargin{:}]=convertStringsToChars(varargin{:});
     end
-
-
-
     Simulink.sdi.Instance.offscreenBrowser();
 
     setupData=locGetSetupData();
