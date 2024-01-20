@@ -1,7 +1,4 @@
 function unregisterWorkerStream(msg)
-
-
-
     if~isempty(eng.PCTRequestedSignalStreams)
         if isKey(eng.PCTRequestedSignalStreams,msg.WorkerSignalID)
             deleteDataByKey(eng.PCTRequestedSignalStreams,msg.WorkerSignalID);
