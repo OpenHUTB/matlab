@@ -1,6 +1,4 @@
 function publishSignalInsertedEvent(mdl,targetName)
-
-
     r=Simulink.sdi.getCurrentSimulationRun(mdl,targetName);
     if~isempty(r)
         eng=Simulink.sdi.Instance.engine;
