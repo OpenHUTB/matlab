@@ -1,38 +1,5 @@
 function setSubplotLimits(r,c,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     try
         inputResults=locParseInput(r,c,varargin{:});
         setClientLimits(inputResults);
@@ -48,8 +15,6 @@ function inputResults=locParseInput(r,c,varargin)
     addRequired(limitsInput,'row',@Util.layoutValidationFcn);
     addRequired(limitsInput,'column',@Util.layoutValidationFcn);
     addParameter(limitsInput,'view','inspect',@Util.viewValidationFcn);
-
-
     nameKeys={'allrange','trange','yrange','ymin','ymax','tmin','tmax'};
     foundNames='';
     viewInput='inspect';
@@ -72,8 +37,6 @@ function inputResults=locParseInput(r,c,varargin)
     elseif contains(foundNames,'yrange')&&(contains(foundNames,'ymin')||contains(foundNames,'ymax'))
         error(message('SDI:sdi:InvalidNameValuePairsY'));
     end
-
-
     [t1,t2,y1,y2]=Simulink.sdi.getSubplotLimits(r,c,'view',viewInput);
     currentLimits=[t1,t2,y1,y2];
 
@@ -101,11 +64,6 @@ function inputResults=locParseInput(r,c,varargin)
 
     parse(limitsInput,r,c,varargin{:});
     inputResults=limitsInput.Results;
-
-
-
-
-
 
     tLimits=currentLimits(1:2);
     if isfield(inputResults,'tmin')
@@ -151,7 +109,6 @@ function inputResults=locParseInput(r,c,varargin)
             end
         end
     end
-
     validateattributes(allLimits(1:2),'double',{'increasing'},'','trange');
     validateattributes(allLimits(3:4),'double',{'increasing'},'','yrange');
 
@@ -169,7 +126,6 @@ function vectorValidationFcn(vecVal,size)
     len=length(vecVal);
     vecSize=getString(message('SDI:sdi:VectorSize'));
     validateattributes(len,'numeric',{'scalar','>=',1,'<=',size},'',vecSize);
-
 
     for index=1:len
         curr=vecVal(index);
