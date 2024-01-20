@@ -1,21 +1,13 @@
 classdef SSH<handle
 
-
-
-
-
-
     events
 ResultReady
     end
 
 
-
-
     properties(Constant,Hidden)
 
         ConverterPlugin=fullfile(toolboxdir(fullfile('shared','networklib','bin',computer('arch'))),'sshmlconverter');
-
 
         DevicePlugin=fullfile(toolboxdir(fullfile('shared','networklib','bin',computer('arch'))),'sshdevice');
     end
@@ -24,7 +16,6 @@ ResultReady
 
 AsyncIOChannel
     end
-
 
     properties(GetAccess=public,SetAccess=protected)
 Host
@@ -38,7 +29,6 @@ Blocking
     properties(GetAccess=private,SetAccess=private)
 CustomListener
     end
-
 
 
     methods(Access=public)
@@ -82,6 +72,7 @@ CustomListener
             obj.CustomListener=addlistener(obj.AsyncIOChannel,'Custom',@obj.handleCustomEvent);
         end
 
+
         function execute(obj,cmd)
             if(obj.ResultPending)
                 errID='slrealtime:target:sshExecBusy';
@@ -104,6 +95,7 @@ CustomListener
             end
         end
 
+
         function scpSend(obj,srcPath,destPath)
             if(obj.ResultPending)
                 errID='slrealtime:target:sshExecBusy';
@@ -111,7 +103,6 @@ CustomListener
                 exc=MException(errID,'%s',msg.getString());
                 throw(exc);
             end
-
             srcPath=convertCharsToStrings(srcPath);
             destPath=convertCharsToStrings(destPath);
             try
@@ -131,6 +122,7 @@ CustomListener
             end
         end
 
+
         function scpReceive(obj,srcPath,destPath)
             if(obj.ResultPending)
                 errID='slrealtime:target:sshExecBusy';
@@ -138,7 +130,6 @@ CustomListener
                 exc=MException(errID,'%s',msg.getString());
                 throw(exc);
             end
-
             srcPath=convertCharsToStrings(srcPath);
             destPath=convertCharsToStrings(destPath);
             try
@@ -158,6 +149,7 @@ CustomListener
             end
         end
 
+
         function r=getResult(obj)
             r=obj.AsyncIOChannel.Result;
             if isfield(r,'ErrorID')
@@ -165,7 +157,6 @@ CustomListener
             end
             obj.ResultPending=false;
         end
-
 
 
         function r=waitForResult(obj)
@@ -186,6 +177,7 @@ CustomListener
         end
 
     end
+
 
     methods(Access=private)
         function handleCustomEvent(obj,~,eventData)
