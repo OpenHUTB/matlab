@@ -1,16 +1,5 @@
 function[alignedSigs,unalignedSigs]=copyRunViewSettings(sourceRun,destinationRun,moveCheckboxes)
 
-
-
-
-
-
-
-
-
-
-
-
     if nargin<3
         moveCheckboxes=false;
     end
