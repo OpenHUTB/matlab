@@ -1,88 +1,32 @@
 classdef(Sealed)UDPByte<matlabshared.transportlib.internal.ITransport&...
     matlabshared.transportlib.internal.ITokenReader&...
     matlabshared.network.internal.UDPBase
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(GetAccess=public,SetAccess=private,Dependent)
-
 
 NumBytesAvailable
     end
 
+
     properties(Hidden,Constant)
-
-
         DefaultBytesAvailableEventCount=64
     end
 
+
     properties
-
-
-
         BytesAvailableEventCount=...
         matlabshared.network.internal.UDPByte.DefaultBytesAvailableEventCount
-
-
-
         BytesAvailableFcn=function_handle.empty();
 
-
-
-
-
-
-
         SingleCallbackMode=false
-
-
 
         LastCallbackVal=0
     end
 
+
     properties(Hidden,Dependent)
-
-
-
-
         AllowPartialReads(1,1)logical{mustBeNonempty}
     end
+
 
     methods
         function value=get.AllowPartialReads(obj)
@@ -91,17 +35,14 @@ NumBytesAvailable
             value=obj.TransportChannel.AllowPartialReads;
         end
 
+
         function set.BytesAvailableFcn(obj,val)
             if isempty(val)
                 val=function_handle.empty();
             end
             try
                 validateattributes(val,{'function_handle'},{},mfilename,'BytesAvailableFcn');
-
-
-
                 if~isequal(val,function_handle.empty())
-
 
                     nargin(val);
                 end
@@ -109,10 +50,10 @@ NumBytesAvailable
                 throwAsCaller(ex);
             end
 
-
             obj.recalculateLastCBValue();
             obj.BytesAvailableFcn=val;
         end
+
 
         function set.BytesAvailableEventCount(obj,val)
             try
@@ -122,6 +63,7 @@ NumBytesAvailable
             end
             obj.BytesAvailableEventCount=val;
         end
+
 
         function set.AllowPartialReads(obj,val)
 
@@ -133,6 +75,7 @@ NumBytesAvailable
             obj.TransportChannel.AllowPartialReads=val;
         end
 
+
         function value=get.NumBytesAvailable(obj)
 
             try
@@ -143,31 +86,11 @@ NumBytesAvailable
             value=obj.TransportChannel.NumBytesAvailable;
         end
 
+
         function obj=UDPByte(varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             obj@matlabshared.network.internal.UDPBase;
             try
                 inputs=instrument.internal.stringConversionHelpers.str2char(varargin(1:end));
-
 
                 obj.initProperties(inputs);
             catch validationException
@@ -175,69 +98,18 @@ NumBytesAvailable
             end
         end
 
+
         function connect(obj)
-
-
-
-
-
             connect@matlabshared.network.internal.UDPBase(obj);
         end
 
+
         function disconnect(obj)
-
-
-
-
-
             disconnect@matlabshared.network.internal.UDPBase(obj);
         end
 
+
         function data=read(varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             try
                 narginchk(1,3);
@@ -251,8 +123,6 @@ NumBytesAvailable
             try
                 data=obj.TransportChannel.read(varargin{2:end});
             catch ex
-
-
 
                 if obj.AllowPartialReads&&...
                     strcmpi(ex.identifier,'transportlib:transport:timeout')
@@ -269,22 +139,8 @@ NumBytesAvailable
             end
         end
 
+
         function data=readUntil(varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             try
                 narginchk(2,3);
                 obj=varargin{1};
@@ -301,23 +157,8 @@ NumBytesAvailable
             end
         end
 
+
         function tokenFound=peekUntil(obj,token)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             try
                 obj.validateConnected();
@@ -333,9 +174,8 @@ NumBytesAvailable
             end
         end
 
+
         function data=getTotalBytesWritten(obj)
-
-
 
             data=[];
             if~isempty(obj.AsyncIOChannel)
@@ -343,28 +183,8 @@ NumBytesAvailable
             end
         end
 
+
         function index=peekBytesFromEnd(obj,lastCallbackIndex,token)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             try
                 narginchk(3,3);
@@ -381,86 +201,23 @@ NumBytesAvailable
             end
         end
 
+
         function write(varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             write@matlabshared.network.internal.UDPBase(varargin{:});
         end
 
+
         function data=readRaw(varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             data=readRaw@matlabshared.network.internal.UDPBase(varargin{:});
         end
     end
 
+
     methods(Access=protected)
 
         function initProperties(obj,inputs)
-
-
-
-
-
-
-
-
-
             p=initProperties@matlabshared.network.internal.UDPBase(obj,inputs);
             fields=fieldnames(p.Unmatched);
-
-
 
             newInputs={};
             for i=1:length(fields)
@@ -469,70 +226,42 @@ NumBytesAvailable
             end
             p.KeepUnmatched=false;
 
-
-
             parse(p,newInputs{:});
         end
     end
 
+
     methods(Hidden)
 
-
         function onDataReceived(obj,~,~)
-
 
             if isempty(obj.BytesAvailableFcn)
                 return;
             end
-
 
             if obj.SingleCallbackMode
                 obj.BytesAvailableFcn(obj,...
                 matlabshared.transportlib.internal.DataAvailableInfo(obj.BytesAvailableEventCount));
 
             else
-
-
                 deltaFromLastCallback=obj.AsyncIOChannel.TotalBytesWritten-obj.LastCallbackVal;
-
-
-
-
-
                 numCallbacks=floor(double(deltaFromLastCallback)/double(obj.BytesAvailableEventCount));
 
                 for idx=1:numCallbacks
 
-
-
-
-
-
                     if isempty(obj.BytesAvailableFcn)
                         break;
                     end
-
                     obj.BytesAvailableFcn(obj,...
                     matlabshared.transportlib.internal.DataAvailableInfo(obj.BytesAvailableEventCount));
                 end
-
-
-
-
                 obj.LastCallbackVal=obj.LastCallbackVal+...
                 numCallbacks*obj.BytesAvailableEventCount;
             end
         end
 
+
         function recalculateLastCBValue(obj)
-
-
-
-
-
-
-
-
             if~isempty(obj.AsyncIOChannel)&&obj.Connected
                 obj.LastCallbackVal=...
                 obj.AsyncIOChannel.TotalBytesWritten-obj.NumBytesAvailable;
@@ -541,34 +270,26 @@ NumBytesAvailable
             end
         end
 
+
         function s=saveobj(obj)
-
-
             s=saveobj@matlabshared.network.internal.UDPBase(obj);
 
         end
     end
 
+
     methods(Static=true,Hidden=true)
         function out=loadobj(s)
-
-
-
 
             out=[];
             if isstruct(s)
                 out=matlabshared.network.internal.UDPByte();
                 out=loadobj@matlabshared.network.internal.UDPBase(out,s);
 
-
-
                 if strcmpi(s.Connected,'Connected')
                     try
                         out.connect();
                     catch connectFailed
-
-
-
                         warning('network:udp:connectFailed','%s',connectFailed.message);
                     end
                 end
