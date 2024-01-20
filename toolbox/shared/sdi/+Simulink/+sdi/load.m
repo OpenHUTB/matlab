@@ -1,12 +1,5 @@
 function isValidSDIMatFile=load(filename,varargin)
 
-
-
-
-
-
-
-
     try
         if nargin>0
             filename=convertStringsToChars(filename);
