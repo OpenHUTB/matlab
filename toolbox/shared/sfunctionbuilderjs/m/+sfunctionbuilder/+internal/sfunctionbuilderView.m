@@ -1,8 +1,5 @@
 classdef sfunctionbuilderView<handle
 
-
-
-
     properties(SetAccess=protected)
 cefObj
 clientID
@@ -15,6 +12,7 @@ sfunctionbuilderBlockHandle
 listener
 unSavedChangeFlag
     end
+
 
     properties(Constant)
         sfunctionbuilderEditorMarkers=struct(...
@@ -37,6 +35,7 @@ unSavedChangeFlag
         );
     end
 
+
     methods(Access=private)
 
         function sendCloseNotificationEditor(obj,webwidowObj)
@@ -51,6 +50,7 @@ unSavedChangeFlag
             end
         end
 
+
         function sendCloseNotificationParameterDialog(obj,webwindowObj)
             obj.updateSFBWindowPosition('parameterDialog',webwindowObj.Position);
             sfcnbuilder.destroyViewAndModel(obj.sfunctionbuilderBlockHandle);
@@ -63,48 +63,39 @@ unSavedChangeFlag
             message.publish(obj.publishChannel,msg);
         end
 
+
         function updateSFBWindowPosition(obj,windowType,position)
             obj.sfunctionbuilderController.updateSFBWindowPostion(obj.sfunctionbuilderBlockHandle,windowType,position);
         end
 
     end
 
+
     methods(Static=true)
         function blockRenameListener(blockObj,eventData)%#ok<INUSD>
-
-
             controller=sfunctionbuilder.internal.sfunctionbuilderController.getInstance;
             controller.updateSFunctionBlockPath(blockObj.Handle,blockObj.getFullName);
         end
     end
 
+
     methods
 
         function obj=sfunctionbuilderView(blockHandle,initialContent)
-
             obj.clientID=char(matlab.lang.internal.uuid);
             obj.publishChannel=strcat("/SFunctionBuilder/",obj.clientID,"/MATLAB");
             obj.subscribeChannel=strcat("/SFunctionBuilder/",obj.clientID,"/JS");
             obj.subscription=message.subscribe(obj.subscribeChannel,@(msg)obj.sfunbuilder(msg));
-
-
             obj.sfunctionbuilderController=sfunctionbuilder.internal.sfunctionbuilderController.getInstance();
-
             obj.sfunctionbuilderBlockHandle=blockHandle;
-
-
-
-
-
             obj.sfunctionbuilderController.saveSfunctionName(blockHandle);
             obj.sfunctionbuilderController.saveWizardData(blockHandle);
-
             obj.sfunctionbuilderInitialContent=initialContent;
             obj.createCEFObj();
-
             obj.listener=Simulink.listener(get_param(blockHandle,'Object'),'NameChangeEvent',@sfunctionbuilder.internal.sfunctionbuilderView.blockRenameListener);
             obj.unSavedChangeFlag=false;
         end
+
 
         function createCEFObj(obj)
             if slsvTestingHook('SFBuilderGUIDebugMode')>0
@@ -114,11 +105,8 @@ unSavedChangeFlag
 
                 nurl=connector.getUrl('/toolbox/shared/sfunctionbuilderjs/web/index.html');
             end
-
             urlWithPortID=[nurl,'&','UUID=',obj.clientID,'&EnableBusArray=',int2str(slfeature('slBusArraySFBuilder')),'&EnablePacking=',int2str(slfeature('slSFcnPackaging'))];
             cef=matlab.internal.webwindow(urlWithPortID,matlab.internal.getDebugPort,'EnableZoom',true);
-
-
 
             if ispc
                 iconSrc=fullfile(matlabroot,'toolbox/shared/sfunctionbuilderjs/m/+sfunctionbuilder/+internal/resources/simulink_16.ico');
@@ -129,9 +117,7 @@ unSavedChangeFlag
             end
 
             obj.cefObj=cef;
-
             param=obj.sfunctionbuilderInitialContent.Parameters;
-
 
             if isempty(param.Name)||isempty(param.Name{1})
                 obj.launchEditorDialog();
@@ -147,7 +133,6 @@ unSavedChangeFlag
 
 
         function launchParameterDialog(obj)
-
             windowPosition=obj.sfunctionbuilderController.getSFBWindowPostion(obj.sfunctionbuilderBlockHandle,'parameterDialog');
             if isempty(windowPosition)
                 obj.cefObj.Position=setParameterBlockDialogSize();
@@ -161,7 +146,6 @@ unSavedChangeFlag
 
 
         function launchEditorDialog(obj)
-
             windowPosition=obj.sfunctionbuilderController.getSFBWindowPostion(obj.sfunctionbuilderBlockHandle,'editorDialog');
             if isempty(windowPosition)
                 obj.cefObj.Position=setEditorDialogSize(obj.cefObj.Position);
@@ -172,6 +156,7 @@ unSavedChangeFlag
             appdata=obj.sfunctionbuilderController.getApplicationData(obj.sfunctionbuilderBlockHandle);
             obj.cefObj.Title=appdata.DefaultTitle;
         end
+
 
         function sfunbuilder(obj,msg)
 
@@ -331,7 +316,6 @@ unSavedChangeFlag
                         obj.sfunctionbuilderBlockHandle,'fail to update library table',ME.message,struct('LibraryData',SfunWizardData.LibraryFilesTable));
                     end
 
-
                 case 'update sfunction setting'
                     try
                         setting=msg.content;
@@ -340,12 +324,10 @@ unSavedChangeFlag
                         obj.sfunctionbuilderController.refreshViews(obj.sfunctionbuilderBlockHandle,'invalid setting',ME.message);
                     end
 
-
                 case 'set source file overwritable'
                     obj.sfunctionbuilderController.setSourceFileOverwritable(obj.sfunctionbuilderBlockHandle);
                 case 'set tlc file overwritable'
                     obj.sfunctionbuilderController.setTLCFileOverwritable(obj.sfunctionbuilderBlockHandle);
-
 
                 case 'read file'
                     try
@@ -374,7 +356,6 @@ unSavedChangeFlag
                 end
             catch ex
 
-
                 if slsvTestingHook('SFBuilderGUIDebugMode')>0
                     disp(ex.getReport);
                 end
@@ -387,7 +368,6 @@ unSavedChangeFlag
         end
 
 
-
         function open(obj)
             if isempty(obj.cefObj)
                 obj.createCEFObj();
@@ -395,6 +375,7 @@ unSavedChangeFlag
             obj.cefObj.show();
             obj.cefObj.bringToFront();
         end
+
 
         function deleteView(obj)
             applicationData=obj.sfunctionbuilderController.getApplicationData(obj.sfunctionbuilderBlockHandle);
@@ -438,14 +419,10 @@ unSavedChangeFlag
                 msg.content=struct('Parameters',parameters);
             case 'refresh settings'
 
-
-
-
                 if isfield(data,'SampleMode')&&~isempty(data.SampleMode)
                     SampleTimeMode=data.SampleMode;
                     SampleTImeValue=data.SampleTime;
                 else
-
 
                     sfunblkWizData=data;
                     SampleTimeMode='Inherited';
@@ -467,7 +444,6 @@ unSavedChangeFlag
                     else
                         sampTime=str2num(sfunblkWizData.SampleTime);
                     end
-
                     if~usingSampleTimeAsParameter
                         if(~isempty(sampTime)&&sampTime>0)
                             sfunblkWizData.SampleTimeValue=sfunblkWizData.SampleTime;
@@ -513,7 +489,6 @@ unSavedChangeFlag
         end
 
 
-
         function initializeUI(obj)
             param=obj.sfunctionbuilderInitialContent.Parameters;
             if isempty(param.Name)||isempty(param.Name{1})
@@ -523,6 +498,7 @@ unSavedChangeFlag
             end
         end
 
+
         function initializeEditorDialog(obj)
 
             msg.command='launch editor dialog';
@@ -530,8 +506,8 @@ unSavedChangeFlag
 
         end
 
-        function populateEditorDialog(obj)
 
+        function populateEditorDialog(obj)
             initialData=obj.sfunctionbuilderInitialContent;
             obj.refresh('refresh toolstrip',initialData);
             obj.refresh('refresh ports table',initialData);
@@ -539,16 +515,19 @@ unSavedChangeFlag
             obj.refresh('refresh library table',initialData);
         end
 
+
         function populateRTCEditor(obj)
             initialData=obj.sfunctionbuilderInitialContent;
             obj.refresh('refresh editor',initialData);
         end
+
 
         function populateParameterDialog(obj)
 
             initialData=obj.sfunctionbuilderInitialContent;
             obj.refresh('refresh parameter table',initialData);
         end
+
 
         function initializeParameterDialog(obj)
 
@@ -570,11 +549,13 @@ unSavedChangeFlag
 
     end
 
+
     methods(Static)
 
     end
 
 end
+
 
 function dialogPos=setEditorDialogSize(currentPos)
     screensSize=get(0,'MonitorPositions');
@@ -585,22 +566,19 @@ function dialogPos=setEditorDialogSize(currentPos)
         dialogPos=currentPos;
         return
     else
-
         dialogPos(1)=(screenSize(3)-dialogW)/2;
         dialogPos(2)=(screenSize(4)-dialogH)/2;
         dialogPos(3)=dialogW;
         dialogPos(4)=dialogH;
     end
-
-
 end
+
 
 function dialogPos=setParameterBlockDialogSize()
     screensSize=get(0,'MonitorPositions');
     screenSize=screensSize(1,:);
     dialogW=screenSize(3)/4;
     dialogH=screenSize(4)/3.5;
-
 
     dialogPos(1)=(screenSize(3)-dialogW)/2;
     dialogPos(2)=(screenSize(4)-dialogH)/2;
@@ -639,14 +617,8 @@ function typeNames=getTypeNamesForItem(item,numItems)
     end
 end
 
+
 function[content,readOnlyLines]=readCode(data,markers)
-
-
-
-
-
-
-
 
     readOnlyLines=[];
     if isempty(data.SfunName)
@@ -687,15 +659,12 @@ function[content,readOnlyLines]=readCode(data,markers)
     else
         isDirectFeedThrough=true;
     end
-
     emptyIdx=cellfun(@(x)isempty(x),inputs.Dimensions);
     inputWidth(emptyIdx)={0};
     inputWidth(~emptyIdx)=num2cell(cellfun(@(x)prod(str2num(x)),inputs.Dimensions(~emptyIdx)));
-
     emptyIdx=cellfun(@(x)isempty(x),outputs.Dimensions);
     outputWidth(emptyIdx)={0};
     outputWidth(~emptyIdx)=num2cell(cellfun(@(x)prod(str2num(x)),outputs.Dimensions(~emptyIdx)));
-
     inputTypes=getTypeNamesForItem(inputs,NumberOfInputs);
     outputTypes=getTypeNamesForItem(outputs,NumberOfOutputs);
     currentLine=1;
@@ -711,8 +680,6 @@ function[content,readOnlyLines]=readCode(data,markers)
     content=[markers.markerPrefix,markers.includesBeginMarker,markers.markerSuffix,...
     newline,data.IncludeHeadersText,newline,...
     markers.markerPrefix,markers.includesEndMarker,markers.markerSuffix,newline];
-
-
     externsBegin=[newline,markers.markerPrefix,markers.externsBeginMarker,markers.markerSuffix];
     currentLine=currentLine+2;
     readOnlyLines=[readOnlyLines,currentLine-1:currentLine];
@@ -726,7 +693,6 @@ function[content,readOnlyLines]=readCode(data,markers)
     content=[content,externsBegin,newline,...
     data.ExternalDeclaration,newline,...
     markers.markerPrefix,markers.externsEndMarker,markers.markerSuffix];
-
 
     startFunctionSig=['void ',sfuncName,'_Start_wrapper('];
     UserCodeTextmdlStartBegin=[newline,newline,startFunctionSig];
@@ -751,7 +717,6 @@ function[content,readOnlyLines]=readCode(data,markers)
             UserCodeTextmdlStartBegin=[UserCodeTextmdlStartBegin,parameter];
             prefix=[',',newline,blanks(strlength(startFunctionSig))];
         end
-
 
         if~isZeroPWorks
             UserCodeTextmdlStartBegin=[UserCodeTextmdlStartBegin,prefix,'void **pW'];
@@ -778,8 +743,6 @@ function[content,readOnlyLines]=readCode(data,markers)
     UserCodeTextmdlStartEnd=[markers.markerPrefix,markers.startEndMarker,markers.markerSuffix,newline,'}'];
     readOnlyLines=[readOnlyLines,currentLine-1:currentLine];
     content=[content,UserCodeTextmdlStartBegin,newline,data.UserCodeTextmdlStart,newline,UserCodeTextmdlStartEnd];
-
-
 
     outputsFunctionSig=['void ',sfuncName,'_Outputs_wrapper('];
     UserCodeTextmdlOutputsBegin=[newline,newline,outputsFunctionSig];
@@ -819,7 +782,6 @@ function[content,readOnlyLines]=readCode(data,markers)
             UserCodeTextmdlOutputsBegin=[UserCodeTextmdlOutputsBegin,parameter];
             prefix=[',',newline,blanks(strlength(outputsFunctionSig))];
         end
-
 
         if~isZeroPWorks
             UserCodeTextmdlOutputsBegin=[UserCodeTextmdlOutputsBegin,prefix,'void **pW'];
@@ -875,10 +837,6 @@ function[content,readOnlyLines]=readCode(data,markers)
     readOnlyLines=[readOnlyLines,currentLine-1:currentLine];
     content=[content,UserCodeTextmdlOutputsBegin,newline,data.UserCodeText,newline,UserCodeTextmdlOutputsEnd];
 
-
-
-
-
     if~strcmp(numDS,'0')
         updateFunctionSig=['void ',sfuncName,'_Update_wrapper('];
         UserCodeTextmdlUpdateBegin=[newline,newline,updateFunctionSig];
@@ -905,7 +863,6 @@ function[content,readOnlyLines]=readCode(data,markers)
             UserCodeTextmdlUpdateBegin=[UserCodeTextmdlUpdateBegin,parameter];
             prefix=[',',newline,blanks(strlength(updateFunctionSig))];
         end
-
 
         if~isZeroPWorks
             UserCodeTextmdlUpdateBegin=[UserCodeTextmdlUpdateBegin,prefix,'void **pW'];
@@ -945,7 +902,6 @@ function[content,readOnlyLines]=readCode(data,markers)
         else
             UserCodeTextmdlUpdateBegin=[UserCodeTextmdlUpdateBegin,prefix,'SimStruct *S)',newline,'{'];
         end
-
         UserCodeTextmdlUpdateBegin=[UserCodeTextmdlUpdateBegin,newline,markers.markerPrefix,markers.updateBeginMarker,markers.markerSuffix];
         UserCodeTextmdlUpdateBeginLines=length(regexp(UserCodeTextmdlUpdateBegin,'\r?\n','split'));
         readOnlyLines=[readOnlyLines,currentLine+1:currentLine+UserCodeTextmdlUpdateBeginLines-1];
@@ -960,9 +916,6 @@ function[content,readOnlyLines]=readCode(data,markers)
         readOnlyLines=[readOnlyLines,currentLine-1:currentLine];
         content=[content,UserCodeTextmdlUpdateBegin,newline,data.UserCodeTextmdlUpdate,newline,UserCodeTextmdlUpdateEnd];
     end
-
-
-
 
     if~strcmp(numCS,'0')
         derivativesFunctionSig=['void ',sfuncName,'_Derivatives_wrapper('];
@@ -980,7 +933,6 @@ function[content,readOnlyLines]=readCode(data,markers)
             UserCodeTextmdlDerivativesBegin=[UserCodeTextmdlDerivativesBegin,output];
             prefix=[',',newline,blanks(strlength(derivativesFunctionSig))];
         end
-
         UserCodeTextmdlDerivativesBegin=[UserCodeTextmdlDerivativesBegin,prefix,'real_T *dx,',...
         newline,blanks(strlength(derivativesFunctionSig)),'real_T *xC'];
 
@@ -989,7 +941,6 @@ function[content,readOnlyLines]=readCode(data,markers)
             UserCodeTextmdlDerivativesBegin=[UserCodeTextmdlDerivativesBegin,parameter];
             prefix=[',',newline,blanks(strlength(derivativesFunctionSig))];
         end
-
 
         if~isZeroPWorks
             UserCodeTextmdlDerivativesBegin=[UserCodeTextmdlDerivativesBegin,prefix,'void **pW'];
@@ -1029,7 +980,6 @@ function[content,readOnlyLines]=readCode(data,markers)
         else
             UserCodeTextmdlDerivativesBegin=[UserCodeTextmdlDerivativesBegin,prefix,'SimStruct *S)',newline,'{'];
         end
-
         UserCodeTextmdlDerivativesBegin=[UserCodeTextmdlDerivativesBegin,newline,markers.markerPrefix,markers.derivativesBeginMarker,markers.markerSuffix];
         UserCodeTextmdlDerivativesBeginLines=length(regexp(UserCodeTextmdlDerivativesBegin,'\r?\n','split'));
         readOnlyLines=[readOnlyLines,currentLine+1:currentLine+UserCodeTextmdlDerivativesBeginLines-1];
@@ -1044,9 +994,6 @@ function[content,readOnlyLines]=readCode(data,markers)
         readOnlyLines=[readOnlyLines,currentLine-1:currentLine];
         content=[content,UserCodeTextmdlDerivativesBegin,newline,data.UserCodeTextmdlDerivative,newline,UserCodeTextmdlDerivativesEnd];
     end
-
-
-
 
     terminateFunctionSig=['void ',sfuncName,'_Terminate_wrapper('];
     UserCodeTextmdlTerminateBegin=[newline,newline,terminateFunctionSig];
@@ -1071,7 +1018,6 @@ function[content,readOnlyLines]=readCode(data,markers)
             UserCodeTextmdlTerminateBegin=[UserCodeTextmdlTerminateBegin,parameter];
             prefix=[',',newline,blanks(strlength(terminateFunctionSig))];
         end
-
 
         if~isZeroPWorks
             UserCodeTextmdlTerminateBegin=[UserCodeTextmdlTerminateBegin,prefix,'void **pW'];
@@ -1103,19 +1049,12 @@ end
 
 
 function codeInfo=parseEditorContent(content,markers)
-
     codeInfo.IncludeHeadersText=readSections(content,markers.includesBeginMarker,markers.includesEndMarker);
-
     codeInfo.ExternalDeclaration=readSections(content,markers.externsBeginMarker,markers.externsEndMarker);
-
     codeInfo.UserCodeTextmdlStart=readSections(content,markers.startBeginMarker,markers.startEndMarker);
-
     codeInfo.UserCodeText=readSections(content,markers.outputsBeginMarker,markers.outputsEndMarker);
-
     codeInfo.UserCodeTextmdlUpdate=readSections(content,markers.updateBeginMarker,markers.updateEndMarker);
-
     codeInfo.UserCodeTextmdlDerivative=readSections(content,markers.derivativesBeginMarker,markers.derivativesEndMarker);
-
     codeInfo.UserCodeTextmdlTerminate=readSections(content,markers.terminateBeginMarker,markers.terminateEndMarker);
 end
 
