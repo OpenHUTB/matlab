@@ -1,8 +1,5 @@
 function setBuildOptions(blockHandle,varargin)
 
-
-
-
     blockHandle=Simulink.SFunctionBuilder.internal.verifyBlockHandle(blockHandle);
     sfcnmodel=sfunctionbuilder.internal.sfunctionbuilderModel.getInstance();
 
@@ -24,7 +21,5 @@ function setBuildOptions(blockHandle,varargin)
         end
         controller.updateSFunctionBuildOption(blockHandle,option);
     end
-
-
     sfcnmodel.unregisterView(blockHandle,cliView);
 end
