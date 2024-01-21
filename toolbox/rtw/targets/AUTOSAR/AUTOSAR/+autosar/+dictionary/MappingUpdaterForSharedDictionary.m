@@ -1,56 +1,36 @@
 classdef(Hidden)MappingUpdaterForSharedDictionary
 
-
-
-
     methods(Static,Access=public)
 
         function handleMappingForDeletedReferences(mdlH)
-
-
-
-
-
-
-
-
             origDirtyState=get_param(mdlH,'dirty');
             cleanUpObj=onCleanup(@()set_param(mdlH,'dirty',origDirtyState'));
-
             autosar.dictionary.MappingUpdaterForSharedDictionary.handleDeletedInterfaces(mdlH);
-
             autosar.dictionary.MappingUpdaterForSharedDictionary.handleSwAddrMethods(mdlH);
         end
     end
 
+
     methods(Static,Access=private)
 
         function handleDeletedInterfaces(mdlH)
-
             m3iComp=autosarcore.ModelUtils.m3iMappedComponent(mdlH);
-
-
             m3iPorts=autosarcore.MetaModelFinder.findChildByTypeName(m3iComp,...
             'Simulink.metamodel.arplatform.port.Port',true,true);
             idx=cellfun(@(x)isempty(x.Interface),m3iPorts);
             m3iPorts=m3iPorts(idx);
 
             if~isempty(m3iPorts)
-
                 mapping=autosarcore.ModelUtils.modelMapping(mdlH);
                 dataPortNodes=[mapping.Inports,mapping.Outports];
                 portParameterNodes=[];
                 csNodes=[];
                 if autosarcore.ModelUtils.isMappedToComponent(mdlH)
-
                     csNodes=mapping.FunctionCallers;
-
-
                     modelParams=mapping.ModelScopedParameters;
                     portParameterNodes=modelParams(...
                     arrayfun(@(x)strcmp(x.MappedTo.ArDataRole,'PortParameter'),modelParams));
                 end
-
 
                 for portIdx=1:length(m3iPorts)
                     curM3IPort=m3iPorts{portIdx};
@@ -62,27 +42,19 @@ classdef(Hidden)MappingUpdaterForSharedDictionary
                     else
                         relevantMappingNodes={dataPortNodes};
                     end
-
                     autosar.mm.observer.ObserverModelMapping.handleInterfaceChange(...
                     curM3IPort,relevantMappingNodes,m3iPorts{portIdx}.Name,mdlH);
                 end
             end
-
-
             autosar.dictionary.MappingUpdaterForSharedDictionary.handleDeletedOrRenamedPortElements(mdlH);
         end
 
+
         function handleDeletedOrRenamedPortElements(mdlH)
-
-
-
             import autosar.dictionary.MappingUpdaterForSharedDictionary
-
             mapping=autosarcore.ModelUtils.modelMapping(mdlH);
             m3iComp=autosarcore.ModelUtils.m3iMappedComponent(mdlH);
-
             isAdaptive=autosarcore.ModelUtils.isMappedToAdaptiveApplication(mdlH);
-
 
             inports=mapping.Inports;
             for portIdx=1:length(inports)
@@ -110,7 +82,6 @@ classdef(Hidden)MappingUpdaterForSharedDictionary
                     end
                 end
             end
-
 
             outports=mapping.Outports;
             for portIdx=1:length(outports)
@@ -140,9 +111,6 @@ classdef(Hidden)MappingUpdaterForSharedDictionary
             end
 
             if autosarcore.ModelUtils.isMappedToComponent(mdlH)
-
-
-
                 fcnCallers=mapping.FunctionCallers;
                 for portIdx=1:length(fcnCallers)
                     curFcnCaller=fcnCallers(portIdx);
@@ -160,8 +128,6 @@ classdef(Hidden)MappingUpdaterForSharedDictionary
                         end
                     end
                 end
-
-
                 modelParams=mapping.ModelScopedParameters;
                 portParameterNodes=modelParams(...
                 arrayfun(@(x)strcmp(x.MappedTo.ArDataRole,'PortParameter'),modelParams));
@@ -185,6 +151,7 @@ classdef(Hidden)MappingUpdaterForSharedDictionary
             end
         end
 
+
         function name=getM3IObjectNameByMappingID(mdlH,mappingID)
             name='';
             if~isempty(mappingID)
@@ -195,6 +162,7 @@ classdef(Hidden)MappingUpdaterForSharedDictionary
             end
         end
 
+
         function m3iObj=getM3IObjectByMappingID(mdlH,mappingID)
             elementID=jsondecode(mappingID).ElementID;
             serializedInterfaceDictUUID=jsondecode(mappingID).ArchitectureDictionaryUUID;
@@ -204,12 +172,10 @@ classdef(Hidden)MappingUpdaterForSharedDictionary
             m3iObj=M3I.getObjectById(elementID,sharedM3IModel);
         end
 
+
         function elementDeleted=isPortElementDeletedOrRenamed(m3iComp,arPortName,arItfElementName)
             elementDeleted=false;
-
-
             m3iPort=autosarcore.MetaModelFinder.findChildByName(m3iComp,arPortName);
-
 
             if m3iPort.isvalid()
                 m3iItf=m3iPort.Interface;
@@ -218,12 +184,10 @@ classdef(Hidden)MappingUpdaterForSharedDictionary
             end
         end
 
+
         function handleSwAddrMethods(mdlH)
             if autosarcore.ModelUtils.isMappedToComponent(mdlH)
                 throwErrors=false;
-
-
-
                 [invalidRunnables,invalidRunnableData,invalidInternalData]=...
                 autosar.validation.ClassicSwAddrMethodValidator.verifySwAddrMethods(mdlH,throwErrors);
 
@@ -239,7 +203,6 @@ classdef(Hidden)MappingUpdaterForSharedDictionary
                     'SwAddrMethod','');
                 end
             else
-
 
             end
         end
