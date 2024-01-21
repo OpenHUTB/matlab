@@ -1,8 +1,4 @@
 function delete(blockHandle,itemType,varargin)
-
-
-
-
     blockHandle=Simulink.SFunctionBuilder.internal.verifyBlockHandle(blockHandle);
     sfbController=sfunctionbuilder.internal.sfunctionbuilderController.getInstance;
     p=inputParser;
