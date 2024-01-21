@@ -1,11 +1,5 @@
 function installed=autosarinstalled()
 
-
-
-
-
-
-
     mlock;
     persistent pathExist;
 
