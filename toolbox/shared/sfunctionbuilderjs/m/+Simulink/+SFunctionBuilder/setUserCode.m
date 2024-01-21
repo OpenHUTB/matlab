@@ -1,8 +1,4 @@
 function setUserCode(blockHandle,block,code)
-
-
-
-
     blockHandle=Simulink.SFunctionBuilder.internal.verifyBlockHandle(blockHandle);
     sfbController=sfunctionbuilder.internal.sfunctionbuilderController.getInstance;
     sfcnmodel=sfunctionbuilder.internal.sfunctionbuilderModel.getInstance();
@@ -27,9 +23,7 @@ function setUserCode(blockHandle,block,code)
     case 'terminate'
         AppData.SfunWizardData.UserCodeTextmdlTerminate=code;
     end
-
     sfbController.updateUserCode(blockHandle,AppData.SfunWizardData,true);
-
 
     sfcnmodel.unregisterView(blockHandle,cliView);
 end
