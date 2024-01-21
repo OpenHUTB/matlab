@@ -1,8 +1,5 @@
 function setSettings(blockHandle,varargin)
 
-
-
-
     blockHandle=Simulink.SFunctionBuilder.internal.verifyBlockHandle(blockHandle);
     sfcnmodel=sfunctionbuilder.internal.sfunctionbuilderModel.getInstance();
 
@@ -61,7 +58,6 @@ function setSettings(blockHandle,varargin)
         end
         controller.updateSFunctionSetting(blockHandle,setting);
     end
-
     sfcnmodel.unregisterView(blockHandle,cliView);
 end
 
