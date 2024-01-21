@@ -1,11 +1,9 @@
 classdef sfunctionbuilderController<handle
 
-
-
-
     properties(SetAccess=protected)
 sfunctionbuilderModel
     end
+
 
     methods
 
@@ -20,7 +18,6 @@ sfunctionbuilderModel
 
         function buildLog=doBuild(obj,blockHandle)
             applicationData=obj.sfunctionbuilderModel.getApplicationData(blockHandle);
-
             if~strcmp(applicationData.blockName,getfullname(blockHandle))
                 obj.updateSFunctionBlockPath(blockHandle,getfullname(blockHandle));
                 applicationData=obj.sfunctionbuilderModel.getApplicationData(blockHandle);
@@ -29,11 +26,11 @@ sfunctionbuilderModel
             buildLog=applicationData.buildLog;
             obj.sfunctionbuilderModel.setApplicationData(blockHandle,applicationData);
 
-
             if~abortBuild
                 obj.sfunctionbuilderModel.refreshViews(blockHandle,'set unsaved change',false);
             end
         end
+
 
         function doPackage(obj,blockHandle)
             applicationData=obj.sfunctionbuilderModel.getApplicationData(blockHandle);
@@ -44,6 +41,7 @@ sfunctionbuilderModel
             applicationData=sfunctionwizard(blockHandle,'doPackage',applicationData);
             obj.sfunctionbuilderModel.setApplicationData(blockHandle,applicationData);
         end
+
 
         function updateSFunctionPackageOption(obj,blockHandle,optionSetting)
             obj.sfunctionbuilderModel.updateSFunctionPackageOption(blockHandle,optionSetting);
@@ -63,12 +61,10 @@ sfunctionbuilderModel
                     applicationData.SfunWizardData.CertificateName='';
                 end
             end
-
             if~strcmp(applicationData.blockName,getfullname(blockHandle))
                 obj.updateSFunctionBlockPath(blockHandle,getfullname(blockHandle));
                 applicationData=obj.sfunctionbuilderModel.getApplicationData(blockHandle);
             end
-
             [~,abortClose]=sfcnbuilder.doBuild_CheckNameAndLangext(blockHandle,applicationData,true);
 
             if~abortClose
@@ -142,11 +138,6 @@ sfunctionbuilderModel
 
         function updateUserCode(obj,blockHandle,userCode,varargin)
 
-
-
-
-
-
             refreshGUI=false;
             if nargin==4
                 refreshGUI=varargin{1};
@@ -154,32 +145,38 @@ sfunctionbuilderModel
             obj.sfunctionbuilderModel.updateUserCode(blockHandle,userCode,refreshGUI);
         end
 
+
         function updateParameterValue(obj,blockHandle,parameterName,value)
             obj.sfunctionbuilderModel.updateParameterValue(blockHandle,parameterName,value);
         end
+
 
         function updateItemOfPortTable(obj,blockHandle,newItem,field,oldvalue)
             obj.sfunctionbuilderModel.updateItemOfPortTable(blockHandle,newItem,field,oldvalue);
         end
 
+
         function addItemToLibTable(obj,blockHandle,item)
             obj.sfunctionbuilderModel.addItemToLibTable(blockHandle,item);
         end
+
 
         function delItemFromLibTable(obj,blockHandle,items,ranges)
             obj.sfunctionbuilderModel.delItemFromLibTable(blockHandle,items,ranges);
         end
 
+
         function updateItemOfLibTable(obj,blockHandle,oldItem,field,newValue,index)
             obj.sfunctionbuilderModel.updateItemOfLibTable(blockHandle,oldItem,field,newValue,index);
         end
+
 
         function applicationData=getApplicationData(obj,blockHandle)
             applicationData=obj.sfunctionbuilderModel.getApplicationData(blockHandle);
         end
 
-        function saveSfunctionName(obj,blockHandle)
 
+        function saveSfunctionName(obj,blockHandle)
             applicationData=obj.getApplicationData(blockHandle);
             sfunctionName=applicationData.SfunWizardData.SfunName;
             if~(strcmp(sfunctionName,'system')||isempty(sfunctionName))
@@ -187,8 +184,8 @@ sfunctionbuilderModel
             end
         end
 
-        function saveWizardData(obj,blockHandle)
 
+        function saveWizardData(obj,blockHandle)
             applicationData=obj.getApplicationData(blockHandle);
             set_param(blockHandle,'WizardData',applicationData.SfunWizardData);
         end
@@ -199,7 +196,6 @@ sfunctionbuilderModel
         end
 
 
-
         function ad=refreshViews(obj,blockHandle,action,varargin)
             actionMessage=varargin{1};
             if nargin==4
@@ -208,7 +204,6 @@ sfunctionbuilderModel
                 extraData=varargin{2};
                 ad=obj.sfunctionbuilderModel.refreshViews(blockHandle,action,actionMessage,extraData);
             end
-
         end
 
     end
@@ -222,9 +217,6 @@ sfunctionbuilderModel
             end
             sfunctionbuilderController=localObj;
         end
-
-
-
 
         function[fileContent,filePath]=readFileByName(fileName)
             if(exist(fileName,'file'))
