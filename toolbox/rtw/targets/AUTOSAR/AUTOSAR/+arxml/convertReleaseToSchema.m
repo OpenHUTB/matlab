@@ -1,7 +1,5 @@
 function[schemaVerNum,schemaVerString]=convertReleaseToSchema(releaseVer)
 
-
-
     switch releaseVer
     case 'R18-03'
         schemaVerString='00045';
