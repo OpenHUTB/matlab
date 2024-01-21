@@ -1,20 +1,12 @@
-
-
-
-
 classdef MessageStreamHandler<handle
-
-
-
     properties(Hidden=true,GetAccess=public,SetAccess=private)
         isQueued;
         msgReporter;
         msgs;
     end
 
+
     methods(Access=private)
-
-
 
         function self=MessageStreamHandler()
             self.isQueued=false;
@@ -26,18 +18,15 @@ classdef MessageStreamHandler<handle
         end
     end
 
+
     methods(Access=public)
 
-
         function setReporter(self,aMsgReporter)
-
-
             if~isempty(aMsgReporter)&&~isa(aMsgReporter,'autosar.mm.util.MessageReporter')
                 DAStudio.error('RTW:autosar:mmInvalidArgObject',1,'autosar.mm.util.MessageReporter');
             end
             self.msgReporter=aMsgReporter;
         end
-
 
 
         function setMessages(self,msgs)
@@ -46,7 +35,6 @@ classdef MessageStreamHandler<handle
             end
             self.msgs=msgs;
         end
-
 
 
         function clear(self)
@@ -58,11 +46,9 @@ classdef MessageStreamHandler<handle
         end
 
 
-
         function activate(self)
             M3IUserMessageStream.addStreamListener(self);
         end
-
 
 
         function deactivate(self)
@@ -70,12 +56,7 @@ classdef MessageStreamHandler<handle
         end
 
 
-
         function disableQueuingObj=enableQueuing(self)
-
-
-
-
             disableQueuingObj=onCleanup(@()disableQueuing(self));
             function self=disableQueuing(self)
                 self.isQueued=false;
