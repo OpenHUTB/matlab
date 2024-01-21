@@ -1,8 +1,5 @@
 classdef ImageFormat
 
-
-
-
     properties(Constant)
         PDF='pdf';
         PNG='png';
@@ -15,6 +12,7 @@ classdef ImageFormat
         TIF='tif';
         TIFF='tiff';
     end
+
 end
 
 
