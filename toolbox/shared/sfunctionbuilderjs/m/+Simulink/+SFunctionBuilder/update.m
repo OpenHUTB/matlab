@@ -1,9 +1,5 @@
 function update(blockHandle,itemType,varargin)
 
-
-
-
-
     if numel(find(strcmp(varargin,'FieldToUpdate')))>1
         error('Simulink:SFunctionBuilder:TooManyFields',DAStudio.message('Simulink:SFunctionBuilder:TooManyFields'));
     end
@@ -41,9 +37,6 @@ function update(blockHandle,itemType,varargin)
         case 'DataType'
             newDataType=char(p.Results.NewValue);
             if startsWith(newDataType,'fixdt(')
-
-
-
 
                 try
                     ft=eval(newDataType);
