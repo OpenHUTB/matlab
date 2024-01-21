@@ -1,13 +1,11 @@
 classdef clientServerInterface
 
-
-
-
     properties
 identifier
 operation
 isService
     end
+
 
     methods
         function obj=clientServerInterface(thisIdentifier)
@@ -15,6 +13,7 @@ isService
             obj.operation=arblk.operationPrototype.empty();
             obj.isService=false;
         end
+
 
         function obj=set.operation(obj,value)
             if isa(value,'arblk.operationPrototype')
@@ -24,6 +23,7 @@ isService
             end
         end
 
+
         function obj=set.isService(obj,value)
             if value==0||value==1
                 obj.isService=value;
@@ -31,7 +31,6 @@ isService
                 DAStudio.error('RTW:autosar:unknownIsService');
             end
         end
-
 
     end
 end
