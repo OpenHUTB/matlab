@@ -1,9 +1,6 @@
 function[loc,c,nv,intens,r]=getSubset(location,color,...
     isOrganized,normal,intensity,rangeData,indices,outputSize)
 
-
-
-
 %#codegen
 
     coder.allowpcode('plain');
