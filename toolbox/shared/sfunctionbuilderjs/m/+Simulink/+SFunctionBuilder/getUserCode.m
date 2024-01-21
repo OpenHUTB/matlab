@@ -1,8 +1,4 @@
 function code=getUserCode(blockHandle,block)
-
-
-
-
     AppData=Simulink.SFunctionBuilder.internal.getApplicationData(blockHandle);
     switch(block)
     case 'includes'
