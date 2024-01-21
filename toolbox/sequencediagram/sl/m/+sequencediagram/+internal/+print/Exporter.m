@@ -1,28 +1,10 @@
 classdef Exporter < handle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties ( SetAccess = immutable, GetAccess = private )
         ModelName
         SequenceDiagramName
     end
+
 
     methods
         function this = Exporter( modelName, sequenceDiagramName )
@@ -34,6 +16,7 @@ classdef Exporter < handle
             this.ModelName = modelName;
             this.SequenceDiagramName = sequenceDiagramName;
         end
+
 
         function export( this, fileName, options )
 
@@ -51,31 +34,32 @@ classdef Exporter < handle
             end
         end
 
+
         function img = getImage( this )
-
-
-
-
             editorInterface = this.createEditorInterface(  );
             img = editorInterface.getImage(  );
         end
     end
+
 
     methods ( Access = private )
         function editorInterface = createEditorInterface( this )
             editorInterface = sequencediagram.internal.print.internal.EditorInterface( this.ModelName, this.SequenceDiagramName );
         end
 
+
         function exportToPDF( this, fullFileName )
             editorInterface = this.createEditorInterface(  );
             editorInterface.saveToPdf( fullFileName );
         end
+
 
         function exportToRaster( this, fullFileName, format )
             img = this.getImage(  );
             imwrite( img, fullFileName, format );
         end
     end
+
 
     methods ( Static, Access = private )
         function ext = getFileFormat( filename )
@@ -85,5 +69,6 @@ classdef Exporter < handle
             end
         end
     end
+
 end
 
