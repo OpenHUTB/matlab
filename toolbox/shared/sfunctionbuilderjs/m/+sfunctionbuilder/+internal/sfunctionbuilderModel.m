@@ -1,10 +1,5 @@
 classdef sfunctionbuilderModel<handle
 
-
-
-
-
-
     properties(SetAccess=protected)
 USERDATA
     end
@@ -13,17 +8,14 @@ USERDATA
     properties(SetAccess=private)
     end
 
+
     methods
 
         function obj=sfunctionbuilderModel()
         end
 
 
-
         function SfunWizardData=addBlock(obj,block)
-
-
-
             block.AppData=addFields(block.AppData);
             block.AppData=renameDataTypes(block.AppData);
             block.AppData=removeEmptyPorts(block.AppData);
@@ -42,6 +34,7 @@ USERDATA
             end
         end
 
+
         function destroyModel(obj,blockHandle)
             idx=obj.findSFunctionBuilder(blockHandle);
             if~isempty(idx)
@@ -50,16 +43,12 @@ USERDATA
         end
 
 
-
         function idx=findSFunctionBuilder(obj,blockHandle)
             idx=[];
             if~isempty(obj.USERDATA)
                 idx=find([obj.USERDATA.BlockHandle]==blockHandle);
             end
         end
-
-
-
 
 
         function registerView(obj,blockHandle,view)
@@ -75,6 +64,7 @@ USERDATA
             end
         end
 
+
         function unregisterView(obj,blockHandle,view)
             idx=obj.findSFunctionBuilder(blockHandle);
             if isfield(obj.USERDATA(idx),'views')&&~isempty(obj.USERDATA(idx).views)
@@ -82,12 +72,6 @@ USERDATA
                 obj.USERDATA(idx).views(cmp)=[];
             end
         end
-
-
-
-
-
-
 
 
         function applicationData=refreshViews(obj,blockHandle,action,varargin)
@@ -99,7 +83,6 @@ USERDATA
                 ,'refresh editor','refresh library table'}
                 data=obj.USERDATA(idx).AppData.SfunWizardData;
                 for i=1:length(views)
-
 
                     if isa(views{i},'sfunctionbuilder.internal.sfunctionbuilderView')
                         views{i}.refresh(action,data);
@@ -129,9 +112,6 @@ USERDATA
                 actionMessageCLI=varargin{1};
                 for i=1:length(views)
 
-
-
-
                     if isa(views{i},'sfunctionbuilder.internal.sfunctionbuilderView')
                         views{i}.refresh(action,actionMessageJS);
                     elseif strcmp(views{i}.publishChannel,'cli')
@@ -147,7 +127,6 @@ USERDATA
                         end
                     end
                 end
-
 
             case 'set unsaved change'
                 if obj.isGUIOpen(blockHandle)
@@ -217,9 +196,6 @@ USERDATA
 
 
         function updateSFBWindowPostion(obj,blockHandle,type,position)
-
-
-
             wizardData=get_param(blockHandle,'WizardData');
             idx=obj.findSFunctionBuilder(blockHandle);
             if strcmp(type,'editorDialog')
