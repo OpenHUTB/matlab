@@ -1,11 +1,4 @@
-
-
-
-
 classdef Message<handle
-
-
-
     properties(GetAccess=public,SetAccess=public)
         type;
         component;
@@ -15,9 +8,8 @@ classdef Message<handle
         details;
     end
 
+
     methods(Access=public)
-
-
 
         function self=Message(msgType,msgId,msgDetails,msgSummary,msgSource,msgReportedBy)
             if nargin>0
@@ -42,26 +34,19 @@ classdef Message<handle
 
     end
 
+
     methods(Static,Access=private)
         function ret=fixViewer(details)
-
-
-
-
-
-
             if isa(details,'message')||isa(details,'MException')
 
                 ret=details;
             else
-
-
                 ret=strrep(details,'matlab:SCPDiagViewer.','matlab:autosar.mm.util.MessageReporter.');
             end
         end
 
-        function ret=fixComponent(component)
 
+        function ret=fixComponent(component)
 
             ret=component;
             if strcmp(component,'SCP')
