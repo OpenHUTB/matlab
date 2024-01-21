@@ -1,9 +1,6 @@
 
 function release=convertSchemaToRelease(schemaVer)
 
-
-
-
     switch schemaVer
     case '00045'
         release='R18-03';
@@ -16,7 +13,6 @@ function release=convertSchemaToRelease(schemaVer)
     case '00049'
         release='R20-11';
     otherwise
-
         release=schemaVer;
     end
 end
