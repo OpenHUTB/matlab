@@ -1,9 +1,4 @@
 function[outputArg]=list(blockHandle,itemType,varargin)
-
-
-
-
-
     blockHandle=Simulink.SFunctionBuilder.internal.verifyBlockHandle(blockHandle);
     applicationData=Simulink.SFunctionBuilder.internal.getApplicationData(blockHandle);
     p=inputParser;
@@ -108,10 +103,6 @@ function[outputArg]=list(blockHandle,itemType,varargin)
 end
 
 
-
-
-
-
 function n=portNumber(ports)
     if isempty(ports.Name)||isempty(ports.Name{1})
         n=0;
@@ -121,15 +112,12 @@ function n=portNumber(ports)
 end
 
 
-
-
 function ports=renamePortInfo(oP)
     ports.Name=oP.Name;
     for i=1:length(oP.Name)
 
         if(strcmp(oP.Bus{i},'on'))
             ports.DataType{i}=['Bus:',oP.Busname{i}];
-
         elseif(strcmp(oP.DataType{i},'cfixpt')||strcmp(oP.DataType{i},'fixpt'))
             if strcmp(oP.FixPointScalingType{i},'0')
                 ports.DataType{i}=['fixdt(',oP.IsSigned{i},',',oP.WordLength{i},',',oP.FractionLength{i},')'];
@@ -161,10 +149,10 @@ function ports=renamePortInfo(oP)
             ports.Dimension{i}=oP.Dimensions{i};
         end
     end
-
     ports.Complexity=strrep(oP.Complexity,'COMPLEX_YES','complex');
     ports.Complexity=strrep(ports.Complexity,'COMPLEX_NO','real');
 end
+
 
 function param=renameParameterInfo(param)
 
