@@ -1,13 +1,4 @@
 function exportFromEditor(backendRootUri,sequenceDiagramName)
-
-
-
-
-
-
-
-
-
     [mdlHandle,~]=builtin('_get_sl_object_instance_handle_from_sequence_diagram_uri','',backendRootUri);
     modelName=get_param(mdlHandle,'name');
 
@@ -24,14 +15,8 @@ function exportFromEditor(backendRootUri,sequenceDiagramName)
     sequencediagram.internal.print.ImageFormat.TIFF;...
     };
     filters=strcat('*.',imageTypes);
-
     title=message('sequencediagram:Editor:PrintSequenceDiagramFilePickerTitle').getString();
-
-
-
-
     defName=[modelName,'_',sequenceDiagramName,'.',sequencediagram.internal.print.ImageFormat.PDF];
-
     [file,path]=uiputfile(filters,title,defName);
 
     canceled=isscalar(file)&&(file==0);
@@ -40,7 +25,6 @@ function exportFromEditor(backendRootUri,sequenceDiagramName)
     end
 
     fullFilePath=fullfile(path,file);
-
     exporter=sequencediagram.internal.print.Exporter(modelName,sequenceDiagramName);
     exporter.export(fullFilePath);
 
