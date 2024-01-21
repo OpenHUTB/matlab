@@ -1,21 +1,13 @@
 classdef operationPrototype
 
-
-
-
     properties
 identifier
 argument
     end
 
+
     methods
         function obj=operationPrototype(modelName,str)
-
-
-
-
-
-
             [fcn,success,err_id,err_msg]=arblk.parseOperationPrototype(str);
             if~success
 
@@ -31,6 +23,7 @@ argument
 
         end
 
+
         function obj=set.argument(obj,value)
             if isa(value,'arblk.argumentPrototype')
                 obj.argument=value;
@@ -39,14 +32,15 @@ argument
             end
         end
 
+
         function args=getINarguments(obj)
             args=obj.argument(strcmp({obj.argument.direction},'IN'));
         end
 
+
         function args=getOUTarguments(obj)
             args=obj.argument(strcmp({obj.argument.direction},'OUT'));
         end
-
 
     end
 end
