@@ -1,9 +1,5 @@
 classdef argumentPrototype
 
-
-
-
-
     properties
 modelName
 identifier
@@ -11,6 +7,7 @@ direction
 datatype
 dims
     end
+
 
     methods
 
@@ -22,20 +19,8 @@ dims
             obj.dims=thisDims;
         end
 
+
         function obj=set.datatype(obj,dataTypeName)
-
-
-
-
-
-
-
-
-
-
-
-
-
             isSimulinkComponentAvailable=~isempty(which('legacycode.util.lct_pInitStructure'));
             if~isSimulinkComponentAvailable
                 obj.datatype.DTName=dataTypeName;
@@ -53,19 +38,12 @@ dims
                 end
                 return
             end
-
             dataTypeTable=legacycode.util.lct_pInitStructure('DataTypes');
 
-
             if Simulink.data.isSupportedEnumClass(dataTypeName)
-
                 [dataTypeTable,dataTypeId]=legacycode.util.lct_pAddDataType(dataTypeTable,'int32',obj.modelName);%#ok<MCSUP>
                 dataType=dataTypeTable.DataType(dataTypeId);
                 if legacycode.lct.util.feature('newImpl')
-
-
-
-
 
                     dataType=copy(dataType);
                     dataType.Id=dataTypeTable.NumSLBuiltInDataTypes+1;
@@ -77,25 +55,17 @@ dims
                 thisDatatype.HeaderFile=Simulink.data.getEnumTypeInfo(dataTypeName,'HeaderFile');
                 thisDatatype.IsBuiltin=0;
             else
-
                 if~ismember(dataTypeName,dataTypeTable.DataTypeNames)
-
-
 
                     if fixed.internal.type.isNameOfTraditionalFixedPointType(dataTypeName)
                         DAStudio.error('RTW:autosar:dataTypeIsIntrinsicFixPt',dataTypeName,dataTypeName)
                     end
-
-
-
-
                     isSlObjDefined=existsInGlobalScope(obj.modelName,dataTypeName);%#ok<MCSUP>
                     if isSlObjDefined==1
                         slObj=evalinGlobalScope(obj.modelName,dataTypeName);%#ok<MCSUP>
                     else
                         DAStudio.error('RTW:autosar:dataTypeObjectNotFound',dataTypeName);
                     end
-
 
                     if isa(slObj,'Simulink.NumericType')
                         if slObj.IsAlias==false
@@ -109,7 +79,6 @@ dims
                         end
                     end
                 end
-
                 [dataTypeTable,dataTypeId]=legacycode.util.lct_pAddDataType(dataTypeTable,dataTypeName,obj.modelName);%#ok<MCSUP>
                 thisDatatype=dataTypeTable.DataType(dataTypeId);
                 thisDatatype.IsEnum=0;
@@ -119,6 +88,7 @@ dims
             obj.datatype=thisDatatype;
         end
 
+
         function obj=set.direction(obj,value)
             switch value
             case{'IN','OUT'}
@@ -127,6 +97,7 @@ dims
                 DAStudio.error('RTW:autosar:unknownArgumentDirection',value);
             end
         end
+
 
         function isEqual=eq(obj,obj2)
             if(strcmp(obj.identifier,obj2.identifier)&&...
