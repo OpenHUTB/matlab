@@ -1,11 +1,5 @@
 function blks=findAUTOSARClientBlks(aPath,varargin)
 
-
-
-
-
-
-
     p=inputParser;
     p.addParameter('OperationName','');
     p.KeepUnmatched=true;
@@ -31,8 +25,6 @@ function blks=findAUTOSARClientBlks(aPath,varargin)
             args=[args,'operationPrototype',['^',operationName,'($|\(.*\))']];
         end
     end
-
-
     blks=find_system(aPath,'RegExp',regExp,'FollowLinks','on',...
     'LookUnderMasks','on',...
     'MatchFilter',@Simulink.match.activeVariants,...
