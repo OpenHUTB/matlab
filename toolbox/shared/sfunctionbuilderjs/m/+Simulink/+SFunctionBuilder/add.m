@@ -1,9 +1,4 @@
 function add(blockHandle,itemType,varargin)
-
-
-
-
-
     blockHandle=Simulink.SFunctionBuilder.internal.verifyBlockHandle(blockHandle);
     sfcnmodel=sfunctionbuilder.internal.sfunctionbuilderModel.getInstance();
 
@@ -19,8 +14,6 @@ function add(blockHandle,itemType,varargin)
         p.addParameter('Complexity','real');
         p.addParameter('Dimensions','1');
         p.parse(varargin{:});
-
-
 
         try
             portToBeAdded={char(p.Results.Name),lower(char(itemType)),'double'};
@@ -44,8 +37,6 @@ function add(blockHandle,itemType,varargin)
         p.addParameter('Complexity','real');
         p.addParameter('Value','1');
         p.parse(varargin{:});
-
-
 
         try
             paramterToBeAdded={char(p.Results.Name),lower(char(itemType)),'double'};
@@ -81,8 +72,6 @@ function add(blockHandle,itemType,varargin)
         if(~isstring(IC)&&~ischar(IC))||strlength(IC)==0
             error(DAStudio.message('Simulink:SFunctionBuilder:InvalidArgumentIC'));
         end
-
-
         AppData=Simulink.SFunctionBuilder.internal.getApplicationData(blockHandle);
         if strcmp(itemType,'DiscreteState')
             currentNum=AppData.SfunWizardData.NumberOfDiscreteStates;
@@ -119,9 +108,7 @@ function add(blockHandle,itemType,varargin)
         errorStruct.identifier='Simulink:SFunctionBuilder:InvalidField';
         error(errorStruct);
     end
-
-
-    sfcnmodel.unregisterView(blockHandle,cliView);
+   sfcnmodel.unregisterView(blockHandle,cliView);
 
 end
 
