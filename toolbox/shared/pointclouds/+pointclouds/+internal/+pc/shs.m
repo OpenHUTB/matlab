@@ -1,17 +1,7 @@
 function shs(source)
 
-
-
-
-
-
-
-
     if isempty(coder.target)
-
         isShared=any(strcmpi(source,shareList()));
-
-
 
         if isShared
 pcsetshsany
@@ -23,7 +13,5 @@ end
 
 
 function list=shareList()
-
-
     list={'pcplayer','pointCloud'};
 end
