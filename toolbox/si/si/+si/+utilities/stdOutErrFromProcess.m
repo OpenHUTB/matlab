@@ -1,17 +1,7 @@
 function stdOutErrFromProcess(process)
 
-
-
-
-
-
-
-
-
     if process.isAlive
         disp("Standard output and error not available: The process is still active.")
-
-
 
         return
     end
