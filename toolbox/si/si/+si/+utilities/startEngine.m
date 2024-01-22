@@ -1,18 +1,4 @@
 function engineName=startEngine
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if~matlab.engine.isEngineShared
         matlab.engine.shareEngine;
     end
