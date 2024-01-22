@@ -1,22 +1,5 @@
 function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin<9||isempty(verbose),
         verbose=1;
     end
@@ -25,12 +8,8 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
 
     nr=0;
 
-
     [q,n]=size(G);
     m=numel(thmin);
-
-
-
 
     zerotol=tol.zerotol;
     removetol=tol.removetol;
@@ -41,11 +20,9 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
     maxiterBS=tol.maxiterBS;
     polyreduction=tol.polyreduction;
 
-
     Hth=[eye(m);-eye(m)];
     Kth=[thmax;-thmin];
     nKth=numel(Kth);
-
 
     H=[G,-S;zeros(nKth,n),Hth];
     K=[W;Kth];
@@ -53,8 +30,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
     if polyempty_nnls(H,K,zerotol,maxiterNNLS)
         ctrlMsgUtils.error('MPC:computation:EMPCMPQPError1');
     end
-
-
     [~,~,kept]=polyreduce_nnls(H,K,removetol,zerotol,maxiterNNLS,polyreduction);
     kept=kept(kept<=q);
     q=numel(kept);
@@ -70,8 +45,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
     D=S+G*Qinv*F;
     d=W+G*Qinv*c;
     Hd=G*Qinv*G';
-
-
     EXPLORED=containers.Map('KeyType','char','ValueType','double');
 
     I0=get_initial;
@@ -95,7 +68,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
         I=UNEXPLORED(1).I;
         UNEXPLORED(1)=[];
 
-
         [fulldim,II]=create_region(I,false);
         if fulldim,
             for h=1:numel(II),
@@ -113,18 +85,11 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
 
 
     function I0=get_initial
-
-
         [H,K]=polynormalize_nnls([-G*Qinv*F-S;Hth],[W+G*Qinv*c;Kth],normalizetol);
         if~polyempty_nnls(H,K,zerotol,maxiterNNLS),
 
             I0=[];
         else
-
-
-
-
-
             thbar=(thmax+thmin)/2;
             Y=F'*Qinv*F+eye(m);
 
@@ -135,7 +100,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
             LLinv=LLinv\eye(n+m);
             QQinv=LLinv'*LLinv;
             ff=[c;thbar];
-
 
             numofcons=length(iA);
             numofvars=size(LLinv,1);
@@ -157,9 +121,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
             nR=rank(G(I0,:));
 
             if nR<numel(I0),
-
-
-
                 [~,isort]=sort(-yth(I0));
 
                 I1=[];
@@ -236,7 +197,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
             end
 
         else
-
             Iq=(1:q)';
             J=Iq;J(I)=[];
 
@@ -246,10 +206,7 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
 
             nR=qr_rank(RI);
 
-
             if nR==nI,
-
-
                 Fy=zeros(q,m);
                 Gy=zeros(q,1);
                 Fy(I,:)=-Hd(I,I)\D(I,:);
@@ -257,14 +214,9 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
 
                 Fx=-Qinv*(F+GI'*Fy(I,:));
                 Gx=-Qinv*(c+GI'*Gy(I,:));
-
-
-
                 H=[-Fy(I,:);-Hd(J,I)*Fy(I,:)-D(J,:);Hth];
                 K=[Gy(I);Hd(J,I)*Gy(I,:)+d(J,:);Kth];
-
                 [H,K]=polynormalize_nnls(H,K,normalizetol);
-
                 empty=polyempty_nnls(H,K,zerotol,maxiterNNLS);
                 if empty,
                     fulldim=false;
@@ -281,37 +233,19 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
                     ip=kept.*(kept>nI);
                     ip=J(ip(ip>0)-nI);
 
-
-
                     np=numel(ip);
                     iHp=(numel(K)-np-nH+1:numel(K)-nH)';
 
                     id=kept(kept<=nI);
                     id=I(id);
                     iHd=(1:numel(id))';
-
-
-
-
-
                     if~(any(sum(abs([Fy(I,:),Gy(I)]),2)<=zerotol)),
                         II=get_neighbors(I,numel(K),ip,iHp,iH,id,iHd,false,QI,RI,EI);
                     else
-
-
-
                         II=get_neighbors(I,numel(K),[],[],iH,[],[],true,QI,RI,EI);
                     end
                 end
             else
-
-
-
-
-
-
-
-
                 if rank([GI,-S(I,:),W(I)])>nR,
 
                     fulldim=false;
@@ -323,7 +257,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
                     h1=MI*d(I,:);
                     Fx=-Qinv*(F+iEI'*RI(1:nR,:)'*K1);
                     Gx=-Qinv*(c+iEI'*RI(1:nR,:)'*h1);
-
                     AA=[G(J,:)*Fx-S(J,:),zeros(q-nI,nI-nR);
                     -QI(:,1:nR)*K1,-QI(:,nR+1:nI)];
                     bb=[W(J,:)-G(J,:)*Gx;QI(:,1:nR)*h1];
@@ -353,7 +286,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
             end
         end
 
-
         if fulldim||first,
 
             if fulldim,
@@ -372,17 +304,12 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
                 mpqpsol(nr).G=Gx;
                 mpqpsol(nr).H=H;
                 mpqpsol(nr).K=K;
-
-
-
-
-
-
             end
         else
 
         end
     end
+
 
     function nR=qr_rank(R)
 
@@ -396,8 +323,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
 
 
     function II=get_neighbors(I,nK,ip,iHp,iH,id,iHd,ext,QI,RI,EI)
-
-
         II={};
         nII=0;
         n1=nK-numel(iH);
@@ -407,8 +332,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
 
         for h=1:n1
             found=false;
-
-
             if any(iHp==h)&&~ext,
                 if numel(I)==n,
                     ext=true;
@@ -419,7 +342,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
                         Ii=index;
                         found=true;
                     else
-
                         [~,R2]=qrupdate([QI,zeros(nI,1);zeros(1,nI),1],[RI;zeros(1,n)],[zeros(nI,1);1],(G(index,:)*EI)');
 
                         nR2=qr_rank(R2);
@@ -439,8 +361,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
             end
             if ext,
                 if~normalized,
-
-
                     for j=1:nK,
                         ni=norm(H(j,:));
                         H(j,:)=H(j,:)/ni;
@@ -450,17 +370,9 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
                     normalized=true;
                 end
 
-
                 C=eye(nK);
                 C(:,h)=[];
-
-
-
-
                 [~,th]=computePartialNNLS(C,H,K,maxiterNNLS,zerotol);
-
-
-
                 smin=min(K([1:h-1,h+1:nK])-H([1:h-1,h+1:nK],:)*th);
                 smax=100;
                 normH=ones(nK,1);normH(h)=0;
@@ -476,49 +388,6 @@ function mpqpsol=computeMPQP(Q,F,c,G,W,S,thmin,thmax,verbose,tol)
                     end
                 end
                 th=th+H(h,:)'*epsil;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 numofcons=size(G,1);
                 numofvars=size(Linv,1);
