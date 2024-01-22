@@ -1,12 +1,5 @@
 function[status,cmdout]=simulationEngineWrapper(command)
 
-
-
-
-
-
-
-
     tokenVar='SIT_simulation_token';
     if isempty(getenv('SIT_license_disable_simulation'))
         token=siCurrentTokenString();
@@ -15,7 +8,6 @@ function[status,cmdout]=simulationEngineWrapper(command)
         token='SIT_license_disable_simulationINVALIDTKN';
     end
     if strcmp(command,tokenVar)
-
         status=0;
         cmdout=token;
     else
@@ -31,27 +23,16 @@ function[status,cmdout]=simulationEngineWrapper(command)
     end
 end
 
+
 function token=siCurrentTokenString()
-
-
-
-
-
-
-
-
-
-
     dt=datetime('now');
-
-
     setNumber=111+dt.Day+dt.Month*40+dt.Year*381;
-
     timeNumber=floor(dt.Second*1000)+(60000*((60*dt.Minute)+dt.Hour));
     tokenIndexMax=2000;
     tokenIndex=1+mod(timeNumber,tokenIndexMax);
     token=siTokenString(setNumber,tokenIndex);
 end
+
 
 function token=siTokenString(setNumber,tokenIndex)
     charMap=[48:57,65:90,97:122];
