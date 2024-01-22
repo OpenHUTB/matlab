@@ -1,9 +1,5 @@
 function runSimulationEngine(simulationFilePaths,putInBackground,simulatorPath)
 
-
-
-
-
     oldDir=pwd;
     cleanupObj=onCleanup(@()cleanupFunc(oldDir));
     for idx=1:numel(simulationFilePaths)
@@ -75,6 +71,8 @@ function runSimulationEngine(simulationFilePaths,putInBackground,simulatorPath)
         fprintf(fid,"");
         fclose(fid);
     end
+
+
     function cleanupFunc(oldDir)
         cd(oldDir)
     end
