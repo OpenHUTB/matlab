@@ -1,60 +1,4 @@
 function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     [licenseStatus,licenseerror]=builtin('license','checkout','Motor_Control_Blockset');
     if licenseStatus==0
         error(licenseerror);
@@ -73,7 +17,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
 
     parse(p,pmsm,inverter,varargin{:});
 
-
     pmsm=p.Results.pmsm;
     inverter=p.Results.inverter;
     if~isfield(inverter,'R_board')
@@ -84,25 +27,13 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
     fluxPM=pmsm.FluxPM;
     R=pmsm.Rs;
 
-
     radps2rpm=30/pi;
     elec2mech=1/Pp;
 
-
-
     verbose=p.Results.verbose;
-
-
-
-
-
-
     voltageEquation=p.Results.voltageEquation;
     includeR=strcmpi(voltageEquation,'actual');
-
     constraintCurves=p.Results.constraintCurves;
-
-
 
     stk=dbstack;
     calledFromAnother=0;
@@ -112,11 +43,9 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
         end
     end
 
-
     if pmsm.Lq<pmsm.Ld
         Lq=pmsm.Ld;
         Ld=pmsm.Lq;
-
 
         if calledFromAnother==0
             disp(message('mcb:blocks:APILqLessThanLdSwapping').getString());
@@ -127,15 +56,11 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
     end
     Icritical=-fluxPM/Ld;
 
-
-
     outputAll=p.Results.outputAll;
 
     FWCMethod=lower(p.Results.FWCMethod);
 
-
     irdropVcc=1-includeR;
-
 
     I_short=inverter.V_dc/sqrt(3)/R;
 
@@ -143,15 +68,9 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
         error(message('mcb:blocks:APIHighIRated',num2str(I_short)));
     end
 
-
     vmax=inverter.V_dc/sqrt(3)-(irdropVcc)*(pmsm.Rs+inverter.R_board)*Irated;
 
-
-
-
     CurrentSpeedArray=[];
-
-
 
     if outputAll==1
         verbose=0;
@@ -161,7 +80,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
     motorType='ipmsm';
 
     if isfield(pmsm,'motorType')
-
         motorType=pmsm.motorType;
     end
 
@@ -174,7 +92,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
         disp(message('mcb:blocks:APImotorType',string(motorType)).getString());
     end
 
-
     intermediate_speed=-1;
 
     scale_high_speed=100;
@@ -186,11 +103,8 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
             disp(message('mcb:blocks:APIForceSetVCLMT').getString());
         end
         startval.id=0;startval.iq=0;startval.w=0;
-
-
         w_corner=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,inverter,startval,5,...
         'voltageEquation',voltageEquation,'outputAll',outputAll);
-
         w_corner_rpm=w_corner(end)*elec2mech*radps2rpm;
         if outputAll==1
             CurrentSpeedArray=[CurrentSpeedArray,w_corner];
@@ -204,12 +118,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
             'opacity',1,'voltageEquation',voltageEquation,'FWCMethod',FWCMethod);
         end
 
-
-
-
-
-
-
         id_mtpv_Irated=Icritical;
         if abs(Icritical)>Irated
 
@@ -220,11 +128,8 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
 
         w_mtpv_onset1=vmax/sqrt(Lq^2*iq_mtpv_Irated^2...
         +(Ld*id_mtpv_Irated+fluxPM)^2);
-
         startval.id=id_mtpv_Irated;startval.iq=iq_mtpv_Irated;
         startval.w=w_mtpv_onset1;
-
-
         [w_mtpv_onset,status_ok]=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,inverter,...
         startval,3,'voltageEquation',voltageEquation,...
         'outputAll',outputAll);
@@ -234,8 +139,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
         if status_ok==0
             startval.id=id_mtpv_Irated;startval.iq=iq_mtpv_Irated;
             startval.w=10*w_mtpv_onset1;
-
-
             [w_mtpv_onset,status_ok]=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,inverter,...
             startval,3,'voltageEquation',voltageEquation,...
             'outputAll',outputAll);
@@ -245,12 +148,8 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
         speeds=w_mtpv_onset(end,:);w_mtpv_onset=w_mtpv_onset(:,speeds>=0);
         speeds=w_mtpv_onset(end,:);w_mtpv_onset=w_mtpv_onset(:,speeds<1e7);
 
-
-
         if isempty(w_mtpv_onset)==1||status_ok==0
             startval.id=0;startval.iq=0;startval.w=0;
-
-
             w_max=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,inverter,...
             startval,7,'voltageEquation',voltageEquation,...
             'outputAll',outputAll);
@@ -270,13 +169,8 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
             max_speed=w_max_rpm;
         else
             w_mtpv_onset_rpm=w_mtpv_onset(end)*elec2mech*radps2rpm;
-
-
             startval.id=Icritical;startval.iq=0.1;
             startval.w=w_mtpv_onset(end);
-
-
-
             [w_max,status_ok]=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,inverter,...
             startval,4,'voltageEquation',voltageEquation,...
             'outputAll',outputAll);
@@ -293,15 +187,9 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
             end
             w_max_rpm=w_max(end)*elec2mech*radps2rpm;
 
-
-
-
             if status_ok==0
                 startval.id=Icritical;startval.iq=0.1;
                 startval.w=max(scale_high_speed*w_mtpv_onset(end),high_speed_min);
-
-
-
                 [w_max,status_ok]=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,inverter,...
                 startval,4,'voltageEquation',voltageEquation,...
                 'outputAll',outputAll);
@@ -351,13 +239,9 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
         end
 
     else
-
         startval.id=0;startval.iq=0;startval.w=0;
-
-
         w_corner=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,inverter,startval,6,...
         'voltageEquation',voltageEquation,'outputAll',outputAll);
-
         w_corner_rpm=w_corner(end)*elec2mech*radps2rpm;
         if outputAll==1
             CurrentSpeedArray=[CurrentSpeedArray,w_corner];
@@ -372,8 +256,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
         end
 
         if strcmpi(FWCMethod,'none')==1
-
-
             w_noFW_max=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,inverter,...
             startval,22,'voltageEquation',voltageEquation,...
             'outputAll',outputAll);
@@ -386,8 +268,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
                 num2str(floor(w_noFW_max_rpm))).getString());
             end
             if constraintCurves==1
-
-
                 mcbPMSMCharacteristics(pmsm,inverter,...
                 'speed',w_noFW_max_rpm,...
                 'opacity',min(0.999,w_corner_rpm/w_noFW_max_rpm),...
@@ -396,13 +276,7 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
             max_speed=w_noFW_max_rpm;
         elseif strcmpi(FWCMethod,'cvcp')==1
             if(Irated>pmsm.FluxPM/pmsm.Ld)
-
-
-
                 startval.id=0;startval.iq=0;startval.w=w_corner(end);
-
-
-
                 w_cvcp_maxspeed=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,...
                 inverter,startval,33,'voltageEquation',voltageEquation,...
                 'outputAll',outputAll);
@@ -421,37 +295,22 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
                     'voltageEquation',voltageEquation,'FWCMethod',FWCMethod);
                 end
             else
-
-
-
-
-
-
                 startval.id=0;startval.iq=0;startval.w=w_corner(end);
-
-
                 w_cvcp_touchcircle=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,...
                 inverter,startval,24,'voltageEquation',voltageEquation,...
                 'outputAll',outputAll);
                 w_cvcp_touchcircle_rpm=w_cvcp_touchcircle(end)*elec2mech*radps2rpm;
                 startval.id=0;startval.iq=0;startval.w=w_corner(end);
-
-
-
                 w_cvcp_touchtorque=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,...
                 inverter,startval,33,'voltageEquation',voltageEquation,...
                 'outputAll',outputAll);
                 w_cvcp_touchtorque_rpm=w_cvcp_touchtorque(end)*elec2mech*radps2rpm;
                 startval.id=0;startval.iq=0;startval.w=w_corner(end);
-
-
                 w_circle_touchtorque=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,...
                 inverter,...
                 startval,25,'voltageEquation',voltageEquation,...
                 'outputAll',outputAll);
                 w_circle_touchtorque_rpm=w_circle_touchtorque(end)*elec2mech*radps2rpm;
-
-
 
                 if w_cvcp_touchtorque_rpm<w_circle_touchtorque_rpm
                     w_cvcp_maxspeed=w_cvcp_touchtorque;
@@ -460,7 +319,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
                 end
                 w_cvcp_maxspeed_rpm=w_cvcp_maxspeed(end)*elec2mech*radps2rpm;
                 if w_cvcp_maxspeed_rpm>w_cvcp_touchcircle_rpm
-
 
                     if outputAll==1
                         CurrentSpeedArray=[CurrentSpeedArray,w_cvcp_touchcircle];
@@ -494,18 +352,11 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
             max_speed=w_cvcp_maxspeed_rpm;
         elseif strcmpi(FWCMethod,'cccp')==1
             startval.id=0;startval.iq=0;startval.w=w_corner(end);
-
-
-
             w_cccp_voltlimit=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,...
             inverter,startval,28,'voltageEquation',voltageEquation,...
             'outputAll',outputAll);
             w_cccp_voltagelimit_rpm=w_cccp_voltlimit(end)*elec2mech*radps2rpm;
-
             startval.id=0;startval.iq=0;startval.w=w_corner(end);
-
-
-
             w_cccp_maxspeed=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,...
             inverter,...
             startval,30,'voltageEquation',voltageEquation,...
@@ -567,10 +418,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
             end
             max_speed=w_cccp_maxspeed_rpm;
         else
-
-
-
-
             id_mtpv_Irated=Icritical;
             if abs(Icritical)>Irated
 
@@ -585,9 +432,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
 
             startval.id=id_mtpv_Irated;startval.iq=iq_mtpv_Irated;
             startval.w=w_mtpv_onset1;
-
-
-
             [w_mtpv_onset,status_ok]=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,...
             inverter,startval,1,...
             'voltageEquation',voltageEquation,'outputAll',outputAll);
@@ -597,9 +441,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
             if status_ok==0
                 startval.id=id_mtpv_Irated;startval.iq=iq_mtpv_Irated;
                 startval.w=10*w_mtpv_onset1;
-
-
-
                 [w_mtpv_onset,status_ok]=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,...
                 inverter,startval,1,...
                 'voltageEquation',voltageEquation,'outputAll',outputAll);
@@ -610,15 +451,10 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
             speeds=w_mtpv_onset(end,:);w_mtpv_onset=w_mtpv_onset(:,speeds<1e7);
 
             if isempty(w_mtpv_onset)==1||status_ok==0
-
                 startval.id=0;startval.iq=0;startval.w=w_corner(end);
-
-
                 w_max_vclmt_bv=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,...
                 inverter,startval,8,'voltageEquation',voltageEquation,...
                 'outputAll',outputAll);
-
-
                 w_max_vclmt_bv_rpm=w_max_vclmt_bv(end)*elec2mech*radps2rpm;
                 if outputAll==1
                     CurrentSpeedArray=[CurrentSpeedArray,w_max_vclmt_bv];
@@ -643,9 +479,6 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
 
                 startval.iq=0.1;
                 startval.w=w_mtpv_onset(end);
-
-
-
                 [w_max,status_ok]=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,inverter,...
                 startval,2,'voltageEquation',voltageEquation,...
                 'outputAll',outputAll);
@@ -662,16 +495,10 @@ function[milestone_speeds]=PMSMSpeedComputation(pmsm,inverter,varargin)
                 end
                 w_max_rpm=w_max(end)*elec2mech*radps2rpm;
 
-
-
-
                 if w_max_rpm<w_mtpv_onset_rpm||status_ok==0
                     startval.id=Icritical;
                     startval.iq=0.1;
                     startval.w=max(scale_high_speed*w_mtpv_onset(end),high_speed_min);
-
-
-
                     [w_max,status_ok]=mcb.internal.PMSMSpeedCurrentsFcn(pmsm,inverter,...
                     startval,2,'voltageEquation',voltageEquation,...
                     'outputAll',outputAll);
