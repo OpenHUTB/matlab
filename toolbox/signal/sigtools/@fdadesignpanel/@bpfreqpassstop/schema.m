@@ -1,14 +1,7 @@
 function schema
 
-
-
-
-
     pk=findpackage('fdadesignpanel');
-
-
     c=schema.class(pk,'bpfreqpassstop',findclass(pk,'abstractfiltertypewfs'));
-
 
     p=schema.prop(c,'Fstop1','ustring');
     p.FactoryValue='7200';
