@@ -1,11 +1,6 @@
 function schema
 
-
-
-
-
     pk=findpackage('fdadesignpanel');
-
     c=schema.class(pk,'abstractmagframe',pk.findclass('abstractfiltertype'));
     c.Description='abstract';
 
@@ -16,23 +11,17 @@ function schema
     if isempty(findtype('fdadesignpanelMagUnits'))
         schema.EnumType('fdadesignpanelMagUnits',{'dB','Linear','Squared'});
     end
-
     p=schema.prop(c,'IRType','fdadesignpanelIRType');
     p.SetFunction=@setirtype;
     p.Description='spec';
-
     p=schema.prop(c,'magUnits','fdadesignpanelMagUnits');
     p.SetFunction=@setmagunits;
     p.FactoryValue='dB';
     p.Description='spec';
 
 
-
     function out=setirtype(h,out)
-
-
         set(h,'MagUnits','dB');
-
 
 
         function out=setmagunits(h,out)
