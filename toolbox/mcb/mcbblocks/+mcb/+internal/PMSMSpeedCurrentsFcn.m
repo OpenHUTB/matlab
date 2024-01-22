@@ -1,86 +1,11 @@
 function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
     inverter,seed,solveType,varargin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     [licenseStatus,licenseerror]=builtin('license','checkout','Motor_Control_Blockset');
     if licenseStatus==0
         error(licenseerror);
     end
 
     p=inputParser;
-
     addRequired(p,'pmsm',@(x)isstruct(x)&&min(isfield(x,{'p','Rs','Ld','Lq','FluxPM','B','I_rated'})));
     addRequired(p,'inverter',@(x)isstruct(x)&&min(isfield(x,{'V_dc'})));
     addRequired(p,'seed',@(x)isstruct(x));
@@ -90,7 +15,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
     addParameter(p,'voltageEquation','actual',@(x)any(ismember(lower(x)...
     ,{'actual','approximate'})));
     addParameter(p,'outputAll',0,@(x)any(ismember(x,[1,0])));
-
     parse(p,pmsm,inverter,seed,solveType,varargin{:});
 
     pmsm=p.Results.pmsm;
@@ -102,18 +26,13 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
     solveType=p.Results.solveType;
 
     loopLimit=p.Results.loopLimit;
-
     reductionFactor=p.Results.reductionFactor;
-
     voltageEquation=p.Results.voltageEquation;
     includeR=strcmpi(voltageEquation,'actual');
 
     outputAll=p.Results.outputAll;
 
-
     irdropVcc=1-includeR;
-
-
 
     stk=dbstack;
     calledFromAnother=0;
@@ -141,39 +60,22 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
     I_short=inverter.V_dc/sqrt(3)/R;
 
     if Irated>(I_short)
-
-
         Irated=I_short;
     end
 
-
     vmax=inverter.V_dc/sqrt(3)-(irdropVcc)*(pmsm.Rs+inverter.R_board)*Irated;
-
-
-
 
     if includeR==0
         R=0;
     end
 
-
     elec2mech=1/Pp;
 
-
-
-
-
-
-
     Bv=Bv*elec2mech;
-
 
     status_ok=1;
     switch solveType
     case 1
-
-
-
         L=Ld;
         nr.a=fluxPM/L;
         nr.a2=fluxPM^2/L^2;
@@ -212,9 +114,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             status_ok=0;
         end
     case 2
-
-
-
         L=Ld;
         nr.a=fluxPM/L;
         nr.a2=fluxPM^2/L^2;
@@ -255,9 +154,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             status_ok=0;
         end
     case 3
-
-
-
         nr.a=Irated^2;
         nr.b=R^2;
         nr.c=Ld*Lq;
@@ -324,9 +220,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         end
 
     case 4
-
-
-
         nr.b=R^2;
         nr.c=Ld*Lq;
         nr.d=Lq^2;
@@ -394,24 +287,17 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             status_ok=0;
         end
     case 5
-
-
-
-
         id_mtpa=(-fluxPM+sqrt(fluxPM^2+8*Irated^2*(Ld...
         -Lq)^2))/(4*(Ld-Lq));
         iq_mtpa=sqrt(Irated^2-id_mtpa^2);
         coeff.a=(fluxPM+id_mtpa*Ld)^2+Lq^2*iq_mtpa^2;
         coeff.b=2*iq_mtpa*R*fluxPM+2*id_mtpa*iq_mtpa*R*(Ld-Lq);
         coeff.c=Irated^2*R^2-vmax^2;
-
         w_corner=roots([coeff.a,coeff.b,coeff.c]);
         w_corner=w_corner(imag(w_corner)==0);
         w_corner=w_corner(w_corner>=0);
         if isempty(w_corner)
             w_corner=0;
-
-
         end
         if outputAll==1
             operatingPoint=[id_mtpa;iq_mtpa;w_corner];
@@ -419,10 +305,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w_corner;
         end
     case 6
-
-
-
-
         L=Ld;
         coeff.a=fluxPM^2+(L^2*Irated^2);
         coeff.b=2*Irated*R*fluxPM;
@@ -434,8 +316,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         iq_mtpa=Irated;
         if isempty(w_corner)
             w_corner=0;
-
-
         end
         if outputAll==1
             operatingPoint=[id_mtpa;iq_mtpa;w_corner];
@@ -443,9 +323,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w_corner;
         end
     case 7
-
-
-
         id_wmax_bv=roots([...
         (-(Ld-Lq)^2*(Ld^2-Lq^2))...
         ,(-((Ld-Lq)^2*2*Ld*fluxPM)...
@@ -479,8 +356,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             w_max_bv=0;
         else
             iq_wmax_bv=sqrt(Irated^2-id_wmax_bv.^2);
-
-
             w_max_bv=1.5*Pp*iq_wmax_bv*(fluxPM+(Ld-Lq)*id_wmax_bv)/Bv;
         end
         if outputAll==1
@@ -489,10 +364,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w_max_bv;
         end
     case 8
-
-
-
-
         L=Ld;
         coeff.a=Irated^2*L^2+fluxPM^2+2*R*Bv/(1.5*Pp);
         coeff.b=Irated^2*R^2-vmax^2;
@@ -502,20 +373,12 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         coeff.f=coeff.c^2*coeff.e;
         coeff.g=(coeff.a^2-coeff.c^2*coeff.d);
         coeff.h=2*coeff.a*coeff.b;
-        coeff.k=coeff.b^2;
-
-
-        w_max_vclmt_bv=roots([coeff.f,0,coeff.g,0,coeff.h,0,coeff.k]);
-
+        coeff.k=coeff.b^2;        w_max_vclmt_bv=roots([coeff.f,0,coeff.g,0,coeff.h,0,coeff.k]);
         w_max_vclmt_bv=w_max_vclmt_bv(imag(w_max_vclmt_bv)==0);
-
-
         w_max_vclmt_bv=w_max_vclmt_bv(w_max_vclmt_bv>seed.w);
         w_max_vclmt_bv=max(w_max_vclmt_bv);
         if isempty(w_max_vclmt_bv)
             w_max_vclmt_bv=0;
-
-
         else
             iq_wmax_bv=Bv*w_max_vclmt_bv/(1.5*Pp*fluxPM);
             id_wmax_bv=-sqrt(Irated^2-iq_wmax_bv^2);
@@ -526,9 +389,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w_max_vclmt_bv;
         end
     case 9
-
-
-
         w=seed.w;
         coeff.a=fluxPM*R*(R^2+2*w^2*Lq^2-w^2*Ld*Lq)/((Ld...
         -Lq)*(R^2-w^2*Ld*Lq));
@@ -580,9 +440,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             status_ok=0;
         end
     case 10
-
-
-
         w=seed.w;
         coeff.a=w^2*(Ld^2-Lq^2);
         coeff.b=2*w^2*fluxPM*Ld;
@@ -614,11 +471,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 11
-
-
-
-
-
         w=seed.w;
         L=Ld;
         coeff.a=w*L;
@@ -631,8 +483,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         if R==0
             id=-coeff.b./coeff.a;
         else
-
-
             id=(-coeff.e-sqrt((coeff.e).^2-4*coeff.d.*coeff.f))./(2*coeff.d);
         end
         id=id(imag(id)==0);
@@ -647,11 +497,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 12
-
-
-
-
-
         w=seed.w;
         L=Ld;
         id=-w.^2*L*fluxPM./(R^2+w.^2*L^2);
@@ -659,26 +504,18 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         coeff.b=(2*R*w*fluxPM);
         coeff.c=(w.^2*fluxPM^2+id.^2.*(R^2+w.^2*L^2)+...
         2*w.^2*fluxPM*L.*id-vmax^2);
-
-
         iq=(-coeff.b+sqrt((coeff.b).^2-4*(coeff.a).*coeff.c))./(2*coeff.a);
         if outputAll==1
             operatingPoint=[id;iq;w];
         else
             operatingPoint=w;
         end
-
     case 13
-
         x1=seed.id;
-
         y1=sqrt(Irated^2-x1.^2);
-
         y2=-sqrt(Irated^2-x1.^2);
-
         indices=find(y1==real(y1));
         x2=x1(indices);x2=x2(end:-1:1);
-
 
         y=y1(indices);y=y(end:-1:1);
         indices=find(y2==real(y2));
@@ -694,7 +531,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 14
-
         x=seed.id;
 
         T=seed.t;
@@ -856,9 +692,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 22
-
-
-
         L=Ld;
         coeff.a=(Bv*L/(1.5*Pp*fluxPM))^2;
         coeff.b=((Bv*R/(1.5*Pp*fluxPM))^2+(fluxPM^2)+(Bv*2*R/(1.5*Pp)));
@@ -869,23 +702,17 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         id=0;
         iq=Bv*w/(1.5*Pp*fluxPM);
 
-
         if outputAll==1
             operatingPoint=[id;iq;w];
         else
             operatingPoint=w;
         end
     case 23
-
-
-
         w=seed.w;
         L=Ld;
         coeff.a=w.^2*L^2+R^2;
         coeff.b=2*R*w*fluxPM;
         coeff.c=w.^2*fluxPM^2-vmax^2;
-
-
         iq=(-coeff.b+sqrt(coeff.b.^2-4*coeff.a.*coeff.c))./(2*coeff.a);
         id=0*w;
 
@@ -895,9 +722,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 24
-
-
-
         wcorner=seed.w;
         L=Ld;
         coeff.k=fluxPM^2/(Irated^2*L^2);
@@ -907,8 +731,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         w=roots([coeff.a,coeff.b,coeff.c]);
         w=w(imag(w)==0);
         w=w(w>0);
-
-
 
         w=w(w>=wcorner*1.001);
         id=fluxPM*(wcorner-w)/(L*w);
@@ -921,10 +743,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         end
 
     case 25
-
-
-
-
         L=Ld;
         wcorner=seed.w;
         coeff.k1=(1.5*Pp*fluxPM/Bv)^2;
@@ -947,10 +765,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 26
-
-
-
-
         w=seed.w;
         wcorner=seed.wcorner;
         id=(wcorner-w)*fluxPM./(Ld*w);
@@ -962,11 +776,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 27
-
-
-
-
-
         w=seed.w;
         wcorner=seed.wcorner;
         id=(wcorner-w)*fluxPM./(Ld*w);
@@ -979,9 +788,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 28
-
-
-
         L=Ld;
         wcorner=seed.w;
         coeff.k1=(L^2+fluxPM^2/Irated^2)*Irated/(2*fluxPM*L);
@@ -994,8 +800,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         w=w(imag(w)==0);
         w=w(w>0);
 
-
-
         w=w(w>wcorner*1.001);
         iq=Irated*wcorner/w;
         id=-sqrt(Irated^2-iq^2);
@@ -1006,10 +810,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 29
-
-
-
-
         w=seed.w;
         wcorner=seed.wcorner;
         iq=Irated*wcorner./w;
@@ -1021,11 +821,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 30
-
-
-
-
-
         L=Ld;
         wcorner=seed.w;
         w=sqrt(Irated*wcorner*1.5*Pp*fluxPM/Bv);
@@ -1033,12 +828,7 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         coeff.a=R^2+w^2*L^2;
         coeff.b=2*fluxPM*L*w^2;
         coeff.c=iq^2*(R^2+w^2*L^2)-vmax^2+w^2*fluxPM^2+2*fluxPM*R*Irated*wcorner;
-
-
         id=(-coeff.b+sqrt(coeff.b.^2-4*coeff.a.*coeff.c))./(2*coeff.a);
-
-
-
         id=id(abs(id)<=1.001*sqrt(Irated^2-iq.^2));
 
         if isempty(id)
@@ -1052,12 +842,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 31
-
-
-
-
-
-
         w=seed.w;
         L=Ld;
         wcorner=seed.wcorner;
@@ -1065,18 +849,9 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
         coeff.a=R^2+w.^2*L^2;
         coeff.b=2*fluxPM*L*w.^2;
         coeff.c=iq.^2.*(R^2+w.^2*L^2)-vmax^2+w.^2*fluxPM^2+2*fluxPM*R*Irated*wcorner;
-
-
         id=(-coeff.b-sqrt(coeff.b.^2-4*coeff.a.*coeff.c))./(2*coeff.a);
-
-
-
         indices1=find(abs(id)>1.001*sqrt(Irated^2-iq.^2));
-
-
         id(indices1)=-1.001*sqrt(Irated^2-iq(indices1).^2);
-
-
 
         if isempty(id)
             w=[];
@@ -1088,10 +863,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 32
-
-
-
-
         id=seed.id;
         L=Ld;
         iq=Irated*(fluxPM+L*id)/fluxPM;
@@ -1104,9 +875,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 33
-
-
-
         L=Ld;
         wcorner=seed.w;
         w=sqrt(Irated*wcorner*1.5*Pp*fluxPM/Bv);
@@ -1119,9 +887,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 34
-
-
-
         w=seed.w;
         T=seed.t;
         goLUT=seed.goLUT;
@@ -1157,7 +922,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             iq_mtpa=min(iq_mtpa,Irated);
             id_mtpa=-fluxPM/(2*(Ld-Lq))-sqrt((fluxPM^2/(4*(Ld-Lq)^2))+iq_mtpa^2);
 
-
             id_mtpa=real(id_mtpa);
             id_mtpa=id_mtpa(id_mtpa<=0);
             id_mtpa=max(id_mtpa,-Irated);
@@ -1179,9 +943,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 35
-
-
-
         w=seed.w;
         T=seed.t;
         goLUT=seed.goLUT;
@@ -1235,16 +996,10 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             'voltageEquation',voltageEquation);
             if isempty(iq_fw)||((operatingpoint(2)<signT*iq_fw)&&(abs(operatingpoint(1))<abs(tmp_id_fw)))
 
-
-
-
-
-
                 id_fw=operatingpoint(1);
                 iq_fw=signT*operatingpoint(2);
             else
                 id_fw=tmp_id_fw;
-
 
                 id_fw=real(id_fw);
                 id_fw=max(id_fw,-Irated);
@@ -1268,7 +1023,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 36
-
         w=seed.w;
         T=seed.t;
         goLUT=seed.goLUT;
@@ -1320,19 +1074,13 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             iq_mtpv=roots([coeff.q,coeff.k,coeff.m,coeff.n,coeff.p]);
             iq_mtpv=iq_mtpv(imag(iq_mtpv)==0);
             iq_mtpv=iq_mtpv(signT*iq_mtpv>=0);
-
-
-
             iq_mtpv=signT*max(signT*iq_mtpv);
             iq_mtpv=signT*min(Irated,signT*iq_mtpv);
-
             id_mtpv=(coeff.a+iq_mtpv*coeff.b-sqrt((-coeff.a-coeff.b*iq_mtpv)^2...
             -coeff.c*(coeff.d*iq_mtpv^2+coeff.e*iq_mtpv+coeff.f)))/coeff.c;
 
-
             id_mtpv=real(id_mtpv);
             id_mtpv=max(id_mtpv,-Irated);
-
             iq_mtpv=signT*min(abs(iq_mtpv),sqrt(Irated^2-id_mtpv^2));
             if goLUT==1
                 error1=abs(iq_mtpv-iq_mtpv_old);
@@ -1352,9 +1100,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 37
-
-
-
         w=seed.w;
         T=seed.t;
         goLUT=seed.goLUT;
@@ -1391,10 +1136,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 38
-
-
-
-
         w=seed.w;
         T=seed.t;
         goLUT=seed.goLUT;
@@ -1441,8 +1182,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 39
-
-
         w=seed.w;
         T=seed.t;
         goLUT=seed.goLUT;
@@ -1486,7 +1225,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 40
-
         w=seed.w;
         T=seed.t;
         goLUT=seed.goLUT;
@@ -1523,7 +1261,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 41
-
         w=seed.w;
         T=seed.t;
         goLUT=seed.goLUT;
@@ -1553,7 +1290,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             iq_fw=T/(1.5*Pp*fluxPM);
             id_fw=[(coeff.a+sqrt(coeff.a^2-coeff.b*(coeff.b*iq_fw^2+coeff.c+coeff.d*iq_fw)))/coeff.b;
             (coeff.a-sqrt(coeff.a^2-coeff.b*(coeff.b*iq_fw^2+coeff.c+coeff.d*iq_fw)))/coeff.b];
-
 
             id_fw=id_fw(id_fw<0);
             id_fw=id_fw(imag(id_fw)==0);
@@ -1587,7 +1323,6 @@ function[operatingPoint,status_ok]=PMSMSpeedCurrentsFcn(pmsm,...
             operatingPoint=w;
         end
     case 42
-
         w=seed.w;
         T=seed.t;
         goLUT=seed.goLUT;
