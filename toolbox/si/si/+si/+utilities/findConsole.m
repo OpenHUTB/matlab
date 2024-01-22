@@ -1,6 +1,5 @@
 function app=findConsole(product)
 
-
     import si.utilities.*
     app=[];
     product=validatestring(product,["parallelLinkDesigner","serialLinkDesigner",...
