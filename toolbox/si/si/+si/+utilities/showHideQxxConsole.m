@@ -1,5 +1,4 @@
 function showHideQxxConsole(product,visible)
-
     import si.utilities.*
     validateattributes(product,{'char','string'},{'nonempty'})
     product=string(product).lower;
