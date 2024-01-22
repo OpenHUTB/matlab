@@ -1,10 +1,4 @@
 function[process,instance]=startProduct(app,product,fileNames)
-
-
-
-
-
-
     validateattributes(product,{'char','string'},{'nonempty'})
     product=validatestring(product,["parallelLinkDesigner",...
     "serialLinkDesigner",...
