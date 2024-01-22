@@ -1,14 +1,9 @@
 function[mapName,relativePathToMapFile,found]=getBlockHelpMapNameAndPath(block_type)
 
-
-
-
-
     blks={...
     'mcb_vectorplot','vectorplot'};
     relativePathToMapFile=fullfile(docroot,'mcb','mcb.map');
     found=false;
-
 
     idx=strcmp(block_type,blks(:,1));
 
