@@ -1,22 +1,12 @@
 function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,estParIdxOut,Kp_iOut,Ki_iOut]=estimateMotorParamAlgoExpo(SignalsPU,Ts,curTime,RsMeasTestTime,I_rated,pole_pairs,Rs,Ld,R_board,V_rated,currentPU_RWV,sigma,IaIbVdc,inverter_V_max,speedFB,speed_rated,Vd_ref_Rs,freqMin,freqMax,freqStep)
 
-
-
-
-
-
-
-
-
     coder.allowpcode('plain');
 %#codegen
-
 
     persistent flag;
     if isempty(flag)
         flag=single(0);
     end
-
 
     persistent errorID;
     if isempty(errorID)
@@ -47,7 +37,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
     if isempty(estimatedParameter)
         estimatedParameter=single(0);
     end
-
 
     persistent voltagePU_RWV;
     if isempty(voltagePU_RWV)
@@ -184,7 +173,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
         min=single(0);
     end
 
-
     persistent Sig1;
     persistent Sig2;
     if isempty(Sig1)
@@ -224,8 +212,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
         Sig5Mean=single(0);
     end
 
-
-
     if testNum>0&&testEnable
         if abs(IaIbVdc(1))*currentPU_RWV>I_rated||abs(IaIbVdc(2))*currentPU_RWV>I_rated
             flag=single(15);
@@ -244,8 +230,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
             savedTimeInstance=curTime;
         end
 
-
-
     case 1
         if curTime<savedTimeInstance+0.1
             Sig1=Sig1+single(SignalsPU(1));
@@ -257,8 +241,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
             flag=single(0);
         end
 
-
-
     case 2
         voltagePU_RWV=single(V_rated/sqrt(3));
         estimatedParameter=single(Sig1*1e-4/((0.3-0.2)/Ts));
@@ -268,10 +250,8 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
         flag=single(0);
         estParIdx=single(0);
 
-
     case 3
         estimatedParameter=single(Sig2*1e-4/((0.3-0.2)/Ts));
-
 
         refSignal=single(Vd_ref_Rs);
         Sig1=single(0);
@@ -283,9 +263,7 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
         estParIdx=single(1);
         testNum=single(1);
 
-
     case 4
-
 
         if curTime<savedTimeInstance+RsMeasTestTime
             Sig1=Sig1+single(SignalsPU(1)*1e-3);
@@ -296,7 +274,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
             flag=single(0);
             savedTimeInstance=curTime;
         end
-
 
     case 5
 
@@ -317,9 +294,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
         testNum=single(2);
 
     case 7
-
-
-
         SignalsPU(2)=single(SignalsPU(2))*currentPU_RWV;
         Sig1=Sig1+((single(SignalsPU(2))-arraySine(sinIdx))/samplesPerHalfCycle);
 
@@ -350,13 +324,7 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
             sinIdx=sinIdx+single(1);
         end
 
-
     case 8
-
-
-
-
-
         if(max-min)*pi*0.5<0.5*I_rated&&injFreq>injFreqMin
             flagNextVal=single(7);
 
@@ -365,7 +333,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
         else
             flagNextVal=single(9);
             if injFreq==single(injFreqMax)
-
                 injFreqStep=injFreqStep*(-1);
             end
             numWaves=single(8);
@@ -380,9 +347,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
         sinIdx=single(1);
 
     case 9
-
-
-
         SignalsPU(1)=single(SignalsPU(1))*voltagePU_RWV;
         SignalsPU(2)=single(SignalsPU(2))*currentPU_RWV;
 
@@ -416,15 +380,12 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
             Sig2Prev=Sig2;
         end
 
-
     case 10
-
         SignalsPU(1)=single(SignalsPU(1))*voltagePU_RWV;
         SignalsPU(2)=single(SignalsPU(2))*currentPU_RWV;
 
         Sig1=Sig1+((single(SignalsPU(1))-arraySine(sinIdx))/samplesPerHalfCycle);
         Sig2=Sig2+((single(SignalsPU(2))-arraySine(sinIdx+500))/samplesPerHalfCycle);
-
         arraySine(sinIdx)=single(SignalsPU(1));
         arraySine(sinIdx+500)=single(SignalsPU(2));
         if sinIdx>=samplesPerHalfCycle
@@ -433,14 +394,12 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
             sinIdx=sinIdx+single(1);
         end
 
-
         if Sig1>Sig1Mean&&Sig1Prev<Sig1Mean
             timeInstance1=curTime-(Ts*((Sig1-Sig1Mean)/(Sig1-Sig1Prev)));
             count2=single(1);
 
         elseif Sig2>Sig2Mean&&Sig2Prev<Sig2Mean&&count2
             timeInstance2=curTime-(Ts*((Sig2-Sig2Mean)/(Sig2-Sig2Prev)))-(2*Ts);
-
 
             phaseDiffDeg=phaseDiffDeg+((timeInstance2-timeInstance1)*injFreq*2*pi);
             count1=count1+single(1);
@@ -456,7 +415,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
                 flagNextVal=single(9);
                 delay=single(0.2);
                 flag=single(0);
-
 
                 savedTimeInstance=curTime;
                 sinIdx=single(1);
@@ -494,10 +452,8 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
                         refSignal=single(0.9);
                         numWaves=single(60000);
 
-
                         Kp_i=single((Ld/(2*sigma*1e-6))*(currentPU_RWV/voltagePU_RWV));
                         Ki_i=single(((Rs+R_board)/(2*sigma*1e-6))*(currentPU_RWV/voltagePU_RWV));
-
 
                     end
 
@@ -507,7 +463,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
         end
         Sig1Prev=Sig1;
         Sig2Prev=Sig2;
-
 
     case 11
 
@@ -530,7 +485,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
             Sig1Prev=(SignalsPU(1)-SignalsPU(2))*voltagePU_RWV;
         end
     case 12
-
         Sig1=(SignalsPU(1)-SignalsPU(2))*voltagePU_RWV;
         if Sig1>Sig1Mean&&Sig1Prev<Sig1Mean
             if~count2
@@ -540,12 +494,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
                 timeInstance2=curTime-(Ts*((Sig1-Sig1Mean)/(Sig1-Sig1Prev)));
                 injFreq=1/(timeInstance2-timeInstance1);
                 samplesPerHalfCycle=single(uint16(0.5*(1/(Ts*injFreq))));
-
-
-
-
-
-
                 lambda=(Sig4Mean-(Rs)*Sig5Mean-Ld*Sig3Mean*(injFreq*2*pi))/(injFreq*2*pi);
                 estimatedParameter=sqrt(3)*(lambda*(injFreq*2*pi))/((60*injFreq/pole_pairs)*1e-3);
                 estParIdx=single(5);
@@ -567,19 +515,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
         if abs(speedFB*speed_rated)<(0.25*speed_rated)
             speed_mech_rpm=single(0.25*speed_rated);
             timeInstance2=curTime;
-
-
-
-
-
-
-
-
-
-
-
-
-
             estimatedParameter=((3/2*((Sig2Mean*Sig3Mean)+(Sig4Mean*Sig5Mean)))-...
             (3/2*(Sig5Mean^2+Sig3Mean^2)*(Rs)))/...
             (((speed_radPerSec-(speed_mech_rpm*2*pi/60))/...
@@ -591,13 +526,6 @@ function[testNumOut,injFreqOut,refSignalOut,estimatedParameterOut,testEnableOut,
             flag=single(0);
         end
     case 14
-
-
-
-
-
-
-
         estimatedParameter=((3/2)*pole_pairs*(lambda*Sig5Mean))/speed_radPerSec;
         estParIdx=single(7);
 
