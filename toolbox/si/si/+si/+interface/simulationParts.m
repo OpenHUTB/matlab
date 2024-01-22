@@ -1,9 +1,4 @@
 function[projectDir,simulationStateDir,simulationDir,simName,ext]=simulationParts(simulationFile)
-
-
-
-
-
     [simulationDir,simName,ext]=fileparts(simulationFile);
     projectDir=simulationDir;
     lastDir=simName;
