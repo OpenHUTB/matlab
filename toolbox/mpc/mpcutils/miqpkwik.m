@@ -3,62 +3,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
     maxstack,maxiter,feastol,discfeastol,V0,rounding,numdis,maxdis)
 %#codegen
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     ZERO=zeros(1,1,'like',Q);
     ONE=ones(1,1,'like',Q);
     ONEi=ones(1,1,'like',int16(1));
@@ -73,7 +17,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
     iters=ZERO;
     numqpsolved=ZERO;
 
-
     p=numel(beq);
     b=[beq;b];
     A=[Aeq;A];
@@ -83,7 +26,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
     ivar=(dvar>0);
 
     ivars=zeros(numdis,1,'like',Q);
-
 
     DSET=zeros(numdis,maxdis,'like',Q);
     k=ZEROi;
@@ -115,7 +57,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
     AI=zeros(numdis,2,'like',Q);
     ivlb=isfinite(vlb);
     ivub=isfinite(vub);
-
 
     for i=1:numdis
         j=ivars(i);
@@ -164,7 +105,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
     Svlb_ivar=zeros(numdis,maxstack,'like',Q);
     Svub_ivar=zeros(numdis,maxstack,'like',Q);
 
-
     topstack=ONE;
     SPeq(1:p,topstack)=true;
     SIact(1:p,topstack)=ONEi;
@@ -190,10 +130,7 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
     indAct=zeros(mmax,1,'like',ONEi);
     indAct2=zeros(mmax,1,'like',ONEi);
 
-
-
     while topstack>ZERO&&~stack_full
-
 
         Peq=SPeq(:,topstack);
         I=SI(:,topstack);
@@ -201,7 +138,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
         vubi=Svub_ivar(:,topstack);
         Iact=SIact(:,topstack);
         topstack=topstack-ONE;
-
 
         for i=1:numdis
             if vlbi(i)==vubi(i)
@@ -258,14 +194,8 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
             maxit=int16(int32(maxiter)-int32(iters));
         end
 
-
         [x,~,status,indAct,QPiters]=localQPKWIK(Linv,Qinv,c,Ac,bc,indAct,...
         maxit,int16(m),int16(n),int16(meq),feastol,ONEi,bestcost,Q,mmax);
-
-
-
-
-
 
         iters=iters+QPiters;
         numqpsolved=numqpsolved+ONE;
@@ -275,11 +205,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
             isroot=false;
 
             if status>0&&rounding
-
-
-
-
-
 
                 for i=1:numdis
                     h=ivars(i);
@@ -295,14 +220,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
                     dviol(i)=dvioli;
                     xi(i)=DSET(i,j);
                 end
-
-
-
-
-
-
-
-
 
                 if int32(maxiter)-int32(iters)>int32(32767)
                     maxit=int16(32767);
@@ -364,7 +281,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
             end
         end
 
-
         h=0;
         for i=1:m
             if~Peq(i)
@@ -387,9 +303,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
         end
 
         if~(status==-ONE||status==ZERO||status==-2*ONE||status==-3*ONE||(status>ZERO&&V>=bestcost))
-
-
-
 
             h=0;
             for i=1:n
@@ -414,30 +327,20 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
                 jclosest(i)=j;
             end
 
-
             nF=sum(dviol>discfeastol);
 
             if nF==0
-
                 bestcost=V;
                 bestx=x;
                 beststatus=ZERO;
-
             else
-
-
-
-
                 [~,i]=max(dviol);
 
                 ri=DSET(i,jclosest(i));
                 vlbii=vlbi;
                 vubii=vubi;
 
-
                 if ri-xi(i)>0
-
-
                     vubii(i)=DSET(i,jclosest(i)-1);
                     if vubii(i)>=vlbi(i)
                         topstack=topstack+ONE;
@@ -513,73 +416,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
     function[x,lambda,status,iA,iters]=localQPKWIK(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol,...
         ForceDualStop,V0,H0,mmax)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
         coder.allowpcode('plain');
         ONE=ones('like',b);
@@ -610,12 +446,9 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
         cTol=ones(mmax,ONEINT16,'like',b);
         cTolComputed=false;
 
-
         iC=zeros(mmax,ONEINT16,'int16');
         nA=ZEROINT16;
         for i=ONEINT16:m
-
-
 
             if iA(i)==ONEINT16
                 nA=nA+ONEINT16;
@@ -623,7 +456,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
             end
         end
         if nA>0
-
             Opt=zeros(2*n,ONEINT16,'like',b);
             Rhs=[f;zeros(n,ONEINT16,'like',b)];
             DualFeasible=false;
@@ -640,8 +472,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
                         status=-2*ONE;
                         return
                     else
-
-
                         [nA,iA,iC]=ResetToColdStart(m,meq,mmax);
                         ColdReset=true;
                     end
@@ -709,35 +539,11 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
             x=Unconstrained(Hinv,f,x,n);
         end
 
-
         Xnorm0=norm(x);
-
-
-
-
-
-
-
-
-
-
-
 
         while status<=maxiter
             if ForceDualStop
-
-
-
-
-
-
-
-
-
-
-
                 phi=.5*x'*H0*x+f'*x;
-
 
                 if phi>=V0
                     iters=status;
@@ -746,12 +552,10 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
                 end
             end
 
-
             cMin=-FeasTol;
             kNext=ZEROINT16;
             for i=ONEINT16:(m-meq)
                 if~cTolComputed
-
                     cTol(i)=max(cTol(i),max(abs(Ac(i,:).*x')));
                 end
                 if iA(i)==ZEROINT16
@@ -777,9 +581,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
             end
             while kNext>ZEROINT16&&status<=maxiter
 
-
-
-
                 AcRow=Ac(kNext,:);
                 if nA==ZEROINT16
                     z=Hinv*AcRow';
@@ -801,7 +602,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
                 t1=ZERO;
                 isT1Inf=true;
 
-
                 tempOK=true;
                 if nA>meq
                     for ct=ONEINT16:nA-meq
@@ -812,9 +612,7 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
                     end
                 end
 
-
                 if~((nA==meq)||tempOK)
-
 
                     for i=ONEINT16:(nA-meq)
                         if r(i)>LamTol
@@ -878,12 +676,10 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
 
                         if nA==n
 
-
                             iters=status;
                             status=-1*ONE;
                             return
                         end
-
 
                         nA=nA+ONEINT16;
                         iC(nA)=kNext;
@@ -904,7 +700,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
                 status=status+ONE;
             end
 
-
             Xnorm=norm(x);
             if abs(Xnorm-Xnorm0)>RescaleFeasibilityTolerance
                 Xnorm0=Xnorm;
@@ -915,11 +710,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
 
 
         function[RLinv,D,H,Status]=KWIKfactor(Ac,iC,nA,Linv,RLinv,D,H,n)
-
-
-
-
-
 
 %#codegen
             TL=coder.nullcopy(Linv);
@@ -941,11 +731,8 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
             end
             [QQ,RR]=qr(RLinv);
 
-
-
             for i=ONEINT16:nA
                 if abs(RR(i,i))<FactorizationSingularityTolerance
-
 
                     Status=-2*ONE;
                     return
@@ -972,8 +759,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
                 end
             end
 
-
-
             for i=ONEINT16:n
                 for j=i:n
                     H(i,j)=ZERO;
@@ -995,9 +780,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
 
             function[iA,nA,iC]=DropConstraint(kDrop,iA,nA,iC)
 
-
-
-
 %#codegen
                 ZEROINT16=zeros('int16');
                 ONEINT16=ones('int16');
@@ -1012,7 +794,6 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
 
                 function[nA,iA,iC]=ResetToColdStart(m,meq,mmax)
 
-
 %#codegen
                     ONEINT16=ones('int16');
                     nA=meq;
@@ -1026,8 +807,8 @@ function[bestx,beststatus,iters,bestcost,numqpsolved,maxstacksize]=...
                         end
                     end
 
-                    function x=Unconstrained(Hinv,f,x,n)
 
+                    function x=Unconstrained(Hinv,f,x,n)
 
 %#codegen
                         ONEINT16=ones('int16');
