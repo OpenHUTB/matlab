@@ -1,12 +1,5 @@
 function job=submit2PCT(simulationFiles,clusterId)
 
-
-
-
-
-
-
-
     if nargin>1
         cluster=parcluster(clusterId);
     else
@@ -15,8 +8,6 @@ function job=submit2PCT(simulationFiles,clusterId)
     simJob=createJob(cluster);
     for idx=1:numel(simulationFiles)
         simulationFilePath=simulationFiles{idx};
-
-
         simulationFile=java.io.File(simulationFilePath);
         if~simulationFile.isAbsolute
             simulationFile=java.io.File(pwd,simulationFilePath);
