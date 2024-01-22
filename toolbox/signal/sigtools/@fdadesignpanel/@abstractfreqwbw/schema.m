@@ -1,13 +1,8 @@
 function schema
 
-
-
-
-
     pk=findpackage('fdadesignpanel');
     c=schema.class(pk,'abstractfreqwbw',pk.findclass('abstractfiltertypewfs'));
     c.Description='abstract';
-
     p=schema.prop(c,'TransitionMode','ustring');
     set(p,'Description','spec','FactoryValue','Bandwidth',...
     'SetFunction',@settmode,'GetFunction',@gettmode);
