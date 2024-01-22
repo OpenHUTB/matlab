@@ -1,21 +1,16 @@
 classdef mcb_vectorplot<matlab.System
 
-
-
-
     properties(Access=protected)
         axLim=1;
         history=100;
         updateFreq=1000;
     end
+
     properties(Nontunable)
 
         OpenFigAtSimStart(1,1)logical=true;
-
         RotatingReferenceFrame(1,1)logical=true;
-
         InputSignals=message('mcb:blocks:ABCInput').getString(matlab.internal.i18n.locale("en"));
-
         ReferenceFrame=message('mcb:blocks:rotatingFrame').getString(matlab.internal.i18n.locale("en"));
 
         axisAlign='D-axis';
@@ -25,6 +20,8 @@ classdef mcb_vectorplot<matlab.System
         angleUnits='Radians';
         debugEnable=0;
     end
+
+
     properties(Constant,Hidden)
         InputSignalsSet=matlab.system.StringSet({message('mcb:blocks:ABCInput').getString(matlab.internal.i18n.locale("en")),...
         message('mcb:blocks:DQInput').getString(matlab.internal.i18n.locale("en")),...
@@ -35,6 +32,8 @@ classdef mcb_vectorplot<matlab.System
         thetaUnitsSet=matlab.system.StringSet({'Per-unit','Radians','Degrees'});
         angleUnitsSet=matlab.system.StringSet({'Per-unit','Radians','Degrees'});
     end
+
+
     properties(Constant,Access=protected)
         stationaryFrame=message('mcb:blocks:stationaryFrame').getString(matlab.internal.i18n.locale("en"));
         rotatingFrame=message('mcb:blocks:rotatingFrame').getString(matlab.internal.i18n.locale("en"));
@@ -43,8 +42,8 @@ classdef mcb_vectorplot<matlab.System
         polarinput=message('mcb:blocks:PolarInput').getString(matlab.internal.i18n.locale("en"));
     end
 
-    properties(Access=private)
 
+    properties(Access=private)
         Fig;
         AxObj;
         dplot;
@@ -63,12 +62,10 @@ classdef mcb_vectorplot<matlab.System
         prvSimValue;
         lastVal=0;
 
-
         f;
         flag;
         update;
         lgd;
-
 
         axesButton;
         clearButton;
@@ -76,19 +73,18 @@ classdef mcb_vectorplot<matlab.System
         blkHandle;
         numVectors=0;
     end
+
+
     methods
         function obj=mcb_vectorplot(varargin)
-
             obj.color_line={'red';'blue';'green';'yellow';'magenta';'cyan'};
         end
     end
+
+
     methods(Access=protected)
 
-
-
         function setupImpl(obj)
-
-
             if coder.target('MATLAB')
                 obj.flag=0;
                 obj.f=0;
@@ -148,8 +144,6 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
-
         function releaseImpl(obj)
 
             if coder.target('MATLAB')
@@ -171,7 +165,6 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
         function FigureParam(obj,blkh)
             delete(findall(obj.Fig,'Type','Line'));
             delete(findall(obj.Fig,'Type','Text'));
@@ -185,15 +178,12 @@ classdef mcb_vectorplot<matlab.System
             obj.AxObj=axes('Parent',obj.Fig,'Units','normalized',...
             'Position',[0.1,0.15,0.8,0.8]);
             axis(obj.AxObj,[-obj.axLim,obj.axLim,-obj.axLim,obj.axLim],'square');
-
-
             obj.AxObj.Toolbar=axtoolbar(obj.AxObj,{'zoomin','zoomout','restoreview'});
             obj.AxObj.NextPlot='add';
 
             obj.setaxes();
             disableDefaultInteractivity(obj.AxObj);
         end
-
 
 
         function insertLegend(obj,hObject,~)
@@ -206,10 +196,7 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
         function flag=isInactivePropertyImpl(obj,prop)
-
-
             flag=false;
             if(strcmp(prop,'ReferenceFrame'))
                 flag=~strcmp(obj.InputSignals,obj.abcinput);
@@ -229,27 +216,18 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
         function showDialog(obj,~,~)
             obj.DialogFig.Visible='on';
             figure(obj.DialogFig);
         end
 
 
-
         function icon=getIconImpl(~)
-
             icon="Vector plot";
-
         end
 
 
-
         function CreateDialogBox(obj,hFig)
-
-
-
-
             bgc=get(hFig,'color');
             ctxt={'parent',hFig,...
             'backgr',bgc,...
@@ -261,7 +239,6 @@ classdef mcb_vectorplot<matlab.System
             'horiz','left'};
             dy=18;
             dye=21;
-
             tip=message('mcb:blocks:Historytip').getString(matlab.internal.i18n.locale("en"));
             uicontrol(ctxt{:},...
             'string',message('mcb:blocks:DisplayTraces').getString(matlab.internal.i18n.locale("en")),...
@@ -277,7 +254,6 @@ classdef mcb_vectorplot<matlab.System
             'tooltip',tip,'pos',[10,90-25,110,dy],...
             'callback',@obj.autoScale_callback,...
             'value',1);
-
             tip=message('mcb:blocks:AxesMsg').getString(matlab.internal.i18n.locale("en"));
             uicontrol(ctxt{:},...
             'string',message('mcb:blocks:AxesLimit').getString(matlab.internal.i18n.locale("en")),...
@@ -289,20 +265,7 @@ classdef mcb_vectorplot<matlab.System
             'string',num2str(obj.axLim),...
             'pos',[10+130+3,90-50,70,dye],...
             'Enable','off');
-
-
-
-
-
-
-
-
-
-
-
         end
-
-
 
 
         function setaxes(obj)
@@ -332,8 +295,6 @@ classdef mcb_vectorplot<matlab.System
 
                 tc=gridColor;
             else
-
-
                 tc=gridColor.*gridAlpha+axColor.*(1-gridAlpha);
             end
             ls=obj.AxObj.GridLineStyle;
@@ -364,8 +325,6 @@ classdef mcb_vectorplot<matlab.System
             inds=1:(length(th)-1)/4:length(th);
             xunit(inds(2:2:4))=zeros(2,1);
 
-
-
             c82=cos(82*pi/180);
             s82=sin(82*pi/180);
             rinc=(rmax-rmin)/rticks;
@@ -380,7 +339,6 @@ classdef mcb_vectorplot<matlab.System
             end
             k=k-1;
             set(obj.hhh(k),'LineStyle','-');
-
 
             th=(1:6)*2*pi/12;
             cst=cos(th);
@@ -407,14 +365,6 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
-
-
-
-
-
-
-
         function clearHistory_callback(obj,~,~)
             for i=1:obj.numVectors
                 obj.dplot(i).XData=[NaN,NaN];
@@ -426,15 +376,11 @@ classdef mcb_vectorplot<matlab.System
             obj.flag=0;
         end
 
-
-
         function[alpha,beta]=clarkeTransform(~,a,b,c)
             result=(2/3)*[1,-0.5,-0.5;0,sqrt(3)/2,-sqrt(3)/2]*[a;b;c];
             alpha=result(1);
             beta=result(2);
         end
-
-
 
         function[d,q]=parkTransform(~,alpha,beta,theta)
             result=[cos(theta),sin(theta);-sin(theta),cos(theta)]*[alpha;beta];
@@ -442,15 +388,11 @@ classdef mcb_vectorplot<matlab.System
             q=result(2);
         end
 
-
-
         function[d,q]=altParkTransform(~,alpha,beta,theta)
             result=[sin(theta),-cos(theta);cos(theta),sin(theta)]*[alpha;beta];
             d=result(1);
             q=result(2);
         end
-
-
 
 
         function stepImpl(obj,varargin)
@@ -521,8 +463,6 @@ classdef mcb_vectorplot<matlab.System
                     end
                 end
 
-
-
                 p=sqrt(Idc.^2+Ids.^2);
                 x=abs(max(p));
                 if(x>=2*obj.lastVal)
@@ -548,7 +488,6 @@ classdef mcb_vectorplot<matlab.System
                 end
 
                 if(obj.f==0)
-
                     obj.dplot=gobjects(obj.numVectors,1);
                     obj.dCirplot=gobjects(obj.numVectors,1);
                     obj.darrowplot=gobjects(obj.numVectors,1);
@@ -561,7 +500,6 @@ classdef mcb_vectorplot<matlab.System
                         obj.darrowplot(i)=line(obj.AxObj,real(ad),imag(ad),'Color',obj.color_line{i},'LineStyle','-','LineWidth',2);
                         h(i)=plot(obj.AxObj,[NaN,NaN],'Color',obj.color_line{i},'LineWidth',2);
                     end
-
                     set(obj.Fig,'defaultLegendAutoUpdate','off');
                     c=findall(obj.Fig,'Type','uitoolbar');
                     d=findall(c,'Type','uitoggletool');
@@ -625,7 +563,6 @@ classdef mcb_vectorplot<matlab.System
                             obj.f=obj.f+1;
                             if(obj.f==obj.history)
 
-
                                 obj.flag=1;
 
 
@@ -681,7 +618,6 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
         function updateHistory(obj,hObject,~)
             edtText=get(hObject,'String');
             if(~strcmp(edtText,'inf'))
@@ -716,7 +652,6 @@ classdef mcb_vectorplot<matlab.System
             obj.f=1;
             obj.flag=0;
         end
-
 
 
         function updateaxes(obj,hObject,~)
@@ -758,8 +693,6 @@ classdef mcb_vectorplot<matlab.System
             end
         end
 
-
-
         function[name]=getInputNamesImpl(obj)
 
             abcInputs=isequal(obj.InputSignals,obj.abcinput);
@@ -773,7 +706,6 @@ classdef mcb_vectorplot<matlab.System
                 name=["Magnitude","Angle"];
             end
         end
-
 
 
         function validateInputsImpl(obj,varargin)
@@ -820,8 +752,6 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
-
         function num=getNumInputsImpl(obj)
 
             num=2;
@@ -831,7 +761,6 @@ classdef mcb_vectorplot<matlab.System
                 num=3;
             end
         end
-
 
 
         function autoScale_callback(obj,hObject,~)
@@ -866,7 +795,6 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
         function[figureHandle,dialogHandle]=setupFigure(obj,tag,dtag,blkh)
 
             figureHandle=findall(groot,'Type','Figure','Tag',tag);
@@ -893,8 +821,6 @@ classdef mcb_vectorplot<matlab.System
                 'CloseRequestFcn',@hidePlotFigure,...
                 'name',name);
 
-
-
                 datacursormode off;
                 figureHandle.HandleVisibility='off';
                 figureHandle.IntegerHandle='off';
@@ -915,9 +841,6 @@ classdef mcb_vectorplot<matlab.System
                 obj.DialogFig=dialogHandle;
                 if strcmp(obj.DialogFig.Visible,'off')
                     scope_pos=getpixelposition(obj.Fig);
-
-
-
                     scope_origin=scope_pos(1:2);
                     scope_delta=scope_pos(3:4);
                     scope_midpoint=scope_origin+scope_delta/2;
@@ -934,23 +857,20 @@ classdef mcb_vectorplot<matlab.System
 
 
             function hidePlotFigure(src,~)
-
                 src.Visible='off';
                 dialogHandle.Visible='off';
 
             end
 
+
             function hideDialogFigure(src,~)
-
                 src.Visible='off';
-
             end
+
 
             function dialogHandle=DisplayParameters(name)
                 fontsize=get(0,'FactoryUicontrolFontSize');
                 fontname=get(0,'FactoryUicontrolFontName');
-
-
 
                 dialogHandle=figure(...
                 'DefaultUicontrolHorizontalAlign','left',...
@@ -967,19 +887,13 @@ classdef mcb_vectorplot<matlab.System
                 'nextplot','add',...
                 'IntegerHandle','off',...
                 'Visible','off');
-
             end
         end
     end
 
 
-
-
-
     methods(Access=protected,Static)
-
         function[EraserIm,SaveIm,BinocIm]=LOCALCreateImages
-
 
             Cfig=ones(16,16);
             Cfig(:,1)=0;
@@ -988,10 +902,7 @@ classdef mcb_vectorplot<matlab.System
             Cfig(:,end)=0;
             Cfig=repmat(Cfig,[1,1,3]);
 
-
-
             Efig=Cfig;
-
 
             Efig(13,3:8,1:3)=0;
             Efig(10,3:8,1:3)=0;
@@ -1004,7 +915,6 @@ classdef mcb_vectorplot<matlab.System
                 Efig(10-i1,8+i1,1:3)=0;
                 Efig(13-i1,8+i1,1:3)=0;
             end
-
 
             Ecolor=ones(2,4,3);
             Ecolor(:,:,2)=0.5;
@@ -1019,9 +929,7 @@ classdef mcb_vectorplot<matlab.System
                 Efig((11:12)-i1,8+i1,1:3)=Ecolor2;
             end
 
-
             Pfig=Cfig;
-
 
             for i1=1:5
                 Pfig(3+i1,4+i1,1:3)=0;
@@ -1029,10 +937,6 @@ classdef mcb_vectorplot<matlab.System
                 Pfig(3+i1,8+i1,1:3)=0;
                 Pfig(14-i1,8+i1,1:3)=0;
             end
-
-
-
-
 
             Bfig(:,:,1)=[...
             NaN,NaN,NaN,NaN,0,0,0,NaN,NaN,0,0,0,NaN,NaN,NaN,NaN;
@@ -1092,15 +996,11 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
         function header=getHeaderImpl()
-
             header=matlab.system.display.Header('Title','Vector Plot',...
             'Text',message('mcb:blocks:VectorPlotDescription').getString(matlab.internal.i18n.locale("en")),...
             'ShowSourceLink',false);
         end
-
-
 
 
         function controlSim(hand)
@@ -1114,12 +1014,10 @@ classdef mcb_vectorplot<matlab.System
                 icons=load('plot_icons.mat');
             end
 
-
             switch status
             case 'stopped'
                 set_param(sys,'SimulationCommand','start');
             case 'running'
-
                 set_param(sys,'SimulationCommand','pause');
                 b(3).CData=icons.run;
                 b(3).Tooltip=message('mcb:blocks:RunSim').getString(matlab.internal.i18n.locale("en"));
@@ -1130,7 +1028,6 @@ classdef mcb_vectorplot<matlab.System
                 b(3).Tooltip=message('mcb:blocks:PauseSim').getString(matlab.internal.i18n.locale("en"));
             end
         end
-
 
 
         function stopSim(fhandle)
@@ -1156,7 +1053,6 @@ classdef mcb_vectorplot<matlab.System
                 b(2).Enable='off';
             end
         end
-
 
 
         function setToolBar(obj)
@@ -1190,7 +1086,6 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
         function group=getPropertyGroupsImpl(~)
 
             ReferenceFrameProp=matlab.system.display.internal.Property(...
@@ -1212,27 +1107,17 @@ classdef mcb_vectorplot<matlab.System
             matlab.system.display.internal.setCallbacks(group.Actions,'SystemDeletedFcn',@(actionData)mcb_vectorplot.onSystemDeleted(actionData));
         end
 
-
-
-
         function[tag,dtag]=getUniqueTag(blockHandle)
-
-
             tag=strcat('Simulink_mcb_vectorplot',Simulink.ID.getSID(blockHandle));
             dtag=strcat('Dialog',Simulink.ID.getSID(blockHandle));
         end
 
 
-
-
         function onSystemDeleted(actionData)
-
-
             blockHandle=get_param(actionData.SystemHandle,'Handle');
             [tag,dtag]=mcb_vectorplot.getUniqueTag(blockHandle);
             animationFigure=findall(groot,'Type','Figure','Tag',tag);
             dialogFigure=findall(groot,'Type','Figure','Tag',dtag);
-
             if((~isempty(animationFigure))&&(ishandle(animationFigure)))
                 delete(animationFigure);
             end
@@ -1243,11 +1128,7 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
         function showFigure(obj,actionData)
-
-
-
             if((isempty(actionData.UserData))||(~isvalid(actionData.UserData)))
                 blockHandle=get_param(actionData.SystemHandle,'Handle');
                 [tag,dtag]=mcb_vectorplot.getUniqueTag(blockHandle);
@@ -1258,12 +1139,10 @@ classdef mcb_vectorplot<matlab.System
         end
 
 
-
         function simMode=getSimulateUsingImpl
 
             simMode="Interpreted execution";
         end
-
 
 
         function flag=showSimulateUsingImpl
