@@ -1,40 +1,5 @@
 function cktFile=sparam2spice(tsFile,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     cktFile=[];
     validateattributes(tsFile,{'char','string'},{'nonempty'});
     tsFile=convertStringsToChars(tsFile);
@@ -54,7 +19,6 @@ function cktFile=sparam2spice(tsFile,varargin)
     addParameter(p,'ShowPassivity',false,...
     @(x)~isempty(x)&&(islogical(x)||isnumeric(x))&&isscalar(x));
     parse(p,varargin{:});
-
 
     if~isempty(p.Results.LogFile)
         logFile=fopen(p.Results.LogFile,'w');
@@ -97,7 +61,6 @@ function cktFile=sparam2spice(tsFile,varargin)
         sparamLogPrintf(logFile,'  %-25s : %d\n',...
         getString(message("si:sparam:LogRefImp")),S.Impedance);
 
-
         sparamLogPrintf(logFile,'%s\n',...
         getString(message("si:sparam:LogFitSparam")));
         fit=sparamRationalFit(S,p.Results.Tolerance,...
@@ -106,12 +69,10 @@ function cktFile=sparam2spice(tsFile,varargin)
         getString(message("si:sparam:LogFitAccuracy")),...
         fit.ErrDB);
 
-
         if p.Results.ShowPassivity
             figure(Name=getString(message("si:sparam:TitlePassBefore")));
             passivity(fit);
         end
-
 
         if p.Results.MakePassive
             sparamLogPrintf(logFile,'%s\n',...
@@ -124,11 +85,9 @@ function cktFile=sparam2spice(tsFile,varargin)
             worstAllowableTolerance=-25;
             if pfit.ErrDB>p.Results.Tolerance&&...
                 p.Results.Tolerance<worstAllowableTolerance
-
                 toleranceIncr=floor((worstAllowableTolerance-...
                 p.Results.Tolerance)/3);
                 for newFitTol=p.Results.Tolerance+toleranceIncr:toleranceIncr:worstAllowableTolerance
-
                     sparamLogPrintf(logFile,'%s\n',...
                     getString(message("si:sparam:LogFitSparamRetry",...
                     newFitTol)));
@@ -137,7 +96,6 @@ function cktFile=sparam2spice(tsFile,varargin)
                     sparamLogPrintf(logFile,'  %-25s : %0.2fdB\n',...
                     getString(message("si:sparam:LogFitAccuracy")),...
                     fit.ErrDB);
-
                     sparamLogPrintf(logFile,'%s\n',...
                     getString(message("si:sparam:LogPassFitStart")));
                     pfit=sparamMakePassive(fit,logFile);
@@ -151,7 +109,6 @@ function cktFile=sparam2spice(tsFile,varargin)
                 end
             end
 
-
             if p.Results.ShowPassivity
                 figure(Name=getString(message("si:sparam:TitlePassAfter")));
                 passivity(pfit);
@@ -159,7 +116,6 @@ function cktFile=sparam2spice(tsFile,varargin)
         else
             pfit=fit;
         end
-
 
         sparamLogPrintf(logFile,'%s\n',...
         getString(message("si:sparam:LogSpiceGen")));
@@ -180,11 +136,11 @@ function cktFile=sparam2spice(tsFile,varargin)
         getString(message("si:sparam:InputFileErr",tsFile)));
     end
 
-
     if~isempty(logFile)
         fclose(logFile);
     end
 end
+
 
 function fit=sparamRationalFit(S,tolerance,nPoles,logFile)%#ok<INUSL>
     cmd=char(strjoin(["rational(S,"...
@@ -207,6 +163,7 @@ function fit=sparamRationalFit(S,tolerance,nPoles,logFile)%#ok<INUSL>
     end
 end
 
+
 function pfit=sparamMakePassive(fit,logFile)%#ok<INUSL>
     cmd=char("makepassive(fit,'Display','on')");
     try
@@ -224,6 +181,7 @@ function pfit=sparamMakePassive(fit,logFile)%#ok<INUSL>
         sparamLogPrintf(logFile,'%s',text);
     end
 end
+
 
 function sparamLogPrintf(logFile,varargin)
     if~isempty(logFile)
