@@ -1,78 +1,5 @@
 function[x,status,feasflag,lambda]=qpipmw(Q,c,A,b,E,f,x,options)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
     coder.allowpcode('plain');
 
@@ -86,13 +13,11 @@ function[x,status,feasflag,lambda]=qpipmw(Q,c,A,b,E,f,x,options)
     zerotol=options.StepTolerance;
     maxiter=options.MaxIterations;
 
-
     bmax=10*ONE;
     bmin=1*ONE;
     delta=0.1*ONE;
     gamma=0.1*ONE;
     a0=.99995*ONE;
-
 
     Kmax=5*ONEINT;
 
@@ -102,7 +27,6 @@ function[x,status,feasflag,lambda]=qpipmw(Q,c,A,b,E,f,x,options)
     iter=ZEROINT;
     feasflag=true;
     status=ONEINT;
-
 
     [x,y,z,s]=get_init(Q,c,A,b,E,f,x);
     lambda=struct('ineqlin',z,'eqlin',y);
@@ -127,8 +51,6 @@ function[x,status,feasflag,lambda]=qpipmw(Q,c,A,b,E,f,x,options)
         iter=iter+ONEINT;
 
         [L,U,pp]=kkt_fact(Q,A,E,z,s);
-
-
         [dx,dy,dz,ds]=kkt_solve(A,E,rQ,rE,rA,rS,z,s,L,U,pp);
         az=alpha_max(z,dz,zerotol);
         as=alpha_max(s,ds,zerotol);
@@ -146,12 +68,10 @@ function[x,status,feasflag,lambda]=qpipmw(Q,c,A,b,E,f,x,options)
             mu1=-sum(rS)/cast(m,'like',ONE);
             sigma=(mu1/mu)^3;
 
-
             v=-rS;
             vt=max(min(v,bmax*sigma*mu),bmin*sigma*mu);
             rS=vt-v;
             rS=max(rS,-bmax*sigma*mu);
-
             [dxc,dyc,dzc,dsc]=kkt_solve(A,E,zeros(n,1),zeros(p,1),zeros(m,1),rS,z,s,L,U,pp);
 
             dz1=dz+dzc;
@@ -191,7 +111,6 @@ function[x,status,feasflag,lambda]=qpipmw(Q,c,A,b,E,f,x,options)
         y=y+dy;
         z=z+dz;
         s=s+ds;
-
     end
 
     if iter==maxiter
@@ -214,8 +133,8 @@ function[x,status,feasflag,lambda]=qpipmw(Q,c,A,b,E,f,x,options)
         rA=A*x+s-b;
         rS=-z.*s;
 
-        function[L,U,pp]=kkt_fact(Q,A,E,z,s)
 
+        function[L,U,pp]=kkt_fact(Q,A,E,z,s)
 
             [L,U,pp]=lu([Q+A'*diag(z./s)*A,E';E,zeros(size(E,1))],'vector');
 
@@ -234,15 +153,13 @@ function[x,status,feasflag,lambda]=qpipmw(Q,c,A,b,E,f,x,options)
                     dxdy=linsolve(U,linsolve(L,b(pp,:),struct('LT',true)),struct('UT',true));
                 end
 
-
                 dx=dxdy(1:n);
                 dy=dxdy(n+1:n+p);
                 dz=z./s.*(A*dx+rA)+rS./s;
                 ds=(rS-dz.*s)./z;
 
+
                 function a=alpha_max(z,dz,tol)
-
-
 
                     a=ones('like',z);
                     for i=1:numel(dz)
@@ -253,13 +170,10 @@ function[x,status,feasflag,lambda]=qpipmw(Q,c,A,b,E,f,x,options)
 
                     function[x,y,z,s]=get_init(Q,c,A,b,E,f,x)
 
-
                         ONE=ones('like',c);
                         ZERO=zeros('like',c);
-
                         m=cast(size(A,1),'int32');
                         p=cast(size(E,1),'int32');
-
                         y=zeros(p,1,'like',ONE);
                         z=ones(m,1,'like',ONE);
                         s=ones(m,1,'like',ONE);
@@ -270,11 +184,9 @@ function[x,status,feasflag,lambda]=qpipmw(Q,c,A,b,E,f,x,options)
                             [x,y]=kkt_solve(A,E,-c,-f,zeros(0,1),zeros(0,1),z,s,L,U,pp);
                             return
                         end
-
                         [rQ,rE,rA,rS]=kkt_residual(Q,c,A,b,E,f,x,y,z,s);
                         [L,U,pp]=kkt_fact(Q,A,E,z,s);
                         [~,~,dz,ds]=kkt_solve(A,E,rQ,rE,rA,rS,z,s,L,U,pp);
-
 
                         u=max(ZERO,-z-dz);
                         w=max(ZERO,-s-ds);
