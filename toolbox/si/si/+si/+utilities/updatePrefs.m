@@ -1,14 +1,4 @@
 function updatePrefs
-
-
-
-
-
-
-
-
-
-
     siFolder=fullfile(prefdir,'si_toolbox_shared');
     if isfolder(siFolder)
 
@@ -28,6 +18,7 @@ function updatePrefs
         yearRel=previousRel(yearRel);
     end
 
+
     function relStr=rel2str(yearRel)
 
         if mod(yearRel,1)==0
@@ -37,10 +28,9 @@ function updatePrefs
         end
         relStr=['R',num2str(floor(yearRel)),aOrb];
     end
+
+
     function yearRel=reldata(rel)
-
-
-
         yearRel=2021.0;
         if rel(1)~='R'
             return;
