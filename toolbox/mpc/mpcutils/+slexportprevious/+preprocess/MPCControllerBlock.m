@@ -1,14 +1,5 @@
 function MPCControllerBlock(obj)
 
-
-
-
-
-
-
-
-
-
     if isInVersionInterval(obj.ver,'R2014b','R2018a')
         AllBlocks=obj.findBlocksWithMaskType('Adaptive MPC');
         if~isempty(AllBlocks)
@@ -26,11 +17,7 @@ function MPCControllerBlock(obj)
         end
     end
 
-
-
     if isInVersionInterval(obj.ver,'R2008b','R2018a')
-
-
         AllBlocks=find_system(obj.modelName,'FollowLinks','on',...
         'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
         'LookUnderMasks','all','IncludeCommented','on','MaskType','Multiple MPC');
@@ -49,11 +36,7 @@ function MPCControllerBlock(obj)
         end
     end
 
-
-
     if isInVersionInterval(obj.ver,'R2007b','R2018a')
-
-
         AllBlocks=find_system(obj.modelName,'FollowLinks','on',...
         'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
         'LookUnderMasks','all','IncludeCommented','on','MaskType','MPC');
