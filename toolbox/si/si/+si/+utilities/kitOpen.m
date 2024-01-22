@@ -11,7 +11,6 @@ end
 
 nargoutchk( 0, 1 );
 
-
 testUrl = getenv( 'SIT_KIT_SERVER_TEST_URL' );
 if isempty( testUrl )
     baseUrl = 'https://ssd.mathworks.com/supportfiles/SIT/kits';
@@ -19,12 +18,8 @@ else
     baseUrl = testUrl;
 end
 
-
-
-
 listUrl = [ baseUrl, '/sitkitlist.csv' ];
 messageString = [  ];
-
 
 try
     list = webread( listUrl, weboptions( ContentType = 'text' ) );
@@ -48,14 +43,8 @@ if ~( ischar( list ) || isstring( list ) || istable( list ) )
 end
 if ~startsWith( list, 'name,type,description,minRelease' ) && ~istable( list )
 
-
-
-
-
-
     error( message( 'si:kits:KitInfoFailure' ) );
 end
-
 
 if ~istable( list )
     cell = textscan( list, '%q%q%q%q', 'Delimiter', ',' );
@@ -66,7 +55,6 @@ if isempty( list )
     error( message( 'si:kits:KitInfoFailure' ) );
 end
 
-
 assert( isa( list, "table" ), message( 'si:kits:KitInfoFailure' ) );
 assert( width( list ) == 4, message( 'si:kits:KitInfoFailure' ) );
 varNames = { 'name', 'type', 'description', 'minRelease' };
@@ -74,14 +62,11 @@ assert( all( contains( list.Properties.VariableNames, varNames ) ),  ...
     message( 'si:kits:KitInfoFailure' ) );
 assert( height( list ) > 0, message( 'si:kits:KitInfoFailure' ) );
 
-
-
 if ~isempty( kitName ) && ~any( strcmp( list.name, kitName ) )
     options.MatchPattern = kitName;
     kitName = [  ];
     disp( getString( message( 'si:kits:SearchMatchingKits', options.MatchPattern ) ) );
 end
-
 
 if isempty( kitName )
 
@@ -102,13 +87,11 @@ if isempty( kitName )
         disp( getString( message( 'si:kits:NoMatchingKits' ) ) );
     end
 
-
     list.minRelease = arrayfun( @( x )regexprep( x, '_.*', '' ), string( list.minRelease ) );
 
     if nargout > 0
         kitInfo = list;
     elseif ~isempty( list )
-
 
         appNameMap = [ "Parallel Link Designer", "Serial Link Designer" ];
         list.app = arrayfun( @( x )appNameMap( int16( strcmp( x, "serial" ) ) + 1 ), list.type );
@@ -133,8 +116,6 @@ if isempty( kitName )
     return ;
 end
 
-
-
 kitName = char( kitName );
 [ ~, stem, ext ] = fileparts( kitName );
 if any( strcmp( ext, { '.klp', '.zip' } ) )
@@ -148,7 +129,6 @@ else
     zipFileSpecified = false;
 end
 
-
 if ~zipFileSpecified
     minRelease = char( list.minRelease( strcmp( list.name, kitName ) ) );
     canDownload = canBeDownloaded( minRelease );
@@ -161,12 +141,9 @@ if ~zipFileSpecified
     end
 end
 
-
-
 if isempty( projectName )
     projectName = kitName;
 end
-
 
 needDownload = true;
 if isfolder( projectName )
@@ -183,11 +160,8 @@ if isfolder( projectName )
     end
 end
 
-
 projectExists = isfolder( projectName );
 if ~projectExists
-
-
     mkdir( projectName );
 end
 
@@ -206,8 +180,6 @@ if needDownload
     tempFolder = tempname;
     mkdir( tempFolder );
 
-
-
     if ~zipFileSpecified
         zipFilePath = fullfile( tempFolder, [ kitName, '.zip' ] );
         zipUrl = [ baseUrl, '/', kitName, '.zip' ];
@@ -218,13 +190,11 @@ if needDownload
         end
     end
 
-
     try
         unzip( zipFilePath, tempFolder );
     catch ME
         error( message( 'si:kits:ExtractError', ME.message ) );
     end
-
 
     extractedFolder = fullfile( tempFolder, kitName );
     if isfolder( extractedFolder )
@@ -236,7 +206,6 @@ if needDownload
 end
 
 if ~options.DownloadOnly
-
 
     interfaces = dir( fullfile( projectFolder, 'interfaces' ) );
     interfaceIdx = find( ~contains( { interfaces.name }, '.' ) );
@@ -266,6 +235,7 @@ if nargout > 0
 end
 end
 
+
 function tf = canBeDownloaded( minRelease )
 validateattributes( minRelease, { 'char', 'string' }, { 'nonempty' } );
 [ downloadRel, ~ ] = strsplit( char( minRelease ), '_' );
@@ -278,6 +248,7 @@ else
 end
 tf = ~isMATLABReleaseOlderThan( baseRelease, matlabRelease.Stage, updateNumber );
 end
+
 
 function tf = canBeListed( minRelease )
 validateattributes( minRelease, { 'char', 'string' }, { 'nonempty' } );
@@ -302,6 +273,7 @@ else
 end
 end
 
+
 function newProjectName = getNumberedProjectName( projectName )
 
 newProjectName = projectName;
@@ -317,6 +289,7 @@ while isfolder( newProjectName )
     newProjectName = sprintf( '%s_%d', baseName, sequence );
 end
 end
+
 
 function action = existingProjectAction( projectName, newProjectName )
 dlgTitle = getString( message( 'si:kits:ProjectExistsTitle' ) );
