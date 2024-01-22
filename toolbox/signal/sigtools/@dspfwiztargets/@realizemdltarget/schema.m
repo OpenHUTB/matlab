@@ -1,11 +1,6 @@
 function schema
 
-
-
-
     pk=findpackage('dspfwiztargets');
-
-
     c=schema.class(pk,'realizemdltarget',pk.findclass('abstracttarget'));
     c.Description='Abstract';
 
@@ -22,7 +17,6 @@ function schema
 
     p=schema.prop(c,'delays','mxArray');
     p.Visible='off';
-
     p=schema.prop(c,'privCoefficients','mxArray');
     p.AccessFlags.PublicSet='off';
     p.Visible='off';
