@@ -1,66 +1,5 @@
 function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
     coder.allowpcode('plain');
     ONE=ones('like',b);
@@ -77,7 +16,6 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
         return
     end
 
-
     LamTol=ONE*1e-12;
     RescaleFeasibilityTolerance=ONE*1e-3;
 
@@ -92,14 +30,9 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
     cTol=ones(m,ONEINT,'like',b);
     cTolComputed=false;
 
-
-
     iC=zeros(m,ONEINT,'like',ONEINT);
     nA=ZEROINT;
     for i=ONEINT:m
-
-
-
         if iA(i)
             nA=nA+ONEINT;
             iC(nA)=i;
@@ -107,13 +40,9 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
     end
 
     if nA>ZEROINT
-
-
         Opt=zeros(2*n,ONEINT,'like',b);
         Rhs=[f;zeros(n,ONEINT,'like',b)];
         DualFeasible=false;
-
-
         tmp=cast((0.3*ONE)*cast(nA,'like',ONE),'like',nA);
         if tmp<=(5*ONEINT)
             MaxWSiter=5*ONEINT;
@@ -129,13 +58,10 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
                     status=-2*ONEINT;
                     return
                 else
-
-
                     [nA,iA,iC]=ResetToColdStart(m,meq);
                     ColdReset=true;
                 end
             else
-
                 for j=ONEINT:nA
                     Rhs(n+j)=b(iC(j));
                     for i=j:nA
@@ -180,7 +106,6 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
                         [nA,iA,iC]=ResetToColdStart(m,meq);
                         ColdReset=true;
                     else
-
                         lambda(iC(kDrop))=ZERO;
                         [iA,nA,iC]=DropConstraint(kDrop,iA,nA,iC);
                     end
@@ -188,24 +113,19 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
             end
         end
         if nA<=ZEROINT
-
-
             lambda=zeros(m,ONEINT,'like',b);
             x=Unconstrained(Hinv,f,x,n);
         end
     else
-
         x=Unconstrained(Hinv,f,x,n);
     end
 
     Xnorm0=norm(x);
     while status<=maxiter
-
         cMin=-FeasTol;
         kNext=ZEROINT;
         for i=ONEINT:(m-meq)
             if~cTolComputed
-
                 cTol(i)=max(cTol(i),max(abs(Ac(i,:).*x')));
             end
             if~iA(i)
@@ -228,10 +148,6 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
             return
         end
         while kNext>ZEROINT&&status<=maxiter
-
-
-
-
             AcRow=Ac(kNext,:);
             if nA==ZEROINT
                 z=Hinv*AcRow';
@@ -252,7 +168,6 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
             t1=ZERO;
             isT1Inf=true;
 
-
             tempOK=true;
             if nA>meq
                 for ct=ONEINT:nA-meq
@@ -263,9 +178,7 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
                 end
             end
 
-
             if~((nA==meq)||tempOK)
-
 
                 for i=ONEINT:(nA-meq)
                     if r(i)>LamTol
@@ -318,7 +231,6 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
 
             lambda(kNext)=lambda(kNext)+t;
             if abs(t-t1)<eps(ONE)
-
                 [iA,nA,iC]=DropConstraint(kDrop,iA,nA,iC);
             end
             if~isT2Inf
@@ -327,8 +239,6 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
                 if abs(t-t2)<eps(ONE)
 
                     if nA==n
-
-
                         status=-ONEINT;
                         return
                     end
@@ -353,7 +263,6 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
             status=status+ONEINT;
         end
 
-
         Xnorm=norm(x);
         if abs(Xnorm-Xnorm0)>RescaleFeasibilityTolerance
             Xnorm0=Xnorm;
@@ -364,11 +273,6 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
 
 
     function[RLinv,D,H,Status]=KWIKfactor(Ac,iC,nA,Linv,RLinv,D,H,n)
-
-
-
-
-
 
 %#codegen
         TL=coder.nullcopy(Linv);
@@ -383,11 +287,8 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
         end
         [QQ,RR]=qr(RLinv);
 
-
-
         for i=ONEINT:nA
             if abs(RR(i,i))<FactorizationSingularityTolerance
-
 
                 Status=-2*ONE;
                 return
@@ -414,8 +315,6 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
             end
         end
 
-
-
         for i=ONEINT:n
             for j=i:n
                 H(i,j)=ZERO;
@@ -436,8 +335,6 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
         end
 
         function[iA,nA,iC]=DropConstraint(kDrop,iA,nA,iC)
-
-
 
             ZEROINT=zeros('like',nA);
             ONEINT=ones('like',nA);
@@ -466,6 +363,7 @@ function[x,lambda,status,iA]=qpkwik(Linv,Hinv,f,Ac,b,iA,maxiter,m,n,meq,FeasTol)
                         iC(i)=ix;
                     end
                 end
+
 
                 function x=Unconstrained(Hinv,f,x,n)
 
