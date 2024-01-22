@@ -1,11 +1,6 @@
 function schema
 
-
-
-
-
     pk=findpackage('fdadesignpanel');
-
     c=schema.class(pk,'bsmagc',findclass(pk,'abstractmagc'));
 
     p=schema.prop(c,'Wpass1','ustring');
