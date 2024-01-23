@@ -1,25 +1,14 @@
 function SeqGeneratorBlocks(obj)
 
-
-
-
-
-
     if isR2015aOrEarlier(obj.ver)
 
-
         seqGenBlocks=findSeqGenblocks(obj);
-
 
         for i=1:length(seqGenBlocks)
             thisSet=seqGenBlocks{i};
 
             for j=1:length(thisSet)
                 blk=thisSet{j};
-
-
-
-
 
                 if i==1
                     hConvertStringPolysToNum(blk,'genPoly','descending');
@@ -36,16 +25,9 @@ function SeqGeneratorBlocks(obj)
 end
 
 
-
-
 function seqGenBlocks=findSeqGenblocks(obj)
-
-
     kasamiGenerators=obj.findBlocksWithMaskType('Kasami Sequence Generator');
-
     pnGenerators=obj.findBlocksWithMaskType('PN Sequence Generator');
-
     goldGenerators=obj.findBlocksWithMaskType('Gold Sequence Generator');
-
     seqGenBlocks={kasamiGenerators;pnGenerators;goldGenerators};
 end
