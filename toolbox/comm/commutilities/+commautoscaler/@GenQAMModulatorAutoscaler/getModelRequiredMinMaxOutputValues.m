@@ -1,14 +1,8 @@
 function[outputPortIndex,outputValueMax,outputValueMin]=getModelRequiredMinMaxOutputValues(h,blkObj)%#ok
 
-
-
-
-
     blkPath=regexprep(blkObj.getFullName,'\n',' ');
 
-
     y=slResolve(blkObj.SigCon,blkPath);
-
 
     reY=real(y);
     imY=imag(y);
