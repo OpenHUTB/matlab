@@ -1,25 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function[Ainv,d]=invertRingMatrix(A,I,zero)
     [nr,nc]=size(A);
     if nr~=nc
