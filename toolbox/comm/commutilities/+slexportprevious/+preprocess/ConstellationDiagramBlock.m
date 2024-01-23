@@ -1,18 +1,11 @@
 function ConstellationDiagramBlock(obj)
 
-
-
-
-
-
-
     if isR2021bOrEarlier(obj.ver)
 
         obj.appendRule('<Block<BlockType|ConstellationDiagram><ScopeFrameLocation:remove>>');
         obj.appendRule('<Block<BlockType|ConstellationDiagram><IsFloating:remove>>');
         obj.appendRule('<Block<BlockType|ConstellationDiagram><WasSavedAsWebScope:remove>>');
         obj.appendRule('<Block<BlockType|ConstellationDiagram><ExpandToolstrip:remove>>');
-
 
         obj.appendRule('<Block<BlockType|ConstellationDiagram><NumInputPorts:remove>>');
         obj.appendRule('<Block<BlockType|ConstellationDiagram><SamplesPerSymbol:remove>>');
@@ -42,19 +35,14 @@ function ConstellationDiagramBlock(obj)
         obj.appendRule('<Block<BlockType|ConstellationDiagram><GraphicalSettings:remove>>');
         obj.appendRule('<Block<BlockType|ConstellationDiagram><WindowPosition:remove>>');
 
-
-
         cdBlks=find_scopes(obj);
         for idx=1:numel(cdBlks)
-
             mapScopeParameters(obj,cdBlks{idx},obj);
         end
     end
     if isR2018bOrEarlier(obj.ver)
 
         obj.appendRule('<Block<BlockType|ConstellationDiagram><ScopeSpecificationString:remove>>');
-
-
         consBlocks=find_system(obj.modelName,'LookUnderMasks','on',...
         'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
         'BlockType','ConstellationDiagram');
@@ -64,7 +52,6 @@ function ConstellationDiagramBlock(obj)
             numInputPorts=str2double(get_param([obj.origModelName,origBlock],'NumInputPorts'));
             if numInputPorts>1
                 currBlk=consBlocks{jndx};
-
                 CDPorts=get_param(currBlk,'PortHandles');
                 hLines=-ones(length(CDPorts.Inport),1);
                 hLineSrcPort=-ones(length(CDPorts.Inport),1);
@@ -74,14 +61,7 @@ function ConstellationDiagramBlock(obj)
                         hLineSrcPort(indx)=get_param(hLines(indx),'SrcPortHandle');
                     end
                 end
-
                 set_param(currBlk,'NumInputPorts','1');
-
-
-
-
-
-
 
                 for indx=1:numInputPorts
                     if hLines(indx)~=-1
