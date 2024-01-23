@@ -1,8 +1,5 @@
 function[DTConInfo,comments,paramNames]=gatherSpecifiedDT(~,blkObj,~)
 
-
-
-
     specifiedDTStr='';
     comments={};
     paramNames.modeStr='';
