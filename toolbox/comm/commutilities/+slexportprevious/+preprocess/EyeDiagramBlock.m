@@ -1,11 +1,7 @@
 function EyeDiagramBlock(obj)
 
-
-
-
     webporting=false;
     if webporting&&isR2021bOrEarlier(obj.ver)
-
 
         obj.appendRule('<Block<BlockType|EyeDiagram><PlotImaginaryAxes:remove>>');
         obj.appendRule('<Block<BlockType|EyeDiagram><SamplesPerSymbol:remove>>');
@@ -35,27 +31,15 @@ function EyeDiagramBlock(obj)
         obj.appendRule('<Block<BlockType|EyeDiagram><GraphicalSettings:remove>>');
         obj.appendRule('<Block<BlockType|EyeDiagram><WindowPosition:remove>>');
 
-
-
         eyeBlks=find_scopes(obj);
         for idx=1:numel(eyeBlks)
-
             mapScopeParameters(obj,eyeBlks{idx},obj.modelName);
         end
     end
     if isR2014aOrEarlier(obj.ver)
-
-
-
-
-
-
         edBlocks=find_system(obj.modelName,'LookUnderMasks','on',...
         'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
         'IncludeCommented','on','IOType','none','BlockType','EyeDiagram');
-
-
-
         edViewers=find_system(obj.modelName,'AllBlocks','on',...
         'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
         'IOType','viewer','BlockType','EyeDiagram');
@@ -66,10 +50,7 @@ function EyeDiagramBlock(obj)
             allEDBlks{1}=edBlocks;
             allEDBlks{2}=edViewers;
             viewer=2;
-
-
             MaskVariables='sampPerSymb=@1;offsetEye=@2;symbPerTrace=@3;numTraces=@4;numNewFrames=@5;LineMarkers=&6;LineStyles=&7;LineColors=&8;dupPoints=@9;fading=@10;render=@11;AxisGrid=&12;yMin=@13;yMax=@14;inphaseLabel=&15;quadratureLabel=&16;openScopeAtSimStart=@17;dispDiagram=@18;FrameNumber=&19;FigPos=@20;figTitle=&21;block_type_=@22;numLinesMax=@23;';
-
 
             for edIdx=1:2
 
@@ -79,21 +60,12 @@ function EyeDiagramBlock(obj)
                     continue;
                 end
 
-
-
                 if edIdx==viewer
-
-
                     lib_mdl=obj.getTempViewerLib;
                 else
                     lib_mdl=getTempLib(obj);
                 end
-
                 libBlock=[lib_mdl,'/',obj.generateTempName];
-
-
-
-
                 set_param(lib_mdl,'LibraryType','BlockLibrary');
                 add_block('built-in/S-Function',libBlock);
 
@@ -102,36 +74,26 @@ function EyeDiagramBlock(obj)
                     set_param(libBlock,'IOType','viewer');
                 end
 
-
                 set_param(libBlock,...
                 'Mask','on',...
                 'MaskVariables',MaskVariables,...
                 'MaskType','Discrete-Time Eye Diagram Scope');
-
-
                 pmask=Simulink.Mask.get(libBlock);
                 y=pmask.getParameter('dispDiagram');
                 y.Evaluate='off';
 
-
                 save_system(lib_mdl);
-
-
 
                 sfuncBlock=libBlock;
                 for i=1:length(edBlks)
                     blk=edBlks{i};
-
-
                     s=get_param(blk,'ScopeConfiguration');
                     figPos=sprintf('[%s]',num2str(s.Position));
 
                     if edIdx==viewer
                         vs=get_param(blk,'IOSignals');
                     end
-
                     scope=scopeextensions.ScopeBlock.getInstanceForCoreBlock(blk);
-
                     ud=get_param(blk,'UserData');
 
                     try
@@ -148,7 +110,6 @@ function EyeDiagramBlock(obj)
                     catch
 
                     end
-
                     [newParamsNames,newParamsValues]=convertParameters(ud);
 
                     ud.Scope=[];
@@ -168,7 +129,6 @@ function EyeDiagramBlock(obj)
 
                 end
 
-
                 newRef=sfuncBlock;
 
                 if edIdx==viewer
@@ -178,7 +138,6 @@ function EyeDiagramBlock(obj)
                 else
                     oldRef='commsink2/Discrete-Time\nEye Diagram\nScope';
                 end
-
                 obj.appendRule(slexportprevious.rulefactory.replaceInSourceBlock(...
                 'SourceBlock',newRef,oldRef));
 
@@ -190,27 +149,17 @@ function EyeDiagramBlock(obj)
 
 end
 
+
 function[newParamsNames,newParamsValues]=convertParameters(ud)
-
-
-
-
-
     lineProperties=ud.Scope.getScopeParam('Visuals','Eye Diagram','LineProperties');
 
     index=1;
-
 
     newParamsNames{index}='sampPerSymb';
     newParamsValues{index}=ud.Scope.getScopeParam('Visuals','Eye Diagram','SamplesPerSymbol');
     index=index+1;
 
-
     newParamsNames{index}='offsetEye';
-
-
-
-
     newVersionOffset=ud.Scope.getScopeParam('Visuals','Eye Diagram','SampleOffset');
     sps=str2double(ud.Scope.getScopeParam('Visuals','Eye Diagram','SamplesPerSymbol'));
     symbPerTrace=str2double(ud.Scope.getScopeParam('Visuals','Eye Diagram','SymbolsPerTrace'));
@@ -221,23 +170,19 @@ function[newParamsNames,newParamsValues]=convertParameters(ud)
     newParamsValues{index}=num2str(oldVersionOffset);
     index=index+1;
 
-
     newParamsNames{index}='symbPerTrace';
     newParamsValues{index}=ud.Scope.getScopeParam('Visuals','Eye Diagram','SymbolsPerTrace');
     index=index+1;
-
 
     newParamsNames{index}='numTraces';
     nt=ud.Scope.getScopeParam('Visuals','Eye Diagram','TracesToDisplay');
     newParamsValues{index}=nt;
     index=index+1;
 
-
     newParamsNames{index}='numNewFrames';
 
     newParamsValues{index}=nt;
     index=index+1;
-
 
     newParamsNames{index}='LineMarkers';
     if~isempty(lineProperties)
@@ -247,7 +192,6 @@ function[newParamsNames,newParamsValues]=convertParameters(ud)
     end
     index=index+1;
 
-
     newParamsNames{index}='LineStyles';
     if~isempty(lineProperties)
         newParamsValues{index}=lineProperties.LineStyle;
@@ -256,17 +200,14 @@ function[newParamsNames,newParamsValues]=convertParameters(ud)
     end
     index=index+1;
 
-
     newParamsNames{index}='LineColors';
     newParamsValues{index}='b';
     index=index+1;
-
 
     newParamsNames{index}='dupPoints';
 
     newParamsValues{index}='on';
     index=index+1;
-
 
     newParamsNames{index}='fading';
     if ud.Scope.getScopeParam('Visuals','Eye Diagram','ColorFading')
@@ -276,12 +217,10 @@ function[newParamsNames,newParamsValues]=convertParameters(ud)
     end
     index=index+1;
 
-
     newParamsNames{index}='render';
 
     newParamsValues{index}='on';
     index=index+1;
-
 
     newParamsNames{index}='AxisGrid';
     if ud.Scope.getScopeParam('Visuals','Eye Diagram','Grid')
@@ -291,26 +230,21 @@ function[newParamsNames,newParamsValues]=convertParameters(ud)
     end
     index=index+1;
 
-
     newParamsNames{index}='yMin';
     newParamsValues{index}=ud.Scope.getScopeParam('Visuals','Eye Diagram','MinYLim');
     index=index+1;
-
 
     newParamsNames{index}='yMax';
     newParamsValues{index}=ud.Scope.getScopeParam('Visuals','Eye Diagram','MaxYLim');
     index=index+1;
 
-
     newParamsNames{index}='inphaseLabel';
     newParamsValues{index}=ud.Scope.getScopeParam('Visuals','Eye Diagram','InphaseLabel');
     index=index+1;
 
-
     newParamsNames{index}='quadratureLabel';
     newParamsValues{index}=ud.Scope.getScopeParam('Visuals','Eye Diagram','QuadratureLabel');
     index=index+1;
-
 
     newParamsNames{index}='openScopeAtSimStart';
     if ud.Scope.ScopeCfg.OpenAtMdlStart
@@ -319,7 +253,6 @@ function[newParamsNames,newParamsValues]=convertParameters(ud)
         newParamsValues{index}='off';
     end
     index=index+1;
-
 
     newParamsNames{index}='dispDiagram';
     strValue=ud.Scope.getScopeParam('Visuals','Eye Diagram','EyeDisplay');
@@ -330,23 +263,19 @@ function[newParamsNames,newParamsValues]=convertParameters(ud)
     end
     index=index+1;
 
-
     newParamsNames{index}='FrameNumber';
 
     newParamsValues{index}='off';
     index=index+1;
 
-
     newParamsNames{index}='figTitle';
     newParamsValues{index}=ud.Scope.getScopeParam('Visuals','Eye Diagram','Title');
     index=index+1;
-
 
     newParamsNames{index}='block_type_';
 
     newParamsValues{index}='eye';
     index=index+1;
-
 
     newParamsNames{index}='numLinesMax';
 
@@ -354,18 +283,17 @@ function[newParamsNames,newParamsValues]=convertParameters(ud)
 
 end
 
-function edBlks=find_scopes(obj)
 
+function edBlks=find_scopes(obj)
     edBlks=obj.findBlocksOfType('EyeDiagram');
     edBlks_viewers=obj.findBlocksOfType('EyeDiagram','IOType','viewer');
     edBlks=[edBlks;edBlks_viewers];
 end
 
+
 function mapScopeParameters(~,edBlk,~)
     cfg=get_param(edBlk,'ScopeConfiguration');
-
     set_param(edBlk,'ScopeSpecificationString',toScopeSpecificationString(cfg));
-
     set_param(edBlk,'DefaultConfigurationName','comm.scopes.EyeDiagramBlockCfg');
 end
 
