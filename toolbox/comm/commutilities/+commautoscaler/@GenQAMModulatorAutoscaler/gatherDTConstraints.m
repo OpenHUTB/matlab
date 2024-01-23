@@ -1,21 +1,12 @@
 function[hasDTConstraints,DTConstraintsSet]=gatherDTConstraints(h,blkObj)
 
-
-
-
     hasDTConstraints=true;
-
-
     curInputPorts=SimulinkFixedPoint.AutoscalerUtils.getSignalDrivingPort(h,blkObj,-1,[]);
 
-
     curOutputPorts=SimulinkFixedPoint.AutoscalerUtils.getSignalDrivingPort(h,blkObj,[],-1);
-
     DTConstraintsSet=cell(numel(curInputPorts)+numel(curOutputPorts),1);
 
     for idx=1:numel(curInputPorts)
-
-
         uniqueId=SimulinkFixedPoint.AutoscalerUtils.getUniqueId(curInputPorts{idx}.blkObj,curInputPorts{idx}.pathItem);
         limitedNonFxpConstraint=SimulinkFixedPoint.AutoscalerConstraints.SpecificConstraint([],[8,16,32],0);
         limitedNonFxpConstraint.setSourceInfo(blkObj,[DAStudio.message('SimulinkFixedPoint:autoscaling:ConstraintFromInport'),' 1']);
