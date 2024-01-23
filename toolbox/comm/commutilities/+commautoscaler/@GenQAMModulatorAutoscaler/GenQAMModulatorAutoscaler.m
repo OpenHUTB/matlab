@@ -1,12 +1,5 @@
 classdef GenQAMModulatorAutoscaler<dvautoscaler.SPCBlocksetAutoscaler
 
-
-
-
-
-
-
-
     methods
         [signValStr,wlValueStr,flValueStr,specifiedDTStr,flDlgStr,modeDlgStr,wlDlgStr]=getDataTypeInfoForPathItem(h,blkObj,pathItem)
         [hasDTConstraints,DTConstraintsSet]=gatherDTConstraints(h,blkObj)
