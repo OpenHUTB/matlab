@@ -1,19 +1,15 @@
 classdef(Hidden)InterleaverBase<comm.gpu.internal.GPUSystem
-
-
-
-
     properties(Abstract=true,Nontunable=true)
 PermutationVector
 PermutationVectorSource
     end
 
+
     properties(Access=protected)
-
         gpuPermVector;
-
         gpuBatchCount;
     end
+
 
     methods
         function obj=InterleaverBase(varargin)
@@ -21,18 +17,22 @@ PermutationVectorSource
         end
     end
 
+
     methods(Abstract=true,Access=protected)
         y=rhsPermVector(obj);
     end
+
 
     methods(Access=protected)
         function num=getNumInputsImpl(~)
             num=1;
         end
 
+
         function num=getNumOutputsImpl(~)
             num=1;
         end
+
 
         function validatePermutationVector(~,val)
 
@@ -40,13 +40,13 @@ PermutationVectorSource
             {'real','positive','integer','column','nonempty'},'',...
             'PermutationVector');
 
-
             tmp=(1:length(val))';
             if~isequal(tmp,sort(val(:)))
                 error(message('comm:commblkinterl:InvalidElements1'));
             end
 
         end
+
 
         function setupGPUImpl(obj,varargin)
 
@@ -63,25 +63,20 @@ PermutationVectorSource
                 error(message('comm:system:InterleaverBase:InvalidInputLength'));
             end
 
-
             obj.gpuBatchCount=szInt;
-
-
             obj.gpuPermVector=gpuArray(obj.rhsPermVector());
         end
+
 
         function releaseImpl(obj)
             obj.gpuPermVector=[];
         end
 
+
         function y=stepGPUImpl(obj,x)
-
-
             in=reshape(x,...
             size(obj.PermutationVector,1),...
             obj.gpuBatchCount);
-
-
 
             out=in(obj.gpuPermVector,:);
 
@@ -96,22 +91,26 @@ PermutationVectorSource
             varargout{1}=propagatedInputSize(obj,1);
         end
 
+
         function varargout=getOutputDataTypeImpl(obj)
             varargout{1}=propagatedInputDataType(obj,1);
         end
 
+
         function varargout=isOutputComplexImpl(obj)%#ok
             varargout{1}=false;
         end
+
 
         function varargout=isOutputFixedSizeImpl(obj)%#ok
             varargout{1}=true;
         end
 
     end
+
+
     methods(Static,Hidden)
         function y=generatesCode()
-
             y=false;
         end
     end
