@@ -1,16 +1,7 @@
 function LinearCodBlocks(obj)
 
-
-
-
-
-
-
     if isR2015aOrEarlier(obj.ver)
-
-
         linearCodBlocks=findLinearCodBlocks(obj);
-
 
         for i=1:length(linearCodBlocks)
             thisSet=linearCodBlocks{i};
@@ -23,10 +14,6 @@ function LinearCodBlocks(obj)
                 elseif i==2
                     polyParamName='k';
                 end
-
-
-
-
                 hConvertStringPolysToNum(blk,polyParamName,'ascending');
             end
         end
@@ -35,12 +22,7 @@ function LinearCodBlocks(obj)
 end
 
 
-
-
 function linearCodBlocks=findLinearCodBlocks(obj)
-
-
-
     linearCodBlocks=find_system(obj.modelName,'LookUnderMasks','on',...
     'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
     'IncludeCommented','on','regexp','on',...
