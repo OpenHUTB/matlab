@@ -1,19 +1,11 @@
 function subsysCap=commmaskedcaps(block)
 
-
-
-
-
-
     if~strcmpi(get_param(block,'Mask'),'on')
         DAStudio.error('Simulink:bcst:ErrOnlyMasks',mfilename);
     end
 
     maskType=get_param(block,'MaskType');
-
-
     [maskStr,trans]=getMaskStr(maskType,block);
-
 
     if strcmpi(get_param(block,'Mask'),'on')&&...
         strcmpi(get_param(block,'BlockType'),'SubSystem')&&...
@@ -21,11 +13,7 @@ function subsysCap=commmaskedcaps(block)
         maskStr='';
 
     end
-
-
     subsysCap=bcstCreateCap(maskType,maskStr,trans);
-
-
 
     function[subsysCapStr,trans]=getMaskStr(maskType,block)
 
@@ -39,10 +27,8 @@ function subsysCap=commmaskedcaps(block)
             subsysCapStr='';
             trans=transTable;
         else
-
             findMask=find(strcmp(maskType,maskTable(:,2)));
             if~isempty(findMask)
-
                 subsysCapStr=maskTable{findMask,1};
                 trans=transTable;
             else
@@ -50,11 +36,7 @@ function subsysCap=commmaskedcaps(block)
             end
         end
 
-
-
-        function[maskTable,transTable]=getMaskTable
-
-
+       function[maskTable,transTable]=getMaskTable
 
             transTable.d='double';
 
@@ -90,38 +72,6 @@ function subsysCap=commmaskedcaps(block)
             transTable.m='multidimension';
             transTable.v='variablesize';
             transTable.I='foreach';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             maskTable={...
 ...
@@ -349,7 +299,6 @@ function subsysCap=commmaskedcaps(block)
             };
 
 
-
             function isSubLib=isSublibrary(block)
 
                 cnln=newline;
@@ -389,9 +338,7 @@ function subsysCap=commmaskedcaps(block)
                 'commdigbbnd2/Standard-Compliant',...
                 'commdigbbnd2/TCM',...
                 };
-
                 nameSp=[get_param(block,'Parent'),'/',get_param(block,'Name')];
-
                 isSubLib=any(strcmp(nameSp,sublibs));
 
 
