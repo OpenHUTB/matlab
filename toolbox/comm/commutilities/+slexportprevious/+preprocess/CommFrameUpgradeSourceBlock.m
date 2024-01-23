@@ -1,13 +1,6 @@
 function CommFrameUpgradeSourceBlock(obj)
 
-
-
-
-
     if isR2015aOrEarlier(obj.ver)
-
-
-
         blkList=find_system(obj.modelName,...
         'LookUnderMasks','on',...
         'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
@@ -24,11 +17,8 @@ function CommFrameUpgradeSourceBlock(obj)
         sprintf('commrandsrc3/Bernoulli Binary\nGenerator'),'|',...
         sprintf('commrandsrc3/Poisson Integer\nGenerator')]);
 
-
-
         for p=1:length(blkList)
             block=blkList{p};
-
             refBlock=get_param(block,'ReferenceBlock');
 
             try
@@ -49,10 +39,6 @@ function CommFrameUpgradeSourceBlock(obj)
             end
 
             if strcmp(frameBased,'on')
-
-
-
-
                 blkLHandles=get_param(block,'LineHandles');
                 blkLHOutport=get(blkLHandles.Outport(1));
                 InsertExtraBlock(block,blkLHOutport,'Post',80,0,...
