@@ -1,13 +1,5 @@
 function gT=getGPUDataType(mT)
 
-
-
-
-
-
-
-
-
     switch mT
     case 'double'
         gT='double';
