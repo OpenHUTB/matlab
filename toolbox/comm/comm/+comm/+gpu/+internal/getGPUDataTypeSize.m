@@ -1,13 +1,5 @@
 function sz=getGPUDataTypeSize(gpuDT)
 
-
-
-
-
-
-
-
-
     switch(gpuDT)
     case 'double'
         sz=8;
