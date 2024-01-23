@@ -1,8 +1,5 @@
 function CommReplacements(obj)
 
-
-
-
     if isR2022aOrEarlier(obj.ver)
         obj.removeLibraryLinksTo('commrflib2/Sample-Rate Match');
     end
