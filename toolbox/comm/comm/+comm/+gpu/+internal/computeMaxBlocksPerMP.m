@@ -1,28 +1,5 @@
 function blks=computeMaxBlocksPerMP(numthreads,numregs,sharedbytes,arch,smSize)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if~any(arch==[1.3,2.0,2.1,3.0,3.5])
         arch=3.5;
     end
@@ -32,20 +9,11 @@ function blks=computeMaxBlocksPerMP(numthreads,numregs,sharedbytes,arch,smSize)
     end
     smMaxSize=getSharedMaxSize(arch,smSize);
 
-
-
     s=gpuHWData(arch);
 
-
-
-
-
-
     warpsPerBlock=ceilmult(numthreads/s.ThreadsPerWarp,1);
-
     blocksPerSM_byWarp=min(s.ThreadBlocksPerMultiprocessor,...
     floormult((s.WarpsPerMultiprocessor/warpsPerBlock),1));
-
 
     if strcmpi(s.AllocationGranularity,'block')
         regPerBlock=ceilmult(ceilmult(warpsPerBlock,s.WarpAllocationGranularity)*...
@@ -66,8 +34,6 @@ function blks=computeMaxBlocksPerMP(numthreads,numregs,sharedbytes,arch,smSize)
             blocksPerSM_byReg=s.ThreadBlocksPerMultiprocessor;
         end
     end
-
-
     sharedPerBlock=ceilmult(sharedbytes,s.SharedMemoryAllocationUnitSize);
 
     if sharedPerBlock>0
@@ -75,25 +41,23 @@ function blks=computeMaxBlocksPerMP(numthreads,numregs,sharedbytes,arch,smSize)
     else
         blocksPerSM_byShared=s.ThreadBlocksPerMultiprocessor;
     end
-
-
-
     blkLimits=[blocksPerSM_byWarp,blocksPerSM_byReg,blocksPerSM_byShared];
     blks=min(blkLimits);
 
 end
 
-function roundedx=ceilmult(x,y)
 
+function roundedx=ceilmult(x,y)
     tmp=x/y;
     roundedx=ceil(tmp)*y;
 end
 
-function flx=floormult(x,y)
 
+function flx=floormult(x,y)
     tmp=x/y;
     flx=floor(tmp)*y;
 end
+
 
 function b=getSharedMaxSize(arch,smSize)
 
@@ -119,9 +83,6 @@ end
 
 
 function s=getRegAllocUnitSize(arch,numregs)
-
-
-
     switch(arch)
     case 1.3
         s=512;
