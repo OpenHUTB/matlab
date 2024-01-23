@@ -1,18 +1,12 @@
 function ProcessCommfilt2Blocks(obj)
 
-
-
-
     if isR2013aOrEarlier(obj.ver)
-
         Rctxblk=obj.findBlocksWithMaskType('Raised Cosine Transmit Filter');
         Rcrxblk=obj.findBlocksWithMaskType('Raised Cosine Receive Filter');
         Rcblk=[Rctxblk;Rcrxblk];
 
         for p=1:length(Rcblk)
             block=Rcblk{p};
-
-
             filtSpanStr=get_param(block,'filtSpan');
             try
                 filtSpan=evalin('base',filtSpanStr);
@@ -24,16 +18,12 @@ function ProcessCommfilt2Blocks(obj)
                     filtSpanStr));
                 end
             end
-
             set_param(block,'D',sprintf('(%s)/2',filtSpanStr));
 
             if strcmp(get_param(block,'MaskType'),'Raised Cosine Receive Filter')
 
                 set_param(block,'rateMode','Downsampling');
             end
-
-
-
 
             try
                 Rstr=get_param(block,'R');
@@ -57,8 +47,6 @@ function ProcessCommfilt2Blocks(obj)
             end
             filterGain=get_param(block,'filterGain');
             if contains(filterGain,'rcfiltgaincompat')
-
-
                 filterGain=strrep(filterGain,'gcbh','block');
                 filterGain=sprintf('%1.25f',(eval(filterGain)));
             end
@@ -75,7 +63,6 @@ function ProcessCommfilt2Blocks(obj)
             set_param(block,'checkGain','User-specified');
         end
     end
-
 
     if isR2015bOrEarlier(obj.ver)
         if isR2008aOrEarlier(obj.ver)
