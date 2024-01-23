@@ -1,39 +1,20 @@
 function BCH_RS_Blocks(obj)
 
-
-
-
-
-
-
-
-
-
-
-
     if isR2015aOrEarlier(obj.ver)
-
 
         bch_Blocks=findBCHblocks(obj);
         rs_Blocks=findRSblocks(obj);
         bch_rs_Blocks=[bch_Blocks;rs_Blocks];
-
-
-
-
-
 
         for i=1:length(bch_rs_Blocks)
             blk=bch_rs_Blocks{i};
             convertPrimPolyToNum(obj,blk);
         end
 
-
         for i=1:length(bch_Blocks)
             blk=bch_Blocks{i};
             hConvertStringPolysToNum(blk,'genPoly','descending');
         end
-
 
         for i=1:length(rs_Blocks)
             blk=rs_Blocks{i};
@@ -49,19 +30,12 @@ function BCH_RS_Blocks(obj)
     end
 
     if isR2014bOrEarlier(obj.ver)
-
-
         bch_rs_Blocks=[findBCHblocks(obj);findRSblocks(obj)];
-
 
         for i=1:length(bch_rs_Blocks)
             blk=bch_rs_Blocks{i};
-
-
-
             convertShorteningSyntax(obj,blk);
         end
-
 
         obj.appendRules({...
         '<Block<SourceBlock|"commblkcod2/BCH Encoder"><specShortening:remove><shortenedK:remove>>',...
@@ -76,12 +50,7 @@ function BCH_RS_Blocks(obj)
 end
 
 
-
-
 function bch_Blocks=findBCHblocks(obj)
-
-
-
     bch_Blocks=find_system(obj.modelName,'LookUnderMasks','on',...
     'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
     'IncludeCommented','on','regexp','on',...
@@ -89,10 +58,8 @@ function bch_Blocks=findBCHblocks(obj)
 
 end
 
+
 function rs_Blocks=findRSblocks(obj)
-
-
-
     rs_Blocks=find_system(obj.modelName,'LookUnderMasks','on',...
     'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
     'IncludeCommented','on','regexp','on',...
@@ -100,20 +67,15 @@ function rs_Blocks=findRSblocks(obj)
 
 end
 
+
 function convertPrimPolyToNum(obj,blk)
 
-
-
     currPrimPoly=get_param(blk,'prPoly');
-
 
     if length(currPrimPoly)>=2&&currPrimPoly(1)==''''...
         &&currPrimPoly(end)==''''
 
-
-
         currPrimPoly(currPrimPoly=='''')='';
-
         currPrimPoly=commstr2poly(currPrimPoly,'descending');
 
         if isR2008aOrEarlier(obj.ver)
@@ -124,10 +86,8 @@ function convertPrimPolyToNum(obj,blk)
     end
 end
 
+
 function convertShorteningSyntax(obj,blk)
-
-
-
     specShort_str=get_param(blk,'specShortening');
 
     if strcmp(specShort_str,'on')
