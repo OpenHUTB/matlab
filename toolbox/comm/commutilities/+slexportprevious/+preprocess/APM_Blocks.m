@@ -1,50 +1,14 @@
 function APM_Blocks(obj)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if isR2019aOrEarlier(obj.ver)
-
-
         dvbsapskmod_Blocks=obj.findBlocksWithMaskType('DVBS-APSK Modulator Baseband');
-
-
         dvbsapskdemod_Blocks=obj.findBlocksWithMaskType('DVBS-APSK Demodulator Baseband');
-
-
         apskdemod_Blocks=obj.findBlocksWithMaskType('M-APSK Demodulator Baseband');
-
-
         milqamdemod_Blocks=obj.findBlocksWithMaskType('MIL-188 QAM Demodulator Baseband');
-
         dvbsapsk_blocks=[dvbsapskmod_Blocks;dvbsapskdemod_Blocks];
         apmdemod_blocks=[dvbsapskdemod_Blocks;apskdemod_Blocks;milqamdemod_Blocks];
 
-
         isSLX=obj.ver.isSLX;
-
-
 
         for i=1:length(dvbsapsk_blocks)
 
@@ -78,10 +42,6 @@ function APM_Blocks(obj)
             obj.appendRules(rule);
         end
 
-
-
-
-
         for i=1:length(apmdemod_blocks)
 
             blk=apmdemod_blocks{i};
@@ -104,6 +64,7 @@ function APM_Blocks(obj)
 
     end
 end
+
 
 function rule=generateRule(isSLX,srcBlk,r)
     if isSLX
