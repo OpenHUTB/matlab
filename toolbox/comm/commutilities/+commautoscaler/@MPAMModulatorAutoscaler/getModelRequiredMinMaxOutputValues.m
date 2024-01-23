@@ -1,13 +1,7 @@
 function[outputPortIndex,outputValueMax,outputValueMin]=getModelRequiredMinMaxOutputValues(h,blkObj)%#ok
-
-
-
-
-
     blkPath=regexprep(blkObj.getFullName,'\n',' ');
 
     M=slResolve(blkObj.M,blkPath);
-
 
     switch blkObj.PowType
     case 'Average Power'
@@ -19,10 +13,8 @@ function[outputPortIndex,outputValueMax,outputValueMin]=getModelRequiredMinMaxOu
         minDist=2*sqrt(PeakPowVal)/(M-1);
 
     otherwise
-
         minDist=slResolve(blkObj.MinDist,blkPath);
     end
-
 
     outputPortIndex=1;
     outputValueMax=((M+1)*minDist)/2;
