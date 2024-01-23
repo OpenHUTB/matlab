@@ -1,12 +1,5 @@
 function[DTConInfo,comments,paramNames]=gatherSpecifiedDT(~,blkObj,~)
 
-
-
-
-
-
-
-
     comments={};
 
     paramNames.modeStr='outDType';
@@ -18,8 +11,6 @@ function[DTConInfo,comments,paramNames]=gatherSpecifiedDT(~,blkObj,~)
 
     if any(strcmp(blkDlgDTChoice,{'Fixed-point','User-defined'}))
 
-
-
         outWL=blkObj.outWordLen;
         outFL=blkObj.outFracLen;
 
@@ -29,7 +20,6 @@ function[DTConInfo,comments,paramNames]=gatherSpecifiedDT(~,blkObj,~)
             specifiedDTStr=['fixdt(1',',',outWL,',',outFL,')'];
         end
     end
-
     DTConInfo=SimulinkFixedPoint.DTContainerInfo(specifiedDTStr,blkObj);
 
 end
