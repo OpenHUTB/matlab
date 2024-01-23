@@ -1,9 +1,5 @@
 function SISOChannelBlock(obj)
 
-
-
-
-
 %#ok<*AGROW>
 
     if isR2017aOrEarlier(obj.ver)
@@ -11,11 +7,8 @@ function SISOChannelBlock(obj)
         chanBlks{1}=obj.findBlocksWithMaskType('SISO Fading Channel',...
         'FadingDistribution','Rayleigh');
 
-
         chanBlks{2}=obj.findBlocksWithMaskType('SISO Fading Channel',...
         'FadingDistribution','Rician');
-
-
         maskVariables={'maxDopplerShift=@1;spectrumType=&2;sigmaGaussian=@3;coeffRounded=@4;freqMinMaxRJakes=&5;freqMinMaxAJakes=&6;sigmaGaussian1=&7;sigmaGaussian2=@8;centerFreqGaussian1=@9;centerFreqGaussian2=&10;gainGaussian1=@11;gainGaussian2=@12;coeffBell=@13;dopplerSpectrum=@14;pathDelays=&15;avgPathGaindB=&16;normalizePathGains=&17;seed=&18;enableProbe=@19;openVisAtStart=&20;outPathGains=@21;outDelay=@22;',...
         'K=@1;fdLOS=@2;thetaLOS=@3;maxDopplerShift=@4;spectrumType=&5;sigmaGaussian=@6;coeffRounded=@7;freqMinMaxRJakes=&8;freqMinMaxAJakes=&9;sigmaGaussian1=&10;sigmaGaussian2=@11;centerFreqGaussian1=@12;centerFreqGaussian2=&13;gainGaussian1=@14;gainGaussian2=@15;coeffBell=@16;dopplerSpectrum=@17;pathDelays=&18;avgPathGaindB=&19;normalizePathGains=&20;seed=&21;enableProbe=@22;openVisAtStart=&23;outPathGains=@24;outDelay=@25;'};
         maskType={'Multipath Rayleigh Fading Channel',...
@@ -23,29 +16,21 @@ function SISOChannelBlock(obj)
         oldChanBlockRef={'commchan3/Multipath Rayleigh\nFading Channel',...
         'commchan3/Multipath Rician\nFading Channel'};
 
-
         for chanType=1:2
             if isempty(chanBlks{chanType})
                 continue;
             end
 
-
             lib_mdl=getTempLib(obj);
-
-
             lib_block=[lib_mdl,'/',obj.generateTempName];
 
-
             add_block('built-in/S-Function',lib_block);
-
 
             set_param(lib_block,...
             'MaskVariables',maskVariables{chanType},...
             'MaskType',maskType{chanType});
 
             save_system(lib_mdl);
-
-
 
             oldChanBlock=lib_block;
 
@@ -54,14 +39,9 @@ function SISOChannelBlock(obj)
                 numOutPorts=1+...
                 strcmp(get_param(thisBlk,'PathGainsOutputPort'),'on')+...
                 strcmp(get_param(thisBlk,'ChannelFilterDelayOutputPort'),'on');
-
-
-
                 paramPairs=getChanParams(thisBlk);
-
                 obj.replaceBlock(thisBlk,oldChanBlock,...
                 'GraphicalNumOutputPorts',num2str(numOutPorts));
-
                 w=warning('off','comm:shared:willBeRemovedReplacementRef');
                 restorewarn=onCleanup(@()warning(w));
                 for paramIdx=1:2:length(paramPairs)
@@ -70,8 +50,6 @@ function SISOChannelBlock(obj)
                 delete(restorewarn);
 
             end
-
-
             obj.appendRule(slexportprevious.rulefactory.replaceInSourceBlock('SourceBlock',...
             oldChanBlock,oldChanBlockRef{chanType}));
         end
@@ -79,13 +57,10 @@ function SISOChannelBlock(obj)
 
 end
 
+
 function paramPairs=getChanParams(blk)
 
-
-
     paramPairs={};
-
-
     commParamMap=...
 ...
     {'avgPathGaindB','AveragePathGains';...
@@ -101,7 +76,6 @@ function paramPairs=getChanParams(blk)
         paramPairs{end+1}=get_param(blk,commParamMap{i,2});
     end
 
-
     if strcmp(get_param(blk,'FadingDistribution'),'Rician')
         ricianParamMap=...
 ...
@@ -115,7 +89,6 @@ function paramPairs=getChanParams(blk)
         end
     end
 
-
     paramPairs{end+1}='enableProbe';
     paramPairs{end+1}='0';
 
@@ -126,7 +99,6 @@ function paramPairs=getChanParams(blk)
         paramPairs{end+1}='on';
     end
 
-
     paramPairs{end+1}='spectrumType';
     paramPairs{end+1}='Specify as dialog parameter';
 
@@ -135,8 +107,8 @@ function paramPairs=getChanParams(blk)
 
 end
 
-function dopplerObj=convertDopStructArray(dopplerStruct)
 
+function dopplerObj=convertDopStructArray(dopplerStruct)
 
     s=strfind(dopplerStruct,'doppler(');
 
@@ -209,10 +181,8 @@ function dopplerObj=convertDopStructArray(dopplerStruct)
 
 end
 
+
 function oneObj=formulateOneDopplerObj(oneStruct,type)
-
-
-
     param=regexp(oneStruct,'[,].*[)]','match');
     if~isempty(param)
         oneObj=['doppler.',type,'(',param{1}(2:end-1),'),'];
