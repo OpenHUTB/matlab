@@ -1,46 +1,26 @@
 classdef SimulationResults<handle
 
-
-
-
     properties
 ParamNames
 ParamValues
 
 WaveNames
 
-
-
 XaxisLabels
-
 
 XaxisUnits
 
-
 XaxisScales
-
 
 XaxisValues
 
-
-
-
-
 YaxisLabels
-
 
 YaxisUnits
 
-
 YaxisScales
 
-
 YaxisValues
-
-
-
-
-
 
         isSameLabelsX=false;
         isSameLabelsY=false;
@@ -51,6 +31,7 @@ YaxisValues
         isSameValuesX=false;
         isSameValuesY=false;
     end
+
 
     methods
         function obj=SimulationResults(varargin)
@@ -78,21 +59,6 @@ YaxisValues
         end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function setParam(obj,name,value)
             [~,index]=obj.getParamValue(name);
             if index==0
@@ -103,6 +69,7 @@ YaxisValues
 
             obj.ParamValues{index}=value;
         end
+
         function[value,index]=getParamValue(obj,name)
             if~isempty(name)
                 for index=1:length(obj.ParamNames)
@@ -130,9 +97,7 @@ YaxisValues
                 obj.YaxisScales=[];
                 obj.YaxisValues=[];
             else
-
                 obj.WaveNames{size}=[];
-
 
                 obj.XaxisLabels{size}=[];
                 obj.XaxisUnits{size}=[];
@@ -153,7 +118,6 @@ YaxisValues
 
                 obj.WaveNames{index}=waveformName;
             else
-
                 [~,~,~,~,index]=obj.getXaxis(waveformName);
             end
             if index==0
@@ -167,6 +131,7 @@ YaxisValues
             obj.XaxisScales{index}=scale;
             obj.XaxisValues{index}=values;
         end
+
         function[label,unit,scale,values,index]=getXaxis(obj,waveformName)
             if~isempty(waveformName)
                 for index=1:length(obj.WaveNames)
@@ -185,6 +150,8 @@ YaxisValues
             scale=[];
             values=[];
         end
+
+
         function value=getValue(obj,isSameValue,values,index)
             if isSameValue
                 value=values;
@@ -215,6 +182,7 @@ YaxisValues
             obj.YaxisScales{index}=scale;
             obj.YaxisValues{index}=values;
         end
+
         function[label,unit,scale,values,index]=getYaxis(obj,waveformName)
             if~isempty(waveformName)
                 for index=1:length(obj.WaveNames)
@@ -291,7 +259,6 @@ YaxisValues
             waveform=[];
         end
 
-
         function[cornerParams,metricParams]=getShortParamNames(obj)
             designParamsCount=obj.getParamValue('designParamsCount');
             params=obj.getParamValue('paramNames_ShortMetrics');
@@ -317,8 +284,6 @@ YaxisValues
             structCopy.YaxisUnits=obj.YaxisUnits;
             structCopy.YaxisScales=obj.YaxisScales;
             structCopy.YaxisValues=obj.YaxisValues;
-
-
             structCopy.isSameLabelsX=obj.isSameLabelsX;
             structCopy.isSameLabelsY=obj.isSameLabelsY;
             structCopy.isSameUnitsX=obj.isSameUnitsX;
@@ -328,6 +293,8 @@ YaxisValues
             structCopy.isSameValuesX=obj.isSameValuesX;
             structCopy.isSameValuesY=obj.isSameValuesY;
         end
+
+
         function put(obj,structCopy)
             obj.ParamNames=structCopy.ParamNames;
             obj.ParamValues=structCopy.ParamValues;
@@ -340,8 +307,6 @@ YaxisValues
             obj.YaxisUnits=structCopy.YaxisUnits;
             obj.YaxisScales=structCopy.YaxisScales;
             obj.YaxisValues=structCopy.YaxisValues;
-
-
             obj.isSameLabelsX=structCopy.isSameLabelsX;
             obj.isSameLabelsY=structCopy.isSameLabelsY;
             obj.isSameUnitsX=structCopy.isSameUnitsX;
@@ -366,8 +331,6 @@ YaxisValues
             out.YaxisUnits=obj.YaxisUnits;
             out.YaxisScales=obj.YaxisScales;
             out.YaxisValues=obj.YaxisValues;
-
-
             out.isSameLabelsX=obj.isSameLabelsX;
             out.isSameLabelsY=obj.isSameLabelsY;
             out.isSameUnitsX=obj.isSameUnitsX;
@@ -378,6 +341,7 @@ YaxisValues
             out.isSameValuesY=obj.isSameValuesY;
         end
     end
+
 
     methods(Static)
 
@@ -395,6 +359,7 @@ YaxisValues
         function waveformName=packWaveformName(simName,simType,nodeName,simCorner)
             waveformName=[simName,', ',simType,', ',nodeName,', ',simCorner];
         end
+
         function[simName,simType,nodeName,simCorner]=unpackWaveformName(waveformName)
             simName=[];
             simType=[];
@@ -420,7 +385,6 @@ YaxisValues
                 end
             end
         end
-
 
         function[shortVsLongValues,paramValuesPerCorner]=getShortColumnValues_corModelSpec(paramNames,paramValuesPerCorner)
             shortVsLongValues={};
@@ -448,7 +412,6 @@ YaxisValues
                             end
                         end
                         if~found
-
                             shortVsLongValues{end+1}={value,paramValuesPerCorner{rowIndex}{columnIndex}};%#ok<AGROW>
                         end
 
@@ -458,9 +421,7 @@ YaxisValues
             end
         end
 
-
         function[shortVsLongNames,paramNames_ShortMetrics]=getShortColumnNames(designParamsCount,paramNames)
-
 
             count=0;
             if~iscell(paramNames)
@@ -472,7 +433,6 @@ YaxisValues
                     count=count+1;
                 end
             end
-
             paramNames_ShortMetrics=paramNames;
             if count>0
 
@@ -490,6 +450,7 @@ YaxisValues
                 end
             end
         end
+
         function[shortVsLongNames,paramNames_ShortMetrics]=getUniqueColumnNames(designParamsCount,paramNames,paramNames_ShortMetrics,shortVsLongNames)
 
             replacementCount=0;
@@ -566,6 +527,7 @@ YaxisValues
         end
     end
 end
+
 
 function isSame=isSameCellValue(values)
     isSame=true;
