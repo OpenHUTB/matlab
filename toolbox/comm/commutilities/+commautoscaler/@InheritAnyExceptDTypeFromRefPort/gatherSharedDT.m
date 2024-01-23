@@ -1,8 +1,5 @@
 function sharedLists=gatherSharedDT(h,blkObj)
 
-
-
-
     hPorts=blkObj.PortHandles;
     inportObj=get_param(hPorts.Inport(1),'Object');
     [srcBlk,srcSig,srcInfo]=h.getSourceSignal(inportObj);
