@@ -1,6 +1,5 @@
 function[B,A]=designParamEQ(N,G,Wo,BW,varargin)
 
-
 %#codegen
 
     narginchk(4,7);
@@ -72,12 +71,10 @@ function[B,A]=designParamEQ(N,G,Wo,BW,varargin)
     end
 
     if Nfilts==oneCast
-
         [B0,A0]=designEachParamEQ(Nnew(1),Gnew(1),Wo(1),BWnew(1),m,dType);
     else
         B0=zeros(L,Nsections,'like',G);
         A0=zeros(L-1,Nsections,'like',G);
-
 
         startIdx=oneCast;
         for k=oneCast:Nfilts
@@ -98,7 +95,6 @@ function[B,A]=designParamEQ(N,G,Wo,BW,varargin)
         A=A0;
     end
 
-
     function[B,A]=designEachParamEQ(N,G,w0,BW,m,dType)
 
         zeroCast=cast(0,dType);
@@ -111,7 +107,6 @@ function[B,A]=designParamEQ(N,G,Wo,BW,varargin)
         G0=zeros(1,1,'like',G);
         GB=G/twoCast;
         if isinf(G)&&G<0
-
             gain=halfCast*ones(1,1,'like',G);
             GB=tenCast*log10(gain);
         end
@@ -119,45 +114,33 @@ function[B,A]=designParamEQ(N,G,Wo,BW,varargin)
         No2=N/twoCast;
 
         if m==oneCast
-
             B=zeros(3,No2,'like',G);
             B(1,1:No2)=oneCast;
             A=zeros(2,No2,'like',G);
-
         else
-
             N4=ceil(N/fourCast);
             B=zeros(5,N4,'like',G);
             B(1,1:N4)=oneCast;
             A=zeros(4,N4,'like',G);
-
         end
-
 
         if abs(G-G0)<=eps(dType)
             return;
         end
 
-
         G0sq=ones(1,1,'like',G);
         Gsq=tenCast^(G/tenCast);
         GBsq=tenCast^(GB/tenCast);
 
-
         if abs(Gsq-GBsq)<=eps(dType)||abs(GBsq-G0sq)<=eps(dType)
             return;
         end
-
-
         [Bf,Af]=audio.internal.designHPEQFilter(No2,G0sq,Gsq,GBsq,w0,BW,dType);
 
         if m==twoCast
-
             B=Bf';
             A=Af(:,2:end)';
         else
-
-
 
             if all(all(Bf(:,4:5)==zeroCast,oneCast),twoCast)&&all(all(Af(:,4:5)==zeroCast,oneCast),twoCast)
                 N4=ceil(N/fourCast);
@@ -169,7 +152,6 @@ function[B,A]=designParamEQ(N,G,Wo,BW,varargin)
                     B(:,1)=Bf(1,1:3)';
                     A(:,1)=Af(1,2:3)';
 
-
                     nextidx=twoCast;
                     Br=Bf(2:end,:);
                     Ar=Af(2:end,:);
@@ -179,7 +161,6 @@ function[B,A]=designParamEQ(N,G,Wo,BW,varargin)
                     Br=Bf;
                     Ar=Af;
                 end
-
 
                 for k=nextidx:twoCast:No2-1
                     m=ceil(k/2);
