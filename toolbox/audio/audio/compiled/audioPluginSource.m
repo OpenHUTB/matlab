@@ -1,6 +1,5 @@
 classdef audioPluginSource<audioPlugin
 
-
 %#codegen
 
     methods
@@ -13,6 +12,8 @@ classdef audioPluginSource<audioPlugin
     properties(Access=private)
         PrivateSamplesPerFrame=256
     end
+
+
     methods
         function n=getSamplesPerFrame(plugin)
             n=plugin.PrivateSamplesPerFrame;
@@ -33,6 +34,7 @@ classdef audioPluginSource<audioPlugin
         end
     end
 
+
     methods(Static)
         function obj=loadobj(s)
             if istruct(s)
@@ -41,6 +43,7 @@ classdef audioPluginSource<audioPlugin
             end
         end
     end
+
 
     methods(Hidden)
         function setSamplesPerFrameForProcess(plugin,n)
