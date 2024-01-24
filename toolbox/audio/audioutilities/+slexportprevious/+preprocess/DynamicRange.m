@@ -1,13 +1,8 @@
 function DynamicRange(obj)
 
-
-
-
     verobj=obj.ver;
 
     if isR2020bOrEarlier(verobj)
-
-
         DR_blocks=[obj.findBlocksWithMaskType('audio.simulink.DynamicRangeCompressor'),...
         obj.findBlocksWithMaskType('audio.simulink.DynamicRangeExpander'),...
         obj.findBlocksWithMaskType('audio.simulink.DynamicRangeLimiter'),...
@@ -25,9 +20,6 @@ function DynamicRange(obj)
     end
 
     if isR2017aOrEarlier(verobj)
-
-
-
         DR_blocks=[obj.findBlocksWithMaskType('audio.simulink.DynamicRangeCompressor'),...
         obj.findBlocksWithMaskType('audio.simulink.DynamicRangeExpander'),...
         obj.findBlocksWithMaskType('audio.simulink.DynamicRangeLimiter'),...
@@ -38,7 +30,6 @@ function DynamicRange(obj)
             for blkIdx=1:numDRBlks
                 blk=DR_blocks{blkIdx};
                 numInp=1;
-
                 params=get_param(blk,'MaskNames');
                 if ismember('ThresholdPort',params)&&strcmp(get_param(blk,'ThresholdPort'),'on')
                     numInp=numInp+1;
@@ -69,8 +60,8 @@ function DynamicRange(obj)
 
 end
 
-function replaceWithEmpty(obj,blk)
 
+function replaceWithEmpty(obj,blk)
 
     mt=get_param(blk,'MaskType');
     switch mt
@@ -83,9 +74,7 @@ function replaceWithEmpty(obj,blk)
     case 'audio.simulink.DynamicRangeGate'
         blkName=getString(message('audio:dynamicrange:NoiseGateIcon'));
     end
-
     obj.replaceWithEmptySubsystem(blk,blkName);
-
     msgStr=DAStudio.message('audio:dynamicrange:NewFeaturesNotAvailable');
     set_param(blk,'InitFcn',sprintf('error(''%s'')',msgStr));
 
