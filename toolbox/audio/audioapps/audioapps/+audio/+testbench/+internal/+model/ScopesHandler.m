@@ -1,16 +1,11 @@
 classdef ScopesHandler<handle
 
-
-
-
-
-
-
     properties
         EnableTimeScope(1,1)logical=false;
         EnableSpectrumAnalyzer(1,1)logical=false;
         SampleRate(1,1){mustBeFinite,mustBePositive}=44100;
     end
+
 
     properties(SetAccess=protected)
 
@@ -23,52 +18,51 @@ SpectrumAnalyzer
         OutputChannelSelection(1,:){mustBeNonnegative}=1
     end
 
+
     properties(Access=protected)
 
 TimeScopeVisibleListener
 SpectrumAnalyzerVisibleListener
-
 
 SettingsHandler
         TimeScopeDefaults=struct();
         SpectrumAnalyzerDefaults=struct();
     end
 
+
     events(NotifyAccess=protected)
 TimeScopeVisibleChanged
 SpectrumAnalyzerVisibleChanged
     end
 
+
     properties(Constant,Hidden)
         MaxNumChannels=2;
     end
 
-    properties(SetAccess=immutable)
 
+    properties(SetAccess=immutable)
         UseScopesContainer(1,1)logical=false
     end
 
+
     methods
         function this=ScopesHandler
-
-
-
             this.SettingsHandler=audio.app.internal.util.AppSettingsHandler('Audio','AudioTestBench');
-
-
             this.UseScopesContainer=audio.internal.feature('UseScopesContainerInAudioTestBench');
         end
+
 
         function delete(this)
 
             cacheAllSettings(this);
-
             delete(this.TimeScopeVisibleListener);
             delete(this.SpectrumAnalyzerVisibleListener);
 
             delete(this.TimeScope);
             delete(this.SpectrumAnalyzer);
         end
+
 
         function set.EnableTimeScope(this,val)
             this.EnableTimeScope=val;
@@ -78,6 +72,7 @@ SpectrumAnalyzerVisibleChanged
             showTimeScope(this,val);
         end
 
+
         function set.EnableSpectrumAnalyzer(this,val)
             this.EnableSpectrumAnalyzer=val;
             if val
@@ -85,6 +80,7 @@ SpectrumAnalyzerVisibleChanged
             end
             showSpectrumAnalyzer(this,val);
         end
+
 
         function setup(this)
 
@@ -96,6 +92,7 @@ SpectrumAnalyzerVisibleChanged
             end
             this.IsLocked=true;
         end
+
 
         function release(this)
 
@@ -111,11 +108,11 @@ SpectrumAnalyzerVisibleChanged
             this.IsLocked=false;
         end
 
+
         function validateScopes(this,sampleInput,sampleOutput)
-
-
             initializeScopes(this,sampleInput,sampleOutput);
         end
+
 
         function process(this,inData,outData)
 
@@ -131,12 +128,12 @@ SpectrumAnalyzerVisibleChanged
         end
     end
 
+
     methods(Access=protected)
         function createTimeScope(this)
             Fs=this.SampleRate;
             ts=this.TimeScope;
             if isempty(ts)||~isvalid(ts)
-
                 ts=this.getDefaultScope('TimeScope');
                 addToScopesContainer(this,ts);
                 this.TimeScope=ts;
@@ -144,12 +141,9 @@ SpectrumAnalyzerVisibleChanged
 
                 try
                     userSettings=getCachedSettings(this.SettingsHandler,'TimeScope');
-
-
                     orderedNames=intersect(fieldnames(get(ts)),...
                     fieldnames(userSettings),'stable');
                     userSettings=orderfields(userSettings,orderedNames);
-
                     ts.WarnOnInactivePropertySet=false;
                     c=onCleanup(@()set(ts,'WarnOnInactivePropertySet',true));
 
@@ -159,14 +153,12 @@ SpectrumAnalyzerVisibleChanged
 
                 ts.SampleRate=Fs;
                 ts.BufferLength=Fs*4;
-
                 this.TimeScopeVisibleListener=addlistener(getScopeSpecification(ts),...
                 'Visible','PostSet',@this.onTimeScopeVisibleChanged);
             elseif isLocked(ts)
 
                 reset(ts);
             else
-
                 reset(ts);
                 ts.SampleRate=Fs;
                 ts.BufferLength=Fs*4;
@@ -174,6 +166,7 @@ SpectrumAnalyzerVisibleChanged
 
             updateChannelNames(this);
         end
+
 
         function createSpectrumAnalyzer(this)
             sa=this.SpectrumAnalyzer;
@@ -186,19 +179,15 @@ SpectrumAnalyzerVisibleChanged
 
                 try
                     userSettings=getCachedSettings(this.SettingsHandler,'SpectrumAnalyzer');
-
-
                     orderedNames=intersect(fieldnames(get(sa)),...
                     fieldnames(userSettings),'stable');
                     userSettings=orderfields(userSettings,orderedNames);
-
                     sa.WarnOnInactivePropertySet=false;
                     c=onCleanup(@()set(sa,'WarnOnInactivePropertySet',true));
 
                     set(sa,userSettings);
                 catch
                 end
-
                 sa.SampleRate=this.SampleRate;
                 this.SpectrumAnalyzerVisibleListener=addlistener(getScopeSpecification(sa),...
                 'Visible','PostSet',@this.onSpectrumAnalyzerVisibleChanged);
@@ -214,6 +203,7 @@ SpectrumAnalyzerVisibleChanged
             updateChannelNames(this);
         end
 
+
         function showTimeScope(this,flag)
 
             ts=this.TimeScope;
@@ -224,6 +214,7 @@ SpectrumAnalyzerVisibleChanged
                 hide(ts);
             end
         end
+
 
         function showSpectrumAnalyzer(this,flag)
 
@@ -236,9 +227,8 @@ SpectrumAnalyzerVisibleChanged
             end
         end
 
+
         function initializeScopes(this,sampleInput,sampleOutput)
-
-
             [inData,outData]=selectDataChannels(this,sampleInput,sampleOutput);
             sampleScopeInput=[inData,outData];
             ts=this.TimeScope;
@@ -259,14 +249,10 @@ SpectrumAnalyzerVisibleChanged
             end
             inChanSelection=1:size(inData,2);
 
-
             if size(outData,2)>maxChans
                 outData=outData(:,1:maxChans);
             end
             outChanSelection=1:size(outData,2);
-
-
-
             if~isequal(this.InputChannelSelection,inChanSelection)||...
                 ~isequal(this.OutputChannelSelection,outChanSelection)
                 this.InputChannelSelection=inChanSelection;
@@ -275,8 +261,8 @@ SpectrumAnalyzerVisibleChanged
             end
         end
 
-        function updateChannelNames(this)
 
+        function updateChannelNames(this)
             inChanNames=arrayfun(@(x)getString(message('audio:audiotestbench:InputChannelN',x)),...
             this.InputChannelSelection,'UniformOutput',false);
             outChanNames=arrayfun(@(x)getString(message('audio:audiotestbench:OutputChannelN',x)),...
@@ -289,12 +275,12 @@ SpectrumAnalyzerVisibleChanged
                 ts.ChannelNames=channelNames;
             end
 
-
             sa=this.SpectrumAnalyzer;
             if~isempty(sa)&&isvalid(sa)
                 sa.ChannelNames=channelNames;
             end
         end
+
 
         function addToScopesContainer(this,scopeObj)
 
@@ -305,8 +291,8 @@ SpectrumAnalyzerVisibleChanged
             end
         end
 
-        function onTimeScopeVisibleChanged(this,~,~)
 
+        function onTimeScopeVisibleChanged(this,~,~)
 
             if this.EnableTimeScope~=this.TimeScope.Visible
                 this.EnableTimeScope=this.TimeScope.Visible;
@@ -314,8 +300,8 @@ SpectrumAnalyzerVisibleChanged
             end
         end
 
-        function onSpectrumAnalyzerVisibleChanged(this,~,~)
 
+        function onSpectrumAnalyzerVisibleChanged(this,~,~)
 
             if this.EnableSpectrumAnalyzer~=this.SpectrumAnalyzer.Visible
                 this.EnableSpectrumAnalyzer=this.SpectrumAnalyzer.Visible;
@@ -323,26 +309,20 @@ SpectrumAnalyzerVisibleChanged
             end
         end
 
+
         function cacheAllSettings(this)
-
             settingsHandler=this.SettingsHandler;
-
 
             ts=this.TimeScope;
             if~isempty(ts)&&isvalid(ts)
-
-
                 defStruct=this.TimeScopeDefaults;
                 defStruct.Position=ts.Position;
                 defStruct.ChannelNames=ts.ChannelNames;
                 cacheObjectSettings(settingsHandler,'TimeScope',ts,defStruct);
             end
 
-
             sa=this.SpectrumAnalyzer;
             if~isempty(sa)&&isvalid(sa)
-
-
                 defStruct=this.SpectrumAnalyzerDefaults;
                 defStruct.Position=sa.Position;
                 defStruct.ChannelNames=sa.ChannelNames;
@@ -350,6 +330,7 @@ SpectrumAnalyzerVisibleChanged
             end
         end
     end
+
 
     methods(Static)
         function defObj=getDefaultScope(scopeType)
@@ -375,8 +356,8 @@ SpectrumAnalyzerVisibleChanged
             end
         end
 
-        function clearCachedSettings()
 
+        function clearCachedSettings()
             settingsHandler=audio.app.internal.util.AppSettingsHandler('Audio','AudioTestBench');
             clearCachedSettings(settingsHandler,'TimeScope');
             clearCachedSettings(settingsHandler,'SpectrumAnalyzer');
