@@ -1,7 +1,2 @@
-
-
-
-
-
 oldPath=dnnfpga.utilscripts.addDependencePaths();
 
