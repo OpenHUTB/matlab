@@ -32,9 +32,7 @@ function[B,A]=designVarSlopeFilter(Slope,Fc,varargin)
 
     Ncols=4;
 
-
     Slope=6*round(Slope/6);
-
 
     B0=zeros(Nrows,Ncols,'like',Fc);
     B0(1,1:Ncols)=1;
@@ -58,10 +56,8 @@ function[B,A]=designVarSlopeFilter(Slope,Fc,varargin)
             N=16;
         end
         if T
-
             [Num,Den]=designParamEQ(N,-inf,1,1-Fc);
         else
-
             [Num,Den]=designParamEQ(N,-inf,0,Fc);
         end
         B0(1:Nrows,1:ceil(N/Ncols))=Num(1:Nrows,1:ceil(N/Ncols));
