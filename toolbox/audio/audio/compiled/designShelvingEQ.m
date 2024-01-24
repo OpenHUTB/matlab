@@ -6,7 +6,6 @@ function[B,A]=designShelvingEQ(G,S,Fc,varargin)
     nargoutchk(0,2);
     coder.allowpcode('plain');
 
-
     if nargin<4||nargin==5
         desmode='lo';
         params=audio.internal.designParamEQValidator(varargin{:});
