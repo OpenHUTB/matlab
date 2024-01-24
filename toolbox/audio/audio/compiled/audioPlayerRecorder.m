@@ -8,70 +8,56 @@ classdef(StrictDefaults)audioPlayerRecorder<matlab.System
 
         Device=dsp.internal.getAudioIODriversAndDevices('defaultFullDuplexDevice');
 
-
         SampleRate=44100;
-
-
         BitDepth='16-bit integer';
-
-
         PlayerChannelMapping=[];
-
-
         RecorderChannelMapping=1;
-
-
-        BufferSize=1024;
-
-        SupportVariableSize(1,1)logical=false;
+        BufferSize=1024;        SupportVariableSize(1,1)logical=false;
     end
+
 
     properties(Constant,Hidden,Nontunable)
         BitDepthSet=matlab.system.StringSet({'8-bit integer',...
         '16-bit integer','24-bit integer','32-bit float'});
     end
 
-    properties(Transient,Hidden,Dependent)%#ok<*MDEPIN>
 
-        DeviceSet=matlab.system.StringSet(dsp.internal.getAudioIODriversAndDevices('fullDuplexDevices'));
+    properties(Transient,Hidden,Dependent)%#ok<*MDEPIN>        DeviceSet=matlab.system.StringSet(dsp.internal.getAudioIODriversAndDevices('fullDuplexDevices'));
     end
+
 
     properties(Nontunable,Access=private)
 
 pADW
-
 pADR
-
 pDataType
     end
 
+
     properties(Access=private)
-
         pNumChannels=-1
-
         pWriterFrameSize=0
-
 pBufferWriter
-
 pBufferReader
     end
+
 
     methods
         function obj=audioPlayerRecorder(varargin)
             coder.allowpcode('plain');
 
             if coder.target('MATLAB')
-
                 matlab.internal.lang.capability.Capability.require(...
                 matlab.internal.lang.capability.Capability.LocalClient);
             end
-
             setProperties(obj,nargin,varargin{:},'SampleRate');
         end
+
 
         function val=get.DeviceSet(~)
             val=matlab.system.StringSet(dsp.internal.getAudioIODriversAndDevices('fullDuplexDevices'));
         end
+
 
         function set.PlayerChannelMapping(obj,val)
             if isempty(val)
@@ -84,11 +70,13 @@ pBufferReader
             obj.PlayerChannelMapping=double(val);
         end
 
+
         function set.RecorderChannelMapping(obj,val)
             validateattributes(val,{'numeric'},{'finite','real','vector','positive','nonempty'},...
             'set.RecorderChannelMapping','RecorderChannelMapping');
             obj.RecorderChannelMapping=double(val);
         end
+
 
         function set.SampleRate(obj,val)
             validateattributes(val,{'double','single'},...
@@ -97,32 +85,23 @@ pBufferReader
             obj.SampleRate=val;
         end
 
+
         function devCell=getAudioDevices(~)
-
-
-
-
-
-
-
-
             devCell=dsp.internal.getAudioIODriversAndDevices('fullDuplexDevices');
         end
     end
 
+
     methods(Access=protected)
 
         function setupImpl(obj,u)
-
             coder.extrinsic('dsp.internal.getAudioIODriversAndDevices');
-
             driver=coder.const(@dsp.internal.getAudioIODriversAndDevices,'fullDuplexDriver');
             if strcmp(obj.Device,'Default')
                 device=coder.const(@dsp.internal.getAudioIODriversAndDevices,'defaultFullDuplexDeviceName');
             else
                 device=obj.Device;
             end
-
             simulateSilence=(coder.target('MATLAB')&&getpref('dsp','portaudioHostApi')==-1);
 
             dt=class(u);
@@ -130,11 +109,6 @@ pBufferReader
             if obj.SupportVariableSize
                 bufferSize=obj.BufferSize;
                 validateattributes(bufferSize,{'numeric'},{'scalar','>',1},'audioPlayerRecorder','BufferSize');
-
-
-
-
-
                 obj.pBufferWriter=dsp.AsyncBuffer('Capacity',384e3);
                 obj.pBufferReader=dsp.AsyncBuffer('Capacity',384e3+bufferSize);
                 setup(obj.pBufferReader,zeros(bufferSize,numel(obj.RecorderChannelMapping),dt));
@@ -143,25 +117,21 @@ pBufferReader
 
             if isempty(obj.PlayerChannelMapping)
                 if simulateSilence
-
                     obj.pADW=audioDeviceWriter('Driver',driver{1},...
                     'SampleRate',obj.SampleRate,...
                     'BitDepth',obj.BitDepth,'ChannelMappingSource','Auto');
                 else
-
                     obj.pADW=audioDeviceWriter('Driver',driver{1},...
                     'Device',device,'SampleRate',obj.SampleRate,...
                     'BitDepth',obj.BitDepth,'ChannelMappingSource','Auto');
                 end
             else
                 if simulateSilence
-
                     obj.pADW=audioDeviceWriter('Driver',driver{1},...
                     'SampleRate',obj.SampleRate,...
                     'BitDepth',obj.BitDepth,'ChannelMappingSource','Property',...
                     'ChannelMapping',obj.PlayerChannelMapping);
                 else
-
                     obj.pADW=audioDeviceWriter('Driver',driver{1},...
                     'Device',device,'SampleRate',obj.SampleRate,...
                     'BitDepth',obj.BitDepth,'ChannelMappingSource','Property',...
@@ -170,7 +140,6 @@ pBufferReader
             end
 
             if simulateSilence
-
                 obj.pADR=audioDeviceReader('Driver',driver{1},...
                 'SampleRate',obj.SampleRate,...
                 'BitDepth',obj.BitDepth,'OutputDataType',dt,...
@@ -178,7 +147,6 @@ pBufferReader
                 'ChannelMapping',obj.RecorderChannelMapping,...
                 'SamplesPerFrame',bufferSize);
             else
-
                 obj.pADR=audioDeviceReader('Driver',driver{1},...
                 'Device',device,'SampleRate',obj.SampleRate,...
                 'BitDepth',obj.BitDepth,'OutputDataType',dt,...
@@ -218,17 +186,18 @@ pBufferReader
             end
         end
 
+
         function resetImpl(obj)
             reset(obj.pADW);
             reset(obj.pADR);
             if obj.SupportVariableSize
                 reset(obj.pBufferWriter);
                 reset(obj.pBufferReader);
-
                 nCh=numel(obj.pADR.ChannelMapping);
                 write(obj.pBufferReader,zeros(obj.BufferSize,nCh,obj.pDataType));
             end
         end
+
 
         function releaseImpl(obj)
             release(obj.pADW);
@@ -240,14 +209,15 @@ pBufferReader
             end
         end
 
+
         function validatePropertiesImpl(obj)
             if coder.target('MATLAB')&&getpref('dsp','portaudioHostApi')~=-1
-
                 coder.internal.errorIf(strcmp(obj.Device,...
                 getString(message('audio:audioPlayerRecorder:noDevice'))),...
                 'audio:audioPlayerRecorder:noDevice');
             end
         end
+
 
         function validateInputsImpl(obj,u)
 
@@ -260,7 +230,6 @@ pBufferReader
                 if~isLocked(obj)||obj.pWriterFrameSize==0
                     obj.pWriterFrameSize=size(u,1);
                 else
-
                     coder.internal.errorIf(size(u,1)~=obj.pWriterFrameSize,...
                     'dsp:audioDeviceIO:inputFrameSizeChanged','SupportVariableSize');
                 end
@@ -280,8 +249,8 @@ pBufferReader
             'dsp:system:Shared:numChannels');
         end
 
-        function flag=isInactivePropertyImpl(obj,prop)
 
+        function flag=isInactivePropertyImpl(obj,prop)
 
             flag=false;
             switch prop
@@ -291,19 +260,8 @@ pBufferReader
 
         end
 
+
         function devInfo=infoImpl(obj)
-
-
-
-
-
-
-
-
-
-
-
-
             driver=dsp.internal.getAudioIODriversAndDevices('fullDuplexDriver');
             driver=driver{1};
             devInfo.Driver=driver;
@@ -320,9 +278,6 @@ pBufferReader
                 end
                 driverIdx=dsp.internal.getAudioIODriversAndDevices('driverIndex',driver);
                 if strcmp(devInfo.DeviceName,'ALSAdefault')&&isunix
-
-
-
                     devInfo.MaximumRecorderChannels=computeMaxChannelsForDevice('default','input',driverIdx);
                     devInfo.MaximumPlayerChannels=computeMaxChannelsForDevice('default','output',driverIdx);
                 else
@@ -332,12 +287,14 @@ pBufferReader
             end
         end
 
+
         function s=saveObjectImpl(obj)
             s=saveObjectImpl@matlab.System(obj);
             s.pADW=matlab.System.saveObject(obj.pADW);
             s.pADR=matlab.System.saveObject(obj.pADR);
             s.SaveLockedData=false;
         end
+
 
         function loadObjectImpl(obj,s,~)
             currDevice=s.Device;
@@ -353,30 +310,26 @@ pBufferReader
             obj.pADR=matlab.System.loadObject(s.pADR);
         end
 
+
         function flag=isInputSizeMutableImpl(~,~)
             flag=true;
         end
     end
 
+
     methods(Static,Access=protected)
         function groups=getPropertyGroupsImpl
-
-
             mainProps={'Device','SampleRate'};
             advancedProps={'BitDepth','SupportVariableSize','BufferSize',...
             'PlayerChannelMapping','RecorderChannelMapping'};
             advancedGroupTitle=getString(message('dsp:system:Shared:AdvancedProperties'));
-
             mainGroup=matlab.system.display.SectionGroup('TitleSource',...
             'Auto','PropertyList',mainProps);
             advancedGroup=matlab.system.display.SectionGroup('Title',...
             advancedGroupTitle,'PropertyList',advancedProps);
-
             groups=[mainGroup,advancedGroup];
         end
     end
-
-
 
 
     methods(Hidden,Static)
@@ -384,4 +337,5 @@ pBufferReader
             flag=false;
         end
     end
+
 end
