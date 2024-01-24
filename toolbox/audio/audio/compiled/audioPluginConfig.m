@@ -44,10 +44,8 @@ if ~isempty( dlcfg )
 end
 end
 
+
 function validateCRLConfig( crl )
-
-
-
 
 isValidCRL = false;
 
@@ -97,9 +95,8 @@ switch computer( 'arch' )
         end
 end
 
-
 if ( isValidCRL )
-    if ~ecoderutil(  )
+    if ~ecoderutil()
         error( message( "audio:plugin:NoEmbeddedCoderLicense" ) );
     end
 end
