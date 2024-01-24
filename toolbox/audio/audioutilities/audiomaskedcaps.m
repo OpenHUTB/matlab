@@ -1,29 +1,19 @@
 function subsysCap=audiomaskedcaps(block)
 
-
-
-
-
-
     if~strcmpi(get_param(block,'Mask'),'on')
         DAStudio.error('Simulink:bcst:ErrOnlyMasks',mfilename);
     end
 
     maskType=get_param(block,'MaskType');
 
-
     [maskStr,trans]=getMaskStr(maskType,block);
-
 
     if strcmpi(get_param(block,'Mask'),'on')&&...
         strcmpi(get_param(block,'BlockType'),'SubSystem')&&...
         isSublibrary(block)
         maskStr='';
     end
-
-
     subsysCap=bcstCreateCap(maskType,maskStr,trans);
-
 
 
     function[subsysCapStr,trans]=getMaskStr(maskType,block)
@@ -38,7 +28,6 @@ function subsysCap=audiomaskedcaps(block)
             subsysCapStr='';
             trans=transTable;
         else
-
             findMask=find(strcmp(maskType,maskTable(:,2)));
             if~isempty(findMask)
 
@@ -50,10 +39,7 @@ function subsysCap=audiomaskedcaps(block)
         end
 
 
-
         function[maskTable,transTable]=getMaskTable
-
-
 
             transTable.d='double';
 
@@ -86,42 +72,6 @@ function subsysCap=audiomaskedcaps(block)
             transTable.t='string';
             transTable.z='zerocrossing';
             transTable.D='directfeedthrough';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             maskTable={...
 ...
@@ -172,14 +122,11 @@ function subsysCap=audiomaskedcaps(block)
 
 
 
-
             function isSubLib=isSublibrary(block)
 
                 sublibs={...
                 };
-
                 nameSp=[get_param(block,'Parent'),'/',get_param(block,'Name')];
-
                 isSubLib=any(strcmp(nameSp,sublibs));
 
 
