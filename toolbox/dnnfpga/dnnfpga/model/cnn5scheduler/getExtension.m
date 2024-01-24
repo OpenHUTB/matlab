@@ -1,14 +1,7 @@
-
-
-
-
-
 function name=getExtension()
     if isunix()
-
         splitc='/';
     else
-
         splitc='\';
     end
     name=split(matlabroot,splitc);
