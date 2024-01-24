@@ -1,12 +1,10 @@
 function[api,params]=checkPluginClass(className,~)
 
-
     if~exist(className,'class')
         error(message('audio:plugin:NotAClass'));
     end
 
     try
-
         mc=meta.class.fromName(className);
     catch me
         throw(me);
@@ -25,6 +23,7 @@ function[api,params]=checkPluginClass(className,~)
     [params,api]=checkParameters(mc,api);
 end
 
+
 function api=getAudioPluginInterface(mc)
     mp=findPropertyNamed(mc,'PluginInterface');
     if isempty(mp)
@@ -39,7 +38,6 @@ function api=getAudioPluginInterface(mc)
         end
         api=mp.DefaultValue;
     end
-
     apsmc=meta.class.fromName('audioPluginSource');
     isSource=(mc<apsmc);
 
@@ -58,10 +56,6 @@ function api=getAudioPluginInterface(mc)
     if isempty(api.OutputChannels)
         api.OutputChannels=2;
     end
-
-
-
-
 
     if isempty(api.PluginName)
         api.PluginName=mc.Name;
@@ -86,7 +80,6 @@ function api=getAudioPluginInterface(mc)
     end
 
     if isempty(api.VendorCode)
-
         code=regexprep(api.VendorName,'[^A-Za-z]','');
         if numel(code)>=4
             code=code(1:4);
@@ -94,13 +87,13 @@ function api=getAudioPluginInterface(mc)
                 code(1)=upper(code(1));
             end
         else
-
             code=char(audio.internal.str2uid(api.VendorName));
         end
         api.VendorCode=code;
     end
 
 end
+
 
 function uti=str2uti(str)
     uti=regexprep(str,'\s+','-');
@@ -157,7 +150,6 @@ function[params,api]=checkParameters(mc,api)
             assert(isempty(params(i).Law));
 
             if isa(defval,'double')
-
                 assert(isempty(params(i).Min)&&isempty(params(i).Max));
                 params(i).Law='lin';
                 params(i).Min=0;
@@ -179,7 +171,6 @@ function[params,api]=checkParameters(mc,api)
             ~(params(i).Min<=defval&&defval<=params(i).Max)
             error(message('audio:plugin:ParameterPropertyInitOutOfRange',params(i).Property));
         end
-
         [defaultStyle,validStyles]=law2styles(params(i).Law,numel(cellstr(params(i).Enums)));
 
         if isempty(params(i).Style)
@@ -242,7 +233,6 @@ function[params,api]=checkParameters(mc,api)
             if~isLayoutOnGrid(grid,p.Layout)
                 error(message('audio:plugin:ParameterLayoutOffGrid',prop));
             end
-
             [yes,occupied]=isLayoutAvailableOnGrid(grid,p.Layout,occupied);
             if~yes
                 error(message('audio:plugin:ParameterLayoutOverlap',prop));
@@ -270,7 +260,6 @@ function[params,api]=checkParameters(mc,api)
                     end
                 else
                     info=imfinfo(strip);
-
                     validFormats={'png','GIF','jpg'};
                     if~any(strcmp(info.Format,validFormats))
                         error(message('audio:plugin:FilmstripUnsupportedFormat',...
@@ -299,7 +288,6 @@ function[params,api]=checkParameters(mc,api)
 
         end
     else
-
         f=figure('Visible','off');
         t=text(axes(f),'FontName','Noto','FontSize',15,'Units','Points');
         maxwid=0;
@@ -335,6 +323,7 @@ function[params,api]=checkParameters(mc,api)
 
 end
 
+
 function[defaultStyle,validStyles]=law2styles(law,nenums)
     switch law
     case{'lin','pow','log','fader','int'}
@@ -356,6 +345,7 @@ function[defaultStyle,validStyles]=law2styles(law,nenums)
     end
 end
 
+
 function checkParameterProperty(mp,param)
 
     if mp.Constant
@@ -376,12 +366,9 @@ function checkParameterProperty(mp,param)
         error(message('audio:plugin:ParameterPropertyNotReal',mp.Name));
     end
 
-
     if~(isa(defval,'double')||islogical(defval)||isenum(defval)||isString(defval))
         error(message('audio:plugin:ParameterPropertyNotValidClass',mp.Name,class(defval)));
     end
-
-
     if(isa(defval,'double')&&~any(strcmp(param.Law,{'','lin','fader','pow','log','int'})))...
         ||(islogical(defval)&&~any(strcmp(param.Law,{'','enum'})))...
         ||(isenum(defval)&&~any(strcmp(param.Law,{'','enum'})))...
@@ -398,6 +385,7 @@ function checkParameterProperty(mp,param)
     end
 end
 
+
 function mp=findPropertyNamed(mc,propertyName)
     if ischar(mc)
         mc=meta.class.fromName(mc);
@@ -407,6 +395,7 @@ function mp=findPropertyNamed(mc,propertyName)
     mp=allProps(isP);
     assert(numel(mp)<2);
 end
+
 
 function yes=isString(s)
     yes=ischar(s)&&isrow(s);
