@@ -1,9 +1,6 @@
 function afTime=datetime2aftime(time)
 
-
-
     if isempty(time.TimeZone)
-
 
         time.TimeZone=icomm.pi.internal.defaultTimeZone();
     end
