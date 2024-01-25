@@ -1,7 +1,5 @@
 classdef AFValueStatus
 
-
-
     enumeration
 Good
 Questionable
@@ -9,6 +7,7 @@ Substituted
 Annotated
 Bad
     end
+
 
     methods(Static,Access=public)
 
