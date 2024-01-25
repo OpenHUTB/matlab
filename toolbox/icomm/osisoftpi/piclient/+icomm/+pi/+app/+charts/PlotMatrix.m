@@ -1,10 +1,5 @@
 classdef PlotMatrix<icomm.pi.app.charts.Chart
 
-
-
-
-
-
     methods(Access=public)
 
         function this=PlotMatrix(varargin)
@@ -13,6 +8,7 @@ classdef PlotMatrix<icomm.pi.app.charts.Chart
         end
 
     end
+
 
     methods(Access=protected)
 
