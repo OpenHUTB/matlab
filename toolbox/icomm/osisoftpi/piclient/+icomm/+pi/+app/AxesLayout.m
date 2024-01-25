@@ -1,10 +1,4 @@
 classdef AxesLayout<icomm.pi.app.Container
-
-
-
-
-
-
     properties(Abstract,GetAccess=public,SetAccess=public,Dependent)
 NumAxes
     end
@@ -12,6 +6,7 @@ NumAxes
     properties(GetAccess=protected,SetAccess=protected)
         Axes matlab.graphics.axis.Axes
     end
+
 
     methods(Access=public)
 
@@ -21,8 +16,8 @@ NumAxes
 
     end
 
-    methods(Abstract,Access=public)
 
+    methods(Abstract,Access=public)
         thisAxes=getAxes(this,rowIndex,columnIndex)
 
     end
