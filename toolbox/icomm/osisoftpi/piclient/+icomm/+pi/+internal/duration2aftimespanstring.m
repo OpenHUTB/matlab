@@ -1,7 +1,4 @@
 function span=duration2aftimespanstring(interval)
-
-
-
     if isa(interval,'duration')
         span=sprintf('%d milliseconds',milliseconds(interval));
     elseif isa(interval,'calendarDuration')
