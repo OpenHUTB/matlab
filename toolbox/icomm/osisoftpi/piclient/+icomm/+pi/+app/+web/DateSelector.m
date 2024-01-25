@@ -1,10 +1,5 @@
 classdef DateSelector<icomm.pi.app.Container
 
-
-
-
-
-
     properties(GetAccess=public,SetAccess=public,Dependent)
         Label string
         Datetime(1,1)datetime
@@ -16,6 +11,7 @@ classdef DateSelector<icomm.pi.app.Container
         UiDateSelector matlab.ui.control.DatePicker
         EditBox matlab.ui.control.EditField
     end
+
 
     properties(GetAccess=private,Constant)
         DateFormat=icomm.pi.internal.Locale.DateFormat
@@ -31,15 +27,18 @@ PreviousValue
 DatetimeChanged
     end
 
+
     methods
 
         function value=get.Label(this)
             value=this.LabelText.Text;
         end
 
+
         function set.Label(this,value)
             this.LabelText.Text=value;
         end
+
 
         function value=get.Datetime(this)
             value=datetime(...
@@ -48,6 +47,7 @@ DatetimeChanged
             'Format',this.DatetimeFormat,...
             'TimeZone',icomm.pi.internal.defaultTimeZone());
         end
+
 
         function set.Datetime(this,value)
             if this.Limits(1)>value||value>this.Limits(2)
@@ -64,16 +64,19 @@ DatetimeChanged
             end
         end
 
+
         function value=get.Limits(this)
             value=this.UiDateSelector.Limits;
             value.TimeZone=icomm.pi.internal.defaultTimeZone();
         end
+
 
         function set.Limits(this,value)
             this.UiDateSelector.Limits=value;
         end
 
     end
+
 
     methods(Access=public)
 
@@ -85,6 +88,7 @@ DatetimeChanged
         end
 
     end
+
 
     methods(Access=protected)
 
@@ -115,6 +119,7 @@ DatetimeChanged
 
     end
 
+
     methods(Access=private)
 
         function onDateChanged(this,varargin)
@@ -128,7 +133,6 @@ DatetimeChanged
                     'Invalid date');
                     this.EditBox.Value=this.PreviousValue;
                 else
-
                     this.PreviousValue=this.EditBox.Value;
                     this.notify('DatetimeChanged');
                 end
