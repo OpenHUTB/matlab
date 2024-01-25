@@ -1,7 +1,5 @@
 function time=dotnetdatetime2datetime(dotnetdatetime)
 
-
-
     if isa(dotnetdatetime,'System.DateTime[]')
         [years,months,days,hours,minutes,seconds,milliseconds]=...
         NETUtilities.Datetime.Export(dotnetdatetime);
@@ -20,6 +18,7 @@ function time=dotnetdatetime2datetime(dotnetdatetime)
         dotnetdatetime.Millisecond);
     end
 end
+
 
 function time=getDatetime(year,month,day,hour,minute,second,millisecond)
     time=datetime(year,month,day,hour,minute,second,millisecond,...
