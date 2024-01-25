@@ -1,11 +1,4 @@
 classdef PIViewer<icomm.pi.app.Container
-
-
-
-
-
-
-
     properties(GetAccess=public,SetAccess=public,Dependent)
         PIClient icomm.pi.Client
     end
@@ -29,6 +22,7 @@ classdef PIViewer<icomm.pi.app.Container
         OverlayMenu matlab.ui.container.Menu
     end
 
+
     properties(GetAccess=private,Constant)
         LeftBoxWidth=600
     end
@@ -38,11 +32,13 @@ classdef PIViewer<icomm.pi.app.Container
         Listeners(1,:)event.listener
     end
 
+
     methods
 
         function value=get.PIClient(this)
             value=this.PIClient_;
         end
+
 
         function set.PIClient(this,value)
             this.PIClient_=value;
@@ -51,6 +47,7 @@ classdef PIViewer<icomm.pi.app.Container
         end
 
     end
+
 
     methods(Access=public)
 
@@ -67,6 +64,7 @@ classdef PIViewer<icomm.pi.app.Container
         end
 
     end
+
 
     methods(Access=protected)
 
@@ -129,6 +127,7 @@ classdef PIViewer<icomm.pi.app.Container
 
     end
 
+
     methods(Access=private)
 
         function initializeMenu(this)
@@ -137,6 +136,7 @@ classdef PIViewer<icomm.pi.app.Container
             'Text','Option');
             this.OverlayMenu.Parent=menu;
         end
+
 
         function update(this)
             tags=this.TagSelector.SelectedTags;
@@ -161,17 +161,19 @@ classdef PIViewer<icomm.pi.app.Container
             end
         end
 
+
         function updateAllAvailableTags(this)
             this.TagSelector.AllAvailableTags=this.PIClient_.tags(Name='*');
             this.update();
         end
 
-        function updateDateSelectorLimits(this)
 
+        function updateDateSelectorLimits(this)
             this.StartDateSelector.Limits(2)=this.EndDateSelector.Datetime;
 
             this.EndDateSelector.Limits(1)=this.StartDateSelector.Datetime;
         end
+
 
         function updateChartType(this)
             delete(this.Chart);
@@ -185,9 +187,11 @@ classdef PIViewer<icomm.pi.app.Container
             this.update();
         end
 
+
         function updateChartOverlay(this)
             this.Chart.Overlay=this.OverlayMenu.Checked=="on";
         end
+
 
         function onCollapse(this,varargin)
             switch this.CollapseButton.Text
@@ -200,18 +204,22 @@ classdef PIViewer<icomm.pi.app.Container
             end
         end
 
+
         function onDateChanged(this,varargin)
             this.updateDateSelectorLimits();
             this.update();
         end
 
+
         function onSelectedTagChanged(this,varargin)
             this.update();
         end
 
+
         function onChartTypeChanged(this,varargin)
             this.updateChartType();
         end
+
 
         function onOverlayChanged(this,varargin)
             if this.OverlayMenu.Checked=="on"
