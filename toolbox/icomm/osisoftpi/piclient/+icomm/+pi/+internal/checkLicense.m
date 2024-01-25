@@ -1,9 +1,5 @@
 function checkLicense()
 
-
-
-
-
     try
 
         matlab.internal.licensing.checkoutProductLicense("OT");
@@ -11,4 +7,5 @@ function checkLicense()
 
         error(message('icomm_osisoftpi:messages:NotLicensed'));
     end
+
 end
