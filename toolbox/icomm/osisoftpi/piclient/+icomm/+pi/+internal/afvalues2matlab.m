@@ -1,7 +1,5 @@
 function[values,times,statuses]=afvalues2matlab(afValues)
 
-
-
     if isa(afValues,'OSIsoft.AF.Asset.AFValues')
         [values,times,statuses]=afValues.GetValueArrays();
         [values,statuses]=NETUtilities.AFValue.ConvertValueAndStatuses(values,statuses);
@@ -14,7 +12,6 @@ function[values,times,statuses]=afvalues2matlab(afValues)
             statuses{statusIndex}=strtrim(parts{end});
         end
 
-
         statuses=icomm.pi.internal.AFValueStatus(cell(statuses));
     elseif isa(afValues,'OSIsoft.AF.Asset.AFValue')
         [values,times,statuses]=afvalue2matlab(afValues);
@@ -25,6 +22,7 @@ function[values,times,statuses]=afvalues2matlab(afValues)
         class(afValues));
     end
 end
+
 
 function[value,time,status]=afvalue2matlab(afValue)
     value=icomm.pi.internal.double(afValue.Value);
