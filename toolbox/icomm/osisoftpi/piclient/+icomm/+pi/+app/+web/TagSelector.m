@@ -1,10 +1,4 @@
 classdef TagSelector<icomm.pi.app.Container
-
-
-
-
-
-
     properties(GetAccess=public,SetAccess=public,Dependent)
 AllAvailableTags
     end
@@ -38,28 +32,32 @@ SelectedTagsChanged
 SelectedTagOrderChanged
     end
 
+
     methods
 
         function value=get.AllAvailableTags(this)
             value=this.AllAvailableTags_;
         end
 
+
         function set.AllAvailableTags(this,value)
             this.SelectedTagListBox.Items={};
-
             this.AllAvailableTags_=sort(convertCharsToStrings(table2array(value)));
             this.update();
         end
 
+
         function value=get.AvailableTags(this)
             value=convertCharsToStrings(this.AvailableTagListBox.Items);
         end
+
 
         function value=get.SelectedTags(this)
             value=convertCharsToStrings(this.SelectedTagListBox.Items);
         end
 
     end
+
 
     methods(Access=public)
 
@@ -71,6 +69,7 @@ SelectedTagOrderChanged
         end
 
     end
+
 
     methods(Access=protected)
 
@@ -102,7 +101,6 @@ SelectedTagOrderChanged
             'Multiselect',true,...
             'Items',{},...
             'Value',{});
-
             this.AddButton=uibutton('push',...
             'Parent',buttonBox,...
             'Text','',...
@@ -127,33 +125,33 @@ SelectedTagOrderChanged
 
     end
 
+
     methods(Access=private)
 
         function update(this)
             if~isempty(this.FilterValue)
-
                 validTags=contains(this.AllAvailableTags_,this.FilterValue,...
                 'IgnoreCase',true);
                 allAvailableTags=this.AllAvailableTags_(validTags);
             else
                 allAvailableTags=this.AllAvailableTags_;
             end
-
             this.AvailableTagListBox.Items=cellstr(setdiff(...
             allAvailableTags,this.SelectedTags));
         end
+
 
         function onNameFilterChanged(this,~,eventData)
             this.FilterValue=eventData.Value;
             this.update();
         end
 
+
         function onAddTag(this,varargin)
             selectedTags=this.AvailableTagListBox.Value;
             if isempty(selectedTags)
                 return;
             end
-
             this.SelectedTagListBox.Items=[...
             this.SelectedTagListBox.Items(:);...
             selectedTags(:);...
@@ -162,12 +160,12 @@ SelectedTagOrderChanged
             this.notify('SelectedTagsChanged');
         end
 
+
         function onRemoveTag(this,varargin)
             selectedTags=this.SelectedTagListBox.Value;
             if isempty(selectedTags)
                 return
             end
-
             this.SelectedTagListBox.Items=setdiff(...
             this.SelectedTagListBox.Items,...
             selectedTags,...
@@ -177,11 +175,11 @@ SelectedTagOrderChanged
             this.notify('SelectedTagsChanged');
         end
 
+
         function onUp(this,varargin)
             if isempty(this.SelectedTagListBox.Value)
                 return
             end
-
             this.SelectedTagListBox.ItemsData=1:numel(this.SelectedTagListBox.Items);
             restore=onCleanup(@()set(this.SelectedTagListBox,'ItemsData',[]));
             for index=sort(this.SelectedTagListBox.Value(:)','ascend')%#ok<UDIM>
@@ -192,11 +190,11 @@ SelectedTagOrderChanged
             this.notify('SelectedTagOrderChanged');
         end
 
+
         function onDown(this,varargin)
             if isempty(this.SelectedTagListBox.Value)
                 return
             end
-
             this.SelectedTagListBox.ItemsData=1:numel(this.SelectedTagListBox.Items);
             restore=onCleanup(@()set(this.SelectedTagListBox,'ItemsData',[]));
             for index=sort(this.SelectedTagListBox.Value(:)','descend')%#ok<UDIM>
@@ -206,6 +204,7 @@ SelectedTagOrderChanged
             end
             this.notify('SelectedTagOrderChanged');
         end
+
 
         function done=swapItemsInSelectedTagListBox(this,firstIndex,secondIndex)
             done=true;
