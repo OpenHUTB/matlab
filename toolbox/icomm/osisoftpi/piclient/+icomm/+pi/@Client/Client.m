@@ -1,41 +1,4 @@
 classdef Client<handle
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     properties(Access=private,Transient=true)
 PIServer
     end
@@ -62,21 +25,17 @@ PIServer
         FindTagsExample=("findTags(client, tagName)")
     end
 
+
     methods(Access=public)
 
         function piclientObj=Client(varargin)
-
-
-
             icomm.pi.internal.checkLicense();
-
 
             try
                 narginchk(1,7);
             catch ME
                 throwAsCaller(ME);
             end
-
 
             p=inputParser();
             p.KeepUnmatched=true;
@@ -88,12 +47,9 @@ PIServer
             parsedInputs=p.Results;
 
             usingDefaults=convertCharsToStrings(p.UsingDefaults);
-
-
             serverName=parsedInputs.Servername;
 
             piclientObj.addAssembly();
-
             PIServers=OSIsoft.AF.PI.PIServers;
 
             foundServer=false;
@@ -119,7 +75,6 @@ PIServer
             if~foundServer
                 error(message('icomm_osisoftpi:messages:PIServerNotFound',serverName));
             end
-
 
             piclientObj.PIServer.Disconnect();
 
@@ -153,8 +108,6 @@ PIServer
                     error(message('icomm_osisoftpi:messages:ConnectionUnsuccessful'));
                 end
             end
-
-
             domain=string(piclientObj.PIServer.CurrentUserName);
             if~isempty(domain)
                 domain=split(domain,"\");
@@ -163,12 +116,10 @@ PIServer
         end
     end
 
+
     methods(Access=public)
 
         function tagNames=tags(piclientObj,varargin)
-
-
-
             icomm.pi.internal.checkLicense();
 
             try
@@ -192,8 +143,6 @@ PIServer
                     throwAsCaller(ME);
                 end
             end
-
-
             enumerable=NET.explicitCast(PIPoints,'System.Collections.IEnumerable');
             enumerator=enumerable.GetEnumerator();
             enumerator=NET.explicitCast(enumerator,'System.Collections.IEnumerator');
@@ -203,15 +152,12 @@ PIServer
                 tagNames(end+1)=enumerator.Current.Name;%#ok<AGROW>
             end
 
-
             tagNames=tagNames';
             tagNames=array2table(tagNames,VariableNames="Tags");
         end
 
+
         function valuesTT=read(piclientObj,tagNames,varargin)
-
-
-
             icomm.pi.internal.checkLicense();
 
             try
@@ -236,8 +182,6 @@ PIServer
             parsedInputs=p.Results;
 
             usingDefaults=convertCharsToStrings(p.UsingDefaults);
-
-
             if~(numel(parsedInputs.Tags)==numel(unique(parsedInputs.Tags)))
                 error(message('icomm_osisoftpi:messages:TagsNotUnique'))
             end
@@ -256,11 +200,8 @@ PIServer
             interval=parsedInputs.Interval;
 
             if earliest||latest
-
-
                 startDate=datetime([1971,1,1,0,0,0]);
             end
-
 
             if~earliest
                 if startDate>endDate
@@ -285,15 +226,6 @@ PIServer
             emptyTimes.TimeZone=icomm.pi.internal.defaultTimeZone();
             valuesTT=timetable('RowTimes',emptyTimes);
 
-
-
-
-
-
-
-
-
-
             for tagIndex=1:numTags
 
                 try
@@ -305,10 +237,8 @@ PIServer
                         throwAsCaller(ME);
                     end
                 end
-
                 afTimeRange=OSIsoft.AF.Time.AFTimeRange(icomm.pi.internal.datetime2aftime(startDate),icomm.pi.internal.datetime2aftime(endDate));
                 boundary=OSIsoft.AF.Data.AFBoundaryType.Inside;
-
 
                 if earliest
                     readValues=tag.RecordedValues(afTimeRange,boundary,'',true,1);
@@ -329,23 +259,16 @@ PIServer
                 if latest
                     readValues=tail(readValues,1);
                 end
-
                 valuesTT=[valuesTT;readValues];
 
                 valuesTT=sortrows(valuesTT);
             end
-
-
             valuesTT.Time.Format=icomm.pi.internal.Locale.DatetimeFormat;
         end
 
+
         function viewer(piclientObj)
-
-
-
             icomm.pi.internal.checkLicense();
-
-
             defaultPosition=[0.2,0.2,0.6,0.6];
             parentForPosition=figure('Visible','off','Units','normalized','Position',defaultPosition);
             deleteParentForPosition=onCleanup(@()delete(parentForPosition));
@@ -355,26 +278,17 @@ PIServer
         end
     end
 
+
     methods(Access=public,Hidden=true)
 
         function tagNames=findTags(piclientObj,tagName)
-
-
-
-
-
-
-
-
 
             try
 
                 narginchk(2,2);
             catch
-
                 throwAsCaller(MException(message('icomm_osisoftpi:messages:InputArgsCount',piclientObj.FindTagsExample)));
             end
-
 
             validateattributes(tagName,{'char','string'},{'scalartext'});
             tagName=convertStringsToChars(tagName);
@@ -388,8 +302,6 @@ PIServer
                     throwAsCaller(ME);
                 end
             end
-
-
             enumerable=NET.explicitCast(PIPoints,'System.Collections.IEnumerable');
             enumerator=enumerable.GetEnumerator();
             enumerator=NET.explicitCast(enumerator,'System.Collections.IEnumerator');
@@ -400,14 +312,8 @@ PIServer
             end
         end
 
+
         function valuesTT=getRecordedValues(piclientObj,tagNames,varargin)
-
-
-
-
-
-
-
 
             try
 
@@ -428,16 +334,10 @@ PIServer
 
             startDate=parsedInputs.From;
             endDate=parsedInputs.To;
-
-
-
-
             if~(numel(parsedInputs.Tags)==numel(unique(parsedInputs.Tags)))
                 error(message('icomm_osisoftpi:messages:TagsNotUnique'))
             end
-
             numTags=numel(parsedInputs.Tags);
-
 
             if isempty(startDate.TimeZone)
 
@@ -450,12 +350,9 @@ PIServer
                 endDate.TimeZone=icomm.pi.internal.defaultTimeZone();
             end
 
-
             emptyTimes=datetime.empty(0,1);
             emptyTimes.TimeZone=icomm.pi.internal.defaultTimeZone();
             valuesTT=timetable('RowTimes',emptyTimes);
-
-
 
             for tagIndex=1:numTags
 
@@ -468,49 +365,31 @@ PIServer
                         throwAsCaller(ME);
                     end
                 end
-
                 afTimeRange=OSIsoft.AF.Time.AFTimeRange(icomm.pi.internal.datetime2aftime(startDate),icomm.pi.internal.datetime2aftime(endDate));
                 boundary=OSIsoft.AF.Data.AFBoundaryType.Inside;
 
                 values=tag.RecordedValues(afTimeRange,boundary,'',true);
-
-
                 [values,times,statuses]=icomm.pi.internal.afvalues2matlab(values);
 
                 statuses=categorical(string(statuses),string(enumeration('icomm.pi.internal.AFValueStatus')),'Protected',true);
-
-
                 values=timetable(values(:),statuses(:),'RowTimes',times,'VariableNames',{char(safeTagName),sprintf('%s_Status',safeTagName)});
                 values.Properties.VariableDescriptions={char(tagName),sprintf('%s_Status',tagName)};
                 values.Properties.VariableContinuity={'continuous','event'};
-
-
                 synchronizedTimes=union(valuesTT.Time,values.Time);
                 valuesTT=synchronize(valuesTT,values,synchronizedTimes,'fillwithmissing');
             end
-
-
             valuesTT.Time.Format=icomm.pi.internal.Locale.DatetimeFormat;
         end
 
+
         function valuesTT=getInterpolatedValues(piclientObj,tagNames,varargin)
 
-
-
-
-
-
-
-
-
             try
-
                 narginchk(2,8);
             catch
 
                 throwAsCaller(MException(message('icomm_osisoftpi:messages:InputArgsCount',piclientObj.InterpolatedValuesExample)));
             end
-
             tagNames=convertCharsToStrings(tagNames);
 
             p=inputParser();
@@ -524,17 +403,10 @@ PIServer
             startDate=parsedInputs.From;
             endDate=parsedInputs.To;
             interval=parsedInputs.Every;
-
-
-
-
-
             if~(numel(parsedInputs.Tags)==numel(unique(parsedInputs.Tags)))
                 error(message('icomm_osisoftpi:messages:TagsNotUnique'))
             end
-
             numTags=numel(parsedInputs.Tags);
-
 
             if isempty(startDate.TimeZone)
 
@@ -547,12 +419,9 @@ PIServer
                 endDate.TimeZone=icomm.pi.internal.defaultTimeZone();
             end
 
-
             emptyTimes=datetime.empty(0,1);
             emptyTimes.TimeZone=icomm.pi.internal.defaultTimeZone();
             valuesTT=timetable('RowTimes',emptyTimes);
-
-
 
             for tagIndex=1:numTags
 
@@ -572,33 +441,22 @@ PIServer
                 afTimeSpan=icomm.pi.internal.duration2aftimespan(interval);
                 values=tag.InterpolatedValues(afTimeRange,afTimeSpan,'',true);
 
-
                 [values,times,statuses]=icomm.pi.internal.afvalues2matlab(values);
 
                 statuses=categorical(string(statuses),string(enumeration('icomm.pi.internal.AFValueStatus')),'Protected',true);
-
-
                 values=timetable(values(:),statuses(:),'RowTimes',times,'VariableNames',{char(safeTagName),sprintf('%s_Status',safeTagName)});
                 values.Properties.VariableDescriptions={char(tagName),sprintf('%s_Status',tagName)};
                 values.Properties.VariableContinuity={'continuous','event'};
-
 
                 synchronizedTimes=union(valuesTT.Time,values.Time);
                 valuesTT=synchronize(valuesTT,values,synchronizedTimes,'fillwithmissing');
             end
 
-
             valuesTT.Time.Format=icomm.pi.internal.Locale.DatetimeFormat;
         end
 
+
         function valuesTT=getStartTimeOfTags(piclientObj,tags)
-
-
-
-
-
-
-
 
             icomm.pi.internal.checkLicense();
 
