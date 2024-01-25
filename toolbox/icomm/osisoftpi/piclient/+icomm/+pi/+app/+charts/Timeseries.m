@@ -1,10 +1,5 @@
 classdef Timeseries<icomm.pi.app.charts.Chart
 
-
-
-
-
-
     methods(Access=public)
 
         function this=Timeseries(varargin)
@@ -12,6 +7,7 @@ classdef Timeseries<icomm.pi.app.charts.Chart
         end
 
     end
+
 
     methods(Access=protected)
 
