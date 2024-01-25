@@ -1,19 +1,15 @@
 classdef AxesLayout<icomm.pi.app.AxesLayout
-
-
-
-
-
-
     properties(GetAccess=public,SetAccess=public,Dependent)
 NumAxes
     end
+
 
     methods
 
         function value=get.NumAxes(this)
             value=numel(this.Axes);
         end
+
 
         function set.NumAxes(this,value)
             if value==this.NumAxes
@@ -41,6 +37,7 @@ NumAxes
 
     end
 
+
     methods(Access=public)
 
         function this=AxesLayout(varargin)
@@ -51,11 +48,11 @@ NumAxes
 
     end
 
+
     methods(Access=public)
 
         function thisAxes=getAxes(this,rowIndex,columnIndex)
             if nargin==2
-
                 thisAxes=this.Axes(rowIndex);
             elseif nargin==3
 
