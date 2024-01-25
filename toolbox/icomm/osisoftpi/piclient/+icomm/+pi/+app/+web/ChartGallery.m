@@ -1,10 +1,5 @@
 classdef ChartGallery<icomm.pi.app.Container
 
-
-
-
-
-
     properties(GetAccess=public,Constant)
         Height=icomm.pi.app.web.ChartGallery.IconHeight+20
     end
@@ -16,6 +11,7 @@ classdef ChartGallery<icomm.pi.app.Container
     properties(GetAccess=public,SetAccess=private)
         ChartButtons matlab.ui.control.StateButton
     end
+
 
     properties(GetAccess=private,Constant)
         IconHeight=46
@@ -30,11 +26,13 @@ classdef ChartGallery<icomm.pi.app.Container
 ChartTypeChanged
     end
 
+
     methods
 
         function value=get.SelectedChartType(this)
             value=this.ChartButtons([this.ChartButtons.Value]).Tag;
         end
+
 
         function set.SelectedChartType(this,value)
             tag=validatestring(value,string({this.ChartButtons.Tag}));
@@ -45,6 +43,7 @@ ChartTypeChanged
         end
 
     end
+
 
     methods(Access=public)
 
@@ -57,10 +56,10 @@ ChartTypeChanged
 
     end
 
+
     methods(Access=protected)
 
         function initialize(this)
-
             numCharts=size(this.ChartTypeMap,1);
             this.UiContainer.ColumnWidth=repmat({this.IconWidth},1,numCharts);
             this.UiContainer.RowHeight={this.IconHeight};
@@ -77,6 +76,7 @@ ChartTypeChanged
 
     end
 
+
     methods(Access=private)
 
         function onButtonPushed(this,button,~)
@@ -85,7 +85,6 @@ ChartTypeChanged
                 button.Value=true;
                 return
             end
-
             this.SelectedChartType=button.Tag;
         end
 
