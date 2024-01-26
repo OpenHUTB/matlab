@@ -1,37 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function chips=FddDLDPCH(chs,data,varargin)
 
     if isempty(data)
@@ -53,9 +19,6 @@ function chips=FddDLDPCH(chs,data,varargin)
     ndataframepcode=dims.NDataPerFrame;
     nframes=ceil(numel(data)/(ndataframepcode*ncodewords));
 
-
-
-
     data(numel(data)+1:ndataframepcode*ncodewords*nframes)=-1;
     fdata=reshape(data,[ndataframepcode,numel(data)/ndataframepcode]);
     if(chs.Enable2Interleaving)
@@ -64,11 +27,9 @@ function chips=FddDLDPCH(chs,data,varargin)
         idata=fdata;
     end
 
-
     idata=reshape(idata,[size(idata,1),ncodewords,nframes]);
     idata=permute(idata,[1,3,2]);
     idata=reshape(idata,[numel(idata)/ncodewords,ncodewords]);
-
 
     if(nargin==2)
         phychdata=FddDLDPCHFormat(chs.SlotFormat,idata);
@@ -77,8 +38,6 @@ function chips=FddDLDPCH(chs,data,varargin)
     else
         phychdata=FddDLDPCHFormat(chs.SlotFormat,idata,varargin{1},varargin{2});
     end
-
-
     chips=FddDLChannel(phychdata,'QPSK',dims.SF,chs.SpreadingCode,chs.ScramblingCode,chs.TimingOffset*256);
 
     if size(data,1)<size(data,2)
