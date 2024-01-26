@@ -1,30 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function phychdata=FddDLDPCHFormat(nsft,data,varargin)
 
     if isempty(data)
