@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 function transportblocks=FddCCTrCHData(CCTrCH,TotFrames,varargin)
     if nargin==3
         vstr=varargin{1};
@@ -40,17 +31,11 @@ function transportblocks=FddCCTrCHData(CCTrCH,TotFrames,varargin)
             if actDyPart>numel(dyPart)
                 error('umts:error','ActiveDynamicPart must be <= %d',numel(dyPart));
             end
-
-
-
-
-
             validateUMTSParameter([vstr,'BlockSize'],dyPart(actDyPart).BlockSize);
             validateUMTSParameter([vstr,'BlockSetSize'],dyPart(actDyPart).BlockSetSize);
             if dyPart(actDyPart).BlockSize&&dyPart(actDyPart).BlockSetSize
                 transportblocks{1,ch}{1,t}=trsrc.getPacket(dyPart(actDyPart).BlockSize);
             else
-
                 blocks=dyPart(actDyPart).BlockSize~=dyPart(actDyPart).BlockSetSize;
                 transportblocks{1,ch}{1,t}=ones(0,blocks);
             end
