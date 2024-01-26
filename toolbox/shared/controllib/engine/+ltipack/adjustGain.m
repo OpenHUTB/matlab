@@ -1,21 +1,5 @@
 function fact=adjustGain(a,b,c,d,e0,Ts,z,p,k)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %#codegen
     CODEGEN=~coder.target('MATLAB');
     if CODEGEN
@@ -28,7 +12,6 @@ function fact=adjustGain(a,b,c,d,e0,Ts,z,p,k)
         e=e0;
     end
     anorm=1+norm(a,'fro');
-
 
     sTest=localGetTestFreqs(z,p,Ts,anorm/norm(e,'fro'),CODEGEN);
     nf=numel(sTest);
@@ -62,8 +45,6 @@ function fact=adjustGain(a,b,c,d,e0,Ts,z,p,k)
         s=sTest(imin);h=hTest(imin);
         h0=k*prod(s-z)/prod(s-p);
         if h0==0||~isfinite(h0)
-
-
             h0=k*exp(sum(log(s-z))-sum(log(s-p)));
         end
 
@@ -73,9 +54,7 @@ function fact=adjustGain(a,b,c,d,e0,Ts,z,p,k)
     end
 
 
-
     function s=localGetTestFreqs(z,p,Ts,SCALE,CODEGEN)
-
 
         ONE=cast(1,'like',SCALE);
         ZERO=0*ONE;
@@ -84,7 +63,6 @@ function fact=adjustGain(a,b,c,d,e0,Ts,z,p,k)
         PI=pi*ONE;
         NAN=NaN*ONE;
         zerotol=eps(ONE)^0.75;
-
 
         if Ts==0
             WMIN=zerotol*SCALE;WMAX=SCALE;FACT=ZERO;
@@ -99,10 +77,8 @@ function fact=adjustGain(a,b,c,d,e0,Ts,z,p,k)
         end
         wz=abs(z);wp=abs(p);w=[wz;wp;WMAX];
         if any(w<WMIN)
-
             w=sort(w(w>=WMIN&w<=WMAX,:));
         else
-
             w=[0;sort(w(w<=WMAX,:))];
         end
         nw=numel(w);
@@ -117,18 +93,14 @@ function fact=adjustGain(a,b,c,d,e0,Ts,z,p,k)
             adh=abs(s0+sum(1./(1+wz'./w),2)-sum(1./(1+wp'./w),2));
         end
 
-
         freqs=zeros(nw+25,1,'like',ONE);
         ws=freqs(1);
         adh_min=NAN;
         nf=0;is=1;
         IN=false(nw,1);
         for ct=1:nw
-
             adh_min=min(adh_min,adh(ct,1));
             if ct==nw||w(ct+1)>1e2*w(ct)
-
-
                 if is==ct
                     freqs(nf+1)=w(is);nf=nf+1;
                 else
@@ -155,35 +127,12 @@ function fact=adjustGain(a,b,c,d,e0,Ts,z,p,k)
             end
         end
 
-
         r=[z;p];
         wr=abs(r);
         ar=atan2(imag(r),real(r));
         ar(ar<0,1)=ar(ar<0,1)+TWO*PI;
         [ar,is]=sort(ar);
         wr=wr(is,1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         s=zeros(nf,1,'like',ONE+0i);
         for ct=1:nf
