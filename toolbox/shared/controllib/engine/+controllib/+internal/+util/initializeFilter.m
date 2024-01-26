@@ -1,11 +1,5 @@
 function initializeFilter()
 
-
-
-
-
-
-
 %#codegen
     isMATLAB=isempty(coder.target);
 
@@ -19,7 +13,6 @@ function initializeFilter()
         SI=any(arrayfun(@(x)strcmp(x.feature,'identification_toolbox'),licInuse));
 
         if(~SI&&~CS)||SI
-
 
             [SITlic,~]=builtin('license','checkout','identification_toolbox');
             if~SITlic
