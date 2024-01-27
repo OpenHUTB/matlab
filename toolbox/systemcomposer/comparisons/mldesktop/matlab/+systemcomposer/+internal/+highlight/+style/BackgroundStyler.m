@@ -1,7 +1,5 @@
 classdef BackgroundStyler<handle
 
-
-
     properties(Constant,Access=public)
         GreyEverythingStylerName='systemcomposer.comparisons.highlight.background'
         NoGreyStylerStylerName='systemcomposer.comparisons.highlight.nogrey'
@@ -11,17 +9,20 @@ classdef BackgroundStyler<handle
         WhiteBGClass='WhiteBG'
     end
 
+
     properties(Constant,Access=private)
         GreyPriority=2700
         WhiteBGPriority=2800
         NoGreyPriority=2900
     end
 
+
     properties(Access=private)
 GreyEverythingStyler
 NoGreyStyler
 WhiteBGStyler
     end
+
 
     methods
         function obj=BackgroundStyler()
@@ -30,11 +31,13 @@ WhiteBGStyler
             obj.WhiteBGStyler=obj.getOrCreateWhiteBGStyler();
         end
 
+
         function applyStyle(obj,objToStyle)
             obj.GreyEverythingStyler.applyClass(...
             diagram.resolver.resolve(objToStyle),...
             obj.GreyEverythingClass);
         end
+
 
         function hasBGStyle=hasStyle(obj,objToStyle)
             function hasStyle=objHasBGStyle(objToCheck)
@@ -44,6 +47,7 @@ WhiteBGStyler
             end
             hasBGStyle=objHasBGStyle(diagram.resolver.resolve(objToStyle));
         end
+
 
         function applyNoGrey(obj,objToStyle)
             diagramObject1=diagram.resolver.resolve(objToStyle);
@@ -55,6 +59,7 @@ WhiteBGStyler
             end
         end
 
+
         function removeNoGreyStyles(obj,parentToClear)
             do1=diagram.resolver.resolve(parentToClear);
             obj.NoGreyStyler.clearChildrenClasses(obj.NoGreyClass,do1);
@@ -65,6 +70,7 @@ WhiteBGStyler
                 obj.NoGreyStyler.clearChildrenClasses(obj.NoGreyClass,do2);
             end
         end
+
 
         function removeAllStyles(obj,parentToClear)
             do=diagram.resolver.resolve(parentToClear);
@@ -81,13 +87,13 @@ WhiteBGStyler
             end
         end
 
+
         function styler=getOrCreateGreyEverythingStyler(obj)
             styler=diagram.style.getStyler(obj.GreyEverythingStylerName);
 
             if isempty(styler)
                 diagram.style.createStyler(obj.GreyEverythingStylerName,obj.GreyPriority);
                 styler=diagram.style.getStyler(obj.GreyEverythingStylerName);
-
 
                 slGreyEverythingStyle=systemcomposer.internal.highlight.style.Styles.slGreyEverythingStyle();
                 greyAllSimulinkSelector=diagram.style.DescendantSelector({obj.GreyEverythingClass},{},{},{'simulink'});
@@ -100,6 +106,7 @@ WhiteBGStyler
                 styler.addRule(greyBDStyle,descendantSelectorBDGrey);
             end
         end
+
 
         function styler=getOrCreateNoGreyStyler(obj)
             styler=diagram.style.getStyler(obj.NoGreyStylerStylerName);
@@ -115,13 +122,13 @@ WhiteBGStyler
             end
         end
 
+
         function styler=getOrCreateWhiteBGStyler(obj)
             styler=diagram.style.getStyler(obj.WhiteBGStylerStylerName);
 
             if isempty(styler)
                 diagram.style.createStyler(obj.WhiteBGStylerStylerName,obj.WhiteBGPriority);
                 styler=diagram.style.getStyler(obj.WhiteBGStylerStylerName);
-
 
                 whiteBGStyle=systemcomposer.internal.highlight.style.Styles.whiteBGStyle();
 
@@ -130,6 +137,8 @@ WhiteBGStyler
         end
 
     end
+
+
     methods(Static)
         function tf=isMaskedBlock(handle)
             tf=strcmpi(get_param(handle,'Type'),'block')&&...
