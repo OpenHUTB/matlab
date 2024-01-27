@@ -1,8 +1,5 @@
 classdef SLXEditorHighlightWindow<comparisons.internal.highlight.HighlightWindow
 
-
-
-
     properties(Access=private)
 SystemHandle
 ContentId
@@ -12,6 +9,7 @@ StudioApp
 StylerXButtonNotifier
 XButtonSubscription
     end
+
 
     methods(Access=public)
         function obj=SLXEditorHighlightWindow(location,contentId)
@@ -36,15 +34,18 @@ XButtonSubscription
             end
         end
 
+
         function applyAttentionStyle(obj,location)
             for i=1:numel(location.Handles)
                 obj.AttentionStyler.applyHighlight(location.Handles{i});
             end
         end
 
+
         function clearAttentionStyle(obj)
             obj.AttentionStyler.removeAllStyles(obj.SystemHandle);
         end
+
 
         function zoomToShow(~,location)
             handle=location.Handles{1};
@@ -65,15 +66,18 @@ XButtonSubscription
             end
         end
 
+
         function bool=canDisplay(obj,location)
             import systemcomposer.internal.highlight.window.isSupportedBySLXEditor
             bool=isSupportedBySLXEditor(location.Type)&&...
             bdroot(location.Handles{1})==obj.SystemHandle;
         end
 
+
         function bool=isVisible(obj)
             bool=obj.StudioApp.getStudio().isStudioVisible();
         end
+
 
         function show(obj)
             if isempty(obj.StudioApp)
@@ -85,10 +89,12 @@ XButtonSubscription
             end
         end
 
+
         function hide(obj)
             obj.StudioApp.getStudio().hide();
         end
     end
+
 
     methods(Access=private)
         function subscription=listenerToStylerXButton(obj)
@@ -100,14 +106,14 @@ XButtonSubscription
     end
 end
 
+
 function openEditor(handle)
     set_param(handle,'Open','On');
     hideAllBdScopes(handle);
 end
 
+
 function hideAllBdScopes(handle)
-
-
     windows=find_system(handle,'LookUnderMasks','on','FollowLinks','off',...
     'MatchFilter',@Simulink.match.internal.filterOutInactiveVariantSubsystemChoices,...
     'Regexp','on','BlockType','Scope','Open','on');
@@ -115,6 +121,7 @@ function hideAllBdScopes(handle)
         set_param(windows(i),'Open','off');
     end
 end
+
 
 function isComponentPort=isComponentPortLocation(location)
     isComponentPort=false;
