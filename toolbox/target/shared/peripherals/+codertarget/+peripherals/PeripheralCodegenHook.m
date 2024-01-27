@@ -1,13 +1,5 @@
 classdef PeripheralCodegenHook<handle
 
-
-
-
-
-
-
-
-
     properties
 PeripheralHeaderFile
 ModelPeripheralHeaderFile
@@ -37,6 +29,7 @@ ModelPeripheralSourceFile
         SrcFunctions StringWriter=StringWriter.empty;
     end
 
+
     properties
 ModelObj
 PeripheralType
@@ -45,11 +38,13 @@ PeripheralInfo
 BuildInfo
     end
 
+
     properties(Access=protected)
 Models
 PeripheralStoredData
 GroupPeripheralStoredData
     end
+
 
     methods
         function obj=PeripheralCodegenHook(hObj,peripheralType)
@@ -64,11 +59,10 @@ GroupPeripheralStoredData
             end
             obj.PeripheralType=peripheralType;
             obj.HardwareBoard=get_param(obj.ModelObj,'HardwareBoard');
-
             obj.PeripheralInfo=codertarget.peripherals.PeripheralInfo(codertarget.peripherals.utils.getDefFileNameForBoard(getActiveConfigSet(obj.ModelObj)));
-
             [obj.Models,obj.PeripheralStoredData,obj.GroupPeripheralStoredData]=codertarget.peripherals.utils.getPeripheralInfoFromRefModels(obj.ModelObj);
         end
+
 
         function PeriphHeaderFile=generatePeripheralHeaderFile(obj,headerFilePath)
             if nargin>1
@@ -77,13 +71,10 @@ GroupPeripheralStoredData
                 narginchk(1,1);
                 headerFilePath='';
             end
-
-
             PeriphHeaderFile=managePeripheralHeaderFile(obj);
 
             fprintf('### Writing %s peripheral header file %s\n',obj.PeripheralType,PeriphHeaderFile);
             HdrContents=StringWriter;
-
             macro=upper(sprintf('__%s__',matlab.lang.makeValidName(PeriphHeaderFile)));
             addcr(HdrContents,sprintf('#ifndef %s',macro));
             addcr(HdrContents,sprintf('#define %s',macro));
@@ -102,7 +93,6 @@ GroupPeripheralStoredData
             indentCode(HdrContents,'c');
             addcr(HdrContents,sprintf('#endif /* %s */',macro));
 
-
             if~isempty(headerFilePath)
                 mainSrcDir=headerFilePath;
             else
@@ -113,9 +103,9 @@ GroupPeripheralStoredData
                     mainSrcDir='.';
                 end
             end
-
             write(HdrContents,fullfile(mainSrcDir,PeriphHeaderFile));
         end
+
 
         function generatePeripheralFiles(obj,createPeriphHeader)
             if nargin<2
@@ -132,49 +122,38 @@ GroupPeripheralStoredData
                 else
                     PeriphHeaderFile=codertarget.peripherals.utils.getPeripheralDataHdrName(obj.ModelObj,obj.PeripheralType);
                 end
-
-
-
                 PeriphModelHeaderFile=generatePeripheralDeclarationHdrFile(obj,AllDevices,PeriphHeaderFile);
-
-
-
                 generatePeripheralInitializationSrcFile(obj,AllDevices,PeriphModelHeaderFile);
             end
         end
     end
 
+
     methods(Access=protected)
 
         function peripheralHeaderFileName=managePeripheralHeaderFile(obj)
-
             peripheralTypeInfo=getParameters(obj.PeripheralInfo,obj.PeripheralType);
 
-
             if isstruct(obj.PeripheralStoredData)&&isfield(obj.PeripheralStoredData,obj.PeripheralType)
-
                 obj.PeriphIncludeFiles=StringWriter;
                 addcr(obj.PeriphIncludeFiles,sprintf('#include "%s.h"','rtwtypes'));
-
-
                 obj.PeriphTypedefs=StringWriter;
                 addcr(obj.PeriphTypedefs,'typedef struct {');
                 for i=1:numel(peripheralTypeInfo)
                     ParamDataType=getParameterDataType(obj,peripheralTypeInfo(i));
                     addcr(obj.PeriphTypedefs,sprintf('%s %s;',ParamDataType,peripheralTypeInfo(i).Storage));
-
                     if~isempty(peripheralTypeInfo(i).HeaderFile)
                         addcr(obj.PeriphIncludeFiles,sprintf('#include "%s.h"',peripheralTypeInfo(i).HeaderFile));
                     end
                 end
                 TypeName=codertarget.peripherals.utils.getPeripheralDataStructType(obj.PeripheralType);
                 addcr(obj.PeriphTypedefs,['} ',TypeName,';']);
-
                 peripheralHeaderFileName=codertarget.peripherals.utils.getPeripheralDataHdrName(obj.ModelObj,obj.PeripheralType);
             else
                 peripheralHeaderFileName='';
             end
         end
+
 
         function typeName=getParameterDataType(~,parameterInfo)
 
@@ -198,11 +177,11 @@ GroupPeripheralStoredData
             end
         end
 
+
         function allDevices=getAllDevices(obj)
             if isstruct(obj.PeripheralStoredData)&&isfield(obj.PeripheralStoredData,obj.PeripheralType)
                 allDevices=obj.PeripheralStoredData.(obj.PeripheralType);
                 assert(isstruct(allDevices),'%s device type is expected to be a structure.',obj.PeripheralType);
-
 
                 blockIDs={allDevices.ID};
                 commentedIdx=cellfun(@(x)isequal(get_param(codertarget.peripherals.utils.getBlockPath(x),'Commented'),'on'),blockIDs);
@@ -217,7 +196,6 @@ GroupPeripheralStoredData
 
         function updateModelPeripheralHeaderInclude(obj,peripheralHeaderFileName)
 
-
             if isempty(obj.HdrIncludeFiles)
                 obj.HdrIncludeFiles=StringWriter;
             end
@@ -229,10 +207,7 @@ GroupPeripheralStoredData
             if isempty(obj.HdrVariableDeclaration)
                 obj.HdrVariableDeclaration=StringWriter;
             end
-
             blockPath=codertarget.peripherals.utils.getBlockPath(deviceBlock.ID);
-
-
             variableType=codertarget.peripherals.utils.getPeripheralDataStructType(obj.PeripheralType);
             variableName=codertarget.peripherals.utils.getBlockSID(blockPath,true);
             addcr(obj.HdrVariableDeclaration,sprintf('extern %s %s;',variableType,variableName));
@@ -243,6 +218,7 @@ GroupPeripheralStoredData
             if isempty(obj.HdrPrototypes)
                 obj.HdrPrototypes=StringWriter;
             end
+
             functioName=message('codertarget:peripherals:ModelPeripheralDataInitFcn',obj.ModelObj,obj.PeripheralType).getString();
             addcr(obj.HdrPrototypes,sprintf('extern void %s(void);',functioName));
         end
@@ -252,7 +228,6 @@ GroupPeripheralStoredData
             if isempty(obj.SrcIncludeFiles)
                 obj.SrcIncludeFiles=StringWriter;
             end
-
             addcr(obj.SrcIncludeFiles,sprintf('#include "%s"',mdlPeripheralHeader));
         end
 
@@ -261,9 +236,7 @@ GroupPeripheralStoredData
             if isempty(obj.SrcVariableDefinitions)
                 obj.SrcVariableDefinitions=StringWriter;
             end
-
             blockPath=codertarget.peripherals.utils.getBlockPath(deviceBlock.ID);
-
             variableType=codertarget.peripherals.utils.getPeripheralDataStructType(obj.PeripheralType);
             variableName=codertarget.peripherals.utils.getBlockSID(blockPath,true);
             addcr(obj.SrcVariableDefinitions,sprintf('%s %s;',variableType,variableName));
@@ -278,6 +251,7 @@ GroupPeripheralStoredData
             addcr(obj.SrcFunctions,sprintf('void %s(void) {',functionName));
         end
 
+
         function endStructureInitFunction(obj)
             assert(~isempty(obj.SrcFunctions),'Structure init function not started.');
             addcr(obj.SrcFunctions,'}');
@@ -285,36 +259,18 @@ GroupPeripheralStoredData
 
 
         function updateModelPeripheralInitStructureFunction(obj,deviceBlock)
-
             blockPath=codertarget.peripherals.utils.getBlockPath(deviceBlock.ID);
-
             variableName=codertarget.peripherals.utils.getBlockSID(blockPath,true);
             blockInfo=getBlockParameters(obj.PeripheralInfo,obj.PeripheralType);
             groupInfo=getGroupParameters(obj.PeripheralInfo,obj.PeripheralType);
-
-
             deviceInfo=[blockInfo,groupInfo];
-
-
-
-
-
             addcr(obj.SrcFunctions,sprintf('/* Initialize structure %s required for block: %s */',variableName,blockPath));
 
-
-
-
-
-
             paramsList={deviceInfo.Storage};
-
-
 
             for paramIdx=1:numel(paramsList)
                 if isfield(deviceBlock,paramsList{paramIdx})
                     paramValue=deviceBlock.(paramsList{paramIdx});
-
-
                     baseWrks=evalin('base','whos');
                     if(isStringScalar(paramValue)||ischar(paramValue))...
                         &&(ismember(paramValue,{baseWrks(:).name})...
@@ -325,8 +281,6 @@ GroupPeripheralStoredData
                     isfield(obj.GroupPeripheralStoredData.(obj.PeripheralType),paramsList{paramIdx})
 
                     paramValue=obj.GroupPeripheralStoredData.(obj.PeripheralType).(paramsList{paramIdx});
-
-
                     baseWrks=evalin('base','whos');
                     if(isStringScalar(paramValue)||ischar(paramValue))...
                         &&(ismember(paramValue,{baseWrks(:).name})...
@@ -334,12 +288,8 @@ GroupPeripheralStoredData
                         paramValue=num2str(evalin('base',paramValue));
                     end
                 else
-
-
                     paramValue=deviceInfo(paramIdx).Value;
                 end
-
-
                 typeName=getParameterDataType(obj,deviceInfo(paramIdx));
                 switch deviceInfo(paramIdx).Type
                 case 'combobox'
@@ -357,11 +307,9 @@ GroupPeripheralStoredData
                             elements(elementsEmpty)=[];
                         end
                         assert(any(strcmp(elements,paramValue)),message('codertarget:peripherals:StorageValueNotFound',paramsList{paramIdx},paramValue));
-
                         if~isempty(deviceInfo(paramIdx).CodeInfoValueName)
                             codeValues=strsplit(deviceInfo(paramIdx).CodeInfoValueName,';');
                             assert(isequal(numel(elements),numel(codeValues)),message('codertarget:peripherals:DropdownElementsCountMismatch',paramsList{paramIdx}));
-
                             codeParamValue=codeValues{strcmp(elements,paramValue)};
                         else
                             codeParamValue=find(strcmp(elements,paramValue));
@@ -391,7 +339,6 @@ GroupPeripheralStoredData
                         end
                     end
 
-
                     if startsWith(deviceInfo(paramIdx).Entries,'callback:')
 
                     else
@@ -409,12 +356,9 @@ GroupPeripheralStoredData
                 otherwise
                     error(message('codertarget:peripherals:DropdownElementsCountMismatch',deviceInfo(paramIdx).Type));
                 end
-
-
                 idxNum=regexp(paramsList{paramIdx},'_(\d+)','match');
                 arrName=strrep(paramsList{paramIdx},idxNum,'');
                 idxNum=strrep(idxNum,'_','');
-
                 idxNumLogic2=regexp(paramsList{paramIdx},'\d+$','match');
 
                 if~isempty(idxNum)
@@ -429,11 +373,7 @@ GroupPeripheralStoredData
                     arrStorage=paramsList{paramIdx};
                     arrName=arrStorage;
                 end
-
-
                 if~isempty(groupInfo)&&any(contains({groupInfo.Storage},arrName))
-
-
 
                     l_storage=arrStorage;
                     try
@@ -474,10 +414,7 @@ GroupPeripheralStoredData
         end
 
 
-
-
         function periphModelHeaderFile=generatePeripheralDeclarationHdrFile(obj,deviceBlocks,periphHeaderFile)
-
             updateModelPeripheralHeaderInclude(obj,periphHeaderFile);
             updateModelPeripheralHeaderPrototype(obj);
 
@@ -489,7 +426,6 @@ GroupPeripheralStoredData
             fprintf('### Writing model %s peripheral header file %s\n',obj.PeripheralType,periphModelHeaderFile);
 
             hdrContents=StringWriter;
-
             macro=sprintf('__%s__',matlab.lang.makeValidName(periphModelHeaderFile));
             addcr(hdrContents,sprintf('#ifndef %s',macro));
             addcr(hdrContents,sprintf('#define %s',macro));
@@ -522,16 +458,12 @@ GroupPeripheralStoredData
         end
 
 
-
-
         function periphModelSourceFile=generatePeripheralInitializationSrcFile(obj,deviceBlocks,mdlPeripheralHeader)
-
             updateModelPeripheralSourceInclude(obj,mdlPeripheralHeader);
 
             startStructureInitFunction(obj);
             arrayfun(@(x)manageModelPeripheralSource(obj,x),deviceBlocks);
             endStructureInitFunction(obj);
-
             periphModelSourceFile=message('codertarget:peripherals:ModelPeripheralDataDefFile',obj.ModelObj,obj.PeripheralType,'.c').getString();
 
             fprintf('### Writing model %s peripheral header file %s\n',obj.PeripheralType,periphModelSourceFile);
