@@ -1,17 +1,16 @@
 classdef AttentionStyler<handle
 
-
-
-
     properties(Constant,Access=public)
         Name='systemcomposer.comparisons.highlight.attention'
         StyleClass='highlighted'
         StylerPriority=3000
     end
 
+
     properties(Dependent,Access=private)
 Styler
     end
+
 
     methods
         function applyHighlight(obj,objToStyle)
@@ -21,12 +20,14 @@ Styler
             );
         end
 
+
         function removeCurrentHighlight(obj,objToStyle)
             obj.Styler.removeClass(...
             diagram.resolver.resolve(objToStyle),...
             obj.StyleClass...
             );
         end
+
 
         function removeAllStyles(obj,parentToClear)
             do=diagram.resolver.resolve(parentToClear);
@@ -35,6 +36,7 @@ Styler
         end
 
     end
+
 
     methods
         function styler=get.Styler(obj)
