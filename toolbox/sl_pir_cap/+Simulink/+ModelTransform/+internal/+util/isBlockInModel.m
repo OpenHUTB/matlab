@@ -1,8 +1,5 @@
 function result=isBlockInModel(modelPath,blockPath)
 
-
-
-
     findOptions=Simulink.FindOptions('FollowLinks',true,"LookUnderMasks","All","Variants","AllVariants");
     allBlocks=getfullname(Simulink.findBlocks(modelPath,findOptions));
 
