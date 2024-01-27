@@ -1,25 +1,5 @@
 function createTargetOnTheFly(tgtName,folder,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     disp(['Running  ',mfilename('fullpath'),'.m'])
 
     p=inputParser;
@@ -44,8 +24,6 @@ function createTargetOnTheFly(tgtName,folder,varargin)
     if isempty(devID)
         [devID{1:numel(hwboards)}]=deal('ARM Cortex-A9');
     end
-
-
     tgtObj=i_createTargetObject(tgtName,folder);
     if~exist('deployerObj','var')
         deployerObj=i_createDeployerObject(tgtObj,isSimTgt);
@@ -55,8 +33,6 @@ function createTargetOnTheFly(tgtName,folder,varargin)
     externalModeObjs=i_createExternalModeObjects(tgtObj,isSimTgt);
     pilObj=i_createPILObject(tgtObj);
     profilerObj=i_createProfilerObject(tgtObj);
-
-
 
     for i=1:numel(hwboards)
 
@@ -79,7 +55,6 @@ function createTargetOnTheFly(tgtName,folder,varargin)
         map(tgtObj,hwObj,profilerObj);
     end
 
-
     saveTarget(tgtObj);
     i_applyCoderTargetAPIs(tgtObj,isSimTgt);
     i_updateRTWTargetInfo(tgtObj,isSimTgt);
@@ -92,22 +67,17 @@ end
 function i_applyCoderTargetAPIs(tgtObj,isSimTgt)
     tgtHwDir=dir(fullfile(tgtObj.Folder,'registry','targethardware'));
 
-
-
     for ii=1:length(tgtHwDir(3:end))
         tgtHwFileName=tgtHwDir(2+ii).name;
         tgtHWInfo=codertarget.targethardware.TargetHardwareInfo(...
         fullfile(tgtObj.Folder,'registry','targethardware',tgtHwFileName),...
         tgtObj.Name);
         switch tgtHwFileName
-
         case{'XilinxZynqZC702evaluationkit.xml',...
             'XilinxZynq7000basedboard.xml'}
             tgtHWInfo.ESBCompatible=0;
         otherwise
             tgtHWInfo.ESBCompatible=3;
-
-
         end
 
         tgtHWInfo.NumOfCores=2;
@@ -115,15 +85,11 @@ function i_applyCoderTargetAPIs(tgtObj,isSimTgt)
             tgtHWInfo.SupportsOnlySimulation=true;
             tgtHWInfo.BaseProductID=codertarget.targethardware.BaseProductID.SOC;
         else
-
             tgtHWInfo.MATLABPILInfo=struct('GetPropsFcn','codertarget.zynq.internal.getMATLABPILProps');
             tgtHWInfo.TaskMap.isSupported='matlab:codertarget.utils.isSoCInstalledAndModelConfiguredForSoC';
             tgtHWInfo.TaskMap.useAutoMap='matlab:codertarget.utils.isSoCInstalledAndModelConfiguredForSoC';
         end
         tgtHWInfo.SubFamily='ARM Cortex-A';
-
-
-
         if~isequal(tgtHWInfo.Name,'ZedBoard')
             tgtHWInfo.ToolChainInfo(2)=tgtHWInfo.ToolChainInfo(1);
             tgtHWInfo.ToolChainInfo(3)=tgtHWInfo.ToolChainInfo(1);
@@ -134,20 +100,15 @@ function i_applyCoderTargetAPIs(tgtObj,isSimTgt)
         end
         tgtHWInfo.setPreferenceName('XLNXZYNQ');
 
-
-
         fwdInfoFileName='forwarding.xml';
         fwdObj=codertarget.forwarding.ForwardingInfo();
         fwdObj.setTargetName(tgtObj.Name);
         fwdObj.setDefinitionFileName(fwdInfoFileName);
         fwdObj.addParameter(struct('Name','FPGADesign','ForwardingFcn','codertarget.zynq.internal.forwardFPGAParameters'));
         fwdObj.register;
-
-
         tgtHWInfo.setForwardingInfoFile(fwdInfoFileName);
 
         tgtHWInfo.register;
-
         attributeInfoFile=tgtHWInfo.getAttributeInfoFile;
         attributeInfoFile=strrep(attributeInfoFile,'$(TARGET_ROOT)',tgtObj.Folder);
         attributeObj=codertarget.attributes.AttributeInfo(attributeInfoFile);
@@ -190,15 +151,12 @@ function i_applyCoderTargetAPIs(tgtObj,isSimTgt)
         '$(ESB_TARGET_ROOT)/bin/libcodertarget_StreamingProfilerAppSvc.lib');
         attributeObj.Profiler.EnableModelInitLogging=0;
         attributeObj.register;
-
-
         [~,fname,fext]=fileparts(tgtHWInfo.getParameterInfoFile);
         parametersObj=i_createParameterInfoObject(isSimTgt);
         parametersObj.setTargetName(tgtObj.Name);
         parametersObj.setName(tgtObj.Name);
         parametersObj.DefinitionFileName=[fname,fext];
         parametersObj.register;
-
         fpgaIntrObj=codertarget.interrupts.FPGAInterruptsInfo;
         addNewFPGAInterrupt(fpgaIntrObj,struct('InterfacePortName','processing_system7/IRQ_F2P','InterfacePortWidth',16));
         fpgaIntrObj.DefinitionFileName=fullfile(tgtObj.Folder,'registry','interrupts',[tgtHwFileName(1:end-4),'FPGAInterrupts.xml']);
@@ -406,8 +364,6 @@ function profilerObj=i_createProfilerObject(tgtObj)
     profilerObj.Name='Xilinx Zynq Profiler';
     profilerObj.GetDataFcn='codertarget.zynq.internal.getProfileData';
 end
-
-
 
 
 
