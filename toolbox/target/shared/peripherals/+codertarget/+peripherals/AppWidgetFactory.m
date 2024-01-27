@@ -1,19 +1,15 @@
+% 窗口小工具工厂
 classdef AppWidgetFactory
-
-
-
-
 
     methods(Static)
         function appContainer=createAppContainer(appOptions)
             appOptions.CleanStart=true;
-
             appOptions.ShowSingleDocumentTab=false;
             appOptions.DocumentPlaceHolderText="";
             appOptions.OfferDocumentMaximizeButton=false;
-
             appContainer=matlab.ui.container.internal.AppContainer(appOptions);
         end
+
 
         function tab=createToolstripTab(parent,tabOptions)
             tabGroupTag=[tabOptions.Tag,'_TABGROUP'];
@@ -28,9 +24,11 @@ classdef AppWidgetFactory
             tabGroup.add(tab);
         end
 
+
         function section=createToolstripSection(parent,sectionOptions)
             section=parent.addSection(sectionOptions.Title);
         end
+
 
         function button=createToolstripButton(parent,buttonOptions)
             column=parent.addColumn();
@@ -44,25 +42,30 @@ classdef AppWidgetFactory
             column.add(button);
         end
 
+
         function panel=createFigurePanel(parent,panelOptions)
             panel=matlab.ui.internal.FigurePanel(panelOptions);
             parent.add(panel);
         end
+
 
         function docGroup=createFigureDocumentGroup(parent,docOptions)
             docGroup=matlab.ui.internal.FigureDocumentGroup(docOptions);
             parent.add(docGroup);
         end
 
+
         function doc=createFigureDocument(parent,docOptions)
             doc=matlab.ui.internal.FigureDocument(docOptions);
             parent.add(doc);
         end
 
+
         function helpButton=createQABHelpButton(appContainer)
             helpButton=matlab.ui.internal.toolstrip.qab.QABHelpButton();
             appContainer.add(helpButton);
         end
+
 
         function out=createBrowserGrid(parent)
             gridOptions.RowHeight={'1x'};
@@ -72,13 +75,16 @@ classdef AppWidgetFactory
             out=codertarget.peripherals.UIComponentFactory.createGridLayout(parent,gridOptions);
         end
 
+
         function tree=createTree(parent,treeOptions)
             tree=uitree(parent,treeOptions);
         end
 
+
         function node=createTreeNode(parent,nodeOptions)
             node=uitreenode(parent,nodeOptions);
         end
+
 
         function out=createTasksGrid(parent)
             gridOptions.RowHeight={'fit'};
@@ -88,6 +94,7 @@ classdef AppWidgetFactory
             out=codertarget.peripherals.UIComponentFactory.createGridLayout(parent,gridOptions);
         end
 
+
         function out=createTasksTable(parent,tableOptions)
             tableOptions.ColumnName={'Task','Event'};
             tableOptions.ColumnEditable=[false,true];
@@ -95,6 +102,7 @@ classdef AppWidgetFactory
             tableOptions.RowStriping='off';
             out=codertarget.peripherals.UIComponentFactory.createTable(parent,tableOptions);
         end
+
 
         function out=createPeripheralGrid(parent)
             gridOptions.RowHeight={};
@@ -104,9 +112,9 @@ classdef AppWidgetFactory
             out=codertarget.peripherals.UIComponentFactory.createGridLayout(parent,gridOptions);
         end
 
+
         function out=createParameterWidget(parent,widgetOptions)
             parent.RowHeight{end+1}='fit';
-
 
             switch(widgetOptions.Type)
             case 'combobox'
@@ -121,6 +129,7 @@ classdef AppWidgetFactory
             end
         end
 
+
         function out=createParameterTabGroup(parent,tabGroupOptions)
             out=uitabgroup(parent,tabGroupOptions);
             parent.RowHeight{out.Layout.Row}='1x';
@@ -128,10 +137,12 @@ classdef AppWidgetFactory
             out.Layout.Column=[1,3];
         end
 
+
         function out=createParameterTab(parent,tabOptions)
 
             out=uitab(parent,tabOptions);
         end
+
 
         function out=createParameterGrid(parent)
             gridOptions.RowHeight={};
@@ -145,28 +156,21 @@ classdef AppWidgetFactory
 
         function[group,grid]=createParameterGroup(parent,groupOptions)
 
-
-
-
             switch(groupOptions.Type)
             case 'panel'
-
                 panel=codertarget.peripherals.UIComponentFactory.createPanel(parent,groupOptions);
                 panel.Layout.Column=[1,2];
                 panel.Visible=false;
 
-
                 gridOptions.RowHeight={};
                 gridOptions.ColumnWidth={'fit','fit'};
                 gridOptions.BackgroundColor='w';
-
                 grid=codertarget.peripherals.UIComponentFactory.createGridLayout(panel,gridOptions);
                 group=panel;
             case 'collapsiblepanel'
                 accordian=codertarget.peripherals.UIComponentFactory.createAccordian(parent);
                 accordian.Layout.Column=[1,2];
                 accordian.Visible=false;
-
                 accordianPanel=codertarget.peripherals.UIComponentFactory.createAccordianPanel(accordian,groupOptions);
 
                 gridOptions.RowHeight={};
