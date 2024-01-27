@@ -1,16 +1,15 @@
 classdef DiffStyler<handle
 
-
-
-
     properties(Constant,Access=public)
         Name='comparisons.highlight.diff'
         StylerPriority=2950
     end
 
+
     properties(Dependent,Access=private)
 Styler
     end
+
 
     methods
 
@@ -28,6 +27,7 @@ Styler
             end
         end
 
+
         function updateStyle(obj,objToStyle,StyleType)
             diagramObject1=diagram.resolver.resolve(objToStyle);
             obj.Styler.clearClasses(diagramObject1);
@@ -39,6 +39,7 @@ Styler
                 obj.Styler.applyClass(diagramObject2,StyleType.StyleClass);
             end
         end
+
 
         function removeAllStyles(obj,parentToClear)
             import sldiff.internal.highlight.style.*
@@ -58,6 +59,7 @@ Styler
             end
         end
     end
+
 
     methods
         function styler=get.Styler(obj)
