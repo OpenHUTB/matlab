@@ -1,13 +1,10 @@
 classdef RefactorResults<handle
-
-
-
-
     properties(SetAccess='private',GetAccess='public')
 ModelName
 ModelDirectory
 TraceabilityInfo
     end
+
 
     methods
         function obj=RefactorResults(m2mObj)
