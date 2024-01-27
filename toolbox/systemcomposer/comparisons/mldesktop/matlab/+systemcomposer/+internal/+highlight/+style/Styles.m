@@ -1,8 +1,5 @@
 classdef Styles<handle
 
-
-
-
     methods(Static)
 
         function style=get(styleType)
@@ -37,7 +34,6 @@ classdef Styles<handle
             otherwise
                 return;
             end
-
             style.set('FillColor',fillColor);
             style.set('FillStyle','Solid');
             style.set('StrokeStyle','SolidLine');
@@ -48,6 +44,7 @@ classdef Styles<handle
             style.registerProperty('CompositionSegmentColor','Color');
             style.set('CompositionSegmentColor',strokeColor);
         end
+
 
         function HighlightedStyle=highlighted()
             HighlightedStyle=diagram.style.Style;
@@ -60,6 +57,7 @@ classdef Styles<handle
             HighlightedStyle.set('Trace',MG2.TraceEffect(stroke,'Outer'));
         end
 
+
         function noGreyStyle=noGreyStyle()
 
             noGreyStyle=diagram.style.Style;
@@ -67,18 +65,18 @@ classdef Styles<handle
             noGreyStyle.set('FillColor',[210,210,210,255]./255);
         end
 
+
         function whiteBGStyle=whiteBGStyle()
             whiteBGStyle=diagram.style.Style;
             whiteBGStyle.set('FillColor',[255,255,255,255]./255);
             whiteBGStyle.set('Opacity',1);
         end
 
+
         function greyBDStyle=greyBDStyle()
             greyOutBackgroundColor=[0.95,0.95,0.95];
 
             greyBDStyle=diagram.style.Style;
-
-
             diagram.style.Style.registerProperty('GreyEverything','bool');
             diagram.style.Style.registerProperty('Wash','Color');
 
@@ -86,35 +84,23 @@ classdef Styles<handle
             greyBDStyle.set('GreyEverything',true);
         end
 
+
         function slGreyEverythingStyle=slGreyEverythingStyle()
             greyOutOpacity=.2;
-
-
-
-
             slGreyEverythingStyle=diagram.style.Style;
-
-
-
-
-
-
-
-
 
             slGreyEverythingStyle.set('FillColor',[210,210,210,255]./255);
             slGreyEverythingStyle.set('StrokeColor',[0,0,0,1.0]);
             slGreyEverythingStyle.registerProperty('CompositionSegmentColor','Color');
             slGreyEverythingStyle.set('CompositionSegmentColor',[168,168,168,255]./255);
             slGreyEverythingStyle.set('StrokeStyle','SolidLine');
-
-
             slGreyEverythingStyle.set('Opacity',greyOutOpacity);
             slGreyEverythingStyle.set('Glow',[]);
         end
     end
 
 end
+
 
 function rgba=toRGBADouble(color)
     rgba=[double(color)/255,1];
