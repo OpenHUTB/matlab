@@ -1,9 +1,5 @@
 classdef UiWindow<handle
 
-
-
-
-
     properties(Constant,Hidden)
         REL_URL='toolbox/dashboard/ui/web/index.html';
         DEBUG_URL='toolbox/dashboard/ui/web/index-debug.html';
@@ -30,7 +26,6 @@ classdef UiWindow<handle
 
     methods
 
-
         function this=UiWindow(session,onCloseCallback)
             this.SessionID=session;
             this.CloseCallback=onCloseCallback;
@@ -38,7 +33,6 @@ classdef UiWindow<handle
             dashboard.internal.initializeOnce();
             this.InternalService=alm.internal.UiService(session);
         end
-
 
 
         function open(this,varargin)
@@ -59,10 +53,7 @@ classdef UiWindow<handle
                     projIn=dashboard.internal.ProjectController.getCurrentProject();
                     projIn=projIn.Path;
                 end
-
                 urlToOpen=this.buildURL(artifactIn,classIn,projIn,layoutId);
-
-
                 hits=regexp(urlToOpen,'snc\=([a-zA-Z0-9]+)','tokens');
 
                 if isempty(hits)
@@ -77,7 +68,6 @@ classdef UiWindow<handle
                     debugMode=dashboard.UiWindow.debugMode();
 
 
-
                     geo=this.getGeometry();
 
                     browserWindow=Simulink.HMI.BrowserDlg(...
@@ -85,7 +75,6 @@ classdef UiWindow<handle
                     [],useCEF,debugMode,...
                     @()onBrowserClose(this),...
                     true);
-
                     browserWindow.CEFWindow.setMinSize([
                     min(geo(3),576),...
                     min(geo(4),576)]);
@@ -117,7 +106,6 @@ classdef UiWindow<handle
                     );
                 else
 
-
                     this.InternalService.executeAction(...
                     'dashboard::ShowDashboardAction',...
                     '',...
@@ -130,6 +118,7 @@ classdef UiWindow<handle
             this.bringToFront();
         end
 
+
         function setProjectPath(this,projectPath)
             this.ProjectPath=projectPath;
             this.InternalService.setProjectPath(projectPath);
@@ -137,7 +126,6 @@ classdef UiWindow<handle
 
 
         function state=isOpen(this)
-
             if~isa(this.Window,'Simulink.HMI.BrowserDlg')||~this.Window.isvalid
                 this.IsOpen=false;
             end
@@ -161,17 +149,14 @@ classdef UiWindow<handle
             end
         end
 
+
         function delete(this)
             this.close();
         end
     end
 
 
-
-
-
     methods
-
 
         function ret=getGeometry(this)%#ok<MANU>
             width=1400;
@@ -199,8 +184,6 @@ classdef UiWindow<handle
 
 
 
-
-
     methods(Hidden)
 
         function url=buildURL(this,artifactIn,classIn,projIn,layoutId)
@@ -225,8 +208,6 @@ classdef UiWindow<handle
             else
                 localClient='off';
             end
-
-
             uri=matlab.net.URI(url,'session',this.SessionID,...
             'artifact',artifactIn,...
             'class',classIn,...
@@ -242,13 +223,12 @@ classdef UiWindow<handle
         end
 
 
-
-
         function onBrowserClose(this)
             this.CloseCallback(this);
             this.IsOpen=false;
             this.Window=[];
         end
+
 
         function cppUIService=getCPPUiService(this)
             cppUIService=this.InternalService;
@@ -256,10 +236,7 @@ classdef UiWindow<handle
     end
 
 
-
-
     methods(Hidden,Static)
-
 
         function features=feature(name,state)
             persistent fts
@@ -277,11 +254,10 @@ classdef UiWindow<handle
             features=fts;
         end
 
+
         function id=generateWindowSessionId()
             id=matlab.lang.internal.uuid;
         end
-
-
 
 
         function isDebug=debugMode(varargin)
@@ -311,9 +287,6 @@ classdef UiWindow<handle
 
             out=UseHttps;
         end
-
-
-
 
 
 
