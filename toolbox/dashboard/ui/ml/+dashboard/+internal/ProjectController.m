@@ -1,14 +1,13 @@
 classdef ProjectController
 
-
-
     methods(Static)
 
-        function success=newProjectFromPath(path)
+        function success = newProjectFromPath(path)
             success=false;
         end
 
-        function success=openProject(path)
+
+        function success = openProject(path)
             try
                 g=alm.internal.GlobalProjectFactory.get();
                 f=g.createMATLABProjectFactory();
@@ -19,7 +18,8 @@ classdef ProjectController
             end
         end
 
-        function success=closeProject()
+
+        function success = closeProject()
             try
                 close(currentProject);
                 success=true;
@@ -27,6 +27,7 @@ classdef ProjectController
                 success=false;
             end
         end
+
 
         function projectInfo=getCurrentProject()
             projectInfo=struct('Path','','Name','');
@@ -37,6 +38,7 @@ classdef ProjectController
             end
         end
 
+
         function projects=getRecentProjects()
             recentProjects=slhistory.getMRUList(slhistoryListType.Projects);
             projects=struct('Path',{},'Name',{});
@@ -46,6 +48,7 @@ classdef ProjectController
                 projects(idx).Name=file;
             end
         end
+
 
         function setProjectPath(sessionId,projectPath)
             s=dashboard.UiService.get();

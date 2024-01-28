@@ -1,11 +1,5 @@
 function revealArtifactOnDisk(artUUIDOrFilePath)
 
-
-
-
-
-
-
     if exist(artUUIDOrFilePath,'file')
 
         absPth=artUUIDOrFilePath;
@@ -30,7 +24,6 @@ function revealArtifactOnDisk(artUUIDOrFilePath)
             error(message('dashboard:uidatamodel:FileNotExist',absPth));
         end
     else
-
         error(message('dashboard:uidatamodel:FileNotExist',artUUIDOrFilePath));
     end
 
@@ -48,8 +41,6 @@ function revealArtifactOnDisk(artUUIDOrFilePath)
     if ismac
         cmd='open';
     else
-
-
         cmd='xdg-open';
     end
 

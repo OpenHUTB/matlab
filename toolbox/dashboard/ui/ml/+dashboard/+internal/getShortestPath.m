@@ -1,21 +1,11 @@
 function json=getShortestPath(artUUID,unitUUID)
 
-
-
-
-
-
-
-
-
     cprj=currentProject;
     as=alm.internal.ArtifactService.get(cprj.RootFolder);
     g=as.getGraph();
-
     startVertex=g.getArtifactByUuid(unitUUID);
     target=g.getArtifactByUuid(artUUID);
     FileToAdd=[];
-
 
     if~belongsToUnit(target,unitUUID)
         kids=g.getAllContained(target);
@@ -45,9 +35,7 @@ function json=getShortestPath(artUUID,unitUUID)
     qr_up.getConnections(),...
     qr_down.getConnections(),...
     qr_harness.getConnections()];
-
     pth=findPathBreadthFirst(target,startVertex,cons);
-
 
     if isa(pth,'alm.Artifact')
         mf0=mf.zero.Model;
@@ -56,7 +44,6 @@ function json=getShortestPath(artUUID,unitUUID)
     else
         [mf0,diag]=createDiagramFromPath(pth);
     end
-
 
     if~isempty(FileToAdd)
         if isa(pth,'alm.Artifact')
@@ -75,10 +62,12 @@ function json=getShortestPath(artUUID,unitUUID)
 
 end
 
+
 function out=belongsToUnit(art,unitUUID)
     units=art.SharedData.getByKey('unit');
     out=~isempty(findobj(units,'Value',unitUUID));
 end
+
 
 function[mf0,diag]=createDiagramFromPath(pth)
     mf0=mf.zero.Model;
@@ -103,8 +92,8 @@ function[mf0,diag]=createDiagramFromPath(pth)
     end
 end
 
-function pth=findPathBreadthFirst(startVertex,target,connections)
 
+function pth=findPathBreadthFirst(startVertex,target,connections)
 
     pth=startVertex;
 
@@ -112,14 +101,12 @@ function pth=findPathBreadthFirst(startVertex,target,connections)
         return
     end
 
-
     q={{startVertex,[],connections}};
     visitedNodes=[];
     while~isempty(q)
 
         ElementToCheck=q{1};
         q=q(2:end);
-
         srces=arrayfun(@getRightItem,ElementToCheck{3});
 
         idx=ElementToCheck{1}==srces;
@@ -127,11 +114,6 @@ function pth=findPathBreadthFirst(startVertex,target,connections)
 
         kids=arrayfun(@getLeftItem,kidsCon);
         for i=1:numel(kids)
-
-
-
-
-
             if~isempty(visitedNodes)&&(any(visitedNodes==kids(i)))
                 continue;
             end
@@ -141,13 +123,12 @@ function pth=findPathBreadthFirst(startVertex,target,connections)
                 pth=fliplr([ElementToCheck{2},kidsCon(i)]);
                 return
             else
-
-
                 q=[q,{{kids(i),[ElementToCheck{2},kidsCon(i)],ElementToCheck{3}(~idx)}}];%#ok<AGROW>
             end
         end
     end
 end
+
 
 function con=createConnection(mf0,relationship,leftItem,rightItem,isLeftSrc,diag)
     con=diagram.editor.model.Connection(mf0);
@@ -183,6 +164,7 @@ function con=createConnection(mf0,relationship,leftItem,rightItem,isLeftSrc,diag
     con.parent=diag;
 end
 
+
 function prt=createPort(mf0,parent,type,loc)
     prt=diagram.editor.model.Port(mf0);
     prt.type=type;
@@ -195,6 +177,7 @@ function prt=createPort(mf0,parent,type,loc)
         prt.size=createPortSize(0);
     end
 end
+
 
 function ent=createEntity(mf0,art,diag)
     ent=diagram.editor.model.Entity(mf0);
@@ -224,10 +207,7 @@ function ent=createEntity(mf0,art,diag)
         ent.attributes.insert(createStringAttribute(mf0,'stem',fn));
         ent.attributes.insert(createStringAttribute(mf0,'inFile',''));
     else
-        switch art.Type
-
-
-        case{'sl_block_diagram','sl_ref','sl_subsystem','sl_model_reference',...
+        switch art.Type        case{'sl_block_diagram','sl_ref','sl_subsystem','sl_model_reference',...
             'sf_chart','sl_embedded_matlab_fcn','sf_truth_table','sf_graphical_fcn',...
             'sf_state_transition_chart','sf_group','sf_state','sl_matlab_ref','sl_subsystem_reference'}
             ent.attributes.insert(createStringAttribute(mf0,'color','COLOR_SIMULINK_ARTIFACTS'));
@@ -250,11 +230,13 @@ function ent=createEntity(mf0,art,diag)
     ent.parent=diag;
 end
 
+
 function sa=createStringAttribute(mf0,key,value)
     sa=mf.zero.meta.StringAttribute(mf0);
     sa.key=key;
     sa.value=value;
 end
+
 
 function sz=createEntitySize()
     sz=diagram.geometry.Rect();
@@ -264,6 +246,7 @@ function sz=createEntitySize()
     sz.width=185;
     sz.height=32;
 end
+
 
 function sz=createPortSize(wh)
     sz=diagram.geometry.Rect();

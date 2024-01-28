@@ -1,9 +1,8 @@
 classdef TestCaseWithRequirement<metric.SimpleMetric
 
-
-
     properties
     end
+
 
     methods
         function obj=TestCaseWithRequirement()
@@ -11,7 +10,6 @@ classdef TestCaseWithRequirement<metric.SimpleMetric
             obj.addSupportedValueDataType(metric.data.ValueType.Uint64);
             obj.Version=2;
         end
-
 
 
         function result=algorithm(this,resultFactory,testCaseAndRequirements)
