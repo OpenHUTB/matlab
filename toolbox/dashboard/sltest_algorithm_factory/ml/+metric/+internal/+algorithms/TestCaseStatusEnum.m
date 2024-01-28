@@ -1,5 +1,3 @@
-
-
 classdef TestCaseStatusEnum<uint64
     enumeration
         FAILED(0)
