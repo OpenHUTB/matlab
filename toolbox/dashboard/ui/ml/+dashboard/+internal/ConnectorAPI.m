@@ -15,21 +15,14 @@ classdef ConnectorAPI<handle
     end
 
 
-
-
     methods(Static)
 
-
-
         function ret=getAPI()
-
-
             persistent connectorAPI;
 
             if isempty(connectorAPI)||~isvalid(connectorAPI)
                 connectorAPI=dashboard.internal.ConnectorAPI;
             end
-
 
             ret=connectorAPI;
         end
