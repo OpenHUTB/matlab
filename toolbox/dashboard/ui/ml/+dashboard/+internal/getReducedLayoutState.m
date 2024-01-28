@@ -1,8 +1,4 @@
 function state=getReducedLayoutState(rootFolder)
-
-
-
-
     state=[];
     ps=alm.internal.ProjectService.get(rootFolder);
     adapter=ps.getAdapter();
