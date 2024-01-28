@@ -1,22 +1,5 @@
 function createTargetOnTheFly(tgtName,folder,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     disp(['Running  ',mfilename('fullpath'),'.m'])
 
     p=inputParser;
@@ -29,14 +12,12 @@ function createTargetOnTheFly(tgtName,folder,varargin)
     p.parse(tgtName,folder,varargin{:});
     isSimTgt=p.Results.isSimTgt;
     hwboards=p.Results.hwboards;
-
     tgtObj=i_createTargetObject(tgtName,folder);
     deployerObj=i_createDeployerObject(tgtObj,isSimTgt);
     oSObj=i_createOperatingSystemObject(tgtObj);
     externalModeObjs=i_createExternalModeObjects(tgtObj,isSimTgt);
     pilObj=i_createPILObject(tgtObj);
     profilerObj=i_createProfilerObject(tgtObj);
-
 
     for i=1:numel(hwboards)
         hwObj=i_createHardwareObject(hwboards{i});
@@ -45,7 +26,6 @@ function createTargetOnTheFly(tgtName,folder,varargin)
         map(tgtObj,hwObj,deployerObj);
 
         map(tgtObj,hwObj,oSObj);
-
         map(tgtObj,hwObj,externalModeObjs(1),'TCP/IP');
         map(tgtObj,hwObj,externalModeObjs(2),'XCP on TCP/IP');
 
@@ -53,7 +33,6 @@ function createTargetOnTheFly(tgtName,folder,varargin)
 
         map(tgtObj,hwObj,profilerObj);
     end
-
 
     saveTarget(tgtObj);
     i_applyCoderTargetAPIs(tgtObj,isSimTgt);
@@ -66,19 +45,15 @@ end
 function i_applyCoderTargetAPIs(tgtObj,isSimTgt)
     tgtHwDir=dir(fullfile(tgtObj.Folder,'registry','targethardware'));
 
-
-
     for ii=1:length(tgtHwDir(3:end))
         tgtHwFileName=tgtHwDir(2+ii).name;
         tgtHWInfo=codertarget.targethardware.TargetHardwareInfo(...
         fullfile(tgtObj.Folder,'registry','targethardware',tgtHwFileName),...
         tgtObj.Name);
         switch tgtHwFileName
-
         case{'AlteraArria10SoCdevelopmentkit.xml',...
             'AlteraCycloneVSoCdevelopmentkit.xml'}
             tgtHWInfo.ESBCompatible=3;
-
 
         otherwise
             tgtHWInfo.ESBCompatible=0;
@@ -88,14 +63,11 @@ function i_applyCoderTargetAPIs(tgtObj,isSimTgt)
             tgtHWInfo.SupportsOnlySimulation=true;
             tgtHWInfo.BaseProductID=codertarget.targethardware.BaseProductID.SOC;
         else
-
             tgtHWInfo.MATLABPILInfo=struct('GetPropsFcn','codertarget.alterasoc.internal.getMATLABPILProps');
             tgtHWInfo.TaskMap.isSupported='matlab:codertarget.utils.isSoCInstalledAndModelConfiguredForSoC';
             tgtHWInfo.TaskMap.useAutoMap='matlab:codertarget.utils.isSoCInstalledAndModelConfiguredForSoC';
         end
         tgtHWInfo.SubFamily='ARM Cortex-A';
-
-
 
         fwdInfoFileName='forwarding.xml';
         fwdObj=codertarget.forwarding.ForwardingInfo();
@@ -103,12 +75,9 @@ function i_applyCoderTargetAPIs(tgtObj,isSimTgt)
         fwdObj.setDefinitionFileName(fwdInfoFileName);
         fwdObj.addParameter(struct('Name','FPGADesign','ForwardingFcn','codertarget.alterasoc.internal.forwardFPGAParameters'));
         fwdObj.register;
-
-
         tgtHWInfo.setForwardingInfoFile(fwdInfoFileName);
 
         tgtHWInfo.register;
-
         attributeInfoFile=tgtHWInfo.getAttributeInfoFile;
         attributeInfoFile=strrep(attributeInfoFile,'$(TARGET_ROOT)',tgtObj.Folder);
         attributeObj=codertarget.attributes.AttributeInfo(attributeInfoFile);
@@ -149,15 +118,12 @@ function i_applyCoderTargetAPIs(tgtObj,isSimTgt)
         attributeObj.TargetServices.addApplicationService('StreamingProfilerAppSvc',...
         '$(ESB_TARGET_ROOT)/bin/libcodertarget_StreamingProfilerAppSvc.lib');
         attributeObj.register;
-
-
         [~,fname,fext]=fileparts(tgtHWInfo.getParameterInfoFile);
         parametersObj=i_createParameterInfoObject(isSimTgt);
         parametersObj.setTargetName(tgtObj.Name);
         parametersObj.setName(tgtObj.Name);
         parametersObj.DefinitionFileName=[fname,fext];
         parametersObj.register;
-
         fpgaIntrObj=codertarget.interrupts.FPGAInterruptsInfo;
         addNewFPGAInterrupt(fpgaIntrObj,struct('InterfacePortName','hps.f2h_irq0','InterfacePortWidth',32));
         addNewFPGAInterrupt(fpgaIntrObj,struct('InterfacePortName','hps.f2h_irq1','InterfacePortWidth',32));

@@ -1,8 +1,4 @@
 function candidateResults=identifyCandidates(modelNameFullPath,skipLibBlocks)
-
-
-
-
     [filePath,modelName,~]=fileparts(modelNameFullPath);
     if isempty(modelNameFullPath)||isempty(modelName)
         DAStudio.error('sl_pir_cpp:creator:EmptyModelName');

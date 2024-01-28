@@ -1,8 +1,5 @@
 function refactorModelResults=refactorModel(candidateResults,xformedModelName)
 
-
-
-
     if(isempty(candidateResults)||~isa(candidateResults,'Simulink.ModelTransform.CommonSourceInterpolation.Results')...
         ||~isprop(candidateResults,'Candidates'))
         DAStudio.error('sl_pir_cpp:creator:InvalidCandidateResultObject');

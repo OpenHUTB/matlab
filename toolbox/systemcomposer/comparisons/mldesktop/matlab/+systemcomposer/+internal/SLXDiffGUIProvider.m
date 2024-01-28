@@ -1,8 +1,5 @@
 classdef SLXDiffGUIProvider<comparisons.internal.DiffGUIProvider
 
-
-
-
     methods
         function bool=canHandle(obj,first,second,options)
             import comparisons.internal.dispatcherutil.isTypeCompatible
@@ -15,14 +12,17 @@ classdef SLXDiffGUIProvider<comparisons.internal.DiffGUIProvider
             (isAUTOSARModel(first.Path)&&isAUTOSARModel(second.Path)));
         end
 
+
         function app=handle(~,first,second,options)
             options=comparisons.internal.dispatcherutil.extractTwoWayOptions(options);
             app=systemcomposer.internal.diff(first,second,options);
         end
 
+
         function priority=getPriority(~,~,~,~)
             priority=20;
         end
+
 
         function type=getType(~)
             type="ZC";
@@ -36,6 +36,7 @@ classdef SLXDiffGUIProvider<comparisons.internal.DiffGUIProvider
 
 end
 
+
 function bool=isSystemComposerModel(file)
     try
         mdlInfo=Simulink.MDLInfo(file);
@@ -45,6 +46,7 @@ function bool=isSystemComposerModel(file)
         bool=false;
     end
 end
+
 
 function bool=isAUTOSARModel(file)
     try

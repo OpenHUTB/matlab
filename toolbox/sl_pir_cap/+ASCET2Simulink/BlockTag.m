@@ -1,6 +1,3 @@
-
-
-
 classdef BlockTag<handle
 
 
@@ -8,11 +5,15 @@ classdef BlockTag<handle
         block=[]
         name=[]
     end
+
+
     methods
         function this=BlockTag(block,name)
             this.block=block;
             this.name=name;
         end
+
+
         function value=getValue(this)
             value=[];
             blockTagValue=get_param(this.block.getPath(),'Tag');

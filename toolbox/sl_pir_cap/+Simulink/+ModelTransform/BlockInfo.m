@@ -3,6 +3,7 @@ classdef BlockInfo
         Path
     end
 
+
     methods
         function obj = BlockInfo( path )
             arguments

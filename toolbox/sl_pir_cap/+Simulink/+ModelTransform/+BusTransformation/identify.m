@@ -1,6 +1,3 @@
-
-
-
 function identificationResult=identify(subsystemPath)
     if isempty(subsystemPath)
         DAStudio.error('sl_m2m_edittime:messages:ModelNameIsEmpty');
@@ -17,7 +14,6 @@ function identificationResult=identify(subsystemPath)
         isModelExplicitlyLoaded=true;
     end
 
-
     identificationResultsMcos=...
     Simulink.ModelRefactor.BusPortsTransform.identify(get_param(subsystemPath,'handle'));
     results.BusHierarchies=...
@@ -25,7 +21,6 @@ function identificationResult=identify(subsystemPath)
     results.TopModel=modelName;
 
     identificationResult=Simulink.ModelTransform.BusTransformation.Result(results,identificationResultsMcos);
-
 
     if(isModelExplicitlyLoaded)
         close_system(modelName,0);

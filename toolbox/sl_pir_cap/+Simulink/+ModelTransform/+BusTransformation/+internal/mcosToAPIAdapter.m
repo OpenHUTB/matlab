@@ -1,7 +1,3 @@
-
-
-
-
 function hierarchies=mcosToAPIAdapter(identificationResultsMcos)
     hierarchies=cell(length(identificationResultsMcos),1);
     for hierarchyIndex=1:length(identificationResultsMcos)

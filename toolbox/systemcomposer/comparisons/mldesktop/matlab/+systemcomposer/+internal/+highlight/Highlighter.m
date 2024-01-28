@@ -1,12 +1,10 @@
 classdef Highlighter<handle
 
-
-
-
     properties(Access=private)
 HighlightableContentIDs
 WindowManager
     end
+
 
     methods(Static)
         function highlighter=forTwoWay(windowView)
@@ -16,10 +14,12 @@ WindowManager
             highlighter=makeTwoWayHighlighter(reportFactory);
         end
 
+
         function highlighter=forTesting(reportFactory)
             highlighter=makeTwoWayHighlighter(reportFactory);
         end
     end
+
 
     methods
         function obj=Highlighter(reportFactory,layout,highlightableContentIDs)
@@ -33,6 +33,7 @@ WindowManager
             import comparisons.internal.highlight.*
             obj.WindowManager=WindowManager(layout,factories);
         end
+
 
         function highlight(obj,locations)
             assert(length(obj.HighlightableContentIDs)==length(locations));
@@ -49,6 +50,7 @@ WindowManager
     end
 end
 
+
 function factories=createSideWindowGroupFactories()
     import comparisons.internal.highlight.*
 
@@ -58,6 +60,7 @@ function factories=createSideWindowGroupFactories()
         contentId);%#ok<AGROW>
     end
 end
+
 
 function factory=createSideWindowGroupFactory(contentId)
 

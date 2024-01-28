@@ -1,14 +1,5 @@
 classdef MatrixModel<handle
 
-
-
-
-
-
-
-
-
-
     properties(Access=protected)
 Model
 MatrixModelElement
@@ -18,25 +9,17 @@ MatrixName
     end
 
 
-
-
     methods
 
         function this=MatrixModel(model)
-
             this.Model=model;
         end
     end
 
 
-
-
     methods(Access=protected)
 
-
-
         function generateMatrixRow(this,elem,matrix,parentRow,metadata)
-
             blnIsReferenceModel=this.isReferenceModel(elem);
             if(blnIsReferenceModel)
                 id=elem.UUID;
@@ -75,9 +58,7 @@ MatrixName
         end
 
 
-
         function generateMatrixColumn(this,elem,matrix,parentCol,metadata)
-
             blnIsReferenceModel=this.isReferenceModel(elem);
             if(blnIsReferenceModel)
                 id=elem.UUID;

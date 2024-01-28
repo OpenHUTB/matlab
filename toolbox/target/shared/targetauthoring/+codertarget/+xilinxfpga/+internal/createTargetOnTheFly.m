@@ -1,22 +1,5 @@
 function createTargetOnTheFly(tgtName,folder,varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     disp(['Running  ',mfilename('fullpath'),'.m'])
 
     p=inputParser;
@@ -28,11 +11,7 @@ function createTargetOnTheFly(tgtName,folder,varargin)
     p.parse(tgtName,folder,varargin{:});
     isSimTgt=p.Results.isSimTgt;
     hwboards=p.Results.hwboards;
-
-
     tgtObj=i_createTargetObject(tgtName,folder);
-
-
 
     for i=1:numel(hwboards)
 
@@ -57,8 +36,6 @@ end
 
 
 
-
-
 function hwObj=i_createHardwareObject(hwName)
     hwObj=createHardware(hwName);
     hwObj.DeviceID='Custom Processor->Custom Processor';
@@ -68,8 +45,6 @@ end
 
 function i_applyCoderTargetAPIs(tgtObj,isSimTgt)
     tgtHwDir=dir(fullfile(tgtObj.Folder,'registry','targethardware'));
-
-
 
     for ii=1:length(tgtHwDir(3:end))
         tgtHwFileName=tgtHwDir(2+ii).name;
@@ -86,26 +61,15 @@ function i_applyCoderTargetAPIs(tgtObj,isSimTgt)
             tgtHWInfo.TaskMap.useAutoMap=true;
         end
 
-
-
         fwdInfoFileName='forwarding.xml';
         fwdObj=codertarget.forwarding.ForwardingInfo();
         fwdObj.setTargetName(tgtObj.Name);
         fwdObj.setDefinitionFileName(fwdInfoFileName);
         fwdObj.addParameter(struct('Name','FPGADesign','ForwardingFcn','soc.internal.forwardFPGAParameters'));
         fwdObj.register;
-
-
         tgtHWInfo.setForwardingInfoFile(fwdInfoFileName);
 
         tgtHWInfo.register;
-
-
-
-
-
-
-
         [~,fname,fext]=fileparts(tgtHWInfo.getParameterInfoFile);
         parametersObj=i_createParameterInfoObject(tgtHWInfo);
         parametersObj.setTargetName(tgtObj.Name);
@@ -122,13 +86,12 @@ function p=i_createParameterInfoObject(tgtHWInfo)
     p=codertarget.parameter.ParameterInfo;
 
     out.parameters.ParameterGroups={};
-
     out.parameters=loc_addFPGADesignWidgets(tgtHWInfo,out.parameters,'Bogus');
-
     p.ParameterGroups=[p.ParameterGroups,out.parameters.ParameterGroups];
     p.Parameters=[p.Parameters,out.parameters.Parameters];
 
 end
+
 
 function in=loc_addFPGADesignWidgets(hObj,in,groupName)
     [info,e]=codertarget.utils.getFPGADesignWidgets(hObj,groupName);
@@ -143,7 +106,6 @@ function in=loc_addFPGADesignWidgets(hObj,in,groupName)
             disp(['Empty param info for ',hObj.Name,':',groupName])
         end
     end
-
     grpname=DAStudio.message(['codertarget:ui:FPGADesignGroup',groupName]);
     in.ParameterGroups{end+1}=grpname;
     in.Parameters{numel(in.ParameterGroups)}=info.Parameters{1};

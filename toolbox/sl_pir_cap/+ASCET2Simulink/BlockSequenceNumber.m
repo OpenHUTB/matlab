@@ -1,20 +1,23 @@
-
-
-
 classdef BlockSequenceNumber<handle
 
 
     properties
         block=[]
     end
+
+
     methods
         function this=BlockSequenceNumber(block)
             this.block=block;
         end
+
+
         function thisSequenceNumber=getValue(this)
             thisBlockTag=ASCET2Simulink.BlockTag(this.block,'sequenceNumber');
             thisSequenceNumber=thisBlockTag.getValue();
         end
+
+
         function result=compare(this,another)
             result=0;
             thisBlockTag=ASCET2Simulink.BlockTag(this.block,'sequenceNumber');

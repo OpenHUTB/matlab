@@ -1,45 +1,23 @@
 classdef AppController<handle
 
-
-
-
-
-
     properties
-
-
 PeripheralInfo
-
-
 ModelName
-
-
 TaskMappingInfo
     end
 
+
     properties(Access=private)
-
 AppModel
-
-
 AppView
     end
 
 
-
-
     methods(Access=private)
         function initializePeripheralMappingInfo(obj,hCS,selectedBlock)
-
-
-
-
-
             defFile=codertarget.peripherals.utils.getDefFileNameForBoard(hCS);
-
             obj.AppModel=codertarget.peripherals.AppModel(hCS,defFile);
             [mdlRefs,mdlInfo]=obj.AppModel.getPeripheralInfoForRefModels();
-
             if~isempty(obj.AppModel.SupportedPeripheralInfo)
                 if~isempty(mdlInfo)
                     obj.PeripheralInfo.ModelRefs=mdlRefs;
@@ -55,8 +33,6 @@ AppView
                         if~isfield(mdlInfo.(types{i}),'Group')
                             mdlInfo.(types{i}).Group=struct;
                         end
-
-
                         groupParams=obj.AppModel.SupportedPeripheralInfo.getGroupParameters(types{i});
                         if~isempty(groupParams)
                             groupParamNames={groupParams.Storage};
@@ -66,8 +42,6 @@ AppView
                                 mdlInfo.(types{i}).Group.(missingParams{j})=groupParams(idx).Value;%#ok<FNDSB> 
                             end
                         end
-
-
                         blockParams=obj.AppModel.SupportedPeripheralInfo.getBlockParameters(types{i});
                         blockParamNames={blockParams.Storage};
                         missingParams=setdiff(blockParamNames,fieldnames(mdlInfo.(types{i}).Block(1)));
@@ -89,8 +63,8 @@ AppView
             end
         end
 
-        function initializeTaskMappingInfo(obj)
 
+        function initializeTaskMappingInfo(obj)
 
             [mappingData,eventNames]=...
             codertarget.internal.taskmapper.getTaskMappingInfo(obj.ModelName);
@@ -107,12 +81,8 @@ AppView
     end
 
 
-
-
     methods
         function obj=AppController(hObj,selectedBlock)
-
-
 
             if isa(hObj,'Simulink.ConfigSet')||...
                 isa(hObj,'Simulink.ConfigSetRef')
@@ -124,23 +94,16 @@ AppView
             if nargin==1
                 selectedBlock='';
             end
-
             obj.ModelName=get_param(hCS.getModel(),'Name');
-
             obj.AppView=codertarget.peripherals.AppView.getInstance();
             if obj.AppView.isAppOpen()
-
 
                 obj.AppView.bringToFront();
             else
 
                 obj.AppView.createApp(obj);
-
-
                 obj.initializePeripheralMappingInfo(hCS,selectedBlock);
-
                 obj.initializeTaskMappingInfo();
-
 
                 if isempty(obj.PeripheralInfo)&&isempty(obj.TaskMappingInfo.MappingData)
                     obj.AppView.setBusy(false);
@@ -150,7 +113,6 @@ AppView
                     obj.AppView.closeApp();
                     return;
                 end
-
                 obj.AppView.initializeApp(obj.ModelName,obj.PeripheralInfo,obj.TaskMappingInfo);
 
                 cObj=get_param(hCS.getModel(),'InternalObject');
@@ -161,19 +123,13 @@ AppView
     end
 
 
-
-
     methods(Access=public)
         function[status,msg]=applyMappingInfo(obj)
 
-
-
             status=true;
             msg='';
-
             taskInfoCache=obj.AppView.getTaskInfo();
             peripheralInfoCache=obj.AppView.getPeripheralInfo();
-
             errInfo=codertarget.internal.taskmapper.preApplyCheck(...
             taskInfoCache.ModelName,...
             taskInfoCache.MappingData,...
@@ -186,7 +142,6 @@ AppView
                 status=false;
                 return;
             end
-
             if~isempty(taskInfoCache.TaskNames)
                 obj.AppModel.applyTaskMappingInfo(taskInfoCache);
             end
