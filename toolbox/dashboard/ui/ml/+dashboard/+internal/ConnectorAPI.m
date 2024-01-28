@@ -1,21 +1,10 @@
 classdef ConnectorAPI<handle
 
-
-
-
-
-
-
-
     properties(Access=private)
     end
 
 
-
-
     methods
-
-
 
         function url=getURL(this,relPath)
 
