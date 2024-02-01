@@ -1,8 +1,5 @@
 classdef(Hidden=true)LCBuildOptions
 
-
-
-
     properties
 Includes
 Defines
@@ -18,15 +15,12 @@ ForceLcc64
 ExtraOptions
     end
 
+
     methods
-
-
 
         function this=LCBuildOptions()
             this=this.init();
         end
-
-
 
 
         function this=set.Includes(this,val)
@@ -34,13 +28,9 @@ ExtraOptions
         end
 
 
-
-
         function this=set.Defines(this,val)
             this.Defines=iCheckAndGetCellStr(val,'Defines');
         end
-
-
 
 
         function this=set.Undefines(this,val)
@@ -48,13 +38,9 @@ ExtraOptions
         end
 
 
-
-
         function this=set.Sources(this,val)
             this.Sources=iCheckAndGetCellStr(val,'Sources');
         end
-
-
 
 
         function this=set.DirToIgnore(this,val)
@@ -62,13 +48,9 @@ ExtraOptions
         end
 
 
-
-
         function this=set.FcnToIgnore(this,val)
             this.FcnToIgnore=iCheckAndGetCellStr(val,'FcnToIgnore');
         end
-
-
 
 
         function this=set.FcnCallToIgnore(this,val)
@@ -76,13 +58,9 @@ ExtraOptions
         end
 
 
-
-
         function this=set.FileToIgnore(this,val)
             this.FileToIgnore=iCheckAndGetCellStr(val,'FileToIgnore');
         end
-
-
 
 
         function this=set.InternalFileToIgnore(this,val)
@@ -90,13 +68,9 @@ ExtraOptions
         end
 
 
-
-
         function this=set.ExtraOptions(this,val)
             this.ExtraOptions=iCheckAndGetCellStr(val,'ExtraOptions');
         end
-
-
 
 
         function this=set.ForceCxx(this,val)
@@ -110,8 +84,6 @@ ExtraOptions
         end
 
 
-
-
         function this=set.ForceLcc64(this,val)
             if isnumeric(val)
                 validateattributes(val,{'numeric'},{'scalar','>=',0,'<=',1},'','ForceLcc64');
@@ -121,8 +93,6 @@ ExtraOptions
 
             this.ForceLcc64=logical(val);
         end
-
-
 
 
         function val=get.ForceLcc64(this)
@@ -139,9 +109,8 @@ ExtraOptions
         end
     end
 
+
     methods(Access='protected')
-
-
 
         function this=init(this)
             this.Includes={};
