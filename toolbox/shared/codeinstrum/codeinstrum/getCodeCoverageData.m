@@ -1,16 +1,11 @@
 function cvd=getCodeCoverageData(MATLABFunction)
 
-
-
-
-
     cvt=cv.coder.cvtest();
     cvt.settings.decision=true;
     cvt.settings.condition=true;
     cvt.settings.mcdc=true;
     cvt.settings.relationalop=false;
     cvt.options.mcdcMode=SlCov.McdcMode.Masking;
-
 
     metricNames={'Decision','Condition','MCDC','RelationalBoundary','Statement','FunEntry','FunExit','FunCall'};
     idx=true(size(metricNames));
