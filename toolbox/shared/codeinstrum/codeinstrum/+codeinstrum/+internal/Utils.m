@@ -1,7 +1,3 @@
-
-
-
-
 classdef Utils
 
     methods(Static=true)
@@ -9,9 +5,11 @@ classdef Utils
             out=encode_decode_macro_name_mex(0,in);
         end
 
+
         function out=decodeModuleName(in)
             out=encode_decode_macro_name_mex(1,in);
         end
+
 
         function out=formatBytesAsString(bytes,maxItems)
             if nargin<2
@@ -19,6 +17,7 @@ classdef Utils
             end
             out=format_bytes_as_string_mex(bytes,uint8(maxItems));
         end
+
 
         function out=convertOnOffToBool(val)
             if numel(val)==1&&(islogical(val)||(isnumeric(val)&&numel(val)==1&&(val==1||val==0)))
@@ -30,6 +29,7 @@ classdef Utils
                 error(message('CodeInstrumentation:utils:notOnOffValue'));
             end
         end
+
 
         function out=convertBoolToOnOff(val)
             if numel(val)==1&&(islogical(val)||(isnumeric(val)&&numel(val)==1&&(val==1||val==0)))
@@ -46,6 +46,7 @@ classdef Utils
             end
         end
 
+
         function out=checkStringValue(val)
             if ischar(val)
                 out=val;
@@ -53,6 +54,7 @@ classdef Utils
                 validateattributes(val,{'char'},{'row'});
             end
         end
+
 
         function out=checkCellStringValue(val)
             if iscellstr(val)
@@ -62,10 +64,12 @@ classdef Utils
             end
         end
 
+
         function out=checkFloatValue(val)
             validateattributes(val,{'single','double'},{'scalar'});
             out=val;
         end
+
 
         function out=checkClassValue(val,cls)
             validateattributes(val,{cls},{});
