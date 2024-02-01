@@ -1,15 +1,12 @@
 classdef(Hidden=true)LCInstrumenter<handle
 
-
-
-
-
     properties(Hidden,Constant)
         VERSION_STR='1.1.0'
         LANGS={'c','c++'}
         LANG_C=1;
         LANG_CPP=2;
     end
+
 
     properties(Access=private)
 FEOptions
@@ -27,9 +24,8 @@ ExtractCodeInformationErrIdx
         WorkingDir=[]
     end
 
+
     methods
-
-
 
         function this=LCInstrumenter(wDir,varargin)
 
@@ -42,7 +38,6 @@ ExtractCodeInformationErrIdx
                     end
                 end
             end
-
 
             if isempty(this.BuildOptions)
                 this.BuildOptions=codeinstrum.internal.LCBuildOptions();
@@ -58,8 +53,6 @@ ExtractCodeInformationErrIdx
         end
 
 
-
-
         function set.BuildOptions(this,buildOpts)
             assert(isempty(this.InstrumObj),'The instrumentation object must be empty');%#ok<MCSUP>
 
@@ -72,8 +65,6 @@ ExtractCodeInformationErrIdx
         end
 
 
-
-
         function set.WorkingDir(this,wDir)
             assert(isempty(this.InstrumObj),'The instrumentation object must be empty');%#ok<MCSUP>
             this.WorkingDir=wDir;
@@ -81,44 +72,31 @@ ExtractCodeInformationErrIdx
 
     end
 
+
     methods(Access='protected')
-
-
-
 
         function out=hasSldvInfo(~)
             out=false;
         end
 
 
-
-
-
         function extractCodeInformation(this)
             assert(isempty(this.InstrumObj),'The instrumentation object must be empty');
 
-
             ctx=this.setupContext();
-
-
             ctx=this.extractCodeInformationInitialize(ctx);
 
             for ii=1:numel(this.BuildOptions)
-
-
                 sourceFiles=this.BuildOptions(ii).Sources;
 
                 for jj=1:numel(sourceFiles)
 
                     ctx=this.updateContextForSource(ctx,ii,jj);
 
-
                     ctx=this.extractCodeInformationBeforeParsing(ctx);
-
 
                     [ctx.msgs,ctx.gblSymbols]=internal.cxxfe.util.GlobalSymbolParser.parseFile(...
                     ctx.currSource,ctx.feOpts,ctx.symbolExtractionLevel);
-
 
                     hasError=false;
                     for kk=1:numel(ctx.msgs)
@@ -128,9 +106,7 @@ ExtractCodeInformationErrIdx
                         end
                     end
 
-
                     if hasError
-
 
                         ctx=this.extractCodeInformationOnError(ctx);
 
@@ -139,35 +115,27 @@ ExtractCodeInformationErrIdx
                         continue
                     end
 
-
                     ctx=this.extractCodeInformationAfterParsing(ctx);
 
                 end
             end
 
-
             this.extractCodeInformationTerminate(ctx);
         end
-
-
 
 
         function[instrumentedFiles,numInstrumented]=instrumentAllFiles(this)
 
             assert(~isempty(this.InstrumObj),'The instrumentation object must not be empty');
 
-
             instrumentedFiles=cell(numel(this.BuildOptions),1);
             numInstrumented=0;
 
-
             ctx=this.setupContext();
-
 
             ctx=this.instrumentInitialize(ctx);
 
             for ii=1:numel(this.BuildOptions)
-
 
                 sourceFiles=this.BuildOptions(ii).Sources;
                 instrumentedFiles{ii}=cell(1,numel(sourceFiles));
@@ -181,7 +149,6 @@ ExtractCodeInformationErrIdx
 
                     extraOpts=[];
 
-
                     extraOpts.dirToIgnore=[...
                     this.BuildOptions(ii).DirToIgnore(:);...
                     codeinstrum.internal.LCInstrumenter.getInternalFoldersToIgnore()];
@@ -193,8 +160,6 @@ ExtractCodeInformationErrIdx
 
                     ctx.extraOpts=extraOpts;
                     ctx=this.instrumentBeforeParsing(ctx);
-
-
 
                     hasFailed=~isempty(this.ExtractCodeInformationErrIdx)&&...
                     any(all(this.ExtractCodeInformationErrIdx==[ii,jj],2));
@@ -211,13 +176,9 @@ ExtractCodeInformationErrIdx
                     if hasFailed
                         warning(message('CodeInstrumentation:instrumenter:skipSourceInstrumentation',sourceFiles{jj}));
 
-
                         ctx=this.instrumentOnError(ctx);
 
-
-
                         copyfile(sourceFiles{jj},ctx.extraOpts.instrumentedSrcFile,'f');
-
 
                         srcFile=polyspace.internal.getAbsolutePath(sourceFiles{jj});
                         this.InstrumObj.traceabilityData.insertFile(srcFile,...
@@ -235,12 +196,8 @@ ExtractCodeInformationErrIdx
                 end
             end
 
-
             this.instrumentTerminate(ctx);
         end
-
-
-
 
 
         function ctx=setupContext(~)
@@ -256,8 +213,6 @@ ExtractCodeInformationErrIdx
             ctx.srcExt='';
             ctx.instrExt='';
         end
-
-
 
 
         function feOpts=getFEOptions(this,langOrIdx)
@@ -285,13 +240,7 @@ ExtractCodeInformationErrIdx
                 [feOpts.Preprocessor.Defines{end+1:end+numel(this.MxDefines)}]=this.MxDefines{:};
 
 
-
                 feOpts.ExtraOptions{end+1}='--convert_to_utf8';
-
-
-
-
-
 
                 feOpts.ExtraOptions{end+1}='--sources_encoding=auto';
 
@@ -308,35 +257,23 @@ ExtractCodeInformationErrIdx
 
 
 
-
-
         function ctx=updateContextForSource(this,ctx,ii,jj)
-
 
             ctx.optIdx=ii;
             ctx.srcIdx=jj;
-
-
             ctx.currSource=this.BuildOptions(ii).Sources{jj};
             [isCxx,ctx.srcExt]=codeinstrum.internal.LCInstrumenter.isCxxFile(ctx.currSource);
             ctx.isCxx=isCxx||this.BuildOptions(ii).ForceCxx;
-
-
 
             ctx.instrExt=ctx.srcExt;
             if this.BuildOptions(ii).ForceCxx
                 ctx.instrExt='.cpp';
             end
-
-
             feOpts=this.getFEOptions(1+ctx.isCxx);
-
 
             if ismac()&&ctx.isCxx
                 iAddClangWorkaround(this.WorkingDir,feOpts);
             end
-
-
 
             if this.BuildOptions(ii).isDebug()
                 ndebugStr='NDEBUG=';
@@ -345,75 +282,49 @@ ExtractCodeInformationErrIdx
                 numel(ndebugStr));
                 feOpts.Preprocessor.Defines(ndebugIndexes)=[];
             end
-
-
             iUpdateFrontEndOptions(feOpts,this.BuildOptions(ii));
             ctx.feOpts=feOpts;
         end
-
-
 
 
         function ctx=extractCodeInformationInitialize(~,ctx)
         end
 
 
-
-
         function ctx=extractCodeInformationTerminate(~,ctx)
         end
-
-
-
 
 
         function ctx=extractCodeInformationBeforeParsing(~,ctx)
         end
 
 
-
-
         function ctx=extractCodeInformationOnError(~,ctx)
         end
-
-
-
 
 
         function ctx=extractCodeInformationAfterParsing(~,ctx)
         end
 
 
-
-
         function ctx=instrumentInitialize(~,ctx)
         end
-
-
 
 
         function ctx=instrumentTerminate(~,ctx)
         end
 
 
-
-
         function ctx=instrumentBeforeParsing(~,ctx)
         end
-
-
 
 
         function ctx=instrumentOnError(~,ctx)
         end
 
 
-
-
         function ctx=instrumentAfterParsing(~,ctx)
         end
-
-
 
 
         function this=loadInstrumObjectFromDataBaseFile(this,dbFilePath)
@@ -422,23 +333,17 @@ ExtractCodeInformationErrIdx
         end
 
 
-
-
         function instrFileName=generateInstrumentedFileName(this,ctx)
             instrFileName=[tempname(this.InstrumObj.outInstrDir),ctx.instrExt];
         end
     end
 
+
     methods
-
-
-
         function[maxCovId,hTableSize]=getCovTableSize(this)
             assert(~isempty(this.InstrumObj),'The instrumentation object must not be empty');
             [maxCovId,hTableSize]=this.InstrumObj.getCovTableSize();
         end
-
-
 
 
         function out=getInstrumDataInfo(this,varargin)
@@ -447,14 +352,10 @@ ExtractCodeInformationErrIdx
         end
 
 
-
-
         function sizeInfo=getInstrumDataSizeInfo(this,varargin)
             assert(~isempty(this.InstrumObj),'The instrumentation object must not be empty');
             sizeInfo=this.InstrumObj.getInstrumDataSizeInfo(varargin{:});
         end
-
-
 
 
         function outStr=getInstrumDataDeclarations(this,addDbVarDecl)
@@ -475,8 +376,6 @@ ExtractCodeInformationErrIdx
         end
 
 
-
-
         function outStr=getInstrumDataDefinitions(this,addDbVarDecl)
             assert(~isempty(this.InstrumObj),'The instrumentation object must not be empty');
 
@@ -493,10 +392,6 @@ ExtractCodeInformationErrIdx
                 );
             end
         end
-
-
-
-
 
 
         function fName=generateInstrumDbDataFile(this,isCxx,defInstrumVar)
@@ -517,7 +412,6 @@ ExtractCodeInformationErrIdx
                 fext='.cpp';
             end
 
-
             fName=[tempname(this.WorkingDir),fext];
             [fid,errMsg]=fopen(fName,'wt','n',matlab.internal.i18n.locale.default.Encoding);
             if fid<0||~isempty(errMsg)
@@ -527,7 +421,6 @@ ExtractCodeInformationErrIdx
 
             fprintf(fid,'%s\n',this.getInstrumDbDataFileContents(defInstrumVar));
         end
-
 
 
 
@@ -552,11 +445,7 @@ newline...
         end
 
 
-
-
         function str=getInstrumDbDataDeclarations(this)
-
-
             instrDataInfo=this.InstrumObj.getInstrumDataInfo();
 
 
@@ -568,11 +457,9 @@ newline...
 
 
 
-
         function list=getInstrumHeaders(~)
             list={'sl_sfcn_cov/sl_sfcn_cov_bridge.h'};
         end
-
 
 
 
@@ -583,11 +470,6 @@ newline...
                 out=sprintf('%s#include "%s"\n',out,list{ii});
             end
         end
-
-
-
-
-
 
 
 
@@ -618,8 +500,6 @@ newline...
                 languageMode=0;
             end
         end
-
-
 
 
 
@@ -692,10 +572,8 @@ newline...
         end
     end
 
+
     methods(Access=protected)
-
-
-
 
         function mxVersionSuffix=getMxVersionSuffix(this)
             if any(strcmp(this.MxDefines,'MX_COMPAT_64'))
@@ -704,8 +582,6 @@ newline...
                 mxVersionSuffix='';
             end
         end
-
-
 
 
         function mxInfo=getMxApiInfo(this)
@@ -726,12 +602,11 @@ newline...
         end
     end
 
+
     methods(Static)
         function out=getInternalFoldersToIgnore()
             persistent folders;
             if isempty(folders)
-
-
 
                 folders={...
                 fullfile(matlabroot,'extern','include');...
@@ -742,26 +617,20 @@ newline...
         end
 
 
-
-
         function[isCxx,srcExt]=isCxxFile(srcFile)
 
 
             [~,~,srcExt]=fileparts(srcFile);
             ext=srcExt(2:end);
 
-
             isUpperC=strcmp(ext,'C');
             if ispc&&isUpperC
-
-
                 compInfo=mex.getCompilerConfigurations('C','Selected');
                 isUpperC=~isempty(compInfo)&&...
                 strncmpi(compInfo.ShortName,'mingw64',7);
             end
             isCxx=isUpperC||ismember(lower(ext),{'cc','cxx','cpp','c++','cp'});
         end
-
 
 
 
