@@ -1,21 +1,11 @@
 classdef MATLABCoderInstrumenter < codeinstrum.internal.CodeInstrumenterFEHandler
 
-
-
-
-
-
-
-
-
-
     properties ( GetAccess = public, SetAccess = protected )
         ProbeRegistry = [  ]
     end
 
+
     methods ( Access = public )
-
-
 
         function this = MATLABCoderInstrumenter( instrFolder, probeRegistry, isPerFileTRData, isForPSTest )
             arguments
@@ -40,8 +30,6 @@ classdef MATLABCoderInstrumenter < codeinstrum.internal.CodeInstrumenterFEHandle
                 try
                     internal.pstest.testgen.addPstestMacroEmitter( instrumObj.InstrumImpl );
                 catch
-
-
                 end
             end
             instrumObj.anchorDir = fileparts( fileparts( fileparts( fileparts( instrFolder ) ) ) );
@@ -65,13 +53,9 @@ classdef MATLABCoderInstrumenter < codeinstrum.internal.CodeInstrumenterFEHandle
         end
 
 
-
-
         function afterPreprocessing( ~, ~, ~, ~, ~ )
 
         end
-
-
 
 
         function afterParsing( this, ilPtr, ~, ~, ~ )
@@ -82,8 +66,6 @@ classdef MATLABCoderInstrumenter < codeinstrum.internal.CodeInstrumenterFEHandle
             codeinstrum_mex( codeinstrum.internal.CodeInstrumenterFEHandler.CODEINSTRUM_AFTER_PARSING,  ...
                 ilPtr, this.Instrumenter.Options, this.Instrumenter.traceabilityData, this.IsForSfcn, this.Code2ModelRecords );
         end
-
-
 
 
         function registerInstrumentedFile( this, fileIn, fileOut, feOpts )
@@ -105,10 +87,7 @@ classdef MATLABCoderInstrumenter < codeinstrum.internal.CodeInstrumenterFEHandle
         end
 
 
-
-
         function unregisterInstrumentedFile( this, fileIn, fileOut )
-
 
             copyfile( fileIn, fileOut, 'f' );
 
@@ -123,8 +102,6 @@ classdef MATLABCoderInstrumenter < codeinstrum.internal.CodeInstrumenterFEHandle
                     this.Instrumenter.moduleName );
             end
         end
-
-
 
 
         function finalizeInstrumentation( this, dbFilePath )
@@ -149,9 +126,8 @@ classdef MATLABCoderInstrumenter < codeinstrum.internal.CodeInstrumenterFEHandle
         end
     end
 
+
     methods ( Access = public, Static = true )
-
-
 
         function moduleName = buildModuleName( projectName, varargin )
             moduleName = codeinstrum.internal.codecov.ModuleUtils.buildModuleName(  ...
@@ -159,21 +135,15 @@ classdef MATLABCoderInstrumenter < codeinstrum.internal.CodeInstrumenterFEHandle
         end
 
 
-
-
         function [ projectName, covMode ] = parseModuleName( moduleName )
             [ projectName, covMode ] = codeinstrum.internal.codecov.ModuleUtils.parseModuleName( moduleName );
         end
-
-
 
 
         function [ trDataFile, resHitsFile, buildDir ] = getCodeCovDataFiles( moduleName, varargin )
             [ trDataFile, resHitsFile, buildDir ] = codeinstrum.internal.codecov.ModuleUtils.getCodeCovDataFiles(  ...
                 moduleName, varargin{ : } );
         end
-
-
 
 
         function covCompRegistry = buildCodeCovProbeRegistry( projectName, covMode, instrumOptions, buildDir, wordSize, idSize )
@@ -191,16 +161,12 @@ classdef MATLABCoderInstrumenter < codeinstrum.internal.CodeInstrumenterFEHandle
         end
 
 
-
-
         function flushRecord( dbFilePath, clearData )
             if nargin < 2
                 clearData = false;
             end
             internal.cxxfe.instrum.runtime.ResultHitsManager.flushRecord( dbFilePath, '', clearData );
         end
-
-
 
 
         function [ trDataFile, isPerFileTRData, resFile ] = startRecord( filePath )
@@ -227,8 +193,6 @@ classdef MATLABCoderInstrumenter < codeinstrum.internal.CodeInstrumenterFEHandle
                 end
             end
         end
-
-
 
 
         function stopRecord( dbFilePath )
