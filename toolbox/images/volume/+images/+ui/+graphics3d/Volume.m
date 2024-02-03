@@ -1,15 +1,13 @@
 classdef(Sealed)Volume<images.ui.graphics3d.GraphicsContainer&...
     images.ui.graphics3d.internal.Compatibility
 
-
-
-
     events(ListenAccess=public,NotifyAccess=?images.ui.graphics3d.Viewer3D)
 
 SlicePlanesChanging
 SlicePlanesChanged
 
     end
+
 
     properties(Dependent)
 
@@ -31,30 +29,11 @@ Colormap
 
     end
 
+
     properties(Hidden,Dependent)
-
-
-
-
-
-
-
-
         DepthValue(1,1)single{mustBeInRange(DepthValue,0,1),mustBeNonNan,mustBeReal,mustBeNonsparse}
 
-
-
-
-
         Interpolation string{mustBeMember(Interpolation,["bilinear","nearest"])}
-
-
-
-
-
-
-
-
         SmoothIsosurface(1,1)matlab.lang.OnOffSwitchState
 
     end
@@ -65,36 +44,20 @@ NumChannels
 
     end
 
+
     properties(Hidden)
 
-
-
-
-
-
-
-
         RescaleData(1,1)logical=true;
-
-
-
-
-
-
-
-
         RescaleOverlayData(1,1)logical=true;
-
     end
 
+
     properties(Hidden,SetAccess=private)
-
-
         Size(1,3)single=[0,0,0];
         OverlaySize(1,3)single=[0,0,0];
         OriginalSize(1,3)single=[0,0,0];
-
     end
+
 
     properties(Access=?images.ui.graphics3d.Viewer3D)
 
@@ -102,8 +65,8 @@ NumChannels
 
     end
 
-    properties(Access=private)
 
+    properties(Access=private)
         GradientOpacityValue_I(1,1)single=0.3;
         DepthValue_I(1,1)single=0.05;
         Isovalue_I(1,1)single=0.15;
@@ -133,10 +96,8 @@ NumChannels
 
     end
 
+
     methods
-
-
-
 
         function self=Volume(h,varargin)
             self@images.ui.graphics3d.GraphicsContainer(h,"volume",varargin{:});
@@ -144,8 +105,8 @@ NumChannels
 
     end
 
-    methods(Access=protected)
 
+    methods(Access=protected)
 
         function validateData(self,vol,type)
 
@@ -156,7 +117,6 @@ NumChannels
             end
 
             sz=size(vol);
-
 
             if any(sz>self.Max3DTextureSize)
                 error(message('images:volume:max3DTexture',self.Max3DTextureSize));
@@ -195,12 +155,9 @@ NumChannels
 
             validateattributes(vol,supportedDataTypes,supportedAttributes);
 
-
-
             notify(self,'DataBeingUpdated');
 
             sizeChanged=false;
-
 
             sz=[sz(2),sz(1),sz(3)];
 
@@ -222,8 +179,6 @@ NumChannels
                 if any(self.OverlaySize>0)
 
                     if~isequal(self.OverlaySize,sz)
-
-
                         setEmptyData(self,"OverlayData");
                         sizeChanged=true;
                     end
@@ -243,8 +198,6 @@ NumChannels
                 if any(self.Size>0)
 
                     if~isequal(self.Size,sz)
-
-
                         setEmptyData(self,"Data");
                         sizeChanged=true;
                     end
@@ -518,9 +471,6 @@ NumChannels
 
         function data=getData(self)
 
-
-
-
             data=[];
             if self.DataModified
                 data=self.Data_I;
@@ -556,9 +506,6 @@ NumChannels
 
 
         function isVolumeOpaque(self)
-
-
-
             switch self.RenderingStyle_I
             case{"Isosurface","SlicePlanes"}
                 self.Opaque=true;
@@ -566,16 +513,12 @@ NumChannels
                 self.Opaque=false;
             otherwise
                 if self.UseAlphaData
-
-
                     if~isempty(self.AlphaData_I)
                         self.Opaque=all(self.AlphaData_I>uint8(243));
                     else
                         self.Opaque=false;
                     end
                 else
-
-
                     self.Opaque=all(self.Alphamap_I>uint8(243));
                 end
             end
@@ -588,6 +531,7 @@ NumChannels
         end
 
     end
+
 
     methods(Sealed,Access=protected)
 
@@ -610,10 +554,8 @@ NumChannels
 
     end
 
+
     methods
-
-
-
 
         function set.RenderingStyle(self,val)
             self.RenderingStyle_I=val;
@@ -621,11 +563,10 @@ NumChannels
             propertiesUpdated(self);
         end
 
+
         function val=get.RenderingStyle(self)
             val=self.RenderingStyle_I;
         end
-
-
 
 
         function set.Interpolation(self,val)
@@ -633,11 +574,10 @@ NumChannels
             propertiesUpdated(self);
         end
 
+
         function val=get.Interpolation(self)
             val=self.Interpolation_I;
         end
-
-
 
 
         function set.Colormap(self,cmap)
