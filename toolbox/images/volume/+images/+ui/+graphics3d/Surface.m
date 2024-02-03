@@ -1,10 +1,6 @@
 classdef(Sealed)Surface<images.ui.graphics3d.GraphicsContainer
 
-
-
-
     properties(Dependent)
-
         Alpha(1,1)single{mustBeInRange(Alpha,0,1),mustBeNonNan,mustBeReal,mustBeNonsparse}
 Color
         Wireframe(1,1)matlab.lang.OnOffSwitchState
@@ -16,6 +12,7 @@ Color
         NumVertices(1,1)double=0;
 
     end
+
 
     properties(Access=private)
 
@@ -29,17 +26,13 @@ Triangulation
 
     end
 
+
     properties(Constant,Access=private)
-
-
         Isovalue=0.05;
-
     end
 
+
     methods
-
-
-
 
         function self=Surface(h,varargin)
             self@images.ui.graphics3d.GraphicsContainer(h,"surface",varargin{:});
@@ -47,8 +40,8 @@ Triangulation
 
     end
 
-    methods(Access=protected)
 
+    methods(Access=protected)
 
         function setData(self,data)
 
@@ -80,9 +73,6 @@ Triangulation
                 end
             end
 
-
-
-
             notify(self,'DataBeingUpdated');
 
             if self.KeepOriginalDataCopy
@@ -92,8 +82,6 @@ Triangulation
             if reuseTriangulation
                 tri=data;
             else
-
-
                 [f,v]=images.internal.marchingcubes(data,self.Isovalue);
                 tri=triangulation(double(f),double(v));
             end
@@ -139,9 +127,7 @@ Triangulation
 
         function setTriangulation(self,tri)
 
-
             self.Triangulation=tri;
-
             indices=self.Triangulation.ConnectivityList';
             indices=indices(:);
             xyzPoints=self.Triangulation.Points(indices,:);
@@ -184,8 +170,6 @@ Triangulation
 
         function data=getData(self)
 
-
-
             if self.ColorByVertex
                 indices=self.Triangulation.ConnectivityList';
                 xyzColors=self.VertexColors_I(indices(:),:)';
@@ -197,12 +181,12 @@ Triangulation
 
 
         function s=getInstructionSet(self)
-
             s=struct('ColorByVertex',self.ColorByVertex,...
             'UseBinaryChannel',~isempty(self.Data_I));
         end
 
     end
+
 
     methods(Sealed,Access=protected)
 
@@ -218,10 +202,8 @@ Triangulation
 
     end
 
+
     methods
-
-
-
 
         function set.Color(self,color)
             if ischar(color)||isstring(color)||numel(color)==3
@@ -239,6 +221,7 @@ Triangulation
             propertiesUpdated(self);
         end
 
+
         function cmap=get.Color(self)
             if self.ColorByVertex
                 cmap=self.VertexColors_I;
@@ -246,8 +229,6 @@ Triangulation
                 cmap=self.Color_I;
             end
         end
-
-
 
 
         function set.Alpha(self,val)
@@ -261,12 +242,11 @@ Triangulation
         end
 
 
-
-
         function set.Wireframe(self,val)
             self.Wireframe_I=val;
             propertiesUpdated(self);
         end
+
 
         function val=get.Wireframe(self)
             val=matlab.lang.OnOffSwitchState(self.Wireframe_I);
