@@ -1,21 +1,5 @@
 function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     nin=nargin;
     if nin<3
         DGinit=[];
@@ -26,7 +10,6 @@ function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
         ubTarget=min(ubTarget,1e3);
     end
     PerfLevel=1;
-
 
     [Mr,Mc,adM]=size(M);
     nreal=index.allreal.num;
@@ -39,10 +22,8 @@ function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
     Gcr=DGLMI.Gcr;
     e100Mat=DGLMI.e100Mat;
     ndecvars=DGLMI.numVARs;
-
     WCGainFlag=strcmp(index.problemType,'wcgain');
     MUSYN=strcmp(index.problemType,'musyn');
-
 
     if(isempty(DGinit)||isempty(DGinit.Dr))||WCGainFlag
 
@@ -65,9 +46,7 @@ function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
         tinit=(1.01*DGinit.ub)^2;
     end
 
-
     setlmis(DGLMI.lmisysInit);
-
 
     if WCGainFlag
 
@@ -80,11 +59,9 @@ function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
         ubScale=max(1,2*ubTarget);
     end
 
-
     lmiterm([1,1,1,0],DGLMI.dtol);
     lmiterm([-1,1,1,DGLMI.Dx],1,1);
     nLMI=1;
-
 
     if MUSYN&&~isempty(DGLMI.Dxfd)
 
@@ -93,8 +70,6 @@ function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
         lmiterm([-nLMI,1,2,DGLMI.Dxfo],1,1);
         lmiterm([-nLMI,2,2,DGLMI.Dxfd],1,0.5);
     end
-
-
 
     for i=1:adM
         Mi=M(:,:,i);
@@ -125,7 +100,6 @@ function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
     end
     nlfc=adM;
 
-
     if MUSYN&&nreal>0
         nLMI=nLMI+1;nlfc=nlfc+1;
         lmiterm([nLMI,1,2,DGLMI.Gx],1,1/DGLMI.alpha);
@@ -138,20 +112,13 @@ function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
 
     target=max(1e-8,ubTarget^2);
     if WCGainFlag
-
         copt=[zeros(ndecvars-1,1);ubScale^2];
 
         [ubsq,xopt]=mincx(lmisys,copt,DGLMI.LMIopt,xinit,target);
 
-
-
-
     else
-
-
         [ubsq,xopt]=gevp(lmisys,nlfc,DGLMI.LMIopt,tinit,xinit,target);
     end
-
 
     if isempty(xopt)
         Dr=eye(Mr);
@@ -161,10 +128,7 @@ function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
         Gcr=zeros(Mc,Mr);
         ub=inf;
     else
-
-
         ub=sqrt(max(1e-10,ubsq));
-
 
         if nargout>1
             Dr=dec2mat(lmisys,xopt,Dr);
@@ -176,8 +140,6 @@ function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
                 DcF=complex(DcF(1:Mc,1:Mc),DcF(1:Mc,Mc+1:2*Mc));
             end
             if WCGainFlag
-
-
                 Dr(Vridx,Vridx)=eye(numel(Vridx));
                 DcV=zeros(Mc);
                 DcV(Vcidx,Vcidx)=eye(numel(Vcidx));
@@ -188,9 +150,6 @@ function[ub,Dr,DcF,DcV,Gcr]=mulmiub(M,index,DGinit,ubTarget)
             if(nreal>0)
                 Gcr=dec2mat(lmisys,xopt,Gcr);
                 Gcr=complex(Gcr(1:Mc,1:Mr),Gcr(1:Mc,Mr+1:2*Mr));
-
-
-
 
             else
                 Gcr=zeros(Mc,Mr);
