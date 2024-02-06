@@ -1,19 +1,9 @@
 function[tau,DG]=maxCarveDG(M,dM,ub,index,DGInfo)
 
-
-
-
-
-
-
-
-
-
     [Mr,Mc]=size(M);
     iVC=index.FVidx.VaryCols;
     nreal=index.allreal.num;
     WCGainFlag=strcmp(index.problemType,'wcgain');
-
 
     Dr_os=DGInfo.Dr_os;
     Dc_os=DGInfo.Dc_os;
@@ -25,11 +15,8 @@ function[tau,DG]=maxCarveDG(M,dM,ub,index,DGInfo)
     dM(:,iVC)=dM(:,iVC)/scale;
     ub=ub/scale;
 
-
-
     alpha=0.1*norm(M)/norm(dM);
     dM=alpha*dM;
-
 
     DGLMI=index.allDGlmi;
     lmisysInit=DGLMI.lmisysInit;
@@ -41,10 +28,8 @@ function[tau,DG]=maxCarveDG(M,dM,ub,index,DGInfo)
     icx=DGLMI.icx;
     setlmis(lmisysInit);
 
-
     lmiterm([1,1,1,0],DGLMI.dtol);
     lmiterm([-1,1,1,DGLMI.Dx],1,1);
-
 
     Mreal=real(M);
     Mimag=imag(M);
@@ -109,8 +94,6 @@ function[tau,DG]=maxCarveDG(M,dM,ub,index,DGInfo)
 
     lmisys=getlmis;
 
-
-
     Dr_init=DGInfo.Dr;
     Gcr_init=DGInfo.Gcr;
     Dx=Dr_init(irx,irx);
@@ -128,14 +111,12 @@ function[tau,DG]=maxCarveDG(M,dM,ub,index,DGInfo)
     rhs=(rhs+rhs')/2;
     tinit=1.1*max(max(abs(eig(lhs1+lhs2,rhs))),max(abs(eig(lhs1-lhs2,rhs))));
 
-
     nlfc=2;
     LMIopt=DGLMI.LMIopt;
     LMIopt(1)=1e-1;
 
     target=1;
     [topt,xopt]=gevp(lmisys,nlfc,LMIopt,tinit,xinit,target);
-
 
     tau=alpha/topt;
     Dr=dec2mat(lmisys,xopt,Dr);
@@ -160,40 +141,6 @@ function[tau,DG]=maxCarveDG(M,dM,ub,index,DGInfo)
     else
         Gcr=zeros(Mc,Mr);
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     Gcr=Dc_os'*Gcr*Dr_os;
     Gcr(iVC,:)=scale*Gcr(iVC,:);
