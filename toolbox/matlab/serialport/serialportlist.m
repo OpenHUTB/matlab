@@ -1,20 +1,5 @@
 function ports=serialportlist(varargin)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     narginchk(0,1);
 
     varargin=instrument.internal.stringConversionHelpers.str2char(varargin);
@@ -33,7 +18,6 @@ function ports=serialportlist(varargin)
 
     devicePlugin=fullfile(toolboxdir(fullfile('matlab','serialport','bin',computer('arch'))),'serialportlistdevice');
     converterPlugin=fullfile(toolboxdir(fullfile('matlab','serialport','bin',computer('arch'))),'serialportlistmlconverter');
-
 
     asyncIOChannel=matlabshared.asyncio.internal.Channel(devicePlugin,...
     converterPlugin,...
