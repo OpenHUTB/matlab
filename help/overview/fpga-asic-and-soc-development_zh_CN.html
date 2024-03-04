@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>FPGA、ASIC 和 SoC 开发</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "index.html",
+          "name": "Cross-product categories"
+}
+
+          } ]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleTopics",
+
+        "itemListElement":
+        [
+        "../soc/ug/hwsw-stream.html",
+        "../hdlverifier/ug/verify-hdl-implementation-of-pid-controller-using-fpga-in-the-loop.html",
+        "../soc/ug/vertical-video-flipping-using-external-mem.html",
+        "../hdlcoder/ug/field-oriented-control-of-a-permanent-magnet-synchronous-machine.html",
+        "../supportpkg/xilinxzynqbasedradio/ug/5g-nr-sib1-recovery-using-analog-devices-ad9361-ad9364.html",
+        "../hdlverifier/ug/use-svdpi-to-verify-5g-wireless-apps.html",
+        "../dsphdl/ug/digital-down-converter-for-LTE.html",
+        "../wireless-hdl/ug/hdlofdmreceiver.html",
+        "../visionhdl/gs/matlab-to-simulink-workflow.html",
+        "../hdlverifier/ug/get-started-simulink-cosimulation-hdl.html",
+        "../supportpkg/xilinxfpgaboards/ug/access-fpga-external-memory-using-matlab-as-axi-master.html",
+        "../hdlcoder/ug/getting-started-with-axi4-stream-interface-in-zynq-workflow.html",
+        "../hdlcoder/ug/getting-started-with-the-hdl-workflow-command-line-interface.html"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="cat"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="cat"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="从算法开发到硬件设计和验证，实现工作流全程自动化"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/above_product_landing.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../docset.xml";
+            doccentertype = "product";
+            langcode = "_zh_CN";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../includes/product/css/doc_center_zh_CN.css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+<style type="text/css">math { visibility: hidden; }</style>
+<link type="text/css" rel="stylesheet" href="../includes/shared/equationrenderer/release/index-css.css"/>
+<script type="text/javascript" src="../includes/shared/equationrenderer/release/bundle.index.js"></script>
+</head>
+<body id="responsive_offcanvas" class="no_animate offcanvas_active locked">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header" style=""></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../documentation-center.html">帮助中心</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">搜索帮助文档</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="搜索帮助文档" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1" disabled=""></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left active">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar" style="height: 361px; position: fixed; top: 52px;">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator active" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">画布外导航菜单切换
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">文档主页</span></a></li>
+</ul><div class="tab-container" id="prodgroup_tab"><div class="tab-content remove_border remove_padding"><div role="tabpanel" class="tab-pane active" id="tab_doc_categories"><div class="search_refine" style="margin-bottom:2px;"><h3>类别</h3>
+</div>
+<div class="search_refine" id="productgroup_grouping"><h3>使用 MATLAB</h3>
+<ul class="nav_toc"><li id="leftnav_matlab"><a href="../matlab/index.html">MATLAB</a></li>
+</ul>
+</div>
+<div class="search_refine" id="productgroup_grouping"><h3>使用 Simulink</h3>
+<ul class="nav_toc"><li id="leftnav_simulink"><a href="../simulink/index.html">Simulink</a></li>
+<li id="leftnav_physical-modeling"><a href="physical-modeling.html">物理建模</a></li>
+<li id="leftnav_event-based-modeling"><a href="event-based-modeling.html">基于事件建模</a></li>
+<li id="leftnav_real-time-simulation-and-testing"><a href="real-time-simulation-and-testing.html">实时仿真和测试</a></li>
+</ul>
+</div>
+<div class="search_refine" id="productgroup_grouping"><h3>工作流</h3>
+<ul class="nav_toc"><li id="leftnav_parallel-computing"><a href="parallel-computing.html">并行计算</a></li>
+<li id="leftnav_reporting-and-database-access"><a href="reporting-and-database-access.html">报告和数据库访问</a></li>
+<li id="leftnav_systems-engineering"><a href="systems-engineering.html">系统工程</a></li>
+<li id="leftnav_code-generation"><a href="code-generation.html">代码生成</a></li>
+<li id="leftnav_application-deployment"><a href="application-deployment.html">应用程序部署</a></li>
+<li id="leftnav_verification-validation-and-test"><a href="verification-validation-and-test.html">验证、确认和测试</a></li>
+<li id="leftnav_cloud-capabilities"><a href="cloud-capabilities.html">Cloud Capabilities</a></li>
+</ul>
+</div>
+<div class="search_refine" id="productgroup_grouping"><h3>应用</h3>
+<ul class="nav_toc"><li id="leftnav_ai-data-science-and-statistics"><a href="ai-data-science-and-statistics.html">AI, Data Science, and Statistics</a></li>
+<li id="leftnav_mathematics-and-optimization"><a href="mathematics-and-optimization.html">数学和优化</a></li>
+<li id="leftnav_signal-processing"><a href="signal-processing.html">信号处理</a></li>
+<li id="leftnav_image-processing-and-computer-vision"><a href="image-processing-and-computer-vision.html">图像处理和计算机视觉</a></li>
+<li id="leftnav_control-systems"><a href="control-systems.html">控制系统</a></li>
+<li id="leftnav_test-and-measurement"><a href="test-and-measurement.html">测试和测量</a></li>
+<li id="leftnav_rf-and-mixed-signal"><a href="rf-and-mixed-signal.html">射频与混合信号</a></li>
+<li id="leftnav_wireless-communications"><a href="wireless-communications.html">无线通信</a></li>
+<li id="leftnav_robotics-and-autonomous-systems"><a href="robotics-and-autonomous-systems.html">机器人和自主系统</a></li>
+<li id="leftnav_fpga-asic-and-soc-development" class="active"><a href="fpga-asic-and-soc-development.html">FPGA、ASIC 和 SoC 开发</a><ul><li id="leftnav_hdlcoder"><a href="../hdlcoder/index.html">HDL Coder</a></li>
+<li id="leftnav_hdlverifier"><a href="../hdlverifier/index.html">HDL Verifier</a></li>
+<li id="leftnav_deep-learning-hdl"><a href="../deep-learning-hdl/index.html">Deep Learning HDL Toolbox</a></li>
+<li id="leftnav_wireless-hdl"><a href="../wireless-hdl/index.html">Wireless HDL Toolbox</a></li>
+<li id="leftnav_visionhdl"><a href="../visionhdl/index.html">Vision HDL Toolbox</a></li>
+<li id="leftnav_dsphdl"><a href="../dsphdl/index.html">DSP HDL Toolbox</a></li>
+<li id="leftnav_fixedpoint"><a href="../fixedpoint/index.html">Fixed-Point Designer</a></li>
+<li id="leftnav_soc"><a href="../soc/index.html">SoC Blockset</a></li>
+</ul></li>
+<li id="leftnav_computational-finance"><a href="computational-finance.html">计算金融学</a></li>
+<li id="leftnav_computational-biology"><a href="computational-biology.html">计算生物学</a></li>
+<li id="leftnav_code-verification"><a href="code-verification.html">代码验证</a></li>
+<li id="leftnav_aerospace"><a href="aerospace.html">航空航天</a></li>
+<li id="leftnav_automotive"><a href="automotive.html">汽车</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div></nav>
+</div></nav>
+<script src="../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container" style="padding-right: 0px;">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container affix" style="width: auto;"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>文档</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="examples.html?category=fpga-asic-and-soc-development&amp;s_tid=CRUX_topnav">示例</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">资源<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>文档</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="examples.html?category=fpga-asic-and-soc-development&amp;s_tid=CRUX_topnav">示例</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content" style="width: auto;">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="zh-CN" data-language="zh_CN"><div id="pgtype-category"><!-- translationrelease="R2022b", translationstatus="Final" -->
+<h1 class="r2022b" itemprop="content title">FPGA、ASIC 和 SoC 开发</h1>
+<div class="doc_topic_desc" itemprop="content purpose">从算法开发到硬件设计和验证，实现工作流全程自动化</div>
+<div class="start_here_container" id="starthere">
+<div id="start_here_content"><div itemprop="content">
+
+            <p>使用 MATLAB<sup>®</sup> 和 Simulink<sup>®</sup> 开发原型和生产应用程序，以部署在 FPGA、ASIC 和 SoC 设备上。借助 MATLAB 和 Simulink，您可以：</p>
+            <p> </p>
+<div class="itemizedlist"><ul><li><p>在高度抽象级别对数字、模拟和软件进行建模和仿真。</p></li>
+<li><p>使用自动向导进行定点转换，或者为任意目标设备生成本机浮点运算。</p></li>
+<li><p>通过内存、总线和 I/O 建模对硬件和软件架构进行分析。</p></li>
+<li><p>生成经过优化、可读且可跟踪的 VHDL<sup>®</sup> 或 Verilog<sup>®</sup>，用于在数字逻辑中实现。</p></li>
+<li><p>生成针对处理器优化的 C/C++ 代码，以部署到嵌入式处理器。 </p></li>
+<li><p>对连接到 MATLAB 或 Simulink 测试平台的 HDL 仿真器或 FPGA 或 SoC 设备上运行的算法进行验证。</p></li>
+</ul>
+</div>
+<p>
+ </p>
+            <p><span class="guiicon"><span class="inlinemediaobject"><img src="fpgasocasic.png" alt="A four-stage workflow, with the following stages: modeling and simulation, code generation, verification, and deployment."/></span></span></p>
+        </div>
+</div>
+</div>
+<div id="productgroup"><h2>适用产品：FPGA、ASIC 和 SoC 开发</h2>
+<div class="doc_panel_container"><div class="panel panel-default doc_panel doc_product_panel" id="hdlcoder"><a href="../hdlcoder/index.html"><div class="panel-body"><h3>HDL Coder</h3>
+<p>为 FPGA 和 ASIC 设计生成 VHDL 和 Verilog 代码</p>
+</div></a></div>
+<div class="panel panel-default doc_panel doc_product_panel" id="hdlverifier"><a href="../hdlverifier/index.html"><div class="panel-body"><h3>HDL Verifier</h3>
+<p>使用 HDL 仿真器和 FPGA 板测试和验证 Verilog 和 VHDL</p>
+</div></a></div>
+<div class="panel panel-default doc_panel doc_product_panel" id="deep-learning-hdl"><a href="../deep-learning-hdl/index.html"><div class="panel-body"><h3>Deep Learning HDL 工具箱</h3>
+<p>在 FPGA 和 SoC 上构建深度学习网络原型并进行部署</p>
+</div></a></div>
+<div class="panel panel-default doc_panel doc_product_panel" id="wireless-hdl"><a href="../wireless-hdl/index.html"><div class="panel-body"><h3>无线 HDL 工具箱</h3>
+<p>设计并实现适用于 FPGA、ASIC 和 SoC 的 5G 和 LTE 通信子系统</p>
+</div></a></div>
+<div class="panel panel-default doc_panel doc_product_panel" id="visionhdl"><a href="../visionhdl/index.html"><div class="panel-body"><h3>Vision HDL 工具箱</h3>
+<p>为 FPGA 和 ASIC 设计图像处理、视频和计算机视觉系统 </p>
+</div></a></div>
+<div class="panel panel-default doc_panel doc_product_panel" id="dsphdl"><a href="../dsphdl/index.html"><div class="panel-body"><h3>DSP HDL 工具箱</h3>
+<p>为 FPGA、ASIC 和 SoC 设计数字信号处理应用</p>
+</div></a></div>
+<div class="panel panel-default doc_panel doc_product_panel" id="fixedpoint"><a href="../fixedpoint/index.html"><div class="panel-body"><h3>Fixed-Point Designer</h3>
+<p>建模和优化定点和浮点算法
+    </p>
+</div></a></div>
+<div class="panel panel-default doc_panel doc_product_panel" id="soc"><a href="../soc/index.html"><div class="panel-body"><h3>SoC Blockset</h3>
+<p>设计、评估和实施 SoC 硬件和软件架构</p>
+</div></a></div>
+</div>
+</div>
+<div class="moreabout_container"><h2>主题</h2>
+<div itemprop="content">
+<div class="doc_subgroup_container" itemprop="content">
+<h3>建模和仿真</h3>
+
+<ul class="list-unstyled"><li><a href="../hdlcoder/ug/hdl-coder-simulink-templates.html" class="a" hreflang="en" style=""><b>使用 Simulink 模板生成 HDL 代码</b></a><span role="cross_prod" style="font-weight: bold;"> (HDL Coder)</span><br/>使用 Simulink 模型模板生成 HDL 代码以创建高效的硬件设计。</li>
+<li><a href="../soc/ug/use-templates-to-create-soc-model.html" class="a" hreflang="en" style=""><b>使用模板创建 SoC 模型</b></a><span role="cross_prod" style="font-weight: bold;"> (SoC Blockset)</span><br/>
+使用 Simulink 项目模板创建 SoC 模型。</li>
+<li><a href="../hdlcoder/ug/wireless-communications-design-for-fpgas-and-asics.html" class="a" hreflang="en" style=""><b>ASIC、FPGA 和 SoC 的无线通信设计</b></a><span role="cross_prod" style="font-weight: bold;"> (HDL Coder)</span><br/>
+使用 Wireless HDL Toolbox™ 模块设计硬件的无线通信算法。</li>
+<li><a href="../dsphdl/ug/digital-down-converter-for-LTE.html" class="a" hreflang="en" style=""><b>实现 FPGA 数字下变频器</b></a><span role="cross_prod" style="font-weight: bold;"> (DSP HDL 工具箱)</span><br/>
+在 FPGA 上设计适用于 LTE 的数字下变频器 (DDC)。</li>
+<li><a href="../wireless-hdl/ug/hdlofdmreceiver.html" class="a" hreflang="en" style=""><b>HDL OFDM 接收器</b></a><span role="cross_prod" style="font-weight: bold;"> (无线HDL 工具箱)</span><br/>实现针对硬件优化的基于 OFDM 无线接收器。</li>
+<li><strong><a href="../visionhdl/gs/matlab-to-simulink-workflow.html" class="a" hreflang="en">将 MATLAB 视觉算法转换为目标硬件的 Simulink 模型</a><span role="cross_prod"> (视觉 HDL 工具箱)</span></strong><br/>
+在 Simulink 中创建目标硬件设计，实现与 MATLAB 参考设计相同的行为。</li>
+</ul>
+</div>
+<div class="doc_subgroup_container" itemprop="content">
+<h3>验证</h3>
+
+<ul class="list-unstyled"><li><strong><a href="../hdlverifier/ug/get-started-simulink-cosimulation-hdl.html" class="a" hreflang="en">Simulink HDL 协同仿真入门</a><span role="cross_prod"> (HDL Verifier)</span></strong><br/>
+Set up an HDL Verifier™ application using the Cosimulation Wizard in the Simulink® environment.
+</li>
+<li><strong><a href="../hdlverifier/ug/fpga-in-the-loop-fil-simulation.html" class="a" hreflang="en">FPGA 在环仿真</a><span role="cross_prod"> (HDL Verifier)</span></strong><br/>
+FPGA-in-the-loop (FIL) simulation provides the capability to
+use Simulink or MATLAB software for testing designs in real hardware for any existing HDL code. 
+</li>
+<li><strong><a href="../hdlverifier/ug/data-capture-workflow.html" class="a" hreflang="en">数据获取工作流程</a><span role="cross_prod"> (HDL Verifier)</span></strong><br/>
+Capture signal data from a design running on an FPGA.
+</li>
+<li><strong><a href="../supportpkg/xilinxfpgaboards/ug/access-fpga-external-memory-using-matlab-as-axi-master.html" class="a" hreflang="en">Access FPGA Memory Using JTAG-Based AXI Manager</a><span role="cross_prod"> (HDL Verifier Support Package for Xilinx FPGA Boards)</span></strong><br/>
+Use JTAG-based AXI manager to access the memories connected to the FPGA. 
+</li>
+<li><strong><a href="../hdlverifier/ug/uvm_component_generation_overview.html" class="a" hreflang="en">UVM Component Generation Overview</a><span role="cross_prod"> (HDL Verifier)</span></strong><br/>
+Generate a Universal Verification Methodology (UVM) environment from a Simulink model.
+</li>
+<li><strong><a href="../hdlverifier/ug/generate-systemverilog-dpi-component-1.html" class="a" hreflang="en">Generate SystemVerilog DPI Component</a><span role="cross_prod"> (HDL Verifier)</span></strong><br/>
+Generate a DPI component from Simulink, and explore various configuration parameters.
+</li>
+</ul>
+</div>
+<div class="doc_subgroup_container" itemprop="content">
+<h3>代码生成和部署</h3>
+
+<ul class="list-unstyled"><li><strong><a href="../hdlcoder/gs/hdl-code-generation-workflow.html" class="a" hreflang="en">Basic HDL Code Generation Workflow</a><span role="cross_prod"> (HDL Coder)</span></strong><br/>
+Follow the workflow for HDL code generation and FPGA synthesis from
+                            MATLAB and Simulink algorithms.
+</li>
+<li><strong><a href="../hdlcoder/ug/getting-started-with-axi4-stream-interface-in-zynq-workflow.html" class="a" hreflang="en">Deploy Model with AXI-Stream Interface in Zynq Workflow</a><span role="cross_prod"> (HDL Coder)</span></strong><br/>
+Use the AXI4-Stream interface to enable high speed data
+                    transfer between the processor and FPGA on Zynq<sup>®</sup> hardware.
+</li>
+<li><strong><a href="../hdlcoder/ug/custom-ip-core-generation.html" class="a" hreflang="en">Custom IP Core Generation</a><span role="cross_prod"> (HDL Coder)</span></strong><br/>
+Generate a custom IP core from a model or algorithm using the HDL Workflow
+                Advisor.
+</li>
+<li><strong><a href="../hdlcoder/ug/getting-started-with-the-hdl-workflow-command-line-interface.html" class="a" hreflang="en">Get Started with HDL Workflow Command-Line Interface</a><span role="cross_prod"> (HDL Coder)</span></strong><br/>
+Use the HDL Workflow Advisor to run HDL workflows from the command line and the
+            <strong class="guilabel">Export to Script</strong> option.
+</li>
+<li><strong><a href="../supportpkg/xilinxsoc/ug/generate-rfsoc-design.html" class="a" hreflang="en">Generate Design Using SoC Builder</a><span role="cross_prod"> (SoC Blockset Support Package for Xilinx Devices)</span></strong><br/>
+Generate an SoC design and run it on the target hardware board using the
+                        <strong class="tool">SoC Builder</strong> tool.
+</li>
+<li><strong><a href="../deep-learning-hdl/ug/prototype-deep-learning-networks-on-fpga-and-soc-devices.html" class="a" hreflang="en">Prototype Deep Learning Networks on FPGA and SoC Devices</a><span role="cross_prod"> (Deep Learning HDL Toolbox)</span></strong><br/>
+Accelerate the prototyping, deployment, design verification, and iteration of your
+          custom deep learning network running on a fixed bitstream by using the
+            <code class="literal">dlhdl.Workflow</code> object.
+</li>
+</ul>
+</div>
+</div>
+</div>
+<section class="example_short_list" id="featured_examples_container"><h2>精选示例</h2>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../soc/ug/hwsw-stream.html"><div class="card_media" style="background-image:url(../examples/soc/win64/soc_hwsw_stream_Figure2.PNG);"><img alt="Streaming Data from Hardware to Software" src="../examples/soc/win64/soc_hwsw_stream_Figure2.PNG"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Streaming Data from Hardware to Software</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">A systematic approach to design the data-path between hardware logic (FPGA) and embedded processor using SoC Blockset.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../hdlverifier/ug/verify-hdl-implementation-of-pid-controller-using-fpga-in-the-loop.html"><div class="card_media" style="background-image:url(../examples/hdlverifier/win64/tutorial016.png);"><img alt="Verify HDL Implementation of PID Controller Using FPGA-in-the-Loop" src="../examples/hdlverifier/win64/tutorial016.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Verify HDL Implementation of PID Controller Using FPGA-in-the-Loop</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Set up an FPGA-in-the-Loop (FIL) application using HDL Verifier™.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../soc/ug/vertical-video-flipping-using-external-mem.html"><div class="card_media" style="background-image:url(../examples/shared_soc_visionhdl/win64/soc_video_flipping_simoutput.png);"><img alt="Vertical Video Flipping Using External Memory" src="../examples/shared_soc_visionhdl/win64/soc_video_flipping_simoutput.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Vertical Video Flipping Using External Memory</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Design an application to flip an incoming video stream vertically.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../hdlcoder/ug/field-oriented-control-of-a-permanent-magnet-synchronous-machine.html"><div class="card_media" style="background-image:url(../examples/hdlcoder/win64/FieldOrientedControlOfAPermanentMagnetSynchronousMachineExample_04.png);"><img alt="Field-Oriented Control of a Permanent Magnet Synchronous Machine" src="../examples/hdlcoder/win64/FieldOrientedControlOfAPermanentMagnetSynchronousMachineExample_04.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Field-Oriented Control of a Permanent Magnet Synchronous Machine</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Generate HDL code for a Field-Oriented Control (FOC) algorithm for a Permanent Magnet
+          Synchronous Machine (PMSM).</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../supportpkg/xilinxzynqbasedradio/ug/5g-nr-sib1-recovery-using-analog-devices-ad9361-ad9364.html"><div class="card_media" style="background-image:url(../examples/xilinxzynqbasedradio/win64/NRHDLSIB1RecoveryUsingAnalogDevicesAD9361AD9364Example_03.png);"><img alt="5G NR SIB1 Recovery Using Analog Devices AD9361/AD9364" src="../examples/xilinxzynqbasedradio/win64/NRHDLSIB1RecoveryUsingAnalogDevicesAD9361AD9364Example_03.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>5G NR SIB1 Recovery Using Analog Devices AD9361/AD9364</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Deploy a hardware-software co-design implementation of
+                                                  a SIB1 recovery algorithm for off-the-air 5G NR
+                                                  waveforms.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card_container explorer_view add_long_title" data-ui-component="card"><a href="../hdlverifier/ug/use-svdpi-to-verify-5g-wireless-apps.html"><div class="card_media" style="background-image:url(../examples/hdlv_spchdl/win64/MIBRecoveryProcess.png);"><img alt="Verify 5G Wireless Applications Using SystemVerilog DPI" src="../examples/hdlv_spchdl/win64/MIBRecoveryProcess.png"/></div><div class="card_body"><div class="panel panel_color_transparent panel_color_fill"><div class="panel-heading"><h3>Verify 5G Wireless Applications Using SystemVerilog DPI</h3>
+</div>
+<div class="panel-body" style="overflow:hidden;"><p class="card_description">Use SystemVerilog DPI components to verify 5G wireless applications in an HDL environment.</p>
+</div>
+</div>
+</div></a><div class="card_footer"><div class="row"><div class="col-xs-12"><div class="card_action_primary coming_from_product"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey" style=""><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<div><mw-rating-feedback id="declarative" forwardlabel="Submit" forwardlabelaria="Submit"><mw-rating-feedback-step step="0">本页内容对您有帮助吗？</mw-rating-feedback-step><mw-rating-feedback-step step="1">能告诉我们您的评分理由吗？</mw-rating-feedback-step><mw-rating-feedback-step step="2"><span class="glyphicon glyphicon-ok" style="display: inline-block !important; color: #008013"></span>感谢您的反馈！</mw-rating-feedback-step></mw-rating-feedback>
+</div>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer" style="width: auto;">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">使用条款</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">专利</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">商标</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">致谢</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+<a class="btn btn_color_mediumgray" id="go-top" style="display: block;"><span class="icon-arrow-open-up icon_24"></span></a>
+</body>
+</html>
