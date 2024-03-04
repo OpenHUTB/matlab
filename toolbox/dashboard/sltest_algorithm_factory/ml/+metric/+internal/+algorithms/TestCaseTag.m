@@ -1,9 +1,8 @@
 classdef TestCaseTag<metric.SimpleMetric
 
-
-
     properties
     end
+
 
     methods
         function obj=TestCaseTag()
@@ -15,10 +14,6 @@ classdef TestCaseTag<metric.SimpleMetric
 
         function result=algorithm(this,resultFactory,testArtifact)
 
-
-
-
-
             factory=alm.StorageFactory;
             selfContainedArtifact=testArtifact.getSelfContainedArtifact();
             storageHandler=factory.createHandler(selfContainedArtifact.Storage);
@@ -27,7 +22,6 @@ classdef TestCaseTag<metric.SimpleMetric
             tCase=sltest.testmanager.Test.getTestObjFromID(id);
 
             tagArray=tCase.Tags;
-
 
             uniqueTag=unique(tagArray);
             result=resultFactory.createResult(this.ID,testArtifact);

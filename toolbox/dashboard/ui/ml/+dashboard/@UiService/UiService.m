@@ -1,6 +1,3 @@
-
-
-
 classdef UiService<handle
 
     properties(Hidden,Access=private)
@@ -9,13 +6,16 @@ classdef UiService<handle
         LastProjectPath=""
     end
 
+
     properties(Dependent)
 Windows
     end
 
+
     methods(Access=private)
         function this=UiService()
         end
+
 
         function onWindowClosed(this,window)
             WindowLists=values(this.WindowMap);
@@ -39,15 +39,18 @@ Windows
         end
     end
 
+
     methods
         function windows=get.Windows(this)
             windows=values(this.WindowMap);
             windows=horzcat(windows{:});
         end
 
+
         function clear(this)
             remove(this.WindowMap,keys(this.WindowMap));
         end
+
 
         function windows=windowsForProject(this,projectArg)
             projectPath=dashboard.UiService.validateProjectArgument(projectArg);
@@ -57,6 +60,7 @@ Windows
                 windows={};
             end
         end
+
 
         function window=defaultWindowForProject(this,projectArg)
             projectPath=dashboard.UiService.validateProjectArgument(projectArg);
@@ -77,16 +81,19 @@ Windows
             end
         end
 
+
         function window=openWindow(this)
             window=this.defaultWindowForProject(this.LastProjectPath);
             window.open('Project',this.LastProjectPath);
         end
+
 
         function window=openDashboard(this,projectArg)
             window=this.defaultWindowForProject(projectArg);
             window.open('Project',this.LastProjectPath);
         end
     end
+
 
     methods(Static,Access=private)
         function path=validateProjectArgument(projectArg)
@@ -101,6 +108,7 @@ Windows
         end
     end
 
+
     methods(Hidden,Access=private)
         function window=createNewWindow(this,projectPath)
             newSession=dashboard.UiWindow.generateWindowSessionId();
@@ -109,6 +117,7 @@ Windows
             this.WindowMap(projectPath)=window;
         end
     end
+
 
     methods(Static)
         function inst=get()
@@ -120,12 +129,13 @@ Windows
             inst=Inst;
         end
 
-        function shutdown()
 
+        function shutdown()
             dashboard.internal.closeDashboard();
 
         end
     end
+
 
     methods(Static,Hidden)
         function internalOpenDashboard(sesionID)
@@ -135,6 +145,7 @@ Windows
                 w.open();
             end
         end
+
 
         function project=getProjectPathBySessionID(sessionID)
             Ins=dashboard.UiService.get();
@@ -152,6 +163,7 @@ Windows
             end
             project="";
         end
+
 
         function window=getWindowBySessionId(sessionID)
             Ins=dashboard.UiService.get();

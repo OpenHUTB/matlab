@@ -1,8 +1,5 @@
 classdef TestCaseStatus<metric.SimpleMetric
 
-
-
-
     methods
 
         function obj=TestCaseStatus()
@@ -11,14 +8,11 @@ classdef TestCaseStatus<metric.SimpleMetric
             obj.Version=1;
         end
 
+
         function result=algorithm(this,resultFactory,artifacts)
-
-
-
 
             import metric.internal.algorithms.TestCaseStatusEnum;
             import sltest.testmanager.TestResultOutcomes;
-
 
             testArt=artifacts(1);
             refArts=testArt;
@@ -34,19 +28,11 @@ classdef TestCaseStatus<metric.SimpleMetric
 
                 if~isempty(testObj)
 
-
-
-
                     testObj=testObj(1);
-
-
-
-
                     itrObj=testObj.getIterationResults;
                     if~isempty(itrObj)
                         outcomeArray=[];
                         for k=1:length(itrObj)
-
 
 
                             if alm.internal.sltest.visitor.TestResultHandler.isSimulationResult(itrObj(k))
@@ -61,16 +47,11 @@ classdef TestCaseStatus<metric.SimpleMetric
                         elseif ismember(TestResultOutcomes.Incomplete,outcomeArray)||...
                             ismember(TestResultOutcomes.Untested,outcomeArray)
 
-
                             val=TestCaseStatusEnum.UNTESTED;
                         elseif ismember(TestResultOutcomes.Failed,outcomeArray)
 
-
                             val=TestCaseStatusEnum.FAILED;
                         elseif ismember(TestResultOutcomes.Passed,outcomeArray)&&(length(outcomeArray)==1)
-
-
-
                             val=TestCaseStatusEnum.PASSED;
                         else
                             val=TestCaseStatusEnum.UNTESTED;

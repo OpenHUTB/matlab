@@ -1,6 +1,3 @@
-
-%
-
 %   Copyright 2011-2021 The MathWorks, Inc.
   
 classdef SymbolWizard < handle
@@ -9,6 +6,7 @@ classdef SymbolWizard < handle
         proposedSymbol = struct([]);
         proposedSymbolTop = 1;
     end
+
     
     properties(Constant, Hidden)
         DATA_COMBO = ...
@@ -41,22 +39,26 @@ classdef SymbolWizard < handle
             {'INPUT_DATA', 'OUTPUT_DATA', 'LOCAL_DATA'};
         
     end
+
     
     methods (Static)
         function preTag = getPreTag()
             preTag = 'DDG_Stateflow_Tools_SymbolWizard_';
         end
-        
+ 
+       
         function dialogTag = getDialogTag(chartId)
             % GETDIALOGTAG Get the tag for the dialog
             % Mostly a testing hook
             dialogTag = [Stateflow.Tools.SymbolWizard.getPreTag num2str(chartId)];
         end
+
         
         function idx = getIdxForScope(scopeSet, scope)
             % GETIDXFORSCOPE Returns the index of 'scope' in DATA_COMBO
             idx = find(strcmp(scope, scopeSet));
         end
+
         
         function [shouldApply, errorStr] = createChartDataOnError(dialogH)
             % CREATECHARTDATAONERROR Create chart data after the user has
@@ -124,6 +126,7 @@ classdef SymbolWizard < handle
                 sfpref('openMEFromSymbolWizard', double(showME));
             end
         end
+
         
         function [params, inputs] = separateParamsFromInputs(inputs)
             % SEPARATEPARAMSFROMINPUTS Symbols written out in capital
@@ -137,6 +140,7 @@ classdef SymbolWizard < handle
             params = inputs(isParam==1);
             inputs = inputs(isParam==0);
         end
+
         
         function populateSymbolWizard(chartId, inputs, outputs, locals, inputEvents, outputEvents, localEvents,...
                 inputMessages, outputMessages, localMessages)
@@ -221,6 +225,7 @@ classdef SymbolWizard < handle
             Stateflow.Tools.SymbolWizard.cleanupSymbolWizard;
             setappdata(0, 'StateflowGlobalSymbolWizardObject', wizard);
         end
+
         
         function showSymbolWizardDialog
             persistent symWizardDialogH;
@@ -262,6 +267,7 @@ classdef SymbolWizard < handle
                 end
             end
         end
+
         
         function cleanupSymbolWizard
             % CLEANUPSYMBOLWIZARD
@@ -274,6 +280,8 @@ classdef SymbolWizard < handle
             end
             setappdata(0, 'StateflowGlobalSymbolWizardObject', []);
         end
+
+
         function DVUsage(varargin)
             persistent ss;
             if isempty(ss)
@@ -335,6 +343,7 @@ classdef SymbolWizard < handle
 
         end
     end
+
     
     methods
         
@@ -350,25 +359,30 @@ classdef SymbolWizard < handle
             self.proposedSymbol = [proposedData, proposedEvent, proposedMessage];
             
         end
+
         
         function aChartId = getChartId(self)
             aChartId = self.chartId;
         end
+
         
         function proposedData = getProposedData(self)
             isData =arrayfun(@(x)strcmp(x.Class, 'data'), self.proposedSymbol);
             proposedData = self.proposedSymbol(isData);
         end
+
         
         function proposedEvent = getProposedEvents(self)
             isEvent =arrayfun(@(x)strcmp(x.Class, 'event'), self.proposedSymbol);
             proposedEvent = self.proposedSymbol(isEvent);
         end
+
         
         function proposedMessage = getProposedMessages(self)
             isMessage =arrayfun(@(x)strcmp(x.Class, 'message'), self.proposedSymbol);
             proposedMessage = self.proposedSymbol(isMessage);
         end
+
         
         function [scope, idx] = getUpdatedScopes(self,classType, scope)
             % GETIDXFORSCOPE Returns the index of 'scope'
@@ -395,6 +409,7 @@ classdef SymbolWizard < handle
                 scope = upper(['INPUT','_', classType]);
             end
         end
+
         
         function addDataProposals(self, dataList, scope)
             % Ensure that we have a valid scope
@@ -423,6 +438,7 @@ classdef SymbolWizard < handle
                 self.proposedSymbolTop = self.proposedSymbolTop + 1;
             end
         end
+
         
         function addMessageProposals(self, messageList, scope)
             % Ensure that we have a valid scope
@@ -437,6 +453,7 @@ classdef SymbolWizard < handle
                 self.proposedSymbolTop = self.proposedSymbolTop + 1;
             end
         end
+
         
         function schema = getDialogSchema(self)
             % GETDIALOGSCHEMA Return the schema for the symbol wizard
@@ -480,6 +497,7 @@ classdef SymbolWizard < handle
             schema.HelpArgs = {h,'resolving_stateflow_symbols'};
 
         end
+
         
         function schema = getHeader(self)
             % GETHEADER Get the header text that explains what the dialog
@@ -576,6 +594,7 @@ classdef SymbolWizard < handle
             
             schema = check;
         end
+
         
         function schema = getSymbolTable(self)
             % GETDATATABLE Get the table for the suggested data/event/messages and their

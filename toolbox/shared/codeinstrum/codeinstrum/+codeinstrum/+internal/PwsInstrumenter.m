@@ -1,63 +1,29 @@
 classdef PwsInstrumenter<internal.cxxfe.FrontEndHandler
 
-
-
-
-
-
-
-
-
-
     properties
-
         IsCharSigned=true;
-
         CharBitSize=8;
-
         SizeofShort=2;
-
         SizeofInt=4;
-
         SizeofLong=4;
-
         SizeofLongLong=8;
-
         SizeofFloat=4;
-
         SizeofDouble=8;
-
         SizeofLongDouble=16;
-
-
         SizeType='long';
-
         PtrdiffType='long';
-
         WcharType='unsigned short';
-
-
-
-
         MarshallParameters=true;
-
-
-
         ArithmeticCasts=true;
-
-
         ReplacementFunctions;
-
-
-
         DirToIgnore={}
     end
 
+
     properties(Access=public)
-
-
         TypedefDeclarations;
     end
+
 
     methods(Access=private)
         function targetString=getTargetString(this)
@@ -75,6 +41,7 @@ classdef PwsInstrumenter<internal.cxxfe.FrontEndHandler
             this.SizeType,this.PtrdiffType,this.WcharType);
         end
 
+
         function optionString=getOptionsString(this)
             optionString='';
             if~this.MarshallParameters
@@ -86,7 +53,6 @@ classdef PwsInstrumenter<internal.cxxfe.FrontEndHandler
             elseif~this.ArithmeticCasts
                 optionString='no_casts';
             end
-
             firstElement=isempty(optionString);
             for k=this.ReplacementFunctions.keys()
                 name=k{1};
@@ -102,15 +68,14 @@ classdef PwsInstrumenter<internal.cxxfe.FrontEndHandler
         end
     end
 
+
     methods
         function obj=PwsInstrumenter()
             obj.ReplacementFunctions=containers.Map();
         end
 
+
         function setTargetInfoString(instance,targetInfoString)
-
-
-
             elements=strsplit(targetInfoString,':');
             if length(elements)==12
                 if strcmp(elements{1},'s')
@@ -118,7 +83,6 @@ classdef PwsInstrumenter<internal.cxxfe.FrontEndHandler
                 else
                     instance.IsCharSigned=false;
                 end
-
                 instance.CharBitSize=sscanf(elements{2},'%d');
                 instance.SizeofShort=sscanf(elements{3},'%d');
                 instance.SizeofInt=sscanf(elements{4},'%d');
@@ -135,6 +99,7 @@ classdef PwsInstrumenter<internal.cxxfe.FrontEndHandler
             end
         end
 
+
         function setAllTargetInfo(instance,...
             IsCharSigned,...
             CharBits,...
@@ -148,7 +113,6 @@ classdef PwsInstrumenter<internal.cxxfe.FrontEndHandler
             SizeType,...
             PtrdiffType,...
             WcharType)
-
             instance.IsCharSigned=IsCharSigned;
             instance.CharBitSize=CharBits;
             instance.SizeofShort=SizeofShort;
@@ -162,6 +126,7 @@ classdef PwsInstrumenter<internal.cxxfe.FrontEndHandler
             instance.PtrdiffType=PtrdiffType;
             instance.WcharType=WcharType;
         end
+
 
         function setTargetInfo(instance,varargin)
             p=inputParser;
@@ -180,7 +145,6 @@ classdef PwsInstrumenter<internal.cxxfe.FrontEndHandler
             p.addParameter('WcharType',instance.WcharType);
 
             parse(p,varargin{:});
-
             instance.IsCharSigned=p.Results.IsCharSigned;
             instance.CharBitSize=p.Results.CharBitSize;
             instance.SizeofShort=p.Results.SizeofShort;
@@ -196,13 +160,8 @@ classdef PwsInstrumenter<internal.cxxfe.FrontEndHandler
 
         end
 
+
         function addReplacementFunction(instance,originalFunction,replacementFunction)
-
-
-
-
-
-
             instance.ReplacementFunctions(originalFunction)=replacementFunction;
         end
 

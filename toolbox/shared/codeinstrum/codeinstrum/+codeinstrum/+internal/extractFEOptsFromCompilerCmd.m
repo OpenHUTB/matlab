@@ -1,7 +1,3 @@
-
-
-
-
 function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,argv,env,sendOutputFn)
     fine(polyspace.internal.logging.Logger.getLogger('CompilerCmd'),...
     'Extracting front-end options for compiler command %s\n',strjoin(argv,' '));
@@ -16,7 +12,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
         psConfigureCmd=fullfile(matlabroot,'polyspace','bin','polyspace-configure');
     end
 
-
     psConfigureOutDir=tempname();
     if~exist(psConfigureOutDir,'dir')
         mkdir(psConfigureOutDir);
@@ -26,8 +21,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
     psConfigureTmpPath=fullfile(psConfigureOutDir,'tmp_path');
     psConfigureBuildTraceFile=fullfile(psConfigureOutDir,'trace_file.txt');
     psConfigureOutputDumpFile=fullfile(psConfigureOutDir,'dump_file.txt');
-
-
     fine(polyspace.internal.logging.Logger.getLogger('CompilerCmd'),...
     'Calling ''polyspace-configure'' to perform and trace the build...\n');
     if nargin<3
@@ -54,8 +47,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
 
         error(message('cxxfe_mi:utils:compilerCommandFailed',strjoin(argv,' ')));
     end
-
-
     fine(polyspace.internal.logging.Logger.getLogger('CompilerCmd'),...
     'Calling ''polyspace-configure'' to analyze the build trace...\n');
     hPsConfigureProc=polyspace.internal.Process('-discard-stdout','-discard-stderr',...
@@ -85,8 +76,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
     implicit_defines={};
     undefines={};
     target_options=containers.Map('KeyType','char','ValueType','any');
-
-
     fine(polyspace.internal.logging.Logger.getLogger('CompilerCmd'),...
     'Extracting the front-end options from the ''polyspace-configure'' output dump file...\n');
     fid=fopen(psConfigureOutputDumpFile,'rt','n',matlab.internal.i18n.locale.default.Encoding);
@@ -97,7 +86,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
             break
         end
 
-
         tmp=regexp(tline,'cmd[0-9]+\s+language: (.*?)\s*$','tokens');
         if~isempty(tmp)
             tmp=tmp{1};
@@ -105,14 +93,12 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
             continue
         end
 
-
         tmp=regexp(tline,'cc[0-9]+\s+dialect: (.*?)\s*$','tokens');
         if~isempty(tmp)
             tmp=tmp{1};
             dialect=tmp{1};
             continue
         end
-
 
         tmp=regexp(tline,'cu[0-9]+\s+([\w_ ]+): (.*?)\s*$','tokens');
         if~isempty(tmp)
@@ -145,7 +131,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
             end
         end
 
-
         tmp=regexp(tline,'cu[0-9]+\s+target: (.*?): (.*?)\s*$','tokens');
         if~isempty(tmp)
             tmp=tmp{1};
@@ -158,10 +143,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
     end
     clear closeOutputDumpFile;
     clear removePsConfigureOutDir;
-
-
-
-
     compInfo=struct('targetSettings',struct(),...
     'sysHeaderDirs',{[system_includes,implicit_includes]},...
     'mwHeaderDirs',{includes},...
@@ -170,8 +151,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
     'unDefines',{undefines},...
     'preIncludes',{preincludes},...
     'languageExtra',{{}});
-
-
     compInfo.targetSettings.Endianness=target_options('endianness');
     compInfo.targetSettings.CharNumBits=sscanf(target_options('char_number_of_bits'),'%d');
     compInfo.targetSettings.ShortNumBits=sscanf(target_options('sizeof_short'),'%d')*compInfo.targetSettings.CharNumBits;
@@ -182,7 +161,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
     compInfo.targetSettings.DoubleNumBits=sscanf(target_options('sizeof_double'),'%d')*compInfo.targetSettings.CharNumBits;
     compInfo.targetSettings.LongDoubleNumBits=sscanf(target_options('sizeof_long_double'),'%d')*compInfo.targetSettings.CharNumBits;
     compInfo.targetSettings.PointerNumBits=sscanf(target_options('sizeof_pointer'),'%d')*compInfo.targetSettings.CharNumBits;
-
 
     switch language
     case 'C++11'
@@ -210,10 +188,8 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
 
     compInfo.targetSettings.AllowMultibyteChars=true;
     compInfo.targetSettings.PlainCharsAreSigned=strcmp(target_options('signed_char'),'1');
-
     compInfo.targetSettings.PlainBitFieldsAreSigned=true;
     if strncmp(dialect,'gnu',3)
-
 
         gnu_version=sscanf(dialect,'gnu%d.%d');
         gnucMajorIdx=strncmp(compInfo.sysCompDefines,'__GNUC__=',9);
@@ -225,8 +201,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
             compInfo.sysCompDefines{end+1}=sprintf('__GNUC_MINOR__=%d',gnu_version(2));
         end
     elseif strncmp(dialect,'visual',6)
-
-
         mscVerIdx=strncmp(compInfo.sysCompDefines,'_MSC_VER=',9);
         if~any(mscVerIdx)
             switch dialect
@@ -271,13 +245,6 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
             assert(false,'The dialect ''%s'' is unknown',dialect);
         end
     end
-
-
-
-
-
-
-
     frontEndOptions=internal.cxxfe.util.getMexFrontEndOptions('lang',lang,...
     'compInfoFromPsConfigure',compInfo);
 
@@ -303,9 +270,8 @@ function[compilation_units,frontEndOptions]=extractFEOptsFromCompilerCmd(cwd,arg
     end
 end
 
+
 function res=psConfigureTypeToFEOptsTypeKind(t)
-
-
 
     res=regexprep(t,{'^unsigned_','_'},{'u',''});
 end

@@ -1,9 +1,8 @@
 classdef TestCaseTagDistribution<metric.GraphMetric
 
-
-
     properties
     end
+
 
     methods
         function obj=TestCaseTagDistribution()
@@ -14,10 +13,6 @@ classdef TestCaseTagDistribution<metric.GraphMetric
 
 
         function result=algorithm(this,resultFactory,queryResult)
-
-
-
-
             testArtifacts=queryResult.getSequences();
             if~isempty(testArtifacts)
                 testArtifacts=cellfun(@(x)x{1},testArtifacts)';
@@ -27,7 +22,6 @@ classdef TestCaseTagDistribution<metric.GraphMetric
             countEmptyTag=0;
             refArts=alm.Artifact.empty;
             for k=1:length(testArtifacts)
-
 
                 testArtifact=testArtifacts(k);
 
@@ -50,16 +44,13 @@ classdef TestCaseTagDistribution<metric.GraphMetric
                 end
             end
 
-
             uniqueTag=unique(tagArray);
             tagCount=zeros(1,length(uniqueTag));
             for ut=1:length(uniqueTag)
                 temp=ismember(tagArray,uniqueTag(ut));
                 tagCount(ut)=sum(temp);
             end
-
             result=resultFactory.createResult(this.ID,refArts);
-
 
             if countEmptyTag~=0
                 tagCount=[tagCount,countEmptyTag];
@@ -69,7 +60,6 @@ classdef TestCaseTagDistribution<metric.GraphMetric
                     uniqueTag=[uniqueTag,"-"];
                 end
             end
-
             result.Value=struct('BinCounts',tagCount,'BinEdges',{uniqueTag});
 
         end

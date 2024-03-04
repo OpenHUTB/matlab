@@ -6,11 +6,8 @@ end
 
 methods 
 
-
-
 function this = CallGraph( arg )
 this.CallGraphInfo = containers.Map( 'KeyType', 'char', 'ValueType', 'any' );
-
 
 if nargin == 1
 
@@ -45,8 +42,6 @@ end
 
 
 
-
-
 function calleeSigs = getCallees( this, callerSigs )
 arguments
 this( 1, 1 )
@@ -62,7 +57,6 @@ callerSigs = cellstr( convertStringsToChars( callerSigs ) );
 
 calleeSet = containers.Map( 'KeyType', 'char', 'ValueType', 'logical' );
 visitedCallerSet = containers.Map( 'KeyType', 'char', 'ValueType', 'logical' );
-
 
 
 for ii = 1:numel( callerSigs )
@@ -99,11 +93,9 @@ end
 
 
 
-
 function callerSigs = getAllCallers( this )
 callerSigs = this.CallGraphInfo.keys(  );
 end 
-
 
 
 
@@ -125,12 +117,10 @@ end
 end 
 end 
 
+
 methods ( Access = protected )
 
-
-
 function extractCallGraph( this, trDbObj )
-
 
 callLst = trDbObj.getCalls(  );
 for ii = 1:numel( callLst )
@@ -144,7 +134,6 @@ end
 this.CallGraphInfo( callerSig ) = calleeSigs;
 end 
 end 
-
 
 
 
@@ -164,6 +153,4 @@ end
 end 
 end 
 
-% Decoded using De-pcode utility v1.2 from file /tmp/tmpW1MTln.p.
-% Please follow local copyright laws when handling this file.
 

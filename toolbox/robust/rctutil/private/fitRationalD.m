@@ -1,19 +1,8 @@
 function sys=fitRationalD(y,w,Ts,N,wt,diagFlag)
 
-
-
-
-
-
-
-
-
     if Ts~=0
-
-
         y([1,end])=abs(y([1,end])).*sign(real(y([1,end])));
     end
-
 
     try
         [z,p,k]=controllib.internal.fitRational.fitRational(w,y(:),[],Ts,wt(:),N);
@@ -21,7 +10,6 @@ function sys=fitRationalD(y,w,Ts,N,wt,diagFlag)
         sys=zpk(double(diagFlag),'Ts',Ts);return
     end
     z=z{1};
-
 
     if diagFlag
         if Ts==0
@@ -38,9 +26,6 @@ function sys=fitRationalD(y,w,Ts,N,wt,diagFlag)
         z=localMinDamping(z,Ts,1e-3);
         p=localMinDamping(p,Ts,1e-3);
     else
-
-
-
         z=localMinDamping(z,Ts,1e-1);
         p=localMinDamping(p,Ts,1e-1);
     end
@@ -50,8 +35,6 @@ function sys=fitRationalD(y,w,Ts,N,wt,diagFlag)
 
 
     function r=localMinDamping(r,Ts,zetaMin)
-
-
         [~,zeta]=damp(r,Ts);
         id=find(abs(zeta)<zetaMin);
         for ct=1:numel(id)

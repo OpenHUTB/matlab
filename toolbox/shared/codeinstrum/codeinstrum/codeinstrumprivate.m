@@ -1,12 +1,5 @@
 function varargout=codeinstrumprivate(funName,varargin)
 
-
-
-
-
-
-
-
     if strcmp(funName,'feature')
         funName='cifeature';
     end

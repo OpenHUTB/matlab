@@ -1,6 +1,3 @@
-
-
-
 classdef TestCaseTypeEnum<uint64
     enumeration
         SIMULATION(0)

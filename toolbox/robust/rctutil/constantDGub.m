@@ -1,12 +1,5 @@
 function[ub,DG,DGInfo]=constantDGub(Gg,index4mu,V)
 
-
-
-
-
-
-
-
     userMuOpt=V.userMuOpt;
     osborneCondNum=V.osborneCondNumber;
     UseLMI=any(userMuOpt=='a');
@@ -26,7 +19,6 @@ function[ub,DG,DGInfo]=constantDGub(Gg,index4mu,V)
     end
     Dc_os=inv(Dci_os);
 
-
     aux=sum(abs(dMd),3)/nAD;
     scale=max(aux(:));
     if scale==0
@@ -34,8 +26,6 @@ function[ub,DG,DGInfo]=constantDGub(Gg,index4mu,V)
     end
     iVC=index4mu.FVidx.VaryCols;
     dMd(:,iVC,:)=dMd(:,iVC,:)/scale;
-
-
 
     if UseLMI&&strcmp(index4mu.problemType,'wcgain')
 
@@ -48,14 +38,9 @@ function[ub,DG,DGInfo]=constantDGub(Gg,index4mu,V)
         end
     end
 
-
     if UseLMI
         ubTarget=0.5*V.gUBmax/scale;
         [ub,Dr,DcF,DcV,Gcr]=mulmiub(dMd,index4mu,DGinit,ubTarget);
-
-
-
-
 
     else
         [ub,Dr,DcF,DcV,Gcr]=mudescentub(dMd,index4mu,DGinit);

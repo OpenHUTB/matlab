@@ -1,19 +1,9 @@
 function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin)
 
-
-
-
-
-
-
-
-
     if isreal(a)&&isreal(b)&&isreal(c)&&isreal(d)
 
         [bnds,UBcert,LBcert]=localComputePeak(ProblemType,a,b,c,d,Ts,blkData,varargin{:});
     else
-
-
         [bnds1,UBcert1,LBcert1]=localComputePeak(ProblemType,conj(a),conj(b),conj(c),conj(d),Ts,...
         blkData,varargin{:});
         for ct=1:numel(UBcert1)
@@ -71,17 +61,12 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
             end
             Ts=0;
         end
-
-
         [a,b,c,d]=statescaleEngine(a,b,c,d,blk);
-
-
         dynRange=rctutil.getDynamicRange(eig(a));
         peakOnly=true;
         V=ssmussvTolerances(userMuOpt,gUBmax,dynRange,Focus,peakOnly);
 
         if isequal(blk,[-1,0])
-
             [UBcert,LBcert]=special1b1MU(a,b,c,d,Ts,[],V,Focus);
             [~,imax]=max([UBcert.gUB]);
             WorstUB=UBcert(imax);WorstUB_LB=LBcert(imax);
@@ -90,14 +75,12 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
         else
             ShowProgess=~any(userMuOpt=='s');
 
-
             if foundInfUB
 
                 UBcert=UBmax;
             else
                 UBcert=struct('Interval',Focus,'gUB',Inf,'VLmi',[],...
                 'ptUB',NaN,'w',NaN,'Jump',false);
-
 
                 for ct=1:2
                     w=Focus(ct);
@@ -114,7 +97,6 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
                     end
                 end
 
-
                 if ShowProgess
                     [~,LmatForW,~]=hp2dblt(rctutil.intervalmean(dynRange));
                     Linf=LmatForW(2,2)-LmatForW(2,1)/LmatForW(1,1)*LmatForW(1,2);
@@ -123,9 +105,6 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
                     fprintf('Computing peak...  Percent completed: 0/100');
                 end
 
-
-
-
                 Missing=Focus;
                 NCARVE=0;NLMI=0;
                 while~(isempty(Missing)||foundInfUB)
@@ -133,8 +112,6 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
                     if ShowProgess
                         percentDone=localShowProgressUB(LmatForW,L0,Linf,Missing,percentDone);
                     end
-
-
                     idx=1+rem(NCARVE,2)*(size(Missing,1)-1);
                     [UBcertC,NLMIC]=LMICarve(a,b,c,d,Ts,blkData,Missing(idx,:),V,Focus);
                     foundInfUB=isinf(UBcertC.ptUB);
@@ -154,14 +131,9 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
             end
             WorstUB=UBcert(maxIdx);
 
-
             WorstLB=struct('LB',-1);
             WorstUB_LB=[];
             LbUbRatio=0.99;
-
-
-
-
 
             if WorstLB.LB<LbUbRatio*gUBmax&&foundInfUB
                 fixedBlkIdx=blkData.FVidx.fixedBlkIdx;
@@ -170,20 +142,15 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
                 fixedBlk=blkData.simpleblk(fixedBlkIdx,:);
                 fixedBlkData=ssmussvSetUp(fixedBlk,'',[]);
 
-
                 bFixed=b(:,FixedCols);
                 cFixed=c(FixedRows,:);
                 dFixed=d(FixedRows,FixedCols);
                 FixedLB=coreLowerBound(a,bFixed,cFixed,dFixed,Ts,WorstUB.w,...
                 fixedBlkData,userMuOpt,'ptwise',[],Focus);
 
-
-
                 if FixedLB.LB<1
                     FixedLB=coreLowerBound(a,bFixed,cFixed,dFixed,Ts,WorstUB.Interval,...
                     fixedBlkData,userMuOpt,'state-space',1,Focus);
-
-
 
                 end
 
@@ -193,8 +160,6 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
                     WorstLB=struct('w',FixedLB.w,'LB',inf,'Delta',Delta);
                 end
             end
-
-
 
             if WorstLB.LB<LbUbRatio*gUBmax
                 nUB=numel(gUB);
@@ -228,8 +193,6 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
                     end
                 end
             end
-
-
             if~isempty(a)&&gUBmax<Inf&&WorstLB.LB<LbUbRatio*gUBmax&&diff(WorstUB.Interval)>0
                 w=WorstUB.w*[.99,1.01];
                 WorstLB=localMaxLB(WorstLB,...
@@ -242,7 +205,6 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
             end
         end
 
-
         if WorstLB.LB<Inf
 
             switch ProblemType
@@ -250,22 +212,17 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
 
                 WorstLB=localAdjustDelta(a,b,c,d,Ts,blk(end,:),WorstLB,Focus);
             case 'wcgain'
-
-
                 WorstLB=localAdjustBound(a,b,c,d,Ts,blk(end,:),WorstLB,Focus);
             end
         end
 
-
         wLB=WorstLB.w;
         wUB=WorstUB.w;
         if wLB==wUB||abs(wLB-wUB)<max(V.AbsIntervalTol,(V.RelIntervalTol-1)*(wLB+wUB)/2)
-
             UBcert=WorstUB;LBcert=WorstLB;UBcert.w=wLB;
         else
 
             if isempty(WorstUB_LB)
-
                 WorstUB_LB=coreLowerBound(a,b,c,d,Ts,WorstUB.w,blkData,userMuOpt,'ptwise',[],Focus);
 
                 V.gUBmax=0;
@@ -278,11 +235,9 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
             UBcert=UBcert(is);LBcert=LBcert(is);
         end
 
-
         for ct=1:numel(LBcert)
             LBcert(ct)=rctutil.fixDelta0Inf(a,b,c,d,Ts,blkData,LBcert(ct),userMuOpt);
         end
-
 
         if DTFlag
             [UBcert,LBcert]=rctutil.fixFrequencyDC(UBcert,LBcert,DTtime);
@@ -293,7 +248,6 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
 
 
         function WorstLB=localAdjustDelta(a,b,c,d,Ts,PerfBlkSize,WorstLB,Focus)
-
 
             TOL=1e-3;
             [rs,cs]=size(d);
@@ -308,8 +262,6 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
             tmp(1:ne,nd+1:end),tmp(1:ne,1:nd),[],Ts);
             gpeak=norminf(sstmp,1e-6,Focus,true);
             if gpeak>1+TOL
-
-
 
                 FLB=0;FUB=1;gUB=gpeak;
                 while FLB==0
@@ -355,7 +307,6 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
 
 
             function WorstLB=localAdjustBound(a,b,c,d,Ts,PerfBlkSize,WorstLB,Focus)
-
 
                 [rs,cs]=size(d);
                 nd=PerfBlkSize(1);
@@ -406,6 +357,7 @@ function[bnds,UBcert,LBcert]=ssmussvPeak(ProblemType,a,b,c,d,Ts,blkData,varargin
                             fprintf(repmat('\b',[1,numel(int2str(percentDone))+4]))
                             fprintf('%d/100',percentDoneNow)
                         end
+
 
                         function LBcert=localMaxLB(LBcert,newLB)
                             if newLB.LB>LBcert.LB

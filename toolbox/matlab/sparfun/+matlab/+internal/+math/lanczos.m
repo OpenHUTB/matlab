@@ -1,32 +1,5 @@
 function[X,Lambda,debugOutput]=lanczos(K,M,opts)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if nargin<2
 
         error(message('MATLAB:lanczos:NeedKM'));
@@ -55,28 +28,8 @@ function[X,Lambda,debugOutput]=lanczos(K,M,opts)
 
     randStr=RandStream('mt19937ar','Seed',1);
 
-
-
-
-
-
-
-
-
-
-
-
-
     defaultSentinels=[-opts.shiftScale/10,Inf];
-
-
-
-
-
-
-
     intervalList=[-Inf,Inf,0,n,defaultSentinels];
-
 
     endpointRatio=[0,0];
     for ii=1:2
@@ -94,7 +47,6 @@ function[X,Lambda,debugOutput]=lanczos(K,M,opts)
         intervalList(ii+[0,2,4])=[shift,sturm,sentinel];
     end
 
-
     X=[];
     Lambda=[];
     RB=[];
@@ -106,8 +58,6 @@ function[X,Lambda,debugOutput]=lanczos(K,M,opts)
     if numShifts<1
         numShifts=opts.MaxShift;
     end
-
-
     [intervalCode,intervalList]=analyzeIntervals(intervalList,Lambda);
     if intervalCode~=0
         numShifts=0;
@@ -122,7 +72,6 @@ function[X,Lambda,debugOutput]=lanczos(K,M,opts)
         if any(isfinite([need,needL,needR]))
             expectAll=false;
         end
-
 
         shift=[];
         for shiftInd=1:numel(shiftList)
@@ -146,11 +95,6 @@ function[X,Lambda,debugOutput]=lanczos(K,M,opts)
 
 
         [intervalList,ii]=splitIntervals(intervalList,ii,shift,sturm);
-
-
-
-
-
 
         if~all(isfinite([need,needL,needR]))
 

@@ -1,9 +1,6 @@
 function WorstLB=coreLowerBound(A,B,C,D,Ts,wData,...
     blkData,userMuOpt,useMethod,appMuScale,Focus)
 
-
-
-
     if nargin<11
         Focus=[0,inf];
     end
@@ -65,7 +62,6 @@ function WorstLB=coreLowerBound(A,B,C,D,Ts,wData,...
             [lb,tmpDelta]=rctutil.special2by2MU(Gg);
         else
 
-
             [lb,tmpDelta]=fixRealMu(Gg,blk);
             gValue=LOCALgoptvl(userMuOpt,'g',1,1);
             thismuOpt=['fg',int2str(gValue)];
@@ -103,7 +99,6 @@ function WorstLB=coreLowerBound(A,B,C,D,Ts,wData,...
             N=[-alpha,sqrt(alpha);1j*sqrt(alpha),1/1j]/wbar;
         end
         Nnx=kron(N,eye(nx));
-
 
         Mnorm=lft(Nnx,[A,B;C,D],nx,nx);
         fblk=[-nx,0;blk];
@@ -150,12 +145,9 @@ function WorstLB=coreLowerBound(A,B,C,D,Ts,wData,...
         WorstLB=struct('w',wP,'LB',lb,'Delta',tmpDelta);
         if~strcmp(useMethod,'ptwise')
 
-
-
             WorstLB=rctutil.causeLowDamping(A,B,C,D,WorstLB,blkData);
         end
         if~isempty(blkData.FVidx.fixedBlkIdx)
-
             WorstLB=localCheckFixedStability(A,B,C,D,WorstLB,blkData);
         end
     end
@@ -183,7 +175,6 @@ function WorstLB=coreLowerBound(A,B,C,D,Ts,wData,...
         cblk=[blk;abs(realblk)];
         cFixedBlkIdx=[fixedBlkIdx(:);realFixedBlkIdx];
 
-
         Iny=eye(ny);
         Lmat=[Iny;sqrt(alphaC)*Iny(realr,:)];
         Inu=eye(nu);
@@ -191,9 +182,8 @@ function WorstLB=coreLowerBound(A,B,C,D,Ts,wData,...
         cGg=Lmat*Gg*Rmat;
 
 
+
         function val=LOCALgoptvl(opt,tag,defval,nfval)
-
-
 
             val=nfval;
             if any(opt==tag(1))
@@ -265,9 +255,6 @@ function WorstLB=coreLowerBound(A,B,C,D,Ts,wData,...
 
                     function LBcert=localCheckFixedStability(A,B,C,D,LBcert,blkData)
 
-
-
-
                         ny=size(D,1);
                         VaryRows=blkData.FVidx.VaryRows;
                         VaryCols=blkData.FVidx.VaryCols;
@@ -275,9 +262,6 @@ function WorstLB=coreLowerBound(A,B,C,D,Ts,wData,...
                         DeltaF(VaryCols,VaryRows)=0;
                         clp=eig(A+B*DeltaF*((eye(ny)-D*DeltaF)\C));
                         if any(real(clp)>=0)
-
-
-
 
                             tStable=0;tUnstable=1;clpUnstable=clp;
                             while tUnstable-tStable>1e-8

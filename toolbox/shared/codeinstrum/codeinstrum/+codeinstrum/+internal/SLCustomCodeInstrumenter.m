@@ -1,9 +1,5 @@
 classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumenter
 
-
-
-
-
     properties(Hidden,SetAccess=private,GetAccess=public)
         GlobalNames={}
         InstrumentedFiles={}
@@ -15,13 +11,13 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
         ReservedNames={}
     end
 
+
     properties(Access=private)
         SldvInfo=[]
     end
 
+
     methods
-
-
 
         function this=SLCustomCodeInstrumenter(varargin)
             this@codeinstrum.internal.LCInstrumenter(varargin{:});
@@ -32,8 +28,6 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
         function setSldvInfo(this,sldvInfo)
             this.SldvInfo=sldvInfo;
         end
-
-
 
 
         function configureBuildInfo(this,customCodeSettings,extraFileSettings,useMExForBuild)
@@ -52,7 +46,6 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
                 this.BuildOptions.Defines=[this.BuildOptions.Defines(:);defs(:)];
             end
             this.BuildOptions.Sources=customCodeSettings.userSources(:);
-
             customCode=customCodeSettings.getCustomCodeFromSettings();
             this.CustomCode=customCode;
 
@@ -63,7 +56,6 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
                 customCodeSourceFile;...
                 fullfile(this.WorkingDir,extraFileSettings.customCodeHeaderFile)...
                 };
-
 
                 if isfile(customCodeSourceFile)
                     this.BuildOptions.Sources{end+1}=customCodeSourceFile;
@@ -78,11 +70,7 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
         end
 
 
-
-
-
         function ok=instrument(this,moduleName,instrOpts,genCpp)
-
             assert(isempty(this.InstrumObj),'The instrumentation object must be empty');
 
             if nargin<4
@@ -97,11 +85,6 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
             if isempty(this.CustomCode)
 
             end
-
-
-
-
-
             languageMode=this.getLanguageMode();
             [compilerInfo,clearObj]=CGXE.CustomCode.adjustMexCompilers(genCpp,...
             ispc&&...
@@ -109,17 +92,12 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
             (languageMode==0&&genCpp)||...
             (languageMode==1&&~genCpp)));%#ok<ASGLU>
             compilerName=compilerInfo.compilerName;
-
-
             this.BuildOptions.ForceCxx=compilerInfo.forceCxx;
             this.BuildOptions.ForceLcc64=compilerInfo.isLcc;
-
-
 
             if languageMode~=0&&~isempty(compilerInfo.cppOverrides)
                 this.OverrideCompilerFlags{this.LANG_CPP}=compilerInfo.cppOverrides;
             end
-
 
             if ispc
                 this.LibName=fullfile(matlabroot,'extern','lib',computer('arch'));
@@ -145,9 +123,6 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
             if exist(dbFile,'file')
                 delete(dbFile);
             end
-
-
-
             this.InstrumObj=codeinstrum.internal.Instrumenter(dbFile,instrOpts);
             this.InstrumObj.moduleName=moduleName;
             this.InstrumObj.outDir=this.WorkingDir;
@@ -155,10 +130,6 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
             if this.hasSldvInfo()
                 sldv.code.internal.setCustomMacroEmitter(this.InstrumObj.InstrumImpl);
             end
-
-
-
-
             prefix=this.InstrumObj.InstrVarRadix;
             this.InstrumObj.InstrVarRadix=[prefix,'_',moduleName];
             this.InstrumObj.InstrFcnRadix=[upper(prefix),'_',moduleName];
@@ -166,27 +137,17 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
             if this.hasSldvInfo()
                 this.InstrumObj.InstrFcnSuffix=this.SldvInfo.getInstrumSuffix();
             end
-
-
             this.InstrumObj.booleanTypes{end+1}='boolean_T';
-
-
             this.InstrumObj.prepareModuleInstrumentation();
             this.InstrumObj.setSourceKind(internal.cxxfe.instrum.SourceKind.SLCustomCode);
-
             [instrumentedFiles,nbInstrumented]=this.instrumentAllFiles();
-
-
-
             if~isempty(this.ExtraCustomCodeFiles)
                 cellfun(...
                 @(x)this.InstrumObj.traceabilityData.setFileGroup(x,internal.cxxfe.instrum.FileGroup.SL_CUSTOM_CODE),...
                 this.ExtraCustomCodeFiles);
             end
-
             this.InstrumObj.finalizeModuleInstrumentation();
             if nbInstrumented==0
-
 
                 totalNumSources=0;
                 for ii=1:numel(this.BuildOptions)
@@ -197,8 +158,6 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
                 end
                 return
             end
-
-
             this.InstrumentedFiles=instrumentedFiles{1};
 
             if this.hasSldvInfo()
@@ -206,16 +165,11 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
                 this.InstrumentedFiles,this.WorkingDir);
             end
 
-
             this.ExtraFiles{1}=this.generateInstrumDbDataFile(moduleName,this.BuildOptions.ForceCxx);
 
             ok=true;
 
         end
-
-
-
-
 
 
         function fName=generateInstrumDbDataFile(this,moduleName,isCxx)
@@ -226,12 +180,10 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
                 isCxx=false;
             end
 
-
             fext='.c';
             if isCxx
                 fext='.cpp';
             end
-
 
             fName=fullfile(this.WorkingDir,['slcc_instrumtr_',moduleName,fext]);
             [fid,errMsg]=fopen(fName,'wt');
@@ -256,9 +208,7 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
             fprintf(fid,'    #define DLL_EXPORT_CC\n');
             fprintf(fid,'  #endif\n');
             fprintf(fid,'#endif\n');
-
             fprintf(fid,'%s\n',this.getInstrumDbDataFileContents(true));
-
             fprintf(fid,'%s\n',codeinstrum.internal.Instrumenter.EXTERN_C_BLOCK_START_STR);
 
             fprintf(fid,['\n',...
@@ -313,14 +263,8 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
             ],radix,instrDataInfo.vExtraFlag.name);
 
             fprintf(fid,'\n%s\n',codeinstrum.internal.Instrumenter.EXTERN_C_BLOCK_END_STR);
-
-
-
-
-
             moduleName=this.InstrumObj.moduleName;
             fprintf(fid,'\n#include "sl_sfcn_cov/sl_sfcn_cov_bridge.h"\n\n');
-
             fprintf(fid,'%s\n',codeinstrum.internal.Instrumenter.EXTERN_C_BLOCK_START_STR);
 
             fprintf(fid,['\n',...
@@ -331,9 +275,6 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
 
             fprintf(fid,'\n%s\n',codeinstrum.internal.Instrumenter.EXTERN_C_BLOCK_END_STR);
         end
-
-
-
 
 
         function syms=getExportedSymbols(this)
@@ -352,14 +293,9 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
         end
 
 
-
-
-
         function cmdLineStr=getMexCommandLineHandlerBodyStr(~,~)
             cmdLineStr='';
         end
-
-
 
 
         function str=getInstrumHelperDefines(~)
@@ -367,15 +303,12 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
         end
     end
 
+
     methods(Access='protected')
-
-
 
         function out=hasSldvInfo(this)
             out=~isempty(this.SldvInfo);
         end
-
-
 
 
         function ctx=extractCodeInformationInitialize(~,ctx)
@@ -383,18 +316,12 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
         end
 
 
-
-
-
         function ctx=extractCodeInformationAfterParsing(this,ctx)
-
 
             if iscell(ctx.gblSymbols)&&numel(ctx.gblSymbols)>=3&&~isempty(ctx.gblSymbols{3})
                 this.GlobalNames=unique([this.GlobalNames(:);ctx.gblSymbols{3}(:)]);
             end
         end
-
-
 
 
         function instrFileName=generateInstrumentedFileName(this,ctx)
@@ -410,9 +337,8 @@ classdef(Hidden=true)SLCustomCodeInstrumenter<codeinstrum.internal.LCInstrumente
         end
     end
 
+
     methods(Static)
-
-
 
         function this=instance(dbFilePath,varargin)
             this=codeinstrum.internal.SLCustomCodeInstrumenter(varargin{:});

@@ -1,14 +1,12 @@
 classdef(Hidden=true)MexOptionsParser<codeinstrum.internal.LCBuildOptions
 
 
-
-
-
     properties(Constant,Hidden)
         OBJ_FILE_EXTS={'.obj','.o','.glnxa64_o','.maci64_o','.win64_obj','.win32_obj','.res'};
         LIB_FILE_EXTS={'.lib','.so','.dylib','.a','.win32_lib','.win64_lib','.glnxa64_a','.maci64_a'};
         SRC_FILE_EXTS={'.c','.cc','.c++','.cpp','.cp','.cxx'};
     end
+
 
     properties
 Argv
@@ -21,9 +19,8 @@ SupportSldv
 MexVars
     end
 
+
     methods
-
-
 
         function this=MexOptionsParser(argv)
             if nargin<1

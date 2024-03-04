@@ -1,4 +1,3 @@
-
 classdef TestCaseVerificationStatusEnum<uint64
     enumeration
         UNVERIFIED(0)

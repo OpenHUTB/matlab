@@ -1,20 +1,5 @@
 function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     MaxOrd=opt.FitOrder;
     FULLDISP=strcmp(opt.Display,'full');
     FULLDG=opt.FullDG;
@@ -28,7 +13,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
     [Mr,Mc,Nw]=size(Mw);
     FitOrder=[0,0];
     widx=DGInfo.FitRange;
-
 
     Drw=DGInfo.Dr;
     Dcw=DGInfo.Dc;
@@ -44,7 +28,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
     uppermu=DGInfo.ub;
     muPeak=max(uppermu);
     mu2=muPeak^2;
-
 
     drw=zeros(Mr,1,Nw);
     dcw=zeros(Mc,1,Nw);
@@ -64,11 +47,8 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
         end
     end
 
-
-
     muWeight=sqrt(uppermu/muPeak);
     MaxGain=(1.001*muPeak^0.1)*uppermu.^0.9;
-
 
     A=[];B=[];C=[];D=zeros(Mr+Mc);
     Adr=[];Bdr=[];Cdr=[];Ddr=[];
@@ -85,10 +65,7 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
             fprintf('Fitting scalings for block %d\n',i)
         end
 
-
-
         if i==nblk
-
             [Adr,Bdr,Cdr,Ddr]=ltipack.ssops('append',Adr,Bdr,Cdr,Ddr,[],...
             [],zeros(0,dimR),zeros(dimR,0),IR,[]);
             [Adc,Bdc,Cdc,Ddc]=ltipack.ssops('append',Adc,Bdc,Cdc,Ddc,[],...
@@ -97,16 +74,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
                 fprintf('   D: order=0, score=0\n')
             end
         elseif RepeatedScalar
-
-
-
-
-
-
-
-
-
-
 
             di=drw(ridx,1,:);
             Di=Drw(ridx,ridx,:);
@@ -156,13 +123,9 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
             end
         end
 
-
-
-
         if(RepeatedScalar&&FULLDG(1))||GScaling
             m=dimR+dimC;
             AQ=[];BQ=zeros(0,m);CQ=zeros(m,0);DQ=blkdiag(IR,-mu2*IC);
-
 
             if RepeatedScalar&&FULLDG(1)
                 wt=muWeight;
@@ -181,7 +144,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
                     end
                 end
             end
-
 
             if GScaling
                 wt=gainSCL;
@@ -211,8 +173,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
                             [fit,score]=localFitG(1i*Gw(cidx(k),ridx(j),:),MaxOrd(2),wt,false,...
                             Ts,w,Mw,drw,dcw,Drw,Dcw,Gw,ridx([j,k]),cidx([k,j]),widx,MaxGain);
                             [a,b,c,d]=localAntiDiag(fit,-fit');
-
-
                             [AQ,BQ,CQ,DQ]=localInsert(AQ,BQ,CQ,DQ,a,b,c,d,dimR+[k,j],[k,j]);
 
                             [AQ,BQ,CQ,DQ]=localInsert(AQ,BQ,CQ,DQ,a,b,-c,-d,[k,j],dimR+[k,j]);
@@ -224,8 +184,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
                     end
                 end
             end
-
-
             [AF,BF,CF,DF]=localSpecFact(AQ,BQ,CQ,DQ,Ts,GScaling);
             [A,B,C,D]=localInsert(A,B,C,D,AF,BF,CF,DF,[ridx,Mr+cidx],[ridx,Mr+cidx]);
         else
@@ -235,26 +193,10 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
         end
     end
 
-
     dr=ss(Adr,Bdr,Cdr,Ddr,Ts);
     dc=ss(Adc,Bdc,Cdc,Ddc,Ts);
     PSI=ss(A,B,C,D,Ts);
     FitOrder(1)=FitOrder(1)+size(Adr,1)+size(Adc,1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     if FULLDISP
 
@@ -271,18 +213,15 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
     function[bestFit,bestScore,ph]=localFitD(data,MaxOrd,wt,diagFlag,...
         Ts,w,Mw,drw,dcw,Drw,Dcw,Gw,ridx,cidx,widx,MaxGain)
 
-
         Nw=numel(w);
         if isempty(Gw)
             Gw=zeros(0,0,Nw);
         end
 
-
         imin=widx(1);imax=widx(2);
         wfit=w(imin:imax);
         data=data(imin:imax);
         wt=wt(imin:imax);
-
 
         if diagFlag
 
@@ -292,7 +231,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
             ord=ceil(MaxOrd/3);
         end
 
-
         gain=zeros(Nw,1);
         bestScore=inf;
         bestFit=[];
@@ -300,11 +238,9 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
 
             fit=fitRationalD(data,wfit,Ts,ord,wt,diagFlag);
 
-
             if~isproper(fit)
                 scoreFromFit=1e3;
             elseif diagFlag
-
 
                 fitw=abs(freqresp(fit,w));
                 for ct=1:Nw
@@ -316,7 +252,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
 
                 scoreFromFit=max(gain./MaxGain);
             else
-
 
                 fitw=freqresp(fit,[0;w;pi/Ts]);
                 Dr=Drw(:,:,1);
@@ -340,9 +275,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
                     scoreFromFit=max(gain./MaxGain);
                 end
             end
-
-
-
             STOP=isfinite(bestScore)&&xor(scoreFromFit>1,bestScore>1);
             if scoreFromFit<max(1,0.999*bestScore)
                 bestScore=scoreFromFit;
@@ -364,17 +296,8 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
         end
 
 
-
-
-
-
-
-
         function[bestFit,bestScore]=localFitG(data,MaxOrd,wt,diagFlag,...
             Ts,w,Mw,drw,dcw,Drw,Dcw,Gw,ridx,cidx,widx,MaxGain)
-
-
-
 
             imin=widx(1);imax=widx(2);
             wfit=w(imin:imax);
@@ -398,7 +321,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
                     jgfit=zpk(0,'Ts',Ts);
                 end
 
-
                 gfitw=freqresp(jgfit,w)/1i;
                 for ct=1:Nw
                     MS=drw(:,:,ct).*Mw(:,:,ct)./dcw(:,:,ct).';
@@ -413,13 +335,6 @@ function[PSI,dr,dc,FitOrder,PLOTS]=fitDG(clpg,blk,DGInfo,opt,PLOTS)
                 end
 
                 scoreFromFit=min(max(gain./MaxGain),1e3);
-
-
-
-
-
-
-
                 STOP=isfinite(bestScore)&&xor(scoreFromFit>1,bestScore>1);
                 if scoreFromFit<max(1,0.999*bestScore)
                     bestScore=scoreFromFit;

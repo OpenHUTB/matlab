@@ -1,6 +1,3 @@
-
-
-
 classdef UiConfiguration
     methods(Static)
 

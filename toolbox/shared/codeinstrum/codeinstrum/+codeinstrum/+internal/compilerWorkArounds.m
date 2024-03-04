@@ -1,11 +1,6 @@
-
-
-
-
 function extraOpts=compilerWorkArounds(outDir,options,isCxx)
     extraOpts={};
     ver=iCompilerVersion(options);
-
 
     needMacroWorkarounds=ismac||(ispc&&ver.visual>=1700)||ver.mingw>0||ver.gnu>0;
 
@@ -16,16 +11,6 @@ function extraOpts=compilerWorkArounds(outDir,options,isCxx)
             return
         end
         clrObj=onCleanup(@()fclose(fid));
-
-
-
-
-
-
-
-
-
-
 
         fprintf(fid,'isnan    def_otf:isnan(x)=__builtin_mw_isnan(x)       system\n');
         fprintf(fid,'isinf    def_otf:isinf(x)=__builtin_mw_isinf(x)       system\n');
@@ -38,27 +23,6 @@ function extraOpts=compilerWorkArounds(outDir,options,isCxx)
         fprintf(fid,'expm1    def_otf:expm1(x)=__builtin_mw_expm1(x)       system\n');
 
         if~isCxx
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             fprintf(fid,'acosl      def_otf:acosl(x)=__builtin_mw_acosl(x)              system\n');
             fprintf(fid,'asinl      def_otf:asinl(x)=__builtin_mw_asinl(x)              system\n');
@@ -104,9 +68,6 @@ function extraOpts=compilerWorkArounds(outDir,options,isCxx)
             fprintf(fid,'tanf       def_otf:tanf(x)=__builtin_mw_tanf(x)                system\n');
             fprintf(fid,'tanhf      def_otf:tanhf(x)=__builtin_mw_tanhf(x)              system\n');
 
-
-
-
             fprintf(fid,'acoshl     def_otf:acoshl(x)=__builtin_mw_acoshl(x)            system\n');
             fprintf(fid,'asinhl     def_otf:asinhl(x)=__builtin_mw_asinhl(x)            system\n');
             fprintf(fid,'atanhl     def_otf:atanhl(x)=__builtin_mw_atanhl(x)            system\n');
@@ -131,51 +92,19 @@ function extraOpts=compilerWorkArounds(outDir,options,isCxx)
             fprintf(fid,'isfinitef  def_otf:isfinitef(x)=__builtin_mw_isfinitef(x)      system\n');
 
 
-
             fprintf(fid,'fabs       def_otf:fabs(x)=__builtin_mw_fabs(x)                system\n');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         end
-
 
         extraOpts{end+1}='--sldv_code_analysis';
         extraOpts{end+1}='--set_flag=preload_builtin_functions';
         extraOpts{end+1}='--sldv_code_macro=__MW_INTERNAL_SLDV_PS_ANALYSIS__';
         extraOpts{end+1}=['--ignore_macro_definition_file=',txtFile];
-
-
-
         funcBehavFile=fullfile(matlabroot,'polyspace','verifier','cxx',...
         'polyspace_stubs','sldv_math_properties.xml');
         extraOpts{end+1}=['--lib_properties_specifications=',funcBehavFile];
 
         if ver.intel>=1700
-
-
-
-
-
 
             extraOpts{end+1}='--define_macro=__PURE_INTEL_C99_HEADERS__';
         end
@@ -203,7 +132,6 @@ function ret=iCompilerVersion(options)
                     verValue=str2double(edgOpts{idx+1});
                 end
             else
-
                 ver=regexp(edgOpts,sprintf('(?<=%s=).*',verOpt),'match');
                 idx=cellfun(@(x)~isempty(x),ver);
                 if any(idx)
@@ -213,8 +141,6 @@ function ret=iCompilerVersion(options)
                     end
                 end
             end
-
-
 
             if~isempty(verValue)
                 switch ii
@@ -234,8 +160,6 @@ function ret=iCompilerVersion(options)
         end
 
         if ret.visual>0
-
-
             edgDefs=options.Preprocessor.Defines;
             ver=regexp(edgDefs,'__INTEL_COMPILER=(.*)','tokens');
             idx=cellfun(@(x)~isempty(x),ver);

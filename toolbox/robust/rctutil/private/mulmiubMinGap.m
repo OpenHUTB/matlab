@@ -1,27 +1,5 @@
 function[Dr,Dc,Gcr]=mulmiubMinGap(M,index,ub,Dr,Gcr,Dr0,Dc0,Gcr0)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     ubr=1.001*ub;
     H0=M'*Dr0*M-ubr^2*Dc0+2i*Gcr0*M;
     if max(eig(H0+H0'))<0
@@ -29,13 +7,11 @@ function[Dr,Dc,Gcr]=mulmiubMinGap(M,index,ub,Dr,Gcr,Dr0,Dc0,Gcr0)
         return
     end
 
-
     [Mr,Mc]=size(M);
     nreal=index.allreal.num;
     DGLMI=index.allDGlmi;
     irx=DGLMI.irx;
     icx=DGLMI.icx;
-
 
     Dx=Dr(irx,irx);
     if isempty(DGLMI.Gx)
@@ -54,14 +30,11 @@ function[Dr,Dc,Gcr]=mulmiubMinGap(M,index,ub,Dr,Gcr,Dr0,Dc0,Gcr0)
         tGinit=[];
     end
 
-
     setlmis(DGLMI.lmisysInit);
-
 
     lmiterm([-1,1,1,DGLMI.Dx],1,1);
     lmiterm([1,1,1,0],DGLMI.dtol);
     nLMI=1;
-
 
     Mreal=real(M);
     Mimag=imag(M);
@@ -74,14 +47,12 @@ function[Dr,Dc,Gcr]=mulmiubMinGap(M,index,ub,Dr,Gcr,Dr0,Dc0,Gcr0)
     end
     lmiterm([-nLMI,1,1,DGLMI.DcV],ub,ub);
 
-
     if nreal>0
         nLMI=nLMI+1;
         lmiterm([-nLMI,1,1,DGLMI.Dx],1,1);
         lmiterm([-nLMI,2,2,DGLMI.Dx],1,1);
         lmiterm([-nLMI,1,2,DGLMI.Gx],1,1/(DGLMI.alpha*ub));
     end
-
 
     if~isempty(DGLMI.Dxfd)
 
@@ -90,7 +61,6 @@ function[Dr,Dc,Gcr]=mulmiubMinGap(M,index,ub,Dr,Gcr,Dr0,Dc0,Gcr0)
         lmiterm([-nLMI,1,2,DGLMI.Dxfo],1,1);
         lmiterm([-nLMI,2,2,DGLMI.Dxfd],1,0.5);
     end
-
 
     [tD,ndec]=lmivar(1,[1,0]);
     if DGLMI.cplxDG
@@ -102,7 +72,6 @@ function[Dr,Dc,Gcr]=mulmiubMinGap(M,index,ub,Dr,Gcr,Dr0,Dc0,Gcr0)
     lmiterm([-nLMI,2,2,tD],d0,1);
     lmiterm([-nLMI,1,2,DGLMI.Dx],1,1);
     lmiterm([-nLMI,1,2,0],-D0);
-
 
     if nreal>0
         [tG,ndec]=lmivar(1,[1,0]);
@@ -116,8 +85,6 @@ function[Dr,Dc,Gcr]=mulmiubMinGap(M,index,ub,Dr,Gcr,Dr0,Dc0,Gcr0)
         lmiterm([-nLMI,1,2,DGLMI.Gx],1,1);
     end
 
-
-
     lmisys=getlmis;
     c=zeros(ndec,1);
     c(ndec)=1;
@@ -125,25 +92,7 @@ function[Dr,Dc,Gcr]=mulmiubMinGap(M,index,ub,Dr,Gcr,Dr0,Dc0,Gcr0)
         c(ndec-1)=1;
     end
 
-
-
-
-
-
-
-
-
-
-
-
-
     [topt,xopt]=mincx(lmisys,c,DGLMI.LMIopt,[xinit;tDinit;tGinit]);
-
-
-
-
-
-
 
     if isempty(xopt)
 
@@ -166,9 +115,6 @@ function[Dr,Dc,Gcr]=mulmiubMinGap(M,index,ub,Dr,Gcr,Dr0,Dc0,Gcr0)
 
     function[Dr,Dc,Gcr]=localMakeReal(Dr,Dc,Gcr,M,ub)
 
-
-
-
         Dr1=real(Dr);Dr2=imag(Dr);
         Dc1=real(Dc);Dc2=imag(Dc);
         G1=real(Gcr);G2=imag(Gcr);
@@ -178,10 +124,6 @@ function[Dr,Dc,Gcr]=mulmiubMinGap(M,index,ub,Dr,Gcr,Dr0,Dc0,Gcr0)
         e=e(e<=0&e>-1.001);
         if isempty(e)
             alpha=0;
-
-
-
-
         else
             alpha=min(1,-max(e));
         end
