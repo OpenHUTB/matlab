@@ -254,7 +254,7 @@ classdef World < handle
         function updateNewActorsInWorld(self)
             for n = 1:length( self.NewActorBuffer )
                 newactor = self.Actors.( self.NewActorBuffer{ n } );
-                newactor.setup();
+                newactor.setup();  % 发送
                 newactor.reset();
             end
             self.emptyActorBuffer();
@@ -265,12 +265,12 @@ classdef World < handle
             if ~isempty( self.OutputImpl )
                 self.OutputImpl( self );
             end
-            self.updateNewActorsInWorld();
+            self.updateNewActorsInWorld();  % 发送每辆车的配置、光线追踪、纹理
             self.Root.output();
             self.updateNewActorsInWorld();
-            self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.RUN ) );
-            self.CommandWriter.write();
-            self.CommandReader.read();
+            self.CommandWriter.setState( int32( sim3d.engine.EngineCommands.RUN ) );  % 第一次执行完这句就出现，后面只执行run都不会出现，但是后面快速执行write()虚幻引擎出现车
+            self.CommandWriter.write();  % 
+            self.CommandReader.read();  
             self.Root.update();
         
             if ~isempty(self.UpdateImpl)
