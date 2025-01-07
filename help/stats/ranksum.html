@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>ranksum</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "index.html",
+          "name": "Statistics and Machine Learning Toolbox"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "hypothesis-tests-1.html",
+          "name": "Hypothesis Tests"
+}
+
+          }]
+      }</script>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "hypothesis-tests-1"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:ranksum"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function"/>
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function returns the p-value of a two-sided Wilcoxon rank sum test."/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-latest.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css"/>
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/product_group.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../docset.xml";
+            product_help_location = "stats";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/bootstrap.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+<style type="text/css">math { visibility: hidden; }</style>
+<link type="text/css" rel="stylesheet" href="../includes/shared/equationrenderer/release/index-css.css"/>
+<script type="text/javascript" src="../includes/shared/equationrenderer/release/bundle.index.js"></script>
+<style type="text/css">math { visibility: hidden; }</style>
+<link type="text/css" rel="stylesheet" href="../includes/shared/equationrenderer/release/index-css.css"/>
+<script type="text/javascript" src="../includes/shared/equationrenderer/release/bundle.index.js"></script>
+</head>
+<body id="responsive_offcanvas" class="locked">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header" style=""></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../documentation-center.html">Help Center</a></h1>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2022b" data-language="en" action="../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="sr-only">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"/> <div class="input-group-btn"><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1" disabled=""></button></div>
+</div></form>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+<div class="visible-xs" id="search_actuator"><button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div>
+</div>
+</div>
+</div>
+<div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar" style="height: 865px; position: fixed; top: 52px;">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="sr-only">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url" aria-hidden="true" tabindex="-1"><span itemprop="title">Documentation Home</span></a></li>
+</ul><ul class="nav_breadcrumb" id="ul_left_nav_productgroups"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../overview/ai-data-science-and-statistics.html" itemprop="url" aria-hidden="true" tabindex="-1"><span itemprop="title">AI, Data Science, and Statistics</span></a></li>
+</ul>
+<ul class="nav_disambiguation"><li><a href="index.html?s_tid=CRUX_lftnav" aria-hidden="true" tabindex="-1">Statistics and Machine Learning Toolbox</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="hypothesis-tests-1.html?s_tid=CRUX_lftnav" itemprop="url" aria-hidden="true" tabindex="-1"><span itemprop="title">Hypothesis Tests</span></a></li>
+</ul><ul class="nav_scrollspy nav">
+<li class="nav_scrollspy_function notranslate"><a href="#responsive_offcanvas" aria-hidden="true" tabindex="-1"><span class="refname">ranksum</span></a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class=""><a href="#d124e817209" class="intrnllnk" aria-hidden="true" tabindex="-1">Syntax</a></li>
+<li class=""><a href="#description" class="intrnllnk" aria-hidden="true" tabindex="-1">Description</a></li>
+<li class=""><a href="#bti4qfq-4" class="intrnllnk" aria-hidden="true" tabindex="-1">Examples</a><ul class="nav"><li class=""><a href="#bti4rqg-2" class="intrnllnk" aria-hidden="true" tabindex="-1">Test for Equal Median of Two Populations</a></li>
+</ul><ul class="nav"><li class=""><a href="#btjhgt5-2" class="intrnllnk" aria-hidden="true" tabindex="-1">Statistics of the Test for Two Population Medians</a></li>
+</ul><ul class="nav"><li class=""><a href="#btji4r9-1" class="intrnllnk" aria-hidden="true" tabindex="-1">Increase in the Median</a></li>
+</ul></li>
+<li class="active"><a href="#bti4qfq-2" class="intrnllnk" aria-hidden="true" tabindex="-1">Input Arguments</a><ul class="nav"><li class=""><a href="#bti4qfq-x" class="intrnllnk" aria-hidden="true" tabindex="-1">x</a></li>
+<li class="active"><a href="#bti4qfq-y" class="intrnllnk" aria-hidden="true" tabindex="-1">y</a></li>
+</ul><ul class="nav"><li class=""><a href="#namevaluepairs" class="intrnllnk" aria-hidden="true" tabindex="-1">Name-Value Arguments</a><ul class="nav"><li class=""><a href="#bti4qfq-alpha" class="intrnllnk" aria-hidden="true" tabindex="-1">alpha</a></li>
+<li class=""><a href="#bti4qfq-method" class="intrnllnk" aria-hidden="true" tabindex="-1">method</a></li>
+<li class=""><a href="#bti4qfq-tail" class="intrnllnk" aria-hidden="true" tabindex="-1">tail</a></li>
+</ul></li>
+</ul></li>
+<li class=""><a href="#bti4qfq-3" class="intrnllnk" aria-hidden="true" tabindex="-1">Output Arguments</a><ul class="nav"><li class=""><a href="#bti4qfq-p" class="intrnllnk" aria-hidden="true" tabindex="-1">p</a></li>
+<li class=""><a href="#bti4qfq-h" class="intrnllnk" aria-hidden="true" tabindex="-1">h</a></li>
+<li class=""><a href="#bti4qfq-stats" class="intrnllnk" aria-hidden="true" tabindex="-1">stats</a></li>
+</ul></li>
+<li class=""><a href="#bti40k_-5" class="intrnllnk" aria-hidden="true" tabindex="-1">More About</a><ul class="nav"><li class=""><a href="#bti4z5t" class="intrnllnk" aria-hidden="true" tabindex="-1">Wilcoxon Rank Sum Test</a></li>
+</ul><ul class="nav"><li class=""><a href="#bti6mjw-1" class="intrnllnk" aria-hidden="true" tabindex="-1">z-Statistic</a></li>
+</ul></li>
+<li><a href="#bti40k_-6" class="intrnllnk" aria-hidden="true" tabindex="-1">Algorithms</a></li>
+<li><a href="#References" class="intrnllnk" aria-hidden="true" tabindex="-1">References</a></li>
+<li><a href="#bti4qfq_vh" class="intrnllnk" aria-hidden="true" tabindex="-1">Version History</a></li>
+<li class=""><a href="#bti4qfq_seealso" class="intrnllnk" aria-hidden="true" tabindex="-1">See Also</a></li>
+</ul>
+</nav>
+</div></nav>
+<script src="../includes/product/scripts/offcanvas_v2.js"></script>
+</div>
+<!--END.CLASS sidebar-offcanvas--><div class="offcanvas_content_container" style="padding-right: 0px;">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container affix" style="width: auto;"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 hidden-xs"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_example" class="crux_resource"><a href="examples.html?category=hypothesis-tests-1&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=hypothesis-tests-1&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_block" class="crux_resource"><a href="referencelist.html?type=block&amp;category=hypothesis-tests-1&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=hypothesis-tests-1&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div></nav>
+</div>
+<div class="visible-xs"><div class="container-fluid"><div class="row"><div class="col-xs-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<span class="icon-arrow-down icon_16"></span></button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active"><a>Documentation</a></li>
+<li id="crux_nav_mobile_example" class="crux_resource"><a href="examples.html?category=hypothesis-tests-1&amp;s_tid=CRUX_topnav">Examples</a></li>
+<li id="crux_nav_mobile_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=hypothesis-tests-1&amp;s_tid=CRUX_topnav">Functions</a></li>
+<li id="crux_nav_mobile_block" class="crux_resource"><a href="referencelist.html?type=block&amp;category=hypothesis-tests-1&amp;s_tid=CRUX_topnav">Blocks</a></li>
+<li id="crux_nav_mobile_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=hypothesis-tests-1&amp;s_tid=CRUX_topnav">Apps</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-3"><div class="translate_placeholder"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content_container" id="content_container" itemprop="content" style="width: auto;">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div>
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="bti4qfq" class="anchor_target"></span><h1 class="r2022b notranslate" itemprop="title"><span class="refname">ranksum</span></h1>
+<div class="doc_topic_desc"><div class="purpose_container mwExpandToggle0"><span style="color: rgb(0, 0, 0); font-size: medium;"></span><p itemprop="purpose"><span style="font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica;">威尔科克森秩和检验</span></p>
+<div class="switch mwToggle0"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="d124e817209">语法</h2>
+<div class="syntax_signature"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d124e817216" class="intrnllnk">p = ranksum(x,y)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e817254" class="intrnllnk">[p,h] =
+ranksum(x,y)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e817281" class="intrnllnk">[p,h,stats]
+= ranksum(x,y)</a></code></div>
+<div class="code_responsive"><code class="synopsis"><a href="#d124e817304" class="intrnllnk">[<span class="argument_placeholder">___</span>] = ranksum(x,y,Name,Value)</a></code></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<span id="bti4qfq-1" class="anchor_target"></span><h2 id="description">说明</h2>
+<div class="descriptions"><div xmlns:mf="http://mathworks.com/namespace/tmwbook/function" class="description_module"><div class="description_element"><p class="syntax_example"><a href="ranksum.html#bti4rqg-2" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e817216" itemprop="syntax"><code class="synopsis"><a href="#bti4qfq-p" class="intrnllnk"><code class="argument">p</code></a> = ranksum(<a href="#bti4qfq-x" class="intrnllnk"><code class="argument">x</code></a>,<a href="#bti4qfq-y" class="intrnllnk"><code class="argument">y</code></a>)</code></span> 返回双侧 <a href="ranksum.html#bti4z5t" class="intrnllnk">威尔科克森秩和检验</a> 的 <em class="varname">p</em>-值。 <code class="literal" style="background-color: rgb(255, 255, 255); color: rgb(64, 64, 64); font-size: 13px;">ranksum</code> 检验 <code class="literal" style="background-color: rgb(255, 255, 255); color: rgb(64, 64, 64); font-size: 13px;">x</code> 和 <code class="literal" style="background-color: rgb(255, 255, 255); color: rgb(64, 64, 64); font-size: 13px;">y</code> 中的数据是来中位数相等的连续分布的样本这一原假设，其备择假设为这些数据来自中位数不相等的连续分布的样本。检验假设两个样本是独立的。x 和 y 可以有不同长度。</p>
+<p>此检验等效于曼-惠特尼 U 检验。<br/></p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="ranksum.html#bti4rqg-2" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e817254" itemprop="syntax"><code class="synopsis">[<a href="#bti4qfq-p" class="intrnllnk"><code class="argument">p</code></a>,<a href="#bti4qfq-h" class="intrnllnk"><code class="argument">h</code></a>] =
+ranksum(<a href="#bti4qfq-x" class="intrnllnk"><code class="argument">x</code></a>,<a href="#bti4qfq-y" class="intrnllnk"><code class="argument">y</code></a>)</code></span> 也返回一个逻辑值，表示检验决策。结果 h = 1 表示拒绝原假设，h = 0 表示未能在 5% 显著性水平上拒绝原假设。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="ranksum.html#btjhgt5-2" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e817281" itemprop="syntax"><code class="synopsis">[<a href="#bti4qfq-p" class="intrnllnk"><code class="argument">p</code></a>,<a href="#bti4qfq-h" class="intrnllnk"><code class="argument">h</code></a>,<a href="#bti4qfq-stats" class="intrnllnk"><code class="argument">stats</code></a>]
+= ranksum(<a href="#bti4qfq-x" class="intrnllnk"><code class="argument">x</code></a>,<a href="#bti4qfq-y" class="intrnllnk"><code class="argument">y</code></a>)</code></span> 也返回结构体 stats 以及关于检验统计量的信息。</p>
+</div>
+</div>
+<div class="description_element"><p class="syntax_example"><a href="ranksum.html#btji4r9-1" class="intrnllnk">example</a></p>
+<div class="code_responsive"><p><span id="d124e817304" itemprop="syntax"><code class="synopsis">[<span class="argument_placeholder">___</span>] = ranksum(<a href="#bti4qfq-x" class="intrnllnk"><code class="argument">x</code></a>,<a href="#bti4qfq-y" class="intrnllnk"><code class="argument">y</code></a>,<a href="#namevaluepairarguments" class="intrnllnk"><code class="argument">Name,Value</code></a>)</code></span> 返回上述语法中的任何输出参量，用于秩和检验，附加选项由一个或多个 Name,Value 对组参量指定。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="examples"><h2 id="bti4qfq-4">示例</h2>
+<div class="expandableContent mwExpandToggle1" id="expandableExamples"><p class="switch mwToggle1"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_bti4rqg-2"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bti4rqg-2" data-target="#expand_panel_body_bti4rqg-2" aria-controls="expand_panel_body_bti4rqg-2" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="bti4rqg-2">两个群体的中位数相等的检验<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bti4rqg-2" aria-labelledby="expand_panel_heading_bti4rqg-2" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('stats/TestforEqualMedianofTwoPopulationsExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Test for Equal Median of Two Populations",
+          "description": "Test the hypothesis of equal medians for two independent unequal-sized samples.",
+          "thumbnailURL": "../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "ranksum.html"
+
+        },
+          "identifier": "stats.TestforEqualMedianofTwoPopulationsExample",
+          "name": "TestforEqualMedianofTwoPopulationsExample",
+          "url": "ranksum.html#bti4rqg-2"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('stats/TestforEqualMedianofTwoPopulationsExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "TestforEqualMedianofTwoPopulationsExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">检验两个独立的大小不等的样本的中位数相等的假设。 </p>
+<p>生成样本数据。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng(<span style="color:#A020F0">'default'</span>) <span style="color:#228B22">% 为了复现</span>
+x = unifrnd(0,1,10,1);
+y = unifrnd(0.25,1.25,15,1);</pre>
+</div>
+</div>
+</div>
+<p>这些样本来自除了位置偏移 0.25 之外具有相同分布的总体。 </p>
+<p>检验 x 和 y 的中位数是否相等。<br/></p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = ranksum(x,y)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p = 0.0375
+</pre>
+</div>
+</div>
+</div>
+<p><span class="inlineequation"><span><span class="MathEquation" role="math" style="font-size: 15px;"><span class="MathRoot HBox" role="img" aria-label="p" style="display: inline-block;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text" style="margin-left: 0.1em;">p</span></span></span></span></span></span>-<span style="background-color: transparent;">值 0.0375 表示 ranksum 在默认 5% 显著性水平上拒绝相等中位数的原假设。</span></p>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="stats-TestforEqualMedianofTwoPopulationsExample"/>
+<meta itemprop="exampletitle" content="Test for Equal Median of Two Populations"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_btjhgt5-2"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_btjhgt5-2" data-target="#expand_panel_body_btjhgt5-2" aria-controls="expand_panel_body_btjhgt5-2" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="btjhgt5-2">两个总体中位数检验的统计量<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_btjhgt5-2" aria-labelledby="expand_panel_heading_btjhgt5-2" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('stats/StatisticsoftheTestforTwoPopulationMediansExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Statistics of the Test for Two Population Medians",
+          "description": "Obtain the statistics of the test for the equality of two population medians.",
+          "thumbnailURL": "../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "ranksum.html"
+
+        },
+          "identifier": "stats.StatisticsoftheTestforTwoPopulationMediansExample",
+          "name": "StatisticsoftheTestforTwoPopulationMediansExample",
+          "url": "ranksum.html#btjhgt5-2"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('stats/StatisticsoftheTestforTwoPopulationMediansExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "StatisticsoftheTestforTwoPopulationMediansExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">获得两个总体中位数相等的检验的统计量。 </p>
+<p>加载样本数据。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">mileage</span></pre>
+</div>
+</div>
+</div>
+<p>检验第一种和第二种类型汽车的每加仑行驶里程是否相同。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[p,h,stats] = ranksum(mileage(:,1),mileage(:,2))</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p = 0.0043
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>h = <span class="emphasis"><em>logical</em></span>
+   1
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>stats = <span class="emphasis"><em>struct with fields:</em></span>
+    ranksum: 21.5000
+
+</pre>
+</div>
+</div>
+</div>
+<p><span class="inlineequation"><span><span class="MathEquation" role="math" style="font-size: 15px;"><span class="MathRoot HBox" role="img" aria-label="p" style="display: inline-block;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text" style="margin-left: 0.1em;">p</span></span></span></span></span></span>-值 0.043 和 h = 1 都表明在默认 5% 显著性水平上拒绝相等中位数的原假设。由于样本大小很小（每个样本数为六），因此 <code class="literal">ranksum</code> 使用精确方法计算 <span class="inlineequation"><span><span class="MathEquation" role="math" style="font-size: 15px;"><span class="MathRoot HBox" role="img" aria-label="p" style="display: inline-block;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text" style="margin-left: 0.1em;">p</span></span></span></span></span></span>-值。结构体 <code class="literal">stats</code> 只包括秩和检验统计量的值。 </p>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="stats-StatisticsoftheTestforTwoPopulationMediansExample"/>
+<meta itemprop="exampletitle" content="Statistics of the Test for Two Population Medians"/>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true" id="expand_panel_heading_btji4r9-1"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_btji4r9-1" data-target="#expand_panel_body_btji4r9-1" aria-controls="expand_panel_body_btji4r9-1" class="panel-heading add_cursor_pointer" aria-expanded="true"><h3 class="panel-title" id="btji4r9-1">中位数增大<br/> </h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_btji4r9-1" aria-labelledby="expand_panel_heading_btji4r9-1" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body"><div class="examples_short_list hidden_ios_android"><div data-pane="metadata" class="panel metadata_container panel-default"><div class="panel-body metadata_content"><a class="btn btn_secondary btn-block" href="matlab:openExample('stats/IncreaseintheMedianExample')" data-ex-genre="Live Script">Open Live Script</a></div>
+</div>
+</div>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Increase in the Median",
+          "description": "Test the hypothesis of an increase in the population median.",
+          "thumbnailURL": "../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "ranksum.html"
+
+        },
+          "identifier": "stats.IncreaseintheMedianExample",
+          "name": "IncreaseintheMedianExample",
+          "url": "ranksum.html#btji4r9-1"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('stats/IncreaseintheMedianExample')"
+
+        }</script>
+<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "IncreaseintheMedianExample.mlx",
+        "weather.mat"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script>
+<p class="shortdesc">检验总体中位数增大的假设。 </p>
+<p>加载样本数据。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load(<span style="color:#A020F0">'weather.mat'</span>);</pre>
+</div>
+</div>
+</div>
+<p>气象数据显示连续两年中同一个月内的每日最高气温。 </p>
+<p>执行左侧检验，以评估在 1% 显著性水平上中位数增大。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[p,h,stats] = ranksum(year1,year2,<span style="color:#A020F0">'alpha'</span>,0.01,<span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'tail'</span>,<span style="color:#A020F0">'left'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p = 0.1271
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>h = <span class="emphasis"><em>logical</em></span>
+   0
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>stats = <span class="emphasis"><em>struct with fields:</em></span>
+       zval: -1.1403
+    ranksum: 837.5000
+
+</pre>
+</div>
+</div>
+</div>
+<p>基于 <span class="inlineequation"><span><span class="MathEquation" role="math" style="font-size: 15px;"><span class="MathRoot HBox" role="img" aria-label="p" style="display: inline-block;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text" style="margin-left: 0.1em;">p</span></span></span></span></span></span>-值 0.1271 和逻辑值 h = 0，没有足够的证据拒绝原假设。也就是说，在 1% 的显著性水平上，结果没有显示从第 1 年到第 2 年月的中位数高温存在正偏移。请注意，由于样本大小较大，因此 <code class="literal">ranksum</code> 使用逼近方法来计算 <span class="inlineequation"><span><span class="MathEquation" role="math" style="font-size: 15px;"><span class="MathRoot HBox" role="img" aria-label="p" style="display: inline-block;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text" style="margin-left: 0.1em;">p</span></span></span></span></span></span>-值。 </p>
+<p>使用精确方法计算 <span class="inlineequation"><span><span class="MathEquation" role="math" style="font-size: 15px;"><span class="MathRoot HBox" role="img" aria-label="p" style="display: inline-block;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text" style="margin-left: 0.1em;">p</span></span></span></span></span></span>-值。 </p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[p,h,stats] = ranksum(year1,year2,<span style="color:#A020F0">'alpha'</span>,0.01,<span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'tail'</span>,<span style="color:#A020F0">'left'</span>,<span style="color:#A020F0">'method'</span>,<span style="color:#A020F0">'exact'</span>)</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p = 0.1273
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>h = <span class="emphasis"><em>logical</em></span>
+   0
+
+</pre>
+</div>
+</div>
+</div>
+<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>stats = <span class="emphasis"><em>struct with fields:</em></span>
+    ranksum: 837.5000
+
+</pre>
+</div>
+</div>
+</div>
+<p>逼近方法和精确方法的结果是一致的。 </p>
+<div class="procedure"></div>
+</div>
+</div>
+</div>
+</div>
+<div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="stats-IncreaseintheMedianExample"/>
+<meta itemprop="exampletitle" content="Increase in the Median"/>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bti4qfq-2">输入参数</h2>
+<div class="expandableContent mwExpandToggle2"><p class="switch  mwToggle2"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="bti4qfq-2_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="bti4qfq-x"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bti4qfq-x" data-target="#expand_panel_body_bti4qfq-x" aria-controls="expand_panel_body_bti4qfq-x" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_x" class="anchor_target"></span><h3 class="panel-title" id="bti4qfq-x"><code itemprop="name">x</code> — 样本数据<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">向量</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bti4qfq-x" aria-labelledby="expand_panel_heading_bti4qfq-x" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body">
+<p>样本数据，指定为向量。</p>
+<p class="datatypelist"><span style="background-color: transparent;"><b>数据类型</b></span><strong>: </strong><code itemprop="datatype">single</code> | <code itemprop="datatype">double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="bti4qfq-y"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bti4qfq-y" data-target="#expand_panel_body_bti4qfq-y" aria-controls="expand_panel_body_bti4qfq-y" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_y" class="anchor_target"></span><h3 class="panel-title" id="bti4qfq-y"><code itemprop="name">y</code> — 样本数据<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">向量</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bti4qfq-y" aria-labelledby="expand_panel_heading_bti4qfq-y" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body">
+<p>样本数据，指定为向量。y 的长度不必与 x 的长度相同。<br/></p>
+<p class="datatypelist"><strong>数据类型: </strong><code itemprop="datatype">single</code> | <code itemprop="datatype">double</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span id="namevaluepairarguments" class="anchor_target"></span><span id="bti4rqg-1" class="anchor_target"></span><h3 id="namevaluepairs" class="bottom_ruled">名称-值参数</h3>
+<div class="namevaluecontainer"><p class="neqvpair_boilerplate">将可选的参量对组指定为 Name1=Value1,...,NameN=ValueN，其中 Name 是参量名称，Value 是对应的值。名称-值参量必须出现在其他参量后，但参量对组的顺序无关紧要。</p>
+<p class="nvpaircompat_boilerplate"><span class="emphasis"><i>在 R2021a 之前，使用逗号分隔每个名称和值，并用引号将 Name 引起来。</i></span></p>
+<p><span class="example_desc"><b>示例</b><strong>: </strong><code class="literal">'alpha',0.01,'method','approximate','tail','right'</code> 指定具有 1% 显著性水平的右尾秩和检验，它返回逼近的 <i>p</i> 值。</span></p>
+</div>
+<div class="ref_sect"><div class="expandableContent"><div class="panel-group" id="d124e817401_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bti4qfq-alpha"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bti4qfq-alpha" data-target="#expand_panel_body_bti4qfq-alpha" aria-controls="expand_panel_body_bti4qfq-alpha" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_alpha" class="anchor_target"></span><h3 class="panel-title" id="bti4qfq-alpha"><code itemprop="name">alpha</code> — 显著性水平<br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue">0.05</span> (默认) | <span itemprop="inputvalue">0 到 1 范围内的标量值</span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bti4qfq-alpha" aria-labelledby="expand_panel_heading_bti4qfq-alpha" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="panel-body"><p><span style="background-color: transparent;">假设检验决策的显著性水平，指定为以逗号分隔的对组，其中包含 'alpha' 和 0 到 1 范围内的一个标量值。h 的显著性水平是</span> 100 * <code class="literal">alpha</code>%。</p>
+<p class="description_valueexample"><strong>示例: </strong><code class="literal">'alpha'</code>, <code class="literal">0.01</code></p>
+<p class="datatypelist"><strong>数据类型: </strong><code itemprop="datatype">double</code> | <code itemprop="datatype">single</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bti4qfq-method"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bti4qfq-method" data-target="#expand_panel_body_bti4qfq-method" aria-controls="expand_panel_body_bti4qfq-method" class="panel-heading add_cursor_pointer collapsed" aria-expanded="false"><span id="inputarg_method" class="anchor_target"></span><h3 class="panel-title" id="bti4qfq-method"><code itemprop="name">method</code> — <span itemprop="purpose"><em class="varname">p</em>-值的计算方法</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">'exact'</code></span> | <span itemprop="inputvalue"><code class="literal">'approximate'</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bti4qfq-method" aria-labelledby="expand_panel_heading_bti4qfq-method" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;"><div class="panel-body">
+<p>Computation method of the <em class="varname">p</em>-value, <code class="literal">p</code>,
+specified as the comma-separated pair consisting of <code class="literal">'method'</code> and
+one of the following:</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="21%"/>
+<col class="tcol2" width="79%"/>
+</colgroup>
+<tbody><tr><td><code class="literal">'exact'</code></td>
+<td>Exact computation of the <em class="varname">p</em>-value, <code class="literal">p</code>. </td>
+</tr>
+<tr><td><code class="literal">'approximate'</code></td>
+<td>Normal approximation while computing the <em class="varname">p</em>-value, <code class="literal">p</code>. </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+When <code class="literal">'method'</code> is
+unspecified, the default is:</p>
+<p></p>
+<div class="itemizedlist"><ul><li><p><code class="literal">'exact'</code> if min(<em class="varname">n<sub>x</sub></em>,<em class="varname">n<sub>y</sub></em>)
+&lt; 10 and <em class="varname">n<sub>x</sub></em> + <em class="varname">n<sub>y</sub></em> &lt;
+20</p></li>
+<li><p><code class="literal">'approximate'</code> otherwise</p></li>
+</ul>
+</div>
+<p>
+ <em class="varname">n<sub>x</sub></em> and <em class="varname">n<sub>y</sub></em> are
+the sizes of the samples in <code class="literal">x</code> and <code class="literal">y</code>,
+respectively.</p>
+<p class="description_valueexample"><strong>Example: </strong><code class="literal">'method'</code>,<code class="literal">'exact'</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NameValuePairInputArgument" itemid="bti4qfq-tail"><div role="tab" data-toggle="collapse" id="expand_panel_heading_bti4qfq-tail" data-target="#expand_panel_body_bti4qfq-tail" aria-controls="expand_panel_body_bti4qfq-tail" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="inputarg_tail" class="anchor_target"></span><h3 class="panel-title" id="bti4qfq-tail"><code itemprop="name">tail</code> — <span itemprop="purpose">Type of test</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">'both'</code></span> (default) | <span itemprop="inputvalue"><code class="literal">'right'</code></span> | <span itemprop="inputvalue"><code class="literal">'left'</code></span></span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bti4qfq-tail" aria-labelledby="expand_panel_heading_bti4qfq-tail" class="panel-collapse collapse in"><div class="panel-body">
+<p>Type of test, specified as the comma-separated pair consisting
+of <code class="literal">'tail'</code> and one of the following:</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="15%"/>
+<col class="tcol2" width="85%"/>
+</colgroup>
+<tbody><tr><td><code class="literal">'both'</code></td>
+<td>Two-sided hypothesis test, where the alternative hypothesis
+states that <code class="literal">x</code> and <code class="literal">y</code> have different
+medians. Default test type if <code class="literal">'tail'</code> is not specified. </td>
+</tr>
+<tr><td><code class="literal">'right'</code></td>
+<td>Right-tailed hypothesis test, where the alternative hypothesis
+states that the median of <code class="literal">x</code> is greater than the
+median of <code class="literal">y</code>.</td>
+</tr>
+<tr><td><code class="literal">'left'</code></td>
+<td>Left-tailed hypothesis test, where the alternative hypothesis
+states that the median of <code class="literal">x</code> is less than the median
+of <code class="literal">y</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+</p>
+<p class="description_valueexample"><strong>Example: </strong><code class="literal">'tail'</code>,<code class="literal">'left'</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bti4qfq-3">Output Arguments</h2>
+<div class="expandableContent mwExpandToggle3"><p class="switch  mwToggle3"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p>
+<div class="panel-group" id="bti4qfq-3_panel-group" role="tablist" aria-multiselectable="true"><div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bti4qfq-p" data-target="#expand_panel_body_bti4qfq-p" aria-controls="expand_panel_body_bti4qfq-p" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_p" class="anchor_target"></span><h3 class="panel-title" id="bti4qfq-p"><code class="name">p</code> — <em class="varname">p</em>-value of the test<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">nonnegative scalar</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bti4qfq-p" aria-labelledby="expand_panel_heading_bti4qfq-p" class="panel-collapse collapse in"><div class="panel-body">
+<p><em class="varname">p</em>-value of the test, returned as a positive
+scalar from 0 to 1. <code class="literal">p</code> is the probability of observing
+a test statistic as or more extreme than the observed value under
+the null hypothesis. <code class="literal">ranksum</code> computes the two-sided <em class="varname">p</em>-value
+by doubling the most significant one-sided value.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bti4qfq-h" data-target="#expand_panel_body_bti4qfq-h" aria-controls="expand_panel_body_bti4qfq-h" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_h" class="anchor_target"></span><h3 class="panel-title" id="bti4qfq-h"><code class="name">h</code> — Result of the hypothesis test<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">1 | 0</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bti4qfq-h" aria-labelledby="expand_panel_heading_bti4qfq-h" class="panel-collapse collapse in"><div class="panel-body">
+<p>Result of the hypothesis test, returned as a logical value.</p>
+<div class="itemizedlist"><ul><li><p>If <code class="literal">h</code> = 1, this indicates rejection
+of the null hypothesis at the 100 * <code class="literal">alpha</code>% significance
+level.</p></li>
+<li><p>If <code class="literal">h</code> = 0, this indicates a failure
+to reject the null hypothesis at the 100 * <code class="literal">alpha</code>%
+significance level.</p></li>
+</ul>
+</div>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-default "><div role="tab" data-toggle="collapse" id="expand_panel_heading_bti4qfq-stats" data-target="#expand_panel_body_bti4qfq-stats" aria-controls="expand_panel_body_bti4qfq-stats" class="panel-heading add_cursor_pointer" aria-expanded="true"><span id="outputarg_stats" class="anchor_target"></span><h3 class="panel-title" id="bti4qfq-stats"><code class="name">stats</code> — Test statistics<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">structure</span></span></h3>
+<span class="icon-arrow-open-down icon_24"></span><span class="icon-arrow-open-right icon_24"></span></div>
+<div role="tabpanel" id="expand_panel_body_bti4qfq-stats" aria-labelledby="expand_panel_heading_bti4qfq-stats" class="panel-collapse collapse in"><div class="panel-body">
+<p>Test statistics, returned as a structure. The test statistics
+stored in <code class="literal">stats</code> are:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">ranksum</code> : Value of the rank sum
+test statistic</p></li>
+<li><p><code class="literal">zval</code>: Value of the <a href="ranksum.html#bti6mjw-1" class="intrnllnk">z-statistic</a> (computed when <code class="literal">'method'</code> is <code class="literal">'approximate'</code>)</p></li>
+</ul>
+</div>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="moreabout ref_sect"><h2 id="bti40k_-5">详细信息</h2>
+<div class="expandableContent mwExpandToggle4"><p class="switch mwToggle4"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true2">collapse all</a></p>
+<div class="expand_collapse"><h3 class="expand_trigger" id="bti4z5t" aria-expanded="true" data-toggle="collapse" data-target="#expand_body_bti4z5t" aria-controls="expand_body_bti4z5t"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>威尔科克森秩和检验</h3>
+<div id="expand_body_bti4z5t" class="collapsible_content collapse in" aria-expanded="true" style=""><p class="shortdesc">当样本独立时，威尔科克森秩和检验是两个总体的非参数化检验。如果 X 和 Y 是样本大小不同的独立样本，则 <code class="literal">ranksum</code> 返回的检验统计量是第一个样本的秩和。</p>
+<p>威尔科克森秩和检验等效于曼-惠特尼 U 检验。曼-惠特尼 U 检验是一种非参数化检验，用于检验两个独立样本 X 和 Y 的总体中位数的相等性。</p>
+<p>曼-惠特尼 U 检验的统计量 <em class="varname">U</em> 是在两个独立样本 X 和 Y 中元素的有序排列中，<em class="varname">y</em> 先于 <em class="varname">x</em> 的次数。它与威尔科克森秩和统计量的关系如下：如果 <code class="literal">X</code> 是大小为 <em class="varname">n<sub>X</sub></em> 的样本，则</p>
+<p> <span class="inlineequation"><span class="inlinemediaobject"><span><span class="MathEquation" role="math" style="font-size: 15px;"><span class="MathRoot HBox" role="img" aria-label="U equals W minus StartFraction n indexOf X baseline leftParenthesis n indexOf X baseline plus 1 rightParenthesis over 2 EndFraction ldotp" style="display: inline-block;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text" style="margin-left: -0.1em; margin-right: 0.1em;">U</span><span class="MathText MathTextBox symbol" style="margin-left: 0.277778em;">=</span><span class="MathText MathTextBox text" style="margin-left: 0.277778em; margin-right: 0.1em;">W</span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">−</span><span class="MathFraction VBox" style="display: inline-block; margin-left: 0.222222em; text-align: center; vertical-align: -10px;"><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 0px;"><span class="MathScript HBox" style="display: inline-block; font-size: 15px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-left: 0.05em; margin-right: 0.05em;">X</span></span></span></span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">(</span></span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathScript HBox" style="display: inline-block; font-size: 15px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-left: 0.05em; margin-right: 0.05em;">X</span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">+</span><span class="MathText MathTextBox number" style="margin-left: 0.222222em;">1</span></span><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">)</span></span></span></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="rulebox" style="display: block; border-bottom-style: solid; border-bottom-width: 1px; width: 100%; height: 0px; z-index: 1; margin-top: 1px;"></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 1px;"><span class="MathText MathTextBox number">2</span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.166667em;">.</span></span></span></span></span></span></span></p>
+</div>
+</div>
+<div class="expand_collapse"><h3 class="expand_trigger" id="bti6mjw-1" aria-expanded="true" data-toggle="collapse" data-target="#expand_body_bti6mjw-1" aria-controls="expand_body_bti6mjw-1"><span class="icon-arrow-open-down"></span><span class="icon-arrow-open-right"></span>z-统计量</h3>
+<div id="expand_body_bti6mjw-1" class="collapsible_content collapse in" aria-expanded="true" style=""><p class="shortdesc">对于大样本，<code class="literal">ranksum</code> 使用 <em class="varname">z</em>-统计量来计算检验的逼近 <em class="varname">p</em>-值。 </p>
+<p>如果 X 和 Y 是大小为 <em class="varname">n<sub>X</sub></em> 和 <em class="varname">n<sub>Y</sub></em> 的两个独立样本，其中 <em class="varname">n<sub>X</sub></em> &lt; <em class="varname">n<sub>Y</sub></em>，则 <em class="varname">z</em>-统计量为</p>
+<div id="d124e817971" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><span><span class="MathEquation" role="math" style="font-size: 15px;"><span class="MathRoot HBox" role="img" aria-label="z equals StartFraction W minus E leftParenthesis W rightParenthesis over StartRoot SquareRootOf V leftParenthesis W rightParenthesis EndRoot EndFraction equals StartFraction W minus bracketleft StartFraction n indexOf X baseline n indexOf Y baseline plus n indexOf X baseline leftParenthesis n indexOf X baseline plus 1 rightParenthesis over 2 EndFraction bracketright minus 0.5 ast s i g n leftParenthesis W minus E leftParenthesis W rightParenthesis rightParenthesis over StartRoot SquareRootOf StartFraction n indexOf X baseline n indexOf Y baseline leftParenthesis n indexOf X baseline plus n indexOf Y baseline plus 1 minus t i e s c o r rightParenthesis over 12 EndFraction EndRoot EndFraction ," style="display: inline-block;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">z</span><span class="MathText MathTextBox symbol" style="margin-left: 0.277778em;">=</span><span class="MathFraction VBox" style="display: inline-block; margin-left: 0.277778em; text-align: center; vertical-align: -13px;"><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-right: 0.1em;">W</span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">−</span><span class="MathText MathTextBox text" style="margin-left: 0.222222em; margin-right: 0.1em;">E</span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">(</span></span><span class="MathText MathTextBox text" style="margin-right: 0.1em;">W</span><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">)</span></span></span></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="rulebox" style="display: block; border-bottom-style: solid; border-bottom-width: 1px; width: 100%; height: 0px; z-index: 1; margin-top: 1px;"></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 1px;"><span class="MathRadical HBox" style="display: inline-block; font-size: 15px;"><span class="VBox" style="display: inline-block; text-align: center; vertical-align: 0px;"><span class="StretchyBox" style="display: inline-block; text-align: right; position: relative;"><span class="MathTextBox symbol" style="display: inline-block; margin-top: 3px; margin-bottom: 2px;">√</span></span></span><span class="VBox" style="display: inline-block; text-align: center; vertical-align: 0px;"><span class="rulebox" style="display: block; border-bottom-style: solid; border-bottom-width: 1px; width: 100%; height: 0px; z-index: 1; margin-top: 0px;"></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 2px;"></span><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 2px;"><span class="MathText MathTextBox text" style="margin-right: 0.1em;">V</span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox symbol">(</span><span class="MathText MathTextBox text" style="margin-right: 0.1em;">W</span><span class="MathText MathTextBox symbol">)</span></span></span></span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.277778em;">=</span><span class="MathFraction VBox" style="display: inline-block; margin-left: 0.277778em; text-align: center; vertical-align: -22px;"><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-right: 0.1em;">W</span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">−</span><span class="MathRow HBox" style="display: inline-block; font-size: 15px; margin-left: 0.222222em;"><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox stixsize3" style="display: inline-block; margin-top: 8px; margin-bottom: 15px; vertical-align: -8px;">[</span></span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathFraction VBox" style="display: inline-block; text-align: center; vertical-align: -10px;"><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 0px;"><span class="MathScript HBox" style="display: inline-block; font-size: 15px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-left: 0.05em; margin-right: 0.05em;">X</span></span></span></span><span class="MathScript HBox" style="display: inline-block; font-size: 15px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-right: 0.1em;">Y</span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">+</span><span class="MathScript HBox" style="display: inline-block; font-size: 15px; margin-left: 0.222222em;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-left: 0.05em; margin-right: 0.05em;">X</span></span></span></span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">(</span></span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathScript HBox" style="display: inline-block; font-size: 15px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-left: 0.05em; margin-right: 0.05em;">X</span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">+</span><span class="MathText MathTextBox number" style="margin-left: 0.222222em;">1</span></span><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">)</span></span></span></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="rulebox" style="display: block; border-bottom-style: solid; border-bottom-width: 1px; width: 100%; height: 0px; z-index: 1; margin-top: 1px;"></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 1px;"><span class="MathText MathTextBox number">2</span></span></span></span><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox stixsize3" style="display: inline-block; margin-top: 8px; margin-bottom: 15px; vertical-align: -8px;">]</span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">−</span><span class="MathText MathTextBox number" style="margin-left: 0.222222em; font-style: normal;">0.5</span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">∗</span><span class="MathText MathTextBox text" style="margin-left: 0.222222em;">s</span><span class="MathText MathTextBox text">i</span><span class="MathText MathTextBox text">g</span><span class="MathText MathTextBox text">n</span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox symbol">(</span><span class="MathText MathTextBox text" style="margin-right: 0.1em;">W</span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">−</span><span class="MathText MathTextBox text" style="margin-left: 0.222222em; margin-right: 0.1em;">E</span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox symbol">(</span><span class="MathText MathTextBox text" style="margin-right: 0.1em;">W</span><span class="MathText MathTextBox symbol">)</span></span><span class="MathText MathTextBox symbol">)</span></span></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="rulebox" style="display: block; border-bottom-style: solid; border-bottom-width: 1px; width: 100%; height: 0px; z-index: 1; margin-top: 1px;"></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 1px;"><span class="MathRadical HBox" style="display: inline-block; font-size: 15px;"><span class="VBox" style="display: inline-block; text-align: center; vertical-align: -7px;"><span class="StretchyBox" style="display: inline-block; text-align: right; position: relative;"><span class="MathTextBox stixsize2" style="display: inline-block; margin-top: 12px; margin-bottom: 11px;">√</span></span></span><span class="VBox" style="display: inline-block; text-align: center; vertical-align: 0px;"><span class="rulebox" style="display: block; border-bottom-style: solid; border-bottom-width: 1px; width: 100%; height: 0px; z-index: 1; margin-top: 0px;"></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 2px;"></span><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 2px;"><span class="MathFraction VBox" style="display: inline-block; text-align: center; vertical-align: -10px;"><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 0px;"><span class="MathScript HBox" style="display: inline-block; font-size: 15px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-left: 0.05em; margin-right: 0.05em;">X</span></span></span></span><span class="MathScript HBox" style="display: inline-block; font-size: 15px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-right: 0.1em;">Y</span></span></span></span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">(</span></span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathScript HBox" style="display: inline-block; font-size: 15px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-left: 0.05em; margin-right: 0.05em;">X</span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">+</span><span class="MathScript HBox" style="display: inline-block; font-size: 15px; margin-left: 0.222222em;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-right: 0.1em;">Y</span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">+</span><span class="MathText MathTextBox number" style="margin-left: 0.222222em;">1</span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">−</span><span class="MathText MathTextBox text" style="margin-left: 0.222222em;">t</span><span class="MathText MathTextBox text">i</span><span class="MathText MathTextBox text">e</span><span class="MathText MathTextBox text">s</span><span class="MathText MathTextBox text">c</span><span class="MathText MathTextBox text">o</span><span class="MathText MathTextBox text" style="margin-right: 0.05em;">r</span></span><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">)</span></span></span></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="rulebox" style="display: block; border-bottom-style: solid; border-bottom-width: 1px; width: 100%; height: 0px; z-index: 1; margin-top: 1px;"></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 1px;"><span class="MathText MathTextBox number" style="font-style: normal;">12</span></span></span></span></span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.166667em;">,</span></span></span></span></span></p>
+</div>
+</div>
+<p>其中进行连续性校正和结值调整。此处 <em class="varname">tiescor</em> 由下式给出 </p>
+<div id="d124e817979" class="mediaobject centerimg"><div class="code_responsive"><p class="programlistingindent"><span><span class="MathEquation" role="math" style="font-size: 15px;"><span class="MathRoot HBox" role="img" aria-label="t i e s c o r equals StartFraction 2 ast t i e a d j over leftParenthesis n indexOf X baseline plus n indexOf Y baseline rightParenthesis leftParenthesis n indexOf X baseline plus n indexOf Y baseline minus 1 rightParenthesis EndFraction ," style="display: inline-block;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">t</span><span class="MathText MathTextBox text">i</span><span class="MathText MathTextBox text">e</span><span class="MathText MathTextBox text">s</span><span class="MathText MathTextBox text">c</span><span class="MathText MathTextBox text">o</span><span class="MathText MathTextBox text" style="margin-right: 0.05em;">r</span><span class="MathText MathTextBox symbol" style="margin-left: 0.277778em;">=</span><span class="MathFraction VBox" style="display: inline-block; margin-left: 0.277778em; text-align: center; vertical-align: -10px;"><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 0px;"><span class="MathText MathTextBox number">2</span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">∗</span><span class="MathText MathTextBox text" style="margin-left: 0.222222em;">t</span><span class="MathText MathTextBox text">i</span><span class="MathText MathTextBox text">e</span><span class="MathText MathTextBox text">a</span><span class="MathText MathTextBox text">d</span><span class="MathText MathTextBox text" style="margin-right: 0.05em;">j</span></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="rulebox" style="display: block; border-bottom-style: solid; border-bottom-width: 1px; width: 100%; height: 0px; z-index: 1; margin-top: 1px;"></span><span class="WhiteSpaceBox" style="display: block; vertical-align: 1px;"></span><span class="MathRow HBox" style="display: block; font-size: 15px; margin-top: 1px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">(</span></span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathScript HBox" style="display: inline-block; font-size: 15px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-left: 0.05em; margin-right: 0.05em;">X</span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">+</span><span class="MathScript HBox" style="display: inline-block; font-size: 15px; margin-left: 0.222222em;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-right: 0.1em;">Y</span></span></span></span></span><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">)</span></span></span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">(</span></span><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathScript HBox" style="display: inline-block; font-size: 15px;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-left: 0.05em; margin-right: 0.05em;">X</span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">+</span><span class="MathScript HBox" style="display: inline-block; font-size: 15px; margin-left: 0.222222em;"><span class="MathRow HBox" style="display: inline-block; font-size: 15px;"><span class="MathText MathTextBox text">n</span></span><span class="VBox" style="display: inline-block; text-align: left; vertical-align: -2px;"><span class="MathRow HBox" style="display: block; font-size: 10.5px; margin-top: 0px;"><span class="MathText MathTextBox text" style="margin-right: 0.1em;">Y</span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.222222em;">−</span><span class="MathText MathTextBox number" style="margin-left: 0.222222em;">1</span></span><span class="MathDelimiter StretchyBox" style="display: inline-block; text-align: center; position: relative;"><span class="MathTextBox symbol">)</span></span></span></span></span><span class="MathText MathTextBox symbol" style="margin-left: 0.166667em;">,</span></span></span></span></span></p>
+</div>
+</div>
+<p>其中 <code class="literal">ranksum</code> 使用 <code class="literal">[ranks,tieadj]
+= tiedrank(x,y)</code> 来获得结值调整。标准正态分布给出了此 <em class="varname">z</em>-统计量的的 <em class="varname">p</em>-值。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bti40k_-6">算法</h2>
+<p><code class="literal">ranksum</code> 将 x 和 y 中的 <code class="literal" style="font-size: 13px; color: rgb(64, 64, 64); background-color: rgb(255, 255, 255);">NaN</code>s 视为缺失值并忽略它们。</p>
+<p>对于样本大小不相等的中位数双侧检验，<code class="literal">ranksum</code> 返回的检验统计量是第一个样本的秩和。</p>
+</div>
+<div class="bibliography"><h2 id="References">参考</h2>
+<div id="btj6695-2" class="bibliomixed"><p>[1] Gibbons, J. D., and S. Chakraborti. <em class="citetitle">Nonparametric
+Statistical Inference</em>, 5th Ed., Boca Raton, FL: Chapman
+&amp; Hall/CRC Press, Taylor &amp; Francis Group, 2011.</p>
+</div>
+<div id="btj6695-3" class="bibliomixed"><p>[2] Hollander, M., and D. A. Wolfe. <em class="citetitle">Nonparametric
+Statistical Methods</em>. Hoboken, NJ: John Wiley &amp; Sons,
+Inc., 1999. </p>
+</div>
+</div>
+<div class="ref_sect"><h2 id="bti4qfq_vh"><span style="font-family: &quot;Microsoft YaHei&quot;, &quot;Segoe UI&quot;, Arial, Helvetica;">版本历史记录</span></h2>
+<p><b>在 R2006a 之前推出</b></p>
+</div>
+<div class="ref_sect"><h2 id="bti4qfq_seealso">另请参阅</h2>
+<p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="kruskalwallis.html"><span itemprop="name"><code class="function">kruskalwallis</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="signrank.html"><span itemprop="name"><code class="function">signrank</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="signtest.html"><span itemprop="name"><code class="function">signtest</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="ttest2.html"><span itemprop="name"><code class="function">ttest2 </code></span></a></span></p>
+</div>
+    </div>
+</div>
+<div class="modal fade" id="open-example-dialog" tabindex="-1" role="dialog" aria-labelledby="openExampleDialogLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h2 class="h3 modal-title">Open Example</h2>
+</div>
+<div class="modal-body" id="dialog-body"><p>You have a modified version of this example. Do you want to open this example with your edits?</p>
+</div>
+<div class="modal-footer"><a id="open-example-dialog-replace" class="btn btn_color_blue companion_btn" data-dismiss="modal">No, open this example and discard my edits</a><a id="open-example-dialog-continue" class="btn btn_color_blue" data-dismiss="modal">Yes</a></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css"/>
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script>
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</div>
+<!--close_0960--><footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer" style="width: auto;">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-xs-12">
+<p class="copyright">© 1994-2022 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+<li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!--close row-offcanvas--></div>
+<!--close_0970-->
+<a class="btn btn_color_mediumgray" id="go-top" style="display: block;"><span class="icon-arrow-open-up icon_24"></span></a><span id="MathEquationRendererScratch" class="MathEquation" style="position: absolute; right: -1000px; bottom: -1000px; white-space: pre-wrap; font-size: 15px;"></span>
+<a class="btn btn_color_mediumgray" id="go-top"><span class="icon-arrow-open-up icon_24"></span></a>
+</body>
+</html>
